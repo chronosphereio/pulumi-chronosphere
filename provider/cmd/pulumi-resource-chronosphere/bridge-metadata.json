@@ -1,0 +1,403 @@
+{
+    "renames": {
+        "resources": {
+            "chronosphere:index/blackholeAlertNotifier:BlackholeAlertNotifier": "chronosphere_blackhole_alert_notifier",
+            "chronosphere:index/bucket:Bucket": "chronosphere_bucket",
+            "chronosphere:index/classicDashboard:ClassicDashboard": "chronosphere_classic_dashboard",
+            "chronosphere:index/collection:Collection": "chronosphere_collection",
+            "chronosphere:index/dashboard:Dashboard": "chronosphere_dashboard",
+            "chronosphere:index/derivedLabel:DerivedLabel": "chronosphere_derived_label",
+            "chronosphere:index/derivedMetric:DerivedMetric": "chronosphere_derived_metric",
+            "chronosphere:index/dropRule:DropRule": "chronosphere_drop_rule",
+            "chronosphere:index/emailAlertNotifier:EmailAlertNotifier": "chronosphere_email_alert_notifier",
+            "chronosphere:index/grafanaDashboard:GrafanaDashboard": "chronosphere_grafana_dashboard",
+            "chronosphere:index/mappingRule:MappingRule": "chronosphere_mapping_rule",
+            "chronosphere:index/monitor:Monitor": "chronosphere_monitor",
+            "chronosphere:index/notificationPolicy:NotificationPolicy": "chronosphere_notification_policy",
+            "chronosphere:index/opsgenieAlertNotifier:OpsgenieAlertNotifier": "chronosphere_opsgenie_alert_notifier",
+            "chronosphere:index/pagerdutyAlertNotifier:PagerdutyAlertNotifier": "chronosphere_pagerduty_alert_notifier",
+            "chronosphere:index/recordingRule:RecordingRule": "chronosphere_recording_rule",
+            "chronosphere:index/resourcePoolsConfig:ResourcePoolsConfig": "chronosphere_resource_pools_config",
+            "chronosphere:index/rollupRule:RollupRule": "chronosphere_rollup_rule",
+            "chronosphere:index/serviceAccount:ServiceAccount": "chronosphere_service_account",
+            "chronosphere:index/slackAlertNotifier:SlackAlertNotifier": "chronosphere_slack_alert_notifier",
+            "chronosphere:index/team:Team": "chronosphere_team",
+            "chronosphere:index/traceJaegerRemoteSamplingStrategy:TraceJaegerRemoteSamplingStrategy": "chronosphere_trace_jaeger_remote_sampling_strategy",
+            "chronosphere:index/traceMetricsRule:TraceMetricsRule": "chronosphere_trace_metrics_rule",
+            "chronosphere:index/traceTailSamplingRules:TraceTailSamplingRules": "chronosphere_trace_tail_sampling_rules",
+            "chronosphere:index/victoropsAlertNotifier:VictoropsAlertNotifier": "chronosphere_victorops_alert_notifier",
+            "chronosphere:index/webhookAlertNotifier:WebhookAlertNotifier": "chronosphere_webhook_alert_notifier"
+        },
+        "functions": {
+            "chronosphere:index/bucketDataSource:BucketDataSource": "chronosphere_bucket",
+            "chronosphere:index/notificationPolicyDataSource:NotificationPolicyDataSource": "chronosphere_notification_policy",
+            "chronosphere:index/serviceDataSource:ServiceDataSource": "chronosphere_service"
+        },
+        "renamedProperties": {
+            "chronosphere:index/DerivedLabelMetricLabel:DerivedLabelMetricLabel": {
+                "constructedLabel": "constructed_label",
+                "mappingLabel": "mapping_label"
+            },
+            "chronosphere:index/DerivedLabelMetricLabelConstructedLabel:DerivedLabelMetricLabelConstructedLabel": {
+                "valueDefinitions": "value_definitions"
+            },
+            "chronosphere:index/DerivedLabelMetricLabelConstructedLabelValueDefinitionFilter:DerivedLabelMetricLabelConstructedLabelValueDefinitionFilter": {
+                "valueGlob": "value_glob"
+            },
+            "chronosphere:index/DerivedLabelMetricLabelMappingLabel:DerivedLabelMetricLabelMappingLabel": {
+                "nameMappings": "name_mappings",
+                "valueMappings": "value_mappings"
+            },
+            "chronosphere:index/DerivedLabelMetricLabelMappingLabelNameMapping:DerivedLabelMetricLabelMappingLabelNameMapping": {
+                "sourceLabel": "source_label",
+                "valueMappings": "value_mappings"
+            },
+            "chronosphere:index/DerivedLabelMetricLabelMappingLabelNameMappingFilter:DerivedLabelMetricLabelMappingLabelNameMappingFilter": {
+                "valueGlob": "value_glob"
+            },
+            "chronosphere:index/DerivedLabelMetricLabelMappingLabelNameMappingValueMapping:DerivedLabelMetricLabelMappingLabelNameMappingValueMapping": {
+                "sourceValueGlobs": "source_value_globs",
+                "targetValue": "target_value"
+            },
+            "chronosphere:index/DerivedLabelMetricLabelMappingLabelValueMapping:DerivedLabelMetricLabelMappingLabelValueMapping": {
+                "sourceValueGlobs": "source_value_globs",
+                "targetValue": "target_value"
+            },
+            "chronosphere:index/DerivedMetricQueryQueryVariable:DerivedMetricQueryQueryVariable": {
+                "defaultSelector": "default_selector"
+            },
+            "chronosphere:index/DropRuleValueBasedDrop:DropRuleValueBasedDrop": {
+                "targetDropValue": "target_drop_value"
+            },
+            "chronosphere:index/MonitorQuery:MonitorQuery": {
+                "graphiteExpr": "graphite_expr",
+                "prometheusExpr": "prometheus_expr"
+            },
+            "chronosphere:index/MonitorSchedule:MonitorSchedule": {
+                "ranges": "range"
+            },
+            "chronosphere:index/MonitorSeriesConditions:MonitorSeriesConditions": {
+                "conditions": "condition",
+                "overrides": "override"
+            },
+            "chronosphere:index/MonitorSeriesConditionsCondition:MonitorSeriesConditionsCondition": {
+                "resolveSustain": "resolve_sustain"
+            },
+            "chronosphere:index/MonitorSeriesConditionsOverride:MonitorSeriesConditionsOverride": {
+                "conditions": "condition",
+                "labelMatchers": "label_matcher"
+            },
+            "chronosphere:index/MonitorSeriesConditionsOverrideCondition:MonitorSeriesConditionsOverrideCondition": {
+                "resolveSustain": "resolve_sustain"
+            },
+            "chronosphere:index/MonitorSignalGrouping:MonitorSignalGrouping": {
+                "labelNames": "label_names",
+                "signalPerSeries": "signal_per_series"
+            },
+            "chronosphere:index/NotificationPolicyDataSourceOverride:NotificationPolicyDataSourceOverride": {
+                "alertLabelMatchers": "alert_label_matcher",
+                "routes": "route"
+            },
+            "chronosphere:index/NotificationPolicyDataSourceOverrideRoute:NotificationPolicyDataSourceOverrideRoute": {
+                "repeatInterval": "repeat_interval"
+            },
+            "chronosphere:index/NotificationPolicyDataSourceRoute:NotificationPolicyDataSourceRoute": {
+                "repeatInterval": "repeat_interval"
+            },
+            "chronosphere:index/NotificationPolicyDataSourceRule:NotificationPolicyDataSourceRule": {
+                "repeatInterval": "repeat_interval"
+            },
+            "chronosphere:index/NotificationPolicyOverride:NotificationPolicyOverride": {
+                "alertLabelMatchers": "alert_label_matcher",
+                "routes": "route"
+            },
+            "chronosphere:index/NotificationPolicyOverrideRoute:NotificationPolicyOverrideRoute": {
+                "repeatInterval": "repeat_interval"
+            },
+            "chronosphere:index/NotificationPolicyRoute:NotificationPolicyRoute": {
+                "repeatInterval": "repeat_interval"
+            },
+            "chronosphere:index/NotificationPolicyRule:NotificationPolicyRule": {
+                "repeatInterval": "repeat_interval"
+            },
+            "chronosphere:index/ResourcePoolsConfigDefaultPoolAllocation:ResourcePoolsConfigDefaultPoolAllocation": {
+                "percentOfLicense": "percent_of_license"
+            },
+            "chronosphere:index/ResourcePoolsConfigDefaultPoolPriorities:ResourcePoolsConfigDefaultPoolPriorities": {
+                "highPriorityMatchRules": "high_priority_match_rules",
+                "lowPriorityMatchRules": "low_priority_match_rules"
+            },
+            "chronosphere:index/ResourcePoolsConfigPool:ResourcePoolsConfigPool": {
+                "matchRule": "match_rule",
+                "matchRules": "match_rules"
+            },
+            "chronosphere:index/ResourcePoolsConfigPoolAllocation:ResourcePoolsConfigPoolAllocation": {
+                "percentOfLicense": "percent_of_license"
+            },
+            "chronosphere:index/ResourcePoolsConfigPoolPriorities:ResourcePoolsConfigPoolPriorities": {
+                "highPriorityMatchRules": "high_priority_match_rules",
+                "lowPriorityMatchRules": "low_priority_match_rules"
+            },
+            "chronosphere:index/SlackAlertNotifierAction:SlackAlertNotifierAction": {
+                "actionConfirmDismissText": "action_confirm_dismiss_text",
+                "actionConfirmOkText": "action_confirm_ok_text",
+                "actionConfirmText": "action_confirm_text",
+                "actionConfirmTile": "action_confirm_tile"
+            },
+            "chronosphere:index/TraceJaegerRemoteSamplingStrategyAppliedStrategy:TraceJaegerRemoteSamplingStrategyAppliedStrategy": {
+                "perOperationStrategies": "per_operation_strategies",
+                "probabilisticStrategy": "probabilistic_strategy",
+                "rateLimitingStrategy": "rate_limiting_strategy"
+            },
+            "chronosphere:index/TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationStrategies:TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationStrategies": {
+                "defaultLowerBoundTracesPerSecond": "default_lower_bound_traces_per_second",
+                "defaultSamplingRate": "default_sampling_rate",
+                "defaultUpperBoundTracesPerSecond": "default_upper_bound_traces_per_second",
+                "perOperationStrategies": "per_operation_strategies"
+            },
+            "chronosphere:index/TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationStrategiesPerOperationStrategy:TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationStrategiesPerOperationStrategy": {
+                "probabilisticStrategy": "probabilistic_strategy"
+            },
+            "chronosphere:index/TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationStrategiesPerOperationStrategyProbabilisticStrategy:TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationStrategiesPerOperationStrategyProbabilisticStrategy": {
+                "samplingRate": "sampling_rate"
+            },
+            "chronosphere:index/TraceJaegerRemoteSamplingStrategyAppliedStrategyProbabilisticStrategy:TraceJaegerRemoteSamplingStrategyAppliedStrategyProbabilisticStrategy": {
+                "samplingRate": "sampling_rate"
+            },
+            "chronosphere:index/TraceJaegerRemoteSamplingStrategyAppliedStrategyRateLimitingStrategy:TraceJaegerRemoteSamplingStrategyAppliedStrategyRateLimitingStrategy": {
+                "maxTracesPerSecond": "max_traces_per_second"
+            },
+            "chronosphere:index/TraceMetricsRuleGroupByKey:TraceMetricsRuleGroupByKey": {
+                "namedKey": "named_key"
+            },
+            "chronosphere:index/TraceMetricsRuleTraceFilter:TraceMetricsRuleTraceFilter": {
+                "spans": "span"
+            },
+            "chronosphere:index/TraceMetricsRuleTraceFilterSpan:TraceMetricsRuleTraceFilterSpan": {
+                "matchType": "match_type",
+                "parentOperation": "parent_operation",
+                "parentService": "parent_service",
+                "spanCount": "span_count",
+                "tags": "tag"
+            },
+            "chronosphere:index/TraceMetricsRuleTraceFilterSpanDuration:TraceMetricsRuleTraceFilterSpanDuration": {
+                "maxSeconds": "max_seconds",
+                "minSeconds": "min_seconds"
+            },
+            "chronosphere:index/TraceMetricsRuleTraceFilterSpanTag:TraceMetricsRuleTraceFilterSpanTag": {
+                "numericValue": "numeric_value"
+            },
+            "chronosphere:index/TraceMetricsRuleTraceFilterTraceDuration:TraceMetricsRuleTraceFilterTraceDuration": {
+                "maxSeconds": "max_seconds",
+                "minSeconds": "min_seconds"
+            },
+            "chronosphere:index/TraceTailSamplingRulesDefaultSampleRate:TraceTailSamplingRulesDefaultSampleRate": {
+                "sampleRate": "sample_rate"
+            },
+            "chronosphere:index/TraceTailSamplingRulesRule:TraceTailSamplingRulesRule": {
+                "sampleRate": "sample_rate",
+                "systemName": "system_name"
+            },
+            "chronosphere:index/TraceTailSamplingRulesRuleFilter:TraceTailSamplingRulesRuleFilter": {
+                "spans": "span"
+            },
+            "chronosphere:index/TraceTailSamplingRulesRuleFilterSpan:TraceTailSamplingRulesRuleFilterSpan": {
+                "matchType": "match_type",
+                "parentOperation": "parent_operation",
+                "parentService": "parent_service",
+                "spanCount": "span_count"
+            },
+            "chronosphere:index/TraceTailSamplingRulesRuleFilterSpanDuration:TraceTailSamplingRulesRuleFilterSpanDuration": {
+                "maxSecs": "max_secs",
+                "minSecs": "min_secs"
+            },
+            "chronosphere:index/TraceTailSamplingRulesRuleFilterSpanTag:TraceTailSamplingRulesRuleFilterSpanTag": {
+                "numericValue": "numeric_value"
+            },
+            "chronosphere:index/TraceTailSamplingRulesRuleFilterTraceDuration:TraceTailSamplingRulesRuleFilterTraceDuration": {
+                "maxSecs": "max_secs",
+                "minSecs": "min_secs"
+            },
+            "chronosphere:index/bucket:Bucket": {
+                "notificationPolicyData": "notification_policy_data",
+                "notificationPolicyId": "notification_policy_id",
+                "notificationPolicySlug": "notification_policy_slug",
+                "teamId": "team_id"
+            },
+            "chronosphere:index/classicDashboard:ClassicDashboard": {
+                "bucketId": "bucket_id",
+                "collectionId": "collection_id",
+                "dashboardJson": "dashboard_json"
+            },
+            "chronosphere:index/collection:Collection": {
+                "notificationPolicyId": "notification_policy_id",
+                "teamId": "team_id"
+            },
+            "chronosphere:index/dashboard:Dashboard": {
+                "collectionId": "collection_id",
+                "dashboardJson": "dashboard_json"
+            },
+            "chronosphere:index/derivedLabel:DerivedLabel": {
+                "existingLabelPolicy": "existing_label_policy",
+                "labelName": "label_name",
+                "metricLabel": "metric_label"
+            },
+            "chronosphere:index/derivedMetric:DerivedMetric": {
+                "metricName": "metric_name"
+            },
+            "chronosphere:index/dropRule:DropRule": {
+                "activatedDropDuration": "activated_drop_duration",
+                "conditionalDrop": "conditional_drop",
+                "queries": "query",
+                "rateLimitThreshold": "rate_limit_threshold",
+                "valueBasedDrop": "value_based_drop"
+            },
+            "chronosphere:index/emailAlertNotifier:EmailAlertNotifier": {
+                "sendResolved": "send_resolved"
+            },
+            "chronosphere:index/grafanaDashboard:GrafanaDashboard": {
+                "bucketId": "bucket_id",
+                "collectionId": "collection_id",
+                "dashboardJson": "dashboard_json"
+            },
+            "chronosphere:index/mappingRule:MappingRule": {
+                "bucketId": "bucket_id",
+                "dropTimestamp": "drop_timestamp",
+                "storagePolicy": "storage_policy"
+            },
+            "chronosphere:index/monitor:Monitor": {
+                "bucketId": "bucket_id",
+                "collectionId": "collection_id",
+                "notificationPolicyId": "notification_policy_id",
+                "seriesConditions": "series_conditions",
+                "signalGrouping": "signal_grouping"
+            },
+            "chronosphere:index/notificationPolicy:NotificationPolicy": {
+                "isIndependent": "is_independent",
+                "notificationPolicyData": "notification_policy_data",
+                "overrides": "override",
+                "routes": "route",
+                "rules": "rule",
+                "teamId": "team_id"
+            },
+            "chronosphere:index/notificationPolicyDataSource:NotificationPolicyDataSource": {
+                "isIndependent": "is_independent",
+                "notificationPolicyData": "notification_policy_data",
+                "overrides": "override",
+                "routes": "route",
+                "rules": "rule",
+                "teamId": "team_id"
+            },
+            "chronosphere:index/opsgenieAlertNotifier:OpsgenieAlertNotifier": {
+                "apiKey": "api_key",
+                "apiUrl": "api_url",
+                "basicAuthPassword": "basic_auth_password",
+                "basicAuthUsername": "basic_auth_username",
+                "bearerToken": "bearer_token",
+                "proxyUrl": "proxy_url",
+                "responders": "responder",
+                "sendResolved": "send_resolved",
+                "tlsInsecureSkipVerify": "tls_insecure_skip_verify"
+            },
+            "chronosphere:index/pagerdutyAlertNotifier:PagerdutyAlertNotifier": {
+                "basicAuthPassword": "basic_auth_password",
+                "basicAuthUsername": "basic_auth_username",
+                "bearerToken": "bearer_token",
+                "clientUrl": "client_url",
+                "images": "image",
+                "links": "link",
+                "proxyUrl": "proxy_url",
+                "routingKey": "routing_key",
+                "sendResolved": "send_resolved",
+                "serviceKey": "service_key",
+                "tlsInsecureSkipVerify": "tls_insecure_skip_verify"
+            },
+            "chronosphere:index/recordingRule:RecordingRule": {
+                "bucketId": "bucket_id",
+                "executionGroup": "execution_group",
+                "metricName": "metric_name"
+            },
+            "chronosphere:index/resourcePoolsConfig:ResourcePoolsConfig": {
+                "defaultPool": "default_pool"
+            },
+            "chronosphere:index/rollupRule:RollupRule": {
+                "bucketId": "bucket_id",
+                "dropRaw": "drop_raw",
+                "excludeBies": "exclude_by",
+                "groupBies": "group_by",
+                "metricType": "metric_type",
+                "metricTypeTag": "metric_type_tag",
+                "newMetric": "new_metric",
+                "storagePolicies": "storage_policies"
+            },
+            "chronosphere:index/slackAlertNotifier:SlackAlertNotifier": {
+                "actions": "action",
+                "apiUrl": "api_url",
+                "basicAuthPassword": "basic_auth_password",
+                "basicAuthUsername": "basic_auth_username",
+                "bearerToken": "bearer_token",
+                "callbackId": "callback_id",
+                "iconEmoji": "icon_emoji",
+                "iconUrl": "icon_url",
+                "imageUrl": "image_url",
+                "linkNames": "link_names",
+                "mrkdwnIns": "mrkdwn_in",
+                "proxyUrl": "proxy_url",
+                "sendResolved": "send_resolved",
+                "shortFields": "short_fields",
+                "thumbUrl": "thumb_url",
+                "titleLink": "title_link",
+                "tlsInsecureSkipVerify": "tls_insecure_skip_verify"
+            },
+            "chronosphere:index/team:Team": {
+                "userEmails": "user_emails"
+            },
+            "chronosphere:index/traceJaegerRemoteSamplingStrategy:TraceJaegerRemoteSamplingStrategy": {
+                "appliedStrategy": "applied_strategy",
+                "serviceName": "service_name"
+            },
+            "chronosphere:index/traceMetricsRule:TraceMetricsRule": {
+                "groupBies": "group_by",
+                "histogramBucketsSeconds": "histogram_buckets_seconds",
+                "metricLabels": "metric_labels",
+                "metricName": "metric_name",
+                "traceFilter": "trace_filter"
+            },
+            "chronosphere:index/traceTailSamplingRules:TraceTailSamplingRules": {
+                "defaultSampleRate": "default_sample_rate"
+            },
+            "chronosphere:index/victoropsAlertNotifier:VictoropsAlertNotifier": {
+                "apiKey": "api_key",
+                "apiUrl": "api_url",
+                "basicAuthPassword": "basic_auth_password",
+                "basicAuthUsername": "basic_auth_username",
+                "bearerToken": "bearer_token",
+                "customFields": "custom_fields",
+                "entityDisplayName": "entity_display_name",
+                "messageType": "message_type",
+                "monitoringTool": "monitoring_tool",
+                "proxyUrl": "proxy_url",
+                "routingKey": "routing_key",
+                "sendResolved": "send_resolved",
+                "stateMessage": "state_message",
+                "tlsInsecureSkipVerify": "tls_insecure_skip_verify"
+            },
+            "chronosphere:index/webhookAlertNotifier:WebhookAlertNotifier": {
+                "basicAuthPassword": "basic_auth_password",
+                "basicAuthUsername": "basic_auth_username",
+                "bearerToken": "bearer_token",
+                "proxyUrl": "proxy_url",
+                "sendResolved": "send_resolved",
+                "tlsInsecureSkipVerify": "tls_insecure_skip_verify"
+            },
+            "chronosphere:index:Provider": {
+                "apiToken": "api_token",
+                "entityNamespace": "entity_namespace"
+            }
+        },
+        "renamedConfigProperties": {
+            "apiToken": "api_token",
+            "entityNamespace": "entity_namespace"
+        }
+    }
+}
