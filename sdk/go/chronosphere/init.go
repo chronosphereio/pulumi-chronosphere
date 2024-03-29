@@ -39,6 +39,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &DropRule{}
 	case "chronosphere:index/emailAlertNotifier:EmailAlertNotifier":
 		r = &EmailAlertNotifier{}
+	case "chronosphere:index/gcpMetricsIntegration:GcpMetricsIntegration":
+		r = &GcpMetricsIntegration{}
 	case "chronosphere:index/grafanaDashboard:GrafanaDashboard":
 		r = &GrafanaDashboard{}
 	case "chronosphere:index/mappingRule:MappingRule":
@@ -147,6 +149,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"chronosphere",
 		"index/emailAlertNotifier",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"chronosphere",
+		"index/gcpMetricsIntegration",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

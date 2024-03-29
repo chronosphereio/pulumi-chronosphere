@@ -25,6 +25,7 @@
         "derivedMetric.ts",
         "dropRule.ts",
         "emailAlertNotifier.ts",
+        "gcpMetricsIntegration.ts",
         "grafanaDashboard.ts",
         "index.ts",
         "mappingRule.ts",
