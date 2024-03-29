@@ -8,7 +8,6 @@ require (
 )
 
 replace (
-	github.com/chronosphereio/terraform-provider-chronosphere => github.com/chronosphereio/terraform-provider-chronosphere-oss-internal v0.0.0-20240320182511-71663887f51e
 	github.com/chronosphereio/terraform-provider-chronosphere/shim => ./shim
 	// NOTE: this is currently tracking upstream-v1.4.0 branch in the Pulumi fork. Upgrading
 	// this dependency is sensitive and is worth doing carefully (such as reading release notes)
@@ -78,7 +77,7 @@ require (
 	github.com/charmbracelet/bubbletea v0.24.2 // indirect
 	github.com/charmbracelet/lipgloss v0.7.1 // indirect
 	github.com/cheggaaa/pb v1.0.29 // indirect
-	github.com/chronosphereio/terraform-provider-chronosphere v0.43.0 // indirect
+	github.com/chronosphereio/terraform-provider-chronosphere v0.0.0-20240325200435-c40a6aaac5d2 // indirect
 	github.com/cloudflare/circl v1.3.3 // indirect
 	github.com/containerd/console v1.0.4-0.20230313162750-1ae8d489ac81 // indirect
 	github.com/cyphar/filepath-securejoin v0.2.4 // indirect
