@@ -301,6 +301,34 @@
                 "targetDropValue"
             ]
         },
+        "chronosphere:index/GcpMetricsIntegrationMetricGroup:GcpMetricsIntegrationMetricGroup": {
+            "properties": {
+                "prefixes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "projectId": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "projectId"
+            ]
+        },
+        "chronosphere:index/GcpMetricsIntegrationServiceAccount:GcpMetricsIntegrationServiceAccount": {
+            "properties": {
+                "clientEmail": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "clientEmail"
+            ]
+        },
         "chronosphere:index/MappingRuleStoragePolicy:MappingRuleStoragePolicy": {
             "properties": {
                 "resolution": {
@@ -2170,6 +2198,54 @@
                         "type": "string"
                     },
                     "to": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "chronosphere:index/gcpMetricsIntegration:GcpMetricsIntegration": {
+            "properties": {
+                "metricGroups": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/chronosphere:index/GcpMetricsIntegrationMetricGroup:GcpMetricsIntegrationMetricGroup"
+                    }
+                },
+                "serviceAccount": {
+                    "$ref": "#/types/chronosphere:index/GcpMetricsIntegrationServiceAccount:GcpMetricsIntegrationServiceAccount"
+                },
+                "slug": {
+                    "type": "string"
+                }
+            },
+            "inputProperties": {
+                "metricGroups": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/chronosphere:index/GcpMetricsIntegrationMetricGroup:GcpMetricsIntegrationMetricGroup"
+                    }
+                },
+                "serviceAccount": {
+                    "$ref": "#/types/chronosphere:index/GcpMetricsIntegrationServiceAccount:GcpMetricsIntegrationServiceAccount"
+                },
+                "slug": {
+                    "type": "string"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering GcpMetricsIntegration resources.\n",
+                "properties": {
+                    "metricGroups": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/chronosphere:index/GcpMetricsIntegrationMetricGroup:GcpMetricsIntegrationMetricGroup"
+                        }
+                    },
+                    "serviceAccount": {
+                        "$ref": "#/types/chronosphere:index/GcpMetricsIntegrationServiceAccount:GcpMetricsIntegrationServiceAccount"
+                    },
+                    "slug": {
                         "type": "string"
                     }
                 },

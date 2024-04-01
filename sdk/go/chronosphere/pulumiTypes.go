@@ -1581,6 +1581,239 @@ func (o DropRuleValueBasedDropPtrOutput) TargetDropValue() pulumi.Float64PtrOutp
 	}).(pulumi.Float64PtrOutput)
 }
 
+type GcpMetricsIntegrationMetricGroup struct {
+	Prefixes  []string `pulumi:"prefixes"`
+	ProjectId string   `pulumi:"projectId"`
+}
+
+// GcpMetricsIntegrationMetricGroupInput is an input type that accepts GcpMetricsIntegrationMetricGroupArgs and GcpMetricsIntegrationMetricGroupOutput values.
+// You can construct a concrete instance of `GcpMetricsIntegrationMetricGroupInput` via:
+//
+//	GcpMetricsIntegrationMetricGroupArgs{...}
+type GcpMetricsIntegrationMetricGroupInput interface {
+	pulumi.Input
+
+	ToGcpMetricsIntegrationMetricGroupOutput() GcpMetricsIntegrationMetricGroupOutput
+	ToGcpMetricsIntegrationMetricGroupOutputWithContext(context.Context) GcpMetricsIntegrationMetricGroupOutput
+}
+
+type GcpMetricsIntegrationMetricGroupArgs struct {
+	Prefixes  pulumi.StringArrayInput `pulumi:"prefixes"`
+	ProjectId pulumi.StringInput      `pulumi:"projectId"`
+}
+
+func (GcpMetricsIntegrationMetricGroupArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GcpMetricsIntegrationMetricGroup)(nil)).Elem()
+}
+
+func (i GcpMetricsIntegrationMetricGroupArgs) ToGcpMetricsIntegrationMetricGroupOutput() GcpMetricsIntegrationMetricGroupOutput {
+	return i.ToGcpMetricsIntegrationMetricGroupOutputWithContext(context.Background())
+}
+
+func (i GcpMetricsIntegrationMetricGroupArgs) ToGcpMetricsIntegrationMetricGroupOutputWithContext(ctx context.Context) GcpMetricsIntegrationMetricGroupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GcpMetricsIntegrationMetricGroupOutput)
+}
+
+// GcpMetricsIntegrationMetricGroupArrayInput is an input type that accepts GcpMetricsIntegrationMetricGroupArray and GcpMetricsIntegrationMetricGroupArrayOutput values.
+// You can construct a concrete instance of `GcpMetricsIntegrationMetricGroupArrayInput` via:
+//
+//	GcpMetricsIntegrationMetricGroupArray{ GcpMetricsIntegrationMetricGroupArgs{...} }
+type GcpMetricsIntegrationMetricGroupArrayInput interface {
+	pulumi.Input
+
+	ToGcpMetricsIntegrationMetricGroupArrayOutput() GcpMetricsIntegrationMetricGroupArrayOutput
+	ToGcpMetricsIntegrationMetricGroupArrayOutputWithContext(context.Context) GcpMetricsIntegrationMetricGroupArrayOutput
+}
+
+type GcpMetricsIntegrationMetricGroupArray []GcpMetricsIntegrationMetricGroupInput
+
+func (GcpMetricsIntegrationMetricGroupArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GcpMetricsIntegrationMetricGroup)(nil)).Elem()
+}
+
+func (i GcpMetricsIntegrationMetricGroupArray) ToGcpMetricsIntegrationMetricGroupArrayOutput() GcpMetricsIntegrationMetricGroupArrayOutput {
+	return i.ToGcpMetricsIntegrationMetricGroupArrayOutputWithContext(context.Background())
+}
+
+func (i GcpMetricsIntegrationMetricGroupArray) ToGcpMetricsIntegrationMetricGroupArrayOutputWithContext(ctx context.Context) GcpMetricsIntegrationMetricGroupArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GcpMetricsIntegrationMetricGroupArrayOutput)
+}
+
+type GcpMetricsIntegrationMetricGroupOutput struct{ *pulumi.OutputState }
+
+func (GcpMetricsIntegrationMetricGroupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GcpMetricsIntegrationMetricGroup)(nil)).Elem()
+}
+
+func (o GcpMetricsIntegrationMetricGroupOutput) ToGcpMetricsIntegrationMetricGroupOutput() GcpMetricsIntegrationMetricGroupOutput {
+	return o
+}
+
+func (o GcpMetricsIntegrationMetricGroupOutput) ToGcpMetricsIntegrationMetricGroupOutputWithContext(ctx context.Context) GcpMetricsIntegrationMetricGroupOutput {
+	return o
+}
+
+func (o GcpMetricsIntegrationMetricGroupOutput) Prefixes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GcpMetricsIntegrationMetricGroup) []string { return v.Prefixes }).(pulumi.StringArrayOutput)
+}
+
+func (o GcpMetricsIntegrationMetricGroupOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GcpMetricsIntegrationMetricGroup) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+type GcpMetricsIntegrationMetricGroupArrayOutput struct{ *pulumi.OutputState }
+
+func (GcpMetricsIntegrationMetricGroupArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GcpMetricsIntegrationMetricGroup)(nil)).Elem()
+}
+
+func (o GcpMetricsIntegrationMetricGroupArrayOutput) ToGcpMetricsIntegrationMetricGroupArrayOutput() GcpMetricsIntegrationMetricGroupArrayOutput {
+	return o
+}
+
+func (o GcpMetricsIntegrationMetricGroupArrayOutput) ToGcpMetricsIntegrationMetricGroupArrayOutputWithContext(ctx context.Context) GcpMetricsIntegrationMetricGroupArrayOutput {
+	return o
+}
+
+func (o GcpMetricsIntegrationMetricGroupArrayOutput) Index(i pulumi.IntInput) GcpMetricsIntegrationMetricGroupOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GcpMetricsIntegrationMetricGroup {
+		return vs[0].([]GcpMetricsIntegrationMetricGroup)[vs[1].(int)]
+	}).(GcpMetricsIntegrationMetricGroupOutput)
+}
+
+type GcpMetricsIntegrationServiceAccount struct {
+	ClientEmail string `pulumi:"clientEmail"`
+}
+
+// GcpMetricsIntegrationServiceAccountInput is an input type that accepts GcpMetricsIntegrationServiceAccountArgs and GcpMetricsIntegrationServiceAccountOutput values.
+// You can construct a concrete instance of `GcpMetricsIntegrationServiceAccountInput` via:
+//
+//	GcpMetricsIntegrationServiceAccountArgs{...}
+type GcpMetricsIntegrationServiceAccountInput interface {
+	pulumi.Input
+
+	ToGcpMetricsIntegrationServiceAccountOutput() GcpMetricsIntegrationServiceAccountOutput
+	ToGcpMetricsIntegrationServiceAccountOutputWithContext(context.Context) GcpMetricsIntegrationServiceAccountOutput
+}
+
+type GcpMetricsIntegrationServiceAccountArgs struct {
+	ClientEmail pulumi.StringInput `pulumi:"clientEmail"`
+}
+
+func (GcpMetricsIntegrationServiceAccountArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GcpMetricsIntegrationServiceAccount)(nil)).Elem()
+}
+
+func (i GcpMetricsIntegrationServiceAccountArgs) ToGcpMetricsIntegrationServiceAccountOutput() GcpMetricsIntegrationServiceAccountOutput {
+	return i.ToGcpMetricsIntegrationServiceAccountOutputWithContext(context.Background())
+}
+
+func (i GcpMetricsIntegrationServiceAccountArgs) ToGcpMetricsIntegrationServiceAccountOutputWithContext(ctx context.Context) GcpMetricsIntegrationServiceAccountOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GcpMetricsIntegrationServiceAccountOutput)
+}
+
+func (i GcpMetricsIntegrationServiceAccountArgs) ToGcpMetricsIntegrationServiceAccountPtrOutput() GcpMetricsIntegrationServiceAccountPtrOutput {
+	return i.ToGcpMetricsIntegrationServiceAccountPtrOutputWithContext(context.Background())
+}
+
+func (i GcpMetricsIntegrationServiceAccountArgs) ToGcpMetricsIntegrationServiceAccountPtrOutputWithContext(ctx context.Context) GcpMetricsIntegrationServiceAccountPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GcpMetricsIntegrationServiceAccountOutput).ToGcpMetricsIntegrationServiceAccountPtrOutputWithContext(ctx)
+}
+
+// GcpMetricsIntegrationServiceAccountPtrInput is an input type that accepts GcpMetricsIntegrationServiceAccountArgs, GcpMetricsIntegrationServiceAccountPtr and GcpMetricsIntegrationServiceAccountPtrOutput values.
+// You can construct a concrete instance of `GcpMetricsIntegrationServiceAccountPtrInput` via:
+//
+//	        GcpMetricsIntegrationServiceAccountArgs{...}
+//
+//	or:
+//
+//	        nil
+type GcpMetricsIntegrationServiceAccountPtrInput interface {
+	pulumi.Input
+
+	ToGcpMetricsIntegrationServiceAccountPtrOutput() GcpMetricsIntegrationServiceAccountPtrOutput
+	ToGcpMetricsIntegrationServiceAccountPtrOutputWithContext(context.Context) GcpMetricsIntegrationServiceAccountPtrOutput
+}
+
+type gcpMetricsIntegrationServiceAccountPtrType GcpMetricsIntegrationServiceAccountArgs
+
+func GcpMetricsIntegrationServiceAccountPtr(v *GcpMetricsIntegrationServiceAccountArgs) GcpMetricsIntegrationServiceAccountPtrInput {
+	return (*gcpMetricsIntegrationServiceAccountPtrType)(v)
+}
+
+func (*gcpMetricsIntegrationServiceAccountPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GcpMetricsIntegrationServiceAccount)(nil)).Elem()
+}
+
+func (i *gcpMetricsIntegrationServiceAccountPtrType) ToGcpMetricsIntegrationServiceAccountPtrOutput() GcpMetricsIntegrationServiceAccountPtrOutput {
+	return i.ToGcpMetricsIntegrationServiceAccountPtrOutputWithContext(context.Background())
+}
+
+func (i *gcpMetricsIntegrationServiceAccountPtrType) ToGcpMetricsIntegrationServiceAccountPtrOutputWithContext(ctx context.Context) GcpMetricsIntegrationServiceAccountPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GcpMetricsIntegrationServiceAccountPtrOutput)
+}
+
+type GcpMetricsIntegrationServiceAccountOutput struct{ *pulumi.OutputState }
+
+func (GcpMetricsIntegrationServiceAccountOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GcpMetricsIntegrationServiceAccount)(nil)).Elem()
+}
+
+func (o GcpMetricsIntegrationServiceAccountOutput) ToGcpMetricsIntegrationServiceAccountOutput() GcpMetricsIntegrationServiceAccountOutput {
+	return o
+}
+
+func (o GcpMetricsIntegrationServiceAccountOutput) ToGcpMetricsIntegrationServiceAccountOutputWithContext(ctx context.Context) GcpMetricsIntegrationServiceAccountOutput {
+	return o
+}
+
+func (o GcpMetricsIntegrationServiceAccountOutput) ToGcpMetricsIntegrationServiceAccountPtrOutput() GcpMetricsIntegrationServiceAccountPtrOutput {
+	return o.ToGcpMetricsIntegrationServiceAccountPtrOutputWithContext(context.Background())
+}
+
+func (o GcpMetricsIntegrationServiceAccountOutput) ToGcpMetricsIntegrationServiceAccountPtrOutputWithContext(ctx context.Context) GcpMetricsIntegrationServiceAccountPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GcpMetricsIntegrationServiceAccount) *GcpMetricsIntegrationServiceAccount {
+		return &v
+	}).(GcpMetricsIntegrationServiceAccountPtrOutput)
+}
+
+func (o GcpMetricsIntegrationServiceAccountOutput) ClientEmail() pulumi.StringOutput {
+	return o.ApplyT(func(v GcpMetricsIntegrationServiceAccount) string { return v.ClientEmail }).(pulumi.StringOutput)
+}
+
+type GcpMetricsIntegrationServiceAccountPtrOutput struct{ *pulumi.OutputState }
+
+func (GcpMetricsIntegrationServiceAccountPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GcpMetricsIntegrationServiceAccount)(nil)).Elem()
+}
+
+func (o GcpMetricsIntegrationServiceAccountPtrOutput) ToGcpMetricsIntegrationServiceAccountPtrOutput() GcpMetricsIntegrationServiceAccountPtrOutput {
+	return o
+}
+
+func (o GcpMetricsIntegrationServiceAccountPtrOutput) ToGcpMetricsIntegrationServiceAccountPtrOutputWithContext(ctx context.Context) GcpMetricsIntegrationServiceAccountPtrOutput {
+	return o
+}
+
+func (o GcpMetricsIntegrationServiceAccountPtrOutput) Elem() GcpMetricsIntegrationServiceAccountOutput {
+	return o.ApplyT(func(v *GcpMetricsIntegrationServiceAccount) GcpMetricsIntegrationServiceAccount {
+		if v != nil {
+			return *v
+		}
+		var ret GcpMetricsIntegrationServiceAccount
+		return ret
+	}).(GcpMetricsIntegrationServiceAccountOutput)
+}
+
+func (o GcpMetricsIntegrationServiceAccountPtrOutput) ClientEmail() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GcpMetricsIntegrationServiceAccount) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.ClientEmail
+	}).(pulumi.StringPtrOutput)
+}
+
 type MappingRuleStoragePolicy struct {
 	Resolution string `pulumi:"resolution"`
 	Retention  string `pulumi:"retention"`
@@ -10984,6 +11217,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DerivedMetricQuerySelectorPtrInput)(nil)).Elem(), DerivedMetricQuerySelectorArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DropRuleValueBasedDropInput)(nil)).Elem(), DropRuleValueBasedDropArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DropRuleValueBasedDropPtrInput)(nil)).Elem(), DropRuleValueBasedDropArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GcpMetricsIntegrationMetricGroupInput)(nil)).Elem(), GcpMetricsIntegrationMetricGroupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GcpMetricsIntegrationMetricGroupArrayInput)(nil)).Elem(), GcpMetricsIntegrationMetricGroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GcpMetricsIntegrationServiceAccountInput)(nil)).Elem(), GcpMetricsIntegrationServiceAccountArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GcpMetricsIntegrationServiceAccountPtrInput)(nil)).Elem(), GcpMetricsIntegrationServiceAccountArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MappingRuleStoragePolicyInput)(nil)).Elem(), MappingRuleStoragePolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MappingRuleStoragePolicyPtrInput)(nil)).Elem(), MappingRuleStoragePolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MonitorQueryInput)(nil)).Elem(), MonitorQueryArgs{})
@@ -11153,6 +11390,10 @@ func init() {
 	pulumi.RegisterOutputType(DerivedMetricQuerySelectorPtrOutput{})
 	pulumi.RegisterOutputType(DropRuleValueBasedDropOutput{})
 	pulumi.RegisterOutputType(DropRuleValueBasedDropPtrOutput{})
+	pulumi.RegisterOutputType(GcpMetricsIntegrationMetricGroupOutput{})
+	pulumi.RegisterOutputType(GcpMetricsIntegrationMetricGroupArrayOutput{})
+	pulumi.RegisterOutputType(GcpMetricsIntegrationServiceAccountOutput{})
+	pulumi.RegisterOutputType(GcpMetricsIntegrationServiceAccountPtrOutput{})
 	pulumi.RegisterOutputType(MappingRuleStoragePolicyOutput{})
 	pulumi.RegisterOutputType(MappingRuleStoragePolicyPtrOutput{})
 	pulumi.RegisterOutputType(MonitorQueryOutput{})
