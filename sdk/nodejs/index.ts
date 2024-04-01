@@ -55,6 +55,11 @@ export type EmailAlertNotifier = import("./emailAlertNotifier").EmailAlertNotifi
 export const EmailAlertNotifier: typeof import("./emailAlertNotifier").EmailAlertNotifier = null as any;
 utilities.lazyLoad(exports, ["EmailAlertNotifier"], () => require("./emailAlertNotifier"));
 
+export { GcpMetricsIntegrationArgs, GcpMetricsIntegrationState } from "./gcpMetricsIntegration";
+export type GcpMetricsIntegration = import("./gcpMetricsIntegration").GcpMetricsIntegration;
+export const GcpMetricsIntegration: typeof import("./gcpMetricsIntegration").GcpMetricsIntegration = null as any;
+utilities.lazyLoad(exports, ["GcpMetricsIntegration"], () => require("./gcpMetricsIntegration"));
+
 export { GrafanaDashboardArgs, GrafanaDashboardState } from "./grafanaDashboard";
 export type GrafanaDashboard = import("./grafanaDashboard").GrafanaDashboard;
 export const GrafanaDashboard: typeof import("./grafanaDashboard").GrafanaDashboard = null as any;
@@ -187,6 +192,8 @@ const _module = {
                 return new DropRule(name, <any>undefined, { urn })
             case "chronosphere:index/emailAlertNotifier:EmailAlertNotifier":
                 return new EmailAlertNotifier(name, <any>undefined, { urn })
+            case "chronosphere:index/gcpMetricsIntegration:GcpMetricsIntegration":
+                return new GcpMetricsIntegration(name, <any>undefined, { urn })
             case "chronosphere:index/grafanaDashboard:GrafanaDashboard":
                 return new GrafanaDashboard(name, <any>undefined, { urn })
             case "chronosphere:index/mappingRule:MappingRule":
@@ -235,6 +242,7 @@ pulumi.runtime.registerResourceModule("chronosphere", "index/derivedLabel", _mod
 pulumi.runtime.registerResourceModule("chronosphere", "index/derivedMetric", _module)
 pulumi.runtime.registerResourceModule("chronosphere", "index/dropRule", _module)
 pulumi.runtime.registerResourceModule("chronosphere", "index/emailAlertNotifier", _module)
+pulumi.runtime.registerResourceModule("chronosphere", "index/gcpMetricsIntegration", _module)
 pulumi.runtime.registerResourceModule("chronosphere", "index/grafanaDashboard", _module)
 pulumi.runtime.registerResourceModule("chronosphere", "index/mappingRule", _module)
 pulumi.runtime.registerResourceModule("chronosphere", "index/monitor", _module)

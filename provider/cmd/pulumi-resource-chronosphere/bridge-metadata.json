@@ -10,6 +10,7 @@
             "chronosphere:index/derivedMetric:DerivedMetric": "chronosphere_derived_metric",
             "chronosphere:index/dropRule:DropRule": "chronosphere_drop_rule",
             "chronosphere:index/emailAlertNotifier:EmailAlertNotifier": "chronosphere_email_alert_notifier",
+            "chronosphere:index/gcpMetricsIntegration:GcpMetricsIntegration": "chronosphere_gcp_metrics_integration_unstable",
             "chronosphere:index/grafanaDashboard:GrafanaDashboard": "chronosphere_grafana_dashboard",
             "chronosphere:index/mappingRule:MappingRule": "chronosphere_mapping_rule",
             "chronosphere:index/monitor:Monitor": "chronosphere_monitor",
@@ -68,6 +69,12 @@
             },
             "chronosphere:index/DropRuleValueBasedDrop:DropRuleValueBasedDrop": {
                 "targetDropValue": "target_drop_value"
+            },
+            "chronosphere:index/GcpMetricsIntegrationMetricGroup:GcpMetricsIntegrationMetricGroup": {
+                "projectId": "project_id"
+            },
+            "chronosphere:index/GcpMetricsIntegrationServiceAccount:GcpMetricsIntegrationServiceAccount": {
+                "clientEmail": "client_email"
             },
             "chronosphere:index/MonitorQuery:MonitorQuery": {
                 "graphiteExpr": "graphite_expr",
@@ -254,6 +261,10 @@
             },
             "chronosphere:index/emailAlertNotifier:EmailAlertNotifier": {
                 "sendResolved": "send_resolved"
+            },
+            "chronosphere:index/gcpMetricsIntegration:GcpMetricsIntegration": {
+                "metricGroups": "metric_groups",
+                "serviceAccount": "service_account"
             },
             "chronosphere:index/grafanaDashboard:GrafanaDashboard": {
                 "bucketId": "bucket_id",

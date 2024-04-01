@@ -73,6 +73,15 @@ export interface DropRuleValueBasedDrop {
     targetDropValue: number;
 }
 
+export interface GcpMetricsIntegrationMetricGroup {
+    prefixes?: string[];
+    projectId: string;
+}
+
+export interface GcpMetricsIntegrationServiceAccount {
+    clientEmail: string;
+}
+
 export interface MappingRuleStoragePolicy {
     resolution: string;
     retention: string;

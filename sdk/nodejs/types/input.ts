@@ -73,6 +73,15 @@ export interface DropRuleValueBasedDrop {
     targetDropValue: pulumi.Input<number>;
 }
 
+export interface GcpMetricsIntegrationMetricGroup {
+    prefixes?: pulumi.Input<pulumi.Input<string>[]>;
+    projectId: pulumi.Input<string>;
+}
+
+export interface GcpMetricsIntegrationServiceAccount {
+    clientEmail: pulumi.Input<string>;
+}
+
 export interface MappingRuleStoragePolicy {
     resolution: pulumi.Input<string>;
     retention: pulumi.Input<string>;
