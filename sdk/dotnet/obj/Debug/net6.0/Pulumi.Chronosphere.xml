@@ -1,0 +1,580 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Pulumi.Chronosphere</name>
+    </assembly>
+    <members>
+        <member name="M:Pulumi.Chronosphere.BlackholeAlertNotifier.#ctor(System.String,Pulumi.Chronosphere.BlackholeAlertNotifierArgs,Pulumi.CustomResourceOptions)">
+             <summary>
+             Create a BlackholeAlertNotifier resource with the given unique name, arguments, and options.
+             </summary>
+            
+             <param name="name">The unique name of the resource</param>
+             <param name="args">The arguments used to populate this resource's properties</param>
+             <param name="options">A bag of options that control this resource's behavior</param>
+        </member>
+        <member name="M:Pulumi.Chronosphere.BlackholeAlertNotifier.Get(System.String,Pulumi.Input{System.String},Pulumi.Chronosphere.BlackholeAlertNotifierState,Pulumi.CustomResourceOptions)">
+             <summary>
+             Get an existing BlackholeAlertNotifier resource's state with the given name, ID, and optional extra
+             properties used to qualify the lookup.
+             </summary>
+            
+             <param name="name">The unique name of the resulting resource.</param>
+             <param name="id">The unique provider ID of the resource to lookup.</param>
+             <param name="state">Any extra arguments used during the lookup.</param>
+             <param name="options">A bag of options that control this resource's behavior</param>
+        </member>
+        <member name="M:Pulumi.Chronosphere.Bucket.#ctor(System.String,Pulumi.Chronosphere.BucketArgs,Pulumi.CustomResourceOptions)">
+             <summary>
+             Create a Bucket resource with the given unique name, arguments, and options.
+             </summary>
+            
+             <param name="name">The unique name of the resource</param>
+             <param name="args">The arguments used to populate this resource's properties</param>
+             <param name="options">A bag of options that control this resource's behavior</param>
+        </member>
+        <member name="M:Pulumi.Chronosphere.Bucket.Get(System.String,Pulumi.Input{System.String},Pulumi.Chronosphere.BucketState,Pulumi.CustomResourceOptions)">
+             <summary>
+             Get an existing Bucket resource's state with the given name, ID, and optional extra
+             properties used to qualify the lookup.
+             </summary>
+            
+             <param name="name">The unique name of the resulting resource.</param>
+             <param name="id">The unique provider ID of the resource to lookup.</param>
+             <param name="state">Any extra arguments used during the lookup.</param>
+             <param name="options">A bag of options that control this resource's behavior</param>
+        </member>
+        <member name="F:Pulumi.Chronosphere.BucketDataSourceResult.Id">
+            <summary>
+            The provider-assigned unique ID for this managed resource.
+            </summary>
+        </member>
+        <member name="M:Pulumi.Chronosphere.ClassicDashboard.#ctor(System.String,Pulumi.Chronosphere.ClassicDashboardArgs,Pulumi.CustomResourceOptions)">
+             <summary>
+             Create a ClassicDashboard resource with the given unique name, arguments, and options.
+             </summary>
+            
+             <param name="name">The unique name of the resource</param>
+             <param name="args">The arguments used to populate this resource's properties</param>
+             <param name="options">A bag of options that control this resource's behavior</param>
+        </member>
+        <member name="M:Pulumi.Chronosphere.ClassicDashboard.Get(System.String,Pulumi.Input{System.String},Pulumi.Chronosphere.ClassicDashboardState,Pulumi.CustomResourceOptions)">
+             <summary>
+             Get an existing ClassicDashboard resource's state with the given name, ID, and optional extra
+             properties used to qualify the lookup.
+             </summary>
+            
+             <param name="name">The unique name of the resulting resource.</param>
+             <param name="id">The unique provider ID of the resource to lookup.</param>
+             <param name="state">Any extra arguments used during the lookup.</param>
+             <param name="options">A bag of options that control this resource's behavior</param>
+        </member>
+        <member name="M:Pulumi.Chronosphere.Collection.#ctor(System.String,Pulumi.Chronosphere.CollectionArgs,Pulumi.CustomResourceOptions)">
+             <summary>
+             Create a Collection resource with the given unique name, arguments, and options.
+             </summary>
+            
+             <param name="name">The unique name of the resource</param>
+             <param name="args">The arguments used to populate this resource's properties</param>
+             <param name="options">A bag of options that control this resource's behavior</param>
+        </member>
+        <member name="M:Pulumi.Chronosphere.Collection.Get(System.String,Pulumi.Input{System.String},Pulumi.Chronosphere.CollectionState,Pulumi.CustomResourceOptions)">
+             <summary>
+             Get an existing Collection resource's state with the given name, ID, and optional extra
+             properties used to qualify the lookup.
+             </summary>
+            
+             <param name="name">The unique name of the resulting resource.</param>
+             <param name="id">The unique provider ID of the resource to lookup.</param>
+             <param name="state">Any extra arguments used during the lookup.</param>
+             <param name="options">A bag of options that control this resource's behavior</param>
+        </member>
+        <member name="M:Pulumi.Chronosphere.Dashboard.#ctor(System.String,Pulumi.Chronosphere.DashboardArgs,Pulumi.CustomResourceOptions)">
+             <summary>
+             Create a Dashboard resource with the given unique name, arguments, and options.
+             </summary>
+            
+             <param name="name">The unique name of the resource</param>
+             <param name="args">The arguments used to populate this resource's properties</param>
+             <param name="options">A bag of options that control this resource's behavior</param>
+        </member>
+        <member name="M:Pulumi.Chronosphere.Dashboard.Get(System.String,Pulumi.Input{System.String},Pulumi.Chronosphere.DashboardState,Pulumi.CustomResourceOptions)">
+             <summary>
+             Get an existing Dashboard resource's state with the given name, ID, and optional extra
+             properties used to qualify the lookup.
+             </summary>
+            
+             <param name="name">The unique name of the resulting resource.</param>
+             <param name="id">The unique provider ID of the resource to lookup.</param>
+             <param name="state">Any extra arguments used during the lookup.</param>
+             <param name="options">A bag of options that control this resource's behavior</param>
+        </member>
+        <member name="M:Pulumi.Chronosphere.DerivedLabel.#ctor(System.String,Pulumi.Chronosphere.DerivedLabelArgs,Pulumi.CustomResourceOptions)">
+             <summary>
+             Create a DerivedLabel resource with the given unique name, arguments, and options.
+             </summary>
+            
+             <param name="name">The unique name of the resource</param>
+             <param name="args">The arguments used to populate this resource's properties</param>
+             <param name="options">A bag of options that control this resource's behavior</param>
+        </member>
+        <member name="M:Pulumi.Chronosphere.DerivedLabel.Get(System.String,Pulumi.Input{System.String},Pulumi.Chronosphere.DerivedLabelState,Pulumi.CustomResourceOptions)">
+             <summary>
+             Get an existing DerivedLabel resource's state with the given name, ID, and optional extra
+             properties used to qualify the lookup.
+             </summary>
+            
+             <param name="name">The unique name of the resulting resource.</param>
+             <param name="id">The unique provider ID of the resource to lookup.</param>
+             <param name="state">Any extra arguments used during the lookup.</param>
+             <param name="options">A bag of options that control this resource's behavior</param>
+        </member>
+        <member name="M:Pulumi.Chronosphere.DerivedMetric.#ctor(System.String,Pulumi.Chronosphere.DerivedMetricArgs,Pulumi.CustomResourceOptions)">
+             <summary>
+             Create a DerivedMetric resource with the given unique name, arguments, and options.
+             </summary>
+            
+             <param name="name">The unique name of the resource</param>
+             <param name="args">The arguments used to populate this resource's properties</param>
+             <param name="options">A bag of options that control this resource's behavior</param>
+        </member>
+        <member name="M:Pulumi.Chronosphere.DerivedMetric.Get(System.String,Pulumi.Input{System.String},Pulumi.Chronosphere.DerivedMetricState,Pulumi.CustomResourceOptions)">
+             <summary>
+             Get an existing DerivedMetric resource's state with the given name, ID, and optional extra
+             properties used to qualify the lookup.
+             </summary>
+            
+             <param name="name">The unique name of the resulting resource.</param>
+             <param name="id">The unique provider ID of the resource to lookup.</param>
+             <param name="state">Any extra arguments used during the lookup.</param>
+             <param name="options">A bag of options that control this resource's behavior</param>
+        </member>
+        <member name="M:Pulumi.Chronosphere.DropRule.#ctor(System.String,Pulumi.Chronosphere.DropRuleArgs,Pulumi.CustomResourceOptions)">
+             <summary>
+             Create a DropRule resource with the given unique name, arguments, and options.
+             </summary>
+            
+             <param name="name">The unique name of the resource</param>
+             <param name="args">The arguments used to populate this resource's properties</param>
+             <param name="options">A bag of options that control this resource's behavior</param>
+        </member>
+        <member name="M:Pulumi.Chronosphere.DropRule.Get(System.String,Pulumi.Input{System.String},Pulumi.Chronosphere.DropRuleState,Pulumi.CustomResourceOptions)">
+             <summary>
+             Get an existing DropRule resource's state with the given name, ID, and optional extra
+             properties used to qualify the lookup.
+             </summary>
+            
+             <param name="name">The unique name of the resulting resource.</param>
+             <param name="id">The unique provider ID of the resource to lookup.</param>
+             <param name="state">Any extra arguments used during the lookup.</param>
+             <param name="options">A bag of options that control this resource's behavior</param>
+        </member>
+        <member name="M:Pulumi.Chronosphere.EmailAlertNotifier.#ctor(System.String,Pulumi.Chronosphere.EmailAlertNotifierArgs,Pulumi.CustomResourceOptions)">
+             <summary>
+             Create a EmailAlertNotifier resource with the given unique name, arguments, and options.
+             </summary>
+            
+             <param name="name">The unique name of the resource</param>
+             <param name="args">The arguments used to populate this resource's properties</param>
+             <param name="options">A bag of options that control this resource's behavior</param>
+        </member>
+        <member name="M:Pulumi.Chronosphere.EmailAlertNotifier.Get(System.String,Pulumi.Input{System.String},Pulumi.Chronosphere.EmailAlertNotifierState,Pulumi.CustomResourceOptions)">
+             <summary>
+             Get an existing EmailAlertNotifier resource's state with the given name, ID, and optional extra
+             properties used to qualify the lookup.
+             </summary>
+            
+             <param name="name">The unique name of the resulting resource.</param>
+             <param name="id">The unique provider ID of the resource to lookup.</param>
+             <param name="state">Any extra arguments used during the lookup.</param>
+             <param name="options">A bag of options that control this resource's behavior</param>
+        </member>
+        <member name="M:Pulumi.Chronosphere.GcpMetricsIntegration.#ctor(System.String,Pulumi.Chronosphere.GcpMetricsIntegrationArgs,Pulumi.CustomResourceOptions)">
+             <summary>
+             Create a GcpMetricsIntegration resource with the given unique name, arguments, and options.
+             </summary>
+            
+             <param name="name">The unique name of the resource</param>
+             <param name="args">The arguments used to populate this resource's properties</param>
+             <param name="options">A bag of options that control this resource's behavior</param>
+        </member>
+        <member name="M:Pulumi.Chronosphere.GcpMetricsIntegration.Get(System.String,Pulumi.Input{System.String},Pulumi.Chronosphere.GcpMetricsIntegrationState,Pulumi.CustomResourceOptions)">
+             <summary>
+             Get an existing GcpMetricsIntegration resource's state with the given name, ID, and optional extra
+             properties used to qualify the lookup.
+             </summary>
+            
+             <param name="name">The unique name of the resulting resource.</param>
+             <param name="id">The unique provider ID of the resource to lookup.</param>
+             <param name="state">Any extra arguments used during the lookup.</param>
+             <param name="options">A bag of options that control this resource's behavior</param>
+        </member>
+        <member name="M:Pulumi.Chronosphere.GrafanaDashboard.#ctor(System.String,Pulumi.Chronosphere.GrafanaDashboardArgs,Pulumi.CustomResourceOptions)">
+             <summary>
+             Create a GrafanaDashboard resource with the given unique name, arguments, and options.
+             </summary>
+            
+             <param name="name">The unique name of the resource</param>
+             <param name="args">The arguments used to populate this resource's properties</param>
+             <param name="options">A bag of options that control this resource's behavior</param>
+        </member>
+        <member name="M:Pulumi.Chronosphere.GrafanaDashboard.Get(System.String,Pulumi.Input{System.String},Pulumi.Chronosphere.GrafanaDashboardState,Pulumi.CustomResourceOptions)">
+             <summary>
+             Get an existing GrafanaDashboard resource's state with the given name, ID, and optional extra
+             properties used to qualify the lookup.
+             </summary>
+            
+             <param name="name">The unique name of the resulting resource.</param>
+             <param name="id">The unique provider ID of the resource to lookup.</param>
+             <param name="state">Any extra arguments used during the lookup.</param>
+             <param name="options">A bag of options that control this resource's behavior</param>
+        </member>
+        <member name="M:Pulumi.Chronosphere.MappingRule.#ctor(System.String,Pulumi.Chronosphere.MappingRuleArgs,Pulumi.CustomResourceOptions)">
+             <summary>
+             Create a MappingRule resource with the given unique name, arguments, and options.
+             </summary>
+            
+             <param name="name">The unique name of the resource</param>
+             <param name="args">The arguments used to populate this resource's properties</param>
+             <param name="options">A bag of options that control this resource's behavior</param>
+        </member>
+        <member name="M:Pulumi.Chronosphere.MappingRule.Get(System.String,Pulumi.Input{System.String},Pulumi.Chronosphere.MappingRuleState,Pulumi.CustomResourceOptions)">
+             <summary>
+             Get an existing MappingRule resource's state with the given name, ID, and optional extra
+             properties used to qualify the lookup.
+             </summary>
+            
+             <param name="name">The unique name of the resulting resource.</param>
+             <param name="id">The unique provider ID of the resource to lookup.</param>
+             <param name="state">Any extra arguments used during the lookup.</param>
+             <param name="options">A bag of options that control this resource's behavior</param>
+        </member>
+        <member name="M:Pulumi.Chronosphere.Monitor.#ctor(System.String,Pulumi.Chronosphere.MonitorArgs,Pulumi.CustomResourceOptions)">
+             <summary>
+             Create a Monitor resource with the given unique name, arguments, and options.
+             </summary>
+            
+             <param name="name">The unique name of the resource</param>
+             <param name="args">The arguments used to populate this resource's properties</param>
+             <param name="options">A bag of options that control this resource's behavior</param>
+        </member>
+        <member name="M:Pulumi.Chronosphere.Monitor.Get(System.String,Pulumi.Input{System.String},Pulumi.Chronosphere.MonitorState,Pulumi.CustomResourceOptions)">
+             <summary>
+             Get an existing Monitor resource's state with the given name, ID, and optional extra
+             properties used to qualify the lookup.
+             </summary>
+            
+             <param name="name">The unique name of the resulting resource.</param>
+             <param name="id">The unique provider ID of the resource to lookup.</param>
+             <param name="state">Any extra arguments used during the lookup.</param>
+             <param name="options">A bag of options that control this resource's behavior</param>
+        </member>
+        <member name="M:Pulumi.Chronosphere.NotificationPolicy.#ctor(System.String,Pulumi.Chronosphere.NotificationPolicyArgs,Pulumi.CustomResourceOptions)">
+             <summary>
+             Create a NotificationPolicy resource with the given unique name, arguments, and options.
+             </summary>
+            
+             <param name="name">The unique name of the resource</param>
+             <param name="args">The arguments used to populate this resource's properties</param>
+             <param name="options">A bag of options that control this resource's behavior</param>
+        </member>
+        <member name="M:Pulumi.Chronosphere.NotificationPolicy.Get(System.String,Pulumi.Input{System.String},Pulumi.Chronosphere.NotificationPolicyState,Pulumi.CustomResourceOptions)">
+             <summary>
+             Get an existing NotificationPolicy resource's state with the given name, ID, and optional extra
+             properties used to qualify the lookup.
+             </summary>
+            
+             <param name="name">The unique name of the resulting resource.</param>
+             <param name="id">The unique provider ID of the resource to lookup.</param>
+             <param name="state">Any extra arguments used during the lookup.</param>
+             <param name="options">A bag of options that control this resource's behavior</param>
+        </member>
+        <member name="F:Pulumi.Chronosphere.NotificationPolicyDataSourceResult.Id">
+            <summary>
+            The provider-assigned unique ID for this managed resource.
+            </summary>
+        </member>
+        <member name="M:Pulumi.Chronosphere.OpsgenieAlertNotifier.#ctor(System.String,Pulumi.Chronosphere.OpsgenieAlertNotifierArgs,Pulumi.CustomResourceOptions)">
+             <summary>
+             Create a OpsgenieAlertNotifier resource with the given unique name, arguments, and options.
+             </summary>
+            
+             <param name="name">The unique name of the resource</param>
+             <param name="args">The arguments used to populate this resource's properties</param>
+             <param name="options">A bag of options that control this resource's behavior</param>
+        </member>
+        <member name="M:Pulumi.Chronosphere.OpsgenieAlertNotifier.Get(System.String,Pulumi.Input{System.String},Pulumi.Chronosphere.OpsgenieAlertNotifierState,Pulumi.CustomResourceOptions)">
+             <summary>
+             Get an existing OpsgenieAlertNotifier resource's state with the given name, ID, and optional extra
+             properties used to qualify the lookup.
+             </summary>
+            
+             <param name="name">The unique name of the resulting resource.</param>
+             <param name="id">The unique provider ID of the resource to lookup.</param>
+             <param name="state">Any extra arguments used during the lookup.</param>
+             <param name="options">A bag of options that control this resource's behavior</param>
+        </member>
+        <member name="M:Pulumi.Chronosphere.PagerdutyAlertNotifier.#ctor(System.String,Pulumi.Chronosphere.PagerdutyAlertNotifierArgs,Pulumi.CustomResourceOptions)">
+             <summary>
+             Create a PagerdutyAlertNotifier resource with the given unique name, arguments, and options.
+             </summary>
+            
+             <param name="name">The unique name of the resource</param>
+             <param name="args">The arguments used to populate this resource's properties</param>
+             <param name="options">A bag of options that control this resource's behavior</param>
+        </member>
+        <member name="M:Pulumi.Chronosphere.PagerdutyAlertNotifier.Get(System.String,Pulumi.Input{System.String},Pulumi.Chronosphere.PagerdutyAlertNotifierState,Pulumi.CustomResourceOptions)">
+             <summary>
+             Get an existing PagerdutyAlertNotifier resource's state with the given name, ID, and optional extra
+             properties used to qualify the lookup.
+             </summary>
+            
+             <param name="name">The unique name of the resulting resource.</param>
+             <param name="id">The unique provider ID of the resource to lookup.</param>
+             <param name="state">Any extra arguments used during the lookup.</param>
+             <param name="options">A bag of options that control this resource's behavior</param>
+        </member>
+        <member name="T:Pulumi.Chronosphere.Provider">
+            <summary>
+            The provider type for the chronosphere package. By default, resources use package-wide configuration
+            settings, however an explicit `Provider` instance may be created and passed during resource
+            construction to achieve fine-grained programmatic control over provider settings. See the
+            [documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.
+            </summary>
+        </member>
+        <member name="M:Pulumi.Chronosphere.Provider.#ctor(System.String,Pulumi.Chronosphere.ProviderArgs,Pulumi.CustomResourceOptions)">
+             <summary>
+             Create a Provider resource with the given unique name, arguments, and options.
+             </summary>
+            
+             <param name="name">The unique name of the resource</param>
+             <param name="args">The arguments used to populate this resource's properties</param>
+             <param name="options">A bag of options that control this resource's behavior</param>
+        </member>
+        <member name="M:Pulumi.Chronosphere.RecordingRule.#ctor(System.String,Pulumi.Chronosphere.RecordingRuleArgs,Pulumi.CustomResourceOptions)">
+             <summary>
+             Create a RecordingRule resource with the given unique name, arguments, and options.
+             </summary>
+            
+             <param name="name">The unique name of the resource</param>
+             <param name="args">The arguments used to populate this resource's properties</param>
+             <param name="options">A bag of options that control this resource's behavior</param>
+        </member>
+        <member name="M:Pulumi.Chronosphere.RecordingRule.Get(System.String,Pulumi.Input{System.String},Pulumi.Chronosphere.RecordingRuleState,Pulumi.CustomResourceOptions)">
+             <summary>
+             Get an existing RecordingRule resource's state with the given name, ID, and optional extra
+             properties used to qualify the lookup.
+             </summary>
+            
+             <param name="name">The unique name of the resulting resource.</param>
+             <param name="id">The unique provider ID of the resource to lookup.</param>
+             <param name="state">Any extra arguments used during the lookup.</param>
+             <param name="options">A bag of options that control this resource's behavior</param>
+        </member>
+        <member name="M:Pulumi.Chronosphere.ResourcePoolsConfig.#ctor(System.String,Pulumi.Chronosphere.ResourcePoolsConfigArgs,Pulumi.CustomResourceOptions)">
+             <summary>
+             Create a ResourcePoolsConfig resource with the given unique name, arguments, and options.
+             </summary>
+            
+             <param name="name">The unique name of the resource</param>
+             <param name="args">The arguments used to populate this resource's properties</param>
+             <param name="options">A bag of options that control this resource's behavior</param>
+        </member>
+        <member name="M:Pulumi.Chronosphere.ResourcePoolsConfig.Get(System.String,Pulumi.Input{System.String},Pulumi.Chronosphere.ResourcePoolsConfigState,Pulumi.CustomResourceOptions)">
+             <summary>
+             Get an existing ResourcePoolsConfig resource's state with the given name, ID, and optional extra
+             properties used to qualify the lookup.
+             </summary>
+            
+             <param name="name">The unique name of the resulting resource.</param>
+             <param name="id">The unique provider ID of the resource to lookup.</param>
+             <param name="state">Any extra arguments used during the lookup.</param>
+             <param name="options">A bag of options that control this resource's behavior</param>
+        </member>
+        <member name="M:Pulumi.Chronosphere.RollupRule.#ctor(System.String,Pulumi.Chronosphere.RollupRuleArgs,Pulumi.CustomResourceOptions)">
+             <summary>
+             Create a RollupRule resource with the given unique name, arguments, and options.
+             </summary>
+            
+             <param name="name">The unique name of the resource</param>
+             <param name="args">The arguments used to populate this resource's properties</param>
+             <param name="options">A bag of options that control this resource's behavior</param>
+        </member>
+        <member name="M:Pulumi.Chronosphere.RollupRule.Get(System.String,Pulumi.Input{System.String},Pulumi.Chronosphere.RollupRuleState,Pulumi.CustomResourceOptions)">
+             <summary>
+             Get an existing RollupRule resource's state with the given name, ID, and optional extra
+             properties used to qualify the lookup.
+             </summary>
+            
+             <param name="name">The unique name of the resulting resource.</param>
+             <param name="id">The unique provider ID of the resource to lookup.</param>
+             <param name="state">Any extra arguments used during the lookup.</param>
+             <param name="options">A bag of options that control this resource's behavior</param>
+        </member>
+        <member name="M:Pulumi.Chronosphere.ServiceAccount.#ctor(System.String,Pulumi.Chronosphere.ServiceAccountArgs,Pulumi.CustomResourceOptions)">
+             <summary>
+             Create a ServiceAccount resource with the given unique name, arguments, and options.
+             </summary>
+            
+             <param name="name">The unique name of the resource</param>
+             <param name="args">The arguments used to populate this resource's properties</param>
+             <param name="options">A bag of options that control this resource's behavior</param>
+        </member>
+        <member name="M:Pulumi.Chronosphere.ServiceAccount.Get(System.String,Pulumi.Input{System.String},Pulumi.Chronosphere.ServiceAccountState,Pulumi.CustomResourceOptions)">
+             <summary>
+             Get an existing ServiceAccount resource's state with the given name, ID, and optional extra
+             properties used to qualify the lookup.
+             </summary>
+            
+             <param name="name">The unique name of the resulting resource.</param>
+             <param name="id">The unique provider ID of the resource to lookup.</param>
+             <param name="state">Any extra arguments used during the lookup.</param>
+             <param name="options">A bag of options that control this resource's behavior</param>
+        </member>
+        <member name="F:Pulumi.Chronosphere.ServiceDataSourceResult.Id">
+            <summary>
+            The provider-assigned unique ID for this managed resource.
+            </summary>
+        </member>
+        <member name="M:Pulumi.Chronosphere.SlackAlertNotifier.#ctor(System.String,Pulumi.Chronosphere.SlackAlertNotifierArgs,Pulumi.CustomResourceOptions)">
+             <summary>
+             Create a SlackAlertNotifier resource with the given unique name, arguments, and options.
+             </summary>
+            
+             <param name="name">The unique name of the resource</param>
+             <param name="args">The arguments used to populate this resource's properties</param>
+             <param name="options">A bag of options that control this resource's behavior</param>
+        </member>
+        <member name="M:Pulumi.Chronosphere.SlackAlertNotifier.Get(System.String,Pulumi.Input{System.String},Pulumi.Chronosphere.SlackAlertNotifierState,Pulumi.CustomResourceOptions)">
+             <summary>
+             Get an existing SlackAlertNotifier resource's state with the given name, ID, and optional extra
+             properties used to qualify the lookup.
+             </summary>
+            
+             <param name="name">The unique name of the resulting resource.</param>
+             <param name="id">The unique provider ID of the resource to lookup.</param>
+             <param name="state">Any extra arguments used during the lookup.</param>
+             <param name="options">A bag of options that control this resource's behavior</param>
+        </member>
+        <member name="M:Pulumi.Chronosphere.Team.#ctor(System.String,Pulumi.Chronosphere.TeamArgs,Pulumi.CustomResourceOptions)">
+             <summary>
+             Create a Team resource with the given unique name, arguments, and options.
+             </summary>
+            
+             <param name="name">The unique name of the resource</param>
+             <param name="args">The arguments used to populate this resource's properties</param>
+             <param name="options">A bag of options that control this resource's behavior</param>
+        </member>
+        <member name="M:Pulumi.Chronosphere.Team.Get(System.String,Pulumi.Input{System.String},Pulumi.Chronosphere.TeamState,Pulumi.CustomResourceOptions)">
+             <summary>
+             Get an existing Team resource's state with the given name, ID, and optional extra
+             properties used to qualify the lookup.
+             </summary>
+            
+             <param name="name">The unique name of the resulting resource.</param>
+             <param name="id">The unique provider ID of the resource to lookup.</param>
+             <param name="state">Any extra arguments used during the lookup.</param>
+             <param name="options">A bag of options that control this resource's behavior</param>
+        </member>
+        <member name="M:Pulumi.Chronosphere.TraceJaegerRemoteSamplingStrategy.#ctor(System.String,Pulumi.Chronosphere.TraceJaegerRemoteSamplingStrategyArgs,Pulumi.CustomResourceOptions)">
+             <summary>
+             Create a TraceJaegerRemoteSamplingStrategy resource with the given unique name, arguments, and options.
+             </summary>
+            
+             <param name="name">The unique name of the resource</param>
+             <param name="args">The arguments used to populate this resource's properties</param>
+             <param name="options">A bag of options that control this resource's behavior</param>
+        </member>
+        <member name="M:Pulumi.Chronosphere.TraceJaegerRemoteSamplingStrategy.Get(System.String,Pulumi.Input{System.String},Pulumi.Chronosphere.TraceJaegerRemoteSamplingStrategyState,Pulumi.CustomResourceOptions)">
+             <summary>
+             Get an existing TraceJaegerRemoteSamplingStrategy resource's state with the given name, ID, and optional extra
+             properties used to qualify the lookup.
+             </summary>
+            
+             <param name="name">The unique name of the resulting resource.</param>
+             <param name="id">The unique provider ID of the resource to lookup.</param>
+             <param name="state">Any extra arguments used during the lookup.</param>
+             <param name="options">A bag of options that control this resource's behavior</param>
+        </member>
+        <member name="M:Pulumi.Chronosphere.TraceMetricsRule.#ctor(System.String,Pulumi.Chronosphere.TraceMetricsRuleArgs,Pulumi.CustomResourceOptions)">
+             <summary>
+             Create a TraceMetricsRule resource with the given unique name, arguments, and options.
+             </summary>
+            
+             <param name="name">The unique name of the resource</param>
+             <param name="args">The arguments used to populate this resource's properties</param>
+             <param name="options">A bag of options that control this resource's behavior</param>
+        </member>
+        <member name="M:Pulumi.Chronosphere.TraceMetricsRule.Get(System.String,Pulumi.Input{System.String},Pulumi.Chronosphere.TraceMetricsRuleState,Pulumi.CustomResourceOptions)">
+             <summary>
+             Get an existing TraceMetricsRule resource's state with the given name, ID, and optional extra
+             properties used to qualify the lookup.
+             </summary>
+            
+             <param name="name">The unique name of the resulting resource.</param>
+             <param name="id">The unique provider ID of the resource to lookup.</param>
+             <param name="state">Any extra arguments used during the lookup.</param>
+             <param name="options">A bag of options that control this resource's behavior</param>
+        </member>
+        <member name="M:Pulumi.Chronosphere.TraceTailSamplingRules.#ctor(System.String,Pulumi.Chronosphere.TraceTailSamplingRulesArgs,Pulumi.CustomResourceOptions)">
+             <summary>
+             Create a TraceTailSamplingRules resource with the given unique name, arguments, and options.
+             </summary>
+            
+             <param name="name">The unique name of the resource</param>
+             <param name="args">The arguments used to populate this resource's properties</param>
+             <param name="options">A bag of options that control this resource's behavior</param>
+        </member>
+        <member name="M:Pulumi.Chronosphere.TraceTailSamplingRules.Get(System.String,Pulumi.Input{System.String},Pulumi.Chronosphere.TraceTailSamplingRulesState,Pulumi.CustomResourceOptions)">
+             <summary>
+             Get an existing TraceTailSamplingRules resource's state with the given name, ID, and optional extra
+             properties used to qualify the lookup.
+             </summary>
+            
+             <param name="name">The unique name of the resulting resource.</param>
+             <param name="id">The unique provider ID of the resource to lookup.</param>
+             <param name="state">Any extra arguments used during the lookup.</param>
+             <param name="options">A bag of options that control this resource's behavior</param>
+        </member>
+        <member name="M:Pulumi.Chronosphere.VictoropsAlertNotifier.#ctor(System.String,Pulumi.Chronosphere.VictoropsAlertNotifierArgs,Pulumi.CustomResourceOptions)">
+             <summary>
+             Create a VictoropsAlertNotifier resource with the given unique name, arguments, and options.
+             </summary>
+            
+             <param name="name">The unique name of the resource</param>
+             <param name="args">The arguments used to populate this resource's properties</param>
+             <param name="options">A bag of options that control this resource's behavior</param>
+        </member>
+        <member name="M:Pulumi.Chronosphere.VictoropsAlertNotifier.Get(System.String,Pulumi.Input{System.String},Pulumi.Chronosphere.VictoropsAlertNotifierState,Pulumi.CustomResourceOptions)">
+             <summary>
+             Get an existing VictoropsAlertNotifier resource's state with the given name, ID, and optional extra
+             properties used to qualify the lookup.
+             </summary>
+            
+             <param name="name">The unique name of the resulting resource.</param>
+             <param name="id">The unique provider ID of the resource to lookup.</param>
+             <param name="state">Any extra arguments used during the lookup.</param>
+             <param name="options">A bag of options that control this resource's behavior</param>
+        </member>
+        <member name="M:Pulumi.Chronosphere.WebhookAlertNotifier.#ctor(System.String,Pulumi.Chronosphere.WebhookAlertNotifierArgs,Pulumi.CustomResourceOptions)">
+             <summary>
+             Create a WebhookAlertNotifier resource with the given unique name, arguments, and options.
+             </summary>
+            
+             <param name="name">The unique name of the resource</param>
+             <param name="args">The arguments used to populate this resource's properties</param>
+             <param name="options">A bag of options that control this resource's behavior</param>
+        </member>
+        <member name="M:Pulumi.Chronosphere.WebhookAlertNotifier.Get(System.String,Pulumi.Input{System.String},Pulumi.Chronosphere.WebhookAlertNotifierState,Pulumi.CustomResourceOptions)">
+             <summary>
+             Get an existing WebhookAlertNotifier resource's state with the given name, ID, and optional extra
+             properties used to qualify the lookup.
+             </summary>
+            
+             <param name="name">The unique name of the resulting resource.</param>
+             <param name="id">The unique provider ID of the resource to lookup.</param>
+             <param name="state">Any extra arguments used during the lookup.</param>
+             <param name="options">A bag of options that control this resource's behavior</param>
+        </member>
+    </members>
+</doc>
