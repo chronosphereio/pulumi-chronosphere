@@ -29,13 +29,11 @@ jobs:
       - uses: dangoslen/changelog-enforcer@v3
         with:
           skipLabels: "skip-changelog,ignore-release"
-  build:
+
+  lint:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+      - uses: actions/checkout@v4
       - name: Install Go
         uses: actions/setup-go@v5
         with:
@@ -55,35 +53,82 @@ jobs:
         uses: pulumi/actions@v5
         with:
           pulumi-version: ^3
-      - name: Setup Node
+      - name: Lint Provider
+        run: make lint_provider
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: 1.21
+          cache: false
+      - name: Install pulumictl
+        uses: jaxxstorm/action-install-gh-release@v1.11.0
+        with:
+          tag: v0.0.46
+          repo: pulumi/pulumictl
+      - name: Install Pulumi CLI
+        uses: pulumi/actions@v5
+        with:
+          pulumi-version: ^3
+      - name: Test Provider
+        run: make test_provider
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Install Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: 1.21
+          cache: false
+      - name: Install pulumictl
+        uses: jaxxstorm/action-install-gh-release@v1.11.0
+        with:
+          tag: v0.0.46
+          repo: pulumi/pulumictl
+      - name: Install Pulumi CLI
+        uses: pulumi/actions@v5
+        with:
+          pulumi-version: ^3
+      - if: matrix.language == 'nodejs'
+        name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODEVERSION }}
           registry-url: https://registry.npmjs.org
-      - name: Setup DotNet
+      - if: matrix.language == 'dotnet'
+        name: Setup DotNet
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: ${{ env.DOTNETVERSION }}
-      # - name: Setup Python
+      # - if: matrix.language == 'python'
+      #   name: Setup Python
       #   uses: actions/setup-python@v5
       #   with:
       #     python-version: ${{ env.PYTHONVERSION }}
-      - name: Setup Java
+      - if: matrix.language == 'java'
+        name: Setup Java
         uses: actions/setup-java@v4
         with:
           cache: gradle
           distribution: temurin
           java-version: ${{ env.JAVAVERSION }}
-      - name: Setup Gradle
+      - if: matrix.language == 'java'
+        name: Setup Gradle
         uses: gradle/gradle-build-action@v3
         with:
           gradle-version: ${{ env.GRADLEVERSION }}
-      - name: Lint Provider
-        run: make lint_provider
-      - name: Test Provider
-        run: make test_provider
       - name: Build SDK
         run: make build_${{ matrix.language }}
+      # TODO: Check worktree clean
     strategy:
       fail-fast: true
       matrix:
