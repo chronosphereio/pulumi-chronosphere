@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Pulumi.Chronosphere</id>
+    <version>0.0.2-alpha.1712280084+18ebf358.dirty</version>
+    <authors>Chronosphere</authors>
+    <license type="expression">Apache-2.0</license>
+    <licenseUrl>https://licenses.nuget.org/Apache-2.0</licenseUrl>
+    <icon>logo.png</icon>
+    <projectUrl>https://chronosphere.io/</projectUrl>
+    <description>Chronosphere Pulumi Provider</description>
+    <repository type="git" url="https://github.com/chronosphereio/pulumi-chronosphere" commit="18ebf3587d13bbc8be19ea972815cc775e8c82f1" />
+    <dependencies>
+      <group targetFramework="net6.0">
+        <dependency id="Pulumi" version="[3.54.1, 4.0.0)" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="/Users/aschepis/src/chronosphere/pulumi-chronosphere/sdk/dotnet/bin/Debug/net6.0/Pulumi.Chronosphere.pdb" target="lib/net6.0/Pulumi.Chronosphere.pdb" />
+    <file src="/Users/aschepis/src/chronosphere/pulumi-chronosphere/sdk/dotnet/bin/Debug/net6.0/Pulumi.Chronosphere.dll" target="lib/net6.0/Pulumi.Chronosphere.dll" />
+    <file src="/Users/aschepis/src/chronosphere/pulumi-chronosphere/sdk/dotnet/bin/Debug/net6.0/Pulumi.Chronosphere.xml" target="lib/net6.0/Pulumi.Chronosphere.xml" />
+    <file src="/Users/aschepis/src/chronosphere/pulumi-chronosphere/sdk/dotnet/version.txt" target="content/version.txt" />
+    <file src="/Users/aschepis/src/chronosphere/pulumi-chronosphere/sdk/dotnet/pulumi-plugin.json" target="content/pulumi-plugin.json" />
+    <file src="/Users/aschepis/src/chronosphere/pulumi-chronosphere/sdk/dotnet/logo.png" target="logo.png" />
+  </files>
+</package>
