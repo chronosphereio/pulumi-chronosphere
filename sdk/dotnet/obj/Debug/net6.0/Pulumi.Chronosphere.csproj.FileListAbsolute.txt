@@ -1,0 +1,15 @@
+/Users/aschepis/src/chronosphere/pulumi-chronosphere/sdk/dotnet/bin/Debug/net6.0/Pulumi.Chronosphere.deps.json
+/Users/aschepis/src/chronosphere/pulumi-chronosphere/sdk/dotnet/bin/Debug/net6.0/Pulumi.Chronosphere.dll
+/Users/aschepis/src/chronosphere/pulumi-chronosphere/sdk/dotnet/bin/Debug/net6.0/Pulumi.Chronosphere.pdb
+/Users/aschepis/src/chronosphere/pulumi-chronosphere/sdk/dotnet/bin/Debug/net6.0/Pulumi.Chronosphere.xml
+/Users/aschepis/src/chronosphere/pulumi-chronosphere/sdk/dotnet/obj/Debug/net6.0/Pulumi.Chronosphere.csproj.AssemblyReference.cache
+/Users/aschepis/src/chronosphere/pulumi-chronosphere/sdk/dotnet/obj/Debug/net6.0/Pulumi.Chronosphere.GeneratedMSBuildEditorConfig.editorconfig
+/Users/aschepis/src/chronosphere/pulumi-chronosphere/sdk/dotnet/obj/Debug/net6.0/Pulumi.Chronosphere.AssemblyInfoInputs.cache
+/Users/aschepis/src/chronosphere/pulumi-chronosphere/sdk/dotnet/obj/Debug/net6.0/Pulumi.Chronosphere.AssemblyInfo.cs
+/Users/aschepis/src/chronosphere/pulumi-chronosphere/sdk/dotnet/obj/Debug/net6.0/Pulumi.Chronosphere.csproj.CoreCompileInputs.cache
+/Users/aschepis/src/chronosphere/pulumi-chronosphere/sdk/dotnet/obj/Debug/net6.0/Pulumi.Chronosphere.sourcelink.json
+/Users/aschepis/src/chronosphere/pulumi-chronosphere/sdk/dotnet/obj/Debug/net6.0/Pulumi.Chronosphere.dll
+/Users/aschepis/src/chronosphere/pulumi-chronosphere/sdk/dotnet/obj/Debug/net6.0/refint/Pulumi.Chronosphere.dll
+/Users/aschepis/src/chronosphere/pulumi-chronosphere/sdk/dotnet/obj/Debug/net6.0/Pulumi.Chronosphere.xml
+/Users/aschepis/src/chronosphere/pulumi-chronosphere/sdk/dotnet/obj/Debug/net6.0/Pulumi.Chronosphere.pdb
+/Users/aschepis/src/chronosphere/pulumi-chronosphere/sdk/dotnet/obj/Debug/net6.0/ref/Pulumi.Chronosphere.dll
