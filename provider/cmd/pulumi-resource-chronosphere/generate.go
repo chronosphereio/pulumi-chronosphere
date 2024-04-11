@@ -55,7 +55,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	err = ioutil.WriteFile("./schema-embed.json", versionedContents, 0600)
+	err = ioutil.WriteFile("./schema-embed.json", versionedContents, 0o600)
 	if err != nil {
 		log.Fatal(err)
 	}
