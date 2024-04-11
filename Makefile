@@ -17,9 +17,7 @@ development: install_plugins provider build_sdks install_sdks
 
 build: install_plugins provider build_sdks install_sdks
 
-# TODO: get python and go SDKs building
-# build_sdks: build_nodejs build_python build_go build_dotnet build_java
-build_sdks: build_nodejs build_dotnet build_java
+build_sdks: build_nodejs build_python build_go build_dotnet build_java
 
 install_go_sdk:
 
@@ -64,7 +62,7 @@ build_nodejs:
 build_python: PYPI_VERSION := $(shell pulumictl get version --language python)
 build_python: export PULUMI_HOME := $(WORKING_DIR)/.pulumi
 build_python: export PATH := $(WORKING_DIR)/.pulumi/bin:$(PATH)
-#build_python: export PULUMI_CONVERT_EXAMPLES_CACHE_DIR := $(WORKING_DIR)/.pulumi/examples-cache
+build_python: export PULUMI_CONVERT_EXAMPLES_CACHE_DIR := $(WORKING_DIR)/.pulumi/examples-cache
 build_python:
 	rm -rf sdk/python/
 	PULUMI_CONVERT=$(PULUMI_CONVERT) PULUMI_DISABLE_AUTOMATIC_PLUGIN_ACQUISITION=$(PULUMI_CONVERT) $(WORKING_DIR)/bin/$(TFGEN) python --out sdk/python/
@@ -72,6 +70,7 @@ build_python:
 		printf "module fake_python_module // Exclude this directory from Go tools\n\ngo 1.21\n" > go.mod && \
 		cp ../../README.md . && \
 		rm -rf ./bin/ ../python.bin/ && cp -R . ../python.bin && mv ../python.bin ./bin && \
+		cp ../../pyproject.toml ./bin/ && \
 		sed -i.bak -e 's/^  version = .*/  version = "$(PYPI_VERSION)"/g' ./bin/pyproject.toml && \
 		rm ./bin/pyproject.toml.bak && rm ./bin/go.mod && \
 		python3 -m venv venv && \
@@ -141,5 +140,5 @@ bin/pulumi-java-gen:
 	@mkdir -p .pulumi
 	@cd provider && go list -f "{{slice .Version 1}}" -m github.com/pulumi/pulumi/pkg/v3 | tee ../$@
 
-# .PHONY: development build build_sdks install_go_sdk install_java_sdk install_python_sdk install_sdks only_build build_dotnet build_go build_java build_nodejs build_python clean cleanup help install_dotnet_sdk install_nodejs_sdk install_plugins lint_provider provider test tfgen test_provider
-.PHONY: development build build_sdks install_go_sdk install_java_sdk install_python_sdk install_sdks only_build build_go build_nodejs clean cleanup help install_dotnet_sdk install_nodejs_sdk install_plugins lint_provider provider test tfgen test_provider
+.PHONY: development build build_sdks install_go_sdk install_java_sdk install_python_sdk install_sdks only_build build_dotnet build_go build_java build_nodejs build_python clean cleanup help install_dotnet_sdk install_nodejs_sdk install_plugins lint_provider provider test tfgen test_provider
+# .PHONY: development build build_sdks install_go_sdk install_java_sdk install_python_sdk install_sdks only_build build_go build_nodejs clean cleanup help install_dotnet_sdk install_nodejs_sdk install_plugins lint_provider provider test tfgen test_provider
