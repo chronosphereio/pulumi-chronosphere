@@ -126,7 +126,7 @@ tfgen: install_plugins
 	PATH=${PWD}/.pulumi/bin:$$PATH PULUMI_CONVERT=$(PULUMI_CONVERT) $(WORKING_DIR)/bin/$(TFGEN) schema --out provider/cmd/$(PROVIDER)
 	(cd provider && VERSION=$(VERSION) go generate cmd/$(PROVIDER)/main.go)
 
-.PHONY: test-generate
+.PHONY: test_generate
 test-generate: provider
 	@echo "--- :golang: go mod tidy"
 	(cd provider && go mod tidy)
