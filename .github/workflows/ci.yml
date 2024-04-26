@@ -50,29 +50,6 @@ jobs:
           working-directory: provider
           args: -c ../.golangci.yml
 
-  test_generate:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - name: Install Go
-        uses: actions/setup-go@v5
-        with:
-          go-version: 1.21
-          cache: false
-      - name: Install pulumictl
-        uses: jaxxstorm/action-install-gh-release@v1.11.0
-        with:
-          tag: v0.0.46
-          repo: pulumi/pulumictl
-      - name: Install Pulumi CLI
-        uses: pulumi/actions@v5
-        with:
-          pulumi-version: ^3
-      - name: Lint Provider
-        run: make test_generate
-
   test:
     runs-on: ubuntu-latest
     steps:
@@ -147,7 +124,8 @@ jobs:
           gradle-version: ${{ env.GRADLEVERSION }}
       - name: Build SDK
         run: make provider build_${{ matrix.language }}
-      # TODO: Check worktree clean
+      - name: Check worktree clean
+        run: ./scripts/check_for_diffs.sh
     strategy:
       fail-fast: true
       matrix:

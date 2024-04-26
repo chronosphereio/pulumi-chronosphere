@@ -127,11 +127,8 @@ tfgen: install_plugins
 	(cd provider && VERSION=$(VERSION) go generate cmd/$(PROVIDER)/main.go)
 
 .PHONY: test_generate
-test-generate: provider
-	@echo "--- :golang: go mod tidy"
-	(cd provider && go mod tidy)
-	@echo "--- :git: Testing generate code is up to date"
-	@[ -z "$$(git status --porcelain)" ] || ((set -x; git status --porcelain; git diff); echo -e "^^^ +++\nCheck git status + diff above, there are changed or untracked files"; exit 1)
+test_generate:
+	./scripts/check_for_diffs.sh
 
 bin/pulumi-java-gen:
 	pulumictl download-binary -n pulumi-language-java -v $(JAVA_GEN_VERSION) -r pulumi/pulumi-java
