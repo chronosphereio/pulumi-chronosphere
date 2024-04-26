@@ -1,2 +1,4 @@
 .pulumi/
 **/bin/
+
+provider/**/schema-embed.json
