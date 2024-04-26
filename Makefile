@@ -126,6 +126,13 @@ tfgen: install_plugins
 	PATH=${PWD}/.pulumi/bin:$$PATH PULUMI_CONVERT=$(PULUMI_CONVERT) $(WORKING_DIR)/bin/$(TFGEN) schema --out provider/cmd/$(PROVIDER)
 	(cd provider && VERSION=$(VERSION) go generate cmd/$(PROVIDER)/main.go)
 
+.PHONY: test-generate
+test-generate: provider
+	@echo "--- :golang: go mod tidy"
+	(cd provider && go mod tidy)
+	@echo "--- :git: Testing generate code is up to date"
+	@[ -z "$$(git status --porcelain)" ] || ((set -x; git status --porcelain; git diff); echo -e "^^^ +++\nCheck git status + diff above, there are changed or untracked files"; exit 1)
+
 bin/pulumi-java-gen:
 	pulumictl download-binary -n pulumi-language-java -v $(JAVA_GEN_VERSION) -r pulumi/pulumi-java
 
