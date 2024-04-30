@@ -71,7 +71,7 @@ jobs:
         with:
           pulumi-version: ^3
       - name: Test Provider
-        run: make test_provider
+        run: make provider test_provider
 
   build:
     runs-on: ubuntu-latest
