@@ -853,7 +853,7 @@
     "/Users/aschepis/.nuget/packages/": {}
   },
   "project": {
-    "version": "0.0.2-alpha.1712280084+18ebf358.dirty",
+    "version": "0.0.1-alpha.1714497171+e5663bdb",
     "restore": {
       "projectUniqueName": "/Users/aschepis/src/chronosphere/pulumi-chronosphere/sdk/dotnet/Pulumi.Chronosphere.csproj",
       "projectName": "Pulumi.Chronosphere",

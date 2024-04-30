@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "VlYUBR6nt2+hfLSK5zUpJOiMm3cCIuRezgF6uSvcEvKwiszbVQ/G2WkVFbQmzhvnMuCYYaRH4d4BfGHLLhw3GA==",
+  "dgSpecHash": "7gYC+PykPUghZRrbMWxUNRzNd7eU497TXCGSez/Z9s2VVgdKW4kFj76Z2nwftVI072W/EeAhIwOik1IJhcbgEA==",
   "success": true,
   "projectFilePath": "/Users/aschepis/src/chronosphere/pulumi-chronosphere/sdk/dotnet/Pulumi.Chronosphere.csproj",
   "expectedPackageFiles": [
