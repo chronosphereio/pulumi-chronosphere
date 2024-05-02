@@ -34,29 +34,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
       - name: Install Go
         uses: actions/setup-go@v5
         with:
           go-version: 1.21
           cache: false
+      # This step is performed because we some of the go:embed files are generated. However, we
+      # can lint the code without having to do a full build/generate cycle. Therefore we
+      # just make them do nothing.
+      - name: disarm go:embed directives to enable lint
+        continue-on-error: true # this fails if there are no go:embed directives
+        run: |
+          git grep -l 'go:embed' -- provider | xargs sed -i 's/go:embed/ goembed/g'
       - name: golangci-lint
         uses: golangci/golangci-lint-action@v4
         with:
           version: v1.55.2
           working-directory: provider
-      - name: Install pulumictl
-        uses: jaxxstorm/action-install-gh-release@v1.11.0
-        with:
-          tag: v0.0.46
-          repo: pulumi/pulumictl
-      - name: Install Pulumi CLI
-        uses: pulumi/actions@v5
-        with:
-          pulumi-version: ^3
-      - name: Lint Provider
-        run: make lint_provider
+          args: -c ../.golangci.yml
 
   test:
     runs-on: ubuntu-latest
@@ -79,7 +74,7 @@ jobs:
         with:
           pulumi-version: ^3
       - name: Test Provider
-        run: make test_provider
+        run: make provider test_provider
 
   build:
     runs-on: ubuntu-latest
@@ -132,7 +127,8 @@ jobs:
           gradle-version: ${{ env.GRADLEVERSION }}
       - name: Build SDK
         run: make provider build_${{ matrix.language }}
-      # TODO: Check worktree clean
+      - name: Check generated code is up to date
+        run: ./scripts/check_for_diffs.sh
     strategy:
       fail-fast: true
       matrix:
