@@ -39,6 +39,9 @@ jobs:
         with:
           go-version: 1.21
           cache: false
+      # This step is performed because we some of the go:embed files are generated. However, we
+      # can lint the code without having to do a full build/generate cycle. Therefore we
+      # just make them do nothing.
       - name: disarm go:embed directives to enable lint
         continue-on-error: true # this fails if there are no go:embed directives
         run: |
@@ -124,7 +127,7 @@ jobs:
           gradle-version: ${{ env.GRADLEVERSION }}
       - name: Build SDK
         run: make provider build_${{ matrix.language }}
-      - name: Check worktree clean
+      - name: Check generated code is up to date
         run: ./scripts/check_for_diffs.sh
     strategy:
       fail-fast: true
