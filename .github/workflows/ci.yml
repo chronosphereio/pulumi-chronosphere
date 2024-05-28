@@ -108,11 +108,11 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: ${{ env.DOTNETVERSION }}
-      # - if: matrix.language == 'python'
-      #   name: Setup Python
-      #   uses: actions/setup-python@v5
-      #   with:
-      #     python-version: ${{ env.PYTHONVERSION }}
+      - if: matrix.language == 'python'
+        name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHONVERSION }}
       - if: matrix.language == 'java'
         name: Setup Java
         uses: actions/setup-java@v4
@@ -136,8 +136,8 @@ jobs:
           - nodejs
           - dotnet
           - java
+          - python
           # - go
-          # - python
 
       # - name: Download provider + tfgen binaries
       #   uses: actions/download-artifact@v4
