@@ -17,9 +17,7 @@ development: install_plugins provider build_sdks install_sdks
 
 build: install_plugins provider build_sdks install_sdks
 
-# TODO: get go SDK building
-# build_sdks: build_nodejs build_python build_go build_dotnet build_java
-build_sdks: build_nodejs build_python build_dotnet build_java
+build_sdks: build_nodejs build_python build_go build_dotnet build_java
 
 install_go_sdk:
 
@@ -142,5 +140,5 @@ bin/pulumi-java-gen:
 	@mkdir -p .pulumi
 	@cd provider && go list -f "{{slice .Version 1}}" -m github.com/pulumi/pulumi/pkg/v3 | tee ../$@
 
-# .PHONY: development build build_sdks install_go_sdk install_java_sdk install_python_sdk install_sdks only_build build_dotnet build_go build_java build_nodejs build_python clean cleanup help install_dotnet_sdk install_nodejs_sdk install_plugins lint_provider provider test tfgen test_provider
-.PHONY: development build build_sdks install_go_sdk install_java_sdk install_python_sdk install_sdks only_build build_dotnet build_java build_nodejs build_python clean cleanup help install_dotnet_sdk install_nodejs_sdk install_plugins lint_provider provider test tfgen test_provider
+.PHONY: development build build_sdks install_go_sdk install_java_sdk install_python_sdk install_sdks only_build build_dotnet build_go build_java build_nodejs build_python clean cleanup help install_dotnet_sdk install_nodejs_sdk install_plugins lint_provider provider test tfgen test_provider
+# .PHONY: development build build_sdks install_go_sdk install_java_sdk install_python_sdk install_sdks only_build build_go build_nodejs clean cleanup help install_dotnet_sdk install_nodejs_sdk install_plugins lint_provider provider test tfgen test_provider
