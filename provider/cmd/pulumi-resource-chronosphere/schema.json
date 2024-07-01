@@ -83,6 +83,283 @@
         ]
     },
     "types": {
+        "chronosphere:index/DatasetConfiguration:DatasetConfiguration": {
+            "properties": {
+                "traceDataset": {
+                    "$ref": "#/types/chronosphere:index/DatasetConfigurationTraceDataset:DatasetConfigurationTraceDataset"
+                },
+                "type": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "type"
+            ]
+        },
+        "chronosphere:index/DatasetConfigurationTraceDataset:DatasetConfigurationTraceDataset": {
+            "properties": {
+                "matchCriteria": {
+                    "$ref": "#/types/chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteria:DatasetConfigurationTraceDatasetMatchCriteria"
+                }
+            },
+            "type": "object",
+            "required": [
+                "matchCriteria"
+            ]
+        },
+        "chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteria:DatasetConfigurationTraceDatasetMatchCriteria": {
+            "properties": {
+                "spans": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaSpan:DatasetConfigurationTraceDatasetMatchCriteriaSpan"
+                    }
+                },
+                "trace": {
+                    "$ref": "#/types/chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaTrace:DatasetConfigurationTraceDatasetMatchCriteriaTrace"
+                }
+            },
+            "type": "object"
+        },
+        "chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaSpan:DatasetConfigurationTraceDatasetMatchCriteriaSpan": {
+            "properties": {
+                "duration": {
+                    "$ref": "#/types/chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaSpanDuration:DatasetConfigurationTraceDatasetMatchCriteriaSpanDuration"
+                },
+                "error": {
+                    "$ref": "#/types/chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaSpanError:DatasetConfigurationTraceDatasetMatchCriteriaSpanError"
+                },
+                "matchType": {
+                    "type": "string"
+                },
+                "operation": {
+                    "$ref": "#/types/chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaSpanOperation:DatasetConfigurationTraceDatasetMatchCriteriaSpanOperation"
+                },
+                "parentOperation": {
+                    "$ref": "#/types/chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaSpanParentOperation:DatasetConfigurationTraceDatasetMatchCriteriaSpanParentOperation"
+                },
+                "parentService": {
+                    "$ref": "#/types/chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaSpanParentService:DatasetConfigurationTraceDatasetMatchCriteriaSpanParentService"
+                },
+                "service": {
+                    "$ref": "#/types/chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaSpanService:DatasetConfigurationTraceDatasetMatchCriteriaSpanService"
+                },
+                "spanCount": {
+                    "$ref": "#/types/chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaSpanSpanCount:DatasetConfigurationTraceDatasetMatchCriteriaSpanSpanCount"
+                },
+                "tag": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaSpanTag:DatasetConfigurationTraceDatasetMatchCriteriaSpanTag"
+                    }
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaSpanTag:DatasetConfigurationTraceDatasetMatchCriteriaSpanTag"
+                    },
+                    "deprecationMessage": "`tags` is deprecated, use `tag` instead."
+                }
+            },
+            "type": "object"
+        },
+        "chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaSpanDuration:DatasetConfigurationTraceDatasetMatchCriteriaSpanDuration": {
+            "properties": {
+                "maxSeconds": {
+                    "type": "number",
+                    "deprecationMessage": "use max_secs instead"
+                },
+                "maxSecs": {
+                    "type": "number"
+                },
+                "minSeconds": {
+                    "type": "number",
+                    "deprecationMessage": "use min_secs instead"
+                },
+                "minSecs": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaSpanError:DatasetConfigurationTraceDatasetMatchCriteriaSpanError": {
+            "properties": {
+                "value": {
+                    "type": "boolean"
+                }
+            },
+            "type": "object",
+            "required": [
+                "value"
+            ]
+        },
+        "chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaSpanOperation:DatasetConfigurationTraceDatasetMatchCriteriaSpanOperation": {
+            "properties": {
+                "inValues": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "match": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaSpanParentOperation:DatasetConfigurationTraceDatasetMatchCriteriaSpanParentOperation": {
+            "properties": {
+                "inValues": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "match": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaSpanParentService:DatasetConfigurationTraceDatasetMatchCriteriaSpanParentService": {
+            "properties": {
+                "inValues": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "match": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaSpanService:DatasetConfigurationTraceDatasetMatchCriteriaSpanService": {
+            "properties": {
+                "inValues": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "match": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaSpanSpanCount:DatasetConfigurationTraceDatasetMatchCriteriaSpanSpanCount": {
+            "properties": {
+                "max": {
+                    "type": "integer"
+                },
+                "min": {
+                    "type": "integer"
+                }
+            },
+            "type": "object"
+        },
+        "chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaSpanTag:DatasetConfigurationTraceDatasetMatchCriteriaSpanTag": {
+            "properties": {
+                "key": {
+                    "type": "string"
+                },
+                "numericValue": {
+                    "$ref": "#/types/chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaSpanTagNumericValue:DatasetConfigurationTraceDatasetMatchCriteriaSpanTagNumericValue"
+                },
+                "value": {
+                    "$ref": "#/types/chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaSpanTagValue:DatasetConfigurationTraceDatasetMatchCriteriaSpanTagValue"
+                }
+            },
+            "type": "object"
+        },
+        "chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaSpanTagNumericValue:DatasetConfigurationTraceDatasetMatchCriteriaSpanTagNumericValue": {
+            "properties": {
+                "comparison": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "number"
+                }
+            },
+            "type": "object",
+            "required": [
+                "comparison",
+                "value"
+            ]
+        },
+        "chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaSpanTagValue:DatasetConfigurationTraceDatasetMatchCriteriaSpanTagValue": {
+            "properties": {
+                "inValues": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "match": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaTrace:DatasetConfigurationTraceDatasetMatchCriteriaTrace": {
+            "properties": {
+                "duration": {
+                    "$ref": "#/types/chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaTraceDuration:DatasetConfigurationTraceDatasetMatchCriteriaTraceDuration"
+                },
+                "error": {
+                    "$ref": "#/types/chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaTraceError:DatasetConfigurationTraceDatasetMatchCriteriaTraceError"
+                }
+            },
+            "type": "object"
+        },
+        "chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaTraceDuration:DatasetConfigurationTraceDatasetMatchCriteriaTraceDuration": {
+            "properties": {
+                "maxSeconds": {
+                    "type": "number",
+                    "deprecationMessage": "use max_secs instead"
+                },
+                "maxSecs": {
+                    "type": "number"
+                },
+                "minSeconds": {
+                    "type": "number",
+                    "deprecationMessage": "use min_secs instead"
+                },
+                "minSecs": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaTraceError:DatasetConfigurationTraceDatasetMatchCriteriaTraceError": {
+            "properties": {
+                "value": {
+                    "type": "boolean"
+                }
+            },
+            "type": "object",
+            "required": [
+                "value"
+            ]
+        },
         "chronosphere:index/DerivedLabelMetricLabel:DerivedLabelMetricLabel": {
             "properties": {
                 "constructedLabel": {
@@ -513,105 +790,6 @@
             },
             "type": "object"
         },
-        "chronosphere:index/NotificationPolicyDataSourceOverride:NotificationPolicyDataSourceOverride": {
-            "properties": {
-                "alertLabelMatchers": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/chronosphere:index/NotificationPolicyDataSourceOverrideAlertLabelMatcher:NotificationPolicyDataSourceOverrideAlertLabelMatcher"
-                    }
-                },
-                "routes": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/chronosphere:index/NotificationPolicyDataSourceOverrideRoute:NotificationPolicyDataSourceOverrideRoute"
-                    }
-                }
-            },
-            "type": "object",
-            "required": [
-                "alertLabelMatchers"
-            ]
-        },
-        "chronosphere:index/NotificationPolicyDataSourceOverrideAlertLabelMatcher:NotificationPolicyDataSourceOverrideAlertLabelMatcher": {
-            "properties": {
-                "name": {
-                    "type": "string"
-                },
-                "type": {
-                    "type": "string"
-                },
-                "value": {
-                    "type": "string"
-                }
-            },
-            "type": "object",
-            "required": [
-                "name",
-                "type",
-                "value"
-            ]
-        },
-        "chronosphere:index/NotificationPolicyDataSourceOverrideRoute:NotificationPolicyDataSourceOverrideRoute": {
-            "properties": {
-                "notifiers": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "repeatInterval": {
-                    "type": "string"
-                },
-                "severity": {
-                    "type": "string"
-                }
-            },
-            "type": "object",
-            "required": [
-                "severity"
-            ]
-        },
-        "chronosphere:index/NotificationPolicyDataSourceRoute:NotificationPolicyDataSourceRoute": {
-            "properties": {
-                "notifiers": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "repeatInterval": {
-                    "type": "string"
-                },
-                "severity": {
-                    "type": "string"
-                }
-            },
-            "type": "object",
-            "required": [
-                "severity"
-            ]
-        },
-        "chronosphere:index/NotificationPolicyDataSourceRule:NotificationPolicyDataSourceRule": {
-            "properties": {
-                "notifiers": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "repeatInterval": {
-                    "type": "string"
-                },
-                "severity": {
-                    "type": "string"
-                }
-            },
-            "type": "object",
-            "required": [
-                "severity"
-            ]
-        },
         "chronosphere:index/NotificationPolicyOverride:NotificationPolicyOverride": {
             "properties": {
                 "alertLabelMatchers": {
@@ -653,6 +831,9 @@
         },
         "chronosphere:index/NotificationPolicyOverrideRoute:NotificationPolicyOverrideRoute": {
             "properties": {
+                "groupBy": {
+                    "$ref": "#/types/chronosphere:index/NotificationPolicyOverrideRouteGroupBy:NotificationPolicyOverrideRouteGroupBy"
+                },
                 "notifiers": {
                     "type": "array",
                     "items": {
@@ -670,9 +851,23 @@
             "required": [
                 "severity"
             ]
+        },
+        "chronosphere:index/NotificationPolicyOverrideRouteGroupBy:NotificationPolicyOverrideRouteGroupBy": {
+            "properties": {
+                "labelNames": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "type": "object"
         },
         "chronosphere:index/NotificationPolicyRoute:NotificationPolicyRoute": {
             "properties": {
+                "groupBy": {
+                    "$ref": "#/types/chronosphere:index/NotificationPolicyRouteGroupBy:NotificationPolicyRouteGroupBy"
+                },
                 "notifiers": {
                     "type": "array",
                     "items": {
@@ -691,25 +886,16 @@
                 "severity"
             ]
         },
-        "chronosphere:index/NotificationPolicyRule:NotificationPolicyRule": {
+        "chronosphere:index/NotificationPolicyRouteGroupBy:NotificationPolicyRouteGroupBy": {
             "properties": {
-                "notifiers": {
+                "labelNames": {
                     "type": "array",
                     "items": {
                         "type": "string"
                     }
-                },
-                "repeatInterval": {
-                    "type": "string"
-                },
-                "severity": {
-                    "type": "string"
                 }
             },
-            "type": "object",
-            "required": [
-                "severity"
-            ]
+            "type": "object"
         },
         "chronosphere:index/OpsgenieAlertNotifierResponder:OpsgenieAlertNotifierResponder": {
             "properties": {
@@ -730,6 +916,26 @@
             "required": [
                 "type"
             ]
+        },
+        "chronosphere:index/OtelMetricsIngestionResourceAttributes:OtelMetricsIngestionResourceAttributes": {
+            "properties": {
+                "excludeKeys": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "filterMode": {
+                    "type": "string"
+                },
+                "flattenMode": {
+                    "type": "string"
+                },
+                "generateTargetInfo": {
+                    "type": "boolean"
+                }
+            },
+            "type": "object"
         },
         "chronosphere:index/PagerdutyAlertNotifierImage:PagerdutyAlertNotifierImage": {
             "properties": {
@@ -859,6 +1065,32 @@
                 }
             },
             "type": "object"
+        },
+        "chronosphere:index/RollupRuleGraphiteLabelPolicy:RollupRuleGraphiteLabelPolicy": {
+            "properties": {
+                "replaces": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/chronosphere:index/RollupRuleGraphiteLabelPolicyReplace:RollupRuleGraphiteLabelPolicyReplace"
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "chronosphere:index/RollupRuleGraphiteLabelPolicyReplace:RollupRuleGraphiteLabelPolicyReplace": {
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "newValue": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "name",
+                "newValue"
+            ]
         },
         "chronosphere:index/RollupRuleStoragePolicies:RollupRuleStoragePolicies": {
             "properties": {
@@ -1095,11 +1327,18 @@
                 "spanCount": {
                     "$ref": "#/types/chronosphere:index/TraceMetricsRuleTraceFilterSpanSpanCount:TraceMetricsRuleTraceFilterSpanSpanCount"
                 },
-                "tags": {
+                "tag": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/chronosphere:index/TraceMetricsRuleTraceFilterSpanTag:TraceMetricsRuleTraceFilterSpanTag"
                     }
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/chronosphere:index/TraceMetricsRuleTraceFilterSpanTag:TraceMetricsRuleTraceFilterSpanTag"
+                    },
+                    "deprecationMessage": "`tags` is deprecated, use `tag` instead."
                 }
             },
             "type": "object"
@@ -1107,9 +1346,17 @@
         "chronosphere:index/TraceMetricsRuleTraceFilterSpanDuration:TraceMetricsRuleTraceFilterSpanDuration": {
             "properties": {
                 "maxSeconds": {
+                    "type": "number",
+                    "deprecationMessage": "use max_secs instead"
+                },
+                "maxSecs": {
                     "type": "number"
                 },
                 "minSeconds": {
+                    "type": "number",
+                    "deprecationMessage": "use min_secs instead"
+                },
+                "minSecs": {
                     "type": "number"
                 }
             },
@@ -1128,6 +1375,12 @@
         },
         "chronosphere:index/TraceMetricsRuleTraceFilterSpanOperation:TraceMetricsRuleTraceFilterSpanOperation": {
             "properties": {
+                "inValues": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
                 "match": {
                     "type": "string"
                 },
@@ -1135,13 +1388,16 @@
                     "type": "string"
                 }
             },
-            "type": "object",
-            "required": [
-                "value"
-            ]
+            "type": "object"
         },
         "chronosphere:index/TraceMetricsRuleTraceFilterSpanParentOperation:TraceMetricsRuleTraceFilterSpanParentOperation": {
             "properties": {
+                "inValues": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
                 "match": {
                     "type": "string"
                 },
@@ -1149,13 +1405,16 @@
                     "type": "string"
                 }
             },
-            "type": "object",
-            "required": [
-                "value"
-            ]
+            "type": "object"
         },
         "chronosphere:index/TraceMetricsRuleTraceFilterSpanParentService:TraceMetricsRuleTraceFilterSpanParentService": {
             "properties": {
+                "inValues": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
                 "match": {
                     "type": "string"
                 },
@@ -1163,13 +1422,16 @@
                     "type": "string"
                 }
             },
-            "type": "object",
-            "required": [
-                "value"
-            ]
+            "type": "object"
         },
         "chronosphere:index/TraceMetricsRuleTraceFilterSpanService:TraceMetricsRuleTraceFilterSpanService": {
             "properties": {
+                "inValues": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
                 "match": {
                     "type": "string"
                 },
@@ -1177,10 +1439,7 @@
                     "type": "string"
                 }
             },
-            "type": "object",
-            "required": [
-                "value"
-            ]
+            "type": "object"
         },
         "chronosphere:index/TraceMetricsRuleTraceFilterSpanSpanCount:TraceMetricsRuleTraceFilterSpanSpanCount": {
             "properties": {
@@ -1205,10 +1464,7 @@
                     "$ref": "#/types/chronosphere:index/TraceMetricsRuleTraceFilterSpanTagValue:TraceMetricsRuleTraceFilterSpanTagValue"
                 }
             },
-            "type": "object",
-            "required": [
-                "key"
-            ]
+            "type": "object"
         },
         "chronosphere:index/TraceMetricsRuleTraceFilterSpanTagNumericValue:TraceMetricsRuleTraceFilterSpanTagNumericValue": {
             "properties": {
@@ -1227,6 +1483,12 @@
         },
         "chronosphere:index/TraceMetricsRuleTraceFilterSpanTagValue:TraceMetricsRuleTraceFilterSpanTagValue": {
             "properties": {
+                "inValues": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
                 "match": {
                     "type": "string"
                 },
@@ -1234,10 +1496,7 @@
                     "type": "string"
                 }
             },
-            "type": "object",
-            "required": [
-                "value"
-            ]
+            "type": "object"
         },
         "chronosphere:index/TraceMetricsRuleTraceFilterTrace:TraceMetricsRuleTraceFilterTrace": {
             "properties": {
@@ -1253,9 +1512,17 @@
         "chronosphere:index/TraceMetricsRuleTraceFilterTraceDuration:TraceMetricsRuleTraceFilterTraceDuration": {
             "properties": {
                 "maxSeconds": {
+                    "type": "number",
+                    "deprecationMessage": "use max_secs instead"
+                },
+                "maxSecs": {
                     "type": "number"
                 },
                 "minSeconds": {
+                    "type": "number",
+                    "deprecationMessage": "use min_secs instead"
+                },
+                "minSecs": {
                     "type": "number"
                 }
             },
@@ -1347,19 +1614,34 @@
                 "spanCount": {
                     "$ref": "#/types/chronosphere:index/TraceTailSamplingRulesRuleFilterSpanSpanCount:TraceTailSamplingRulesRuleFilterSpanSpanCount"
                 },
-                "tags": {
+                "tag": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/chronosphere:index/TraceTailSamplingRulesRuleFilterSpanTag:TraceTailSamplingRulesRuleFilterSpanTag"
                     }
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/chronosphere:index/TraceTailSamplingRulesRuleFilterSpanTag:TraceTailSamplingRulesRuleFilterSpanTag"
+                    },
+                    "deprecationMessage": "`tags` is deprecated, use `tag` instead."
                 }
             },
             "type": "object"
         },
         "chronosphere:index/TraceTailSamplingRulesRuleFilterSpanDuration:TraceTailSamplingRulesRuleFilterSpanDuration": {
             "properties": {
+                "maxSeconds": {
+                    "type": "number",
+                    "deprecationMessage": "use max_secs instead"
+                },
                 "maxSecs": {
                     "type": "number"
+                },
+                "minSeconds": {
+                    "type": "number",
+                    "deprecationMessage": "use min_secs instead"
                 },
                 "minSecs": {
                     "type": "number"
@@ -1380,6 +1662,12 @@
         },
         "chronosphere:index/TraceTailSamplingRulesRuleFilterSpanOperation:TraceTailSamplingRulesRuleFilterSpanOperation": {
             "properties": {
+                "inValues": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
                 "match": {
                     "type": "string"
                 },
@@ -1387,13 +1675,16 @@
                     "type": "string"
                 }
             },
-            "type": "object",
-            "required": [
-                "value"
-            ]
+            "type": "object"
         },
         "chronosphere:index/TraceTailSamplingRulesRuleFilterSpanParentOperation:TraceTailSamplingRulesRuleFilterSpanParentOperation": {
             "properties": {
+                "inValues": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
                 "match": {
                     "type": "string"
                 },
@@ -1401,13 +1692,16 @@
                     "type": "string"
                 }
             },
-            "type": "object",
-            "required": [
-                "value"
-            ]
+            "type": "object"
         },
         "chronosphere:index/TraceTailSamplingRulesRuleFilterSpanParentService:TraceTailSamplingRulesRuleFilterSpanParentService": {
             "properties": {
+                "inValues": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
                 "match": {
                     "type": "string"
                 },
@@ -1415,13 +1709,16 @@
                     "type": "string"
                 }
             },
-            "type": "object",
-            "required": [
-                "value"
-            ]
+            "type": "object"
         },
         "chronosphere:index/TraceTailSamplingRulesRuleFilterSpanService:TraceTailSamplingRulesRuleFilterSpanService": {
             "properties": {
+                "inValues": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
                 "match": {
                     "type": "string"
                 },
@@ -1429,10 +1726,7 @@
                     "type": "string"
                 }
             },
-            "type": "object",
-            "required": [
-                "value"
-            ]
+            "type": "object"
         },
         "chronosphere:index/TraceTailSamplingRulesRuleFilterSpanSpanCount:TraceTailSamplingRulesRuleFilterSpanSpanCount": {
             "properties": {
@@ -1476,6 +1770,12 @@
         },
         "chronosphere:index/TraceTailSamplingRulesRuleFilterSpanTagValue:TraceTailSamplingRulesRuleFilterSpanTagValue": {
             "properties": {
+                "inValues": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
                 "match": {
                     "type": "string"
                 },
@@ -1483,10 +1783,7 @@
                     "type": "string"
                 }
             },
-            "type": "object",
-            "required": [
-                "value"
-            ]
+            "type": "object"
         },
         "chronosphere:index/TraceTailSamplingRulesRuleFilterTrace:TraceTailSamplingRulesRuleFilterTrace": {
             "properties": {
@@ -1501,8 +1798,16 @@
         },
         "chronosphere:index/TraceTailSamplingRulesRuleFilterTraceDuration:TraceTailSamplingRulesRuleFilterTraceDuration": {
             "properties": {
+                "maxSeconds": {
+                    "type": "number",
+                    "deprecationMessage": "use max_secs instead"
+                },
                 "maxSecs": {
                     "type": "number"
+                },
+                "minSeconds": {
+                    "type": "number",
+                    "deprecationMessage": "use min_secs instead"
                 },
                 "minSecs": {
                     "type": "number"
@@ -1825,6 +2130,9 @@
                 "dashboardJson": {
                     "type": "string"
                 },
+                "name": {
+                    "type": "string"
+                },
                 "slug": {
                     "type": "string"
                 }
@@ -1838,6 +2146,9 @@
                     "type": "string"
                 },
                 "dashboardJson": {
+                    "type": "string"
+                },
+                "name": {
                     "type": "string"
                 },
                 "slug": {
@@ -1855,6 +2166,68 @@
                         "type": "string"
                     },
                     "dashboardJson": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "slug": {
+                        "type": "string",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "chronosphere:index/dataset:Dataset": {
+            "properties": {
+                "configuration": {
+                    "$ref": "#/types/chronosphere:index/DatasetConfiguration:DatasetConfiguration"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "slug": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "configuration",
+                "name",
+                "slug"
+            ],
+            "inputProperties": {
+                "configuration": {
+                    "$ref": "#/types/chronosphere:index/DatasetConfiguration:DatasetConfiguration"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "slug": {
+                    "type": "string",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "requiredInputs": [
+                "configuration",
+                "name"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Dataset resources.\n",
+                "properties": {
+                    "configuration": {
+                        "$ref": "#/types/chronosphere:index/DatasetConfiguration:DatasetConfiguration"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "name": {
                         "type": "string"
                     },
                     "slug": {
@@ -2034,6 +2407,9 @@
                 "conditionalDrop": {
                     "type": "boolean"
                 },
+                "dropNanValue": {
+                    "type": "boolean"
+                },
                 "name": {
                     "type": "string"
                 },
@@ -2066,6 +2442,9 @@
                     "type": "boolean"
                 },
                 "conditionalDrop": {
+                    "type": "boolean"
+                },
+                "dropNanValue": {
                     "type": "boolean"
                 },
                 "name": {
@@ -2102,6 +2481,9 @@
                         "type": "boolean"
                     },
                     "conditionalDrop": {
+                        "type": "boolean"
+                    },
+                    "dropNanValue": {
                         "type": "boolean"
                     },
                     "name": {
@@ -2212,6 +2594,9 @@
                         "$ref": "#/types/chronosphere:index/GcpMetricsIntegrationMetricGroup:GcpMetricsIntegrationMetricGroup"
                     }
                 },
+                "name": {
+                    "type": "string"
+                },
                 "serviceAccount": {
                     "$ref": "#/types/chronosphere:index/GcpMetricsIntegrationServiceAccount:GcpMetricsIntegrationServiceAccount"
                 },
@@ -2219,6 +2604,9 @@
                     "type": "string"
                 }
             },
+            "required": [
+                "name"
+            ],
             "inputProperties": {
                 "metricGroups": {
                     "type": "array",
@@ -2226,6 +2614,9 @@
                         "$ref": "#/types/chronosphere:index/GcpMetricsIntegrationMetricGroup:GcpMetricsIntegrationMetricGroup"
                     }
                 },
+                "name": {
+                    "type": "string"
+                },
                 "serviceAccount": {
                     "$ref": "#/types/chronosphere:index/GcpMetricsIntegrationServiceAccount:GcpMetricsIntegrationServiceAccount"
                 },
@@ -2233,6 +2624,9 @@
                     "type": "string"
                 }
             },
+            "requiredInputs": [
+                "name"
+            ],
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering GcpMetricsIntegration resources.\n",
                 "properties": {
@@ -2242,55 +2636,13 @@
                             "$ref": "#/types/chronosphere:index/GcpMetricsIntegrationMetricGroup:GcpMetricsIntegrationMetricGroup"
                         }
                     },
+                    "name": {
+                        "type": "string"
+                    },
                     "serviceAccount": {
                         "$ref": "#/types/chronosphere:index/GcpMetricsIntegrationServiceAccount:GcpMetricsIntegrationServiceAccount"
                     },
                     "slug": {
-                        "type": "string"
-                    }
-                },
-                "type": "object"
-            }
-        },
-        "chronosphere:index/grafanaDashboard:GrafanaDashboard": {
-            "properties": {
-                "bucketId": {
-                    "type": "string"
-                },
-                "collectionId": {
-                    "type": "string"
-                },
-                "dashboardJson": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "dashboardJson"
-            ],
-            "inputProperties": {
-                "bucketId": {
-                    "type": "string"
-                },
-                "collectionId": {
-                    "type": "string"
-                },
-                "dashboardJson": {
-                    "type": "string"
-                }
-            },
-            "requiredInputs": [
-                "dashboardJson"
-            ],
-            "stateInputs": {
-                "description": "Input properties used for looking up and filtering GrafanaDashboard resources.\n",
-                "properties": {
-                    "bucketId": {
-                        "type": "string"
-                    },
-                    "collectionId": {
-                        "type": "string"
-                    },
-                    "dashboardJson": {
                         "type": "string"
                     }
                 },
@@ -2309,7 +2661,8 @@
                     "type": "boolean"
                 },
                 "dropTimestamp": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "deprecationMessage": "drop timestamp is no longer supported"
                 },
                 "filter": {
                     "type": "string"
@@ -2327,7 +2680,8 @@
                     "type": "string"
                 },
                 "storagePolicy": {
-                    "$ref": "#/types/chronosphere:index/MappingRuleStoragePolicy:MappingRuleStoragePolicy"
+                    "$ref": "#/types/chronosphere:index/MappingRuleStoragePolicy:MappingRuleStoragePolicy",
+                    "deprecationMessage": "use `interval` instead"
                 }
             },
             "required": [
@@ -2346,7 +2700,8 @@
                     "type": "boolean"
                 },
                 "dropTimestamp": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "deprecationMessage": "drop timestamp is no longer supported"
                 },
                 "filter": {
                     "type": "string"
@@ -2365,7 +2720,8 @@
                     "willReplaceOnChanges": true
                 },
                 "storagePolicy": {
-                    "$ref": "#/types/chronosphere:index/MappingRuleStoragePolicy:MappingRuleStoragePolicy"
+                    "$ref": "#/types/chronosphere:index/MappingRuleStoragePolicy:MappingRuleStoragePolicy",
+                    "deprecationMessage": "use `interval` instead"
                 }
             },
             "requiredInputs": [
@@ -2385,7 +2741,8 @@
                         "type": "boolean"
                     },
                     "dropTimestamp": {
-                        "type": "boolean"
+                        "type": "boolean",
+                        "deprecationMessage": "drop timestamp is no longer supported"
                     },
                     "filter": {
                         "type": "string"
@@ -2404,7 +2761,8 @@
                         "willReplaceOnChanges": true
                     },
                     "storagePolicy": {
-                        "$ref": "#/types/chronosphere:index/MappingRuleStoragePolicy:MappingRuleStoragePolicy"
+                        "$ref": "#/types/chronosphere:index/MappingRuleStoragePolicy:MappingRuleStoragePolicy",
+                        "deprecationMessage": "use `interval` instead"
                     }
                 },
                 "type": "object"
@@ -2584,13 +2942,6 @@
                         "$ref": "#/types/chronosphere:index/NotificationPolicyRoute:NotificationPolicyRoute"
                     }
                 },
-                "rules": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/chronosphere:index/NotificationPolicyRule:NotificationPolicyRule"
-                    },
-                    "deprecationMessage": "`rule` is deprecated, use `route` instead."
-                },
                 "slug": {
                     "type": "string"
                 },
@@ -2621,13 +2972,6 @@
                     "items": {
                         "$ref": "#/types/chronosphere:index/NotificationPolicyRoute:NotificationPolicyRoute"
                     }
-                },
-                "rules": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/chronosphere:index/NotificationPolicyRule:NotificationPolicyRule"
-                    },
-                    "deprecationMessage": "`rule` is deprecated, use `route` instead."
                 },
                 "slug": {
                     "type": "string",
@@ -2661,13 +3005,6 @@
                         "items": {
                             "$ref": "#/types/chronosphere:index/NotificationPolicyRoute:NotificationPolicyRoute"
                         }
-                    },
-                    "rules": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/types/chronosphere:index/NotificationPolicyRule:NotificationPolicyRule"
-                        },
-                        "deprecationMessage": "`rule` is deprecated, use `route` instead."
                     },
                     "slug": {
                         "type": "string",
@@ -2721,7 +3058,8 @@
                     "type": "string"
                 },
                 "proxyUrl": {
-                    "type": "string"
+                    "type": "string",
+                    "deprecationMessage": "custom proxy URLs are not supported"
                 },
                 "responders": {
                     "type": "array",
@@ -2793,7 +3131,8 @@
                     "type": "string"
                 },
                 "proxyUrl": {
-                    "type": "string"
+                    "type": "string",
+                    "deprecationMessage": "custom proxy URLs are not supported"
                 },
                 "responders": {
                     "type": "array",
@@ -2867,7 +3206,8 @@
                         "type": "string"
                     },
                     "proxyUrl": {
-                        "type": "string"
+                        "type": "string",
+                        "deprecationMessage": "custom proxy URLs are not supported"
                     },
                     "responders": {
                         "type": "array",
@@ -2893,6 +3233,27 @@
                     },
                     "tlsInsecureSkipVerify": {
                         "type": "boolean"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "chronosphere:index/otelMetricsIngestion:OtelMetricsIngestion": {
+            "properties": {
+                "resourceAttributes": {
+                    "$ref": "#/types/chronosphere:index/OtelMetricsIngestionResourceAttributes:OtelMetricsIngestionResourceAttributes"
+                }
+            },
+            "inputProperties": {
+                "resourceAttributes": {
+                    "$ref": "#/types/chronosphere:index/OtelMetricsIngestionResourceAttributes:OtelMetricsIngestionResourceAttributes"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering OtelMetricsIngestion resources.\n",
+                "properties": {
+                    "resourceAttributes": {
+                        "$ref": "#/types/chronosphere:index/OtelMetricsIngestionResourceAttributes:OtelMetricsIngestionResourceAttributes"
                     }
                 },
                 "type": "object"
@@ -2950,7 +3311,8 @@
                     "type": "string"
                 },
                 "proxyUrl": {
-                    "type": "string"
+                    "type": "string",
+                    "deprecationMessage": "custom proxy URLs are not supported"
                 },
                 "routingKey": {
                     "type": "string"
@@ -3032,7 +3394,8 @@
                     "type": "string"
                 },
                 "proxyUrl": {
-                    "type": "string"
+                    "type": "string",
+                    "deprecationMessage": "custom proxy URLs are not supported"
                 },
                 "routingKey": {
                     "type": "string"
@@ -3116,7 +3479,8 @@
                         "type": "string"
                     },
                     "proxyUrl": {
-                        "type": "string"
+                        "type": "string",
+                        "deprecationMessage": "custom proxy URLs are not supported"
                     },
                     "routingKey": {
                         "type": "string"
@@ -3335,6 +3699,9 @@
                 "filter": {
                     "type": "string"
                 },
+                "graphiteLabelPolicy": {
+                    "$ref": "#/types/chronosphere:index/RollupRuleGraphiteLabelPolicy:RollupRuleGraphiteLabelPolicy"
+                },
                 "groupBies": {
                     "type": "array",
                     "items": {
@@ -3366,7 +3733,8 @@
                     "type": "string"
                 },
                 "storagePolicies": {
-                    "$ref": "#/types/chronosphere:index/RollupRuleStoragePolicies:RollupRuleStoragePolicies"
+                    "$ref": "#/types/chronosphere:index/RollupRuleStoragePolicies:RollupRuleStoragePolicies",
+                    "deprecationMessage": "use `interval` instead"
                 }
             },
             "required": [
@@ -3394,6 +3762,9 @@
                 },
                 "filter": {
                     "type": "string"
+                },
+                "graphiteLabelPolicy": {
+                    "$ref": "#/types/chronosphere:index/RollupRuleGraphiteLabelPolicy:RollupRuleGraphiteLabelPolicy"
                 },
                 "groupBies": {
                     "type": "array",
@@ -3427,7 +3798,8 @@
                     "willReplaceOnChanges": true
                 },
                 "storagePolicies": {
-                    "$ref": "#/types/chronosphere:index/RollupRuleStoragePolicies:RollupRuleStoragePolicies"
+                    "$ref": "#/types/chronosphere:index/RollupRuleStoragePolicies:RollupRuleStoragePolicies",
+                    "deprecationMessage": "use `interval` instead"
                 }
             },
             "requiredInputs": [
@@ -3456,6 +3828,9 @@
                     },
                     "filter": {
                         "type": "string"
+                    },
+                    "graphiteLabelPolicy": {
+                        "$ref": "#/types/chronosphere:index/RollupRuleGraphiteLabelPolicy:RollupRuleGraphiteLabelPolicy"
                     },
                     "groupBies": {
                         "type": "array",
@@ -3489,7 +3864,8 @@
                         "willReplaceOnChanges": true
                     },
                     "storagePolicies": {
-                        "$ref": "#/types/chronosphere:index/RollupRuleStoragePolicies:RollupRuleStoragePolicies"
+                        "$ref": "#/types/chronosphere:index/RollupRuleStoragePolicies:RollupRuleStoragePolicies",
+                        "deprecationMessage": "use `interval` instead"
                     }
                 },
                 "type": "object"
@@ -3642,7 +4018,8 @@
                     "type": "string"
                 },
                 "proxyUrl": {
-                    "type": "string"
+                    "type": "string",
+                    "deprecationMessage": "custom proxy URLs are not supported"
                 },
                 "sendResolved": {
                     "type": "boolean"
@@ -3745,7 +4122,8 @@
                     "type": "string"
                 },
                 "proxyUrl": {
-                    "type": "string"
+                    "type": "string",
+                    "deprecationMessage": "custom proxy URLs are not supported"
                 },
                 "sendResolved": {
                     "type": "boolean"
@@ -3850,7 +4228,8 @@
                         "type": "string"
                     },
                     "proxyUrl": {
-                        "type": "string"
+                        "type": "string",
+                        "deprecationMessage": "custom proxy URLs are not supported"
                     },
                     "sendResolved": {
                         "type": "boolean"
@@ -4203,7 +4582,8 @@
                     "type": "string"
                 },
                 "proxyUrl": {
-                    "type": "string"
+                    "type": "string",
+                    "deprecationMessage": "custom proxy URLs are not supported"
                 },
                 "routingKey": {
                     "type": "string"
@@ -4264,7 +4644,8 @@
                     "type": "string"
                 },
                 "proxyUrl": {
-                    "type": "string"
+                    "type": "string",
+                    "deprecationMessage": "custom proxy URLs are not supported"
                 },
                 "routingKey": {
                     "type": "string"
@@ -4327,7 +4708,8 @@
                         "type": "string"
                     },
                     "proxyUrl": {
-                        "type": "string"
+                        "type": "string",
+                        "deprecationMessage": "custom proxy URLs are not supported"
                     },
                     "routingKey": {
                         "type": "string"
@@ -4365,7 +4747,8 @@
                     "type": "string"
                 },
                 "proxyUrl": {
-                    "type": "string"
+                    "type": "string",
+                    "deprecationMessage": "custom proxy URLs are not supported"
                 },
                 "sendResolved": {
                     "type": "boolean"
@@ -4400,7 +4783,8 @@
                     "type": "string"
                 },
                 "proxyUrl": {
-                    "type": "string"
+                    "type": "string",
+                    "deprecationMessage": "custom proxy URLs are not supported"
                 },
                 "sendResolved": {
                     "type": "boolean"
@@ -4437,7 +4821,8 @@
                         "type": "string"
                     },
                     "proxyUrl": {
-                        "type": "string"
+                        "type": "string",
+                        "deprecationMessage": "custom proxy URLs are not supported"
                     },
                     "sendResolved": {
                         "type": "boolean"
@@ -4507,92 +4892,37 @@
                 ]
             }
         },
-        "chronosphere:index/notificationPolicyDataSource:NotificationPolicyDataSource": {
+        "chronosphere:index/collectionDataSource:CollectionDataSource": {
             "inputs": {
-                "description": "A collection of arguments for invoking NotificationPolicyDataSource.\n",
+                "description": "A collection of arguments for invoking CollectionDataSource.\n",
                 "properties": {
-                    "name": {
-                        "type": "string"
-                    },
-                    "notificationPolicyData": {
-                        "type": "string"
-                    },
-                    "overrides": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/types/chronosphere:index/NotificationPolicyDataSourceOverride:NotificationPolicyDataSourceOverride"
-                        }
-                    },
-                    "routes": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/types/chronosphere:index/NotificationPolicyDataSourceRoute:NotificationPolicyDataSourceRoute"
-                        }
-                    },
-                    "rules": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/types/chronosphere:index/NotificationPolicyDataSourceRule:NotificationPolicyDataSourceRule"
-                        },
-                        "deprecationMessage": "`rule` is deprecated, use `route` instead."
-                    },
                     "slug": {
-                        "type": "string",
-                        "willReplaceOnChanges": true
-                    },
-                    "teamId": {
                         "type": "string"
                     }
                 },
                 "type": "object"
             },
             "outputs": {
-                "description": "A collection of values returned by NotificationPolicyDataSource.\n",
+                "description": "A collection of values returned by CollectionDataSource.\n",
                 "properties": {
+                    "description": {
+                        "type": "string"
+                    },
                     "id": {
                         "type": "string",
                         "description": "The provider-assigned unique ID for this managed resource.\n"
                     },
-                    "isIndependent": {
-                        "type": "boolean"
-                    },
                     "name": {
                         "type": "string"
                     },
-                    "notificationPolicyData": {
-                        "type": "string"
-                    },
-                    "overrides": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/types/chronosphere:index/NotificationPolicyDataSourceOverride:NotificationPolicyDataSourceOverride"
-                        }
-                    },
-                    "routes": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/types/chronosphere:index/NotificationPolicyDataSourceRoute:NotificationPolicyDataSourceRoute"
-                        }
-                    },
-                    "rules": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/types/chronosphere:index/NotificationPolicyDataSourceRule:NotificationPolicyDataSourceRule"
-                        },
-                        "deprecationMessage": "`rule` is deprecated, use `route` instead."
-                    },
                     "slug": {
-                        "type": "string"
-                    },
-                    "teamId": {
                         "type": "string"
                     }
                 },
                 "type": "object",
                 "required": [
-                    "isIndependent",
-                    "notificationPolicyData",
-                    "slug",
+                    "description",
+                    "name",
                     "id"
                 ]
             }

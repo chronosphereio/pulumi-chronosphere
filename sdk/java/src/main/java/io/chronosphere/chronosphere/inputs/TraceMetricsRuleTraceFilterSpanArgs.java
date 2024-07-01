@@ -80,9 +80,28 @@ public final class TraceMetricsRuleTraceFilterSpanArgs extends com.pulumi.resour
         return Optional.ofNullable(this.spanCount);
     }
 
+    @Import(name="tag")
+    private @Nullable Output<List<TraceMetricsRuleTraceFilterSpanTagArgs>> tag;
+
+    public Optional<Output<List<TraceMetricsRuleTraceFilterSpanTagArgs>>> tag() {
+        return Optional.ofNullable(this.tag);
+    }
+
+    /**
+     * @deprecated
+     * `tags` is deprecated, use `tag` instead.
+     * 
+     */
+    @Deprecated /* `tags` is deprecated, use `tag` instead. */
     @Import(name="tags")
     private @Nullable Output<List<TraceMetricsRuleTraceFilterSpanTagArgs>> tags;
 
+    /**
+     * @deprecated
+     * `tags` is deprecated, use `tag` instead.
+     * 
+     */
+    @Deprecated /* `tags` is deprecated, use `tag` instead. */
     public Optional<Output<List<TraceMetricsRuleTraceFilterSpanTagArgs>>> tags() {
         return Optional.ofNullable(this.tags);
     }
@@ -98,6 +117,7 @@ public final class TraceMetricsRuleTraceFilterSpanArgs extends com.pulumi.resour
         this.parentService = $.parentService;
         this.service = $.service;
         this.spanCount = $.spanCount;
+        this.tag = $.tag;
         this.tags = $.tags;
     }
 
@@ -191,15 +211,52 @@ public final class TraceMetricsRuleTraceFilterSpanArgs extends com.pulumi.resour
             return spanCount(Output.of(spanCount));
         }
 
+        public Builder tag(@Nullable Output<List<TraceMetricsRuleTraceFilterSpanTagArgs>> tag) {
+            $.tag = tag;
+            return this;
+        }
+
+        public Builder tag(List<TraceMetricsRuleTraceFilterSpanTagArgs> tag) {
+            return tag(Output.of(tag));
+        }
+
+        public Builder tag(TraceMetricsRuleTraceFilterSpanTagArgs... tag) {
+            return tag(List.of(tag));
+        }
+
+        /**
+         * @return builder
+         * 
+         * @deprecated
+         * `tags` is deprecated, use `tag` instead.
+         * 
+         */
+        @Deprecated /* `tags` is deprecated, use `tag` instead. */
         public Builder tags(@Nullable Output<List<TraceMetricsRuleTraceFilterSpanTagArgs>> tags) {
             $.tags = tags;
             return this;
         }
 
+        /**
+         * @return builder
+         * 
+         * @deprecated
+         * `tags` is deprecated, use `tag` instead.
+         * 
+         */
+        @Deprecated /* `tags` is deprecated, use `tag` instead. */
         public Builder tags(List<TraceMetricsRuleTraceFilterSpanTagArgs> tags) {
             return tags(Output.of(tags));
         }
 
+        /**
+         * @return builder
+         * 
+         * @deprecated
+         * `tags` is deprecated, use `tag` instead.
+         * 
+         */
+        @Deprecated /* `tags` is deprecated, use `tag` instead. */
         public Builder tags(TraceMetricsRuleTraceFilterSpanTagArgs... tags) {
             return tags(List.of(tags));
         }

@@ -12,8 +12,8 @@ namespace Pulumi.Chronosphere.Inputs
 
     public sealed class TraceMetricsRuleTraceFilterSpanTagArgs : global::Pulumi.ResourceArgs
     {
-        [Input("key", required: true)]
-        public Input<string> Key { get; set; } = null!;
+        [Input("key")]
+        public Input<string>? Key { get; set; }
 
         [Input("numericValue")]
         public Input<Inputs.TraceMetricsRuleTraceFilterSpanTagNumericValueArgs>? NumericValue { get; set; }

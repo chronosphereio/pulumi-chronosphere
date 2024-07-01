@@ -10,12 +10,12 @@ import com.pulumi.deployment.InvokeOptions;
 import io.chronosphere.chronosphere.Utilities;
 import io.chronosphere.chronosphere.inputs.BucketDataSourceArgs;
 import io.chronosphere.chronosphere.inputs.BucketDataSourcePlainArgs;
-import io.chronosphere.chronosphere.inputs.NotificationPolicyDataSourceArgs;
-import io.chronosphere.chronosphere.inputs.NotificationPolicyDataSourcePlainArgs;
+import io.chronosphere.chronosphere.inputs.CollectionDataSourceArgs;
+import io.chronosphere.chronosphere.inputs.CollectionDataSourcePlainArgs;
 import io.chronosphere.chronosphere.inputs.ServiceDataSourceArgs;
 import io.chronosphere.chronosphere.inputs.ServiceDataSourcePlainArgs;
 import io.chronosphere.chronosphere.outputs.BucketDataSourceResult;
-import io.chronosphere.chronosphere.outputs.NotificationPolicyDataSourceResult;
+import io.chronosphere.chronosphere.outputs.CollectionDataSourceResult;
 import io.chronosphere.chronosphere.outputs.ServiceDataSourceResult;
 import java.util.concurrent.CompletableFuture;
 
@@ -38,23 +38,23 @@ public final class ChronosphereFunctions {
     public static CompletableFuture<BucketDataSourceResult> bucketDataSourcePlain(BucketDataSourcePlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("chronosphere:index/bucketDataSource:BucketDataSource", TypeShape.of(BucketDataSourceResult.class), args, Utilities.withVersion(options));
     }
-    public static Output<NotificationPolicyDataSourceResult> notificationPolicyDataSource() {
-        return notificationPolicyDataSource(NotificationPolicyDataSourceArgs.Empty, InvokeOptions.Empty);
+    public static Output<CollectionDataSourceResult> collectionDataSource() {
+        return collectionDataSource(CollectionDataSourceArgs.Empty, InvokeOptions.Empty);
     }
-    public static CompletableFuture<NotificationPolicyDataSourceResult> notificationPolicyDataSourcePlain() {
-        return notificationPolicyDataSourcePlain(NotificationPolicyDataSourcePlainArgs.Empty, InvokeOptions.Empty);
+    public static CompletableFuture<CollectionDataSourceResult> collectionDataSourcePlain() {
+        return collectionDataSourcePlain(CollectionDataSourcePlainArgs.Empty, InvokeOptions.Empty);
     }
-    public static Output<NotificationPolicyDataSourceResult> notificationPolicyDataSource(NotificationPolicyDataSourceArgs args) {
-        return notificationPolicyDataSource(args, InvokeOptions.Empty);
+    public static Output<CollectionDataSourceResult> collectionDataSource(CollectionDataSourceArgs args) {
+        return collectionDataSource(args, InvokeOptions.Empty);
     }
-    public static CompletableFuture<NotificationPolicyDataSourceResult> notificationPolicyDataSourcePlain(NotificationPolicyDataSourcePlainArgs args) {
-        return notificationPolicyDataSourcePlain(args, InvokeOptions.Empty);
+    public static CompletableFuture<CollectionDataSourceResult> collectionDataSourcePlain(CollectionDataSourcePlainArgs args) {
+        return collectionDataSourcePlain(args, InvokeOptions.Empty);
     }
-    public static Output<NotificationPolicyDataSourceResult> notificationPolicyDataSource(NotificationPolicyDataSourceArgs args, InvokeOptions options) {
-        return Deployment.getInstance().invoke("chronosphere:index/notificationPolicyDataSource:NotificationPolicyDataSource", TypeShape.of(NotificationPolicyDataSourceResult.class), args, Utilities.withVersion(options));
+    public static Output<CollectionDataSourceResult> collectionDataSource(CollectionDataSourceArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("chronosphere:index/collectionDataSource:CollectionDataSource", TypeShape.of(CollectionDataSourceResult.class), args, Utilities.withVersion(options));
     }
-    public static CompletableFuture<NotificationPolicyDataSourceResult> notificationPolicyDataSourcePlain(NotificationPolicyDataSourcePlainArgs args, InvokeOptions options) {
-        return Deployment.getInstance().invokeAsync("chronosphere:index/notificationPolicyDataSource:NotificationPolicyDataSource", TypeShape.of(NotificationPolicyDataSourceResult.class), args, Utilities.withVersion(options));
+    public static CompletableFuture<CollectionDataSourceResult> collectionDataSourcePlain(CollectionDataSourcePlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("chronosphere:index/collectionDataSource:CollectionDataSource", TypeShape.of(CollectionDataSourceResult.class), args, Utilities.withVersion(options));
     }
     public static Output<ServiceDataSourceResult> serviceDataSource(ServiceDataSourceArgs args) {
         return serviceDataSource(args, InvokeOptions.Empty);

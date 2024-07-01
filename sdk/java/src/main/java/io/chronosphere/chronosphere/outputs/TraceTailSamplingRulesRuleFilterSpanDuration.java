@@ -11,12 +11,44 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class TraceTailSamplingRulesRuleFilterSpanDuration {
+    /**
+     * @deprecated
+     * use max_secs instead
+     * 
+     */
+    @Deprecated /* use max_secs instead */
+    private @Nullable Double maxSeconds;
     private @Nullable Double maxSecs;
+    /**
+     * @deprecated
+     * use min_secs instead
+     * 
+     */
+    @Deprecated /* use min_secs instead */
+    private @Nullable Double minSeconds;
     private @Nullable Double minSecs;
 
     private TraceTailSamplingRulesRuleFilterSpanDuration() {}
+    /**
+     * @deprecated
+     * use max_secs instead
+     * 
+     */
+    @Deprecated /* use max_secs instead */
+    public Optional<Double> maxSeconds() {
+        return Optional.ofNullable(this.maxSeconds);
+    }
     public Optional<Double> maxSecs() {
         return Optional.ofNullable(this.maxSecs);
+    }
+    /**
+     * @deprecated
+     * use min_secs instead
+     * 
+     */
+    @Deprecated /* use min_secs instead */
+    public Optional<Double> minSeconds() {
+        return Optional.ofNullable(this.minSeconds);
     }
     public Optional<Double> minSecs() {
         return Optional.ofNullable(this.minSecs);
@@ -31,18 +63,32 @@ public final class TraceTailSamplingRulesRuleFilterSpanDuration {
     }
     @CustomType.Builder
     public static final class Builder {
+        private @Nullable Double maxSeconds;
         private @Nullable Double maxSecs;
+        private @Nullable Double minSeconds;
         private @Nullable Double minSecs;
         public Builder() {}
         public Builder(TraceTailSamplingRulesRuleFilterSpanDuration defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.maxSeconds = defaults.maxSeconds;
     	      this.maxSecs = defaults.maxSecs;
+    	      this.minSeconds = defaults.minSeconds;
     	      this.minSecs = defaults.minSecs;
         }
 
         @CustomType.Setter
+        public Builder maxSeconds(@Nullable Double maxSeconds) {
+            this.maxSeconds = maxSeconds;
+            return this;
+        }
+        @CustomType.Setter
         public Builder maxSecs(@Nullable Double maxSecs) {
             this.maxSecs = maxSecs;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder minSeconds(@Nullable Double minSeconds) {
+            this.minSeconds = minSeconds;
             return this;
         }
         @CustomType.Setter
@@ -52,7 +98,9 @@ public final class TraceTailSamplingRulesRuleFilterSpanDuration {
         }
         public TraceTailSamplingRulesRuleFilterSpanDuration build() {
             final var o = new TraceTailSamplingRulesRuleFilterSpanDuration();
+            o.maxSeconds = maxSeconds;
             o.maxSecs = maxSecs;
+            o.minSeconds = minSeconds;
             o.minSecs = minSecs;
             return o;
         }

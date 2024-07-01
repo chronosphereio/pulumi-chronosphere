@@ -21,6 +21,7 @@ class DropRuleArgs:
                  activated_drop_duration: Optional[pulumi.Input[str]] = None,
                  active: Optional[pulumi.Input[bool]] = None,
                  conditional_drop: Optional[pulumi.Input[bool]] = None,
+                 drop_nan_value: Optional[pulumi.Input[bool]] = None,
                  rate_limit_threshold: Optional[pulumi.Input[float]] = None,
                  slug: Optional[pulumi.Input[str]] = None,
                  value_based_drop: Optional[pulumi.Input['DropRuleValueBasedDropArgs']] = None):
@@ -35,6 +36,8 @@ class DropRuleArgs:
             pulumi.set(__self__, "active", active)
         if conditional_drop is not None:
             pulumi.set(__self__, "conditional_drop", conditional_drop)
+        if drop_nan_value is not None:
+            pulumi.set(__self__, "drop_nan_value", drop_nan_value)
         if rate_limit_threshold is not None:
             pulumi.set(__self__, "rate_limit_threshold", rate_limit_threshold)
         if slug is not None:
@@ -88,6 +91,15 @@ class DropRuleArgs:
         pulumi.set(self, "conditional_drop", value)
 
     @property
+    @pulumi.getter(name="dropNanValue")
+    def drop_nan_value(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "drop_nan_value")
+
+    @drop_nan_value.setter
+    def drop_nan_value(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "drop_nan_value", value)
+
+    @property
     @pulumi.getter(name="rateLimitThreshold")
     def rate_limit_threshold(self) -> Optional[pulumi.Input[float]]:
         return pulumi.get(self, "rate_limit_threshold")
@@ -121,6 +133,7 @@ class _DropRuleState:
                  activated_drop_duration: Optional[pulumi.Input[str]] = None,
                  active: Optional[pulumi.Input[bool]] = None,
                  conditional_drop: Optional[pulumi.Input[bool]] = None,
+                 drop_nan_value: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  queries: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  rate_limit_threshold: Optional[pulumi.Input[float]] = None,
@@ -135,6 +148,8 @@ class _DropRuleState:
             pulumi.set(__self__, "active", active)
         if conditional_drop is not None:
             pulumi.set(__self__, "conditional_drop", conditional_drop)
+        if drop_nan_value is not None:
+            pulumi.set(__self__, "drop_nan_value", drop_nan_value)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if queries is not None:
@@ -172,6 +187,15 @@ class _DropRuleState:
     @conditional_drop.setter
     def conditional_drop(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "conditional_drop", value)
+
+    @property
+    @pulumi.getter(name="dropNanValue")
+    def drop_nan_value(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "drop_nan_value")
+
+    @drop_nan_value.setter
+    def drop_nan_value(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "drop_nan_value", value)
 
     @property
     @pulumi.getter
@@ -227,6 +251,7 @@ class DropRule(pulumi.CustomResource):
                  activated_drop_duration: Optional[pulumi.Input[str]] = None,
                  active: Optional[pulumi.Input[bool]] = None,
                  conditional_drop: Optional[pulumi.Input[bool]] = None,
+                 drop_nan_value: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  queries: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  rate_limit_threshold: Optional[pulumi.Input[float]] = None,
@@ -264,6 +289,7 @@ class DropRule(pulumi.CustomResource):
                  activated_drop_duration: Optional[pulumi.Input[str]] = None,
                  active: Optional[pulumi.Input[bool]] = None,
                  conditional_drop: Optional[pulumi.Input[bool]] = None,
+                 drop_nan_value: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  queries: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  rate_limit_threshold: Optional[pulumi.Input[float]] = None,
@@ -281,6 +307,7 @@ class DropRule(pulumi.CustomResource):
             __props__.__dict__["activated_drop_duration"] = activated_drop_duration
             __props__.__dict__["active"] = active
             __props__.__dict__["conditional_drop"] = conditional_drop
+            __props__.__dict__["drop_nan_value"] = drop_nan_value
             if name is None and not opts.urn:
                 raise TypeError("Missing required property 'name'")
             __props__.__dict__["name"] = name
@@ -303,6 +330,7 @@ class DropRule(pulumi.CustomResource):
             activated_drop_duration: Optional[pulumi.Input[str]] = None,
             active: Optional[pulumi.Input[bool]] = None,
             conditional_drop: Optional[pulumi.Input[bool]] = None,
+            drop_nan_value: Optional[pulumi.Input[bool]] = None,
             name: Optional[pulumi.Input[str]] = None,
             queries: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             rate_limit_threshold: Optional[pulumi.Input[float]] = None,
@@ -323,6 +351,7 @@ class DropRule(pulumi.CustomResource):
         __props__.__dict__["activated_drop_duration"] = activated_drop_duration
         __props__.__dict__["active"] = active
         __props__.__dict__["conditional_drop"] = conditional_drop
+        __props__.__dict__["drop_nan_value"] = drop_nan_value
         __props__.__dict__["name"] = name
         __props__.__dict__["queries"] = queries
         __props__.__dict__["rate_limit_threshold"] = rate_limit_threshold
@@ -344,6 +373,11 @@ class DropRule(pulumi.CustomResource):
     @pulumi.getter(name="conditionalDrop")
     def conditional_drop(self) -> pulumi.Output[Optional[bool]]:
         return pulumi.get(self, "conditional_drop")
+
+    @property
+    @pulumi.getter(name="dropNanValue")
+    def drop_nan_value(self) -> pulumi.Output[Optional[bool]]:
+        return pulumi.get(self, "drop_nan_value")
 
     @property
     @pulumi.getter

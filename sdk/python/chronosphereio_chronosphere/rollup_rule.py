@@ -24,6 +24,7 @@ class RollupRuleArgs:
                  bucket_id: Optional[pulumi.Input[str]] = None,
                  drop_raw: Optional[pulumi.Input[bool]] = None,
                  exclude_bies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 graphite_label_policy: Optional[pulumi.Input['RollupRuleGraphiteLabelPolicyArgs']] = None,
                  group_bies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  interval: Optional[pulumi.Input[str]] = None,
                  metric_type_tag: Optional[pulumi.Input[bool]] = None,
@@ -46,6 +47,8 @@ class RollupRuleArgs:
             pulumi.set(__self__, "drop_raw", drop_raw)
         if exclude_bies is not None:
             pulumi.set(__self__, "exclude_bies", exclude_bies)
+        if graphite_label_policy is not None:
+            pulumi.set(__self__, "graphite_label_policy", graphite_label_policy)
         if group_bies is not None:
             pulumi.set(__self__, "group_bies", group_bies)
         if interval is not None:
@@ -58,6 +61,9 @@ class RollupRuleArgs:
             pulumi.set(__self__, "new_metric", new_metric)
         if permissive is not None:
             pulumi.set(__self__, "permissive", permissive)
+        if storage_policies is not None:
+            warnings.warn("""use `interval` instead""", DeprecationWarning)
+            pulumi.log.warn("""storage_policies is deprecated: use `interval` instead""")
         if storage_policies is not None:
             pulumi.set(__self__, "storage_policies", storage_policies)
 
@@ -134,6 +140,15 @@ class RollupRuleArgs:
         pulumi.set(self, "exclude_bies", value)
 
     @property
+    @pulumi.getter(name="graphiteLabelPolicy")
+    def graphite_label_policy(self) -> Optional[pulumi.Input['RollupRuleGraphiteLabelPolicyArgs']]:
+        return pulumi.get(self, "graphite_label_policy")
+
+    @graphite_label_policy.setter
+    def graphite_label_policy(self, value: Optional[pulumi.Input['RollupRuleGraphiteLabelPolicyArgs']]):
+        pulumi.set(self, "graphite_label_policy", value)
+
+    @property
     @pulumi.getter(name="groupBies")
     def group_bies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         return pulumi.get(self, "group_bies")
@@ -190,6 +205,9 @@ class RollupRuleArgs:
     @property
     @pulumi.getter(name="storagePolicies")
     def storage_policies(self) -> Optional[pulumi.Input['RollupRuleStoragePoliciesArgs']]:
+        warnings.warn("""use `interval` instead""", DeprecationWarning)
+        pulumi.log.warn("""storage_policies is deprecated: use `interval` instead""")
+
         return pulumi.get(self, "storage_policies")
 
     @storage_policies.setter
@@ -205,6 +223,7 @@ class _RollupRuleState:
                  drop_raw: Optional[pulumi.Input[bool]] = None,
                  exclude_bies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  filter: Optional[pulumi.Input[str]] = None,
+                 graphite_label_policy: Optional[pulumi.Input['RollupRuleGraphiteLabelPolicyArgs']] = None,
                  group_bies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  interval: Optional[pulumi.Input[str]] = None,
                  metric_type: Optional[pulumi.Input[str]] = None,
@@ -228,6 +247,8 @@ class _RollupRuleState:
             pulumi.set(__self__, "exclude_bies", exclude_bies)
         if filter is not None:
             pulumi.set(__self__, "filter", filter)
+        if graphite_label_policy is not None:
+            pulumi.set(__self__, "graphite_label_policy", graphite_label_policy)
         if group_bies is not None:
             pulumi.set(__self__, "group_bies", group_bies)
         if interval is not None:
@@ -246,6 +267,9 @@ class _RollupRuleState:
             pulumi.set(__self__, "permissive", permissive)
         if slug is not None:
             pulumi.set(__self__, "slug", slug)
+        if storage_policies is not None:
+            warnings.warn("""use `interval` instead""", DeprecationWarning)
+            pulumi.log.warn("""storage_policies is deprecated: use `interval` instead""")
         if storage_policies is not None:
             pulumi.set(__self__, "storage_policies", storage_policies)
 
@@ -293,6 +317,15 @@ class _RollupRuleState:
     @filter.setter
     def filter(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "filter", value)
+
+    @property
+    @pulumi.getter(name="graphiteLabelPolicy")
+    def graphite_label_policy(self) -> Optional[pulumi.Input['RollupRuleGraphiteLabelPolicyArgs']]:
+        return pulumi.get(self, "graphite_label_policy")
+
+    @graphite_label_policy.setter
+    def graphite_label_policy(self, value: Optional[pulumi.Input['RollupRuleGraphiteLabelPolicyArgs']]):
+        pulumi.set(self, "graphite_label_policy", value)
 
     @property
     @pulumi.getter(name="groupBies")
@@ -378,6 +411,9 @@ class _RollupRuleState:
     @property
     @pulumi.getter(name="storagePolicies")
     def storage_policies(self) -> Optional[pulumi.Input['RollupRuleStoragePoliciesArgs']]:
+        warnings.warn("""use `interval` instead""", DeprecationWarning)
+        pulumi.log.warn("""storage_policies is deprecated: use `interval` instead""")
+
         return pulumi.get(self, "storage_policies")
 
     @storage_policies.setter
@@ -395,6 +431,7 @@ class RollupRule(pulumi.CustomResource):
                  drop_raw: Optional[pulumi.Input[bool]] = None,
                  exclude_bies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  filter: Optional[pulumi.Input[str]] = None,
+                 graphite_label_policy: Optional[pulumi.Input[pulumi.InputType['RollupRuleGraphiteLabelPolicyArgs']]] = None,
                  group_bies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  interval: Optional[pulumi.Input[str]] = None,
                  metric_type: Optional[pulumi.Input[str]] = None,
@@ -439,6 +476,7 @@ class RollupRule(pulumi.CustomResource):
                  drop_raw: Optional[pulumi.Input[bool]] = None,
                  exclude_bies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  filter: Optional[pulumi.Input[str]] = None,
+                 graphite_label_policy: Optional[pulumi.Input[pulumi.InputType['RollupRuleGraphiteLabelPolicyArgs']]] = None,
                  group_bies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  interval: Optional[pulumi.Input[str]] = None,
                  metric_type: Optional[pulumi.Input[str]] = None,
@@ -465,6 +503,7 @@ class RollupRule(pulumi.CustomResource):
             if filter is None and not opts.urn:
                 raise TypeError("Missing required property 'filter'")
             __props__.__dict__["filter"] = filter
+            __props__.__dict__["graphite_label_policy"] = graphite_label_policy
             __props__.__dict__["group_bies"] = group_bies
             __props__.__dict__["interval"] = interval
             if metric_type is None and not opts.urn:
@@ -496,6 +535,7 @@ class RollupRule(pulumi.CustomResource):
             drop_raw: Optional[pulumi.Input[bool]] = None,
             exclude_bies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             filter: Optional[pulumi.Input[str]] = None,
+            graphite_label_policy: Optional[pulumi.Input[pulumi.InputType['RollupRuleGraphiteLabelPolicyArgs']]] = None,
             group_bies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             interval: Optional[pulumi.Input[str]] = None,
             metric_type: Optional[pulumi.Input[str]] = None,
@@ -523,6 +563,7 @@ class RollupRule(pulumi.CustomResource):
         __props__.__dict__["drop_raw"] = drop_raw
         __props__.__dict__["exclude_bies"] = exclude_bies
         __props__.__dict__["filter"] = filter
+        __props__.__dict__["graphite_label_policy"] = graphite_label_policy
         __props__.__dict__["group_bies"] = group_bies
         __props__.__dict__["interval"] = interval
         __props__.__dict__["metric_type"] = metric_type
@@ -559,6 +600,11 @@ class RollupRule(pulumi.CustomResource):
     @pulumi.getter
     def filter(self) -> pulumi.Output[str]:
         return pulumi.get(self, "filter")
+
+    @property
+    @pulumi.getter(name="graphiteLabelPolicy")
+    def graphite_label_policy(self) -> pulumi.Output[Optional['outputs.RollupRuleGraphiteLabelPolicy']]:
+        return pulumi.get(self, "graphite_label_policy")
 
     @property
     @pulumi.getter(name="groupBies")
@@ -608,5 +654,8 @@ class RollupRule(pulumi.CustomResource):
     @property
     @pulumi.getter(name="storagePolicies")
     def storage_policies(self) -> pulumi.Output['outputs.RollupRuleStoragePolicies']:
+        warnings.warn("""use `interval` instead""", DeprecationWarning)
+        pulumi.log.warn("""storage_policies is deprecated: use `interval` instead""")
+
         return pulumi.get(self, "storage_policies")
 

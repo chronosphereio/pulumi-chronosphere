@@ -45,6 +45,9 @@ export class OpsgenieAlertNotifier extends pulumi.CustomResource {
     public readonly name!: pulumi.Output<string>;
     public readonly note!: pulumi.Output<string | undefined>;
     public readonly priority!: pulumi.Output<string | undefined>;
+    /**
+     * @deprecated custom proxy URLs are not supported
+     */
     public readonly proxyUrl!: pulumi.Output<string | undefined>;
     public readonly responders!: pulumi.Output<outputs.OpsgenieAlertNotifierResponder[] | undefined>;
     public readonly sendResolved!: pulumi.Output<boolean | undefined>;
@@ -133,6 +136,9 @@ export interface OpsgenieAlertNotifierState {
     name?: pulumi.Input<string>;
     note?: pulumi.Input<string>;
     priority?: pulumi.Input<string>;
+    /**
+     * @deprecated custom proxy URLs are not supported
+     */
     proxyUrl?: pulumi.Input<string>;
     responders?: pulumi.Input<pulumi.Input<inputs.OpsgenieAlertNotifierResponder>[]>;
     sendResolved?: pulumi.Input<boolean>;
@@ -157,6 +163,9 @@ export interface OpsgenieAlertNotifierArgs {
     name: pulumi.Input<string>;
     note?: pulumi.Input<string>;
     priority?: pulumi.Input<string>;
+    /**
+     * @deprecated custom proxy URLs are not supported
+     */
     proxyUrl?: pulumi.Input<string>;
     responders?: pulumi.Input<pulumi.Input<inputs.OpsgenieAlertNotifierResponder>[]>;
     sendResolved?: pulumi.Input<boolean>;

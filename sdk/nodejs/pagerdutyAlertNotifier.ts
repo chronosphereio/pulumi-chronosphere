@@ -47,6 +47,9 @@ export class PagerdutyAlertNotifier extends pulumi.CustomResource {
     public readonly images!: pulumi.Output<outputs.PagerdutyAlertNotifierImage[] | undefined>;
     public readonly links!: pulumi.Output<outputs.PagerdutyAlertNotifierLink[] | undefined>;
     public readonly name!: pulumi.Output<string>;
+    /**
+     * @deprecated custom proxy URLs are not supported
+     */
     public readonly proxyUrl!: pulumi.Output<string | undefined>;
     public readonly routingKey!: pulumi.Output<string | undefined>;
     public readonly sendResolved!: pulumi.Output<boolean | undefined>;
@@ -147,6 +150,9 @@ export interface PagerdutyAlertNotifierState {
     images?: pulumi.Input<pulumi.Input<inputs.PagerdutyAlertNotifierImage>[]>;
     links?: pulumi.Input<pulumi.Input<inputs.PagerdutyAlertNotifierLink>[]>;
     name?: pulumi.Input<string>;
+    /**
+     * @deprecated custom proxy URLs are not supported
+     */
     proxyUrl?: pulumi.Input<string>;
     routingKey?: pulumi.Input<string>;
     sendResolved?: pulumi.Input<boolean>;
@@ -174,6 +180,9 @@ export interface PagerdutyAlertNotifierArgs {
     images?: pulumi.Input<pulumi.Input<inputs.PagerdutyAlertNotifierImage>[]>;
     links?: pulumi.Input<pulumi.Input<inputs.PagerdutyAlertNotifierLink>[]>;
     name: pulumi.Input<string>;
+    /**
+     * @deprecated custom proxy URLs are not supported
+     */
     proxyUrl?: pulumi.Input<string>;
     routingKey?: pulumi.Input<string>;
     sendResolved?: pulumi.Input<boolean>;

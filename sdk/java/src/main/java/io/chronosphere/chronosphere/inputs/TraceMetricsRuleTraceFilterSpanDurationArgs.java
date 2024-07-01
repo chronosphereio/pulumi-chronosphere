@@ -15,25 +15,65 @@ public final class TraceMetricsRuleTraceFilterSpanDurationArgs extends com.pulum
 
     public static final TraceMetricsRuleTraceFilterSpanDurationArgs Empty = new TraceMetricsRuleTraceFilterSpanDurationArgs();
 
+    /**
+     * @deprecated
+     * use max_secs instead
+     * 
+     */
+    @Deprecated /* use max_secs instead */
     @Import(name="maxSeconds")
     private @Nullable Output<Double> maxSeconds;
 
+    /**
+     * @deprecated
+     * use max_secs instead
+     * 
+     */
+    @Deprecated /* use max_secs instead */
     public Optional<Output<Double>> maxSeconds() {
         return Optional.ofNullable(this.maxSeconds);
     }
 
+    @Import(name="maxSecs")
+    private @Nullable Output<Double> maxSecs;
+
+    public Optional<Output<Double>> maxSecs() {
+        return Optional.ofNullable(this.maxSecs);
+    }
+
+    /**
+     * @deprecated
+     * use min_secs instead
+     * 
+     */
+    @Deprecated /* use min_secs instead */
     @Import(name="minSeconds")
     private @Nullable Output<Double> minSeconds;
 
+    /**
+     * @deprecated
+     * use min_secs instead
+     * 
+     */
+    @Deprecated /* use min_secs instead */
     public Optional<Output<Double>> minSeconds() {
         return Optional.ofNullable(this.minSeconds);
+    }
+
+    @Import(name="minSecs")
+    private @Nullable Output<Double> minSecs;
+
+    public Optional<Output<Double>> minSecs() {
+        return Optional.ofNullable(this.minSecs);
     }
 
     private TraceMetricsRuleTraceFilterSpanDurationArgs() {}
 
     private TraceMetricsRuleTraceFilterSpanDurationArgs(TraceMetricsRuleTraceFilterSpanDurationArgs $) {
         this.maxSeconds = $.maxSeconds;
+        this.maxSecs = $.maxSecs;
         this.minSeconds = $.minSeconds;
+        this.minSecs = $.minSecs;
     }
 
     public static Builder builder() {
@@ -54,22 +94,72 @@ public final class TraceMetricsRuleTraceFilterSpanDurationArgs extends com.pulum
             $ = new TraceMetricsRuleTraceFilterSpanDurationArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @return builder
+         * 
+         * @deprecated
+         * use max_secs instead
+         * 
+         */
+        @Deprecated /* use max_secs instead */
         public Builder maxSeconds(@Nullable Output<Double> maxSeconds) {
             $.maxSeconds = maxSeconds;
             return this;
         }
 
+        /**
+         * @return builder
+         * 
+         * @deprecated
+         * use max_secs instead
+         * 
+         */
+        @Deprecated /* use max_secs instead */
         public Builder maxSeconds(Double maxSeconds) {
             return maxSeconds(Output.of(maxSeconds));
         }
 
+        public Builder maxSecs(@Nullable Output<Double> maxSecs) {
+            $.maxSecs = maxSecs;
+            return this;
+        }
+
+        public Builder maxSecs(Double maxSecs) {
+            return maxSecs(Output.of(maxSecs));
+        }
+
+        /**
+         * @return builder
+         * 
+         * @deprecated
+         * use min_secs instead
+         * 
+         */
+        @Deprecated /* use min_secs instead */
         public Builder minSeconds(@Nullable Output<Double> minSeconds) {
             $.minSeconds = minSeconds;
             return this;
         }
 
+        /**
+         * @return builder
+         * 
+         * @deprecated
+         * use min_secs instead
+         * 
+         */
+        @Deprecated /* use min_secs instead */
         public Builder minSeconds(Double minSeconds) {
             return minSeconds(Output.of(minSeconds));
+        }
+
+        public Builder minSecs(@Nullable Output<Double> minSecs) {
+            $.minSecs = minSecs;
+            return this;
+        }
+
+        public Builder minSecs(Double minSecs) {
+            return minSecs(Output.of(minSecs));
         }
 
         public TraceMetricsRuleTraceFilterSpanDurationArgs build() {

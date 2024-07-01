@@ -13,16 +13,24 @@ namespace Pulumi.Chronosphere.Outputs
     [OutputType]
     public sealed class TraceTailSamplingRulesRuleFilterSpanDuration
     {
+        public readonly double? MaxSeconds;
         public readonly double? MaxSecs;
+        public readonly double? MinSeconds;
         public readonly double? MinSecs;
 
         [OutputConstructor]
         private TraceTailSamplingRulesRuleFilterSpanDuration(
+            double? maxSeconds,
+
             double? maxSecs,
+
+            double? minSeconds,
 
             double? minSecs)
         {
+            MaxSeconds = maxSeconds;
             MaxSecs = maxSecs;
+            MinSeconds = minSeconds;
             MinSecs = minSecs;
         }
     }

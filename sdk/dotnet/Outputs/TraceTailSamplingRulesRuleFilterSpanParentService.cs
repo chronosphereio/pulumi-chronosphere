@@ -13,15 +13,19 @@ namespace Pulumi.Chronosphere.Outputs
     [OutputType]
     public sealed class TraceTailSamplingRulesRuleFilterSpanParentService
     {
+        public readonly ImmutableArray<string> InValues;
         public readonly string? Match;
-        public readonly string Value;
+        public readonly string? Value;
 
         [OutputConstructor]
         private TraceTailSamplingRulesRuleFilterSpanParentService(
+            ImmutableArray<string> inValues,
+
             string? match,
 
-            string value)
+            string? value)
         {
+            InValues = inValues;
             Match = match;
             Value = value;
         }

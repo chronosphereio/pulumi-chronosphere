@@ -21,6 +21,7 @@ namespace Pulumi.Chronosphere.Outputs
         public readonly Outputs.TraceMetricsRuleTraceFilterSpanParentService? ParentService;
         public readonly Outputs.TraceMetricsRuleTraceFilterSpanService? Service;
         public readonly Outputs.TraceMetricsRuleTraceFilterSpanSpanCount? SpanCount;
+        public readonly ImmutableArray<Outputs.TraceMetricsRuleTraceFilterSpanTag> Tag;
         public readonly ImmutableArray<Outputs.TraceMetricsRuleTraceFilterSpanTag> Tags;
 
         [OutputConstructor]
@@ -41,6 +42,8 @@ namespace Pulumi.Chronosphere.Outputs
 
             Outputs.TraceMetricsRuleTraceFilterSpanSpanCount? spanCount,
 
+            ImmutableArray<Outputs.TraceMetricsRuleTraceFilterSpanTag> tag,
+
             ImmutableArray<Outputs.TraceMetricsRuleTraceFilterSpanTag> tags)
         {
             Duration = duration;
@@ -51,6 +54,7 @@ namespace Pulumi.Chronosphere.Outputs
             ParentService = parentService;
             Service = service;
             SpanCount = spanCount;
+            Tag = tag;
             Tags = tags;
         }
     }

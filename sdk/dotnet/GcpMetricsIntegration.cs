@@ -15,6 +15,9 @@ namespace Pulumi.Chronosphere
         [Output("metricGroups")]
         public Output<ImmutableArray<Outputs.GcpMetricsIntegrationMetricGroup>> MetricGroups { get; private set; } = null!;
 
+        [Output("name")]
+        public Output<string> Name { get; private set; } = null!;
+
         [Output("serviceAccount")]
         public Output<Outputs.GcpMetricsIntegrationServiceAccount?> ServiceAccount { get; private set; } = null!;
 
@@ -29,7 +32,7 @@ namespace Pulumi.Chronosphere
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public GcpMetricsIntegration(string name, GcpMetricsIntegrationArgs? args = null, CustomResourceOptions? options = null)
+        public GcpMetricsIntegration(string name, GcpMetricsIntegrationArgs args, CustomResourceOptions? options = null)
             : base("chronosphere:index/gcpMetricsIntegration:GcpMetricsIntegration", name, args ?? new GcpMetricsIntegrationArgs(), MakeResourceOptions(options, ""))
         {
         }
@@ -75,6 +78,9 @@ namespace Pulumi.Chronosphere
             set => _metricGroups = value;
         }
 
+        [Input("name", required: true)]
+        public Input<string> Name { get; set; } = null!;
+
         [Input("serviceAccount")]
         public Input<Inputs.GcpMetricsIntegrationServiceAccountArgs>? ServiceAccount { get; set; }
 
@@ -96,6 +102,9 @@ namespace Pulumi.Chronosphere
             get => _metricGroups ?? (_metricGroups = new InputList<Inputs.GcpMetricsIntegrationMetricGroupGetArgs>());
             set => _metricGroups = value;
         }
+
+        [Input("name")]
+        public Input<string>? Name { get; set; }
 
         [Input("serviceAccount")]
         public Input<Inputs.GcpMetricsIntegrationServiceAccountGetArgs>? ServiceAccount { get; set; }

@@ -36,6 +36,9 @@ export class WebhookAlertNotifier extends pulumi.CustomResource {
     public readonly basicAuthUsername!: pulumi.Output<string | undefined>;
     public readonly bearerToken!: pulumi.Output<string | undefined>;
     public readonly name!: pulumi.Output<string>;
+    /**
+     * @deprecated custom proxy URLs are not supported
+     */
     public readonly proxyUrl!: pulumi.Output<string | undefined>;
     public readonly sendResolved!: pulumi.Output<boolean | undefined>;
     public readonly slug!: pulumi.Output<string>;
@@ -97,6 +100,9 @@ export interface WebhookAlertNotifierState {
     basicAuthUsername?: pulumi.Input<string>;
     bearerToken?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
+    /**
+     * @deprecated custom proxy URLs are not supported
+     */
     proxyUrl?: pulumi.Input<string>;
     sendResolved?: pulumi.Input<boolean>;
     slug?: pulumi.Input<string>;
@@ -112,6 +118,9 @@ export interface WebhookAlertNotifierArgs {
     basicAuthUsername?: pulumi.Input<string>;
     bearerToken?: pulumi.Input<string>;
     name: pulumi.Input<string>;
+    /**
+     * @deprecated custom proxy URLs are not supported
+     */
     proxyUrl?: pulumi.Input<string>;
     sendResolved?: pulumi.Input<boolean>;
     slug?: pulumi.Input<string>;

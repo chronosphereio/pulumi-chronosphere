@@ -42,6 +42,9 @@ export class VictoropsAlertNotifier extends pulumi.CustomResource {
     public readonly messageType!: pulumi.Output<string | undefined>;
     public readonly monitoringTool!: pulumi.Output<string | undefined>;
     public readonly name!: pulumi.Output<string>;
+    /**
+     * @deprecated custom proxy URLs are not supported
+     */
     public readonly proxyUrl!: pulumi.Output<string | undefined>;
     public readonly routingKey!: pulumi.Output<string>;
     public readonly sendResolved!: pulumi.Output<boolean | undefined>;
@@ -127,6 +130,9 @@ export interface VictoropsAlertNotifierState {
     messageType?: pulumi.Input<string>;
     monitoringTool?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
+    /**
+     * @deprecated custom proxy URLs are not supported
+     */
     proxyUrl?: pulumi.Input<string>;
     routingKey?: pulumi.Input<string>;
     sendResolved?: pulumi.Input<boolean>;
@@ -149,6 +155,9 @@ export interface VictoropsAlertNotifierArgs {
     messageType?: pulumi.Input<string>;
     monitoringTool?: pulumi.Input<string>;
     name: pulumi.Input<string>;
+    /**
+     * @deprecated custom proxy URLs are not supported
+     */
     proxyUrl?: pulumi.Input<string>;
     routingKey: pulumi.Input<string>;
     sendResolved?: pulumi.Input<boolean>;

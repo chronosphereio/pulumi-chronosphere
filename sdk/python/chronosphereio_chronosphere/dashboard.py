@@ -16,6 +16,7 @@ class DashboardArgs:
     def __init__(__self__, *,
                  dashboard_json: pulumi.Input[str],
                  collection_id: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
                  slug: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Dashboard resource.
@@ -23,6 +24,8 @@ class DashboardArgs:
         pulumi.set(__self__, "dashboard_json", dashboard_json)
         if collection_id is not None:
             pulumi.set(__self__, "collection_id", collection_id)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
         if slug is not None:
             pulumi.set(__self__, "slug", slug)
 
@@ -46,6 +49,15 @@ class DashboardArgs:
 
     @property
     @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
     def slug(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "slug")
 
@@ -59,6 +71,7 @@ class _DashboardState:
     def __init__(__self__, *,
                  collection_id: Optional[pulumi.Input[str]] = None,
                  dashboard_json: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
                  slug: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Dashboard resources.
@@ -67,6 +80,8 @@ class _DashboardState:
             pulumi.set(__self__, "collection_id", collection_id)
         if dashboard_json is not None:
             pulumi.set(__self__, "dashboard_json", dashboard_json)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
         if slug is not None:
             pulumi.set(__self__, "slug", slug)
 
@@ -90,6 +105,15 @@ class _DashboardState:
 
     @property
     @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
     def slug(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "slug")
 
@@ -105,6 +129,7 @@ class Dashboard(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  collection_id: Optional[pulumi.Input[str]] = None,
                  dashboard_json: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
                  slug: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -137,6 +162,7 @@ class Dashboard(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  collection_id: Optional[pulumi.Input[str]] = None,
                  dashboard_json: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
                  slug: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -151,6 +177,7 @@ class Dashboard(pulumi.CustomResource):
             if dashboard_json is None and not opts.urn:
                 raise TypeError("Missing required property 'dashboard_json'")
             __props__.__dict__["dashboard_json"] = dashboard_json
+            __props__.__dict__["name"] = name
             __props__.__dict__["slug"] = slug
         super(Dashboard, __self__).__init__(
             'chronosphere:index/dashboard:Dashboard',
@@ -164,6 +191,7 @@ class Dashboard(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             collection_id: Optional[pulumi.Input[str]] = None,
             dashboard_json: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
             slug: Optional[pulumi.Input[str]] = None) -> 'Dashboard':
         """
         Get an existing Dashboard resource's state with the given name, id, and optional extra
@@ -179,6 +207,7 @@ class Dashboard(pulumi.CustomResource):
 
         __props__.__dict__["collection_id"] = collection_id
         __props__.__dict__["dashboard_json"] = dashboard_json
+        __props__.__dict__["name"] = name
         __props__.__dict__["slug"] = slug
         return Dashboard(resource_name, opts=opts, __props__=__props__)
 
@@ -191,6 +220,11 @@ class Dashboard(pulumi.CustomResource):
     @pulumi.getter(name="dashboardJson")
     def dashboard_json(self) -> pulumi.Output[str]:
         return pulumi.get(self, "dashboard_json")
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter

@@ -17,11 +17,11 @@ public final class TraceMetricsRuleTraceFilterSpanTagArgs extends com.pulumi.res
 
     public static final TraceMetricsRuleTraceFilterSpanTagArgs Empty = new TraceMetricsRuleTraceFilterSpanTagArgs();
 
-    @Import(name="key", required=true)
-    private Output<String> key;
+    @Import(name="key")
+    private @Nullable Output<String> key;
 
-    public Output<String> key() {
-        return this.key;
+    public Optional<Output<String>> key() {
+        return Optional.ofNullable(this.key);
     }
 
     @Import(name="numericValue")
@@ -64,7 +64,7 @@ public final class TraceMetricsRuleTraceFilterSpanTagArgs extends com.pulumi.res
             $ = new TraceMetricsRuleTraceFilterSpanTagArgs(Objects.requireNonNull(defaults));
         }
 
-        public Builder key(Output<String> key) {
+        public Builder key(@Nullable Output<String> key) {
             $.key = key;
             return this;
         }
@@ -92,7 +92,6 @@ public final class TraceMetricsRuleTraceFilterSpanTagArgs extends com.pulumi.res
         }
 
         public TraceMetricsRuleTraceFilterSpanTagArgs build() {
-            $.key = Objects.requireNonNull($.key, "expected parameter 'key' to be non-null");
             return $;
         }
     }

@@ -37,12 +37,18 @@ export class MappingRule extends pulumi.CustomResource {
     public readonly aggregations!: pulumi.Output<string | undefined>;
     public readonly bucketId!: pulumi.Output<string | undefined>;
     public readonly drop!: pulumi.Output<boolean | undefined>;
+    /**
+     * @deprecated drop timestamp is no longer supported
+     */
     public readonly dropTimestamp!: pulumi.Output<boolean | undefined>;
     public readonly filter!: pulumi.Output<string>;
     public readonly interval!: pulumi.Output<string | undefined>;
     public readonly mode!: pulumi.Output<string | undefined>;
     public readonly name!: pulumi.Output<string>;
     public readonly slug!: pulumi.Output<string>;
+    /**
+     * @deprecated use `interval` instead
+     */
     public readonly storagePolicy!: pulumi.Output<outputs.MappingRuleStoragePolicy | undefined>;
 
     /**
@@ -99,12 +105,18 @@ export interface MappingRuleState {
     aggregations?: pulumi.Input<string>;
     bucketId?: pulumi.Input<string>;
     drop?: pulumi.Input<boolean>;
+    /**
+     * @deprecated drop timestamp is no longer supported
+     */
     dropTimestamp?: pulumi.Input<boolean>;
     filter?: pulumi.Input<string>;
     interval?: pulumi.Input<string>;
     mode?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     slug?: pulumi.Input<string>;
+    /**
+     * @deprecated use `interval` instead
+     */
     storagePolicy?: pulumi.Input<inputs.MappingRuleStoragePolicy>;
 }
 
@@ -115,11 +127,17 @@ export interface MappingRuleArgs {
     aggregations?: pulumi.Input<string>;
     bucketId?: pulumi.Input<string>;
     drop?: pulumi.Input<boolean>;
+    /**
+     * @deprecated drop timestamp is no longer supported
+     */
     dropTimestamp?: pulumi.Input<boolean>;
     filter: pulumi.Input<string>;
     interval?: pulumi.Input<string>;
     mode?: pulumi.Input<string>;
     name: pulumi.Input<string>;
     slug?: pulumi.Input<string>;
+    /**
+     * @deprecated use `interval` instead
+     */
     storagePolicy?: pulumi.Input<inputs.MappingRuleStoragePolicy>;
 }

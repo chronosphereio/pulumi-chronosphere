@@ -13,18 +13,22 @@ namespace Pulumi.Chronosphere.Outputs
     [OutputType]
     public sealed class NotificationPolicyOverrideRoute
     {
+        public readonly Outputs.NotificationPolicyOverrideRouteGroupBy? GroupBy;
         public readonly ImmutableArray<string> Notifiers;
         public readonly string? RepeatInterval;
         public readonly string Severity;
 
         [OutputConstructor]
         private NotificationPolicyOverrideRoute(
+            Outputs.NotificationPolicyOverrideRouteGroupBy? groupBy,
+
             ImmutableArray<string> notifiers,
 
             string? repeatInterval,
 
             string severity)
         {
+            GroupBy = groupBy;
             Notifiers = notifiers;
             RepeatInterval = repeatInterval;
             Severity = severity;

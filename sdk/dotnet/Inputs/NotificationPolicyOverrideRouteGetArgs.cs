@@ -12,6 +12,9 @@ namespace Pulumi.Chronosphere.Inputs
 
     public sealed class NotificationPolicyOverrideRouteGetArgs : global::Pulumi.ResourceArgs
     {
+        [Input("groupBy")]
+        public Input<Inputs.NotificationPolicyOverrideRouteGroupByGetArgs>? GroupBy { get; set; }
+
         [Input("notifiers")]
         private InputList<string>? _notifiers;
         public InputList<string> Notifiers

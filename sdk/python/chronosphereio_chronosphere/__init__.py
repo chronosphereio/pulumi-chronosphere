@@ -10,18 +10,19 @@ from .bucket import *
 from .bucket_data_source import *
 from .classic_dashboard import *
 from .collection import *
+from .collection_data_source import *
 from .dashboard import *
+from .dataset import *
 from .derived_label import *
 from .derived_metric import *
 from .drop_rule import *
 from .email_alert_notifier import *
 from .gcp_metrics_integration import *
-from .grafana_dashboard import *
 from .mapping_rule import *
 from .monitor import *
 from .notification_policy import *
-from .notification_policy_data_source import *
 from .opsgenie_alert_notifier import *
+from .otel_metrics_ingestion import *
 from .pagerduty_alert_notifier import *
 from .provider import *
 from .recording_rule import *
@@ -91,6 +92,14 @@ _utilities.register(
  },
  {
   "pkg": "chronosphere",
+  "mod": "index/dataset",
+  "fqn": "chronosphereio_chronosphere",
+  "classes": {
+   "chronosphere:index/dataset:Dataset": "Dataset"
+  }
+ },
+ {
+  "pkg": "chronosphere",
   "mod": "index/derivedLabel",
   "fqn": "chronosphereio_chronosphere",
   "classes": {
@@ -131,14 +140,6 @@ _utilities.register(
  },
  {
   "pkg": "chronosphere",
-  "mod": "index/grafanaDashboard",
-  "fqn": "chronosphereio_chronosphere",
-  "classes": {
-   "chronosphere:index/grafanaDashboard:GrafanaDashboard": "GrafanaDashboard"
-  }
- },
- {
-  "pkg": "chronosphere",
   "mod": "index/mappingRule",
   "fqn": "chronosphereio_chronosphere",
   "classes": {
@@ -167,6 +168,14 @@ _utilities.register(
   "fqn": "chronosphereio_chronosphere",
   "classes": {
    "chronosphere:index/opsgenieAlertNotifier:OpsgenieAlertNotifier": "OpsgenieAlertNotifier"
+  }
+ },
+ {
+  "pkg": "chronosphere",
+  "mod": "index/otelMetricsIngestion",
+  "fqn": "chronosphereio_chronosphere",
+  "classes": {
+   "chronosphere:index/otelMetricsIngestion:OtelMetricsIngestion": "OtelMetricsIngestion"
   }
  },
  {

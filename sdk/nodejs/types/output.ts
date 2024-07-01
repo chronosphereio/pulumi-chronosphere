@@ -5,6 +5,121 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
+export interface DatasetConfiguration {
+    traceDataset?: outputs.DatasetConfigurationTraceDataset;
+    type: string;
+}
+
+export interface DatasetConfigurationTraceDataset {
+    matchCriteria: outputs.DatasetConfigurationTraceDatasetMatchCriteria;
+}
+
+export interface DatasetConfigurationTraceDatasetMatchCriteria {
+    spans?: outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpan[];
+    trace?: outputs.DatasetConfigurationTraceDatasetMatchCriteriaTrace;
+}
+
+export interface DatasetConfigurationTraceDatasetMatchCriteriaSpan {
+    duration?: outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanDuration;
+    error?: outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanError;
+    matchType?: string;
+    operation?: outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanOperation;
+    parentOperation?: outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanParentOperation;
+    parentService?: outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanParentService;
+    service?: outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanService;
+    spanCount?: outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanSpanCount;
+    tag?: outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanTag[];
+    /**
+     * @deprecated `tags` is deprecated, use `tag` instead.
+     */
+    tags?: outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanTag[];
+}
+
+export interface DatasetConfigurationTraceDatasetMatchCriteriaSpanDuration {
+    /**
+     * @deprecated use max_secs instead
+     */
+    maxSeconds?: number;
+    maxSecs?: number;
+    /**
+     * @deprecated use min_secs instead
+     */
+    minSeconds?: number;
+    minSecs?: number;
+}
+
+export interface DatasetConfigurationTraceDatasetMatchCriteriaSpanError {
+    value: boolean;
+}
+
+export interface DatasetConfigurationTraceDatasetMatchCriteriaSpanOperation {
+    inValues?: string[];
+    match?: string;
+    value?: string;
+}
+
+export interface DatasetConfigurationTraceDatasetMatchCriteriaSpanParentOperation {
+    inValues?: string[];
+    match?: string;
+    value?: string;
+}
+
+export interface DatasetConfigurationTraceDatasetMatchCriteriaSpanParentService {
+    inValues?: string[];
+    match?: string;
+    value?: string;
+}
+
+export interface DatasetConfigurationTraceDatasetMatchCriteriaSpanService {
+    inValues?: string[];
+    match?: string;
+    value?: string;
+}
+
+export interface DatasetConfigurationTraceDatasetMatchCriteriaSpanSpanCount {
+    max?: number;
+    min?: number;
+}
+
+export interface DatasetConfigurationTraceDatasetMatchCriteriaSpanTag {
+    key?: string;
+    numericValue?: outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanTagNumericValue;
+    value?: outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanTagValue;
+}
+
+export interface DatasetConfigurationTraceDatasetMatchCriteriaSpanTagNumericValue {
+    comparison: string;
+    value: number;
+}
+
+export interface DatasetConfigurationTraceDatasetMatchCriteriaSpanTagValue {
+    inValues?: string[];
+    match?: string;
+    value?: string;
+}
+
+export interface DatasetConfigurationTraceDatasetMatchCriteriaTrace {
+    duration?: outputs.DatasetConfigurationTraceDatasetMatchCriteriaTraceDuration;
+    error?: outputs.DatasetConfigurationTraceDatasetMatchCriteriaTraceError;
+}
+
+export interface DatasetConfigurationTraceDatasetMatchCriteriaTraceDuration {
+    /**
+     * @deprecated use max_secs instead
+     */
+    maxSeconds?: number;
+    maxSecs?: number;
+    /**
+     * @deprecated use min_secs instead
+     */
+    minSeconds?: number;
+    minSecs?: number;
+}
+
+export interface DatasetConfigurationTraceDatasetMatchCriteriaTraceError {
+    value: boolean;
+}
+
 export interface DerivedLabelMetricLabel {
     constructedLabel?: outputs.DerivedLabelMetricLabelConstructedLabel;
     mappingLabel?: outputs.DerivedLabelMetricLabelMappingLabel;
@@ -140,35 +255,6 @@ export interface MonitorSignalGrouping {
     signalPerSeries?: boolean;
 }
 
-export interface NotificationPolicyDataSourceOverride {
-    alertLabelMatchers: outputs.NotificationPolicyDataSourceOverrideAlertLabelMatcher[];
-    routes?: outputs.NotificationPolicyDataSourceOverrideRoute[];
-}
-
-export interface NotificationPolicyDataSourceOverrideAlertLabelMatcher {
-    name: string;
-    type: string;
-    value: string;
-}
-
-export interface NotificationPolicyDataSourceOverrideRoute {
-    notifiers?: string[];
-    repeatInterval?: string;
-    severity: string;
-}
-
-export interface NotificationPolicyDataSourceRoute {
-    notifiers?: string[];
-    repeatInterval?: string;
-    severity: string;
-}
-
-export interface NotificationPolicyDataSourceRule {
-    notifiers?: string[];
-    repeatInterval?: string;
-    severity: string;
-}
-
 export interface NotificationPolicyOverride {
     alertLabelMatchers: outputs.NotificationPolicyOverrideAlertLabelMatcher[];
     routes?: outputs.NotificationPolicyOverrideRoute[];
@@ -181,21 +267,25 @@ export interface NotificationPolicyOverrideAlertLabelMatcher {
 }
 
 export interface NotificationPolicyOverrideRoute {
+    groupBy?: outputs.NotificationPolicyOverrideRouteGroupBy;
     notifiers?: string[];
     repeatInterval?: string;
     severity: string;
+}
+
+export interface NotificationPolicyOverrideRouteGroupBy {
+    labelNames?: string[];
 }
 
 export interface NotificationPolicyRoute {
+    groupBy?: outputs.NotificationPolicyRouteGroupBy;
     notifiers?: string[];
     repeatInterval?: string;
     severity: string;
 }
 
-export interface NotificationPolicyRule {
-    notifiers?: string[];
-    repeatInterval?: string;
-    severity: string;
+export interface NotificationPolicyRouteGroupBy {
+    labelNames?: string[];
 }
 
 export interface OpsgenieAlertNotifierResponder {
@@ -203,6 +293,13 @@ export interface OpsgenieAlertNotifierResponder {
     name?: string;
     type: string;
     username?: string;
+}
+
+export interface OtelMetricsIngestionResourceAttributes {
+    excludeKeys?: string[];
+    filterMode?: string;
+    flattenMode?: string;
+    generateTargetInfo?: boolean;
 }
 
 export interface PagerdutyAlertNotifierImage {
@@ -248,6 +345,15 @@ export interface ResourcePoolsConfigPoolAllocation {
 export interface ResourcePoolsConfigPoolPriorities {
     highPriorityMatchRules?: string[];
     lowPriorityMatchRules?: string[];
+}
+
+export interface RollupRuleGraphiteLabelPolicy {
+    replaces?: outputs.RollupRuleGraphiteLabelPolicyReplace[];
+}
+
+export interface RollupRuleGraphiteLabelPolicyReplace {
+    name: string;
+    newValue: string;
 }
 
 export interface RollupRuleStoragePolicies {
@@ -333,12 +439,24 @@ export interface TraceMetricsRuleTraceFilterSpan {
     parentService?: outputs.TraceMetricsRuleTraceFilterSpanParentService;
     service?: outputs.TraceMetricsRuleTraceFilterSpanService;
     spanCount?: outputs.TraceMetricsRuleTraceFilterSpanSpanCount;
+    tag?: outputs.TraceMetricsRuleTraceFilterSpanTag[];
+    /**
+     * @deprecated `tags` is deprecated, use `tag` instead.
+     */
     tags?: outputs.TraceMetricsRuleTraceFilterSpanTag[];
 }
 
 export interface TraceMetricsRuleTraceFilterSpanDuration {
+    /**
+     * @deprecated use max_secs instead
+     */
     maxSeconds?: number;
+    maxSecs?: number;
+    /**
+     * @deprecated use min_secs instead
+     */
     minSeconds?: number;
+    minSecs?: number;
 }
 
 export interface TraceMetricsRuleTraceFilterSpanError {
@@ -346,23 +464,27 @@ export interface TraceMetricsRuleTraceFilterSpanError {
 }
 
 export interface TraceMetricsRuleTraceFilterSpanOperation {
+    inValues?: string[];
     match?: string;
-    value: string;
+    value?: string;
 }
 
 export interface TraceMetricsRuleTraceFilterSpanParentOperation {
+    inValues?: string[];
     match?: string;
-    value: string;
+    value?: string;
 }
 
 export interface TraceMetricsRuleTraceFilterSpanParentService {
+    inValues?: string[];
     match?: string;
-    value: string;
+    value?: string;
 }
 
 export interface TraceMetricsRuleTraceFilterSpanService {
+    inValues?: string[];
     match?: string;
-    value: string;
+    value?: string;
 }
 
 export interface TraceMetricsRuleTraceFilterSpanSpanCount {
@@ -371,7 +493,7 @@ export interface TraceMetricsRuleTraceFilterSpanSpanCount {
 }
 
 export interface TraceMetricsRuleTraceFilterSpanTag {
-    key: string;
+    key?: string;
     numericValue?: outputs.TraceMetricsRuleTraceFilterSpanTagNumericValue;
     value?: outputs.TraceMetricsRuleTraceFilterSpanTagValue;
 }
@@ -382,8 +504,9 @@ export interface TraceMetricsRuleTraceFilterSpanTagNumericValue {
 }
 
 export interface TraceMetricsRuleTraceFilterSpanTagValue {
+    inValues?: string[];
     match?: string;
-    value: string;
+    value?: string;
 }
 
 export interface TraceMetricsRuleTraceFilterTrace {
@@ -392,8 +515,16 @@ export interface TraceMetricsRuleTraceFilterTrace {
 }
 
 export interface TraceMetricsRuleTraceFilterTraceDuration {
+    /**
+     * @deprecated use max_secs instead
+     */
     maxSeconds?: number;
+    maxSecs?: number;
+    /**
+     * @deprecated use min_secs instead
+     */
     minSeconds?: number;
+    minSecs?: number;
 }
 
 export interface TraceMetricsRuleTraceFilterTraceError {
@@ -426,11 +557,23 @@ export interface TraceTailSamplingRulesRuleFilterSpan {
     parentService?: outputs.TraceTailSamplingRulesRuleFilterSpanParentService;
     service?: outputs.TraceTailSamplingRulesRuleFilterSpanService;
     spanCount?: outputs.TraceTailSamplingRulesRuleFilterSpanSpanCount;
+    tag?: outputs.TraceTailSamplingRulesRuleFilterSpanTag[];
+    /**
+     * @deprecated `tags` is deprecated, use `tag` instead.
+     */
     tags?: outputs.TraceTailSamplingRulesRuleFilterSpanTag[];
 }
 
 export interface TraceTailSamplingRulesRuleFilterSpanDuration {
+    /**
+     * @deprecated use max_secs instead
+     */
+    maxSeconds?: number;
     maxSecs?: number;
+    /**
+     * @deprecated use min_secs instead
+     */
+    minSeconds?: number;
     minSecs?: number;
 }
 
@@ -439,23 +582,27 @@ export interface TraceTailSamplingRulesRuleFilterSpanError {
 }
 
 export interface TraceTailSamplingRulesRuleFilterSpanOperation {
+    inValues?: string[];
     match?: string;
-    value: string;
+    value?: string;
 }
 
 export interface TraceTailSamplingRulesRuleFilterSpanParentOperation {
+    inValues?: string[];
     match?: string;
-    value: string;
+    value?: string;
 }
 
 export interface TraceTailSamplingRulesRuleFilterSpanParentService {
+    inValues?: string[];
     match?: string;
-    value: string;
+    value?: string;
 }
 
 export interface TraceTailSamplingRulesRuleFilterSpanService {
+    inValues?: string[];
     match?: string;
-    value: string;
+    value?: string;
 }
 
 export interface TraceTailSamplingRulesRuleFilterSpanSpanCount {
@@ -475,8 +622,9 @@ export interface TraceTailSamplingRulesRuleFilterSpanTagNumericValue {
 }
 
 export interface TraceTailSamplingRulesRuleFilterSpanTagValue {
+    inValues?: string[];
     match?: string;
-    value: string;
+    value?: string;
 }
 
 export interface TraceTailSamplingRulesRuleFilterTrace {
@@ -485,7 +633,15 @@ export interface TraceTailSamplingRulesRuleFilterTrace {
 }
 
 export interface TraceTailSamplingRulesRuleFilterTraceDuration {
+    /**
+     * @deprecated use max_secs instead
+     */
+    maxSeconds?: number;
     maxSecs?: number;
+    /**
+     * @deprecated use min_secs instead
+     */
+    minSeconds?: number;
     minSecs?: number;
 }
 

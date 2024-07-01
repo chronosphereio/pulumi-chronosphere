@@ -12,11 +12,19 @@ namespace Pulumi.Chronosphere.Inputs
 
     public sealed class TraceTailSamplingRulesRuleFilterSpanServiceArgs : global::Pulumi.ResourceArgs
     {
+        [Input("inValues")]
+        private InputList<string>? _inValues;
+        public InputList<string> InValues
+        {
+            get => _inValues ?? (_inValues = new InputList<string>());
+            set => _inValues = value;
+        }
+
         [Input("match")]
         public Input<string>? Match { get; set; }
 
-        [Input("value", required: true)]
-        public Input<string> Value { get; set; } = null!;
+        [Input("value")]
+        public Input<string>? Value { get; set; }
 
         public TraceTailSamplingRulesRuleFilterSpanServiceArgs()
         {

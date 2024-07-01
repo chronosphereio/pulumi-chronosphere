@@ -42,6 +42,12 @@ public class WebhookAlertNotifier extends com.pulumi.resources.CustomResource {
     public Output<String> name() {
         return this.name;
     }
+    /**
+     * @deprecated
+     * custom proxy URLs are not supported
+     * 
+     */
+    @Deprecated /* custom proxy URLs are not supported */
     @Export(name="proxyUrl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> proxyUrl;
 

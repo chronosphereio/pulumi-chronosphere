@@ -35,6 +35,7 @@ export class GcpMetricsIntegration extends pulumi.CustomResource {
     }
 
     public readonly metricGroups!: pulumi.Output<outputs.GcpMetricsIntegrationMetricGroup[] | undefined>;
+    public readonly name!: pulumi.Output<string>;
     public readonly serviceAccount!: pulumi.Output<outputs.GcpMetricsIntegrationServiceAccount | undefined>;
     public readonly slug!: pulumi.Output<string | undefined>;
 
@@ -45,18 +46,23 @@ export class GcpMetricsIntegration extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args?: GcpMetricsIntegrationArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, args: GcpMetricsIntegrationArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: GcpMetricsIntegrationArgs | GcpMetricsIntegrationState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as GcpMetricsIntegrationState | undefined;
             resourceInputs["metricGroups"] = state ? state.metricGroups : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["serviceAccount"] = state ? state.serviceAccount : undefined;
             resourceInputs["slug"] = state ? state.slug : undefined;
         } else {
             const args = argsOrState as GcpMetricsIntegrationArgs | undefined;
+            if ((!args || args.name === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'name'");
+            }
             resourceInputs["metricGroups"] = args ? args.metricGroups : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["serviceAccount"] = args ? args.serviceAccount : undefined;
             resourceInputs["slug"] = args ? args.slug : undefined;
         }
@@ -70,6 +76,7 @@ export class GcpMetricsIntegration extends pulumi.CustomResource {
  */
 export interface GcpMetricsIntegrationState {
     metricGroups?: pulumi.Input<pulumi.Input<inputs.GcpMetricsIntegrationMetricGroup>[]>;
+    name?: pulumi.Input<string>;
     serviceAccount?: pulumi.Input<inputs.GcpMetricsIntegrationServiceAccount>;
     slug?: pulumi.Input<string>;
 }
@@ -79,6 +86,7 @@ export interface GcpMetricsIntegrationState {
  */
 export interface GcpMetricsIntegrationArgs {
     metricGroups?: pulumi.Input<pulumi.Input<inputs.GcpMetricsIntegrationMetricGroup>[]>;
+    name: pulumi.Input<string>;
     serviceAccount?: pulumi.Input<inputs.GcpMetricsIntegrationServiceAccount>;
     slug?: pulumi.Input<string>;
 }

@@ -16,18 +16,29 @@ __all__ = ['GcpMetricsIntegrationArgs', 'GcpMetricsIntegration']
 @pulumi.input_type
 class GcpMetricsIntegrationArgs:
     def __init__(__self__, *,
+                 name: pulumi.Input[str],
                  metric_groups: Optional[pulumi.Input[Sequence[pulumi.Input['GcpMetricsIntegrationMetricGroupArgs']]]] = None,
                  service_account: Optional[pulumi.Input['GcpMetricsIntegrationServiceAccountArgs']] = None,
                  slug: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a GcpMetricsIntegration resource.
         """
+        pulumi.set(__self__, "name", name)
         if metric_groups is not None:
             pulumi.set(__self__, "metric_groups", metric_groups)
         if service_account is not None:
             pulumi.set(__self__, "service_account", service_account)
         if slug is not None:
             pulumi.set(__self__, "slug", slug)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter(name="metricGroups")
@@ -61,6 +72,7 @@ class GcpMetricsIntegrationArgs:
 class _GcpMetricsIntegrationState:
     def __init__(__self__, *,
                  metric_groups: Optional[pulumi.Input[Sequence[pulumi.Input['GcpMetricsIntegrationMetricGroupArgs']]]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
                  service_account: Optional[pulumi.Input['GcpMetricsIntegrationServiceAccountArgs']] = None,
                  slug: Optional[pulumi.Input[str]] = None):
         """
@@ -68,6 +80,8 @@ class _GcpMetricsIntegrationState:
         """
         if metric_groups is not None:
             pulumi.set(__self__, "metric_groups", metric_groups)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
         if service_account is not None:
             pulumi.set(__self__, "service_account", service_account)
         if slug is not None:
@@ -81,6 +95,15 @@ class _GcpMetricsIntegrationState:
     @metric_groups.setter
     def metric_groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['GcpMetricsIntegrationMetricGroupArgs']]]]):
         pulumi.set(self, "metric_groups", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter(name="serviceAccount")
@@ -107,6 +130,7 @@ class GcpMetricsIntegration(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  metric_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GcpMetricsIntegrationMetricGroupArgs']]]]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
                  service_account: Optional[pulumi.Input[pulumi.InputType['GcpMetricsIntegrationServiceAccountArgs']]] = None,
                  slug: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -119,7 +143,7 @@ class GcpMetricsIntegration(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: Optional[GcpMetricsIntegrationArgs] = None,
+                 args: GcpMetricsIntegrationArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a GcpMetricsIntegration resource with the given unique name, props, and options.
@@ -139,6 +163,7 @@ class GcpMetricsIntegration(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  metric_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GcpMetricsIntegrationMetricGroupArgs']]]]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
                  service_account: Optional[pulumi.Input[pulumi.InputType['GcpMetricsIntegrationServiceAccountArgs']]] = None,
                  slug: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -151,6 +176,9 @@ class GcpMetricsIntegration(pulumi.CustomResource):
             __props__ = GcpMetricsIntegrationArgs.__new__(GcpMetricsIntegrationArgs)
 
             __props__.__dict__["metric_groups"] = metric_groups
+            if name is None and not opts.urn:
+                raise TypeError("Missing required property 'name'")
+            __props__.__dict__["name"] = name
             __props__.__dict__["service_account"] = service_account
             __props__.__dict__["slug"] = slug
         super(GcpMetricsIntegration, __self__).__init__(
@@ -164,6 +192,7 @@ class GcpMetricsIntegration(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             metric_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GcpMetricsIntegrationMetricGroupArgs']]]]] = None,
+            name: Optional[pulumi.Input[str]] = None,
             service_account: Optional[pulumi.Input[pulumi.InputType['GcpMetricsIntegrationServiceAccountArgs']]] = None,
             slug: Optional[pulumi.Input[str]] = None) -> 'GcpMetricsIntegration':
         """
@@ -179,6 +208,7 @@ class GcpMetricsIntegration(pulumi.CustomResource):
         __props__ = _GcpMetricsIntegrationState.__new__(_GcpMetricsIntegrationState)
 
         __props__.__dict__["metric_groups"] = metric_groups
+        __props__.__dict__["name"] = name
         __props__.__dict__["service_account"] = service_account
         __props__.__dict__["slug"] = slug
         return GcpMetricsIntegration(resource_name, opts=opts, __props__=__props__)
@@ -187,6 +217,11 @@ class GcpMetricsIntegration(pulumi.CustomResource):
     @pulumi.getter(name="metricGroups")
     def metric_groups(self) -> pulumi.Output[Optional[Sequence['outputs.GcpMetricsIntegrationMetricGroup']]]:
         return pulumi.get(self, "metric_groups")
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="serviceAccount")

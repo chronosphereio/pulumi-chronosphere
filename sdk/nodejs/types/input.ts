@@ -5,6 +5,121 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
+export interface DatasetConfiguration {
+    traceDataset?: pulumi.Input<inputs.DatasetConfigurationTraceDataset>;
+    type: pulumi.Input<string>;
+}
+
+export interface DatasetConfigurationTraceDataset {
+    matchCriteria: pulumi.Input<inputs.DatasetConfigurationTraceDatasetMatchCriteria>;
+}
+
+export interface DatasetConfigurationTraceDatasetMatchCriteria {
+    spans?: pulumi.Input<pulumi.Input<inputs.DatasetConfigurationTraceDatasetMatchCriteriaSpan>[]>;
+    trace?: pulumi.Input<inputs.DatasetConfigurationTraceDatasetMatchCriteriaTrace>;
+}
+
+export interface DatasetConfigurationTraceDatasetMatchCriteriaSpan {
+    duration?: pulumi.Input<inputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanDuration>;
+    error?: pulumi.Input<inputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanError>;
+    matchType?: pulumi.Input<string>;
+    operation?: pulumi.Input<inputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanOperation>;
+    parentOperation?: pulumi.Input<inputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanParentOperation>;
+    parentService?: pulumi.Input<inputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanParentService>;
+    service?: pulumi.Input<inputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanService>;
+    spanCount?: pulumi.Input<inputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanSpanCount>;
+    tag?: pulumi.Input<pulumi.Input<inputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanTag>[]>;
+    /**
+     * @deprecated `tags` is deprecated, use `tag` instead.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanTag>[]>;
+}
+
+export interface DatasetConfigurationTraceDatasetMatchCriteriaSpanDuration {
+    /**
+     * @deprecated use max_secs instead
+     */
+    maxSeconds?: pulumi.Input<number>;
+    maxSecs?: pulumi.Input<number>;
+    /**
+     * @deprecated use min_secs instead
+     */
+    minSeconds?: pulumi.Input<number>;
+    minSecs?: pulumi.Input<number>;
+}
+
+export interface DatasetConfigurationTraceDatasetMatchCriteriaSpanError {
+    value: pulumi.Input<boolean>;
+}
+
+export interface DatasetConfigurationTraceDatasetMatchCriteriaSpanOperation {
+    inValues?: pulumi.Input<pulumi.Input<string>[]>;
+    match?: pulumi.Input<string>;
+    value?: pulumi.Input<string>;
+}
+
+export interface DatasetConfigurationTraceDatasetMatchCriteriaSpanParentOperation {
+    inValues?: pulumi.Input<pulumi.Input<string>[]>;
+    match?: pulumi.Input<string>;
+    value?: pulumi.Input<string>;
+}
+
+export interface DatasetConfigurationTraceDatasetMatchCriteriaSpanParentService {
+    inValues?: pulumi.Input<pulumi.Input<string>[]>;
+    match?: pulumi.Input<string>;
+    value?: pulumi.Input<string>;
+}
+
+export interface DatasetConfigurationTraceDatasetMatchCriteriaSpanService {
+    inValues?: pulumi.Input<pulumi.Input<string>[]>;
+    match?: pulumi.Input<string>;
+    value?: pulumi.Input<string>;
+}
+
+export interface DatasetConfigurationTraceDatasetMatchCriteriaSpanSpanCount {
+    max?: pulumi.Input<number>;
+    min?: pulumi.Input<number>;
+}
+
+export interface DatasetConfigurationTraceDatasetMatchCriteriaSpanTag {
+    key?: pulumi.Input<string>;
+    numericValue?: pulumi.Input<inputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanTagNumericValue>;
+    value?: pulumi.Input<inputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanTagValue>;
+}
+
+export interface DatasetConfigurationTraceDatasetMatchCriteriaSpanTagNumericValue {
+    comparison: pulumi.Input<string>;
+    value: pulumi.Input<number>;
+}
+
+export interface DatasetConfigurationTraceDatasetMatchCriteriaSpanTagValue {
+    inValues?: pulumi.Input<pulumi.Input<string>[]>;
+    match?: pulumi.Input<string>;
+    value?: pulumi.Input<string>;
+}
+
+export interface DatasetConfigurationTraceDatasetMatchCriteriaTrace {
+    duration?: pulumi.Input<inputs.DatasetConfigurationTraceDatasetMatchCriteriaTraceDuration>;
+    error?: pulumi.Input<inputs.DatasetConfigurationTraceDatasetMatchCriteriaTraceError>;
+}
+
+export interface DatasetConfigurationTraceDatasetMatchCriteriaTraceDuration {
+    /**
+     * @deprecated use max_secs instead
+     */
+    maxSeconds?: pulumi.Input<number>;
+    maxSecs?: pulumi.Input<number>;
+    /**
+     * @deprecated use min_secs instead
+     */
+    minSeconds?: pulumi.Input<number>;
+    minSecs?: pulumi.Input<number>;
+}
+
+export interface DatasetConfigurationTraceDatasetMatchCriteriaTraceError {
+    value: pulumi.Input<boolean>;
+}
+
 export interface DerivedLabelMetricLabel {
     constructedLabel?: pulumi.Input<inputs.DerivedLabelMetricLabelConstructedLabel>;
     mappingLabel?: pulumi.Input<inputs.DerivedLabelMetricLabelMappingLabel>;
@@ -140,64 +255,6 @@ export interface MonitorSignalGrouping {
     signalPerSeries?: pulumi.Input<boolean>;
 }
 
-export interface NotificationPolicyDataSourceOverride {
-    alertLabelMatchers: inputs.NotificationPolicyDataSourceOverrideAlertLabelMatcher[];
-    routes?: inputs.NotificationPolicyDataSourceOverrideRoute[];
-}
-
-export interface NotificationPolicyDataSourceOverrideArgs {
-    alertLabelMatchers: pulumi.Input<pulumi.Input<inputs.NotificationPolicyDataSourceOverrideAlertLabelMatcherArgs>[]>;
-    routes?: pulumi.Input<pulumi.Input<inputs.NotificationPolicyDataSourceOverrideRouteArgs>[]>;
-}
-
-export interface NotificationPolicyDataSourceOverrideAlertLabelMatcher {
-    name: string;
-    type: string;
-    value: string;
-}
-
-export interface NotificationPolicyDataSourceOverrideAlertLabelMatcherArgs {
-    name: pulumi.Input<string>;
-    type: pulumi.Input<string>;
-    value: pulumi.Input<string>;
-}
-
-export interface NotificationPolicyDataSourceOverrideRoute {
-    notifiers?: string[];
-    repeatInterval?: string;
-    severity: string;
-}
-
-export interface NotificationPolicyDataSourceOverrideRouteArgs {
-    notifiers?: pulumi.Input<pulumi.Input<string>[]>;
-    repeatInterval?: pulumi.Input<string>;
-    severity: pulumi.Input<string>;
-}
-
-export interface NotificationPolicyDataSourceRoute {
-    notifiers?: string[];
-    repeatInterval?: string;
-    severity: string;
-}
-
-export interface NotificationPolicyDataSourceRouteArgs {
-    notifiers?: pulumi.Input<pulumi.Input<string>[]>;
-    repeatInterval?: pulumi.Input<string>;
-    severity: pulumi.Input<string>;
-}
-
-export interface NotificationPolicyDataSourceRule {
-    notifiers?: string[];
-    repeatInterval?: string;
-    severity: string;
-}
-
-export interface NotificationPolicyDataSourceRuleArgs {
-    notifiers?: pulumi.Input<pulumi.Input<string>[]>;
-    repeatInterval?: pulumi.Input<string>;
-    severity: pulumi.Input<string>;
-}
-
 export interface NotificationPolicyOverride {
     alertLabelMatchers: pulumi.Input<pulumi.Input<inputs.NotificationPolicyOverrideAlertLabelMatcher>[]>;
     routes?: pulumi.Input<pulumi.Input<inputs.NotificationPolicyOverrideRoute>[]>;
@@ -210,21 +267,25 @@ export interface NotificationPolicyOverrideAlertLabelMatcher {
 }
 
 export interface NotificationPolicyOverrideRoute {
+    groupBy?: pulumi.Input<inputs.NotificationPolicyOverrideRouteGroupBy>;
     notifiers?: pulumi.Input<pulumi.Input<string>[]>;
     repeatInterval?: pulumi.Input<string>;
     severity: pulumi.Input<string>;
+}
+
+export interface NotificationPolicyOverrideRouteGroupBy {
+    labelNames?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 export interface NotificationPolicyRoute {
+    groupBy?: pulumi.Input<inputs.NotificationPolicyRouteGroupBy>;
     notifiers?: pulumi.Input<pulumi.Input<string>[]>;
     repeatInterval?: pulumi.Input<string>;
     severity: pulumi.Input<string>;
 }
 
-export interface NotificationPolicyRule {
-    notifiers?: pulumi.Input<pulumi.Input<string>[]>;
-    repeatInterval?: pulumi.Input<string>;
-    severity: pulumi.Input<string>;
+export interface NotificationPolicyRouteGroupBy {
+    labelNames?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 export interface OpsgenieAlertNotifierResponder {
@@ -232,6 +293,13 @@ export interface OpsgenieAlertNotifierResponder {
     name?: pulumi.Input<string>;
     type: pulumi.Input<string>;
     username?: pulumi.Input<string>;
+}
+
+export interface OtelMetricsIngestionResourceAttributes {
+    excludeKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    filterMode?: pulumi.Input<string>;
+    flattenMode?: pulumi.Input<string>;
+    generateTargetInfo?: pulumi.Input<boolean>;
 }
 
 export interface PagerdutyAlertNotifierImage {
@@ -277,6 +345,15 @@ export interface ResourcePoolsConfigPoolAllocation {
 export interface ResourcePoolsConfigPoolPriorities {
     highPriorityMatchRules?: pulumi.Input<pulumi.Input<string>[]>;
     lowPriorityMatchRules?: pulumi.Input<pulumi.Input<string>[]>;
+}
+
+export interface RollupRuleGraphiteLabelPolicy {
+    replaces?: pulumi.Input<pulumi.Input<inputs.RollupRuleGraphiteLabelPolicyReplace>[]>;
+}
+
+export interface RollupRuleGraphiteLabelPolicyReplace {
+    name: pulumi.Input<string>;
+    newValue: pulumi.Input<string>;
 }
 
 export interface RollupRuleStoragePolicies {
@@ -362,12 +439,24 @@ export interface TraceMetricsRuleTraceFilterSpan {
     parentService?: pulumi.Input<inputs.TraceMetricsRuleTraceFilterSpanParentService>;
     service?: pulumi.Input<inputs.TraceMetricsRuleTraceFilterSpanService>;
     spanCount?: pulumi.Input<inputs.TraceMetricsRuleTraceFilterSpanSpanCount>;
+    tag?: pulumi.Input<pulumi.Input<inputs.TraceMetricsRuleTraceFilterSpanTag>[]>;
+    /**
+     * @deprecated `tags` is deprecated, use `tag` instead.
+     */
     tags?: pulumi.Input<pulumi.Input<inputs.TraceMetricsRuleTraceFilterSpanTag>[]>;
 }
 
 export interface TraceMetricsRuleTraceFilterSpanDuration {
+    /**
+     * @deprecated use max_secs instead
+     */
     maxSeconds?: pulumi.Input<number>;
+    maxSecs?: pulumi.Input<number>;
+    /**
+     * @deprecated use min_secs instead
+     */
     minSeconds?: pulumi.Input<number>;
+    minSecs?: pulumi.Input<number>;
 }
 
 export interface TraceMetricsRuleTraceFilterSpanError {
@@ -375,23 +464,27 @@ export interface TraceMetricsRuleTraceFilterSpanError {
 }
 
 export interface TraceMetricsRuleTraceFilterSpanOperation {
+    inValues?: pulumi.Input<pulumi.Input<string>[]>;
     match?: pulumi.Input<string>;
-    value: pulumi.Input<string>;
+    value?: pulumi.Input<string>;
 }
 
 export interface TraceMetricsRuleTraceFilterSpanParentOperation {
+    inValues?: pulumi.Input<pulumi.Input<string>[]>;
     match?: pulumi.Input<string>;
-    value: pulumi.Input<string>;
+    value?: pulumi.Input<string>;
 }
 
 export interface TraceMetricsRuleTraceFilterSpanParentService {
+    inValues?: pulumi.Input<pulumi.Input<string>[]>;
     match?: pulumi.Input<string>;
-    value: pulumi.Input<string>;
+    value?: pulumi.Input<string>;
 }
 
 export interface TraceMetricsRuleTraceFilterSpanService {
+    inValues?: pulumi.Input<pulumi.Input<string>[]>;
     match?: pulumi.Input<string>;
-    value: pulumi.Input<string>;
+    value?: pulumi.Input<string>;
 }
 
 export interface TraceMetricsRuleTraceFilterSpanSpanCount {
@@ -400,7 +493,7 @@ export interface TraceMetricsRuleTraceFilterSpanSpanCount {
 }
 
 export interface TraceMetricsRuleTraceFilterSpanTag {
-    key: pulumi.Input<string>;
+    key?: pulumi.Input<string>;
     numericValue?: pulumi.Input<inputs.TraceMetricsRuleTraceFilterSpanTagNumericValue>;
     value?: pulumi.Input<inputs.TraceMetricsRuleTraceFilterSpanTagValue>;
 }
@@ -411,8 +504,9 @@ export interface TraceMetricsRuleTraceFilterSpanTagNumericValue {
 }
 
 export interface TraceMetricsRuleTraceFilterSpanTagValue {
+    inValues?: pulumi.Input<pulumi.Input<string>[]>;
     match?: pulumi.Input<string>;
-    value: pulumi.Input<string>;
+    value?: pulumi.Input<string>;
 }
 
 export interface TraceMetricsRuleTraceFilterTrace {
@@ -421,8 +515,16 @@ export interface TraceMetricsRuleTraceFilterTrace {
 }
 
 export interface TraceMetricsRuleTraceFilterTraceDuration {
+    /**
+     * @deprecated use max_secs instead
+     */
     maxSeconds?: pulumi.Input<number>;
+    maxSecs?: pulumi.Input<number>;
+    /**
+     * @deprecated use min_secs instead
+     */
     minSeconds?: pulumi.Input<number>;
+    minSecs?: pulumi.Input<number>;
 }
 
 export interface TraceMetricsRuleTraceFilterTraceError {
@@ -455,11 +557,23 @@ export interface TraceTailSamplingRulesRuleFilterSpan {
     parentService?: pulumi.Input<inputs.TraceTailSamplingRulesRuleFilterSpanParentService>;
     service?: pulumi.Input<inputs.TraceTailSamplingRulesRuleFilterSpanService>;
     spanCount?: pulumi.Input<inputs.TraceTailSamplingRulesRuleFilterSpanSpanCount>;
+    tag?: pulumi.Input<pulumi.Input<inputs.TraceTailSamplingRulesRuleFilterSpanTag>[]>;
+    /**
+     * @deprecated `tags` is deprecated, use `tag` instead.
+     */
     tags?: pulumi.Input<pulumi.Input<inputs.TraceTailSamplingRulesRuleFilterSpanTag>[]>;
 }
 
 export interface TraceTailSamplingRulesRuleFilterSpanDuration {
+    /**
+     * @deprecated use max_secs instead
+     */
+    maxSeconds?: pulumi.Input<number>;
     maxSecs?: pulumi.Input<number>;
+    /**
+     * @deprecated use min_secs instead
+     */
+    minSeconds?: pulumi.Input<number>;
     minSecs?: pulumi.Input<number>;
 }
 
@@ -468,23 +582,27 @@ export interface TraceTailSamplingRulesRuleFilterSpanError {
 }
 
 export interface TraceTailSamplingRulesRuleFilterSpanOperation {
+    inValues?: pulumi.Input<pulumi.Input<string>[]>;
     match?: pulumi.Input<string>;
-    value: pulumi.Input<string>;
+    value?: pulumi.Input<string>;
 }
 
 export interface TraceTailSamplingRulesRuleFilterSpanParentOperation {
+    inValues?: pulumi.Input<pulumi.Input<string>[]>;
     match?: pulumi.Input<string>;
-    value: pulumi.Input<string>;
+    value?: pulumi.Input<string>;
 }
 
 export interface TraceTailSamplingRulesRuleFilterSpanParentService {
+    inValues?: pulumi.Input<pulumi.Input<string>[]>;
     match?: pulumi.Input<string>;
-    value: pulumi.Input<string>;
+    value?: pulumi.Input<string>;
 }
 
 export interface TraceTailSamplingRulesRuleFilterSpanService {
+    inValues?: pulumi.Input<pulumi.Input<string>[]>;
     match?: pulumi.Input<string>;
-    value: pulumi.Input<string>;
+    value?: pulumi.Input<string>;
 }
 
 export interface TraceTailSamplingRulesRuleFilterSpanSpanCount {
@@ -504,8 +622,9 @@ export interface TraceTailSamplingRulesRuleFilterSpanTagNumericValue {
 }
 
 export interface TraceTailSamplingRulesRuleFilterSpanTagValue {
+    inValues?: pulumi.Input<pulumi.Input<string>[]>;
     match?: pulumi.Input<string>;
-    value: pulumi.Input<string>;
+    value?: pulumi.Input<string>;
 }
 
 export interface TraceTailSamplingRulesRuleFilterTrace {
@@ -514,7 +633,15 @@ export interface TraceTailSamplingRulesRuleFilterTrace {
 }
 
 export interface TraceTailSamplingRulesRuleFilterTraceDuration {
+    /**
+     * @deprecated use max_secs instead
+     */
+    maxSeconds?: pulumi.Input<number>;
     maxSecs?: pulumi.Input<number>;
+    /**
+     * @deprecated use min_secs instead
+     */
+    minSeconds?: pulumi.Input<number>;
     minSecs?: pulumi.Input<number>;
 }
 

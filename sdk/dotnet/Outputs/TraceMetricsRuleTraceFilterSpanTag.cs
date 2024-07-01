@@ -13,13 +13,13 @@ namespace Pulumi.Chronosphere.Outputs
     [OutputType]
     public sealed class TraceMetricsRuleTraceFilterSpanTag
     {
-        public readonly string Key;
+        public readonly string? Key;
         public readonly Outputs.TraceMetricsRuleTraceFilterSpanTagNumericValue? NumericValue;
         public readonly Outputs.TraceMetricsRuleTraceFilterSpanTagValue? Value;
 
         [OutputConstructor]
         private TraceMetricsRuleTraceFilterSpanTag(
-            string key,
+            string? key,
 
             Outputs.TraceMetricsRuleTraceFilterSpanTagNumericValue? numericValue,
 

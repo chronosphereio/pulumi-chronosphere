@@ -21,6 +21,9 @@ namespace Pulumi.Chronosphere
         [Output("conditionalDrop")]
         public Output<bool?> ConditionalDrop { get; private set; } = null!;
 
+        [Output("dropNanValue")]
+        public Output<bool?> DropNanValue { get; private set; } = null!;
+
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
@@ -91,6 +94,9 @@ namespace Pulumi.Chronosphere
         [Input("conditionalDrop")]
         public Input<bool>? ConditionalDrop { get; set; }
 
+        [Input("dropNanValue")]
+        public Input<bool>? DropNanValue { get; set; }
+
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
@@ -127,6 +133,9 @@ namespace Pulumi.Chronosphere
 
         [Input("conditionalDrop")]
         public Input<bool>? ConditionalDrop { get; set; }
+
+        [Input("dropNanValue")]
+        public Input<bool>? DropNanValue { get; set; }
 
         [Input("name")]
         public Input<string>? Name { get; set; }

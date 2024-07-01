@@ -25,6 +25,13 @@ public final class GcpMetricsIntegrationArgs extends com.pulumi.resources.Resour
         return Optional.ofNullable(this.metricGroups);
     }
 
+    @Import(name="name", required=true)
+    private Output<String> name;
+
+    public Output<String> name() {
+        return this.name;
+    }
+
     @Import(name="serviceAccount")
     private @Nullable Output<GcpMetricsIntegrationServiceAccountArgs> serviceAccount;
 
@@ -43,6 +50,7 @@ public final class GcpMetricsIntegrationArgs extends com.pulumi.resources.Resour
 
     private GcpMetricsIntegrationArgs(GcpMetricsIntegrationArgs $) {
         this.metricGroups = $.metricGroups;
+        this.name = $.name;
         this.serviceAccount = $.serviceAccount;
         this.slug = $.slug;
     }
@@ -78,6 +86,15 @@ public final class GcpMetricsIntegrationArgs extends com.pulumi.resources.Resour
             return metricGroups(List.of(metricGroups));
         }
 
+        public Builder name(Output<String> name) {
+            $.name = name;
+            return this;
+        }
+
+        public Builder name(String name) {
+            return name(Output.of(name));
+        }
+
         public Builder serviceAccount(@Nullable Output<GcpMetricsIntegrationServiceAccountArgs> serviceAccount) {
             $.serviceAccount = serviceAccount;
             return this;
@@ -97,6 +114,7 @@ public final class GcpMetricsIntegrationArgs extends com.pulumi.resources.Resour
         }
 
         public GcpMetricsIntegrationArgs build() {
+            $.name = Objects.requireNonNull($.name, "expected parameter 'name' to be non-null");
             return $;
         }
     }

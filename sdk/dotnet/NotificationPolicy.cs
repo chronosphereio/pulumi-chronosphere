@@ -27,9 +27,6 @@ namespace Pulumi.Chronosphere
         [Output("routes")]
         public Output<ImmutableArray<Outputs.NotificationPolicyRoute>> Routes { get; private set; } = null!;
 
-        [Output("rules")]
-        public Output<ImmutableArray<Outputs.NotificationPolicyRule>> Rules { get; private set; } = null!;
-
         [Output("slug")]
         public Output<string> Slug { get; private set; } = null!;
 
@@ -104,15 +101,6 @@ namespace Pulumi.Chronosphere
             set => _routes = value;
         }
 
-        [Input("rules")]
-        private InputList<Inputs.NotificationPolicyRuleArgs>? _rules;
-        [Obsolete(@"`rule` is deprecated, use `route` instead.")]
-        public InputList<Inputs.NotificationPolicyRuleArgs> Rules
-        {
-            get => _rules ?? (_rules = new InputList<Inputs.NotificationPolicyRuleArgs>());
-            set => _rules = value;
-        }
-
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 
@@ -150,15 +138,6 @@ namespace Pulumi.Chronosphere
         {
             get => _routes ?? (_routes = new InputList<Inputs.NotificationPolicyRouteGetArgs>());
             set => _routes = value;
-        }
-
-        [Input("rules")]
-        private InputList<Inputs.NotificationPolicyRuleGetArgs>? _rules;
-        [Obsolete(@"`rule` is deprecated, use `route` instead.")]
-        public InputList<Inputs.NotificationPolicyRuleGetArgs> Rules
-        {
-            get => _rules ?? (_rules = new InputList<Inputs.NotificationPolicyRuleGetArgs>());
-            set => _rules = value;
         }
 
         [Input("slug")]

@@ -28,6 +28,12 @@ public class Dashboard extends com.pulumi.resources.CustomResource {
     public Output<String> dashboardJson() {
         return this.dashboardJson;
     }
+    @Export(name="name", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> name;
+
+    public Output<Optional<String>> name() {
+        return Codegen.optional(this.name);
+    }
     @Export(name="slug", refs={String.class}, tree="[0]")
     private Output<String> slug;
 

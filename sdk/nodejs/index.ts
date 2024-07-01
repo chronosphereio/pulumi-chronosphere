@@ -30,10 +30,20 @@ export type Collection = import("./collection").Collection;
 export const Collection: typeof import("./collection").Collection = null as any;
 utilities.lazyLoad(exports, ["Collection"], () => require("./collection"));
 
+export { CollectionDataSourceArgs, CollectionDataSourceResult, CollectionDataSourceOutputArgs } from "./collectionDataSource";
+export const collectionDataSource: typeof import("./collectionDataSource").collectionDataSource = null as any;
+export const collectionDataSourceOutput: typeof import("./collectionDataSource").collectionDataSourceOutput = null as any;
+utilities.lazyLoad(exports, ["collectionDataSource","collectionDataSourceOutput"], () => require("./collectionDataSource"));
+
 export { DashboardArgs, DashboardState } from "./dashboard";
 export type Dashboard = import("./dashboard").Dashboard;
 export const Dashboard: typeof import("./dashboard").Dashboard = null as any;
 utilities.lazyLoad(exports, ["Dashboard"], () => require("./dashboard"));
+
+export { DatasetArgs, DatasetState } from "./dataset";
+export type Dataset = import("./dataset").Dataset;
+export const Dataset: typeof import("./dataset").Dataset = null as any;
+utilities.lazyLoad(exports, ["Dataset"], () => require("./dataset"));
 
 export { DerivedLabelArgs, DerivedLabelState } from "./derivedLabel";
 export type DerivedLabel = import("./derivedLabel").DerivedLabel;
@@ -60,11 +70,6 @@ export type GcpMetricsIntegration = import("./gcpMetricsIntegration").GcpMetrics
 export const GcpMetricsIntegration: typeof import("./gcpMetricsIntegration").GcpMetricsIntegration = null as any;
 utilities.lazyLoad(exports, ["GcpMetricsIntegration"], () => require("./gcpMetricsIntegration"));
 
-export { GrafanaDashboardArgs, GrafanaDashboardState } from "./grafanaDashboard";
-export type GrafanaDashboard = import("./grafanaDashboard").GrafanaDashboard;
-export const GrafanaDashboard: typeof import("./grafanaDashboard").GrafanaDashboard = null as any;
-utilities.lazyLoad(exports, ["GrafanaDashboard"], () => require("./grafanaDashboard"));
-
 export { MappingRuleArgs, MappingRuleState } from "./mappingRule";
 export type MappingRule = import("./mappingRule").MappingRule;
 export const MappingRule: typeof import("./mappingRule").MappingRule = null as any;
@@ -80,15 +85,15 @@ export type NotificationPolicy = import("./notificationPolicy").NotificationPoli
 export const NotificationPolicy: typeof import("./notificationPolicy").NotificationPolicy = null as any;
 utilities.lazyLoad(exports, ["NotificationPolicy"], () => require("./notificationPolicy"));
 
-export { NotificationPolicyDataSourceArgs, NotificationPolicyDataSourceResult, NotificationPolicyDataSourceOutputArgs } from "./notificationPolicyDataSource";
-export const notificationPolicyDataSource: typeof import("./notificationPolicyDataSource").notificationPolicyDataSource = null as any;
-export const notificationPolicyDataSourceOutput: typeof import("./notificationPolicyDataSource").notificationPolicyDataSourceOutput = null as any;
-utilities.lazyLoad(exports, ["notificationPolicyDataSource","notificationPolicyDataSourceOutput"], () => require("./notificationPolicyDataSource"));
-
 export { OpsgenieAlertNotifierArgs, OpsgenieAlertNotifierState } from "./opsgenieAlertNotifier";
 export type OpsgenieAlertNotifier = import("./opsgenieAlertNotifier").OpsgenieAlertNotifier;
 export const OpsgenieAlertNotifier: typeof import("./opsgenieAlertNotifier").OpsgenieAlertNotifier = null as any;
 utilities.lazyLoad(exports, ["OpsgenieAlertNotifier"], () => require("./opsgenieAlertNotifier"));
+
+export { OtelMetricsIngestionArgs, OtelMetricsIngestionState } from "./otelMetricsIngestion";
+export type OtelMetricsIngestion = import("./otelMetricsIngestion").OtelMetricsIngestion;
+export const OtelMetricsIngestion: typeof import("./otelMetricsIngestion").OtelMetricsIngestion = null as any;
+utilities.lazyLoad(exports, ["OtelMetricsIngestion"], () => require("./otelMetricsIngestion"));
 
 export { PagerdutyAlertNotifierArgs, PagerdutyAlertNotifierState } from "./pagerdutyAlertNotifier";
 export type PagerdutyAlertNotifier = import("./pagerdutyAlertNotifier").PagerdutyAlertNotifier;
@@ -184,6 +189,8 @@ const _module = {
                 return new Collection(name, <any>undefined, { urn })
             case "chronosphere:index/dashboard:Dashboard":
                 return new Dashboard(name, <any>undefined, { urn })
+            case "chronosphere:index/dataset:Dataset":
+                return new Dataset(name, <any>undefined, { urn })
             case "chronosphere:index/derivedLabel:DerivedLabel":
                 return new DerivedLabel(name, <any>undefined, { urn })
             case "chronosphere:index/derivedMetric:DerivedMetric":
@@ -194,8 +201,6 @@ const _module = {
                 return new EmailAlertNotifier(name, <any>undefined, { urn })
             case "chronosphere:index/gcpMetricsIntegration:GcpMetricsIntegration":
                 return new GcpMetricsIntegration(name, <any>undefined, { urn })
-            case "chronosphere:index/grafanaDashboard:GrafanaDashboard":
-                return new GrafanaDashboard(name, <any>undefined, { urn })
             case "chronosphere:index/mappingRule:MappingRule":
                 return new MappingRule(name, <any>undefined, { urn })
             case "chronosphere:index/monitor:Monitor":
@@ -204,6 +209,8 @@ const _module = {
                 return new NotificationPolicy(name, <any>undefined, { urn })
             case "chronosphere:index/opsgenieAlertNotifier:OpsgenieAlertNotifier":
                 return new OpsgenieAlertNotifier(name, <any>undefined, { urn })
+            case "chronosphere:index/otelMetricsIngestion:OtelMetricsIngestion":
+                return new OtelMetricsIngestion(name, <any>undefined, { urn })
             case "chronosphere:index/pagerdutyAlertNotifier:PagerdutyAlertNotifier":
                 return new PagerdutyAlertNotifier(name, <any>undefined, { urn })
             case "chronosphere:index/recordingRule:RecordingRule":
@@ -238,16 +245,17 @@ pulumi.runtime.registerResourceModule("chronosphere", "index/bucket", _module)
 pulumi.runtime.registerResourceModule("chronosphere", "index/classicDashboard", _module)
 pulumi.runtime.registerResourceModule("chronosphere", "index/collection", _module)
 pulumi.runtime.registerResourceModule("chronosphere", "index/dashboard", _module)
+pulumi.runtime.registerResourceModule("chronosphere", "index/dataset", _module)
 pulumi.runtime.registerResourceModule("chronosphere", "index/derivedLabel", _module)
 pulumi.runtime.registerResourceModule("chronosphere", "index/derivedMetric", _module)
 pulumi.runtime.registerResourceModule("chronosphere", "index/dropRule", _module)
 pulumi.runtime.registerResourceModule("chronosphere", "index/emailAlertNotifier", _module)
 pulumi.runtime.registerResourceModule("chronosphere", "index/gcpMetricsIntegration", _module)
-pulumi.runtime.registerResourceModule("chronosphere", "index/grafanaDashboard", _module)
 pulumi.runtime.registerResourceModule("chronosphere", "index/mappingRule", _module)
 pulumi.runtime.registerResourceModule("chronosphere", "index/monitor", _module)
 pulumi.runtime.registerResourceModule("chronosphere", "index/notificationPolicy", _module)
 pulumi.runtime.registerResourceModule("chronosphere", "index/opsgenieAlertNotifier", _module)
+pulumi.runtime.registerResourceModule("chronosphere", "index/otelMetricsIngestion", _module)
 pulumi.runtime.registerResourceModule("chronosphere", "index/pagerdutyAlertNotifier", _module)
 pulumi.runtime.registerResourceModule("chronosphere", "index/recordingRule", _module)
 pulumi.runtime.registerResourceModule("chronosphere", "index/resourcePoolsConfig", _module)
