@@ -38,9 +38,21 @@ public final class MappingRuleArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.drop);
     }
 
+    /**
+     * @deprecated
+     * drop timestamp is no longer supported
+     * 
+     */
+    @Deprecated /* drop timestamp is no longer supported */
     @Import(name="dropTimestamp")
     private @Nullable Output<Boolean> dropTimestamp;
 
+    /**
+     * @deprecated
+     * drop timestamp is no longer supported
+     * 
+     */
+    @Deprecated /* drop timestamp is no longer supported */
     public Optional<Output<Boolean>> dropTimestamp() {
         return Optional.ofNullable(this.dropTimestamp);
     }
@@ -80,9 +92,21 @@ public final class MappingRuleArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.slug);
     }
 
+    /**
+     * @deprecated
+     * use `interval` instead
+     * 
+     */
+    @Deprecated /* use `interval` instead */
     @Import(name="storagePolicy")
     private @Nullable Output<MappingRuleStoragePolicyArgs> storagePolicy;
 
+    /**
+     * @deprecated
+     * use `interval` instead
+     * 
+     */
+    @Deprecated /* use `interval` instead */
     public Optional<Output<MappingRuleStoragePolicyArgs>> storagePolicy() {
         return Optional.ofNullable(this.storagePolicy);
     }
@@ -147,11 +171,27 @@ public final class MappingRuleArgs extends com.pulumi.resources.ResourceArgs {
             return drop(Output.of(drop));
         }
 
+        /**
+         * @return builder
+         * 
+         * @deprecated
+         * drop timestamp is no longer supported
+         * 
+         */
+        @Deprecated /* drop timestamp is no longer supported */
         public Builder dropTimestamp(@Nullable Output<Boolean> dropTimestamp) {
             $.dropTimestamp = dropTimestamp;
             return this;
         }
 
+        /**
+         * @return builder
+         * 
+         * @deprecated
+         * drop timestamp is no longer supported
+         * 
+         */
+        @Deprecated /* drop timestamp is no longer supported */
         public Builder dropTimestamp(Boolean dropTimestamp) {
             return dropTimestamp(Output.of(dropTimestamp));
         }
@@ -201,11 +241,27 @@ public final class MappingRuleArgs extends com.pulumi.resources.ResourceArgs {
             return slug(Output.of(slug));
         }
 
+        /**
+         * @return builder
+         * 
+         * @deprecated
+         * use `interval` instead
+         * 
+         */
+        @Deprecated /* use `interval` instead */
         public Builder storagePolicy(@Nullable Output<MappingRuleStoragePolicyArgs> storagePolicy) {
             $.storagePolicy = storagePolicy;
             return this;
         }
 
+        /**
+         * @return builder
+         * 
+         * @deprecated
+         * use `interval` instead
+         * 
+         */
+        @Deprecated /* use `interval` instead */
         public Builder storagePolicy(MappingRuleStoragePolicyArgs storagePolicy) {
             return storagePolicy(Output.of(storagePolicy));
         }

@@ -14,16 +14,24 @@ namespace Pulumi.Chronosphere.Outputs
     public sealed class TraceMetricsRuleTraceFilterSpanDuration
     {
         public readonly double? MaxSeconds;
+        public readonly double? MaxSecs;
         public readonly double? MinSeconds;
+        public readonly double? MinSecs;
 
         [OutputConstructor]
         private TraceMetricsRuleTraceFilterSpanDuration(
             double? maxSeconds,
 
-            double? minSeconds)
+            double? maxSecs,
+
+            double? minSeconds,
+
+            double? minSecs)
         {
             MaxSeconds = maxSeconds;
+            MaxSecs = maxSecs;
             MinSeconds = minSeconds;
+            MinSecs = minSecs;
         }
     }
 }

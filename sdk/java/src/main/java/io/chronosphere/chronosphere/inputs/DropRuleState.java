@@ -40,6 +40,13 @@ public final class DropRuleState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.conditionalDrop);
     }
 
+    @Import(name="dropNanValue")
+    private @Nullable Output<Boolean> dropNanValue;
+
+    public Optional<Output<Boolean>> dropNanValue() {
+        return Optional.ofNullable(this.dropNanValue);
+    }
+
     @Import(name="name")
     private @Nullable Output<String> name;
 
@@ -81,6 +88,7 @@ public final class DropRuleState extends com.pulumi.resources.ResourceArgs {
         this.activatedDropDuration = $.activatedDropDuration;
         this.active = $.active;
         this.conditionalDrop = $.conditionalDrop;
+        this.dropNanValue = $.dropNanValue;
         this.name = $.name;
         this.queries = $.queries;
         this.rateLimitThreshold = $.rateLimitThreshold;
@@ -131,6 +139,15 @@ public final class DropRuleState extends com.pulumi.resources.ResourceArgs {
 
         public Builder conditionalDrop(Boolean conditionalDrop) {
             return conditionalDrop(Output.of(conditionalDrop));
+        }
+
+        public Builder dropNanValue(@Nullable Output<Boolean> dropNanValue) {
+            $.dropNanValue = dropNanValue;
+            return this;
+        }
+
+        public Builder dropNanValue(Boolean dropNanValue) {
+            return dropNanValue(Output.of(dropNanValue));
         }
 
         public Builder name(@Nullable Output<String> name) {

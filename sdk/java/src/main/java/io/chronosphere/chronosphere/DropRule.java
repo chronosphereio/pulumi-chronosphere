@@ -38,6 +38,12 @@ public class DropRule extends com.pulumi.resources.CustomResource {
     public Output<Optional<Boolean>> conditionalDrop() {
         return Codegen.optional(this.conditionalDrop);
     }
+    @Export(name="dropNanValue", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> dropNanValue;
+
+    public Output<Optional<Boolean>> dropNanValue() {
+        return Codegen.optional(this.dropNanValue);
+    }
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 

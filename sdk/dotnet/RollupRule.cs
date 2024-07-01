@@ -27,6 +27,9 @@ namespace Pulumi.Chronosphere
         [Output("filter")]
         public Output<string> Filter { get; private set; } = null!;
 
+        [Output("graphiteLabelPolicy")]
+        public Output<Outputs.RollupRuleGraphiteLabelPolicy?> GraphiteLabelPolicy { get; private set; } = null!;
+
         [Output("groupBies")]
         public Output<ImmutableArray<string>> GroupBies { get; private set; } = null!;
 
@@ -123,6 +126,9 @@ namespace Pulumi.Chronosphere
         [Input("filter", required: true)]
         public Input<string> Filter { get; set; } = null!;
 
+        [Input("graphiteLabelPolicy")]
+        public Input<Inputs.RollupRuleGraphiteLabelPolicyArgs>? GraphiteLabelPolicy { get; set; }
+
         [Input("groupBies")]
         private InputList<string>? _groupBies;
         public InputList<string> GroupBies
@@ -185,6 +191,9 @@ namespace Pulumi.Chronosphere
 
         [Input("filter")]
         public Input<string>? Filter { get; set; }
+
+        [Input("graphiteLabelPolicy")]
+        public Input<Inputs.RollupRuleGraphiteLabelPolicyGetArgs>? GraphiteLabelPolicy { get; set; }
 
         [Input("groupBies")]
         private InputList<string>? _groupBies;

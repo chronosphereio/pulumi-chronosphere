@@ -58,6 +58,9 @@ class OpsgenieAlertNotifierArgs:
         if priority is not None:
             pulumi.set(__self__, "priority", priority)
         if proxy_url is not None:
+            warnings.warn("""custom proxy URLs are not supported""", DeprecationWarning)
+            pulumi.log.warn("""proxy_url is deprecated: custom proxy URLs are not supported""")
+        if proxy_url is not None:
             pulumi.set(__self__, "proxy_url", proxy_url)
         if responders is not None:
             pulumi.set(__self__, "responders", responders)
@@ -174,6 +177,9 @@ class OpsgenieAlertNotifierArgs:
     @property
     @pulumi.getter(name="proxyUrl")
     def proxy_url(self) -> Optional[pulumi.Input[str]]:
+        warnings.warn("""custom proxy URLs are not supported""", DeprecationWarning)
+        pulumi.log.warn("""proxy_url is deprecated: custom proxy URLs are not supported""")
+
         return pulumi.get(self, "proxy_url")
 
     @proxy_url.setter
@@ -281,6 +287,9 @@ class _OpsgenieAlertNotifierState:
             pulumi.set(__self__, "note", note)
         if priority is not None:
             pulumi.set(__self__, "priority", priority)
+        if proxy_url is not None:
+            warnings.warn("""custom proxy URLs are not supported""", DeprecationWarning)
+            pulumi.log.warn("""proxy_url is deprecated: custom proxy URLs are not supported""")
         if proxy_url is not None:
             pulumi.set(__self__, "proxy_url", proxy_url)
         if responders is not None:
@@ -398,6 +407,9 @@ class _OpsgenieAlertNotifierState:
     @property
     @pulumi.getter(name="proxyUrl")
     def proxy_url(self) -> Optional[pulumi.Input[str]]:
+        warnings.warn("""custom proxy URLs are not supported""", DeprecationWarning)
+        pulumi.log.warn("""proxy_url is deprecated: custom proxy URLs are not supported""")
+
         return pulumi.get(self, "proxy_url")
 
     @proxy_url.setter
@@ -680,6 +692,9 @@ class OpsgenieAlertNotifier(pulumi.CustomResource):
     @property
     @pulumi.getter(name="proxyUrl")
     def proxy_url(self) -> pulumi.Output[Optional[str]]:
+        warnings.warn("""custom proxy URLs are not supported""", DeprecationWarning)
+        pulumi.log.warn("""proxy_url is deprecated: custom proxy URLs are not supported""")
+
         return pulumi.get(self, "proxy_url")
 
     @property

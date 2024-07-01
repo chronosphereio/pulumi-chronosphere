@@ -6,6 +6,7 @@ package io.chronosphere.chronosphere.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -15,6 +16,13 @@ public final class TraceMetricsRuleTraceFilterSpanServiceArgs extends com.pulumi
 
     public static final TraceMetricsRuleTraceFilterSpanServiceArgs Empty = new TraceMetricsRuleTraceFilterSpanServiceArgs();
 
+    @Import(name="inValues")
+    private @Nullable Output<List<String>> inValues;
+
+    public Optional<Output<List<String>>> inValues() {
+        return Optional.ofNullable(this.inValues);
+    }
+
     @Import(name="match")
     private @Nullable Output<String> match;
 
@@ -22,16 +30,17 @@ public final class TraceMetricsRuleTraceFilterSpanServiceArgs extends com.pulumi
         return Optional.ofNullable(this.match);
     }
 
-    @Import(name="value", required=true)
-    private Output<String> value;
+    @Import(name="value")
+    private @Nullable Output<String> value;
 
-    public Output<String> value() {
-        return this.value;
+    public Optional<Output<String>> value() {
+        return Optional.ofNullable(this.value);
     }
 
     private TraceMetricsRuleTraceFilterSpanServiceArgs() {}
 
     private TraceMetricsRuleTraceFilterSpanServiceArgs(TraceMetricsRuleTraceFilterSpanServiceArgs $) {
+        this.inValues = $.inValues;
         this.match = $.match;
         this.value = $.value;
     }
@@ -54,6 +63,19 @@ public final class TraceMetricsRuleTraceFilterSpanServiceArgs extends com.pulumi
             $ = new TraceMetricsRuleTraceFilterSpanServiceArgs(Objects.requireNonNull(defaults));
         }
 
+        public Builder inValues(@Nullable Output<List<String>> inValues) {
+            $.inValues = inValues;
+            return this;
+        }
+
+        public Builder inValues(List<String> inValues) {
+            return inValues(Output.of(inValues));
+        }
+
+        public Builder inValues(String... inValues) {
+            return inValues(List.of(inValues));
+        }
+
         public Builder match(@Nullable Output<String> match) {
             $.match = match;
             return this;
@@ -63,7 +85,7 @@ public final class TraceMetricsRuleTraceFilterSpanServiceArgs extends com.pulumi
             return match(Output.of(match));
         }
 
-        public Builder value(Output<String> value) {
+        public Builder value(@Nullable Output<String> value) {
             $.value = value;
             return this;
         }
@@ -73,7 +95,6 @@ public final class TraceMetricsRuleTraceFilterSpanServiceArgs extends com.pulumi
         }
 
         public TraceMetricsRuleTraceFilterSpanServiceArgs build() {
-            $.value = Objects.requireNonNull($.value, "expected parameter 'value' to be non-null");
             return $;
         }
     }

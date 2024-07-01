@@ -36,6 +36,12 @@ public class MappingRule extends com.pulumi.resources.CustomResource {
     public Output<Optional<Boolean>> drop() {
         return Codegen.optional(this.drop);
     }
+    /**
+     * @deprecated
+     * drop timestamp is no longer supported
+     * 
+     */
+    @Deprecated /* drop timestamp is no longer supported */
     @Export(name="dropTimestamp", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> dropTimestamp;
 
@@ -72,6 +78,12 @@ public class MappingRule extends com.pulumi.resources.CustomResource {
     public Output<String> slug() {
         return this.slug;
     }
+    /**
+     * @deprecated
+     * use `interval` instead
+     * 
+     */
+    @Deprecated /* use `interval` instead */
     @Export(name="storagePolicy", refs={MappingRuleStoragePolicy.class}, tree="[0]")
     private Output</* @Nullable */ MappingRuleStoragePolicy> storagePolicy;
 

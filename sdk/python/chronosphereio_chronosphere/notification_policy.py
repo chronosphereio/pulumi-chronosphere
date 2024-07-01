@@ -20,7 +20,6 @@ class NotificationPolicyArgs:
                  notification_policy_data: Optional[pulumi.Input[str]] = None,
                  overrides: Optional[pulumi.Input[Sequence[pulumi.Input['NotificationPolicyOverrideArgs']]]] = None,
                  routes: Optional[pulumi.Input[Sequence[pulumi.Input['NotificationPolicyRouteArgs']]]] = None,
-                 rules: Optional[pulumi.Input[Sequence[pulumi.Input['NotificationPolicyRuleArgs']]]] = None,
                  slug: Optional[pulumi.Input[str]] = None,
                  team_id: Optional[pulumi.Input[str]] = None):
         """
@@ -34,11 +33,6 @@ class NotificationPolicyArgs:
             pulumi.set(__self__, "overrides", overrides)
         if routes is not None:
             pulumi.set(__self__, "routes", routes)
-        if rules is not None:
-            warnings.warn("""`rule` is deprecated, use `route` instead.""", DeprecationWarning)
-            pulumi.log.warn("""rules is deprecated: `rule` is deprecated, use `route` instead.""")
-        if rules is not None:
-            pulumi.set(__self__, "rules", rules)
         if slug is not None:
             pulumi.set(__self__, "slug", slug)
         if team_id is not None:
@@ -82,18 +76,6 @@ class NotificationPolicyArgs:
 
     @property
     @pulumi.getter
-    def rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NotificationPolicyRuleArgs']]]]:
-        warnings.warn("""`rule` is deprecated, use `route` instead.""", DeprecationWarning)
-        pulumi.log.warn("""rules is deprecated: `rule` is deprecated, use `route` instead.""")
-
-        return pulumi.get(self, "rules")
-
-    @rules.setter
-    def rules(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['NotificationPolicyRuleArgs']]]]):
-        pulumi.set(self, "rules", value)
-
-    @property
-    @pulumi.getter
     def slug(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "slug")
 
@@ -119,7 +101,6 @@ class _NotificationPolicyState:
                  notification_policy_data: Optional[pulumi.Input[str]] = None,
                  overrides: Optional[pulumi.Input[Sequence[pulumi.Input['NotificationPolicyOverrideArgs']]]] = None,
                  routes: Optional[pulumi.Input[Sequence[pulumi.Input['NotificationPolicyRouteArgs']]]] = None,
-                 rules: Optional[pulumi.Input[Sequence[pulumi.Input['NotificationPolicyRuleArgs']]]] = None,
                  slug: Optional[pulumi.Input[str]] = None,
                  team_id: Optional[pulumi.Input[str]] = None):
         """
@@ -135,11 +116,6 @@ class _NotificationPolicyState:
             pulumi.set(__self__, "overrides", overrides)
         if routes is not None:
             pulumi.set(__self__, "routes", routes)
-        if rules is not None:
-            warnings.warn("""`rule` is deprecated, use `route` instead.""", DeprecationWarning)
-            pulumi.log.warn("""rules is deprecated: `rule` is deprecated, use `route` instead.""")
-        if rules is not None:
-            pulumi.set(__self__, "rules", rules)
         if slug is not None:
             pulumi.set(__self__, "slug", slug)
         if team_id is not None:
@@ -192,18 +168,6 @@ class _NotificationPolicyState:
 
     @property
     @pulumi.getter
-    def rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NotificationPolicyRuleArgs']]]]:
-        warnings.warn("""`rule` is deprecated, use `route` instead.""", DeprecationWarning)
-        pulumi.log.warn("""rules is deprecated: `rule` is deprecated, use `route` instead.""")
-
-        return pulumi.get(self, "rules")
-
-    @rules.setter
-    def rules(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['NotificationPolicyRuleArgs']]]]):
-        pulumi.set(self, "rules", value)
-
-    @property
-    @pulumi.getter
     def slug(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "slug")
 
@@ -230,7 +194,6 @@ class NotificationPolicy(pulumi.CustomResource):
                  notification_policy_data: Optional[pulumi.Input[str]] = None,
                  overrides: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NotificationPolicyOverrideArgs']]]]] = None,
                  routes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NotificationPolicyRouteArgs']]]]] = None,
-                 rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NotificationPolicyRuleArgs']]]]] = None,
                  slug: Optional[pulumi.Input[str]] = None,
                  team_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -266,7 +229,6 @@ class NotificationPolicy(pulumi.CustomResource):
                  notification_policy_data: Optional[pulumi.Input[str]] = None,
                  overrides: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NotificationPolicyOverrideArgs']]]]] = None,
                  routes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NotificationPolicyRouteArgs']]]]] = None,
-                 rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NotificationPolicyRuleArgs']]]]] = None,
                  slug: Optional[pulumi.Input[str]] = None,
                  team_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -282,7 +244,6 @@ class NotificationPolicy(pulumi.CustomResource):
             __props__.__dict__["notification_policy_data"] = notification_policy_data
             __props__.__dict__["overrides"] = overrides
             __props__.__dict__["routes"] = routes
-            __props__.__dict__["rules"] = rules
             __props__.__dict__["slug"] = slug
             __props__.__dict__["team_id"] = team_id
             __props__.__dict__["is_independent"] = None
@@ -301,7 +262,6 @@ class NotificationPolicy(pulumi.CustomResource):
             notification_policy_data: Optional[pulumi.Input[str]] = None,
             overrides: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NotificationPolicyOverrideArgs']]]]] = None,
             routes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NotificationPolicyRouteArgs']]]]] = None,
-            rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NotificationPolicyRuleArgs']]]]] = None,
             slug: Optional[pulumi.Input[str]] = None,
             team_id: Optional[pulumi.Input[str]] = None) -> 'NotificationPolicy':
         """
@@ -321,7 +281,6 @@ class NotificationPolicy(pulumi.CustomResource):
         __props__.__dict__["notification_policy_data"] = notification_policy_data
         __props__.__dict__["overrides"] = overrides
         __props__.__dict__["routes"] = routes
-        __props__.__dict__["rules"] = rules
         __props__.__dict__["slug"] = slug
         __props__.__dict__["team_id"] = team_id
         return NotificationPolicy(resource_name, opts=opts, __props__=__props__)
@@ -350,14 +309,6 @@ class NotificationPolicy(pulumi.CustomResource):
     @pulumi.getter
     def routes(self) -> pulumi.Output[Optional[Sequence['outputs.NotificationPolicyRoute']]]:
         return pulumi.get(self, "routes")
-
-    @property
-    @pulumi.getter
-    def rules(self) -> pulumi.Output[Optional[Sequence['outputs.NotificationPolicyRule']]]:
-        warnings.warn("""`rule` is deprecated, use `route` instead.""", DeprecationWarning)
-        pulumi.log.warn("""rules is deprecated: `rule` is deprecated, use `route` instead.""")
-
-        return pulumi.get(self, "rules")
 
     @property
     @pulumi.getter

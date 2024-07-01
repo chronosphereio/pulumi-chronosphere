@@ -12,8 +12,14 @@ namespace Pulumi.Chronosphere.Inputs
 
     public sealed class TraceTailSamplingRulesRuleFilterSpanDurationArgs : global::Pulumi.ResourceArgs
     {
+        [Input("maxSeconds")]
+        public Input<double>? MaxSeconds { get; set; }
+
         [Input("maxSecs")]
         public Input<double>? MaxSecs { get; set; }
+
+        [Input("minSeconds")]
+        public Input<double>? MinSeconds { get; set; }
 
         [Input("minSecs")]
         public Input<double>? MinSecs { get; set; }

@@ -4,6 +4,7 @@
 package io.chronosphere.chronosphere.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import io.chronosphere.chronosphere.outputs.NotificationPolicyOverrideRouteGroupBy;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -12,11 +13,15 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class NotificationPolicyOverrideRoute {
+    private @Nullable NotificationPolicyOverrideRouteGroupBy groupBy;
     private @Nullable List<String> notifiers;
     private @Nullable String repeatInterval;
     private String severity;
 
     private NotificationPolicyOverrideRoute() {}
+    public Optional<NotificationPolicyOverrideRouteGroupBy> groupBy() {
+        return Optional.ofNullable(this.groupBy);
+    }
     public List<String> notifiers() {
         return this.notifiers == null ? List.of() : this.notifiers;
     }
@@ -36,17 +41,24 @@ public final class NotificationPolicyOverrideRoute {
     }
     @CustomType.Builder
     public static final class Builder {
+        private @Nullable NotificationPolicyOverrideRouteGroupBy groupBy;
         private @Nullable List<String> notifiers;
         private @Nullable String repeatInterval;
         private String severity;
         public Builder() {}
         public Builder(NotificationPolicyOverrideRoute defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.groupBy = defaults.groupBy;
     	      this.notifiers = defaults.notifiers;
     	      this.repeatInterval = defaults.repeatInterval;
     	      this.severity = defaults.severity;
         }
 
+        @CustomType.Setter
+        public Builder groupBy(@Nullable NotificationPolicyOverrideRouteGroupBy groupBy) {
+            this.groupBy = groupBy;
+            return this;
+        }
         @CustomType.Setter
         public Builder notifiers(@Nullable List<String> notifiers) {
             this.notifiers = notifiers;
@@ -67,6 +79,7 @@ public final class NotificationPolicyOverrideRoute {
         }
         public NotificationPolicyOverrideRoute build() {
             final var o = new NotificationPolicyOverrideRoute();
+            o.groupBy = groupBy;
             o.notifiers = notifiers;
             o.repeatInterval = repeatInterval;
             o.severity = severity;

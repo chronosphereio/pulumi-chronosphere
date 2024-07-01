@@ -39,6 +39,7 @@ export class RollupRule extends pulumi.CustomResource {
     public readonly dropRaw!: pulumi.Output<boolean | undefined>;
     public readonly excludeBies!: pulumi.Output<string[] | undefined>;
     public readonly filter!: pulumi.Output<string>;
+    public readonly graphiteLabelPolicy!: pulumi.Output<outputs.RollupRuleGraphiteLabelPolicy | undefined>;
     public readonly groupBies!: pulumi.Output<string[] | undefined>;
     public readonly interval!: pulumi.Output<string | undefined>;
     public readonly metricType!: pulumi.Output<string>;
@@ -48,6 +49,9 @@ export class RollupRule extends pulumi.CustomResource {
     public readonly newMetric!: pulumi.Output<string | undefined>;
     public readonly permissive!: pulumi.Output<boolean | undefined>;
     public readonly slug!: pulumi.Output<string>;
+    /**
+     * @deprecated use `interval` instead
+     */
     public readonly storagePolicies!: pulumi.Output<outputs.RollupRuleStoragePolicies>;
 
     /**
@@ -68,6 +72,7 @@ export class RollupRule extends pulumi.CustomResource {
             resourceInputs["dropRaw"] = state ? state.dropRaw : undefined;
             resourceInputs["excludeBies"] = state ? state.excludeBies : undefined;
             resourceInputs["filter"] = state ? state.filter : undefined;
+            resourceInputs["graphiteLabelPolicy"] = state ? state.graphiteLabelPolicy : undefined;
             resourceInputs["groupBies"] = state ? state.groupBies : undefined;
             resourceInputs["interval"] = state ? state.interval : undefined;
             resourceInputs["metricType"] = state ? state.metricType : undefined;
@@ -97,6 +102,7 @@ export class RollupRule extends pulumi.CustomResource {
             resourceInputs["dropRaw"] = args ? args.dropRaw : undefined;
             resourceInputs["excludeBies"] = args ? args.excludeBies : undefined;
             resourceInputs["filter"] = args ? args.filter : undefined;
+            resourceInputs["graphiteLabelPolicy"] = args ? args.graphiteLabelPolicy : undefined;
             resourceInputs["groupBies"] = args ? args.groupBies : undefined;
             resourceInputs["interval"] = args ? args.interval : undefined;
             resourceInputs["metricType"] = args ? args.metricType : undefined;
@@ -122,6 +128,7 @@ export interface RollupRuleState {
     dropRaw?: pulumi.Input<boolean>;
     excludeBies?: pulumi.Input<pulumi.Input<string>[]>;
     filter?: pulumi.Input<string>;
+    graphiteLabelPolicy?: pulumi.Input<inputs.RollupRuleGraphiteLabelPolicy>;
     groupBies?: pulumi.Input<pulumi.Input<string>[]>;
     interval?: pulumi.Input<string>;
     metricType?: pulumi.Input<string>;
@@ -131,6 +138,9 @@ export interface RollupRuleState {
     newMetric?: pulumi.Input<string>;
     permissive?: pulumi.Input<boolean>;
     slug?: pulumi.Input<string>;
+    /**
+     * @deprecated use `interval` instead
+     */
     storagePolicies?: pulumi.Input<inputs.RollupRuleStoragePolicies>;
 }
 
@@ -143,6 +153,7 @@ export interface RollupRuleArgs {
     dropRaw?: pulumi.Input<boolean>;
     excludeBies?: pulumi.Input<pulumi.Input<string>[]>;
     filter: pulumi.Input<string>;
+    graphiteLabelPolicy?: pulumi.Input<inputs.RollupRuleGraphiteLabelPolicy>;
     groupBies?: pulumi.Input<pulumi.Input<string>[]>;
     interval?: pulumi.Input<string>;
     metricType: pulumi.Input<string>;
@@ -152,5 +163,8 @@ export interface RollupRuleArgs {
     newMetric?: pulumi.Input<string>;
     permissive?: pulumi.Input<boolean>;
     slug: pulumi.Input<string>;
+    /**
+     * @deprecated use `interval` instead
+     */
     storagePolicies?: pulumi.Input<inputs.RollupRuleStoragePolicies>;
 }

@@ -38,6 +38,9 @@ class MappingRuleArgs:
         if drop is not None:
             pulumi.set(__self__, "drop", drop)
         if drop_timestamp is not None:
+            warnings.warn("""drop timestamp is no longer supported""", DeprecationWarning)
+            pulumi.log.warn("""drop_timestamp is deprecated: drop timestamp is no longer supported""")
+        if drop_timestamp is not None:
             pulumi.set(__self__, "drop_timestamp", drop_timestamp)
         if interval is not None:
             pulumi.set(__self__, "interval", interval)
@@ -45,6 +48,9 @@ class MappingRuleArgs:
             pulumi.set(__self__, "mode", mode)
         if slug is not None:
             pulumi.set(__self__, "slug", slug)
+        if storage_policy is not None:
+            warnings.warn("""use `interval` instead""", DeprecationWarning)
+            pulumi.log.warn("""storage_policy is deprecated: use `interval` instead""")
         if storage_policy is not None:
             pulumi.set(__self__, "storage_policy", storage_policy)
 
@@ -96,6 +102,9 @@ class MappingRuleArgs:
     @property
     @pulumi.getter(name="dropTimestamp")
     def drop_timestamp(self) -> Optional[pulumi.Input[bool]]:
+        warnings.warn("""drop timestamp is no longer supported""", DeprecationWarning)
+        pulumi.log.warn("""drop_timestamp is deprecated: drop timestamp is no longer supported""")
+
         return pulumi.get(self, "drop_timestamp")
 
     @drop_timestamp.setter
@@ -132,6 +141,9 @@ class MappingRuleArgs:
     @property
     @pulumi.getter(name="storagePolicy")
     def storage_policy(self) -> Optional[pulumi.Input['MappingRuleStoragePolicyArgs']]:
+        warnings.warn("""use `interval` instead""", DeprecationWarning)
+        pulumi.log.warn("""storage_policy is deprecated: use `interval` instead""")
+
         return pulumi.get(self, "storage_policy")
 
     @storage_policy.setter
@@ -162,6 +174,9 @@ class _MappingRuleState:
         if drop is not None:
             pulumi.set(__self__, "drop", drop)
         if drop_timestamp is not None:
+            warnings.warn("""drop timestamp is no longer supported""", DeprecationWarning)
+            pulumi.log.warn("""drop_timestamp is deprecated: drop timestamp is no longer supported""")
+        if drop_timestamp is not None:
             pulumi.set(__self__, "drop_timestamp", drop_timestamp)
         if filter is not None:
             pulumi.set(__self__, "filter", filter)
@@ -173,6 +188,9 @@ class _MappingRuleState:
             pulumi.set(__self__, "name", name)
         if slug is not None:
             pulumi.set(__self__, "slug", slug)
+        if storage_policy is not None:
+            warnings.warn("""use `interval` instead""", DeprecationWarning)
+            pulumi.log.warn("""storage_policy is deprecated: use `interval` instead""")
         if storage_policy is not None:
             pulumi.set(__self__, "storage_policy", storage_policy)
 
@@ -206,6 +224,9 @@ class _MappingRuleState:
     @property
     @pulumi.getter(name="dropTimestamp")
     def drop_timestamp(self) -> Optional[pulumi.Input[bool]]:
+        warnings.warn("""drop timestamp is no longer supported""", DeprecationWarning)
+        pulumi.log.warn("""drop_timestamp is deprecated: drop timestamp is no longer supported""")
+
         return pulumi.get(self, "drop_timestamp")
 
     @drop_timestamp.setter
@@ -260,6 +281,9 @@ class _MappingRuleState:
     @property
     @pulumi.getter(name="storagePolicy")
     def storage_policy(self) -> Optional[pulumi.Input['MappingRuleStoragePolicyArgs']]:
+        warnings.warn("""use `interval` instead""", DeprecationWarning)
+        pulumi.log.warn("""storage_policy is deprecated: use `interval` instead""")
+
         return pulumi.get(self, "storage_policy")
 
     @storage_policy.setter
@@ -406,6 +430,9 @@ class MappingRule(pulumi.CustomResource):
     @property
     @pulumi.getter(name="dropTimestamp")
     def drop_timestamp(self) -> pulumi.Output[Optional[bool]]:
+        warnings.warn("""drop timestamp is no longer supported""", DeprecationWarning)
+        pulumi.log.warn("""drop_timestamp is deprecated: drop timestamp is no longer supported""")
+
         return pulumi.get(self, "drop_timestamp")
 
     @property
@@ -436,5 +463,8 @@ class MappingRule(pulumi.CustomResource):
     @property
     @pulumi.getter(name="storagePolicy")
     def storage_policy(self) -> pulumi.Output[Optional['outputs.MappingRuleStoragePolicy']]:
+        warnings.warn("""use `interval` instead""", DeprecationWarning)
+        pulumi.log.warn("""storage_policy is deprecated: use `interval` instead""")
+
         return pulumi.get(self, "storage_policy")
 

@@ -15,8 +15,14 @@ namespace Pulumi.Chronosphere.Inputs
         [Input("maxSeconds")]
         public Input<double>? MaxSeconds { get; set; }
 
+        [Input("maxSecs")]
+        public Input<double>? MaxSecs { get; set; }
+
         [Input("minSeconds")]
         public Input<double>? MinSeconds { get; set; }
+
+        [Input("minSecs")]
+        public Input<double>? MinSecs { get; set; }
 
         public TraceMetricsRuleTraceFilterTraceDurationGetArgs()
         {

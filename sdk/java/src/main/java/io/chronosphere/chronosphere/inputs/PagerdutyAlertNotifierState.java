@@ -111,9 +111,21 @@ public final class PagerdutyAlertNotifierState extends com.pulumi.resources.Reso
         return Optional.ofNullable(this.name);
     }
 
+    /**
+     * @deprecated
+     * custom proxy URLs are not supported
+     * 
+     */
+    @Deprecated /* custom proxy URLs are not supported */
     @Import(name="proxyUrl")
     private @Nullable Output<String> proxyUrl;
 
+    /**
+     * @deprecated
+     * custom proxy URLs are not supported
+     * 
+     */
+    @Deprecated /* custom proxy URLs are not supported */
     public Optional<Output<String>> proxyUrl() {
         return Optional.ofNullable(this.proxyUrl);
     }
@@ -336,11 +348,27 @@ public final class PagerdutyAlertNotifierState extends com.pulumi.resources.Reso
             return name(Output.of(name));
         }
 
+        /**
+         * @return builder
+         * 
+         * @deprecated
+         * custom proxy URLs are not supported
+         * 
+         */
+        @Deprecated /* custom proxy URLs are not supported */
         public Builder proxyUrl(@Nullable Output<String> proxyUrl) {
             $.proxyUrl = proxyUrl;
             return this;
         }
 
+        /**
+         * @return builder
+         * 
+         * @deprecated
+         * custom proxy URLs are not supported
+         * 
+         */
+        @Deprecated /* custom proxy URLs are not supported */
         public Builder proxyUrl(String proxyUrl) {
             return proxyUrl(Output.of(proxyUrl));
         }

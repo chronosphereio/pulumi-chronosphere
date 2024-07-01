@@ -13,13 +13,13 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class TraceMetricsRuleTraceFilterSpanTag {
-    private String key;
+    private @Nullable String key;
     private @Nullable TraceMetricsRuleTraceFilterSpanTagNumericValue numericValue;
     private @Nullable TraceMetricsRuleTraceFilterSpanTagValue value;
 
     private TraceMetricsRuleTraceFilterSpanTag() {}
-    public String key() {
-        return this.key;
+    public Optional<String> key() {
+        return Optional.ofNullable(this.key);
     }
     public Optional<TraceMetricsRuleTraceFilterSpanTagNumericValue> numericValue() {
         return Optional.ofNullable(this.numericValue);
@@ -37,7 +37,7 @@ public final class TraceMetricsRuleTraceFilterSpanTag {
     }
     @CustomType.Builder
     public static final class Builder {
-        private String key;
+        private @Nullable String key;
         private @Nullable TraceMetricsRuleTraceFilterSpanTagNumericValue numericValue;
         private @Nullable TraceMetricsRuleTraceFilterSpanTagValue value;
         public Builder() {}
@@ -49,8 +49,8 @@ public final class TraceMetricsRuleTraceFilterSpanTag {
         }
 
         @CustomType.Setter
-        public Builder key(String key) {
-            this.key = Objects.requireNonNull(key);
+        public Builder key(@Nullable String key) {
+            this.key = key;
             return this;
         }
         @CustomType.Setter

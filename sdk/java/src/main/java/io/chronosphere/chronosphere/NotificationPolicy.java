@@ -12,7 +12,6 @@ import io.chronosphere.chronosphere.Utilities;
 import io.chronosphere.chronosphere.inputs.NotificationPolicyState;
 import io.chronosphere.chronosphere.outputs.NotificationPolicyOverride;
 import io.chronosphere.chronosphere.outputs.NotificationPolicyRoute;
-import io.chronosphere.chronosphere.outputs.NotificationPolicyRule;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -50,18 +49,6 @@ public class NotificationPolicy extends com.pulumi.resources.CustomResource {
 
     public Output<Optional<List<NotificationPolicyRoute>>> routes() {
         return Codegen.optional(this.routes);
-    }
-    /**
-     * @deprecated
-     * `rule` is deprecated, use `route` instead.
-     * 
-     */
-    @Deprecated /* `rule` is deprecated, use `route` instead. */
-    @Export(name="rules", refs={List.class,NotificationPolicyRule.class}, tree="[0,1]")
-    private Output</* @Nullable */ List<NotificationPolicyRule>> rules;
-
-    public Output<Optional<List<NotificationPolicyRule>>> rules() {
-        return Codegen.optional(this.rules);
     }
     @Export(name="slug", refs={String.class}, tree="[0]")
     private Output<String> slug;

@@ -39,10 +39,6 @@ export class NotificationPolicy extends pulumi.CustomResource {
     public readonly notificationPolicyData!: pulumi.Output<string>;
     public readonly overrides!: pulumi.Output<outputs.NotificationPolicyOverride[] | undefined>;
     public readonly routes!: pulumi.Output<outputs.NotificationPolicyRoute[] | undefined>;
-    /**
-     * @deprecated `rule` is deprecated, use `route` instead.
-     */
-    public readonly rules!: pulumi.Output<outputs.NotificationPolicyRule[] | undefined>;
     public readonly slug!: pulumi.Output<string>;
     public readonly teamId!: pulumi.Output<string | undefined>;
 
@@ -64,7 +60,6 @@ export class NotificationPolicy extends pulumi.CustomResource {
             resourceInputs["notificationPolicyData"] = state ? state.notificationPolicyData : undefined;
             resourceInputs["overrides"] = state ? state.overrides : undefined;
             resourceInputs["routes"] = state ? state.routes : undefined;
-            resourceInputs["rules"] = state ? state.rules : undefined;
             resourceInputs["slug"] = state ? state.slug : undefined;
             resourceInputs["teamId"] = state ? state.teamId : undefined;
         } else {
@@ -73,7 +68,6 @@ export class NotificationPolicy extends pulumi.CustomResource {
             resourceInputs["notificationPolicyData"] = args ? args.notificationPolicyData : undefined;
             resourceInputs["overrides"] = args ? args.overrides : undefined;
             resourceInputs["routes"] = args ? args.routes : undefined;
-            resourceInputs["rules"] = args ? args.rules : undefined;
             resourceInputs["slug"] = args ? args.slug : undefined;
             resourceInputs["teamId"] = args ? args.teamId : undefined;
             resourceInputs["isIndependent"] = undefined /*out*/;
@@ -92,10 +86,6 @@ export interface NotificationPolicyState {
     notificationPolicyData?: pulumi.Input<string>;
     overrides?: pulumi.Input<pulumi.Input<inputs.NotificationPolicyOverride>[]>;
     routes?: pulumi.Input<pulumi.Input<inputs.NotificationPolicyRoute>[]>;
-    /**
-     * @deprecated `rule` is deprecated, use `route` instead.
-     */
-    rules?: pulumi.Input<pulumi.Input<inputs.NotificationPolicyRule>[]>;
     slug?: pulumi.Input<string>;
     teamId?: pulumi.Input<string>;
 }
@@ -108,10 +98,6 @@ export interface NotificationPolicyArgs {
     notificationPolicyData?: pulumi.Input<string>;
     overrides?: pulumi.Input<pulumi.Input<inputs.NotificationPolicyOverride>[]>;
     routes?: pulumi.Input<pulumi.Input<inputs.NotificationPolicyRoute>[]>;
-    /**
-     * @deprecated `rule` is deprecated, use `route` instead.
-     */
-    rules?: pulumi.Input<pulumi.Input<inputs.NotificationPolicyRule>[]>;
     slug?: pulumi.Input<string>;
     teamId?: pulumi.Input<string>;
 }

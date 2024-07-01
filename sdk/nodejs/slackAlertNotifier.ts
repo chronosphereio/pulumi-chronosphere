@@ -52,6 +52,9 @@ export class SlackAlertNotifier extends pulumi.CustomResource {
     public readonly mrkdwnIns!: pulumi.Output<string[] | undefined>;
     public readonly name!: pulumi.Output<string>;
     public readonly pretext!: pulumi.Output<string | undefined>;
+    /**
+     * @deprecated custom proxy URLs are not supported
+     */
     public readonly proxyUrl!: pulumi.Output<string | undefined>;
     public readonly sendResolved!: pulumi.Output<boolean | undefined>;
     public readonly shortFields!: pulumi.Output<boolean | undefined>;
@@ -173,6 +176,9 @@ export interface SlackAlertNotifierState {
     mrkdwnIns?: pulumi.Input<pulumi.Input<string>[]>;
     name?: pulumi.Input<string>;
     pretext?: pulumi.Input<string>;
+    /**
+     * @deprecated custom proxy URLs are not supported
+     */
     proxyUrl?: pulumi.Input<string>;
     sendResolved?: pulumi.Input<boolean>;
     shortFields?: pulumi.Input<boolean>;
@@ -207,6 +213,9 @@ export interface SlackAlertNotifierArgs {
     mrkdwnIns?: pulumi.Input<pulumi.Input<string>[]>;
     name: pulumi.Input<string>;
     pretext?: pulumi.Input<string>;
+    /**
+     * @deprecated custom proxy URLs are not supported
+     */
     proxyUrl?: pulumi.Input<string>;
     sendResolved?: pulumi.Input<boolean>;
     shortFields?: pulumi.Input<boolean>;

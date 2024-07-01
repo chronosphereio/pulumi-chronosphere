@@ -7,7 +7,6 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import io.chronosphere.chronosphere.inputs.NotificationPolicyOverrideArgs;
 import io.chronosphere.chronosphere.inputs.NotificationPolicyRouteArgs;
-import io.chronosphere.chronosphere.inputs.NotificationPolicyRuleArgs;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -55,25 +54,6 @@ public final class NotificationPolicyState extends com.pulumi.resources.Resource
         return Optional.ofNullable(this.routes);
     }
 
-    /**
-     * @deprecated
-     * `rule` is deprecated, use `route` instead.
-     * 
-     */
-    @Deprecated /* `rule` is deprecated, use `route` instead. */
-    @Import(name="rules")
-    private @Nullable Output<List<NotificationPolicyRuleArgs>> rules;
-
-    /**
-     * @deprecated
-     * `rule` is deprecated, use `route` instead.
-     * 
-     */
-    @Deprecated /* `rule` is deprecated, use `route` instead. */
-    public Optional<Output<List<NotificationPolicyRuleArgs>>> rules() {
-        return Optional.ofNullable(this.rules);
-    }
-
     @Import(name="slug")
     private @Nullable Output<String> slug;
 
@@ -96,7 +76,6 @@ public final class NotificationPolicyState extends com.pulumi.resources.Resource
         this.notificationPolicyData = $.notificationPolicyData;
         this.overrides = $.overrides;
         this.routes = $.routes;
-        this.rules = $.rules;
         this.slug = $.slug;
         this.teamId = $.teamId;
     }
@@ -170,43 +149,6 @@ public final class NotificationPolicyState extends com.pulumi.resources.Resource
 
         public Builder routes(NotificationPolicyRouteArgs... routes) {
             return routes(List.of(routes));
-        }
-
-        /**
-         * @return builder
-         * 
-         * @deprecated
-         * `rule` is deprecated, use `route` instead.
-         * 
-         */
-        @Deprecated /* `rule` is deprecated, use `route` instead. */
-        public Builder rules(@Nullable Output<List<NotificationPolicyRuleArgs>> rules) {
-            $.rules = rules;
-            return this;
-        }
-
-        /**
-         * @return builder
-         * 
-         * @deprecated
-         * `rule` is deprecated, use `route` instead.
-         * 
-         */
-        @Deprecated /* `rule` is deprecated, use `route` instead. */
-        public Builder rules(List<NotificationPolicyRuleArgs> rules) {
-            return rules(Output.of(rules));
-        }
-
-        /**
-         * @return builder
-         * 
-         * @deprecated
-         * `rule` is deprecated, use `route` instead.
-         * 
-         */
-        @Deprecated /* `rule` is deprecated, use `route` instead. */
-        public Builder rules(NotificationPolicyRuleArgs... rules) {
-            return rules(List.of(rules));
         }
 
         public Builder slug(@Nullable Output<String> slug) {

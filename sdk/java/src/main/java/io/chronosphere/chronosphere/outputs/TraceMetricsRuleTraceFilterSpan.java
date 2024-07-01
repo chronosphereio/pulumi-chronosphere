@@ -28,6 +28,13 @@ public final class TraceMetricsRuleTraceFilterSpan {
     private @Nullable TraceMetricsRuleTraceFilterSpanParentService parentService;
     private @Nullable TraceMetricsRuleTraceFilterSpanService service;
     private @Nullable TraceMetricsRuleTraceFilterSpanSpanCount spanCount;
+    private @Nullable List<TraceMetricsRuleTraceFilterSpanTag> tag;
+    /**
+     * @deprecated
+     * `tags` is deprecated, use `tag` instead.
+     * 
+     */
+    @Deprecated /* `tags` is deprecated, use `tag` instead. */
     private @Nullable List<TraceMetricsRuleTraceFilterSpanTag> tags;
 
     private TraceMetricsRuleTraceFilterSpan() {}
@@ -55,6 +62,15 @@ public final class TraceMetricsRuleTraceFilterSpan {
     public Optional<TraceMetricsRuleTraceFilterSpanSpanCount> spanCount() {
         return Optional.ofNullable(this.spanCount);
     }
+    public List<TraceMetricsRuleTraceFilterSpanTag> tag() {
+        return this.tag == null ? List.of() : this.tag;
+    }
+    /**
+     * @deprecated
+     * `tags` is deprecated, use `tag` instead.
+     * 
+     */
+    @Deprecated /* `tags` is deprecated, use `tag` instead. */
     public List<TraceMetricsRuleTraceFilterSpanTag> tags() {
         return this.tags == null ? List.of() : this.tags;
     }
@@ -76,6 +92,7 @@ public final class TraceMetricsRuleTraceFilterSpan {
         private @Nullable TraceMetricsRuleTraceFilterSpanParentService parentService;
         private @Nullable TraceMetricsRuleTraceFilterSpanService service;
         private @Nullable TraceMetricsRuleTraceFilterSpanSpanCount spanCount;
+        private @Nullable List<TraceMetricsRuleTraceFilterSpanTag> tag;
         private @Nullable List<TraceMetricsRuleTraceFilterSpanTag> tags;
         public Builder() {}
         public Builder(TraceMetricsRuleTraceFilterSpan defaults) {
@@ -88,6 +105,7 @@ public final class TraceMetricsRuleTraceFilterSpan {
     	      this.parentService = defaults.parentService;
     	      this.service = defaults.service;
     	      this.spanCount = defaults.spanCount;
+    	      this.tag = defaults.tag;
     	      this.tags = defaults.tags;
         }
 
@@ -132,6 +150,14 @@ public final class TraceMetricsRuleTraceFilterSpan {
             return this;
         }
         @CustomType.Setter
+        public Builder tag(@Nullable List<TraceMetricsRuleTraceFilterSpanTag> tag) {
+            this.tag = tag;
+            return this;
+        }
+        public Builder tag(TraceMetricsRuleTraceFilterSpanTag... tag) {
+            return tag(List.of(tag));
+        }
+        @CustomType.Setter
         public Builder tags(@Nullable List<TraceMetricsRuleTraceFilterSpanTag> tags) {
             this.tags = tags;
             return this;
@@ -149,6 +175,7 @@ public final class TraceMetricsRuleTraceFilterSpan {
             o.parentService = parentService;
             o.service = service;
             o.spanCount = spanCount;
+            o.tag = tag;
             o.tags = tags;
             return o;
         }

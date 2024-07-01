@@ -25,6 +25,12 @@ public class GcpMetricsIntegration extends com.pulumi.resources.CustomResource {
     public Output<Optional<List<GcpMetricsIntegrationMetricGroup>>> metricGroups() {
         return Codegen.optional(this.metricGroups);
     }
+    @Export(name="name", refs={String.class}, tree="[0]")
+    private Output<String> name;
+
+    public Output<String> name() {
+        return this.name;
+    }
     @Export(name="serviceAccount", refs={GcpMetricsIntegrationServiceAccount.class}, tree="[0]")
     private Output</* @Nullable */ GcpMetricsIntegrationServiceAccount> serviceAccount;
 
@@ -50,7 +56,7 @@ public class GcpMetricsIntegration extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public GcpMetricsIntegration(String name, @Nullable GcpMetricsIntegrationArgs args) {
+    public GcpMetricsIntegration(String name, GcpMetricsIntegrationArgs args) {
         this(name, args, null);
     }
     /**
@@ -59,7 +65,7 @@ public class GcpMetricsIntegration extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public GcpMetricsIntegration(String name, @Nullable GcpMetricsIntegrationArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public GcpMetricsIntegration(String name, GcpMetricsIntegrationArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("chronosphere:index/gcpMetricsIntegration:GcpMetricsIntegration", name, args == null ? GcpMetricsIntegrationArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
     }
 

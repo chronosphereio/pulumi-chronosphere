@@ -5,21 +5,26 @@ package io.chronosphere.chronosphere.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
 @CustomType
 public final class TraceMetricsRuleTraceFilterSpanTagValue {
+    private @Nullable List<String> inValues;
     private @Nullable String match;
-    private String value;
+    private @Nullable String value;
 
     private TraceMetricsRuleTraceFilterSpanTagValue() {}
+    public List<String> inValues() {
+        return this.inValues == null ? List.of() : this.inValues;
+    }
     public Optional<String> match() {
         return Optional.ofNullable(this.match);
     }
-    public String value() {
-        return this.value;
+    public Optional<String> value() {
+        return Optional.ofNullable(this.value);
     }
 
     public static Builder builder() {
@@ -31,27 +36,38 @@ public final class TraceMetricsRuleTraceFilterSpanTagValue {
     }
     @CustomType.Builder
     public static final class Builder {
+        private @Nullable List<String> inValues;
         private @Nullable String match;
-        private String value;
+        private @Nullable String value;
         public Builder() {}
         public Builder(TraceMetricsRuleTraceFilterSpanTagValue defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.inValues = defaults.inValues;
     	      this.match = defaults.match;
     	      this.value = defaults.value;
         }
 
+        @CustomType.Setter
+        public Builder inValues(@Nullable List<String> inValues) {
+            this.inValues = inValues;
+            return this;
+        }
+        public Builder inValues(String... inValues) {
+            return inValues(List.of(inValues));
+        }
         @CustomType.Setter
         public Builder match(@Nullable String match) {
             this.match = match;
             return this;
         }
         @CustomType.Setter
-        public Builder value(String value) {
-            this.value = Objects.requireNonNull(value);
+        public Builder value(@Nullable String value) {
+            this.value = value;
             return this;
         }
         public TraceMetricsRuleTraceFilterSpanTagValue build() {
             final var o = new TraceMetricsRuleTraceFilterSpanTagValue();
+            o.inValues = inValues;
             o.match = match;
             o.value = value;
             return o;

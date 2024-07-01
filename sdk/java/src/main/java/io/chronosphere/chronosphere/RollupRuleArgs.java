@@ -5,6 +5,7 @@ package io.chronosphere.chronosphere;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import io.chronosphere.chronosphere.inputs.RollupRuleGraphiteLabelPolicyArgs;
 import io.chronosphere.chronosphere.inputs.RollupRuleStoragePoliciesArgs;
 import java.lang.Boolean;
 import java.lang.String;
@@ -51,6 +52,13 @@ public final class RollupRuleArgs extends com.pulumi.resources.ResourceArgs {
 
     public Output<String> filter() {
         return this.filter;
+    }
+
+    @Import(name="graphiteLabelPolicy")
+    private @Nullable Output<RollupRuleGraphiteLabelPolicyArgs> graphiteLabelPolicy;
+
+    public Optional<Output<RollupRuleGraphiteLabelPolicyArgs>> graphiteLabelPolicy() {
+        return Optional.ofNullable(this.graphiteLabelPolicy);
     }
 
     @Import(name="groupBies")
@@ -116,9 +124,21 @@ public final class RollupRuleArgs extends com.pulumi.resources.ResourceArgs {
         return this.slug;
     }
 
+    /**
+     * @deprecated
+     * use `interval` instead
+     * 
+     */
+    @Deprecated /* use `interval` instead */
     @Import(name="storagePolicies")
     private @Nullable Output<RollupRuleStoragePoliciesArgs> storagePolicies;
 
+    /**
+     * @deprecated
+     * use `interval` instead
+     * 
+     */
+    @Deprecated /* use `interval` instead */
     public Optional<Output<RollupRuleStoragePoliciesArgs>> storagePolicies() {
         return Optional.ofNullable(this.storagePolicies);
     }
@@ -131,6 +151,7 @@ public final class RollupRuleArgs extends com.pulumi.resources.ResourceArgs {
         this.dropRaw = $.dropRaw;
         this.excludeBies = $.excludeBies;
         this.filter = $.filter;
+        this.graphiteLabelPolicy = $.graphiteLabelPolicy;
         this.groupBies = $.groupBies;
         this.interval = $.interval;
         this.metricType = $.metricType;
@@ -208,6 +229,15 @@ public final class RollupRuleArgs extends com.pulumi.resources.ResourceArgs {
 
         public Builder filter(String filter) {
             return filter(Output.of(filter));
+        }
+
+        public Builder graphiteLabelPolicy(@Nullable Output<RollupRuleGraphiteLabelPolicyArgs> graphiteLabelPolicy) {
+            $.graphiteLabelPolicy = graphiteLabelPolicy;
+            return this;
+        }
+
+        public Builder graphiteLabelPolicy(RollupRuleGraphiteLabelPolicyArgs graphiteLabelPolicy) {
+            return graphiteLabelPolicy(Output.of(graphiteLabelPolicy));
         }
 
         public Builder groupBies(@Nullable Output<List<String>> groupBies) {
@@ -295,11 +325,27 @@ public final class RollupRuleArgs extends com.pulumi.resources.ResourceArgs {
             return slug(Output.of(slug));
         }
 
+        /**
+         * @return builder
+         * 
+         * @deprecated
+         * use `interval` instead
+         * 
+         */
+        @Deprecated /* use `interval` instead */
         public Builder storagePolicies(@Nullable Output<RollupRuleStoragePoliciesArgs> storagePolicies) {
             $.storagePolicies = storagePolicies;
             return this;
         }
 
+        /**
+         * @return builder
+         * 
+         * @deprecated
+         * use `interval` instead
+         * 
+         */
+        @Deprecated /* use `interval` instead */
         public Builder storagePolicies(RollupRuleStoragePoliciesArgs storagePolicies) {
             return storagePolicies(Output.of(storagePolicies));
         }

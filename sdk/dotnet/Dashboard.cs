@@ -18,6 +18,9 @@ namespace Pulumi.Chronosphere
         [Output("dashboardJson")]
         public Output<string> DashboardJson { get; private set; } = null!;
 
+        [Output("name")]
+        public Output<string?> Name { get; private set; } = null!;
+
         [Output("slug")]
         public Output<string> Slug { get; private set; } = null!;
 
@@ -73,6 +76,9 @@ namespace Pulumi.Chronosphere
         [Input("dashboardJson", required: true)]
         public Input<string> DashboardJson { get; set; } = null!;
 
+        [Input("name")]
+        public Input<string>? Name { get; set; }
+
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 
@@ -89,6 +95,9 @@ namespace Pulumi.Chronosphere
 
         [Input("dashboardJson")]
         public Input<string>? DashboardJson { get; set; }
+
+        [Input("name")]
+        public Input<string>? Name { get; set; }
 
         [Input("slug")]
         public Input<string>? Slug { get; set; }

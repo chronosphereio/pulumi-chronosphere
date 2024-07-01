@@ -89,9 +89,6 @@ func Provider() tfbridge.ProviderInfo {
 			"chronosphere_email_alert_notifier": {
 				Tok: tfbridge.MakeResource(mainPkg, mainMod, "EmailAlertNotifier"),
 			},
-			"chronosphere_grafana_dashboard": {
-				Tok: tfbridge.MakeResource(mainPkg, mainMod, "GrafanaDashboard"),
-			},
 			"chronosphere_classic_dashboard": {
 				Tok: tfbridge.MakeResource(mainPkg, mainMod, "ClassicDashboard"),
 			},
@@ -143,19 +140,25 @@ func Provider() tfbridge.ProviderInfo {
 			"chronosphere_webhook_alert_notifier": {
 				Tok: tfbridge.MakeResource(mainPkg, mainMod, "WebhookAlertNotifier"),
 			},
-			"chronosphere_gcp_metrics_integration_unstable": {
+			"chronosphere_gcp_metrics_integration": {
 				Tok: tfbridge.MakeResource(mainPkg, mainMod, "GcpMetricsIntegration"),
+			},
+			"chronosphere_dataset": {
+				Tok: tfbridge.MakeResource(mainPkg, mainMod, "Dataset"),
+			},
+			"chronosphere_otel_metrics_ingestion": {
+				Tok: tfbridge.MakeResource(mainPkg, mainMod, "OtelMetricsIngestion"),
 			},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			"chronosphere_bucket": {
 				Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "BucketDataSource"),
 			},
-			"chronosphere_notification_policy": {
-				Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "NotificationPolicyDataSource"),
-			},
 			"chronosphere_service": {
 				Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "ServiceDataSource"),
+			},
+			"chronosphere_collection": {
+				Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "CollectionDataSource"),
 			},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{

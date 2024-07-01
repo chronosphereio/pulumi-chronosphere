@@ -29,6 +29,13 @@ public final class DashboardArgs extends com.pulumi.resources.ResourceArgs {
         return this.dashboardJson;
     }
 
+    @Import(name="name")
+    private @Nullable Output<String> name;
+
+    public Optional<Output<String>> name() {
+        return Optional.ofNullable(this.name);
+    }
+
     @Import(name="slug")
     private @Nullable Output<String> slug;
 
@@ -41,6 +48,7 @@ public final class DashboardArgs extends com.pulumi.resources.ResourceArgs {
     private DashboardArgs(DashboardArgs $) {
         this.collectionId = $.collectionId;
         this.dashboardJson = $.dashboardJson;
+        this.name = $.name;
         this.slug = $.slug;
     }
 
@@ -78,6 +86,15 @@ public final class DashboardArgs extends com.pulumi.resources.ResourceArgs {
 
         public Builder dashboardJson(String dashboardJson) {
             return dashboardJson(Output.of(dashboardJson));
+        }
+
+        public Builder name(@Nullable Output<String> name) {
+            $.name = name;
+            return this;
+        }
+
+        public Builder name(String name) {
+            return name(Output.of(name));
         }
 
         public Builder slug(@Nullable Output<String> slug) {

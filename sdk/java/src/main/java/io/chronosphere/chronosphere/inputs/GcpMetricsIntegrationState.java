@@ -25,6 +25,13 @@ public final class GcpMetricsIntegrationState extends com.pulumi.resources.Resou
         return Optional.ofNullable(this.metricGroups);
     }
 
+    @Import(name="name")
+    private @Nullable Output<String> name;
+
+    public Optional<Output<String>> name() {
+        return Optional.ofNullable(this.name);
+    }
+
     @Import(name="serviceAccount")
     private @Nullable Output<GcpMetricsIntegrationServiceAccountArgs> serviceAccount;
 
@@ -43,6 +50,7 @@ public final class GcpMetricsIntegrationState extends com.pulumi.resources.Resou
 
     private GcpMetricsIntegrationState(GcpMetricsIntegrationState $) {
         this.metricGroups = $.metricGroups;
+        this.name = $.name;
         this.serviceAccount = $.serviceAccount;
         this.slug = $.slug;
     }
@@ -76,6 +84,15 @@ public final class GcpMetricsIntegrationState extends com.pulumi.resources.Resou
 
         public Builder metricGroups(GcpMetricsIntegrationMetricGroupArgs... metricGroups) {
             return metricGroups(List.of(metricGroups));
+        }
+
+        public Builder name(@Nullable Output<String> name) {
+            $.name = name;
+            return this;
+        }
+
+        public Builder name(String name) {
+            return name(Output.of(name));
         }
 
         public Builder serviceAccount(@Nullable Output<GcpMetricsIntegrationServiceAccountArgs> serviceAccount) {

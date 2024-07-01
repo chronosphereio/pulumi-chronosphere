@@ -96,9 +96,21 @@ public final class OpsgenieAlertNotifierState extends com.pulumi.resources.Resou
         return Optional.ofNullable(this.priority);
     }
 
+    /**
+     * @deprecated
+     * custom proxy URLs are not supported
+     * 
+     */
+    @Deprecated /* custom proxy URLs are not supported */
     @Import(name="proxyUrl")
     private @Nullable Output<String> proxyUrl;
 
+    /**
+     * @deprecated
+     * custom proxy URLs are not supported
+     * 
+     */
+    @Deprecated /* custom proxy URLs are not supported */
     public Optional<Output<String>> proxyUrl() {
         return Optional.ofNullable(this.proxyUrl);
     }
@@ -285,11 +297,27 @@ public final class OpsgenieAlertNotifierState extends com.pulumi.resources.Resou
             return priority(Output.of(priority));
         }
 
+        /**
+         * @return builder
+         * 
+         * @deprecated
+         * custom proxy URLs are not supported
+         * 
+         */
+        @Deprecated /* custom proxy URLs are not supported */
         public Builder proxyUrl(@Nullable Output<String> proxyUrl) {
             $.proxyUrl = proxyUrl;
             return this;
         }
 
+        /**
+         * @return builder
+         * 
+         * @deprecated
+         * custom proxy URLs are not supported
+         * 
+         */
+        @Deprecated /* custom proxy URLs are not supported */
         public Builder proxyUrl(String proxyUrl) {
             return proxyUrl(Output.of(proxyUrl));
         }

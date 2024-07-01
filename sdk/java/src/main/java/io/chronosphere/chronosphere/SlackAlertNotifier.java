@@ -128,6 +128,12 @@ public class SlackAlertNotifier extends com.pulumi.resources.CustomResource {
     public Output<Optional<String>> pretext() {
         return Codegen.optional(this.pretext);
     }
+    /**
+     * @deprecated
+     * custom proxy URLs are not supported
+     * 
+     */
+    @Deprecated /* custom proxy URLs are not supported */
     @Export(name="proxyUrl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> proxyUrl;
 

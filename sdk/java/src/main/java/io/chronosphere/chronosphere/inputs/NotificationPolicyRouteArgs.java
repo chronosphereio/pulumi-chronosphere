@@ -5,6 +5,7 @@ package io.chronosphere.chronosphere.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import io.chronosphere.chronosphere.inputs.NotificationPolicyRouteGroupByArgs;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -15,6 +16,13 @@ import javax.annotation.Nullable;
 public final class NotificationPolicyRouteArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final NotificationPolicyRouteArgs Empty = new NotificationPolicyRouteArgs();
+
+    @Import(name="groupBy")
+    private @Nullable Output<NotificationPolicyRouteGroupByArgs> groupBy;
+
+    public Optional<Output<NotificationPolicyRouteGroupByArgs>> groupBy() {
+        return Optional.ofNullable(this.groupBy);
+    }
 
     @Import(name="notifiers")
     private @Nullable Output<List<String>> notifiers;
@@ -40,6 +48,7 @@ public final class NotificationPolicyRouteArgs extends com.pulumi.resources.Reso
     private NotificationPolicyRouteArgs() {}
 
     private NotificationPolicyRouteArgs(NotificationPolicyRouteArgs $) {
+        this.groupBy = $.groupBy;
         this.notifiers = $.notifiers;
         this.repeatInterval = $.repeatInterval;
         this.severity = $.severity;
@@ -61,6 +70,15 @@ public final class NotificationPolicyRouteArgs extends com.pulumi.resources.Reso
 
         public Builder(NotificationPolicyRouteArgs defaults) {
             $ = new NotificationPolicyRouteArgs(Objects.requireNonNull(defaults));
+        }
+
+        public Builder groupBy(@Nullable Output<NotificationPolicyRouteGroupByArgs> groupBy) {
+            $.groupBy = groupBy;
+            return this;
+        }
+
+        public Builder groupBy(NotificationPolicyRouteGroupByArgs groupBy) {
+            return groupBy(Output.of(groupBy));
         }
 
         public Builder notifiers(@Nullable Output<List<String>> notifiers) {

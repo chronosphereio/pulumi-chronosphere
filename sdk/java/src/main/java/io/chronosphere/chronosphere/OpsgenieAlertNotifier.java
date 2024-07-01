@@ -86,6 +86,12 @@ public class OpsgenieAlertNotifier extends com.pulumi.resources.CustomResource {
     public Output<Optional<String>> priority() {
         return Codegen.optional(this.priority);
     }
+    /**
+     * @deprecated
+     * custom proxy URLs are not supported
+     * 
+     */
+    @Deprecated /* custom proxy URLs are not supported */
     @Export(name="proxyUrl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> proxyUrl;
 

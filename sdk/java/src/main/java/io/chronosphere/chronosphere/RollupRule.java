@@ -10,6 +10,7 @@ import com.pulumi.core.internal.Codegen;
 import io.chronosphere.chronosphere.RollupRuleArgs;
 import io.chronosphere.chronosphere.Utilities;
 import io.chronosphere.chronosphere.inputs.RollupRuleState;
+import io.chronosphere.chronosphere.outputs.RollupRuleGraphiteLabelPolicy;
 import io.chronosphere.chronosphere.outputs.RollupRuleStoragePolicies;
 import java.lang.Boolean;
 import java.lang.String;
@@ -48,6 +49,12 @@ public class RollupRule extends com.pulumi.resources.CustomResource {
 
     public Output<String> filter() {
         return this.filter;
+    }
+    @Export(name="graphiteLabelPolicy", refs={RollupRuleGraphiteLabelPolicy.class}, tree="[0]")
+    private Output</* @Nullable */ RollupRuleGraphiteLabelPolicy> graphiteLabelPolicy;
+
+    public Output<Optional<RollupRuleGraphiteLabelPolicy>> graphiteLabelPolicy() {
+        return Codegen.optional(this.graphiteLabelPolicy);
     }
     @Export(name="groupBies", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> groupBies;
@@ -103,6 +110,12 @@ public class RollupRule extends com.pulumi.resources.CustomResource {
     public Output<String> slug() {
         return this.slug;
     }
+    /**
+     * @deprecated
+     * use `interval` instead
+     * 
+     */
+    @Deprecated /* use `interval` instead */
     @Export(name="storagePolicies", refs={RollupRuleStoragePolicies.class}, tree="[0]")
     private Output<RollupRuleStoragePolicies> storagePolicies;
 
