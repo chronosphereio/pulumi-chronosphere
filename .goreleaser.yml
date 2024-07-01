@@ -23,7 +23,7 @@ builds:
       - -X github.com/chronosphereio/pulumi-chronosphere/provider/pkg/version.Version={{.Tag }}
     main: ./cmd/pulumi-resource-chronosphere/
 changelog:
-  skip: true
+  disable: true
 release:
   disable: false
   prerelease: auto
