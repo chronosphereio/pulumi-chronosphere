@@ -162,7 +162,7 @@ func Provider() tfbridge.ProviderInfo {
 			},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
-			PackageName: "@pulumi/chronosphere",
+			PackageName: "@pulumi-chronosphere/pulumi-chronosphere",
 			Dependencies: map[string]string{
 				"@pulumi/pulumi": "^3.0.0",
 			},

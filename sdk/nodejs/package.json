@@ -1,5 +1,5 @@
 {
-    "name": "@pulumi/chronosphere",
+    "name": "@pulumi-chronosphere/pulumi-chronosphere",
     "version": "${VERSION}",
     "description": "Chronosphere Pulumi Provider",
     "keywords": [
