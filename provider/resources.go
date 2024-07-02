@@ -190,6 +190,9 @@ func Provider() tfbridge.ProviderInfo {
 		Java: &tfbridge.JavaInfo{
 			BasePackage: "io.chronosphere",
 		},
+		CSharp: &tfbridge.CSharpInfo{
+			RootNamespace: "Chronosphere.Pulumi",
+		},
 		MetadataInfo: tfbridge.NewProviderMetadata(metadata),
 		// SkipValidateProviderConfigForPluginFramework: false,
 	}

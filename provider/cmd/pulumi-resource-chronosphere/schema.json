@@ -16,6 +16,10 @@
         "moduleFormat": "(.*)(?:/[^/]*)"
     },
     "language": {
+        "csharp": {
+            "compatibility": "tfbridge20",
+            "rootNamespace": "Chronosphere.Pulumi"
+        },
         "go": {
             "importBasePath": "github.com/chronosphereio/pulumi-chronosphere/sdk/go/chronosphere",
             "generateResourceContainerTypes": true,
