@@ -4,7 +4,7 @@
 using System;
 using System.Collections.Immutable;
 
-namespace Pulumi.Chronosphere
+namespace Chronosphere.Pulumi.Chronosphere
 {
     public static class Config
     {
