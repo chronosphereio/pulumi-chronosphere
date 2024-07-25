@@ -17,8 +17,14 @@
     },
     "language": {
         "csharp": {
+            "packageReferences": {
+                "Pulumi": "3.*"
+            },
+            "namespaces": {
+                "chronosphere": "Pulumi"
+            },
             "compatibility": "tfbridge20",
-            "rootNamespace": "Chronosphere.Pulumi"
+            "rootNamespace": "Chronosphere"
         },
         "go": {
             "importBasePath": "github.com/chronosphereio/pulumi-chronosphere/sdk/go/chronosphere",

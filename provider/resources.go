@@ -191,7 +191,13 @@ func Provider() tfbridge.ProviderInfo {
 			BasePackage: "io.chronosphere",
 		},
 		CSharp: &tfbridge.CSharpInfo{
-			RootNamespace: "Chronosphere.Pulumi",
+			RootNamespace: "Chronosphere",
+			Namespaces: map[string]string{
+				"chronosphere": "Pulumi",
+			},
+			PackageReferences: map[string]string{
+				"Pulumi": "3.*",
+			},
 		},
 		MetadataInfo: tfbridge.NewProviderMetadata(metadata),
 		// SkipValidateProviderConfigForPluginFramework: false,
