@@ -6,4 +6,5 @@
 
 # v0.9.0
 
-Initial release of the Chronosphere Pulumi provider.
+- Initial release of the Chronosphere Pulumi provider.
+- Update documentation links to point to new Chronosphere Pulumi provider page.
