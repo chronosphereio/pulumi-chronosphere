@@ -2,7 +2,7 @@
 
 The Chronosphere Pulumi Provider allows [Pulumi](https://www.pulumi.com/) to manage supported [Chronosphere resources](https://docs.chronosphere.io/administer).
 
-- [Documentation](https://docs.chronosphere.io/administer)
+- [Documentation](https://docs.chronosphere.io/administer/infrastructure/pulumi)
 
 ## Contact support
 
