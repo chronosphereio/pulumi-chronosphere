@@ -3,5 +3,3 @@
 > first check the [`pulumi-chronosphere` repo](https://github.com/chronosphereio/pulumi-chronosphere/issues); however, if that doesn't turn up anything,
 > please consult the source [`terraform-provider-chronosphere`
 > repo](https://github.com/chronosphereio/terraform-provider-chronosphere/issues).
->Refer to the [Chronosphere documentation](https://docs.chronosphere.io/administer/infrastructure/pulumi)
->for more information.
