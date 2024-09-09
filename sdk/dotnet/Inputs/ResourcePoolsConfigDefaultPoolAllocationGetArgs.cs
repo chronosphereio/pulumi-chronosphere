@@ -13,8 +13,16 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class ResourcePoolsConfigDefaultPoolAllocationGetArgs : global::Pulumi.ResourceArgs
     {
-        [Input("percentOfLicense", required: true)]
-        public Input<double> PercentOfLicense { get; set; } = null!;
+        [Input("fixedValues")]
+        private InputList<Inputs.ResourcePoolsConfigDefaultPoolAllocationFixedValueGetArgs>? _fixedValues;
+        public InputList<Inputs.ResourcePoolsConfigDefaultPoolAllocationFixedValueGetArgs> FixedValues
+        {
+            get => _fixedValues ?? (_fixedValues = new InputList<Inputs.ResourcePoolsConfigDefaultPoolAllocationFixedValueGetArgs>());
+            set => _fixedValues = value;
+        }
+
+        [Input("percentOfLicense")]
+        public Input<double>? PercentOfLicense { get; set; }
 
         public ResourcePoolsConfigDefaultPoolAllocationGetArgs()
         {

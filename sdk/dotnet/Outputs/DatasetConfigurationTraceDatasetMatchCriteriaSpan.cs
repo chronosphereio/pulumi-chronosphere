@@ -22,7 +22,6 @@ namespace Chronosphere.Pulumi.Outputs
         public readonly Outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanParentService? ParentService;
         public readonly Outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanService? Service;
         public readonly Outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanSpanCount? SpanCount;
-        public readonly ImmutableArray<Outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanTag> Tag;
         public readonly ImmutableArray<Outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanTag> Tags;
 
         [OutputConstructor]
@@ -43,8 +42,6 @@ namespace Chronosphere.Pulumi.Outputs
 
             Outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanSpanCount? spanCount,
 
-            ImmutableArray<Outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanTag> tag,
-
             ImmutableArray<Outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanTag> tags)
         {
             Duration = duration;
@@ -55,7 +52,6 @@ namespace Chronosphere.Pulumi.Outputs
             ParentService = parentService;
             Service = service;
             SpanCount = spanCount;
-            Tag = tag;
             Tags = tags;
         }
     }

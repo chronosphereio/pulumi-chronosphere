@@ -70,6 +70,21 @@ export type GcpMetricsIntegration = import("./gcpMetricsIntegration").GcpMetrics
 export const GcpMetricsIntegration: typeof import("./gcpMetricsIntegration").GcpMetricsIntegration = null as any;
 utilities.lazyLoad(exports, ["GcpMetricsIntegration"], () => require("./gcpMetricsIntegration"));
 
+export { LogAllocationConfigArgs, LogAllocationConfigState } from "./logAllocationConfig";
+export type LogAllocationConfig = import("./logAllocationConfig").LogAllocationConfig;
+export const LogAllocationConfig: typeof import("./logAllocationConfig").LogAllocationConfig = null as any;
+utilities.lazyLoad(exports, ["LogAllocationConfig"], () => require("./logAllocationConfig"));
+
+export { LogscaleActionArgs, LogscaleActionState } from "./logscaleAction";
+export type LogscaleAction = import("./logscaleAction").LogscaleAction;
+export const LogscaleAction: typeof import("./logscaleAction").LogscaleAction = null as any;
+utilities.lazyLoad(exports, ["LogscaleAction"], () => require("./logscaleAction"));
+
+export { LogscaleAlertArgs, LogscaleAlertState } from "./logscaleAlert";
+export type LogscaleAlert = import("./logscaleAlert").LogscaleAlert;
+export const LogscaleAlert: typeof import("./logscaleAlert").LogscaleAlert = null as any;
+utilities.lazyLoad(exports, ["LogscaleAlert"], () => require("./logscaleAlert"));
+
 export { MappingRuleArgs, MappingRuleState } from "./mappingRule";
 export type MappingRule = import("./mappingRule").MappingRule;
 export const MappingRule: typeof import("./mappingRule").MappingRule = null as any;
@@ -201,6 +216,12 @@ const _module = {
                 return new EmailAlertNotifier(name, <any>undefined, { urn })
             case "chronosphere:index/gcpMetricsIntegration:GcpMetricsIntegration":
                 return new GcpMetricsIntegration(name, <any>undefined, { urn })
+            case "chronosphere:index/logAllocationConfig:LogAllocationConfig":
+                return new LogAllocationConfig(name, <any>undefined, { urn })
+            case "chronosphere:index/logscaleAction:LogscaleAction":
+                return new LogscaleAction(name, <any>undefined, { urn })
+            case "chronosphere:index/logscaleAlert:LogscaleAlert":
+                return new LogscaleAlert(name, <any>undefined, { urn })
             case "chronosphere:index/mappingRule:MappingRule":
                 return new MappingRule(name, <any>undefined, { urn })
             case "chronosphere:index/monitor:Monitor":
@@ -251,6 +272,9 @@ pulumi.runtime.registerResourceModule("chronosphere", "index/derivedMetric", _mo
 pulumi.runtime.registerResourceModule("chronosphere", "index/dropRule", _module)
 pulumi.runtime.registerResourceModule("chronosphere", "index/emailAlertNotifier", _module)
 pulumi.runtime.registerResourceModule("chronosphere", "index/gcpMetricsIntegration", _module)
+pulumi.runtime.registerResourceModule("chronosphere", "index/logAllocationConfig", _module)
+pulumi.runtime.registerResourceModule("chronosphere", "index/logscaleAction", _module)
+pulumi.runtime.registerResourceModule("chronosphere", "index/logscaleAlert", _module)
 pulumi.runtime.registerResourceModule("chronosphere", "index/mappingRule", _module)
 pulumi.runtime.registerResourceModule("chronosphere", "index/monitor", _module)
 pulumi.runtime.registerResourceModule("chronosphere", "index/notificationPolicy", _module)

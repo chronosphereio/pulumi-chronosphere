@@ -18,6 +18,9 @@ from .derived_metric import *
 from .drop_rule import *
 from .email_alert_notifier import *
 from .gcp_metrics_integration import *
+from .log_allocation_config import *
+from .logscale_action import *
+from .logscale_alert import *
 from .mapping_rule import *
 from .monitor import *
 from .notification_policy import *
@@ -42,10 +45,10 @@ from . import outputs
 
 # Make subpackages available:
 if typing.TYPE_CHECKING:
-    import chronosphereio_chronosphere.config as __config
+    import pulumi_chronosphere.config as __config
     config = __config
 else:
-    config = _utilities.lazy_import('chronosphereio_chronosphere.config')
+    config = _utilities.lazy_import('pulumi_chronosphere.config')
 
 _utilities.register(
     resource_modules="""
@@ -53,7 +56,7 @@ _utilities.register(
  {
   "pkg": "chronosphere",
   "mod": "index/blackholeAlertNotifier",
-  "fqn": "chronosphereio_chronosphere",
+  "fqn": "pulumi_chronosphere",
   "classes": {
    "chronosphere:index/blackholeAlertNotifier:BlackholeAlertNotifier": "BlackholeAlertNotifier"
   }
@@ -61,7 +64,7 @@ _utilities.register(
  {
   "pkg": "chronosphere",
   "mod": "index/bucket",
-  "fqn": "chronosphereio_chronosphere",
+  "fqn": "pulumi_chronosphere",
   "classes": {
    "chronosphere:index/bucket:Bucket": "Bucket"
   }
@@ -69,7 +72,7 @@ _utilities.register(
  {
   "pkg": "chronosphere",
   "mod": "index/classicDashboard",
-  "fqn": "chronosphereio_chronosphere",
+  "fqn": "pulumi_chronosphere",
   "classes": {
    "chronosphere:index/classicDashboard:ClassicDashboard": "ClassicDashboard"
   }
@@ -77,7 +80,7 @@ _utilities.register(
  {
   "pkg": "chronosphere",
   "mod": "index/collection",
-  "fqn": "chronosphereio_chronosphere",
+  "fqn": "pulumi_chronosphere",
   "classes": {
    "chronosphere:index/collection:Collection": "Collection"
   }
@@ -85,7 +88,7 @@ _utilities.register(
  {
   "pkg": "chronosphere",
   "mod": "index/dashboard",
-  "fqn": "chronosphereio_chronosphere",
+  "fqn": "pulumi_chronosphere",
   "classes": {
    "chronosphere:index/dashboard:Dashboard": "Dashboard"
   }
@@ -93,7 +96,7 @@ _utilities.register(
  {
   "pkg": "chronosphere",
   "mod": "index/dataset",
-  "fqn": "chronosphereio_chronosphere",
+  "fqn": "pulumi_chronosphere",
   "classes": {
    "chronosphere:index/dataset:Dataset": "Dataset"
   }
@@ -101,7 +104,7 @@ _utilities.register(
  {
   "pkg": "chronosphere",
   "mod": "index/derivedLabel",
-  "fqn": "chronosphereio_chronosphere",
+  "fqn": "pulumi_chronosphere",
   "classes": {
    "chronosphere:index/derivedLabel:DerivedLabel": "DerivedLabel"
   }
@@ -109,7 +112,7 @@ _utilities.register(
  {
   "pkg": "chronosphere",
   "mod": "index/derivedMetric",
-  "fqn": "chronosphereio_chronosphere",
+  "fqn": "pulumi_chronosphere",
   "classes": {
    "chronosphere:index/derivedMetric:DerivedMetric": "DerivedMetric"
   }
@@ -117,7 +120,7 @@ _utilities.register(
  {
   "pkg": "chronosphere",
   "mod": "index/dropRule",
-  "fqn": "chronosphereio_chronosphere",
+  "fqn": "pulumi_chronosphere",
   "classes": {
    "chronosphere:index/dropRule:DropRule": "DropRule"
   }
@@ -125,7 +128,7 @@ _utilities.register(
  {
   "pkg": "chronosphere",
   "mod": "index/emailAlertNotifier",
-  "fqn": "chronosphereio_chronosphere",
+  "fqn": "pulumi_chronosphere",
   "classes": {
    "chronosphere:index/emailAlertNotifier:EmailAlertNotifier": "EmailAlertNotifier"
   }
@@ -133,15 +136,39 @@ _utilities.register(
  {
   "pkg": "chronosphere",
   "mod": "index/gcpMetricsIntegration",
-  "fqn": "chronosphereio_chronosphere",
+  "fqn": "pulumi_chronosphere",
   "classes": {
    "chronosphere:index/gcpMetricsIntegration:GcpMetricsIntegration": "GcpMetricsIntegration"
   }
  },
  {
   "pkg": "chronosphere",
+  "mod": "index/logAllocationConfig",
+  "fqn": "pulumi_chronosphere",
+  "classes": {
+   "chronosphere:index/logAllocationConfig:LogAllocationConfig": "LogAllocationConfig"
+  }
+ },
+ {
+  "pkg": "chronosphere",
+  "mod": "index/logscaleAction",
+  "fqn": "pulumi_chronosphere",
+  "classes": {
+   "chronosphere:index/logscaleAction:LogscaleAction": "LogscaleAction"
+  }
+ },
+ {
+  "pkg": "chronosphere",
+  "mod": "index/logscaleAlert",
+  "fqn": "pulumi_chronosphere",
+  "classes": {
+   "chronosphere:index/logscaleAlert:LogscaleAlert": "LogscaleAlert"
+  }
+ },
+ {
+  "pkg": "chronosphere",
   "mod": "index/mappingRule",
-  "fqn": "chronosphereio_chronosphere",
+  "fqn": "pulumi_chronosphere",
   "classes": {
    "chronosphere:index/mappingRule:MappingRule": "MappingRule"
   }
@@ -149,7 +176,7 @@ _utilities.register(
  {
   "pkg": "chronosphere",
   "mod": "index/monitor",
-  "fqn": "chronosphereio_chronosphere",
+  "fqn": "pulumi_chronosphere",
   "classes": {
    "chronosphere:index/monitor:Monitor": "Monitor"
   }
@@ -157,7 +184,7 @@ _utilities.register(
  {
   "pkg": "chronosphere",
   "mod": "index/notificationPolicy",
-  "fqn": "chronosphereio_chronosphere",
+  "fqn": "pulumi_chronosphere",
   "classes": {
    "chronosphere:index/notificationPolicy:NotificationPolicy": "NotificationPolicy"
   }
@@ -165,7 +192,7 @@ _utilities.register(
  {
   "pkg": "chronosphere",
   "mod": "index/opsgenieAlertNotifier",
-  "fqn": "chronosphereio_chronosphere",
+  "fqn": "pulumi_chronosphere",
   "classes": {
    "chronosphere:index/opsgenieAlertNotifier:OpsgenieAlertNotifier": "OpsgenieAlertNotifier"
   }
@@ -173,7 +200,7 @@ _utilities.register(
  {
   "pkg": "chronosphere",
   "mod": "index/otelMetricsIngestion",
-  "fqn": "chronosphereio_chronosphere",
+  "fqn": "pulumi_chronosphere",
   "classes": {
    "chronosphere:index/otelMetricsIngestion:OtelMetricsIngestion": "OtelMetricsIngestion"
   }
@@ -181,7 +208,7 @@ _utilities.register(
  {
   "pkg": "chronosphere",
   "mod": "index/pagerdutyAlertNotifier",
-  "fqn": "chronosphereio_chronosphere",
+  "fqn": "pulumi_chronosphere",
   "classes": {
    "chronosphere:index/pagerdutyAlertNotifier:PagerdutyAlertNotifier": "PagerdutyAlertNotifier"
   }
@@ -189,7 +216,7 @@ _utilities.register(
  {
   "pkg": "chronosphere",
   "mod": "index/recordingRule",
-  "fqn": "chronosphereio_chronosphere",
+  "fqn": "pulumi_chronosphere",
   "classes": {
    "chronosphere:index/recordingRule:RecordingRule": "RecordingRule"
   }
@@ -197,7 +224,7 @@ _utilities.register(
  {
   "pkg": "chronosphere",
   "mod": "index/resourcePoolsConfig",
-  "fqn": "chronosphereio_chronosphere",
+  "fqn": "pulumi_chronosphere",
   "classes": {
    "chronosphere:index/resourcePoolsConfig:ResourcePoolsConfig": "ResourcePoolsConfig"
   }
@@ -205,7 +232,7 @@ _utilities.register(
  {
   "pkg": "chronosphere",
   "mod": "index/rollupRule",
-  "fqn": "chronosphereio_chronosphere",
+  "fqn": "pulumi_chronosphere",
   "classes": {
    "chronosphere:index/rollupRule:RollupRule": "RollupRule"
   }
@@ -213,7 +240,7 @@ _utilities.register(
  {
   "pkg": "chronosphere",
   "mod": "index/serviceAccount",
-  "fqn": "chronosphereio_chronosphere",
+  "fqn": "pulumi_chronosphere",
   "classes": {
    "chronosphere:index/serviceAccount:ServiceAccount": "ServiceAccount"
   }
@@ -221,7 +248,7 @@ _utilities.register(
  {
   "pkg": "chronosphere",
   "mod": "index/slackAlertNotifier",
-  "fqn": "chronosphereio_chronosphere",
+  "fqn": "pulumi_chronosphere",
   "classes": {
    "chronosphere:index/slackAlertNotifier:SlackAlertNotifier": "SlackAlertNotifier"
   }
@@ -229,7 +256,7 @@ _utilities.register(
  {
   "pkg": "chronosphere",
   "mod": "index/team",
-  "fqn": "chronosphereio_chronosphere",
+  "fqn": "pulumi_chronosphere",
   "classes": {
    "chronosphere:index/team:Team": "Team"
   }
@@ -237,7 +264,7 @@ _utilities.register(
  {
   "pkg": "chronosphere",
   "mod": "index/traceJaegerRemoteSamplingStrategy",
-  "fqn": "chronosphereio_chronosphere",
+  "fqn": "pulumi_chronosphere",
   "classes": {
    "chronosphere:index/traceJaegerRemoteSamplingStrategy:TraceJaegerRemoteSamplingStrategy": "TraceJaegerRemoteSamplingStrategy"
   }
@@ -245,7 +272,7 @@ _utilities.register(
  {
   "pkg": "chronosphere",
   "mod": "index/traceMetricsRule",
-  "fqn": "chronosphereio_chronosphere",
+  "fqn": "pulumi_chronosphere",
   "classes": {
    "chronosphere:index/traceMetricsRule:TraceMetricsRule": "TraceMetricsRule"
   }
@@ -253,7 +280,7 @@ _utilities.register(
  {
   "pkg": "chronosphere",
   "mod": "index/traceTailSamplingRules",
-  "fqn": "chronosphereio_chronosphere",
+  "fqn": "pulumi_chronosphere",
   "classes": {
    "chronosphere:index/traceTailSamplingRules:TraceTailSamplingRules": "TraceTailSamplingRules"
   }
@@ -261,7 +288,7 @@ _utilities.register(
  {
   "pkg": "chronosphere",
   "mod": "index/victoropsAlertNotifier",
-  "fqn": "chronosphereio_chronosphere",
+  "fqn": "pulumi_chronosphere",
   "classes": {
    "chronosphere:index/victoropsAlertNotifier:VictoropsAlertNotifier": "VictoropsAlertNotifier"
   }
@@ -269,7 +296,7 @@ _utilities.register(
  {
   "pkg": "chronosphere",
   "mod": "index/webhookAlertNotifier",
-  "fqn": "chronosphereio_chronosphere",
+  "fqn": "pulumi_chronosphere",
   "classes": {
    "chronosphere:index/webhookAlertNotifier:WebhookAlertNotifier": "WebhookAlertNotifier"
   }
@@ -281,7 +308,7 @@ _utilities.register(
  {
   "pkg": "chronosphere",
   "token": "pulumi:providers:chronosphere",
-  "fqn": "chronosphereio_chronosphere",
+  "fqn": "pulumi_chronosphere",
   "class": "Provider"
  }
 ]

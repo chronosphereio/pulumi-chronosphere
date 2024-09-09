@@ -14,7 +14,7 @@ namespace Chronosphere.Pulumi
     public partial class ResourcePoolsConfig : global::Pulumi.CustomResource
     {
         [Output("defaultPool")]
-        public Output<Outputs.ResourcePoolsConfigDefaultPool> DefaultPool { get; private set; } = null!;
+        public Output<Outputs.ResourcePoolsConfigDefaultPool?> DefaultPool { get; private set; } = null!;
 
         [Output("pool")]
         public Output<ImmutableArray<Outputs.ResourcePoolsConfigPool>> Pool { get; private set; } = null!;
@@ -30,7 +30,7 @@ namespace Chronosphere.Pulumi
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public ResourcePoolsConfig(string name, ResourcePoolsConfigArgs args, CustomResourceOptions? options = null)
+        public ResourcePoolsConfig(string name, ResourcePoolsConfigArgs? args = null, CustomResourceOptions? options = null)
             : base("chronosphere:index/resourcePoolsConfig:ResourcePoolsConfig", name, args ?? new ResourcePoolsConfigArgs(), MakeResourceOptions(options, ""))
         {
         }
@@ -68,8 +68,8 @@ namespace Chronosphere.Pulumi
 
     public sealed class ResourcePoolsConfigArgs : global::Pulumi.ResourceArgs
     {
-        [Input("defaultPool", required: true)]
-        public Input<Inputs.ResourcePoolsConfigDefaultPoolArgs> DefaultPool { get; set; } = null!;
+        [Input("defaultPool")]
+        public Input<Inputs.ResourcePoolsConfigDefaultPoolArgs>? DefaultPool { get; set; }
 
         [Input("pool")]
         private InputList<Inputs.ResourcePoolsConfigPoolArgs>? _pool;

@@ -14,11 +14,16 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class ResourcePoolsConfigPoolAllocation
     {
-        public readonly double PercentOfLicense;
+        public readonly ImmutableArray<Outputs.ResourcePoolsConfigPoolAllocationFixedValue> FixedValues;
+        public readonly double? PercentOfLicense;
 
         [OutputConstructor]
-        private ResourcePoolsConfigPoolAllocation(double percentOfLicense)
+        private ResourcePoolsConfigPoolAllocation(
+            ImmutableArray<Outputs.ResourcePoolsConfigPoolAllocationFixedValue> fixedValues,
+
+            double? percentOfLicense)
         {
+            FixedValues = fixedValues;
             PercentOfLicense = percentOfLicense;
         }
     }

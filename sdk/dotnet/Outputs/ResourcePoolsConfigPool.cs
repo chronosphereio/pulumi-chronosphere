@@ -14,7 +14,7 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class ResourcePoolsConfigPool
     {
-        public readonly Outputs.ResourcePoolsConfigPoolAllocation Allocation;
+        public readonly Outputs.ResourcePoolsConfigPoolAllocation? Allocation;
         public readonly string? MatchRule;
         public readonly ImmutableArray<string> MatchRules;
         public readonly string Name;
@@ -22,7 +22,7 @@ namespace Chronosphere.Pulumi.Outputs
 
         [OutputConstructor]
         private ResourcePoolsConfigPool(
-            Outputs.ResourcePoolsConfigPoolAllocation allocation,
+            Outputs.ResourcePoolsConfigPoolAllocation? allocation,
 
             string? matchRule,
 

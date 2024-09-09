@@ -14,15 +14,19 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class DatasetConfiguration
     {
+        public readonly Outputs.DatasetConfigurationLogDataset? LogDataset;
         public readonly Outputs.DatasetConfigurationTraceDataset? TraceDataset;
         public readonly string Type;
 
         [OutputConstructor]
         private DatasetConfiguration(
+            Outputs.DatasetConfigurationLogDataset? logDataset,
+
             Outputs.DatasetConfigurationTraceDataset? traceDataset,
 
             string type)
         {
+            LogDataset = logDataset;
             TraceDataset = traceDataset;
             Type = type;
         }

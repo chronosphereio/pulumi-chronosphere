@@ -37,17 +37,8 @@ namespace Chronosphere.Pulumi.Inputs
         [Input("spanCount")]
         public Input<Inputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanSpanCountGetArgs>? SpanCount { get; set; }
 
-        [Input("tag")]
-        private InputList<Inputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanTagGetArgs>? _tag;
-        public InputList<Inputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanTagGetArgs> Tag
-        {
-            get => _tag ?? (_tag = new InputList<Inputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanTagGetArgs>());
-            set => _tag = value;
-        }
-
         [Input("tags")]
         private InputList<Inputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanTagGetArgs>? _tags;
-        [Obsolete(@"`tags` is deprecated, use `tag` instead.")]
         public InputList<Inputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanTagGetArgs> Tags
         {
             get => _tags ?? (_tags = new InputList<Inputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanTagGetArgs>());

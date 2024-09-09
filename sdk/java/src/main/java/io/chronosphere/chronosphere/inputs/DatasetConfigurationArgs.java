@@ -5,6 +5,7 @@ package io.chronosphere.chronosphere.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import io.chronosphere.chronosphere.inputs.DatasetConfigurationLogDatasetArgs;
 import io.chronosphere.chronosphere.inputs.DatasetConfigurationTraceDatasetArgs;
 import java.lang.String;
 import java.util.Objects;
@@ -15,6 +16,13 @@ import javax.annotation.Nullable;
 public final class DatasetConfigurationArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final DatasetConfigurationArgs Empty = new DatasetConfigurationArgs();
+
+    @Import(name="logDataset")
+    private @Nullable Output<DatasetConfigurationLogDatasetArgs> logDataset;
+
+    public Optional<Output<DatasetConfigurationLogDatasetArgs>> logDataset() {
+        return Optional.ofNullable(this.logDataset);
+    }
 
     @Import(name="traceDataset")
     private @Nullable Output<DatasetConfigurationTraceDatasetArgs> traceDataset;
@@ -33,6 +41,7 @@ public final class DatasetConfigurationArgs extends com.pulumi.resources.Resourc
     private DatasetConfigurationArgs() {}
 
     private DatasetConfigurationArgs(DatasetConfigurationArgs $) {
+        this.logDataset = $.logDataset;
         this.traceDataset = $.traceDataset;
         this.type = $.type;
     }
@@ -53,6 +62,15 @@ public final class DatasetConfigurationArgs extends com.pulumi.resources.Resourc
 
         public Builder(DatasetConfigurationArgs defaults) {
             $ = new DatasetConfigurationArgs(Objects.requireNonNull(defaults));
+        }
+
+        public Builder logDataset(@Nullable Output<DatasetConfigurationLogDatasetArgs> logDataset) {
+            $.logDataset = logDataset;
+            return this;
+        }
+
+        public Builder logDataset(DatasetConfigurationLogDatasetArgs logDataset) {
+            return logDataset(Output.of(logDataset));
         }
 
         public Builder traceDataset(@Nullable Output<DatasetConfigurationTraceDatasetArgs> traceDataset) {

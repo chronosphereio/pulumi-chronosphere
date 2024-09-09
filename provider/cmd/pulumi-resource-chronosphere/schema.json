@@ -52,7 +52,7 @@
             "disableUnionOutputTypes": true
         },
         "python": {
-            "packageName": "chronosphereio_chronosphere",
+            "packageName": "pulumi_chronosphere",
             "requires": {
                 "pulumi": "\u003e=3.0.0,\u003c4.0.0"
             },
@@ -95,6 +95,9 @@
     "types": {
         "chronosphere:index/DatasetConfiguration:DatasetConfiguration": {
             "properties": {
+                "logDataset": {
+                    "$ref": "#/types/chronosphere:index/DatasetConfigurationLogDataset:DatasetConfigurationLogDataset"
+                },
                 "traceDataset": {
                     "$ref": "#/types/chronosphere:index/DatasetConfigurationTraceDataset:DatasetConfigurationTraceDataset"
                 },
@@ -105,6 +108,25 @@
             "type": "object",
             "required": [
                 "type"
+            ]
+        },
+        "chronosphere:index/DatasetConfigurationLogDataset:DatasetConfigurationLogDataset": {
+            "properties": {
+                "matchCriteria": {
+                    "$ref": "#/types/chronosphere:index/DatasetConfigurationLogDatasetMatchCriteria:DatasetConfigurationLogDatasetMatchCriteria"
+                }
+            },
+            "type": "object"
+        },
+        "chronosphere:index/DatasetConfigurationLogDatasetMatchCriteria:DatasetConfigurationLogDatasetMatchCriteria": {
+            "properties": {
+                "query": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "query"
             ]
         },
         "chronosphere:index/DatasetConfigurationTraceDataset:DatasetConfigurationTraceDataset": {
@@ -158,34 +180,19 @@
                 "spanCount": {
                     "$ref": "#/types/chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaSpanSpanCount:DatasetConfigurationTraceDatasetMatchCriteriaSpanSpanCount"
                 },
-                "tag": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaSpanTag:DatasetConfigurationTraceDatasetMatchCriteriaSpanTag"
-                    }
-                },
                 "tags": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaSpanTag:DatasetConfigurationTraceDatasetMatchCriteriaSpanTag"
-                    },
-                    "deprecationMessage": "`tags` is deprecated, use `tag` instead."
+                    }
                 }
             },
             "type": "object"
         },
         "chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaSpanDuration:DatasetConfigurationTraceDatasetMatchCriteriaSpanDuration": {
             "properties": {
-                "maxSeconds": {
-                    "type": "number",
-                    "deprecationMessage": "use max_secs instead"
-                },
                 "maxSecs": {
                     "type": "number"
-                },
-                "minSeconds": {
-                    "type": "number",
-                    "deprecationMessage": "use min_secs instead"
                 },
                 "minSecs": {
                     "type": "number"
@@ -342,16 +349,8 @@
         },
         "chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaTraceDuration:DatasetConfigurationTraceDatasetMatchCriteriaTraceDuration": {
             "properties": {
-                "maxSeconds": {
-                    "type": "number",
-                    "deprecationMessage": "use max_secs instead"
-                },
                 "maxSecs": {
                     "type": "number"
-                },
-                "minSeconds": {
-                    "type": "number",
-                    "deprecationMessage": "use min_secs instead"
                 },
                 "minSecs": {
                     "type": "number"
@@ -614,6 +613,317 @@
             "type": "object",
             "required": [
                 "clientEmail"
+            ]
+        },
+        "chronosphere:index/LogAllocationConfigDatasetAllocation:LogAllocationConfigDatasetAllocation": {
+            "properties": {
+                "allocation": {
+                    "$ref": "#/types/chronosphere:index/LogAllocationConfigDatasetAllocationAllocation:LogAllocationConfigDatasetAllocationAllocation"
+                },
+                "datasetId": {
+                    "type": "string"
+                },
+                "priorities": {
+                    "$ref": "#/types/chronosphere:index/LogAllocationConfigDatasetAllocationPriorities:LogAllocationConfigDatasetAllocationPriorities"
+                }
+            },
+            "type": "object",
+            "required": [
+                "allocation",
+                "datasetId"
+            ]
+        },
+        "chronosphere:index/LogAllocationConfigDatasetAllocationAllocation:LogAllocationConfigDatasetAllocationAllocation": {
+            "properties": {
+                "percentOfLicense": {
+                    "type": "number"
+                }
+            },
+            "type": "object",
+            "required": [
+                "percentOfLicense"
+            ]
+        },
+        "chronosphere:index/LogAllocationConfigDatasetAllocationPriorities:LogAllocationConfigDatasetAllocationPriorities": {
+            "properties": {
+                "highPriorityFilters": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/chronosphere:index/LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilter:LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilter"
+                    }
+                },
+                "lowPriorityFilters": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/chronosphere:index/LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilter:LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilter"
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "chronosphere:index/LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilter:LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilter": {
+            "properties": {
+                "query": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "query"
+            ]
+        },
+        "chronosphere:index/LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilter:LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilter": {
+            "properties": {
+                "query": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "query"
+            ]
+        },
+        "chronosphere:index/LogAllocationConfigDefaultDataset:LogAllocationConfigDefaultDataset": {
+            "properties": {
+                "allocation": {
+                    "$ref": "#/types/chronosphere:index/LogAllocationConfigDefaultDatasetAllocation:LogAllocationConfigDefaultDatasetAllocation"
+                },
+                "priorities": {
+                    "$ref": "#/types/chronosphere:index/LogAllocationConfigDefaultDatasetPriorities:LogAllocationConfigDefaultDatasetPriorities"
+                }
+            },
+            "type": "object",
+            "required": [
+                "allocation"
+            ]
+        },
+        "chronosphere:index/LogAllocationConfigDefaultDatasetAllocation:LogAllocationConfigDefaultDatasetAllocation": {
+            "properties": {
+                "percentOfLicense": {
+                    "type": "number"
+                }
+            },
+            "type": "object",
+            "required": [
+                "percentOfLicense"
+            ]
+        },
+        "chronosphere:index/LogAllocationConfigDefaultDatasetPriorities:LogAllocationConfigDefaultDatasetPriorities": {
+            "properties": {
+                "highPriorityFilters": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/chronosphere:index/LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilter:LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilter"
+                    }
+                },
+                "lowPriorityFilters": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/chronosphere:index/LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilter:LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilter"
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "chronosphere:index/LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilter:LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilter": {
+            "properties": {
+                "query": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "query"
+            ]
+        },
+        "chronosphere:index/LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilter:LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilter": {
+            "properties": {
+                "query": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "query"
+            ]
+        },
+        "chronosphere:index/LogscaleActionEmailAction:LogscaleActionEmailAction": {
+            "properties": {
+                "attachCsv": {
+                    "type": "boolean"
+                },
+                "bodyTemplate": {
+                    "type": "string"
+                },
+                "recipients": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "subjectTemplate": {
+                    "type": "string"
+                },
+                "useProxy": {
+                    "type": "boolean"
+                }
+            },
+            "type": "object",
+            "required": [
+                "recipients"
+            ]
+        },
+        "chronosphere:index/LogscaleActionHumioAction:LogscaleActionHumioAction": {
+            "properties": {
+                "ingestToken": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "ingestToken"
+            ]
+        },
+        "chronosphere:index/LogscaleActionOpsGenieAction:LogscaleActionOpsGenieAction": {
+            "properties": {
+                "apiUrl": {
+                    "type": "string"
+                },
+                "opsGenieKey": {
+                    "type": "string"
+                },
+                "useProxy": {
+                    "type": "boolean"
+                }
+            },
+            "type": "object",
+            "required": [
+                "apiUrl",
+                "opsGenieKey"
+            ]
+        },
+        "chronosphere:index/LogscaleActionPagerDutyAction:LogscaleActionPagerDutyAction": {
+            "properties": {
+                "routingKey": {
+                    "type": "string"
+                },
+                "severity": {
+                    "type": "string"
+                },
+                "useProxy": {
+                    "type": "boolean"
+                }
+            },
+            "type": "object",
+            "required": [
+                "routingKey",
+                "severity"
+            ]
+        },
+        "chronosphere:index/LogscaleActionSlackAction:LogscaleActionSlackAction": {
+            "properties": {
+                "fields": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                },
+                "url": {
+                    "type": "string"
+                },
+                "useProxy": {
+                    "type": "boolean"
+                }
+            },
+            "type": "object",
+            "required": [
+                "url"
+            ]
+        },
+        "chronosphere:index/LogscaleActionSlackPostMessageAction:LogscaleActionSlackPostMessageAction": {
+            "properties": {
+                "apiToken": {
+                    "type": "string"
+                },
+                "channels": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "fields": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                },
+                "useProxy": {
+                    "type": "boolean"
+                }
+            },
+            "type": "object",
+            "required": [
+                "apiToken",
+                "channels"
+            ]
+        },
+        "chronosphere:index/LogscaleActionUploadFileAction:LogscaleActionUploadFileAction": {
+            "properties": {
+                "fileName": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "fileName"
+            ]
+        },
+        "chronosphere:index/LogscaleActionVictorOpsAction:LogscaleActionVictorOpsAction": {
+            "properties": {
+                "messageType": {
+                    "type": "string"
+                },
+                "notifyUrl": {
+                    "type": "string"
+                },
+                "useProxy": {
+                    "type": "boolean"
+                }
+            },
+            "type": "object",
+            "required": [
+                "messageType",
+                "notifyUrl"
+            ]
+        },
+        "chronosphere:index/LogscaleActionWebhookAction:LogscaleActionWebhookAction": {
+            "properties": {
+                "bodyTemplate": {
+                    "type": "string"
+                },
+                "headers": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                },
+                "ignoreSsl": {
+                    "type": "boolean"
+                },
+                "method": {
+                    "type": "string"
+                },
+                "url": {
+                    "type": "string"
+                },
+                "useProxy": {
+                    "type": "boolean"
+                }
+            },
+            "type": "object",
+            "required": [
+                "method",
+                "url"
             ]
         },
         "chronosphere:index/MappingRuleStoragePolicy:MappingRuleStoragePolicy": {
@@ -987,20 +1297,35 @@
                     "$ref": "#/types/chronosphere:index/ResourcePoolsConfigDefaultPoolPriorities:ResourcePoolsConfigDefaultPoolPriorities"
                 }
             },
-            "type": "object",
-            "required": [
-                "allocation"
-            ]
+            "type": "object"
         },
         "chronosphere:index/ResourcePoolsConfigDefaultPoolAllocation:ResourcePoolsConfigDefaultPoolAllocation": {
             "properties": {
+                "fixedValues": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/chronosphere:index/ResourcePoolsConfigDefaultPoolAllocationFixedValue:ResourcePoolsConfigDefaultPoolAllocationFixedValue"
+                    }
+                },
                 "percentOfLicense": {
                     "type": "number"
                 }
             },
+            "type": "object"
+        },
+        "chronosphere:index/ResourcePoolsConfigDefaultPoolAllocationFixedValue:ResourcePoolsConfigDefaultPoolAllocationFixedValue": {
+            "properties": {
+                "license": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "integer"
+                }
+            },
             "type": "object",
             "required": [
-                "percentOfLicense"
+                "license",
+                "value"
             ]
         },
         "chronosphere:index/ResourcePoolsConfigDefaultPoolPriorities:ResourcePoolsConfigDefaultPoolPriorities": {
@@ -1044,19 +1369,36 @@
             },
             "type": "object",
             "required": [
-                "allocation",
                 "name"
             ]
         },
         "chronosphere:index/ResourcePoolsConfigPoolAllocation:ResourcePoolsConfigPoolAllocation": {
             "properties": {
+                "fixedValues": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/chronosphere:index/ResourcePoolsConfigPoolAllocationFixedValue:ResourcePoolsConfigPoolAllocationFixedValue"
+                    }
+                },
                 "percentOfLicense": {
                     "type": "number"
                 }
             },
+            "type": "object"
+        },
+        "chronosphere:index/ResourcePoolsConfigPoolAllocationFixedValue:ResourcePoolsConfigPoolAllocationFixedValue": {
+            "properties": {
+                "license": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "integer"
+                }
+            },
             "type": "object",
             "required": [
-                "percentOfLicense"
+                "license",
+                "value"
             ]
         },
         "chronosphere:index/ResourcePoolsConfigPoolPriorities:ResourcePoolsConfigPoolPriorities": {
@@ -1337,34 +1679,19 @@
                 "spanCount": {
                     "$ref": "#/types/chronosphere:index/TraceMetricsRuleTraceFilterSpanSpanCount:TraceMetricsRuleTraceFilterSpanSpanCount"
                 },
-                "tag": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/chronosphere:index/TraceMetricsRuleTraceFilterSpanTag:TraceMetricsRuleTraceFilterSpanTag"
-                    }
-                },
                 "tags": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/chronosphere:index/TraceMetricsRuleTraceFilterSpanTag:TraceMetricsRuleTraceFilterSpanTag"
-                    },
-                    "deprecationMessage": "`tags` is deprecated, use `tag` instead."
+                    }
                 }
             },
             "type": "object"
         },
         "chronosphere:index/TraceMetricsRuleTraceFilterSpanDuration:TraceMetricsRuleTraceFilterSpanDuration": {
             "properties": {
-                "maxSeconds": {
-                    "type": "number",
-                    "deprecationMessage": "use max_secs instead"
-                },
                 "maxSecs": {
                     "type": "number"
-                },
-                "minSeconds": {
-                    "type": "number",
-                    "deprecationMessage": "use min_secs instead"
                 },
                 "minSecs": {
                     "type": "number"
@@ -1521,16 +1848,8 @@
         },
         "chronosphere:index/TraceMetricsRuleTraceFilterTraceDuration:TraceMetricsRuleTraceFilterTraceDuration": {
             "properties": {
-                "maxSeconds": {
-                    "type": "number",
-                    "deprecationMessage": "use max_secs instead"
-                },
                 "maxSecs": {
                     "type": "number"
-                },
-                "minSeconds": {
-                    "type": "number",
-                    "deprecationMessage": "use min_secs instead"
                 },
                 "minSecs": {
                     "type": "number"
@@ -1624,34 +1943,19 @@
                 "spanCount": {
                     "$ref": "#/types/chronosphere:index/TraceTailSamplingRulesRuleFilterSpanSpanCount:TraceTailSamplingRulesRuleFilterSpanSpanCount"
                 },
-                "tag": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/chronosphere:index/TraceTailSamplingRulesRuleFilterSpanTag:TraceTailSamplingRulesRuleFilterSpanTag"
-                    }
-                },
                 "tags": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/chronosphere:index/TraceTailSamplingRulesRuleFilterSpanTag:TraceTailSamplingRulesRuleFilterSpanTag"
-                    },
-                    "deprecationMessage": "`tags` is deprecated, use `tag` instead."
+                    }
                 }
             },
             "type": "object"
         },
         "chronosphere:index/TraceTailSamplingRulesRuleFilterSpanDuration:TraceTailSamplingRulesRuleFilterSpanDuration": {
             "properties": {
-                "maxSeconds": {
-                    "type": "number",
-                    "deprecationMessage": "use max_secs instead"
-                },
                 "maxSecs": {
                     "type": "number"
-                },
-                "minSeconds": {
-                    "type": "number",
-                    "deprecationMessage": "use min_secs instead"
                 },
                 "minSecs": {
                     "type": "number"
@@ -1808,16 +2112,8 @@
         },
         "chronosphere:index/TraceTailSamplingRulesRuleFilterTraceDuration:TraceTailSamplingRulesRuleFilterTraceDuration": {
             "properties": {
-                "maxSeconds": {
-                    "type": "number",
-                    "deprecationMessage": "use max_secs instead"
-                },
                 "maxSecs": {
                     "type": "number"
-                },
-                "minSeconds": {
-                    "type": "number",
-                    "deprecationMessage": "use min_secs instead"
                 },
                 "minSecs": {
                     "type": "number"
@@ -2654,6 +2950,357 @@
                     },
                     "slug": {
                         "type": "string"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "chronosphere:index/logAllocationConfig:LogAllocationConfig": {
+            "properties": {
+                "datasetAllocations": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/chronosphere:index/LogAllocationConfigDatasetAllocation:LogAllocationConfigDatasetAllocation"
+                    }
+                },
+                "defaultDataset": {
+                    "$ref": "#/types/chronosphere:index/LogAllocationConfigDefaultDataset:LogAllocationConfigDefaultDataset"
+                }
+            },
+            "required": [
+                "defaultDataset"
+            ],
+            "inputProperties": {
+                "datasetAllocations": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/chronosphere:index/LogAllocationConfigDatasetAllocation:LogAllocationConfigDatasetAllocation"
+                    }
+                },
+                "defaultDataset": {
+                    "$ref": "#/types/chronosphere:index/LogAllocationConfigDefaultDataset:LogAllocationConfigDefaultDataset"
+                }
+            },
+            "requiredInputs": [
+                "defaultDataset"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering LogAllocationConfig resources.\n",
+                "properties": {
+                    "datasetAllocations": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/chronosphere:index/LogAllocationConfigDatasetAllocation:LogAllocationConfigDatasetAllocation"
+                        }
+                    },
+                    "defaultDataset": {
+                        "$ref": "#/types/chronosphere:index/LogAllocationConfigDefaultDataset:LogAllocationConfigDefaultDataset"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "chronosphere:index/logscaleAction:LogscaleAction": {
+            "properties": {
+                "emailAction": {
+                    "$ref": "#/types/chronosphere:index/LogscaleActionEmailAction:LogscaleActionEmailAction"
+                },
+                "humioAction": {
+                    "$ref": "#/types/chronosphere:index/LogscaleActionHumioAction:LogscaleActionHumioAction"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "opsGenieAction": {
+                    "$ref": "#/types/chronosphere:index/LogscaleActionOpsGenieAction:LogscaleActionOpsGenieAction"
+                },
+                "pagerDutyAction": {
+                    "$ref": "#/types/chronosphere:index/LogscaleActionPagerDutyAction:LogscaleActionPagerDutyAction"
+                },
+                "repository": {
+                    "type": "string"
+                },
+                "slackAction": {
+                    "$ref": "#/types/chronosphere:index/LogscaleActionSlackAction:LogscaleActionSlackAction"
+                },
+                "slackPostMessageAction": {
+                    "$ref": "#/types/chronosphere:index/LogscaleActionSlackPostMessageAction:LogscaleActionSlackPostMessageAction"
+                },
+                "slug": {
+                    "type": "string"
+                },
+                "uploadFileAction": {
+                    "$ref": "#/types/chronosphere:index/LogscaleActionUploadFileAction:LogscaleActionUploadFileAction"
+                },
+                "victorOpsAction": {
+                    "$ref": "#/types/chronosphere:index/LogscaleActionVictorOpsAction:LogscaleActionVictorOpsAction"
+                },
+                "webhookAction": {
+                    "$ref": "#/types/chronosphere:index/LogscaleActionWebhookAction:LogscaleActionWebhookAction"
+                }
+            },
+            "required": [
+                "name",
+                "repository",
+                "slug"
+            ],
+            "inputProperties": {
+                "emailAction": {
+                    "$ref": "#/types/chronosphere:index/LogscaleActionEmailAction:LogscaleActionEmailAction"
+                },
+                "humioAction": {
+                    "$ref": "#/types/chronosphere:index/LogscaleActionHumioAction:LogscaleActionHumioAction"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "opsGenieAction": {
+                    "$ref": "#/types/chronosphere:index/LogscaleActionOpsGenieAction:LogscaleActionOpsGenieAction"
+                },
+                "pagerDutyAction": {
+                    "$ref": "#/types/chronosphere:index/LogscaleActionPagerDutyAction:LogscaleActionPagerDutyAction"
+                },
+                "repository": {
+                    "type": "string",
+                    "willReplaceOnChanges": true
+                },
+                "slackAction": {
+                    "$ref": "#/types/chronosphere:index/LogscaleActionSlackAction:LogscaleActionSlackAction"
+                },
+                "slackPostMessageAction": {
+                    "$ref": "#/types/chronosphere:index/LogscaleActionSlackPostMessageAction:LogscaleActionSlackPostMessageAction"
+                },
+                "slug": {
+                    "type": "string",
+                    "willReplaceOnChanges": true
+                },
+                "uploadFileAction": {
+                    "$ref": "#/types/chronosphere:index/LogscaleActionUploadFileAction:LogscaleActionUploadFileAction"
+                },
+                "victorOpsAction": {
+                    "$ref": "#/types/chronosphere:index/LogscaleActionVictorOpsAction:LogscaleActionVictorOpsAction"
+                },
+                "webhookAction": {
+                    "$ref": "#/types/chronosphere:index/LogscaleActionWebhookAction:LogscaleActionWebhookAction"
+                }
+            },
+            "requiredInputs": [
+                "name",
+                "repository"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering LogscaleAction resources.\n",
+                "properties": {
+                    "emailAction": {
+                        "$ref": "#/types/chronosphere:index/LogscaleActionEmailAction:LogscaleActionEmailAction"
+                    },
+                    "humioAction": {
+                        "$ref": "#/types/chronosphere:index/LogscaleActionHumioAction:LogscaleActionHumioAction"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "opsGenieAction": {
+                        "$ref": "#/types/chronosphere:index/LogscaleActionOpsGenieAction:LogscaleActionOpsGenieAction"
+                    },
+                    "pagerDutyAction": {
+                        "$ref": "#/types/chronosphere:index/LogscaleActionPagerDutyAction:LogscaleActionPagerDutyAction"
+                    },
+                    "repository": {
+                        "type": "string",
+                        "willReplaceOnChanges": true
+                    },
+                    "slackAction": {
+                        "$ref": "#/types/chronosphere:index/LogscaleActionSlackAction:LogscaleActionSlackAction"
+                    },
+                    "slackPostMessageAction": {
+                        "$ref": "#/types/chronosphere:index/LogscaleActionSlackPostMessageAction:LogscaleActionSlackPostMessageAction"
+                    },
+                    "slug": {
+                        "type": "string",
+                        "willReplaceOnChanges": true
+                    },
+                    "uploadFileAction": {
+                        "$ref": "#/types/chronosphere:index/LogscaleActionUploadFileAction:LogscaleActionUploadFileAction"
+                    },
+                    "victorOpsAction": {
+                        "$ref": "#/types/chronosphere:index/LogscaleActionVictorOpsAction:LogscaleActionVictorOpsAction"
+                    },
+                    "webhookAction": {
+                        "$ref": "#/types/chronosphere:index/LogscaleActionWebhookAction:LogscaleActionWebhookAction"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "chronosphere:index/logscaleAlert:LogscaleAlert": {
+            "properties": {
+                "actionIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "alertType": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "disabled": {
+                    "type": "boolean"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "query": {
+                    "type": "string"
+                },
+                "repository": {
+                    "type": "string"
+                },
+                "runAsUser": {
+                    "type": "string",
+                    "description": "Email of the user that the alert runs on behalf of\n"
+                },
+                "slug": {
+                    "type": "string"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "throttleDuration": {
+                    "type": "string",
+                    "description": "Required for STANDARD type alerts, optional for FILTER type alerts\n"
+                },
+                "throttleField": {
+                    "type": "string"
+                },
+                "timeWindow": {
+                    "type": "string",
+                    "description": "Required for STANDARD type alerts, ignored for FILTER type alerts\n"
+                }
+            },
+            "required": [
+                "alertType",
+                "name",
+                "repository",
+                "runAsUser",
+                "slug"
+            ],
+            "inputProperties": {
+                "actionIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "alertType": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "disabled": {
+                    "type": "boolean"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "query": {
+                    "type": "string"
+                },
+                "repository": {
+                    "type": "string",
+                    "willReplaceOnChanges": true
+                },
+                "runAsUser": {
+                    "type": "string",
+                    "description": "Email of the user that the alert runs on behalf of\n"
+                },
+                "slug": {
+                    "type": "string",
+                    "willReplaceOnChanges": true
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "throttleDuration": {
+                    "type": "string",
+                    "description": "Required for STANDARD type alerts, optional for FILTER type alerts\n"
+                },
+                "throttleField": {
+                    "type": "string"
+                },
+                "timeWindow": {
+                    "type": "string",
+                    "description": "Required for STANDARD type alerts, ignored for FILTER type alerts\n"
+                }
+            },
+            "requiredInputs": [
+                "alertType",
+                "name",
+                "repository",
+                "runAsUser"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering LogscaleAlert resources.\n",
+                "properties": {
+                    "actionIds": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "alertType": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "disabled": {
+                        "type": "boolean"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "query": {
+                        "type": "string"
+                    },
+                    "repository": {
+                        "type": "string",
+                        "willReplaceOnChanges": true
+                    },
+                    "runAsUser": {
+                        "type": "string",
+                        "description": "Email of the user that the alert runs on behalf of\n"
+                    },
+                    "slug": {
+                        "type": "string",
+                        "willReplaceOnChanges": true
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "throttleDuration": {
+                        "type": "string",
+                        "description": "Required for STANDARD type alerts, optional for FILTER type alerts\n"
+                    },
+                    "throttleField": {
+                        "type": "string"
+                    },
+                    "timeWindow": {
+                        "type": "string",
+                        "description": "Required for STANDARD type alerts, ignored for FILTER type alerts\n"
                     }
                 },
                 "type": "object"
@@ -3642,9 +4289,6 @@
                     "deprecationMessage": "Use pool instead of pools"
                 }
             },
-            "required": [
-                "defaultPool"
-            ],
             "inputProperties": {
                 "defaultPool": {
                     "$ref": "#/types/chronosphere:index/ResourcePoolsConfigDefaultPool:ResourcePoolsConfigDefaultPool"
@@ -3663,9 +4307,6 @@
                     "deprecationMessage": "Use pool instead of pools"
                 }
             },
-            "requiredInputs": [
-                "defaultPool"
-            ],
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering ResourcePoolsConfig resources.\n",
                 "properties": {

@@ -6,8 +6,17 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
 export interface DatasetConfiguration {
+    logDataset?: pulumi.Input<inputs.DatasetConfigurationLogDataset>;
     traceDataset?: pulumi.Input<inputs.DatasetConfigurationTraceDataset>;
     type: pulumi.Input<string>;
+}
+
+export interface DatasetConfigurationLogDataset {
+    matchCriteria?: pulumi.Input<inputs.DatasetConfigurationLogDatasetMatchCriteria>;
+}
+
+export interface DatasetConfigurationLogDatasetMatchCriteria {
+    query: pulumi.Input<string>;
 }
 
 export interface DatasetConfigurationTraceDataset {
@@ -28,23 +37,11 @@ export interface DatasetConfigurationTraceDatasetMatchCriteriaSpan {
     parentService?: pulumi.Input<inputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanParentService>;
     service?: pulumi.Input<inputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanService>;
     spanCount?: pulumi.Input<inputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanSpanCount>;
-    tag?: pulumi.Input<pulumi.Input<inputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanTag>[]>;
-    /**
-     * @deprecated `tags` is deprecated, use `tag` instead.
-     */
     tags?: pulumi.Input<pulumi.Input<inputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanTag>[]>;
 }
 
 export interface DatasetConfigurationTraceDatasetMatchCriteriaSpanDuration {
-    /**
-     * @deprecated use max_secs instead
-     */
-    maxSeconds?: pulumi.Input<number>;
     maxSecs?: pulumi.Input<number>;
-    /**
-     * @deprecated use min_secs instead
-     */
-    minSeconds?: pulumi.Input<number>;
     minSecs?: pulumi.Input<number>;
 }
 
@@ -104,15 +101,7 @@ export interface DatasetConfigurationTraceDatasetMatchCriteriaTrace {
 }
 
 export interface DatasetConfigurationTraceDatasetMatchCriteriaTraceDuration {
-    /**
-     * @deprecated use max_secs instead
-     */
-    maxSeconds?: pulumi.Input<number>;
     maxSecs?: pulumi.Input<number>;
-    /**
-     * @deprecated use min_secs instead
-     */
-    minSeconds?: pulumi.Input<number>;
     minSecs?: pulumi.Input<number>;
 }
 
@@ -195,6 +184,107 @@ export interface GcpMetricsIntegrationMetricGroup {
 
 export interface GcpMetricsIntegrationServiceAccount {
     clientEmail: pulumi.Input<string>;
+}
+
+export interface LogAllocationConfigDatasetAllocation {
+    allocation: pulumi.Input<inputs.LogAllocationConfigDatasetAllocationAllocation>;
+    datasetId: pulumi.Input<string>;
+    priorities?: pulumi.Input<inputs.LogAllocationConfigDatasetAllocationPriorities>;
+}
+
+export interface LogAllocationConfigDatasetAllocationAllocation {
+    percentOfLicense: pulumi.Input<number>;
+}
+
+export interface LogAllocationConfigDatasetAllocationPriorities {
+    highPriorityFilters?: pulumi.Input<pulumi.Input<inputs.LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilter>[]>;
+    lowPriorityFilters?: pulumi.Input<pulumi.Input<inputs.LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilter>[]>;
+}
+
+export interface LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilter {
+    query: pulumi.Input<string>;
+}
+
+export interface LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilter {
+    query: pulumi.Input<string>;
+}
+
+export interface LogAllocationConfigDefaultDataset {
+    allocation: pulumi.Input<inputs.LogAllocationConfigDefaultDatasetAllocation>;
+    priorities?: pulumi.Input<inputs.LogAllocationConfigDefaultDatasetPriorities>;
+}
+
+export interface LogAllocationConfigDefaultDatasetAllocation {
+    percentOfLicense: pulumi.Input<number>;
+}
+
+export interface LogAllocationConfigDefaultDatasetPriorities {
+    highPriorityFilters?: pulumi.Input<pulumi.Input<inputs.LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilter>[]>;
+    lowPriorityFilters?: pulumi.Input<pulumi.Input<inputs.LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilter>[]>;
+}
+
+export interface LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilter {
+    query: pulumi.Input<string>;
+}
+
+export interface LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilter {
+    query: pulumi.Input<string>;
+}
+
+export interface LogscaleActionEmailAction {
+    attachCsv?: pulumi.Input<boolean>;
+    bodyTemplate?: pulumi.Input<string>;
+    recipients: pulumi.Input<pulumi.Input<string>[]>;
+    subjectTemplate?: pulumi.Input<string>;
+    useProxy?: pulumi.Input<boolean>;
+}
+
+export interface LogscaleActionHumioAction {
+    ingestToken: pulumi.Input<string>;
+}
+
+export interface LogscaleActionOpsGenieAction {
+    apiUrl: pulumi.Input<string>;
+    opsGenieKey: pulumi.Input<string>;
+    useProxy?: pulumi.Input<boolean>;
+}
+
+export interface LogscaleActionPagerDutyAction {
+    routingKey: pulumi.Input<string>;
+    severity: pulumi.Input<string>;
+    useProxy?: pulumi.Input<boolean>;
+}
+
+export interface LogscaleActionSlackAction {
+    fields?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    url: pulumi.Input<string>;
+    useProxy?: pulumi.Input<boolean>;
+}
+
+export interface LogscaleActionSlackPostMessageAction {
+    apiToken: pulumi.Input<string>;
+    channels: pulumi.Input<pulumi.Input<string>[]>;
+    fields?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    useProxy?: pulumi.Input<boolean>;
+}
+
+export interface LogscaleActionUploadFileAction {
+    fileName: pulumi.Input<string>;
+}
+
+export interface LogscaleActionVictorOpsAction {
+    messageType: pulumi.Input<string>;
+    notifyUrl: pulumi.Input<string>;
+    useProxy?: pulumi.Input<boolean>;
+}
+
+export interface LogscaleActionWebhookAction {
+    bodyTemplate?: pulumi.Input<string>;
+    headers?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    ignoreSsl?: pulumi.Input<boolean>;
+    method: pulumi.Input<string>;
+    url: pulumi.Input<string>;
+    useProxy?: pulumi.Input<boolean>;
 }
 
 export interface MappingRuleStoragePolicy {
@@ -314,12 +404,18 @@ export interface PagerdutyAlertNotifierLink {
 }
 
 export interface ResourcePoolsConfigDefaultPool {
-    allocation: pulumi.Input<inputs.ResourcePoolsConfigDefaultPoolAllocation>;
+    allocation?: pulumi.Input<inputs.ResourcePoolsConfigDefaultPoolAllocation>;
     priorities?: pulumi.Input<inputs.ResourcePoolsConfigDefaultPoolPriorities>;
 }
 
 export interface ResourcePoolsConfigDefaultPoolAllocation {
-    percentOfLicense: pulumi.Input<number>;
+    fixedValues?: pulumi.Input<pulumi.Input<inputs.ResourcePoolsConfigDefaultPoolAllocationFixedValue>[]>;
+    percentOfLicense?: pulumi.Input<number>;
+}
+
+export interface ResourcePoolsConfigDefaultPoolAllocationFixedValue {
+    license: pulumi.Input<string>;
+    value: pulumi.Input<number>;
 }
 
 export interface ResourcePoolsConfigDefaultPoolPriorities {
@@ -328,7 +424,7 @@ export interface ResourcePoolsConfigDefaultPoolPriorities {
 }
 
 export interface ResourcePoolsConfigPool {
-    allocation: pulumi.Input<inputs.ResourcePoolsConfigPoolAllocation>;
+    allocation?: pulumi.Input<inputs.ResourcePoolsConfigPoolAllocation>;
     /**
      * @deprecated use match_rules
      */
@@ -339,7 +435,13 @@ export interface ResourcePoolsConfigPool {
 }
 
 export interface ResourcePoolsConfigPoolAllocation {
-    percentOfLicense: pulumi.Input<number>;
+    fixedValues?: pulumi.Input<pulumi.Input<inputs.ResourcePoolsConfigPoolAllocationFixedValue>[]>;
+    percentOfLicense?: pulumi.Input<number>;
+}
+
+export interface ResourcePoolsConfigPoolAllocationFixedValue {
+    license: pulumi.Input<string>;
+    value: pulumi.Input<number>;
 }
 
 export interface ResourcePoolsConfigPoolPriorities {
@@ -439,23 +541,11 @@ export interface TraceMetricsRuleTraceFilterSpan {
     parentService?: pulumi.Input<inputs.TraceMetricsRuleTraceFilterSpanParentService>;
     service?: pulumi.Input<inputs.TraceMetricsRuleTraceFilterSpanService>;
     spanCount?: pulumi.Input<inputs.TraceMetricsRuleTraceFilterSpanSpanCount>;
-    tag?: pulumi.Input<pulumi.Input<inputs.TraceMetricsRuleTraceFilterSpanTag>[]>;
-    /**
-     * @deprecated `tags` is deprecated, use `tag` instead.
-     */
     tags?: pulumi.Input<pulumi.Input<inputs.TraceMetricsRuleTraceFilterSpanTag>[]>;
 }
 
 export interface TraceMetricsRuleTraceFilterSpanDuration {
-    /**
-     * @deprecated use max_secs instead
-     */
-    maxSeconds?: pulumi.Input<number>;
     maxSecs?: pulumi.Input<number>;
-    /**
-     * @deprecated use min_secs instead
-     */
-    minSeconds?: pulumi.Input<number>;
     minSecs?: pulumi.Input<number>;
 }
 
@@ -515,15 +605,7 @@ export interface TraceMetricsRuleTraceFilterTrace {
 }
 
 export interface TraceMetricsRuleTraceFilterTraceDuration {
-    /**
-     * @deprecated use max_secs instead
-     */
-    maxSeconds?: pulumi.Input<number>;
     maxSecs?: pulumi.Input<number>;
-    /**
-     * @deprecated use min_secs instead
-     */
-    minSeconds?: pulumi.Input<number>;
     minSecs?: pulumi.Input<number>;
 }
 
@@ -557,23 +639,11 @@ export interface TraceTailSamplingRulesRuleFilterSpan {
     parentService?: pulumi.Input<inputs.TraceTailSamplingRulesRuleFilterSpanParentService>;
     service?: pulumi.Input<inputs.TraceTailSamplingRulesRuleFilterSpanService>;
     spanCount?: pulumi.Input<inputs.TraceTailSamplingRulesRuleFilterSpanSpanCount>;
-    tag?: pulumi.Input<pulumi.Input<inputs.TraceTailSamplingRulesRuleFilterSpanTag>[]>;
-    /**
-     * @deprecated `tags` is deprecated, use `tag` instead.
-     */
     tags?: pulumi.Input<pulumi.Input<inputs.TraceTailSamplingRulesRuleFilterSpanTag>[]>;
 }
 
 export interface TraceTailSamplingRulesRuleFilterSpanDuration {
-    /**
-     * @deprecated use max_secs instead
-     */
-    maxSeconds?: pulumi.Input<number>;
     maxSecs?: pulumi.Input<number>;
-    /**
-     * @deprecated use min_secs instead
-     */
-    minSeconds?: pulumi.Input<number>;
     minSecs?: pulumi.Input<number>;
 }
 
@@ -633,15 +703,7 @@ export interface TraceTailSamplingRulesRuleFilterTrace {
 }
 
 export interface TraceTailSamplingRulesRuleFilterTraceDuration {
-    /**
-     * @deprecated use max_secs instead
-     */
-    maxSeconds?: pulumi.Input<number>;
     maxSecs?: pulumi.Input<number>;
-    /**
-     * @deprecated use min_secs instead
-     */
-    minSeconds?: pulumi.Input<number>;
     minSecs?: pulumi.Input<number>;
 }
 

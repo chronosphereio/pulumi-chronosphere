@@ -5,24 +5,36 @@ package io.chronosphere.chronosphere.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import io.chronosphere.chronosphere.inputs.ResourcePoolsConfigDefaultPoolAllocationFixedValueArgs;
 import java.lang.Double;
+import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class ResourcePoolsConfigDefaultPoolAllocationArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final ResourcePoolsConfigDefaultPoolAllocationArgs Empty = new ResourcePoolsConfigDefaultPoolAllocationArgs();
 
-    @Import(name="percentOfLicense", required=true)
-    private Output<Double> percentOfLicense;
+    @Import(name="fixedValues")
+    private @Nullable Output<List<ResourcePoolsConfigDefaultPoolAllocationFixedValueArgs>> fixedValues;
 
-    public Output<Double> percentOfLicense() {
-        return this.percentOfLicense;
+    public Optional<Output<List<ResourcePoolsConfigDefaultPoolAllocationFixedValueArgs>>> fixedValues() {
+        return Optional.ofNullable(this.fixedValues);
+    }
+
+    @Import(name="percentOfLicense")
+    private @Nullable Output<Double> percentOfLicense;
+
+    public Optional<Output<Double>> percentOfLicense() {
+        return Optional.ofNullable(this.percentOfLicense);
     }
 
     private ResourcePoolsConfigDefaultPoolAllocationArgs() {}
 
     private ResourcePoolsConfigDefaultPoolAllocationArgs(ResourcePoolsConfigDefaultPoolAllocationArgs $) {
+        this.fixedValues = $.fixedValues;
         this.percentOfLicense = $.percentOfLicense;
     }
 
@@ -44,7 +56,20 @@ public final class ResourcePoolsConfigDefaultPoolAllocationArgs extends com.pulu
             $ = new ResourcePoolsConfigDefaultPoolAllocationArgs(Objects.requireNonNull(defaults));
         }
 
-        public Builder percentOfLicense(Output<Double> percentOfLicense) {
+        public Builder fixedValues(@Nullable Output<List<ResourcePoolsConfigDefaultPoolAllocationFixedValueArgs>> fixedValues) {
+            $.fixedValues = fixedValues;
+            return this;
+        }
+
+        public Builder fixedValues(List<ResourcePoolsConfigDefaultPoolAllocationFixedValueArgs> fixedValues) {
+            return fixedValues(Output.of(fixedValues));
+        }
+
+        public Builder fixedValues(ResourcePoolsConfigDefaultPoolAllocationFixedValueArgs... fixedValues) {
+            return fixedValues(List.of(fixedValues));
+        }
+
+        public Builder percentOfLicense(@Nullable Output<Double> percentOfLicense) {
             $.percentOfLicense = percentOfLicense;
             return this;
         }
@@ -54,7 +79,6 @@ public final class ResourcePoolsConfigDefaultPoolAllocationArgs extends com.pulu
         }
 
         public ResourcePoolsConfigDefaultPoolAllocationArgs build() {
-            $.percentOfLicense = Objects.requireNonNull($.percentOfLicense, "expected parameter 'percentOfLicense' to be non-null");
             return $;
         }
     }

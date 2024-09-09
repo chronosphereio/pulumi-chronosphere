@@ -4,16 +4,24 @@
 package io.chronosphere.chronosphere.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import io.chronosphere.chronosphere.outputs.ResourcePoolsConfigDefaultPoolAllocationFixedValue;
 import java.lang.Double;
+import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 @CustomType
 public final class ResourcePoolsConfigDefaultPoolAllocation {
-    private Double percentOfLicense;
+    private @Nullable List<ResourcePoolsConfigDefaultPoolAllocationFixedValue> fixedValues;
+    private @Nullable Double percentOfLicense;
 
     private ResourcePoolsConfigDefaultPoolAllocation() {}
-    public Double percentOfLicense() {
-        return this.percentOfLicense;
+    public List<ResourcePoolsConfigDefaultPoolAllocationFixedValue> fixedValues() {
+        return this.fixedValues == null ? List.of() : this.fixedValues;
+    }
+    public Optional<Double> percentOfLicense() {
+        return Optional.ofNullable(this.percentOfLicense);
     }
 
     public static Builder builder() {
@@ -25,20 +33,31 @@ public final class ResourcePoolsConfigDefaultPoolAllocation {
     }
     @CustomType.Builder
     public static final class Builder {
-        private Double percentOfLicense;
+        private @Nullable List<ResourcePoolsConfigDefaultPoolAllocationFixedValue> fixedValues;
+        private @Nullable Double percentOfLicense;
         public Builder() {}
         public Builder(ResourcePoolsConfigDefaultPoolAllocation defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.fixedValues = defaults.fixedValues;
     	      this.percentOfLicense = defaults.percentOfLicense;
         }
 
         @CustomType.Setter
-        public Builder percentOfLicense(Double percentOfLicense) {
-            this.percentOfLicense = Objects.requireNonNull(percentOfLicense);
+        public Builder fixedValues(@Nullable List<ResourcePoolsConfigDefaultPoolAllocationFixedValue> fixedValues) {
+            this.fixedValues = fixedValues;
+            return this;
+        }
+        public Builder fixedValues(ResourcePoolsConfigDefaultPoolAllocationFixedValue... fixedValues) {
+            return fixedValues(List.of(fixedValues));
+        }
+        @CustomType.Setter
+        public Builder percentOfLicense(@Nullable Double percentOfLicense) {
+            this.percentOfLicense = percentOfLicense;
             return this;
         }
         public ResourcePoolsConfigDefaultPoolAllocation build() {
             final var o = new ResourcePoolsConfigDefaultPoolAllocation();
+            o.fixedValues = fixedValues;
             o.percentOfLicense = percentOfLicense;
             return o;
         }

@@ -80,28 +80,9 @@ public final class TraceTailSamplingRulesRuleFilterSpanArgs extends com.pulumi.r
         return Optional.ofNullable(this.spanCount);
     }
 
-    @Import(name="tag")
-    private @Nullable Output<List<TraceTailSamplingRulesRuleFilterSpanTagArgs>> tag;
-
-    public Optional<Output<List<TraceTailSamplingRulesRuleFilterSpanTagArgs>>> tag() {
-        return Optional.ofNullable(this.tag);
-    }
-
-    /**
-     * @deprecated
-     * `tags` is deprecated, use `tag` instead.
-     * 
-     */
-    @Deprecated /* `tags` is deprecated, use `tag` instead. */
     @Import(name="tags")
     private @Nullable Output<List<TraceTailSamplingRulesRuleFilterSpanTagArgs>> tags;
 
-    /**
-     * @deprecated
-     * `tags` is deprecated, use `tag` instead.
-     * 
-     */
-    @Deprecated /* `tags` is deprecated, use `tag` instead. */
     public Optional<Output<List<TraceTailSamplingRulesRuleFilterSpanTagArgs>>> tags() {
         return Optional.ofNullable(this.tags);
     }
@@ -117,7 +98,6 @@ public final class TraceTailSamplingRulesRuleFilterSpanArgs extends com.pulumi.r
         this.parentService = $.parentService;
         this.service = $.service;
         this.spanCount = $.spanCount;
-        this.tag = $.tag;
         this.tags = $.tags;
     }
 
@@ -211,52 +191,15 @@ public final class TraceTailSamplingRulesRuleFilterSpanArgs extends com.pulumi.r
             return spanCount(Output.of(spanCount));
         }
 
-        public Builder tag(@Nullable Output<List<TraceTailSamplingRulesRuleFilterSpanTagArgs>> tag) {
-            $.tag = tag;
-            return this;
-        }
-
-        public Builder tag(List<TraceTailSamplingRulesRuleFilterSpanTagArgs> tag) {
-            return tag(Output.of(tag));
-        }
-
-        public Builder tag(TraceTailSamplingRulesRuleFilterSpanTagArgs... tag) {
-            return tag(List.of(tag));
-        }
-
-        /**
-         * @return builder
-         * 
-         * @deprecated
-         * `tags` is deprecated, use `tag` instead.
-         * 
-         */
-        @Deprecated /* `tags` is deprecated, use `tag` instead. */
         public Builder tags(@Nullable Output<List<TraceTailSamplingRulesRuleFilterSpanTagArgs>> tags) {
             $.tags = tags;
             return this;
         }
 
-        /**
-         * @return builder
-         * 
-         * @deprecated
-         * `tags` is deprecated, use `tag` instead.
-         * 
-         */
-        @Deprecated /* `tags` is deprecated, use `tag` instead. */
         public Builder tags(List<TraceTailSamplingRulesRuleFilterSpanTagArgs> tags) {
             return tags(Output.of(tags));
         }
 
-        /**
-         * @return builder
-         * 
-         * @deprecated
-         * `tags` is deprecated, use `tag` instead.
-         * 
-         */
-        @Deprecated /* `tags` is deprecated, use `tag` instead. */
         public Builder tags(TraceTailSamplingRulesRuleFilterSpanTagArgs... tags) {
             return tags(List.of(tags));
         }

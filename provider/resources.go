@@ -149,6 +149,15 @@ func Provider() tfbridge.ProviderInfo {
 			"chronosphere_otel_metrics_ingestion": {
 				Tok: tfbridge.MakeResource(mainPkg, mainMod, "OtelMetricsIngestion"),
 			},
+			"chronosphere_log_allocation_config": {
+				Tok: tfbridge.MakeResource(mainPkg, mainMod, "LogAllocationConfig"),
+			},
+			"chronosphere_logscale_action": {
+				Tok: tfbridge.MakeResource(mainPkg, mainMod, "LogscaleAction"),
+			},
+			"chronosphere_logscale_alert": {
+				Tok: tfbridge.MakeResource(mainPkg, mainMod, "LogscaleAlert"),
+			},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			"chronosphere_bucket": {
@@ -176,7 +185,7 @@ func Provider() tfbridge.ProviderInfo {
 			Requires: map[string]string{
 				"pulumi": ">=3.0.0,<4.0.0",
 			},
-			PackageName: "chronosphereio_chronosphere",
+			PackageName: "pulumi_chronosphere",
 		},
 		Golang: &tfbridge.GolangInfo{
 			ImportBasePath: filepath.Join(

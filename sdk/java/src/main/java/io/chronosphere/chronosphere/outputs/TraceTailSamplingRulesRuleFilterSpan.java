@@ -28,13 +28,6 @@ public final class TraceTailSamplingRulesRuleFilterSpan {
     private @Nullable TraceTailSamplingRulesRuleFilterSpanParentService parentService;
     private @Nullable TraceTailSamplingRulesRuleFilterSpanService service;
     private @Nullable TraceTailSamplingRulesRuleFilterSpanSpanCount spanCount;
-    private @Nullable List<TraceTailSamplingRulesRuleFilterSpanTag> tag;
-    /**
-     * @deprecated
-     * `tags` is deprecated, use `tag` instead.
-     * 
-     */
-    @Deprecated /* `tags` is deprecated, use `tag` instead. */
     private @Nullable List<TraceTailSamplingRulesRuleFilterSpanTag> tags;
 
     private TraceTailSamplingRulesRuleFilterSpan() {}
@@ -62,15 +55,6 @@ public final class TraceTailSamplingRulesRuleFilterSpan {
     public Optional<TraceTailSamplingRulesRuleFilterSpanSpanCount> spanCount() {
         return Optional.ofNullable(this.spanCount);
     }
-    public List<TraceTailSamplingRulesRuleFilterSpanTag> tag() {
-        return this.tag == null ? List.of() : this.tag;
-    }
-    /**
-     * @deprecated
-     * `tags` is deprecated, use `tag` instead.
-     * 
-     */
-    @Deprecated /* `tags` is deprecated, use `tag` instead. */
     public List<TraceTailSamplingRulesRuleFilterSpanTag> tags() {
         return this.tags == null ? List.of() : this.tags;
     }
@@ -92,7 +76,6 @@ public final class TraceTailSamplingRulesRuleFilterSpan {
         private @Nullable TraceTailSamplingRulesRuleFilterSpanParentService parentService;
         private @Nullable TraceTailSamplingRulesRuleFilterSpanService service;
         private @Nullable TraceTailSamplingRulesRuleFilterSpanSpanCount spanCount;
-        private @Nullable List<TraceTailSamplingRulesRuleFilterSpanTag> tag;
         private @Nullable List<TraceTailSamplingRulesRuleFilterSpanTag> tags;
         public Builder() {}
         public Builder(TraceTailSamplingRulesRuleFilterSpan defaults) {
@@ -105,7 +88,6 @@ public final class TraceTailSamplingRulesRuleFilterSpan {
     	      this.parentService = defaults.parentService;
     	      this.service = defaults.service;
     	      this.spanCount = defaults.spanCount;
-    	      this.tag = defaults.tag;
     	      this.tags = defaults.tags;
         }
 
@@ -150,14 +132,6 @@ public final class TraceTailSamplingRulesRuleFilterSpan {
             return this;
         }
         @CustomType.Setter
-        public Builder tag(@Nullable List<TraceTailSamplingRulesRuleFilterSpanTag> tag) {
-            this.tag = tag;
-            return this;
-        }
-        public Builder tag(TraceTailSamplingRulesRuleFilterSpanTag... tag) {
-            return tag(List.of(tag));
-        }
-        @CustomType.Setter
         public Builder tags(@Nullable List<TraceTailSamplingRulesRuleFilterSpanTag> tags) {
             this.tags = tags;
             return this;
@@ -175,7 +149,6 @@ public final class TraceTailSamplingRulesRuleFilterSpan {
             o.parentService = parentService;
             o.service = service;
             o.spanCount = spanCount;
-            o.tag = tag;
             o.tags = tags;
             return o;
         }
