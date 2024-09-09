@@ -28,13 +28,6 @@ public final class DatasetConfigurationTraceDatasetMatchCriteriaSpan {
     private @Nullable DatasetConfigurationTraceDatasetMatchCriteriaSpanParentService parentService;
     private @Nullable DatasetConfigurationTraceDatasetMatchCriteriaSpanService service;
     private @Nullable DatasetConfigurationTraceDatasetMatchCriteriaSpanSpanCount spanCount;
-    private @Nullable List<DatasetConfigurationTraceDatasetMatchCriteriaSpanTag> tag;
-    /**
-     * @deprecated
-     * `tags` is deprecated, use `tag` instead.
-     * 
-     */
-    @Deprecated /* `tags` is deprecated, use `tag` instead. */
     private @Nullable List<DatasetConfigurationTraceDatasetMatchCriteriaSpanTag> tags;
 
     private DatasetConfigurationTraceDatasetMatchCriteriaSpan() {}
@@ -62,15 +55,6 @@ public final class DatasetConfigurationTraceDatasetMatchCriteriaSpan {
     public Optional<DatasetConfigurationTraceDatasetMatchCriteriaSpanSpanCount> spanCount() {
         return Optional.ofNullable(this.spanCount);
     }
-    public List<DatasetConfigurationTraceDatasetMatchCriteriaSpanTag> tag() {
-        return this.tag == null ? List.of() : this.tag;
-    }
-    /**
-     * @deprecated
-     * `tags` is deprecated, use `tag` instead.
-     * 
-     */
-    @Deprecated /* `tags` is deprecated, use `tag` instead. */
     public List<DatasetConfigurationTraceDatasetMatchCriteriaSpanTag> tags() {
         return this.tags == null ? List.of() : this.tags;
     }
@@ -92,7 +76,6 @@ public final class DatasetConfigurationTraceDatasetMatchCriteriaSpan {
         private @Nullable DatasetConfigurationTraceDatasetMatchCriteriaSpanParentService parentService;
         private @Nullable DatasetConfigurationTraceDatasetMatchCriteriaSpanService service;
         private @Nullable DatasetConfigurationTraceDatasetMatchCriteriaSpanSpanCount spanCount;
-        private @Nullable List<DatasetConfigurationTraceDatasetMatchCriteriaSpanTag> tag;
         private @Nullable List<DatasetConfigurationTraceDatasetMatchCriteriaSpanTag> tags;
         public Builder() {}
         public Builder(DatasetConfigurationTraceDatasetMatchCriteriaSpan defaults) {
@@ -105,7 +88,6 @@ public final class DatasetConfigurationTraceDatasetMatchCriteriaSpan {
     	      this.parentService = defaults.parentService;
     	      this.service = defaults.service;
     	      this.spanCount = defaults.spanCount;
-    	      this.tag = defaults.tag;
     	      this.tags = defaults.tags;
         }
 
@@ -150,14 +132,6 @@ public final class DatasetConfigurationTraceDatasetMatchCriteriaSpan {
             return this;
         }
         @CustomType.Setter
-        public Builder tag(@Nullable List<DatasetConfigurationTraceDatasetMatchCriteriaSpanTag> tag) {
-            this.tag = tag;
-            return this;
-        }
-        public Builder tag(DatasetConfigurationTraceDatasetMatchCriteriaSpanTag... tag) {
-            return tag(List.of(tag));
-        }
-        @CustomType.Setter
         public Builder tags(@Nullable List<DatasetConfigurationTraceDatasetMatchCriteriaSpanTag> tags) {
             this.tags = tags;
             return this;
@@ -175,7 +149,6 @@ public final class DatasetConfigurationTraceDatasetMatchCriteriaSpan {
             o.parentService = parentService;
             o.service = service;
             o.spanCount = spanCount;
-            o.tag = tag;
             o.tags = tags;
             return o;
         }

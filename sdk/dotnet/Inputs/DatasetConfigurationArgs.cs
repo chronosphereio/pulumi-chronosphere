@@ -13,6 +13,9 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class DatasetConfigurationArgs : global::Pulumi.ResourceArgs
     {
+        [Input("logDataset")]
+        public Input<Inputs.DatasetConfigurationLogDatasetArgs>? LogDataset { get; set; }
+
         [Input("traceDataset")]
         public Input<Inputs.DatasetConfigurationTraceDatasetArgs>? TraceDataset { get; set; }
 

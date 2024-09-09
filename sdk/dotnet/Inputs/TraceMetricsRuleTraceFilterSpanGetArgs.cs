@@ -37,17 +37,8 @@ namespace Chronosphere.Pulumi.Inputs
         [Input("spanCount")]
         public Input<Inputs.TraceMetricsRuleTraceFilterSpanSpanCountGetArgs>? SpanCount { get; set; }
 
-        [Input("tag")]
-        private InputList<Inputs.TraceMetricsRuleTraceFilterSpanTagGetArgs>? _tag;
-        public InputList<Inputs.TraceMetricsRuleTraceFilterSpanTagGetArgs> Tag
-        {
-            get => _tag ?? (_tag = new InputList<Inputs.TraceMetricsRuleTraceFilterSpanTagGetArgs>());
-            set => _tag = value;
-        }
-
         [Input("tags")]
         private InputList<Inputs.TraceMetricsRuleTraceFilterSpanTagGetArgs>? _tags;
-        [Obsolete(@"`tags` is deprecated, use `tag` instead.")]
         public InputList<Inputs.TraceMetricsRuleTraceFilterSpanTagGetArgs> Tags
         {
             get => _tags ?? (_tags = new InputList<Inputs.TraceMetricsRuleTraceFilterSpanTagGetArgs>());

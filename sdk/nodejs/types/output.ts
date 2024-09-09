@@ -6,8 +6,17 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
 export interface DatasetConfiguration {
+    logDataset?: outputs.DatasetConfigurationLogDataset;
     traceDataset?: outputs.DatasetConfigurationTraceDataset;
     type: string;
+}
+
+export interface DatasetConfigurationLogDataset {
+    matchCriteria?: outputs.DatasetConfigurationLogDatasetMatchCriteria;
+}
+
+export interface DatasetConfigurationLogDatasetMatchCriteria {
+    query: string;
 }
 
 export interface DatasetConfigurationTraceDataset {
@@ -28,23 +37,11 @@ export interface DatasetConfigurationTraceDatasetMatchCriteriaSpan {
     parentService?: outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanParentService;
     service?: outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanService;
     spanCount?: outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanSpanCount;
-    tag?: outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanTag[];
-    /**
-     * @deprecated `tags` is deprecated, use `tag` instead.
-     */
     tags?: outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanTag[];
 }
 
 export interface DatasetConfigurationTraceDatasetMatchCriteriaSpanDuration {
-    /**
-     * @deprecated use max_secs instead
-     */
-    maxSeconds?: number;
     maxSecs?: number;
-    /**
-     * @deprecated use min_secs instead
-     */
-    minSeconds?: number;
     minSecs?: number;
 }
 
@@ -104,15 +101,7 @@ export interface DatasetConfigurationTraceDatasetMatchCriteriaTrace {
 }
 
 export interface DatasetConfigurationTraceDatasetMatchCriteriaTraceDuration {
-    /**
-     * @deprecated use max_secs instead
-     */
-    maxSeconds?: number;
     maxSecs?: number;
-    /**
-     * @deprecated use min_secs instead
-     */
-    minSeconds?: number;
     minSecs?: number;
 }
 
@@ -195,6 +184,107 @@ export interface GcpMetricsIntegrationMetricGroup {
 
 export interface GcpMetricsIntegrationServiceAccount {
     clientEmail: string;
+}
+
+export interface LogAllocationConfigDatasetAllocation {
+    allocation: outputs.LogAllocationConfigDatasetAllocationAllocation;
+    datasetId: string;
+    priorities?: outputs.LogAllocationConfigDatasetAllocationPriorities;
+}
+
+export interface LogAllocationConfigDatasetAllocationAllocation {
+    percentOfLicense: number;
+}
+
+export interface LogAllocationConfigDatasetAllocationPriorities {
+    highPriorityFilters?: outputs.LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilter[];
+    lowPriorityFilters?: outputs.LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilter[];
+}
+
+export interface LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilter {
+    query: string;
+}
+
+export interface LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilter {
+    query: string;
+}
+
+export interface LogAllocationConfigDefaultDataset {
+    allocation: outputs.LogAllocationConfigDefaultDatasetAllocation;
+    priorities?: outputs.LogAllocationConfigDefaultDatasetPriorities;
+}
+
+export interface LogAllocationConfigDefaultDatasetAllocation {
+    percentOfLicense: number;
+}
+
+export interface LogAllocationConfigDefaultDatasetPriorities {
+    highPriorityFilters?: outputs.LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilter[];
+    lowPriorityFilters?: outputs.LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilter[];
+}
+
+export interface LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilter {
+    query: string;
+}
+
+export interface LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilter {
+    query: string;
+}
+
+export interface LogscaleActionEmailAction {
+    attachCsv?: boolean;
+    bodyTemplate?: string;
+    recipients: string[];
+    subjectTemplate?: string;
+    useProxy?: boolean;
+}
+
+export interface LogscaleActionHumioAction {
+    ingestToken: string;
+}
+
+export interface LogscaleActionOpsGenieAction {
+    apiUrl: string;
+    opsGenieKey: string;
+    useProxy?: boolean;
+}
+
+export interface LogscaleActionPagerDutyAction {
+    routingKey: string;
+    severity: string;
+    useProxy?: boolean;
+}
+
+export interface LogscaleActionSlackAction {
+    fields?: {[key: string]: string};
+    url: string;
+    useProxy?: boolean;
+}
+
+export interface LogscaleActionSlackPostMessageAction {
+    apiToken: string;
+    channels: string[];
+    fields?: {[key: string]: string};
+    useProxy?: boolean;
+}
+
+export interface LogscaleActionUploadFileAction {
+    fileName: string;
+}
+
+export interface LogscaleActionVictorOpsAction {
+    messageType: string;
+    notifyUrl: string;
+    useProxy?: boolean;
+}
+
+export interface LogscaleActionWebhookAction {
+    bodyTemplate?: string;
+    headers?: {[key: string]: string};
+    ignoreSsl?: boolean;
+    method: string;
+    url: string;
+    useProxy?: boolean;
 }
 
 export interface MappingRuleStoragePolicy {
@@ -314,12 +404,18 @@ export interface PagerdutyAlertNotifierLink {
 }
 
 export interface ResourcePoolsConfigDefaultPool {
-    allocation: outputs.ResourcePoolsConfigDefaultPoolAllocation;
+    allocation?: outputs.ResourcePoolsConfigDefaultPoolAllocation;
     priorities?: outputs.ResourcePoolsConfigDefaultPoolPriorities;
 }
 
 export interface ResourcePoolsConfigDefaultPoolAllocation {
-    percentOfLicense: number;
+    fixedValues?: outputs.ResourcePoolsConfigDefaultPoolAllocationFixedValue[];
+    percentOfLicense?: number;
+}
+
+export interface ResourcePoolsConfigDefaultPoolAllocationFixedValue {
+    license: string;
+    value: number;
 }
 
 export interface ResourcePoolsConfigDefaultPoolPriorities {
@@ -328,7 +424,7 @@ export interface ResourcePoolsConfigDefaultPoolPriorities {
 }
 
 export interface ResourcePoolsConfigPool {
-    allocation: outputs.ResourcePoolsConfigPoolAllocation;
+    allocation?: outputs.ResourcePoolsConfigPoolAllocation;
     /**
      * @deprecated use match_rules
      */
@@ -339,7 +435,13 @@ export interface ResourcePoolsConfigPool {
 }
 
 export interface ResourcePoolsConfigPoolAllocation {
-    percentOfLicense: number;
+    fixedValues?: outputs.ResourcePoolsConfigPoolAllocationFixedValue[];
+    percentOfLicense?: number;
+}
+
+export interface ResourcePoolsConfigPoolAllocationFixedValue {
+    license: string;
+    value: number;
 }
 
 export interface ResourcePoolsConfigPoolPriorities {
@@ -439,23 +541,11 @@ export interface TraceMetricsRuleTraceFilterSpan {
     parentService?: outputs.TraceMetricsRuleTraceFilterSpanParentService;
     service?: outputs.TraceMetricsRuleTraceFilterSpanService;
     spanCount?: outputs.TraceMetricsRuleTraceFilterSpanSpanCount;
-    tag?: outputs.TraceMetricsRuleTraceFilterSpanTag[];
-    /**
-     * @deprecated `tags` is deprecated, use `tag` instead.
-     */
     tags?: outputs.TraceMetricsRuleTraceFilterSpanTag[];
 }
 
 export interface TraceMetricsRuleTraceFilterSpanDuration {
-    /**
-     * @deprecated use max_secs instead
-     */
-    maxSeconds?: number;
     maxSecs?: number;
-    /**
-     * @deprecated use min_secs instead
-     */
-    minSeconds?: number;
     minSecs?: number;
 }
 
@@ -515,15 +605,7 @@ export interface TraceMetricsRuleTraceFilterTrace {
 }
 
 export interface TraceMetricsRuleTraceFilterTraceDuration {
-    /**
-     * @deprecated use max_secs instead
-     */
-    maxSeconds?: number;
     maxSecs?: number;
-    /**
-     * @deprecated use min_secs instead
-     */
-    minSeconds?: number;
     minSecs?: number;
 }
 
@@ -557,23 +639,11 @@ export interface TraceTailSamplingRulesRuleFilterSpan {
     parentService?: outputs.TraceTailSamplingRulesRuleFilterSpanParentService;
     service?: outputs.TraceTailSamplingRulesRuleFilterSpanService;
     spanCount?: outputs.TraceTailSamplingRulesRuleFilterSpanSpanCount;
-    tag?: outputs.TraceTailSamplingRulesRuleFilterSpanTag[];
-    /**
-     * @deprecated `tags` is deprecated, use `tag` instead.
-     */
     tags?: outputs.TraceTailSamplingRulesRuleFilterSpanTag[];
 }
 
 export interface TraceTailSamplingRulesRuleFilterSpanDuration {
-    /**
-     * @deprecated use max_secs instead
-     */
-    maxSeconds?: number;
     maxSecs?: number;
-    /**
-     * @deprecated use min_secs instead
-     */
-    minSeconds?: number;
     minSecs?: number;
 }
 
@@ -633,15 +703,7 @@ export interface TraceTailSamplingRulesRuleFilterTrace {
 }
 
 export interface TraceTailSamplingRulesRuleFilterTraceDuration {
-    /**
-     * @deprecated use max_secs instead
-     */
-    maxSeconds?: number;
     maxSecs?: number;
-    /**
-     * @deprecated use min_secs instead
-     */
-    minSeconds?: number;
     minSecs?: number;
 }
 

@@ -14,12 +14,12 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class ResourcePoolsConfigDefaultPool
     {
-        public readonly Outputs.ResourcePoolsConfigDefaultPoolAllocation Allocation;
+        public readonly Outputs.ResourcePoolsConfigDefaultPoolAllocation? Allocation;
         public readonly Outputs.ResourcePoolsConfigDefaultPoolPriorities? Priorities;
 
         [OutputConstructor]
         private ResourcePoolsConfigDefaultPool(
-            Outputs.ResourcePoolsConfigDefaultPoolAllocation allocation,
+            Outputs.ResourcePoolsConfigDefaultPoolAllocation? allocation,
 
             Outputs.ResourcePoolsConfigDefaultPoolPriorities? priorities)
         {

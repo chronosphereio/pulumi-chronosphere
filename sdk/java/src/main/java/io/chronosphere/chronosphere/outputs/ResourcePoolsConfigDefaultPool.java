@@ -12,12 +12,12 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class ResourcePoolsConfigDefaultPool {
-    private ResourcePoolsConfigDefaultPoolAllocation allocation;
+    private @Nullable ResourcePoolsConfigDefaultPoolAllocation allocation;
     private @Nullable ResourcePoolsConfigDefaultPoolPriorities priorities;
 
     private ResourcePoolsConfigDefaultPool() {}
-    public ResourcePoolsConfigDefaultPoolAllocation allocation() {
-        return this.allocation;
+    public Optional<ResourcePoolsConfigDefaultPoolAllocation> allocation() {
+        return Optional.ofNullable(this.allocation);
     }
     public Optional<ResourcePoolsConfigDefaultPoolPriorities> priorities() {
         return Optional.ofNullable(this.priorities);
@@ -32,7 +32,7 @@ public final class ResourcePoolsConfigDefaultPool {
     }
     @CustomType.Builder
     public static final class Builder {
-        private ResourcePoolsConfigDefaultPoolAllocation allocation;
+        private @Nullable ResourcePoolsConfigDefaultPoolAllocation allocation;
         private @Nullable ResourcePoolsConfigDefaultPoolPriorities priorities;
         public Builder() {}
         public Builder(ResourcePoolsConfigDefaultPool defaults) {
@@ -42,8 +42,8 @@ public final class ResourcePoolsConfigDefaultPool {
         }
 
         @CustomType.Setter
-        public Builder allocation(ResourcePoolsConfigDefaultPoolAllocation allocation) {
-            this.allocation = Objects.requireNonNull(allocation);
+        public Builder allocation(@Nullable ResourcePoolsConfigDefaultPoolAllocation allocation) {
+            this.allocation = allocation;
             return this;
         }
         @CustomType.Setter

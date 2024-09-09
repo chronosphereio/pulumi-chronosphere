@@ -7,7 +7,6 @@ import (
 	"context"
 	"reflect"
 
-	"errors"
 	"github.com/chronosphereio/pulumi-chronosphere/sdk/go/chronosphere/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
@@ -15,8 +14,8 @@ import (
 type ResourcePoolsConfig struct {
 	pulumi.CustomResourceState
 
-	DefaultPool ResourcePoolsConfigDefaultPoolOutput `pulumi:"defaultPool"`
-	Pool        ResourcePoolsConfigPoolArrayOutput   `pulumi:"pool"`
+	DefaultPool ResourcePoolsConfigDefaultPoolPtrOutput `pulumi:"defaultPool"`
+	Pool        ResourcePoolsConfigPoolArrayOutput      `pulumi:"pool"`
 	// Deprecated: Use pool instead of pools
 	Pools ResourcePoolsConfigPoolArrayOutput `pulumi:"pools"`
 }
@@ -25,12 +24,9 @@ type ResourcePoolsConfig struct {
 func NewResourcePoolsConfig(ctx *pulumi.Context,
 	name string, args *ResourcePoolsConfigArgs, opts ...pulumi.ResourceOption) (*ResourcePoolsConfig, error) {
 	if args == nil {
-		return nil, errors.New("missing one or more required arguments")
+		args = &ResourcePoolsConfigArgs{}
 	}
 
-	if args.DefaultPool == nil {
-		return nil, errors.New("invalid value for required argument 'DefaultPool'")
-	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ResourcePoolsConfig
 	err := ctx.RegisterResource("chronosphere:index/resourcePoolsConfig:ResourcePoolsConfig", name, args, &resource, opts...)
@@ -72,15 +68,15 @@ func (ResourcePoolsConfigState) ElementType() reflect.Type {
 }
 
 type resourcePoolsConfigArgs struct {
-	DefaultPool ResourcePoolsConfigDefaultPool `pulumi:"defaultPool"`
-	Pool        []ResourcePoolsConfigPool      `pulumi:"pool"`
+	DefaultPool *ResourcePoolsConfigDefaultPool `pulumi:"defaultPool"`
+	Pool        []ResourcePoolsConfigPool       `pulumi:"pool"`
 	// Deprecated: Use pool instead of pools
 	Pools []ResourcePoolsConfigPool `pulumi:"pools"`
 }
 
 // The set of arguments for constructing a ResourcePoolsConfig resource.
 type ResourcePoolsConfigArgs struct {
-	DefaultPool ResourcePoolsConfigDefaultPoolInput
+	DefaultPool ResourcePoolsConfigDefaultPoolPtrInput
 	Pool        ResourcePoolsConfigPoolArrayInput
 	// Deprecated: Use pool instead of pools
 	Pools ResourcePoolsConfigPoolArrayInput
@@ -173,8 +169,8 @@ func (o ResourcePoolsConfigOutput) ToResourcePoolsConfigOutputWithContext(ctx co
 	return o
 }
 
-func (o ResourcePoolsConfigOutput) DefaultPool() ResourcePoolsConfigDefaultPoolOutput {
-	return o.ApplyT(func(v *ResourcePoolsConfig) ResourcePoolsConfigDefaultPoolOutput { return v.DefaultPool }).(ResourcePoolsConfigDefaultPoolOutput)
+func (o ResourcePoolsConfigOutput) DefaultPool() ResourcePoolsConfigDefaultPoolPtrOutput {
+	return o.ApplyT(func(v *ResourcePoolsConfig) ResourcePoolsConfigDefaultPoolPtrOutput { return v.DefaultPool }).(ResourcePoolsConfigDefaultPoolPtrOutput)
 }
 
 func (o ResourcePoolsConfigOutput) Pool() ResourcePoolsConfigPoolArrayOutput {

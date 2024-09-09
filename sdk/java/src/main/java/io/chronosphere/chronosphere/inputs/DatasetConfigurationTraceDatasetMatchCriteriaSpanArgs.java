@@ -80,28 +80,9 @@ public final class DatasetConfigurationTraceDatasetMatchCriteriaSpanArgs extends
         return Optional.ofNullable(this.spanCount);
     }
 
-    @Import(name="tag")
-    private @Nullable Output<List<DatasetConfigurationTraceDatasetMatchCriteriaSpanTagArgs>> tag;
-
-    public Optional<Output<List<DatasetConfigurationTraceDatasetMatchCriteriaSpanTagArgs>>> tag() {
-        return Optional.ofNullable(this.tag);
-    }
-
-    /**
-     * @deprecated
-     * `tags` is deprecated, use `tag` instead.
-     * 
-     */
-    @Deprecated /* `tags` is deprecated, use `tag` instead. */
     @Import(name="tags")
     private @Nullable Output<List<DatasetConfigurationTraceDatasetMatchCriteriaSpanTagArgs>> tags;
 
-    /**
-     * @deprecated
-     * `tags` is deprecated, use `tag` instead.
-     * 
-     */
-    @Deprecated /* `tags` is deprecated, use `tag` instead. */
     public Optional<Output<List<DatasetConfigurationTraceDatasetMatchCriteriaSpanTagArgs>>> tags() {
         return Optional.ofNullable(this.tags);
     }
@@ -117,7 +98,6 @@ public final class DatasetConfigurationTraceDatasetMatchCriteriaSpanArgs extends
         this.parentService = $.parentService;
         this.service = $.service;
         this.spanCount = $.spanCount;
-        this.tag = $.tag;
         this.tags = $.tags;
     }
 
@@ -211,52 +191,15 @@ public final class DatasetConfigurationTraceDatasetMatchCriteriaSpanArgs extends
             return spanCount(Output.of(spanCount));
         }
 
-        public Builder tag(@Nullable Output<List<DatasetConfigurationTraceDatasetMatchCriteriaSpanTagArgs>> tag) {
-            $.tag = tag;
-            return this;
-        }
-
-        public Builder tag(List<DatasetConfigurationTraceDatasetMatchCriteriaSpanTagArgs> tag) {
-            return tag(Output.of(tag));
-        }
-
-        public Builder tag(DatasetConfigurationTraceDatasetMatchCriteriaSpanTagArgs... tag) {
-            return tag(List.of(tag));
-        }
-
-        /**
-         * @return builder
-         * 
-         * @deprecated
-         * `tags` is deprecated, use `tag` instead.
-         * 
-         */
-        @Deprecated /* `tags` is deprecated, use `tag` instead. */
         public Builder tags(@Nullable Output<List<DatasetConfigurationTraceDatasetMatchCriteriaSpanTagArgs>> tags) {
             $.tags = tags;
             return this;
         }
 
-        /**
-         * @return builder
-         * 
-         * @deprecated
-         * `tags` is deprecated, use `tag` instead.
-         * 
-         */
-        @Deprecated /* `tags` is deprecated, use `tag` instead. */
         public Builder tags(List<DatasetConfigurationTraceDatasetMatchCriteriaSpanTagArgs> tags) {
             return tags(Output.of(tags));
         }
 
-        /**
-         * @return builder
-         * 
-         * @deprecated
-         * `tags` is deprecated, use `tag` instead.
-         * 
-         */
-        @Deprecated /* `tags` is deprecated, use `tag` instead. */
         public Builder tags(DatasetConfigurationTraceDatasetMatchCriteriaSpanTagArgs... tags) {
             return tags(List.of(tags));
         }

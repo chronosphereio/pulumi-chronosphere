@@ -16,13 +16,14 @@ __all__ = ['ResourcePoolsConfigArgs', 'ResourcePoolsConfig']
 @pulumi.input_type
 class ResourcePoolsConfigArgs:
     def __init__(__self__, *,
-                 default_pool: pulumi.Input['ResourcePoolsConfigDefaultPoolArgs'],
+                 default_pool: Optional[pulumi.Input['ResourcePoolsConfigDefaultPoolArgs']] = None,
                  pool: Optional[pulumi.Input[Sequence[pulumi.Input['ResourcePoolsConfigPoolArgs']]]] = None,
                  pools: Optional[pulumi.Input[Sequence[pulumi.Input['ResourcePoolsConfigPoolArgs']]]] = None):
         """
         The set of arguments for constructing a ResourcePoolsConfig resource.
         """
-        pulumi.set(__self__, "default_pool", default_pool)
+        if default_pool is not None:
+            pulumi.set(__self__, "default_pool", default_pool)
         if pool is not None:
             pulumi.set(__self__, "pool", pool)
         if pools is not None:
@@ -33,11 +34,11 @@ class ResourcePoolsConfigArgs:
 
     @property
     @pulumi.getter(name="defaultPool")
-    def default_pool(self) -> pulumi.Input['ResourcePoolsConfigDefaultPoolArgs']:
+    def default_pool(self) -> Optional[pulumi.Input['ResourcePoolsConfigDefaultPoolArgs']]:
         return pulumi.get(self, "default_pool")
 
     @default_pool.setter
-    def default_pool(self, value: pulumi.Input['ResourcePoolsConfigDefaultPoolArgs']):
+    def default_pool(self, value: Optional[pulumi.Input['ResourcePoolsConfigDefaultPoolArgs']]):
         pulumi.set(self, "default_pool", value)
 
     @property
@@ -130,7 +131,7 @@ class ResourcePoolsConfig(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: ResourcePoolsConfigArgs,
+                 args: Optional[ResourcePoolsConfigArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a ResourcePoolsConfig resource with the given unique name, props, and options.
@@ -161,8 +162,6 @@ class ResourcePoolsConfig(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = ResourcePoolsConfigArgs.__new__(ResourcePoolsConfigArgs)
 
-            if default_pool is None and not opts.urn:
-                raise TypeError("Missing required property 'default_pool'")
             __props__.__dict__["default_pool"] = default_pool
             __props__.__dict__["pool"] = pool
             __props__.__dict__["pools"] = pools
@@ -198,7 +197,7 @@ class ResourcePoolsConfig(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="defaultPool")
-    def default_pool(self) -> pulumi.Output['outputs.ResourcePoolsConfigDefaultPool']:
+    def default_pool(self) -> pulumi.Output[Optional['outputs.ResourcePoolsConfigDefaultPool']]:
         return pulumi.get(self, "default_pool")
 
     @property

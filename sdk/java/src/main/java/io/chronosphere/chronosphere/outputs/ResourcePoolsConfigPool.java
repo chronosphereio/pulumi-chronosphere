@@ -14,7 +14,7 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class ResourcePoolsConfigPool {
-    private ResourcePoolsConfigPoolAllocation allocation;
+    private @Nullable ResourcePoolsConfigPoolAllocation allocation;
     /**
      * @deprecated
      * use match_rules
@@ -27,8 +27,8 @@ public final class ResourcePoolsConfigPool {
     private @Nullable ResourcePoolsConfigPoolPriorities priorities;
 
     private ResourcePoolsConfigPool() {}
-    public ResourcePoolsConfigPoolAllocation allocation() {
-        return this.allocation;
+    public Optional<ResourcePoolsConfigPoolAllocation> allocation() {
+        return Optional.ofNullable(this.allocation);
     }
     /**
      * @deprecated
@@ -58,7 +58,7 @@ public final class ResourcePoolsConfigPool {
     }
     @CustomType.Builder
     public static final class Builder {
-        private ResourcePoolsConfigPoolAllocation allocation;
+        private @Nullable ResourcePoolsConfigPoolAllocation allocation;
         private @Nullable String matchRule;
         private @Nullable List<String> matchRules;
         private String name;
@@ -74,8 +74,8 @@ public final class ResourcePoolsConfigPool {
         }
 
         @CustomType.Setter
-        public Builder allocation(ResourcePoolsConfigPoolAllocation allocation) {
-            this.allocation = Objects.requireNonNull(allocation);
+        public Builder allocation(@Nullable ResourcePoolsConfigPoolAllocation allocation) {
+            this.allocation = allocation;
             return this;
         }
         @CustomType.Setter

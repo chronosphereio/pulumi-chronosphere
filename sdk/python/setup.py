@@ -17,7 +17,7 @@ def readme():
         return "chronosphere Pulumi Package - Development Version"
 
 
-setup(name='chronosphereio_chronosphere',
+setup(name='pulumi_chronosphere',
       python_requires='>=3.7',
       version=VERSION,
       description="Chronosphere Pulumi Provider",
@@ -31,7 +31,7 @@ setup(name='chronosphereio_chronosphere',
       license='Apache-2.0',
       packages=find_packages(),
       package_data={
-          'chronosphereio_chronosphere': [
+          'pulumi_chronosphere': [
               'py.typed',
               'pulumi-plugin.json',
           ]

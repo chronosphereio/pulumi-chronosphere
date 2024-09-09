@@ -34,7 +34,7 @@ export class ResourcePoolsConfig extends pulumi.CustomResource {
         return obj['__pulumiType'] === ResourcePoolsConfig.__pulumiType;
     }
 
-    public readonly defaultPool!: pulumi.Output<outputs.ResourcePoolsConfigDefaultPool>;
+    public readonly defaultPool!: pulumi.Output<outputs.ResourcePoolsConfigDefaultPool | undefined>;
     public readonly pool!: pulumi.Output<outputs.ResourcePoolsConfigPool[] | undefined>;
     /**
      * @deprecated Use pool instead of pools
@@ -48,7 +48,7 @@ export class ResourcePoolsConfig extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: ResourcePoolsConfigArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, args?: ResourcePoolsConfigArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ResourcePoolsConfigArgs | ResourcePoolsConfigState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
@@ -59,9 +59,6 @@ export class ResourcePoolsConfig extends pulumi.CustomResource {
             resourceInputs["pools"] = state ? state.pools : undefined;
         } else {
             const args = argsOrState as ResourcePoolsConfigArgs | undefined;
-            if ((!args || args.defaultPool === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'defaultPool'");
-            }
             resourceInputs["defaultPool"] = args ? args.defaultPool : undefined;
             resourceInputs["pool"] = args ? args.pool : undefined;
             resourceInputs["pools"] = args ? args.pools : undefined;
@@ -87,7 +84,7 @@ export interface ResourcePoolsConfigState {
  * The set of arguments for constructing a ResourcePoolsConfig resource.
  */
 export interface ResourcePoolsConfigArgs {
-    defaultPool: pulumi.Input<inputs.ResourcePoolsConfigDefaultPool>;
+    defaultPool?: pulumi.Input<inputs.ResourcePoolsConfigDefaultPool>;
     pool?: pulumi.Input<pulumi.Input<inputs.ResourcePoolsConfigPool>[]>;
     /**
      * @deprecated Use pool instead of pools

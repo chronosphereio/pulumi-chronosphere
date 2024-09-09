@@ -43,6 +43,12 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &EmailAlertNotifier{}
 	case "chronosphere:index/gcpMetricsIntegration:GcpMetricsIntegration":
 		r = &GcpMetricsIntegration{}
+	case "chronosphere:index/logAllocationConfig:LogAllocationConfig":
+		r = &LogAllocationConfig{}
+	case "chronosphere:index/logscaleAction:LogscaleAction":
+		r = &LogscaleAction{}
+	case "chronosphere:index/logscaleAlert:LogscaleAlert":
+		r = &LogscaleAlert{}
 	case "chronosphere:index/mappingRule:MappingRule":
 		r = &MappingRule{}
 	case "chronosphere:index/monitor:Monitor":
@@ -161,6 +167,21 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"chronosphere",
 		"index/gcpMetricsIntegration",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"chronosphere",
+		"index/logAllocationConfig",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"chronosphere",
+		"index/logscaleAction",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"chronosphere",
+		"index/logscaleAlert",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

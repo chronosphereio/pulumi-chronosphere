@@ -19,10 +19,10 @@ import javax.annotation.Nullable;
 @ResourceType(type="chronosphere:index/resourcePoolsConfig:ResourcePoolsConfig")
 public class ResourcePoolsConfig extends com.pulumi.resources.CustomResource {
     @Export(name="defaultPool", refs={ResourcePoolsConfigDefaultPool.class}, tree="[0]")
-    private Output<ResourcePoolsConfigDefaultPool> defaultPool;
+    private Output</* @Nullable */ ResourcePoolsConfigDefaultPool> defaultPool;
 
-    public Output<ResourcePoolsConfigDefaultPool> defaultPool() {
-        return this.defaultPool;
+    public Output<Optional<ResourcePoolsConfigDefaultPool>> defaultPool() {
+        return Codegen.optional(this.defaultPool);
     }
     @Export(name="pool", refs={List.class,ResourcePoolsConfigPool.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ResourcePoolsConfigPool>> pool;
@@ -55,7 +55,7 @@ public class ResourcePoolsConfig extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public ResourcePoolsConfig(String name, ResourcePoolsConfigArgs args) {
+    public ResourcePoolsConfig(String name, @Nullable ResourcePoolsConfigArgs args) {
         this(name, args, null);
     }
     /**
@@ -64,7 +64,7 @@ public class ResourcePoolsConfig extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public ResourcePoolsConfig(String name, ResourcePoolsConfigArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public ResourcePoolsConfig(String name, @Nullable ResourcePoolsConfigArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("chronosphere:index/resourcePoolsConfig:ResourcePoolsConfig", name, args == null ? ResourcePoolsConfigArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
     }
 

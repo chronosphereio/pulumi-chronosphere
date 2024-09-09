@@ -14,24 +14,16 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class DatasetConfigurationTraceDatasetMatchCriteriaSpanDuration
     {
-        public readonly double? MaxSeconds;
         public readonly double? MaxSecs;
-        public readonly double? MinSeconds;
         public readonly double? MinSecs;
 
         [OutputConstructor]
         private DatasetConfigurationTraceDatasetMatchCriteriaSpanDuration(
-            double? maxSeconds,
-
             double? maxSecs,
-
-            double? minSeconds,
 
             double? minSecs)
         {
-            MaxSeconds = maxSeconds;
             MaxSecs = maxSecs;
-            MinSeconds = minSeconds;
             MinSecs = minSecs;
         }
     }

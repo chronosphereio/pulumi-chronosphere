@@ -13,8 +13,8 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class ResourcePoolsConfigDefaultPoolArgs : global::Pulumi.ResourceArgs
     {
-        [Input("allocation", required: true)]
-        public Input<Inputs.ResourcePoolsConfigDefaultPoolAllocationArgs> Allocation { get; set; } = null!;
+        [Input("allocation")]
+        public Input<Inputs.ResourcePoolsConfigDefaultPoolAllocationArgs>? Allocation { get; set; }
 
         [Input("priorities")]
         public Input<Inputs.ResourcePoolsConfigDefaultPoolPrioritiesArgs>? Priorities { get; set; }

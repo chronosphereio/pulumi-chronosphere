@@ -14,6 +14,7 @@ import (
 var _ = internal.GetEnvOrDefault
 
 type DatasetConfiguration struct {
+	LogDataset   *DatasetConfigurationLogDataset   `pulumi:"logDataset"`
 	TraceDataset *DatasetConfigurationTraceDataset `pulumi:"traceDataset"`
 	Type         string                            `pulumi:"type"`
 }
@@ -30,6 +31,7 @@ type DatasetConfigurationInput interface {
 }
 
 type DatasetConfigurationArgs struct {
+	LogDataset   DatasetConfigurationLogDatasetPtrInput   `pulumi:"logDataset"`
 	TraceDataset DatasetConfigurationTraceDatasetPtrInput `pulumi:"traceDataset"`
 	Type         pulumi.StringInput                       `pulumi:"type"`
 }
@@ -111,6 +113,10 @@ func (o DatasetConfigurationOutput) ToDatasetConfigurationPtrOutputWithContext(c
 	}).(DatasetConfigurationPtrOutput)
 }
 
+func (o DatasetConfigurationOutput) LogDataset() DatasetConfigurationLogDatasetPtrOutput {
+	return o.ApplyT(func(v DatasetConfiguration) *DatasetConfigurationLogDataset { return v.LogDataset }).(DatasetConfigurationLogDatasetPtrOutput)
+}
+
 func (o DatasetConfigurationOutput) TraceDataset() DatasetConfigurationTraceDatasetPtrOutput {
 	return o.ApplyT(func(v DatasetConfiguration) *DatasetConfigurationTraceDataset { return v.TraceDataset }).(DatasetConfigurationTraceDatasetPtrOutput)
 }
@@ -143,6 +149,15 @@ func (o DatasetConfigurationPtrOutput) Elem() DatasetConfigurationOutput {
 	}).(DatasetConfigurationOutput)
 }
 
+func (o DatasetConfigurationPtrOutput) LogDataset() DatasetConfigurationLogDatasetPtrOutput {
+	return o.ApplyT(func(v *DatasetConfiguration) *DatasetConfigurationLogDataset {
+		if v == nil {
+			return nil
+		}
+		return v.LogDataset
+	}).(DatasetConfigurationLogDatasetPtrOutput)
+}
+
 func (o DatasetConfigurationPtrOutput) TraceDataset() DatasetConfigurationTraceDatasetPtrOutput {
 	return o.ApplyT(func(v *DatasetConfiguration) *DatasetConfigurationTraceDataset {
 		if v == nil {
@@ -158,6 +173,274 @@ func (o DatasetConfigurationPtrOutput) Type() pulumi.StringPtrOutput {
 			return nil
 		}
 		return &v.Type
+	}).(pulumi.StringPtrOutput)
+}
+
+type DatasetConfigurationLogDataset struct {
+	MatchCriteria *DatasetConfigurationLogDatasetMatchCriteria `pulumi:"matchCriteria"`
+}
+
+// DatasetConfigurationLogDatasetInput is an input type that accepts DatasetConfigurationLogDatasetArgs and DatasetConfigurationLogDatasetOutput values.
+// You can construct a concrete instance of `DatasetConfigurationLogDatasetInput` via:
+//
+//	DatasetConfigurationLogDatasetArgs{...}
+type DatasetConfigurationLogDatasetInput interface {
+	pulumi.Input
+
+	ToDatasetConfigurationLogDatasetOutput() DatasetConfigurationLogDatasetOutput
+	ToDatasetConfigurationLogDatasetOutputWithContext(context.Context) DatasetConfigurationLogDatasetOutput
+}
+
+type DatasetConfigurationLogDatasetArgs struct {
+	MatchCriteria DatasetConfigurationLogDatasetMatchCriteriaPtrInput `pulumi:"matchCriteria"`
+}
+
+func (DatasetConfigurationLogDatasetArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatasetConfigurationLogDataset)(nil)).Elem()
+}
+
+func (i DatasetConfigurationLogDatasetArgs) ToDatasetConfigurationLogDatasetOutput() DatasetConfigurationLogDatasetOutput {
+	return i.ToDatasetConfigurationLogDatasetOutputWithContext(context.Background())
+}
+
+func (i DatasetConfigurationLogDatasetArgs) ToDatasetConfigurationLogDatasetOutputWithContext(ctx context.Context) DatasetConfigurationLogDatasetOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatasetConfigurationLogDatasetOutput)
+}
+
+func (i DatasetConfigurationLogDatasetArgs) ToDatasetConfigurationLogDatasetPtrOutput() DatasetConfigurationLogDatasetPtrOutput {
+	return i.ToDatasetConfigurationLogDatasetPtrOutputWithContext(context.Background())
+}
+
+func (i DatasetConfigurationLogDatasetArgs) ToDatasetConfigurationLogDatasetPtrOutputWithContext(ctx context.Context) DatasetConfigurationLogDatasetPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatasetConfigurationLogDatasetOutput).ToDatasetConfigurationLogDatasetPtrOutputWithContext(ctx)
+}
+
+// DatasetConfigurationLogDatasetPtrInput is an input type that accepts DatasetConfigurationLogDatasetArgs, DatasetConfigurationLogDatasetPtr and DatasetConfigurationLogDatasetPtrOutput values.
+// You can construct a concrete instance of `DatasetConfigurationLogDatasetPtrInput` via:
+//
+//	        DatasetConfigurationLogDatasetArgs{...}
+//
+//	or:
+//
+//	        nil
+type DatasetConfigurationLogDatasetPtrInput interface {
+	pulumi.Input
+
+	ToDatasetConfigurationLogDatasetPtrOutput() DatasetConfigurationLogDatasetPtrOutput
+	ToDatasetConfigurationLogDatasetPtrOutputWithContext(context.Context) DatasetConfigurationLogDatasetPtrOutput
+}
+
+type datasetConfigurationLogDatasetPtrType DatasetConfigurationLogDatasetArgs
+
+func DatasetConfigurationLogDatasetPtr(v *DatasetConfigurationLogDatasetArgs) DatasetConfigurationLogDatasetPtrInput {
+	return (*datasetConfigurationLogDatasetPtrType)(v)
+}
+
+func (*datasetConfigurationLogDatasetPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DatasetConfigurationLogDataset)(nil)).Elem()
+}
+
+func (i *datasetConfigurationLogDatasetPtrType) ToDatasetConfigurationLogDatasetPtrOutput() DatasetConfigurationLogDatasetPtrOutput {
+	return i.ToDatasetConfigurationLogDatasetPtrOutputWithContext(context.Background())
+}
+
+func (i *datasetConfigurationLogDatasetPtrType) ToDatasetConfigurationLogDatasetPtrOutputWithContext(ctx context.Context) DatasetConfigurationLogDatasetPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatasetConfigurationLogDatasetPtrOutput)
+}
+
+type DatasetConfigurationLogDatasetOutput struct{ *pulumi.OutputState }
+
+func (DatasetConfigurationLogDatasetOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatasetConfigurationLogDataset)(nil)).Elem()
+}
+
+func (o DatasetConfigurationLogDatasetOutput) ToDatasetConfigurationLogDatasetOutput() DatasetConfigurationLogDatasetOutput {
+	return o
+}
+
+func (o DatasetConfigurationLogDatasetOutput) ToDatasetConfigurationLogDatasetOutputWithContext(ctx context.Context) DatasetConfigurationLogDatasetOutput {
+	return o
+}
+
+func (o DatasetConfigurationLogDatasetOutput) ToDatasetConfigurationLogDatasetPtrOutput() DatasetConfigurationLogDatasetPtrOutput {
+	return o.ToDatasetConfigurationLogDatasetPtrOutputWithContext(context.Background())
+}
+
+func (o DatasetConfigurationLogDatasetOutput) ToDatasetConfigurationLogDatasetPtrOutputWithContext(ctx context.Context) DatasetConfigurationLogDatasetPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DatasetConfigurationLogDataset) *DatasetConfigurationLogDataset {
+		return &v
+	}).(DatasetConfigurationLogDatasetPtrOutput)
+}
+
+func (o DatasetConfigurationLogDatasetOutput) MatchCriteria() DatasetConfigurationLogDatasetMatchCriteriaPtrOutput {
+	return o.ApplyT(func(v DatasetConfigurationLogDataset) *DatasetConfigurationLogDatasetMatchCriteria {
+		return v.MatchCriteria
+	}).(DatasetConfigurationLogDatasetMatchCriteriaPtrOutput)
+}
+
+type DatasetConfigurationLogDatasetPtrOutput struct{ *pulumi.OutputState }
+
+func (DatasetConfigurationLogDatasetPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DatasetConfigurationLogDataset)(nil)).Elem()
+}
+
+func (o DatasetConfigurationLogDatasetPtrOutput) ToDatasetConfigurationLogDatasetPtrOutput() DatasetConfigurationLogDatasetPtrOutput {
+	return o
+}
+
+func (o DatasetConfigurationLogDatasetPtrOutput) ToDatasetConfigurationLogDatasetPtrOutputWithContext(ctx context.Context) DatasetConfigurationLogDatasetPtrOutput {
+	return o
+}
+
+func (o DatasetConfigurationLogDatasetPtrOutput) Elem() DatasetConfigurationLogDatasetOutput {
+	return o.ApplyT(func(v *DatasetConfigurationLogDataset) DatasetConfigurationLogDataset {
+		if v != nil {
+			return *v
+		}
+		var ret DatasetConfigurationLogDataset
+		return ret
+	}).(DatasetConfigurationLogDatasetOutput)
+}
+
+func (o DatasetConfigurationLogDatasetPtrOutput) MatchCriteria() DatasetConfigurationLogDatasetMatchCriteriaPtrOutput {
+	return o.ApplyT(func(v *DatasetConfigurationLogDataset) *DatasetConfigurationLogDatasetMatchCriteria {
+		if v == nil {
+			return nil
+		}
+		return v.MatchCriteria
+	}).(DatasetConfigurationLogDatasetMatchCriteriaPtrOutput)
+}
+
+type DatasetConfigurationLogDatasetMatchCriteria struct {
+	Query string `pulumi:"query"`
+}
+
+// DatasetConfigurationLogDatasetMatchCriteriaInput is an input type that accepts DatasetConfigurationLogDatasetMatchCriteriaArgs and DatasetConfigurationLogDatasetMatchCriteriaOutput values.
+// You can construct a concrete instance of `DatasetConfigurationLogDatasetMatchCriteriaInput` via:
+//
+//	DatasetConfigurationLogDatasetMatchCriteriaArgs{...}
+type DatasetConfigurationLogDatasetMatchCriteriaInput interface {
+	pulumi.Input
+
+	ToDatasetConfigurationLogDatasetMatchCriteriaOutput() DatasetConfigurationLogDatasetMatchCriteriaOutput
+	ToDatasetConfigurationLogDatasetMatchCriteriaOutputWithContext(context.Context) DatasetConfigurationLogDatasetMatchCriteriaOutput
+}
+
+type DatasetConfigurationLogDatasetMatchCriteriaArgs struct {
+	Query pulumi.StringInput `pulumi:"query"`
+}
+
+func (DatasetConfigurationLogDatasetMatchCriteriaArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatasetConfigurationLogDatasetMatchCriteria)(nil)).Elem()
+}
+
+func (i DatasetConfigurationLogDatasetMatchCriteriaArgs) ToDatasetConfigurationLogDatasetMatchCriteriaOutput() DatasetConfigurationLogDatasetMatchCriteriaOutput {
+	return i.ToDatasetConfigurationLogDatasetMatchCriteriaOutputWithContext(context.Background())
+}
+
+func (i DatasetConfigurationLogDatasetMatchCriteriaArgs) ToDatasetConfigurationLogDatasetMatchCriteriaOutputWithContext(ctx context.Context) DatasetConfigurationLogDatasetMatchCriteriaOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatasetConfigurationLogDatasetMatchCriteriaOutput)
+}
+
+func (i DatasetConfigurationLogDatasetMatchCriteriaArgs) ToDatasetConfigurationLogDatasetMatchCriteriaPtrOutput() DatasetConfigurationLogDatasetMatchCriteriaPtrOutput {
+	return i.ToDatasetConfigurationLogDatasetMatchCriteriaPtrOutputWithContext(context.Background())
+}
+
+func (i DatasetConfigurationLogDatasetMatchCriteriaArgs) ToDatasetConfigurationLogDatasetMatchCriteriaPtrOutputWithContext(ctx context.Context) DatasetConfigurationLogDatasetMatchCriteriaPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatasetConfigurationLogDatasetMatchCriteriaOutput).ToDatasetConfigurationLogDatasetMatchCriteriaPtrOutputWithContext(ctx)
+}
+
+// DatasetConfigurationLogDatasetMatchCriteriaPtrInput is an input type that accepts DatasetConfigurationLogDatasetMatchCriteriaArgs, DatasetConfigurationLogDatasetMatchCriteriaPtr and DatasetConfigurationLogDatasetMatchCriteriaPtrOutput values.
+// You can construct a concrete instance of `DatasetConfigurationLogDatasetMatchCriteriaPtrInput` via:
+//
+//	        DatasetConfigurationLogDatasetMatchCriteriaArgs{...}
+//
+//	or:
+//
+//	        nil
+type DatasetConfigurationLogDatasetMatchCriteriaPtrInput interface {
+	pulumi.Input
+
+	ToDatasetConfigurationLogDatasetMatchCriteriaPtrOutput() DatasetConfigurationLogDatasetMatchCriteriaPtrOutput
+	ToDatasetConfigurationLogDatasetMatchCriteriaPtrOutputWithContext(context.Context) DatasetConfigurationLogDatasetMatchCriteriaPtrOutput
+}
+
+type datasetConfigurationLogDatasetMatchCriteriaPtrType DatasetConfigurationLogDatasetMatchCriteriaArgs
+
+func DatasetConfigurationLogDatasetMatchCriteriaPtr(v *DatasetConfigurationLogDatasetMatchCriteriaArgs) DatasetConfigurationLogDatasetMatchCriteriaPtrInput {
+	return (*datasetConfigurationLogDatasetMatchCriteriaPtrType)(v)
+}
+
+func (*datasetConfigurationLogDatasetMatchCriteriaPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DatasetConfigurationLogDatasetMatchCriteria)(nil)).Elem()
+}
+
+func (i *datasetConfigurationLogDatasetMatchCriteriaPtrType) ToDatasetConfigurationLogDatasetMatchCriteriaPtrOutput() DatasetConfigurationLogDatasetMatchCriteriaPtrOutput {
+	return i.ToDatasetConfigurationLogDatasetMatchCriteriaPtrOutputWithContext(context.Background())
+}
+
+func (i *datasetConfigurationLogDatasetMatchCriteriaPtrType) ToDatasetConfigurationLogDatasetMatchCriteriaPtrOutputWithContext(ctx context.Context) DatasetConfigurationLogDatasetMatchCriteriaPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatasetConfigurationLogDatasetMatchCriteriaPtrOutput)
+}
+
+type DatasetConfigurationLogDatasetMatchCriteriaOutput struct{ *pulumi.OutputState }
+
+func (DatasetConfigurationLogDatasetMatchCriteriaOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatasetConfigurationLogDatasetMatchCriteria)(nil)).Elem()
+}
+
+func (o DatasetConfigurationLogDatasetMatchCriteriaOutput) ToDatasetConfigurationLogDatasetMatchCriteriaOutput() DatasetConfigurationLogDatasetMatchCriteriaOutput {
+	return o
+}
+
+func (o DatasetConfigurationLogDatasetMatchCriteriaOutput) ToDatasetConfigurationLogDatasetMatchCriteriaOutputWithContext(ctx context.Context) DatasetConfigurationLogDatasetMatchCriteriaOutput {
+	return o
+}
+
+func (o DatasetConfigurationLogDatasetMatchCriteriaOutput) ToDatasetConfigurationLogDatasetMatchCriteriaPtrOutput() DatasetConfigurationLogDatasetMatchCriteriaPtrOutput {
+	return o.ToDatasetConfigurationLogDatasetMatchCriteriaPtrOutputWithContext(context.Background())
+}
+
+func (o DatasetConfigurationLogDatasetMatchCriteriaOutput) ToDatasetConfigurationLogDatasetMatchCriteriaPtrOutputWithContext(ctx context.Context) DatasetConfigurationLogDatasetMatchCriteriaPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DatasetConfigurationLogDatasetMatchCriteria) *DatasetConfigurationLogDatasetMatchCriteria {
+		return &v
+	}).(DatasetConfigurationLogDatasetMatchCriteriaPtrOutput)
+}
+
+func (o DatasetConfigurationLogDatasetMatchCriteriaOutput) Query() pulumi.StringOutput {
+	return o.ApplyT(func(v DatasetConfigurationLogDatasetMatchCriteria) string { return v.Query }).(pulumi.StringOutput)
+}
+
+type DatasetConfigurationLogDatasetMatchCriteriaPtrOutput struct{ *pulumi.OutputState }
+
+func (DatasetConfigurationLogDatasetMatchCriteriaPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DatasetConfigurationLogDatasetMatchCriteria)(nil)).Elem()
+}
+
+func (o DatasetConfigurationLogDatasetMatchCriteriaPtrOutput) ToDatasetConfigurationLogDatasetMatchCriteriaPtrOutput() DatasetConfigurationLogDatasetMatchCriteriaPtrOutput {
+	return o
+}
+
+func (o DatasetConfigurationLogDatasetMatchCriteriaPtrOutput) ToDatasetConfigurationLogDatasetMatchCriteriaPtrOutputWithContext(ctx context.Context) DatasetConfigurationLogDatasetMatchCriteriaPtrOutput {
+	return o
+}
+
+func (o DatasetConfigurationLogDatasetMatchCriteriaPtrOutput) Elem() DatasetConfigurationLogDatasetMatchCriteriaOutput {
+	return o.ApplyT(func(v *DatasetConfigurationLogDatasetMatchCriteria) DatasetConfigurationLogDatasetMatchCriteria {
+		if v != nil {
+			return *v
+		}
+		var ret DatasetConfigurationLogDatasetMatchCriteria
+		return ret
+	}).(DatasetConfigurationLogDatasetMatchCriteriaOutput)
+}
+
+func (o DatasetConfigurationLogDatasetMatchCriteriaPtrOutput) Query() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DatasetConfigurationLogDatasetMatchCriteria) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Query
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -457,9 +740,7 @@ type DatasetConfigurationTraceDatasetMatchCriteriaSpan struct {
 	ParentService   *DatasetConfigurationTraceDatasetMatchCriteriaSpanParentService   `pulumi:"parentService"`
 	Service         *DatasetConfigurationTraceDatasetMatchCriteriaSpanService         `pulumi:"service"`
 	SpanCount       *DatasetConfigurationTraceDatasetMatchCriteriaSpanSpanCount       `pulumi:"spanCount"`
-	Tag             []DatasetConfigurationTraceDatasetMatchCriteriaSpanTag            `pulumi:"tag"`
-	// Deprecated: `tags` is deprecated, use `tag` instead.
-	Tags []DatasetConfigurationTraceDatasetMatchCriteriaSpanTag `pulumi:"tags"`
+	Tags            []DatasetConfigurationTraceDatasetMatchCriteriaSpanTag            `pulumi:"tags"`
 }
 
 // DatasetConfigurationTraceDatasetMatchCriteriaSpanInput is an input type that accepts DatasetConfigurationTraceDatasetMatchCriteriaSpanArgs and DatasetConfigurationTraceDatasetMatchCriteriaSpanOutput values.
@@ -482,9 +763,7 @@ type DatasetConfigurationTraceDatasetMatchCriteriaSpanArgs struct {
 	ParentService   DatasetConfigurationTraceDatasetMatchCriteriaSpanParentServicePtrInput   `pulumi:"parentService"`
 	Service         DatasetConfigurationTraceDatasetMatchCriteriaSpanServicePtrInput         `pulumi:"service"`
 	SpanCount       DatasetConfigurationTraceDatasetMatchCriteriaSpanSpanCountPtrInput       `pulumi:"spanCount"`
-	Tag             DatasetConfigurationTraceDatasetMatchCriteriaSpanTagArrayInput           `pulumi:"tag"`
-	// Deprecated: `tags` is deprecated, use `tag` instead.
-	Tags DatasetConfigurationTraceDatasetMatchCriteriaSpanTagArrayInput `pulumi:"tags"`
+	Tags            DatasetConfigurationTraceDatasetMatchCriteriaSpanTagArrayInput           `pulumi:"tags"`
 }
 
 func (DatasetConfigurationTraceDatasetMatchCriteriaSpanArgs) ElementType() reflect.Type {
@@ -584,13 +863,6 @@ func (o DatasetConfigurationTraceDatasetMatchCriteriaSpanOutput) SpanCount() Dat
 	}).(DatasetConfigurationTraceDatasetMatchCriteriaSpanSpanCountPtrOutput)
 }
 
-func (o DatasetConfigurationTraceDatasetMatchCriteriaSpanOutput) Tag() DatasetConfigurationTraceDatasetMatchCriteriaSpanTagArrayOutput {
-	return o.ApplyT(func(v DatasetConfigurationTraceDatasetMatchCriteriaSpan) []DatasetConfigurationTraceDatasetMatchCriteriaSpanTag {
-		return v.Tag
-	}).(DatasetConfigurationTraceDatasetMatchCriteriaSpanTagArrayOutput)
-}
-
-// Deprecated: `tags` is deprecated, use `tag` instead.
 func (o DatasetConfigurationTraceDatasetMatchCriteriaSpanOutput) Tags() DatasetConfigurationTraceDatasetMatchCriteriaSpanTagArrayOutput {
 	return o.ApplyT(func(v DatasetConfigurationTraceDatasetMatchCriteriaSpan) []DatasetConfigurationTraceDatasetMatchCriteriaSpanTag {
 		return v.Tags
@@ -618,12 +890,8 @@ func (o DatasetConfigurationTraceDatasetMatchCriteriaSpanArrayOutput) Index(i pu
 }
 
 type DatasetConfigurationTraceDatasetMatchCriteriaSpanDuration struct {
-	// Deprecated: use max_secs instead
-	MaxSeconds *float64 `pulumi:"maxSeconds"`
-	MaxSecs    *float64 `pulumi:"maxSecs"`
-	// Deprecated: use min_secs instead
-	MinSeconds *float64 `pulumi:"minSeconds"`
-	MinSecs    *float64 `pulumi:"minSecs"`
+	MaxSecs *float64 `pulumi:"maxSecs"`
+	MinSecs *float64 `pulumi:"minSecs"`
 }
 
 // DatasetConfigurationTraceDatasetMatchCriteriaSpanDurationInput is an input type that accepts DatasetConfigurationTraceDatasetMatchCriteriaSpanDurationArgs and DatasetConfigurationTraceDatasetMatchCriteriaSpanDurationOutput values.
@@ -638,12 +906,8 @@ type DatasetConfigurationTraceDatasetMatchCriteriaSpanDurationInput interface {
 }
 
 type DatasetConfigurationTraceDatasetMatchCriteriaSpanDurationArgs struct {
-	// Deprecated: use max_secs instead
-	MaxSeconds pulumi.Float64PtrInput `pulumi:"maxSeconds"`
-	MaxSecs    pulumi.Float64PtrInput `pulumi:"maxSecs"`
-	// Deprecated: use min_secs instead
-	MinSeconds pulumi.Float64PtrInput `pulumi:"minSeconds"`
-	MinSecs    pulumi.Float64PtrInput `pulumi:"minSecs"`
+	MaxSecs pulumi.Float64PtrInput `pulumi:"maxSecs"`
+	MinSecs pulumi.Float64PtrInput `pulumi:"minSecs"`
 }
 
 func (DatasetConfigurationTraceDatasetMatchCriteriaSpanDurationArgs) ElementType() reflect.Type {
@@ -723,18 +987,8 @@ func (o DatasetConfigurationTraceDatasetMatchCriteriaSpanDurationOutput) ToDatas
 	}).(DatasetConfigurationTraceDatasetMatchCriteriaSpanDurationPtrOutput)
 }
 
-// Deprecated: use max_secs instead
-func (o DatasetConfigurationTraceDatasetMatchCriteriaSpanDurationOutput) MaxSeconds() pulumi.Float64PtrOutput {
-	return o.ApplyT(func(v DatasetConfigurationTraceDatasetMatchCriteriaSpanDuration) *float64 { return v.MaxSeconds }).(pulumi.Float64PtrOutput)
-}
-
 func (o DatasetConfigurationTraceDatasetMatchCriteriaSpanDurationOutput) MaxSecs() pulumi.Float64PtrOutput {
 	return o.ApplyT(func(v DatasetConfigurationTraceDatasetMatchCriteriaSpanDuration) *float64 { return v.MaxSecs }).(pulumi.Float64PtrOutput)
-}
-
-// Deprecated: use min_secs instead
-func (o DatasetConfigurationTraceDatasetMatchCriteriaSpanDurationOutput) MinSeconds() pulumi.Float64PtrOutput {
-	return o.ApplyT(func(v DatasetConfigurationTraceDatasetMatchCriteriaSpanDuration) *float64 { return v.MinSeconds }).(pulumi.Float64PtrOutput)
 }
 
 func (o DatasetConfigurationTraceDatasetMatchCriteriaSpanDurationOutput) MinSecs() pulumi.Float64PtrOutput {
@@ -765,32 +1019,12 @@ func (o DatasetConfigurationTraceDatasetMatchCriteriaSpanDurationPtrOutput) Elem
 	}).(DatasetConfigurationTraceDatasetMatchCriteriaSpanDurationOutput)
 }
 
-// Deprecated: use max_secs instead
-func (o DatasetConfigurationTraceDatasetMatchCriteriaSpanDurationPtrOutput) MaxSeconds() pulumi.Float64PtrOutput {
-	return o.ApplyT(func(v *DatasetConfigurationTraceDatasetMatchCriteriaSpanDuration) *float64 {
-		if v == nil {
-			return nil
-		}
-		return v.MaxSeconds
-	}).(pulumi.Float64PtrOutput)
-}
-
 func (o DatasetConfigurationTraceDatasetMatchCriteriaSpanDurationPtrOutput) MaxSecs() pulumi.Float64PtrOutput {
 	return o.ApplyT(func(v *DatasetConfigurationTraceDatasetMatchCriteriaSpanDuration) *float64 {
 		if v == nil {
 			return nil
 		}
 		return v.MaxSecs
-	}).(pulumi.Float64PtrOutput)
-}
-
-// Deprecated: use min_secs instead
-func (o DatasetConfigurationTraceDatasetMatchCriteriaSpanDurationPtrOutput) MinSeconds() pulumi.Float64PtrOutput {
-	return o.ApplyT(func(v *DatasetConfigurationTraceDatasetMatchCriteriaSpanDuration) *float64 {
-		if v == nil {
-			return nil
-		}
-		return v.MinSeconds
 	}).(pulumi.Float64PtrOutput)
 }
 
@@ -2310,12 +2544,8 @@ func (o DatasetConfigurationTraceDatasetMatchCriteriaTracePtrOutput) Error() Dat
 }
 
 type DatasetConfigurationTraceDatasetMatchCriteriaTraceDuration struct {
-	// Deprecated: use max_secs instead
-	MaxSeconds *float64 `pulumi:"maxSeconds"`
-	MaxSecs    *float64 `pulumi:"maxSecs"`
-	// Deprecated: use min_secs instead
-	MinSeconds *float64 `pulumi:"minSeconds"`
-	MinSecs    *float64 `pulumi:"minSecs"`
+	MaxSecs *float64 `pulumi:"maxSecs"`
+	MinSecs *float64 `pulumi:"minSecs"`
 }
 
 // DatasetConfigurationTraceDatasetMatchCriteriaTraceDurationInput is an input type that accepts DatasetConfigurationTraceDatasetMatchCriteriaTraceDurationArgs and DatasetConfigurationTraceDatasetMatchCriteriaTraceDurationOutput values.
@@ -2330,12 +2560,8 @@ type DatasetConfigurationTraceDatasetMatchCriteriaTraceDurationInput interface {
 }
 
 type DatasetConfigurationTraceDatasetMatchCriteriaTraceDurationArgs struct {
-	// Deprecated: use max_secs instead
-	MaxSeconds pulumi.Float64PtrInput `pulumi:"maxSeconds"`
-	MaxSecs    pulumi.Float64PtrInput `pulumi:"maxSecs"`
-	// Deprecated: use min_secs instead
-	MinSeconds pulumi.Float64PtrInput `pulumi:"minSeconds"`
-	MinSecs    pulumi.Float64PtrInput `pulumi:"minSecs"`
+	MaxSecs pulumi.Float64PtrInput `pulumi:"maxSecs"`
+	MinSecs pulumi.Float64PtrInput `pulumi:"minSecs"`
 }
 
 func (DatasetConfigurationTraceDatasetMatchCriteriaTraceDurationArgs) ElementType() reflect.Type {
@@ -2415,18 +2641,8 @@ func (o DatasetConfigurationTraceDatasetMatchCriteriaTraceDurationOutput) ToData
 	}).(DatasetConfigurationTraceDatasetMatchCriteriaTraceDurationPtrOutput)
 }
 
-// Deprecated: use max_secs instead
-func (o DatasetConfigurationTraceDatasetMatchCriteriaTraceDurationOutput) MaxSeconds() pulumi.Float64PtrOutput {
-	return o.ApplyT(func(v DatasetConfigurationTraceDatasetMatchCriteriaTraceDuration) *float64 { return v.MaxSeconds }).(pulumi.Float64PtrOutput)
-}
-
 func (o DatasetConfigurationTraceDatasetMatchCriteriaTraceDurationOutput) MaxSecs() pulumi.Float64PtrOutput {
 	return o.ApplyT(func(v DatasetConfigurationTraceDatasetMatchCriteriaTraceDuration) *float64 { return v.MaxSecs }).(pulumi.Float64PtrOutput)
-}
-
-// Deprecated: use min_secs instead
-func (o DatasetConfigurationTraceDatasetMatchCriteriaTraceDurationOutput) MinSeconds() pulumi.Float64PtrOutput {
-	return o.ApplyT(func(v DatasetConfigurationTraceDatasetMatchCriteriaTraceDuration) *float64 { return v.MinSeconds }).(pulumi.Float64PtrOutput)
 }
 
 func (o DatasetConfigurationTraceDatasetMatchCriteriaTraceDurationOutput) MinSecs() pulumi.Float64PtrOutput {
@@ -2457,32 +2673,12 @@ func (o DatasetConfigurationTraceDatasetMatchCriteriaTraceDurationPtrOutput) Ele
 	}).(DatasetConfigurationTraceDatasetMatchCriteriaTraceDurationOutput)
 }
 
-// Deprecated: use max_secs instead
-func (o DatasetConfigurationTraceDatasetMatchCriteriaTraceDurationPtrOutput) MaxSeconds() pulumi.Float64PtrOutput {
-	return o.ApplyT(func(v *DatasetConfigurationTraceDatasetMatchCriteriaTraceDuration) *float64 {
-		if v == nil {
-			return nil
-		}
-		return v.MaxSeconds
-	}).(pulumi.Float64PtrOutput)
-}
-
 func (o DatasetConfigurationTraceDatasetMatchCriteriaTraceDurationPtrOutput) MaxSecs() pulumi.Float64PtrOutput {
 	return o.ApplyT(func(v *DatasetConfigurationTraceDatasetMatchCriteriaTraceDuration) *float64 {
 		if v == nil {
 			return nil
 		}
 		return v.MaxSecs
-	}).(pulumi.Float64PtrOutput)
-}
-
-// Deprecated: use min_secs instead
-func (o DatasetConfigurationTraceDatasetMatchCriteriaTraceDurationPtrOutput) MinSeconds() pulumi.Float64PtrOutput {
-	return o.ApplyT(func(v *DatasetConfigurationTraceDatasetMatchCriteriaTraceDuration) *float64 {
-		if v == nil {
-			return nil
-		}
-		return v.MinSeconds
 	}).(pulumi.Float64PtrOutput)
 }
 
@@ -4427,6 +4623,2627 @@ func (o GcpMetricsIntegrationServiceAccountPtrOutput) ClientEmail() pulumi.Strin
 		}
 		return &v.ClientEmail
 	}).(pulumi.StringPtrOutput)
+}
+
+type LogAllocationConfigDatasetAllocation struct {
+	Allocation LogAllocationConfigDatasetAllocationAllocation  `pulumi:"allocation"`
+	DatasetId  string                                          `pulumi:"datasetId"`
+	Priorities *LogAllocationConfigDatasetAllocationPriorities `pulumi:"priorities"`
+}
+
+// LogAllocationConfigDatasetAllocationInput is an input type that accepts LogAllocationConfigDatasetAllocationArgs and LogAllocationConfigDatasetAllocationOutput values.
+// You can construct a concrete instance of `LogAllocationConfigDatasetAllocationInput` via:
+//
+//	LogAllocationConfigDatasetAllocationArgs{...}
+type LogAllocationConfigDatasetAllocationInput interface {
+	pulumi.Input
+
+	ToLogAllocationConfigDatasetAllocationOutput() LogAllocationConfigDatasetAllocationOutput
+	ToLogAllocationConfigDatasetAllocationOutputWithContext(context.Context) LogAllocationConfigDatasetAllocationOutput
+}
+
+type LogAllocationConfigDatasetAllocationArgs struct {
+	Allocation LogAllocationConfigDatasetAllocationAllocationInput    `pulumi:"allocation"`
+	DatasetId  pulumi.StringInput                                     `pulumi:"datasetId"`
+	Priorities LogAllocationConfigDatasetAllocationPrioritiesPtrInput `pulumi:"priorities"`
+}
+
+func (LogAllocationConfigDatasetAllocationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogAllocationConfigDatasetAllocation)(nil)).Elem()
+}
+
+func (i LogAllocationConfigDatasetAllocationArgs) ToLogAllocationConfigDatasetAllocationOutput() LogAllocationConfigDatasetAllocationOutput {
+	return i.ToLogAllocationConfigDatasetAllocationOutputWithContext(context.Background())
+}
+
+func (i LogAllocationConfigDatasetAllocationArgs) ToLogAllocationConfigDatasetAllocationOutputWithContext(ctx context.Context) LogAllocationConfigDatasetAllocationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogAllocationConfigDatasetAllocationOutput)
+}
+
+// LogAllocationConfigDatasetAllocationArrayInput is an input type that accepts LogAllocationConfigDatasetAllocationArray and LogAllocationConfigDatasetAllocationArrayOutput values.
+// You can construct a concrete instance of `LogAllocationConfigDatasetAllocationArrayInput` via:
+//
+//	LogAllocationConfigDatasetAllocationArray{ LogAllocationConfigDatasetAllocationArgs{...} }
+type LogAllocationConfigDatasetAllocationArrayInput interface {
+	pulumi.Input
+
+	ToLogAllocationConfigDatasetAllocationArrayOutput() LogAllocationConfigDatasetAllocationArrayOutput
+	ToLogAllocationConfigDatasetAllocationArrayOutputWithContext(context.Context) LogAllocationConfigDatasetAllocationArrayOutput
+}
+
+type LogAllocationConfigDatasetAllocationArray []LogAllocationConfigDatasetAllocationInput
+
+func (LogAllocationConfigDatasetAllocationArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LogAllocationConfigDatasetAllocation)(nil)).Elem()
+}
+
+func (i LogAllocationConfigDatasetAllocationArray) ToLogAllocationConfigDatasetAllocationArrayOutput() LogAllocationConfigDatasetAllocationArrayOutput {
+	return i.ToLogAllocationConfigDatasetAllocationArrayOutputWithContext(context.Background())
+}
+
+func (i LogAllocationConfigDatasetAllocationArray) ToLogAllocationConfigDatasetAllocationArrayOutputWithContext(ctx context.Context) LogAllocationConfigDatasetAllocationArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogAllocationConfigDatasetAllocationArrayOutput)
+}
+
+type LogAllocationConfigDatasetAllocationOutput struct{ *pulumi.OutputState }
+
+func (LogAllocationConfigDatasetAllocationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogAllocationConfigDatasetAllocation)(nil)).Elem()
+}
+
+func (o LogAllocationConfigDatasetAllocationOutput) ToLogAllocationConfigDatasetAllocationOutput() LogAllocationConfigDatasetAllocationOutput {
+	return o
+}
+
+func (o LogAllocationConfigDatasetAllocationOutput) ToLogAllocationConfigDatasetAllocationOutputWithContext(ctx context.Context) LogAllocationConfigDatasetAllocationOutput {
+	return o
+}
+
+func (o LogAllocationConfigDatasetAllocationOutput) Allocation() LogAllocationConfigDatasetAllocationAllocationOutput {
+	return o.ApplyT(func(v LogAllocationConfigDatasetAllocation) LogAllocationConfigDatasetAllocationAllocation {
+		return v.Allocation
+	}).(LogAllocationConfigDatasetAllocationAllocationOutput)
+}
+
+func (o LogAllocationConfigDatasetAllocationOutput) DatasetId() pulumi.StringOutput {
+	return o.ApplyT(func(v LogAllocationConfigDatasetAllocation) string { return v.DatasetId }).(pulumi.StringOutput)
+}
+
+func (o LogAllocationConfigDatasetAllocationOutput) Priorities() LogAllocationConfigDatasetAllocationPrioritiesPtrOutput {
+	return o.ApplyT(func(v LogAllocationConfigDatasetAllocation) *LogAllocationConfigDatasetAllocationPriorities {
+		return v.Priorities
+	}).(LogAllocationConfigDatasetAllocationPrioritiesPtrOutput)
+}
+
+type LogAllocationConfigDatasetAllocationArrayOutput struct{ *pulumi.OutputState }
+
+func (LogAllocationConfigDatasetAllocationArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LogAllocationConfigDatasetAllocation)(nil)).Elem()
+}
+
+func (o LogAllocationConfigDatasetAllocationArrayOutput) ToLogAllocationConfigDatasetAllocationArrayOutput() LogAllocationConfigDatasetAllocationArrayOutput {
+	return o
+}
+
+func (o LogAllocationConfigDatasetAllocationArrayOutput) ToLogAllocationConfigDatasetAllocationArrayOutputWithContext(ctx context.Context) LogAllocationConfigDatasetAllocationArrayOutput {
+	return o
+}
+
+func (o LogAllocationConfigDatasetAllocationArrayOutput) Index(i pulumi.IntInput) LogAllocationConfigDatasetAllocationOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LogAllocationConfigDatasetAllocation {
+		return vs[0].([]LogAllocationConfigDatasetAllocation)[vs[1].(int)]
+	}).(LogAllocationConfigDatasetAllocationOutput)
+}
+
+type LogAllocationConfigDatasetAllocationAllocation struct {
+	PercentOfLicense float64 `pulumi:"percentOfLicense"`
+}
+
+// LogAllocationConfigDatasetAllocationAllocationInput is an input type that accepts LogAllocationConfigDatasetAllocationAllocationArgs and LogAllocationConfigDatasetAllocationAllocationOutput values.
+// You can construct a concrete instance of `LogAllocationConfigDatasetAllocationAllocationInput` via:
+//
+//	LogAllocationConfigDatasetAllocationAllocationArgs{...}
+type LogAllocationConfigDatasetAllocationAllocationInput interface {
+	pulumi.Input
+
+	ToLogAllocationConfigDatasetAllocationAllocationOutput() LogAllocationConfigDatasetAllocationAllocationOutput
+	ToLogAllocationConfigDatasetAllocationAllocationOutputWithContext(context.Context) LogAllocationConfigDatasetAllocationAllocationOutput
+}
+
+type LogAllocationConfigDatasetAllocationAllocationArgs struct {
+	PercentOfLicense pulumi.Float64Input `pulumi:"percentOfLicense"`
+}
+
+func (LogAllocationConfigDatasetAllocationAllocationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogAllocationConfigDatasetAllocationAllocation)(nil)).Elem()
+}
+
+func (i LogAllocationConfigDatasetAllocationAllocationArgs) ToLogAllocationConfigDatasetAllocationAllocationOutput() LogAllocationConfigDatasetAllocationAllocationOutput {
+	return i.ToLogAllocationConfigDatasetAllocationAllocationOutputWithContext(context.Background())
+}
+
+func (i LogAllocationConfigDatasetAllocationAllocationArgs) ToLogAllocationConfigDatasetAllocationAllocationOutputWithContext(ctx context.Context) LogAllocationConfigDatasetAllocationAllocationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogAllocationConfigDatasetAllocationAllocationOutput)
+}
+
+type LogAllocationConfigDatasetAllocationAllocationOutput struct{ *pulumi.OutputState }
+
+func (LogAllocationConfigDatasetAllocationAllocationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogAllocationConfigDatasetAllocationAllocation)(nil)).Elem()
+}
+
+func (o LogAllocationConfigDatasetAllocationAllocationOutput) ToLogAllocationConfigDatasetAllocationAllocationOutput() LogAllocationConfigDatasetAllocationAllocationOutput {
+	return o
+}
+
+func (o LogAllocationConfigDatasetAllocationAllocationOutput) ToLogAllocationConfigDatasetAllocationAllocationOutputWithContext(ctx context.Context) LogAllocationConfigDatasetAllocationAllocationOutput {
+	return o
+}
+
+func (o LogAllocationConfigDatasetAllocationAllocationOutput) PercentOfLicense() pulumi.Float64Output {
+	return o.ApplyT(func(v LogAllocationConfigDatasetAllocationAllocation) float64 { return v.PercentOfLicense }).(pulumi.Float64Output)
+}
+
+type LogAllocationConfigDatasetAllocationPriorities struct {
+	HighPriorityFilters []LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilter `pulumi:"highPriorityFilters"`
+	LowPriorityFilters  []LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilter  `pulumi:"lowPriorityFilters"`
+}
+
+// LogAllocationConfigDatasetAllocationPrioritiesInput is an input type that accepts LogAllocationConfigDatasetAllocationPrioritiesArgs and LogAllocationConfigDatasetAllocationPrioritiesOutput values.
+// You can construct a concrete instance of `LogAllocationConfigDatasetAllocationPrioritiesInput` via:
+//
+//	LogAllocationConfigDatasetAllocationPrioritiesArgs{...}
+type LogAllocationConfigDatasetAllocationPrioritiesInput interface {
+	pulumi.Input
+
+	ToLogAllocationConfigDatasetAllocationPrioritiesOutput() LogAllocationConfigDatasetAllocationPrioritiesOutput
+	ToLogAllocationConfigDatasetAllocationPrioritiesOutputWithContext(context.Context) LogAllocationConfigDatasetAllocationPrioritiesOutput
+}
+
+type LogAllocationConfigDatasetAllocationPrioritiesArgs struct {
+	HighPriorityFilters LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterArrayInput `pulumi:"highPriorityFilters"`
+	LowPriorityFilters  LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterArrayInput  `pulumi:"lowPriorityFilters"`
+}
+
+func (LogAllocationConfigDatasetAllocationPrioritiesArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogAllocationConfigDatasetAllocationPriorities)(nil)).Elem()
+}
+
+func (i LogAllocationConfigDatasetAllocationPrioritiesArgs) ToLogAllocationConfigDatasetAllocationPrioritiesOutput() LogAllocationConfigDatasetAllocationPrioritiesOutput {
+	return i.ToLogAllocationConfigDatasetAllocationPrioritiesOutputWithContext(context.Background())
+}
+
+func (i LogAllocationConfigDatasetAllocationPrioritiesArgs) ToLogAllocationConfigDatasetAllocationPrioritiesOutputWithContext(ctx context.Context) LogAllocationConfigDatasetAllocationPrioritiesOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogAllocationConfigDatasetAllocationPrioritiesOutput)
+}
+
+func (i LogAllocationConfigDatasetAllocationPrioritiesArgs) ToLogAllocationConfigDatasetAllocationPrioritiesPtrOutput() LogAllocationConfigDatasetAllocationPrioritiesPtrOutput {
+	return i.ToLogAllocationConfigDatasetAllocationPrioritiesPtrOutputWithContext(context.Background())
+}
+
+func (i LogAllocationConfigDatasetAllocationPrioritiesArgs) ToLogAllocationConfigDatasetAllocationPrioritiesPtrOutputWithContext(ctx context.Context) LogAllocationConfigDatasetAllocationPrioritiesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogAllocationConfigDatasetAllocationPrioritiesOutput).ToLogAllocationConfigDatasetAllocationPrioritiesPtrOutputWithContext(ctx)
+}
+
+// LogAllocationConfigDatasetAllocationPrioritiesPtrInput is an input type that accepts LogAllocationConfigDatasetAllocationPrioritiesArgs, LogAllocationConfigDatasetAllocationPrioritiesPtr and LogAllocationConfigDatasetAllocationPrioritiesPtrOutput values.
+// You can construct a concrete instance of `LogAllocationConfigDatasetAllocationPrioritiesPtrInput` via:
+//
+//	        LogAllocationConfigDatasetAllocationPrioritiesArgs{...}
+//
+//	or:
+//
+//	        nil
+type LogAllocationConfigDatasetAllocationPrioritiesPtrInput interface {
+	pulumi.Input
+
+	ToLogAllocationConfigDatasetAllocationPrioritiesPtrOutput() LogAllocationConfigDatasetAllocationPrioritiesPtrOutput
+	ToLogAllocationConfigDatasetAllocationPrioritiesPtrOutputWithContext(context.Context) LogAllocationConfigDatasetAllocationPrioritiesPtrOutput
+}
+
+type logAllocationConfigDatasetAllocationPrioritiesPtrType LogAllocationConfigDatasetAllocationPrioritiesArgs
+
+func LogAllocationConfigDatasetAllocationPrioritiesPtr(v *LogAllocationConfigDatasetAllocationPrioritiesArgs) LogAllocationConfigDatasetAllocationPrioritiesPtrInput {
+	return (*logAllocationConfigDatasetAllocationPrioritiesPtrType)(v)
+}
+
+func (*logAllocationConfigDatasetAllocationPrioritiesPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogAllocationConfigDatasetAllocationPriorities)(nil)).Elem()
+}
+
+func (i *logAllocationConfigDatasetAllocationPrioritiesPtrType) ToLogAllocationConfigDatasetAllocationPrioritiesPtrOutput() LogAllocationConfigDatasetAllocationPrioritiesPtrOutput {
+	return i.ToLogAllocationConfigDatasetAllocationPrioritiesPtrOutputWithContext(context.Background())
+}
+
+func (i *logAllocationConfigDatasetAllocationPrioritiesPtrType) ToLogAllocationConfigDatasetAllocationPrioritiesPtrOutputWithContext(ctx context.Context) LogAllocationConfigDatasetAllocationPrioritiesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogAllocationConfigDatasetAllocationPrioritiesPtrOutput)
+}
+
+type LogAllocationConfigDatasetAllocationPrioritiesOutput struct{ *pulumi.OutputState }
+
+func (LogAllocationConfigDatasetAllocationPrioritiesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogAllocationConfigDatasetAllocationPriorities)(nil)).Elem()
+}
+
+func (o LogAllocationConfigDatasetAllocationPrioritiesOutput) ToLogAllocationConfigDatasetAllocationPrioritiesOutput() LogAllocationConfigDatasetAllocationPrioritiesOutput {
+	return o
+}
+
+func (o LogAllocationConfigDatasetAllocationPrioritiesOutput) ToLogAllocationConfigDatasetAllocationPrioritiesOutputWithContext(ctx context.Context) LogAllocationConfigDatasetAllocationPrioritiesOutput {
+	return o
+}
+
+func (o LogAllocationConfigDatasetAllocationPrioritiesOutput) ToLogAllocationConfigDatasetAllocationPrioritiesPtrOutput() LogAllocationConfigDatasetAllocationPrioritiesPtrOutput {
+	return o.ToLogAllocationConfigDatasetAllocationPrioritiesPtrOutputWithContext(context.Background())
+}
+
+func (o LogAllocationConfigDatasetAllocationPrioritiesOutput) ToLogAllocationConfigDatasetAllocationPrioritiesPtrOutputWithContext(ctx context.Context) LogAllocationConfigDatasetAllocationPrioritiesPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v LogAllocationConfigDatasetAllocationPriorities) *LogAllocationConfigDatasetAllocationPriorities {
+		return &v
+	}).(LogAllocationConfigDatasetAllocationPrioritiesPtrOutput)
+}
+
+func (o LogAllocationConfigDatasetAllocationPrioritiesOutput) HighPriorityFilters() LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterArrayOutput {
+	return o.ApplyT(func(v LogAllocationConfigDatasetAllocationPriorities) []LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilter {
+		return v.HighPriorityFilters
+	}).(LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterArrayOutput)
+}
+
+func (o LogAllocationConfigDatasetAllocationPrioritiesOutput) LowPriorityFilters() LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterArrayOutput {
+	return o.ApplyT(func(v LogAllocationConfigDatasetAllocationPriorities) []LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilter {
+		return v.LowPriorityFilters
+	}).(LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterArrayOutput)
+}
+
+type LogAllocationConfigDatasetAllocationPrioritiesPtrOutput struct{ *pulumi.OutputState }
+
+func (LogAllocationConfigDatasetAllocationPrioritiesPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogAllocationConfigDatasetAllocationPriorities)(nil)).Elem()
+}
+
+func (o LogAllocationConfigDatasetAllocationPrioritiesPtrOutput) ToLogAllocationConfigDatasetAllocationPrioritiesPtrOutput() LogAllocationConfigDatasetAllocationPrioritiesPtrOutput {
+	return o
+}
+
+func (o LogAllocationConfigDatasetAllocationPrioritiesPtrOutput) ToLogAllocationConfigDatasetAllocationPrioritiesPtrOutputWithContext(ctx context.Context) LogAllocationConfigDatasetAllocationPrioritiesPtrOutput {
+	return o
+}
+
+func (o LogAllocationConfigDatasetAllocationPrioritiesPtrOutput) Elem() LogAllocationConfigDatasetAllocationPrioritiesOutput {
+	return o.ApplyT(func(v *LogAllocationConfigDatasetAllocationPriorities) LogAllocationConfigDatasetAllocationPriorities {
+		if v != nil {
+			return *v
+		}
+		var ret LogAllocationConfigDatasetAllocationPriorities
+		return ret
+	}).(LogAllocationConfigDatasetAllocationPrioritiesOutput)
+}
+
+func (o LogAllocationConfigDatasetAllocationPrioritiesPtrOutput) HighPriorityFilters() LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterArrayOutput {
+	return o.ApplyT(func(v *LogAllocationConfigDatasetAllocationPriorities) []LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilter {
+		if v == nil {
+			return nil
+		}
+		return v.HighPriorityFilters
+	}).(LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterArrayOutput)
+}
+
+func (o LogAllocationConfigDatasetAllocationPrioritiesPtrOutput) LowPriorityFilters() LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterArrayOutput {
+	return o.ApplyT(func(v *LogAllocationConfigDatasetAllocationPriorities) []LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilter {
+		if v == nil {
+			return nil
+		}
+		return v.LowPriorityFilters
+	}).(LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterArrayOutput)
+}
+
+type LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilter struct {
+	Query string `pulumi:"query"`
+}
+
+// LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterInput is an input type that accepts LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterArgs and LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterOutput values.
+// You can construct a concrete instance of `LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterInput` via:
+//
+//	LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterArgs{...}
+type LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterInput interface {
+	pulumi.Input
+
+	ToLogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterOutput() LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterOutput
+	ToLogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterOutputWithContext(context.Context) LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterOutput
+}
+
+type LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterArgs struct {
+	Query pulumi.StringInput `pulumi:"query"`
+}
+
+func (LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilter)(nil)).Elem()
+}
+
+func (i LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterArgs) ToLogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterOutput() LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterOutput {
+	return i.ToLogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterOutputWithContext(context.Background())
+}
+
+func (i LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterArgs) ToLogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterOutputWithContext(ctx context.Context) LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterOutput)
+}
+
+// LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterArrayInput is an input type that accepts LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterArray and LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterArrayOutput values.
+// You can construct a concrete instance of `LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterArrayInput` via:
+//
+//	LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterArray{ LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterArgs{...} }
+type LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterArrayInput interface {
+	pulumi.Input
+
+	ToLogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterArrayOutput() LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterArrayOutput
+	ToLogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterArrayOutputWithContext(context.Context) LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterArrayOutput
+}
+
+type LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterArray []LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterInput
+
+func (LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilter)(nil)).Elem()
+}
+
+func (i LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterArray) ToLogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterArrayOutput() LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterArrayOutput {
+	return i.ToLogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterArrayOutputWithContext(context.Background())
+}
+
+func (i LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterArray) ToLogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterArrayOutputWithContext(ctx context.Context) LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterArrayOutput)
+}
+
+type LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterOutput struct{ *pulumi.OutputState }
+
+func (LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilter)(nil)).Elem()
+}
+
+func (o LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterOutput) ToLogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterOutput() LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterOutput {
+	return o
+}
+
+func (o LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterOutput) ToLogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterOutputWithContext(ctx context.Context) LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterOutput {
+	return o
+}
+
+func (o LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterOutput) Query() pulumi.StringOutput {
+	return o.ApplyT(func(v LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilter) string { return v.Query }).(pulumi.StringOutput)
+}
+
+type LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterArrayOutput struct{ *pulumi.OutputState }
+
+func (LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilter)(nil)).Elem()
+}
+
+func (o LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterArrayOutput) ToLogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterArrayOutput() LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterArrayOutput {
+	return o
+}
+
+func (o LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterArrayOutput) ToLogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterArrayOutputWithContext(ctx context.Context) LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterArrayOutput {
+	return o
+}
+
+func (o LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterArrayOutput) Index(i pulumi.IntInput) LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilter {
+		return vs[0].([]LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilter)[vs[1].(int)]
+	}).(LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterOutput)
+}
+
+type LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilter struct {
+	Query string `pulumi:"query"`
+}
+
+// LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterInput is an input type that accepts LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterArgs and LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterOutput values.
+// You can construct a concrete instance of `LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterInput` via:
+//
+//	LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterArgs{...}
+type LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterInput interface {
+	pulumi.Input
+
+	ToLogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterOutput() LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterOutput
+	ToLogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterOutputWithContext(context.Context) LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterOutput
+}
+
+type LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterArgs struct {
+	Query pulumi.StringInput `pulumi:"query"`
+}
+
+func (LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilter)(nil)).Elem()
+}
+
+func (i LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterArgs) ToLogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterOutput() LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterOutput {
+	return i.ToLogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterOutputWithContext(context.Background())
+}
+
+func (i LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterArgs) ToLogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterOutputWithContext(ctx context.Context) LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterOutput)
+}
+
+// LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterArrayInput is an input type that accepts LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterArray and LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterArrayOutput values.
+// You can construct a concrete instance of `LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterArrayInput` via:
+//
+//	LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterArray{ LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterArgs{...} }
+type LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterArrayInput interface {
+	pulumi.Input
+
+	ToLogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterArrayOutput() LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterArrayOutput
+	ToLogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterArrayOutputWithContext(context.Context) LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterArrayOutput
+}
+
+type LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterArray []LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterInput
+
+func (LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilter)(nil)).Elem()
+}
+
+func (i LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterArray) ToLogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterArrayOutput() LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterArrayOutput {
+	return i.ToLogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterArrayOutputWithContext(context.Background())
+}
+
+func (i LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterArray) ToLogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterArrayOutputWithContext(ctx context.Context) LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterArrayOutput)
+}
+
+type LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterOutput struct{ *pulumi.OutputState }
+
+func (LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilter)(nil)).Elem()
+}
+
+func (o LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterOutput) ToLogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterOutput() LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterOutput {
+	return o
+}
+
+func (o LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterOutput) ToLogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterOutputWithContext(ctx context.Context) LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterOutput {
+	return o
+}
+
+func (o LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterOutput) Query() pulumi.StringOutput {
+	return o.ApplyT(func(v LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilter) string { return v.Query }).(pulumi.StringOutput)
+}
+
+type LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterArrayOutput struct{ *pulumi.OutputState }
+
+func (LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilter)(nil)).Elem()
+}
+
+func (o LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterArrayOutput) ToLogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterArrayOutput() LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterArrayOutput {
+	return o
+}
+
+func (o LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterArrayOutput) ToLogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterArrayOutputWithContext(ctx context.Context) LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterArrayOutput {
+	return o
+}
+
+func (o LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterArrayOutput) Index(i pulumi.IntInput) LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilter {
+		return vs[0].([]LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilter)[vs[1].(int)]
+	}).(LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterOutput)
+}
+
+type LogAllocationConfigDefaultDataset struct {
+	Allocation LogAllocationConfigDefaultDatasetAllocation  `pulumi:"allocation"`
+	Priorities *LogAllocationConfigDefaultDatasetPriorities `pulumi:"priorities"`
+}
+
+// LogAllocationConfigDefaultDatasetInput is an input type that accepts LogAllocationConfigDefaultDatasetArgs and LogAllocationConfigDefaultDatasetOutput values.
+// You can construct a concrete instance of `LogAllocationConfigDefaultDatasetInput` via:
+//
+//	LogAllocationConfigDefaultDatasetArgs{...}
+type LogAllocationConfigDefaultDatasetInput interface {
+	pulumi.Input
+
+	ToLogAllocationConfigDefaultDatasetOutput() LogAllocationConfigDefaultDatasetOutput
+	ToLogAllocationConfigDefaultDatasetOutputWithContext(context.Context) LogAllocationConfigDefaultDatasetOutput
+}
+
+type LogAllocationConfigDefaultDatasetArgs struct {
+	Allocation LogAllocationConfigDefaultDatasetAllocationInput    `pulumi:"allocation"`
+	Priorities LogAllocationConfigDefaultDatasetPrioritiesPtrInput `pulumi:"priorities"`
+}
+
+func (LogAllocationConfigDefaultDatasetArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogAllocationConfigDefaultDataset)(nil)).Elem()
+}
+
+func (i LogAllocationConfigDefaultDatasetArgs) ToLogAllocationConfigDefaultDatasetOutput() LogAllocationConfigDefaultDatasetOutput {
+	return i.ToLogAllocationConfigDefaultDatasetOutputWithContext(context.Background())
+}
+
+func (i LogAllocationConfigDefaultDatasetArgs) ToLogAllocationConfigDefaultDatasetOutputWithContext(ctx context.Context) LogAllocationConfigDefaultDatasetOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogAllocationConfigDefaultDatasetOutput)
+}
+
+func (i LogAllocationConfigDefaultDatasetArgs) ToLogAllocationConfigDefaultDatasetPtrOutput() LogAllocationConfigDefaultDatasetPtrOutput {
+	return i.ToLogAllocationConfigDefaultDatasetPtrOutputWithContext(context.Background())
+}
+
+func (i LogAllocationConfigDefaultDatasetArgs) ToLogAllocationConfigDefaultDatasetPtrOutputWithContext(ctx context.Context) LogAllocationConfigDefaultDatasetPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogAllocationConfigDefaultDatasetOutput).ToLogAllocationConfigDefaultDatasetPtrOutputWithContext(ctx)
+}
+
+// LogAllocationConfigDefaultDatasetPtrInput is an input type that accepts LogAllocationConfigDefaultDatasetArgs, LogAllocationConfigDefaultDatasetPtr and LogAllocationConfigDefaultDatasetPtrOutput values.
+// You can construct a concrete instance of `LogAllocationConfigDefaultDatasetPtrInput` via:
+//
+//	        LogAllocationConfigDefaultDatasetArgs{...}
+//
+//	or:
+//
+//	        nil
+type LogAllocationConfigDefaultDatasetPtrInput interface {
+	pulumi.Input
+
+	ToLogAllocationConfigDefaultDatasetPtrOutput() LogAllocationConfigDefaultDatasetPtrOutput
+	ToLogAllocationConfigDefaultDatasetPtrOutputWithContext(context.Context) LogAllocationConfigDefaultDatasetPtrOutput
+}
+
+type logAllocationConfigDefaultDatasetPtrType LogAllocationConfigDefaultDatasetArgs
+
+func LogAllocationConfigDefaultDatasetPtr(v *LogAllocationConfigDefaultDatasetArgs) LogAllocationConfigDefaultDatasetPtrInput {
+	return (*logAllocationConfigDefaultDatasetPtrType)(v)
+}
+
+func (*logAllocationConfigDefaultDatasetPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogAllocationConfigDefaultDataset)(nil)).Elem()
+}
+
+func (i *logAllocationConfigDefaultDatasetPtrType) ToLogAllocationConfigDefaultDatasetPtrOutput() LogAllocationConfigDefaultDatasetPtrOutput {
+	return i.ToLogAllocationConfigDefaultDatasetPtrOutputWithContext(context.Background())
+}
+
+func (i *logAllocationConfigDefaultDatasetPtrType) ToLogAllocationConfigDefaultDatasetPtrOutputWithContext(ctx context.Context) LogAllocationConfigDefaultDatasetPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogAllocationConfigDefaultDatasetPtrOutput)
+}
+
+type LogAllocationConfigDefaultDatasetOutput struct{ *pulumi.OutputState }
+
+func (LogAllocationConfigDefaultDatasetOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogAllocationConfigDefaultDataset)(nil)).Elem()
+}
+
+func (o LogAllocationConfigDefaultDatasetOutput) ToLogAllocationConfigDefaultDatasetOutput() LogAllocationConfigDefaultDatasetOutput {
+	return o
+}
+
+func (o LogAllocationConfigDefaultDatasetOutput) ToLogAllocationConfigDefaultDatasetOutputWithContext(ctx context.Context) LogAllocationConfigDefaultDatasetOutput {
+	return o
+}
+
+func (o LogAllocationConfigDefaultDatasetOutput) ToLogAllocationConfigDefaultDatasetPtrOutput() LogAllocationConfigDefaultDatasetPtrOutput {
+	return o.ToLogAllocationConfigDefaultDatasetPtrOutputWithContext(context.Background())
+}
+
+func (o LogAllocationConfigDefaultDatasetOutput) ToLogAllocationConfigDefaultDatasetPtrOutputWithContext(ctx context.Context) LogAllocationConfigDefaultDatasetPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v LogAllocationConfigDefaultDataset) *LogAllocationConfigDefaultDataset {
+		return &v
+	}).(LogAllocationConfigDefaultDatasetPtrOutput)
+}
+
+func (o LogAllocationConfigDefaultDatasetOutput) Allocation() LogAllocationConfigDefaultDatasetAllocationOutput {
+	return o.ApplyT(func(v LogAllocationConfigDefaultDataset) LogAllocationConfigDefaultDatasetAllocation {
+		return v.Allocation
+	}).(LogAllocationConfigDefaultDatasetAllocationOutput)
+}
+
+func (o LogAllocationConfigDefaultDatasetOutput) Priorities() LogAllocationConfigDefaultDatasetPrioritiesPtrOutput {
+	return o.ApplyT(func(v LogAllocationConfigDefaultDataset) *LogAllocationConfigDefaultDatasetPriorities {
+		return v.Priorities
+	}).(LogAllocationConfigDefaultDatasetPrioritiesPtrOutput)
+}
+
+type LogAllocationConfigDefaultDatasetPtrOutput struct{ *pulumi.OutputState }
+
+func (LogAllocationConfigDefaultDatasetPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogAllocationConfigDefaultDataset)(nil)).Elem()
+}
+
+func (o LogAllocationConfigDefaultDatasetPtrOutput) ToLogAllocationConfigDefaultDatasetPtrOutput() LogAllocationConfigDefaultDatasetPtrOutput {
+	return o
+}
+
+func (o LogAllocationConfigDefaultDatasetPtrOutput) ToLogAllocationConfigDefaultDatasetPtrOutputWithContext(ctx context.Context) LogAllocationConfigDefaultDatasetPtrOutput {
+	return o
+}
+
+func (o LogAllocationConfigDefaultDatasetPtrOutput) Elem() LogAllocationConfigDefaultDatasetOutput {
+	return o.ApplyT(func(v *LogAllocationConfigDefaultDataset) LogAllocationConfigDefaultDataset {
+		if v != nil {
+			return *v
+		}
+		var ret LogAllocationConfigDefaultDataset
+		return ret
+	}).(LogAllocationConfigDefaultDatasetOutput)
+}
+
+func (o LogAllocationConfigDefaultDatasetPtrOutput) Allocation() LogAllocationConfigDefaultDatasetAllocationPtrOutput {
+	return o.ApplyT(func(v *LogAllocationConfigDefaultDataset) *LogAllocationConfigDefaultDatasetAllocation {
+		if v == nil {
+			return nil
+		}
+		return &v.Allocation
+	}).(LogAllocationConfigDefaultDatasetAllocationPtrOutput)
+}
+
+func (o LogAllocationConfigDefaultDatasetPtrOutput) Priorities() LogAllocationConfigDefaultDatasetPrioritiesPtrOutput {
+	return o.ApplyT(func(v *LogAllocationConfigDefaultDataset) *LogAllocationConfigDefaultDatasetPriorities {
+		if v == nil {
+			return nil
+		}
+		return v.Priorities
+	}).(LogAllocationConfigDefaultDatasetPrioritiesPtrOutput)
+}
+
+type LogAllocationConfigDefaultDatasetAllocation struct {
+	PercentOfLicense float64 `pulumi:"percentOfLicense"`
+}
+
+// LogAllocationConfigDefaultDatasetAllocationInput is an input type that accepts LogAllocationConfigDefaultDatasetAllocationArgs and LogAllocationConfigDefaultDatasetAllocationOutput values.
+// You can construct a concrete instance of `LogAllocationConfigDefaultDatasetAllocationInput` via:
+//
+//	LogAllocationConfigDefaultDatasetAllocationArgs{...}
+type LogAllocationConfigDefaultDatasetAllocationInput interface {
+	pulumi.Input
+
+	ToLogAllocationConfigDefaultDatasetAllocationOutput() LogAllocationConfigDefaultDatasetAllocationOutput
+	ToLogAllocationConfigDefaultDatasetAllocationOutputWithContext(context.Context) LogAllocationConfigDefaultDatasetAllocationOutput
+}
+
+type LogAllocationConfigDefaultDatasetAllocationArgs struct {
+	PercentOfLicense pulumi.Float64Input `pulumi:"percentOfLicense"`
+}
+
+func (LogAllocationConfigDefaultDatasetAllocationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogAllocationConfigDefaultDatasetAllocation)(nil)).Elem()
+}
+
+func (i LogAllocationConfigDefaultDatasetAllocationArgs) ToLogAllocationConfigDefaultDatasetAllocationOutput() LogAllocationConfigDefaultDatasetAllocationOutput {
+	return i.ToLogAllocationConfigDefaultDatasetAllocationOutputWithContext(context.Background())
+}
+
+func (i LogAllocationConfigDefaultDatasetAllocationArgs) ToLogAllocationConfigDefaultDatasetAllocationOutputWithContext(ctx context.Context) LogAllocationConfigDefaultDatasetAllocationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogAllocationConfigDefaultDatasetAllocationOutput)
+}
+
+func (i LogAllocationConfigDefaultDatasetAllocationArgs) ToLogAllocationConfigDefaultDatasetAllocationPtrOutput() LogAllocationConfigDefaultDatasetAllocationPtrOutput {
+	return i.ToLogAllocationConfigDefaultDatasetAllocationPtrOutputWithContext(context.Background())
+}
+
+func (i LogAllocationConfigDefaultDatasetAllocationArgs) ToLogAllocationConfigDefaultDatasetAllocationPtrOutputWithContext(ctx context.Context) LogAllocationConfigDefaultDatasetAllocationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogAllocationConfigDefaultDatasetAllocationOutput).ToLogAllocationConfigDefaultDatasetAllocationPtrOutputWithContext(ctx)
+}
+
+// LogAllocationConfigDefaultDatasetAllocationPtrInput is an input type that accepts LogAllocationConfigDefaultDatasetAllocationArgs, LogAllocationConfigDefaultDatasetAllocationPtr and LogAllocationConfigDefaultDatasetAllocationPtrOutput values.
+// You can construct a concrete instance of `LogAllocationConfigDefaultDatasetAllocationPtrInput` via:
+//
+//	        LogAllocationConfigDefaultDatasetAllocationArgs{...}
+//
+//	or:
+//
+//	        nil
+type LogAllocationConfigDefaultDatasetAllocationPtrInput interface {
+	pulumi.Input
+
+	ToLogAllocationConfigDefaultDatasetAllocationPtrOutput() LogAllocationConfigDefaultDatasetAllocationPtrOutput
+	ToLogAllocationConfigDefaultDatasetAllocationPtrOutputWithContext(context.Context) LogAllocationConfigDefaultDatasetAllocationPtrOutput
+}
+
+type logAllocationConfigDefaultDatasetAllocationPtrType LogAllocationConfigDefaultDatasetAllocationArgs
+
+func LogAllocationConfigDefaultDatasetAllocationPtr(v *LogAllocationConfigDefaultDatasetAllocationArgs) LogAllocationConfigDefaultDatasetAllocationPtrInput {
+	return (*logAllocationConfigDefaultDatasetAllocationPtrType)(v)
+}
+
+func (*logAllocationConfigDefaultDatasetAllocationPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogAllocationConfigDefaultDatasetAllocation)(nil)).Elem()
+}
+
+func (i *logAllocationConfigDefaultDatasetAllocationPtrType) ToLogAllocationConfigDefaultDatasetAllocationPtrOutput() LogAllocationConfigDefaultDatasetAllocationPtrOutput {
+	return i.ToLogAllocationConfigDefaultDatasetAllocationPtrOutputWithContext(context.Background())
+}
+
+func (i *logAllocationConfigDefaultDatasetAllocationPtrType) ToLogAllocationConfigDefaultDatasetAllocationPtrOutputWithContext(ctx context.Context) LogAllocationConfigDefaultDatasetAllocationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogAllocationConfigDefaultDatasetAllocationPtrOutput)
+}
+
+type LogAllocationConfigDefaultDatasetAllocationOutput struct{ *pulumi.OutputState }
+
+func (LogAllocationConfigDefaultDatasetAllocationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogAllocationConfigDefaultDatasetAllocation)(nil)).Elem()
+}
+
+func (o LogAllocationConfigDefaultDatasetAllocationOutput) ToLogAllocationConfigDefaultDatasetAllocationOutput() LogAllocationConfigDefaultDatasetAllocationOutput {
+	return o
+}
+
+func (o LogAllocationConfigDefaultDatasetAllocationOutput) ToLogAllocationConfigDefaultDatasetAllocationOutputWithContext(ctx context.Context) LogAllocationConfigDefaultDatasetAllocationOutput {
+	return o
+}
+
+func (o LogAllocationConfigDefaultDatasetAllocationOutput) ToLogAllocationConfigDefaultDatasetAllocationPtrOutput() LogAllocationConfigDefaultDatasetAllocationPtrOutput {
+	return o.ToLogAllocationConfigDefaultDatasetAllocationPtrOutputWithContext(context.Background())
+}
+
+func (o LogAllocationConfigDefaultDatasetAllocationOutput) ToLogAllocationConfigDefaultDatasetAllocationPtrOutputWithContext(ctx context.Context) LogAllocationConfigDefaultDatasetAllocationPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v LogAllocationConfigDefaultDatasetAllocation) *LogAllocationConfigDefaultDatasetAllocation {
+		return &v
+	}).(LogAllocationConfigDefaultDatasetAllocationPtrOutput)
+}
+
+func (o LogAllocationConfigDefaultDatasetAllocationOutput) PercentOfLicense() pulumi.Float64Output {
+	return o.ApplyT(func(v LogAllocationConfigDefaultDatasetAllocation) float64 { return v.PercentOfLicense }).(pulumi.Float64Output)
+}
+
+type LogAllocationConfigDefaultDatasetAllocationPtrOutput struct{ *pulumi.OutputState }
+
+func (LogAllocationConfigDefaultDatasetAllocationPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogAllocationConfigDefaultDatasetAllocation)(nil)).Elem()
+}
+
+func (o LogAllocationConfigDefaultDatasetAllocationPtrOutput) ToLogAllocationConfigDefaultDatasetAllocationPtrOutput() LogAllocationConfigDefaultDatasetAllocationPtrOutput {
+	return o
+}
+
+func (o LogAllocationConfigDefaultDatasetAllocationPtrOutput) ToLogAllocationConfigDefaultDatasetAllocationPtrOutputWithContext(ctx context.Context) LogAllocationConfigDefaultDatasetAllocationPtrOutput {
+	return o
+}
+
+func (o LogAllocationConfigDefaultDatasetAllocationPtrOutput) Elem() LogAllocationConfigDefaultDatasetAllocationOutput {
+	return o.ApplyT(func(v *LogAllocationConfigDefaultDatasetAllocation) LogAllocationConfigDefaultDatasetAllocation {
+		if v != nil {
+			return *v
+		}
+		var ret LogAllocationConfigDefaultDatasetAllocation
+		return ret
+	}).(LogAllocationConfigDefaultDatasetAllocationOutput)
+}
+
+func (o LogAllocationConfigDefaultDatasetAllocationPtrOutput) PercentOfLicense() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *LogAllocationConfigDefaultDatasetAllocation) *float64 {
+		if v == nil {
+			return nil
+		}
+		return &v.PercentOfLicense
+	}).(pulumi.Float64PtrOutput)
+}
+
+type LogAllocationConfigDefaultDatasetPriorities struct {
+	HighPriorityFilters []LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilter `pulumi:"highPriorityFilters"`
+	LowPriorityFilters  []LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilter  `pulumi:"lowPriorityFilters"`
+}
+
+// LogAllocationConfigDefaultDatasetPrioritiesInput is an input type that accepts LogAllocationConfigDefaultDatasetPrioritiesArgs and LogAllocationConfigDefaultDatasetPrioritiesOutput values.
+// You can construct a concrete instance of `LogAllocationConfigDefaultDatasetPrioritiesInput` via:
+//
+//	LogAllocationConfigDefaultDatasetPrioritiesArgs{...}
+type LogAllocationConfigDefaultDatasetPrioritiesInput interface {
+	pulumi.Input
+
+	ToLogAllocationConfigDefaultDatasetPrioritiesOutput() LogAllocationConfigDefaultDatasetPrioritiesOutput
+	ToLogAllocationConfigDefaultDatasetPrioritiesOutputWithContext(context.Context) LogAllocationConfigDefaultDatasetPrioritiesOutput
+}
+
+type LogAllocationConfigDefaultDatasetPrioritiesArgs struct {
+	HighPriorityFilters LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterArrayInput `pulumi:"highPriorityFilters"`
+	LowPriorityFilters  LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterArrayInput  `pulumi:"lowPriorityFilters"`
+}
+
+func (LogAllocationConfigDefaultDatasetPrioritiesArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogAllocationConfigDefaultDatasetPriorities)(nil)).Elem()
+}
+
+func (i LogAllocationConfigDefaultDatasetPrioritiesArgs) ToLogAllocationConfigDefaultDatasetPrioritiesOutput() LogAllocationConfigDefaultDatasetPrioritiesOutput {
+	return i.ToLogAllocationConfigDefaultDatasetPrioritiesOutputWithContext(context.Background())
+}
+
+func (i LogAllocationConfigDefaultDatasetPrioritiesArgs) ToLogAllocationConfigDefaultDatasetPrioritiesOutputWithContext(ctx context.Context) LogAllocationConfigDefaultDatasetPrioritiesOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogAllocationConfigDefaultDatasetPrioritiesOutput)
+}
+
+func (i LogAllocationConfigDefaultDatasetPrioritiesArgs) ToLogAllocationConfigDefaultDatasetPrioritiesPtrOutput() LogAllocationConfigDefaultDatasetPrioritiesPtrOutput {
+	return i.ToLogAllocationConfigDefaultDatasetPrioritiesPtrOutputWithContext(context.Background())
+}
+
+func (i LogAllocationConfigDefaultDatasetPrioritiesArgs) ToLogAllocationConfigDefaultDatasetPrioritiesPtrOutputWithContext(ctx context.Context) LogAllocationConfigDefaultDatasetPrioritiesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogAllocationConfigDefaultDatasetPrioritiesOutput).ToLogAllocationConfigDefaultDatasetPrioritiesPtrOutputWithContext(ctx)
+}
+
+// LogAllocationConfigDefaultDatasetPrioritiesPtrInput is an input type that accepts LogAllocationConfigDefaultDatasetPrioritiesArgs, LogAllocationConfigDefaultDatasetPrioritiesPtr and LogAllocationConfigDefaultDatasetPrioritiesPtrOutput values.
+// You can construct a concrete instance of `LogAllocationConfigDefaultDatasetPrioritiesPtrInput` via:
+//
+//	        LogAllocationConfigDefaultDatasetPrioritiesArgs{...}
+//
+//	or:
+//
+//	        nil
+type LogAllocationConfigDefaultDatasetPrioritiesPtrInput interface {
+	pulumi.Input
+
+	ToLogAllocationConfigDefaultDatasetPrioritiesPtrOutput() LogAllocationConfigDefaultDatasetPrioritiesPtrOutput
+	ToLogAllocationConfigDefaultDatasetPrioritiesPtrOutputWithContext(context.Context) LogAllocationConfigDefaultDatasetPrioritiesPtrOutput
+}
+
+type logAllocationConfigDefaultDatasetPrioritiesPtrType LogAllocationConfigDefaultDatasetPrioritiesArgs
+
+func LogAllocationConfigDefaultDatasetPrioritiesPtr(v *LogAllocationConfigDefaultDatasetPrioritiesArgs) LogAllocationConfigDefaultDatasetPrioritiesPtrInput {
+	return (*logAllocationConfigDefaultDatasetPrioritiesPtrType)(v)
+}
+
+func (*logAllocationConfigDefaultDatasetPrioritiesPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogAllocationConfigDefaultDatasetPriorities)(nil)).Elem()
+}
+
+func (i *logAllocationConfigDefaultDatasetPrioritiesPtrType) ToLogAllocationConfigDefaultDatasetPrioritiesPtrOutput() LogAllocationConfigDefaultDatasetPrioritiesPtrOutput {
+	return i.ToLogAllocationConfigDefaultDatasetPrioritiesPtrOutputWithContext(context.Background())
+}
+
+func (i *logAllocationConfigDefaultDatasetPrioritiesPtrType) ToLogAllocationConfigDefaultDatasetPrioritiesPtrOutputWithContext(ctx context.Context) LogAllocationConfigDefaultDatasetPrioritiesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogAllocationConfigDefaultDatasetPrioritiesPtrOutput)
+}
+
+type LogAllocationConfigDefaultDatasetPrioritiesOutput struct{ *pulumi.OutputState }
+
+func (LogAllocationConfigDefaultDatasetPrioritiesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogAllocationConfigDefaultDatasetPriorities)(nil)).Elem()
+}
+
+func (o LogAllocationConfigDefaultDatasetPrioritiesOutput) ToLogAllocationConfigDefaultDatasetPrioritiesOutput() LogAllocationConfigDefaultDatasetPrioritiesOutput {
+	return o
+}
+
+func (o LogAllocationConfigDefaultDatasetPrioritiesOutput) ToLogAllocationConfigDefaultDatasetPrioritiesOutputWithContext(ctx context.Context) LogAllocationConfigDefaultDatasetPrioritiesOutput {
+	return o
+}
+
+func (o LogAllocationConfigDefaultDatasetPrioritiesOutput) ToLogAllocationConfigDefaultDatasetPrioritiesPtrOutput() LogAllocationConfigDefaultDatasetPrioritiesPtrOutput {
+	return o.ToLogAllocationConfigDefaultDatasetPrioritiesPtrOutputWithContext(context.Background())
+}
+
+func (o LogAllocationConfigDefaultDatasetPrioritiesOutput) ToLogAllocationConfigDefaultDatasetPrioritiesPtrOutputWithContext(ctx context.Context) LogAllocationConfigDefaultDatasetPrioritiesPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v LogAllocationConfigDefaultDatasetPriorities) *LogAllocationConfigDefaultDatasetPriorities {
+		return &v
+	}).(LogAllocationConfigDefaultDatasetPrioritiesPtrOutput)
+}
+
+func (o LogAllocationConfigDefaultDatasetPrioritiesOutput) HighPriorityFilters() LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterArrayOutput {
+	return o.ApplyT(func(v LogAllocationConfigDefaultDatasetPriorities) []LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilter {
+		return v.HighPriorityFilters
+	}).(LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterArrayOutput)
+}
+
+func (o LogAllocationConfigDefaultDatasetPrioritiesOutput) LowPriorityFilters() LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterArrayOutput {
+	return o.ApplyT(func(v LogAllocationConfigDefaultDatasetPriorities) []LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilter {
+		return v.LowPriorityFilters
+	}).(LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterArrayOutput)
+}
+
+type LogAllocationConfigDefaultDatasetPrioritiesPtrOutput struct{ *pulumi.OutputState }
+
+func (LogAllocationConfigDefaultDatasetPrioritiesPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogAllocationConfigDefaultDatasetPriorities)(nil)).Elem()
+}
+
+func (o LogAllocationConfigDefaultDatasetPrioritiesPtrOutput) ToLogAllocationConfigDefaultDatasetPrioritiesPtrOutput() LogAllocationConfigDefaultDatasetPrioritiesPtrOutput {
+	return o
+}
+
+func (o LogAllocationConfigDefaultDatasetPrioritiesPtrOutput) ToLogAllocationConfigDefaultDatasetPrioritiesPtrOutputWithContext(ctx context.Context) LogAllocationConfigDefaultDatasetPrioritiesPtrOutput {
+	return o
+}
+
+func (o LogAllocationConfigDefaultDatasetPrioritiesPtrOutput) Elem() LogAllocationConfigDefaultDatasetPrioritiesOutput {
+	return o.ApplyT(func(v *LogAllocationConfigDefaultDatasetPriorities) LogAllocationConfigDefaultDatasetPriorities {
+		if v != nil {
+			return *v
+		}
+		var ret LogAllocationConfigDefaultDatasetPriorities
+		return ret
+	}).(LogAllocationConfigDefaultDatasetPrioritiesOutput)
+}
+
+func (o LogAllocationConfigDefaultDatasetPrioritiesPtrOutput) HighPriorityFilters() LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterArrayOutput {
+	return o.ApplyT(func(v *LogAllocationConfigDefaultDatasetPriorities) []LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilter {
+		if v == nil {
+			return nil
+		}
+		return v.HighPriorityFilters
+	}).(LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterArrayOutput)
+}
+
+func (o LogAllocationConfigDefaultDatasetPrioritiesPtrOutput) LowPriorityFilters() LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterArrayOutput {
+	return o.ApplyT(func(v *LogAllocationConfigDefaultDatasetPriorities) []LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilter {
+		if v == nil {
+			return nil
+		}
+		return v.LowPriorityFilters
+	}).(LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterArrayOutput)
+}
+
+type LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilter struct {
+	Query string `pulumi:"query"`
+}
+
+// LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterInput is an input type that accepts LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterArgs and LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterOutput values.
+// You can construct a concrete instance of `LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterInput` via:
+//
+//	LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterArgs{...}
+type LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterInput interface {
+	pulumi.Input
+
+	ToLogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterOutput() LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterOutput
+	ToLogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterOutputWithContext(context.Context) LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterOutput
+}
+
+type LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterArgs struct {
+	Query pulumi.StringInput `pulumi:"query"`
+}
+
+func (LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilter)(nil)).Elem()
+}
+
+func (i LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterArgs) ToLogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterOutput() LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterOutput {
+	return i.ToLogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterOutputWithContext(context.Background())
+}
+
+func (i LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterArgs) ToLogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterOutputWithContext(ctx context.Context) LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterOutput)
+}
+
+// LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterArrayInput is an input type that accepts LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterArray and LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterArrayOutput values.
+// You can construct a concrete instance of `LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterArrayInput` via:
+//
+//	LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterArray{ LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterArgs{...} }
+type LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterArrayInput interface {
+	pulumi.Input
+
+	ToLogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterArrayOutput() LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterArrayOutput
+	ToLogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterArrayOutputWithContext(context.Context) LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterArrayOutput
+}
+
+type LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterArray []LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterInput
+
+func (LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilter)(nil)).Elem()
+}
+
+func (i LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterArray) ToLogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterArrayOutput() LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterArrayOutput {
+	return i.ToLogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterArrayOutputWithContext(context.Background())
+}
+
+func (i LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterArray) ToLogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterArrayOutputWithContext(ctx context.Context) LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterArrayOutput)
+}
+
+type LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterOutput struct{ *pulumi.OutputState }
+
+func (LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilter)(nil)).Elem()
+}
+
+func (o LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterOutput) ToLogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterOutput() LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterOutput {
+	return o
+}
+
+func (o LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterOutput) ToLogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterOutputWithContext(ctx context.Context) LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterOutput {
+	return o
+}
+
+func (o LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterOutput) Query() pulumi.StringOutput {
+	return o.ApplyT(func(v LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilter) string { return v.Query }).(pulumi.StringOutput)
+}
+
+type LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterArrayOutput struct{ *pulumi.OutputState }
+
+func (LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilter)(nil)).Elem()
+}
+
+func (o LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterArrayOutput) ToLogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterArrayOutput() LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterArrayOutput {
+	return o
+}
+
+func (o LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterArrayOutput) ToLogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterArrayOutputWithContext(ctx context.Context) LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterArrayOutput {
+	return o
+}
+
+func (o LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterArrayOutput) Index(i pulumi.IntInput) LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilter {
+		return vs[0].([]LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilter)[vs[1].(int)]
+	}).(LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterOutput)
+}
+
+type LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilter struct {
+	Query string `pulumi:"query"`
+}
+
+// LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterInput is an input type that accepts LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterArgs and LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterOutput values.
+// You can construct a concrete instance of `LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterInput` via:
+//
+//	LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterArgs{...}
+type LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterInput interface {
+	pulumi.Input
+
+	ToLogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterOutput() LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterOutput
+	ToLogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterOutputWithContext(context.Context) LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterOutput
+}
+
+type LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterArgs struct {
+	Query pulumi.StringInput `pulumi:"query"`
+}
+
+func (LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilter)(nil)).Elem()
+}
+
+func (i LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterArgs) ToLogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterOutput() LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterOutput {
+	return i.ToLogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterOutputWithContext(context.Background())
+}
+
+func (i LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterArgs) ToLogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterOutputWithContext(ctx context.Context) LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterOutput)
+}
+
+// LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterArrayInput is an input type that accepts LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterArray and LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterArrayOutput values.
+// You can construct a concrete instance of `LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterArrayInput` via:
+//
+//	LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterArray{ LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterArgs{...} }
+type LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterArrayInput interface {
+	pulumi.Input
+
+	ToLogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterArrayOutput() LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterArrayOutput
+	ToLogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterArrayOutputWithContext(context.Context) LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterArrayOutput
+}
+
+type LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterArray []LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterInput
+
+func (LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilter)(nil)).Elem()
+}
+
+func (i LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterArray) ToLogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterArrayOutput() LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterArrayOutput {
+	return i.ToLogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterArrayOutputWithContext(context.Background())
+}
+
+func (i LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterArray) ToLogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterArrayOutputWithContext(ctx context.Context) LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterArrayOutput)
+}
+
+type LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterOutput struct{ *pulumi.OutputState }
+
+func (LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilter)(nil)).Elem()
+}
+
+func (o LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterOutput) ToLogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterOutput() LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterOutput {
+	return o
+}
+
+func (o LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterOutput) ToLogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterOutputWithContext(ctx context.Context) LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterOutput {
+	return o
+}
+
+func (o LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterOutput) Query() pulumi.StringOutput {
+	return o.ApplyT(func(v LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilter) string { return v.Query }).(pulumi.StringOutput)
+}
+
+type LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterArrayOutput struct{ *pulumi.OutputState }
+
+func (LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilter)(nil)).Elem()
+}
+
+func (o LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterArrayOutput) ToLogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterArrayOutput() LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterArrayOutput {
+	return o
+}
+
+func (o LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterArrayOutput) ToLogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterArrayOutputWithContext(ctx context.Context) LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterArrayOutput {
+	return o
+}
+
+func (o LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterArrayOutput) Index(i pulumi.IntInput) LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilter {
+		return vs[0].([]LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilter)[vs[1].(int)]
+	}).(LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterOutput)
+}
+
+type LogscaleActionEmailAction struct {
+	AttachCsv       *bool    `pulumi:"attachCsv"`
+	BodyTemplate    *string  `pulumi:"bodyTemplate"`
+	Recipients      []string `pulumi:"recipients"`
+	SubjectTemplate *string  `pulumi:"subjectTemplate"`
+	UseProxy        *bool    `pulumi:"useProxy"`
+}
+
+// LogscaleActionEmailActionInput is an input type that accepts LogscaleActionEmailActionArgs and LogscaleActionEmailActionOutput values.
+// You can construct a concrete instance of `LogscaleActionEmailActionInput` via:
+//
+//	LogscaleActionEmailActionArgs{...}
+type LogscaleActionEmailActionInput interface {
+	pulumi.Input
+
+	ToLogscaleActionEmailActionOutput() LogscaleActionEmailActionOutput
+	ToLogscaleActionEmailActionOutputWithContext(context.Context) LogscaleActionEmailActionOutput
+}
+
+type LogscaleActionEmailActionArgs struct {
+	AttachCsv       pulumi.BoolPtrInput     `pulumi:"attachCsv"`
+	BodyTemplate    pulumi.StringPtrInput   `pulumi:"bodyTemplate"`
+	Recipients      pulumi.StringArrayInput `pulumi:"recipients"`
+	SubjectTemplate pulumi.StringPtrInput   `pulumi:"subjectTemplate"`
+	UseProxy        pulumi.BoolPtrInput     `pulumi:"useProxy"`
+}
+
+func (LogscaleActionEmailActionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogscaleActionEmailAction)(nil)).Elem()
+}
+
+func (i LogscaleActionEmailActionArgs) ToLogscaleActionEmailActionOutput() LogscaleActionEmailActionOutput {
+	return i.ToLogscaleActionEmailActionOutputWithContext(context.Background())
+}
+
+func (i LogscaleActionEmailActionArgs) ToLogscaleActionEmailActionOutputWithContext(ctx context.Context) LogscaleActionEmailActionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogscaleActionEmailActionOutput)
+}
+
+func (i LogscaleActionEmailActionArgs) ToLogscaleActionEmailActionPtrOutput() LogscaleActionEmailActionPtrOutput {
+	return i.ToLogscaleActionEmailActionPtrOutputWithContext(context.Background())
+}
+
+func (i LogscaleActionEmailActionArgs) ToLogscaleActionEmailActionPtrOutputWithContext(ctx context.Context) LogscaleActionEmailActionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogscaleActionEmailActionOutput).ToLogscaleActionEmailActionPtrOutputWithContext(ctx)
+}
+
+// LogscaleActionEmailActionPtrInput is an input type that accepts LogscaleActionEmailActionArgs, LogscaleActionEmailActionPtr and LogscaleActionEmailActionPtrOutput values.
+// You can construct a concrete instance of `LogscaleActionEmailActionPtrInput` via:
+//
+//	        LogscaleActionEmailActionArgs{...}
+//
+//	or:
+//
+//	        nil
+type LogscaleActionEmailActionPtrInput interface {
+	pulumi.Input
+
+	ToLogscaleActionEmailActionPtrOutput() LogscaleActionEmailActionPtrOutput
+	ToLogscaleActionEmailActionPtrOutputWithContext(context.Context) LogscaleActionEmailActionPtrOutput
+}
+
+type logscaleActionEmailActionPtrType LogscaleActionEmailActionArgs
+
+func LogscaleActionEmailActionPtr(v *LogscaleActionEmailActionArgs) LogscaleActionEmailActionPtrInput {
+	return (*logscaleActionEmailActionPtrType)(v)
+}
+
+func (*logscaleActionEmailActionPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogscaleActionEmailAction)(nil)).Elem()
+}
+
+func (i *logscaleActionEmailActionPtrType) ToLogscaleActionEmailActionPtrOutput() LogscaleActionEmailActionPtrOutput {
+	return i.ToLogscaleActionEmailActionPtrOutputWithContext(context.Background())
+}
+
+func (i *logscaleActionEmailActionPtrType) ToLogscaleActionEmailActionPtrOutputWithContext(ctx context.Context) LogscaleActionEmailActionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogscaleActionEmailActionPtrOutput)
+}
+
+type LogscaleActionEmailActionOutput struct{ *pulumi.OutputState }
+
+func (LogscaleActionEmailActionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogscaleActionEmailAction)(nil)).Elem()
+}
+
+func (o LogscaleActionEmailActionOutput) ToLogscaleActionEmailActionOutput() LogscaleActionEmailActionOutput {
+	return o
+}
+
+func (o LogscaleActionEmailActionOutput) ToLogscaleActionEmailActionOutputWithContext(ctx context.Context) LogscaleActionEmailActionOutput {
+	return o
+}
+
+func (o LogscaleActionEmailActionOutput) ToLogscaleActionEmailActionPtrOutput() LogscaleActionEmailActionPtrOutput {
+	return o.ToLogscaleActionEmailActionPtrOutputWithContext(context.Background())
+}
+
+func (o LogscaleActionEmailActionOutput) ToLogscaleActionEmailActionPtrOutputWithContext(ctx context.Context) LogscaleActionEmailActionPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v LogscaleActionEmailAction) *LogscaleActionEmailAction {
+		return &v
+	}).(LogscaleActionEmailActionPtrOutput)
+}
+
+func (o LogscaleActionEmailActionOutput) AttachCsv() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v LogscaleActionEmailAction) *bool { return v.AttachCsv }).(pulumi.BoolPtrOutput)
+}
+
+func (o LogscaleActionEmailActionOutput) BodyTemplate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LogscaleActionEmailAction) *string { return v.BodyTemplate }).(pulumi.StringPtrOutput)
+}
+
+func (o LogscaleActionEmailActionOutput) Recipients() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LogscaleActionEmailAction) []string { return v.Recipients }).(pulumi.StringArrayOutput)
+}
+
+func (o LogscaleActionEmailActionOutput) SubjectTemplate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LogscaleActionEmailAction) *string { return v.SubjectTemplate }).(pulumi.StringPtrOutput)
+}
+
+func (o LogscaleActionEmailActionOutput) UseProxy() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v LogscaleActionEmailAction) *bool { return v.UseProxy }).(pulumi.BoolPtrOutput)
+}
+
+type LogscaleActionEmailActionPtrOutput struct{ *pulumi.OutputState }
+
+func (LogscaleActionEmailActionPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogscaleActionEmailAction)(nil)).Elem()
+}
+
+func (o LogscaleActionEmailActionPtrOutput) ToLogscaleActionEmailActionPtrOutput() LogscaleActionEmailActionPtrOutput {
+	return o
+}
+
+func (o LogscaleActionEmailActionPtrOutput) ToLogscaleActionEmailActionPtrOutputWithContext(ctx context.Context) LogscaleActionEmailActionPtrOutput {
+	return o
+}
+
+func (o LogscaleActionEmailActionPtrOutput) Elem() LogscaleActionEmailActionOutput {
+	return o.ApplyT(func(v *LogscaleActionEmailAction) LogscaleActionEmailAction {
+		if v != nil {
+			return *v
+		}
+		var ret LogscaleActionEmailAction
+		return ret
+	}).(LogscaleActionEmailActionOutput)
+}
+
+func (o LogscaleActionEmailActionPtrOutput) AttachCsv() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *LogscaleActionEmailAction) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.AttachCsv
+	}).(pulumi.BoolPtrOutput)
+}
+
+func (o LogscaleActionEmailActionPtrOutput) BodyTemplate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogscaleActionEmailAction) *string {
+		if v == nil {
+			return nil
+		}
+		return v.BodyTemplate
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o LogscaleActionEmailActionPtrOutput) Recipients() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *LogscaleActionEmailAction) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Recipients
+	}).(pulumi.StringArrayOutput)
+}
+
+func (o LogscaleActionEmailActionPtrOutput) SubjectTemplate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogscaleActionEmailAction) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SubjectTemplate
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o LogscaleActionEmailActionPtrOutput) UseProxy() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *LogscaleActionEmailAction) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.UseProxy
+	}).(pulumi.BoolPtrOutput)
+}
+
+type LogscaleActionHumioAction struct {
+	IngestToken string `pulumi:"ingestToken"`
+}
+
+// LogscaleActionHumioActionInput is an input type that accepts LogscaleActionHumioActionArgs and LogscaleActionHumioActionOutput values.
+// You can construct a concrete instance of `LogscaleActionHumioActionInput` via:
+//
+//	LogscaleActionHumioActionArgs{...}
+type LogscaleActionHumioActionInput interface {
+	pulumi.Input
+
+	ToLogscaleActionHumioActionOutput() LogscaleActionHumioActionOutput
+	ToLogscaleActionHumioActionOutputWithContext(context.Context) LogscaleActionHumioActionOutput
+}
+
+type LogscaleActionHumioActionArgs struct {
+	IngestToken pulumi.StringInput `pulumi:"ingestToken"`
+}
+
+func (LogscaleActionHumioActionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogscaleActionHumioAction)(nil)).Elem()
+}
+
+func (i LogscaleActionHumioActionArgs) ToLogscaleActionHumioActionOutput() LogscaleActionHumioActionOutput {
+	return i.ToLogscaleActionHumioActionOutputWithContext(context.Background())
+}
+
+func (i LogscaleActionHumioActionArgs) ToLogscaleActionHumioActionOutputWithContext(ctx context.Context) LogscaleActionHumioActionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogscaleActionHumioActionOutput)
+}
+
+func (i LogscaleActionHumioActionArgs) ToLogscaleActionHumioActionPtrOutput() LogscaleActionHumioActionPtrOutput {
+	return i.ToLogscaleActionHumioActionPtrOutputWithContext(context.Background())
+}
+
+func (i LogscaleActionHumioActionArgs) ToLogscaleActionHumioActionPtrOutputWithContext(ctx context.Context) LogscaleActionHumioActionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogscaleActionHumioActionOutput).ToLogscaleActionHumioActionPtrOutputWithContext(ctx)
+}
+
+// LogscaleActionHumioActionPtrInput is an input type that accepts LogscaleActionHumioActionArgs, LogscaleActionHumioActionPtr and LogscaleActionHumioActionPtrOutput values.
+// You can construct a concrete instance of `LogscaleActionHumioActionPtrInput` via:
+//
+//	        LogscaleActionHumioActionArgs{...}
+//
+//	or:
+//
+//	        nil
+type LogscaleActionHumioActionPtrInput interface {
+	pulumi.Input
+
+	ToLogscaleActionHumioActionPtrOutput() LogscaleActionHumioActionPtrOutput
+	ToLogscaleActionHumioActionPtrOutputWithContext(context.Context) LogscaleActionHumioActionPtrOutput
+}
+
+type logscaleActionHumioActionPtrType LogscaleActionHumioActionArgs
+
+func LogscaleActionHumioActionPtr(v *LogscaleActionHumioActionArgs) LogscaleActionHumioActionPtrInput {
+	return (*logscaleActionHumioActionPtrType)(v)
+}
+
+func (*logscaleActionHumioActionPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogscaleActionHumioAction)(nil)).Elem()
+}
+
+func (i *logscaleActionHumioActionPtrType) ToLogscaleActionHumioActionPtrOutput() LogscaleActionHumioActionPtrOutput {
+	return i.ToLogscaleActionHumioActionPtrOutputWithContext(context.Background())
+}
+
+func (i *logscaleActionHumioActionPtrType) ToLogscaleActionHumioActionPtrOutputWithContext(ctx context.Context) LogscaleActionHumioActionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogscaleActionHumioActionPtrOutput)
+}
+
+type LogscaleActionHumioActionOutput struct{ *pulumi.OutputState }
+
+func (LogscaleActionHumioActionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogscaleActionHumioAction)(nil)).Elem()
+}
+
+func (o LogscaleActionHumioActionOutput) ToLogscaleActionHumioActionOutput() LogscaleActionHumioActionOutput {
+	return o
+}
+
+func (o LogscaleActionHumioActionOutput) ToLogscaleActionHumioActionOutputWithContext(ctx context.Context) LogscaleActionHumioActionOutput {
+	return o
+}
+
+func (o LogscaleActionHumioActionOutput) ToLogscaleActionHumioActionPtrOutput() LogscaleActionHumioActionPtrOutput {
+	return o.ToLogscaleActionHumioActionPtrOutputWithContext(context.Background())
+}
+
+func (o LogscaleActionHumioActionOutput) ToLogscaleActionHumioActionPtrOutputWithContext(ctx context.Context) LogscaleActionHumioActionPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v LogscaleActionHumioAction) *LogscaleActionHumioAction {
+		return &v
+	}).(LogscaleActionHumioActionPtrOutput)
+}
+
+func (o LogscaleActionHumioActionOutput) IngestToken() pulumi.StringOutput {
+	return o.ApplyT(func(v LogscaleActionHumioAction) string { return v.IngestToken }).(pulumi.StringOutput)
+}
+
+type LogscaleActionHumioActionPtrOutput struct{ *pulumi.OutputState }
+
+func (LogscaleActionHumioActionPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogscaleActionHumioAction)(nil)).Elem()
+}
+
+func (o LogscaleActionHumioActionPtrOutput) ToLogscaleActionHumioActionPtrOutput() LogscaleActionHumioActionPtrOutput {
+	return o
+}
+
+func (o LogscaleActionHumioActionPtrOutput) ToLogscaleActionHumioActionPtrOutputWithContext(ctx context.Context) LogscaleActionHumioActionPtrOutput {
+	return o
+}
+
+func (o LogscaleActionHumioActionPtrOutput) Elem() LogscaleActionHumioActionOutput {
+	return o.ApplyT(func(v *LogscaleActionHumioAction) LogscaleActionHumioAction {
+		if v != nil {
+			return *v
+		}
+		var ret LogscaleActionHumioAction
+		return ret
+	}).(LogscaleActionHumioActionOutput)
+}
+
+func (o LogscaleActionHumioActionPtrOutput) IngestToken() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogscaleActionHumioAction) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.IngestToken
+	}).(pulumi.StringPtrOutput)
+}
+
+type LogscaleActionOpsGenieAction struct {
+	ApiUrl      string `pulumi:"apiUrl"`
+	OpsGenieKey string `pulumi:"opsGenieKey"`
+	UseProxy    *bool  `pulumi:"useProxy"`
+}
+
+// LogscaleActionOpsGenieActionInput is an input type that accepts LogscaleActionOpsGenieActionArgs and LogscaleActionOpsGenieActionOutput values.
+// You can construct a concrete instance of `LogscaleActionOpsGenieActionInput` via:
+//
+//	LogscaleActionOpsGenieActionArgs{...}
+type LogscaleActionOpsGenieActionInput interface {
+	pulumi.Input
+
+	ToLogscaleActionOpsGenieActionOutput() LogscaleActionOpsGenieActionOutput
+	ToLogscaleActionOpsGenieActionOutputWithContext(context.Context) LogscaleActionOpsGenieActionOutput
+}
+
+type LogscaleActionOpsGenieActionArgs struct {
+	ApiUrl      pulumi.StringInput  `pulumi:"apiUrl"`
+	OpsGenieKey pulumi.StringInput  `pulumi:"opsGenieKey"`
+	UseProxy    pulumi.BoolPtrInput `pulumi:"useProxy"`
+}
+
+func (LogscaleActionOpsGenieActionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogscaleActionOpsGenieAction)(nil)).Elem()
+}
+
+func (i LogscaleActionOpsGenieActionArgs) ToLogscaleActionOpsGenieActionOutput() LogscaleActionOpsGenieActionOutput {
+	return i.ToLogscaleActionOpsGenieActionOutputWithContext(context.Background())
+}
+
+func (i LogscaleActionOpsGenieActionArgs) ToLogscaleActionOpsGenieActionOutputWithContext(ctx context.Context) LogscaleActionOpsGenieActionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogscaleActionOpsGenieActionOutput)
+}
+
+func (i LogscaleActionOpsGenieActionArgs) ToLogscaleActionOpsGenieActionPtrOutput() LogscaleActionOpsGenieActionPtrOutput {
+	return i.ToLogscaleActionOpsGenieActionPtrOutputWithContext(context.Background())
+}
+
+func (i LogscaleActionOpsGenieActionArgs) ToLogscaleActionOpsGenieActionPtrOutputWithContext(ctx context.Context) LogscaleActionOpsGenieActionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogscaleActionOpsGenieActionOutput).ToLogscaleActionOpsGenieActionPtrOutputWithContext(ctx)
+}
+
+// LogscaleActionOpsGenieActionPtrInput is an input type that accepts LogscaleActionOpsGenieActionArgs, LogscaleActionOpsGenieActionPtr and LogscaleActionOpsGenieActionPtrOutput values.
+// You can construct a concrete instance of `LogscaleActionOpsGenieActionPtrInput` via:
+//
+//	        LogscaleActionOpsGenieActionArgs{...}
+//
+//	or:
+//
+//	        nil
+type LogscaleActionOpsGenieActionPtrInput interface {
+	pulumi.Input
+
+	ToLogscaleActionOpsGenieActionPtrOutput() LogscaleActionOpsGenieActionPtrOutput
+	ToLogscaleActionOpsGenieActionPtrOutputWithContext(context.Context) LogscaleActionOpsGenieActionPtrOutput
+}
+
+type logscaleActionOpsGenieActionPtrType LogscaleActionOpsGenieActionArgs
+
+func LogscaleActionOpsGenieActionPtr(v *LogscaleActionOpsGenieActionArgs) LogscaleActionOpsGenieActionPtrInput {
+	return (*logscaleActionOpsGenieActionPtrType)(v)
+}
+
+func (*logscaleActionOpsGenieActionPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogscaleActionOpsGenieAction)(nil)).Elem()
+}
+
+func (i *logscaleActionOpsGenieActionPtrType) ToLogscaleActionOpsGenieActionPtrOutput() LogscaleActionOpsGenieActionPtrOutput {
+	return i.ToLogscaleActionOpsGenieActionPtrOutputWithContext(context.Background())
+}
+
+func (i *logscaleActionOpsGenieActionPtrType) ToLogscaleActionOpsGenieActionPtrOutputWithContext(ctx context.Context) LogscaleActionOpsGenieActionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogscaleActionOpsGenieActionPtrOutput)
+}
+
+type LogscaleActionOpsGenieActionOutput struct{ *pulumi.OutputState }
+
+func (LogscaleActionOpsGenieActionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogscaleActionOpsGenieAction)(nil)).Elem()
+}
+
+func (o LogscaleActionOpsGenieActionOutput) ToLogscaleActionOpsGenieActionOutput() LogscaleActionOpsGenieActionOutput {
+	return o
+}
+
+func (o LogscaleActionOpsGenieActionOutput) ToLogscaleActionOpsGenieActionOutputWithContext(ctx context.Context) LogscaleActionOpsGenieActionOutput {
+	return o
+}
+
+func (o LogscaleActionOpsGenieActionOutput) ToLogscaleActionOpsGenieActionPtrOutput() LogscaleActionOpsGenieActionPtrOutput {
+	return o.ToLogscaleActionOpsGenieActionPtrOutputWithContext(context.Background())
+}
+
+func (o LogscaleActionOpsGenieActionOutput) ToLogscaleActionOpsGenieActionPtrOutputWithContext(ctx context.Context) LogscaleActionOpsGenieActionPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v LogscaleActionOpsGenieAction) *LogscaleActionOpsGenieAction {
+		return &v
+	}).(LogscaleActionOpsGenieActionPtrOutput)
+}
+
+func (o LogscaleActionOpsGenieActionOutput) ApiUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v LogscaleActionOpsGenieAction) string { return v.ApiUrl }).(pulumi.StringOutput)
+}
+
+func (o LogscaleActionOpsGenieActionOutput) OpsGenieKey() pulumi.StringOutput {
+	return o.ApplyT(func(v LogscaleActionOpsGenieAction) string { return v.OpsGenieKey }).(pulumi.StringOutput)
+}
+
+func (o LogscaleActionOpsGenieActionOutput) UseProxy() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v LogscaleActionOpsGenieAction) *bool { return v.UseProxy }).(pulumi.BoolPtrOutput)
+}
+
+type LogscaleActionOpsGenieActionPtrOutput struct{ *pulumi.OutputState }
+
+func (LogscaleActionOpsGenieActionPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogscaleActionOpsGenieAction)(nil)).Elem()
+}
+
+func (o LogscaleActionOpsGenieActionPtrOutput) ToLogscaleActionOpsGenieActionPtrOutput() LogscaleActionOpsGenieActionPtrOutput {
+	return o
+}
+
+func (o LogscaleActionOpsGenieActionPtrOutput) ToLogscaleActionOpsGenieActionPtrOutputWithContext(ctx context.Context) LogscaleActionOpsGenieActionPtrOutput {
+	return o
+}
+
+func (o LogscaleActionOpsGenieActionPtrOutput) Elem() LogscaleActionOpsGenieActionOutput {
+	return o.ApplyT(func(v *LogscaleActionOpsGenieAction) LogscaleActionOpsGenieAction {
+		if v != nil {
+			return *v
+		}
+		var ret LogscaleActionOpsGenieAction
+		return ret
+	}).(LogscaleActionOpsGenieActionOutput)
+}
+
+func (o LogscaleActionOpsGenieActionPtrOutput) ApiUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogscaleActionOpsGenieAction) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.ApiUrl
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o LogscaleActionOpsGenieActionPtrOutput) OpsGenieKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogscaleActionOpsGenieAction) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.OpsGenieKey
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o LogscaleActionOpsGenieActionPtrOutput) UseProxy() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *LogscaleActionOpsGenieAction) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.UseProxy
+	}).(pulumi.BoolPtrOutput)
+}
+
+type LogscaleActionPagerDutyAction struct {
+	RoutingKey string `pulumi:"routingKey"`
+	Severity   string `pulumi:"severity"`
+	UseProxy   *bool  `pulumi:"useProxy"`
+}
+
+// LogscaleActionPagerDutyActionInput is an input type that accepts LogscaleActionPagerDutyActionArgs and LogscaleActionPagerDutyActionOutput values.
+// You can construct a concrete instance of `LogscaleActionPagerDutyActionInput` via:
+//
+//	LogscaleActionPagerDutyActionArgs{...}
+type LogscaleActionPagerDutyActionInput interface {
+	pulumi.Input
+
+	ToLogscaleActionPagerDutyActionOutput() LogscaleActionPagerDutyActionOutput
+	ToLogscaleActionPagerDutyActionOutputWithContext(context.Context) LogscaleActionPagerDutyActionOutput
+}
+
+type LogscaleActionPagerDutyActionArgs struct {
+	RoutingKey pulumi.StringInput  `pulumi:"routingKey"`
+	Severity   pulumi.StringInput  `pulumi:"severity"`
+	UseProxy   pulumi.BoolPtrInput `pulumi:"useProxy"`
+}
+
+func (LogscaleActionPagerDutyActionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogscaleActionPagerDutyAction)(nil)).Elem()
+}
+
+func (i LogscaleActionPagerDutyActionArgs) ToLogscaleActionPagerDutyActionOutput() LogscaleActionPagerDutyActionOutput {
+	return i.ToLogscaleActionPagerDutyActionOutputWithContext(context.Background())
+}
+
+func (i LogscaleActionPagerDutyActionArgs) ToLogscaleActionPagerDutyActionOutputWithContext(ctx context.Context) LogscaleActionPagerDutyActionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogscaleActionPagerDutyActionOutput)
+}
+
+func (i LogscaleActionPagerDutyActionArgs) ToLogscaleActionPagerDutyActionPtrOutput() LogscaleActionPagerDutyActionPtrOutput {
+	return i.ToLogscaleActionPagerDutyActionPtrOutputWithContext(context.Background())
+}
+
+func (i LogscaleActionPagerDutyActionArgs) ToLogscaleActionPagerDutyActionPtrOutputWithContext(ctx context.Context) LogscaleActionPagerDutyActionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogscaleActionPagerDutyActionOutput).ToLogscaleActionPagerDutyActionPtrOutputWithContext(ctx)
+}
+
+// LogscaleActionPagerDutyActionPtrInput is an input type that accepts LogscaleActionPagerDutyActionArgs, LogscaleActionPagerDutyActionPtr and LogscaleActionPagerDutyActionPtrOutput values.
+// You can construct a concrete instance of `LogscaleActionPagerDutyActionPtrInput` via:
+//
+//	        LogscaleActionPagerDutyActionArgs{...}
+//
+//	or:
+//
+//	        nil
+type LogscaleActionPagerDutyActionPtrInput interface {
+	pulumi.Input
+
+	ToLogscaleActionPagerDutyActionPtrOutput() LogscaleActionPagerDutyActionPtrOutput
+	ToLogscaleActionPagerDutyActionPtrOutputWithContext(context.Context) LogscaleActionPagerDutyActionPtrOutput
+}
+
+type logscaleActionPagerDutyActionPtrType LogscaleActionPagerDutyActionArgs
+
+func LogscaleActionPagerDutyActionPtr(v *LogscaleActionPagerDutyActionArgs) LogscaleActionPagerDutyActionPtrInput {
+	return (*logscaleActionPagerDutyActionPtrType)(v)
+}
+
+func (*logscaleActionPagerDutyActionPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogscaleActionPagerDutyAction)(nil)).Elem()
+}
+
+func (i *logscaleActionPagerDutyActionPtrType) ToLogscaleActionPagerDutyActionPtrOutput() LogscaleActionPagerDutyActionPtrOutput {
+	return i.ToLogscaleActionPagerDutyActionPtrOutputWithContext(context.Background())
+}
+
+func (i *logscaleActionPagerDutyActionPtrType) ToLogscaleActionPagerDutyActionPtrOutputWithContext(ctx context.Context) LogscaleActionPagerDutyActionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogscaleActionPagerDutyActionPtrOutput)
+}
+
+type LogscaleActionPagerDutyActionOutput struct{ *pulumi.OutputState }
+
+func (LogscaleActionPagerDutyActionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogscaleActionPagerDutyAction)(nil)).Elem()
+}
+
+func (o LogscaleActionPagerDutyActionOutput) ToLogscaleActionPagerDutyActionOutput() LogscaleActionPagerDutyActionOutput {
+	return o
+}
+
+func (o LogscaleActionPagerDutyActionOutput) ToLogscaleActionPagerDutyActionOutputWithContext(ctx context.Context) LogscaleActionPagerDutyActionOutput {
+	return o
+}
+
+func (o LogscaleActionPagerDutyActionOutput) ToLogscaleActionPagerDutyActionPtrOutput() LogscaleActionPagerDutyActionPtrOutput {
+	return o.ToLogscaleActionPagerDutyActionPtrOutputWithContext(context.Background())
+}
+
+func (o LogscaleActionPagerDutyActionOutput) ToLogscaleActionPagerDutyActionPtrOutputWithContext(ctx context.Context) LogscaleActionPagerDutyActionPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v LogscaleActionPagerDutyAction) *LogscaleActionPagerDutyAction {
+		return &v
+	}).(LogscaleActionPagerDutyActionPtrOutput)
+}
+
+func (o LogscaleActionPagerDutyActionOutput) RoutingKey() pulumi.StringOutput {
+	return o.ApplyT(func(v LogscaleActionPagerDutyAction) string { return v.RoutingKey }).(pulumi.StringOutput)
+}
+
+func (o LogscaleActionPagerDutyActionOutput) Severity() pulumi.StringOutput {
+	return o.ApplyT(func(v LogscaleActionPagerDutyAction) string { return v.Severity }).(pulumi.StringOutput)
+}
+
+func (o LogscaleActionPagerDutyActionOutput) UseProxy() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v LogscaleActionPagerDutyAction) *bool { return v.UseProxy }).(pulumi.BoolPtrOutput)
+}
+
+type LogscaleActionPagerDutyActionPtrOutput struct{ *pulumi.OutputState }
+
+func (LogscaleActionPagerDutyActionPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogscaleActionPagerDutyAction)(nil)).Elem()
+}
+
+func (o LogscaleActionPagerDutyActionPtrOutput) ToLogscaleActionPagerDutyActionPtrOutput() LogscaleActionPagerDutyActionPtrOutput {
+	return o
+}
+
+func (o LogscaleActionPagerDutyActionPtrOutput) ToLogscaleActionPagerDutyActionPtrOutputWithContext(ctx context.Context) LogscaleActionPagerDutyActionPtrOutput {
+	return o
+}
+
+func (o LogscaleActionPagerDutyActionPtrOutput) Elem() LogscaleActionPagerDutyActionOutput {
+	return o.ApplyT(func(v *LogscaleActionPagerDutyAction) LogscaleActionPagerDutyAction {
+		if v != nil {
+			return *v
+		}
+		var ret LogscaleActionPagerDutyAction
+		return ret
+	}).(LogscaleActionPagerDutyActionOutput)
+}
+
+func (o LogscaleActionPagerDutyActionPtrOutput) RoutingKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogscaleActionPagerDutyAction) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.RoutingKey
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o LogscaleActionPagerDutyActionPtrOutput) Severity() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogscaleActionPagerDutyAction) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Severity
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o LogscaleActionPagerDutyActionPtrOutput) UseProxy() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *LogscaleActionPagerDutyAction) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.UseProxy
+	}).(pulumi.BoolPtrOutput)
+}
+
+type LogscaleActionSlackAction struct {
+	Fields   map[string]string `pulumi:"fields"`
+	Url      string            `pulumi:"url"`
+	UseProxy *bool             `pulumi:"useProxy"`
+}
+
+// LogscaleActionSlackActionInput is an input type that accepts LogscaleActionSlackActionArgs and LogscaleActionSlackActionOutput values.
+// You can construct a concrete instance of `LogscaleActionSlackActionInput` via:
+//
+//	LogscaleActionSlackActionArgs{...}
+type LogscaleActionSlackActionInput interface {
+	pulumi.Input
+
+	ToLogscaleActionSlackActionOutput() LogscaleActionSlackActionOutput
+	ToLogscaleActionSlackActionOutputWithContext(context.Context) LogscaleActionSlackActionOutput
+}
+
+type LogscaleActionSlackActionArgs struct {
+	Fields   pulumi.StringMapInput `pulumi:"fields"`
+	Url      pulumi.StringInput    `pulumi:"url"`
+	UseProxy pulumi.BoolPtrInput   `pulumi:"useProxy"`
+}
+
+func (LogscaleActionSlackActionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogscaleActionSlackAction)(nil)).Elem()
+}
+
+func (i LogscaleActionSlackActionArgs) ToLogscaleActionSlackActionOutput() LogscaleActionSlackActionOutput {
+	return i.ToLogscaleActionSlackActionOutputWithContext(context.Background())
+}
+
+func (i LogscaleActionSlackActionArgs) ToLogscaleActionSlackActionOutputWithContext(ctx context.Context) LogscaleActionSlackActionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogscaleActionSlackActionOutput)
+}
+
+func (i LogscaleActionSlackActionArgs) ToLogscaleActionSlackActionPtrOutput() LogscaleActionSlackActionPtrOutput {
+	return i.ToLogscaleActionSlackActionPtrOutputWithContext(context.Background())
+}
+
+func (i LogscaleActionSlackActionArgs) ToLogscaleActionSlackActionPtrOutputWithContext(ctx context.Context) LogscaleActionSlackActionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogscaleActionSlackActionOutput).ToLogscaleActionSlackActionPtrOutputWithContext(ctx)
+}
+
+// LogscaleActionSlackActionPtrInput is an input type that accepts LogscaleActionSlackActionArgs, LogscaleActionSlackActionPtr and LogscaleActionSlackActionPtrOutput values.
+// You can construct a concrete instance of `LogscaleActionSlackActionPtrInput` via:
+//
+//	        LogscaleActionSlackActionArgs{...}
+//
+//	or:
+//
+//	        nil
+type LogscaleActionSlackActionPtrInput interface {
+	pulumi.Input
+
+	ToLogscaleActionSlackActionPtrOutput() LogscaleActionSlackActionPtrOutput
+	ToLogscaleActionSlackActionPtrOutputWithContext(context.Context) LogscaleActionSlackActionPtrOutput
+}
+
+type logscaleActionSlackActionPtrType LogscaleActionSlackActionArgs
+
+func LogscaleActionSlackActionPtr(v *LogscaleActionSlackActionArgs) LogscaleActionSlackActionPtrInput {
+	return (*logscaleActionSlackActionPtrType)(v)
+}
+
+func (*logscaleActionSlackActionPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogscaleActionSlackAction)(nil)).Elem()
+}
+
+func (i *logscaleActionSlackActionPtrType) ToLogscaleActionSlackActionPtrOutput() LogscaleActionSlackActionPtrOutput {
+	return i.ToLogscaleActionSlackActionPtrOutputWithContext(context.Background())
+}
+
+func (i *logscaleActionSlackActionPtrType) ToLogscaleActionSlackActionPtrOutputWithContext(ctx context.Context) LogscaleActionSlackActionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogscaleActionSlackActionPtrOutput)
+}
+
+type LogscaleActionSlackActionOutput struct{ *pulumi.OutputState }
+
+func (LogscaleActionSlackActionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogscaleActionSlackAction)(nil)).Elem()
+}
+
+func (o LogscaleActionSlackActionOutput) ToLogscaleActionSlackActionOutput() LogscaleActionSlackActionOutput {
+	return o
+}
+
+func (o LogscaleActionSlackActionOutput) ToLogscaleActionSlackActionOutputWithContext(ctx context.Context) LogscaleActionSlackActionOutput {
+	return o
+}
+
+func (o LogscaleActionSlackActionOutput) ToLogscaleActionSlackActionPtrOutput() LogscaleActionSlackActionPtrOutput {
+	return o.ToLogscaleActionSlackActionPtrOutputWithContext(context.Background())
+}
+
+func (o LogscaleActionSlackActionOutput) ToLogscaleActionSlackActionPtrOutputWithContext(ctx context.Context) LogscaleActionSlackActionPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v LogscaleActionSlackAction) *LogscaleActionSlackAction {
+		return &v
+	}).(LogscaleActionSlackActionPtrOutput)
+}
+
+func (o LogscaleActionSlackActionOutput) Fields() pulumi.StringMapOutput {
+	return o.ApplyT(func(v LogscaleActionSlackAction) map[string]string { return v.Fields }).(pulumi.StringMapOutput)
+}
+
+func (o LogscaleActionSlackActionOutput) Url() pulumi.StringOutput {
+	return o.ApplyT(func(v LogscaleActionSlackAction) string { return v.Url }).(pulumi.StringOutput)
+}
+
+func (o LogscaleActionSlackActionOutput) UseProxy() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v LogscaleActionSlackAction) *bool { return v.UseProxy }).(pulumi.BoolPtrOutput)
+}
+
+type LogscaleActionSlackActionPtrOutput struct{ *pulumi.OutputState }
+
+func (LogscaleActionSlackActionPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogscaleActionSlackAction)(nil)).Elem()
+}
+
+func (o LogscaleActionSlackActionPtrOutput) ToLogscaleActionSlackActionPtrOutput() LogscaleActionSlackActionPtrOutput {
+	return o
+}
+
+func (o LogscaleActionSlackActionPtrOutput) ToLogscaleActionSlackActionPtrOutputWithContext(ctx context.Context) LogscaleActionSlackActionPtrOutput {
+	return o
+}
+
+func (o LogscaleActionSlackActionPtrOutput) Elem() LogscaleActionSlackActionOutput {
+	return o.ApplyT(func(v *LogscaleActionSlackAction) LogscaleActionSlackAction {
+		if v != nil {
+			return *v
+		}
+		var ret LogscaleActionSlackAction
+		return ret
+	}).(LogscaleActionSlackActionOutput)
+}
+
+func (o LogscaleActionSlackActionPtrOutput) Fields() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *LogscaleActionSlackAction) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.Fields
+	}).(pulumi.StringMapOutput)
+}
+
+func (o LogscaleActionSlackActionPtrOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogscaleActionSlackAction) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Url
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o LogscaleActionSlackActionPtrOutput) UseProxy() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *LogscaleActionSlackAction) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.UseProxy
+	}).(pulumi.BoolPtrOutput)
+}
+
+type LogscaleActionSlackPostMessageAction struct {
+	ApiToken string            `pulumi:"apiToken"`
+	Channels []string          `pulumi:"channels"`
+	Fields   map[string]string `pulumi:"fields"`
+	UseProxy *bool             `pulumi:"useProxy"`
+}
+
+// LogscaleActionSlackPostMessageActionInput is an input type that accepts LogscaleActionSlackPostMessageActionArgs and LogscaleActionSlackPostMessageActionOutput values.
+// You can construct a concrete instance of `LogscaleActionSlackPostMessageActionInput` via:
+//
+//	LogscaleActionSlackPostMessageActionArgs{...}
+type LogscaleActionSlackPostMessageActionInput interface {
+	pulumi.Input
+
+	ToLogscaleActionSlackPostMessageActionOutput() LogscaleActionSlackPostMessageActionOutput
+	ToLogscaleActionSlackPostMessageActionOutputWithContext(context.Context) LogscaleActionSlackPostMessageActionOutput
+}
+
+type LogscaleActionSlackPostMessageActionArgs struct {
+	ApiToken pulumi.StringInput      `pulumi:"apiToken"`
+	Channels pulumi.StringArrayInput `pulumi:"channels"`
+	Fields   pulumi.StringMapInput   `pulumi:"fields"`
+	UseProxy pulumi.BoolPtrInput     `pulumi:"useProxy"`
+}
+
+func (LogscaleActionSlackPostMessageActionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogscaleActionSlackPostMessageAction)(nil)).Elem()
+}
+
+func (i LogscaleActionSlackPostMessageActionArgs) ToLogscaleActionSlackPostMessageActionOutput() LogscaleActionSlackPostMessageActionOutput {
+	return i.ToLogscaleActionSlackPostMessageActionOutputWithContext(context.Background())
+}
+
+func (i LogscaleActionSlackPostMessageActionArgs) ToLogscaleActionSlackPostMessageActionOutputWithContext(ctx context.Context) LogscaleActionSlackPostMessageActionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogscaleActionSlackPostMessageActionOutput)
+}
+
+func (i LogscaleActionSlackPostMessageActionArgs) ToLogscaleActionSlackPostMessageActionPtrOutput() LogscaleActionSlackPostMessageActionPtrOutput {
+	return i.ToLogscaleActionSlackPostMessageActionPtrOutputWithContext(context.Background())
+}
+
+func (i LogscaleActionSlackPostMessageActionArgs) ToLogscaleActionSlackPostMessageActionPtrOutputWithContext(ctx context.Context) LogscaleActionSlackPostMessageActionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogscaleActionSlackPostMessageActionOutput).ToLogscaleActionSlackPostMessageActionPtrOutputWithContext(ctx)
+}
+
+// LogscaleActionSlackPostMessageActionPtrInput is an input type that accepts LogscaleActionSlackPostMessageActionArgs, LogscaleActionSlackPostMessageActionPtr and LogscaleActionSlackPostMessageActionPtrOutput values.
+// You can construct a concrete instance of `LogscaleActionSlackPostMessageActionPtrInput` via:
+//
+//	        LogscaleActionSlackPostMessageActionArgs{...}
+//
+//	or:
+//
+//	        nil
+type LogscaleActionSlackPostMessageActionPtrInput interface {
+	pulumi.Input
+
+	ToLogscaleActionSlackPostMessageActionPtrOutput() LogscaleActionSlackPostMessageActionPtrOutput
+	ToLogscaleActionSlackPostMessageActionPtrOutputWithContext(context.Context) LogscaleActionSlackPostMessageActionPtrOutput
+}
+
+type logscaleActionSlackPostMessageActionPtrType LogscaleActionSlackPostMessageActionArgs
+
+func LogscaleActionSlackPostMessageActionPtr(v *LogscaleActionSlackPostMessageActionArgs) LogscaleActionSlackPostMessageActionPtrInput {
+	return (*logscaleActionSlackPostMessageActionPtrType)(v)
+}
+
+func (*logscaleActionSlackPostMessageActionPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogscaleActionSlackPostMessageAction)(nil)).Elem()
+}
+
+func (i *logscaleActionSlackPostMessageActionPtrType) ToLogscaleActionSlackPostMessageActionPtrOutput() LogscaleActionSlackPostMessageActionPtrOutput {
+	return i.ToLogscaleActionSlackPostMessageActionPtrOutputWithContext(context.Background())
+}
+
+func (i *logscaleActionSlackPostMessageActionPtrType) ToLogscaleActionSlackPostMessageActionPtrOutputWithContext(ctx context.Context) LogscaleActionSlackPostMessageActionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogscaleActionSlackPostMessageActionPtrOutput)
+}
+
+type LogscaleActionSlackPostMessageActionOutput struct{ *pulumi.OutputState }
+
+func (LogscaleActionSlackPostMessageActionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogscaleActionSlackPostMessageAction)(nil)).Elem()
+}
+
+func (o LogscaleActionSlackPostMessageActionOutput) ToLogscaleActionSlackPostMessageActionOutput() LogscaleActionSlackPostMessageActionOutput {
+	return o
+}
+
+func (o LogscaleActionSlackPostMessageActionOutput) ToLogscaleActionSlackPostMessageActionOutputWithContext(ctx context.Context) LogscaleActionSlackPostMessageActionOutput {
+	return o
+}
+
+func (o LogscaleActionSlackPostMessageActionOutput) ToLogscaleActionSlackPostMessageActionPtrOutput() LogscaleActionSlackPostMessageActionPtrOutput {
+	return o.ToLogscaleActionSlackPostMessageActionPtrOutputWithContext(context.Background())
+}
+
+func (o LogscaleActionSlackPostMessageActionOutput) ToLogscaleActionSlackPostMessageActionPtrOutputWithContext(ctx context.Context) LogscaleActionSlackPostMessageActionPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v LogscaleActionSlackPostMessageAction) *LogscaleActionSlackPostMessageAction {
+		return &v
+	}).(LogscaleActionSlackPostMessageActionPtrOutput)
+}
+
+func (o LogscaleActionSlackPostMessageActionOutput) ApiToken() pulumi.StringOutput {
+	return o.ApplyT(func(v LogscaleActionSlackPostMessageAction) string { return v.ApiToken }).(pulumi.StringOutput)
+}
+
+func (o LogscaleActionSlackPostMessageActionOutput) Channels() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LogscaleActionSlackPostMessageAction) []string { return v.Channels }).(pulumi.StringArrayOutput)
+}
+
+func (o LogscaleActionSlackPostMessageActionOutput) Fields() pulumi.StringMapOutput {
+	return o.ApplyT(func(v LogscaleActionSlackPostMessageAction) map[string]string { return v.Fields }).(pulumi.StringMapOutput)
+}
+
+func (o LogscaleActionSlackPostMessageActionOutput) UseProxy() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v LogscaleActionSlackPostMessageAction) *bool { return v.UseProxy }).(pulumi.BoolPtrOutput)
+}
+
+type LogscaleActionSlackPostMessageActionPtrOutput struct{ *pulumi.OutputState }
+
+func (LogscaleActionSlackPostMessageActionPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogscaleActionSlackPostMessageAction)(nil)).Elem()
+}
+
+func (o LogscaleActionSlackPostMessageActionPtrOutput) ToLogscaleActionSlackPostMessageActionPtrOutput() LogscaleActionSlackPostMessageActionPtrOutput {
+	return o
+}
+
+func (o LogscaleActionSlackPostMessageActionPtrOutput) ToLogscaleActionSlackPostMessageActionPtrOutputWithContext(ctx context.Context) LogscaleActionSlackPostMessageActionPtrOutput {
+	return o
+}
+
+func (o LogscaleActionSlackPostMessageActionPtrOutput) Elem() LogscaleActionSlackPostMessageActionOutput {
+	return o.ApplyT(func(v *LogscaleActionSlackPostMessageAction) LogscaleActionSlackPostMessageAction {
+		if v != nil {
+			return *v
+		}
+		var ret LogscaleActionSlackPostMessageAction
+		return ret
+	}).(LogscaleActionSlackPostMessageActionOutput)
+}
+
+func (o LogscaleActionSlackPostMessageActionPtrOutput) ApiToken() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogscaleActionSlackPostMessageAction) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.ApiToken
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o LogscaleActionSlackPostMessageActionPtrOutput) Channels() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *LogscaleActionSlackPostMessageAction) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Channels
+	}).(pulumi.StringArrayOutput)
+}
+
+func (o LogscaleActionSlackPostMessageActionPtrOutput) Fields() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *LogscaleActionSlackPostMessageAction) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.Fields
+	}).(pulumi.StringMapOutput)
+}
+
+func (o LogscaleActionSlackPostMessageActionPtrOutput) UseProxy() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *LogscaleActionSlackPostMessageAction) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.UseProxy
+	}).(pulumi.BoolPtrOutput)
+}
+
+type LogscaleActionUploadFileAction struct {
+	FileName string `pulumi:"fileName"`
+}
+
+// LogscaleActionUploadFileActionInput is an input type that accepts LogscaleActionUploadFileActionArgs and LogscaleActionUploadFileActionOutput values.
+// You can construct a concrete instance of `LogscaleActionUploadFileActionInput` via:
+//
+//	LogscaleActionUploadFileActionArgs{...}
+type LogscaleActionUploadFileActionInput interface {
+	pulumi.Input
+
+	ToLogscaleActionUploadFileActionOutput() LogscaleActionUploadFileActionOutput
+	ToLogscaleActionUploadFileActionOutputWithContext(context.Context) LogscaleActionUploadFileActionOutput
+}
+
+type LogscaleActionUploadFileActionArgs struct {
+	FileName pulumi.StringInput `pulumi:"fileName"`
+}
+
+func (LogscaleActionUploadFileActionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogscaleActionUploadFileAction)(nil)).Elem()
+}
+
+func (i LogscaleActionUploadFileActionArgs) ToLogscaleActionUploadFileActionOutput() LogscaleActionUploadFileActionOutput {
+	return i.ToLogscaleActionUploadFileActionOutputWithContext(context.Background())
+}
+
+func (i LogscaleActionUploadFileActionArgs) ToLogscaleActionUploadFileActionOutputWithContext(ctx context.Context) LogscaleActionUploadFileActionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogscaleActionUploadFileActionOutput)
+}
+
+func (i LogscaleActionUploadFileActionArgs) ToLogscaleActionUploadFileActionPtrOutput() LogscaleActionUploadFileActionPtrOutput {
+	return i.ToLogscaleActionUploadFileActionPtrOutputWithContext(context.Background())
+}
+
+func (i LogscaleActionUploadFileActionArgs) ToLogscaleActionUploadFileActionPtrOutputWithContext(ctx context.Context) LogscaleActionUploadFileActionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogscaleActionUploadFileActionOutput).ToLogscaleActionUploadFileActionPtrOutputWithContext(ctx)
+}
+
+// LogscaleActionUploadFileActionPtrInput is an input type that accepts LogscaleActionUploadFileActionArgs, LogscaleActionUploadFileActionPtr and LogscaleActionUploadFileActionPtrOutput values.
+// You can construct a concrete instance of `LogscaleActionUploadFileActionPtrInput` via:
+//
+//	        LogscaleActionUploadFileActionArgs{...}
+//
+//	or:
+//
+//	        nil
+type LogscaleActionUploadFileActionPtrInput interface {
+	pulumi.Input
+
+	ToLogscaleActionUploadFileActionPtrOutput() LogscaleActionUploadFileActionPtrOutput
+	ToLogscaleActionUploadFileActionPtrOutputWithContext(context.Context) LogscaleActionUploadFileActionPtrOutput
+}
+
+type logscaleActionUploadFileActionPtrType LogscaleActionUploadFileActionArgs
+
+func LogscaleActionUploadFileActionPtr(v *LogscaleActionUploadFileActionArgs) LogscaleActionUploadFileActionPtrInput {
+	return (*logscaleActionUploadFileActionPtrType)(v)
+}
+
+func (*logscaleActionUploadFileActionPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogscaleActionUploadFileAction)(nil)).Elem()
+}
+
+func (i *logscaleActionUploadFileActionPtrType) ToLogscaleActionUploadFileActionPtrOutput() LogscaleActionUploadFileActionPtrOutput {
+	return i.ToLogscaleActionUploadFileActionPtrOutputWithContext(context.Background())
+}
+
+func (i *logscaleActionUploadFileActionPtrType) ToLogscaleActionUploadFileActionPtrOutputWithContext(ctx context.Context) LogscaleActionUploadFileActionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogscaleActionUploadFileActionPtrOutput)
+}
+
+type LogscaleActionUploadFileActionOutput struct{ *pulumi.OutputState }
+
+func (LogscaleActionUploadFileActionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogscaleActionUploadFileAction)(nil)).Elem()
+}
+
+func (o LogscaleActionUploadFileActionOutput) ToLogscaleActionUploadFileActionOutput() LogscaleActionUploadFileActionOutput {
+	return o
+}
+
+func (o LogscaleActionUploadFileActionOutput) ToLogscaleActionUploadFileActionOutputWithContext(ctx context.Context) LogscaleActionUploadFileActionOutput {
+	return o
+}
+
+func (o LogscaleActionUploadFileActionOutput) ToLogscaleActionUploadFileActionPtrOutput() LogscaleActionUploadFileActionPtrOutput {
+	return o.ToLogscaleActionUploadFileActionPtrOutputWithContext(context.Background())
+}
+
+func (o LogscaleActionUploadFileActionOutput) ToLogscaleActionUploadFileActionPtrOutputWithContext(ctx context.Context) LogscaleActionUploadFileActionPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v LogscaleActionUploadFileAction) *LogscaleActionUploadFileAction {
+		return &v
+	}).(LogscaleActionUploadFileActionPtrOutput)
+}
+
+func (o LogscaleActionUploadFileActionOutput) FileName() pulumi.StringOutput {
+	return o.ApplyT(func(v LogscaleActionUploadFileAction) string { return v.FileName }).(pulumi.StringOutput)
+}
+
+type LogscaleActionUploadFileActionPtrOutput struct{ *pulumi.OutputState }
+
+func (LogscaleActionUploadFileActionPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogscaleActionUploadFileAction)(nil)).Elem()
+}
+
+func (o LogscaleActionUploadFileActionPtrOutput) ToLogscaleActionUploadFileActionPtrOutput() LogscaleActionUploadFileActionPtrOutput {
+	return o
+}
+
+func (o LogscaleActionUploadFileActionPtrOutput) ToLogscaleActionUploadFileActionPtrOutputWithContext(ctx context.Context) LogscaleActionUploadFileActionPtrOutput {
+	return o
+}
+
+func (o LogscaleActionUploadFileActionPtrOutput) Elem() LogscaleActionUploadFileActionOutput {
+	return o.ApplyT(func(v *LogscaleActionUploadFileAction) LogscaleActionUploadFileAction {
+		if v != nil {
+			return *v
+		}
+		var ret LogscaleActionUploadFileAction
+		return ret
+	}).(LogscaleActionUploadFileActionOutput)
+}
+
+func (o LogscaleActionUploadFileActionPtrOutput) FileName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogscaleActionUploadFileAction) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.FileName
+	}).(pulumi.StringPtrOutput)
+}
+
+type LogscaleActionVictorOpsAction struct {
+	MessageType string `pulumi:"messageType"`
+	NotifyUrl   string `pulumi:"notifyUrl"`
+	UseProxy    *bool  `pulumi:"useProxy"`
+}
+
+// LogscaleActionVictorOpsActionInput is an input type that accepts LogscaleActionVictorOpsActionArgs and LogscaleActionVictorOpsActionOutput values.
+// You can construct a concrete instance of `LogscaleActionVictorOpsActionInput` via:
+//
+//	LogscaleActionVictorOpsActionArgs{...}
+type LogscaleActionVictorOpsActionInput interface {
+	pulumi.Input
+
+	ToLogscaleActionVictorOpsActionOutput() LogscaleActionVictorOpsActionOutput
+	ToLogscaleActionVictorOpsActionOutputWithContext(context.Context) LogscaleActionVictorOpsActionOutput
+}
+
+type LogscaleActionVictorOpsActionArgs struct {
+	MessageType pulumi.StringInput  `pulumi:"messageType"`
+	NotifyUrl   pulumi.StringInput  `pulumi:"notifyUrl"`
+	UseProxy    pulumi.BoolPtrInput `pulumi:"useProxy"`
+}
+
+func (LogscaleActionVictorOpsActionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogscaleActionVictorOpsAction)(nil)).Elem()
+}
+
+func (i LogscaleActionVictorOpsActionArgs) ToLogscaleActionVictorOpsActionOutput() LogscaleActionVictorOpsActionOutput {
+	return i.ToLogscaleActionVictorOpsActionOutputWithContext(context.Background())
+}
+
+func (i LogscaleActionVictorOpsActionArgs) ToLogscaleActionVictorOpsActionOutputWithContext(ctx context.Context) LogscaleActionVictorOpsActionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogscaleActionVictorOpsActionOutput)
+}
+
+func (i LogscaleActionVictorOpsActionArgs) ToLogscaleActionVictorOpsActionPtrOutput() LogscaleActionVictorOpsActionPtrOutput {
+	return i.ToLogscaleActionVictorOpsActionPtrOutputWithContext(context.Background())
+}
+
+func (i LogscaleActionVictorOpsActionArgs) ToLogscaleActionVictorOpsActionPtrOutputWithContext(ctx context.Context) LogscaleActionVictorOpsActionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogscaleActionVictorOpsActionOutput).ToLogscaleActionVictorOpsActionPtrOutputWithContext(ctx)
+}
+
+// LogscaleActionVictorOpsActionPtrInput is an input type that accepts LogscaleActionVictorOpsActionArgs, LogscaleActionVictorOpsActionPtr and LogscaleActionVictorOpsActionPtrOutput values.
+// You can construct a concrete instance of `LogscaleActionVictorOpsActionPtrInput` via:
+//
+//	        LogscaleActionVictorOpsActionArgs{...}
+//
+//	or:
+//
+//	        nil
+type LogscaleActionVictorOpsActionPtrInput interface {
+	pulumi.Input
+
+	ToLogscaleActionVictorOpsActionPtrOutput() LogscaleActionVictorOpsActionPtrOutput
+	ToLogscaleActionVictorOpsActionPtrOutputWithContext(context.Context) LogscaleActionVictorOpsActionPtrOutput
+}
+
+type logscaleActionVictorOpsActionPtrType LogscaleActionVictorOpsActionArgs
+
+func LogscaleActionVictorOpsActionPtr(v *LogscaleActionVictorOpsActionArgs) LogscaleActionVictorOpsActionPtrInput {
+	return (*logscaleActionVictorOpsActionPtrType)(v)
+}
+
+func (*logscaleActionVictorOpsActionPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogscaleActionVictorOpsAction)(nil)).Elem()
+}
+
+func (i *logscaleActionVictorOpsActionPtrType) ToLogscaleActionVictorOpsActionPtrOutput() LogscaleActionVictorOpsActionPtrOutput {
+	return i.ToLogscaleActionVictorOpsActionPtrOutputWithContext(context.Background())
+}
+
+func (i *logscaleActionVictorOpsActionPtrType) ToLogscaleActionVictorOpsActionPtrOutputWithContext(ctx context.Context) LogscaleActionVictorOpsActionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogscaleActionVictorOpsActionPtrOutput)
+}
+
+type LogscaleActionVictorOpsActionOutput struct{ *pulumi.OutputState }
+
+func (LogscaleActionVictorOpsActionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogscaleActionVictorOpsAction)(nil)).Elem()
+}
+
+func (o LogscaleActionVictorOpsActionOutput) ToLogscaleActionVictorOpsActionOutput() LogscaleActionVictorOpsActionOutput {
+	return o
+}
+
+func (o LogscaleActionVictorOpsActionOutput) ToLogscaleActionVictorOpsActionOutputWithContext(ctx context.Context) LogscaleActionVictorOpsActionOutput {
+	return o
+}
+
+func (o LogscaleActionVictorOpsActionOutput) ToLogscaleActionVictorOpsActionPtrOutput() LogscaleActionVictorOpsActionPtrOutput {
+	return o.ToLogscaleActionVictorOpsActionPtrOutputWithContext(context.Background())
+}
+
+func (o LogscaleActionVictorOpsActionOutput) ToLogscaleActionVictorOpsActionPtrOutputWithContext(ctx context.Context) LogscaleActionVictorOpsActionPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v LogscaleActionVictorOpsAction) *LogscaleActionVictorOpsAction {
+		return &v
+	}).(LogscaleActionVictorOpsActionPtrOutput)
+}
+
+func (o LogscaleActionVictorOpsActionOutput) MessageType() pulumi.StringOutput {
+	return o.ApplyT(func(v LogscaleActionVictorOpsAction) string { return v.MessageType }).(pulumi.StringOutput)
+}
+
+func (o LogscaleActionVictorOpsActionOutput) NotifyUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v LogscaleActionVictorOpsAction) string { return v.NotifyUrl }).(pulumi.StringOutput)
+}
+
+func (o LogscaleActionVictorOpsActionOutput) UseProxy() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v LogscaleActionVictorOpsAction) *bool { return v.UseProxy }).(pulumi.BoolPtrOutput)
+}
+
+type LogscaleActionVictorOpsActionPtrOutput struct{ *pulumi.OutputState }
+
+func (LogscaleActionVictorOpsActionPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogscaleActionVictorOpsAction)(nil)).Elem()
+}
+
+func (o LogscaleActionVictorOpsActionPtrOutput) ToLogscaleActionVictorOpsActionPtrOutput() LogscaleActionVictorOpsActionPtrOutput {
+	return o
+}
+
+func (o LogscaleActionVictorOpsActionPtrOutput) ToLogscaleActionVictorOpsActionPtrOutputWithContext(ctx context.Context) LogscaleActionVictorOpsActionPtrOutput {
+	return o
+}
+
+func (o LogscaleActionVictorOpsActionPtrOutput) Elem() LogscaleActionVictorOpsActionOutput {
+	return o.ApplyT(func(v *LogscaleActionVictorOpsAction) LogscaleActionVictorOpsAction {
+		if v != nil {
+			return *v
+		}
+		var ret LogscaleActionVictorOpsAction
+		return ret
+	}).(LogscaleActionVictorOpsActionOutput)
+}
+
+func (o LogscaleActionVictorOpsActionPtrOutput) MessageType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogscaleActionVictorOpsAction) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.MessageType
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o LogscaleActionVictorOpsActionPtrOutput) NotifyUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogscaleActionVictorOpsAction) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.NotifyUrl
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o LogscaleActionVictorOpsActionPtrOutput) UseProxy() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *LogscaleActionVictorOpsAction) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.UseProxy
+	}).(pulumi.BoolPtrOutput)
+}
+
+type LogscaleActionWebhookAction struct {
+	BodyTemplate *string           `pulumi:"bodyTemplate"`
+	Headers      map[string]string `pulumi:"headers"`
+	IgnoreSsl    *bool             `pulumi:"ignoreSsl"`
+	Method       string            `pulumi:"method"`
+	Url          string            `pulumi:"url"`
+	UseProxy     *bool             `pulumi:"useProxy"`
+}
+
+// LogscaleActionWebhookActionInput is an input type that accepts LogscaleActionWebhookActionArgs and LogscaleActionWebhookActionOutput values.
+// You can construct a concrete instance of `LogscaleActionWebhookActionInput` via:
+//
+//	LogscaleActionWebhookActionArgs{...}
+type LogscaleActionWebhookActionInput interface {
+	pulumi.Input
+
+	ToLogscaleActionWebhookActionOutput() LogscaleActionWebhookActionOutput
+	ToLogscaleActionWebhookActionOutputWithContext(context.Context) LogscaleActionWebhookActionOutput
+}
+
+type LogscaleActionWebhookActionArgs struct {
+	BodyTemplate pulumi.StringPtrInput `pulumi:"bodyTemplate"`
+	Headers      pulumi.StringMapInput `pulumi:"headers"`
+	IgnoreSsl    pulumi.BoolPtrInput   `pulumi:"ignoreSsl"`
+	Method       pulumi.StringInput    `pulumi:"method"`
+	Url          pulumi.StringInput    `pulumi:"url"`
+	UseProxy     pulumi.BoolPtrInput   `pulumi:"useProxy"`
+}
+
+func (LogscaleActionWebhookActionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogscaleActionWebhookAction)(nil)).Elem()
+}
+
+func (i LogscaleActionWebhookActionArgs) ToLogscaleActionWebhookActionOutput() LogscaleActionWebhookActionOutput {
+	return i.ToLogscaleActionWebhookActionOutputWithContext(context.Background())
+}
+
+func (i LogscaleActionWebhookActionArgs) ToLogscaleActionWebhookActionOutputWithContext(ctx context.Context) LogscaleActionWebhookActionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogscaleActionWebhookActionOutput)
+}
+
+func (i LogscaleActionWebhookActionArgs) ToLogscaleActionWebhookActionPtrOutput() LogscaleActionWebhookActionPtrOutput {
+	return i.ToLogscaleActionWebhookActionPtrOutputWithContext(context.Background())
+}
+
+func (i LogscaleActionWebhookActionArgs) ToLogscaleActionWebhookActionPtrOutputWithContext(ctx context.Context) LogscaleActionWebhookActionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogscaleActionWebhookActionOutput).ToLogscaleActionWebhookActionPtrOutputWithContext(ctx)
+}
+
+// LogscaleActionWebhookActionPtrInput is an input type that accepts LogscaleActionWebhookActionArgs, LogscaleActionWebhookActionPtr and LogscaleActionWebhookActionPtrOutput values.
+// You can construct a concrete instance of `LogscaleActionWebhookActionPtrInput` via:
+//
+//	        LogscaleActionWebhookActionArgs{...}
+//
+//	or:
+//
+//	        nil
+type LogscaleActionWebhookActionPtrInput interface {
+	pulumi.Input
+
+	ToLogscaleActionWebhookActionPtrOutput() LogscaleActionWebhookActionPtrOutput
+	ToLogscaleActionWebhookActionPtrOutputWithContext(context.Context) LogscaleActionWebhookActionPtrOutput
+}
+
+type logscaleActionWebhookActionPtrType LogscaleActionWebhookActionArgs
+
+func LogscaleActionWebhookActionPtr(v *LogscaleActionWebhookActionArgs) LogscaleActionWebhookActionPtrInput {
+	return (*logscaleActionWebhookActionPtrType)(v)
+}
+
+func (*logscaleActionWebhookActionPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogscaleActionWebhookAction)(nil)).Elem()
+}
+
+func (i *logscaleActionWebhookActionPtrType) ToLogscaleActionWebhookActionPtrOutput() LogscaleActionWebhookActionPtrOutput {
+	return i.ToLogscaleActionWebhookActionPtrOutputWithContext(context.Background())
+}
+
+func (i *logscaleActionWebhookActionPtrType) ToLogscaleActionWebhookActionPtrOutputWithContext(ctx context.Context) LogscaleActionWebhookActionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogscaleActionWebhookActionPtrOutput)
+}
+
+type LogscaleActionWebhookActionOutput struct{ *pulumi.OutputState }
+
+func (LogscaleActionWebhookActionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogscaleActionWebhookAction)(nil)).Elem()
+}
+
+func (o LogscaleActionWebhookActionOutput) ToLogscaleActionWebhookActionOutput() LogscaleActionWebhookActionOutput {
+	return o
+}
+
+func (o LogscaleActionWebhookActionOutput) ToLogscaleActionWebhookActionOutputWithContext(ctx context.Context) LogscaleActionWebhookActionOutput {
+	return o
+}
+
+func (o LogscaleActionWebhookActionOutput) ToLogscaleActionWebhookActionPtrOutput() LogscaleActionWebhookActionPtrOutput {
+	return o.ToLogscaleActionWebhookActionPtrOutputWithContext(context.Background())
+}
+
+func (o LogscaleActionWebhookActionOutput) ToLogscaleActionWebhookActionPtrOutputWithContext(ctx context.Context) LogscaleActionWebhookActionPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v LogscaleActionWebhookAction) *LogscaleActionWebhookAction {
+		return &v
+	}).(LogscaleActionWebhookActionPtrOutput)
+}
+
+func (o LogscaleActionWebhookActionOutput) BodyTemplate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LogscaleActionWebhookAction) *string { return v.BodyTemplate }).(pulumi.StringPtrOutput)
+}
+
+func (o LogscaleActionWebhookActionOutput) Headers() pulumi.StringMapOutput {
+	return o.ApplyT(func(v LogscaleActionWebhookAction) map[string]string { return v.Headers }).(pulumi.StringMapOutput)
+}
+
+func (o LogscaleActionWebhookActionOutput) IgnoreSsl() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v LogscaleActionWebhookAction) *bool { return v.IgnoreSsl }).(pulumi.BoolPtrOutput)
+}
+
+func (o LogscaleActionWebhookActionOutput) Method() pulumi.StringOutput {
+	return o.ApplyT(func(v LogscaleActionWebhookAction) string { return v.Method }).(pulumi.StringOutput)
+}
+
+func (o LogscaleActionWebhookActionOutput) Url() pulumi.StringOutput {
+	return o.ApplyT(func(v LogscaleActionWebhookAction) string { return v.Url }).(pulumi.StringOutput)
+}
+
+func (o LogscaleActionWebhookActionOutput) UseProxy() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v LogscaleActionWebhookAction) *bool { return v.UseProxy }).(pulumi.BoolPtrOutput)
+}
+
+type LogscaleActionWebhookActionPtrOutput struct{ *pulumi.OutputState }
+
+func (LogscaleActionWebhookActionPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogscaleActionWebhookAction)(nil)).Elem()
+}
+
+func (o LogscaleActionWebhookActionPtrOutput) ToLogscaleActionWebhookActionPtrOutput() LogscaleActionWebhookActionPtrOutput {
+	return o
+}
+
+func (o LogscaleActionWebhookActionPtrOutput) ToLogscaleActionWebhookActionPtrOutputWithContext(ctx context.Context) LogscaleActionWebhookActionPtrOutput {
+	return o
+}
+
+func (o LogscaleActionWebhookActionPtrOutput) Elem() LogscaleActionWebhookActionOutput {
+	return o.ApplyT(func(v *LogscaleActionWebhookAction) LogscaleActionWebhookAction {
+		if v != nil {
+			return *v
+		}
+		var ret LogscaleActionWebhookAction
+		return ret
+	}).(LogscaleActionWebhookActionOutput)
+}
+
+func (o LogscaleActionWebhookActionPtrOutput) BodyTemplate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogscaleActionWebhookAction) *string {
+		if v == nil {
+			return nil
+		}
+		return v.BodyTemplate
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o LogscaleActionWebhookActionPtrOutput) Headers() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *LogscaleActionWebhookAction) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.Headers
+	}).(pulumi.StringMapOutput)
+}
+
+func (o LogscaleActionWebhookActionPtrOutput) IgnoreSsl() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *LogscaleActionWebhookAction) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.IgnoreSsl
+	}).(pulumi.BoolPtrOutput)
+}
+
+func (o LogscaleActionWebhookActionPtrOutput) Method() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogscaleActionWebhookAction) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Method
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o LogscaleActionWebhookActionPtrOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogscaleActionWebhookAction) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Url
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o LogscaleActionWebhookActionPtrOutput) UseProxy() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *LogscaleActionWebhookAction) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.UseProxy
+	}).(pulumi.BoolPtrOutput)
 }
 
 type MappingRuleStoragePolicy struct {
@@ -6916,7 +9733,7 @@ func (o PagerdutyAlertNotifierLinkArrayOutput) Index(i pulumi.IntInput) Pagerdut
 }
 
 type ResourcePoolsConfigDefaultPool struct {
-	Allocation ResourcePoolsConfigDefaultPoolAllocation  `pulumi:"allocation"`
+	Allocation *ResourcePoolsConfigDefaultPoolAllocation `pulumi:"allocation"`
 	Priorities *ResourcePoolsConfigDefaultPoolPriorities `pulumi:"priorities"`
 }
 
@@ -6932,7 +9749,7 @@ type ResourcePoolsConfigDefaultPoolInput interface {
 }
 
 type ResourcePoolsConfigDefaultPoolArgs struct {
-	Allocation ResourcePoolsConfigDefaultPoolAllocationInput    `pulumi:"allocation"`
+	Allocation ResourcePoolsConfigDefaultPoolAllocationPtrInput `pulumi:"allocation"`
 	Priorities ResourcePoolsConfigDefaultPoolPrioritiesPtrInput `pulumi:"priorities"`
 }
 
@@ -7013,8 +9830,8 @@ func (o ResourcePoolsConfigDefaultPoolOutput) ToResourcePoolsConfigDefaultPoolPt
 	}).(ResourcePoolsConfigDefaultPoolPtrOutput)
 }
 
-func (o ResourcePoolsConfigDefaultPoolOutput) Allocation() ResourcePoolsConfigDefaultPoolAllocationOutput {
-	return o.ApplyT(func(v ResourcePoolsConfigDefaultPool) ResourcePoolsConfigDefaultPoolAllocation { return v.Allocation }).(ResourcePoolsConfigDefaultPoolAllocationOutput)
+func (o ResourcePoolsConfigDefaultPoolOutput) Allocation() ResourcePoolsConfigDefaultPoolAllocationPtrOutput {
+	return o.ApplyT(func(v ResourcePoolsConfigDefaultPool) *ResourcePoolsConfigDefaultPoolAllocation { return v.Allocation }).(ResourcePoolsConfigDefaultPoolAllocationPtrOutput)
 }
 
 func (o ResourcePoolsConfigDefaultPoolOutput) Priorities() ResourcePoolsConfigDefaultPoolPrioritiesPtrOutput {
@@ -7050,7 +9867,7 @@ func (o ResourcePoolsConfigDefaultPoolPtrOutput) Allocation() ResourcePoolsConfi
 		if v == nil {
 			return nil
 		}
-		return &v.Allocation
+		return v.Allocation
 	}).(ResourcePoolsConfigDefaultPoolAllocationPtrOutput)
 }
 
@@ -7064,7 +9881,8 @@ func (o ResourcePoolsConfigDefaultPoolPtrOutput) Priorities() ResourcePoolsConfi
 }
 
 type ResourcePoolsConfigDefaultPoolAllocation struct {
-	PercentOfLicense float64 `pulumi:"percentOfLicense"`
+	FixedValues      []ResourcePoolsConfigDefaultPoolAllocationFixedValue `pulumi:"fixedValues"`
+	PercentOfLicense *float64                                             `pulumi:"percentOfLicense"`
 }
 
 // ResourcePoolsConfigDefaultPoolAllocationInput is an input type that accepts ResourcePoolsConfigDefaultPoolAllocationArgs and ResourcePoolsConfigDefaultPoolAllocationOutput values.
@@ -7079,7 +9897,8 @@ type ResourcePoolsConfigDefaultPoolAllocationInput interface {
 }
 
 type ResourcePoolsConfigDefaultPoolAllocationArgs struct {
-	PercentOfLicense pulumi.Float64Input `pulumi:"percentOfLicense"`
+	FixedValues      ResourcePoolsConfigDefaultPoolAllocationFixedValueArrayInput `pulumi:"fixedValues"`
+	PercentOfLicense pulumi.Float64PtrInput                                       `pulumi:"percentOfLicense"`
 }
 
 func (ResourcePoolsConfigDefaultPoolAllocationArgs) ElementType() reflect.Type {
@@ -7159,8 +9978,14 @@ func (o ResourcePoolsConfigDefaultPoolAllocationOutput) ToResourcePoolsConfigDef
 	}).(ResourcePoolsConfigDefaultPoolAllocationPtrOutput)
 }
 
-func (o ResourcePoolsConfigDefaultPoolAllocationOutput) PercentOfLicense() pulumi.Float64Output {
-	return o.ApplyT(func(v ResourcePoolsConfigDefaultPoolAllocation) float64 { return v.PercentOfLicense }).(pulumi.Float64Output)
+func (o ResourcePoolsConfigDefaultPoolAllocationOutput) FixedValues() ResourcePoolsConfigDefaultPoolAllocationFixedValueArrayOutput {
+	return o.ApplyT(func(v ResourcePoolsConfigDefaultPoolAllocation) []ResourcePoolsConfigDefaultPoolAllocationFixedValue {
+		return v.FixedValues
+	}).(ResourcePoolsConfigDefaultPoolAllocationFixedValueArrayOutput)
+}
+
+func (o ResourcePoolsConfigDefaultPoolAllocationOutput) PercentOfLicense() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v ResourcePoolsConfigDefaultPoolAllocation) *float64 { return v.PercentOfLicense }).(pulumi.Float64PtrOutput)
 }
 
 type ResourcePoolsConfigDefaultPoolAllocationPtrOutput struct{ *pulumi.OutputState }
@@ -7187,13 +10012,122 @@ func (o ResourcePoolsConfigDefaultPoolAllocationPtrOutput) Elem() ResourcePoolsC
 	}).(ResourcePoolsConfigDefaultPoolAllocationOutput)
 }
 
+func (o ResourcePoolsConfigDefaultPoolAllocationPtrOutput) FixedValues() ResourcePoolsConfigDefaultPoolAllocationFixedValueArrayOutput {
+	return o.ApplyT(func(v *ResourcePoolsConfigDefaultPoolAllocation) []ResourcePoolsConfigDefaultPoolAllocationFixedValue {
+		if v == nil {
+			return nil
+		}
+		return v.FixedValues
+	}).(ResourcePoolsConfigDefaultPoolAllocationFixedValueArrayOutput)
+}
+
 func (o ResourcePoolsConfigDefaultPoolAllocationPtrOutput) PercentOfLicense() pulumi.Float64PtrOutput {
 	return o.ApplyT(func(v *ResourcePoolsConfigDefaultPoolAllocation) *float64 {
 		if v == nil {
 			return nil
 		}
-		return &v.PercentOfLicense
+		return v.PercentOfLicense
 	}).(pulumi.Float64PtrOutput)
+}
+
+type ResourcePoolsConfigDefaultPoolAllocationFixedValue struct {
+	License string `pulumi:"license"`
+	Value   int    `pulumi:"value"`
+}
+
+// ResourcePoolsConfigDefaultPoolAllocationFixedValueInput is an input type that accepts ResourcePoolsConfigDefaultPoolAllocationFixedValueArgs and ResourcePoolsConfigDefaultPoolAllocationFixedValueOutput values.
+// You can construct a concrete instance of `ResourcePoolsConfigDefaultPoolAllocationFixedValueInput` via:
+//
+//	ResourcePoolsConfigDefaultPoolAllocationFixedValueArgs{...}
+type ResourcePoolsConfigDefaultPoolAllocationFixedValueInput interface {
+	pulumi.Input
+
+	ToResourcePoolsConfigDefaultPoolAllocationFixedValueOutput() ResourcePoolsConfigDefaultPoolAllocationFixedValueOutput
+	ToResourcePoolsConfigDefaultPoolAllocationFixedValueOutputWithContext(context.Context) ResourcePoolsConfigDefaultPoolAllocationFixedValueOutput
+}
+
+type ResourcePoolsConfigDefaultPoolAllocationFixedValueArgs struct {
+	License pulumi.StringInput `pulumi:"license"`
+	Value   pulumi.IntInput    `pulumi:"value"`
+}
+
+func (ResourcePoolsConfigDefaultPoolAllocationFixedValueArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ResourcePoolsConfigDefaultPoolAllocationFixedValue)(nil)).Elem()
+}
+
+func (i ResourcePoolsConfigDefaultPoolAllocationFixedValueArgs) ToResourcePoolsConfigDefaultPoolAllocationFixedValueOutput() ResourcePoolsConfigDefaultPoolAllocationFixedValueOutput {
+	return i.ToResourcePoolsConfigDefaultPoolAllocationFixedValueOutputWithContext(context.Background())
+}
+
+func (i ResourcePoolsConfigDefaultPoolAllocationFixedValueArgs) ToResourcePoolsConfigDefaultPoolAllocationFixedValueOutputWithContext(ctx context.Context) ResourcePoolsConfigDefaultPoolAllocationFixedValueOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResourcePoolsConfigDefaultPoolAllocationFixedValueOutput)
+}
+
+// ResourcePoolsConfigDefaultPoolAllocationFixedValueArrayInput is an input type that accepts ResourcePoolsConfigDefaultPoolAllocationFixedValueArray and ResourcePoolsConfigDefaultPoolAllocationFixedValueArrayOutput values.
+// You can construct a concrete instance of `ResourcePoolsConfigDefaultPoolAllocationFixedValueArrayInput` via:
+//
+//	ResourcePoolsConfigDefaultPoolAllocationFixedValueArray{ ResourcePoolsConfigDefaultPoolAllocationFixedValueArgs{...} }
+type ResourcePoolsConfigDefaultPoolAllocationFixedValueArrayInput interface {
+	pulumi.Input
+
+	ToResourcePoolsConfigDefaultPoolAllocationFixedValueArrayOutput() ResourcePoolsConfigDefaultPoolAllocationFixedValueArrayOutput
+	ToResourcePoolsConfigDefaultPoolAllocationFixedValueArrayOutputWithContext(context.Context) ResourcePoolsConfigDefaultPoolAllocationFixedValueArrayOutput
+}
+
+type ResourcePoolsConfigDefaultPoolAllocationFixedValueArray []ResourcePoolsConfigDefaultPoolAllocationFixedValueInput
+
+func (ResourcePoolsConfigDefaultPoolAllocationFixedValueArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ResourcePoolsConfigDefaultPoolAllocationFixedValue)(nil)).Elem()
+}
+
+func (i ResourcePoolsConfigDefaultPoolAllocationFixedValueArray) ToResourcePoolsConfigDefaultPoolAllocationFixedValueArrayOutput() ResourcePoolsConfigDefaultPoolAllocationFixedValueArrayOutput {
+	return i.ToResourcePoolsConfigDefaultPoolAllocationFixedValueArrayOutputWithContext(context.Background())
+}
+
+func (i ResourcePoolsConfigDefaultPoolAllocationFixedValueArray) ToResourcePoolsConfigDefaultPoolAllocationFixedValueArrayOutputWithContext(ctx context.Context) ResourcePoolsConfigDefaultPoolAllocationFixedValueArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResourcePoolsConfigDefaultPoolAllocationFixedValueArrayOutput)
+}
+
+type ResourcePoolsConfigDefaultPoolAllocationFixedValueOutput struct{ *pulumi.OutputState }
+
+func (ResourcePoolsConfigDefaultPoolAllocationFixedValueOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ResourcePoolsConfigDefaultPoolAllocationFixedValue)(nil)).Elem()
+}
+
+func (o ResourcePoolsConfigDefaultPoolAllocationFixedValueOutput) ToResourcePoolsConfigDefaultPoolAllocationFixedValueOutput() ResourcePoolsConfigDefaultPoolAllocationFixedValueOutput {
+	return o
+}
+
+func (o ResourcePoolsConfigDefaultPoolAllocationFixedValueOutput) ToResourcePoolsConfigDefaultPoolAllocationFixedValueOutputWithContext(ctx context.Context) ResourcePoolsConfigDefaultPoolAllocationFixedValueOutput {
+	return o
+}
+
+func (o ResourcePoolsConfigDefaultPoolAllocationFixedValueOutput) License() pulumi.StringOutput {
+	return o.ApplyT(func(v ResourcePoolsConfigDefaultPoolAllocationFixedValue) string { return v.License }).(pulumi.StringOutput)
+}
+
+func (o ResourcePoolsConfigDefaultPoolAllocationFixedValueOutput) Value() pulumi.IntOutput {
+	return o.ApplyT(func(v ResourcePoolsConfigDefaultPoolAllocationFixedValue) int { return v.Value }).(pulumi.IntOutput)
+}
+
+type ResourcePoolsConfigDefaultPoolAllocationFixedValueArrayOutput struct{ *pulumi.OutputState }
+
+func (ResourcePoolsConfigDefaultPoolAllocationFixedValueArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ResourcePoolsConfigDefaultPoolAllocationFixedValue)(nil)).Elem()
+}
+
+func (o ResourcePoolsConfigDefaultPoolAllocationFixedValueArrayOutput) ToResourcePoolsConfigDefaultPoolAllocationFixedValueArrayOutput() ResourcePoolsConfigDefaultPoolAllocationFixedValueArrayOutput {
+	return o
+}
+
+func (o ResourcePoolsConfigDefaultPoolAllocationFixedValueArrayOutput) ToResourcePoolsConfigDefaultPoolAllocationFixedValueArrayOutputWithContext(ctx context.Context) ResourcePoolsConfigDefaultPoolAllocationFixedValueArrayOutput {
+	return o
+}
+
+func (o ResourcePoolsConfigDefaultPoolAllocationFixedValueArrayOutput) Index(i pulumi.IntInput) ResourcePoolsConfigDefaultPoolAllocationFixedValueOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ResourcePoolsConfigDefaultPoolAllocationFixedValue {
+		return vs[0].([]ResourcePoolsConfigDefaultPoolAllocationFixedValue)[vs[1].(int)]
+	}).(ResourcePoolsConfigDefaultPoolAllocationFixedValueOutput)
 }
 
 type ResourcePoolsConfigDefaultPoolPriorities struct {
@@ -7345,7 +10279,7 @@ func (o ResourcePoolsConfigDefaultPoolPrioritiesPtrOutput) LowPriorityMatchRules
 }
 
 type ResourcePoolsConfigPool struct {
-	Allocation ResourcePoolsConfigPoolAllocation `pulumi:"allocation"`
+	Allocation *ResourcePoolsConfigPoolAllocation `pulumi:"allocation"`
 	// Deprecated: use match_rules
 	MatchRule  *string                            `pulumi:"matchRule"`
 	MatchRules []string                           `pulumi:"matchRules"`
@@ -7365,7 +10299,7 @@ type ResourcePoolsConfigPoolInput interface {
 }
 
 type ResourcePoolsConfigPoolArgs struct {
-	Allocation ResourcePoolsConfigPoolAllocationInput `pulumi:"allocation"`
+	Allocation ResourcePoolsConfigPoolAllocationPtrInput `pulumi:"allocation"`
 	// Deprecated: use match_rules
 	MatchRule  pulumi.StringPtrInput                     `pulumi:"matchRule"`
 	MatchRules pulumi.StringArrayInput                   `pulumi:"matchRules"`
@@ -7424,8 +10358,8 @@ func (o ResourcePoolsConfigPoolOutput) ToResourcePoolsConfigPoolOutputWithContex
 	return o
 }
 
-func (o ResourcePoolsConfigPoolOutput) Allocation() ResourcePoolsConfigPoolAllocationOutput {
-	return o.ApplyT(func(v ResourcePoolsConfigPool) ResourcePoolsConfigPoolAllocation { return v.Allocation }).(ResourcePoolsConfigPoolAllocationOutput)
+func (o ResourcePoolsConfigPoolOutput) Allocation() ResourcePoolsConfigPoolAllocationPtrOutput {
+	return o.ApplyT(func(v ResourcePoolsConfigPool) *ResourcePoolsConfigPoolAllocation { return v.Allocation }).(ResourcePoolsConfigPoolAllocationPtrOutput)
 }
 
 // Deprecated: use match_rules
@@ -7466,7 +10400,8 @@ func (o ResourcePoolsConfigPoolArrayOutput) Index(i pulumi.IntInput) ResourcePoo
 }
 
 type ResourcePoolsConfigPoolAllocation struct {
-	PercentOfLicense float64 `pulumi:"percentOfLicense"`
+	FixedValues      []ResourcePoolsConfigPoolAllocationFixedValue `pulumi:"fixedValues"`
+	PercentOfLicense *float64                                      `pulumi:"percentOfLicense"`
 }
 
 // ResourcePoolsConfigPoolAllocationInput is an input type that accepts ResourcePoolsConfigPoolAllocationArgs and ResourcePoolsConfigPoolAllocationOutput values.
@@ -7481,7 +10416,8 @@ type ResourcePoolsConfigPoolAllocationInput interface {
 }
 
 type ResourcePoolsConfigPoolAllocationArgs struct {
-	PercentOfLicense pulumi.Float64Input `pulumi:"percentOfLicense"`
+	FixedValues      ResourcePoolsConfigPoolAllocationFixedValueArrayInput `pulumi:"fixedValues"`
+	PercentOfLicense pulumi.Float64PtrInput                                `pulumi:"percentOfLicense"`
 }
 
 func (ResourcePoolsConfigPoolAllocationArgs) ElementType() reflect.Type {
@@ -7494,6 +10430,47 @@ func (i ResourcePoolsConfigPoolAllocationArgs) ToResourcePoolsConfigPoolAllocati
 
 func (i ResourcePoolsConfigPoolAllocationArgs) ToResourcePoolsConfigPoolAllocationOutputWithContext(ctx context.Context) ResourcePoolsConfigPoolAllocationOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ResourcePoolsConfigPoolAllocationOutput)
+}
+
+func (i ResourcePoolsConfigPoolAllocationArgs) ToResourcePoolsConfigPoolAllocationPtrOutput() ResourcePoolsConfigPoolAllocationPtrOutput {
+	return i.ToResourcePoolsConfigPoolAllocationPtrOutputWithContext(context.Background())
+}
+
+func (i ResourcePoolsConfigPoolAllocationArgs) ToResourcePoolsConfigPoolAllocationPtrOutputWithContext(ctx context.Context) ResourcePoolsConfigPoolAllocationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResourcePoolsConfigPoolAllocationOutput).ToResourcePoolsConfigPoolAllocationPtrOutputWithContext(ctx)
+}
+
+// ResourcePoolsConfigPoolAllocationPtrInput is an input type that accepts ResourcePoolsConfigPoolAllocationArgs, ResourcePoolsConfigPoolAllocationPtr and ResourcePoolsConfigPoolAllocationPtrOutput values.
+// You can construct a concrete instance of `ResourcePoolsConfigPoolAllocationPtrInput` via:
+//
+//	        ResourcePoolsConfigPoolAllocationArgs{...}
+//
+//	or:
+//
+//	        nil
+type ResourcePoolsConfigPoolAllocationPtrInput interface {
+	pulumi.Input
+
+	ToResourcePoolsConfigPoolAllocationPtrOutput() ResourcePoolsConfigPoolAllocationPtrOutput
+	ToResourcePoolsConfigPoolAllocationPtrOutputWithContext(context.Context) ResourcePoolsConfigPoolAllocationPtrOutput
+}
+
+type resourcePoolsConfigPoolAllocationPtrType ResourcePoolsConfigPoolAllocationArgs
+
+func ResourcePoolsConfigPoolAllocationPtr(v *ResourcePoolsConfigPoolAllocationArgs) ResourcePoolsConfigPoolAllocationPtrInput {
+	return (*resourcePoolsConfigPoolAllocationPtrType)(v)
+}
+
+func (*resourcePoolsConfigPoolAllocationPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ResourcePoolsConfigPoolAllocation)(nil)).Elem()
+}
+
+func (i *resourcePoolsConfigPoolAllocationPtrType) ToResourcePoolsConfigPoolAllocationPtrOutput() ResourcePoolsConfigPoolAllocationPtrOutput {
+	return i.ToResourcePoolsConfigPoolAllocationPtrOutputWithContext(context.Background())
+}
+
+func (i *resourcePoolsConfigPoolAllocationPtrType) ToResourcePoolsConfigPoolAllocationPtrOutputWithContext(ctx context.Context) ResourcePoolsConfigPoolAllocationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResourcePoolsConfigPoolAllocationPtrOutput)
 }
 
 type ResourcePoolsConfigPoolAllocationOutput struct{ *pulumi.OutputState }
@@ -7510,8 +10487,166 @@ func (o ResourcePoolsConfigPoolAllocationOutput) ToResourcePoolsConfigPoolAlloca
 	return o
 }
 
-func (o ResourcePoolsConfigPoolAllocationOutput) PercentOfLicense() pulumi.Float64Output {
-	return o.ApplyT(func(v ResourcePoolsConfigPoolAllocation) float64 { return v.PercentOfLicense }).(pulumi.Float64Output)
+func (o ResourcePoolsConfigPoolAllocationOutput) ToResourcePoolsConfigPoolAllocationPtrOutput() ResourcePoolsConfigPoolAllocationPtrOutput {
+	return o.ToResourcePoolsConfigPoolAllocationPtrOutputWithContext(context.Background())
+}
+
+func (o ResourcePoolsConfigPoolAllocationOutput) ToResourcePoolsConfigPoolAllocationPtrOutputWithContext(ctx context.Context) ResourcePoolsConfigPoolAllocationPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ResourcePoolsConfigPoolAllocation) *ResourcePoolsConfigPoolAllocation {
+		return &v
+	}).(ResourcePoolsConfigPoolAllocationPtrOutput)
+}
+
+func (o ResourcePoolsConfigPoolAllocationOutput) FixedValues() ResourcePoolsConfigPoolAllocationFixedValueArrayOutput {
+	return o.ApplyT(func(v ResourcePoolsConfigPoolAllocation) []ResourcePoolsConfigPoolAllocationFixedValue {
+		return v.FixedValues
+	}).(ResourcePoolsConfigPoolAllocationFixedValueArrayOutput)
+}
+
+func (o ResourcePoolsConfigPoolAllocationOutput) PercentOfLicense() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v ResourcePoolsConfigPoolAllocation) *float64 { return v.PercentOfLicense }).(pulumi.Float64PtrOutput)
+}
+
+type ResourcePoolsConfigPoolAllocationPtrOutput struct{ *pulumi.OutputState }
+
+func (ResourcePoolsConfigPoolAllocationPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ResourcePoolsConfigPoolAllocation)(nil)).Elem()
+}
+
+func (o ResourcePoolsConfigPoolAllocationPtrOutput) ToResourcePoolsConfigPoolAllocationPtrOutput() ResourcePoolsConfigPoolAllocationPtrOutput {
+	return o
+}
+
+func (o ResourcePoolsConfigPoolAllocationPtrOutput) ToResourcePoolsConfigPoolAllocationPtrOutputWithContext(ctx context.Context) ResourcePoolsConfigPoolAllocationPtrOutput {
+	return o
+}
+
+func (o ResourcePoolsConfigPoolAllocationPtrOutput) Elem() ResourcePoolsConfigPoolAllocationOutput {
+	return o.ApplyT(func(v *ResourcePoolsConfigPoolAllocation) ResourcePoolsConfigPoolAllocation {
+		if v != nil {
+			return *v
+		}
+		var ret ResourcePoolsConfigPoolAllocation
+		return ret
+	}).(ResourcePoolsConfigPoolAllocationOutput)
+}
+
+func (o ResourcePoolsConfigPoolAllocationPtrOutput) FixedValues() ResourcePoolsConfigPoolAllocationFixedValueArrayOutput {
+	return o.ApplyT(func(v *ResourcePoolsConfigPoolAllocation) []ResourcePoolsConfigPoolAllocationFixedValue {
+		if v == nil {
+			return nil
+		}
+		return v.FixedValues
+	}).(ResourcePoolsConfigPoolAllocationFixedValueArrayOutput)
+}
+
+func (o ResourcePoolsConfigPoolAllocationPtrOutput) PercentOfLicense() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *ResourcePoolsConfigPoolAllocation) *float64 {
+		if v == nil {
+			return nil
+		}
+		return v.PercentOfLicense
+	}).(pulumi.Float64PtrOutput)
+}
+
+type ResourcePoolsConfigPoolAllocationFixedValue struct {
+	License string `pulumi:"license"`
+	Value   int    `pulumi:"value"`
+}
+
+// ResourcePoolsConfigPoolAllocationFixedValueInput is an input type that accepts ResourcePoolsConfigPoolAllocationFixedValueArgs and ResourcePoolsConfigPoolAllocationFixedValueOutput values.
+// You can construct a concrete instance of `ResourcePoolsConfigPoolAllocationFixedValueInput` via:
+//
+//	ResourcePoolsConfigPoolAllocationFixedValueArgs{...}
+type ResourcePoolsConfigPoolAllocationFixedValueInput interface {
+	pulumi.Input
+
+	ToResourcePoolsConfigPoolAllocationFixedValueOutput() ResourcePoolsConfigPoolAllocationFixedValueOutput
+	ToResourcePoolsConfigPoolAllocationFixedValueOutputWithContext(context.Context) ResourcePoolsConfigPoolAllocationFixedValueOutput
+}
+
+type ResourcePoolsConfigPoolAllocationFixedValueArgs struct {
+	License pulumi.StringInput `pulumi:"license"`
+	Value   pulumi.IntInput    `pulumi:"value"`
+}
+
+func (ResourcePoolsConfigPoolAllocationFixedValueArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ResourcePoolsConfigPoolAllocationFixedValue)(nil)).Elem()
+}
+
+func (i ResourcePoolsConfigPoolAllocationFixedValueArgs) ToResourcePoolsConfigPoolAllocationFixedValueOutput() ResourcePoolsConfigPoolAllocationFixedValueOutput {
+	return i.ToResourcePoolsConfigPoolAllocationFixedValueOutputWithContext(context.Background())
+}
+
+func (i ResourcePoolsConfigPoolAllocationFixedValueArgs) ToResourcePoolsConfigPoolAllocationFixedValueOutputWithContext(ctx context.Context) ResourcePoolsConfigPoolAllocationFixedValueOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResourcePoolsConfigPoolAllocationFixedValueOutput)
+}
+
+// ResourcePoolsConfigPoolAllocationFixedValueArrayInput is an input type that accepts ResourcePoolsConfigPoolAllocationFixedValueArray and ResourcePoolsConfigPoolAllocationFixedValueArrayOutput values.
+// You can construct a concrete instance of `ResourcePoolsConfigPoolAllocationFixedValueArrayInput` via:
+//
+//	ResourcePoolsConfigPoolAllocationFixedValueArray{ ResourcePoolsConfigPoolAllocationFixedValueArgs{...} }
+type ResourcePoolsConfigPoolAllocationFixedValueArrayInput interface {
+	pulumi.Input
+
+	ToResourcePoolsConfigPoolAllocationFixedValueArrayOutput() ResourcePoolsConfigPoolAllocationFixedValueArrayOutput
+	ToResourcePoolsConfigPoolAllocationFixedValueArrayOutputWithContext(context.Context) ResourcePoolsConfigPoolAllocationFixedValueArrayOutput
+}
+
+type ResourcePoolsConfigPoolAllocationFixedValueArray []ResourcePoolsConfigPoolAllocationFixedValueInput
+
+func (ResourcePoolsConfigPoolAllocationFixedValueArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ResourcePoolsConfigPoolAllocationFixedValue)(nil)).Elem()
+}
+
+func (i ResourcePoolsConfigPoolAllocationFixedValueArray) ToResourcePoolsConfigPoolAllocationFixedValueArrayOutput() ResourcePoolsConfigPoolAllocationFixedValueArrayOutput {
+	return i.ToResourcePoolsConfigPoolAllocationFixedValueArrayOutputWithContext(context.Background())
+}
+
+func (i ResourcePoolsConfigPoolAllocationFixedValueArray) ToResourcePoolsConfigPoolAllocationFixedValueArrayOutputWithContext(ctx context.Context) ResourcePoolsConfigPoolAllocationFixedValueArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResourcePoolsConfigPoolAllocationFixedValueArrayOutput)
+}
+
+type ResourcePoolsConfigPoolAllocationFixedValueOutput struct{ *pulumi.OutputState }
+
+func (ResourcePoolsConfigPoolAllocationFixedValueOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ResourcePoolsConfigPoolAllocationFixedValue)(nil)).Elem()
+}
+
+func (o ResourcePoolsConfigPoolAllocationFixedValueOutput) ToResourcePoolsConfigPoolAllocationFixedValueOutput() ResourcePoolsConfigPoolAllocationFixedValueOutput {
+	return o
+}
+
+func (o ResourcePoolsConfigPoolAllocationFixedValueOutput) ToResourcePoolsConfigPoolAllocationFixedValueOutputWithContext(ctx context.Context) ResourcePoolsConfigPoolAllocationFixedValueOutput {
+	return o
+}
+
+func (o ResourcePoolsConfigPoolAllocationFixedValueOutput) License() pulumi.StringOutput {
+	return o.ApplyT(func(v ResourcePoolsConfigPoolAllocationFixedValue) string { return v.License }).(pulumi.StringOutput)
+}
+
+func (o ResourcePoolsConfigPoolAllocationFixedValueOutput) Value() pulumi.IntOutput {
+	return o.ApplyT(func(v ResourcePoolsConfigPoolAllocationFixedValue) int { return v.Value }).(pulumi.IntOutput)
+}
+
+type ResourcePoolsConfigPoolAllocationFixedValueArrayOutput struct{ *pulumi.OutputState }
+
+func (ResourcePoolsConfigPoolAllocationFixedValueArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ResourcePoolsConfigPoolAllocationFixedValue)(nil)).Elem()
+}
+
+func (o ResourcePoolsConfigPoolAllocationFixedValueArrayOutput) ToResourcePoolsConfigPoolAllocationFixedValueArrayOutput() ResourcePoolsConfigPoolAllocationFixedValueArrayOutput {
+	return o
+}
+
+func (o ResourcePoolsConfigPoolAllocationFixedValueArrayOutput) ToResourcePoolsConfigPoolAllocationFixedValueArrayOutputWithContext(ctx context.Context) ResourcePoolsConfigPoolAllocationFixedValueArrayOutput {
+	return o
+}
+
+func (o ResourcePoolsConfigPoolAllocationFixedValueArrayOutput) Index(i pulumi.IntInput) ResourcePoolsConfigPoolAllocationFixedValueOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ResourcePoolsConfigPoolAllocationFixedValue {
+		return vs[0].([]ResourcePoolsConfigPoolAllocationFixedValue)[vs[1].(int)]
+	}).(ResourcePoolsConfigPoolAllocationFixedValueOutput)
 }
 
 type ResourcePoolsConfigPoolPriorities struct {
@@ -9537,9 +12672,7 @@ type TraceMetricsRuleTraceFilterSpan struct {
 	ParentService   *TraceMetricsRuleTraceFilterSpanParentService   `pulumi:"parentService"`
 	Service         *TraceMetricsRuleTraceFilterSpanService         `pulumi:"service"`
 	SpanCount       *TraceMetricsRuleTraceFilterSpanSpanCount       `pulumi:"spanCount"`
-	Tag             []TraceMetricsRuleTraceFilterSpanTag            `pulumi:"tag"`
-	// Deprecated: `tags` is deprecated, use `tag` instead.
-	Tags []TraceMetricsRuleTraceFilterSpanTag `pulumi:"tags"`
+	Tags            []TraceMetricsRuleTraceFilterSpanTag            `pulumi:"tags"`
 }
 
 // TraceMetricsRuleTraceFilterSpanInput is an input type that accepts TraceMetricsRuleTraceFilterSpanArgs and TraceMetricsRuleTraceFilterSpanOutput values.
@@ -9562,9 +12695,7 @@ type TraceMetricsRuleTraceFilterSpanArgs struct {
 	ParentService   TraceMetricsRuleTraceFilterSpanParentServicePtrInput   `pulumi:"parentService"`
 	Service         TraceMetricsRuleTraceFilterSpanServicePtrInput         `pulumi:"service"`
 	SpanCount       TraceMetricsRuleTraceFilterSpanSpanCountPtrInput       `pulumi:"spanCount"`
-	Tag             TraceMetricsRuleTraceFilterSpanTagArrayInput           `pulumi:"tag"`
-	// Deprecated: `tags` is deprecated, use `tag` instead.
-	Tags TraceMetricsRuleTraceFilterSpanTagArrayInput `pulumi:"tags"`
+	Tags            TraceMetricsRuleTraceFilterSpanTagArrayInput           `pulumi:"tags"`
 }
 
 func (TraceMetricsRuleTraceFilterSpanArgs) ElementType() reflect.Type {
@@ -9654,11 +12785,6 @@ func (o TraceMetricsRuleTraceFilterSpanOutput) SpanCount() TraceMetricsRuleTrace
 	return o.ApplyT(func(v TraceMetricsRuleTraceFilterSpan) *TraceMetricsRuleTraceFilterSpanSpanCount { return v.SpanCount }).(TraceMetricsRuleTraceFilterSpanSpanCountPtrOutput)
 }
 
-func (o TraceMetricsRuleTraceFilterSpanOutput) Tag() TraceMetricsRuleTraceFilterSpanTagArrayOutput {
-	return o.ApplyT(func(v TraceMetricsRuleTraceFilterSpan) []TraceMetricsRuleTraceFilterSpanTag { return v.Tag }).(TraceMetricsRuleTraceFilterSpanTagArrayOutput)
-}
-
-// Deprecated: `tags` is deprecated, use `tag` instead.
 func (o TraceMetricsRuleTraceFilterSpanOutput) Tags() TraceMetricsRuleTraceFilterSpanTagArrayOutput {
 	return o.ApplyT(func(v TraceMetricsRuleTraceFilterSpan) []TraceMetricsRuleTraceFilterSpanTag { return v.Tags }).(TraceMetricsRuleTraceFilterSpanTagArrayOutput)
 }
@@ -9684,12 +12810,8 @@ func (o TraceMetricsRuleTraceFilterSpanArrayOutput) Index(i pulumi.IntInput) Tra
 }
 
 type TraceMetricsRuleTraceFilterSpanDuration struct {
-	// Deprecated: use max_secs instead
-	MaxSeconds *float64 `pulumi:"maxSeconds"`
-	MaxSecs    *float64 `pulumi:"maxSecs"`
-	// Deprecated: use min_secs instead
-	MinSeconds *float64 `pulumi:"minSeconds"`
-	MinSecs    *float64 `pulumi:"minSecs"`
+	MaxSecs *float64 `pulumi:"maxSecs"`
+	MinSecs *float64 `pulumi:"minSecs"`
 }
 
 // TraceMetricsRuleTraceFilterSpanDurationInput is an input type that accepts TraceMetricsRuleTraceFilterSpanDurationArgs and TraceMetricsRuleTraceFilterSpanDurationOutput values.
@@ -9704,12 +12826,8 @@ type TraceMetricsRuleTraceFilterSpanDurationInput interface {
 }
 
 type TraceMetricsRuleTraceFilterSpanDurationArgs struct {
-	// Deprecated: use max_secs instead
-	MaxSeconds pulumi.Float64PtrInput `pulumi:"maxSeconds"`
-	MaxSecs    pulumi.Float64PtrInput `pulumi:"maxSecs"`
-	// Deprecated: use min_secs instead
-	MinSeconds pulumi.Float64PtrInput `pulumi:"minSeconds"`
-	MinSecs    pulumi.Float64PtrInput `pulumi:"minSecs"`
+	MaxSecs pulumi.Float64PtrInput `pulumi:"maxSecs"`
+	MinSecs pulumi.Float64PtrInput `pulumi:"minSecs"`
 }
 
 func (TraceMetricsRuleTraceFilterSpanDurationArgs) ElementType() reflect.Type {
@@ -9789,18 +12907,8 @@ func (o TraceMetricsRuleTraceFilterSpanDurationOutput) ToTraceMetricsRuleTraceFi
 	}).(TraceMetricsRuleTraceFilterSpanDurationPtrOutput)
 }
 
-// Deprecated: use max_secs instead
-func (o TraceMetricsRuleTraceFilterSpanDurationOutput) MaxSeconds() pulumi.Float64PtrOutput {
-	return o.ApplyT(func(v TraceMetricsRuleTraceFilterSpanDuration) *float64 { return v.MaxSeconds }).(pulumi.Float64PtrOutput)
-}
-
 func (o TraceMetricsRuleTraceFilterSpanDurationOutput) MaxSecs() pulumi.Float64PtrOutput {
 	return o.ApplyT(func(v TraceMetricsRuleTraceFilterSpanDuration) *float64 { return v.MaxSecs }).(pulumi.Float64PtrOutput)
-}
-
-// Deprecated: use min_secs instead
-func (o TraceMetricsRuleTraceFilterSpanDurationOutput) MinSeconds() pulumi.Float64PtrOutput {
-	return o.ApplyT(func(v TraceMetricsRuleTraceFilterSpanDuration) *float64 { return v.MinSeconds }).(pulumi.Float64PtrOutput)
 }
 
 func (o TraceMetricsRuleTraceFilterSpanDurationOutput) MinSecs() pulumi.Float64PtrOutput {
@@ -9831,32 +12939,12 @@ func (o TraceMetricsRuleTraceFilterSpanDurationPtrOutput) Elem() TraceMetricsRul
 	}).(TraceMetricsRuleTraceFilterSpanDurationOutput)
 }
 
-// Deprecated: use max_secs instead
-func (o TraceMetricsRuleTraceFilterSpanDurationPtrOutput) MaxSeconds() pulumi.Float64PtrOutput {
-	return o.ApplyT(func(v *TraceMetricsRuleTraceFilterSpanDuration) *float64 {
-		if v == nil {
-			return nil
-		}
-		return v.MaxSeconds
-	}).(pulumi.Float64PtrOutput)
-}
-
 func (o TraceMetricsRuleTraceFilterSpanDurationPtrOutput) MaxSecs() pulumi.Float64PtrOutput {
 	return o.ApplyT(func(v *TraceMetricsRuleTraceFilterSpanDuration) *float64 {
 		if v == nil {
 			return nil
 		}
 		return v.MaxSecs
-	}).(pulumi.Float64PtrOutput)
-}
-
-// Deprecated: use min_secs instead
-func (o TraceMetricsRuleTraceFilterSpanDurationPtrOutput) MinSeconds() pulumi.Float64PtrOutput {
-	return o.ApplyT(func(v *TraceMetricsRuleTraceFilterSpanDuration) *float64 {
-		if v == nil {
-			return nil
-		}
-		return v.MinSeconds
 	}).(pulumi.Float64PtrOutput)
 }
 
@@ -11370,12 +14458,8 @@ func (o TraceMetricsRuleTraceFilterTracePtrOutput) Error() TraceMetricsRuleTrace
 }
 
 type TraceMetricsRuleTraceFilterTraceDuration struct {
-	// Deprecated: use max_secs instead
-	MaxSeconds *float64 `pulumi:"maxSeconds"`
-	MaxSecs    *float64 `pulumi:"maxSecs"`
-	// Deprecated: use min_secs instead
-	MinSeconds *float64 `pulumi:"minSeconds"`
-	MinSecs    *float64 `pulumi:"minSecs"`
+	MaxSecs *float64 `pulumi:"maxSecs"`
+	MinSecs *float64 `pulumi:"minSecs"`
 }
 
 // TraceMetricsRuleTraceFilterTraceDurationInput is an input type that accepts TraceMetricsRuleTraceFilterTraceDurationArgs and TraceMetricsRuleTraceFilterTraceDurationOutput values.
@@ -11390,12 +14474,8 @@ type TraceMetricsRuleTraceFilterTraceDurationInput interface {
 }
 
 type TraceMetricsRuleTraceFilterTraceDurationArgs struct {
-	// Deprecated: use max_secs instead
-	MaxSeconds pulumi.Float64PtrInput `pulumi:"maxSeconds"`
-	MaxSecs    pulumi.Float64PtrInput `pulumi:"maxSecs"`
-	// Deprecated: use min_secs instead
-	MinSeconds pulumi.Float64PtrInput `pulumi:"minSeconds"`
-	MinSecs    pulumi.Float64PtrInput `pulumi:"minSecs"`
+	MaxSecs pulumi.Float64PtrInput `pulumi:"maxSecs"`
+	MinSecs pulumi.Float64PtrInput `pulumi:"minSecs"`
 }
 
 func (TraceMetricsRuleTraceFilterTraceDurationArgs) ElementType() reflect.Type {
@@ -11475,18 +14555,8 @@ func (o TraceMetricsRuleTraceFilterTraceDurationOutput) ToTraceMetricsRuleTraceF
 	}).(TraceMetricsRuleTraceFilterTraceDurationPtrOutput)
 }
 
-// Deprecated: use max_secs instead
-func (o TraceMetricsRuleTraceFilterTraceDurationOutput) MaxSeconds() pulumi.Float64PtrOutput {
-	return o.ApplyT(func(v TraceMetricsRuleTraceFilterTraceDuration) *float64 { return v.MaxSeconds }).(pulumi.Float64PtrOutput)
-}
-
 func (o TraceMetricsRuleTraceFilterTraceDurationOutput) MaxSecs() pulumi.Float64PtrOutput {
 	return o.ApplyT(func(v TraceMetricsRuleTraceFilterTraceDuration) *float64 { return v.MaxSecs }).(pulumi.Float64PtrOutput)
-}
-
-// Deprecated: use min_secs instead
-func (o TraceMetricsRuleTraceFilterTraceDurationOutput) MinSeconds() pulumi.Float64PtrOutput {
-	return o.ApplyT(func(v TraceMetricsRuleTraceFilterTraceDuration) *float64 { return v.MinSeconds }).(pulumi.Float64PtrOutput)
 }
 
 func (o TraceMetricsRuleTraceFilterTraceDurationOutput) MinSecs() pulumi.Float64PtrOutput {
@@ -11517,32 +14587,12 @@ func (o TraceMetricsRuleTraceFilterTraceDurationPtrOutput) Elem() TraceMetricsRu
 	}).(TraceMetricsRuleTraceFilterTraceDurationOutput)
 }
 
-// Deprecated: use max_secs instead
-func (o TraceMetricsRuleTraceFilterTraceDurationPtrOutput) MaxSeconds() pulumi.Float64PtrOutput {
-	return o.ApplyT(func(v *TraceMetricsRuleTraceFilterTraceDuration) *float64 {
-		if v == nil {
-			return nil
-		}
-		return v.MaxSeconds
-	}).(pulumi.Float64PtrOutput)
-}
-
 func (o TraceMetricsRuleTraceFilterTraceDurationPtrOutput) MaxSecs() pulumi.Float64PtrOutput {
 	return o.ApplyT(func(v *TraceMetricsRuleTraceFilterTraceDuration) *float64 {
 		if v == nil {
 			return nil
 		}
 		return v.MaxSecs
-	}).(pulumi.Float64PtrOutput)
-}
-
-// Deprecated: use min_secs instead
-func (o TraceMetricsRuleTraceFilterTraceDurationPtrOutput) MinSeconds() pulumi.Float64PtrOutput {
-	return o.ApplyT(func(v *TraceMetricsRuleTraceFilterTraceDuration) *float64 {
-		if v == nil {
-			return nil
-		}
-		return v.MinSeconds
 	}).(pulumi.Float64PtrOutput)
 }
 
@@ -12012,9 +15062,7 @@ type TraceTailSamplingRulesRuleFilterSpan struct {
 	ParentService   *TraceTailSamplingRulesRuleFilterSpanParentService   `pulumi:"parentService"`
 	Service         *TraceTailSamplingRulesRuleFilterSpanService         `pulumi:"service"`
 	SpanCount       *TraceTailSamplingRulesRuleFilterSpanSpanCount       `pulumi:"spanCount"`
-	Tag             []TraceTailSamplingRulesRuleFilterSpanTag            `pulumi:"tag"`
-	// Deprecated: `tags` is deprecated, use `tag` instead.
-	Tags []TraceTailSamplingRulesRuleFilterSpanTag `pulumi:"tags"`
+	Tags            []TraceTailSamplingRulesRuleFilterSpanTag            `pulumi:"tags"`
 }
 
 // TraceTailSamplingRulesRuleFilterSpanInput is an input type that accepts TraceTailSamplingRulesRuleFilterSpanArgs and TraceTailSamplingRulesRuleFilterSpanOutput values.
@@ -12037,9 +15085,7 @@ type TraceTailSamplingRulesRuleFilterSpanArgs struct {
 	ParentService   TraceTailSamplingRulesRuleFilterSpanParentServicePtrInput   `pulumi:"parentService"`
 	Service         TraceTailSamplingRulesRuleFilterSpanServicePtrInput         `pulumi:"service"`
 	SpanCount       TraceTailSamplingRulesRuleFilterSpanSpanCountPtrInput       `pulumi:"spanCount"`
-	Tag             TraceTailSamplingRulesRuleFilterSpanTagArrayInput           `pulumi:"tag"`
-	// Deprecated: `tags` is deprecated, use `tag` instead.
-	Tags TraceTailSamplingRulesRuleFilterSpanTagArrayInput `pulumi:"tags"`
+	Tags            TraceTailSamplingRulesRuleFilterSpanTagArrayInput           `pulumi:"tags"`
 }
 
 func (TraceTailSamplingRulesRuleFilterSpanArgs) ElementType() reflect.Type {
@@ -12139,11 +15185,6 @@ func (o TraceTailSamplingRulesRuleFilterSpanOutput) SpanCount() TraceTailSamplin
 	}).(TraceTailSamplingRulesRuleFilterSpanSpanCountPtrOutput)
 }
 
-func (o TraceTailSamplingRulesRuleFilterSpanOutput) Tag() TraceTailSamplingRulesRuleFilterSpanTagArrayOutput {
-	return o.ApplyT(func(v TraceTailSamplingRulesRuleFilterSpan) []TraceTailSamplingRulesRuleFilterSpanTag { return v.Tag }).(TraceTailSamplingRulesRuleFilterSpanTagArrayOutput)
-}
-
-// Deprecated: `tags` is deprecated, use `tag` instead.
 func (o TraceTailSamplingRulesRuleFilterSpanOutput) Tags() TraceTailSamplingRulesRuleFilterSpanTagArrayOutput {
 	return o.ApplyT(func(v TraceTailSamplingRulesRuleFilterSpan) []TraceTailSamplingRulesRuleFilterSpanTag { return v.Tags }).(TraceTailSamplingRulesRuleFilterSpanTagArrayOutput)
 }
@@ -12169,12 +15210,8 @@ func (o TraceTailSamplingRulesRuleFilterSpanArrayOutput) Index(i pulumi.IntInput
 }
 
 type TraceTailSamplingRulesRuleFilterSpanDuration struct {
-	// Deprecated: use max_secs instead
-	MaxSeconds *float64 `pulumi:"maxSeconds"`
-	MaxSecs    *float64 `pulumi:"maxSecs"`
-	// Deprecated: use min_secs instead
-	MinSeconds *float64 `pulumi:"minSeconds"`
-	MinSecs    *float64 `pulumi:"minSecs"`
+	MaxSecs *float64 `pulumi:"maxSecs"`
+	MinSecs *float64 `pulumi:"minSecs"`
 }
 
 // TraceTailSamplingRulesRuleFilterSpanDurationInput is an input type that accepts TraceTailSamplingRulesRuleFilterSpanDurationArgs and TraceTailSamplingRulesRuleFilterSpanDurationOutput values.
@@ -12189,12 +15226,8 @@ type TraceTailSamplingRulesRuleFilterSpanDurationInput interface {
 }
 
 type TraceTailSamplingRulesRuleFilterSpanDurationArgs struct {
-	// Deprecated: use max_secs instead
-	MaxSeconds pulumi.Float64PtrInput `pulumi:"maxSeconds"`
-	MaxSecs    pulumi.Float64PtrInput `pulumi:"maxSecs"`
-	// Deprecated: use min_secs instead
-	MinSeconds pulumi.Float64PtrInput `pulumi:"minSeconds"`
-	MinSecs    pulumi.Float64PtrInput `pulumi:"minSecs"`
+	MaxSecs pulumi.Float64PtrInput `pulumi:"maxSecs"`
+	MinSecs pulumi.Float64PtrInput `pulumi:"minSecs"`
 }
 
 func (TraceTailSamplingRulesRuleFilterSpanDurationArgs) ElementType() reflect.Type {
@@ -12274,18 +15307,8 @@ func (o TraceTailSamplingRulesRuleFilterSpanDurationOutput) ToTraceTailSamplingR
 	}).(TraceTailSamplingRulesRuleFilterSpanDurationPtrOutput)
 }
 
-// Deprecated: use max_secs instead
-func (o TraceTailSamplingRulesRuleFilterSpanDurationOutput) MaxSeconds() pulumi.Float64PtrOutput {
-	return o.ApplyT(func(v TraceTailSamplingRulesRuleFilterSpanDuration) *float64 { return v.MaxSeconds }).(pulumi.Float64PtrOutput)
-}
-
 func (o TraceTailSamplingRulesRuleFilterSpanDurationOutput) MaxSecs() pulumi.Float64PtrOutput {
 	return o.ApplyT(func(v TraceTailSamplingRulesRuleFilterSpanDuration) *float64 { return v.MaxSecs }).(pulumi.Float64PtrOutput)
-}
-
-// Deprecated: use min_secs instead
-func (o TraceTailSamplingRulesRuleFilterSpanDurationOutput) MinSeconds() pulumi.Float64PtrOutput {
-	return o.ApplyT(func(v TraceTailSamplingRulesRuleFilterSpanDuration) *float64 { return v.MinSeconds }).(pulumi.Float64PtrOutput)
 }
 
 func (o TraceTailSamplingRulesRuleFilterSpanDurationOutput) MinSecs() pulumi.Float64PtrOutput {
@@ -12316,32 +15339,12 @@ func (o TraceTailSamplingRulesRuleFilterSpanDurationPtrOutput) Elem() TraceTailS
 	}).(TraceTailSamplingRulesRuleFilterSpanDurationOutput)
 }
 
-// Deprecated: use max_secs instead
-func (o TraceTailSamplingRulesRuleFilterSpanDurationPtrOutput) MaxSeconds() pulumi.Float64PtrOutput {
-	return o.ApplyT(func(v *TraceTailSamplingRulesRuleFilterSpanDuration) *float64 {
-		if v == nil {
-			return nil
-		}
-		return v.MaxSeconds
-	}).(pulumi.Float64PtrOutput)
-}
-
 func (o TraceTailSamplingRulesRuleFilterSpanDurationPtrOutput) MaxSecs() pulumi.Float64PtrOutput {
 	return o.ApplyT(func(v *TraceTailSamplingRulesRuleFilterSpanDuration) *float64 {
 		if v == nil {
 			return nil
 		}
 		return v.MaxSecs
-	}).(pulumi.Float64PtrOutput)
-}
-
-// Deprecated: use min_secs instead
-func (o TraceTailSamplingRulesRuleFilterSpanDurationPtrOutput) MinSeconds() pulumi.Float64PtrOutput {
-	return o.ApplyT(func(v *TraceTailSamplingRulesRuleFilterSpanDuration) *float64 {
-		if v == nil {
-			return nil
-		}
-		return v.MinSeconds
 	}).(pulumi.Float64PtrOutput)
 }
 
@@ -13861,12 +16864,8 @@ func (o TraceTailSamplingRulesRuleFilterTracePtrOutput) Error() TraceTailSamplin
 }
 
 type TraceTailSamplingRulesRuleFilterTraceDuration struct {
-	// Deprecated: use max_secs instead
-	MaxSeconds *float64 `pulumi:"maxSeconds"`
-	MaxSecs    *float64 `pulumi:"maxSecs"`
-	// Deprecated: use min_secs instead
-	MinSeconds *float64 `pulumi:"minSeconds"`
-	MinSecs    *float64 `pulumi:"minSecs"`
+	MaxSecs *float64 `pulumi:"maxSecs"`
+	MinSecs *float64 `pulumi:"minSecs"`
 }
 
 // TraceTailSamplingRulesRuleFilterTraceDurationInput is an input type that accepts TraceTailSamplingRulesRuleFilterTraceDurationArgs and TraceTailSamplingRulesRuleFilterTraceDurationOutput values.
@@ -13881,12 +16880,8 @@ type TraceTailSamplingRulesRuleFilterTraceDurationInput interface {
 }
 
 type TraceTailSamplingRulesRuleFilterTraceDurationArgs struct {
-	// Deprecated: use max_secs instead
-	MaxSeconds pulumi.Float64PtrInput `pulumi:"maxSeconds"`
-	MaxSecs    pulumi.Float64PtrInput `pulumi:"maxSecs"`
-	// Deprecated: use min_secs instead
-	MinSeconds pulumi.Float64PtrInput `pulumi:"minSeconds"`
-	MinSecs    pulumi.Float64PtrInput `pulumi:"minSecs"`
+	MaxSecs pulumi.Float64PtrInput `pulumi:"maxSecs"`
+	MinSecs pulumi.Float64PtrInput `pulumi:"minSecs"`
 }
 
 func (TraceTailSamplingRulesRuleFilterTraceDurationArgs) ElementType() reflect.Type {
@@ -13966,18 +16961,8 @@ func (o TraceTailSamplingRulesRuleFilterTraceDurationOutput) ToTraceTailSampling
 	}).(TraceTailSamplingRulesRuleFilterTraceDurationPtrOutput)
 }
 
-// Deprecated: use max_secs instead
-func (o TraceTailSamplingRulesRuleFilterTraceDurationOutput) MaxSeconds() pulumi.Float64PtrOutput {
-	return o.ApplyT(func(v TraceTailSamplingRulesRuleFilterTraceDuration) *float64 { return v.MaxSeconds }).(pulumi.Float64PtrOutput)
-}
-
 func (o TraceTailSamplingRulesRuleFilterTraceDurationOutput) MaxSecs() pulumi.Float64PtrOutput {
 	return o.ApplyT(func(v TraceTailSamplingRulesRuleFilterTraceDuration) *float64 { return v.MaxSecs }).(pulumi.Float64PtrOutput)
-}
-
-// Deprecated: use min_secs instead
-func (o TraceTailSamplingRulesRuleFilterTraceDurationOutput) MinSeconds() pulumi.Float64PtrOutput {
-	return o.ApplyT(func(v TraceTailSamplingRulesRuleFilterTraceDuration) *float64 { return v.MinSeconds }).(pulumi.Float64PtrOutput)
 }
 
 func (o TraceTailSamplingRulesRuleFilterTraceDurationOutput) MinSecs() pulumi.Float64PtrOutput {
@@ -14008,32 +16993,12 @@ func (o TraceTailSamplingRulesRuleFilterTraceDurationPtrOutput) Elem() TraceTail
 	}).(TraceTailSamplingRulesRuleFilterTraceDurationOutput)
 }
 
-// Deprecated: use max_secs instead
-func (o TraceTailSamplingRulesRuleFilterTraceDurationPtrOutput) MaxSeconds() pulumi.Float64PtrOutput {
-	return o.ApplyT(func(v *TraceTailSamplingRulesRuleFilterTraceDuration) *float64 {
-		if v == nil {
-			return nil
-		}
-		return v.MaxSeconds
-	}).(pulumi.Float64PtrOutput)
-}
-
 func (o TraceTailSamplingRulesRuleFilterTraceDurationPtrOutput) MaxSecs() pulumi.Float64PtrOutput {
 	return o.ApplyT(func(v *TraceTailSamplingRulesRuleFilterTraceDuration) *float64 {
 		if v == nil {
 			return nil
 		}
 		return v.MaxSecs
-	}).(pulumi.Float64PtrOutput)
-}
-
-// Deprecated: use min_secs instead
-func (o TraceTailSamplingRulesRuleFilterTraceDurationPtrOutput) MinSeconds() pulumi.Float64PtrOutput {
-	return o.ApplyT(func(v *TraceTailSamplingRulesRuleFilterTraceDuration) *float64 {
-		if v == nil {
-			return nil
-		}
-		return v.MinSeconds
 	}).(pulumi.Float64PtrOutput)
 }
 
@@ -14182,6 +17147,10 @@ func (o TraceTailSamplingRulesRuleFilterTraceErrorPtrOutput) Value() pulumi.Bool
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DatasetConfigurationInput)(nil)).Elem(), DatasetConfigurationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DatasetConfigurationPtrInput)(nil)).Elem(), DatasetConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DatasetConfigurationLogDatasetInput)(nil)).Elem(), DatasetConfigurationLogDatasetArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DatasetConfigurationLogDatasetPtrInput)(nil)).Elem(), DatasetConfigurationLogDatasetArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DatasetConfigurationLogDatasetMatchCriteriaInput)(nil)).Elem(), DatasetConfigurationLogDatasetMatchCriteriaArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DatasetConfigurationLogDatasetMatchCriteriaPtrInput)(nil)).Elem(), DatasetConfigurationLogDatasetMatchCriteriaArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DatasetConfigurationTraceDatasetInput)(nil)).Elem(), DatasetConfigurationTraceDatasetArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DatasetConfigurationTraceDatasetPtrInput)(nil)).Elem(), DatasetConfigurationTraceDatasetArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DatasetConfigurationTraceDatasetMatchCriteriaInput)(nil)).Elem(), DatasetConfigurationTraceDatasetMatchCriteriaArgs{})
@@ -14245,6 +17214,43 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GcpMetricsIntegrationMetricGroupArrayInput)(nil)).Elem(), GcpMetricsIntegrationMetricGroupArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GcpMetricsIntegrationServiceAccountInput)(nil)).Elem(), GcpMetricsIntegrationServiceAccountArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GcpMetricsIntegrationServiceAccountPtrInput)(nil)).Elem(), GcpMetricsIntegrationServiceAccountArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogAllocationConfigDatasetAllocationInput)(nil)).Elem(), LogAllocationConfigDatasetAllocationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogAllocationConfigDatasetAllocationArrayInput)(nil)).Elem(), LogAllocationConfigDatasetAllocationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogAllocationConfigDatasetAllocationAllocationInput)(nil)).Elem(), LogAllocationConfigDatasetAllocationAllocationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogAllocationConfigDatasetAllocationPrioritiesInput)(nil)).Elem(), LogAllocationConfigDatasetAllocationPrioritiesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogAllocationConfigDatasetAllocationPrioritiesPtrInput)(nil)).Elem(), LogAllocationConfigDatasetAllocationPrioritiesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterInput)(nil)).Elem(), LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterArrayInput)(nil)).Elem(), LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterInput)(nil)).Elem(), LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterArrayInput)(nil)).Elem(), LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogAllocationConfigDefaultDatasetInput)(nil)).Elem(), LogAllocationConfigDefaultDatasetArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogAllocationConfigDefaultDatasetPtrInput)(nil)).Elem(), LogAllocationConfigDefaultDatasetArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogAllocationConfigDefaultDatasetAllocationInput)(nil)).Elem(), LogAllocationConfigDefaultDatasetAllocationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogAllocationConfigDefaultDatasetAllocationPtrInput)(nil)).Elem(), LogAllocationConfigDefaultDatasetAllocationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogAllocationConfigDefaultDatasetPrioritiesInput)(nil)).Elem(), LogAllocationConfigDefaultDatasetPrioritiesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogAllocationConfigDefaultDatasetPrioritiesPtrInput)(nil)).Elem(), LogAllocationConfigDefaultDatasetPrioritiesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterInput)(nil)).Elem(), LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterArrayInput)(nil)).Elem(), LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterInput)(nil)).Elem(), LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterArrayInput)(nil)).Elem(), LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogscaleActionEmailActionInput)(nil)).Elem(), LogscaleActionEmailActionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogscaleActionEmailActionPtrInput)(nil)).Elem(), LogscaleActionEmailActionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogscaleActionHumioActionInput)(nil)).Elem(), LogscaleActionHumioActionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogscaleActionHumioActionPtrInput)(nil)).Elem(), LogscaleActionHumioActionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogscaleActionOpsGenieActionInput)(nil)).Elem(), LogscaleActionOpsGenieActionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogscaleActionOpsGenieActionPtrInput)(nil)).Elem(), LogscaleActionOpsGenieActionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogscaleActionPagerDutyActionInput)(nil)).Elem(), LogscaleActionPagerDutyActionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogscaleActionPagerDutyActionPtrInput)(nil)).Elem(), LogscaleActionPagerDutyActionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogscaleActionSlackActionInput)(nil)).Elem(), LogscaleActionSlackActionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogscaleActionSlackActionPtrInput)(nil)).Elem(), LogscaleActionSlackActionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogscaleActionSlackPostMessageActionInput)(nil)).Elem(), LogscaleActionSlackPostMessageActionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogscaleActionSlackPostMessageActionPtrInput)(nil)).Elem(), LogscaleActionSlackPostMessageActionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogscaleActionUploadFileActionInput)(nil)).Elem(), LogscaleActionUploadFileActionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogscaleActionUploadFileActionPtrInput)(nil)).Elem(), LogscaleActionUploadFileActionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogscaleActionVictorOpsActionInput)(nil)).Elem(), LogscaleActionVictorOpsActionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogscaleActionVictorOpsActionPtrInput)(nil)).Elem(), LogscaleActionVictorOpsActionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogscaleActionWebhookActionInput)(nil)).Elem(), LogscaleActionWebhookActionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogscaleActionWebhookActionPtrInput)(nil)).Elem(), LogscaleActionWebhookActionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MappingRuleStoragePolicyInput)(nil)).Elem(), MappingRuleStoragePolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MappingRuleStoragePolicyPtrInput)(nil)).Elem(), MappingRuleStoragePolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MonitorQueryInput)(nil)).Elem(), MonitorQueryArgs{})
@@ -14289,11 +17295,16 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ResourcePoolsConfigDefaultPoolPtrInput)(nil)).Elem(), ResourcePoolsConfigDefaultPoolArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ResourcePoolsConfigDefaultPoolAllocationInput)(nil)).Elem(), ResourcePoolsConfigDefaultPoolAllocationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ResourcePoolsConfigDefaultPoolAllocationPtrInput)(nil)).Elem(), ResourcePoolsConfigDefaultPoolAllocationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ResourcePoolsConfigDefaultPoolAllocationFixedValueInput)(nil)).Elem(), ResourcePoolsConfigDefaultPoolAllocationFixedValueArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ResourcePoolsConfigDefaultPoolAllocationFixedValueArrayInput)(nil)).Elem(), ResourcePoolsConfigDefaultPoolAllocationFixedValueArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ResourcePoolsConfigDefaultPoolPrioritiesInput)(nil)).Elem(), ResourcePoolsConfigDefaultPoolPrioritiesArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ResourcePoolsConfigDefaultPoolPrioritiesPtrInput)(nil)).Elem(), ResourcePoolsConfigDefaultPoolPrioritiesArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ResourcePoolsConfigPoolInput)(nil)).Elem(), ResourcePoolsConfigPoolArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ResourcePoolsConfigPoolArrayInput)(nil)).Elem(), ResourcePoolsConfigPoolArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ResourcePoolsConfigPoolAllocationInput)(nil)).Elem(), ResourcePoolsConfigPoolAllocationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ResourcePoolsConfigPoolAllocationPtrInput)(nil)).Elem(), ResourcePoolsConfigPoolAllocationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ResourcePoolsConfigPoolAllocationFixedValueInput)(nil)).Elem(), ResourcePoolsConfigPoolAllocationFixedValueArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ResourcePoolsConfigPoolAllocationFixedValueArrayInput)(nil)).Elem(), ResourcePoolsConfigPoolAllocationFixedValueArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ResourcePoolsConfigPoolPrioritiesInput)(nil)).Elem(), ResourcePoolsConfigPoolPrioritiesArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ResourcePoolsConfigPoolPrioritiesPtrInput)(nil)).Elem(), ResourcePoolsConfigPoolPrioritiesArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RollupRuleGraphiteLabelPolicyInput)(nil)).Elem(), RollupRuleGraphiteLabelPolicyArgs{})
@@ -14387,6 +17398,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*TraceTailSamplingRulesRuleFilterTraceErrorPtrInput)(nil)).Elem(), TraceTailSamplingRulesRuleFilterTraceErrorArgs{})
 	pulumi.RegisterOutputType(DatasetConfigurationOutput{})
 	pulumi.RegisterOutputType(DatasetConfigurationPtrOutput{})
+	pulumi.RegisterOutputType(DatasetConfigurationLogDatasetOutput{})
+	pulumi.RegisterOutputType(DatasetConfigurationLogDatasetPtrOutput{})
+	pulumi.RegisterOutputType(DatasetConfigurationLogDatasetMatchCriteriaOutput{})
+	pulumi.RegisterOutputType(DatasetConfigurationLogDatasetMatchCriteriaPtrOutput{})
 	pulumi.RegisterOutputType(DatasetConfigurationTraceDatasetOutput{})
 	pulumi.RegisterOutputType(DatasetConfigurationTraceDatasetPtrOutput{})
 	pulumi.RegisterOutputType(DatasetConfigurationTraceDatasetMatchCriteriaOutput{})
@@ -14450,6 +17465,43 @@ func init() {
 	pulumi.RegisterOutputType(GcpMetricsIntegrationMetricGroupArrayOutput{})
 	pulumi.RegisterOutputType(GcpMetricsIntegrationServiceAccountOutput{})
 	pulumi.RegisterOutputType(GcpMetricsIntegrationServiceAccountPtrOutput{})
+	pulumi.RegisterOutputType(LogAllocationConfigDatasetAllocationOutput{})
+	pulumi.RegisterOutputType(LogAllocationConfigDatasetAllocationArrayOutput{})
+	pulumi.RegisterOutputType(LogAllocationConfigDatasetAllocationAllocationOutput{})
+	pulumi.RegisterOutputType(LogAllocationConfigDatasetAllocationPrioritiesOutput{})
+	pulumi.RegisterOutputType(LogAllocationConfigDatasetAllocationPrioritiesPtrOutput{})
+	pulumi.RegisterOutputType(LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterOutput{})
+	pulumi.RegisterOutputType(LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterArrayOutput{})
+	pulumi.RegisterOutputType(LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterOutput{})
+	pulumi.RegisterOutputType(LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterArrayOutput{})
+	pulumi.RegisterOutputType(LogAllocationConfigDefaultDatasetOutput{})
+	pulumi.RegisterOutputType(LogAllocationConfigDefaultDatasetPtrOutput{})
+	pulumi.RegisterOutputType(LogAllocationConfigDefaultDatasetAllocationOutput{})
+	pulumi.RegisterOutputType(LogAllocationConfigDefaultDatasetAllocationPtrOutput{})
+	pulumi.RegisterOutputType(LogAllocationConfigDefaultDatasetPrioritiesOutput{})
+	pulumi.RegisterOutputType(LogAllocationConfigDefaultDatasetPrioritiesPtrOutput{})
+	pulumi.RegisterOutputType(LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterOutput{})
+	pulumi.RegisterOutputType(LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterArrayOutput{})
+	pulumi.RegisterOutputType(LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterOutput{})
+	pulumi.RegisterOutputType(LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterArrayOutput{})
+	pulumi.RegisterOutputType(LogscaleActionEmailActionOutput{})
+	pulumi.RegisterOutputType(LogscaleActionEmailActionPtrOutput{})
+	pulumi.RegisterOutputType(LogscaleActionHumioActionOutput{})
+	pulumi.RegisterOutputType(LogscaleActionHumioActionPtrOutput{})
+	pulumi.RegisterOutputType(LogscaleActionOpsGenieActionOutput{})
+	pulumi.RegisterOutputType(LogscaleActionOpsGenieActionPtrOutput{})
+	pulumi.RegisterOutputType(LogscaleActionPagerDutyActionOutput{})
+	pulumi.RegisterOutputType(LogscaleActionPagerDutyActionPtrOutput{})
+	pulumi.RegisterOutputType(LogscaleActionSlackActionOutput{})
+	pulumi.RegisterOutputType(LogscaleActionSlackActionPtrOutput{})
+	pulumi.RegisterOutputType(LogscaleActionSlackPostMessageActionOutput{})
+	pulumi.RegisterOutputType(LogscaleActionSlackPostMessageActionPtrOutput{})
+	pulumi.RegisterOutputType(LogscaleActionUploadFileActionOutput{})
+	pulumi.RegisterOutputType(LogscaleActionUploadFileActionPtrOutput{})
+	pulumi.RegisterOutputType(LogscaleActionVictorOpsActionOutput{})
+	pulumi.RegisterOutputType(LogscaleActionVictorOpsActionPtrOutput{})
+	pulumi.RegisterOutputType(LogscaleActionWebhookActionOutput{})
+	pulumi.RegisterOutputType(LogscaleActionWebhookActionPtrOutput{})
 	pulumi.RegisterOutputType(MappingRuleStoragePolicyOutput{})
 	pulumi.RegisterOutputType(MappingRuleStoragePolicyPtrOutput{})
 	pulumi.RegisterOutputType(MonitorQueryOutput{})
@@ -14494,11 +17546,16 @@ func init() {
 	pulumi.RegisterOutputType(ResourcePoolsConfigDefaultPoolPtrOutput{})
 	pulumi.RegisterOutputType(ResourcePoolsConfigDefaultPoolAllocationOutput{})
 	pulumi.RegisterOutputType(ResourcePoolsConfigDefaultPoolAllocationPtrOutput{})
+	pulumi.RegisterOutputType(ResourcePoolsConfigDefaultPoolAllocationFixedValueOutput{})
+	pulumi.RegisterOutputType(ResourcePoolsConfigDefaultPoolAllocationFixedValueArrayOutput{})
 	pulumi.RegisterOutputType(ResourcePoolsConfigDefaultPoolPrioritiesOutput{})
 	pulumi.RegisterOutputType(ResourcePoolsConfigDefaultPoolPrioritiesPtrOutput{})
 	pulumi.RegisterOutputType(ResourcePoolsConfigPoolOutput{})
 	pulumi.RegisterOutputType(ResourcePoolsConfigPoolArrayOutput{})
 	pulumi.RegisterOutputType(ResourcePoolsConfigPoolAllocationOutput{})
+	pulumi.RegisterOutputType(ResourcePoolsConfigPoolAllocationPtrOutput{})
+	pulumi.RegisterOutputType(ResourcePoolsConfigPoolAllocationFixedValueOutput{})
+	pulumi.RegisterOutputType(ResourcePoolsConfigPoolAllocationFixedValueArrayOutput{})
 	pulumi.RegisterOutputType(ResourcePoolsConfigPoolPrioritiesOutput{})
 	pulumi.RegisterOutputType(ResourcePoolsConfigPoolPrioritiesPtrOutput{})
 	pulumi.RegisterOutputType(RollupRuleGraphiteLabelPolicyOutput{})

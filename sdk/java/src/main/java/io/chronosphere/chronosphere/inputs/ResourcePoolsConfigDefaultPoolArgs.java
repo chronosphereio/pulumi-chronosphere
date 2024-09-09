@@ -16,11 +16,11 @@ public final class ResourcePoolsConfigDefaultPoolArgs extends com.pulumi.resourc
 
     public static final ResourcePoolsConfigDefaultPoolArgs Empty = new ResourcePoolsConfigDefaultPoolArgs();
 
-    @Import(name="allocation", required=true)
-    private Output<ResourcePoolsConfigDefaultPoolAllocationArgs> allocation;
+    @Import(name="allocation")
+    private @Nullable Output<ResourcePoolsConfigDefaultPoolAllocationArgs> allocation;
 
-    public Output<ResourcePoolsConfigDefaultPoolAllocationArgs> allocation() {
-        return this.allocation;
+    public Optional<Output<ResourcePoolsConfigDefaultPoolAllocationArgs>> allocation() {
+        return Optional.ofNullable(this.allocation);
     }
 
     @Import(name="priorities")
@@ -55,7 +55,7 @@ public final class ResourcePoolsConfigDefaultPoolArgs extends com.pulumi.resourc
             $ = new ResourcePoolsConfigDefaultPoolArgs(Objects.requireNonNull(defaults));
         }
 
-        public Builder allocation(Output<ResourcePoolsConfigDefaultPoolAllocationArgs> allocation) {
+        public Builder allocation(@Nullable Output<ResourcePoolsConfigDefaultPoolAllocationArgs> allocation) {
             $.allocation = allocation;
             return this;
         }
@@ -74,7 +74,6 @@ public final class ResourcePoolsConfigDefaultPoolArgs extends com.pulumi.resourc
         }
 
         public ResourcePoolsConfigDefaultPoolArgs build() {
-            $.allocation = Objects.requireNonNull($.allocation, "expected parameter 'allocation' to be non-null");
             return $;
         }
     }

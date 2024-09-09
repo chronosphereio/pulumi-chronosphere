@@ -11,6 +11,8 @@ from . import _utilities
 
 __all__ = [
     'DatasetConfigurationArgs',
+    'DatasetConfigurationLogDatasetArgs',
+    'DatasetConfigurationLogDatasetMatchCriteriaArgs',
     'DatasetConfigurationTraceDatasetArgs',
     'DatasetConfigurationTraceDatasetMatchCriteriaArgs',
     'DatasetConfigurationTraceDatasetMatchCriteriaSpanArgs',
@@ -43,6 +45,25 @@ __all__ = [
     'DropRuleValueBasedDropArgs',
     'GcpMetricsIntegrationMetricGroupArgs',
     'GcpMetricsIntegrationServiceAccountArgs',
+    'LogAllocationConfigDatasetAllocationArgs',
+    'LogAllocationConfigDatasetAllocationAllocationArgs',
+    'LogAllocationConfigDatasetAllocationPrioritiesArgs',
+    'LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterArgs',
+    'LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterArgs',
+    'LogAllocationConfigDefaultDatasetArgs',
+    'LogAllocationConfigDefaultDatasetAllocationArgs',
+    'LogAllocationConfigDefaultDatasetPrioritiesArgs',
+    'LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterArgs',
+    'LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterArgs',
+    'LogscaleActionEmailActionArgs',
+    'LogscaleActionHumioActionArgs',
+    'LogscaleActionOpsGenieActionArgs',
+    'LogscaleActionPagerDutyActionArgs',
+    'LogscaleActionSlackActionArgs',
+    'LogscaleActionSlackPostMessageActionArgs',
+    'LogscaleActionUploadFileActionArgs',
+    'LogscaleActionVictorOpsActionArgs',
+    'LogscaleActionWebhookActionArgs',
     'MappingRuleStoragePolicyArgs',
     'MonitorQueryArgs',
     'MonitorScheduleArgs',
@@ -65,9 +86,11 @@ __all__ = [
     'PagerdutyAlertNotifierLinkArgs',
     'ResourcePoolsConfigDefaultPoolArgs',
     'ResourcePoolsConfigDefaultPoolAllocationArgs',
+    'ResourcePoolsConfigDefaultPoolAllocationFixedValueArgs',
     'ResourcePoolsConfigDefaultPoolPrioritiesArgs',
     'ResourcePoolsConfigPoolArgs',
     'ResourcePoolsConfigPoolAllocationArgs',
+    'ResourcePoolsConfigPoolAllocationFixedValueArgs',
     'ResourcePoolsConfigPoolPrioritiesArgs',
     'RollupRuleGraphiteLabelPolicyArgs',
     'RollupRuleGraphiteLabelPolicyReplaceArgs',
@@ -121,8 +144,11 @@ __all__ = [
 class DatasetConfigurationArgs:
     def __init__(__self__, *,
                  type: pulumi.Input[str],
+                 log_dataset: Optional[pulumi.Input['DatasetConfigurationLogDatasetArgs']] = None,
                  trace_dataset: Optional[pulumi.Input['DatasetConfigurationTraceDatasetArgs']] = None):
         pulumi.set(__self__, "type", type)
+        if log_dataset is not None:
+            pulumi.set(__self__, "log_dataset", log_dataset)
         if trace_dataset is not None:
             pulumi.set(__self__, "trace_dataset", trace_dataset)
 
@@ -136,6 +162,15 @@ class DatasetConfigurationArgs:
         pulumi.set(self, "type", value)
 
     @property
+    @pulumi.getter(name="logDataset")
+    def log_dataset(self) -> Optional[pulumi.Input['DatasetConfigurationLogDatasetArgs']]:
+        return pulumi.get(self, "log_dataset")
+
+    @log_dataset.setter
+    def log_dataset(self, value: Optional[pulumi.Input['DatasetConfigurationLogDatasetArgs']]):
+        pulumi.set(self, "log_dataset", value)
+
+    @property
     @pulumi.getter(name="traceDataset")
     def trace_dataset(self) -> Optional[pulumi.Input['DatasetConfigurationTraceDatasetArgs']]:
         return pulumi.get(self, "trace_dataset")
@@ -143,6 +178,39 @@ class DatasetConfigurationArgs:
     @trace_dataset.setter
     def trace_dataset(self, value: Optional[pulumi.Input['DatasetConfigurationTraceDatasetArgs']]):
         pulumi.set(self, "trace_dataset", value)
+
+
+@pulumi.input_type
+class DatasetConfigurationLogDatasetArgs:
+    def __init__(__self__, *,
+                 match_criteria: Optional[pulumi.Input['DatasetConfigurationLogDatasetMatchCriteriaArgs']] = None):
+        if match_criteria is not None:
+            pulumi.set(__self__, "match_criteria", match_criteria)
+
+    @property
+    @pulumi.getter(name="matchCriteria")
+    def match_criteria(self) -> Optional[pulumi.Input['DatasetConfigurationLogDatasetMatchCriteriaArgs']]:
+        return pulumi.get(self, "match_criteria")
+
+    @match_criteria.setter
+    def match_criteria(self, value: Optional[pulumi.Input['DatasetConfigurationLogDatasetMatchCriteriaArgs']]):
+        pulumi.set(self, "match_criteria", value)
+
+
+@pulumi.input_type
+class DatasetConfigurationLogDatasetMatchCriteriaArgs:
+    def __init__(__self__, *,
+                 query: pulumi.Input[str]):
+        pulumi.set(__self__, "query", query)
+
+    @property
+    @pulumi.getter
+    def query(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "query")
+
+    @query.setter
+    def query(self, value: pulumi.Input[str]):
+        pulumi.set(self, "query", value)
 
 
 @pulumi.input_type
@@ -201,7 +269,6 @@ class DatasetConfigurationTraceDatasetMatchCriteriaSpanArgs:
                  parent_service: Optional[pulumi.Input['DatasetConfigurationTraceDatasetMatchCriteriaSpanParentServiceArgs']] = None,
                  service: Optional[pulumi.Input['DatasetConfigurationTraceDatasetMatchCriteriaSpanServiceArgs']] = None,
                  span_count: Optional[pulumi.Input['DatasetConfigurationTraceDatasetMatchCriteriaSpanSpanCountArgs']] = None,
-                 tag: Optional[pulumi.Input[Sequence[pulumi.Input['DatasetConfigurationTraceDatasetMatchCriteriaSpanTagArgs']]]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input['DatasetConfigurationTraceDatasetMatchCriteriaSpanTagArgs']]]] = None):
         if duration is not None:
             pulumi.set(__self__, "duration", duration)
@@ -219,11 +286,6 @@ class DatasetConfigurationTraceDatasetMatchCriteriaSpanArgs:
             pulumi.set(__self__, "service", service)
         if span_count is not None:
             pulumi.set(__self__, "span_count", span_count)
-        if tag is not None:
-            pulumi.set(__self__, "tag", tag)
-        if tags is not None:
-            warnings.warn("""`tags` is deprecated, use `tag` instead.""", DeprecationWarning)
-            pulumi.log.warn("""tags is deprecated: `tags` is deprecated, use `tag` instead.""")
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
 
@@ -301,19 +363,7 @@ class DatasetConfigurationTraceDatasetMatchCriteriaSpanArgs:
 
     @property
     @pulumi.getter
-    def tag(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DatasetConfigurationTraceDatasetMatchCriteriaSpanTagArgs']]]]:
-        return pulumi.get(self, "tag")
-
-    @tag.setter
-    def tag(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DatasetConfigurationTraceDatasetMatchCriteriaSpanTagArgs']]]]):
-        pulumi.set(self, "tag", value)
-
-    @property
-    @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DatasetConfigurationTraceDatasetMatchCriteriaSpanTagArgs']]]]:
-        warnings.warn("""`tags` is deprecated, use `tag` instead.""", DeprecationWarning)
-        pulumi.log.warn("""tags is deprecated: `tags` is deprecated, use `tag` instead.""")
-
         return pulumi.get(self, "tags")
 
     @tags.setter
@@ -324,36 +374,12 @@ class DatasetConfigurationTraceDatasetMatchCriteriaSpanArgs:
 @pulumi.input_type
 class DatasetConfigurationTraceDatasetMatchCriteriaSpanDurationArgs:
     def __init__(__self__, *,
-                 max_seconds: Optional[pulumi.Input[float]] = None,
                  max_secs: Optional[pulumi.Input[float]] = None,
-                 min_seconds: Optional[pulumi.Input[float]] = None,
                  min_secs: Optional[pulumi.Input[float]] = None):
-        if max_seconds is not None:
-            warnings.warn("""use max_secs instead""", DeprecationWarning)
-            pulumi.log.warn("""max_seconds is deprecated: use max_secs instead""")
-        if max_seconds is not None:
-            pulumi.set(__self__, "max_seconds", max_seconds)
         if max_secs is not None:
             pulumi.set(__self__, "max_secs", max_secs)
-        if min_seconds is not None:
-            warnings.warn("""use min_secs instead""", DeprecationWarning)
-            pulumi.log.warn("""min_seconds is deprecated: use min_secs instead""")
-        if min_seconds is not None:
-            pulumi.set(__self__, "min_seconds", min_seconds)
         if min_secs is not None:
             pulumi.set(__self__, "min_secs", min_secs)
-
-    @property
-    @pulumi.getter(name="maxSeconds")
-    def max_seconds(self) -> Optional[pulumi.Input[float]]:
-        warnings.warn("""use max_secs instead""", DeprecationWarning)
-        pulumi.log.warn("""max_seconds is deprecated: use max_secs instead""")
-
-        return pulumi.get(self, "max_seconds")
-
-    @max_seconds.setter
-    def max_seconds(self, value: Optional[pulumi.Input[float]]):
-        pulumi.set(self, "max_seconds", value)
 
     @property
     @pulumi.getter(name="maxSecs")
@@ -363,18 +389,6 @@ class DatasetConfigurationTraceDatasetMatchCriteriaSpanDurationArgs:
     @max_secs.setter
     def max_secs(self, value: Optional[pulumi.Input[float]]):
         pulumi.set(self, "max_secs", value)
-
-    @property
-    @pulumi.getter(name="minSeconds")
-    def min_seconds(self) -> Optional[pulumi.Input[float]]:
-        warnings.warn("""use min_secs instead""", DeprecationWarning)
-        pulumi.log.warn("""min_seconds is deprecated: use min_secs instead""")
-
-        return pulumi.get(self, "min_seconds")
-
-    @min_seconds.setter
-    def min_seconds(self, value: Optional[pulumi.Input[float]]):
-        pulumi.set(self, "min_seconds", value)
 
     @property
     @pulumi.getter(name="minSecs")
@@ -736,36 +750,12 @@ class DatasetConfigurationTraceDatasetMatchCriteriaTraceArgs:
 @pulumi.input_type
 class DatasetConfigurationTraceDatasetMatchCriteriaTraceDurationArgs:
     def __init__(__self__, *,
-                 max_seconds: Optional[pulumi.Input[float]] = None,
                  max_secs: Optional[pulumi.Input[float]] = None,
-                 min_seconds: Optional[pulumi.Input[float]] = None,
                  min_secs: Optional[pulumi.Input[float]] = None):
-        if max_seconds is not None:
-            warnings.warn("""use max_secs instead""", DeprecationWarning)
-            pulumi.log.warn("""max_seconds is deprecated: use max_secs instead""")
-        if max_seconds is not None:
-            pulumi.set(__self__, "max_seconds", max_seconds)
         if max_secs is not None:
             pulumi.set(__self__, "max_secs", max_secs)
-        if min_seconds is not None:
-            warnings.warn("""use min_secs instead""", DeprecationWarning)
-            pulumi.log.warn("""min_seconds is deprecated: use min_secs instead""")
-        if min_seconds is not None:
-            pulumi.set(__self__, "min_seconds", min_seconds)
         if min_secs is not None:
             pulumi.set(__self__, "min_secs", min_secs)
-
-    @property
-    @pulumi.getter(name="maxSeconds")
-    def max_seconds(self) -> Optional[pulumi.Input[float]]:
-        warnings.warn("""use max_secs instead""", DeprecationWarning)
-        pulumi.log.warn("""max_seconds is deprecated: use max_secs instead""")
-
-        return pulumi.get(self, "max_seconds")
-
-    @max_seconds.setter
-    def max_seconds(self, value: Optional[pulumi.Input[float]]):
-        pulumi.set(self, "max_seconds", value)
 
     @property
     @pulumi.getter(name="maxSecs")
@@ -775,18 +765,6 @@ class DatasetConfigurationTraceDatasetMatchCriteriaTraceDurationArgs:
     @max_secs.setter
     def max_secs(self, value: Optional[pulumi.Input[float]]):
         pulumi.set(self, "max_secs", value)
-
-    @property
-    @pulumi.getter(name="minSeconds")
-    def min_seconds(self) -> Optional[pulumi.Input[float]]:
-        warnings.warn("""use min_secs instead""", DeprecationWarning)
-        pulumi.log.warn("""min_seconds is deprecated: use min_secs instead""")
-
-        return pulumi.get(self, "min_seconds")
-
-    @min_seconds.setter
-    def min_seconds(self, value: Optional[pulumi.Input[float]]):
-        pulumi.set(self, "min_seconds", value)
 
     @property
     @pulumi.getter(name="minSecs")
@@ -1220,6 +1198,606 @@ class GcpMetricsIntegrationServiceAccountArgs:
     @client_email.setter
     def client_email(self, value: pulumi.Input[str]):
         pulumi.set(self, "client_email", value)
+
+
+@pulumi.input_type
+class LogAllocationConfigDatasetAllocationArgs:
+    def __init__(__self__, *,
+                 allocation: pulumi.Input['LogAllocationConfigDatasetAllocationAllocationArgs'],
+                 dataset_id: pulumi.Input[str],
+                 priorities: Optional[pulumi.Input['LogAllocationConfigDatasetAllocationPrioritiesArgs']] = None):
+        pulumi.set(__self__, "allocation", allocation)
+        pulumi.set(__self__, "dataset_id", dataset_id)
+        if priorities is not None:
+            pulumi.set(__self__, "priorities", priorities)
+
+    @property
+    @pulumi.getter
+    def allocation(self) -> pulumi.Input['LogAllocationConfigDatasetAllocationAllocationArgs']:
+        return pulumi.get(self, "allocation")
+
+    @allocation.setter
+    def allocation(self, value: pulumi.Input['LogAllocationConfigDatasetAllocationAllocationArgs']):
+        pulumi.set(self, "allocation", value)
+
+    @property
+    @pulumi.getter(name="datasetId")
+    def dataset_id(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "dataset_id")
+
+    @dataset_id.setter
+    def dataset_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "dataset_id", value)
+
+    @property
+    @pulumi.getter
+    def priorities(self) -> Optional[pulumi.Input['LogAllocationConfigDatasetAllocationPrioritiesArgs']]:
+        return pulumi.get(self, "priorities")
+
+    @priorities.setter
+    def priorities(self, value: Optional[pulumi.Input['LogAllocationConfigDatasetAllocationPrioritiesArgs']]):
+        pulumi.set(self, "priorities", value)
+
+
+@pulumi.input_type
+class LogAllocationConfigDatasetAllocationAllocationArgs:
+    def __init__(__self__, *,
+                 percent_of_license: pulumi.Input[float]):
+        pulumi.set(__self__, "percent_of_license", percent_of_license)
+
+    @property
+    @pulumi.getter(name="percentOfLicense")
+    def percent_of_license(self) -> pulumi.Input[float]:
+        return pulumi.get(self, "percent_of_license")
+
+    @percent_of_license.setter
+    def percent_of_license(self, value: pulumi.Input[float]):
+        pulumi.set(self, "percent_of_license", value)
+
+
+@pulumi.input_type
+class LogAllocationConfigDatasetAllocationPrioritiesArgs:
+    def __init__(__self__, *,
+                 high_priority_filters: Optional[pulumi.Input[Sequence[pulumi.Input['LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterArgs']]]] = None,
+                 low_priority_filters: Optional[pulumi.Input[Sequence[pulumi.Input['LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterArgs']]]] = None):
+        if high_priority_filters is not None:
+            pulumi.set(__self__, "high_priority_filters", high_priority_filters)
+        if low_priority_filters is not None:
+            pulumi.set(__self__, "low_priority_filters", low_priority_filters)
+
+    @property
+    @pulumi.getter(name="highPriorityFilters")
+    def high_priority_filters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterArgs']]]]:
+        return pulumi.get(self, "high_priority_filters")
+
+    @high_priority_filters.setter
+    def high_priority_filters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterArgs']]]]):
+        pulumi.set(self, "high_priority_filters", value)
+
+    @property
+    @pulumi.getter(name="lowPriorityFilters")
+    def low_priority_filters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterArgs']]]]:
+        return pulumi.get(self, "low_priority_filters")
+
+    @low_priority_filters.setter
+    def low_priority_filters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterArgs']]]]):
+        pulumi.set(self, "low_priority_filters", value)
+
+
+@pulumi.input_type
+class LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterArgs:
+    def __init__(__self__, *,
+                 query: pulumi.Input[str]):
+        pulumi.set(__self__, "query", query)
+
+    @property
+    @pulumi.getter
+    def query(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "query")
+
+    @query.setter
+    def query(self, value: pulumi.Input[str]):
+        pulumi.set(self, "query", value)
+
+
+@pulumi.input_type
+class LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterArgs:
+    def __init__(__self__, *,
+                 query: pulumi.Input[str]):
+        pulumi.set(__self__, "query", query)
+
+    @property
+    @pulumi.getter
+    def query(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "query")
+
+    @query.setter
+    def query(self, value: pulumi.Input[str]):
+        pulumi.set(self, "query", value)
+
+
+@pulumi.input_type
+class LogAllocationConfigDefaultDatasetArgs:
+    def __init__(__self__, *,
+                 allocation: pulumi.Input['LogAllocationConfigDefaultDatasetAllocationArgs'],
+                 priorities: Optional[pulumi.Input['LogAllocationConfigDefaultDatasetPrioritiesArgs']] = None):
+        pulumi.set(__self__, "allocation", allocation)
+        if priorities is not None:
+            pulumi.set(__self__, "priorities", priorities)
+
+    @property
+    @pulumi.getter
+    def allocation(self) -> pulumi.Input['LogAllocationConfigDefaultDatasetAllocationArgs']:
+        return pulumi.get(self, "allocation")
+
+    @allocation.setter
+    def allocation(self, value: pulumi.Input['LogAllocationConfigDefaultDatasetAllocationArgs']):
+        pulumi.set(self, "allocation", value)
+
+    @property
+    @pulumi.getter
+    def priorities(self) -> Optional[pulumi.Input['LogAllocationConfigDefaultDatasetPrioritiesArgs']]:
+        return pulumi.get(self, "priorities")
+
+    @priorities.setter
+    def priorities(self, value: Optional[pulumi.Input['LogAllocationConfigDefaultDatasetPrioritiesArgs']]):
+        pulumi.set(self, "priorities", value)
+
+
+@pulumi.input_type
+class LogAllocationConfigDefaultDatasetAllocationArgs:
+    def __init__(__self__, *,
+                 percent_of_license: pulumi.Input[float]):
+        pulumi.set(__self__, "percent_of_license", percent_of_license)
+
+    @property
+    @pulumi.getter(name="percentOfLicense")
+    def percent_of_license(self) -> pulumi.Input[float]:
+        return pulumi.get(self, "percent_of_license")
+
+    @percent_of_license.setter
+    def percent_of_license(self, value: pulumi.Input[float]):
+        pulumi.set(self, "percent_of_license", value)
+
+
+@pulumi.input_type
+class LogAllocationConfigDefaultDatasetPrioritiesArgs:
+    def __init__(__self__, *,
+                 high_priority_filters: Optional[pulumi.Input[Sequence[pulumi.Input['LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterArgs']]]] = None,
+                 low_priority_filters: Optional[pulumi.Input[Sequence[pulumi.Input['LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterArgs']]]] = None):
+        if high_priority_filters is not None:
+            pulumi.set(__self__, "high_priority_filters", high_priority_filters)
+        if low_priority_filters is not None:
+            pulumi.set(__self__, "low_priority_filters", low_priority_filters)
+
+    @property
+    @pulumi.getter(name="highPriorityFilters")
+    def high_priority_filters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterArgs']]]]:
+        return pulumi.get(self, "high_priority_filters")
+
+    @high_priority_filters.setter
+    def high_priority_filters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterArgs']]]]):
+        pulumi.set(self, "high_priority_filters", value)
+
+    @property
+    @pulumi.getter(name="lowPriorityFilters")
+    def low_priority_filters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterArgs']]]]:
+        return pulumi.get(self, "low_priority_filters")
+
+    @low_priority_filters.setter
+    def low_priority_filters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterArgs']]]]):
+        pulumi.set(self, "low_priority_filters", value)
+
+
+@pulumi.input_type
+class LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterArgs:
+    def __init__(__self__, *,
+                 query: pulumi.Input[str]):
+        pulumi.set(__self__, "query", query)
+
+    @property
+    @pulumi.getter
+    def query(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "query")
+
+    @query.setter
+    def query(self, value: pulumi.Input[str]):
+        pulumi.set(self, "query", value)
+
+
+@pulumi.input_type
+class LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterArgs:
+    def __init__(__self__, *,
+                 query: pulumi.Input[str]):
+        pulumi.set(__self__, "query", query)
+
+    @property
+    @pulumi.getter
+    def query(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "query")
+
+    @query.setter
+    def query(self, value: pulumi.Input[str]):
+        pulumi.set(self, "query", value)
+
+
+@pulumi.input_type
+class LogscaleActionEmailActionArgs:
+    def __init__(__self__, *,
+                 recipients: pulumi.Input[Sequence[pulumi.Input[str]]],
+                 attach_csv: Optional[pulumi.Input[bool]] = None,
+                 body_template: Optional[pulumi.Input[str]] = None,
+                 subject_template: Optional[pulumi.Input[str]] = None,
+                 use_proxy: Optional[pulumi.Input[bool]] = None):
+        pulumi.set(__self__, "recipients", recipients)
+        if attach_csv is not None:
+            pulumi.set(__self__, "attach_csv", attach_csv)
+        if body_template is not None:
+            pulumi.set(__self__, "body_template", body_template)
+        if subject_template is not None:
+            pulumi.set(__self__, "subject_template", subject_template)
+        if use_proxy is not None:
+            pulumi.set(__self__, "use_proxy", use_proxy)
+
+    @property
+    @pulumi.getter
+    def recipients(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        return pulumi.get(self, "recipients")
+
+    @recipients.setter
+    def recipients(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
+        pulumi.set(self, "recipients", value)
+
+    @property
+    @pulumi.getter(name="attachCsv")
+    def attach_csv(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "attach_csv")
+
+    @attach_csv.setter
+    def attach_csv(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "attach_csv", value)
+
+    @property
+    @pulumi.getter(name="bodyTemplate")
+    def body_template(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "body_template")
+
+    @body_template.setter
+    def body_template(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "body_template", value)
+
+    @property
+    @pulumi.getter(name="subjectTemplate")
+    def subject_template(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "subject_template")
+
+    @subject_template.setter
+    def subject_template(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "subject_template", value)
+
+    @property
+    @pulumi.getter(name="useProxy")
+    def use_proxy(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "use_proxy")
+
+    @use_proxy.setter
+    def use_proxy(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "use_proxy", value)
+
+
+@pulumi.input_type
+class LogscaleActionHumioActionArgs:
+    def __init__(__self__, *,
+                 ingest_token: pulumi.Input[str]):
+        pulumi.set(__self__, "ingest_token", ingest_token)
+
+    @property
+    @pulumi.getter(name="ingestToken")
+    def ingest_token(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "ingest_token")
+
+    @ingest_token.setter
+    def ingest_token(self, value: pulumi.Input[str]):
+        pulumi.set(self, "ingest_token", value)
+
+
+@pulumi.input_type
+class LogscaleActionOpsGenieActionArgs:
+    def __init__(__self__, *,
+                 api_url: pulumi.Input[str],
+                 ops_genie_key: pulumi.Input[str],
+                 use_proxy: Optional[pulumi.Input[bool]] = None):
+        pulumi.set(__self__, "api_url", api_url)
+        pulumi.set(__self__, "ops_genie_key", ops_genie_key)
+        if use_proxy is not None:
+            pulumi.set(__self__, "use_proxy", use_proxy)
+
+    @property
+    @pulumi.getter(name="apiUrl")
+    def api_url(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "api_url")
+
+    @api_url.setter
+    def api_url(self, value: pulumi.Input[str]):
+        pulumi.set(self, "api_url", value)
+
+    @property
+    @pulumi.getter(name="opsGenieKey")
+    def ops_genie_key(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "ops_genie_key")
+
+    @ops_genie_key.setter
+    def ops_genie_key(self, value: pulumi.Input[str]):
+        pulumi.set(self, "ops_genie_key", value)
+
+    @property
+    @pulumi.getter(name="useProxy")
+    def use_proxy(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "use_proxy")
+
+    @use_proxy.setter
+    def use_proxy(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "use_proxy", value)
+
+
+@pulumi.input_type
+class LogscaleActionPagerDutyActionArgs:
+    def __init__(__self__, *,
+                 routing_key: pulumi.Input[str],
+                 severity: pulumi.Input[str],
+                 use_proxy: Optional[pulumi.Input[bool]] = None):
+        pulumi.set(__self__, "routing_key", routing_key)
+        pulumi.set(__self__, "severity", severity)
+        if use_proxy is not None:
+            pulumi.set(__self__, "use_proxy", use_proxy)
+
+    @property
+    @pulumi.getter(name="routingKey")
+    def routing_key(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "routing_key")
+
+    @routing_key.setter
+    def routing_key(self, value: pulumi.Input[str]):
+        pulumi.set(self, "routing_key", value)
+
+    @property
+    @pulumi.getter
+    def severity(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "severity")
+
+    @severity.setter
+    def severity(self, value: pulumi.Input[str]):
+        pulumi.set(self, "severity", value)
+
+    @property
+    @pulumi.getter(name="useProxy")
+    def use_proxy(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "use_proxy")
+
+    @use_proxy.setter
+    def use_proxy(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "use_proxy", value)
+
+
+@pulumi.input_type
+class LogscaleActionSlackActionArgs:
+    def __init__(__self__, *,
+                 url: pulumi.Input[str],
+                 fields: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 use_proxy: Optional[pulumi.Input[bool]] = None):
+        pulumi.set(__self__, "url", url)
+        if fields is not None:
+            pulumi.set(__self__, "fields", fields)
+        if use_proxy is not None:
+            pulumi.set(__self__, "use_proxy", use_proxy)
+
+    @property
+    @pulumi.getter
+    def url(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "url")
+
+    @url.setter
+    def url(self, value: pulumi.Input[str]):
+        pulumi.set(self, "url", value)
+
+    @property
+    @pulumi.getter
+    def fields(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        return pulumi.get(self, "fields")
+
+    @fields.setter
+    def fields(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "fields", value)
+
+    @property
+    @pulumi.getter(name="useProxy")
+    def use_proxy(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "use_proxy")
+
+    @use_proxy.setter
+    def use_proxy(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "use_proxy", value)
+
+
+@pulumi.input_type
+class LogscaleActionSlackPostMessageActionArgs:
+    def __init__(__self__, *,
+                 api_token: pulumi.Input[str],
+                 channels: pulumi.Input[Sequence[pulumi.Input[str]]],
+                 fields: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 use_proxy: Optional[pulumi.Input[bool]] = None):
+        pulumi.set(__self__, "api_token", api_token)
+        pulumi.set(__self__, "channels", channels)
+        if fields is not None:
+            pulumi.set(__self__, "fields", fields)
+        if use_proxy is not None:
+            pulumi.set(__self__, "use_proxy", use_proxy)
+
+    @property
+    @pulumi.getter(name="apiToken")
+    def api_token(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "api_token")
+
+    @api_token.setter
+    def api_token(self, value: pulumi.Input[str]):
+        pulumi.set(self, "api_token", value)
+
+    @property
+    @pulumi.getter
+    def channels(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        return pulumi.get(self, "channels")
+
+    @channels.setter
+    def channels(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
+        pulumi.set(self, "channels", value)
+
+    @property
+    @pulumi.getter
+    def fields(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        return pulumi.get(self, "fields")
+
+    @fields.setter
+    def fields(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "fields", value)
+
+    @property
+    @pulumi.getter(name="useProxy")
+    def use_proxy(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "use_proxy")
+
+    @use_proxy.setter
+    def use_proxy(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "use_proxy", value)
+
+
+@pulumi.input_type
+class LogscaleActionUploadFileActionArgs:
+    def __init__(__self__, *,
+                 file_name: pulumi.Input[str]):
+        pulumi.set(__self__, "file_name", file_name)
+
+    @property
+    @pulumi.getter(name="fileName")
+    def file_name(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "file_name")
+
+    @file_name.setter
+    def file_name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "file_name", value)
+
+
+@pulumi.input_type
+class LogscaleActionVictorOpsActionArgs:
+    def __init__(__self__, *,
+                 message_type: pulumi.Input[str],
+                 notify_url: pulumi.Input[str],
+                 use_proxy: Optional[pulumi.Input[bool]] = None):
+        pulumi.set(__self__, "message_type", message_type)
+        pulumi.set(__self__, "notify_url", notify_url)
+        if use_proxy is not None:
+            pulumi.set(__self__, "use_proxy", use_proxy)
+
+    @property
+    @pulumi.getter(name="messageType")
+    def message_type(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "message_type")
+
+    @message_type.setter
+    def message_type(self, value: pulumi.Input[str]):
+        pulumi.set(self, "message_type", value)
+
+    @property
+    @pulumi.getter(name="notifyUrl")
+    def notify_url(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "notify_url")
+
+    @notify_url.setter
+    def notify_url(self, value: pulumi.Input[str]):
+        pulumi.set(self, "notify_url", value)
+
+    @property
+    @pulumi.getter(name="useProxy")
+    def use_proxy(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "use_proxy")
+
+    @use_proxy.setter
+    def use_proxy(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "use_proxy", value)
+
+
+@pulumi.input_type
+class LogscaleActionWebhookActionArgs:
+    def __init__(__self__, *,
+                 method: pulumi.Input[str],
+                 url: pulumi.Input[str],
+                 body_template: Optional[pulumi.Input[str]] = None,
+                 headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 ignore_ssl: Optional[pulumi.Input[bool]] = None,
+                 use_proxy: Optional[pulumi.Input[bool]] = None):
+        pulumi.set(__self__, "method", method)
+        pulumi.set(__self__, "url", url)
+        if body_template is not None:
+            pulumi.set(__self__, "body_template", body_template)
+        if headers is not None:
+            pulumi.set(__self__, "headers", headers)
+        if ignore_ssl is not None:
+            pulumi.set(__self__, "ignore_ssl", ignore_ssl)
+        if use_proxy is not None:
+            pulumi.set(__self__, "use_proxy", use_proxy)
+
+    @property
+    @pulumi.getter
+    def method(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "method")
+
+    @method.setter
+    def method(self, value: pulumi.Input[str]):
+        pulumi.set(self, "method", value)
+
+    @property
+    @pulumi.getter
+    def url(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "url")
+
+    @url.setter
+    def url(self, value: pulumi.Input[str]):
+        pulumi.set(self, "url", value)
+
+    @property
+    @pulumi.getter(name="bodyTemplate")
+    def body_template(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "body_template")
+
+    @body_template.setter
+    def body_template(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "body_template", value)
+
+    @property
+    @pulumi.getter
+    def headers(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        return pulumi.get(self, "headers")
+
+    @headers.setter
+    def headers(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "headers", value)
+
+    @property
+    @pulumi.getter(name="ignoreSsl")
+    def ignore_ssl(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "ignore_ssl")
+
+    @ignore_ssl.setter
+    def ignore_ssl(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "ignore_ssl", value)
+
+    @property
+    @pulumi.getter(name="useProxy")
+    def use_proxy(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "use_proxy")
+
+    @use_proxy.setter
+    def use_proxy(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "use_proxy", value)
 
 
 @pulumi.input_type
@@ -1972,19 +2550,20 @@ class PagerdutyAlertNotifierLinkArgs:
 @pulumi.input_type
 class ResourcePoolsConfigDefaultPoolArgs:
     def __init__(__self__, *,
-                 allocation: pulumi.Input['ResourcePoolsConfigDefaultPoolAllocationArgs'],
+                 allocation: Optional[pulumi.Input['ResourcePoolsConfigDefaultPoolAllocationArgs']] = None,
                  priorities: Optional[pulumi.Input['ResourcePoolsConfigDefaultPoolPrioritiesArgs']] = None):
-        pulumi.set(__self__, "allocation", allocation)
+        if allocation is not None:
+            pulumi.set(__self__, "allocation", allocation)
         if priorities is not None:
             pulumi.set(__self__, "priorities", priorities)
 
     @property
     @pulumi.getter
-    def allocation(self) -> pulumi.Input['ResourcePoolsConfigDefaultPoolAllocationArgs']:
+    def allocation(self) -> Optional[pulumi.Input['ResourcePoolsConfigDefaultPoolAllocationArgs']]:
         return pulumi.get(self, "allocation")
 
     @allocation.setter
-    def allocation(self, value: pulumi.Input['ResourcePoolsConfigDefaultPoolAllocationArgs']):
+    def allocation(self, value: Optional[pulumi.Input['ResourcePoolsConfigDefaultPoolAllocationArgs']]):
         pulumi.set(self, "allocation", value)
 
     @property
@@ -2000,17 +2579,57 @@ class ResourcePoolsConfigDefaultPoolArgs:
 @pulumi.input_type
 class ResourcePoolsConfigDefaultPoolAllocationArgs:
     def __init__(__self__, *,
-                 percent_of_license: pulumi.Input[float]):
-        pulumi.set(__self__, "percent_of_license", percent_of_license)
+                 fixed_values: Optional[pulumi.Input[Sequence[pulumi.Input['ResourcePoolsConfigDefaultPoolAllocationFixedValueArgs']]]] = None,
+                 percent_of_license: Optional[pulumi.Input[float]] = None):
+        if fixed_values is not None:
+            pulumi.set(__self__, "fixed_values", fixed_values)
+        if percent_of_license is not None:
+            pulumi.set(__self__, "percent_of_license", percent_of_license)
+
+    @property
+    @pulumi.getter(name="fixedValues")
+    def fixed_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ResourcePoolsConfigDefaultPoolAllocationFixedValueArgs']]]]:
+        return pulumi.get(self, "fixed_values")
+
+    @fixed_values.setter
+    def fixed_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ResourcePoolsConfigDefaultPoolAllocationFixedValueArgs']]]]):
+        pulumi.set(self, "fixed_values", value)
 
     @property
     @pulumi.getter(name="percentOfLicense")
-    def percent_of_license(self) -> pulumi.Input[float]:
+    def percent_of_license(self) -> Optional[pulumi.Input[float]]:
         return pulumi.get(self, "percent_of_license")
 
     @percent_of_license.setter
-    def percent_of_license(self, value: pulumi.Input[float]):
+    def percent_of_license(self, value: Optional[pulumi.Input[float]]):
         pulumi.set(self, "percent_of_license", value)
+
+
+@pulumi.input_type
+class ResourcePoolsConfigDefaultPoolAllocationFixedValueArgs:
+    def __init__(__self__, *,
+                 license: pulumi.Input[str],
+                 value: pulumi.Input[int]):
+        pulumi.set(__self__, "license", license)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def license(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "license")
+
+    @license.setter
+    def license(self, value: pulumi.Input[str]):
+        pulumi.set(self, "license", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[int]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[int]):
+        pulumi.set(self, "value", value)
 
 
 @pulumi.input_type
@@ -2045,13 +2664,14 @@ class ResourcePoolsConfigDefaultPoolPrioritiesArgs:
 @pulumi.input_type
 class ResourcePoolsConfigPoolArgs:
     def __init__(__self__, *,
-                 allocation: pulumi.Input['ResourcePoolsConfigPoolAllocationArgs'],
                  name: pulumi.Input[str],
+                 allocation: Optional[pulumi.Input['ResourcePoolsConfigPoolAllocationArgs']] = None,
                  match_rule: Optional[pulumi.Input[str]] = None,
                  match_rules: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  priorities: Optional[pulumi.Input['ResourcePoolsConfigPoolPrioritiesArgs']] = None):
-        pulumi.set(__self__, "allocation", allocation)
         pulumi.set(__self__, "name", name)
+        if allocation is not None:
+            pulumi.set(__self__, "allocation", allocation)
         if match_rule is not None:
             warnings.warn("""use match_rules""", DeprecationWarning)
             pulumi.log.warn("""match_rule is deprecated: use match_rules""")
@@ -2064,21 +2684,21 @@ class ResourcePoolsConfigPoolArgs:
 
     @property
     @pulumi.getter
-    def allocation(self) -> pulumi.Input['ResourcePoolsConfigPoolAllocationArgs']:
-        return pulumi.get(self, "allocation")
-
-    @allocation.setter
-    def allocation(self, value: pulumi.Input['ResourcePoolsConfigPoolAllocationArgs']):
-        pulumi.set(self, "allocation", value)
-
-    @property
-    @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: pulumi.Input[str]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def allocation(self) -> Optional[pulumi.Input['ResourcePoolsConfigPoolAllocationArgs']]:
+        return pulumi.get(self, "allocation")
+
+    @allocation.setter
+    def allocation(self, value: Optional[pulumi.Input['ResourcePoolsConfigPoolAllocationArgs']]):
+        pulumi.set(self, "allocation", value)
 
     @property
     @pulumi.getter(name="matchRule")
@@ -2114,17 +2734,57 @@ class ResourcePoolsConfigPoolArgs:
 @pulumi.input_type
 class ResourcePoolsConfigPoolAllocationArgs:
     def __init__(__self__, *,
-                 percent_of_license: pulumi.Input[float]):
-        pulumi.set(__self__, "percent_of_license", percent_of_license)
+                 fixed_values: Optional[pulumi.Input[Sequence[pulumi.Input['ResourcePoolsConfigPoolAllocationFixedValueArgs']]]] = None,
+                 percent_of_license: Optional[pulumi.Input[float]] = None):
+        if fixed_values is not None:
+            pulumi.set(__self__, "fixed_values", fixed_values)
+        if percent_of_license is not None:
+            pulumi.set(__self__, "percent_of_license", percent_of_license)
+
+    @property
+    @pulumi.getter(name="fixedValues")
+    def fixed_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ResourcePoolsConfigPoolAllocationFixedValueArgs']]]]:
+        return pulumi.get(self, "fixed_values")
+
+    @fixed_values.setter
+    def fixed_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ResourcePoolsConfigPoolAllocationFixedValueArgs']]]]):
+        pulumi.set(self, "fixed_values", value)
 
     @property
     @pulumi.getter(name="percentOfLicense")
-    def percent_of_license(self) -> pulumi.Input[float]:
+    def percent_of_license(self) -> Optional[pulumi.Input[float]]:
         return pulumi.get(self, "percent_of_license")
 
     @percent_of_license.setter
-    def percent_of_license(self, value: pulumi.Input[float]):
+    def percent_of_license(self, value: Optional[pulumi.Input[float]]):
         pulumi.set(self, "percent_of_license", value)
+
+
+@pulumi.input_type
+class ResourcePoolsConfigPoolAllocationFixedValueArgs:
+    def __init__(__self__, *,
+                 license: pulumi.Input[str],
+                 value: pulumi.Input[int]):
+        pulumi.set(__self__, "license", license)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def license(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "license")
+
+    @license.setter
+    def license(self, value: pulumi.Input[str]):
+        pulumi.set(self, "license", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[int]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[int]):
+        pulumi.set(self, "value", value)
 
 
 @pulumi.input_type
@@ -2684,7 +3344,6 @@ class TraceMetricsRuleTraceFilterSpanArgs:
                  parent_service: Optional[pulumi.Input['TraceMetricsRuleTraceFilterSpanParentServiceArgs']] = None,
                  service: Optional[pulumi.Input['TraceMetricsRuleTraceFilterSpanServiceArgs']] = None,
                  span_count: Optional[pulumi.Input['TraceMetricsRuleTraceFilterSpanSpanCountArgs']] = None,
-                 tag: Optional[pulumi.Input[Sequence[pulumi.Input['TraceMetricsRuleTraceFilterSpanTagArgs']]]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input['TraceMetricsRuleTraceFilterSpanTagArgs']]]] = None):
         if duration is not None:
             pulumi.set(__self__, "duration", duration)
@@ -2702,11 +3361,6 @@ class TraceMetricsRuleTraceFilterSpanArgs:
             pulumi.set(__self__, "service", service)
         if span_count is not None:
             pulumi.set(__self__, "span_count", span_count)
-        if tag is not None:
-            pulumi.set(__self__, "tag", tag)
-        if tags is not None:
-            warnings.warn("""`tags` is deprecated, use `tag` instead.""", DeprecationWarning)
-            pulumi.log.warn("""tags is deprecated: `tags` is deprecated, use `tag` instead.""")
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
 
@@ -2784,19 +3438,7 @@ class TraceMetricsRuleTraceFilterSpanArgs:
 
     @property
     @pulumi.getter
-    def tag(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['TraceMetricsRuleTraceFilterSpanTagArgs']]]]:
-        return pulumi.get(self, "tag")
-
-    @tag.setter
-    def tag(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['TraceMetricsRuleTraceFilterSpanTagArgs']]]]):
-        pulumi.set(self, "tag", value)
-
-    @property
-    @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['TraceMetricsRuleTraceFilterSpanTagArgs']]]]:
-        warnings.warn("""`tags` is deprecated, use `tag` instead.""", DeprecationWarning)
-        pulumi.log.warn("""tags is deprecated: `tags` is deprecated, use `tag` instead.""")
-
         return pulumi.get(self, "tags")
 
     @tags.setter
@@ -2807,36 +3449,12 @@ class TraceMetricsRuleTraceFilterSpanArgs:
 @pulumi.input_type
 class TraceMetricsRuleTraceFilterSpanDurationArgs:
     def __init__(__self__, *,
-                 max_seconds: Optional[pulumi.Input[float]] = None,
                  max_secs: Optional[pulumi.Input[float]] = None,
-                 min_seconds: Optional[pulumi.Input[float]] = None,
                  min_secs: Optional[pulumi.Input[float]] = None):
-        if max_seconds is not None:
-            warnings.warn("""use max_secs instead""", DeprecationWarning)
-            pulumi.log.warn("""max_seconds is deprecated: use max_secs instead""")
-        if max_seconds is not None:
-            pulumi.set(__self__, "max_seconds", max_seconds)
         if max_secs is not None:
             pulumi.set(__self__, "max_secs", max_secs)
-        if min_seconds is not None:
-            warnings.warn("""use min_secs instead""", DeprecationWarning)
-            pulumi.log.warn("""min_seconds is deprecated: use min_secs instead""")
-        if min_seconds is not None:
-            pulumi.set(__self__, "min_seconds", min_seconds)
         if min_secs is not None:
             pulumi.set(__self__, "min_secs", min_secs)
-
-    @property
-    @pulumi.getter(name="maxSeconds")
-    def max_seconds(self) -> Optional[pulumi.Input[float]]:
-        warnings.warn("""use max_secs instead""", DeprecationWarning)
-        pulumi.log.warn("""max_seconds is deprecated: use max_secs instead""")
-
-        return pulumi.get(self, "max_seconds")
-
-    @max_seconds.setter
-    def max_seconds(self, value: Optional[pulumi.Input[float]]):
-        pulumi.set(self, "max_seconds", value)
 
     @property
     @pulumi.getter(name="maxSecs")
@@ -2846,18 +3464,6 @@ class TraceMetricsRuleTraceFilterSpanDurationArgs:
     @max_secs.setter
     def max_secs(self, value: Optional[pulumi.Input[float]]):
         pulumi.set(self, "max_secs", value)
-
-    @property
-    @pulumi.getter(name="minSeconds")
-    def min_seconds(self) -> Optional[pulumi.Input[float]]:
-        warnings.warn("""use min_secs instead""", DeprecationWarning)
-        pulumi.log.warn("""min_seconds is deprecated: use min_secs instead""")
-
-        return pulumi.get(self, "min_seconds")
-
-    @min_seconds.setter
-    def min_seconds(self, value: Optional[pulumi.Input[float]]):
-        pulumi.set(self, "min_seconds", value)
 
     @property
     @pulumi.getter(name="minSecs")
@@ -3219,36 +3825,12 @@ class TraceMetricsRuleTraceFilterTraceArgs:
 @pulumi.input_type
 class TraceMetricsRuleTraceFilterTraceDurationArgs:
     def __init__(__self__, *,
-                 max_seconds: Optional[pulumi.Input[float]] = None,
                  max_secs: Optional[pulumi.Input[float]] = None,
-                 min_seconds: Optional[pulumi.Input[float]] = None,
                  min_secs: Optional[pulumi.Input[float]] = None):
-        if max_seconds is not None:
-            warnings.warn("""use max_secs instead""", DeprecationWarning)
-            pulumi.log.warn("""max_seconds is deprecated: use max_secs instead""")
-        if max_seconds is not None:
-            pulumi.set(__self__, "max_seconds", max_seconds)
         if max_secs is not None:
             pulumi.set(__self__, "max_secs", max_secs)
-        if min_seconds is not None:
-            warnings.warn("""use min_secs instead""", DeprecationWarning)
-            pulumi.log.warn("""min_seconds is deprecated: use min_secs instead""")
-        if min_seconds is not None:
-            pulumi.set(__self__, "min_seconds", min_seconds)
         if min_secs is not None:
             pulumi.set(__self__, "min_secs", min_secs)
-
-    @property
-    @pulumi.getter(name="maxSeconds")
-    def max_seconds(self) -> Optional[pulumi.Input[float]]:
-        warnings.warn("""use max_secs instead""", DeprecationWarning)
-        pulumi.log.warn("""max_seconds is deprecated: use max_secs instead""")
-
-        return pulumi.get(self, "max_seconds")
-
-    @max_seconds.setter
-    def max_seconds(self, value: Optional[pulumi.Input[float]]):
-        pulumi.set(self, "max_seconds", value)
 
     @property
     @pulumi.getter(name="maxSecs")
@@ -3258,18 +3840,6 @@ class TraceMetricsRuleTraceFilterTraceDurationArgs:
     @max_secs.setter
     def max_secs(self, value: Optional[pulumi.Input[float]]):
         pulumi.set(self, "max_secs", value)
-
-    @property
-    @pulumi.getter(name="minSeconds")
-    def min_seconds(self) -> Optional[pulumi.Input[float]]:
-        warnings.warn("""use min_secs instead""", DeprecationWarning)
-        pulumi.log.warn("""min_seconds is deprecated: use min_secs instead""")
-
-        return pulumi.get(self, "min_seconds")
-
-    @min_seconds.setter
-    def min_seconds(self, value: Optional[pulumi.Input[float]]):
-        pulumi.set(self, "min_seconds", value)
 
     @property
     @pulumi.getter(name="minSecs")
@@ -3416,7 +3986,6 @@ class TraceTailSamplingRulesRuleFilterSpanArgs:
                  parent_service: Optional[pulumi.Input['TraceTailSamplingRulesRuleFilterSpanParentServiceArgs']] = None,
                  service: Optional[pulumi.Input['TraceTailSamplingRulesRuleFilterSpanServiceArgs']] = None,
                  span_count: Optional[pulumi.Input['TraceTailSamplingRulesRuleFilterSpanSpanCountArgs']] = None,
-                 tag: Optional[pulumi.Input[Sequence[pulumi.Input['TraceTailSamplingRulesRuleFilterSpanTagArgs']]]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input['TraceTailSamplingRulesRuleFilterSpanTagArgs']]]] = None):
         if duration is not None:
             pulumi.set(__self__, "duration", duration)
@@ -3434,11 +4003,6 @@ class TraceTailSamplingRulesRuleFilterSpanArgs:
             pulumi.set(__self__, "service", service)
         if span_count is not None:
             pulumi.set(__self__, "span_count", span_count)
-        if tag is not None:
-            pulumi.set(__self__, "tag", tag)
-        if tags is not None:
-            warnings.warn("""`tags` is deprecated, use `tag` instead.""", DeprecationWarning)
-            pulumi.log.warn("""tags is deprecated: `tags` is deprecated, use `tag` instead.""")
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
 
@@ -3516,19 +4080,7 @@ class TraceTailSamplingRulesRuleFilterSpanArgs:
 
     @property
     @pulumi.getter
-    def tag(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['TraceTailSamplingRulesRuleFilterSpanTagArgs']]]]:
-        return pulumi.get(self, "tag")
-
-    @tag.setter
-    def tag(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['TraceTailSamplingRulesRuleFilterSpanTagArgs']]]]):
-        pulumi.set(self, "tag", value)
-
-    @property
-    @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['TraceTailSamplingRulesRuleFilterSpanTagArgs']]]]:
-        warnings.warn("""`tags` is deprecated, use `tag` instead.""", DeprecationWarning)
-        pulumi.log.warn("""tags is deprecated: `tags` is deprecated, use `tag` instead.""")
-
         return pulumi.get(self, "tags")
 
     @tags.setter
@@ -3539,36 +4091,12 @@ class TraceTailSamplingRulesRuleFilterSpanArgs:
 @pulumi.input_type
 class TraceTailSamplingRulesRuleFilterSpanDurationArgs:
     def __init__(__self__, *,
-                 max_seconds: Optional[pulumi.Input[float]] = None,
                  max_secs: Optional[pulumi.Input[float]] = None,
-                 min_seconds: Optional[pulumi.Input[float]] = None,
                  min_secs: Optional[pulumi.Input[float]] = None):
-        if max_seconds is not None:
-            warnings.warn("""use max_secs instead""", DeprecationWarning)
-            pulumi.log.warn("""max_seconds is deprecated: use max_secs instead""")
-        if max_seconds is not None:
-            pulumi.set(__self__, "max_seconds", max_seconds)
         if max_secs is not None:
             pulumi.set(__self__, "max_secs", max_secs)
-        if min_seconds is not None:
-            warnings.warn("""use min_secs instead""", DeprecationWarning)
-            pulumi.log.warn("""min_seconds is deprecated: use min_secs instead""")
-        if min_seconds is not None:
-            pulumi.set(__self__, "min_seconds", min_seconds)
         if min_secs is not None:
             pulumi.set(__self__, "min_secs", min_secs)
-
-    @property
-    @pulumi.getter(name="maxSeconds")
-    def max_seconds(self) -> Optional[pulumi.Input[float]]:
-        warnings.warn("""use max_secs instead""", DeprecationWarning)
-        pulumi.log.warn("""max_seconds is deprecated: use max_secs instead""")
-
-        return pulumi.get(self, "max_seconds")
-
-    @max_seconds.setter
-    def max_seconds(self, value: Optional[pulumi.Input[float]]):
-        pulumi.set(self, "max_seconds", value)
 
     @property
     @pulumi.getter(name="maxSecs")
@@ -3578,18 +4106,6 @@ class TraceTailSamplingRulesRuleFilterSpanDurationArgs:
     @max_secs.setter
     def max_secs(self, value: Optional[pulumi.Input[float]]):
         pulumi.set(self, "max_secs", value)
-
-    @property
-    @pulumi.getter(name="minSeconds")
-    def min_seconds(self) -> Optional[pulumi.Input[float]]:
-        warnings.warn("""use min_secs instead""", DeprecationWarning)
-        pulumi.log.warn("""min_seconds is deprecated: use min_secs instead""")
-
-        return pulumi.get(self, "min_seconds")
-
-    @min_seconds.setter
-    def min_seconds(self, value: Optional[pulumi.Input[float]]):
-        pulumi.set(self, "min_seconds", value)
 
     @property
     @pulumi.getter(name="minSecs")
@@ -3951,36 +4467,12 @@ class TraceTailSamplingRulesRuleFilterTraceArgs:
 @pulumi.input_type
 class TraceTailSamplingRulesRuleFilterTraceDurationArgs:
     def __init__(__self__, *,
-                 max_seconds: Optional[pulumi.Input[float]] = None,
                  max_secs: Optional[pulumi.Input[float]] = None,
-                 min_seconds: Optional[pulumi.Input[float]] = None,
                  min_secs: Optional[pulumi.Input[float]] = None):
-        if max_seconds is not None:
-            warnings.warn("""use max_secs instead""", DeprecationWarning)
-            pulumi.log.warn("""max_seconds is deprecated: use max_secs instead""")
-        if max_seconds is not None:
-            pulumi.set(__self__, "max_seconds", max_seconds)
         if max_secs is not None:
             pulumi.set(__self__, "max_secs", max_secs)
-        if min_seconds is not None:
-            warnings.warn("""use min_secs instead""", DeprecationWarning)
-            pulumi.log.warn("""min_seconds is deprecated: use min_secs instead""")
-        if min_seconds is not None:
-            pulumi.set(__self__, "min_seconds", min_seconds)
         if min_secs is not None:
             pulumi.set(__self__, "min_secs", min_secs)
-
-    @property
-    @pulumi.getter(name="maxSeconds")
-    def max_seconds(self) -> Optional[pulumi.Input[float]]:
-        warnings.warn("""use max_secs instead""", DeprecationWarning)
-        pulumi.log.warn("""max_seconds is deprecated: use max_secs instead""")
-
-        return pulumi.get(self, "max_seconds")
-
-    @max_seconds.setter
-    def max_seconds(self, value: Optional[pulumi.Input[float]]):
-        pulumi.set(self, "max_seconds", value)
 
     @property
     @pulumi.getter(name="maxSecs")
@@ -3990,18 +4482,6 @@ class TraceTailSamplingRulesRuleFilterTraceDurationArgs:
     @max_secs.setter
     def max_secs(self, value: Optional[pulumi.Input[float]]):
         pulumi.set(self, "max_secs", value)
-
-    @property
-    @pulumi.getter(name="minSeconds")
-    def min_seconds(self) -> Optional[pulumi.Input[float]]:
-        warnings.warn("""use min_secs instead""", DeprecationWarning)
-        pulumi.log.warn("""min_seconds is deprecated: use min_secs instead""")
-
-        return pulumi.get(self, "min_seconds")
-
-    @min_seconds.setter
-    def min_seconds(self, value: Optional[pulumi.Input[float]]):
-        pulumi.set(self, "min_seconds", value)
 
     @property
     @pulumi.getter(name="minSecs")

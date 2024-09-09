@@ -12,6 +12,9 @@
             "chronosphere:index/dropRule:DropRule": "chronosphere_drop_rule",
             "chronosphere:index/emailAlertNotifier:EmailAlertNotifier": "chronosphere_email_alert_notifier",
             "chronosphere:index/gcpMetricsIntegration:GcpMetricsIntegration": "chronosphere_gcp_metrics_integration",
+            "chronosphere:index/logAllocationConfig:LogAllocationConfig": "chronosphere_log_allocation_config",
+            "chronosphere:index/logscaleAction:LogscaleAction": "chronosphere_logscale_action",
+            "chronosphere:index/logscaleAlert:LogscaleAlert": "chronosphere_logscale_alert",
             "chronosphere:index/mappingRule:MappingRule": "chronosphere_mapping_rule",
             "chronosphere:index/monitor:Monitor": "chronosphere_monitor",
             "chronosphere:index/notificationPolicy:NotificationPolicy": "chronosphere_notification_policy",
@@ -37,7 +40,11 @@
         },
         "renamedProperties": {
             "chronosphere:index/DatasetConfiguration:DatasetConfiguration": {
+                "logDataset": "log_dataset",
                 "traceDataset": "trace_dataset"
+            },
+            "chronosphere:index/DatasetConfigurationLogDataset:DatasetConfigurationLogDataset": {
+                "matchCriteria": "match_criteria"
             },
             "chronosphere:index/DatasetConfigurationTraceDataset:DatasetConfigurationTraceDataset": {
                 "matchCriteria": "match_criteria"
@@ -49,12 +56,11 @@
                 "matchType": "match_type",
                 "parentOperation": "parent_operation",
                 "parentService": "parent_service",
-                "spanCount": "span_count"
+                "spanCount": "span_count",
+                "tags": "tag"
             },
             "chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaSpanDuration:DatasetConfigurationTraceDatasetMatchCriteriaSpanDuration": {
-                "maxSeconds": "max_seconds",
                 "maxSecs": "max_secs",
-                "minSeconds": "min_seconds",
                 "minSecs": "min_secs"
             },
             "chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaSpanOperation:DatasetConfigurationTraceDatasetMatchCriteriaSpanOperation": {
@@ -76,9 +82,7 @@
                 "inValues": "in_values"
             },
             "chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaTraceDuration:DatasetConfigurationTraceDatasetMatchCriteriaTraceDuration": {
-                "maxSeconds": "max_seconds",
                 "maxSecs": "max_secs",
-                "minSeconds": "min_seconds",
                 "minSecs": "min_secs"
             },
             "chronosphere:index/DerivedLabelMetricLabel:DerivedLabelMetricLabel": {
@@ -121,6 +125,61 @@
             },
             "chronosphere:index/GcpMetricsIntegrationServiceAccount:GcpMetricsIntegrationServiceAccount": {
                 "clientEmail": "client_email"
+            },
+            "chronosphere:index/LogAllocationConfigDatasetAllocation:LogAllocationConfigDatasetAllocation": {
+                "datasetId": "dataset_id"
+            },
+            "chronosphere:index/LogAllocationConfigDatasetAllocationAllocation:LogAllocationConfigDatasetAllocationAllocation": {
+                "percentOfLicense": "percent_of_license"
+            },
+            "chronosphere:index/LogAllocationConfigDatasetAllocationPriorities:LogAllocationConfigDatasetAllocationPriorities": {
+                "highPriorityFilters": "high_priority_filter",
+                "lowPriorityFilters": "low_priority_filter"
+            },
+            "chronosphere:index/LogAllocationConfigDefaultDatasetAllocation:LogAllocationConfigDefaultDatasetAllocation": {
+                "percentOfLicense": "percent_of_license"
+            },
+            "chronosphere:index/LogAllocationConfigDefaultDatasetPriorities:LogAllocationConfigDefaultDatasetPriorities": {
+                "highPriorityFilters": "high_priority_filter",
+                "lowPriorityFilters": "low_priority_filter"
+            },
+            "chronosphere:index/LogscaleActionEmailAction:LogscaleActionEmailAction": {
+                "attachCsv": "attach_csv",
+                "bodyTemplate": "body_template",
+                "subjectTemplate": "subject_template",
+                "useProxy": "use_proxy"
+            },
+            "chronosphere:index/LogscaleActionHumioAction:LogscaleActionHumioAction": {
+                "ingestToken": "ingest_token"
+            },
+            "chronosphere:index/LogscaleActionOpsGenieAction:LogscaleActionOpsGenieAction": {
+                "apiUrl": "api_url",
+                "opsGenieKey": "ops_genie_key",
+                "useProxy": "use_proxy"
+            },
+            "chronosphere:index/LogscaleActionPagerDutyAction:LogscaleActionPagerDutyAction": {
+                "routingKey": "routing_key",
+                "useProxy": "use_proxy"
+            },
+            "chronosphere:index/LogscaleActionSlackAction:LogscaleActionSlackAction": {
+                "useProxy": "use_proxy"
+            },
+            "chronosphere:index/LogscaleActionSlackPostMessageAction:LogscaleActionSlackPostMessageAction": {
+                "apiToken": "api_token",
+                "useProxy": "use_proxy"
+            },
+            "chronosphere:index/LogscaleActionUploadFileAction:LogscaleActionUploadFileAction": {
+                "fileName": "file_name"
+            },
+            "chronosphere:index/LogscaleActionVictorOpsAction:LogscaleActionVictorOpsAction": {
+                "messageType": "message_type",
+                "notifyUrl": "notify_url",
+                "useProxy": "use_proxy"
+            },
+            "chronosphere:index/LogscaleActionWebhookAction:LogscaleActionWebhookAction": {
+                "bodyTemplate": "body_template",
+                "ignoreSsl": "ignore_ssl",
+                "useProxy": "use_proxy"
             },
             "chronosphere:index/MonitorQuery:MonitorQuery": {
                 "graphiteExpr": "graphite_expr",
@@ -172,6 +231,7 @@
                 "generateTargetInfo": "generate_target_info"
             },
             "chronosphere:index/ResourcePoolsConfigDefaultPoolAllocation:ResourcePoolsConfigDefaultPoolAllocation": {
+                "fixedValues": "fixed_value",
                 "percentOfLicense": "percent_of_license"
             },
             "chronosphere:index/ResourcePoolsConfigDefaultPoolPriorities:ResourcePoolsConfigDefaultPoolPriorities": {
@@ -183,6 +243,7 @@
                 "matchRules": "match_rules"
             },
             "chronosphere:index/ResourcePoolsConfigPoolAllocation:ResourcePoolsConfigPoolAllocation": {
+                "fixedValues": "fixed_value",
                 "percentOfLicense": "percent_of_license"
             },
             "chronosphere:index/ResourcePoolsConfigPoolPriorities:ResourcePoolsConfigPoolPriorities": {
@@ -234,12 +295,11 @@
                 "matchType": "match_type",
                 "parentOperation": "parent_operation",
                 "parentService": "parent_service",
-                "spanCount": "span_count"
+                "spanCount": "span_count",
+                "tags": "tag"
             },
             "chronosphere:index/TraceMetricsRuleTraceFilterSpanDuration:TraceMetricsRuleTraceFilterSpanDuration": {
-                "maxSeconds": "max_seconds",
                 "maxSecs": "max_secs",
-                "minSeconds": "min_seconds",
                 "minSecs": "min_secs"
             },
             "chronosphere:index/TraceMetricsRuleTraceFilterSpanOperation:TraceMetricsRuleTraceFilterSpanOperation": {
@@ -261,9 +321,7 @@
                 "inValues": "in_values"
             },
             "chronosphere:index/TraceMetricsRuleTraceFilterTraceDuration:TraceMetricsRuleTraceFilterTraceDuration": {
-                "maxSeconds": "max_seconds",
                 "maxSecs": "max_secs",
-                "minSeconds": "min_seconds",
                 "minSecs": "min_secs"
             },
             "chronosphere:index/TraceTailSamplingRulesDefaultSampleRate:TraceTailSamplingRulesDefaultSampleRate": {
@@ -280,12 +338,11 @@
                 "matchType": "match_type",
                 "parentOperation": "parent_operation",
                 "parentService": "parent_service",
-                "spanCount": "span_count"
+                "spanCount": "span_count",
+                "tags": "tag"
             },
             "chronosphere:index/TraceTailSamplingRulesRuleFilterSpanDuration:TraceTailSamplingRulesRuleFilterSpanDuration": {
-                "maxSeconds": "max_seconds",
                 "maxSecs": "max_secs",
-                "minSeconds": "min_seconds",
                 "minSecs": "min_secs"
             },
             "chronosphere:index/TraceTailSamplingRulesRuleFilterSpanOperation:TraceTailSamplingRulesRuleFilterSpanOperation": {
@@ -307,9 +364,7 @@
                 "inValues": "in_values"
             },
             "chronosphere:index/TraceTailSamplingRulesRuleFilterTraceDuration:TraceTailSamplingRulesRuleFilterTraceDuration": {
-                "maxSeconds": "max_seconds",
                 "maxSecs": "max_secs",
-                "minSeconds": "min_seconds",
                 "minSecs": "min_secs"
             },
             "chronosphere:index/bucket:Bucket": {
@@ -353,6 +408,29 @@
             "chronosphere:index/gcpMetricsIntegration:GcpMetricsIntegration": {
                 "metricGroups": "metric_groups",
                 "serviceAccount": "service_account"
+            },
+            "chronosphere:index/logAllocationConfig:LogAllocationConfig": {
+                "datasetAllocations": "dataset_allocation",
+                "defaultDataset": "default_dataset"
+            },
+            "chronosphere:index/logscaleAction:LogscaleAction": {
+                "emailAction": "email_action",
+                "humioAction": "humio_action",
+                "opsGenieAction": "ops_genie_action",
+                "pagerDutyAction": "pager_duty_action",
+                "slackAction": "slack_action",
+                "slackPostMessageAction": "slack_post_message_action",
+                "uploadFileAction": "upload_file_action",
+                "victorOpsAction": "victor_ops_action",
+                "webhookAction": "webhook_action"
+            },
+            "chronosphere:index/logscaleAlert:LogscaleAlert": {
+                "actionIds": "action_ids",
+                "alertType": "alert_type",
+                "runAsUser": "run_as_user",
+                "throttleDuration": "throttle_duration",
+                "throttleField": "throttle_field",
+                "timeWindow": "time_window"
             },
             "chronosphere:index/mappingRule:MappingRule": {
                 "bucketId": "bucket_id",
