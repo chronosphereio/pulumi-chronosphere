@@ -22,7 +22,7 @@ type RollupRule struct {
 	Filter              pulumi.StringOutput                    `pulumi:"filter"`
 	GraphiteLabelPolicy RollupRuleGraphiteLabelPolicyPtrOutput `pulumi:"graphiteLabelPolicy"`
 	GroupBies           pulumi.StringArrayOutput               `pulumi:"groupBies"`
-	Interval            pulumi.StringPtrOutput                 `pulumi:"interval"`
+	Interval            pulumi.StringOutput                    `pulumi:"interval"`
 	MetricType          pulumi.StringOutput                    `pulumi:"metricType"`
 	MetricTypeTag       pulumi.BoolPtrOutput                   `pulumi:"metricTypeTag"`
 	Mode                pulumi.StringPtrOutput                 `pulumi:"mode"`
@@ -31,7 +31,7 @@ type RollupRule struct {
 	Permissive          pulumi.BoolPtrOutput                   `pulumi:"permissive"`
 	Slug                pulumi.StringOutput                    `pulumi:"slug"`
 	// Deprecated: use `interval` instead
-	StoragePolicies RollupRuleStoragePoliciesOutput `pulumi:"storagePolicies"`
+	StoragePolicies RollupRuleStoragePoliciesPtrOutput `pulumi:"storagePolicies"`
 }
 
 // NewRollupRule registers a new resource with the given unique name, arguments, and options.
@@ -275,8 +275,8 @@ func (o RollupRuleOutput) GroupBies() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *RollupRule) pulumi.StringArrayOutput { return v.GroupBies }).(pulumi.StringArrayOutput)
 }
 
-func (o RollupRuleOutput) Interval() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *RollupRule) pulumi.StringPtrOutput { return v.Interval }).(pulumi.StringPtrOutput)
+func (o RollupRuleOutput) Interval() pulumi.StringOutput {
+	return o.ApplyT(func(v *RollupRule) pulumi.StringOutput { return v.Interval }).(pulumi.StringOutput)
 }
 
 func (o RollupRuleOutput) MetricType() pulumi.StringOutput {
@@ -308,8 +308,8 @@ func (o RollupRuleOutput) Slug() pulumi.StringOutput {
 }
 
 // Deprecated: use `interval` instead
-func (o RollupRuleOutput) StoragePolicies() RollupRuleStoragePoliciesOutput {
-	return o.ApplyT(func(v *RollupRule) RollupRuleStoragePoliciesOutput { return v.StoragePolicies }).(RollupRuleStoragePoliciesOutput)
+func (o RollupRuleOutput) StoragePolicies() RollupRuleStoragePoliciesPtrOutput {
+	return o.ApplyT(func(v *RollupRule) RollupRuleStoragePoliciesPtrOutput { return v.StoragePolicies }).(RollupRuleStoragePoliciesPtrOutput)
 }
 
 type RollupRuleArrayOutput struct{ *pulumi.OutputState }

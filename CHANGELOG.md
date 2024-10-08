@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+## v0.9.3
+
+- Allow creating `chronosphere_slack_notifier` with actions without `action_confirm_text`.
+- Fix `chronosphere_rollup_rule` and `chronosphere_mapping_rule` diff after applying a rule without an interval or storage policy.
+
 ## v0.9.2
 
 ### Features

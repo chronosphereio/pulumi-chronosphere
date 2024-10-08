@@ -29,7 +29,7 @@ namespace Chronosphere.Pulumi
         public Output<string> Filter { get; private set; } = null!;
 
         [Output("interval")]
-        public Output<string?> Interval { get; private set; } = null!;
+        public Output<string> Interval { get; private set; } = null!;
 
         [Output("mode")]
         public Output<string?> Mode { get; private set; } = null!;

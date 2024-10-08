@@ -42,7 +42,7 @@ export class MappingRule extends pulumi.CustomResource {
      */
     public readonly dropTimestamp!: pulumi.Output<boolean | undefined>;
     public readonly filter!: pulumi.Output<string>;
-    public readonly interval!: pulumi.Output<string | undefined>;
+    public readonly interval!: pulumi.Output<string>;
     public readonly mode!: pulumi.Output<string | undefined>;
     public readonly name!: pulumi.Output<string>;
     public readonly slug!: pulumi.Output<string>;

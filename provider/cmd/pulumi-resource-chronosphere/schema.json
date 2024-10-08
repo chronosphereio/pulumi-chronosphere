@@ -3343,6 +3343,7 @@
             },
             "required": [
                 "filter",
+                "interval",
                 "name",
                 "slug"
             ],
@@ -4390,10 +4391,10 @@
             },
             "required": [
                 "filter",
+                "interval",
                 "metricType",
                 "name",
-                "slug",
-                "storagePolicies"
+                "slug"
             ],
             "inputProperties": {
                 "aggregation": {
