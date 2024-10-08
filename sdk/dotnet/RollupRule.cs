@@ -35,7 +35,7 @@ namespace Chronosphere.Pulumi
         public Output<ImmutableArray<string>> GroupBies { get; private set; } = null!;
 
         [Output("interval")]
-        public Output<string?> Interval { get; private set; } = null!;
+        public Output<string> Interval { get; private set; } = null!;
 
         [Output("metricType")]
         public Output<string> MetricType { get; private set; } = null!;
@@ -59,7 +59,7 @@ namespace Chronosphere.Pulumi
         public Output<string> Slug { get; private set; } = null!;
 
         [Output("storagePolicies")]
-        public Output<Outputs.RollupRuleStoragePolicies> StoragePolicies { get; private set; } = null!;
+        public Output<Outputs.RollupRuleStoragePolicies?> StoragePolicies { get; private set; } = null!;
 
 
         /// <summary>

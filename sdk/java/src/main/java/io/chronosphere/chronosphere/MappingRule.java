@@ -55,10 +55,10 @@ public class MappingRule extends com.pulumi.resources.CustomResource {
         return this.filter;
     }
     @Export(name="interval", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> interval;
+    private Output<String> interval;
 
-    public Output<Optional<String>> interval() {
-        return Codegen.optional(this.interval);
+    public Output<String> interval() {
+        return this.interval;
     }
     @Export(name="mode", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> mode;

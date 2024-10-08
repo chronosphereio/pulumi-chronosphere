@@ -442,7 +442,7 @@ class MappingRule(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def interval(self) -> pulumi.Output[Optional[str]]:
+    def interval(self) -> pulumi.Output[str]:
         return pulumi.get(self, "interval")
 
     @property

@@ -41,7 +41,7 @@ export class RollupRule extends pulumi.CustomResource {
     public readonly filter!: pulumi.Output<string>;
     public readonly graphiteLabelPolicy!: pulumi.Output<outputs.RollupRuleGraphiteLabelPolicy | undefined>;
     public readonly groupBies!: pulumi.Output<string[] | undefined>;
-    public readonly interval!: pulumi.Output<string | undefined>;
+    public readonly interval!: pulumi.Output<string>;
     public readonly metricType!: pulumi.Output<string>;
     public readonly metricTypeTag!: pulumi.Output<boolean | undefined>;
     public readonly mode!: pulumi.Output<string | undefined>;
@@ -52,7 +52,7 @@ export class RollupRule extends pulumi.CustomResource {
     /**
      * @deprecated use `interval` instead
      */
-    public readonly storagePolicies!: pulumi.Output<outputs.RollupRuleStoragePolicies>;
+    public readonly storagePolicies!: pulumi.Output<outputs.RollupRuleStoragePolicies | undefined>;
 
     /**
      * Create a RollupRule resource with the given unique name, arguments, and options.

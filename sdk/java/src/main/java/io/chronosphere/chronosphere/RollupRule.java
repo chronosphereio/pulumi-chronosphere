@@ -63,10 +63,10 @@ public class RollupRule extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.groupBies);
     }
     @Export(name="interval", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> interval;
+    private Output<String> interval;
 
-    public Output<Optional<String>> interval() {
-        return Codegen.optional(this.interval);
+    public Output<String> interval() {
+        return this.interval;
     }
     @Export(name="metricType", refs={String.class}, tree="[0]")
     private Output<String> metricType;
@@ -117,10 +117,10 @@ public class RollupRule extends com.pulumi.resources.CustomResource {
      */
     @Deprecated /* use `interval` instead */
     @Export(name="storagePolicies", refs={RollupRuleStoragePolicies.class}, tree="[0]")
-    private Output<RollupRuleStoragePolicies> storagePolicies;
+    private Output</* @Nullable */ RollupRuleStoragePolicies> storagePolicies;
 
-    public Output<RollupRuleStoragePolicies> storagePolicies() {
-        return this.storagePolicies;
+    public Output<Optional<RollupRuleStoragePolicies>> storagePolicies() {
+        return Codegen.optional(this.storagePolicies);
     }
 
     /**

@@ -613,7 +613,7 @@ class RollupRule(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def interval(self) -> pulumi.Output[Optional[str]]:
+    def interval(self) -> pulumi.Output[str]:
         return pulumi.get(self, "interval")
 
     @property
@@ -653,7 +653,7 @@ class RollupRule(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="storagePolicies")
-    def storage_policies(self) -> pulumi.Output['outputs.RollupRuleStoragePolicies']:
+    def storage_policies(self) -> pulumi.Output[Optional['outputs.RollupRuleStoragePolicies']]:
         warnings.warn("""use `interval` instead""", DeprecationWarning)
         pulumi.log.warn("""storage_policies is deprecated: use `interval` instead""")
 

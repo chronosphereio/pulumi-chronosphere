@@ -21,7 +21,7 @@ type MappingRule struct {
 	// Deprecated: drop timestamp is no longer supported
 	DropTimestamp pulumi.BoolPtrOutput   `pulumi:"dropTimestamp"`
 	Filter        pulumi.StringOutput    `pulumi:"filter"`
-	Interval      pulumi.StringPtrOutput `pulumi:"interval"`
+	Interval      pulumi.StringOutput    `pulumi:"interval"`
 	Mode          pulumi.StringPtrOutput `pulumi:"mode"`
 	Name          pulumi.StringOutput    `pulumi:"name"`
 	Slug          pulumi.StringOutput    `pulumi:"slug"`
@@ -237,8 +237,8 @@ func (o MappingRuleOutput) Filter() pulumi.StringOutput {
 	return o.ApplyT(func(v *MappingRule) pulumi.StringOutput { return v.Filter }).(pulumi.StringOutput)
 }
 
-func (o MappingRuleOutput) Interval() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *MappingRule) pulumi.StringPtrOutput { return v.Interval }).(pulumi.StringPtrOutput)
+func (o MappingRuleOutput) Interval() pulumi.StringOutput {
+	return o.ApplyT(func(v *MappingRule) pulumi.StringOutput { return v.Interval }).(pulumi.StringOutput)
 }
 
 func (o MappingRuleOutput) Mode() pulumi.StringPtrOutput {
