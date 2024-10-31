@@ -6,6 +6,7 @@ package io.chronosphere.chronosphere;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import java.lang.String;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -29,6 +30,13 @@ public final class DashboardArgs extends com.pulumi.resources.ResourceArgs {
         return this.dashboardJson;
     }
 
+    @Import(name="labels")
+    private @Nullable Output<Map<String,String>> labels;
+
+    public Optional<Output<Map<String,String>>> labels() {
+        return Optional.ofNullable(this.labels);
+    }
+
     @Import(name="name")
     private @Nullable Output<String> name;
 
@@ -48,6 +56,7 @@ public final class DashboardArgs extends com.pulumi.resources.ResourceArgs {
     private DashboardArgs(DashboardArgs $) {
         this.collectionId = $.collectionId;
         this.dashboardJson = $.dashboardJson;
+        this.labels = $.labels;
         this.name = $.name;
         this.slug = $.slug;
     }
@@ -86,6 +95,15 @@ public final class DashboardArgs extends com.pulumi.resources.ResourceArgs {
 
         public Builder dashboardJson(String dashboardJson) {
             return dashboardJson(Output.of(dashboardJson));
+        }
+
+        public Builder labels(@Nullable Output<Map<String,String>> labels) {
+            $.labels = labels;
+            return this;
+        }
+
+        public Builder labels(Map<String,String> labels) {
+            return labels(Output.of(labels));
         }
 
         public Builder name(@Nullable Output<String> name) {

@@ -11,6 +11,7 @@ import io.chronosphere.chronosphere.DashboardArgs;
 import io.chronosphere.chronosphere.Utilities;
 import io.chronosphere.chronosphere.inputs.DashboardState;
 import java.lang.String;
+import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
@@ -27,6 +28,12 @@ public class Dashboard extends com.pulumi.resources.CustomResource {
 
     public Output<String> dashboardJson() {
         return this.dashboardJson;
+    }
+    @Export(name="labels", refs={Map.class,String.class}, tree="[0,1,1]")
+    private Output</* @Nullable */ Map<String,String>> labels;
+
+    public Output<Optional<Map<String,String>>> labels() {
+        return Codegen.optional(this.labels);
     }
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> name;
