@@ -2,6 +2,16 @@
 
 ## Unreleased
 
+## v0.9.4
+
+Added:
+* Adds support for `labels` in `chronosphere_dashboard`
+* Allow `chronosphere_notification_policy` resources without a `team_id`.
+
+Fixed:
+* Support dry-run validation of monitor prometheus queries that contain
+  dynamic expressions that aren't known at plan time.
+
 ## v0.9.3
 
 - Allow creating `chronosphere_slack_notifier` with actions without `action_confirm_text`.

@@ -17,6 +17,7 @@ type Dashboard struct {
 
 	CollectionId  pulumi.StringPtrOutput `pulumi:"collectionId"`
 	DashboardJson pulumi.StringOutput    `pulumi:"dashboardJson"`
+	Labels        pulumi.StringMapOutput `pulumi:"labels"`
 	Name          pulumi.StringPtrOutput `pulumi:"name"`
 	Slug          pulumi.StringOutput    `pulumi:"slug"`
 }
@@ -54,15 +55,17 @@ func GetDashboard(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Dashboard resources.
 type dashboardState struct {
-	CollectionId  *string `pulumi:"collectionId"`
-	DashboardJson *string `pulumi:"dashboardJson"`
-	Name          *string `pulumi:"name"`
-	Slug          *string `pulumi:"slug"`
+	CollectionId  *string           `pulumi:"collectionId"`
+	DashboardJson *string           `pulumi:"dashboardJson"`
+	Labels        map[string]string `pulumi:"labels"`
+	Name          *string           `pulumi:"name"`
+	Slug          *string           `pulumi:"slug"`
 }
 
 type DashboardState struct {
 	CollectionId  pulumi.StringPtrInput
 	DashboardJson pulumi.StringPtrInput
+	Labels        pulumi.StringMapInput
 	Name          pulumi.StringPtrInput
 	Slug          pulumi.StringPtrInput
 }
@@ -72,16 +75,18 @@ func (DashboardState) ElementType() reflect.Type {
 }
 
 type dashboardArgs struct {
-	CollectionId  *string `pulumi:"collectionId"`
-	DashboardJson string  `pulumi:"dashboardJson"`
-	Name          *string `pulumi:"name"`
-	Slug          *string `pulumi:"slug"`
+	CollectionId  *string           `pulumi:"collectionId"`
+	DashboardJson string            `pulumi:"dashboardJson"`
+	Labels        map[string]string `pulumi:"labels"`
+	Name          *string           `pulumi:"name"`
+	Slug          *string           `pulumi:"slug"`
 }
 
 // The set of arguments for constructing a Dashboard resource.
 type DashboardArgs struct {
 	CollectionId  pulumi.StringPtrInput
 	DashboardJson pulumi.StringInput
+	Labels        pulumi.StringMapInput
 	Name          pulumi.StringPtrInput
 	Slug          pulumi.StringPtrInput
 }
@@ -179,6 +184,10 @@ func (o DashboardOutput) CollectionId() pulumi.StringPtrOutput {
 
 func (o DashboardOutput) DashboardJson() pulumi.StringOutput {
 	return o.ApplyT(func(v *Dashboard) pulumi.StringOutput { return v.DashboardJson }).(pulumi.StringOutput)
+}
+
+func (o DashboardOutput) Labels() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *Dashboard) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }
 
 func (o DashboardOutput) Name() pulumi.StringPtrOutput {

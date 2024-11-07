@@ -19,6 +19,9 @@ namespace Chronosphere.Pulumi
         [Output("dashboardJson")]
         public Output<string> DashboardJson { get; private set; } = null!;
 
+        [Output("labels")]
+        public Output<ImmutableDictionary<string, string>?> Labels { get; private set; } = null!;
+
         [Output("name")]
         public Output<string?> Name { get; private set; } = null!;
 
@@ -77,6 +80,14 @@ namespace Chronosphere.Pulumi
         [Input("dashboardJson", required: true)]
         public Input<string> DashboardJson { get; set; } = null!;
 
+        [Input("labels")]
+        private InputMap<string>? _labels;
+        public InputMap<string> Labels
+        {
+            get => _labels ?? (_labels = new InputMap<string>());
+            set => _labels = value;
+        }
+
         [Input("name")]
         public Input<string>? Name { get; set; }
 
@@ -96,6 +107,14 @@ namespace Chronosphere.Pulumi
 
         [Input("dashboardJson")]
         public Input<string>? DashboardJson { get; set; }
+
+        [Input("labels")]
+        private InputMap<string>? _labels;
+        public InputMap<string> Labels
+        {
+            get => _labels ?? (_labels = new InputMap<string>());
+            set => _labels = value;
+        }
 
         [Input("name")]
         public Input<string>? Name { get; set; }

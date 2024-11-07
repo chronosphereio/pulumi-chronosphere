@@ -34,6 +34,7 @@ export class Dashboard extends pulumi.CustomResource {
 
     public readonly collectionId!: pulumi.Output<string | undefined>;
     public readonly dashboardJson!: pulumi.Output<string>;
+    public readonly labels!: pulumi.Output<{[key: string]: string} | undefined>;
     public readonly name!: pulumi.Output<string | undefined>;
     public readonly slug!: pulumi.Output<string>;
 
@@ -52,6 +53,7 @@ export class Dashboard extends pulumi.CustomResource {
             const state = argsOrState as DashboardState | undefined;
             resourceInputs["collectionId"] = state ? state.collectionId : undefined;
             resourceInputs["dashboardJson"] = state ? state.dashboardJson : undefined;
+            resourceInputs["labels"] = state ? state.labels : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["slug"] = state ? state.slug : undefined;
         } else {
@@ -61,6 +63,7 @@ export class Dashboard extends pulumi.CustomResource {
             }
             resourceInputs["collectionId"] = args ? args.collectionId : undefined;
             resourceInputs["dashboardJson"] = args ? args.dashboardJson : undefined;
+            resourceInputs["labels"] = args ? args.labels : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["slug"] = args ? args.slug : undefined;
         }
@@ -75,6 +78,7 @@ export class Dashboard extends pulumi.CustomResource {
 export interface DashboardState {
     collectionId?: pulumi.Input<string>;
     dashboardJson?: pulumi.Input<string>;
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     name?: pulumi.Input<string>;
     slug?: pulumi.Input<string>;
 }
@@ -85,6 +89,7 @@ export interface DashboardState {
 export interface DashboardArgs {
     collectionId?: pulumi.Input<string>;
     dashboardJson: pulumi.Input<string>;
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     name?: pulumi.Input<string>;
     slug?: pulumi.Input<string>;
 }
