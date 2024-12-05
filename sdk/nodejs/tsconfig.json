@@ -45,6 +45,7 @@
         "serviceAccount.ts",
         "serviceDataSource.ts",
         "slackAlertNotifier.ts",
+        "slo.ts",
         "team.ts",
         "traceJaegerRemoteSamplingStrategy.ts",
         "traceMetricsRule.ts",

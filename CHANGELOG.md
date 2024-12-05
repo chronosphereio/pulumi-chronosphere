@@ -5,12 +5,14 @@
 ## v0.9.4
 
 Added:
-* Adds support for `labels` in `chronosphere_dashboard`
-* Allow `chronosphere_notification_policy` resources without a `team_id`.
+- Adds support for `labels` in `chronosphere_dashboard`
+- Allow `chronosphere_notification_policy` resources without a `team_id`.
+- Add unstable `chronosphere_slo` resource.
 
 Fixed:
-* Support dry-run validation of monitor prometheus queries that contain
+- Support dry-run validation of monitor prometheus queries that contain
   dynamic expressions that aren't known at plan time.
+- Fix `chronosphere_resource_pools_config` error when default pool is not set.
 
 ## v0.9.3
 

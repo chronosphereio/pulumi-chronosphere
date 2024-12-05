@@ -1459,6 +1459,169 @@
                 "retention"
             ]
         },
+        "chronosphere:index/SLODefinition:SLODefinition": {
+            "properties": {
+                "lowVolume": {
+                    "type": "boolean"
+                },
+                "objective": {
+                    "type": "number"
+                },
+                "reportingWindows": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/chronosphere:index/SLODefinitionReportingWindow:SLODefinitionReportingWindow"
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "objective",
+                "reportingWindows"
+            ]
+        },
+        "chronosphere:index/SLODefinitionReportingWindow:SLODefinitionReportingWindow": {
+            "properties": {
+                "duration": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "duration"
+            ]
+        },
+        "chronosphere:index/SLOSli:SLOSli": {
+            "properties": {
+                "customIndicator": {
+                    "$ref": "#/types/chronosphere:index/SLOSliCustomIndicator:SLOSliCustomIndicator"
+                },
+                "endpointAvailability": {
+                    "$ref": "#/types/chronosphere:index/SLOSliEndpointAvailability:SLOSliEndpointAvailability"
+                },
+                "endpointLabel": {
+                    "type": "string"
+                },
+                "endpointLatency": {
+                    "$ref": "#/types/chronosphere:index/SLOSliEndpointLatency:SLOSliEndpointLatency"
+                },
+                "lensTemplateIndicator": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "chronosphere:index/SLOSliCustomIndicator:SLOSliCustomIndicator": {
+            "properties": {
+                "badQueryTemplate": {
+                    "type": "string"
+                },
+                "goodQueryTemplate": {
+                    "type": "string"
+                },
+                "totalQueryTemplate": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "totalQueryTemplate"
+            ]
+        },
+        "chronosphere:index/SLOSliEndpointAvailability:SLOSliEndpointAvailability": {
+            "properties": {
+                "additionalPromqlFilters": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/chronosphere:index/SLOSliEndpointAvailabilityAdditionalPromqlFilter:SLOSliEndpointAvailabilityAdditionalPromqlFilter"
+                    }
+                },
+                "endpointsMonitoreds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "errorCodes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "successCodes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "endpointsMonitoreds"
+            ]
+        },
+        "chronosphere:index/SLOSliEndpointAvailabilityAdditionalPromqlFilter:SLOSliEndpointAvailabilityAdditionalPromqlFilter": {
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "name",
+                "type",
+                "value"
+            ]
+        },
+        "chronosphere:index/SLOSliEndpointLatency:SLOSliEndpointLatency": {
+            "properties": {
+                "additionalPromqlFilters": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/chronosphere:index/SLOSliEndpointLatencyAdditionalPromqlFilter:SLOSliEndpointLatencyAdditionalPromqlFilter"
+                    }
+                },
+                "endpointsMonitoreds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "latencyBucket": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "endpointsMonitoreds",
+                "latencyBucket"
+            ]
+        },
+        "chronosphere:index/SLOSliEndpointLatencyAdditionalPromqlFilter:SLOSliEndpointLatencyAdditionalPromqlFilter": {
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "name",
+                "type",
+                "value"
+            ]
+        },
         "chronosphere:index/ServiceAccountRestriction:ServiceAccountRestriction": {
             "properties": {
                 "labels": {
@@ -4536,6 +4699,141 @@
                     "storagePolicies": {
                         "$ref": "#/types/chronosphere:index/RollupRuleStoragePolicies:RollupRuleStoragePolicies",
                         "deprecationMessage": "use `interval` instead"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "chronosphere:index/sLO:SLO": {
+            "properties": {
+                "annotations": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                },
+                "collectionId": {
+                    "type": "string"
+                },
+                "definition": {
+                    "$ref": "#/types/chronosphere:index/SLODefinition:SLODefinition"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "labels": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                },
+                "name": {
+                    "type": "string"
+                },
+                "notificationPolicyId": {
+                    "type": "string"
+                },
+                "signalGrouping": {
+                    "type": "string"
+                },
+                "sli": {
+                    "$ref": "#/types/chronosphere:index/SLOSli:SLOSli"
+                },
+                "slug": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "collectionId",
+                "definition",
+                "name",
+                "sli",
+                "slug"
+            ],
+            "inputProperties": {
+                "annotations": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                },
+                "collectionId": {
+                    "type": "string"
+                },
+                "definition": {
+                    "$ref": "#/types/chronosphere:index/SLODefinition:SLODefinition"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "labels": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                },
+                "name": {
+                    "type": "string"
+                },
+                "notificationPolicyId": {
+                    "type": "string"
+                },
+                "signalGrouping": {
+                    "type": "string"
+                },
+                "sli": {
+                    "$ref": "#/types/chronosphere:index/SLOSli:SLOSli"
+                },
+                "slug": {
+                    "type": "string",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "requiredInputs": [
+                "collectionId",
+                "definition",
+                "name",
+                "sli"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering SLO resources.\n",
+                "properties": {
+                    "annotations": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        }
+                    },
+                    "collectionId": {
+                        "type": "string"
+                    },
+                    "definition": {
+                        "$ref": "#/types/chronosphere:index/SLODefinition:SLODefinition"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "labels": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        }
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "notificationPolicyId": {
+                        "type": "string"
+                    },
+                    "signalGrouping": {
+                        "type": "string"
+                    },
+                    "sli": {
+                        "$ref": "#/types/chronosphere:index/SLOSli:SLOSli"
+                    },
+                    "slug": {
+                        "type": "string",
+                        "willReplaceOnChanges": true
                     }
                 },
                 "type": "object"
