@@ -24,6 +24,7 @@
             "chronosphere:index/recordingRule:RecordingRule": "chronosphere_recording_rule",
             "chronosphere:index/resourcePoolsConfig:ResourcePoolsConfig": "chronosphere_resource_pools_config",
             "chronosphere:index/rollupRule:RollupRule": "chronosphere_rollup_rule",
+            "chronosphere:index/sLO:SLO": "chronosphere_slo",
             "chronosphere:index/serviceAccount:ServiceAccount": "chronosphere_service_account",
             "chronosphere:index/slackAlertNotifier:SlackAlertNotifier": "chronosphere_slack_alert_notifier",
             "chronosphere:index/team:Team": "chronosphere_team",
@@ -255,6 +256,33 @@
             },
             "chronosphere:index/RollupRuleGraphiteLabelPolicyReplace:RollupRuleGraphiteLabelPolicyReplace": {
                 "newValue": "new_value"
+            },
+            "chronosphere:index/SLODefinition:SLODefinition": {
+                "lowVolume": "low_volume",
+                "reportingWindows": "reporting_windows"
+            },
+            "chronosphere:index/SLOSli:SLOSli": {
+                "customIndicator": "custom_indicator",
+                "endpointAvailability": "endpoint_availability",
+                "endpointLabel": "endpoint_label",
+                "endpointLatency": "endpoint_latency",
+                "lensTemplateIndicator": "lens_template_indicator"
+            },
+            "chronosphere:index/SLOSliCustomIndicator:SLOSliCustomIndicator": {
+                "badQueryTemplate": "bad_query_template",
+                "goodQueryTemplate": "good_query_template",
+                "totalQueryTemplate": "total_query_template"
+            },
+            "chronosphere:index/SLOSliEndpointAvailability:SLOSliEndpointAvailability": {
+                "additionalPromqlFilters": "additional_promql_filters",
+                "endpointsMonitoreds": "endpoints_monitored",
+                "errorCodes": "error_codes",
+                "successCodes": "success_codes"
+            },
+            "chronosphere:index/SLOSliEndpointLatency:SLOSliEndpointLatency": {
+                "additionalPromqlFilters": "additional_promql_filters",
+                "endpointsMonitoreds": "endpoints_monitored",
+                "latencyBucket": "latency_bucket"
             },
             "chronosphere:index/SlackAlertNotifierAction:SlackAlertNotifierAction": {
                 "actionConfirmDismissText": "action_confirm_dismiss_text",
@@ -496,6 +524,11 @@
                 "metricTypeTag": "metric_type_tag",
                 "newMetric": "new_metric",
                 "storagePolicies": "storage_policies"
+            },
+            "chronosphere:index/sLO:SLO": {
+                "collectionId": "collection_id",
+                "notificationPolicyId": "notification_policy_id",
+                "signalGrouping": "signal_grouping"
             },
             "chronosphere:index/slackAlertNotifier:SlackAlertNotifier": {
                 "actions": "action",

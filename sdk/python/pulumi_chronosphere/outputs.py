@@ -96,6 +96,14 @@ __all__ = [
     'RollupRuleGraphiteLabelPolicy',
     'RollupRuleGraphiteLabelPolicyReplace',
     'RollupRuleStoragePolicies',
+    'SLODefinition',
+    'SLODefinitionReportingWindow',
+    'SLOSli',
+    'SLOSliCustomIndicator',
+    'SLOSliEndpointAvailability',
+    'SLOSliEndpointAvailabilityAdditionalPromqlFilter',
+    'SLOSliEndpointLatency',
+    'SLOSliEndpointLatencyAdditionalPromqlFilter',
     'ServiceAccountRestriction',
     'SlackAlertNotifierAction',
     'SlackAlertNotifierField',
@@ -3090,6 +3098,342 @@ class RollupRuleStoragePolicies(dict):
     @pulumi.getter
     def retention(self) -> str:
         return pulumi.get(self, "retention")
+
+
+@pulumi.output_type
+class SLODefinition(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "reportingWindows":
+            suggest = "reporting_windows"
+        elif key == "lowVolume":
+            suggest = "low_volume"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SLODefinition. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SLODefinition.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SLODefinition.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 objective: float,
+                 reporting_windows: Sequence['outputs.SLODefinitionReportingWindow'],
+                 low_volume: Optional[bool] = None):
+        pulumi.set(__self__, "objective", objective)
+        pulumi.set(__self__, "reporting_windows", reporting_windows)
+        if low_volume is not None:
+            pulumi.set(__self__, "low_volume", low_volume)
+
+    @property
+    @pulumi.getter
+    def objective(self) -> float:
+        return pulumi.get(self, "objective")
+
+    @property
+    @pulumi.getter(name="reportingWindows")
+    def reporting_windows(self) -> Sequence['outputs.SLODefinitionReportingWindow']:
+        return pulumi.get(self, "reporting_windows")
+
+    @property
+    @pulumi.getter(name="lowVolume")
+    def low_volume(self) -> Optional[bool]:
+        return pulumi.get(self, "low_volume")
+
+
+@pulumi.output_type
+class SLODefinitionReportingWindow(dict):
+    def __init__(__self__, *,
+                 duration: str):
+        pulumi.set(__self__, "duration", duration)
+
+    @property
+    @pulumi.getter
+    def duration(self) -> str:
+        return pulumi.get(self, "duration")
+
+
+@pulumi.output_type
+class SLOSli(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "customIndicator":
+            suggest = "custom_indicator"
+        elif key == "endpointAvailability":
+            suggest = "endpoint_availability"
+        elif key == "endpointLabel":
+            suggest = "endpoint_label"
+        elif key == "endpointLatency":
+            suggest = "endpoint_latency"
+        elif key == "lensTemplateIndicator":
+            suggest = "lens_template_indicator"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SLOSli. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SLOSli.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SLOSli.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 custom_indicator: Optional['outputs.SLOSliCustomIndicator'] = None,
+                 endpoint_availability: Optional['outputs.SLOSliEndpointAvailability'] = None,
+                 endpoint_label: Optional[str] = None,
+                 endpoint_latency: Optional['outputs.SLOSliEndpointLatency'] = None,
+                 lens_template_indicator: Optional[str] = None):
+        if custom_indicator is not None:
+            pulumi.set(__self__, "custom_indicator", custom_indicator)
+        if endpoint_availability is not None:
+            pulumi.set(__self__, "endpoint_availability", endpoint_availability)
+        if endpoint_label is not None:
+            pulumi.set(__self__, "endpoint_label", endpoint_label)
+        if endpoint_latency is not None:
+            pulumi.set(__self__, "endpoint_latency", endpoint_latency)
+        if lens_template_indicator is not None:
+            pulumi.set(__self__, "lens_template_indicator", lens_template_indicator)
+
+    @property
+    @pulumi.getter(name="customIndicator")
+    def custom_indicator(self) -> Optional['outputs.SLOSliCustomIndicator']:
+        return pulumi.get(self, "custom_indicator")
+
+    @property
+    @pulumi.getter(name="endpointAvailability")
+    def endpoint_availability(self) -> Optional['outputs.SLOSliEndpointAvailability']:
+        return pulumi.get(self, "endpoint_availability")
+
+    @property
+    @pulumi.getter(name="endpointLabel")
+    def endpoint_label(self) -> Optional[str]:
+        return pulumi.get(self, "endpoint_label")
+
+    @property
+    @pulumi.getter(name="endpointLatency")
+    def endpoint_latency(self) -> Optional['outputs.SLOSliEndpointLatency']:
+        return pulumi.get(self, "endpoint_latency")
+
+    @property
+    @pulumi.getter(name="lensTemplateIndicator")
+    def lens_template_indicator(self) -> Optional[str]:
+        return pulumi.get(self, "lens_template_indicator")
+
+
+@pulumi.output_type
+class SLOSliCustomIndicator(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "totalQueryTemplate":
+            suggest = "total_query_template"
+        elif key == "badQueryTemplate":
+            suggest = "bad_query_template"
+        elif key == "goodQueryTemplate":
+            suggest = "good_query_template"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SLOSliCustomIndicator. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SLOSliCustomIndicator.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SLOSliCustomIndicator.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 total_query_template: str,
+                 bad_query_template: Optional[str] = None,
+                 good_query_template: Optional[str] = None):
+        pulumi.set(__self__, "total_query_template", total_query_template)
+        if bad_query_template is not None:
+            pulumi.set(__self__, "bad_query_template", bad_query_template)
+        if good_query_template is not None:
+            pulumi.set(__self__, "good_query_template", good_query_template)
+
+    @property
+    @pulumi.getter(name="totalQueryTemplate")
+    def total_query_template(self) -> str:
+        return pulumi.get(self, "total_query_template")
+
+    @property
+    @pulumi.getter(name="badQueryTemplate")
+    def bad_query_template(self) -> Optional[str]:
+        return pulumi.get(self, "bad_query_template")
+
+    @property
+    @pulumi.getter(name="goodQueryTemplate")
+    def good_query_template(self) -> Optional[str]:
+        return pulumi.get(self, "good_query_template")
+
+
+@pulumi.output_type
+class SLOSliEndpointAvailability(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "endpointsMonitoreds":
+            suggest = "endpoints_monitoreds"
+        elif key == "additionalPromqlFilters":
+            suggest = "additional_promql_filters"
+        elif key == "errorCodes":
+            suggest = "error_codes"
+        elif key == "successCodes":
+            suggest = "success_codes"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SLOSliEndpointAvailability. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SLOSliEndpointAvailability.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SLOSliEndpointAvailability.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 endpoints_monitoreds: Sequence[str],
+                 additional_promql_filters: Optional[Sequence['outputs.SLOSliEndpointAvailabilityAdditionalPromqlFilter']] = None,
+                 error_codes: Optional[Sequence[str]] = None,
+                 success_codes: Optional[Sequence[str]] = None):
+        pulumi.set(__self__, "endpoints_monitoreds", endpoints_monitoreds)
+        if additional_promql_filters is not None:
+            pulumi.set(__self__, "additional_promql_filters", additional_promql_filters)
+        if error_codes is not None:
+            pulumi.set(__self__, "error_codes", error_codes)
+        if success_codes is not None:
+            pulumi.set(__self__, "success_codes", success_codes)
+
+    @property
+    @pulumi.getter(name="endpointsMonitoreds")
+    def endpoints_monitoreds(self) -> Sequence[str]:
+        return pulumi.get(self, "endpoints_monitoreds")
+
+    @property
+    @pulumi.getter(name="additionalPromqlFilters")
+    def additional_promql_filters(self) -> Optional[Sequence['outputs.SLOSliEndpointAvailabilityAdditionalPromqlFilter']]:
+        return pulumi.get(self, "additional_promql_filters")
+
+    @property
+    @pulumi.getter(name="errorCodes")
+    def error_codes(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "error_codes")
+
+    @property
+    @pulumi.getter(name="successCodes")
+    def success_codes(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "success_codes")
+
+
+@pulumi.output_type
+class SLOSliEndpointAvailabilityAdditionalPromqlFilter(dict):
+    def __init__(__self__, *,
+                 name: str,
+                 type: str,
+                 value: str):
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class SLOSliEndpointLatency(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "endpointsMonitoreds":
+            suggest = "endpoints_monitoreds"
+        elif key == "latencyBucket":
+            suggest = "latency_bucket"
+        elif key == "additionalPromqlFilters":
+            suggest = "additional_promql_filters"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SLOSliEndpointLatency. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SLOSliEndpointLatency.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SLOSliEndpointLatency.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 endpoints_monitoreds: Sequence[str],
+                 latency_bucket: str,
+                 additional_promql_filters: Optional[Sequence['outputs.SLOSliEndpointLatencyAdditionalPromqlFilter']] = None):
+        pulumi.set(__self__, "endpoints_monitoreds", endpoints_monitoreds)
+        pulumi.set(__self__, "latency_bucket", latency_bucket)
+        if additional_promql_filters is not None:
+            pulumi.set(__self__, "additional_promql_filters", additional_promql_filters)
+
+    @property
+    @pulumi.getter(name="endpointsMonitoreds")
+    def endpoints_monitoreds(self) -> Sequence[str]:
+        return pulumi.get(self, "endpoints_monitoreds")
+
+    @property
+    @pulumi.getter(name="latencyBucket")
+    def latency_bucket(self) -> str:
+        return pulumi.get(self, "latency_bucket")
+
+    @property
+    @pulumi.getter(name="additionalPromqlFilters")
+    def additional_promql_filters(self) -> Optional[Sequence['outputs.SLOSliEndpointLatencyAdditionalPromqlFilter']]:
+        return pulumi.get(self, "additional_promql_filters")
+
+
+@pulumi.output_type
+class SLOSliEndpointLatencyAdditionalPromqlFilter(dict):
+    def __init__(__self__, *,
+                 name: str,
+                 type: str,
+                 value: str):
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type

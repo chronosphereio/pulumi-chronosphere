@@ -11178,6 +11178,1176 @@ func (o RollupRuleStoragePoliciesPtrOutput) Retention() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type SLODefinition struct {
+	LowVolume        *bool                          `pulumi:"lowVolume"`
+	Objective        float64                        `pulumi:"objective"`
+	ReportingWindows []SLODefinitionReportingWindow `pulumi:"reportingWindows"`
+}
+
+// SLODefinitionInput is an input type that accepts SLODefinitionArgs and SLODefinitionOutput values.
+// You can construct a concrete instance of `SLODefinitionInput` via:
+//
+//	SLODefinitionArgs{...}
+type SLODefinitionInput interface {
+	pulumi.Input
+
+	ToSLODefinitionOutput() SLODefinitionOutput
+	ToSLODefinitionOutputWithContext(context.Context) SLODefinitionOutput
+}
+
+type SLODefinitionArgs struct {
+	LowVolume        pulumi.BoolPtrInput                    `pulumi:"lowVolume"`
+	Objective        pulumi.Float64Input                    `pulumi:"objective"`
+	ReportingWindows SLODefinitionReportingWindowArrayInput `pulumi:"reportingWindows"`
+}
+
+func (SLODefinitionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SLODefinition)(nil)).Elem()
+}
+
+func (i SLODefinitionArgs) ToSLODefinitionOutput() SLODefinitionOutput {
+	return i.ToSLODefinitionOutputWithContext(context.Background())
+}
+
+func (i SLODefinitionArgs) ToSLODefinitionOutputWithContext(ctx context.Context) SLODefinitionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SLODefinitionOutput)
+}
+
+func (i SLODefinitionArgs) ToSLODefinitionPtrOutput() SLODefinitionPtrOutput {
+	return i.ToSLODefinitionPtrOutputWithContext(context.Background())
+}
+
+func (i SLODefinitionArgs) ToSLODefinitionPtrOutputWithContext(ctx context.Context) SLODefinitionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SLODefinitionOutput).ToSLODefinitionPtrOutputWithContext(ctx)
+}
+
+// SLODefinitionPtrInput is an input type that accepts SLODefinitionArgs, SLODefinitionPtr and SLODefinitionPtrOutput values.
+// You can construct a concrete instance of `SLODefinitionPtrInput` via:
+//
+//	        SLODefinitionArgs{...}
+//
+//	or:
+//
+//	        nil
+type SLODefinitionPtrInput interface {
+	pulumi.Input
+
+	ToSLODefinitionPtrOutput() SLODefinitionPtrOutput
+	ToSLODefinitionPtrOutputWithContext(context.Context) SLODefinitionPtrOutput
+}
+
+type slodefinitionPtrType SLODefinitionArgs
+
+func SLODefinitionPtr(v *SLODefinitionArgs) SLODefinitionPtrInput {
+	return (*slodefinitionPtrType)(v)
+}
+
+func (*slodefinitionPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SLODefinition)(nil)).Elem()
+}
+
+func (i *slodefinitionPtrType) ToSLODefinitionPtrOutput() SLODefinitionPtrOutput {
+	return i.ToSLODefinitionPtrOutputWithContext(context.Background())
+}
+
+func (i *slodefinitionPtrType) ToSLODefinitionPtrOutputWithContext(ctx context.Context) SLODefinitionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SLODefinitionPtrOutput)
+}
+
+type SLODefinitionOutput struct{ *pulumi.OutputState }
+
+func (SLODefinitionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SLODefinition)(nil)).Elem()
+}
+
+func (o SLODefinitionOutput) ToSLODefinitionOutput() SLODefinitionOutput {
+	return o
+}
+
+func (o SLODefinitionOutput) ToSLODefinitionOutputWithContext(ctx context.Context) SLODefinitionOutput {
+	return o
+}
+
+func (o SLODefinitionOutput) ToSLODefinitionPtrOutput() SLODefinitionPtrOutput {
+	return o.ToSLODefinitionPtrOutputWithContext(context.Background())
+}
+
+func (o SLODefinitionOutput) ToSLODefinitionPtrOutputWithContext(ctx context.Context) SLODefinitionPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SLODefinition) *SLODefinition {
+		return &v
+	}).(SLODefinitionPtrOutput)
+}
+
+func (o SLODefinitionOutput) LowVolume() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SLODefinition) *bool { return v.LowVolume }).(pulumi.BoolPtrOutput)
+}
+
+func (o SLODefinitionOutput) Objective() pulumi.Float64Output {
+	return o.ApplyT(func(v SLODefinition) float64 { return v.Objective }).(pulumi.Float64Output)
+}
+
+func (o SLODefinitionOutput) ReportingWindows() SLODefinitionReportingWindowArrayOutput {
+	return o.ApplyT(func(v SLODefinition) []SLODefinitionReportingWindow { return v.ReportingWindows }).(SLODefinitionReportingWindowArrayOutput)
+}
+
+type SLODefinitionPtrOutput struct{ *pulumi.OutputState }
+
+func (SLODefinitionPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SLODefinition)(nil)).Elem()
+}
+
+func (o SLODefinitionPtrOutput) ToSLODefinitionPtrOutput() SLODefinitionPtrOutput {
+	return o
+}
+
+func (o SLODefinitionPtrOutput) ToSLODefinitionPtrOutputWithContext(ctx context.Context) SLODefinitionPtrOutput {
+	return o
+}
+
+func (o SLODefinitionPtrOutput) Elem() SLODefinitionOutput {
+	return o.ApplyT(func(v *SLODefinition) SLODefinition {
+		if v != nil {
+			return *v
+		}
+		var ret SLODefinition
+		return ret
+	}).(SLODefinitionOutput)
+}
+
+func (o SLODefinitionPtrOutput) LowVolume() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SLODefinition) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.LowVolume
+	}).(pulumi.BoolPtrOutput)
+}
+
+func (o SLODefinitionPtrOutput) Objective() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *SLODefinition) *float64 {
+		if v == nil {
+			return nil
+		}
+		return &v.Objective
+	}).(pulumi.Float64PtrOutput)
+}
+
+func (o SLODefinitionPtrOutput) ReportingWindows() SLODefinitionReportingWindowArrayOutput {
+	return o.ApplyT(func(v *SLODefinition) []SLODefinitionReportingWindow {
+		if v == nil {
+			return nil
+		}
+		return v.ReportingWindows
+	}).(SLODefinitionReportingWindowArrayOutput)
+}
+
+type SLODefinitionReportingWindow struct {
+	Duration string `pulumi:"duration"`
+}
+
+// SLODefinitionReportingWindowInput is an input type that accepts SLODefinitionReportingWindowArgs and SLODefinitionReportingWindowOutput values.
+// You can construct a concrete instance of `SLODefinitionReportingWindowInput` via:
+//
+//	SLODefinitionReportingWindowArgs{...}
+type SLODefinitionReportingWindowInput interface {
+	pulumi.Input
+
+	ToSLODefinitionReportingWindowOutput() SLODefinitionReportingWindowOutput
+	ToSLODefinitionReportingWindowOutputWithContext(context.Context) SLODefinitionReportingWindowOutput
+}
+
+type SLODefinitionReportingWindowArgs struct {
+	Duration pulumi.StringInput `pulumi:"duration"`
+}
+
+func (SLODefinitionReportingWindowArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SLODefinitionReportingWindow)(nil)).Elem()
+}
+
+func (i SLODefinitionReportingWindowArgs) ToSLODefinitionReportingWindowOutput() SLODefinitionReportingWindowOutput {
+	return i.ToSLODefinitionReportingWindowOutputWithContext(context.Background())
+}
+
+func (i SLODefinitionReportingWindowArgs) ToSLODefinitionReportingWindowOutputWithContext(ctx context.Context) SLODefinitionReportingWindowOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SLODefinitionReportingWindowOutput)
+}
+
+// SLODefinitionReportingWindowArrayInput is an input type that accepts SLODefinitionReportingWindowArray and SLODefinitionReportingWindowArrayOutput values.
+// You can construct a concrete instance of `SLODefinitionReportingWindowArrayInput` via:
+//
+//	SLODefinitionReportingWindowArray{ SLODefinitionReportingWindowArgs{...} }
+type SLODefinitionReportingWindowArrayInput interface {
+	pulumi.Input
+
+	ToSLODefinitionReportingWindowArrayOutput() SLODefinitionReportingWindowArrayOutput
+	ToSLODefinitionReportingWindowArrayOutputWithContext(context.Context) SLODefinitionReportingWindowArrayOutput
+}
+
+type SLODefinitionReportingWindowArray []SLODefinitionReportingWindowInput
+
+func (SLODefinitionReportingWindowArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SLODefinitionReportingWindow)(nil)).Elem()
+}
+
+func (i SLODefinitionReportingWindowArray) ToSLODefinitionReportingWindowArrayOutput() SLODefinitionReportingWindowArrayOutput {
+	return i.ToSLODefinitionReportingWindowArrayOutputWithContext(context.Background())
+}
+
+func (i SLODefinitionReportingWindowArray) ToSLODefinitionReportingWindowArrayOutputWithContext(ctx context.Context) SLODefinitionReportingWindowArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SLODefinitionReportingWindowArrayOutput)
+}
+
+type SLODefinitionReportingWindowOutput struct{ *pulumi.OutputState }
+
+func (SLODefinitionReportingWindowOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SLODefinitionReportingWindow)(nil)).Elem()
+}
+
+func (o SLODefinitionReportingWindowOutput) ToSLODefinitionReportingWindowOutput() SLODefinitionReportingWindowOutput {
+	return o
+}
+
+func (o SLODefinitionReportingWindowOutput) ToSLODefinitionReportingWindowOutputWithContext(ctx context.Context) SLODefinitionReportingWindowOutput {
+	return o
+}
+
+func (o SLODefinitionReportingWindowOutput) Duration() pulumi.StringOutput {
+	return o.ApplyT(func(v SLODefinitionReportingWindow) string { return v.Duration }).(pulumi.StringOutput)
+}
+
+type SLODefinitionReportingWindowArrayOutput struct{ *pulumi.OutputState }
+
+func (SLODefinitionReportingWindowArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SLODefinitionReportingWindow)(nil)).Elem()
+}
+
+func (o SLODefinitionReportingWindowArrayOutput) ToSLODefinitionReportingWindowArrayOutput() SLODefinitionReportingWindowArrayOutput {
+	return o
+}
+
+func (o SLODefinitionReportingWindowArrayOutput) ToSLODefinitionReportingWindowArrayOutputWithContext(ctx context.Context) SLODefinitionReportingWindowArrayOutput {
+	return o
+}
+
+func (o SLODefinitionReportingWindowArrayOutput) Index(i pulumi.IntInput) SLODefinitionReportingWindowOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SLODefinitionReportingWindow {
+		return vs[0].([]SLODefinitionReportingWindow)[vs[1].(int)]
+	}).(SLODefinitionReportingWindowOutput)
+}
+
+type SLOSli struct {
+	CustomIndicator       *SLOSliCustomIndicator      `pulumi:"customIndicator"`
+	EndpointAvailability  *SLOSliEndpointAvailability `pulumi:"endpointAvailability"`
+	EndpointLabel         *string                     `pulumi:"endpointLabel"`
+	EndpointLatency       *SLOSliEndpointLatency      `pulumi:"endpointLatency"`
+	LensTemplateIndicator *string                     `pulumi:"lensTemplateIndicator"`
+}
+
+// SLOSliInput is an input type that accepts SLOSliArgs and SLOSliOutput values.
+// You can construct a concrete instance of `SLOSliInput` via:
+//
+//	SLOSliArgs{...}
+type SLOSliInput interface {
+	pulumi.Input
+
+	ToSLOSliOutput() SLOSliOutput
+	ToSLOSliOutputWithContext(context.Context) SLOSliOutput
+}
+
+type SLOSliArgs struct {
+	CustomIndicator       SLOSliCustomIndicatorPtrInput      `pulumi:"customIndicator"`
+	EndpointAvailability  SLOSliEndpointAvailabilityPtrInput `pulumi:"endpointAvailability"`
+	EndpointLabel         pulumi.StringPtrInput              `pulumi:"endpointLabel"`
+	EndpointLatency       SLOSliEndpointLatencyPtrInput      `pulumi:"endpointLatency"`
+	LensTemplateIndicator pulumi.StringPtrInput              `pulumi:"lensTemplateIndicator"`
+}
+
+func (SLOSliArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SLOSli)(nil)).Elem()
+}
+
+func (i SLOSliArgs) ToSLOSliOutput() SLOSliOutput {
+	return i.ToSLOSliOutputWithContext(context.Background())
+}
+
+func (i SLOSliArgs) ToSLOSliOutputWithContext(ctx context.Context) SLOSliOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SLOSliOutput)
+}
+
+func (i SLOSliArgs) ToSLOSliPtrOutput() SLOSliPtrOutput {
+	return i.ToSLOSliPtrOutputWithContext(context.Background())
+}
+
+func (i SLOSliArgs) ToSLOSliPtrOutputWithContext(ctx context.Context) SLOSliPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SLOSliOutput).ToSLOSliPtrOutputWithContext(ctx)
+}
+
+// SLOSliPtrInput is an input type that accepts SLOSliArgs, SLOSliPtr and SLOSliPtrOutput values.
+// You can construct a concrete instance of `SLOSliPtrInput` via:
+//
+//	        SLOSliArgs{...}
+//
+//	or:
+//
+//	        nil
+type SLOSliPtrInput interface {
+	pulumi.Input
+
+	ToSLOSliPtrOutput() SLOSliPtrOutput
+	ToSLOSliPtrOutputWithContext(context.Context) SLOSliPtrOutput
+}
+
+type slosliPtrType SLOSliArgs
+
+func SLOSliPtr(v *SLOSliArgs) SLOSliPtrInput {
+	return (*slosliPtrType)(v)
+}
+
+func (*slosliPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SLOSli)(nil)).Elem()
+}
+
+func (i *slosliPtrType) ToSLOSliPtrOutput() SLOSliPtrOutput {
+	return i.ToSLOSliPtrOutputWithContext(context.Background())
+}
+
+func (i *slosliPtrType) ToSLOSliPtrOutputWithContext(ctx context.Context) SLOSliPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SLOSliPtrOutput)
+}
+
+type SLOSliOutput struct{ *pulumi.OutputState }
+
+func (SLOSliOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SLOSli)(nil)).Elem()
+}
+
+func (o SLOSliOutput) ToSLOSliOutput() SLOSliOutput {
+	return o
+}
+
+func (o SLOSliOutput) ToSLOSliOutputWithContext(ctx context.Context) SLOSliOutput {
+	return o
+}
+
+func (o SLOSliOutput) ToSLOSliPtrOutput() SLOSliPtrOutput {
+	return o.ToSLOSliPtrOutputWithContext(context.Background())
+}
+
+func (o SLOSliOutput) ToSLOSliPtrOutputWithContext(ctx context.Context) SLOSliPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SLOSli) *SLOSli {
+		return &v
+	}).(SLOSliPtrOutput)
+}
+
+func (o SLOSliOutput) CustomIndicator() SLOSliCustomIndicatorPtrOutput {
+	return o.ApplyT(func(v SLOSli) *SLOSliCustomIndicator { return v.CustomIndicator }).(SLOSliCustomIndicatorPtrOutput)
+}
+
+func (o SLOSliOutput) EndpointAvailability() SLOSliEndpointAvailabilityPtrOutput {
+	return o.ApplyT(func(v SLOSli) *SLOSliEndpointAvailability { return v.EndpointAvailability }).(SLOSliEndpointAvailabilityPtrOutput)
+}
+
+func (o SLOSliOutput) EndpointLabel() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SLOSli) *string { return v.EndpointLabel }).(pulumi.StringPtrOutput)
+}
+
+func (o SLOSliOutput) EndpointLatency() SLOSliEndpointLatencyPtrOutput {
+	return o.ApplyT(func(v SLOSli) *SLOSliEndpointLatency { return v.EndpointLatency }).(SLOSliEndpointLatencyPtrOutput)
+}
+
+func (o SLOSliOutput) LensTemplateIndicator() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SLOSli) *string { return v.LensTemplateIndicator }).(pulumi.StringPtrOutput)
+}
+
+type SLOSliPtrOutput struct{ *pulumi.OutputState }
+
+func (SLOSliPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SLOSli)(nil)).Elem()
+}
+
+func (o SLOSliPtrOutput) ToSLOSliPtrOutput() SLOSliPtrOutput {
+	return o
+}
+
+func (o SLOSliPtrOutput) ToSLOSliPtrOutputWithContext(ctx context.Context) SLOSliPtrOutput {
+	return o
+}
+
+func (o SLOSliPtrOutput) Elem() SLOSliOutput {
+	return o.ApplyT(func(v *SLOSli) SLOSli {
+		if v != nil {
+			return *v
+		}
+		var ret SLOSli
+		return ret
+	}).(SLOSliOutput)
+}
+
+func (o SLOSliPtrOutput) CustomIndicator() SLOSliCustomIndicatorPtrOutput {
+	return o.ApplyT(func(v *SLOSli) *SLOSliCustomIndicator {
+		if v == nil {
+			return nil
+		}
+		return v.CustomIndicator
+	}).(SLOSliCustomIndicatorPtrOutput)
+}
+
+func (o SLOSliPtrOutput) EndpointAvailability() SLOSliEndpointAvailabilityPtrOutput {
+	return o.ApplyT(func(v *SLOSli) *SLOSliEndpointAvailability {
+		if v == nil {
+			return nil
+		}
+		return v.EndpointAvailability
+	}).(SLOSliEndpointAvailabilityPtrOutput)
+}
+
+func (o SLOSliPtrOutput) EndpointLabel() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SLOSli) *string {
+		if v == nil {
+			return nil
+		}
+		return v.EndpointLabel
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o SLOSliPtrOutput) EndpointLatency() SLOSliEndpointLatencyPtrOutput {
+	return o.ApplyT(func(v *SLOSli) *SLOSliEndpointLatency {
+		if v == nil {
+			return nil
+		}
+		return v.EndpointLatency
+	}).(SLOSliEndpointLatencyPtrOutput)
+}
+
+func (o SLOSliPtrOutput) LensTemplateIndicator() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SLOSli) *string {
+		if v == nil {
+			return nil
+		}
+		return v.LensTemplateIndicator
+	}).(pulumi.StringPtrOutput)
+}
+
+type SLOSliCustomIndicator struct {
+	BadQueryTemplate   *string `pulumi:"badQueryTemplate"`
+	GoodQueryTemplate  *string `pulumi:"goodQueryTemplate"`
+	TotalQueryTemplate string  `pulumi:"totalQueryTemplate"`
+}
+
+// SLOSliCustomIndicatorInput is an input type that accepts SLOSliCustomIndicatorArgs and SLOSliCustomIndicatorOutput values.
+// You can construct a concrete instance of `SLOSliCustomIndicatorInput` via:
+//
+//	SLOSliCustomIndicatorArgs{...}
+type SLOSliCustomIndicatorInput interface {
+	pulumi.Input
+
+	ToSLOSliCustomIndicatorOutput() SLOSliCustomIndicatorOutput
+	ToSLOSliCustomIndicatorOutputWithContext(context.Context) SLOSliCustomIndicatorOutput
+}
+
+type SLOSliCustomIndicatorArgs struct {
+	BadQueryTemplate   pulumi.StringPtrInput `pulumi:"badQueryTemplate"`
+	GoodQueryTemplate  pulumi.StringPtrInput `pulumi:"goodQueryTemplate"`
+	TotalQueryTemplate pulumi.StringInput    `pulumi:"totalQueryTemplate"`
+}
+
+func (SLOSliCustomIndicatorArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SLOSliCustomIndicator)(nil)).Elem()
+}
+
+func (i SLOSliCustomIndicatorArgs) ToSLOSliCustomIndicatorOutput() SLOSliCustomIndicatorOutput {
+	return i.ToSLOSliCustomIndicatorOutputWithContext(context.Background())
+}
+
+func (i SLOSliCustomIndicatorArgs) ToSLOSliCustomIndicatorOutputWithContext(ctx context.Context) SLOSliCustomIndicatorOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SLOSliCustomIndicatorOutput)
+}
+
+func (i SLOSliCustomIndicatorArgs) ToSLOSliCustomIndicatorPtrOutput() SLOSliCustomIndicatorPtrOutput {
+	return i.ToSLOSliCustomIndicatorPtrOutputWithContext(context.Background())
+}
+
+func (i SLOSliCustomIndicatorArgs) ToSLOSliCustomIndicatorPtrOutputWithContext(ctx context.Context) SLOSliCustomIndicatorPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SLOSliCustomIndicatorOutput).ToSLOSliCustomIndicatorPtrOutputWithContext(ctx)
+}
+
+// SLOSliCustomIndicatorPtrInput is an input type that accepts SLOSliCustomIndicatorArgs, SLOSliCustomIndicatorPtr and SLOSliCustomIndicatorPtrOutput values.
+// You can construct a concrete instance of `SLOSliCustomIndicatorPtrInput` via:
+//
+//	        SLOSliCustomIndicatorArgs{...}
+//
+//	or:
+//
+//	        nil
+type SLOSliCustomIndicatorPtrInput interface {
+	pulumi.Input
+
+	ToSLOSliCustomIndicatorPtrOutput() SLOSliCustomIndicatorPtrOutput
+	ToSLOSliCustomIndicatorPtrOutputWithContext(context.Context) SLOSliCustomIndicatorPtrOutput
+}
+
+type slosliCustomIndicatorPtrType SLOSliCustomIndicatorArgs
+
+func SLOSliCustomIndicatorPtr(v *SLOSliCustomIndicatorArgs) SLOSliCustomIndicatorPtrInput {
+	return (*slosliCustomIndicatorPtrType)(v)
+}
+
+func (*slosliCustomIndicatorPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SLOSliCustomIndicator)(nil)).Elem()
+}
+
+func (i *slosliCustomIndicatorPtrType) ToSLOSliCustomIndicatorPtrOutput() SLOSliCustomIndicatorPtrOutput {
+	return i.ToSLOSliCustomIndicatorPtrOutputWithContext(context.Background())
+}
+
+func (i *slosliCustomIndicatorPtrType) ToSLOSliCustomIndicatorPtrOutputWithContext(ctx context.Context) SLOSliCustomIndicatorPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SLOSliCustomIndicatorPtrOutput)
+}
+
+type SLOSliCustomIndicatorOutput struct{ *pulumi.OutputState }
+
+func (SLOSliCustomIndicatorOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SLOSliCustomIndicator)(nil)).Elem()
+}
+
+func (o SLOSliCustomIndicatorOutput) ToSLOSliCustomIndicatorOutput() SLOSliCustomIndicatorOutput {
+	return o
+}
+
+func (o SLOSliCustomIndicatorOutput) ToSLOSliCustomIndicatorOutputWithContext(ctx context.Context) SLOSliCustomIndicatorOutput {
+	return o
+}
+
+func (o SLOSliCustomIndicatorOutput) ToSLOSliCustomIndicatorPtrOutput() SLOSliCustomIndicatorPtrOutput {
+	return o.ToSLOSliCustomIndicatorPtrOutputWithContext(context.Background())
+}
+
+func (o SLOSliCustomIndicatorOutput) ToSLOSliCustomIndicatorPtrOutputWithContext(ctx context.Context) SLOSliCustomIndicatorPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SLOSliCustomIndicator) *SLOSliCustomIndicator {
+		return &v
+	}).(SLOSliCustomIndicatorPtrOutput)
+}
+
+func (o SLOSliCustomIndicatorOutput) BadQueryTemplate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SLOSliCustomIndicator) *string { return v.BadQueryTemplate }).(pulumi.StringPtrOutput)
+}
+
+func (o SLOSliCustomIndicatorOutput) GoodQueryTemplate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SLOSliCustomIndicator) *string { return v.GoodQueryTemplate }).(pulumi.StringPtrOutput)
+}
+
+func (o SLOSliCustomIndicatorOutput) TotalQueryTemplate() pulumi.StringOutput {
+	return o.ApplyT(func(v SLOSliCustomIndicator) string { return v.TotalQueryTemplate }).(pulumi.StringOutput)
+}
+
+type SLOSliCustomIndicatorPtrOutput struct{ *pulumi.OutputState }
+
+func (SLOSliCustomIndicatorPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SLOSliCustomIndicator)(nil)).Elem()
+}
+
+func (o SLOSliCustomIndicatorPtrOutput) ToSLOSliCustomIndicatorPtrOutput() SLOSliCustomIndicatorPtrOutput {
+	return o
+}
+
+func (o SLOSliCustomIndicatorPtrOutput) ToSLOSliCustomIndicatorPtrOutputWithContext(ctx context.Context) SLOSliCustomIndicatorPtrOutput {
+	return o
+}
+
+func (o SLOSliCustomIndicatorPtrOutput) Elem() SLOSliCustomIndicatorOutput {
+	return o.ApplyT(func(v *SLOSliCustomIndicator) SLOSliCustomIndicator {
+		if v != nil {
+			return *v
+		}
+		var ret SLOSliCustomIndicator
+		return ret
+	}).(SLOSliCustomIndicatorOutput)
+}
+
+func (o SLOSliCustomIndicatorPtrOutput) BadQueryTemplate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SLOSliCustomIndicator) *string {
+		if v == nil {
+			return nil
+		}
+		return v.BadQueryTemplate
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o SLOSliCustomIndicatorPtrOutput) GoodQueryTemplate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SLOSliCustomIndicator) *string {
+		if v == nil {
+			return nil
+		}
+		return v.GoodQueryTemplate
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o SLOSliCustomIndicatorPtrOutput) TotalQueryTemplate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SLOSliCustomIndicator) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.TotalQueryTemplate
+	}).(pulumi.StringPtrOutput)
+}
+
+type SLOSliEndpointAvailability struct {
+	AdditionalPromqlFilters []SLOSliEndpointAvailabilityAdditionalPromqlFilter `pulumi:"additionalPromqlFilters"`
+	EndpointsMonitoreds     []string                                           `pulumi:"endpointsMonitoreds"`
+	ErrorCodes              []string                                           `pulumi:"errorCodes"`
+	SuccessCodes            []string                                           `pulumi:"successCodes"`
+}
+
+// SLOSliEndpointAvailabilityInput is an input type that accepts SLOSliEndpointAvailabilityArgs and SLOSliEndpointAvailabilityOutput values.
+// You can construct a concrete instance of `SLOSliEndpointAvailabilityInput` via:
+//
+//	SLOSliEndpointAvailabilityArgs{...}
+type SLOSliEndpointAvailabilityInput interface {
+	pulumi.Input
+
+	ToSLOSliEndpointAvailabilityOutput() SLOSliEndpointAvailabilityOutput
+	ToSLOSliEndpointAvailabilityOutputWithContext(context.Context) SLOSliEndpointAvailabilityOutput
+}
+
+type SLOSliEndpointAvailabilityArgs struct {
+	AdditionalPromqlFilters SLOSliEndpointAvailabilityAdditionalPromqlFilterArrayInput `pulumi:"additionalPromqlFilters"`
+	EndpointsMonitoreds     pulumi.StringArrayInput                                    `pulumi:"endpointsMonitoreds"`
+	ErrorCodes              pulumi.StringArrayInput                                    `pulumi:"errorCodes"`
+	SuccessCodes            pulumi.StringArrayInput                                    `pulumi:"successCodes"`
+}
+
+func (SLOSliEndpointAvailabilityArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SLOSliEndpointAvailability)(nil)).Elem()
+}
+
+func (i SLOSliEndpointAvailabilityArgs) ToSLOSliEndpointAvailabilityOutput() SLOSliEndpointAvailabilityOutput {
+	return i.ToSLOSliEndpointAvailabilityOutputWithContext(context.Background())
+}
+
+func (i SLOSliEndpointAvailabilityArgs) ToSLOSliEndpointAvailabilityOutputWithContext(ctx context.Context) SLOSliEndpointAvailabilityOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SLOSliEndpointAvailabilityOutput)
+}
+
+func (i SLOSliEndpointAvailabilityArgs) ToSLOSliEndpointAvailabilityPtrOutput() SLOSliEndpointAvailabilityPtrOutput {
+	return i.ToSLOSliEndpointAvailabilityPtrOutputWithContext(context.Background())
+}
+
+func (i SLOSliEndpointAvailabilityArgs) ToSLOSliEndpointAvailabilityPtrOutputWithContext(ctx context.Context) SLOSliEndpointAvailabilityPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SLOSliEndpointAvailabilityOutput).ToSLOSliEndpointAvailabilityPtrOutputWithContext(ctx)
+}
+
+// SLOSliEndpointAvailabilityPtrInput is an input type that accepts SLOSliEndpointAvailabilityArgs, SLOSliEndpointAvailabilityPtr and SLOSliEndpointAvailabilityPtrOutput values.
+// You can construct a concrete instance of `SLOSliEndpointAvailabilityPtrInput` via:
+//
+//	        SLOSliEndpointAvailabilityArgs{...}
+//
+//	or:
+//
+//	        nil
+type SLOSliEndpointAvailabilityPtrInput interface {
+	pulumi.Input
+
+	ToSLOSliEndpointAvailabilityPtrOutput() SLOSliEndpointAvailabilityPtrOutput
+	ToSLOSliEndpointAvailabilityPtrOutputWithContext(context.Context) SLOSliEndpointAvailabilityPtrOutput
+}
+
+type slosliEndpointAvailabilityPtrType SLOSliEndpointAvailabilityArgs
+
+func SLOSliEndpointAvailabilityPtr(v *SLOSliEndpointAvailabilityArgs) SLOSliEndpointAvailabilityPtrInput {
+	return (*slosliEndpointAvailabilityPtrType)(v)
+}
+
+func (*slosliEndpointAvailabilityPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SLOSliEndpointAvailability)(nil)).Elem()
+}
+
+func (i *slosliEndpointAvailabilityPtrType) ToSLOSliEndpointAvailabilityPtrOutput() SLOSliEndpointAvailabilityPtrOutput {
+	return i.ToSLOSliEndpointAvailabilityPtrOutputWithContext(context.Background())
+}
+
+func (i *slosliEndpointAvailabilityPtrType) ToSLOSliEndpointAvailabilityPtrOutputWithContext(ctx context.Context) SLOSliEndpointAvailabilityPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SLOSliEndpointAvailabilityPtrOutput)
+}
+
+type SLOSliEndpointAvailabilityOutput struct{ *pulumi.OutputState }
+
+func (SLOSliEndpointAvailabilityOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SLOSliEndpointAvailability)(nil)).Elem()
+}
+
+func (o SLOSliEndpointAvailabilityOutput) ToSLOSliEndpointAvailabilityOutput() SLOSliEndpointAvailabilityOutput {
+	return o
+}
+
+func (o SLOSliEndpointAvailabilityOutput) ToSLOSliEndpointAvailabilityOutputWithContext(ctx context.Context) SLOSliEndpointAvailabilityOutput {
+	return o
+}
+
+func (o SLOSliEndpointAvailabilityOutput) ToSLOSliEndpointAvailabilityPtrOutput() SLOSliEndpointAvailabilityPtrOutput {
+	return o.ToSLOSliEndpointAvailabilityPtrOutputWithContext(context.Background())
+}
+
+func (o SLOSliEndpointAvailabilityOutput) ToSLOSliEndpointAvailabilityPtrOutputWithContext(ctx context.Context) SLOSliEndpointAvailabilityPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SLOSliEndpointAvailability) *SLOSliEndpointAvailability {
+		return &v
+	}).(SLOSliEndpointAvailabilityPtrOutput)
+}
+
+func (o SLOSliEndpointAvailabilityOutput) AdditionalPromqlFilters() SLOSliEndpointAvailabilityAdditionalPromqlFilterArrayOutput {
+	return o.ApplyT(func(v SLOSliEndpointAvailability) []SLOSliEndpointAvailabilityAdditionalPromqlFilter {
+		return v.AdditionalPromqlFilters
+	}).(SLOSliEndpointAvailabilityAdditionalPromqlFilterArrayOutput)
+}
+
+func (o SLOSliEndpointAvailabilityOutput) EndpointsMonitoreds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v SLOSliEndpointAvailability) []string { return v.EndpointsMonitoreds }).(pulumi.StringArrayOutput)
+}
+
+func (o SLOSliEndpointAvailabilityOutput) ErrorCodes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v SLOSliEndpointAvailability) []string { return v.ErrorCodes }).(pulumi.StringArrayOutput)
+}
+
+func (o SLOSliEndpointAvailabilityOutput) SuccessCodes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v SLOSliEndpointAvailability) []string { return v.SuccessCodes }).(pulumi.StringArrayOutput)
+}
+
+type SLOSliEndpointAvailabilityPtrOutput struct{ *pulumi.OutputState }
+
+func (SLOSliEndpointAvailabilityPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SLOSliEndpointAvailability)(nil)).Elem()
+}
+
+func (o SLOSliEndpointAvailabilityPtrOutput) ToSLOSliEndpointAvailabilityPtrOutput() SLOSliEndpointAvailabilityPtrOutput {
+	return o
+}
+
+func (o SLOSliEndpointAvailabilityPtrOutput) ToSLOSliEndpointAvailabilityPtrOutputWithContext(ctx context.Context) SLOSliEndpointAvailabilityPtrOutput {
+	return o
+}
+
+func (o SLOSliEndpointAvailabilityPtrOutput) Elem() SLOSliEndpointAvailabilityOutput {
+	return o.ApplyT(func(v *SLOSliEndpointAvailability) SLOSliEndpointAvailability {
+		if v != nil {
+			return *v
+		}
+		var ret SLOSliEndpointAvailability
+		return ret
+	}).(SLOSliEndpointAvailabilityOutput)
+}
+
+func (o SLOSliEndpointAvailabilityPtrOutput) AdditionalPromqlFilters() SLOSliEndpointAvailabilityAdditionalPromqlFilterArrayOutput {
+	return o.ApplyT(func(v *SLOSliEndpointAvailability) []SLOSliEndpointAvailabilityAdditionalPromqlFilter {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalPromqlFilters
+	}).(SLOSliEndpointAvailabilityAdditionalPromqlFilterArrayOutput)
+}
+
+func (o SLOSliEndpointAvailabilityPtrOutput) EndpointsMonitoreds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SLOSliEndpointAvailability) []string {
+		if v == nil {
+			return nil
+		}
+		return v.EndpointsMonitoreds
+	}).(pulumi.StringArrayOutput)
+}
+
+func (o SLOSliEndpointAvailabilityPtrOutput) ErrorCodes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SLOSliEndpointAvailability) []string {
+		if v == nil {
+			return nil
+		}
+		return v.ErrorCodes
+	}).(pulumi.StringArrayOutput)
+}
+
+func (o SLOSliEndpointAvailabilityPtrOutput) SuccessCodes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SLOSliEndpointAvailability) []string {
+		if v == nil {
+			return nil
+		}
+		return v.SuccessCodes
+	}).(pulumi.StringArrayOutput)
+}
+
+type SLOSliEndpointAvailabilityAdditionalPromqlFilter struct {
+	Name  string `pulumi:"name"`
+	Type  string `pulumi:"type"`
+	Value string `pulumi:"value"`
+}
+
+// SLOSliEndpointAvailabilityAdditionalPromqlFilterInput is an input type that accepts SLOSliEndpointAvailabilityAdditionalPromqlFilterArgs and SLOSliEndpointAvailabilityAdditionalPromqlFilterOutput values.
+// You can construct a concrete instance of `SLOSliEndpointAvailabilityAdditionalPromqlFilterInput` via:
+//
+//	SLOSliEndpointAvailabilityAdditionalPromqlFilterArgs{...}
+type SLOSliEndpointAvailabilityAdditionalPromqlFilterInput interface {
+	pulumi.Input
+
+	ToSLOSliEndpointAvailabilityAdditionalPromqlFilterOutput() SLOSliEndpointAvailabilityAdditionalPromqlFilterOutput
+	ToSLOSliEndpointAvailabilityAdditionalPromqlFilterOutputWithContext(context.Context) SLOSliEndpointAvailabilityAdditionalPromqlFilterOutput
+}
+
+type SLOSliEndpointAvailabilityAdditionalPromqlFilterArgs struct {
+	Name  pulumi.StringInput `pulumi:"name"`
+	Type  pulumi.StringInput `pulumi:"type"`
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (SLOSliEndpointAvailabilityAdditionalPromqlFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SLOSliEndpointAvailabilityAdditionalPromqlFilter)(nil)).Elem()
+}
+
+func (i SLOSliEndpointAvailabilityAdditionalPromqlFilterArgs) ToSLOSliEndpointAvailabilityAdditionalPromqlFilterOutput() SLOSliEndpointAvailabilityAdditionalPromqlFilterOutput {
+	return i.ToSLOSliEndpointAvailabilityAdditionalPromqlFilterOutputWithContext(context.Background())
+}
+
+func (i SLOSliEndpointAvailabilityAdditionalPromqlFilterArgs) ToSLOSliEndpointAvailabilityAdditionalPromqlFilterOutputWithContext(ctx context.Context) SLOSliEndpointAvailabilityAdditionalPromqlFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SLOSliEndpointAvailabilityAdditionalPromqlFilterOutput)
+}
+
+// SLOSliEndpointAvailabilityAdditionalPromqlFilterArrayInput is an input type that accepts SLOSliEndpointAvailabilityAdditionalPromqlFilterArray and SLOSliEndpointAvailabilityAdditionalPromqlFilterArrayOutput values.
+// You can construct a concrete instance of `SLOSliEndpointAvailabilityAdditionalPromqlFilterArrayInput` via:
+//
+//	SLOSliEndpointAvailabilityAdditionalPromqlFilterArray{ SLOSliEndpointAvailabilityAdditionalPromqlFilterArgs{...} }
+type SLOSliEndpointAvailabilityAdditionalPromqlFilterArrayInput interface {
+	pulumi.Input
+
+	ToSLOSliEndpointAvailabilityAdditionalPromqlFilterArrayOutput() SLOSliEndpointAvailabilityAdditionalPromqlFilterArrayOutput
+	ToSLOSliEndpointAvailabilityAdditionalPromqlFilterArrayOutputWithContext(context.Context) SLOSliEndpointAvailabilityAdditionalPromqlFilterArrayOutput
+}
+
+type SLOSliEndpointAvailabilityAdditionalPromqlFilterArray []SLOSliEndpointAvailabilityAdditionalPromqlFilterInput
+
+func (SLOSliEndpointAvailabilityAdditionalPromqlFilterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SLOSliEndpointAvailabilityAdditionalPromqlFilter)(nil)).Elem()
+}
+
+func (i SLOSliEndpointAvailabilityAdditionalPromqlFilterArray) ToSLOSliEndpointAvailabilityAdditionalPromqlFilterArrayOutput() SLOSliEndpointAvailabilityAdditionalPromqlFilterArrayOutput {
+	return i.ToSLOSliEndpointAvailabilityAdditionalPromqlFilterArrayOutputWithContext(context.Background())
+}
+
+func (i SLOSliEndpointAvailabilityAdditionalPromqlFilterArray) ToSLOSliEndpointAvailabilityAdditionalPromqlFilterArrayOutputWithContext(ctx context.Context) SLOSliEndpointAvailabilityAdditionalPromqlFilterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SLOSliEndpointAvailabilityAdditionalPromqlFilterArrayOutput)
+}
+
+type SLOSliEndpointAvailabilityAdditionalPromqlFilterOutput struct{ *pulumi.OutputState }
+
+func (SLOSliEndpointAvailabilityAdditionalPromqlFilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SLOSliEndpointAvailabilityAdditionalPromqlFilter)(nil)).Elem()
+}
+
+func (o SLOSliEndpointAvailabilityAdditionalPromqlFilterOutput) ToSLOSliEndpointAvailabilityAdditionalPromqlFilterOutput() SLOSliEndpointAvailabilityAdditionalPromqlFilterOutput {
+	return o
+}
+
+func (o SLOSliEndpointAvailabilityAdditionalPromqlFilterOutput) ToSLOSliEndpointAvailabilityAdditionalPromqlFilterOutputWithContext(ctx context.Context) SLOSliEndpointAvailabilityAdditionalPromqlFilterOutput {
+	return o
+}
+
+func (o SLOSliEndpointAvailabilityAdditionalPromqlFilterOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v SLOSliEndpointAvailabilityAdditionalPromqlFilter) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SLOSliEndpointAvailabilityAdditionalPromqlFilterOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v SLOSliEndpointAvailabilityAdditionalPromqlFilter) string { return v.Type }).(pulumi.StringOutput)
+}
+
+func (o SLOSliEndpointAvailabilityAdditionalPromqlFilterOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v SLOSliEndpointAvailabilityAdditionalPromqlFilter) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type SLOSliEndpointAvailabilityAdditionalPromqlFilterArrayOutput struct{ *pulumi.OutputState }
+
+func (SLOSliEndpointAvailabilityAdditionalPromqlFilterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SLOSliEndpointAvailabilityAdditionalPromqlFilter)(nil)).Elem()
+}
+
+func (o SLOSliEndpointAvailabilityAdditionalPromqlFilterArrayOutput) ToSLOSliEndpointAvailabilityAdditionalPromqlFilterArrayOutput() SLOSliEndpointAvailabilityAdditionalPromqlFilterArrayOutput {
+	return o
+}
+
+func (o SLOSliEndpointAvailabilityAdditionalPromqlFilterArrayOutput) ToSLOSliEndpointAvailabilityAdditionalPromqlFilterArrayOutputWithContext(ctx context.Context) SLOSliEndpointAvailabilityAdditionalPromqlFilterArrayOutput {
+	return o
+}
+
+func (o SLOSliEndpointAvailabilityAdditionalPromqlFilterArrayOutput) Index(i pulumi.IntInput) SLOSliEndpointAvailabilityAdditionalPromqlFilterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SLOSliEndpointAvailabilityAdditionalPromqlFilter {
+		return vs[0].([]SLOSliEndpointAvailabilityAdditionalPromqlFilter)[vs[1].(int)]
+	}).(SLOSliEndpointAvailabilityAdditionalPromqlFilterOutput)
+}
+
+type SLOSliEndpointLatency struct {
+	AdditionalPromqlFilters []SLOSliEndpointLatencyAdditionalPromqlFilter `pulumi:"additionalPromqlFilters"`
+	EndpointsMonitoreds     []string                                      `pulumi:"endpointsMonitoreds"`
+	LatencyBucket           string                                        `pulumi:"latencyBucket"`
+}
+
+// SLOSliEndpointLatencyInput is an input type that accepts SLOSliEndpointLatencyArgs and SLOSliEndpointLatencyOutput values.
+// You can construct a concrete instance of `SLOSliEndpointLatencyInput` via:
+//
+//	SLOSliEndpointLatencyArgs{...}
+type SLOSliEndpointLatencyInput interface {
+	pulumi.Input
+
+	ToSLOSliEndpointLatencyOutput() SLOSliEndpointLatencyOutput
+	ToSLOSliEndpointLatencyOutputWithContext(context.Context) SLOSliEndpointLatencyOutput
+}
+
+type SLOSliEndpointLatencyArgs struct {
+	AdditionalPromqlFilters SLOSliEndpointLatencyAdditionalPromqlFilterArrayInput `pulumi:"additionalPromqlFilters"`
+	EndpointsMonitoreds     pulumi.StringArrayInput                               `pulumi:"endpointsMonitoreds"`
+	LatencyBucket           pulumi.StringInput                                    `pulumi:"latencyBucket"`
+}
+
+func (SLOSliEndpointLatencyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SLOSliEndpointLatency)(nil)).Elem()
+}
+
+func (i SLOSliEndpointLatencyArgs) ToSLOSliEndpointLatencyOutput() SLOSliEndpointLatencyOutput {
+	return i.ToSLOSliEndpointLatencyOutputWithContext(context.Background())
+}
+
+func (i SLOSliEndpointLatencyArgs) ToSLOSliEndpointLatencyOutputWithContext(ctx context.Context) SLOSliEndpointLatencyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SLOSliEndpointLatencyOutput)
+}
+
+func (i SLOSliEndpointLatencyArgs) ToSLOSliEndpointLatencyPtrOutput() SLOSliEndpointLatencyPtrOutput {
+	return i.ToSLOSliEndpointLatencyPtrOutputWithContext(context.Background())
+}
+
+func (i SLOSliEndpointLatencyArgs) ToSLOSliEndpointLatencyPtrOutputWithContext(ctx context.Context) SLOSliEndpointLatencyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SLOSliEndpointLatencyOutput).ToSLOSliEndpointLatencyPtrOutputWithContext(ctx)
+}
+
+// SLOSliEndpointLatencyPtrInput is an input type that accepts SLOSliEndpointLatencyArgs, SLOSliEndpointLatencyPtr and SLOSliEndpointLatencyPtrOutput values.
+// You can construct a concrete instance of `SLOSliEndpointLatencyPtrInput` via:
+//
+//	        SLOSliEndpointLatencyArgs{...}
+//
+//	or:
+//
+//	        nil
+type SLOSliEndpointLatencyPtrInput interface {
+	pulumi.Input
+
+	ToSLOSliEndpointLatencyPtrOutput() SLOSliEndpointLatencyPtrOutput
+	ToSLOSliEndpointLatencyPtrOutputWithContext(context.Context) SLOSliEndpointLatencyPtrOutput
+}
+
+type slosliEndpointLatencyPtrType SLOSliEndpointLatencyArgs
+
+func SLOSliEndpointLatencyPtr(v *SLOSliEndpointLatencyArgs) SLOSliEndpointLatencyPtrInput {
+	return (*slosliEndpointLatencyPtrType)(v)
+}
+
+func (*slosliEndpointLatencyPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SLOSliEndpointLatency)(nil)).Elem()
+}
+
+func (i *slosliEndpointLatencyPtrType) ToSLOSliEndpointLatencyPtrOutput() SLOSliEndpointLatencyPtrOutput {
+	return i.ToSLOSliEndpointLatencyPtrOutputWithContext(context.Background())
+}
+
+func (i *slosliEndpointLatencyPtrType) ToSLOSliEndpointLatencyPtrOutputWithContext(ctx context.Context) SLOSliEndpointLatencyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SLOSliEndpointLatencyPtrOutput)
+}
+
+type SLOSliEndpointLatencyOutput struct{ *pulumi.OutputState }
+
+func (SLOSliEndpointLatencyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SLOSliEndpointLatency)(nil)).Elem()
+}
+
+func (o SLOSliEndpointLatencyOutput) ToSLOSliEndpointLatencyOutput() SLOSliEndpointLatencyOutput {
+	return o
+}
+
+func (o SLOSliEndpointLatencyOutput) ToSLOSliEndpointLatencyOutputWithContext(ctx context.Context) SLOSliEndpointLatencyOutput {
+	return o
+}
+
+func (o SLOSliEndpointLatencyOutput) ToSLOSliEndpointLatencyPtrOutput() SLOSliEndpointLatencyPtrOutput {
+	return o.ToSLOSliEndpointLatencyPtrOutputWithContext(context.Background())
+}
+
+func (o SLOSliEndpointLatencyOutput) ToSLOSliEndpointLatencyPtrOutputWithContext(ctx context.Context) SLOSliEndpointLatencyPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SLOSliEndpointLatency) *SLOSliEndpointLatency {
+		return &v
+	}).(SLOSliEndpointLatencyPtrOutput)
+}
+
+func (o SLOSliEndpointLatencyOutput) AdditionalPromqlFilters() SLOSliEndpointLatencyAdditionalPromqlFilterArrayOutput {
+	return o.ApplyT(func(v SLOSliEndpointLatency) []SLOSliEndpointLatencyAdditionalPromqlFilter {
+		return v.AdditionalPromqlFilters
+	}).(SLOSliEndpointLatencyAdditionalPromqlFilterArrayOutput)
+}
+
+func (o SLOSliEndpointLatencyOutput) EndpointsMonitoreds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v SLOSliEndpointLatency) []string { return v.EndpointsMonitoreds }).(pulumi.StringArrayOutput)
+}
+
+func (o SLOSliEndpointLatencyOutput) LatencyBucket() pulumi.StringOutput {
+	return o.ApplyT(func(v SLOSliEndpointLatency) string { return v.LatencyBucket }).(pulumi.StringOutput)
+}
+
+type SLOSliEndpointLatencyPtrOutput struct{ *pulumi.OutputState }
+
+func (SLOSliEndpointLatencyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SLOSliEndpointLatency)(nil)).Elem()
+}
+
+func (o SLOSliEndpointLatencyPtrOutput) ToSLOSliEndpointLatencyPtrOutput() SLOSliEndpointLatencyPtrOutput {
+	return o
+}
+
+func (o SLOSliEndpointLatencyPtrOutput) ToSLOSliEndpointLatencyPtrOutputWithContext(ctx context.Context) SLOSliEndpointLatencyPtrOutput {
+	return o
+}
+
+func (o SLOSliEndpointLatencyPtrOutput) Elem() SLOSliEndpointLatencyOutput {
+	return o.ApplyT(func(v *SLOSliEndpointLatency) SLOSliEndpointLatency {
+		if v != nil {
+			return *v
+		}
+		var ret SLOSliEndpointLatency
+		return ret
+	}).(SLOSliEndpointLatencyOutput)
+}
+
+func (o SLOSliEndpointLatencyPtrOutput) AdditionalPromqlFilters() SLOSliEndpointLatencyAdditionalPromqlFilterArrayOutput {
+	return o.ApplyT(func(v *SLOSliEndpointLatency) []SLOSliEndpointLatencyAdditionalPromqlFilter {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalPromqlFilters
+	}).(SLOSliEndpointLatencyAdditionalPromqlFilterArrayOutput)
+}
+
+func (o SLOSliEndpointLatencyPtrOutput) EndpointsMonitoreds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SLOSliEndpointLatency) []string {
+		if v == nil {
+			return nil
+		}
+		return v.EndpointsMonitoreds
+	}).(pulumi.StringArrayOutput)
+}
+
+func (o SLOSliEndpointLatencyPtrOutput) LatencyBucket() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SLOSliEndpointLatency) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.LatencyBucket
+	}).(pulumi.StringPtrOutput)
+}
+
+type SLOSliEndpointLatencyAdditionalPromqlFilter struct {
+	Name  string `pulumi:"name"`
+	Type  string `pulumi:"type"`
+	Value string `pulumi:"value"`
+}
+
+// SLOSliEndpointLatencyAdditionalPromqlFilterInput is an input type that accepts SLOSliEndpointLatencyAdditionalPromqlFilterArgs and SLOSliEndpointLatencyAdditionalPromqlFilterOutput values.
+// You can construct a concrete instance of `SLOSliEndpointLatencyAdditionalPromqlFilterInput` via:
+//
+//	SLOSliEndpointLatencyAdditionalPromqlFilterArgs{...}
+type SLOSliEndpointLatencyAdditionalPromqlFilterInput interface {
+	pulumi.Input
+
+	ToSLOSliEndpointLatencyAdditionalPromqlFilterOutput() SLOSliEndpointLatencyAdditionalPromqlFilterOutput
+	ToSLOSliEndpointLatencyAdditionalPromqlFilterOutputWithContext(context.Context) SLOSliEndpointLatencyAdditionalPromqlFilterOutput
+}
+
+type SLOSliEndpointLatencyAdditionalPromqlFilterArgs struct {
+	Name  pulumi.StringInput `pulumi:"name"`
+	Type  pulumi.StringInput `pulumi:"type"`
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (SLOSliEndpointLatencyAdditionalPromqlFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SLOSliEndpointLatencyAdditionalPromqlFilter)(nil)).Elem()
+}
+
+func (i SLOSliEndpointLatencyAdditionalPromqlFilterArgs) ToSLOSliEndpointLatencyAdditionalPromqlFilterOutput() SLOSliEndpointLatencyAdditionalPromqlFilterOutput {
+	return i.ToSLOSliEndpointLatencyAdditionalPromqlFilterOutputWithContext(context.Background())
+}
+
+func (i SLOSliEndpointLatencyAdditionalPromqlFilterArgs) ToSLOSliEndpointLatencyAdditionalPromqlFilterOutputWithContext(ctx context.Context) SLOSliEndpointLatencyAdditionalPromqlFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SLOSliEndpointLatencyAdditionalPromqlFilterOutput)
+}
+
+// SLOSliEndpointLatencyAdditionalPromqlFilterArrayInput is an input type that accepts SLOSliEndpointLatencyAdditionalPromqlFilterArray and SLOSliEndpointLatencyAdditionalPromqlFilterArrayOutput values.
+// You can construct a concrete instance of `SLOSliEndpointLatencyAdditionalPromqlFilterArrayInput` via:
+//
+//	SLOSliEndpointLatencyAdditionalPromqlFilterArray{ SLOSliEndpointLatencyAdditionalPromqlFilterArgs{...} }
+type SLOSliEndpointLatencyAdditionalPromqlFilterArrayInput interface {
+	pulumi.Input
+
+	ToSLOSliEndpointLatencyAdditionalPromqlFilterArrayOutput() SLOSliEndpointLatencyAdditionalPromqlFilterArrayOutput
+	ToSLOSliEndpointLatencyAdditionalPromqlFilterArrayOutputWithContext(context.Context) SLOSliEndpointLatencyAdditionalPromqlFilterArrayOutput
+}
+
+type SLOSliEndpointLatencyAdditionalPromqlFilterArray []SLOSliEndpointLatencyAdditionalPromqlFilterInput
+
+func (SLOSliEndpointLatencyAdditionalPromqlFilterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SLOSliEndpointLatencyAdditionalPromqlFilter)(nil)).Elem()
+}
+
+func (i SLOSliEndpointLatencyAdditionalPromqlFilterArray) ToSLOSliEndpointLatencyAdditionalPromqlFilterArrayOutput() SLOSliEndpointLatencyAdditionalPromqlFilterArrayOutput {
+	return i.ToSLOSliEndpointLatencyAdditionalPromqlFilterArrayOutputWithContext(context.Background())
+}
+
+func (i SLOSliEndpointLatencyAdditionalPromqlFilterArray) ToSLOSliEndpointLatencyAdditionalPromqlFilterArrayOutputWithContext(ctx context.Context) SLOSliEndpointLatencyAdditionalPromqlFilterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SLOSliEndpointLatencyAdditionalPromqlFilterArrayOutput)
+}
+
+type SLOSliEndpointLatencyAdditionalPromqlFilterOutput struct{ *pulumi.OutputState }
+
+func (SLOSliEndpointLatencyAdditionalPromqlFilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SLOSliEndpointLatencyAdditionalPromqlFilter)(nil)).Elem()
+}
+
+func (o SLOSliEndpointLatencyAdditionalPromqlFilterOutput) ToSLOSliEndpointLatencyAdditionalPromqlFilterOutput() SLOSliEndpointLatencyAdditionalPromqlFilterOutput {
+	return o
+}
+
+func (o SLOSliEndpointLatencyAdditionalPromqlFilterOutput) ToSLOSliEndpointLatencyAdditionalPromqlFilterOutputWithContext(ctx context.Context) SLOSliEndpointLatencyAdditionalPromqlFilterOutput {
+	return o
+}
+
+func (o SLOSliEndpointLatencyAdditionalPromqlFilterOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v SLOSliEndpointLatencyAdditionalPromqlFilter) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SLOSliEndpointLatencyAdditionalPromqlFilterOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v SLOSliEndpointLatencyAdditionalPromqlFilter) string { return v.Type }).(pulumi.StringOutput)
+}
+
+func (o SLOSliEndpointLatencyAdditionalPromqlFilterOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v SLOSliEndpointLatencyAdditionalPromqlFilter) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type SLOSliEndpointLatencyAdditionalPromqlFilterArrayOutput struct{ *pulumi.OutputState }
+
+func (SLOSliEndpointLatencyAdditionalPromqlFilterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SLOSliEndpointLatencyAdditionalPromqlFilter)(nil)).Elem()
+}
+
+func (o SLOSliEndpointLatencyAdditionalPromqlFilterArrayOutput) ToSLOSliEndpointLatencyAdditionalPromqlFilterArrayOutput() SLOSliEndpointLatencyAdditionalPromqlFilterArrayOutput {
+	return o
+}
+
+func (o SLOSliEndpointLatencyAdditionalPromqlFilterArrayOutput) ToSLOSliEndpointLatencyAdditionalPromqlFilterArrayOutputWithContext(ctx context.Context) SLOSliEndpointLatencyAdditionalPromqlFilterArrayOutput {
+	return o
+}
+
+func (o SLOSliEndpointLatencyAdditionalPromqlFilterArrayOutput) Index(i pulumi.IntInput) SLOSliEndpointLatencyAdditionalPromqlFilterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SLOSliEndpointLatencyAdditionalPromqlFilter {
+		return vs[0].([]SLOSliEndpointLatencyAdditionalPromqlFilter)[vs[1].(int)]
+	}).(SLOSliEndpointLatencyAdditionalPromqlFilterOutput)
+}
+
 type ServiceAccountRestriction struct {
 	Labels     map[string]string `pulumi:"labels"`
 	Permission string            `pulumi:"permission"`
@@ -17313,6 +18483,22 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*RollupRuleGraphiteLabelPolicyReplaceArrayInput)(nil)).Elem(), RollupRuleGraphiteLabelPolicyReplaceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RollupRuleStoragePoliciesInput)(nil)).Elem(), RollupRuleStoragePoliciesArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RollupRuleStoragePoliciesPtrInput)(nil)).Elem(), RollupRuleStoragePoliciesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SLODefinitionInput)(nil)).Elem(), SLODefinitionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SLODefinitionPtrInput)(nil)).Elem(), SLODefinitionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SLODefinitionReportingWindowInput)(nil)).Elem(), SLODefinitionReportingWindowArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SLODefinitionReportingWindowArrayInput)(nil)).Elem(), SLODefinitionReportingWindowArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SLOSliInput)(nil)).Elem(), SLOSliArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SLOSliPtrInput)(nil)).Elem(), SLOSliArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SLOSliCustomIndicatorInput)(nil)).Elem(), SLOSliCustomIndicatorArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SLOSliCustomIndicatorPtrInput)(nil)).Elem(), SLOSliCustomIndicatorArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SLOSliEndpointAvailabilityInput)(nil)).Elem(), SLOSliEndpointAvailabilityArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SLOSliEndpointAvailabilityPtrInput)(nil)).Elem(), SLOSliEndpointAvailabilityArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SLOSliEndpointAvailabilityAdditionalPromqlFilterInput)(nil)).Elem(), SLOSliEndpointAvailabilityAdditionalPromqlFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SLOSliEndpointAvailabilityAdditionalPromqlFilterArrayInput)(nil)).Elem(), SLOSliEndpointAvailabilityAdditionalPromqlFilterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SLOSliEndpointLatencyInput)(nil)).Elem(), SLOSliEndpointLatencyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SLOSliEndpointLatencyPtrInput)(nil)).Elem(), SLOSliEndpointLatencyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SLOSliEndpointLatencyAdditionalPromqlFilterInput)(nil)).Elem(), SLOSliEndpointLatencyAdditionalPromqlFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SLOSliEndpointLatencyAdditionalPromqlFilterArrayInput)(nil)).Elem(), SLOSliEndpointLatencyAdditionalPromqlFilterArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceAccountRestrictionInput)(nil)).Elem(), ServiceAccountRestrictionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceAccountRestrictionPtrInput)(nil)).Elem(), ServiceAccountRestrictionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SlackAlertNotifierActionInput)(nil)).Elem(), SlackAlertNotifierActionArgs{})
@@ -17564,6 +18750,22 @@ func init() {
 	pulumi.RegisterOutputType(RollupRuleGraphiteLabelPolicyReplaceArrayOutput{})
 	pulumi.RegisterOutputType(RollupRuleStoragePoliciesOutput{})
 	pulumi.RegisterOutputType(RollupRuleStoragePoliciesPtrOutput{})
+	pulumi.RegisterOutputType(SLODefinitionOutput{})
+	pulumi.RegisterOutputType(SLODefinitionPtrOutput{})
+	pulumi.RegisterOutputType(SLODefinitionReportingWindowOutput{})
+	pulumi.RegisterOutputType(SLODefinitionReportingWindowArrayOutput{})
+	pulumi.RegisterOutputType(SLOSliOutput{})
+	pulumi.RegisterOutputType(SLOSliPtrOutput{})
+	pulumi.RegisterOutputType(SLOSliCustomIndicatorOutput{})
+	pulumi.RegisterOutputType(SLOSliCustomIndicatorPtrOutput{})
+	pulumi.RegisterOutputType(SLOSliEndpointAvailabilityOutput{})
+	pulumi.RegisterOutputType(SLOSliEndpointAvailabilityPtrOutput{})
+	pulumi.RegisterOutputType(SLOSliEndpointAvailabilityAdditionalPromqlFilterOutput{})
+	pulumi.RegisterOutputType(SLOSliEndpointAvailabilityAdditionalPromqlFilterArrayOutput{})
+	pulumi.RegisterOutputType(SLOSliEndpointLatencyOutput{})
+	pulumi.RegisterOutputType(SLOSliEndpointLatencyPtrOutput{})
+	pulumi.RegisterOutputType(SLOSliEndpointLatencyAdditionalPromqlFilterOutput{})
+	pulumi.RegisterOutputType(SLOSliEndpointLatencyAdditionalPromqlFilterArrayOutput{})
 	pulumi.RegisterOutputType(ServiceAccountRestrictionOutput{})
 	pulumi.RegisterOutputType(ServiceAccountRestrictionPtrOutput{})
 	pulumi.RegisterOutputType(SlackAlertNotifierActionOutput{})

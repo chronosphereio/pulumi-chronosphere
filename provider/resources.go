@@ -158,6 +158,9 @@ func Provider() tfbridge.ProviderInfo {
 			"chronosphere_logscale_alert": {
 				Tok: tfbridge.MakeResource(mainPkg, mainMod, "LogscaleAlert"),
 			},
+			"chronosphere_slo": {
+				Tok: tfbridge.MakeResource(mainPkg, mainMod, "SLO"),
+			},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			"chronosphere_bucket": {

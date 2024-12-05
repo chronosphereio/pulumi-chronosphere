@@ -463,6 +463,55 @@ export interface RollupRuleStoragePolicies {
     retention: pulumi.Input<string>;
 }
 
+export interface SLODefinition {
+    lowVolume?: pulumi.Input<boolean>;
+    objective: pulumi.Input<number>;
+    reportingWindows: pulumi.Input<pulumi.Input<inputs.SLODefinitionReportingWindow>[]>;
+}
+
+export interface SLODefinitionReportingWindow {
+    duration: pulumi.Input<string>;
+}
+
+export interface SLOSli {
+    customIndicator?: pulumi.Input<inputs.SLOSliCustomIndicator>;
+    endpointAvailability?: pulumi.Input<inputs.SLOSliEndpointAvailability>;
+    endpointLabel?: pulumi.Input<string>;
+    endpointLatency?: pulumi.Input<inputs.SLOSliEndpointLatency>;
+    lensTemplateIndicator?: pulumi.Input<string>;
+}
+
+export interface SLOSliCustomIndicator {
+    badQueryTemplate?: pulumi.Input<string>;
+    goodQueryTemplate?: pulumi.Input<string>;
+    totalQueryTemplate: pulumi.Input<string>;
+}
+
+export interface SLOSliEndpointAvailability {
+    additionalPromqlFilters?: pulumi.Input<pulumi.Input<inputs.SLOSliEndpointAvailabilityAdditionalPromqlFilter>[]>;
+    endpointsMonitoreds: pulumi.Input<pulumi.Input<string>[]>;
+    errorCodes?: pulumi.Input<pulumi.Input<string>[]>;
+    successCodes?: pulumi.Input<pulumi.Input<string>[]>;
+}
+
+export interface SLOSliEndpointAvailabilityAdditionalPromqlFilter {
+    name: pulumi.Input<string>;
+    type: pulumi.Input<string>;
+    value: pulumi.Input<string>;
+}
+
+export interface SLOSliEndpointLatency {
+    additionalPromqlFilters?: pulumi.Input<pulumi.Input<inputs.SLOSliEndpointLatencyAdditionalPromqlFilter>[]>;
+    endpointsMonitoreds: pulumi.Input<pulumi.Input<string>[]>;
+    latencyBucket: pulumi.Input<string>;
+}
+
+export interface SLOSliEndpointLatencyAdditionalPromqlFilter {
+    name: pulumi.Input<string>;
+    type: pulumi.Input<string>;
+    value: pulumi.Input<string>;
+}
+
 export interface ServiceAccountRestriction {
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     permission: pulumi.Input<string>;

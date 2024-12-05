@@ -929,8 +929,8 @@ github.com/checkpoint-restore/go-criu/v5 v5.3.0/go.mod h1:E/eQpaFtUKGOOSEBZgmKAc
 github.com/cheggaaa/pb v1.0.27/go.mod h1:pQciLPpbU0oxA0h+VJYYLxO+XeDQb5pZijXscXHm81s=
 github.com/cheggaaa/pb v1.0.29 h1:FckUN5ngEk2LpvuG0fw1GEFx6LtyY2pWI/Z2QgCnEYo=
 github.com/cheggaaa/pb v1.0.29/go.mod h1:W40334L7FMC5JKWldsTWbdGjLo0RxUKK73K+TuPxX30=
-github.com/chronosphereio/terraform-provider-chronosphere v1.6.0 h1:WBk3JVQeDE5GpFrR0giGEG2V2jI0lTs0mG4r698F1AU=
-github.com/chronosphereio/terraform-provider-chronosphere v1.6.0/go.mod h1:Aj+ZF3Ncra9gNWU96t3Fk4KghEMv3h8bW8gyeWXZaSo=
+github.com/chronosphereio/terraform-provider-chronosphere v1.6.1 h1:FdlqRYZN8bwWE8RWLiwvh2YTOEqjyonf3W8NS3Pl+KA=
+github.com/chronosphereio/terraform-provider-chronosphere v1.6.1/go.mod h1:Aj+ZF3Ncra9gNWU96t3Fk4KghEMv3h8bW8gyeWXZaSo=
 github.com/chzyer/logex v1.1.10/go.mod h1:+Ywpsq7O8HXn0nuIou7OrIPyXbp3wmkHB+jjWRnGsAI=
 github.com/chzyer/logex v1.2.0/go.mod h1:9+9sk7u7pGNWYMkh0hdiL++6OeibzJccyQU4p4MedaY=
 github.com/chzyer/readline v0.0.0-20180603132655-2972be24d48e/go.mod h1:nSuG5e5PlCu98SY8svDHJxuZscDgtXS6KTTbou5AhLI=

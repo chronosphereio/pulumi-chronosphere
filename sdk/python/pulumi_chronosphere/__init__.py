@@ -34,6 +34,7 @@ from .rollup_rule import *
 from .service_account import *
 from .service_data_source import *
 from .slack_alert_notifier import *
+from .slo import *
 from .team import *
 from .trace_jaeger_remote_sampling_strategy import *
 from .trace_metrics_rule import *
@@ -235,6 +236,14 @@ _utilities.register(
   "fqn": "pulumi_chronosphere",
   "classes": {
    "chronosphere:index/rollupRule:RollupRule": "RollupRule"
+  }
+ },
+ {
+  "pkg": "chronosphere",
+  "mod": "index/sLO",
+  "fqn": "pulumi_chronosphere",
+  "classes": {
+   "chronosphere:index/sLO:SLO": "SLO"
   }
  },
  {

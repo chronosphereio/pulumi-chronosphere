@@ -150,6 +150,11 @@ export type SlackAlertNotifier = import("./slackAlertNotifier").SlackAlertNotifi
 export const SlackAlertNotifier: typeof import("./slackAlertNotifier").SlackAlertNotifier = null as any;
 utilities.lazyLoad(exports, ["SlackAlertNotifier"], () => require("./slackAlertNotifier"));
 
+export { SLOArgs, SLOState } from "./slo";
+export type SLO = import("./slo").SLO;
+export const SLO: typeof import("./slo").SLO = null as any;
+utilities.lazyLoad(exports, ["SLO"], () => require("./slo"));
+
 export { TeamArgs, TeamState } from "./team";
 export type Team = import("./team").Team;
 export const Team: typeof import("./team").Team = null as any;
@@ -240,6 +245,8 @@ const _module = {
                 return new ResourcePoolsConfig(name, <any>undefined, { urn })
             case "chronosphere:index/rollupRule:RollupRule":
                 return new RollupRule(name, <any>undefined, { urn })
+            case "chronosphere:index/sLO:SLO":
+                return new SLO(name, <any>undefined, { urn })
             case "chronosphere:index/serviceAccount:ServiceAccount":
                 return new ServiceAccount(name, <any>undefined, { urn })
             case "chronosphere:index/slackAlertNotifier:SlackAlertNotifier":
@@ -284,6 +291,7 @@ pulumi.runtime.registerResourceModule("chronosphere", "index/pagerdutyAlertNotif
 pulumi.runtime.registerResourceModule("chronosphere", "index/recordingRule", _module)
 pulumi.runtime.registerResourceModule("chronosphere", "index/resourcePoolsConfig", _module)
 pulumi.runtime.registerResourceModule("chronosphere", "index/rollupRule", _module)
+pulumi.runtime.registerResourceModule("chronosphere", "index/sLO", _module)
 pulumi.runtime.registerResourceModule("chronosphere", "index/serviceAccount", _module)
 pulumi.runtime.registerResourceModule("chronosphere", "index/slackAlertNotifier", _module)
 pulumi.runtime.registerResourceModule("chronosphere", "index/team", _module)

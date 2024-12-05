@@ -463,6 +463,55 @@ export interface RollupRuleStoragePolicies {
     retention: string;
 }
 
+export interface SLODefinition {
+    lowVolume?: boolean;
+    objective: number;
+    reportingWindows: outputs.SLODefinitionReportingWindow[];
+}
+
+export interface SLODefinitionReportingWindow {
+    duration: string;
+}
+
+export interface SLOSli {
+    customIndicator?: outputs.SLOSliCustomIndicator;
+    endpointAvailability?: outputs.SLOSliEndpointAvailability;
+    endpointLabel?: string;
+    endpointLatency?: outputs.SLOSliEndpointLatency;
+    lensTemplateIndicator?: string;
+}
+
+export interface SLOSliCustomIndicator {
+    badQueryTemplate?: string;
+    goodQueryTemplate?: string;
+    totalQueryTemplate: string;
+}
+
+export interface SLOSliEndpointAvailability {
+    additionalPromqlFilters?: outputs.SLOSliEndpointAvailabilityAdditionalPromqlFilter[];
+    endpointsMonitoreds: string[];
+    errorCodes?: string[];
+    successCodes?: string[];
+}
+
+export interface SLOSliEndpointAvailabilityAdditionalPromqlFilter {
+    name: string;
+    type: string;
+    value: string;
+}
+
+export interface SLOSliEndpointLatency {
+    additionalPromqlFilters?: outputs.SLOSliEndpointLatencyAdditionalPromqlFilter[];
+    endpointsMonitoreds: string[];
+    latencyBucket: string;
+}
+
+export interface SLOSliEndpointLatencyAdditionalPromqlFilter {
+    name: string;
+    type: string;
+    value: string;
+}
+
 export interface ServiceAccountRestriction {
     labels?: {[key: string]: string};
     permission: string;
