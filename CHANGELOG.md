@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+Fixed:
+- Fixed a bug where Set types in terraform plugin SDK could have extra, empty values.
+
 ## v0.9.4
 
 Added:
