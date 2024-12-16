@@ -15,6 +15,10 @@ replace (
 	// this dependency is sensitive and is worth doing carefully (such as reading release notes)
 	// and not simply rely on passing tests for the upgrade.
 	github.com/hashicorp/terraform-plugin-framework => github.com/pulumi/terraform-plugin-framework v0.0.0-20230922145027-1535d08c1d47
+
+	// NOTE: We have changed this replace statement to point to a branch in the Chronosphere fork of the plugin SDK. This branch
+	//       is based off of the Pulumi fork but adds some necessary fixes that Chronosphere has made over the years for our
+	//       Terraform Provider that is used for bridging.
 	// github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20230912190043-e6d96b3b8f7e
 	github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/chronosphereio/terraform-plugin-sdk/v2 v2.0.0-20241216201251-9f5fae072741
 
