@@ -50,11 +50,12 @@ func Provider() tfbridge.ProviderInfo {
 		Keywords:       []string{"chronosphere", "observability", "prometheus"},
 		License:        "Apache-2.0",
 		// LogoURL:        "",
-		DisplayName: "Chronosphere",
-		Publisher:   "Chronosphere",
-		Homepage:    "https://chronosphere.io",
-		Repository:  "https://github.com/chronosphereio/pulumi-chronosphere",
-		Version:     "v0.1.0",
+		DisplayName:       "Chronosphere",
+		Publisher:         "Chronosphere",
+		Homepage:          "https://chronosphere.io",
+		Repository:        "https://github.com/chronosphereio/pulumi-chronosphere",
+		PluginDownloadURL: "github://api.github.com/chronosphereio",
+		Version:           "v0.1.0",
 		Config: map[string]*tfbridge.SchemaInfo{
 			"org": {
 				Default: &tfbridge.DefaultInfo{EnvVars: []string{"CHRONOSPHERE_ORG", "CHRONOSPHERE_ORG_NAME"}},
