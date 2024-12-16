@@ -84,6 +84,7 @@ namespace Chronosphere.Pulumi
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                PluginDownloadURL = "github://api.github.com/chronosphereio",
                 AdditionalSecretOutputs =
                 {
                     "apiKey",
