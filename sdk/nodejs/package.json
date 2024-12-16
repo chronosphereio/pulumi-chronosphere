@@ -23,6 +23,7 @@
     },
     "pulumi": {
         "resource": true,
-        "name": "chronosphere"
+        "name": "chronosphere",
+        "server": "github://api.github.com/chronosphereio"
     }
 }

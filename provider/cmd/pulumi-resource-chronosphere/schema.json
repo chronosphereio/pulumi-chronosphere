@@ -11,6 +11,7 @@
     "license": "Apache-2.0",
     "attribution": "This Pulumi package is based on the [`chronosphere` Terraform Provider](https://github.com/chronosphereio/terraform-provider-chronosphere).",
     "repository": "https://github.com/chronosphereio/pulumi-chronosphere",
+    "pluginDownloadURL": "github://api.github.com/chronosphereio",
     "publisher": "Chronosphere",
     "meta": {
         "moduleFormat": "(.*)(?:/[^/]*)"
