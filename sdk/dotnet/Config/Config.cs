@@ -39,6 +39,13 @@ namespace Chronosphere.Pulumi
             set => _apiToken.Set(value);
         }
 
+        private static readonly __Value<bool?> _disableDryrun = new __Value<bool?>(() => __config.GetBoolean("disableDryrun"));
+        public static bool? DisableDryrun
+        {
+            get => _disableDryrun.Get();
+            set => _disableDryrun.Set(value);
+        }
+
         private static readonly __Value<string?> _entityNamespace = new __Value<string?>(() => __config.Get("entityNamespace"));
         public static string? EntityNamespace
         {

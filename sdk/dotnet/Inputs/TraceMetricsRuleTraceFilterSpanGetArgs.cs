@@ -19,6 +19,9 @@ namespace Chronosphere.Pulumi.Inputs
         [Input("error")]
         public Input<Inputs.TraceMetricsRuleTraceFilterSpanErrorGetArgs>? Error { get; set; }
 
+        [Input("isRootSpan")]
+        public Input<Inputs.TraceMetricsRuleTraceFilterSpanIsRootSpanGetArgs>? IsRootSpan { get; set; }
+
         [Input("matchType")]
         public Input<string>? MatchType { get; set; }
 

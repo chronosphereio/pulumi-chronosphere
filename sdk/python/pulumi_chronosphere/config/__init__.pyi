@@ -11,6 +11,8 @@ from .. import _utilities
 
 apiToken: Optional[str]
 
+disableDryrun: Optional[bool]
+
 entityNamespace: Optional[str]
 
 org: Optional[str]

@@ -7,6 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import io.chronosphere.chronosphere.inputs.TraceMetricsRuleTraceFilterSpanDurationArgs;
 import io.chronosphere.chronosphere.inputs.TraceMetricsRuleTraceFilterSpanErrorArgs;
+import io.chronosphere.chronosphere.inputs.TraceMetricsRuleTraceFilterSpanIsRootSpanArgs;
 import io.chronosphere.chronosphere.inputs.TraceMetricsRuleTraceFilterSpanOperationArgs;
 import io.chronosphere.chronosphere.inputs.TraceMetricsRuleTraceFilterSpanParentOperationArgs;
 import io.chronosphere.chronosphere.inputs.TraceMetricsRuleTraceFilterSpanParentServiceArgs;
@@ -36,6 +37,13 @@ public final class TraceMetricsRuleTraceFilterSpanArgs extends com.pulumi.resour
 
     public Optional<Output<TraceMetricsRuleTraceFilterSpanErrorArgs>> error() {
         return Optional.ofNullable(this.error);
+    }
+
+    @Import(name="isRootSpan")
+    private @Nullable Output<TraceMetricsRuleTraceFilterSpanIsRootSpanArgs> isRootSpan;
+
+    public Optional<Output<TraceMetricsRuleTraceFilterSpanIsRootSpanArgs>> isRootSpan() {
+        return Optional.ofNullable(this.isRootSpan);
     }
 
     @Import(name="matchType")
@@ -92,6 +100,7 @@ public final class TraceMetricsRuleTraceFilterSpanArgs extends com.pulumi.resour
     private TraceMetricsRuleTraceFilterSpanArgs(TraceMetricsRuleTraceFilterSpanArgs $) {
         this.duration = $.duration;
         this.error = $.error;
+        this.isRootSpan = $.isRootSpan;
         this.matchType = $.matchType;
         this.operation = $.operation;
         this.parentOperation = $.parentOperation;
@@ -135,6 +144,15 @@ public final class TraceMetricsRuleTraceFilterSpanArgs extends com.pulumi.resour
 
         public Builder error(TraceMetricsRuleTraceFilterSpanErrorArgs error) {
             return error(Output.of(error));
+        }
+
+        public Builder isRootSpan(@Nullable Output<TraceMetricsRuleTraceFilterSpanIsRootSpanArgs> isRootSpan) {
+            $.isRootSpan = isRootSpan;
+            return this;
+        }
+
+        public Builder isRootSpan(TraceMetricsRuleTraceFilterSpanIsRootSpanArgs isRootSpan) {
+            return isRootSpan(Output.of(isRootSpan));
         }
 
         public Builder matchType(@Nullable Output<String> matchType) {

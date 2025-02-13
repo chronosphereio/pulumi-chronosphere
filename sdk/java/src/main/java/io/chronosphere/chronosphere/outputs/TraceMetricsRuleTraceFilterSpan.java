@@ -6,6 +6,7 @@ package io.chronosphere.chronosphere.outputs;
 import com.pulumi.core.annotations.CustomType;
 import io.chronosphere.chronosphere.outputs.TraceMetricsRuleTraceFilterSpanDuration;
 import io.chronosphere.chronosphere.outputs.TraceMetricsRuleTraceFilterSpanError;
+import io.chronosphere.chronosphere.outputs.TraceMetricsRuleTraceFilterSpanIsRootSpan;
 import io.chronosphere.chronosphere.outputs.TraceMetricsRuleTraceFilterSpanOperation;
 import io.chronosphere.chronosphere.outputs.TraceMetricsRuleTraceFilterSpanParentOperation;
 import io.chronosphere.chronosphere.outputs.TraceMetricsRuleTraceFilterSpanParentService;
@@ -22,6 +23,7 @@ import javax.annotation.Nullable;
 public final class TraceMetricsRuleTraceFilterSpan {
     private @Nullable TraceMetricsRuleTraceFilterSpanDuration duration;
     private @Nullable TraceMetricsRuleTraceFilterSpanError error;
+    private @Nullable TraceMetricsRuleTraceFilterSpanIsRootSpan isRootSpan;
     private @Nullable String matchType;
     private @Nullable TraceMetricsRuleTraceFilterSpanOperation operation;
     private @Nullable TraceMetricsRuleTraceFilterSpanParentOperation parentOperation;
@@ -36,6 +38,9 @@ public final class TraceMetricsRuleTraceFilterSpan {
     }
     public Optional<TraceMetricsRuleTraceFilterSpanError> error() {
         return Optional.ofNullable(this.error);
+    }
+    public Optional<TraceMetricsRuleTraceFilterSpanIsRootSpan> isRootSpan() {
+        return Optional.ofNullable(this.isRootSpan);
     }
     public Optional<String> matchType() {
         return Optional.ofNullable(this.matchType);
@@ -70,6 +75,7 @@ public final class TraceMetricsRuleTraceFilterSpan {
     public static final class Builder {
         private @Nullable TraceMetricsRuleTraceFilterSpanDuration duration;
         private @Nullable TraceMetricsRuleTraceFilterSpanError error;
+        private @Nullable TraceMetricsRuleTraceFilterSpanIsRootSpan isRootSpan;
         private @Nullable String matchType;
         private @Nullable TraceMetricsRuleTraceFilterSpanOperation operation;
         private @Nullable TraceMetricsRuleTraceFilterSpanParentOperation parentOperation;
@@ -82,6 +88,7 @@ public final class TraceMetricsRuleTraceFilterSpan {
     	      Objects.requireNonNull(defaults);
     	      this.duration = defaults.duration;
     	      this.error = defaults.error;
+    	      this.isRootSpan = defaults.isRootSpan;
     	      this.matchType = defaults.matchType;
     	      this.operation = defaults.operation;
     	      this.parentOperation = defaults.parentOperation;
@@ -99,6 +106,11 @@ public final class TraceMetricsRuleTraceFilterSpan {
         @CustomType.Setter
         public Builder error(@Nullable TraceMetricsRuleTraceFilterSpanError error) {
             this.error = error;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder isRootSpan(@Nullable TraceMetricsRuleTraceFilterSpanIsRootSpan isRootSpan) {
+            this.isRootSpan = isRootSpan;
             return this;
         }
         @CustomType.Setter
@@ -143,6 +155,7 @@ public final class TraceMetricsRuleTraceFilterSpan {
             final var o = new TraceMetricsRuleTraceFilterSpan();
             o.duration = duration;
             o.error = error;
+            o.isRootSpan = isRootSpan;
             o.matchType = matchType;
             o.operation = operation;
             o.parentOperation = parentOperation;

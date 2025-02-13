@@ -20,6 +20,10 @@ class _ExportableConfig(types.ModuleType):
         return __config__.get('apiToken') or _utilities.get_env('CHRONOSPHERE_API_TOKEN')
 
     @property
+    def disable_dryrun(self) -> Optional[bool]:
+        return __config__.get_bool('disableDryrun')
+
+    @property
     def entity_namespace(self) -> Optional[str]:
         return __config__.get('entityNamespace')
 

@@ -15,15 +15,19 @@ namespace Chronosphere.Pulumi.Outputs
     public sealed class MonitorQuery
     {
         public readonly string? GraphiteExpr;
+        public readonly string? LoggingExpr;
         public readonly string? PrometheusExpr;
 
         [OutputConstructor]
         private MonitorQuery(
             string? graphiteExpr,
 
+            string? loggingExpr,
+
             string? prometheusExpr)
         {
             GraphiteExpr = graphiteExpr;
+            LoggingExpr = loggingExpr;
             PrometheusExpr = prometheusExpr;
         }
     }

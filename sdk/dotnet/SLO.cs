@@ -35,7 +35,7 @@ namespace Chronosphere.Pulumi
         public Output<string?> NotificationPolicyId { get; private set; } = null!;
 
         [Output("signalGrouping")]
-        public Output<string?> SignalGrouping { get; private set; } = null!;
+        public Output<Outputs.SLOSignalGrouping?> SignalGrouping { get; private set; } = null!;
 
         [Output("sli")]
         public Output<Outputs.SLOSli> Sli { get; private set; } = null!;
@@ -122,7 +122,7 @@ namespace Chronosphere.Pulumi
         public Input<string>? NotificationPolicyId { get; set; }
 
         [Input("signalGrouping")]
-        public Input<string>? SignalGrouping { get; set; }
+        public Input<Inputs.SLOSignalGroupingArgs>? SignalGrouping { get; set; }
 
         [Input("sli", required: true)]
         public Input<Inputs.SLOSliArgs> Sli { get; set; } = null!;
@@ -170,7 +170,7 @@ namespace Chronosphere.Pulumi
         public Input<string>? NotificationPolicyId { get; set; }
 
         [Input("signalGrouping")]
-        public Input<string>? SignalGrouping { get; set; }
+        public Input<Inputs.SLOSignalGroupingGetArgs>? SignalGrouping { get; set; }
 
         [Input("sli")]
         public Input<Inputs.SLOSliGetArgs>? Sli { get; set; }

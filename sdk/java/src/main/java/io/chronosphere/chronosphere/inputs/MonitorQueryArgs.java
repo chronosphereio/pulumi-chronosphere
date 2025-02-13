@@ -22,6 +22,13 @@ public final class MonitorQueryArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.graphiteExpr);
     }
 
+    @Import(name="loggingExpr")
+    private @Nullable Output<String> loggingExpr;
+
+    public Optional<Output<String>> loggingExpr() {
+        return Optional.ofNullable(this.loggingExpr);
+    }
+
     @Import(name="prometheusExpr")
     private @Nullable Output<String> prometheusExpr;
 
@@ -33,6 +40,7 @@ public final class MonitorQueryArgs extends com.pulumi.resources.ResourceArgs {
 
     private MonitorQueryArgs(MonitorQueryArgs $) {
         this.graphiteExpr = $.graphiteExpr;
+        this.loggingExpr = $.loggingExpr;
         this.prometheusExpr = $.prometheusExpr;
     }
 
@@ -61,6 +69,15 @@ public final class MonitorQueryArgs extends com.pulumi.resources.ResourceArgs {
 
         public Builder graphiteExpr(String graphiteExpr) {
             return graphiteExpr(Output.of(graphiteExpr));
+        }
+
+        public Builder loggingExpr(@Nullable Output<String> loggingExpr) {
+            $.loggingExpr = loggingExpr;
+            return this;
+        }
+
+        public Builder loggingExpr(String loggingExpr) {
+            return loggingExpr(Output.of(loggingExpr));
         }
 
         public Builder prometheusExpr(@Nullable Output<String> prometheusExpr) {

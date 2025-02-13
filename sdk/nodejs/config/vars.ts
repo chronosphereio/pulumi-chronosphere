@@ -15,6 +15,14 @@ Object.defineProperty(exports, "apiToken", {
     enumerable: true,
 });
 
+export declare const disableDryrun: boolean | undefined;
+Object.defineProperty(exports, "disableDryrun", {
+    get() {
+        return __config.getObject<boolean>("disableDryrun");
+    },
+    enumerable: true,
+});
+
 export declare const entityNamespace: string | undefined;
 Object.defineProperty(exports, "entityNamespace", {
     get() {

@@ -15,6 +15,7 @@ __all__ = ['ProviderArgs', 'Provider']
 class ProviderArgs:
     def __init__(__self__, *,
                  api_token: Optional[pulumi.Input[str]] = None,
+                 disable_dryrun: Optional[pulumi.Input[bool]] = None,
                  entity_namespace: Optional[pulumi.Input[str]] = None,
                  org: Optional[pulumi.Input[str]] = None,
                  unstable: Optional[pulumi.Input[bool]] = None):
@@ -25,6 +26,8 @@ class ProviderArgs:
             api_token = _utilities.get_env('CHRONOSPHERE_API_TOKEN')
         if api_token is not None:
             pulumi.set(__self__, "api_token", api_token)
+        if disable_dryrun is not None:
+            pulumi.set(__self__, "disable_dryrun", disable_dryrun)
         if entity_namespace is not None:
             pulumi.set(__self__, "entity_namespace", entity_namespace)
         if org is None:
@@ -42,6 +45,15 @@ class ProviderArgs:
     @api_token.setter
     def api_token(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "api_token", value)
+
+    @property
+    @pulumi.getter(name="disableDryrun")
+    def disable_dryrun(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "disable_dryrun")
+
+    @disable_dryrun.setter
+    def disable_dryrun(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_dryrun", value)
 
     @property
     @pulumi.getter(name="entityNamespace")
@@ -77,6 +89,7 @@ class Provider(pulumi.ProviderResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  api_token: Optional[pulumi.Input[str]] = None,
+                 disable_dryrun: Optional[pulumi.Input[bool]] = None,
                  entity_namespace: Optional[pulumi.Input[str]] = None,
                  org: Optional[pulumi.Input[str]] = None,
                  unstable: Optional[pulumi.Input[bool]] = None,
@@ -118,6 +131,7 @@ class Provider(pulumi.ProviderResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  api_token: Optional[pulumi.Input[str]] = None,
+                 disable_dryrun: Optional[pulumi.Input[bool]] = None,
                  entity_namespace: Optional[pulumi.Input[str]] = None,
                  org: Optional[pulumi.Input[str]] = None,
                  unstable: Optional[pulumi.Input[bool]] = None,
@@ -133,6 +147,7 @@ class Provider(pulumi.ProviderResource):
             if api_token is None:
                 api_token = _utilities.get_env('CHRONOSPHERE_API_TOKEN')
             __props__.__dict__["api_token"] = None if api_token is None else pulumi.Output.secret(api_token)
+            __props__.__dict__["disable_dryrun"] = pulumi.Output.from_input(disable_dryrun).apply(pulumi.runtime.to_json) if disable_dryrun is not None else None
             __props__.__dict__["entity_namespace"] = entity_namespace
             if org is None:
                 org = _utilities.get_env('CHRONOSPHERE_ORG', 'CHRONOSPHERE_ORG_NAME')

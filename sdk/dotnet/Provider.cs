@@ -73,6 +73,9 @@ namespace Chronosphere.Pulumi
             }
         }
 
+        [Input("disableDryrun", json: true)]
+        public Input<bool>? DisableDryrun { get; set; }
+
         [Input("entityNamespace")]
         public Input<string>? EntityNamespace { get; set; }
 

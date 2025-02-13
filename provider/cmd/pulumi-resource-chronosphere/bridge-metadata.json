@@ -54,6 +54,7 @@
                 "spans": "span"
             },
             "chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaSpan:DatasetConfigurationTraceDatasetMatchCriteriaSpan": {
+                "isRootSpan": "is_root_span",
                 "matchType": "match_type",
                 "parentOperation": "parent_operation",
                 "parentService": "parent_service",
@@ -184,6 +185,7 @@
             },
             "chronosphere:index/MonitorQuery:MonitorQuery": {
                 "graphiteExpr": "graphite_expr",
+                "loggingExpr": "logging_expr",
                 "prometheusExpr": "prometheus_expr"
             },
             "chronosphere:index/MonitorSchedule:MonitorSchedule": {
@@ -261,7 +263,12 @@
                 "lowVolume": "low_volume",
                 "reportingWindows": "reporting_windows"
             },
+            "chronosphere:index/SLOSignalGrouping:SLOSignalGrouping": {
+                "labelNames": "label_names",
+                "signalPerSeries": "signal_per_series"
+            },
             "chronosphere:index/SLOSli:SLOSli": {
+                "customDimensionLabels": "custom_dimension_labels",
                 "customIndicator": "custom_indicator",
                 "endpointAvailability": "endpoint_availability",
                 "endpointLabel": "endpoint_label",
@@ -320,6 +327,7 @@
                 "spans": "span"
             },
             "chronosphere:index/TraceMetricsRuleTraceFilterSpan:TraceMetricsRuleTraceFilterSpan": {
+                "isRootSpan": "is_root_span",
                 "matchType": "match_type",
                 "parentOperation": "parent_operation",
                 "parentService": "parent_service",
@@ -363,6 +371,7 @@
                 "spans": "span"
             },
             "chronosphere:index/TraceTailSamplingRulesRuleFilterSpan:TraceTailSamplingRulesRuleFilterSpan": {
+                "isRootSpan": "is_root_span",
                 "matchType": "match_type",
                 "parentOperation": "parent_operation",
                 "parentService": "parent_service",
@@ -592,11 +601,13 @@
             },
             "chronosphere:index:Provider": {
                 "apiToken": "api_token",
+                "disableDryrun": "disable_dryrun",
                 "entityNamespace": "entity_namespace"
             }
         },
         "renamedConfigProperties": {
             "apiToken": "api_token",
+            "disableDryrun": "disable_dryrun",
             "entityNamespace": "entity_namespace"
         }
     }

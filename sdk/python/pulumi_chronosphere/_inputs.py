@@ -18,6 +18,7 @@ __all__ = [
     'DatasetConfigurationTraceDatasetMatchCriteriaSpanArgs',
     'DatasetConfigurationTraceDatasetMatchCriteriaSpanDurationArgs',
     'DatasetConfigurationTraceDatasetMatchCriteriaSpanErrorArgs',
+    'DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanArgs',
     'DatasetConfigurationTraceDatasetMatchCriteriaSpanOperationArgs',
     'DatasetConfigurationTraceDatasetMatchCriteriaSpanParentOperationArgs',
     'DatasetConfigurationTraceDatasetMatchCriteriaSpanParentServiceArgs',
@@ -97,6 +98,7 @@ __all__ = [
     'RollupRuleStoragePoliciesArgs',
     'SLODefinitionArgs',
     'SLODefinitionReportingWindowArgs',
+    'SLOSignalGroupingArgs',
     'SLOSliArgs',
     'SLOSliCustomIndicatorArgs',
     'SLOSliEndpointAvailabilityArgs',
@@ -118,6 +120,7 @@ __all__ = [
     'TraceMetricsRuleTraceFilterSpanArgs',
     'TraceMetricsRuleTraceFilterSpanDurationArgs',
     'TraceMetricsRuleTraceFilterSpanErrorArgs',
+    'TraceMetricsRuleTraceFilterSpanIsRootSpanArgs',
     'TraceMetricsRuleTraceFilterSpanOperationArgs',
     'TraceMetricsRuleTraceFilterSpanParentOperationArgs',
     'TraceMetricsRuleTraceFilterSpanParentServiceArgs',
@@ -135,6 +138,7 @@ __all__ = [
     'TraceTailSamplingRulesRuleFilterSpanArgs',
     'TraceTailSamplingRulesRuleFilterSpanDurationArgs',
     'TraceTailSamplingRulesRuleFilterSpanErrorArgs',
+    'TraceTailSamplingRulesRuleFilterSpanIsRootSpanArgs',
     'TraceTailSamplingRulesRuleFilterSpanOperationArgs',
     'TraceTailSamplingRulesRuleFilterSpanParentOperationArgs',
     'TraceTailSamplingRulesRuleFilterSpanParentServiceArgs',
@@ -271,6 +275,7 @@ class DatasetConfigurationTraceDatasetMatchCriteriaSpanArgs:
     def __init__(__self__, *,
                  duration: Optional[pulumi.Input['DatasetConfigurationTraceDatasetMatchCriteriaSpanDurationArgs']] = None,
                  error: Optional[pulumi.Input['DatasetConfigurationTraceDatasetMatchCriteriaSpanErrorArgs']] = None,
+                 is_root_span: Optional[pulumi.Input['DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanArgs']] = None,
                  match_type: Optional[pulumi.Input[str]] = None,
                  operation: Optional[pulumi.Input['DatasetConfigurationTraceDatasetMatchCriteriaSpanOperationArgs']] = None,
                  parent_operation: Optional[pulumi.Input['DatasetConfigurationTraceDatasetMatchCriteriaSpanParentOperationArgs']] = None,
@@ -282,6 +287,8 @@ class DatasetConfigurationTraceDatasetMatchCriteriaSpanArgs:
             pulumi.set(__self__, "duration", duration)
         if error is not None:
             pulumi.set(__self__, "error", error)
+        if is_root_span is not None:
+            pulumi.set(__self__, "is_root_span", is_root_span)
         if match_type is not None:
             pulumi.set(__self__, "match_type", match_type)
         if operation is not None:
@@ -314,6 +321,15 @@ class DatasetConfigurationTraceDatasetMatchCriteriaSpanArgs:
     @error.setter
     def error(self, value: Optional[pulumi.Input['DatasetConfigurationTraceDatasetMatchCriteriaSpanErrorArgs']]):
         pulumi.set(self, "error", value)
+
+    @property
+    @pulumi.getter(name="isRootSpan")
+    def is_root_span(self) -> Optional[pulumi.Input['DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanArgs']]:
+        return pulumi.get(self, "is_root_span")
+
+    @is_root_span.setter
+    def is_root_span(self, value: Optional[pulumi.Input['DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanArgs']]):
+        pulumi.set(self, "is_root_span", value)
 
     @property
     @pulumi.getter(name="matchType")
@@ -410,6 +426,22 @@ class DatasetConfigurationTraceDatasetMatchCriteriaSpanDurationArgs:
 
 @pulumi.input_type
 class DatasetConfigurationTraceDatasetMatchCriteriaSpanErrorArgs:
+    def __init__(__self__, *,
+                 value: pulumi.Input[bool]):
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[bool]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[bool]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanArgs:
     def __init__(__self__, *,
                  value: pulumi.Input[bool]):
         pulumi.set(__self__, "value", value)
@@ -1839,9 +1871,12 @@ class MappingRuleStoragePolicyArgs:
 class MonitorQueryArgs:
     def __init__(__self__, *,
                  graphite_expr: Optional[pulumi.Input[str]] = None,
+                 logging_expr: Optional[pulumi.Input[str]] = None,
                  prometheus_expr: Optional[pulumi.Input[str]] = None):
         if graphite_expr is not None:
             pulumi.set(__self__, "graphite_expr", graphite_expr)
+        if logging_expr is not None:
+            pulumi.set(__self__, "logging_expr", logging_expr)
         if prometheus_expr is not None:
             pulumi.set(__self__, "prometheus_expr", prometheus_expr)
 
@@ -1853,6 +1888,15 @@ class MonitorQueryArgs:
     @graphite_expr.setter
     def graphite_expr(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "graphite_expr", value)
+
+    @property
+    @pulumi.getter(name="loggingExpr")
+    def logging_expr(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "logging_expr")
+
+    @logging_expr.setter
+    def logging_expr(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "logging_expr", value)
 
     @property
     @pulumi.getter(name="prometheusExpr")
@@ -2951,13 +2995,45 @@ class SLODefinitionReportingWindowArgs:
 
 
 @pulumi.input_type
+class SLOSignalGroupingArgs:
+    def __init__(__self__, *,
+                 label_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 signal_per_series: Optional[pulumi.Input[bool]] = None):
+        if label_names is not None:
+            pulumi.set(__self__, "label_names", label_names)
+        if signal_per_series is not None:
+            pulumi.set(__self__, "signal_per_series", signal_per_series)
+
+    @property
+    @pulumi.getter(name="labelNames")
+    def label_names(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "label_names")
+
+    @label_names.setter
+    def label_names(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "label_names", value)
+
+    @property
+    @pulumi.getter(name="signalPerSeries")
+    def signal_per_series(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "signal_per_series")
+
+    @signal_per_series.setter
+    def signal_per_series(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "signal_per_series", value)
+
+
+@pulumi.input_type
 class SLOSliArgs:
     def __init__(__self__, *,
+                 custom_dimension_labels: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  custom_indicator: Optional[pulumi.Input['SLOSliCustomIndicatorArgs']] = None,
                  endpoint_availability: Optional[pulumi.Input['SLOSliEndpointAvailabilityArgs']] = None,
                  endpoint_label: Optional[pulumi.Input[str]] = None,
                  endpoint_latency: Optional[pulumi.Input['SLOSliEndpointLatencyArgs']] = None,
                  lens_template_indicator: Optional[pulumi.Input[str]] = None):
+        if custom_dimension_labels is not None:
+            pulumi.set(__self__, "custom_dimension_labels", custom_dimension_labels)
         if custom_indicator is not None:
             pulumi.set(__self__, "custom_indicator", custom_indicator)
         if endpoint_availability is not None:
@@ -2968,6 +3044,15 @@ class SLOSliArgs:
             pulumi.set(__self__, "endpoint_latency", endpoint_latency)
         if lens_template_indicator is not None:
             pulumi.set(__self__, "lens_template_indicator", lens_template_indicator)
+
+    @property
+    @pulumi.getter(name="customDimensionLabels")
+    def custom_dimension_labels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "custom_dimension_labels")
+
+    @custom_dimension_labels.setter
+    def custom_dimension_labels(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "custom_dimension_labels", value)
 
     @property
     @pulumi.getter(name="customIndicator")
@@ -3673,6 +3758,7 @@ class TraceMetricsRuleTraceFilterSpanArgs:
     def __init__(__self__, *,
                  duration: Optional[pulumi.Input['TraceMetricsRuleTraceFilterSpanDurationArgs']] = None,
                  error: Optional[pulumi.Input['TraceMetricsRuleTraceFilterSpanErrorArgs']] = None,
+                 is_root_span: Optional[pulumi.Input['TraceMetricsRuleTraceFilterSpanIsRootSpanArgs']] = None,
                  match_type: Optional[pulumi.Input[str]] = None,
                  operation: Optional[pulumi.Input['TraceMetricsRuleTraceFilterSpanOperationArgs']] = None,
                  parent_operation: Optional[pulumi.Input['TraceMetricsRuleTraceFilterSpanParentOperationArgs']] = None,
@@ -3684,6 +3770,8 @@ class TraceMetricsRuleTraceFilterSpanArgs:
             pulumi.set(__self__, "duration", duration)
         if error is not None:
             pulumi.set(__self__, "error", error)
+        if is_root_span is not None:
+            pulumi.set(__self__, "is_root_span", is_root_span)
         if match_type is not None:
             pulumi.set(__self__, "match_type", match_type)
         if operation is not None:
@@ -3716,6 +3804,15 @@ class TraceMetricsRuleTraceFilterSpanArgs:
     @error.setter
     def error(self, value: Optional[pulumi.Input['TraceMetricsRuleTraceFilterSpanErrorArgs']]):
         pulumi.set(self, "error", value)
+
+    @property
+    @pulumi.getter(name="isRootSpan")
+    def is_root_span(self) -> Optional[pulumi.Input['TraceMetricsRuleTraceFilterSpanIsRootSpanArgs']]:
+        return pulumi.get(self, "is_root_span")
+
+    @is_root_span.setter
+    def is_root_span(self, value: Optional[pulumi.Input['TraceMetricsRuleTraceFilterSpanIsRootSpanArgs']]):
+        pulumi.set(self, "is_root_span", value)
 
     @property
     @pulumi.getter(name="matchType")
@@ -3812,6 +3909,22 @@ class TraceMetricsRuleTraceFilterSpanDurationArgs:
 
 @pulumi.input_type
 class TraceMetricsRuleTraceFilterSpanErrorArgs:
+    def __init__(__self__, *,
+                 value: pulumi.Input[bool]):
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[bool]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[bool]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class TraceMetricsRuleTraceFilterSpanIsRootSpanArgs:
     def __init__(__self__, *,
                  value: pulumi.Input[bool]):
         pulumi.set(__self__, "value", value)
@@ -4315,6 +4428,7 @@ class TraceTailSamplingRulesRuleFilterSpanArgs:
     def __init__(__self__, *,
                  duration: Optional[pulumi.Input['TraceTailSamplingRulesRuleFilterSpanDurationArgs']] = None,
                  error: Optional[pulumi.Input['TraceTailSamplingRulesRuleFilterSpanErrorArgs']] = None,
+                 is_root_span: Optional[pulumi.Input['TraceTailSamplingRulesRuleFilterSpanIsRootSpanArgs']] = None,
                  match_type: Optional[pulumi.Input[str]] = None,
                  operation: Optional[pulumi.Input['TraceTailSamplingRulesRuleFilterSpanOperationArgs']] = None,
                  parent_operation: Optional[pulumi.Input['TraceTailSamplingRulesRuleFilterSpanParentOperationArgs']] = None,
@@ -4326,6 +4440,8 @@ class TraceTailSamplingRulesRuleFilterSpanArgs:
             pulumi.set(__self__, "duration", duration)
         if error is not None:
             pulumi.set(__self__, "error", error)
+        if is_root_span is not None:
+            pulumi.set(__self__, "is_root_span", is_root_span)
         if match_type is not None:
             pulumi.set(__self__, "match_type", match_type)
         if operation is not None:
@@ -4358,6 +4474,15 @@ class TraceTailSamplingRulesRuleFilterSpanArgs:
     @error.setter
     def error(self, value: Optional[pulumi.Input['TraceTailSamplingRulesRuleFilterSpanErrorArgs']]):
         pulumi.set(self, "error", value)
+
+    @property
+    @pulumi.getter(name="isRootSpan")
+    def is_root_span(self) -> Optional[pulumi.Input['TraceTailSamplingRulesRuleFilterSpanIsRootSpanArgs']]:
+        return pulumi.get(self, "is_root_span")
+
+    @is_root_span.setter
+    def is_root_span(self, value: Optional[pulumi.Input['TraceTailSamplingRulesRuleFilterSpanIsRootSpanArgs']]):
+        pulumi.set(self, "is_root_span", value)
 
     @property
     @pulumi.getter(name="matchType")
@@ -4454,6 +4579,22 @@ class TraceTailSamplingRulesRuleFilterSpanDurationArgs:
 
 @pulumi.input_type
 class TraceTailSamplingRulesRuleFilterSpanErrorArgs:
+    def __init__(__self__, *,
+                 value: pulumi.Input[bool]):
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[bool]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[bool]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class TraceTailSamplingRulesRuleFilterSpanIsRootSpanArgs:
     def __init__(__self__, *,
                  value: pulumi.Input[bool]):
         pulumi.set(__self__, "value", value)

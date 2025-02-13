@@ -19,6 +19,7 @@ __all__ = [
     'DatasetConfigurationTraceDatasetMatchCriteriaSpan',
     'DatasetConfigurationTraceDatasetMatchCriteriaSpanDuration',
     'DatasetConfigurationTraceDatasetMatchCriteriaSpanError',
+    'DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpan',
     'DatasetConfigurationTraceDatasetMatchCriteriaSpanOperation',
     'DatasetConfigurationTraceDatasetMatchCriteriaSpanParentOperation',
     'DatasetConfigurationTraceDatasetMatchCriteriaSpanParentService',
@@ -98,6 +99,7 @@ __all__ = [
     'RollupRuleStoragePolicies',
     'SLODefinition',
     'SLODefinitionReportingWindow',
+    'SLOSignalGrouping',
     'SLOSli',
     'SLOSliCustomIndicator',
     'SLOSliEndpointAvailability',
@@ -119,6 +121,7 @@ __all__ = [
     'TraceMetricsRuleTraceFilterSpan',
     'TraceMetricsRuleTraceFilterSpanDuration',
     'TraceMetricsRuleTraceFilterSpanError',
+    'TraceMetricsRuleTraceFilterSpanIsRootSpan',
     'TraceMetricsRuleTraceFilterSpanOperation',
     'TraceMetricsRuleTraceFilterSpanParentOperation',
     'TraceMetricsRuleTraceFilterSpanParentService',
@@ -136,6 +139,7 @@ __all__ = [
     'TraceTailSamplingRulesRuleFilterSpan',
     'TraceTailSamplingRulesRuleFilterSpanDuration',
     'TraceTailSamplingRulesRuleFilterSpanError',
+    'TraceTailSamplingRulesRuleFilterSpanIsRootSpan',
     'TraceTailSamplingRulesRuleFilterSpanOperation',
     'TraceTailSamplingRulesRuleFilterSpanParentOperation',
     'TraceTailSamplingRulesRuleFilterSpanParentService',
@@ -293,7 +297,9 @@ class DatasetConfigurationTraceDatasetMatchCriteriaSpan(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "matchType":
+        if key == "isRootSpan":
+            suggest = "is_root_span"
+        elif key == "matchType":
             suggest = "match_type"
         elif key == "parentOperation":
             suggest = "parent_operation"
@@ -316,6 +322,7 @@ class DatasetConfigurationTraceDatasetMatchCriteriaSpan(dict):
     def __init__(__self__, *,
                  duration: Optional['outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanDuration'] = None,
                  error: Optional['outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanError'] = None,
+                 is_root_span: Optional['outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpan'] = None,
                  match_type: Optional[str] = None,
                  operation: Optional['outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanOperation'] = None,
                  parent_operation: Optional['outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanParentOperation'] = None,
@@ -327,6 +334,8 @@ class DatasetConfigurationTraceDatasetMatchCriteriaSpan(dict):
             pulumi.set(__self__, "duration", duration)
         if error is not None:
             pulumi.set(__self__, "error", error)
+        if is_root_span is not None:
+            pulumi.set(__self__, "is_root_span", is_root_span)
         if match_type is not None:
             pulumi.set(__self__, "match_type", match_type)
         if operation is not None:
@@ -351,6 +360,11 @@ class DatasetConfigurationTraceDatasetMatchCriteriaSpan(dict):
     @pulumi.getter
     def error(self) -> Optional['outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanError']:
         return pulumi.get(self, "error")
+
+    @property
+    @pulumi.getter(name="isRootSpan")
+    def is_root_span(self) -> Optional['outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpan']:
+        return pulumi.get(self, "is_root_span")
 
     @property
     @pulumi.getter(name="matchType")
@@ -430,6 +444,18 @@ class DatasetConfigurationTraceDatasetMatchCriteriaSpanDuration(dict):
 
 @pulumi.output_type
 class DatasetConfigurationTraceDatasetMatchCriteriaSpanError(dict):
+    def __init__(__self__, *,
+                 value: bool):
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> bool:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpan(dict):
     def __init__(__self__, *,
                  value: bool):
         pulumi.set(__self__, "value", value)
@@ -2049,6 +2075,8 @@ class MonitorQuery(dict):
         suggest = None
         if key == "graphiteExpr":
             suggest = "graphite_expr"
+        elif key == "loggingExpr":
+            suggest = "logging_expr"
         elif key == "prometheusExpr":
             suggest = "prometheus_expr"
 
@@ -2065,9 +2093,12 @@ class MonitorQuery(dict):
 
     def __init__(__self__, *,
                  graphite_expr: Optional[str] = None,
+                 logging_expr: Optional[str] = None,
                  prometheus_expr: Optional[str] = None):
         if graphite_expr is not None:
             pulumi.set(__self__, "graphite_expr", graphite_expr)
+        if logging_expr is not None:
+            pulumi.set(__self__, "logging_expr", logging_expr)
         if prometheus_expr is not None:
             pulumi.set(__self__, "prometheus_expr", prometheus_expr)
 
@@ -2075,6 +2106,11 @@ class MonitorQuery(dict):
     @pulumi.getter(name="graphiteExpr")
     def graphite_expr(self) -> Optional[str]:
         return pulumi.get(self, "graphite_expr")
+
+    @property
+    @pulumi.getter(name="loggingExpr")
+    def logging_expr(self) -> Optional[str]:
+        return pulumi.get(self, "logging_expr")
 
     @property
     @pulumi.getter(name="prometheusExpr")
@@ -3159,11 +3195,53 @@ class SLODefinitionReportingWindow(dict):
 
 
 @pulumi.output_type
+class SLOSignalGrouping(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "labelNames":
+            suggest = "label_names"
+        elif key == "signalPerSeries":
+            suggest = "signal_per_series"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SLOSignalGrouping. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SLOSignalGrouping.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SLOSignalGrouping.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 label_names: Optional[Sequence[str]] = None,
+                 signal_per_series: Optional[bool] = None):
+        if label_names is not None:
+            pulumi.set(__self__, "label_names", label_names)
+        if signal_per_series is not None:
+            pulumi.set(__self__, "signal_per_series", signal_per_series)
+
+    @property
+    @pulumi.getter(name="labelNames")
+    def label_names(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "label_names")
+
+    @property
+    @pulumi.getter(name="signalPerSeries")
+    def signal_per_series(self) -> Optional[bool]:
+        return pulumi.get(self, "signal_per_series")
+
+
+@pulumi.output_type
 class SLOSli(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "customIndicator":
+        if key == "customDimensionLabels":
+            suggest = "custom_dimension_labels"
+        elif key == "customIndicator":
             suggest = "custom_indicator"
         elif key == "endpointAvailability":
             suggest = "endpoint_availability"
@@ -3186,11 +3264,14 @@ class SLOSli(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
+                 custom_dimension_labels: Optional[Sequence[str]] = None,
                  custom_indicator: Optional['outputs.SLOSliCustomIndicator'] = None,
                  endpoint_availability: Optional['outputs.SLOSliEndpointAvailability'] = None,
                  endpoint_label: Optional[str] = None,
                  endpoint_latency: Optional['outputs.SLOSliEndpointLatency'] = None,
                  lens_template_indicator: Optional[str] = None):
+        if custom_dimension_labels is not None:
+            pulumi.set(__self__, "custom_dimension_labels", custom_dimension_labels)
         if custom_indicator is not None:
             pulumi.set(__self__, "custom_indicator", custom_indicator)
         if endpoint_availability is not None:
@@ -3201,6 +3282,11 @@ class SLOSli(dict):
             pulumi.set(__self__, "endpoint_latency", endpoint_latency)
         if lens_template_indicator is not None:
             pulumi.set(__self__, "lens_template_indicator", lens_template_indicator)
+
+    @property
+    @pulumi.getter(name="customDimensionLabels")
+    def custom_dimension_labels(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "custom_dimension_labels")
 
     @property
     @pulumi.getter(name="customIndicator")
@@ -3907,7 +3993,9 @@ class TraceMetricsRuleTraceFilterSpan(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "matchType":
+        if key == "isRootSpan":
+            suggest = "is_root_span"
+        elif key == "matchType":
             suggest = "match_type"
         elif key == "parentOperation":
             suggest = "parent_operation"
@@ -3930,6 +4018,7 @@ class TraceMetricsRuleTraceFilterSpan(dict):
     def __init__(__self__, *,
                  duration: Optional['outputs.TraceMetricsRuleTraceFilterSpanDuration'] = None,
                  error: Optional['outputs.TraceMetricsRuleTraceFilterSpanError'] = None,
+                 is_root_span: Optional['outputs.TraceMetricsRuleTraceFilterSpanIsRootSpan'] = None,
                  match_type: Optional[str] = None,
                  operation: Optional['outputs.TraceMetricsRuleTraceFilterSpanOperation'] = None,
                  parent_operation: Optional['outputs.TraceMetricsRuleTraceFilterSpanParentOperation'] = None,
@@ -3941,6 +4030,8 @@ class TraceMetricsRuleTraceFilterSpan(dict):
             pulumi.set(__self__, "duration", duration)
         if error is not None:
             pulumi.set(__self__, "error", error)
+        if is_root_span is not None:
+            pulumi.set(__self__, "is_root_span", is_root_span)
         if match_type is not None:
             pulumi.set(__self__, "match_type", match_type)
         if operation is not None:
@@ -3965,6 +4056,11 @@ class TraceMetricsRuleTraceFilterSpan(dict):
     @pulumi.getter
     def error(self) -> Optional['outputs.TraceMetricsRuleTraceFilterSpanError']:
         return pulumi.get(self, "error")
+
+    @property
+    @pulumi.getter(name="isRootSpan")
+    def is_root_span(self) -> Optional['outputs.TraceMetricsRuleTraceFilterSpanIsRootSpan']:
+        return pulumi.get(self, "is_root_span")
 
     @property
     @pulumi.getter(name="matchType")
@@ -4044,6 +4140,18 @@ class TraceMetricsRuleTraceFilterSpanDuration(dict):
 
 @pulumi.output_type
 class TraceMetricsRuleTraceFilterSpanError(dict):
+    def __init__(__self__, *,
+                 value: bool):
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> bool:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class TraceMetricsRuleTraceFilterSpanIsRootSpan(dict):
     def __init__(__self__, *,
                  value: bool):
         pulumi.set(__self__, "value", value)
@@ -4560,7 +4668,9 @@ class TraceTailSamplingRulesRuleFilterSpan(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "matchType":
+        if key == "isRootSpan":
+            suggest = "is_root_span"
+        elif key == "matchType":
             suggest = "match_type"
         elif key == "parentOperation":
             suggest = "parent_operation"
@@ -4583,6 +4693,7 @@ class TraceTailSamplingRulesRuleFilterSpan(dict):
     def __init__(__self__, *,
                  duration: Optional['outputs.TraceTailSamplingRulesRuleFilterSpanDuration'] = None,
                  error: Optional['outputs.TraceTailSamplingRulesRuleFilterSpanError'] = None,
+                 is_root_span: Optional['outputs.TraceTailSamplingRulesRuleFilterSpanIsRootSpan'] = None,
                  match_type: Optional[str] = None,
                  operation: Optional['outputs.TraceTailSamplingRulesRuleFilterSpanOperation'] = None,
                  parent_operation: Optional['outputs.TraceTailSamplingRulesRuleFilterSpanParentOperation'] = None,
@@ -4594,6 +4705,8 @@ class TraceTailSamplingRulesRuleFilterSpan(dict):
             pulumi.set(__self__, "duration", duration)
         if error is not None:
             pulumi.set(__self__, "error", error)
+        if is_root_span is not None:
+            pulumi.set(__self__, "is_root_span", is_root_span)
         if match_type is not None:
             pulumi.set(__self__, "match_type", match_type)
         if operation is not None:
@@ -4618,6 +4731,11 @@ class TraceTailSamplingRulesRuleFilterSpan(dict):
     @pulumi.getter
     def error(self) -> Optional['outputs.TraceTailSamplingRulesRuleFilterSpanError']:
         return pulumi.get(self, "error")
+
+    @property
+    @pulumi.getter(name="isRootSpan")
+    def is_root_span(self) -> Optional['outputs.TraceTailSamplingRulesRuleFilterSpanIsRootSpan']:
+        return pulumi.get(self, "is_root_span")
 
     @property
     @pulumi.getter(name="matchType")
@@ -4697,6 +4815,18 @@ class TraceTailSamplingRulesRuleFilterSpanDuration(dict):
 
 @pulumi.output_type
 class TraceTailSamplingRulesRuleFilterSpanError(dict):
+    def __init__(__self__, *,
+                 value: bool):
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> bool:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class TraceTailSamplingRulesRuleFilterSpanIsRootSpan(dict):
     def __init__(__self__, *,
                  value: bool):
         pulumi.set(__self__, "value", value)

@@ -6,6 +6,7 @@ package io.chronosphere.chronosphere.outputs;
 import com.pulumi.core.annotations.CustomType;
 import io.chronosphere.chronosphere.outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanDuration;
 import io.chronosphere.chronosphere.outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanError;
+import io.chronosphere.chronosphere.outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpan;
 import io.chronosphere.chronosphere.outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanOperation;
 import io.chronosphere.chronosphere.outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanParentOperation;
 import io.chronosphere.chronosphere.outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanParentService;
@@ -22,6 +23,7 @@ import javax.annotation.Nullable;
 public final class DatasetConfigurationTraceDatasetMatchCriteriaSpan {
     private @Nullable DatasetConfigurationTraceDatasetMatchCriteriaSpanDuration duration;
     private @Nullable DatasetConfigurationTraceDatasetMatchCriteriaSpanError error;
+    private @Nullable DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpan isRootSpan;
     private @Nullable String matchType;
     private @Nullable DatasetConfigurationTraceDatasetMatchCriteriaSpanOperation operation;
     private @Nullable DatasetConfigurationTraceDatasetMatchCriteriaSpanParentOperation parentOperation;
@@ -36,6 +38,9 @@ public final class DatasetConfigurationTraceDatasetMatchCriteriaSpan {
     }
     public Optional<DatasetConfigurationTraceDatasetMatchCriteriaSpanError> error() {
         return Optional.ofNullable(this.error);
+    }
+    public Optional<DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpan> isRootSpan() {
+        return Optional.ofNullable(this.isRootSpan);
     }
     public Optional<String> matchType() {
         return Optional.ofNullable(this.matchType);
@@ -70,6 +75,7 @@ public final class DatasetConfigurationTraceDatasetMatchCriteriaSpan {
     public static final class Builder {
         private @Nullable DatasetConfigurationTraceDatasetMatchCriteriaSpanDuration duration;
         private @Nullable DatasetConfigurationTraceDatasetMatchCriteriaSpanError error;
+        private @Nullable DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpan isRootSpan;
         private @Nullable String matchType;
         private @Nullable DatasetConfigurationTraceDatasetMatchCriteriaSpanOperation operation;
         private @Nullable DatasetConfigurationTraceDatasetMatchCriteriaSpanParentOperation parentOperation;
@@ -82,6 +88,7 @@ public final class DatasetConfigurationTraceDatasetMatchCriteriaSpan {
     	      Objects.requireNonNull(defaults);
     	      this.duration = defaults.duration;
     	      this.error = defaults.error;
+    	      this.isRootSpan = defaults.isRootSpan;
     	      this.matchType = defaults.matchType;
     	      this.operation = defaults.operation;
     	      this.parentOperation = defaults.parentOperation;
@@ -99,6 +106,11 @@ public final class DatasetConfigurationTraceDatasetMatchCriteriaSpan {
         @CustomType.Setter
         public Builder error(@Nullable DatasetConfigurationTraceDatasetMatchCriteriaSpanError error) {
             this.error = error;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder isRootSpan(@Nullable DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpan isRootSpan) {
+            this.isRootSpan = isRootSpan;
             return this;
         }
         @CustomType.Setter
@@ -143,6 +155,7 @@ public final class DatasetConfigurationTraceDatasetMatchCriteriaSpan {
             final var o = new DatasetConfigurationTraceDatasetMatchCriteriaSpan();
             o.duration = duration;
             o.error = error;
+            o.isRootSpan = isRootSpan;
             o.matchType = matchType;
             o.operation = operation;
             o.parentOperation = parentOperation;

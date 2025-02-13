@@ -16,6 +16,7 @@ namespace Chronosphere.Pulumi.Outputs
     {
         public readonly Outputs.TraceTailSamplingRulesRuleFilterSpanDuration? Duration;
         public readonly Outputs.TraceTailSamplingRulesRuleFilterSpanError? Error;
+        public readonly Outputs.TraceTailSamplingRulesRuleFilterSpanIsRootSpan? IsRootSpan;
         public readonly string? MatchType;
         public readonly Outputs.TraceTailSamplingRulesRuleFilterSpanOperation? Operation;
         public readonly Outputs.TraceTailSamplingRulesRuleFilterSpanParentOperation? ParentOperation;
@@ -29,6 +30,8 @@ namespace Chronosphere.Pulumi.Outputs
             Outputs.TraceTailSamplingRulesRuleFilterSpanDuration? duration,
 
             Outputs.TraceTailSamplingRulesRuleFilterSpanError? error,
+
+            Outputs.TraceTailSamplingRulesRuleFilterSpanIsRootSpan? isRootSpan,
 
             string? matchType,
 
@@ -46,6 +49,7 @@ namespace Chronosphere.Pulumi.Outputs
         {
             Duration = duration;
             Error = error;
+            IsRootSpan = isRootSpan;
             MatchType = matchType;
             Operation = operation;
             ParentOperation = parentOperation;

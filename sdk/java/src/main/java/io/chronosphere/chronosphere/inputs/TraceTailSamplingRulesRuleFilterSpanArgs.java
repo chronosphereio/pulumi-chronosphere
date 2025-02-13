@@ -7,6 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import io.chronosphere.chronosphere.inputs.TraceTailSamplingRulesRuleFilterSpanDurationArgs;
 import io.chronosphere.chronosphere.inputs.TraceTailSamplingRulesRuleFilterSpanErrorArgs;
+import io.chronosphere.chronosphere.inputs.TraceTailSamplingRulesRuleFilterSpanIsRootSpanArgs;
 import io.chronosphere.chronosphere.inputs.TraceTailSamplingRulesRuleFilterSpanOperationArgs;
 import io.chronosphere.chronosphere.inputs.TraceTailSamplingRulesRuleFilterSpanParentOperationArgs;
 import io.chronosphere.chronosphere.inputs.TraceTailSamplingRulesRuleFilterSpanParentServiceArgs;
@@ -36,6 +37,13 @@ public final class TraceTailSamplingRulesRuleFilterSpanArgs extends com.pulumi.r
 
     public Optional<Output<TraceTailSamplingRulesRuleFilterSpanErrorArgs>> error() {
         return Optional.ofNullable(this.error);
+    }
+
+    @Import(name="isRootSpan")
+    private @Nullable Output<TraceTailSamplingRulesRuleFilterSpanIsRootSpanArgs> isRootSpan;
+
+    public Optional<Output<TraceTailSamplingRulesRuleFilterSpanIsRootSpanArgs>> isRootSpan() {
+        return Optional.ofNullable(this.isRootSpan);
     }
 
     @Import(name="matchType")
@@ -92,6 +100,7 @@ public final class TraceTailSamplingRulesRuleFilterSpanArgs extends com.pulumi.r
     private TraceTailSamplingRulesRuleFilterSpanArgs(TraceTailSamplingRulesRuleFilterSpanArgs $) {
         this.duration = $.duration;
         this.error = $.error;
+        this.isRootSpan = $.isRootSpan;
         this.matchType = $.matchType;
         this.operation = $.operation;
         this.parentOperation = $.parentOperation;
@@ -135,6 +144,15 @@ public final class TraceTailSamplingRulesRuleFilterSpanArgs extends com.pulumi.r
 
         public Builder error(TraceTailSamplingRulesRuleFilterSpanErrorArgs error) {
             return error(Output.of(error));
+        }
+
+        public Builder isRootSpan(@Nullable Output<TraceTailSamplingRulesRuleFilterSpanIsRootSpanArgs> isRootSpan) {
+            $.isRootSpan = isRootSpan;
+            return this;
+        }
+
+        public Builder isRootSpan(TraceTailSamplingRulesRuleFilterSpanIsRootSpanArgs isRootSpan) {
+            return isRootSpan(Output.of(isRootSpan));
         }
 
         public Builder matchType(@Nullable Output<String> matchType) {

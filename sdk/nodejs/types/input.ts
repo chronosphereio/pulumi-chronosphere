@@ -31,6 +31,7 @@ export interface DatasetConfigurationTraceDatasetMatchCriteria {
 export interface DatasetConfigurationTraceDatasetMatchCriteriaSpan {
     duration?: pulumi.Input<inputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanDuration>;
     error?: pulumi.Input<inputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanError>;
+    isRootSpan?: pulumi.Input<inputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpan>;
     matchType?: pulumi.Input<string>;
     operation?: pulumi.Input<inputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanOperation>;
     parentOperation?: pulumi.Input<inputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanParentOperation>;
@@ -46,6 +47,10 @@ export interface DatasetConfigurationTraceDatasetMatchCriteriaSpanDuration {
 }
 
 export interface DatasetConfigurationTraceDatasetMatchCriteriaSpanError {
+    value: pulumi.Input<boolean>;
+}
+
+export interface DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpan {
     value: pulumi.Input<boolean>;
 }
 
@@ -294,6 +299,7 @@ export interface MappingRuleStoragePolicy {
 
 export interface MonitorQuery {
     graphiteExpr?: pulumi.Input<string>;
+    loggingExpr?: pulumi.Input<string>;
     prometheusExpr?: pulumi.Input<string>;
 }
 
@@ -473,7 +479,13 @@ export interface SLODefinitionReportingWindow {
     duration: pulumi.Input<string>;
 }
 
+export interface SLOSignalGrouping {
+    labelNames?: pulumi.Input<pulumi.Input<string>[]>;
+    signalPerSeries?: pulumi.Input<boolean>;
+}
+
 export interface SLOSli {
+    customDimensionLabels?: pulumi.Input<pulumi.Input<string>[]>;
     customIndicator?: pulumi.Input<inputs.SLOSliCustomIndicator>;
     endpointAvailability?: pulumi.Input<inputs.SLOSliEndpointAvailability>;
     endpointLabel?: pulumi.Input<string>;
@@ -584,6 +596,7 @@ export interface TraceMetricsRuleTraceFilter {
 export interface TraceMetricsRuleTraceFilterSpan {
     duration?: pulumi.Input<inputs.TraceMetricsRuleTraceFilterSpanDuration>;
     error?: pulumi.Input<inputs.TraceMetricsRuleTraceFilterSpanError>;
+    isRootSpan?: pulumi.Input<inputs.TraceMetricsRuleTraceFilterSpanIsRootSpan>;
     matchType?: pulumi.Input<string>;
     operation?: pulumi.Input<inputs.TraceMetricsRuleTraceFilterSpanOperation>;
     parentOperation?: pulumi.Input<inputs.TraceMetricsRuleTraceFilterSpanParentOperation>;
@@ -599,6 +612,10 @@ export interface TraceMetricsRuleTraceFilterSpanDuration {
 }
 
 export interface TraceMetricsRuleTraceFilterSpanError {
+    value: pulumi.Input<boolean>;
+}
+
+export interface TraceMetricsRuleTraceFilterSpanIsRootSpan {
     value: pulumi.Input<boolean>;
 }
 
@@ -682,6 +699,7 @@ export interface TraceTailSamplingRulesRuleFilter {
 export interface TraceTailSamplingRulesRuleFilterSpan {
     duration?: pulumi.Input<inputs.TraceTailSamplingRulesRuleFilterSpanDuration>;
     error?: pulumi.Input<inputs.TraceTailSamplingRulesRuleFilterSpanError>;
+    isRootSpan?: pulumi.Input<inputs.TraceTailSamplingRulesRuleFilterSpanIsRootSpan>;
     matchType?: pulumi.Input<string>;
     operation?: pulumi.Input<inputs.TraceTailSamplingRulesRuleFilterSpanOperation>;
     parentOperation?: pulumi.Input<inputs.TraceTailSamplingRulesRuleFilterSpanParentOperation>;
@@ -697,6 +715,10 @@ export interface TraceTailSamplingRulesRuleFilterSpanDuration {
 }
 
 export interface TraceTailSamplingRulesRuleFilterSpanError {
+    value: pulumi.Input<boolean>;
+}
+
+export interface TraceTailSamplingRulesRuleFilterSpanIsRootSpan {
     value: pulumi.Input<boolean>;
 }
 

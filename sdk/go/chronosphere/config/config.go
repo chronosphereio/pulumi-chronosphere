@@ -22,6 +22,9 @@ func GetApiToken(ctx *pulumi.Context) string {
 	}
 	return value
 }
+func GetDisableDryrun(ctx *pulumi.Context) bool {
+	return config.GetBool(ctx, "chronosphere:disableDryrun")
+}
 func GetEntityNamespace(ctx *pulumi.Context) string {
 	return config.Get(ctx, "chronosphere:entityNamespace")
 }

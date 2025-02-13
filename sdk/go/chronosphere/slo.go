@@ -15,16 +15,16 @@ import (
 type SLO struct {
 	pulumi.CustomResourceState
 
-	Annotations          pulumi.StringMapOutput `pulumi:"annotations"`
-	CollectionId         pulumi.StringOutput    `pulumi:"collectionId"`
-	Definition           SLODefinitionOutput    `pulumi:"definition"`
-	Description          pulumi.StringPtrOutput `pulumi:"description"`
-	Labels               pulumi.StringMapOutput `pulumi:"labels"`
-	Name                 pulumi.StringOutput    `pulumi:"name"`
-	NotificationPolicyId pulumi.StringPtrOutput `pulumi:"notificationPolicyId"`
-	SignalGrouping       pulumi.StringPtrOutput `pulumi:"signalGrouping"`
-	Sli                  SLOSliOutput           `pulumi:"sli"`
-	Slug                 pulumi.StringOutput    `pulumi:"slug"`
+	Annotations          pulumi.StringMapOutput     `pulumi:"annotations"`
+	CollectionId         pulumi.StringOutput        `pulumi:"collectionId"`
+	Definition           SLODefinitionOutput        `pulumi:"definition"`
+	Description          pulumi.StringPtrOutput     `pulumi:"description"`
+	Labels               pulumi.StringMapOutput     `pulumi:"labels"`
+	Name                 pulumi.StringOutput        `pulumi:"name"`
+	NotificationPolicyId pulumi.StringPtrOutput     `pulumi:"notificationPolicyId"`
+	SignalGrouping       SLOSignalGroupingPtrOutput `pulumi:"signalGrouping"`
+	Sli                  SLOSliOutput               `pulumi:"sli"`
+	Slug                 pulumi.StringOutput        `pulumi:"slug"`
 }
 
 // NewSLO registers a new resource with the given unique name, arguments, and options.
@@ -69,16 +69,16 @@ func GetSLO(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SLO resources.
 type sloState struct {
-	Annotations          map[string]string `pulumi:"annotations"`
-	CollectionId         *string           `pulumi:"collectionId"`
-	Definition           *SLODefinition    `pulumi:"definition"`
-	Description          *string           `pulumi:"description"`
-	Labels               map[string]string `pulumi:"labels"`
-	Name                 *string           `pulumi:"name"`
-	NotificationPolicyId *string           `pulumi:"notificationPolicyId"`
-	SignalGrouping       *string           `pulumi:"signalGrouping"`
-	Sli                  *SLOSli           `pulumi:"sli"`
-	Slug                 *string           `pulumi:"slug"`
+	Annotations          map[string]string  `pulumi:"annotations"`
+	CollectionId         *string            `pulumi:"collectionId"`
+	Definition           *SLODefinition     `pulumi:"definition"`
+	Description          *string            `pulumi:"description"`
+	Labels               map[string]string  `pulumi:"labels"`
+	Name                 *string            `pulumi:"name"`
+	NotificationPolicyId *string            `pulumi:"notificationPolicyId"`
+	SignalGrouping       *SLOSignalGrouping `pulumi:"signalGrouping"`
+	Sli                  *SLOSli            `pulumi:"sli"`
+	Slug                 *string            `pulumi:"slug"`
 }
 
 type SLOState struct {
@@ -89,7 +89,7 @@ type SLOState struct {
 	Labels               pulumi.StringMapInput
 	Name                 pulumi.StringPtrInput
 	NotificationPolicyId pulumi.StringPtrInput
-	SignalGrouping       pulumi.StringPtrInput
+	SignalGrouping       SLOSignalGroupingPtrInput
 	Sli                  SLOSliPtrInput
 	Slug                 pulumi.StringPtrInput
 }
@@ -99,16 +99,16 @@ func (SLOState) ElementType() reflect.Type {
 }
 
 type sloArgs struct {
-	Annotations          map[string]string `pulumi:"annotations"`
-	CollectionId         string            `pulumi:"collectionId"`
-	Definition           SLODefinition     `pulumi:"definition"`
-	Description          *string           `pulumi:"description"`
-	Labels               map[string]string `pulumi:"labels"`
-	Name                 string            `pulumi:"name"`
-	NotificationPolicyId *string           `pulumi:"notificationPolicyId"`
-	SignalGrouping       *string           `pulumi:"signalGrouping"`
-	Sli                  SLOSli            `pulumi:"sli"`
-	Slug                 *string           `pulumi:"slug"`
+	Annotations          map[string]string  `pulumi:"annotations"`
+	CollectionId         string             `pulumi:"collectionId"`
+	Definition           SLODefinition      `pulumi:"definition"`
+	Description          *string            `pulumi:"description"`
+	Labels               map[string]string  `pulumi:"labels"`
+	Name                 string             `pulumi:"name"`
+	NotificationPolicyId *string            `pulumi:"notificationPolicyId"`
+	SignalGrouping       *SLOSignalGrouping `pulumi:"signalGrouping"`
+	Sli                  SLOSli             `pulumi:"sli"`
+	Slug                 *string            `pulumi:"slug"`
 }
 
 // The set of arguments for constructing a SLO resource.
@@ -120,7 +120,7 @@ type SLOArgs struct {
 	Labels               pulumi.StringMapInput
 	Name                 pulumi.StringInput
 	NotificationPolicyId pulumi.StringPtrInput
-	SignalGrouping       pulumi.StringPtrInput
+	SignalGrouping       SLOSignalGroupingPtrInput
 	Sli                  SLOSliInput
 	Slug                 pulumi.StringPtrInput
 }
@@ -240,8 +240,8 @@ func (o SLOOutput) NotificationPolicyId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SLO) pulumi.StringPtrOutput { return v.NotificationPolicyId }).(pulumi.StringPtrOutput)
 }
 
-func (o SLOOutput) SignalGrouping() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *SLO) pulumi.StringPtrOutput { return v.SignalGrouping }).(pulumi.StringPtrOutput)
+func (o SLOOutput) SignalGrouping() SLOSignalGroupingPtrOutput {
+	return o.ApplyT(func(v *SLO) SLOSignalGroupingPtrOutput { return v.SignalGrouping }).(SLOSignalGroupingPtrOutput)
 }
 
 func (o SLOOutput) Sli() SLOSliOutput {

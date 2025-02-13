@@ -31,6 +31,7 @@ export interface DatasetConfigurationTraceDatasetMatchCriteria {
 export interface DatasetConfigurationTraceDatasetMatchCriteriaSpan {
     duration?: outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanDuration;
     error?: outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanError;
+    isRootSpan?: outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpan;
     matchType?: string;
     operation?: outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanOperation;
     parentOperation?: outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanParentOperation;
@@ -46,6 +47,10 @@ export interface DatasetConfigurationTraceDatasetMatchCriteriaSpanDuration {
 }
 
 export interface DatasetConfigurationTraceDatasetMatchCriteriaSpanError {
+    value: boolean;
+}
+
+export interface DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpan {
     value: boolean;
 }
 
@@ -294,6 +299,7 @@ export interface MappingRuleStoragePolicy {
 
 export interface MonitorQuery {
     graphiteExpr?: string;
+    loggingExpr?: string;
     prometheusExpr?: string;
 }
 
@@ -473,7 +479,13 @@ export interface SLODefinitionReportingWindow {
     duration: string;
 }
 
+export interface SLOSignalGrouping {
+    labelNames?: string[];
+    signalPerSeries?: boolean;
+}
+
 export interface SLOSli {
+    customDimensionLabels?: string[];
     customIndicator?: outputs.SLOSliCustomIndicator;
     endpointAvailability?: outputs.SLOSliEndpointAvailability;
     endpointLabel?: string;
@@ -584,6 +596,7 @@ export interface TraceMetricsRuleTraceFilter {
 export interface TraceMetricsRuleTraceFilterSpan {
     duration?: outputs.TraceMetricsRuleTraceFilterSpanDuration;
     error?: outputs.TraceMetricsRuleTraceFilterSpanError;
+    isRootSpan?: outputs.TraceMetricsRuleTraceFilterSpanIsRootSpan;
     matchType?: string;
     operation?: outputs.TraceMetricsRuleTraceFilterSpanOperation;
     parentOperation?: outputs.TraceMetricsRuleTraceFilterSpanParentOperation;
@@ -599,6 +612,10 @@ export interface TraceMetricsRuleTraceFilterSpanDuration {
 }
 
 export interface TraceMetricsRuleTraceFilterSpanError {
+    value: boolean;
+}
+
+export interface TraceMetricsRuleTraceFilterSpanIsRootSpan {
     value: boolean;
 }
 
@@ -682,6 +699,7 @@ export interface TraceTailSamplingRulesRuleFilter {
 export interface TraceTailSamplingRulesRuleFilterSpan {
     duration?: outputs.TraceTailSamplingRulesRuleFilterSpanDuration;
     error?: outputs.TraceTailSamplingRulesRuleFilterSpanError;
+    isRootSpan?: outputs.TraceTailSamplingRulesRuleFilterSpanIsRootSpan;
     matchType?: string;
     operation?: outputs.TraceTailSamplingRulesRuleFilterSpanOperation;
     parentOperation?: outputs.TraceTailSamplingRulesRuleFilterSpanParentOperation;
@@ -697,6 +715,10 @@ export interface TraceTailSamplingRulesRuleFilterSpanDuration {
 }
 
 export interface TraceTailSamplingRulesRuleFilterSpanError {
+    value: boolean;
+}
+
+export interface TraceTailSamplingRulesRuleFilterSpanIsRootSpan {
     value: boolean;
 }
 

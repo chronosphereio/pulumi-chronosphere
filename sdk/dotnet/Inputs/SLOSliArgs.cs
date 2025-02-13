@@ -13,6 +13,14 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class SLOSliArgs : global::Pulumi.ResourceArgs
     {
+        [Input("customDimensionLabels")]
+        private InputList<string>? _customDimensionLabels;
+        public InputList<string> CustomDimensionLabels
+        {
+            get => _customDimensionLabels ?? (_customDimensionLabels = new InputList<string>());
+            set => _customDimensionLabels = value;
+        }
+
         [Input("customIndicator")]
         public Input<Inputs.SLOSliCustomIndicatorArgs>? CustomIndicator { get; set; }
 
