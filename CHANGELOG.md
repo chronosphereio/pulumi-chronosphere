@@ -2,7 +2,17 @@
 
 ## Unreleased
 
+## v0.9.5
+
+Added:
+- Adds support for logging query in the `chronosphere_monitor` resource.
+- Adds support for custom dimension labels in the `chronosphere_slo` resource.
+- Add v1 `chronosphere_logging_allocation_config` resource
+- Add support for `is_root_span` field in common trace span filter type.
+- Allow disabling dry-run via provider configuration `disable_dryrun`.
+
 Fixed:
+- Fix dry-run for `chronosphere_recording_rule` with `bucket_slug` and `execution_group`.
 - Fixed a bug where Set types in terraform plugin SDK could have extra, empty values.
 
 ## v0.9.4
