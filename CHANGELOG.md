@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-## v0.9.5
+## v0.9.6
 
 Added:
 - Adds support for logging query in the `chronosphere_monitor` resource.
