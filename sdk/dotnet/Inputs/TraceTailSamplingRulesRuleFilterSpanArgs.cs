@@ -19,6 +19,9 @@ namespace Chronosphere.Pulumi.Inputs
         [Input("error")]
         public Input<Inputs.TraceTailSamplingRulesRuleFilterSpanErrorArgs>? Error { get; set; }
 
+        [Input("isRootSpan")]
+        public Input<Inputs.TraceTailSamplingRulesRuleFilterSpanIsRootSpanArgs>? IsRootSpan { get; set; }
+
         [Input("matchType")]
         public Input<string>? MatchType { get; set; }
 

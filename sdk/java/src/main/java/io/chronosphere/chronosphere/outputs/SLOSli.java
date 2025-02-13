@@ -8,12 +8,14 @@ import io.chronosphere.chronosphere.outputs.SLOSliCustomIndicator;
 import io.chronosphere.chronosphere.outputs.SLOSliEndpointAvailability;
 import io.chronosphere.chronosphere.outputs.SLOSliEndpointLatency;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
 @CustomType
 public final class SLOSli {
+    private @Nullable List<String> customDimensionLabels;
     private @Nullable SLOSliCustomIndicator customIndicator;
     private @Nullable SLOSliEndpointAvailability endpointAvailability;
     private @Nullable String endpointLabel;
@@ -21,6 +23,9 @@ public final class SLOSli {
     private @Nullable String lensTemplateIndicator;
 
     private SLOSli() {}
+    public List<String> customDimensionLabels() {
+        return this.customDimensionLabels == null ? List.of() : this.customDimensionLabels;
+    }
     public Optional<SLOSliCustomIndicator> customIndicator() {
         return Optional.ofNullable(this.customIndicator);
     }
@@ -46,6 +51,7 @@ public final class SLOSli {
     }
     @CustomType.Builder
     public static final class Builder {
+        private @Nullable List<String> customDimensionLabels;
         private @Nullable SLOSliCustomIndicator customIndicator;
         private @Nullable SLOSliEndpointAvailability endpointAvailability;
         private @Nullable String endpointLabel;
@@ -54,6 +60,7 @@ public final class SLOSli {
         public Builder() {}
         public Builder(SLOSli defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.customDimensionLabels = defaults.customDimensionLabels;
     	      this.customIndicator = defaults.customIndicator;
     	      this.endpointAvailability = defaults.endpointAvailability;
     	      this.endpointLabel = defaults.endpointLabel;
@@ -61,6 +68,14 @@ public final class SLOSli {
     	      this.lensTemplateIndicator = defaults.lensTemplateIndicator;
         }
 
+        @CustomType.Setter
+        public Builder customDimensionLabels(@Nullable List<String> customDimensionLabels) {
+            this.customDimensionLabels = customDimensionLabels;
+            return this;
+        }
+        public Builder customDimensionLabels(String... customDimensionLabels) {
+            return customDimensionLabels(List.of(customDimensionLabels));
+        }
         @CustomType.Setter
         public Builder customIndicator(@Nullable SLOSliCustomIndicator customIndicator) {
             this.customIndicator = customIndicator;
@@ -88,6 +103,7 @@ public final class SLOSli {
         }
         public SLOSli build() {
             final var o = new SLOSli();
+            o.customDimensionLabels = customDimensionLabels;
             o.customIndicator = customIndicator;
             o.endpointAvailability = endpointAvailability;
             o.endpointLabel = endpointLabel;

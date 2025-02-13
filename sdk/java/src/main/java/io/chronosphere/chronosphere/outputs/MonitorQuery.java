@@ -12,11 +12,15 @@ import javax.annotation.Nullable;
 @CustomType
 public final class MonitorQuery {
     private @Nullable String graphiteExpr;
+    private @Nullable String loggingExpr;
     private @Nullable String prometheusExpr;
 
     private MonitorQuery() {}
     public Optional<String> graphiteExpr() {
         return Optional.ofNullable(this.graphiteExpr);
+    }
+    public Optional<String> loggingExpr() {
+        return Optional.ofNullable(this.loggingExpr);
     }
     public Optional<String> prometheusExpr() {
         return Optional.ofNullable(this.prometheusExpr);
@@ -32,17 +36,24 @@ public final class MonitorQuery {
     @CustomType.Builder
     public static final class Builder {
         private @Nullable String graphiteExpr;
+        private @Nullable String loggingExpr;
         private @Nullable String prometheusExpr;
         public Builder() {}
         public Builder(MonitorQuery defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.graphiteExpr = defaults.graphiteExpr;
+    	      this.loggingExpr = defaults.loggingExpr;
     	      this.prometheusExpr = defaults.prometheusExpr;
         }
 
         @CustomType.Setter
         public Builder graphiteExpr(@Nullable String graphiteExpr) {
             this.graphiteExpr = graphiteExpr;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder loggingExpr(@Nullable String loggingExpr) {
+            this.loggingExpr = loggingExpr;
             return this;
         }
         @CustomType.Setter
@@ -53,6 +64,7 @@ public final class MonitorQuery {
         public MonitorQuery build() {
             final var o = new MonitorQuery();
             o.graphiteExpr = graphiteExpr;
+            o.loggingExpr = loggingExpr;
             o.prometheusExpr = prometheusExpr;
             return o;
         }

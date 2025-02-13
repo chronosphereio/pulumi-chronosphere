@@ -14,6 +14,9 @@ public final class Config {
     public Optional<String> apiToken() {
         return Codegen.stringProp("apiToken").config(config).env("CHRONOSPHERE_API_TOKEN").get();
     }
+    public Optional<Boolean> disableDryrun() {
+        return Codegen.booleanProp("disableDryrun").config(config).get();
+    }
     public Optional<String> entityNamespace() {
         return Codegen.stringProp("entityNamespace").config(config).get();
     }

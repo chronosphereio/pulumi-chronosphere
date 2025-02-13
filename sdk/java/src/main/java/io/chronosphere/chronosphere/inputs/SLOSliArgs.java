@@ -9,6 +9,7 @@ import io.chronosphere.chronosphere.inputs.SLOSliCustomIndicatorArgs;
 import io.chronosphere.chronosphere.inputs.SLOSliEndpointAvailabilityArgs;
 import io.chronosphere.chronosphere.inputs.SLOSliEndpointLatencyArgs;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -17,6 +18,13 @@ import javax.annotation.Nullable;
 public final class SLOSliArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final SLOSliArgs Empty = new SLOSliArgs();
+
+    @Import(name="customDimensionLabels")
+    private @Nullable Output<List<String>> customDimensionLabels;
+
+    public Optional<Output<List<String>>> customDimensionLabels() {
+        return Optional.ofNullable(this.customDimensionLabels);
+    }
 
     @Import(name="customIndicator")
     private @Nullable Output<SLOSliCustomIndicatorArgs> customIndicator;
@@ -56,6 +64,7 @@ public final class SLOSliArgs extends com.pulumi.resources.ResourceArgs {
     private SLOSliArgs() {}
 
     private SLOSliArgs(SLOSliArgs $) {
+        this.customDimensionLabels = $.customDimensionLabels;
         this.customIndicator = $.customIndicator;
         this.endpointAvailability = $.endpointAvailability;
         this.endpointLabel = $.endpointLabel;
@@ -79,6 +88,19 @@ public final class SLOSliArgs extends com.pulumi.resources.ResourceArgs {
 
         public Builder(SLOSliArgs defaults) {
             $ = new SLOSliArgs(Objects.requireNonNull(defaults));
+        }
+
+        public Builder customDimensionLabels(@Nullable Output<List<String>> customDimensionLabels) {
+            $.customDimensionLabels = customDimensionLabels;
+            return this;
+        }
+
+        public Builder customDimensionLabels(List<String> customDimensionLabels) {
+            return customDimensionLabels(Output.of(customDimensionLabels));
+        }
+
+        public Builder customDimensionLabels(String... customDimensionLabels) {
+            return customDimensionLabels(List.of(customDimensionLabels));
         }
 
         public Builder customIndicator(@Nullable Output<SLOSliCustomIndicatorArgs> customIndicator) {

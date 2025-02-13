@@ -6,6 +6,7 @@ package io.chronosphere.chronosphere.outputs;
 import com.pulumi.core.annotations.CustomType;
 import io.chronosphere.chronosphere.outputs.TraceTailSamplingRulesRuleFilterSpanDuration;
 import io.chronosphere.chronosphere.outputs.TraceTailSamplingRulesRuleFilterSpanError;
+import io.chronosphere.chronosphere.outputs.TraceTailSamplingRulesRuleFilterSpanIsRootSpan;
 import io.chronosphere.chronosphere.outputs.TraceTailSamplingRulesRuleFilterSpanOperation;
 import io.chronosphere.chronosphere.outputs.TraceTailSamplingRulesRuleFilterSpanParentOperation;
 import io.chronosphere.chronosphere.outputs.TraceTailSamplingRulesRuleFilterSpanParentService;
@@ -22,6 +23,7 @@ import javax.annotation.Nullable;
 public final class TraceTailSamplingRulesRuleFilterSpan {
     private @Nullable TraceTailSamplingRulesRuleFilterSpanDuration duration;
     private @Nullable TraceTailSamplingRulesRuleFilterSpanError error;
+    private @Nullable TraceTailSamplingRulesRuleFilterSpanIsRootSpan isRootSpan;
     private @Nullable String matchType;
     private @Nullable TraceTailSamplingRulesRuleFilterSpanOperation operation;
     private @Nullable TraceTailSamplingRulesRuleFilterSpanParentOperation parentOperation;
@@ -36,6 +38,9 @@ public final class TraceTailSamplingRulesRuleFilterSpan {
     }
     public Optional<TraceTailSamplingRulesRuleFilterSpanError> error() {
         return Optional.ofNullable(this.error);
+    }
+    public Optional<TraceTailSamplingRulesRuleFilterSpanIsRootSpan> isRootSpan() {
+        return Optional.ofNullable(this.isRootSpan);
     }
     public Optional<String> matchType() {
         return Optional.ofNullable(this.matchType);
@@ -70,6 +75,7 @@ public final class TraceTailSamplingRulesRuleFilterSpan {
     public static final class Builder {
         private @Nullable TraceTailSamplingRulesRuleFilterSpanDuration duration;
         private @Nullable TraceTailSamplingRulesRuleFilterSpanError error;
+        private @Nullable TraceTailSamplingRulesRuleFilterSpanIsRootSpan isRootSpan;
         private @Nullable String matchType;
         private @Nullable TraceTailSamplingRulesRuleFilterSpanOperation operation;
         private @Nullable TraceTailSamplingRulesRuleFilterSpanParentOperation parentOperation;
@@ -82,6 +88,7 @@ public final class TraceTailSamplingRulesRuleFilterSpan {
     	      Objects.requireNonNull(defaults);
     	      this.duration = defaults.duration;
     	      this.error = defaults.error;
+    	      this.isRootSpan = defaults.isRootSpan;
     	      this.matchType = defaults.matchType;
     	      this.operation = defaults.operation;
     	      this.parentOperation = defaults.parentOperation;
@@ -99,6 +106,11 @@ public final class TraceTailSamplingRulesRuleFilterSpan {
         @CustomType.Setter
         public Builder error(@Nullable TraceTailSamplingRulesRuleFilterSpanError error) {
             this.error = error;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder isRootSpan(@Nullable TraceTailSamplingRulesRuleFilterSpanIsRootSpan isRootSpan) {
+            this.isRootSpan = isRootSpan;
             return this;
         }
         @CustomType.Setter
@@ -143,6 +155,7 @@ public final class TraceTailSamplingRulesRuleFilterSpan {
             final var o = new TraceTailSamplingRulesRuleFilterSpan();
             o.duration = duration;
             o.error = error;
+            o.isRootSpan = isRootSpan;
             o.matchType = matchType;
             o.operation = operation;
             o.parentOperation = parentOperation;

@@ -41,6 +41,7 @@ export class Provider extends pulumi.ProviderResource {
         opts = opts || {};
         {
             resourceInputs["apiToken"] = (args?.apiToken ? pulumi.secret(args.apiToken) : undefined) ?? utilities.getEnv("CHRONOSPHERE_API_TOKEN");
+            resourceInputs["disableDryrun"] = pulumi.output(args ? args.disableDryrun : undefined).apply(JSON.stringify);
             resourceInputs["entityNamespace"] = args ? args.entityNamespace : undefined;
             resourceInputs["org"] = (args ? args.org : undefined) ?? utilities.getEnv("CHRONOSPHERE_ORG", "CHRONOSPHERE_ORG_NAME");
             resourceInputs["unstable"] = pulumi.output(args ? args.unstable : undefined).apply(JSON.stringify);
@@ -57,6 +58,7 @@ export class Provider extends pulumi.ProviderResource {
  */
 export interface ProviderArgs {
     apiToken?: pulumi.Input<string>;
+    disableDryrun?: pulumi.Input<boolean>;
     entityNamespace?: pulumi.Input<string>;
     org?: pulumi.Input<string>;
     unstable?: pulumi.Input<boolean>;

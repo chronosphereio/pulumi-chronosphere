@@ -16,6 +16,7 @@ namespace Chronosphere.Pulumi.Outputs
     {
         public readonly Outputs.TraceMetricsRuleTraceFilterSpanDuration? Duration;
         public readonly Outputs.TraceMetricsRuleTraceFilterSpanError? Error;
+        public readonly Outputs.TraceMetricsRuleTraceFilterSpanIsRootSpan? IsRootSpan;
         public readonly string? MatchType;
         public readonly Outputs.TraceMetricsRuleTraceFilterSpanOperation? Operation;
         public readonly Outputs.TraceMetricsRuleTraceFilterSpanParentOperation? ParentOperation;
@@ -29,6 +30,8 @@ namespace Chronosphere.Pulumi.Outputs
             Outputs.TraceMetricsRuleTraceFilterSpanDuration? duration,
 
             Outputs.TraceMetricsRuleTraceFilterSpanError? error,
+
+            Outputs.TraceMetricsRuleTraceFilterSpanIsRootSpan? isRootSpan,
 
             string? matchType,
 
@@ -46,6 +49,7 @@ namespace Chronosphere.Pulumi.Outputs
         {
             Duration = duration;
             Error = error;
+            IsRootSpan = isRootSpan;
             MatchType = matchType;
             Operation = operation;
             ParentOperation = parentOperation;

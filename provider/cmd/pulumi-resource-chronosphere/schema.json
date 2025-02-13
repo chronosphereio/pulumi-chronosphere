@@ -73,6 +73,9 @@
                 },
                 "secret": true
             },
+            "disableDryrun": {
+                "type": "boolean"
+            },
             "entityNamespace": {
                 "type": "string"
             },
@@ -163,6 +166,9 @@
                 "error": {
                     "$ref": "#/types/chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaSpanError:DatasetConfigurationTraceDatasetMatchCriteriaSpanError"
                 },
+                "isRootSpan": {
+                    "$ref": "#/types/chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpan:DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpan"
+                },
                 "matchType": {
                     "type": "string"
                 },
@@ -202,6 +208,17 @@
             "type": "object"
         },
         "chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaSpanError:DatasetConfigurationTraceDatasetMatchCriteriaSpanError": {
+            "properties": {
+                "value": {
+                    "type": "boolean"
+                }
+            },
+            "type": "object",
+            "required": [
+                "value"
+            ]
+        },
+        "chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpan:DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpan": {
             "properties": {
                 "value": {
                     "type": "boolean"
@@ -947,6 +964,9 @@
                 "graphiteExpr": {
                     "type": "string"
                 },
+                "loggingExpr": {
+                    "type": "string"
+                },
                 "prometheusExpr": {
                     "type": "string"
                 }
@@ -1492,8 +1512,28 @@
                 "duration"
             ]
         },
+        "chronosphere:index/SLOSignalGrouping:SLOSignalGrouping": {
+            "properties": {
+                "labelNames": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "signalPerSeries": {
+                    "type": "boolean"
+                }
+            },
+            "type": "object"
+        },
         "chronosphere:index/SLOSli:SLOSli": {
             "properties": {
+                "customDimensionLabels": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
                 "customIndicator": {
                     "$ref": "#/types/chronosphere:index/SLOSliCustomIndicator:SLOSliCustomIndicator"
                 },
@@ -1825,6 +1865,9 @@
                 "error": {
                     "$ref": "#/types/chronosphere:index/TraceMetricsRuleTraceFilterSpanError:TraceMetricsRuleTraceFilterSpanError"
                 },
+                "isRootSpan": {
+                    "$ref": "#/types/chronosphere:index/TraceMetricsRuleTraceFilterSpanIsRootSpan:TraceMetricsRuleTraceFilterSpanIsRootSpan"
+                },
                 "matchType": {
                     "type": "string"
                 },
@@ -1864,6 +1907,17 @@
             "type": "object"
         },
         "chronosphere:index/TraceMetricsRuleTraceFilterSpanError:TraceMetricsRuleTraceFilterSpanError": {
+            "properties": {
+                "value": {
+                    "type": "boolean"
+                }
+            },
+            "type": "object",
+            "required": [
+                "value"
+            ]
+        },
+        "chronosphere:index/TraceMetricsRuleTraceFilterSpanIsRootSpan:TraceMetricsRuleTraceFilterSpanIsRootSpan": {
             "properties": {
                 "value": {
                     "type": "boolean"
@@ -2089,6 +2143,9 @@
                 "error": {
                     "$ref": "#/types/chronosphere:index/TraceTailSamplingRulesRuleFilterSpanError:TraceTailSamplingRulesRuleFilterSpanError"
                 },
+                "isRootSpan": {
+                    "$ref": "#/types/chronosphere:index/TraceTailSamplingRulesRuleFilterSpanIsRootSpan:TraceTailSamplingRulesRuleFilterSpanIsRootSpan"
+                },
                 "matchType": {
                     "type": "string"
                 },
@@ -2128,6 +2185,17 @@
             "type": "object"
         },
         "chronosphere:index/TraceTailSamplingRulesRuleFilterSpanError:TraceTailSamplingRulesRuleFilterSpanError": {
+            "properties": {
+                "value": {
+                    "type": "boolean"
+                }
+            },
+            "type": "object",
+            "required": [
+                "value"
+            ]
+        },
+        "chronosphere:index/TraceTailSamplingRulesRuleFilterSpanIsRootSpan:TraceTailSamplingRulesRuleFilterSpanIsRootSpan": {
             "properties": {
                 "value": {
                     "type": "boolean"
@@ -2304,6 +2372,9 @@
                 "type": "string",
                 "secret": true
             },
+            "disableDryrun": {
+                "type": "boolean"
+            },
             "entityNamespace": {
                 "type": "string"
             },
@@ -2323,6 +2394,9 @@
                     ]
                 },
                 "secret": true
+            },
+            "disableDryrun": {
+                "type": "boolean"
             },
             "entityNamespace": {
                 "type": "string"
@@ -4735,7 +4809,7 @@
                     "type": "string"
                 },
                 "signalGrouping": {
-                    "type": "string"
+                    "$ref": "#/types/chronosphere:index/SLOSignalGrouping:SLOSignalGrouping"
                 },
                 "sli": {
                     "$ref": "#/types/chronosphere:index/SLOSli:SLOSli"
@@ -4780,7 +4854,7 @@
                     "type": "string"
                 },
                 "signalGrouping": {
-                    "type": "string"
+                    "$ref": "#/types/chronosphere:index/SLOSignalGrouping:SLOSignalGrouping"
                 },
                 "sli": {
                     "$ref": "#/types/chronosphere:index/SLOSli:SLOSli"
@@ -4827,7 +4901,7 @@
                         "type": "string"
                     },
                     "signalGrouping": {
-                        "type": "string"
+                        "$ref": "#/types/chronosphere:index/SLOSignalGrouping:SLOSignalGrouping"
                     },
                     "sli": {
                         "$ref": "#/types/chronosphere:index/SLOSli:SLOSli"

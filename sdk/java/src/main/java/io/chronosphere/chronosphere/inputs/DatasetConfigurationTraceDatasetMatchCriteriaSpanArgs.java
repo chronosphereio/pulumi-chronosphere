@@ -7,6 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import io.chronosphere.chronosphere.inputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanDurationArgs;
 import io.chronosphere.chronosphere.inputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanErrorArgs;
+import io.chronosphere.chronosphere.inputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanArgs;
 import io.chronosphere.chronosphere.inputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanOperationArgs;
 import io.chronosphere.chronosphere.inputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanParentOperationArgs;
 import io.chronosphere.chronosphere.inputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanParentServiceArgs;
@@ -36,6 +37,13 @@ public final class DatasetConfigurationTraceDatasetMatchCriteriaSpanArgs extends
 
     public Optional<Output<DatasetConfigurationTraceDatasetMatchCriteriaSpanErrorArgs>> error() {
         return Optional.ofNullable(this.error);
+    }
+
+    @Import(name="isRootSpan")
+    private @Nullable Output<DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanArgs> isRootSpan;
+
+    public Optional<Output<DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanArgs>> isRootSpan() {
+        return Optional.ofNullable(this.isRootSpan);
     }
 
     @Import(name="matchType")
@@ -92,6 +100,7 @@ public final class DatasetConfigurationTraceDatasetMatchCriteriaSpanArgs extends
     private DatasetConfigurationTraceDatasetMatchCriteriaSpanArgs(DatasetConfigurationTraceDatasetMatchCriteriaSpanArgs $) {
         this.duration = $.duration;
         this.error = $.error;
+        this.isRootSpan = $.isRootSpan;
         this.matchType = $.matchType;
         this.operation = $.operation;
         this.parentOperation = $.parentOperation;
@@ -135,6 +144,15 @@ public final class DatasetConfigurationTraceDatasetMatchCriteriaSpanArgs extends
 
         public Builder error(DatasetConfigurationTraceDatasetMatchCriteriaSpanErrorArgs error) {
             return error(Output.of(error));
+        }
+
+        public Builder isRootSpan(@Nullable Output<DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanArgs> isRootSpan) {
+            $.isRootSpan = isRootSpan;
+            return this;
+        }
+
+        public Builder isRootSpan(DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanArgs isRootSpan) {
+            return isRootSpan(Output.of(isRootSpan));
         }
 
         public Builder matchType(@Nullable Output<String> matchType) {

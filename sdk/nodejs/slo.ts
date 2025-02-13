@@ -41,7 +41,7 @@ export class SLO extends pulumi.CustomResource {
     public readonly labels!: pulumi.Output<{[key: string]: string} | undefined>;
     public readonly name!: pulumi.Output<string>;
     public readonly notificationPolicyId!: pulumi.Output<string | undefined>;
-    public readonly signalGrouping!: pulumi.Output<string | undefined>;
+    public readonly signalGrouping!: pulumi.Output<outputs.SLOSignalGrouping | undefined>;
     public readonly sli!: pulumi.Output<outputs.SLOSli>;
     public readonly slug!: pulumi.Output<string>;
 
@@ -109,7 +109,7 @@ export interface SLOState {
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     name?: pulumi.Input<string>;
     notificationPolicyId?: pulumi.Input<string>;
-    signalGrouping?: pulumi.Input<string>;
+    signalGrouping?: pulumi.Input<inputs.SLOSignalGrouping>;
     sli?: pulumi.Input<inputs.SLOSli>;
     slug?: pulumi.Input<string>;
 }
@@ -125,7 +125,7 @@ export interface SLOArgs {
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     name: pulumi.Input<string>;
     notificationPolicyId?: pulumi.Input<string>;
-    signalGrouping?: pulumi.Input<string>;
+    signalGrouping?: pulumi.Input<inputs.SLOSignalGrouping>;
     sli: pulumi.Input<inputs.SLOSli>;
     slug?: pulumi.Input<string>;
 }

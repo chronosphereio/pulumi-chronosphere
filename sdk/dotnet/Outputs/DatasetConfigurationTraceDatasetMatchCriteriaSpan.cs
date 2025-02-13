@@ -16,6 +16,7 @@ namespace Chronosphere.Pulumi.Outputs
     {
         public readonly Outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanDuration? Duration;
         public readonly Outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanError? Error;
+        public readonly Outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpan? IsRootSpan;
         public readonly string? MatchType;
         public readonly Outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanOperation? Operation;
         public readonly Outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanParentOperation? ParentOperation;
@@ -29,6 +30,8 @@ namespace Chronosphere.Pulumi.Outputs
             Outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanDuration? duration,
 
             Outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanError? error,
+
+            Outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpan? isRootSpan,
 
             string? matchType,
 
@@ -46,6 +49,7 @@ namespace Chronosphere.Pulumi.Outputs
         {
             Duration = duration;
             Error = error;
+            IsRootSpan = isRootSpan;
             MatchType = matchType;
             Operation = operation;
             ParentOperation = parentOperation;

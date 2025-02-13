@@ -6,6 +6,7 @@ package io.chronosphere.chronosphere;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import io.chronosphere.chronosphere.inputs.SLODefinitionArgs;
+import io.chronosphere.chronosphere.inputs.SLOSignalGroupingArgs;
 import io.chronosphere.chronosphere.inputs.SLOSliArgs;
 import java.lang.String;
 import java.util.Map;
@@ -68,9 +69,9 @@ public final class SLOArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     @Import(name="signalGrouping")
-    private @Nullable Output<String> signalGrouping;
+    private @Nullable Output<SLOSignalGroupingArgs> signalGrouping;
 
-    public Optional<Output<String>> signalGrouping() {
+    public Optional<Output<SLOSignalGroupingArgs>> signalGrouping() {
         return Optional.ofNullable(this.signalGrouping);
     }
 
@@ -184,12 +185,12 @@ public final class SLOArgs extends com.pulumi.resources.ResourceArgs {
             return notificationPolicyId(Output.of(notificationPolicyId));
         }
 
-        public Builder signalGrouping(@Nullable Output<String> signalGrouping) {
+        public Builder signalGrouping(@Nullable Output<SLOSignalGroupingArgs> signalGrouping) {
             $.signalGrouping = signalGrouping;
             return this;
         }
 
-        public Builder signalGrouping(String signalGrouping) {
+        public Builder signalGrouping(SLOSignalGroupingArgs signalGrouping) {
             return signalGrouping(Output.of(signalGrouping));
         }
 

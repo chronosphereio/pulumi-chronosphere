@@ -16,6 +16,9 @@ namespace Chronosphere.Pulumi.Inputs
         [Input("graphiteExpr")]
         public Input<string>? GraphiteExpr { get; set; }
 
+        [Input("loggingExpr")]
+        public Input<string>? LoggingExpr { get; set; }
+
         [Input("prometheusExpr")]
         public Input<string>? PrometheusExpr { get; set; }
 

@@ -58,6 +58,7 @@ func NewProvider(ctx *pulumi.Context,
 
 type providerArgs struct {
 	ApiToken        *string `pulumi:"apiToken"`
+	DisableDryrun   *bool   `pulumi:"disableDryrun"`
 	EntityNamespace *string `pulumi:"entityNamespace"`
 	Org             *string `pulumi:"org"`
 	Unstable        *bool   `pulumi:"unstable"`
@@ -66,6 +67,7 @@ type providerArgs struct {
 // The set of arguments for constructing a Provider resource.
 type ProviderArgs struct {
 	ApiToken        pulumi.StringPtrInput
+	DisableDryrun   pulumi.BoolPtrInput
 	EntityNamespace pulumi.StringPtrInput
 	Org             pulumi.StringPtrInput
 	Unstable        pulumi.BoolPtrInput

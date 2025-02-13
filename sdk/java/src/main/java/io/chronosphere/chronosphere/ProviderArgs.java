@@ -24,6 +24,13 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.apiToken);
     }
 
+    @Import(name="disableDryrun", json=true)
+    private @Nullable Output<Boolean> disableDryrun;
+
+    public Optional<Output<Boolean>> disableDryrun() {
+        return Optional.ofNullable(this.disableDryrun);
+    }
+
     @Import(name="entityNamespace")
     private @Nullable Output<String> entityNamespace;
 
@@ -49,6 +56,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
 
     private ProviderArgs(ProviderArgs $) {
         this.apiToken = $.apiToken;
+        this.disableDryrun = $.disableDryrun;
         this.entityNamespace = $.entityNamespace;
         this.org = $.org;
         this.unstable = $.unstable;
@@ -79,6 +87,15 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
 
         public Builder apiToken(String apiToken) {
             return apiToken(Output.of(apiToken));
+        }
+
+        public Builder disableDryrun(@Nullable Output<Boolean> disableDryrun) {
+            $.disableDryrun = disableDryrun;
+            return this;
+        }
+
+        public Builder disableDryrun(Boolean disableDryrun) {
+            return disableDryrun(Output.of(disableDryrun));
         }
 
         public Builder entityNamespace(@Nullable Output<String> entityNamespace) {

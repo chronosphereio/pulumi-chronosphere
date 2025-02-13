@@ -734,6 +734,7 @@ func (o DatasetConfigurationTraceDatasetMatchCriteriaPtrOutput) Trace() DatasetC
 type DatasetConfigurationTraceDatasetMatchCriteriaSpan struct {
 	Duration        *DatasetConfigurationTraceDatasetMatchCriteriaSpanDuration        `pulumi:"duration"`
 	Error           *DatasetConfigurationTraceDatasetMatchCriteriaSpanError           `pulumi:"error"`
+	IsRootSpan      *DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpan      `pulumi:"isRootSpan"`
 	MatchType       *string                                                           `pulumi:"matchType"`
 	Operation       *DatasetConfigurationTraceDatasetMatchCriteriaSpanOperation       `pulumi:"operation"`
 	ParentOperation *DatasetConfigurationTraceDatasetMatchCriteriaSpanParentOperation `pulumi:"parentOperation"`
@@ -757,6 +758,7 @@ type DatasetConfigurationTraceDatasetMatchCriteriaSpanInput interface {
 type DatasetConfigurationTraceDatasetMatchCriteriaSpanArgs struct {
 	Duration        DatasetConfigurationTraceDatasetMatchCriteriaSpanDurationPtrInput        `pulumi:"duration"`
 	Error           DatasetConfigurationTraceDatasetMatchCriteriaSpanErrorPtrInput           `pulumi:"error"`
+	IsRootSpan      DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanPtrInput      `pulumi:"isRootSpan"`
 	MatchType       pulumi.StringPtrInput                                                    `pulumi:"matchType"`
 	Operation       DatasetConfigurationTraceDatasetMatchCriteriaSpanOperationPtrInput       `pulumi:"operation"`
 	ParentOperation DatasetConfigurationTraceDatasetMatchCriteriaSpanParentOperationPtrInput `pulumi:"parentOperation"`
@@ -827,6 +829,12 @@ func (o DatasetConfigurationTraceDatasetMatchCriteriaSpanOutput) Error() Dataset
 	return o.ApplyT(func(v DatasetConfigurationTraceDatasetMatchCriteriaSpan) *DatasetConfigurationTraceDatasetMatchCriteriaSpanError {
 		return v.Error
 	}).(DatasetConfigurationTraceDatasetMatchCriteriaSpanErrorPtrOutput)
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaSpanOutput) IsRootSpan() DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanPtrOutput {
+	return o.ApplyT(func(v DatasetConfigurationTraceDatasetMatchCriteriaSpan) *DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpan {
+		return v.IsRootSpan
+	}).(DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanPtrOutput)
 }
 
 func (o DatasetConfigurationTraceDatasetMatchCriteriaSpanOutput) MatchType() pulumi.StringPtrOutput {
@@ -1163,6 +1171,139 @@ func (o DatasetConfigurationTraceDatasetMatchCriteriaSpanErrorPtrOutput) Elem() 
 
 func (o DatasetConfigurationTraceDatasetMatchCriteriaSpanErrorPtrOutput) Value() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *DatasetConfigurationTraceDatasetMatchCriteriaSpanError) *bool {
+		if v == nil {
+			return nil
+		}
+		return &v.Value
+	}).(pulumi.BoolPtrOutput)
+}
+
+type DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpan struct {
+	Value bool `pulumi:"value"`
+}
+
+// DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanInput is an input type that accepts DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanArgs and DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanOutput values.
+// You can construct a concrete instance of `DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanInput` via:
+//
+//	DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanArgs{...}
+type DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanInput interface {
+	pulumi.Input
+
+	ToDatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanOutput() DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanOutput
+	ToDatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanOutputWithContext(context.Context) DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanOutput
+}
+
+type DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanArgs struct {
+	Value pulumi.BoolInput `pulumi:"value"`
+}
+
+func (DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpan)(nil)).Elem()
+}
+
+func (i DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanArgs) ToDatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanOutput() DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanOutput {
+	return i.ToDatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanOutputWithContext(context.Background())
+}
+
+func (i DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanArgs) ToDatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanOutput)
+}
+
+func (i DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanArgs) ToDatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanPtrOutput() DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanPtrOutput {
+	return i.ToDatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanPtrOutputWithContext(context.Background())
+}
+
+func (i DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanArgs) ToDatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanPtrOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanOutput).ToDatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanPtrOutputWithContext(ctx)
+}
+
+// DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanPtrInput is an input type that accepts DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanArgs, DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanPtr and DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanPtrOutput values.
+// You can construct a concrete instance of `DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanPtrInput` via:
+//
+//	        DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanArgs{...}
+//
+//	or:
+//
+//	        nil
+type DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanPtrInput interface {
+	pulumi.Input
+
+	ToDatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanPtrOutput() DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanPtrOutput
+	ToDatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanPtrOutputWithContext(context.Context) DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanPtrOutput
+}
+
+type datasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanPtrType DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanArgs
+
+func DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanPtr(v *DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanArgs) DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanPtrInput {
+	return (*datasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanPtrType)(v)
+}
+
+func (*datasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpan)(nil)).Elem()
+}
+
+func (i *datasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanPtrType) ToDatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanPtrOutput() DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanPtrOutput {
+	return i.ToDatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanPtrOutputWithContext(context.Background())
+}
+
+func (i *datasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanPtrType) ToDatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanPtrOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanPtrOutput)
+}
+
+type DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanOutput struct{ *pulumi.OutputState }
+
+func (DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpan)(nil)).Elem()
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanOutput() DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanOutput {
+	return o
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanOutput {
+	return o
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanPtrOutput() DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanPtrOutput {
+	return o.ToDatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanPtrOutputWithContext(context.Background())
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanPtrOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpan) *DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpan {
+		return &v
+	}).(DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanPtrOutput)
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanOutput) Value() pulumi.BoolOutput {
+	return o.ApplyT(func(v DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpan) bool { return v.Value }).(pulumi.BoolOutput)
+}
+
+type DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanPtrOutput struct{ *pulumi.OutputState }
+
+func (DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpan)(nil)).Elem()
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanPtrOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanPtrOutput() DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanPtrOutput {
+	return o
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanPtrOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanPtrOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanPtrOutput {
+	return o
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanPtrOutput) Elem() DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanOutput {
+	return o.ApplyT(func(v *DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpan) DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpan {
+		if v != nil {
+			return *v
+		}
+		var ret DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpan
+		return ret
+	}).(DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanOutput)
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanPtrOutput) Value() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpan) *bool {
 		if v == nil {
 			return nil
 		}
@@ -7396,6 +7537,7 @@ func (o MappingRuleStoragePolicyPtrOutput) Retention() pulumi.StringPtrOutput {
 
 type MonitorQuery struct {
 	GraphiteExpr   *string `pulumi:"graphiteExpr"`
+	LoggingExpr    *string `pulumi:"loggingExpr"`
 	PrometheusExpr *string `pulumi:"prometheusExpr"`
 }
 
@@ -7412,6 +7554,7 @@ type MonitorQueryInput interface {
 
 type MonitorQueryArgs struct {
 	GraphiteExpr   pulumi.StringPtrInput `pulumi:"graphiteExpr"`
+	LoggingExpr    pulumi.StringPtrInput `pulumi:"loggingExpr"`
 	PrometheusExpr pulumi.StringPtrInput `pulumi:"prometheusExpr"`
 }
 
@@ -7496,6 +7639,10 @@ func (o MonitorQueryOutput) GraphiteExpr() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v MonitorQuery) *string { return v.GraphiteExpr }).(pulumi.StringPtrOutput)
 }
 
+func (o MonitorQueryOutput) LoggingExpr() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v MonitorQuery) *string { return v.LoggingExpr }).(pulumi.StringPtrOutput)
+}
+
 func (o MonitorQueryOutput) PrometheusExpr() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v MonitorQuery) *string { return v.PrometheusExpr }).(pulumi.StringPtrOutput)
 }
@@ -7530,6 +7677,15 @@ func (o MonitorQueryPtrOutput) GraphiteExpr() pulumi.StringPtrOutput {
 			return nil
 		}
 		return v.GraphiteExpr
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o MonitorQueryPtrOutput) LoggingExpr() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *MonitorQuery) *string {
+		if v == nil {
+			return nil
+		}
+		return v.LoggingExpr
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -11435,7 +11591,156 @@ func (o SLODefinitionReportingWindowArrayOutput) Index(i pulumi.IntInput) SLODef
 	}).(SLODefinitionReportingWindowOutput)
 }
 
+type SLOSignalGrouping struct {
+	LabelNames      []string `pulumi:"labelNames"`
+	SignalPerSeries *bool    `pulumi:"signalPerSeries"`
+}
+
+// SLOSignalGroupingInput is an input type that accepts SLOSignalGroupingArgs and SLOSignalGroupingOutput values.
+// You can construct a concrete instance of `SLOSignalGroupingInput` via:
+//
+//	SLOSignalGroupingArgs{...}
+type SLOSignalGroupingInput interface {
+	pulumi.Input
+
+	ToSLOSignalGroupingOutput() SLOSignalGroupingOutput
+	ToSLOSignalGroupingOutputWithContext(context.Context) SLOSignalGroupingOutput
+}
+
+type SLOSignalGroupingArgs struct {
+	LabelNames      pulumi.StringArrayInput `pulumi:"labelNames"`
+	SignalPerSeries pulumi.BoolPtrInput     `pulumi:"signalPerSeries"`
+}
+
+func (SLOSignalGroupingArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SLOSignalGrouping)(nil)).Elem()
+}
+
+func (i SLOSignalGroupingArgs) ToSLOSignalGroupingOutput() SLOSignalGroupingOutput {
+	return i.ToSLOSignalGroupingOutputWithContext(context.Background())
+}
+
+func (i SLOSignalGroupingArgs) ToSLOSignalGroupingOutputWithContext(ctx context.Context) SLOSignalGroupingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SLOSignalGroupingOutput)
+}
+
+func (i SLOSignalGroupingArgs) ToSLOSignalGroupingPtrOutput() SLOSignalGroupingPtrOutput {
+	return i.ToSLOSignalGroupingPtrOutputWithContext(context.Background())
+}
+
+func (i SLOSignalGroupingArgs) ToSLOSignalGroupingPtrOutputWithContext(ctx context.Context) SLOSignalGroupingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SLOSignalGroupingOutput).ToSLOSignalGroupingPtrOutputWithContext(ctx)
+}
+
+// SLOSignalGroupingPtrInput is an input type that accepts SLOSignalGroupingArgs, SLOSignalGroupingPtr and SLOSignalGroupingPtrOutput values.
+// You can construct a concrete instance of `SLOSignalGroupingPtrInput` via:
+//
+//	        SLOSignalGroupingArgs{...}
+//
+//	or:
+//
+//	        nil
+type SLOSignalGroupingPtrInput interface {
+	pulumi.Input
+
+	ToSLOSignalGroupingPtrOutput() SLOSignalGroupingPtrOutput
+	ToSLOSignalGroupingPtrOutputWithContext(context.Context) SLOSignalGroupingPtrOutput
+}
+
+type slosignalGroupingPtrType SLOSignalGroupingArgs
+
+func SLOSignalGroupingPtr(v *SLOSignalGroupingArgs) SLOSignalGroupingPtrInput {
+	return (*slosignalGroupingPtrType)(v)
+}
+
+func (*slosignalGroupingPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SLOSignalGrouping)(nil)).Elem()
+}
+
+func (i *slosignalGroupingPtrType) ToSLOSignalGroupingPtrOutput() SLOSignalGroupingPtrOutput {
+	return i.ToSLOSignalGroupingPtrOutputWithContext(context.Background())
+}
+
+func (i *slosignalGroupingPtrType) ToSLOSignalGroupingPtrOutputWithContext(ctx context.Context) SLOSignalGroupingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SLOSignalGroupingPtrOutput)
+}
+
+type SLOSignalGroupingOutput struct{ *pulumi.OutputState }
+
+func (SLOSignalGroupingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SLOSignalGrouping)(nil)).Elem()
+}
+
+func (o SLOSignalGroupingOutput) ToSLOSignalGroupingOutput() SLOSignalGroupingOutput {
+	return o
+}
+
+func (o SLOSignalGroupingOutput) ToSLOSignalGroupingOutputWithContext(ctx context.Context) SLOSignalGroupingOutput {
+	return o
+}
+
+func (o SLOSignalGroupingOutput) ToSLOSignalGroupingPtrOutput() SLOSignalGroupingPtrOutput {
+	return o.ToSLOSignalGroupingPtrOutputWithContext(context.Background())
+}
+
+func (o SLOSignalGroupingOutput) ToSLOSignalGroupingPtrOutputWithContext(ctx context.Context) SLOSignalGroupingPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SLOSignalGrouping) *SLOSignalGrouping {
+		return &v
+	}).(SLOSignalGroupingPtrOutput)
+}
+
+func (o SLOSignalGroupingOutput) LabelNames() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v SLOSignalGrouping) []string { return v.LabelNames }).(pulumi.StringArrayOutput)
+}
+
+func (o SLOSignalGroupingOutput) SignalPerSeries() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SLOSignalGrouping) *bool { return v.SignalPerSeries }).(pulumi.BoolPtrOutput)
+}
+
+type SLOSignalGroupingPtrOutput struct{ *pulumi.OutputState }
+
+func (SLOSignalGroupingPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SLOSignalGrouping)(nil)).Elem()
+}
+
+func (o SLOSignalGroupingPtrOutput) ToSLOSignalGroupingPtrOutput() SLOSignalGroupingPtrOutput {
+	return o
+}
+
+func (o SLOSignalGroupingPtrOutput) ToSLOSignalGroupingPtrOutputWithContext(ctx context.Context) SLOSignalGroupingPtrOutput {
+	return o
+}
+
+func (o SLOSignalGroupingPtrOutput) Elem() SLOSignalGroupingOutput {
+	return o.ApplyT(func(v *SLOSignalGrouping) SLOSignalGrouping {
+		if v != nil {
+			return *v
+		}
+		var ret SLOSignalGrouping
+		return ret
+	}).(SLOSignalGroupingOutput)
+}
+
+func (o SLOSignalGroupingPtrOutput) LabelNames() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SLOSignalGrouping) []string {
+		if v == nil {
+			return nil
+		}
+		return v.LabelNames
+	}).(pulumi.StringArrayOutput)
+}
+
+func (o SLOSignalGroupingPtrOutput) SignalPerSeries() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SLOSignalGrouping) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.SignalPerSeries
+	}).(pulumi.BoolPtrOutput)
+}
+
 type SLOSli struct {
+	CustomDimensionLabels []string                    `pulumi:"customDimensionLabels"`
 	CustomIndicator       *SLOSliCustomIndicator      `pulumi:"customIndicator"`
 	EndpointAvailability  *SLOSliEndpointAvailability `pulumi:"endpointAvailability"`
 	EndpointLabel         *string                     `pulumi:"endpointLabel"`
@@ -11455,6 +11760,7 @@ type SLOSliInput interface {
 }
 
 type SLOSliArgs struct {
+	CustomDimensionLabels pulumi.StringArrayInput            `pulumi:"customDimensionLabels"`
 	CustomIndicator       SLOSliCustomIndicatorPtrInput      `pulumi:"customIndicator"`
 	EndpointAvailability  SLOSliEndpointAvailabilityPtrInput `pulumi:"endpointAvailability"`
 	EndpointLabel         pulumi.StringPtrInput              `pulumi:"endpointLabel"`
@@ -11539,6 +11845,10 @@ func (o SLOSliOutput) ToSLOSliPtrOutputWithContext(ctx context.Context) SLOSliPt
 	}).(SLOSliPtrOutput)
 }
 
+func (o SLOSliOutput) CustomDimensionLabels() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v SLOSli) []string { return v.CustomDimensionLabels }).(pulumi.StringArrayOutput)
+}
+
 func (o SLOSliOutput) CustomIndicator() SLOSliCustomIndicatorPtrOutput {
 	return o.ApplyT(func(v SLOSli) *SLOSliCustomIndicator { return v.CustomIndicator }).(SLOSliCustomIndicatorPtrOutput)
 }
@@ -11581,6 +11891,15 @@ func (o SLOSliPtrOutput) Elem() SLOSliOutput {
 		var ret SLOSli
 		return ret
 	}).(SLOSliOutput)
+}
+
+func (o SLOSliPtrOutput) CustomDimensionLabels() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SLOSli) []string {
+		if v == nil {
+			return nil
+		}
+		return v.CustomDimensionLabels
+	}).(pulumi.StringArrayOutput)
 }
 
 func (o SLOSliPtrOutput) CustomIndicator() SLOSliCustomIndicatorPtrOutput {
@@ -13836,6 +14155,7 @@ func (o TraceMetricsRuleTraceFilterPtrOutput) Trace() TraceMetricsRuleTraceFilte
 type TraceMetricsRuleTraceFilterSpan struct {
 	Duration        *TraceMetricsRuleTraceFilterSpanDuration        `pulumi:"duration"`
 	Error           *TraceMetricsRuleTraceFilterSpanError           `pulumi:"error"`
+	IsRootSpan      *TraceMetricsRuleTraceFilterSpanIsRootSpan      `pulumi:"isRootSpan"`
 	MatchType       *string                                         `pulumi:"matchType"`
 	Operation       *TraceMetricsRuleTraceFilterSpanOperation       `pulumi:"operation"`
 	ParentOperation *TraceMetricsRuleTraceFilterSpanParentOperation `pulumi:"parentOperation"`
@@ -13859,6 +14179,7 @@ type TraceMetricsRuleTraceFilterSpanInput interface {
 type TraceMetricsRuleTraceFilterSpanArgs struct {
 	Duration        TraceMetricsRuleTraceFilterSpanDurationPtrInput        `pulumi:"duration"`
 	Error           TraceMetricsRuleTraceFilterSpanErrorPtrInput           `pulumi:"error"`
+	IsRootSpan      TraceMetricsRuleTraceFilterSpanIsRootSpanPtrInput      `pulumi:"isRootSpan"`
 	MatchType       pulumi.StringPtrInput                                  `pulumi:"matchType"`
 	Operation       TraceMetricsRuleTraceFilterSpanOperationPtrInput       `pulumi:"operation"`
 	ParentOperation TraceMetricsRuleTraceFilterSpanParentOperationPtrInput `pulumi:"parentOperation"`
@@ -13925,6 +14246,12 @@ func (o TraceMetricsRuleTraceFilterSpanOutput) Duration() TraceMetricsRuleTraceF
 
 func (o TraceMetricsRuleTraceFilterSpanOutput) Error() TraceMetricsRuleTraceFilterSpanErrorPtrOutput {
 	return o.ApplyT(func(v TraceMetricsRuleTraceFilterSpan) *TraceMetricsRuleTraceFilterSpanError { return v.Error }).(TraceMetricsRuleTraceFilterSpanErrorPtrOutput)
+}
+
+func (o TraceMetricsRuleTraceFilterSpanOutput) IsRootSpan() TraceMetricsRuleTraceFilterSpanIsRootSpanPtrOutput {
+	return o.ApplyT(func(v TraceMetricsRuleTraceFilterSpan) *TraceMetricsRuleTraceFilterSpanIsRootSpan {
+		return v.IsRootSpan
+	}).(TraceMetricsRuleTraceFilterSpanIsRootSpanPtrOutput)
 }
 
 func (o TraceMetricsRuleTraceFilterSpanOutput) MatchType() pulumi.StringPtrOutput {
@@ -14253,6 +14580,139 @@ func (o TraceMetricsRuleTraceFilterSpanErrorPtrOutput) Elem() TraceMetricsRuleTr
 
 func (o TraceMetricsRuleTraceFilterSpanErrorPtrOutput) Value() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *TraceMetricsRuleTraceFilterSpanError) *bool {
+		if v == nil {
+			return nil
+		}
+		return &v.Value
+	}).(pulumi.BoolPtrOutput)
+}
+
+type TraceMetricsRuleTraceFilterSpanIsRootSpan struct {
+	Value bool `pulumi:"value"`
+}
+
+// TraceMetricsRuleTraceFilterSpanIsRootSpanInput is an input type that accepts TraceMetricsRuleTraceFilterSpanIsRootSpanArgs and TraceMetricsRuleTraceFilterSpanIsRootSpanOutput values.
+// You can construct a concrete instance of `TraceMetricsRuleTraceFilterSpanIsRootSpanInput` via:
+//
+//	TraceMetricsRuleTraceFilterSpanIsRootSpanArgs{...}
+type TraceMetricsRuleTraceFilterSpanIsRootSpanInput interface {
+	pulumi.Input
+
+	ToTraceMetricsRuleTraceFilterSpanIsRootSpanOutput() TraceMetricsRuleTraceFilterSpanIsRootSpanOutput
+	ToTraceMetricsRuleTraceFilterSpanIsRootSpanOutputWithContext(context.Context) TraceMetricsRuleTraceFilterSpanIsRootSpanOutput
+}
+
+type TraceMetricsRuleTraceFilterSpanIsRootSpanArgs struct {
+	Value pulumi.BoolInput `pulumi:"value"`
+}
+
+func (TraceMetricsRuleTraceFilterSpanIsRootSpanArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceMetricsRuleTraceFilterSpanIsRootSpan)(nil)).Elem()
+}
+
+func (i TraceMetricsRuleTraceFilterSpanIsRootSpanArgs) ToTraceMetricsRuleTraceFilterSpanIsRootSpanOutput() TraceMetricsRuleTraceFilterSpanIsRootSpanOutput {
+	return i.ToTraceMetricsRuleTraceFilterSpanIsRootSpanOutputWithContext(context.Background())
+}
+
+func (i TraceMetricsRuleTraceFilterSpanIsRootSpanArgs) ToTraceMetricsRuleTraceFilterSpanIsRootSpanOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterSpanIsRootSpanOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleTraceFilterSpanIsRootSpanOutput)
+}
+
+func (i TraceMetricsRuleTraceFilterSpanIsRootSpanArgs) ToTraceMetricsRuleTraceFilterSpanIsRootSpanPtrOutput() TraceMetricsRuleTraceFilterSpanIsRootSpanPtrOutput {
+	return i.ToTraceMetricsRuleTraceFilterSpanIsRootSpanPtrOutputWithContext(context.Background())
+}
+
+func (i TraceMetricsRuleTraceFilterSpanIsRootSpanArgs) ToTraceMetricsRuleTraceFilterSpanIsRootSpanPtrOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterSpanIsRootSpanPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleTraceFilterSpanIsRootSpanOutput).ToTraceMetricsRuleTraceFilterSpanIsRootSpanPtrOutputWithContext(ctx)
+}
+
+// TraceMetricsRuleTraceFilterSpanIsRootSpanPtrInput is an input type that accepts TraceMetricsRuleTraceFilterSpanIsRootSpanArgs, TraceMetricsRuleTraceFilterSpanIsRootSpanPtr and TraceMetricsRuleTraceFilterSpanIsRootSpanPtrOutput values.
+// You can construct a concrete instance of `TraceMetricsRuleTraceFilterSpanIsRootSpanPtrInput` via:
+//
+//	        TraceMetricsRuleTraceFilterSpanIsRootSpanArgs{...}
+//
+//	or:
+//
+//	        nil
+type TraceMetricsRuleTraceFilterSpanIsRootSpanPtrInput interface {
+	pulumi.Input
+
+	ToTraceMetricsRuleTraceFilterSpanIsRootSpanPtrOutput() TraceMetricsRuleTraceFilterSpanIsRootSpanPtrOutput
+	ToTraceMetricsRuleTraceFilterSpanIsRootSpanPtrOutputWithContext(context.Context) TraceMetricsRuleTraceFilterSpanIsRootSpanPtrOutput
+}
+
+type traceMetricsRuleTraceFilterSpanIsRootSpanPtrType TraceMetricsRuleTraceFilterSpanIsRootSpanArgs
+
+func TraceMetricsRuleTraceFilterSpanIsRootSpanPtr(v *TraceMetricsRuleTraceFilterSpanIsRootSpanArgs) TraceMetricsRuleTraceFilterSpanIsRootSpanPtrInput {
+	return (*traceMetricsRuleTraceFilterSpanIsRootSpanPtrType)(v)
+}
+
+func (*traceMetricsRuleTraceFilterSpanIsRootSpanPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**TraceMetricsRuleTraceFilterSpanIsRootSpan)(nil)).Elem()
+}
+
+func (i *traceMetricsRuleTraceFilterSpanIsRootSpanPtrType) ToTraceMetricsRuleTraceFilterSpanIsRootSpanPtrOutput() TraceMetricsRuleTraceFilterSpanIsRootSpanPtrOutput {
+	return i.ToTraceMetricsRuleTraceFilterSpanIsRootSpanPtrOutputWithContext(context.Background())
+}
+
+func (i *traceMetricsRuleTraceFilterSpanIsRootSpanPtrType) ToTraceMetricsRuleTraceFilterSpanIsRootSpanPtrOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterSpanIsRootSpanPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleTraceFilterSpanIsRootSpanPtrOutput)
+}
+
+type TraceMetricsRuleTraceFilterSpanIsRootSpanOutput struct{ *pulumi.OutputState }
+
+func (TraceMetricsRuleTraceFilterSpanIsRootSpanOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceMetricsRuleTraceFilterSpanIsRootSpan)(nil)).Elem()
+}
+
+func (o TraceMetricsRuleTraceFilterSpanIsRootSpanOutput) ToTraceMetricsRuleTraceFilterSpanIsRootSpanOutput() TraceMetricsRuleTraceFilterSpanIsRootSpanOutput {
+	return o
+}
+
+func (o TraceMetricsRuleTraceFilterSpanIsRootSpanOutput) ToTraceMetricsRuleTraceFilterSpanIsRootSpanOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterSpanIsRootSpanOutput {
+	return o
+}
+
+func (o TraceMetricsRuleTraceFilterSpanIsRootSpanOutput) ToTraceMetricsRuleTraceFilterSpanIsRootSpanPtrOutput() TraceMetricsRuleTraceFilterSpanIsRootSpanPtrOutput {
+	return o.ToTraceMetricsRuleTraceFilterSpanIsRootSpanPtrOutputWithContext(context.Background())
+}
+
+func (o TraceMetricsRuleTraceFilterSpanIsRootSpanOutput) ToTraceMetricsRuleTraceFilterSpanIsRootSpanPtrOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterSpanIsRootSpanPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v TraceMetricsRuleTraceFilterSpanIsRootSpan) *TraceMetricsRuleTraceFilterSpanIsRootSpan {
+		return &v
+	}).(TraceMetricsRuleTraceFilterSpanIsRootSpanPtrOutput)
+}
+
+func (o TraceMetricsRuleTraceFilterSpanIsRootSpanOutput) Value() pulumi.BoolOutput {
+	return o.ApplyT(func(v TraceMetricsRuleTraceFilterSpanIsRootSpan) bool { return v.Value }).(pulumi.BoolOutput)
+}
+
+type TraceMetricsRuleTraceFilterSpanIsRootSpanPtrOutput struct{ *pulumi.OutputState }
+
+func (TraceMetricsRuleTraceFilterSpanIsRootSpanPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**TraceMetricsRuleTraceFilterSpanIsRootSpan)(nil)).Elem()
+}
+
+func (o TraceMetricsRuleTraceFilterSpanIsRootSpanPtrOutput) ToTraceMetricsRuleTraceFilterSpanIsRootSpanPtrOutput() TraceMetricsRuleTraceFilterSpanIsRootSpanPtrOutput {
+	return o
+}
+
+func (o TraceMetricsRuleTraceFilterSpanIsRootSpanPtrOutput) ToTraceMetricsRuleTraceFilterSpanIsRootSpanPtrOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterSpanIsRootSpanPtrOutput {
+	return o
+}
+
+func (o TraceMetricsRuleTraceFilterSpanIsRootSpanPtrOutput) Elem() TraceMetricsRuleTraceFilterSpanIsRootSpanOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleTraceFilterSpanIsRootSpan) TraceMetricsRuleTraceFilterSpanIsRootSpan {
+		if v != nil {
+			return *v
+		}
+		var ret TraceMetricsRuleTraceFilterSpanIsRootSpan
+		return ret
+	}).(TraceMetricsRuleTraceFilterSpanIsRootSpanOutput)
+}
+
+func (o TraceMetricsRuleTraceFilterSpanIsRootSpanPtrOutput) Value() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleTraceFilterSpanIsRootSpan) *bool {
 		if v == nil {
 			return nil
 		}
@@ -16226,6 +16686,7 @@ func (o TraceTailSamplingRulesRuleFilterOutput) Trace() TraceTailSamplingRulesRu
 type TraceTailSamplingRulesRuleFilterSpan struct {
 	Duration        *TraceTailSamplingRulesRuleFilterSpanDuration        `pulumi:"duration"`
 	Error           *TraceTailSamplingRulesRuleFilterSpanError           `pulumi:"error"`
+	IsRootSpan      *TraceTailSamplingRulesRuleFilterSpanIsRootSpan      `pulumi:"isRootSpan"`
 	MatchType       *string                                              `pulumi:"matchType"`
 	Operation       *TraceTailSamplingRulesRuleFilterSpanOperation       `pulumi:"operation"`
 	ParentOperation *TraceTailSamplingRulesRuleFilterSpanParentOperation `pulumi:"parentOperation"`
@@ -16249,6 +16710,7 @@ type TraceTailSamplingRulesRuleFilterSpanInput interface {
 type TraceTailSamplingRulesRuleFilterSpanArgs struct {
 	Duration        TraceTailSamplingRulesRuleFilterSpanDurationPtrInput        `pulumi:"duration"`
 	Error           TraceTailSamplingRulesRuleFilterSpanErrorPtrInput           `pulumi:"error"`
+	IsRootSpan      TraceTailSamplingRulesRuleFilterSpanIsRootSpanPtrInput      `pulumi:"isRootSpan"`
 	MatchType       pulumi.StringPtrInput                                       `pulumi:"matchType"`
 	Operation       TraceTailSamplingRulesRuleFilterSpanOperationPtrInput       `pulumi:"operation"`
 	ParentOperation TraceTailSamplingRulesRuleFilterSpanParentOperationPtrInput `pulumi:"parentOperation"`
@@ -16319,6 +16781,12 @@ func (o TraceTailSamplingRulesRuleFilterSpanOutput) Error() TraceTailSamplingRul
 	return o.ApplyT(func(v TraceTailSamplingRulesRuleFilterSpan) *TraceTailSamplingRulesRuleFilterSpanError {
 		return v.Error
 	}).(TraceTailSamplingRulesRuleFilterSpanErrorPtrOutput)
+}
+
+func (o TraceTailSamplingRulesRuleFilterSpanOutput) IsRootSpan() TraceTailSamplingRulesRuleFilterSpanIsRootSpanPtrOutput {
+	return o.ApplyT(func(v TraceTailSamplingRulesRuleFilterSpan) *TraceTailSamplingRulesRuleFilterSpanIsRootSpan {
+		return v.IsRootSpan
+	}).(TraceTailSamplingRulesRuleFilterSpanIsRootSpanPtrOutput)
 }
 
 func (o TraceTailSamplingRulesRuleFilterSpanOutput) MatchType() pulumi.StringPtrOutput {
@@ -16653,6 +17121,139 @@ func (o TraceTailSamplingRulesRuleFilterSpanErrorPtrOutput) Elem() TraceTailSamp
 
 func (o TraceTailSamplingRulesRuleFilterSpanErrorPtrOutput) Value() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *TraceTailSamplingRulesRuleFilterSpanError) *bool {
+		if v == nil {
+			return nil
+		}
+		return &v.Value
+	}).(pulumi.BoolPtrOutput)
+}
+
+type TraceTailSamplingRulesRuleFilterSpanIsRootSpan struct {
+	Value bool `pulumi:"value"`
+}
+
+// TraceTailSamplingRulesRuleFilterSpanIsRootSpanInput is an input type that accepts TraceTailSamplingRulesRuleFilterSpanIsRootSpanArgs and TraceTailSamplingRulesRuleFilterSpanIsRootSpanOutput values.
+// You can construct a concrete instance of `TraceTailSamplingRulesRuleFilterSpanIsRootSpanInput` via:
+//
+//	TraceTailSamplingRulesRuleFilterSpanIsRootSpanArgs{...}
+type TraceTailSamplingRulesRuleFilterSpanIsRootSpanInput interface {
+	pulumi.Input
+
+	ToTraceTailSamplingRulesRuleFilterSpanIsRootSpanOutput() TraceTailSamplingRulesRuleFilterSpanIsRootSpanOutput
+	ToTraceTailSamplingRulesRuleFilterSpanIsRootSpanOutputWithContext(context.Context) TraceTailSamplingRulesRuleFilterSpanIsRootSpanOutput
+}
+
+type TraceTailSamplingRulesRuleFilterSpanIsRootSpanArgs struct {
+	Value pulumi.BoolInput `pulumi:"value"`
+}
+
+func (TraceTailSamplingRulesRuleFilterSpanIsRootSpanArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceTailSamplingRulesRuleFilterSpanIsRootSpan)(nil)).Elem()
+}
+
+func (i TraceTailSamplingRulesRuleFilterSpanIsRootSpanArgs) ToTraceTailSamplingRulesRuleFilterSpanIsRootSpanOutput() TraceTailSamplingRulesRuleFilterSpanIsRootSpanOutput {
+	return i.ToTraceTailSamplingRulesRuleFilterSpanIsRootSpanOutputWithContext(context.Background())
+}
+
+func (i TraceTailSamplingRulesRuleFilterSpanIsRootSpanArgs) ToTraceTailSamplingRulesRuleFilterSpanIsRootSpanOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterSpanIsRootSpanOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceTailSamplingRulesRuleFilterSpanIsRootSpanOutput)
+}
+
+func (i TraceTailSamplingRulesRuleFilterSpanIsRootSpanArgs) ToTraceTailSamplingRulesRuleFilterSpanIsRootSpanPtrOutput() TraceTailSamplingRulesRuleFilterSpanIsRootSpanPtrOutput {
+	return i.ToTraceTailSamplingRulesRuleFilterSpanIsRootSpanPtrOutputWithContext(context.Background())
+}
+
+func (i TraceTailSamplingRulesRuleFilterSpanIsRootSpanArgs) ToTraceTailSamplingRulesRuleFilterSpanIsRootSpanPtrOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterSpanIsRootSpanPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceTailSamplingRulesRuleFilterSpanIsRootSpanOutput).ToTraceTailSamplingRulesRuleFilterSpanIsRootSpanPtrOutputWithContext(ctx)
+}
+
+// TraceTailSamplingRulesRuleFilterSpanIsRootSpanPtrInput is an input type that accepts TraceTailSamplingRulesRuleFilterSpanIsRootSpanArgs, TraceTailSamplingRulesRuleFilterSpanIsRootSpanPtr and TraceTailSamplingRulesRuleFilterSpanIsRootSpanPtrOutput values.
+// You can construct a concrete instance of `TraceTailSamplingRulesRuleFilterSpanIsRootSpanPtrInput` via:
+//
+//	        TraceTailSamplingRulesRuleFilterSpanIsRootSpanArgs{...}
+//
+//	or:
+//
+//	        nil
+type TraceTailSamplingRulesRuleFilterSpanIsRootSpanPtrInput interface {
+	pulumi.Input
+
+	ToTraceTailSamplingRulesRuleFilterSpanIsRootSpanPtrOutput() TraceTailSamplingRulesRuleFilterSpanIsRootSpanPtrOutput
+	ToTraceTailSamplingRulesRuleFilterSpanIsRootSpanPtrOutputWithContext(context.Context) TraceTailSamplingRulesRuleFilterSpanIsRootSpanPtrOutput
+}
+
+type traceTailSamplingRulesRuleFilterSpanIsRootSpanPtrType TraceTailSamplingRulesRuleFilterSpanIsRootSpanArgs
+
+func TraceTailSamplingRulesRuleFilterSpanIsRootSpanPtr(v *TraceTailSamplingRulesRuleFilterSpanIsRootSpanArgs) TraceTailSamplingRulesRuleFilterSpanIsRootSpanPtrInput {
+	return (*traceTailSamplingRulesRuleFilterSpanIsRootSpanPtrType)(v)
+}
+
+func (*traceTailSamplingRulesRuleFilterSpanIsRootSpanPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**TraceTailSamplingRulesRuleFilterSpanIsRootSpan)(nil)).Elem()
+}
+
+func (i *traceTailSamplingRulesRuleFilterSpanIsRootSpanPtrType) ToTraceTailSamplingRulesRuleFilterSpanIsRootSpanPtrOutput() TraceTailSamplingRulesRuleFilterSpanIsRootSpanPtrOutput {
+	return i.ToTraceTailSamplingRulesRuleFilterSpanIsRootSpanPtrOutputWithContext(context.Background())
+}
+
+func (i *traceTailSamplingRulesRuleFilterSpanIsRootSpanPtrType) ToTraceTailSamplingRulesRuleFilterSpanIsRootSpanPtrOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterSpanIsRootSpanPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceTailSamplingRulesRuleFilterSpanIsRootSpanPtrOutput)
+}
+
+type TraceTailSamplingRulesRuleFilterSpanIsRootSpanOutput struct{ *pulumi.OutputState }
+
+func (TraceTailSamplingRulesRuleFilterSpanIsRootSpanOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceTailSamplingRulesRuleFilterSpanIsRootSpan)(nil)).Elem()
+}
+
+func (o TraceTailSamplingRulesRuleFilterSpanIsRootSpanOutput) ToTraceTailSamplingRulesRuleFilterSpanIsRootSpanOutput() TraceTailSamplingRulesRuleFilterSpanIsRootSpanOutput {
+	return o
+}
+
+func (o TraceTailSamplingRulesRuleFilterSpanIsRootSpanOutput) ToTraceTailSamplingRulesRuleFilterSpanIsRootSpanOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterSpanIsRootSpanOutput {
+	return o
+}
+
+func (o TraceTailSamplingRulesRuleFilterSpanIsRootSpanOutput) ToTraceTailSamplingRulesRuleFilterSpanIsRootSpanPtrOutput() TraceTailSamplingRulesRuleFilterSpanIsRootSpanPtrOutput {
+	return o.ToTraceTailSamplingRulesRuleFilterSpanIsRootSpanPtrOutputWithContext(context.Background())
+}
+
+func (o TraceTailSamplingRulesRuleFilterSpanIsRootSpanOutput) ToTraceTailSamplingRulesRuleFilterSpanIsRootSpanPtrOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterSpanIsRootSpanPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v TraceTailSamplingRulesRuleFilterSpanIsRootSpan) *TraceTailSamplingRulesRuleFilterSpanIsRootSpan {
+		return &v
+	}).(TraceTailSamplingRulesRuleFilterSpanIsRootSpanPtrOutput)
+}
+
+func (o TraceTailSamplingRulesRuleFilterSpanIsRootSpanOutput) Value() pulumi.BoolOutput {
+	return o.ApplyT(func(v TraceTailSamplingRulesRuleFilterSpanIsRootSpan) bool { return v.Value }).(pulumi.BoolOutput)
+}
+
+type TraceTailSamplingRulesRuleFilterSpanIsRootSpanPtrOutput struct{ *pulumi.OutputState }
+
+func (TraceTailSamplingRulesRuleFilterSpanIsRootSpanPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**TraceTailSamplingRulesRuleFilterSpanIsRootSpan)(nil)).Elem()
+}
+
+func (o TraceTailSamplingRulesRuleFilterSpanIsRootSpanPtrOutput) ToTraceTailSamplingRulesRuleFilterSpanIsRootSpanPtrOutput() TraceTailSamplingRulesRuleFilterSpanIsRootSpanPtrOutput {
+	return o
+}
+
+func (o TraceTailSamplingRulesRuleFilterSpanIsRootSpanPtrOutput) ToTraceTailSamplingRulesRuleFilterSpanIsRootSpanPtrOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterSpanIsRootSpanPtrOutput {
+	return o
+}
+
+func (o TraceTailSamplingRulesRuleFilterSpanIsRootSpanPtrOutput) Elem() TraceTailSamplingRulesRuleFilterSpanIsRootSpanOutput {
+	return o.ApplyT(func(v *TraceTailSamplingRulesRuleFilterSpanIsRootSpan) TraceTailSamplingRulesRuleFilterSpanIsRootSpan {
+		if v != nil {
+			return *v
+		}
+		var ret TraceTailSamplingRulesRuleFilterSpanIsRootSpan
+		return ret
+	}).(TraceTailSamplingRulesRuleFilterSpanIsRootSpanOutput)
+}
+
+func (o TraceTailSamplingRulesRuleFilterSpanIsRootSpanPtrOutput) Value() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *TraceTailSamplingRulesRuleFilterSpanIsRootSpan) *bool {
 		if v == nil {
 			return nil
 		}
@@ -18331,6 +18932,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DatasetConfigurationTraceDatasetMatchCriteriaSpanDurationPtrInput)(nil)).Elem(), DatasetConfigurationTraceDatasetMatchCriteriaSpanDurationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DatasetConfigurationTraceDatasetMatchCriteriaSpanErrorInput)(nil)).Elem(), DatasetConfigurationTraceDatasetMatchCriteriaSpanErrorArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DatasetConfigurationTraceDatasetMatchCriteriaSpanErrorPtrInput)(nil)).Elem(), DatasetConfigurationTraceDatasetMatchCriteriaSpanErrorArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanInput)(nil)).Elem(), DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanPtrInput)(nil)).Elem(), DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DatasetConfigurationTraceDatasetMatchCriteriaSpanOperationInput)(nil)).Elem(), DatasetConfigurationTraceDatasetMatchCriteriaSpanOperationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DatasetConfigurationTraceDatasetMatchCriteriaSpanOperationPtrInput)(nil)).Elem(), DatasetConfigurationTraceDatasetMatchCriteriaSpanOperationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DatasetConfigurationTraceDatasetMatchCriteriaSpanParentOperationInput)(nil)).Elem(), DatasetConfigurationTraceDatasetMatchCriteriaSpanParentOperationArgs{})
@@ -18487,6 +19090,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SLODefinitionPtrInput)(nil)).Elem(), SLODefinitionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SLODefinitionReportingWindowInput)(nil)).Elem(), SLODefinitionReportingWindowArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SLODefinitionReportingWindowArrayInput)(nil)).Elem(), SLODefinitionReportingWindowArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SLOSignalGroupingInput)(nil)).Elem(), SLOSignalGroupingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SLOSignalGroupingPtrInput)(nil)).Elem(), SLOSignalGroupingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SLOSliInput)(nil)).Elem(), SLOSliArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SLOSliPtrInput)(nil)).Elem(), SLOSliArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SLOSliCustomIndicatorInput)(nil)).Elem(), SLOSliCustomIndicatorArgs{})
@@ -18527,6 +19132,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*TraceMetricsRuleTraceFilterSpanDurationPtrInput)(nil)).Elem(), TraceMetricsRuleTraceFilterSpanDurationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TraceMetricsRuleTraceFilterSpanErrorInput)(nil)).Elem(), TraceMetricsRuleTraceFilterSpanErrorArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TraceMetricsRuleTraceFilterSpanErrorPtrInput)(nil)).Elem(), TraceMetricsRuleTraceFilterSpanErrorArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceMetricsRuleTraceFilterSpanIsRootSpanInput)(nil)).Elem(), TraceMetricsRuleTraceFilterSpanIsRootSpanArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceMetricsRuleTraceFilterSpanIsRootSpanPtrInput)(nil)).Elem(), TraceMetricsRuleTraceFilterSpanIsRootSpanArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TraceMetricsRuleTraceFilterSpanOperationInput)(nil)).Elem(), TraceMetricsRuleTraceFilterSpanOperationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TraceMetricsRuleTraceFilterSpanOperationPtrInput)(nil)).Elem(), TraceMetricsRuleTraceFilterSpanOperationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TraceMetricsRuleTraceFilterSpanParentOperationInput)(nil)).Elem(), TraceMetricsRuleTraceFilterSpanParentOperationArgs{})
@@ -18560,6 +19167,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*TraceTailSamplingRulesRuleFilterSpanDurationPtrInput)(nil)).Elem(), TraceTailSamplingRulesRuleFilterSpanDurationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TraceTailSamplingRulesRuleFilterSpanErrorInput)(nil)).Elem(), TraceTailSamplingRulesRuleFilterSpanErrorArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TraceTailSamplingRulesRuleFilterSpanErrorPtrInput)(nil)).Elem(), TraceTailSamplingRulesRuleFilterSpanErrorArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceTailSamplingRulesRuleFilterSpanIsRootSpanInput)(nil)).Elem(), TraceTailSamplingRulesRuleFilterSpanIsRootSpanArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceTailSamplingRulesRuleFilterSpanIsRootSpanPtrInput)(nil)).Elem(), TraceTailSamplingRulesRuleFilterSpanIsRootSpanArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TraceTailSamplingRulesRuleFilterSpanOperationInput)(nil)).Elem(), TraceTailSamplingRulesRuleFilterSpanOperationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TraceTailSamplingRulesRuleFilterSpanOperationPtrInput)(nil)).Elem(), TraceTailSamplingRulesRuleFilterSpanOperationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TraceTailSamplingRulesRuleFilterSpanParentOperationInput)(nil)).Elem(), TraceTailSamplingRulesRuleFilterSpanParentOperationArgs{})
@@ -18598,6 +19207,8 @@ func init() {
 	pulumi.RegisterOutputType(DatasetConfigurationTraceDatasetMatchCriteriaSpanDurationPtrOutput{})
 	pulumi.RegisterOutputType(DatasetConfigurationTraceDatasetMatchCriteriaSpanErrorOutput{})
 	pulumi.RegisterOutputType(DatasetConfigurationTraceDatasetMatchCriteriaSpanErrorPtrOutput{})
+	pulumi.RegisterOutputType(DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanOutput{})
+	pulumi.RegisterOutputType(DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanPtrOutput{})
 	pulumi.RegisterOutputType(DatasetConfigurationTraceDatasetMatchCriteriaSpanOperationOutput{})
 	pulumi.RegisterOutputType(DatasetConfigurationTraceDatasetMatchCriteriaSpanOperationPtrOutput{})
 	pulumi.RegisterOutputType(DatasetConfigurationTraceDatasetMatchCriteriaSpanParentOperationOutput{})
@@ -18754,6 +19365,8 @@ func init() {
 	pulumi.RegisterOutputType(SLODefinitionPtrOutput{})
 	pulumi.RegisterOutputType(SLODefinitionReportingWindowOutput{})
 	pulumi.RegisterOutputType(SLODefinitionReportingWindowArrayOutput{})
+	pulumi.RegisterOutputType(SLOSignalGroupingOutput{})
+	pulumi.RegisterOutputType(SLOSignalGroupingPtrOutput{})
 	pulumi.RegisterOutputType(SLOSliOutput{})
 	pulumi.RegisterOutputType(SLOSliPtrOutput{})
 	pulumi.RegisterOutputType(SLOSliCustomIndicatorOutput{})
@@ -18794,6 +19407,8 @@ func init() {
 	pulumi.RegisterOutputType(TraceMetricsRuleTraceFilterSpanDurationPtrOutput{})
 	pulumi.RegisterOutputType(TraceMetricsRuleTraceFilterSpanErrorOutput{})
 	pulumi.RegisterOutputType(TraceMetricsRuleTraceFilterSpanErrorPtrOutput{})
+	pulumi.RegisterOutputType(TraceMetricsRuleTraceFilterSpanIsRootSpanOutput{})
+	pulumi.RegisterOutputType(TraceMetricsRuleTraceFilterSpanIsRootSpanPtrOutput{})
 	pulumi.RegisterOutputType(TraceMetricsRuleTraceFilterSpanOperationOutput{})
 	pulumi.RegisterOutputType(TraceMetricsRuleTraceFilterSpanOperationPtrOutput{})
 	pulumi.RegisterOutputType(TraceMetricsRuleTraceFilterSpanParentOperationOutput{})
@@ -18827,6 +19442,8 @@ func init() {
 	pulumi.RegisterOutputType(TraceTailSamplingRulesRuleFilterSpanDurationPtrOutput{})
 	pulumi.RegisterOutputType(TraceTailSamplingRulesRuleFilterSpanErrorOutput{})
 	pulumi.RegisterOutputType(TraceTailSamplingRulesRuleFilterSpanErrorPtrOutput{})
+	pulumi.RegisterOutputType(TraceTailSamplingRulesRuleFilterSpanIsRootSpanOutput{})
+	pulumi.RegisterOutputType(TraceTailSamplingRulesRuleFilterSpanIsRootSpanPtrOutput{})
 	pulumi.RegisterOutputType(TraceTailSamplingRulesRuleFilterSpanOperationOutput{})
 	pulumi.RegisterOutputType(TraceTailSamplingRulesRuleFilterSpanOperationPtrOutput{})
 	pulumi.RegisterOutputType(TraceTailSamplingRulesRuleFilterSpanParentOperationOutput{})

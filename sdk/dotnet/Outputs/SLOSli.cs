@@ -14,6 +14,7 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class SLOSli
     {
+        public readonly ImmutableArray<string> CustomDimensionLabels;
         public readonly Outputs.SLOSliCustomIndicator? CustomIndicator;
         public readonly Outputs.SLOSliEndpointAvailability? EndpointAvailability;
         public readonly string? EndpointLabel;
@@ -22,6 +23,8 @@ namespace Chronosphere.Pulumi.Outputs
 
         [OutputConstructor]
         private SLOSli(
+            ImmutableArray<string> customDimensionLabels,
+
             Outputs.SLOSliCustomIndicator? customIndicator,
 
             Outputs.SLOSliEndpointAvailability? endpointAvailability,
@@ -32,6 +35,7 @@ namespace Chronosphere.Pulumi.Outputs
 
             string? lensTemplateIndicator)
         {
+            CustomDimensionLabels = customDimensionLabels;
             CustomIndicator = customIndicator;
             EndpointAvailability = endpointAvailability;
             EndpointLabel = endpointLabel;

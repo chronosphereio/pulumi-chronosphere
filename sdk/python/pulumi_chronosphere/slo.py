@@ -24,7 +24,7 @@ class SLOArgs:
                  description: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  notification_policy_id: Optional[pulumi.Input[str]] = None,
-                 signal_grouping: Optional[pulumi.Input[str]] = None,
+                 signal_grouping: Optional[pulumi.Input['SLOSignalGroupingArgs']] = None,
                  slug: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a SLO resource.
@@ -120,11 +120,11 @@ class SLOArgs:
 
     @property
     @pulumi.getter(name="signalGrouping")
-    def signal_grouping(self) -> Optional[pulumi.Input[str]]:
+    def signal_grouping(self) -> Optional[pulumi.Input['SLOSignalGroupingArgs']]:
         return pulumi.get(self, "signal_grouping")
 
     @signal_grouping.setter
-    def signal_grouping(self, value: Optional[pulumi.Input[str]]):
+    def signal_grouping(self, value: Optional[pulumi.Input['SLOSignalGroupingArgs']]):
         pulumi.set(self, "signal_grouping", value)
 
     @property
@@ -147,7 +147,7 @@ class _SLOState:
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  notification_policy_id: Optional[pulumi.Input[str]] = None,
-                 signal_grouping: Optional[pulumi.Input[str]] = None,
+                 signal_grouping: Optional[pulumi.Input['SLOSignalGroupingArgs']] = None,
                  sli: Optional[pulumi.Input['SLOSliArgs']] = None,
                  slug: Optional[pulumi.Input[str]] = None):
         """
@@ -239,11 +239,11 @@ class _SLOState:
 
     @property
     @pulumi.getter(name="signalGrouping")
-    def signal_grouping(self) -> Optional[pulumi.Input[str]]:
+    def signal_grouping(self) -> Optional[pulumi.Input['SLOSignalGroupingArgs']]:
         return pulumi.get(self, "signal_grouping")
 
     @signal_grouping.setter
-    def signal_grouping(self, value: Optional[pulumi.Input[str]]):
+    def signal_grouping(self, value: Optional[pulumi.Input['SLOSignalGroupingArgs']]):
         pulumi.set(self, "signal_grouping", value)
 
     @property
@@ -277,7 +277,7 @@ class SLO(pulumi.CustomResource):
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  notification_policy_id: Optional[pulumi.Input[str]] = None,
-                 signal_grouping: Optional[pulumi.Input[str]] = None,
+                 signal_grouping: Optional[pulumi.Input[pulumi.InputType['SLOSignalGroupingArgs']]] = None,
                  sli: Optional[pulumi.Input[pulumi.InputType['SLOSliArgs']]] = None,
                  slug: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -316,7 +316,7 @@ class SLO(pulumi.CustomResource):
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  notification_policy_id: Optional[pulumi.Input[str]] = None,
-                 signal_grouping: Optional[pulumi.Input[str]] = None,
+                 signal_grouping: Optional[pulumi.Input[pulumi.InputType['SLOSignalGroupingArgs']]] = None,
                  sli: Optional[pulumi.Input[pulumi.InputType['SLOSliArgs']]] = None,
                  slug: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -363,7 +363,7 @@ class SLO(pulumi.CustomResource):
             labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
             notification_policy_id: Optional[pulumi.Input[str]] = None,
-            signal_grouping: Optional[pulumi.Input[str]] = None,
+            signal_grouping: Optional[pulumi.Input[pulumi.InputType['SLOSignalGroupingArgs']]] = None,
             sli: Optional[pulumi.Input[pulumi.InputType['SLOSliArgs']]] = None,
             slug: Optional[pulumi.Input[str]] = None) -> 'SLO':
         """
@@ -427,7 +427,7 @@ class SLO(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="signalGrouping")
-    def signal_grouping(self) -> pulumi.Output[Optional[str]]:
+    def signal_grouping(self) -> pulumi.Output[Optional['outputs.SLOSignalGrouping']]:
         return pulumi.get(self, "signal_grouping")
 
     @property

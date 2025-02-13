@@ -11,6 +11,7 @@ import io.chronosphere.chronosphere.SLOArgs;
 import io.chronosphere.chronosphere.Utilities;
 import io.chronosphere.chronosphere.inputs.SLOState;
 import io.chronosphere.chronosphere.outputs.SLODefinition;
+import io.chronosphere.chronosphere.outputs.SLOSignalGrouping;
 import io.chronosphere.chronosphere.outputs.SLOSli;
 import java.lang.String;
 import java.util.Map;
@@ -61,10 +62,10 @@ public class SLO extends com.pulumi.resources.CustomResource {
     public Output<Optional<String>> notificationPolicyId() {
         return Codegen.optional(this.notificationPolicyId);
     }
-    @Export(name="signalGrouping", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> signalGrouping;
+    @Export(name="signalGrouping", refs={SLOSignalGrouping.class}, tree="[0]")
+    private Output</* @Nullable */ SLOSignalGrouping> signalGrouping;
 
-    public Output<Optional<String>> signalGrouping() {
+    public Output<Optional<SLOSignalGrouping>> signalGrouping() {
         return Codegen.optional(this.signalGrouping);
     }
     @Export(name="sli", refs={SLOSli.class}, tree="[0]")
