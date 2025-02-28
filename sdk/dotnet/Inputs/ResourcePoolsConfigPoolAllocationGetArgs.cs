@@ -24,6 +24,14 @@ namespace Chronosphere.Pulumi.Inputs
         [Input("percentOfLicense")]
         public Input<double>? PercentOfLicense { get; set; }
 
+        [Input("priorityThresholds")]
+        private InputList<Inputs.ResourcePoolsConfigPoolAllocationPriorityThresholdGetArgs>? _priorityThresholds;
+        public InputList<Inputs.ResourcePoolsConfigPoolAllocationPriorityThresholdGetArgs> PriorityThresholds
+        {
+            get => _priorityThresholds ?? (_priorityThresholds = new InputList<Inputs.ResourcePoolsConfigPoolAllocationPriorityThresholdGetArgs>());
+            set => _priorityThresholds = value;
+        }
+
         public ResourcePoolsConfigPoolAllocationGetArgs()
         {
         }

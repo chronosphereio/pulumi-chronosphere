@@ -19,6 +19,14 @@ namespace Chronosphere.Pulumi.Inputs
         [Input("priorities")]
         public Input<Inputs.ResourcePoolsConfigDefaultPoolPrioritiesGetArgs>? Priorities { get; set; }
 
+        [Input("priorityThresholds")]
+        private InputList<Inputs.ResourcePoolsConfigDefaultPoolPriorityThresholdGetArgs>? _priorityThresholds;
+        public InputList<Inputs.ResourcePoolsConfigDefaultPoolPriorityThresholdGetArgs> PriorityThresholds
+        {
+            get => _priorityThresholds ?? (_priorityThresholds = new InputList<Inputs.ResourcePoolsConfigDefaultPoolPriorityThresholdGetArgs>());
+            set => _priorityThresholds = value;
+        }
+
         public ResourcePoolsConfigDefaultPoolGetArgs()
         {
         }

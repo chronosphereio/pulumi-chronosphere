@@ -16,15 +16,19 @@ namespace Chronosphere.Pulumi.Outputs
     {
         public readonly ImmutableArray<Outputs.ResourcePoolsConfigPoolAllocationFixedValue> FixedValues;
         public readonly double? PercentOfLicense;
+        public readonly ImmutableArray<Outputs.ResourcePoolsConfigPoolAllocationPriorityThreshold> PriorityThresholds;
 
         [OutputConstructor]
         private ResourcePoolsConfigPoolAllocation(
             ImmutableArray<Outputs.ResourcePoolsConfigPoolAllocationFixedValue> fixedValues,
 
-            double? percentOfLicense)
+            double? percentOfLicense,
+
+            ImmutableArray<Outputs.ResourcePoolsConfigPoolAllocationPriorityThreshold> priorityThresholds)
         {
             FixedValues = fixedValues;
             PercentOfLicense = percentOfLicense;
+            PriorityThresholds = priorityThresholds;
         }
     }
 }

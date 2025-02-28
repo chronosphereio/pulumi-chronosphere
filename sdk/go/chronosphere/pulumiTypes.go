@@ -9889,8 +9889,9 @@ func (o PagerdutyAlertNotifierLinkArrayOutput) Index(i pulumi.IntInput) Pagerdut
 }
 
 type ResourcePoolsConfigDefaultPool struct {
-	Allocation *ResourcePoolsConfigDefaultPoolAllocation `pulumi:"allocation"`
-	Priorities *ResourcePoolsConfigDefaultPoolPriorities `pulumi:"priorities"`
+	Allocation         *ResourcePoolsConfigDefaultPoolAllocation         `pulumi:"allocation"`
+	Priorities         *ResourcePoolsConfigDefaultPoolPriorities         `pulumi:"priorities"`
+	PriorityThresholds []ResourcePoolsConfigDefaultPoolPriorityThreshold `pulumi:"priorityThresholds"`
 }
 
 // ResourcePoolsConfigDefaultPoolInput is an input type that accepts ResourcePoolsConfigDefaultPoolArgs and ResourcePoolsConfigDefaultPoolOutput values.
@@ -9905,8 +9906,9 @@ type ResourcePoolsConfigDefaultPoolInput interface {
 }
 
 type ResourcePoolsConfigDefaultPoolArgs struct {
-	Allocation ResourcePoolsConfigDefaultPoolAllocationPtrInput `pulumi:"allocation"`
-	Priorities ResourcePoolsConfigDefaultPoolPrioritiesPtrInput `pulumi:"priorities"`
+	Allocation         ResourcePoolsConfigDefaultPoolAllocationPtrInput          `pulumi:"allocation"`
+	Priorities         ResourcePoolsConfigDefaultPoolPrioritiesPtrInput          `pulumi:"priorities"`
+	PriorityThresholds ResourcePoolsConfigDefaultPoolPriorityThresholdArrayInput `pulumi:"priorityThresholds"`
 }
 
 func (ResourcePoolsConfigDefaultPoolArgs) ElementType() reflect.Type {
@@ -9994,6 +9996,12 @@ func (o ResourcePoolsConfigDefaultPoolOutput) Priorities() ResourcePoolsConfigDe
 	return o.ApplyT(func(v ResourcePoolsConfigDefaultPool) *ResourcePoolsConfigDefaultPoolPriorities { return v.Priorities }).(ResourcePoolsConfigDefaultPoolPrioritiesPtrOutput)
 }
 
+func (o ResourcePoolsConfigDefaultPoolOutput) PriorityThresholds() ResourcePoolsConfigDefaultPoolPriorityThresholdArrayOutput {
+	return o.ApplyT(func(v ResourcePoolsConfigDefaultPool) []ResourcePoolsConfigDefaultPoolPriorityThreshold {
+		return v.PriorityThresholds
+	}).(ResourcePoolsConfigDefaultPoolPriorityThresholdArrayOutput)
+}
+
 type ResourcePoolsConfigDefaultPoolPtrOutput struct{ *pulumi.OutputState }
 
 func (ResourcePoolsConfigDefaultPoolPtrOutput) ElementType() reflect.Type {
@@ -10036,9 +10044,19 @@ func (o ResourcePoolsConfigDefaultPoolPtrOutput) Priorities() ResourcePoolsConfi
 	}).(ResourcePoolsConfigDefaultPoolPrioritiesPtrOutput)
 }
 
+func (o ResourcePoolsConfigDefaultPoolPtrOutput) PriorityThresholds() ResourcePoolsConfigDefaultPoolPriorityThresholdArrayOutput {
+	return o.ApplyT(func(v *ResourcePoolsConfigDefaultPool) []ResourcePoolsConfigDefaultPoolPriorityThreshold {
+		if v == nil {
+			return nil
+		}
+		return v.PriorityThresholds
+	}).(ResourcePoolsConfigDefaultPoolPriorityThresholdArrayOutput)
+}
+
 type ResourcePoolsConfigDefaultPoolAllocation struct {
-	FixedValues      []ResourcePoolsConfigDefaultPoolAllocationFixedValue `pulumi:"fixedValues"`
-	PercentOfLicense *float64                                             `pulumi:"percentOfLicense"`
+	FixedValues        []ResourcePoolsConfigDefaultPoolAllocationFixedValue        `pulumi:"fixedValues"`
+	PercentOfLicense   *float64                                                    `pulumi:"percentOfLicense"`
+	PriorityThresholds []ResourcePoolsConfigDefaultPoolAllocationPriorityThreshold `pulumi:"priorityThresholds"`
 }
 
 // ResourcePoolsConfigDefaultPoolAllocationInput is an input type that accepts ResourcePoolsConfigDefaultPoolAllocationArgs and ResourcePoolsConfigDefaultPoolAllocationOutput values.
@@ -10053,8 +10071,9 @@ type ResourcePoolsConfigDefaultPoolAllocationInput interface {
 }
 
 type ResourcePoolsConfigDefaultPoolAllocationArgs struct {
-	FixedValues      ResourcePoolsConfigDefaultPoolAllocationFixedValueArrayInput `pulumi:"fixedValues"`
-	PercentOfLicense pulumi.Float64PtrInput                                       `pulumi:"percentOfLicense"`
+	FixedValues        ResourcePoolsConfigDefaultPoolAllocationFixedValueArrayInput        `pulumi:"fixedValues"`
+	PercentOfLicense   pulumi.Float64PtrInput                                              `pulumi:"percentOfLicense"`
+	PriorityThresholds ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdArrayInput `pulumi:"priorityThresholds"`
 }
 
 func (ResourcePoolsConfigDefaultPoolAllocationArgs) ElementType() reflect.Type {
@@ -10144,6 +10163,12 @@ func (o ResourcePoolsConfigDefaultPoolAllocationOutput) PercentOfLicense() pulum
 	return o.ApplyT(func(v ResourcePoolsConfigDefaultPoolAllocation) *float64 { return v.PercentOfLicense }).(pulumi.Float64PtrOutput)
 }
 
+func (o ResourcePoolsConfigDefaultPoolAllocationOutput) PriorityThresholds() ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdArrayOutput {
+	return o.ApplyT(func(v ResourcePoolsConfigDefaultPoolAllocation) []ResourcePoolsConfigDefaultPoolAllocationPriorityThreshold {
+		return v.PriorityThresholds
+	}).(ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdArrayOutput)
+}
+
 type ResourcePoolsConfigDefaultPoolAllocationPtrOutput struct{ *pulumi.OutputState }
 
 func (ResourcePoolsConfigDefaultPoolAllocationPtrOutput) ElementType() reflect.Type {
@@ -10184,6 +10209,15 @@ func (o ResourcePoolsConfigDefaultPoolAllocationPtrOutput) PercentOfLicense() pu
 		}
 		return v.PercentOfLicense
 	}).(pulumi.Float64PtrOutput)
+}
+
+func (o ResourcePoolsConfigDefaultPoolAllocationPtrOutput) PriorityThresholds() ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdArrayOutput {
+	return o.ApplyT(func(v *ResourcePoolsConfigDefaultPoolAllocation) []ResourcePoolsConfigDefaultPoolAllocationPriorityThreshold {
+		if v == nil {
+			return nil
+		}
+		return v.PriorityThresholds
+	}).(ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdArrayOutput)
 }
 
 type ResourcePoolsConfigDefaultPoolAllocationFixedValue struct {
@@ -10284,6 +10318,578 @@ func (o ResourcePoolsConfigDefaultPoolAllocationFixedValueArrayOutput) Index(i p
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ResourcePoolsConfigDefaultPoolAllocationFixedValue {
 		return vs[0].([]ResourcePoolsConfigDefaultPoolAllocationFixedValue)[vs[1].(int)]
 	}).(ResourcePoolsConfigDefaultPoolAllocationFixedValueOutput)
+}
+
+type ResourcePoolsConfigDefaultPoolAllocationPriorityThreshold struct {
+	AllPriorities         *ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPriorities         `pulumi:"allPriorities"`
+	DefaultAndLowPriority *ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriority `pulumi:"defaultAndLowPriority"`
+	License               string                                                                          `pulumi:"license"`
+	LowPriority           *ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriority           `pulumi:"lowPriority"`
+}
+
+// ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdInput is an input type that accepts ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdArgs and ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdOutput values.
+// You can construct a concrete instance of `ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdInput` via:
+//
+//	ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdArgs{...}
+type ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdInput interface {
+	pulumi.Input
+
+	ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdOutput() ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdOutput
+	ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdOutputWithContext(context.Context) ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdOutput
+}
+
+type ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdArgs struct {
+	AllPriorities         ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesPtrInput         `pulumi:"allPriorities"`
+	DefaultAndLowPriority ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrInput `pulumi:"defaultAndLowPriority"`
+	License               pulumi.StringInput                                                                     `pulumi:"license"`
+	LowPriority           ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityPtrInput           `pulumi:"lowPriority"`
+}
+
+func (ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ResourcePoolsConfigDefaultPoolAllocationPriorityThreshold)(nil)).Elem()
+}
+
+func (i ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdArgs) ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdOutput() ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdOutput {
+	return i.ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdOutputWithContext(context.Background())
+}
+
+func (i ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdArgs) ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdOutputWithContext(ctx context.Context) ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdOutput)
+}
+
+// ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdArrayInput is an input type that accepts ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdArray and ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdArrayOutput values.
+// You can construct a concrete instance of `ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdArrayInput` via:
+//
+//	ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdArray{ ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdArgs{...} }
+type ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdArrayInput interface {
+	pulumi.Input
+
+	ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdArrayOutput() ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdArrayOutput
+	ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdArrayOutputWithContext(context.Context) ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdArrayOutput
+}
+
+type ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdArray []ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdInput
+
+func (ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ResourcePoolsConfigDefaultPoolAllocationPriorityThreshold)(nil)).Elem()
+}
+
+func (i ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdArray) ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdArrayOutput() ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdArrayOutput {
+	return i.ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdArrayOutputWithContext(context.Background())
+}
+
+func (i ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdArray) ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdArrayOutputWithContext(ctx context.Context) ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdArrayOutput)
+}
+
+type ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdOutput struct{ *pulumi.OutputState }
+
+func (ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ResourcePoolsConfigDefaultPoolAllocationPriorityThreshold)(nil)).Elem()
+}
+
+func (o ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdOutput) ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdOutput() ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdOutput {
+	return o
+}
+
+func (o ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdOutput) ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdOutputWithContext(ctx context.Context) ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdOutput {
+	return o
+}
+
+func (o ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdOutput) AllPriorities() ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesPtrOutput {
+	return o.ApplyT(func(v ResourcePoolsConfigDefaultPoolAllocationPriorityThreshold) *ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPriorities {
+		return v.AllPriorities
+	}).(ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesPtrOutput)
+}
+
+func (o ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdOutput) DefaultAndLowPriority() ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutput {
+	return o.ApplyT(func(v ResourcePoolsConfigDefaultPoolAllocationPriorityThreshold) *ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriority {
+		return v.DefaultAndLowPriority
+	}).(ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutput)
+}
+
+func (o ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdOutput) License() pulumi.StringOutput {
+	return o.ApplyT(func(v ResourcePoolsConfigDefaultPoolAllocationPriorityThreshold) string { return v.License }).(pulumi.StringOutput)
+}
+
+func (o ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdOutput) LowPriority() ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityPtrOutput {
+	return o.ApplyT(func(v ResourcePoolsConfigDefaultPoolAllocationPriorityThreshold) *ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriority {
+		return v.LowPriority
+	}).(ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityPtrOutput)
+}
+
+type ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdArrayOutput struct{ *pulumi.OutputState }
+
+func (ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ResourcePoolsConfigDefaultPoolAllocationPriorityThreshold)(nil)).Elem()
+}
+
+func (o ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdArrayOutput) ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdArrayOutput() ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdArrayOutput {
+	return o
+}
+
+func (o ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdArrayOutput) ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdArrayOutputWithContext(ctx context.Context) ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdArrayOutput {
+	return o
+}
+
+func (o ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdArrayOutput) Index(i pulumi.IntInput) ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ResourcePoolsConfigDefaultPoolAllocationPriorityThreshold {
+		return vs[0].([]ResourcePoolsConfigDefaultPoolAllocationPriorityThreshold)[vs[1].(int)]
+	}).(ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdOutput)
+}
+
+type ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPriorities struct {
+	FixedValue              *int     `pulumi:"fixedValue"`
+	PercentOfPoolAllocation *float64 `pulumi:"percentOfPoolAllocation"`
+}
+
+// ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesInput is an input type that accepts ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesArgs and ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesOutput values.
+// You can construct a concrete instance of `ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesInput` via:
+//
+//	ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesArgs{...}
+type ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesInput interface {
+	pulumi.Input
+
+	ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesOutput() ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesOutput
+	ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesOutputWithContext(context.Context) ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesOutput
+}
+
+type ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesArgs struct {
+	FixedValue              pulumi.IntPtrInput     `pulumi:"fixedValue"`
+	PercentOfPoolAllocation pulumi.Float64PtrInput `pulumi:"percentOfPoolAllocation"`
+}
+
+func (ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPriorities)(nil)).Elem()
+}
+
+func (i ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesArgs) ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesOutput() ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesOutput {
+	return i.ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesOutputWithContext(context.Background())
+}
+
+func (i ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesArgs) ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesOutputWithContext(ctx context.Context) ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesOutput)
+}
+
+func (i ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesArgs) ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesPtrOutput() ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesPtrOutput {
+	return i.ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesPtrOutputWithContext(context.Background())
+}
+
+func (i ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesArgs) ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesPtrOutputWithContext(ctx context.Context) ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesOutput).ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesPtrOutputWithContext(ctx)
+}
+
+// ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesPtrInput is an input type that accepts ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesArgs, ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesPtr and ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesPtrOutput values.
+// You can construct a concrete instance of `ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesPtrInput` via:
+//
+//	        ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesArgs{...}
+//
+//	or:
+//
+//	        nil
+type ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesPtrInput interface {
+	pulumi.Input
+
+	ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesPtrOutput() ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesPtrOutput
+	ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesPtrOutputWithContext(context.Context) ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesPtrOutput
+}
+
+type resourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesPtrType ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesArgs
+
+func ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesPtr(v *ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesArgs) ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesPtrInput {
+	return (*resourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesPtrType)(v)
+}
+
+func (*resourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPriorities)(nil)).Elem()
+}
+
+func (i *resourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesPtrType) ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesPtrOutput() ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesPtrOutput {
+	return i.ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesPtrOutputWithContext(context.Background())
+}
+
+func (i *resourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesPtrType) ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesPtrOutputWithContext(ctx context.Context) ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesPtrOutput)
+}
+
+type ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesOutput struct{ *pulumi.OutputState }
+
+func (ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPriorities)(nil)).Elem()
+}
+
+func (o ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesOutput) ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesOutput() ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesOutput {
+	return o
+}
+
+func (o ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesOutput) ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesOutputWithContext(ctx context.Context) ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesOutput {
+	return o
+}
+
+func (o ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesOutput) ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesPtrOutput() ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesPtrOutput {
+	return o.ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesPtrOutputWithContext(context.Background())
+}
+
+func (o ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesOutput) ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesPtrOutputWithContext(ctx context.Context) ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPriorities) *ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPriorities {
+		return &v
+	}).(ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesPtrOutput)
+}
+
+func (o ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesOutput) FixedValue() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPriorities) *int {
+		return v.FixedValue
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesOutput) PercentOfPoolAllocation() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPriorities) *float64 {
+		return v.PercentOfPoolAllocation
+	}).(pulumi.Float64PtrOutput)
+}
+
+type ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesPtrOutput struct{ *pulumi.OutputState }
+
+func (ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPriorities)(nil)).Elem()
+}
+
+func (o ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesPtrOutput) ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesPtrOutput() ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesPtrOutput {
+	return o
+}
+
+func (o ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesPtrOutput) ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesPtrOutputWithContext(ctx context.Context) ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesPtrOutput {
+	return o
+}
+
+func (o ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesPtrOutput) Elem() ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesOutput {
+	return o.ApplyT(func(v *ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPriorities) ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPriorities {
+		if v != nil {
+			return *v
+		}
+		var ret ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPriorities
+		return ret
+	}).(ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesOutput)
+}
+
+func (o ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesPtrOutput) FixedValue() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPriorities) *int {
+		if v == nil {
+			return nil
+		}
+		return v.FixedValue
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesPtrOutput) PercentOfPoolAllocation() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPriorities) *float64 {
+		if v == nil {
+			return nil
+		}
+		return v.PercentOfPoolAllocation
+	}).(pulumi.Float64PtrOutput)
+}
+
+type ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriority struct {
+	FixedValue              *int     `pulumi:"fixedValue"`
+	PercentOfPoolAllocation *float64 `pulumi:"percentOfPoolAllocation"`
+}
+
+// ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityInput is an input type that accepts ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityArgs and ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityOutput values.
+// You can construct a concrete instance of `ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityInput` via:
+//
+//	ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityArgs{...}
+type ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityInput interface {
+	pulumi.Input
+
+	ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityOutput() ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityOutput
+	ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityOutputWithContext(context.Context) ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityOutput
+}
+
+type ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityArgs struct {
+	FixedValue              pulumi.IntPtrInput     `pulumi:"fixedValue"`
+	PercentOfPoolAllocation pulumi.Float64PtrInput `pulumi:"percentOfPoolAllocation"`
+}
+
+func (ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriority)(nil)).Elem()
+}
+
+func (i ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityArgs) ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityOutput() ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityOutput {
+	return i.ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityOutputWithContext(context.Background())
+}
+
+func (i ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityArgs) ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityOutputWithContext(ctx context.Context) ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityOutput)
+}
+
+func (i ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityArgs) ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutput() ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutput {
+	return i.ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutputWithContext(context.Background())
+}
+
+func (i ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityArgs) ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutputWithContext(ctx context.Context) ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityOutput).ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutputWithContext(ctx)
+}
+
+// ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrInput is an input type that accepts ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityArgs, ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityPtr and ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutput values.
+// You can construct a concrete instance of `ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrInput` via:
+//
+//	        ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityArgs{...}
+//
+//	or:
+//
+//	        nil
+type ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrInput interface {
+	pulumi.Input
+
+	ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutput() ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutput
+	ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutputWithContext(context.Context) ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutput
+}
+
+type resourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrType ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityArgs
+
+func ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityPtr(v *ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityArgs) ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrInput {
+	return (*resourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrType)(v)
+}
+
+func (*resourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriority)(nil)).Elem()
+}
+
+func (i *resourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrType) ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutput() ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutput {
+	return i.ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutputWithContext(context.Background())
+}
+
+func (i *resourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrType) ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutputWithContext(ctx context.Context) ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutput)
+}
+
+type ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityOutput struct{ *pulumi.OutputState }
+
+func (ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriority)(nil)).Elem()
+}
+
+func (o ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityOutput) ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityOutput() ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityOutput {
+	return o
+}
+
+func (o ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityOutput) ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityOutputWithContext(ctx context.Context) ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityOutput {
+	return o
+}
+
+func (o ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityOutput) ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutput() ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutput {
+	return o.ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutputWithContext(context.Background())
+}
+
+func (o ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityOutput) ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutputWithContext(ctx context.Context) ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriority) *ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriority {
+		return &v
+	}).(ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutput)
+}
+
+func (o ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityOutput) FixedValue() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriority) *int {
+		return v.FixedValue
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityOutput) PercentOfPoolAllocation() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriority) *float64 {
+		return v.PercentOfPoolAllocation
+	}).(pulumi.Float64PtrOutput)
+}
+
+type ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutput struct{ *pulumi.OutputState }
+
+func (ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriority)(nil)).Elem()
+}
+
+func (o ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutput) ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutput() ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutput {
+	return o
+}
+
+func (o ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutput) ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutputWithContext(ctx context.Context) ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutput {
+	return o
+}
+
+func (o ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutput) Elem() ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityOutput {
+	return o.ApplyT(func(v *ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriority) ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriority {
+		if v != nil {
+			return *v
+		}
+		var ret ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriority
+		return ret
+	}).(ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityOutput)
+}
+
+func (o ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutput) FixedValue() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriority) *int {
+		if v == nil {
+			return nil
+		}
+		return v.FixedValue
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutput) PercentOfPoolAllocation() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriority) *float64 {
+		if v == nil {
+			return nil
+		}
+		return v.PercentOfPoolAllocation
+	}).(pulumi.Float64PtrOutput)
+}
+
+type ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriority struct {
+	FixedValue              *int     `pulumi:"fixedValue"`
+	PercentOfPoolAllocation *float64 `pulumi:"percentOfPoolAllocation"`
+}
+
+// ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityInput is an input type that accepts ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityArgs and ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityOutput values.
+// You can construct a concrete instance of `ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityInput` via:
+//
+//	ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityArgs{...}
+type ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityInput interface {
+	pulumi.Input
+
+	ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityOutput() ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityOutput
+	ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityOutputWithContext(context.Context) ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityOutput
+}
+
+type ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityArgs struct {
+	FixedValue              pulumi.IntPtrInput     `pulumi:"fixedValue"`
+	PercentOfPoolAllocation pulumi.Float64PtrInput `pulumi:"percentOfPoolAllocation"`
+}
+
+func (ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriority)(nil)).Elem()
+}
+
+func (i ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityArgs) ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityOutput() ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityOutput {
+	return i.ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityOutputWithContext(context.Background())
+}
+
+func (i ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityArgs) ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityOutputWithContext(ctx context.Context) ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityOutput)
+}
+
+func (i ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityArgs) ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityPtrOutput() ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityPtrOutput {
+	return i.ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityPtrOutputWithContext(context.Background())
+}
+
+func (i ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityArgs) ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityPtrOutputWithContext(ctx context.Context) ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityOutput).ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityPtrOutputWithContext(ctx)
+}
+
+// ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityPtrInput is an input type that accepts ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityArgs, ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityPtr and ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityPtrOutput values.
+// You can construct a concrete instance of `ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityPtrInput` via:
+//
+//	        ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityArgs{...}
+//
+//	or:
+//
+//	        nil
+type ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityPtrInput interface {
+	pulumi.Input
+
+	ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityPtrOutput() ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityPtrOutput
+	ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityPtrOutputWithContext(context.Context) ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityPtrOutput
+}
+
+type resourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityPtrType ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityArgs
+
+func ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityPtr(v *ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityArgs) ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityPtrInput {
+	return (*resourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityPtrType)(v)
+}
+
+func (*resourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriority)(nil)).Elem()
+}
+
+func (i *resourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityPtrType) ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityPtrOutput() ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityPtrOutput {
+	return i.ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityPtrOutputWithContext(context.Background())
+}
+
+func (i *resourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityPtrType) ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityPtrOutputWithContext(ctx context.Context) ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityPtrOutput)
+}
+
+type ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityOutput struct{ *pulumi.OutputState }
+
+func (ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriority)(nil)).Elem()
+}
+
+func (o ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityOutput) ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityOutput() ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityOutput {
+	return o
+}
+
+func (o ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityOutput) ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityOutputWithContext(ctx context.Context) ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityOutput {
+	return o
+}
+
+func (o ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityOutput) ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityPtrOutput() ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityPtrOutput {
+	return o.ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityPtrOutputWithContext(context.Background())
+}
+
+func (o ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityOutput) ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityPtrOutputWithContext(ctx context.Context) ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriority) *ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriority {
+		return &v
+	}).(ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityPtrOutput)
+}
+
+func (o ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityOutput) FixedValue() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriority) *int { return v.FixedValue }).(pulumi.IntPtrOutput)
+}
+
+func (o ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityOutput) PercentOfPoolAllocation() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriority) *float64 {
+		return v.PercentOfPoolAllocation
+	}).(pulumi.Float64PtrOutput)
+}
+
+type ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityPtrOutput struct{ *pulumi.OutputState }
+
+func (ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriority)(nil)).Elem()
+}
+
+func (o ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityPtrOutput) ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityPtrOutput() ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityPtrOutput {
+	return o
+}
+
+func (o ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityPtrOutput) ToResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityPtrOutputWithContext(ctx context.Context) ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityPtrOutput {
+	return o
+}
+
+func (o ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityPtrOutput) Elem() ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityOutput {
+	return o.ApplyT(func(v *ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriority) ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriority {
+		if v != nil {
+			return *v
+		}
+		var ret ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriority
+		return ret
+	}).(ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityOutput)
+}
+
+func (o ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityPtrOutput) FixedValue() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriority) *int {
+		if v == nil {
+			return nil
+		}
+		return v.FixedValue
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityPtrOutput) PercentOfPoolAllocation() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriority) *float64 {
+		if v == nil {
+			return nil
+		}
+		return v.PercentOfPoolAllocation
+	}).(pulumi.Float64PtrOutput)
 }
 
 type ResourcePoolsConfigDefaultPoolPriorities struct {
@@ -10434,6 +11040,574 @@ func (o ResourcePoolsConfigDefaultPoolPrioritiesPtrOutput) LowPriorityMatchRules
 	}).(pulumi.StringArrayOutput)
 }
 
+type ResourcePoolsConfigDefaultPoolPriorityThreshold struct {
+	AllPriorities         *ResourcePoolsConfigDefaultPoolPriorityThresholdAllPriorities         `pulumi:"allPriorities"`
+	DefaultAndLowPriority *ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriority `pulumi:"defaultAndLowPriority"`
+	License               string                                                                `pulumi:"license"`
+	LowPriority           *ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriority           `pulumi:"lowPriority"`
+}
+
+// ResourcePoolsConfigDefaultPoolPriorityThresholdInput is an input type that accepts ResourcePoolsConfigDefaultPoolPriorityThresholdArgs and ResourcePoolsConfigDefaultPoolPriorityThresholdOutput values.
+// You can construct a concrete instance of `ResourcePoolsConfigDefaultPoolPriorityThresholdInput` via:
+//
+//	ResourcePoolsConfigDefaultPoolPriorityThresholdArgs{...}
+type ResourcePoolsConfigDefaultPoolPriorityThresholdInput interface {
+	pulumi.Input
+
+	ToResourcePoolsConfigDefaultPoolPriorityThresholdOutput() ResourcePoolsConfigDefaultPoolPriorityThresholdOutput
+	ToResourcePoolsConfigDefaultPoolPriorityThresholdOutputWithContext(context.Context) ResourcePoolsConfigDefaultPoolPriorityThresholdOutput
+}
+
+type ResourcePoolsConfigDefaultPoolPriorityThresholdArgs struct {
+	AllPriorities         ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesPtrInput         `pulumi:"allPriorities"`
+	DefaultAndLowPriority ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityPtrInput `pulumi:"defaultAndLowPriority"`
+	License               pulumi.StringInput                                                           `pulumi:"license"`
+	LowPriority           ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityPtrInput           `pulumi:"lowPriority"`
+}
+
+func (ResourcePoolsConfigDefaultPoolPriorityThresholdArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ResourcePoolsConfigDefaultPoolPriorityThreshold)(nil)).Elem()
+}
+
+func (i ResourcePoolsConfigDefaultPoolPriorityThresholdArgs) ToResourcePoolsConfigDefaultPoolPriorityThresholdOutput() ResourcePoolsConfigDefaultPoolPriorityThresholdOutput {
+	return i.ToResourcePoolsConfigDefaultPoolPriorityThresholdOutputWithContext(context.Background())
+}
+
+func (i ResourcePoolsConfigDefaultPoolPriorityThresholdArgs) ToResourcePoolsConfigDefaultPoolPriorityThresholdOutputWithContext(ctx context.Context) ResourcePoolsConfigDefaultPoolPriorityThresholdOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResourcePoolsConfigDefaultPoolPriorityThresholdOutput)
+}
+
+// ResourcePoolsConfigDefaultPoolPriorityThresholdArrayInput is an input type that accepts ResourcePoolsConfigDefaultPoolPriorityThresholdArray and ResourcePoolsConfigDefaultPoolPriorityThresholdArrayOutput values.
+// You can construct a concrete instance of `ResourcePoolsConfigDefaultPoolPriorityThresholdArrayInput` via:
+//
+//	ResourcePoolsConfigDefaultPoolPriorityThresholdArray{ ResourcePoolsConfigDefaultPoolPriorityThresholdArgs{...} }
+type ResourcePoolsConfigDefaultPoolPriorityThresholdArrayInput interface {
+	pulumi.Input
+
+	ToResourcePoolsConfigDefaultPoolPriorityThresholdArrayOutput() ResourcePoolsConfigDefaultPoolPriorityThresholdArrayOutput
+	ToResourcePoolsConfigDefaultPoolPriorityThresholdArrayOutputWithContext(context.Context) ResourcePoolsConfigDefaultPoolPriorityThresholdArrayOutput
+}
+
+type ResourcePoolsConfigDefaultPoolPriorityThresholdArray []ResourcePoolsConfigDefaultPoolPriorityThresholdInput
+
+func (ResourcePoolsConfigDefaultPoolPriorityThresholdArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ResourcePoolsConfigDefaultPoolPriorityThreshold)(nil)).Elem()
+}
+
+func (i ResourcePoolsConfigDefaultPoolPriorityThresholdArray) ToResourcePoolsConfigDefaultPoolPriorityThresholdArrayOutput() ResourcePoolsConfigDefaultPoolPriorityThresholdArrayOutput {
+	return i.ToResourcePoolsConfigDefaultPoolPriorityThresholdArrayOutputWithContext(context.Background())
+}
+
+func (i ResourcePoolsConfigDefaultPoolPriorityThresholdArray) ToResourcePoolsConfigDefaultPoolPriorityThresholdArrayOutputWithContext(ctx context.Context) ResourcePoolsConfigDefaultPoolPriorityThresholdArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResourcePoolsConfigDefaultPoolPriorityThresholdArrayOutput)
+}
+
+type ResourcePoolsConfigDefaultPoolPriorityThresholdOutput struct{ *pulumi.OutputState }
+
+func (ResourcePoolsConfigDefaultPoolPriorityThresholdOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ResourcePoolsConfigDefaultPoolPriorityThreshold)(nil)).Elem()
+}
+
+func (o ResourcePoolsConfigDefaultPoolPriorityThresholdOutput) ToResourcePoolsConfigDefaultPoolPriorityThresholdOutput() ResourcePoolsConfigDefaultPoolPriorityThresholdOutput {
+	return o
+}
+
+func (o ResourcePoolsConfigDefaultPoolPriorityThresholdOutput) ToResourcePoolsConfigDefaultPoolPriorityThresholdOutputWithContext(ctx context.Context) ResourcePoolsConfigDefaultPoolPriorityThresholdOutput {
+	return o
+}
+
+func (o ResourcePoolsConfigDefaultPoolPriorityThresholdOutput) AllPriorities() ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesPtrOutput {
+	return o.ApplyT(func(v ResourcePoolsConfigDefaultPoolPriorityThreshold) *ResourcePoolsConfigDefaultPoolPriorityThresholdAllPriorities {
+		return v.AllPriorities
+	}).(ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesPtrOutput)
+}
+
+func (o ResourcePoolsConfigDefaultPoolPriorityThresholdOutput) DefaultAndLowPriority() ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityPtrOutput {
+	return o.ApplyT(func(v ResourcePoolsConfigDefaultPoolPriorityThreshold) *ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriority {
+		return v.DefaultAndLowPriority
+	}).(ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityPtrOutput)
+}
+
+func (o ResourcePoolsConfigDefaultPoolPriorityThresholdOutput) License() pulumi.StringOutput {
+	return o.ApplyT(func(v ResourcePoolsConfigDefaultPoolPriorityThreshold) string { return v.License }).(pulumi.StringOutput)
+}
+
+func (o ResourcePoolsConfigDefaultPoolPriorityThresholdOutput) LowPriority() ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityPtrOutput {
+	return o.ApplyT(func(v ResourcePoolsConfigDefaultPoolPriorityThreshold) *ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriority {
+		return v.LowPriority
+	}).(ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityPtrOutput)
+}
+
+type ResourcePoolsConfigDefaultPoolPriorityThresholdArrayOutput struct{ *pulumi.OutputState }
+
+func (ResourcePoolsConfigDefaultPoolPriorityThresholdArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ResourcePoolsConfigDefaultPoolPriorityThreshold)(nil)).Elem()
+}
+
+func (o ResourcePoolsConfigDefaultPoolPriorityThresholdArrayOutput) ToResourcePoolsConfigDefaultPoolPriorityThresholdArrayOutput() ResourcePoolsConfigDefaultPoolPriorityThresholdArrayOutput {
+	return o
+}
+
+func (o ResourcePoolsConfigDefaultPoolPriorityThresholdArrayOutput) ToResourcePoolsConfigDefaultPoolPriorityThresholdArrayOutputWithContext(ctx context.Context) ResourcePoolsConfigDefaultPoolPriorityThresholdArrayOutput {
+	return o
+}
+
+func (o ResourcePoolsConfigDefaultPoolPriorityThresholdArrayOutput) Index(i pulumi.IntInput) ResourcePoolsConfigDefaultPoolPriorityThresholdOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ResourcePoolsConfigDefaultPoolPriorityThreshold {
+		return vs[0].([]ResourcePoolsConfigDefaultPoolPriorityThreshold)[vs[1].(int)]
+	}).(ResourcePoolsConfigDefaultPoolPriorityThresholdOutput)
+}
+
+type ResourcePoolsConfigDefaultPoolPriorityThresholdAllPriorities struct {
+	FixedValue              *int     `pulumi:"fixedValue"`
+	PercentOfPoolAllocation *float64 `pulumi:"percentOfPoolAllocation"`
+}
+
+// ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesInput is an input type that accepts ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesArgs and ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesOutput values.
+// You can construct a concrete instance of `ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesInput` via:
+//
+//	ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesArgs{...}
+type ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesInput interface {
+	pulumi.Input
+
+	ToResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesOutput() ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesOutput
+	ToResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesOutputWithContext(context.Context) ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesOutput
+}
+
+type ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesArgs struct {
+	FixedValue              pulumi.IntPtrInput     `pulumi:"fixedValue"`
+	PercentOfPoolAllocation pulumi.Float64PtrInput `pulumi:"percentOfPoolAllocation"`
+}
+
+func (ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ResourcePoolsConfigDefaultPoolPriorityThresholdAllPriorities)(nil)).Elem()
+}
+
+func (i ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesArgs) ToResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesOutput() ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesOutput {
+	return i.ToResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesOutputWithContext(context.Background())
+}
+
+func (i ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesArgs) ToResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesOutputWithContext(ctx context.Context) ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesOutput)
+}
+
+func (i ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesArgs) ToResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesPtrOutput() ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesPtrOutput {
+	return i.ToResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesPtrOutputWithContext(context.Background())
+}
+
+func (i ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesArgs) ToResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesPtrOutputWithContext(ctx context.Context) ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesOutput).ToResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesPtrOutputWithContext(ctx)
+}
+
+// ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesPtrInput is an input type that accepts ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesArgs, ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesPtr and ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesPtrOutput values.
+// You can construct a concrete instance of `ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesPtrInput` via:
+//
+//	        ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesArgs{...}
+//
+//	or:
+//
+//	        nil
+type ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesPtrInput interface {
+	pulumi.Input
+
+	ToResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesPtrOutput() ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesPtrOutput
+	ToResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesPtrOutputWithContext(context.Context) ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesPtrOutput
+}
+
+type resourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesPtrType ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesArgs
+
+func ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesPtr(v *ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesArgs) ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesPtrInput {
+	return (*resourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesPtrType)(v)
+}
+
+func (*resourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ResourcePoolsConfigDefaultPoolPriorityThresholdAllPriorities)(nil)).Elem()
+}
+
+func (i *resourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesPtrType) ToResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesPtrOutput() ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesPtrOutput {
+	return i.ToResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesPtrOutputWithContext(context.Background())
+}
+
+func (i *resourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesPtrType) ToResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesPtrOutputWithContext(ctx context.Context) ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesPtrOutput)
+}
+
+type ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesOutput struct{ *pulumi.OutputState }
+
+func (ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ResourcePoolsConfigDefaultPoolPriorityThresholdAllPriorities)(nil)).Elem()
+}
+
+func (o ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesOutput) ToResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesOutput() ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesOutput {
+	return o
+}
+
+func (o ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesOutput) ToResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesOutputWithContext(ctx context.Context) ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesOutput {
+	return o
+}
+
+func (o ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesOutput) ToResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesPtrOutput() ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesPtrOutput {
+	return o.ToResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesPtrOutputWithContext(context.Background())
+}
+
+func (o ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesOutput) ToResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesPtrOutputWithContext(ctx context.Context) ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ResourcePoolsConfigDefaultPoolPriorityThresholdAllPriorities) *ResourcePoolsConfigDefaultPoolPriorityThresholdAllPriorities {
+		return &v
+	}).(ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesPtrOutput)
+}
+
+func (o ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesOutput) FixedValue() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ResourcePoolsConfigDefaultPoolPriorityThresholdAllPriorities) *int { return v.FixedValue }).(pulumi.IntPtrOutput)
+}
+
+func (o ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesOutput) PercentOfPoolAllocation() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v ResourcePoolsConfigDefaultPoolPriorityThresholdAllPriorities) *float64 {
+		return v.PercentOfPoolAllocation
+	}).(pulumi.Float64PtrOutput)
+}
+
+type ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesPtrOutput struct{ *pulumi.OutputState }
+
+func (ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ResourcePoolsConfigDefaultPoolPriorityThresholdAllPriorities)(nil)).Elem()
+}
+
+func (o ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesPtrOutput) ToResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesPtrOutput() ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesPtrOutput {
+	return o
+}
+
+func (o ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesPtrOutput) ToResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesPtrOutputWithContext(ctx context.Context) ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesPtrOutput {
+	return o
+}
+
+func (o ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesPtrOutput) Elem() ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesOutput {
+	return o.ApplyT(func(v *ResourcePoolsConfigDefaultPoolPriorityThresholdAllPriorities) ResourcePoolsConfigDefaultPoolPriorityThresholdAllPriorities {
+		if v != nil {
+			return *v
+		}
+		var ret ResourcePoolsConfigDefaultPoolPriorityThresholdAllPriorities
+		return ret
+	}).(ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesOutput)
+}
+
+func (o ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesPtrOutput) FixedValue() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ResourcePoolsConfigDefaultPoolPriorityThresholdAllPriorities) *int {
+		if v == nil {
+			return nil
+		}
+		return v.FixedValue
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesPtrOutput) PercentOfPoolAllocation() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *ResourcePoolsConfigDefaultPoolPriorityThresholdAllPriorities) *float64 {
+		if v == nil {
+			return nil
+		}
+		return v.PercentOfPoolAllocation
+	}).(pulumi.Float64PtrOutput)
+}
+
+type ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriority struct {
+	FixedValue              *int     `pulumi:"fixedValue"`
+	PercentOfPoolAllocation *float64 `pulumi:"percentOfPoolAllocation"`
+}
+
+// ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityInput is an input type that accepts ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityArgs and ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityOutput values.
+// You can construct a concrete instance of `ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityInput` via:
+//
+//	ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityArgs{...}
+type ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityInput interface {
+	pulumi.Input
+
+	ToResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityOutput() ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityOutput
+	ToResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityOutputWithContext(context.Context) ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityOutput
+}
+
+type ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityArgs struct {
+	FixedValue              pulumi.IntPtrInput     `pulumi:"fixedValue"`
+	PercentOfPoolAllocation pulumi.Float64PtrInput `pulumi:"percentOfPoolAllocation"`
+}
+
+func (ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriority)(nil)).Elem()
+}
+
+func (i ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityArgs) ToResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityOutput() ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityOutput {
+	return i.ToResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityOutputWithContext(context.Background())
+}
+
+func (i ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityArgs) ToResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityOutputWithContext(ctx context.Context) ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityOutput)
+}
+
+func (i ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityArgs) ToResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityPtrOutput() ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityPtrOutput {
+	return i.ToResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityPtrOutputWithContext(context.Background())
+}
+
+func (i ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityArgs) ToResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityPtrOutputWithContext(ctx context.Context) ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityOutput).ToResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityPtrOutputWithContext(ctx)
+}
+
+// ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityPtrInput is an input type that accepts ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityArgs, ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityPtr and ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityPtrOutput values.
+// You can construct a concrete instance of `ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityPtrInput` via:
+//
+//	        ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityArgs{...}
+//
+//	or:
+//
+//	        nil
+type ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityPtrInput interface {
+	pulumi.Input
+
+	ToResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityPtrOutput() ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityPtrOutput
+	ToResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityPtrOutputWithContext(context.Context) ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityPtrOutput
+}
+
+type resourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityPtrType ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityArgs
+
+func ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityPtr(v *ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityArgs) ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityPtrInput {
+	return (*resourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityPtrType)(v)
+}
+
+func (*resourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriority)(nil)).Elem()
+}
+
+func (i *resourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityPtrType) ToResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityPtrOutput() ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityPtrOutput {
+	return i.ToResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityPtrOutputWithContext(context.Background())
+}
+
+func (i *resourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityPtrType) ToResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityPtrOutputWithContext(ctx context.Context) ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityPtrOutput)
+}
+
+type ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityOutput struct{ *pulumi.OutputState }
+
+func (ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriority)(nil)).Elem()
+}
+
+func (o ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityOutput) ToResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityOutput() ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityOutput {
+	return o
+}
+
+func (o ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityOutput) ToResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityOutputWithContext(ctx context.Context) ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityOutput {
+	return o
+}
+
+func (o ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityOutput) ToResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityPtrOutput() ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityPtrOutput {
+	return o.ToResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityPtrOutputWithContext(context.Background())
+}
+
+func (o ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityOutput) ToResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityPtrOutputWithContext(ctx context.Context) ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriority) *ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriority {
+		return &v
+	}).(ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityPtrOutput)
+}
+
+func (o ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityOutput) FixedValue() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriority) *int { return v.FixedValue }).(pulumi.IntPtrOutput)
+}
+
+func (o ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityOutput) PercentOfPoolAllocation() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriority) *float64 {
+		return v.PercentOfPoolAllocation
+	}).(pulumi.Float64PtrOutput)
+}
+
+type ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityPtrOutput struct{ *pulumi.OutputState }
+
+func (ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriority)(nil)).Elem()
+}
+
+func (o ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityPtrOutput) ToResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityPtrOutput() ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityPtrOutput {
+	return o
+}
+
+func (o ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityPtrOutput) ToResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityPtrOutputWithContext(ctx context.Context) ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityPtrOutput {
+	return o
+}
+
+func (o ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityPtrOutput) Elem() ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityOutput {
+	return o.ApplyT(func(v *ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriority) ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriority {
+		if v != nil {
+			return *v
+		}
+		var ret ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriority
+		return ret
+	}).(ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityOutput)
+}
+
+func (o ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityPtrOutput) FixedValue() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriority) *int {
+		if v == nil {
+			return nil
+		}
+		return v.FixedValue
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityPtrOutput) PercentOfPoolAllocation() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriority) *float64 {
+		if v == nil {
+			return nil
+		}
+		return v.PercentOfPoolAllocation
+	}).(pulumi.Float64PtrOutput)
+}
+
+type ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriority struct {
+	FixedValue              *int     `pulumi:"fixedValue"`
+	PercentOfPoolAllocation *float64 `pulumi:"percentOfPoolAllocation"`
+}
+
+// ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityInput is an input type that accepts ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityArgs and ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityOutput values.
+// You can construct a concrete instance of `ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityInput` via:
+//
+//	ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityArgs{...}
+type ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityInput interface {
+	pulumi.Input
+
+	ToResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityOutput() ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityOutput
+	ToResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityOutputWithContext(context.Context) ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityOutput
+}
+
+type ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityArgs struct {
+	FixedValue              pulumi.IntPtrInput     `pulumi:"fixedValue"`
+	PercentOfPoolAllocation pulumi.Float64PtrInput `pulumi:"percentOfPoolAllocation"`
+}
+
+func (ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriority)(nil)).Elem()
+}
+
+func (i ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityArgs) ToResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityOutput() ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityOutput {
+	return i.ToResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityOutputWithContext(context.Background())
+}
+
+func (i ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityArgs) ToResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityOutputWithContext(ctx context.Context) ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityOutput)
+}
+
+func (i ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityArgs) ToResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityPtrOutput() ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityPtrOutput {
+	return i.ToResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityPtrOutputWithContext(context.Background())
+}
+
+func (i ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityArgs) ToResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityPtrOutputWithContext(ctx context.Context) ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityOutput).ToResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityPtrOutputWithContext(ctx)
+}
+
+// ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityPtrInput is an input type that accepts ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityArgs, ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityPtr and ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityPtrOutput values.
+// You can construct a concrete instance of `ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityPtrInput` via:
+//
+//	        ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityArgs{...}
+//
+//	or:
+//
+//	        nil
+type ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityPtrInput interface {
+	pulumi.Input
+
+	ToResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityPtrOutput() ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityPtrOutput
+	ToResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityPtrOutputWithContext(context.Context) ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityPtrOutput
+}
+
+type resourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityPtrType ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityArgs
+
+func ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityPtr(v *ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityArgs) ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityPtrInput {
+	return (*resourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityPtrType)(v)
+}
+
+func (*resourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriority)(nil)).Elem()
+}
+
+func (i *resourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityPtrType) ToResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityPtrOutput() ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityPtrOutput {
+	return i.ToResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityPtrOutputWithContext(context.Background())
+}
+
+func (i *resourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityPtrType) ToResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityPtrOutputWithContext(ctx context.Context) ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityPtrOutput)
+}
+
+type ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityOutput struct{ *pulumi.OutputState }
+
+func (ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriority)(nil)).Elem()
+}
+
+func (o ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityOutput) ToResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityOutput() ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityOutput {
+	return o
+}
+
+func (o ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityOutput) ToResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityOutputWithContext(ctx context.Context) ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityOutput {
+	return o
+}
+
+func (o ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityOutput) ToResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityPtrOutput() ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityPtrOutput {
+	return o.ToResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityPtrOutputWithContext(context.Background())
+}
+
+func (o ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityOutput) ToResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityPtrOutputWithContext(ctx context.Context) ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriority) *ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriority {
+		return &v
+	}).(ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityPtrOutput)
+}
+
+func (o ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityOutput) FixedValue() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriority) *int { return v.FixedValue }).(pulumi.IntPtrOutput)
+}
+
+func (o ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityOutput) PercentOfPoolAllocation() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriority) *float64 {
+		return v.PercentOfPoolAllocation
+	}).(pulumi.Float64PtrOutput)
+}
+
+type ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityPtrOutput struct{ *pulumi.OutputState }
+
+func (ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriority)(nil)).Elem()
+}
+
+func (o ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityPtrOutput) ToResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityPtrOutput() ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityPtrOutput {
+	return o
+}
+
+func (o ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityPtrOutput) ToResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityPtrOutputWithContext(ctx context.Context) ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityPtrOutput {
+	return o
+}
+
+func (o ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityPtrOutput) Elem() ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityOutput {
+	return o.ApplyT(func(v *ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriority) ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriority {
+		if v != nil {
+			return *v
+		}
+		var ret ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriority
+		return ret
+	}).(ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityOutput)
+}
+
+func (o ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityPtrOutput) FixedValue() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriority) *int {
+		if v == nil {
+			return nil
+		}
+		return v.FixedValue
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityPtrOutput) PercentOfPoolAllocation() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriority) *float64 {
+		if v == nil {
+			return nil
+		}
+		return v.PercentOfPoolAllocation
+	}).(pulumi.Float64PtrOutput)
+}
+
 type ResourcePoolsConfigPool struct {
 	Allocation *ResourcePoolsConfigPoolAllocation `pulumi:"allocation"`
 	// Deprecated: use match_rules
@@ -10556,8 +11730,9 @@ func (o ResourcePoolsConfigPoolArrayOutput) Index(i pulumi.IntInput) ResourcePoo
 }
 
 type ResourcePoolsConfigPoolAllocation struct {
-	FixedValues      []ResourcePoolsConfigPoolAllocationFixedValue `pulumi:"fixedValues"`
-	PercentOfLicense *float64                                      `pulumi:"percentOfLicense"`
+	FixedValues        []ResourcePoolsConfigPoolAllocationFixedValue        `pulumi:"fixedValues"`
+	PercentOfLicense   *float64                                             `pulumi:"percentOfLicense"`
+	PriorityThresholds []ResourcePoolsConfigPoolAllocationPriorityThreshold `pulumi:"priorityThresholds"`
 }
 
 // ResourcePoolsConfigPoolAllocationInput is an input type that accepts ResourcePoolsConfigPoolAllocationArgs and ResourcePoolsConfigPoolAllocationOutput values.
@@ -10572,8 +11747,9 @@ type ResourcePoolsConfigPoolAllocationInput interface {
 }
 
 type ResourcePoolsConfigPoolAllocationArgs struct {
-	FixedValues      ResourcePoolsConfigPoolAllocationFixedValueArrayInput `pulumi:"fixedValues"`
-	PercentOfLicense pulumi.Float64PtrInput                                `pulumi:"percentOfLicense"`
+	FixedValues        ResourcePoolsConfigPoolAllocationFixedValueArrayInput        `pulumi:"fixedValues"`
+	PercentOfLicense   pulumi.Float64PtrInput                                       `pulumi:"percentOfLicense"`
+	PriorityThresholds ResourcePoolsConfigPoolAllocationPriorityThresholdArrayInput `pulumi:"priorityThresholds"`
 }
 
 func (ResourcePoolsConfigPoolAllocationArgs) ElementType() reflect.Type {
@@ -10663,6 +11839,12 @@ func (o ResourcePoolsConfigPoolAllocationOutput) PercentOfLicense() pulumi.Float
 	return o.ApplyT(func(v ResourcePoolsConfigPoolAllocation) *float64 { return v.PercentOfLicense }).(pulumi.Float64PtrOutput)
 }
 
+func (o ResourcePoolsConfigPoolAllocationOutput) PriorityThresholds() ResourcePoolsConfigPoolAllocationPriorityThresholdArrayOutput {
+	return o.ApplyT(func(v ResourcePoolsConfigPoolAllocation) []ResourcePoolsConfigPoolAllocationPriorityThreshold {
+		return v.PriorityThresholds
+	}).(ResourcePoolsConfigPoolAllocationPriorityThresholdArrayOutput)
+}
+
 type ResourcePoolsConfigPoolAllocationPtrOutput struct{ *pulumi.OutputState }
 
 func (ResourcePoolsConfigPoolAllocationPtrOutput) ElementType() reflect.Type {
@@ -10703,6 +11885,15 @@ func (o ResourcePoolsConfigPoolAllocationPtrOutput) PercentOfLicense() pulumi.Fl
 		}
 		return v.PercentOfLicense
 	}).(pulumi.Float64PtrOutput)
+}
+
+func (o ResourcePoolsConfigPoolAllocationPtrOutput) PriorityThresholds() ResourcePoolsConfigPoolAllocationPriorityThresholdArrayOutput {
+	return o.ApplyT(func(v *ResourcePoolsConfigPoolAllocation) []ResourcePoolsConfigPoolAllocationPriorityThreshold {
+		if v == nil {
+			return nil
+		}
+		return v.PriorityThresholds
+	}).(ResourcePoolsConfigPoolAllocationPriorityThresholdArrayOutput)
 }
 
 type ResourcePoolsConfigPoolAllocationFixedValue struct {
@@ -10803,6 +11994,576 @@ func (o ResourcePoolsConfigPoolAllocationFixedValueArrayOutput) Index(i pulumi.I
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ResourcePoolsConfigPoolAllocationFixedValue {
 		return vs[0].([]ResourcePoolsConfigPoolAllocationFixedValue)[vs[1].(int)]
 	}).(ResourcePoolsConfigPoolAllocationFixedValueOutput)
+}
+
+type ResourcePoolsConfigPoolAllocationPriorityThreshold struct {
+	AllPriorities         *ResourcePoolsConfigPoolAllocationPriorityThresholdAllPriorities         `pulumi:"allPriorities"`
+	DefaultAndLowPriority *ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriority `pulumi:"defaultAndLowPriority"`
+	License               string                                                                   `pulumi:"license"`
+	LowPriority           *ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriority           `pulumi:"lowPriority"`
+}
+
+// ResourcePoolsConfigPoolAllocationPriorityThresholdInput is an input type that accepts ResourcePoolsConfigPoolAllocationPriorityThresholdArgs and ResourcePoolsConfigPoolAllocationPriorityThresholdOutput values.
+// You can construct a concrete instance of `ResourcePoolsConfigPoolAllocationPriorityThresholdInput` via:
+//
+//	ResourcePoolsConfigPoolAllocationPriorityThresholdArgs{...}
+type ResourcePoolsConfigPoolAllocationPriorityThresholdInput interface {
+	pulumi.Input
+
+	ToResourcePoolsConfigPoolAllocationPriorityThresholdOutput() ResourcePoolsConfigPoolAllocationPriorityThresholdOutput
+	ToResourcePoolsConfigPoolAllocationPriorityThresholdOutputWithContext(context.Context) ResourcePoolsConfigPoolAllocationPriorityThresholdOutput
+}
+
+type ResourcePoolsConfigPoolAllocationPriorityThresholdArgs struct {
+	AllPriorities         ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesPtrInput         `pulumi:"allPriorities"`
+	DefaultAndLowPriority ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrInput `pulumi:"defaultAndLowPriority"`
+	License               pulumi.StringInput                                                              `pulumi:"license"`
+	LowPriority           ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityPtrInput           `pulumi:"lowPriority"`
+}
+
+func (ResourcePoolsConfigPoolAllocationPriorityThresholdArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ResourcePoolsConfigPoolAllocationPriorityThreshold)(nil)).Elem()
+}
+
+func (i ResourcePoolsConfigPoolAllocationPriorityThresholdArgs) ToResourcePoolsConfigPoolAllocationPriorityThresholdOutput() ResourcePoolsConfigPoolAllocationPriorityThresholdOutput {
+	return i.ToResourcePoolsConfigPoolAllocationPriorityThresholdOutputWithContext(context.Background())
+}
+
+func (i ResourcePoolsConfigPoolAllocationPriorityThresholdArgs) ToResourcePoolsConfigPoolAllocationPriorityThresholdOutputWithContext(ctx context.Context) ResourcePoolsConfigPoolAllocationPriorityThresholdOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResourcePoolsConfigPoolAllocationPriorityThresholdOutput)
+}
+
+// ResourcePoolsConfigPoolAllocationPriorityThresholdArrayInput is an input type that accepts ResourcePoolsConfigPoolAllocationPriorityThresholdArray and ResourcePoolsConfigPoolAllocationPriorityThresholdArrayOutput values.
+// You can construct a concrete instance of `ResourcePoolsConfigPoolAllocationPriorityThresholdArrayInput` via:
+//
+//	ResourcePoolsConfigPoolAllocationPriorityThresholdArray{ ResourcePoolsConfigPoolAllocationPriorityThresholdArgs{...} }
+type ResourcePoolsConfigPoolAllocationPriorityThresholdArrayInput interface {
+	pulumi.Input
+
+	ToResourcePoolsConfigPoolAllocationPriorityThresholdArrayOutput() ResourcePoolsConfigPoolAllocationPriorityThresholdArrayOutput
+	ToResourcePoolsConfigPoolAllocationPriorityThresholdArrayOutputWithContext(context.Context) ResourcePoolsConfigPoolAllocationPriorityThresholdArrayOutput
+}
+
+type ResourcePoolsConfigPoolAllocationPriorityThresholdArray []ResourcePoolsConfigPoolAllocationPriorityThresholdInput
+
+func (ResourcePoolsConfigPoolAllocationPriorityThresholdArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ResourcePoolsConfigPoolAllocationPriorityThreshold)(nil)).Elem()
+}
+
+func (i ResourcePoolsConfigPoolAllocationPriorityThresholdArray) ToResourcePoolsConfigPoolAllocationPriorityThresholdArrayOutput() ResourcePoolsConfigPoolAllocationPriorityThresholdArrayOutput {
+	return i.ToResourcePoolsConfigPoolAllocationPriorityThresholdArrayOutputWithContext(context.Background())
+}
+
+func (i ResourcePoolsConfigPoolAllocationPriorityThresholdArray) ToResourcePoolsConfigPoolAllocationPriorityThresholdArrayOutputWithContext(ctx context.Context) ResourcePoolsConfigPoolAllocationPriorityThresholdArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResourcePoolsConfigPoolAllocationPriorityThresholdArrayOutput)
+}
+
+type ResourcePoolsConfigPoolAllocationPriorityThresholdOutput struct{ *pulumi.OutputState }
+
+func (ResourcePoolsConfigPoolAllocationPriorityThresholdOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ResourcePoolsConfigPoolAllocationPriorityThreshold)(nil)).Elem()
+}
+
+func (o ResourcePoolsConfigPoolAllocationPriorityThresholdOutput) ToResourcePoolsConfigPoolAllocationPriorityThresholdOutput() ResourcePoolsConfigPoolAllocationPriorityThresholdOutput {
+	return o
+}
+
+func (o ResourcePoolsConfigPoolAllocationPriorityThresholdOutput) ToResourcePoolsConfigPoolAllocationPriorityThresholdOutputWithContext(ctx context.Context) ResourcePoolsConfigPoolAllocationPriorityThresholdOutput {
+	return o
+}
+
+func (o ResourcePoolsConfigPoolAllocationPriorityThresholdOutput) AllPriorities() ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesPtrOutput {
+	return o.ApplyT(func(v ResourcePoolsConfigPoolAllocationPriorityThreshold) *ResourcePoolsConfigPoolAllocationPriorityThresholdAllPriorities {
+		return v.AllPriorities
+	}).(ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesPtrOutput)
+}
+
+func (o ResourcePoolsConfigPoolAllocationPriorityThresholdOutput) DefaultAndLowPriority() ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutput {
+	return o.ApplyT(func(v ResourcePoolsConfigPoolAllocationPriorityThreshold) *ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriority {
+		return v.DefaultAndLowPriority
+	}).(ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutput)
+}
+
+func (o ResourcePoolsConfigPoolAllocationPriorityThresholdOutput) License() pulumi.StringOutput {
+	return o.ApplyT(func(v ResourcePoolsConfigPoolAllocationPriorityThreshold) string { return v.License }).(pulumi.StringOutput)
+}
+
+func (o ResourcePoolsConfigPoolAllocationPriorityThresholdOutput) LowPriority() ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityPtrOutput {
+	return o.ApplyT(func(v ResourcePoolsConfigPoolAllocationPriorityThreshold) *ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriority {
+		return v.LowPriority
+	}).(ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityPtrOutput)
+}
+
+type ResourcePoolsConfigPoolAllocationPriorityThresholdArrayOutput struct{ *pulumi.OutputState }
+
+func (ResourcePoolsConfigPoolAllocationPriorityThresholdArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ResourcePoolsConfigPoolAllocationPriorityThreshold)(nil)).Elem()
+}
+
+func (o ResourcePoolsConfigPoolAllocationPriorityThresholdArrayOutput) ToResourcePoolsConfigPoolAllocationPriorityThresholdArrayOutput() ResourcePoolsConfigPoolAllocationPriorityThresholdArrayOutput {
+	return o
+}
+
+func (o ResourcePoolsConfigPoolAllocationPriorityThresholdArrayOutput) ToResourcePoolsConfigPoolAllocationPriorityThresholdArrayOutputWithContext(ctx context.Context) ResourcePoolsConfigPoolAllocationPriorityThresholdArrayOutput {
+	return o
+}
+
+func (o ResourcePoolsConfigPoolAllocationPriorityThresholdArrayOutput) Index(i pulumi.IntInput) ResourcePoolsConfigPoolAllocationPriorityThresholdOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ResourcePoolsConfigPoolAllocationPriorityThreshold {
+		return vs[0].([]ResourcePoolsConfigPoolAllocationPriorityThreshold)[vs[1].(int)]
+	}).(ResourcePoolsConfigPoolAllocationPriorityThresholdOutput)
+}
+
+type ResourcePoolsConfigPoolAllocationPriorityThresholdAllPriorities struct {
+	FixedValue              *int     `pulumi:"fixedValue"`
+	PercentOfPoolAllocation *float64 `pulumi:"percentOfPoolAllocation"`
+}
+
+// ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesInput is an input type that accepts ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesArgs and ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesOutput values.
+// You can construct a concrete instance of `ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesInput` via:
+//
+//	ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesArgs{...}
+type ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesInput interface {
+	pulumi.Input
+
+	ToResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesOutput() ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesOutput
+	ToResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesOutputWithContext(context.Context) ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesOutput
+}
+
+type ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesArgs struct {
+	FixedValue              pulumi.IntPtrInput     `pulumi:"fixedValue"`
+	PercentOfPoolAllocation pulumi.Float64PtrInput `pulumi:"percentOfPoolAllocation"`
+}
+
+func (ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ResourcePoolsConfigPoolAllocationPriorityThresholdAllPriorities)(nil)).Elem()
+}
+
+func (i ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesArgs) ToResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesOutput() ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesOutput {
+	return i.ToResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesOutputWithContext(context.Background())
+}
+
+func (i ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesArgs) ToResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesOutputWithContext(ctx context.Context) ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesOutput)
+}
+
+func (i ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesArgs) ToResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesPtrOutput() ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesPtrOutput {
+	return i.ToResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesPtrOutputWithContext(context.Background())
+}
+
+func (i ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesArgs) ToResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesPtrOutputWithContext(ctx context.Context) ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesOutput).ToResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesPtrOutputWithContext(ctx)
+}
+
+// ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesPtrInput is an input type that accepts ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesArgs, ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesPtr and ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesPtrOutput values.
+// You can construct a concrete instance of `ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesPtrInput` via:
+//
+//	        ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesArgs{...}
+//
+//	or:
+//
+//	        nil
+type ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesPtrInput interface {
+	pulumi.Input
+
+	ToResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesPtrOutput() ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesPtrOutput
+	ToResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesPtrOutputWithContext(context.Context) ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesPtrOutput
+}
+
+type resourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesPtrType ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesArgs
+
+func ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesPtr(v *ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesArgs) ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesPtrInput {
+	return (*resourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesPtrType)(v)
+}
+
+func (*resourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ResourcePoolsConfigPoolAllocationPriorityThresholdAllPriorities)(nil)).Elem()
+}
+
+func (i *resourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesPtrType) ToResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesPtrOutput() ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesPtrOutput {
+	return i.ToResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesPtrOutputWithContext(context.Background())
+}
+
+func (i *resourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesPtrType) ToResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesPtrOutputWithContext(ctx context.Context) ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesPtrOutput)
+}
+
+type ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesOutput struct{ *pulumi.OutputState }
+
+func (ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ResourcePoolsConfigPoolAllocationPriorityThresholdAllPriorities)(nil)).Elem()
+}
+
+func (o ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesOutput) ToResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesOutput() ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesOutput {
+	return o
+}
+
+func (o ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesOutput) ToResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesOutputWithContext(ctx context.Context) ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesOutput {
+	return o
+}
+
+func (o ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesOutput) ToResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesPtrOutput() ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesPtrOutput {
+	return o.ToResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesPtrOutputWithContext(context.Background())
+}
+
+func (o ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesOutput) ToResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesPtrOutputWithContext(ctx context.Context) ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ResourcePoolsConfigPoolAllocationPriorityThresholdAllPriorities) *ResourcePoolsConfigPoolAllocationPriorityThresholdAllPriorities {
+		return &v
+	}).(ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesPtrOutput)
+}
+
+func (o ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesOutput) FixedValue() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ResourcePoolsConfigPoolAllocationPriorityThresholdAllPriorities) *int { return v.FixedValue }).(pulumi.IntPtrOutput)
+}
+
+func (o ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesOutput) PercentOfPoolAllocation() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v ResourcePoolsConfigPoolAllocationPriorityThresholdAllPriorities) *float64 {
+		return v.PercentOfPoolAllocation
+	}).(pulumi.Float64PtrOutput)
+}
+
+type ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesPtrOutput struct{ *pulumi.OutputState }
+
+func (ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ResourcePoolsConfigPoolAllocationPriorityThresholdAllPriorities)(nil)).Elem()
+}
+
+func (o ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesPtrOutput) ToResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesPtrOutput() ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesPtrOutput {
+	return o
+}
+
+func (o ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesPtrOutput) ToResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesPtrOutputWithContext(ctx context.Context) ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesPtrOutput {
+	return o
+}
+
+func (o ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesPtrOutput) Elem() ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesOutput {
+	return o.ApplyT(func(v *ResourcePoolsConfigPoolAllocationPriorityThresholdAllPriorities) ResourcePoolsConfigPoolAllocationPriorityThresholdAllPriorities {
+		if v != nil {
+			return *v
+		}
+		var ret ResourcePoolsConfigPoolAllocationPriorityThresholdAllPriorities
+		return ret
+	}).(ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesOutput)
+}
+
+func (o ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesPtrOutput) FixedValue() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ResourcePoolsConfigPoolAllocationPriorityThresholdAllPriorities) *int {
+		if v == nil {
+			return nil
+		}
+		return v.FixedValue
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesPtrOutput) PercentOfPoolAllocation() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *ResourcePoolsConfigPoolAllocationPriorityThresholdAllPriorities) *float64 {
+		if v == nil {
+			return nil
+		}
+		return v.PercentOfPoolAllocation
+	}).(pulumi.Float64PtrOutput)
+}
+
+type ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriority struct {
+	FixedValue              *int     `pulumi:"fixedValue"`
+	PercentOfPoolAllocation *float64 `pulumi:"percentOfPoolAllocation"`
+}
+
+// ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityInput is an input type that accepts ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityArgs and ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityOutput values.
+// You can construct a concrete instance of `ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityInput` via:
+//
+//	ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityArgs{...}
+type ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityInput interface {
+	pulumi.Input
+
+	ToResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityOutput() ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityOutput
+	ToResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityOutputWithContext(context.Context) ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityOutput
+}
+
+type ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityArgs struct {
+	FixedValue              pulumi.IntPtrInput     `pulumi:"fixedValue"`
+	PercentOfPoolAllocation pulumi.Float64PtrInput `pulumi:"percentOfPoolAllocation"`
+}
+
+func (ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriority)(nil)).Elem()
+}
+
+func (i ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityArgs) ToResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityOutput() ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityOutput {
+	return i.ToResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityOutputWithContext(context.Background())
+}
+
+func (i ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityArgs) ToResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityOutputWithContext(ctx context.Context) ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityOutput)
+}
+
+func (i ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityArgs) ToResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutput() ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutput {
+	return i.ToResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutputWithContext(context.Background())
+}
+
+func (i ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityArgs) ToResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutputWithContext(ctx context.Context) ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityOutput).ToResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutputWithContext(ctx)
+}
+
+// ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrInput is an input type that accepts ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityArgs, ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityPtr and ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutput values.
+// You can construct a concrete instance of `ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrInput` via:
+//
+//	        ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityArgs{...}
+//
+//	or:
+//
+//	        nil
+type ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrInput interface {
+	pulumi.Input
+
+	ToResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutput() ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutput
+	ToResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutputWithContext(context.Context) ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutput
+}
+
+type resourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrType ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityArgs
+
+func ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityPtr(v *ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityArgs) ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrInput {
+	return (*resourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrType)(v)
+}
+
+func (*resourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriority)(nil)).Elem()
+}
+
+func (i *resourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrType) ToResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutput() ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutput {
+	return i.ToResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutputWithContext(context.Background())
+}
+
+func (i *resourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrType) ToResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutputWithContext(ctx context.Context) ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutput)
+}
+
+type ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityOutput struct{ *pulumi.OutputState }
+
+func (ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriority)(nil)).Elem()
+}
+
+func (o ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityOutput) ToResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityOutput() ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityOutput {
+	return o
+}
+
+func (o ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityOutput) ToResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityOutputWithContext(ctx context.Context) ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityOutput {
+	return o
+}
+
+func (o ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityOutput) ToResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutput() ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutput {
+	return o.ToResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutputWithContext(context.Background())
+}
+
+func (o ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityOutput) ToResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutputWithContext(ctx context.Context) ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriority) *ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriority {
+		return &v
+	}).(ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutput)
+}
+
+func (o ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityOutput) FixedValue() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriority) *int {
+		return v.FixedValue
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityOutput) PercentOfPoolAllocation() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriority) *float64 {
+		return v.PercentOfPoolAllocation
+	}).(pulumi.Float64PtrOutput)
+}
+
+type ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutput struct{ *pulumi.OutputState }
+
+func (ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriority)(nil)).Elem()
+}
+
+func (o ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutput) ToResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutput() ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutput {
+	return o
+}
+
+func (o ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutput) ToResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutputWithContext(ctx context.Context) ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutput {
+	return o
+}
+
+func (o ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutput) Elem() ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityOutput {
+	return o.ApplyT(func(v *ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriority) ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriority {
+		if v != nil {
+			return *v
+		}
+		var ret ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriority
+		return ret
+	}).(ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityOutput)
+}
+
+func (o ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutput) FixedValue() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriority) *int {
+		if v == nil {
+			return nil
+		}
+		return v.FixedValue
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutput) PercentOfPoolAllocation() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriority) *float64 {
+		if v == nil {
+			return nil
+		}
+		return v.PercentOfPoolAllocation
+	}).(pulumi.Float64PtrOutput)
+}
+
+type ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriority struct {
+	FixedValue              *int     `pulumi:"fixedValue"`
+	PercentOfPoolAllocation *float64 `pulumi:"percentOfPoolAllocation"`
+}
+
+// ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityInput is an input type that accepts ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityArgs and ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityOutput values.
+// You can construct a concrete instance of `ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityInput` via:
+//
+//	ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityArgs{...}
+type ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityInput interface {
+	pulumi.Input
+
+	ToResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityOutput() ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityOutput
+	ToResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityOutputWithContext(context.Context) ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityOutput
+}
+
+type ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityArgs struct {
+	FixedValue              pulumi.IntPtrInput     `pulumi:"fixedValue"`
+	PercentOfPoolAllocation pulumi.Float64PtrInput `pulumi:"percentOfPoolAllocation"`
+}
+
+func (ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriority)(nil)).Elem()
+}
+
+func (i ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityArgs) ToResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityOutput() ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityOutput {
+	return i.ToResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityOutputWithContext(context.Background())
+}
+
+func (i ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityArgs) ToResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityOutputWithContext(ctx context.Context) ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityOutput)
+}
+
+func (i ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityArgs) ToResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityPtrOutput() ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityPtrOutput {
+	return i.ToResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityPtrOutputWithContext(context.Background())
+}
+
+func (i ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityArgs) ToResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityPtrOutputWithContext(ctx context.Context) ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityOutput).ToResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityPtrOutputWithContext(ctx)
+}
+
+// ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityPtrInput is an input type that accepts ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityArgs, ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityPtr and ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityPtrOutput values.
+// You can construct a concrete instance of `ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityPtrInput` via:
+//
+//	        ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityArgs{...}
+//
+//	or:
+//
+//	        nil
+type ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityPtrInput interface {
+	pulumi.Input
+
+	ToResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityPtrOutput() ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityPtrOutput
+	ToResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityPtrOutputWithContext(context.Context) ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityPtrOutput
+}
+
+type resourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityPtrType ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityArgs
+
+func ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityPtr(v *ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityArgs) ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityPtrInput {
+	return (*resourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityPtrType)(v)
+}
+
+func (*resourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriority)(nil)).Elem()
+}
+
+func (i *resourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityPtrType) ToResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityPtrOutput() ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityPtrOutput {
+	return i.ToResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityPtrOutputWithContext(context.Background())
+}
+
+func (i *resourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityPtrType) ToResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityPtrOutputWithContext(ctx context.Context) ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityPtrOutput)
+}
+
+type ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityOutput struct{ *pulumi.OutputState }
+
+func (ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriority)(nil)).Elem()
+}
+
+func (o ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityOutput) ToResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityOutput() ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityOutput {
+	return o
+}
+
+func (o ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityOutput) ToResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityOutputWithContext(ctx context.Context) ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityOutput {
+	return o
+}
+
+func (o ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityOutput) ToResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityPtrOutput() ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityPtrOutput {
+	return o.ToResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityPtrOutputWithContext(context.Background())
+}
+
+func (o ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityOutput) ToResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityPtrOutputWithContext(ctx context.Context) ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriority) *ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriority {
+		return &v
+	}).(ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityPtrOutput)
+}
+
+func (o ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityOutput) FixedValue() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriority) *int { return v.FixedValue }).(pulumi.IntPtrOutput)
+}
+
+func (o ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityOutput) PercentOfPoolAllocation() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriority) *float64 {
+		return v.PercentOfPoolAllocation
+	}).(pulumi.Float64PtrOutput)
+}
+
+type ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityPtrOutput struct{ *pulumi.OutputState }
+
+func (ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriority)(nil)).Elem()
+}
+
+func (o ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityPtrOutput) ToResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityPtrOutput() ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityPtrOutput {
+	return o
+}
+
+func (o ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityPtrOutput) ToResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityPtrOutputWithContext(ctx context.Context) ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityPtrOutput {
+	return o
+}
+
+func (o ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityPtrOutput) Elem() ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityOutput {
+	return o.ApplyT(func(v *ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriority) ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriority {
+		if v != nil {
+			return *v
+		}
+		var ret ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriority
+		return ret
+	}).(ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityOutput)
+}
+
+func (o ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityPtrOutput) FixedValue() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriority) *int {
+		if v == nil {
+			return nil
+		}
+		return v.FixedValue
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityPtrOutput) PercentOfPoolAllocation() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriority) *float64 {
+		if v == nil {
+			return nil
+		}
+		return v.PercentOfPoolAllocation
+	}).(pulumi.Float64PtrOutput)
 }
 
 type ResourcePoolsConfigPoolPriorities struct {
@@ -19070,14 +20831,38 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ResourcePoolsConfigDefaultPoolAllocationPtrInput)(nil)).Elem(), ResourcePoolsConfigDefaultPoolAllocationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ResourcePoolsConfigDefaultPoolAllocationFixedValueInput)(nil)).Elem(), ResourcePoolsConfigDefaultPoolAllocationFixedValueArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ResourcePoolsConfigDefaultPoolAllocationFixedValueArrayInput)(nil)).Elem(), ResourcePoolsConfigDefaultPoolAllocationFixedValueArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdInput)(nil)).Elem(), ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdArrayInput)(nil)).Elem(), ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesInput)(nil)).Elem(), ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesPtrInput)(nil)).Elem(), ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityInput)(nil)).Elem(), ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrInput)(nil)).Elem(), ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityInput)(nil)).Elem(), ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityPtrInput)(nil)).Elem(), ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ResourcePoolsConfigDefaultPoolPrioritiesInput)(nil)).Elem(), ResourcePoolsConfigDefaultPoolPrioritiesArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ResourcePoolsConfigDefaultPoolPrioritiesPtrInput)(nil)).Elem(), ResourcePoolsConfigDefaultPoolPrioritiesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ResourcePoolsConfigDefaultPoolPriorityThresholdInput)(nil)).Elem(), ResourcePoolsConfigDefaultPoolPriorityThresholdArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ResourcePoolsConfigDefaultPoolPriorityThresholdArrayInput)(nil)).Elem(), ResourcePoolsConfigDefaultPoolPriorityThresholdArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesInput)(nil)).Elem(), ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesPtrInput)(nil)).Elem(), ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityInput)(nil)).Elem(), ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityPtrInput)(nil)).Elem(), ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityInput)(nil)).Elem(), ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityPtrInput)(nil)).Elem(), ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ResourcePoolsConfigPoolInput)(nil)).Elem(), ResourcePoolsConfigPoolArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ResourcePoolsConfigPoolArrayInput)(nil)).Elem(), ResourcePoolsConfigPoolArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ResourcePoolsConfigPoolAllocationInput)(nil)).Elem(), ResourcePoolsConfigPoolAllocationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ResourcePoolsConfigPoolAllocationPtrInput)(nil)).Elem(), ResourcePoolsConfigPoolAllocationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ResourcePoolsConfigPoolAllocationFixedValueInput)(nil)).Elem(), ResourcePoolsConfigPoolAllocationFixedValueArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ResourcePoolsConfigPoolAllocationFixedValueArrayInput)(nil)).Elem(), ResourcePoolsConfigPoolAllocationFixedValueArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ResourcePoolsConfigPoolAllocationPriorityThresholdInput)(nil)).Elem(), ResourcePoolsConfigPoolAllocationPriorityThresholdArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ResourcePoolsConfigPoolAllocationPriorityThresholdArrayInput)(nil)).Elem(), ResourcePoolsConfigPoolAllocationPriorityThresholdArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesInput)(nil)).Elem(), ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesPtrInput)(nil)).Elem(), ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityInput)(nil)).Elem(), ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrInput)(nil)).Elem(), ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityInput)(nil)).Elem(), ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityPtrInput)(nil)).Elem(), ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ResourcePoolsConfigPoolPrioritiesInput)(nil)).Elem(), ResourcePoolsConfigPoolPrioritiesArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ResourcePoolsConfigPoolPrioritiesPtrInput)(nil)).Elem(), ResourcePoolsConfigPoolPrioritiesArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RollupRuleGraphiteLabelPolicyInput)(nil)).Elem(), RollupRuleGraphiteLabelPolicyArgs{})
@@ -19345,14 +21130,38 @@ func init() {
 	pulumi.RegisterOutputType(ResourcePoolsConfigDefaultPoolAllocationPtrOutput{})
 	pulumi.RegisterOutputType(ResourcePoolsConfigDefaultPoolAllocationFixedValueOutput{})
 	pulumi.RegisterOutputType(ResourcePoolsConfigDefaultPoolAllocationFixedValueArrayOutput{})
+	pulumi.RegisterOutputType(ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdOutput{})
+	pulumi.RegisterOutputType(ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdArrayOutput{})
+	pulumi.RegisterOutputType(ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesOutput{})
+	pulumi.RegisterOutputType(ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesPtrOutput{})
+	pulumi.RegisterOutputType(ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityOutput{})
+	pulumi.RegisterOutputType(ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutput{})
+	pulumi.RegisterOutputType(ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityOutput{})
+	pulumi.RegisterOutputType(ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityPtrOutput{})
 	pulumi.RegisterOutputType(ResourcePoolsConfigDefaultPoolPrioritiesOutput{})
 	pulumi.RegisterOutputType(ResourcePoolsConfigDefaultPoolPrioritiesPtrOutput{})
+	pulumi.RegisterOutputType(ResourcePoolsConfigDefaultPoolPriorityThresholdOutput{})
+	pulumi.RegisterOutputType(ResourcePoolsConfigDefaultPoolPriorityThresholdArrayOutput{})
+	pulumi.RegisterOutputType(ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesOutput{})
+	pulumi.RegisterOutputType(ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesPtrOutput{})
+	pulumi.RegisterOutputType(ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityOutput{})
+	pulumi.RegisterOutputType(ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityPtrOutput{})
+	pulumi.RegisterOutputType(ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityOutput{})
+	pulumi.RegisterOutputType(ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityPtrOutput{})
 	pulumi.RegisterOutputType(ResourcePoolsConfigPoolOutput{})
 	pulumi.RegisterOutputType(ResourcePoolsConfigPoolArrayOutput{})
 	pulumi.RegisterOutputType(ResourcePoolsConfigPoolAllocationOutput{})
 	pulumi.RegisterOutputType(ResourcePoolsConfigPoolAllocationPtrOutput{})
 	pulumi.RegisterOutputType(ResourcePoolsConfigPoolAllocationFixedValueOutput{})
 	pulumi.RegisterOutputType(ResourcePoolsConfigPoolAllocationFixedValueArrayOutput{})
+	pulumi.RegisterOutputType(ResourcePoolsConfigPoolAllocationPriorityThresholdOutput{})
+	pulumi.RegisterOutputType(ResourcePoolsConfigPoolAllocationPriorityThresholdArrayOutput{})
+	pulumi.RegisterOutputType(ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesOutput{})
+	pulumi.RegisterOutputType(ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesPtrOutput{})
+	pulumi.RegisterOutputType(ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityOutput{})
+	pulumi.RegisterOutputType(ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityPtrOutput{})
+	pulumi.RegisterOutputType(ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityOutput{})
+	pulumi.RegisterOutputType(ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityPtrOutput{})
 	pulumi.RegisterOutputType(ResourcePoolsConfigPoolPrioritiesOutput{})
 	pulumi.RegisterOutputType(ResourcePoolsConfigPoolPrioritiesPtrOutput{})
 	pulumi.RegisterOutputType(RollupRuleGraphiteLabelPolicyOutput{})

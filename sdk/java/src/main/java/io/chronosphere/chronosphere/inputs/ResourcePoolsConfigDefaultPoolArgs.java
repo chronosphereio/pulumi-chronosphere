@@ -7,6 +7,8 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import io.chronosphere.chronosphere.inputs.ResourcePoolsConfigDefaultPoolAllocationArgs;
 import io.chronosphere.chronosphere.inputs.ResourcePoolsConfigDefaultPoolPrioritiesArgs;
+import io.chronosphere.chronosphere.inputs.ResourcePoolsConfigDefaultPoolPriorityThresholdArgs;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -30,11 +32,19 @@ public final class ResourcePoolsConfigDefaultPoolArgs extends com.pulumi.resourc
         return Optional.ofNullable(this.priorities);
     }
 
+    @Import(name="priorityThresholds")
+    private @Nullable Output<List<ResourcePoolsConfigDefaultPoolPriorityThresholdArgs>> priorityThresholds;
+
+    public Optional<Output<List<ResourcePoolsConfigDefaultPoolPriorityThresholdArgs>>> priorityThresholds() {
+        return Optional.ofNullable(this.priorityThresholds);
+    }
+
     private ResourcePoolsConfigDefaultPoolArgs() {}
 
     private ResourcePoolsConfigDefaultPoolArgs(ResourcePoolsConfigDefaultPoolArgs $) {
         this.allocation = $.allocation;
         this.priorities = $.priorities;
+        this.priorityThresholds = $.priorityThresholds;
     }
 
     public static Builder builder() {
@@ -71,6 +81,19 @@ public final class ResourcePoolsConfigDefaultPoolArgs extends com.pulumi.resourc
 
         public Builder priorities(ResourcePoolsConfigDefaultPoolPrioritiesArgs priorities) {
             return priorities(Output.of(priorities));
+        }
+
+        public Builder priorityThresholds(@Nullable Output<List<ResourcePoolsConfigDefaultPoolPriorityThresholdArgs>> priorityThresholds) {
+            $.priorityThresholds = priorityThresholds;
+            return this;
+        }
+
+        public Builder priorityThresholds(List<ResourcePoolsConfigDefaultPoolPriorityThresholdArgs> priorityThresholds) {
+            return priorityThresholds(Output.of(priorityThresholds));
+        }
+
+        public Builder priorityThresholds(ResourcePoolsConfigDefaultPoolPriorityThresholdArgs... priorityThresholds) {
+            return priorityThresholds(List.of(priorityThresholds));
         }
 
         public ResourcePoolsConfigDefaultPoolArgs build() {

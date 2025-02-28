@@ -89,10 +89,22 @@ __all__ = [
     'ResourcePoolsConfigDefaultPool',
     'ResourcePoolsConfigDefaultPoolAllocation',
     'ResourcePoolsConfigDefaultPoolAllocationFixedValue',
+    'ResourcePoolsConfigDefaultPoolAllocationPriorityThreshold',
+    'ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPriorities',
+    'ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriority',
+    'ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriority',
     'ResourcePoolsConfigDefaultPoolPriorities',
+    'ResourcePoolsConfigDefaultPoolPriorityThreshold',
+    'ResourcePoolsConfigDefaultPoolPriorityThresholdAllPriorities',
+    'ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriority',
+    'ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriority',
     'ResourcePoolsConfigPool',
     'ResourcePoolsConfigPoolAllocation',
     'ResourcePoolsConfigPoolAllocationFixedValue',
+    'ResourcePoolsConfigPoolAllocationPriorityThreshold',
+    'ResourcePoolsConfigPoolAllocationPriorityThresholdAllPriorities',
+    'ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriority',
+    'ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriority',
     'ResourcePoolsConfigPoolPriorities',
     'RollupRuleGraphiteLabelPolicy',
     'RollupRuleGraphiteLabelPolicyReplace',
@@ -2785,13 +2797,33 @@ class PagerdutyAlertNotifierLink(dict):
 
 @pulumi.output_type
 class ResourcePoolsConfigDefaultPool(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "priorityThresholds":
+            suggest = "priority_thresholds"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ResourcePoolsConfigDefaultPool. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ResourcePoolsConfigDefaultPool.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ResourcePoolsConfigDefaultPool.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  allocation: Optional['outputs.ResourcePoolsConfigDefaultPoolAllocation'] = None,
-                 priorities: Optional['outputs.ResourcePoolsConfigDefaultPoolPriorities'] = None):
+                 priorities: Optional['outputs.ResourcePoolsConfigDefaultPoolPriorities'] = None,
+                 priority_thresholds: Optional[Sequence['outputs.ResourcePoolsConfigDefaultPoolPriorityThreshold']] = None):
         if allocation is not None:
             pulumi.set(__self__, "allocation", allocation)
         if priorities is not None:
             pulumi.set(__self__, "priorities", priorities)
+        if priority_thresholds is not None:
+            pulumi.set(__self__, "priority_thresholds", priority_thresholds)
 
     @property
     @pulumi.getter
@@ -2803,6 +2835,11 @@ class ResourcePoolsConfigDefaultPool(dict):
     def priorities(self) -> Optional['outputs.ResourcePoolsConfigDefaultPoolPriorities']:
         return pulumi.get(self, "priorities")
 
+    @property
+    @pulumi.getter(name="priorityThresholds")
+    def priority_thresholds(self) -> Optional[Sequence['outputs.ResourcePoolsConfigDefaultPoolPriorityThreshold']]:
+        return pulumi.get(self, "priority_thresholds")
+
 
 @pulumi.output_type
 class ResourcePoolsConfigDefaultPoolAllocation(dict):
@@ -2813,6 +2850,8 @@ class ResourcePoolsConfigDefaultPoolAllocation(dict):
             suggest = "fixed_values"
         elif key == "percentOfLicense":
             suggest = "percent_of_license"
+        elif key == "priorityThresholds":
+            suggest = "priority_thresholds"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in ResourcePoolsConfigDefaultPoolAllocation. Access the value via the '{suggest}' property getter instead.")
@@ -2827,11 +2866,14 @@ class ResourcePoolsConfigDefaultPoolAllocation(dict):
 
     def __init__(__self__, *,
                  fixed_values: Optional[Sequence['outputs.ResourcePoolsConfigDefaultPoolAllocationFixedValue']] = None,
-                 percent_of_license: Optional[float] = None):
+                 percent_of_license: Optional[float] = None,
+                 priority_thresholds: Optional[Sequence['outputs.ResourcePoolsConfigDefaultPoolAllocationPriorityThreshold']] = None):
         if fixed_values is not None:
             pulumi.set(__self__, "fixed_values", fixed_values)
         if percent_of_license is not None:
             pulumi.set(__self__, "percent_of_license", percent_of_license)
+        if priority_thresholds is not None:
+            pulumi.set(__self__, "priority_thresholds", priority_thresholds)
 
     @property
     @pulumi.getter(name="fixedValues")
@@ -2842,6 +2884,11 @@ class ResourcePoolsConfigDefaultPoolAllocation(dict):
     @pulumi.getter(name="percentOfLicense")
     def percent_of_license(self) -> Optional[float]:
         return pulumi.get(self, "percent_of_license")
+
+    @property
+    @pulumi.getter(name="priorityThresholds")
+    def priority_thresholds(self) -> Optional[Sequence['outputs.ResourcePoolsConfigDefaultPoolAllocationPriorityThreshold']]:
+        return pulumi.get(self, "priority_thresholds")
 
 
 @pulumi.output_type
@@ -2861,6 +2908,183 @@ class ResourcePoolsConfigDefaultPoolAllocationFixedValue(dict):
     @pulumi.getter
     def value(self) -> int:
         return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class ResourcePoolsConfigDefaultPoolAllocationPriorityThreshold(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "allPriorities":
+            suggest = "all_priorities"
+        elif key == "defaultAndLowPriority":
+            suggest = "default_and_low_priority"
+        elif key == "lowPriority":
+            suggest = "low_priority"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ResourcePoolsConfigDefaultPoolAllocationPriorityThreshold. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ResourcePoolsConfigDefaultPoolAllocationPriorityThreshold.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ResourcePoolsConfigDefaultPoolAllocationPriorityThreshold.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 license: str,
+                 all_priorities: Optional['outputs.ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPriorities'] = None,
+                 default_and_low_priority: Optional['outputs.ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriority'] = None,
+                 low_priority: Optional['outputs.ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriority'] = None):
+        pulumi.set(__self__, "license", license)
+        if all_priorities is not None:
+            pulumi.set(__self__, "all_priorities", all_priorities)
+        if default_and_low_priority is not None:
+            pulumi.set(__self__, "default_and_low_priority", default_and_low_priority)
+        if low_priority is not None:
+            pulumi.set(__self__, "low_priority", low_priority)
+
+    @property
+    @pulumi.getter
+    def license(self) -> str:
+        return pulumi.get(self, "license")
+
+    @property
+    @pulumi.getter(name="allPriorities")
+    def all_priorities(self) -> Optional['outputs.ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPriorities']:
+        return pulumi.get(self, "all_priorities")
+
+    @property
+    @pulumi.getter(name="defaultAndLowPriority")
+    def default_and_low_priority(self) -> Optional['outputs.ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriority']:
+        return pulumi.get(self, "default_and_low_priority")
+
+    @property
+    @pulumi.getter(name="lowPriority")
+    def low_priority(self) -> Optional['outputs.ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriority']:
+        return pulumi.get(self, "low_priority")
+
+
+@pulumi.output_type
+class ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPriorities(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "fixedValue":
+            suggest = "fixed_value"
+        elif key == "percentOfPoolAllocation":
+            suggest = "percent_of_pool_allocation"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPriorities. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPriorities.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPriorities.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 fixed_value: Optional[int] = None,
+                 percent_of_pool_allocation: Optional[float] = None):
+        if fixed_value is not None:
+            pulumi.set(__self__, "fixed_value", fixed_value)
+        if percent_of_pool_allocation is not None:
+            pulumi.set(__self__, "percent_of_pool_allocation", percent_of_pool_allocation)
+
+    @property
+    @pulumi.getter(name="fixedValue")
+    def fixed_value(self) -> Optional[int]:
+        return pulumi.get(self, "fixed_value")
+
+    @property
+    @pulumi.getter(name="percentOfPoolAllocation")
+    def percent_of_pool_allocation(self) -> Optional[float]:
+        return pulumi.get(self, "percent_of_pool_allocation")
+
+
+@pulumi.output_type
+class ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriority(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "fixedValue":
+            suggest = "fixed_value"
+        elif key == "percentOfPoolAllocation":
+            suggest = "percent_of_pool_allocation"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriority. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriority.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriority.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 fixed_value: Optional[int] = None,
+                 percent_of_pool_allocation: Optional[float] = None):
+        if fixed_value is not None:
+            pulumi.set(__self__, "fixed_value", fixed_value)
+        if percent_of_pool_allocation is not None:
+            pulumi.set(__self__, "percent_of_pool_allocation", percent_of_pool_allocation)
+
+    @property
+    @pulumi.getter(name="fixedValue")
+    def fixed_value(self) -> Optional[int]:
+        return pulumi.get(self, "fixed_value")
+
+    @property
+    @pulumi.getter(name="percentOfPoolAllocation")
+    def percent_of_pool_allocation(self) -> Optional[float]:
+        return pulumi.get(self, "percent_of_pool_allocation")
+
+
+@pulumi.output_type
+class ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriority(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "fixedValue":
+            suggest = "fixed_value"
+        elif key == "percentOfPoolAllocation":
+            suggest = "percent_of_pool_allocation"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriority. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriority.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriority.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 fixed_value: Optional[int] = None,
+                 percent_of_pool_allocation: Optional[float] = None):
+        if fixed_value is not None:
+            pulumi.set(__self__, "fixed_value", fixed_value)
+        if percent_of_pool_allocation is not None:
+            pulumi.set(__self__, "percent_of_pool_allocation", percent_of_pool_allocation)
+
+    @property
+    @pulumi.getter(name="fixedValue")
+    def fixed_value(self) -> Optional[int]:
+        return pulumi.get(self, "fixed_value")
+
+    @property
+    @pulumi.getter(name="percentOfPoolAllocation")
+    def percent_of_pool_allocation(self) -> Optional[float]:
+        return pulumi.get(self, "percent_of_pool_allocation")
 
 
 @pulumi.output_type
@@ -2901,6 +3125,183 @@ class ResourcePoolsConfigDefaultPoolPriorities(dict):
     @pulumi.getter(name="lowPriorityMatchRules")
     def low_priority_match_rules(self) -> Optional[Sequence[str]]:
         return pulumi.get(self, "low_priority_match_rules")
+
+
+@pulumi.output_type
+class ResourcePoolsConfigDefaultPoolPriorityThreshold(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "allPriorities":
+            suggest = "all_priorities"
+        elif key == "defaultAndLowPriority":
+            suggest = "default_and_low_priority"
+        elif key == "lowPriority":
+            suggest = "low_priority"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ResourcePoolsConfigDefaultPoolPriorityThreshold. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ResourcePoolsConfigDefaultPoolPriorityThreshold.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ResourcePoolsConfigDefaultPoolPriorityThreshold.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 license: str,
+                 all_priorities: Optional['outputs.ResourcePoolsConfigDefaultPoolPriorityThresholdAllPriorities'] = None,
+                 default_and_low_priority: Optional['outputs.ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriority'] = None,
+                 low_priority: Optional['outputs.ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriority'] = None):
+        pulumi.set(__self__, "license", license)
+        if all_priorities is not None:
+            pulumi.set(__self__, "all_priorities", all_priorities)
+        if default_and_low_priority is not None:
+            pulumi.set(__self__, "default_and_low_priority", default_and_low_priority)
+        if low_priority is not None:
+            pulumi.set(__self__, "low_priority", low_priority)
+
+    @property
+    @pulumi.getter
+    def license(self) -> str:
+        return pulumi.get(self, "license")
+
+    @property
+    @pulumi.getter(name="allPriorities")
+    def all_priorities(self) -> Optional['outputs.ResourcePoolsConfigDefaultPoolPriorityThresholdAllPriorities']:
+        return pulumi.get(self, "all_priorities")
+
+    @property
+    @pulumi.getter(name="defaultAndLowPriority")
+    def default_and_low_priority(self) -> Optional['outputs.ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriority']:
+        return pulumi.get(self, "default_and_low_priority")
+
+    @property
+    @pulumi.getter(name="lowPriority")
+    def low_priority(self) -> Optional['outputs.ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriority']:
+        return pulumi.get(self, "low_priority")
+
+
+@pulumi.output_type
+class ResourcePoolsConfigDefaultPoolPriorityThresholdAllPriorities(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "fixedValue":
+            suggest = "fixed_value"
+        elif key == "percentOfPoolAllocation":
+            suggest = "percent_of_pool_allocation"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ResourcePoolsConfigDefaultPoolPriorityThresholdAllPriorities. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ResourcePoolsConfigDefaultPoolPriorityThresholdAllPriorities.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ResourcePoolsConfigDefaultPoolPriorityThresholdAllPriorities.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 fixed_value: Optional[int] = None,
+                 percent_of_pool_allocation: Optional[float] = None):
+        if fixed_value is not None:
+            pulumi.set(__self__, "fixed_value", fixed_value)
+        if percent_of_pool_allocation is not None:
+            pulumi.set(__self__, "percent_of_pool_allocation", percent_of_pool_allocation)
+
+    @property
+    @pulumi.getter(name="fixedValue")
+    def fixed_value(self) -> Optional[int]:
+        return pulumi.get(self, "fixed_value")
+
+    @property
+    @pulumi.getter(name="percentOfPoolAllocation")
+    def percent_of_pool_allocation(self) -> Optional[float]:
+        return pulumi.get(self, "percent_of_pool_allocation")
+
+
+@pulumi.output_type
+class ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriority(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "fixedValue":
+            suggest = "fixed_value"
+        elif key == "percentOfPoolAllocation":
+            suggest = "percent_of_pool_allocation"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriority. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriority.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriority.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 fixed_value: Optional[int] = None,
+                 percent_of_pool_allocation: Optional[float] = None):
+        if fixed_value is not None:
+            pulumi.set(__self__, "fixed_value", fixed_value)
+        if percent_of_pool_allocation is not None:
+            pulumi.set(__self__, "percent_of_pool_allocation", percent_of_pool_allocation)
+
+    @property
+    @pulumi.getter(name="fixedValue")
+    def fixed_value(self) -> Optional[int]:
+        return pulumi.get(self, "fixed_value")
+
+    @property
+    @pulumi.getter(name="percentOfPoolAllocation")
+    def percent_of_pool_allocation(self) -> Optional[float]:
+        return pulumi.get(self, "percent_of_pool_allocation")
+
+
+@pulumi.output_type
+class ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriority(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "fixedValue":
+            suggest = "fixed_value"
+        elif key == "percentOfPoolAllocation":
+            suggest = "percent_of_pool_allocation"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriority. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriority.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriority.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 fixed_value: Optional[int] = None,
+                 percent_of_pool_allocation: Optional[float] = None):
+        if fixed_value is not None:
+            pulumi.set(__self__, "fixed_value", fixed_value)
+        if percent_of_pool_allocation is not None:
+            pulumi.set(__self__, "percent_of_pool_allocation", percent_of_pool_allocation)
+
+    @property
+    @pulumi.getter(name="fixedValue")
+    def fixed_value(self) -> Optional[int]:
+        return pulumi.get(self, "fixed_value")
+
+    @property
+    @pulumi.getter(name="percentOfPoolAllocation")
+    def percent_of_pool_allocation(self) -> Optional[float]:
+        return pulumi.get(self, "percent_of_pool_allocation")
 
 
 @pulumi.output_type
@@ -2978,6 +3379,8 @@ class ResourcePoolsConfigPoolAllocation(dict):
             suggest = "fixed_values"
         elif key == "percentOfLicense":
             suggest = "percent_of_license"
+        elif key == "priorityThresholds":
+            suggest = "priority_thresholds"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in ResourcePoolsConfigPoolAllocation. Access the value via the '{suggest}' property getter instead.")
@@ -2992,11 +3395,14 @@ class ResourcePoolsConfigPoolAllocation(dict):
 
     def __init__(__self__, *,
                  fixed_values: Optional[Sequence['outputs.ResourcePoolsConfigPoolAllocationFixedValue']] = None,
-                 percent_of_license: Optional[float] = None):
+                 percent_of_license: Optional[float] = None,
+                 priority_thresholds: Optional[Sequence['outputs.ResourcePoolsConfigPoolAllocationPriorityThreshold']] = None):
         if fixed_values is not None:
             pulumi.set(__self__, "fixed_values", fixed_values)
         if percent_of_license is not None:
             pulumi.set(__self__, "percent_of_license", percent_of_license)
+        if priority_thresholds is not None:
+            pulumi.set(__self__, "priority_thresholds", priority_thresholds)
 
     @property
     @pulumi.getter(name="fixedValues")
@@ -3007,6 +3413,11 @@ class ResourcePoolsConfigPoolAllocation(dict):
     @pulumi.getter(name="percentOfLicense")
     def percent_of_license(self) -> Optional[float]:
         return pulumi.get(self, "percent_of_license")
+
+    @property
+    @pulumi.getter(name="priorityThresholds")
+    def priority_thresholds(self) -> Optional[Sequence['outputs.ResourcePoolsConfigPoolAllocationPriorityThreshold']]:
+        return pulumi.get(self, "priority_thresholds")
 
 
 @pulumi.output_type
@@ -3026,6 +3437,183 @@ class ResourcePoolsConfigPoolAllocationFixedValue(dict):
     @pulumi.getter
     def value(self) -> int:
         return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class ResourcePoolsConfigPoolAllocationPriorityThreshold(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "allPriorities":
+            suggest = "all_priorities"
+        elif key == "defaultAndLowPriority":
+            suggest = "default_and_low_priority"
+        elif key == "lowPriority":
+            suggest = "low_priority"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ResourcePoolsConfigPoolAllocationPriorityThreshold. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ResourcePoolsConfigPoolAllocationPriorityThreshold.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ResourcePoolsConfigPoolAllocationPriorityThreshold.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 license: str,
+                 all_priorities: Optional['outputs.ResourcePoolsConfigPoolAllocationPriorityThresholdAllPriorities'] = None,
+                 default_and_low_priority: Optional['outputs.ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriority'] = None,
+                 low_priority: Optional['outputs.ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriority'] = None):
+        pulumi.set(__self__, "license", license)
+        if all_priorities is not None:
+            pulumi.set(__self__, "all_priorities", all_priorities)
+        if default_and_low_priority is not None:
+            pulumi.set(__self__, "default_and_low_priority", default_and_low_priority)
+        if low_priority is not None:
+            pulumi.set(__self__, "low_priority", low_priority)
+
+    @property
+    @pulumi.getter
+    def license(self) -> str:
+        return pulumi.get(self, "license")
+
+    @property
+    @pulumi.getter(name="allPriorities")
+    def all_priorities(self) -> Optional['outputs.ResourcePoolsConfigPoolAllocationPriorityThresholdAllPriorities']:
+        return pulumi.get(self, "all_priorities")
+
+    @property
+    @pulumi.getter(name="defaultAndLowPriority")
+    def default_and_low_priority(self) -> Optional['outputs.ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriority']:
+        return pulumi.get(self, "default_and_low_priority")
+
+    @property
+    @pulumi.getter(name="lowPriority")
+    def low_priority(self) -> Optional['outputs.ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriority']:
+        return pulumi.get(self, "low_priority")
+
+
+@pulumi.output_type
+class ResourcePoolsConfigPoolAllocationPriorityThresholdAllPriorities(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "fixedValue":
+            suggest = "fixed_value"
+        elif key == "percentOfPoolAllocation":
+            suggest = "percent_of_pool_allocation"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ResourcePoolsConfigPoolAllocationPriorityThresholdAllPriorities. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ResourcePoolsConfigPoolAllocationPriorityThresholdAllPriorities.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ResourcePoolsConfigPoolAllocationPriorityThresholdAllPriorities.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 fixed_value: Optional[int] = None,
+                 percent_of_pool_allocation: Optional[float] = None):
+        if fixed_value is not None:
+            pulumi.set(__self__, "fixed_value", fixed_value)
+        if percent_of_pool_allocation is not None:
+            pulumi.set(__self__, "percent_of_pool_allocation", percent_of_pool_allocation)
+
+    @property
+    @pulumi.getter(name="fixedValue")
+    def fixed_value(self) -> Optional[int]:
+        return pulumi.get(self, "fixed_value")
+
+    @property
+    @pulumi.getter(name="percentOfPoolAllocation")
+    def percent_of_pool_allocation(self) -> Optional[float]:
+        return pulumi.get(self, "percent_of_pool_allocation")
+
+
+@pulumi.output_type
+class ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriority(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "fixedValue":
+            suggest = "fixed_value"
+        elif key == "percentOfPoolAllocation":
+            suggest = "percent_of_pool_allocation"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriority. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriority.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriority.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 fixed_value: Optional[int] = None,
+                 percent_of_pool_allocation: Optional[float] = None):
+        if fixed_value is not None:
+            pulumi.set(__self__, "fixed_value", fixed_value)
+        if percent_of_pool_allocation is not None:
+            pulumi.set(__self__, "percent_of_pool_allocation", percent_of_pool_allocation)
+
+    @property
+    @pulumi.getter(name="fixedValue")
+    def fixed_value(self) -> Optional[int]:
+        return pulumi.get(self, "fixed_value")
+
+    @property
+    @pulumi.getter(name="percentOfPoolAllocation")
+    def percent_of_pool_allocation(self) -> Optional[float]:
+        return pulumi.get(self, "percent_of_pool_allocation")
+
+
+@pulumi.output_type
+class ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriority(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "fixedValue":
+            suggest = "fixed_value"
+        elif key == "percentOfPoolAllocation":
+            suggest = "percent_of_pool_allocation"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriority. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriority.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriority.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 fixed_value: Optional[int] = None,
+                 percent_of_pool_allocation: Optional[float] = None):
+        if fixed_value is not None:
+            pulumi.set(__self__, "fixed_value", fixed_value)
+        if percent_of_pool_allocation is not None:
+            pulumi.set(__self__, "percent_of_pool_allocation", percent_of_pool_allocation)
+
+    @property
+    @pulumi.getter(name="fixedValue")
+    def fixed_value(self) -> Optional[int]:
+        return pulumi.get(self, "fixed_value")
+
+    @property
+    @pulumi.getter(name="percentOfPoolAllocation")
+    def percent_of_pool_allocation(self) -> Optional[float]:
+        return pulumi.get(self, "percent_of_pool_allocation")
 
 
 @pulumi.output_type

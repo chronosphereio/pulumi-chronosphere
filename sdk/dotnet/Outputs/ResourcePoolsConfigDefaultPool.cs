@@ -16,15 +16,19 @@ namespace Chronosphere.Pulumi.Outputs
     {
         public readonly Outputs.ResourcePoolsConfigDefaultPoolAllocation? Allocation;
         public readonly Outputs.ResourcePoolsConfigDefaultPoolPriorities? Priorities;
+        public readonly ImmutableArray<Outputs.ResourcePoolsConfigDefaultPoolPriorityThreshold> PriorityThresholds;
 
         [OutputConstructor]
         private ResourcePoolsConfigDefaultPool(
             Outputs.ResourcePoolsConfigDefaultPoolAllocation? allocation,
 
-            Outputs.ResourcePoolsConfigDefaultPoolPriorities? priorities)
+            Outputs.ResourcePoolsConfigDefaultPoolPriorities? priorities,
+
+            ImmutableArray<Outputs.ResourcePoolsConfigDefaultPoolPriorityThreshold> priorityThresholds)
         {
             Allocation = allocation;
             Priorities = priorities;
+            PriorityThresholds = priorityThresholds;
         }
     }
 }

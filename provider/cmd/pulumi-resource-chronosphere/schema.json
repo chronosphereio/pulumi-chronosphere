@@ -1316,6 +1316,12 @@
                 },
                 "priorities": {
                     "$ref": "#/types/chronosphere:index/ResourcePoolsConfigDefaultPoolPriorities:ResourcePoolsConfigDefaultPoolPriorities"
+                },
+                "priorityThresholds": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/chronosphere:index/ResourcePoolsConfigDefaultPoolPriorityThreshold:ResourcePoolsConfigDefaultPoolPriorityThreshold"
+                    }
                 }
             },
             "type": "object"
@@ -1330,6 +1336,12 @@
                 },
                 "percentOfLicense": {
                     "type": "number"
+                },
+                "priorityThresholds": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/chronosphere:index/ResourcePoolsConfigDefaultPoolAllocationPriorityThreshold:ResourcePoolsConfigDefaultPoolAllocationPriorityThreshold"
+                    }
                 }
             },
             "type": "object"
@@ -1349,6 +1361,59 @@
                 "value"
             ]
         },
+        "chronosphere:index/ResourcePoolsConfigDefaultPoolAllocationPriorityThreshold:ResourcePoolsConfigDefaultPoolAllocationPriorityThreshold": {
+            "properties": {
+                "allPriorities": {
+                    "$ref": "#/types/chronosphere:index/ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPriorities:ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPriorities"
+                },
+                "defaultAndLowPriority": {
+                    "$ref": "#/types/chronosphere:index/ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriority:ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriority"
+                },
+                "license": {
+                    "type": "string"
+                },
+                "lowPriority": {
+                    "$ref": "#/types/chronosphere:index/ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriority:ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriority"
+                }
+            },
+            "type": "object",
+            "required": [
+                "license"
+            ]
+        },
+        "chronosphere:index/ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPriorities:ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPriorities": {
+            "properties": {
+                "fixedValue": {
+                    "type": "integer"
+                },
+                "percentOfPoolAllocation": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "chronosphere:index/ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriority:ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriority": {
+            "properties": {
+                "fixedValue": {
+                    "type": "integer"
+                },
+                "percentOfPoolAllocation": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "chronosphere:index/ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriority:ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriority": {
+            "properties": {
+                "fixedValue": {
+                    "type": "integer"
+                },
+                "percentOfPoolAllocation": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
         "chronosphere:index/ResourcePoolsConfigDefaultPoolPriorities:ResourcePoolsConfigDefaultPoolPriorities": {
             "properties": {
                 "highPriorityMatchRules": {
@@ -1362,6 +1427,59 @@
                     "items": {
                         "type": "string"
                     }
+                }
+            },
+            "type": "object"
+        },
+        "chronosphere:index/ResourcePoolsConfigDefaultPoolPriorityThreshold:ResourcePoolsConfigDefaultPoolPriorityThreshold": {
+            "properties": {
+                "allPriorities": {
+                    "$ref": "#/types/chronosphere:index/ResourcePoolsConfigDefaultPoolPriorityThresholdAllPriorities:ResourcePoolsConfigDefaultPoolPriorityThresholdAllPriorities"
+                },
+                "defaultAndLowPriority": {
+                    "$ref": "#/types/chronosphere:index/ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriority:ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriority"
+                },
+                "license": {
+                    "type": "string"
+                },
+                "lowPriority": {
+                    "$ref": "#/types/chronosphere:index/ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriority:ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriority"
+                }
+            },
+            "type": "object",
+            "required": [
+                "license"
+            ]
+        },
+        "chronosphere:index/ResourcePoolsConfigDefaultPoolPriorityThresholdAllPriorities:ResourcePoolsConfigDefaultPoolPriorityThresholdAllPriorities": {
+            "properties": {
+                "fixedValue": {
+                    "type": "integer"
+                },
+                "percentOfPoolAllocation": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "chronosphere:index/ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriority:ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriority": {
+            "properties": {
+                "fixedValue": {
+                    "type": "integer"
+                },
+                "percentOfPoolAllocation": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "chronosphere:index/ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriority:ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriority": {
+            "properties": {
+                "fixedValue": {
+                    "type": "integer"
+                },
+                "percentOfPoolAllocation": {
+                    "type": "number"
                 }
             },
             "type": "object"
@@ -1403,6 +1521,12 @@
                 },
                 "percentOfLicense": {
                     "type": "number"
+                },
+                "priorityThresholds": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/chronosphere:index/ResourcePoolsConfigPoolAllocationPriorityThreshold:ResourcePoolsConfigPoolAllocationPriorityThreshold"
+                    }
                 }
             },
             "type": "object"
@@ -1421,6 +1545,59 @@
                 "license",
                 "value"
             ]
+        },
+        "chronosphere:index/ResourcePoolsConfigPoolAllocationPriorityThreshold:ResourcePoolsConfigPoolAllocationPriorityThreshold": {
+            "properties": {
+                "allPriorities": {
+                    "$ref": "#/types/chronosphere:index/ResourcePoolsConfigPoolAllocationPriorityThresholdAllPriorities:ResourcePoolsConfigPoolAllocationPriorityThresholdAllPriorities"
+                },
+                "defaultAndLowPriority": {
+                    "$ref": "#/types/chronosphere:index/ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriority:ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriority"
+                },
+                "license": {
+                    "type": "string"
+                },
+                "lowPriority": {
+                    "$ref": "#/types/chronosphere:index/ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriority:ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriority"
+                }
+            },
+            "type": "object",
+            "required": [
+                "license"
+            ]
+        },
+        "chronosphere:index/ResourcePoolsConfigPoolAllocationPriorityThresholdAllPriorities:ResourcePoolsConfigPoolAllocationPriorityThresholdAllPriorities": {
+            "properties": {
+                "fixedValue": {
+                    "type": "integer"
+                },
+                "percentOfPoolAllocation": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "chronosphere:index/ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriority:ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriority": {
+            "properties": {
+                "fixedValue": {
+                    "type": "integer"
+                },
+                "percentOfPoolAllocation": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "chronosphere:index/ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriority:ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriority": {
+            "properties": {
+                "fixedValue": {
+                    "type": "integer"
+                },
+                "percentOfPoolAllocation": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
         },
         "chronosphere:index/ResourcePoolsConfigPoolPriorities:ResourcePoolsConfigPoolPriorities": {
             "properties": {
