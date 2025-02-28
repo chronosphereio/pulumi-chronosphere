@@ -88,10 +88,22 @@ __all__ = [
     'ResourcePoolsConfigDefaultPoolArgs',
     'ResourcePoolsConfigDefaultPoolAllocationArgs',
     'ResourcePoolsConfigDefaultPoolAllocationFixedValueArgs',
+    'ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdArgs',
+    'ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesArgs',
+    'ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityArgs',
+    'ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityArgs',
     'ResourcePoolsConfigDefaultPoolPrioritiesArgs',
+    'ResourcePoolsConfigDefaultPoolPriorityThresholdArgs',
+    'ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesArgs',
+    'ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityArgs',
+    'ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityArgs',
     'ResourcePoolsConfigPoolArgs',
     'ResourcePoolsConfigPoolAllocationArgs',
     'ResourcePoolsConfigPoolAllocationFixedValueArgs',
+    'ResourcePoolsConfigPoolAllocationPriorityThresholdArgs',
+    'ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesArgs',
+    'ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityArgs',
+    'ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityArgs',
     'ResourcePoolsConfigPoolPrioritiesArgs',
     'RollupRuleGraphiteLabelPolicyArgs',
     'RollupRuleGraphiteLabelPolicyReplaceArgs',
@@ -2603,11 +2615,14 @@ class PagerdutyAlertNotifierLinkArgs:
 class ResourcePoolsConfigDefaultPoolArgs:
     def __init__(__self__, *,
                  allocation: Optional[pulumi.Input['ResourcePoolsConfigDefaultPoolAllocationArgs']] = None,
-                 priorities: Optional[pulumi.Input['ResourcePoolsConfigDefaultPoolPrioritiesArgs']] = None):
+                 priorities: Optional[pulumi.Input['ResourcePoolsConfigDefaultPoolPrioritiesArgs']] = None,
+                 priority_thresholds: Optional[pulumi.Input[Sequence[pulumi.Input['ResourcePoolsConfigDefaultPoolPriorityThresholdArgs']]]] = None):
         if allocation is not None:
             pulumi.set(__self__, "allocation", allocation)
         if priorities is not None:
             pulumi.set(__self__, "priorities", priorities)
+        if priority_thresholds is not None:
+            pulumi.set(__self__, "priority_thresholds", priority_thresholds)
 
     @property
     @pulumi.getter
@@ -2627,16 +2642,28 @@ class ResourcePoolsConfigDefaultPoolArgs:
     def priorities(self, value: Optional[pulumi.Input['ResourcePoolsConfigDefaultPoolPrioritiesArgs']]):
         pulumi.set(self, "priorities", value)
 
+    @property
+    @pulumi.getter(name="priorityThresholds")
+    def priority_thresholds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ResourcePoolsConfigDefaultPoolPriorityThresholdArgs']]]]:
+        return pulumi.get(self, "priority_thresholds")
+
+    @priority_thresholds.setter
+    def priority_thresholds(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ResourcePoolsConfigDefaultPoolPriorityThresholdArgs']]]]):
+        pulumi.set(self, "priority_thresholds", value)
+
 
 @pulumi.input_type
 class ResourcePoolsConfigDefaultPoolAllocationArgs:
     def __init__(__self__, *,
                  fixed_values: Optional[pulumi.Input[Sequence[pulumi.Input['ResourcePoolsConfigDefaultPoolAllocationFixedValueArgs']]]] = None,
-                 percent_of_license: Optional[pulumi.Input[float]] = None):
+                 percent_of_license: Optional[pulumi.Input[float]] = None,
+                 priority_thresholds: Optional[pulumi.Input[Sequence[pulumi.Input['ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdArgs']]]] = None):
         if fixed_values is not None:
             pulumi.set(__self__, "fixed_values", fixed_values)
         if percent_of_license is not None:
             pulumi.set(__self__, "percent_of_license", percent_of_license)
+        if priority_thresholds is not None:
+            pulumi.set(__self__, "priority_thresholds", priority_thresholds)
 
     @property
     @pulumi.getter(name="fixedValues")
@@ -2655,6 +2682,15 @@ class ResourcePoolsConfigDefaultPoolAllocationArgs:
     @percent_of_license.setter
     def percent_of_license(self, value: Optional[pulumi.Input[float]]):
         pulumi.set(self, "percent_of_license", value)
+
+    @property
+    @pulumi.getter(name="priorityThresholds")
+    def priority_thresholds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdArgs']]]]:
+        return pulumi.get(self, "priority_thresholds")
+
+    @priority_thresholds.setter
+    def priority_thresholds(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdArgs']]]]):
+        pulumi.set(self, "priority_thresholds", value)
 
 
 @pulumi.input_type
@@ -2685,6 +2721,145 @@ class ResourcePoolsConfigDefaultPoolAllocationFixedValueArgs:
 
 
 @pulumi.input_type
+class ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdArgs:
+    def __init__(__self__, *,
+                 license: pulumi.Input[str],
+                 all_priorities: Optional[pulumi.Input['ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesArgs']] = None,
+                 default_and_low_priority: Optional[pulumi.Input['ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityArgs']] = None,
+                 low_priority: Optional[pulumi.Input['ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityArgs']] = None):
+        pulumi.set(__self__, "license", license)
+        if all_priorities is not None:
+            pulumi.set(__self__, "all_priorities", all_priorities)
+        if default_and_low_priority is not None:
+            pulumi.set(__self__, "default_and_low_priority", default_and_low_priority)
+        if low_priority is not None:
+            pulumi.set(__self__, "low_priority", low_priority)
+
+    @property
+    @pulumi.getter
+    def license(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "license")
+
+    @license.setter
+    def license(self, value: pulumi.Input[str]):
+        pulumi.set(self, "license", value)
+
+    @property
+    @pulumi.getter(name="allPriorities")
+    def all_priorities(self) -> Optional[pulumi.Input['ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesArgs']]:
+        return pulumi.get(self, "all_priorities")
+
+    @all_priorities.setter
+    def all_priorities(self, value: Optional[pulumi.Input['ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesArgs']]):
+        pulumi.set(self, "all_priorities", value)
+
+    @property
+    @pulumi.getter(name="defaultAndLowPriority")
+    def default_and_low_priority(self) -> Optional[pulumi.Input['ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityArgs']]:
+        return pulumi.get(self, "default_and_low_priority")
+
+    @default_and_low_priority.setter
+    def default_and_low_priority(self, value: Optional[pulumi.Input['ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityArgs']]):
+        pulumi.set(self, "default_and_low_priority", value)
+
+    @property
+    @pulumi.getter(name="lowPriority")
+    def low_priority(self) -> Optional[pulumi.Input['ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityArgs']]:
+        return pulumi.get(self, "low_priority")
+
+    @low_priority.setter
+    def low_priority(self, value: Optional[pulumi.Input['ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityArgs']]):
+        pulumi.set(self, "low_priority", value)
+
+
+@pulumi.input_type
+class ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesArgs:
+    def __init__(__self__, *,
+                 fixed_value: Optional[pulumi.Input[int]] = None,
+                 percent_of_pool_allocation: Optional[pulumi.Input[float]] = None):
+        if fixed_value is not None:
+            pulumi.set(__self__, "fixed_value", fixed_value)
+        if percent_of_pool_allocation is not None:
+            pulumi.set(__self__, "percent_of_pool_allocation", percent_of_pool_allocation)
+
+    @property
+    @pulumi.getter(name="fixedValue")
+    def fixed_value(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "fixed_value")
+
+    @fixed_value.setter
+    def fixed_value(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "fixed_value", value)
+
+    @property
+    @pulumi.getter(name="percentOfPoolAllocation")
+    def percent_of_pool_allocation(self) -> Optional[pulumi.Input[float]]:
+        return pulumi.get(self, "percent_of_pool_allocation")
+
+    @percent_of_pool_allocation.setter
+    def percent_of_pool_allocation(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "percent_of_pool_allocation", value)
+
+
+@pulumi.input_type
+class ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityArgs:
+    def __init__(__self__, *,
+                 fixed_value: Optional[pulumi.Input[int]] = None,
+                 percent_of_pool_allocation: Optional[pulumi.Input[float]] = None):
+        if fixed_value is not None:
+            pulumi.set(__self__, "fixed_value", fixed_value)
+        if percent_of_pool_allocation is not None:
+            pulumi.set(__self__, "percent_of_pool_allocation", percent_of_pool_allocation)
+
+    @property
+    @pulumi.getter(name="fixedValue")
+    def fixed_value(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "fixed_value")
+
+    @fixed_value.setter
+    def fixed_value(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "fixed_value", value)
+
+    @property
+    @pulumi.getter(name="percentOfPoolAllocation")
+    def percent_of_pool_allocation(self) -> Optional[pulumi.Input[float]]:
+        return pulumi.get(self, "percent_of_pool_allocation")
+
+    @percent_of_pool_allocation.setter
+    def percent_of_pool_allocation(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "percent_of_pool_allocation", value)
+
+
+@pulumi.input_type
+class ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityArgs:
+    def __init__(__self__, *,
+                 fixed_value: Optional[pulumi.Input[int]] = None,
+                 percent_of_pool_allocation: Optional[pulumi.Input[float]] = None):
+        if fixed_value is not None:
+            pulumi.set(__self__, "fixed_value", fixed_value)
+        if percent_of_pool_allocation is not None:
+            pulumi.set(__self__, "percent_of_pool_allocation", percent_of_pool_allocation)
+
+    @property
+    @pulumi.getter(name="fixedValue")
+    def fixed_value(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "fixed_value")
+
+    @fixed_value.setter
+    def fixed_value(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "fixed_value", value)
+
+    @property
+    @pulumi.getter(name="percentOfPoolAllocation")
+    def percent_of_pool_allocation(self) -> Optional[pulumi.Input[float]]:
+        return pulumi.get(self, "percent_of_pool_allocation")
+
+    @percent_of_pool_allocation.setter
+    def percent_of_pool_allocation(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "percent_of_pool_allocation", value)
+
+
+@pulumi.input_type
 class ResourcePoolsConfigDefaultPoolPrioritiesArgs:
     def __init__(__self__, *,
                  high_priority_match_rules: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -2711,6 +2886,145 @@ class ResourcePoolsConfigDefaultPoolPrioritiesArgs:
     @low_priority_match_rules.setter
     def low_priority_match_rules(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "low_priority_match_rules", value)
+
+
+@pulumi.input_type
+class ResourcePoolsConfigDefaultPoolPriorityThresholdArgs:
+    def __init__(__self__, *,
+                 license: pulumi.Input[str],
+                 all_priorities: Optional[pulumi.Input['ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesArgs']] = None,
+                 default_and_low_priority: Optional[pulumi.Input['ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityArgs']] = None,
+                 low_priority: Optional[pulumi.Input['ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityArgs']] = None):
+        pulumi.set(__self__, "license", license)
+        if all_priorities is not None:
+            pulumi.set(__self__, "all_priorities", all_priorities)
+        if default_and_low_priority is not None:
+            pulumi.set(__self__, "default_and_low_priority", default_and_low_priority)
+        if low_priority is not None:
+            pulumi.set(__self__, "low_priority", low_priority)
+
+    @property
+    @pulumi.getter
+    def license(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "license")
+
+    @license.setter
+    def license(self, value: pulumi.Input[str]):
+        pulumi.set(self, "license", value)
+
+    @property
+    @pulumi.getter(name="allPriorities")
+    def all_priorities(self) -> Optional[pulumi.Input['ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesArgs']]:
+        return pulumi.get(self, "all_priorities")
+
+    @all_priorities.setter
+    def all_priorities(self, value: Optional[pulumi.Input['ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesArgs']]):
+        pulumi.set(self, "all_priorities", value)
+
+    @property
+    @pulumi.getter(name="defaultAndLowPriority")
+    def default_and_low_priority(self) -> Optional[pulumi.Input['ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityArgs']]:
+        return pulumi.get(self, "default_and_low_priority")
+
+    @default_and_low_priority.setter
+    def default_and_low_priority(self, value: Optional[pulumi.Input['ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityArgs']]):
+        pulumi.set(self, "default_and_low_priority", value)
+
+    @property
+    @pulumi.getter(name="lowPriority")
+    def low_priority(self) -> Optional[pulumi.Input['ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityArgs']]:
+        return pulumi.get(self, "low_priority")
+
+    @low_priority.setter
+    def low_priority(self, value: Optional[pulumi.Input['ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityArgs']]):
+        pulumi.set(self, "low_priority", value)
+
+
+@pulumi.input_type
+class ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesArgs:
+    def __init__(__self__, *,
+                 fixed_value: Optional[pulumi.Input[int]] = None,
+                 percent_of_pool_allocation: Optional[pulumi.Input[float]] = None):
+        if fixed_value is not None:
+            pulumi.set(__self__, "fixed_value", fixed_value)
+        if percent_of_pool_allocation is not None:
+            pulumi.set(__self__, "percent_of_pool_allocation", percent_of_pool_allocation)
+
+    @property
+    @pulumi.getter(name="fixedValue")
+    def fixed_value(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "fixed_value")
+
+    @fixed_value.setter
+    def fixed_value(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "fixed_value", value)
+
+    @property
+    @pulumi.getter(name="percentOfPoolAllocation")
+    def percent_of_pool_allocation(self) -> Optional[pulumi.Input[float]]:
+        return pulumi.get(self, "percent_of_pool_allocation")
+
+    @percent_of_pool_allocation.setter
+    def percent_of_pool_allocation(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "percent_of_pool_allocation", value)
+
+
+@pulumi.input_type
+class ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityArgs:
+    def __init__(__self__, *,
+                 fixed_value: Optional[pulumi.Input[int]] = None,
+                 percent_of_pool_allocation: Optional[pulumi.Input[float]] = None):
+        if fixed_value is not None:
+            pulumi.set(__self__, "fixed_value", fixed_value)
+        if percent_of_pool_allocation is not None:
+            pulumi.set(__self__, "percent_of_pool_allocation", percent_of_pool_allocation)
+
+    @property
+    @pulumi.getter(name="fixedValue")
+    def fixed_value(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "fixed_value")
+
+    @fixed_value.setter
+    def fixed_value(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "fixed_value", value)
+
+    @property
+    @pulumi.getter(name="percentOfPoolAllocation")
+    def percent_of_pool_allocation(self) -> Optional[pulumi.Input[float]]:
+        return pulumi.get(self, "percent_of_pool_allocation")
+
+    @percent_of_pool_allocation.setter
+    def percent_of_pool_allocation(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "percent_of_pool_allocation", value)
+
+
+@pulumi.input_type
+class ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityArgs:
+    def __init__(__self__, *,
+                 fixed_value: Optional[pulumi.Input[int]] = None,
+                 percent_of_pool_allocation: Optional[pulumi.Input[float]] = None):
+        if fixed_value is not None:
+            pulumi.set(__self__, "fixed_value", fixed_value)
+        if percent_of_pool_allocation is not None:
+            pulumi.set(__self__, "percent_of_pool_allocation", percent_of_pool_allocation)
+
+    @property
+    @pulumi.getter(name="fixedValue")
+    def fixed_value(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "fixed_value")
+
+    @fixed_value.setter
+    def fixed_value(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "fixed_value", value)
+
+    @property
+    @pulumi.getter(name="percentOfPoolAllocation")
+    def percent_of_pool_allocation(self) -> Optional[pulumi.Input[float]]:
+        return pulumi.get(self, "percent_of_pool_allocation")
+
+    @percent_of_pool_allocation.setter
+    def percent_of_pool_allocation(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "percent_of_pool_allocation", value)
 
 
 @pulumi.input_type
@@ -2787,11 +3101,14 @@ class ResourcePoolsConfigPoolArgs:
 class ResourcePoolsConfigPoolAllocationArgs:
     def __init__(__self__, *,
                  fixed_values: Optional[pulumi.Input[Sequence[pulumi.Input['ResourcePoolsConfigPoolAllocationFixedValueArgs']]]] = None,
-                 percent_of_license: Optional[pulumi.Input[float]] = None):
+                 percent_of_license: Optional[pulumi.Input[float]] = None,
+                 priority_thresholds: Optional[pulumi.Input[Sequence[pulumi.Input['ResourcePoolsConfigPoolAllocationPriorityThresholdArgs']]]] = None):
         if fixed_values is not None:
             pulumi.set(__self__, "fixed_values", fixed_values)
         if percent_of_license is not None:
             pulumi.set(__self__, "percent_of_license", percent_of_license)
+        if priority_thresholds is not None:
+            pulumi.set(__self__, "priority_thresholds", priority_thresholds)
 
     @property
     @pulumi.getter(name="fixedValues")
@@ -2810,6 +3127,15 @@ class ResourcePoolsConfigPoolAllocationArgs:
     @percent_of_license.setter
     def percent_of_license(self, value: Optional[pulumi.Input[float]]):
         pulumi.set(self, "percent_of_license", value)
+
+    @property
+    @pulumi.getter(name="priorityThresholds")
+    def priority_thresholds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ResourcePoolsConfigPoolAllocationPriorityThresholdArgs']]]]:
+        return pulumi.get(self, "priority_thresholds")
+
+    @priority_thresholds.setter
+    def priority_thresholds(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ResourcePoolsConfigPoolAllocationPriorityThresholdArgs']]]]):
+        pulumi.set(self, "priority_thresholds", value)
 
 
 @pulumi.input_type
@@ -2837,6 +3163,145 @@ class ResourcePoolsConfigPoolAllocationFixedValueArgs:
     @value.setter
     def value(self, value: pulumi.Input[int]):
         pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ResourcePoolsConfigPoolAllocationPriorityThresholdArgs:
+    def __init__(__self__, *,
+                 license: pulumi.Input[str],
+                 all_priorities: Optional[pulumi.Input['ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesArgs']] = None,
+                 default_and_low_priority: Optional[pulumi.Input['ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityArgs']] = None,
+                 low_priority: Optional[pulumi.Input['ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityArgs']] = None):
+        pulumi.set(__self__, "license", license)
+        if all_priorities is not None:
+            pulumi.set(__self__, "all_priorities", all_priorities)
+        if default_and_low_priority is not None:
+            pulumi.set(__self__, "default_and_low_priority", default_and_low_priority)
+        if low_priority is not None:
+            pulumi.set(__self__, "low_priority", low_priority)
+
+    @property
+    @pulumi.getter
+    def license(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "license")
+
+    @license.setter
+    def license(self, value: pulumi.Input[str]):
+        pulumi.set(self, "license", value)
+
+    @property
+    @pulumi.getter(name="allPriorities")
+    def all_priorities(self) -> Optional[pulumi.Input['ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesArgs']]:
+        return pulumi.get(self, "all_priorities")
+
+    @all_priorities.setter
+    def all_priorities(self, value: Optional[pulumi.Input['ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesArgs']]):
+        pulumi.set(self, "all_priorities", value)
+
+    @property
+    @pulumi.getter(name="defaultAndLowPriority")
+    def default_and_low_priority(self) -> Optional[pulumi.Input['ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityArgs']]:
+        return pulumi.get(self, "default_and_low_priority")
+
+    @default_and_low_priority.setter
+    def default_and_low_priority(self, value: Optional[pulumi.Input['ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityArgs']]):
+        pulumi.set(self, "default_and_low_priority", value)
+
+    @property
+    @pulumi.getter(name="lowPriority")
+    def low_priority(self) -> Optional[pulumi.Input['ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityArgs']]:
+        return pulumi.get(self, "low_priority")
+
+    @low_priority.setter
+    def low_priority(self, value: Optional[pulumi.Input['ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityArgs']]):
+        pulumi.set(self, "low_priority", value)
+
+
+@pulumi.input_type
+class ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesArgs:
+    def __init__(__self__, *,
+                 fixed_value: Optional[pulumi.Input[int]] = None,
+                 percent_of_pool_allocation: Optional[pulumi.Input[float]] = None):
+        if fixed_value is not None:
+            pulumi.set(__self__, "fixed_value", fixed_value)
+        if percent_of_pool_allocation is not None:
+            pulumi.set(__self__, "percent_of_pool_allocation", percent_of_pool_allocation)
+
+    @property
+    @pulumi.getter(name="fixedValue")
+    def fixed_value(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "fixed_value")
+
+    @fixed_value.setter
+    def fixed_value(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "fixed_value", value)
+
+    @property
+    @pulumi.getter(name="percentOfPoolAllocation")
+    def percent_of_pool_allocation(self) -> Optional[pulumi.Input[float]]:
+        return pulumi.get(self, "percent_of_pool_allocation")
+
+    @percent_of_pool_allocation.setter
+    def percent_of_pool_allocation(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "percent_of_pool_allocation", value)
+
+
+@pulumi.input_type
+class ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityArgs:
+    def __init__(__self__, *,
+                 fixed_value: Optional[pulumi.Input[int]] = None,
+                 percent_of_pool_allocation: Optional[pulumi.Input[float]] = None):
+        if fixed_value is not None:
+            pulumi.set(__self__, "fixed_value", fixed_value)
+        if percent_of_pool_allocation is not None:
+            pulumi.set(__self__, "percent_of_pool_allocation", percent_of_pool_allocation)
+
+    @property
+    @pulumi.getter(name="fixedValue")
+    def fixed_value(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "fixed_value")
+
+    @fixed_value.setter
+    def fixed_value(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "fixed_value", value)
+
+    @property
+    @pulumi.getter(name="percentOfPoolAllocation")
+    def percent_of_pool_allocation(self) -> Optional[pulumi.Input[float]]:
+        return pulumi.get(self, "percent_of_pool_allocation")
+
+    @percent_of_pool_allocation.setter
+    def percent_of_pool_allocation(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "percent_of_pool_allocation", value)
+
+
+@pulumi.input_type
+class ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityArgs:
+    def __init__(__self__, *,
+                 fixed_value: Optional[pulumi.Input[int]] = None,
+                 percent_of_pool_allocation: Optional[pulumi.Input[float]] = None):
+        if fixed_value is not None:
+            pulumi.set(__self__, "fixed_value", fixed_value)
+        if percent_of_pool_allocation is not None:
+            pulumi.set(__self__, "percent_of_pool_allocation", percent_of_pool_allocation)
+
+    @property
+    @pulumi.getter(name="fixedValue")
+    def fixed_value(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "fixed_value")
+
+    @fixed_value.setter
+    def fixed_value(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "fixed_value", value)
+
+    @property
+    @pulumi.getter(name="percentOfPoolAllocation")
+    def percent_of_pool_allocation(self) -> Optional[pulumi.Input[float]]:
+        return pulumi.get(self, "percent_of_pool_allocation")
+
+    @percent_of_pool_allocation.setter
+    def percent_of_pool_allocation(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "percent_of_pool_allocation", value)
 
 
 @pulumi.input_type

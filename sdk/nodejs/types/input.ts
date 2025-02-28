@@ -412,11 +412,13 @@ export interface PagerdutyAlertNotifierLink {
 export interface ResourcePoolsConfigDefaultPool {
     allocation?: pulumi.Input<inputs.ResourcePoolsConfigDefaultPoolAllocation>;
     priorities?: pulumi.Input<inputs.ResourcePoolsConfigDefaultPoolPriorities>;
+    priorityThresholds?: pulumi.Input<pulumi.Input<inputs.ResourcePoolsConfigDefaultPoolPriorityThreshold>[]>;
 }
 
 export interface ResourcePoolsConfigDefaultPoolAllocation {
     fixedValues?: pulumi.Input<pulumi.Input<inputs.ResourcePoolsConfigDefaultPoolAllocationFixedValue>[]>;
     percentOfLicense?: pulumi.Input<number>;
+    priorityThresholds?: pulumi.Input<pulumi.Input<inputs.ResourcePoolsConfigDefaultPoolAllocationPriorityThreshold>[]>;
 }
 
 export interface ResourcePoolsConfigDefaultPoolAllocationFixedValue {
@@ -424,9 +426,53 @@ export interface ResourcePoolsConfigDefaultPoolAllocationFixedValue {
     value: pulumi.Input<number>;
 }
 
+export interface ResourcePoolsConfigDefaultPoolAllocationPriorityThreshold {
+    allPriorities?: pulumi.Input<inputs.ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPriorities>;
+    defaultAndLowPriority?: pulumi.Input<inputs.ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriority>;
+    license: pulumi.Input<string>;
+    lowPriority?: pulumi.Input<inputs.ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriority>;
+}
+
+export interface ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPriorities {
+    fixedValue?: pulumi.Input<number>;
+    percentOfPoolAllocation?: pulumi.Input<number>;
+}
+
+export interface ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriority {
+    fixedValue?: pulumi.Input<number>;
+    percentOfPoolAllocation?: pulumi.Input<number>;
+}
+
+export interface ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriority {
+    fixedValue?: pulumi.Input<number>;
+    percentOfPoolAllocation?: pulumi.Input<number>;
+}
+
 export interface ResourcePoolsConfigDefaultPoolPriorities {
     highPriorityMatchRules?: pulumi.Input<pulumi.Input<string>[]>;
     lowPriorityMatchRules?: pulumi.Input<pulumi.Input<string>[]>;
+}
+
+export interface ResourcePoolsConfigDefaultPoolPriorityThreshold {
+    allPriorities?: pulumi.Input<inputs.ResourcePoolsConfigDefaultPoolPriorityThresholdAllPriorities>;
+    defaultAndLowPriority?: pulumi.Input<inputs.ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriority>;
+    license: pulumi.Input<string>;
+    lowPriority?: pulumi.Input<inputs.ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriority>;
+}
+
+export interface ResourcePoolsConfigDefaultPoolPriorityThresholdAllPriorities {
+    fixedValue?: pulumi.Input<number>;
+    percentOfPoolAllocation?: pulumi.Input<number>;
+}
+
+export interface ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriority {
+    fixedValue?: pulumi.Input<number>;
+    percentOfPoolAllocation?: pulumi.Input<number>;
+}
+
+export interface ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriority {
+    fixedValue?: pulumi.Input<number>;
+    percentOfPoolAllocation?: pulumi.Input<number>;
 }
 
 export interface ResourcePoolsConfigPool {
@@ -443,11 +489,34 @@ export interface ResourcePoolsConfigPool {
 export interface ResourcePoolsConfigPoolAllocation {
     fixedValues?: pulumi.Input<pulumi.Input<inputs.ResourcePoolsConfigPoolAllocationFixedValue>[]>;
     percentOfLicense?: pulumi.Input<number>;
+    priorityThresholds?: pulumi.Input<pulumi.Input<inputs.ResourcePoolsConfigPoolAllocationPriorityThreshold>[]>;
 }
 
 export interface ResourcePoolsConfigPoolAllocationFixedValue {
     license: pulumi.Input<string>;
     value: pulumi.Input<number>;
+}
+
+export interface ResourcePoolsConfigPoolAllocationPriorityThreshold {
+    allPriorities?: pulumi.Input<inputs.ResourcePoolsConfigPoolAllocationPriorityThresholdAllPriorities>;
+    defaultAndLowPriority?: pulumi.Input<inputs.ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriority>;
+    license: pulumi.Input<string>;
+    lowPriority?: pulumi.Input<inputs.ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriority>;
+}
+
+export interface ResourcePoolsConfigPoolAllocationPriorityThresholdAllPriorities {
+    fixedValue?: pulumi.Input<number>;
+    percentOfPoolAllocation?: pulumi.Input<number>;
+}
+
+export interface ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriority {
+    fixedValue?: pulumi.Input<number>;
+    percentOfPoolAllocation?: pulumi.Input<number>;
+}
+
+export interface ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriority {
+    fixedValue?: pulumi.Input<number>;
+    percentOfPoolAllocation?: pulumi.Input<number>;
 }
 
 export interface ResourcePoolsConfigPoolPriorities {

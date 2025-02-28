@@ -412,11 +412,13 @@ export interface PagerdutyAlertNotifierLink {
 export interface ResourcePoolsConfigDefaultPool {
     allocation?: outputs.ResourcePoolsConfigDefaultPoolAllocation;
     priorities?: outputs.ResourcePoolsConfigDefaultPoolPriorities;
+    priorityThresholds?: outputs.ResourcePoolsConfigDefaultPoolPriorityThreshold[];
 }
 
 export interface ResourcePoolsConfigDefaultPoolAllocation {
     fixedValues?: outputs.ResourcePoolsConfigDefaultPoolAllocationFixedValue[];
     percentOfLicense?: number;
+    priorityThresholds?: outputs.ResourcePoolsConfigDefaultPoolAllocationPriorityThreshold[];
 }
 
 export interface ResourcePoolsConfigDefaultPoolAllocationFixedValue {
@@ -424,9 +426,53 @@ export interface ResourcePoolsConfigDefaultPoolAllocationFixedValue {
     value: number;
 }
 
+export interface ResourcePoolsConfigDefaultPoolAllocationPriorityThreshold {
+    allPriorities?: outputs.ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPriorities;
+    defaultAndLowPriority?: outputs.ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriority;
+    license: string;
+    lowPriority?: outputs.ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriority;
+}
+
+export interface ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPriorities {
+    fixedValue?: number;
+    percentOfPoolAllocation?: number;
+}
+
+export interface ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriority {
+    fixedValue?: number;
+    percentOfPoolAllocation?: number;
+}
+
+export interface ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriority {
+    fixedValue?: number;
+    percentOfPoolAllocation?: number;
+}
+
 export interface ResourcePoolsConfigDefaultPoolPriorities {
     highPriorityMatchRules?: string[];
     lowPriorityMatchRules?: string[];
+}
+
+export interface ResourcePoolsConfigDefaultPoolPriorityThreshold {
+    allPriorities?: outputs.ResourcePoolsConfigDefaultPoolPriorityThresholdAllPriorities;
+    defaultAndLowPriority?: outputs.ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriority;
+    license: string;
+    lowPriority?: outputs.ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriority;
+}
+
+export interface ResourcePoolsConfigDefaultPoolPriorityThresholdAllPriorities {
+    fixedValue?: number;
+    percentOfPoolAllocation?: number;
+}
+
+export interface ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriority {
+    fixedValue?: number;
+    percentOfPoolAllocation?: number;
+}
+
+export interface ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriority {
+    fixedValue?: number;
+    percentOfPoolAllocation?: number;
 }
 
 export interface ResourcePoolsConfigPool {
@@ -443,11 +489,34 @@ export interface ResourcePoolsConfigPool {
 export interface ResourcePoolsConfigPoolAllocation {
     fixedValues?: outputs.ResourcePoolsConfigPoolAllocationFixedValue[];
     percentOfLicense?: number;
+    priorityThresholds?: outputs.ResourcePoolsConfigPoolAllocationPriorityThreshold[];
 }
 
 export interface ResourcePoolsConfigPoolAllocationFixedValue {
     license: string;
     value: number;
+}
+
+export interface ResourcePoolsConfigPoolAllocationPriorityThreshold {
+    allPriorities?: outputs.ResourcePoolsConfigPoolAllocationPriorityThresholdAllPriorities;
+    defaultAndLowPriority?: outputs.ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriority;
+    license: string;
+    lowPriority?: outputs.ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriority;
+}
+
+export interface ResourcePoolsConfigPoolAllocationPriorityThresholdAllPriorities {
+    fixedValue?: number;
+    percentOfPoolAllocation?: number;
+}
+
+export interface ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriority {
+    fixedValue?: number;
+    percentOfPoolAllocation?: number;
+}
+
+export interface ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriority {
+    fixedValue?: number;
+    percentOfPoolAllocation?: number;
 }
 
 export interface ResourcePoolsConfigPoolPriorities {

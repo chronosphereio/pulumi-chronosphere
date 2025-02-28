@@ -5,6 +5,7 @@ package io.chronosphere.chronosphere.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import io.chronosphere.chronosphere.outputs.ResourcePoolsConfigPoolAllocationFixedValue;
+import io.chronosphere.chronosphere.outputs.ResourcePoolsConfigPoolAllocationPriorityThreshold;
 import java.lang.Double;
 import java.util.List;
 import java.util.Objects;
@@ -15,6 +16,7 @@ import javax.annotation.Nullable;
 public final class ResourcePoolsConfigPoolAllocation {
     private @Nullable List<ResourcePoolsConfigPoolAllocationFixedValue> fixedValues;
     private @Nullable Double percentOfLicense;
+    private @Nullable List<ResourcePoolsConfigPoolAllocationPriorityThreshold> priorityThresholds;
 
     private ResourcePoolsConfigPoolAllocation() {}
     public List<ResourcePoolsConfigPoolAllocationFixedValue> fixedValues() {
@@ -22,6 +24,9 @@ public final class ResourcePoolsConfigPoolAllocation {
     }
     public Optional<Double> percentOfLicense() {
         return Optional.ofNullable(this.percentOfLicense);
+    }
+    public List<ResourcePoolsConfigPoolAllocationPriorityThreshold> priorityThresholds() {
+        return this.priorityThresholds == null ? List.of() : this.priorityThresholds;
     }
 
     public static Builder builder() {
@@ -35,11 +40,13 @@ public final class ResourcePoolsConfigPoolAllocation {
     public static final class Builder {
         private @Nullable List<ResourcePoolsConfigPoolAllocationFixedValue> fixedValues;
         private @Nullable Double percentOfLicense;
+        private @Nullable List<ResourcePoolsConfigPoolAllocationPriorityThreshold> priorityThresholds;
         public Builder() {}
         public Builder(ResourcePoolsConfigPoolAllocation defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.fixedValues = defaults.fixedValues;
     	      this.percentOfLicense = defaults.percentOfLicense;
+    	      this.priorityThresholds = defaults.priorityThresholds;
         }
 
         @CustomType.Setter
@@ -55,10 +62,19 @@ public final class ResourcePoolsConfigPoolAllocation {
             this.percentOfLicense = percentOfLicense;
             return this;
         }
+        @CustomType.Setter
+        public Builder priorityThresholds(@Nullable List<ResourcePoolsConfigPoolAllocationPriorityThreshold> priorityThresholds) {
+            this.priorityThresholds = priorityThresholds;
+            return this;
+        }
+        public Builder priorityThresholds(ResourcePoolsConfigPoolAllocationPriorityThreshold... priorityThresholds) {
+            return priorityThresholds(List.of(priorityThresholds));
+        }
         public ResourcePoolsConfigPoolAllocation build() {
             final var o = new ResourcePoolsConfigPoolAllocation();
             o.fixedValues = fixedValues;
             o.percentOfLicense = percentOfLicense;
+            o.priorityThresholds = priorityThresholds;
             return o;
         }
     }

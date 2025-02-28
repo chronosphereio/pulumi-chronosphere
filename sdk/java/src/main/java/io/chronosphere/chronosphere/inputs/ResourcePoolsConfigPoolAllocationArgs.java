@@ -6,6 +6,7 @@ package io.chronosphere.chronosphere.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import io.chronosphere.chronosphere.inputs.ResourcePoolsConfigPoolAllocationFixedValueArgs;
+import io.chronosphere.chronosphere.inputs.ResourcePoolsConfigPoolAllocationPriorityThresholdArgs;
 import java.lang.Double;
 import java.util.List;
 import java.util.Objects;
@@ -31,11 +32,19 @@ public final class ResourcePoolsConfigPoolAllocationArgs extends com.pulumi.reso
         return Optional.ofNullable(this.percentOfLicense);
     }
 
+    @Import(name="priorityThresholds")
+    private @Nullable Output<List<ResourcePoolsConfigPoolAllocationPriorityThresholdArgs>> priorityThresholds;
+
+    public Optional<Output<List<ResourcePoolsConfigPoolAllocationPriorityThresholdArgs>>> priorityThresholds() {
+        return Optional.ofNullable(this.priorityThresholds);
+    }
+
     private ResourcePoolsConfigPoolAllocationArgs() {}
 
     private ResourcePoolsConfigPoolAllocationArgs(ResourcePoolsConfigPoolAllocationArgs $) {
         this.fixedValues = $.fixedValues;
         this.percentOfLicense = $.percentOfLicense;
+        this.priorityThresholds = $.priorityThresholds;
     }
 
     public static Builder builder() {
@@ -76,6 +85,19 @@ public final class ResourcePoolsConfigPoolAllocationArgs extends com.pulumi.reso
 
         public Builder percentOfLicense(Double percentOfLicense) {
             return percentOfLicense(Output.of(percentOfLicense));
+        }
+
+        public Builder priorityThresholds(@Nullable Output<List<ResourcePoolsConfigPoolAllocationPriorityThresholdArgs>> priorityThresholds) {
+            $.priorityThresholds = priorityThresholds;
+            return this;
+        }
+
+        public Builder priorityThresholds(List<ResourcePoolsConfigPoolAllocationPriorityThresholdArgs> priorityThresholds) {
+            return priorityThresholds(Output.of(priorityThresholds));
+        }
+
+        public Builder priorityThresholds(ResourcePoolsConfigPoolAllocationPriorityThresholdArgs... priorityThresholds) {
+            return priorityThresholds(List.of(priorityThresholds));
         }
 
         public ResourcePoolsConfigPoolAllocationArgs build() {

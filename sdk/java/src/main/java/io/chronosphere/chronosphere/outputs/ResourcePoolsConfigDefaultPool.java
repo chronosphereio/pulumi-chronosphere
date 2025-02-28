@@ -6,6 +6,8 @@ package io.chronosphere.chronosphere.outputs;
 import com.pulumi.core.annotations.CustomType;
 import io.chronosphere.chronosphere.outputs.ResourcePoolsConfigDefaultPoolAllocation;
 import io.chronosphere.chronosphere.outputs.ResourcePoolsConfigDefaultPoolPriorities;
+import io.chronosphere.chronosphere.outputs.ResourcePoolsConfigDefaultPoolPriorityThreshold;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -14,6 +16,7 @@ import javax.annotation.Nullable;
 public final class ResourcePoolsConfigDefaultPool {
     private @Nullable ResourcePoolsConfigDefaultPoolAllocation allocation;
     private @Nullable ResourcePoolsConfigDefaultPoolPriorities priorities;
+    private @Nullable List<ResourcePoolsConfigDefaultPoolPriorityThreshold> priorityThresholds;
 
     private ResourcePoolsConfigDefaultPool() {}
     public Optional<ResourcePoolsConfigDefaultPoolAllocation> allocation() {
@@ -21,6 +24,9 @@ public final class ResourcePoolsConfigDefaultPool {
     }
     public Optional<ResourcePoolsConfigDefaultPoolPriorities> priorities() {
         return Optional.ofNullable(this.priorities);
+    }
+    public List<ResourcePoolsConfigDefaultPoolPriorityThreshold> priorityThresholds() {
+        return this.priorityThresholds == null ? List.of() : this.priorityThresholds;
     }
 
     public static Builder builder() {
@@ -34,11 +40,13 @@ public final class ResourcePoolsConfigDefaultPool {
     public static final class Builder {
         private @Nullable ResourcePoolsConfigDefaultPoolAllocation allocation;
         private @Nullable ResourcePoolsConfigDefaultPoolPriorities priorities;
+        private @Nullable List<ResourcePoolsConfigDefaultPoolPriorityThreshold> priorityThresholds;
         public Builder() {}
         public Builder(ResourcePoolsConfigDefaultPool defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.allocation = defaults.allocation;
     	      this.priorities = defaults.priorities;
+    	      this.priorityThresholds = defaults.priorityThresholds;
         }
 
         @CustomType.Setter
@@ -51,10 +59,19 @@ public final class ResourcePoolsConfigDefaultPool {
             this.priorities = priorities;
             return this;
         }
+        @CustomType.Setter
+        public Builder priorityThresholds(@Nullable List<ResourcePoolsConfigDefaultPoolPriorityThreshold> priorityThresholds) {
+            this.priorityThresholds = priorityThresholds;
+            return this;
+        }
+        public Builder priorityThresholds(ResourcePoolsConfigDefaultPoolPriorityThreshold... priorityThresholds) {
+            return priorityThresholds(List.of(priorityThresholds));
+        }
         public ResourcePoolsConfigDefaultPool build() {
             final var o = new ResourcePoolsConfigDefaultPool();
             o.allocation = allocation;
             o.priorities = priorities;
+            o.priorityThresholds = priorityThresholds;
             return o;
         }
     }

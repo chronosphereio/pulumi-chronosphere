@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+## v0.9.7
+
+Added:
+* Add `priority_thresholds` to `chronosphere_resource_pools_config` pools.
+
 ## v0.9.6
 
 Added:
