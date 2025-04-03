@@ -14,19 +14,19 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class SLODefinition
     {
-        public readonly bool? LowVolume;
+        public readonly ImmutableArray<Outputs.SLODefinitionBurnRateAlertingConfig> BurnRateAlertingConfigs;
         public readonly double Objective;
         public readonly ImmutableArray<Outputs.SLODefinitionReportingWindow> ReportingWindows;
 
         [OutputConstructor]
         private SLODefinition(
-            bool? lowVolume,
+            ImmutableArray<Outputs.SLODefinitionBurnRateAlertingConfig> burnRateAlertingConfigs,
 
             double objective,
 
             ImmutableArray<Outputs.SLODefinitionReportingWindow> reportingWindows)
         {
-            LowVolume = lowVolume;
+            BurnRateAlertingConfigs = burnRateAlertingConfigs;
             Objective = objective;
             ReportingWindows = reportingWindows;
         }

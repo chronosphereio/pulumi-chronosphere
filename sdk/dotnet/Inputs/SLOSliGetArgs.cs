@@ -13,6 +13,14 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class SLOSliGetArgs : global::Pulumi.ResourceArgs
     {
+        [Input("additionalPromqlFilters")]
+        private InputList<Inputs.SLOSliAdditionalPromqlFilterGetArgs>? _additionalPromqlFilters;
+        public InputList<Inputs.SLOSliAdditionalPromqlFilterGetArgs> AdditionalPromqlFilters
+        {
+            get => _additionalPromqlFilters ?? (_additionalPromqlFilters = new InputList<Inputs.SLOSliAdditionalPromqlFilterGetArgs>());
+            set => _additionalPromqlFilters = value;
+        }
+
         [Input("customDimensionLabels")]
         private InputList<string>? _customDimensionLabels;
         public InputList<string> CustomDimensionLabels

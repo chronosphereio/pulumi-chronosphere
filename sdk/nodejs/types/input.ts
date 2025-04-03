@@ -539,9 +539,16 @@ export interface RollupRuleStoragePolicies {
 }
 
 export interface SLODefinition {
-    lowVolume?: pulumi.Input<boolean>;
+    burnRateAlertingConfigs?: pulumi.Input<pulumi.Input<inputs.SLODefinitionBurnRateAlertingConfig>[]>;
     objective: pulumi.Input<number>;
     reportingWindows: pulumi.Input<pulumi.Input<inputs.SLODefinitionReportingWindow>[]>;
+}
+
+export interface SLODefinitionBurnRateAlertingConfig {
+    budget: pulumi.Input<number>;
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    severity: pulumi.Input<string>;
+    window: pulumi.Input<string>;
 }
 
 export interface SLODefinitionReportingWindow {
@@ -554,12 +561,19 @@ export interface SLOSignalGrouping {
 }
 
 export interface SLOSli {
+    additionalPromqlFilters?: pulumi.Input<pulumi.Input<inputs.SLOSliAdditionalPromqlFilter>[]>;
     customDimensionLabels?: pulumi.Input<pulumi.Input<string>[]>;
     customIndicator?: pulumi.Input<inputs.SLOSliCustomIndicator>;
     endpointAvailability?: pulumi.Input<inputs.SLOSliEndpointAvailability>;
     endpointLabel?: pulumi.Input<string>;
     endpointLatency?: pulumi.Input<inputs.SLOSliEndpointLatency>;
     lensTemplateIndicator?: pulumi.Input<string>;
+}
+
+export interface SLOSliAdditionalPromqlFilter {
+    name: pulumi.Input<string>;
+    type: pulumi.Input<string>;
+    value: pulumi.Input<string>;
 }
 
 export interface SLOSliCustomIndicator {

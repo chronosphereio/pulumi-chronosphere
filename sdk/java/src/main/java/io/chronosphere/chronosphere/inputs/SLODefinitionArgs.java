@@ -5,8 +5,8 @@ package io.chronosphere.chronosphere.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import io.chronosphere.chronosphere.inputs.SLODefinitionBurnRateAlertingConfigArgs;
 import io.chronosphere.chronosphere.inputs.SLODefinitionReportingWindowArgs;
-import java.lang.Boolean;
 import java.lang.Double;
 import java.util.List;
 import java.util.Objects;
@@ -18,11 +18,11 @@ public final class SLODefinitionArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final SLODefinitionArgs Empty = new SLODefinitionArgs();
 
-    @Import(name="lowVolume")
-    private @Nullable Output<Boolean> lowVolume;
+    @Import(name="burnRateAlertingConfigs")
+    private @Nullable Output<List<SLODefinitionBurnRateAlertingConfigArgs>> burnRateAlertingConfigs;
 
-    public Optional<Output<Boolean>> lowVolume() {
-        return Optional.ofNullable(this.lowVolume);
+    public Optional<Output<List<SLODefinitionBurnRateAlertingConfigArgs>>> burnRateAlertingConfigs() {
+        return Optional.ofNullable(this.burnRateAlertingConfigs);
     }
 
     @Import(name="objective", required=true)
@@ -42,7 +42,7 @@ public final class SLODefinitionArgs extends com.pulumi.resources.ResourceArgs {
     private SLODefinitionArgs() {}
 
     private SLODefinitionArgs(SLODefinitionArgs $) {
-        this.lowVolume = $.lowVolume;
+        this.burnRateAlertingConfigs = $.burnRateAlertingConfigs;
         this.objective = $.objective;
         this.reportingWindows = $.reportingWindows;
     }
@@ -65,13 +65,17 @@ public final class SLODefinitionArgs extends com.pulumi.resources.ResourceArgs {
             $ = new SLODefinitionArgs(Objects.requireNonNull(defaults));
         }
 
-        public Builder lowVolume(@Nullable Output<Boolean> lowVolume) {
-            $.lowVolume = lowVolume;
+        public Builder burnRateAlertingConfigs(@Nullable Output<List<SLODefinitionBurnRateAlertingConfigArgs>> burnRateAlertingConfigs) {
+            $.burnRateAlertingConfigs = burnRateAlertingConfigs;
             return this;
         }
 
-        public Builder lowVolume(Boolean lowVolume) {
-            return lowVolume(Output.of(lowVolume));
+        public Builder burnRateAlertingConfigs(List<SLODefinitionBurnRateAlertingConfigArgs> burnRateAlertingConfigs) {
+            return burnRateAlertingConfigs(Output.of(burnRateAlertingConfigs));
+        }
+
+        public Builder burnRateAlertingConfigs(SLODefinitionBurnRateAlertingConfigArgs... burnRateAlertingConfigs) {
+            return burnRateAlertingConfigs(List.of(burnRateAlertingConfigs));
         }
 
         public Builder objective(Output<Double> objective) {

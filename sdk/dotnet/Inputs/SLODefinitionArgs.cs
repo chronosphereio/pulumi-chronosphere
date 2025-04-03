@@ -13,8 +13,13 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class SLODefinitionArgs : global::Pulumi.ResourceArgs
     {
-        [Input("lowVolume")]
-        public Input<bool>? LowVolume { get; set; }
+        [Input("burnRateAlertingConfigs")]
+        private InputList<Inputs.SLODefinitionBurnRateAlertingConfigArgs>? _burnRateAlertingConfigs;
+        public InputList<Inputs.SLODefinitionBurnRateAlertingConfigArgs> BurnRateAlertingConfigs
+        {
+            get => _burnRateAlertingConfigs ?? (_burnRateAlertingConfigs = new InputList<Inputs.SLODefinitionBurnRateAlertingConfigArgs>());
+            set => _burnRateAlertingConfigs = value;
+        }
 
         [Input("objective", required: true)]
         public Input<double> Objective { get; set; } = null!;

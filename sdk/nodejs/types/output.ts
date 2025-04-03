@@ -539,9 +539,16 @@ export interface RollupRuleStoragePolicies {
 }
 
 export interface SLODefinition {
-    lowVolume?: boolean;
+    burnRateAlertingConfigs: outputs.SLODefinitionBurnRateAlertingConfig[];
     objective: number;
     reportingWindows: outputs.SLODefinitionReportingWindow[];
+}
+
+export interface SLODefinitionBurnRateAlertingConfig {
+    budget: number;
+    labels?: {[key: string]: string};
+    severity: string;
+    window: string;
 }
 
 export interface SLODefinitionReportingWindow {
@@ -554,12 +561,19 @@ export interface SLOSignalGrouping {
 }
 
 export interface SLOSli {
+    additionalPromqlFilters?: outputs.SLOSliAdditionalPromqlFilter[];
     customDimensionLabels?: string[];
     customIndicator?: outputs.SLOSliCustomIndicator;
     endpointAvailability?: outputs.SLOSliEndpointAvailability;
     endpointLabel?: string;
     endpointLatency?: outputs.SLOSliEndpointLatency;
     lensTemplateIndicator?: string;
+}
+
+export interface SLOSliAdditionalPromqlFilter {
+    name: string;
+    type: string;
+    value: string;
 }
 
 export interface SLOSliCustomIndicator {

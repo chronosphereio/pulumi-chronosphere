@@ -110,9 +110,11 @@ __all__ = [
     'RollupRuleGraphiteLabelPolicyReplace',
     'RollupRuleStoragePolicies',
     'SLODefinition',
+    'SLODefinitionBurnRateAlertingConfig',
     'SLODefinitionReportingWindow',
     'SLOSignalGrouping',
     'SLOSli',
+    'SLOSliAdditionalPromqlFilter',
     'SLOSliCustomIndicator',
     'SLOSliEndpointAvailability',
     'SLOSliEndpointAvailabilityAdditionalPromqlFilter',
@@ -3731,8 +3733,8 @@ class SLODefinition(dict):
         suggest = None
         if key == "reportingWindows":
             suggest = "reporting_windows"
-        elif key == "lowVolume":
-            suggest = "low_volume"
+        elif key == "burnRateAlertingConfigs":
+            suggest = "burn_rate_alerting_configs"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in SLODefinition. Access the value via the '{suggest}' property getter instead.")
@@ -3748,11 +3750,11 @@ class SLODefinition(dict):
     def __init__(__self__, *,
                  objective: float,
                  reporting_windows: Sequence['outputs.SLODefinitionReportingWindow'],
-                 low_volume: Optional[bool] = None):
+                 burn_rate_alerting_configs: Optional[Sequence['outputs.SLODefinitionBurnRateAlertingConfig']] = None):
         pulumi.set(__self__, "objective", objective)
         pulumi.set(__self__, "reporting_windows", reporting_windows)
-        if low_volume is not None:
-            pulumi.set(__self__, "low_volume", low_volume)
+        if burn_rate_alerting_configs is not None:
+            pulumi.set(__self__, "burn_rate_alerting_configs", burn_rate_alerting_configs)
 
     @property
     @pulumi.getter
@@ -3765,9 +3767,43 @@ class SLODefinition(dict):
         return pulumi.get(self, "reporting_windows")
 
     @property
-    @pulumi.getter(name="lowVolume")
-    def low_volume(self) -> Optional[bool]:
-        return pulumi.get(self, "low_volume")
+    @pulumi.getter(name="burnRateAlertingConfigs")
+    def burn_rate_alerting_configs(self) -> Optional[Sequence['outputs.SLODefinitionBurnRateAlertingConfig']]:
+        return pulumi.get(self, "burn_rate_alerting_configs")
+
+
+@pulumi.output_type
+class SLODefinitionBurnRateAlertingConfig(dict):
+    def __init__(__self__, *,
+                 budget: float,
+                 severity: str,
+                 window: str,
+                 labels: Optional[Mapping[str, str]] = None):
+        pulumi.set(__self__, "budget", budget)
+        pulumi.set(__self__, "severity", severity)
+        pulumi.set(__self__, "window", window)
+        if labels is not None:
+            pulumi.set(__self__, "labels", labels)
+
+    @property
+    @pulumi.getter
+    def budget(self) -> float:
+        return pulumi.get(self, "budget")
+
+    @property
+    @pulumi.getter
+    def severity(self) -> str:
+        return pulumi.get(self, "severity")
+
+    @property
+    @pulumi.getter
+    def window(self) -> str:
+        return pulumi.get(self, "window")
+
+    @property
+    @pulumi.getter
+    def labels(self) -> Optional[Mapping[str, str]]:
+        return pulumi.get(self, "labels")
 
 
 @pulumi.output_type
@@ -3827,7 +3863,9 @@ class SLOSli(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "customDimensionLabels":
+        if key == "additionalPromqlFilters":
+            suggest = "additional_promql_filters"
+        elif key == "customDimensionLabels":
             suggest = "custom_dimension_labels"
         elif key == "customIndicator":
             suggest = "custom_indicator"
@@ -3852,12 +3890,15 @@ class SLOSli(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
+                 additional_promql_filters: Optional[Sequence['outputs.SLOSliAdditionalPromqlFilter']] = None,
                  custom_dimension_labels: Optional[Sequence[str]] = None,
                  custom_indicator: Optional['outputs.SLOSliCustomIndicator'] = None,
                  endpoint_availability: Optional['outputs.SLOSliEndpointAvailability'] = None,
                  endpoint_label: Optional[str] = None,
                  endpoint_latency: Optional['outputs.SLOSliEndpointLatency'] = None,
                  lens_template_indicator: Optional[str] = None):
+        if additional_promql_filters is not None:
+            pulumi.set(__self__, "additional_promql_filters", additional_promql_filters)
         if custom_dimension_labels is not None:
             pulumi.set(__self__, "custom_dimension_labels", custom_dimension_labels)
         if custom_indicator is not None:
@@ -3870,6 +3911,11 @@ class SLOSli(dict):
             pulumi.set(__self__, "endpoint_latency", endpoint_latency)
         if lens_template_indicator is not None:
             pulumi.set(__self__, "lens_template_indicator", lens_template_indicator)
+
+    @property
+    @pulumi.getter(name="additionalPromqlFilters")
+    def additional_promql_filters(self) -> Optional[Sequence['outputs.SLOSliAdditionalPromqlFilter']]:
+        return pulumi.get(self, "additional_promql_filters")
 
     @property
     @pulumi.getter(name="customDimensionLabels")
@@ -3900,6 +3946,32 @@ class SLOSli(dict):
     @pulumi.getter(name="lensTemplateIndicator")
     def lens_template_indicator(self) -> Optional[str]:
         return pulumi.get(self, "lens_template_indicator")
+
+
+@pulumi.output_type
+class SLOSliAdditionalPromqlFilter(dict):
+    def __init__(__self__, *,
+                 name: str,
+                 type: str,
+                 value: str):
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type
