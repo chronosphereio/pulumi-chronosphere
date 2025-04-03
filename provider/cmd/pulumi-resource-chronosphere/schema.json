@@ -1659,8 +1659,11 @@
         },
         "chronosphere:index/SLODefinition:SLODefinition": {
             "properties": {
-                "lowVolume": {
-                    "type": "boolean"
+                "burnRateAlertingConfigs": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/chronosphere:index/SLODefinitionBurnRateAlertingConfig:SLODefinitionBurnRateAlertingConfig"
+                    }
                 },
                 "objective": {
                     "type": "number"
@@ -1676,6 +1679,40 @@
             "required": [
                 "objective",
                 "reportingWindows"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "burnRateAlertingConfigs",
+                        "objective",
+                        "reportingWindows"
+                    ]
+                }
+            }
+        },
+        "chronosphere:index/SLODefinitionBurnRateAlertingConfig:SLODefinitionBurnRateAlertingConfig": {
+            "properties": {
+                "budget": {
+                    "type": "number"
+                },
+                "labels": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                },
+                "severity": {
+                    "type": "string"
+                },
+                "window": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "budget",
+                "severity",
+                "window"
             ]
         },
         "chronosphere:index/SLODefinitionReportingWindow:SLODefinitionReportingWindow": {
@@ -1705,6 +1742,12 @@
         },
         "chronosphere:index/SLOSli:SLOSli": {
             "properties": {
+                "additionalPromqlFilters": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/chronosphere:index/SLOSliAdditionalPromqlFilter:SLOSliAdditionalPromqlFilter"
+                    }
+                },
                 "customDimensionLabels": {
                     "type": "array",
                     "items": {
@@ -1728,6 +1771,25 @@
                 }
             },
             "type": "object"
+        },
+        "chronosphere:index/SLOSliAdditionalPromqlFilter:SLOSliAdditionalPromqlFilter": {
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "name",
+                "type",
+                "value"
+            ]
         },
         "chronosphere:index/SLOSliCustomIndicator:SLOSliCustomIndicator": {
             "properties": {

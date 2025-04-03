@@ -4,23 +4,22 @@
 package io.chronosphere.chronosphere.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import io.chronosphere.chronosphere.outputs.SLODefinitionBurnRateAlertingConfig;
 import io.chronosphere.chronosphere.outputs.SLODefinitionReportingWindow;
-import java.lang.Boolean;
 import java.lang.Double;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 import javax.annotation.Nullable;
 
 @CustomType
 public final class SLODefinition {
-    private @Nullable Boolean lowVolume;
+    private @Nullable List<SLODefinitionBurnRateAlertingConfig> burnRateAlertingConfigs;
     private Double objective;
     private List<SLODefinitionReportingWindow> reportingWindows;
 
     private SLODefinition() {}
-    public Optional<Boolean> lowVolume() {
-        return Optional.ofNullable(this.lowVolume);
+    public List<SLODefinitionBurnRateAlertingConfig> burnRateAlertingConfigs() {
+        return this.burnRateAlertingConfigs == null ? List.of() : this.burnRateAlertingConfigs;
     }
     public Double objective() {
         return this.objective;
@@ -38,21 +37,24 @@ public final class SLODefinition {
     }
     @CustomType.Builder
     public static final class Builder {
-        private @Nullable Boolean lowVolume;
+        private @Nullable List<SLODefinitionBurnRateAlertingConfig> burnRateAlertingConfigs;
         private Double objective;
         private List<SLODefinitionReportingWindow> reportingWindows;
         public Builder() {}
         public Builder(SLODefinition defaults) {
     	      Objects.requireNonNull(defaults);
-    	      this.lowVolume = defaults.lowVolume;
+    	      this.burnRateAlertingConfigs = defaults.burnRateAlertingConfigs;
     	      this.objective = defaults.objective;
     	      this.reportingWindows = defaults.reportingWindows;
         }
 
         @CustomType.Setter
-        public Builder lowVolume(@Nullable Boolean lowVolume) {
-            this.lowVolume = lowVolume;
+        public Builder burnRateAlertingConfigs(@Nullable List<SLODefinitionBurnRateAlertingConfig> burnRateAlertingConfigs) {
+            this.burnRateAlertingConfigs = burnRateAlertingConfigs;
             return this;
+        }
+        public Builder burnRateAlertingConfigs(SLODefinitionBurnRateAlertingConfig... burnRateAlertingConfigs) {
+            return burnRateAlertingConfigs(List.of(burnRateAlertingConfigs));
         }
         @CustomType.Setter
         public Builder objective(Double objective) {
@@ -69,7 +71,7 @@ public final class SLODefinition {
         }
         public SLODefinition build() {
             final var o = new SLODefinition();
-            o.lowVolume = lowVolume;
+            o.burnRateAlertingConfigs = burnRateAlertingConfigs;
             o.objective = objective;
             o.reportingWindows = reportingWindows;
             return o;

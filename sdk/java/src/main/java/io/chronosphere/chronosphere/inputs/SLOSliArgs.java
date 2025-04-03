@@ -5,6 +5,7 @@ package io.chronosphere.chronosphere.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import io.chronosphere.chronosphere.inputs.SLOSliAdditionalPromqlFilterArgs;
 import io.chronosphere.chronosphere.inputs.SLOSliCustomIndicatorArgs;
 import io.chronosphere.chronosphere.inputs.SLOSliEndpointAvailabilityArgs;
 import io.chronosphere.chronosphere.inputs.SLOSliEndpointLatencyArgs;
@@ -18,6 +19,13 @@ import javax.annotation.Nullable;
 public final class SLOSliArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final SLOSliArgs Empty = new SLOSliArgs();
+
+    @Import(name="additionalPromqlFilters")
+    private @Nullable Output<List<SLOSliAdditionalPromqlFilterArgs>> additionalPromqlFilters;
+
+    public Optional<Output<List<SLOSliAdditionalPromqlFilterArgs>>> additionalPromqlFilters() {
+        return Optional.ofNullable(this.additionalPromqlFilters);
+    }
 
     @Import(name="customDimensionLabels")
     private @Nullable Output<List<String>> customDimensionLabels;
@@ -64,6 +72,7 @@ public final class SLOSliArgs extends com.pulumi.resources.ResourceArgs {
     private SLOSliArgs() {}
 
     private SLOSliArgs(SLOSliArgs $) {
+        this.additionalPromqlFilters = $.additionalPromqlFilters;
         this.customDimensionLabels = $.customDimensionLabels;
         this.customIndicator = $.customIndicator;
         this.endpointAvailability = $.endpointAvailability;
@@ -88,6 +97,19 @@ public final class SLOSliArgs extends com.pulumi.resources.ResourceArgs {
 
         public Builder(SLOSliArgs defaults) {
             $ = new SLOSliArgs(Objects.requireNonNull(defaults));
+        }
+
+        public Builder additionalPromqlFilters(@Nullable Output<List<SLOSliAdditionalPromqlFilterArgs>> additionalPromqlFilters) {
+            $.additionalPromqlFilters = additionalPromqlFilters;
+            return this;
+        }
+
+        public Builder additionalPromqlFilters(List<SLOSliAdditionalPromqlFilterArgs> additionalPromqlFilters) {
+            return additionalPromqlFilters(Output.of(additionalPromqlFilters));
+        }
+
+        public Builder additionalPromqlFilters(SLOSliAdditionalPromqlFilterArgs... additionalPromqlFilters) {
+            return additionalPromqlFilters(List.of(additionalPromqlFilters));
         }
 
         public Builder customDimensionLabels(@Nullable Output<List<String>> customDimensionLabels) {

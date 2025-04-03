@@ -109,9 +109,11 @@ __all__ = [
     'RollupRuleGraphiteLabelPolicyReplaceArgs',
     'RollupRuleStoragePoliciesArgs',
     'SLODefinitionArgs',
+    'SLODefinitionBurnRateAlertingConfigArgs',
     'SLODefinitionReportingWindowArgs',
     'SLOSignalGroupingArgs',
     'SLOSliArgs',
+    'SLOSliAdditionalPromqlFilterArgs',
     'SLOSliCustomIndicatorArgs',
     'SLOSliEndpointAvailabilityArgs',
     'SLOSliEndpointAvailabilityAdditionalPromqlFilterArgs',
@@ -3409,11 +3411,11 @@ class SLODefinitionArgs:
     def __init__(__self__, *,
                  objective: pulumi.Input[float],
                  reporting_windows: pulumi.Input[Sequence[pulumi.Input['SLODefinitionReportingWindowArgs']]],
-                 low_volume: Optional[pulumi.Input[bool]] = None):
+                 burn_rate_alerting_configs: Optional[pulumi.Input[Sequence[pulumi.Input['SLODefinitionBurnRateAlertingConfigArgs']]]] = None):
         pulumi.set(__self__, "objective", objective)
         pulumi.set(__self__, "reporting_windows", reporting_windows)
-        if low_volume is not None:
-            pulumi.set(__self__, "low_volume", low_volume)
+        if burn_rate_alerting_configs is not None:
+            pulumi.set(__self__, "burn_rate_alerting_configs", burn_rate_alerting_configs)
 
     @property
     @pulumi.getter
@@ -3434,13 +3436,63 @@ class SLODefinitionArgs:
         pulumi.set(self, "reporting_windows", value)
 
     @property
-    @pulumi.getter(name="lowVolume")
-    def low_volume(self) -> Optional[pulumi.Input[bool]]:
-        return pulumi.get(self, "low_volume")
+    @pulumi.getter(name="burnRateAlertingConfigs")
+    def burn_rate_alerting_configs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SLODefinitionBurnRateAlertingConfigArgs']]]]:
+        return pulumi.get(self, "burn_rate_alerting_configs")
 
-    @low_volume.setter
-    def low_volume(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "low_volume", value)
+    @burn_rate_alerting_configs.setter
+    def burn_rate_alerting_configs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SLODefinitionBurnRateAlertingConfigArgs']]]]):
+        pulumi.set(self, "burn_rate_alerting_configs", value)
+
+
+@pulumi.input_type
+class SLODefinitionBurnRateAlertingConfigArgs:
+    def __init__(__self__, *,
+                 budget: pulumi.Input[float],
+                 severity: pulumi.Input[str],
+                 window: pulumi.Input[str],
+                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None):
+        pulumi.set(__self__, "budget", budget)
+        pulumi.set(__self__, "severity", severity)
+        pulumi.set(__self__, "window", window)
+        if labels is not None:
+            pulumi.set(__self__, "labels", labels)
+
+    @property
+    @pulumi.getter
+    def budget(self) -> pulumi.Input[float]:
+        return pulumi.get(self, "budget")
+
+    @budget.setter
+    def budget(self, value: pulumi.Input[float]):
+        pulumi.set(self, "budget", value)
+
+    @property
+    @pulumi.getter
+    def severity(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "severity")
+
+    @severity.setter
+    def severity(self, value: pulumi.Input[str]):
+        pulumi.set(self, "severity", value)
+
+    @property
+    @pulumi.getter
+    def window(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "window")
+
+    @window.setter
+    def window(self, value: pulumi.Input[str]):
+        pulumi.set(self, "window", value)
+
+    @property
+    @pulumi.getter
+    def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        return pulumi.get(self, "labels")
+
+    @labels.setter
+    def labels(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "labels", value)
 
 
 @pulumi.input_type
@@ -3491,12 +3543,15 @@ class SLOSignalGroupingArgs:
 @pulumi.input_type
 class SLOSliArgs:
     def __init__(__self__, *,
+                 additional_promql_filters: Optional[pulumi.Input[Sequence[pulumi.Input['SLOSliAdditionalPromqlFilterArgs']]]] = None,
                  custom_dimension_labels: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  custom_indicator: Optional[pulumi.Input['SLOSliCustomIndicatorArgs']] = None,
                  endpoint_availability: Optional[pulumi.Input['SLOSliEndpointAvailabilityArgs']] = None,
                  endpoint_label: Optional[pulumi.Input[str]] = None,
                  endpoint_latency: Optional[pulumi.Input['SLOSliEndpointLatencyArgs']] = None,
                  lens_template_indicator: Optional[pulumi.Input[str]] = None):
+        if additional_promql_filters is not None:
+            pulumi.set(__self__, "additional_promql_filters", additional_promql_filters)
         if custom_dimension_labels is not None:
             pulumi.set(__self__, "custom_dimension_labels", custom_dimension_labels)
         if custom_indicator is not None:
@@ -3509,6 +3564,15 @@ class SLOSliArgs:
             pulumi.set(__self__, "endpoint_latency", endpoint_latency)
         if lens_template_indicator is not None:
             pulumi.set(__self__, "lens_template_indicator", lens_template_indicator)
+
+    @property
+    @pulumi.getter(name="additionalPromqlFilters")
+    def additional_promql_filters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SLOSliAdditionalPromqlFilterArgs']]]]:
+        return pulumi.get(self, "additional_promql_filters")
+
+    @additional_promql_filters.setter
+    def additional_promql_filters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SLOSliAdditionalPromqlFilterArgs']]]]):
+        pulumi.set(self, "additional_promql_filters", value)
 
     @property
     @pulumi.getter(name="customDimensionLabels")
@@ -3563,6 +3627,44 @@ class SLOSliArgs:
     @lens_template_indicator.setter
     def lens_template_indicator(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "lens_template_indicator", value)
+
+
+@pulumi.input_type
+class SLOSliAdditionalPromqlFilterArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[str],
+                 type: pulumi.Input[str],
+                 value: pulumi.Input[str]):
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: pulumi.Input[str]):
+        pulumi.set(self, "type", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
 
 
 @pulumi.input_type

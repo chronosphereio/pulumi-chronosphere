@@ -13096,9 +13096,9 @@ func (o RollupRuleStoragePoliciesPtrOutput) Retention() pulumi.StringPtrOutput {
 }
 
 type SLODefinition struct {
-	LowVolume        *bool                          `pulumi:"lowVolume"`
-	Objective        float64                        `pulumi:"objective"`
-	ReportingWindows []SLODefinitionReportingWindow `pulumi:"reportingWindows"`
+	BurnRateAlertingConfigs []SLODefinitionBurnRateAlertingConfig `pulumi:"burnRateAlertingConfigs"`
+	Objective               float64                               `pulumi:"objective"`
+	ReportingWindows        []SLODefinitionReportingWindow        `pulumi:"reportingWindows"`
 }
 
 // SLODefinitionInput is an input type that accepts SLODefinitionArgs and SLODefinitionOutput values.
@@ -13113,9 +13113,9 @@ type SLODefinitionInput interface {
 }
 
 type SLODefinitionArgs struct {
-	LowVolume        pulumi.BoolPtrInput                    `pulumi:"lowVolume"`
-	Objective        pulumi.Float64Input                    `pulumi:"objective"`
-	ReportingWindows SLODefinitionReportingWindowArrayInput `pulumi:"reportingWindows"`
+	BurnRateAlertingConfigs SLODefinitionBurnRateAlertingConfigArrayInput `pulumi:"burnRateAlertingConfigs"`
+	Objective               pulumi.Float64Input                           `pulumi:"objective"`
+	ReportingWindows        SLODefinitionReportingWindowArrayInput        `pulumi:"reportingWindows"`
 }
 
 func (SLODefinitionArgs) ElementType() reflect.Type {
@@ -13195,8 +13195,8 @@ func (o SLODefinitionOutput) ToSLODefinitionPtrOutputWithContext(ctx context.Con
 	}).(SLODefinitionPtrOutput)
 }
 
-func (o SLODefinitionOutput) LowVolume() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v SLODefinition) *bool { return v.LowVolume }).(pulumi.BoolPtrOutput)
+func (o SLODefinitionOutput) BurnRateAlertingConfigs() SLODefinitionBurnRateAlertingConfigArrayOutput {
+	return o.ApplyT(func(v SLODefinition) []SLODefinitionBurnRateAlertingConfig { return v.BurnRateAlertingConfigs }).(SLODefinitionBurnRateAlertingConfigArrayOutput)
 }
 
 func (o SLODefinitionOutput) Objective() pulumi.Float64Output {
@@ -13231,13 +13231,13 @@ func (o SLODefinitionPtrOutput) Elem() SLODefinitionOutput {
 	}).(SLODefinitionOutput)
 }
 
-func (o SLODefinitionPtrOutput) LowVolume() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *SLODefinition) *bool {
+func (o SLODefinitionPtrOutput) BurnRateAlertingConfigs() SLODefinitionBurnRateAlertingConfigArrayOutput {
+	return o.ApplyT(func(v *SLODefinition) []SLODefinitionBurnRateAlertingConfig {
 		if v == nil {
 			return nil
 		}
-		return v.LowVolume
-	}).(pulumi.BoolPtrOutput)
+		return v.BurnRateAlertingConfigs
+	}).(SLODefinitionBurnRateAlertingConfigArrayOutput)
 }
 
 func (o SLODefinitionPtrOutput) Objective() pulumi.Float64PtrOutput {
@@ -13256,6 +13256,118 @@ func (o SLODefinitionPtrOutput) ReportingWindows() SLODefinitionReportingWindowA
 		}
 		return v.ReportingWindows
 	}).(SLODefinitionReportingWindowArrayOutput)
+}
+
+type SLODefinitionBurnRateAlertingConfig struct {
+	Budget   float64           `pulumi:"budget"`
+	Labels   map[string]string `pulumi:"labels"`
+	Severity string            `pulumi:"severity"`
+	Window   string            `pulumi:"window"`
+}
+
+// SLODefinitionBurnRateAlertingConfigInput is an input type that accepts SLODefinitionBurnRateAlertingConfigArgs and SLODefinitionBurnRateAlertingConfigOutput values.
+// You can construct a concrete instance of `SLODefinitionBurnRateAlertingConfigInput` via:
+//
+//	SLODefinitionBurnRateAlertingConfigArgs{...}
+type SLODefinitionBurnRateAlertingConfigInput interface {
+	pulumi.Input
+
+	ToSLODefinitionBurnRateAlertingConfigOutput() SLODefinitionBurnRateAlertingConfigOutput
+	ToSLODefinitionBurnRateAlertingConfigOutputWithContext(context.Context) SLODefinitionBurnRateAlertingConfigOutput
+}
+
+type SLODefinitionBurnRateAlertingConfigArgs struct {
+	Budget   pulumi.Float64Input   `pulumi:"budget"`
+	Labels   pulumi.StringMapInput `pulumi:"labels"`
+	Severity pulumi.StringInput    `pulumi:"severity"`
+	Window   pulumi.StringInput    `pulumi:"window"`
+}
+
+func (SLODefinitionBurnRateAlertingConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SLODefinitionBurnRateAlertingConfig)(nil)).Elem()
+}
+
+func (i SLODefinitionBurnRateAlertingConfigArgs) ToSLODefinitionBurnRateAlertingConfigOutput() SLODefinitionBurnRateAlertingConfigOutput {
+	return i.ToSLODefinitionBurnRateAlertingConfigOutputWithContext(context.Background())
+}
+
+func (i SLODefinitionBurnRateAlertingConfigArgs) ToSLODefinitionBurnRateAlertingConfigOutputWithContext(ctx context.Context) SLODefinitionBurnRateAlertingConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SLODefinitionBurnRateAlertingConfigOutput)
+}
+
+// SLODefinitionBurnRateAlertingConfigArrayInput is an input type that accepts SLODefinitionBurnRateAlertingConfigArray and SLODefinitionBurnRateAlertingConfigArrayOutput values.
+// You can construct a concrete instance of `SLODefinitionBurnRateAlertingConfigArrayInput` via:
+//
+//	SLODefinitionBurnRateAlertingConfigArray{ SLODefinitionBurnRateAlertingConfigArgs{...} }
+type SLODefinitionBurnRateAlertingConfigArrayInput interface {
+	pulumi.Input
+
+	ToSLODefinitionBurnRateAlertingConfigArrayOutput() SLODefinitionBurnRateAlertingConfigArrayOutput
+	ToSLODefinitionBurnRateAlertingConfigArrayOutputWithContext(context.Context) SLODefinitionBurnRateAlertingConfigArrayOutput
+}
+
+type SLODefinitionBurnRateAlertingConfigArray []SLODefinitionBurnRateAlertingConfigInput
+
+func (SLODefinitionBurnRateAlertingConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SLODefinitionBurnRateAlertingConfig)(nil)).Elem()
+}
+
+func (i SLODefinitionBurnRateAlertingConfigArray) ToSLODefinitionBurnRateAlertingConfigArrayOutput() SLODefinitionBurnRateAlertingConfigArrayOutput {
+	return i.ToSLODefinitionBurnRateAlertingConfigArrayOutputWithContext(context.Background())
+}
+
+func (i SLODefinitionBurnRateAlertingConfigArray) ToSLODefinitionBurnRateAlertingConfigArrayOutputWithContext(ctx context.Context) SLODefinitionBurnRateAlertingConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SLODefinitionBurnRateAlertingConfigArrayOutput)
+}
+
+type SLODefinitionBurnRateAlertingConfigOutput struct{ *pulumi.OutputState }
+
+func (SLODefinitionBurnRateAlertingConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SLODefinitionBurnRateAlertingConfig)(nil)).Elem()
+}
+
+func (o SLODefinitionBurnRateAlertingConfigOutput) ToSLODefinitionBurnRateAlertingConfigOutput() SLODefinitionBurnRateAlertingConfigOutput {
+	return o
+}
+
+func (o SLODefinitionBurnRateAlertingConfigOutput) ToSLODefinitionBurnRateAlertingConfigOutputWithContext(ctx context.Context) SLODefinitionBurnRateAlertingConfigOutput {
+	return o
+}
+
+func (o SLODefinitionBurnRateAlertingConfigOutput) Budget() pulumi.Float64Output {
+	return o.ApplyT(func(v SLODefinitionBurnRateAlertingConfig) float64 { return v.Budget }).(pulumi.Float64Output)
+}
+
+func (o SLODefinitionBurnRateAlertingConfigOutput) Labels() pulumi.StringMapOutput {
+	return o.ApplyT(func(v SLODefinitionBurnRateAlertingConfig) map[string]string { return v.Labels }).(pulumi.StringMapOutput)
+}
+
+func (o SLODefinitionBurnRateAlertingConfigOutput) Severity() pulumi.StringOutput {
+	return o.ApplyT(func(v SLODefinitionBurnRateAlertingConfig) string { return v.Severity }).(pulumi.StringOutput)
+}
+
+func (o SLODefinitionBurnRateAlertingConfigOutput) Window() pulumi.StringOutput {
+	return o.ApplyT(func(v SLODefinitionBurnRateAlertingConfig) string { return v.Window }).(pulumi.StringOutput)
+}
+
+type SLODefinitionBurnRateAlertingConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (SLODefinitionBurnRateAlertingConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SLODefinitionBurnRateAlertingConfig)(nil)).Elem()
+}
+
+func (o SLODefinitionBurnRateAlertingConfigArrayOutput) ToSLODefinitionBurnRateAlertingConfigArrayOutput() SLODefinitionBurnRateAlertingConfigArrayOutput {
+	return o
+}
+
+func (o SLODefinitionBurnRateAlertingConfigArrayOutput) ToSLODefinitionBurnRateAlertingConfigArrayOutputWithContext(ctx context.Context) SLODefinitionBurnRateAlertingConfigArrayOutput {
+	return o
+}
+
+func (o SLODefinitionBurnRateAlertingConfigArrayOutput) Index(i pulumi.IntInput) SLODefinitionBurnRateAlertingConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SLODefinitionBurnRateAlertingConfig {
+		return vs[0].([]SLODefinitionBurnRateAlertingConfig)[vs[1].(int)]
+	}).(SLODefinitionBurnRateAlertingConfigOutput)
 }
 
 type SLODefinitionReportingWindow struct {
@@ -13501,12 +13613,13 @@ func (o SLOSignalGroupingPtrOutput) SignalPerSeries() pulumi.BoolPtrOutput {
 }
 
 type SLOSli struct {
-	CustomDimensionLabels []string                    `pulumi:"customDimensionLabels"`
-	CustomIndicator       *SLOSliCustomIndicator      `pulumi:"customIndicator"`
-	EndpointAvailability  *SLOSliEndpointAvailability `pulumi:"endpointAvailability"`
-	EndpointLabel         *string                     `pulumi:"endpointLabel"`
-	EndpointLatency       *SLOSliEndpointLatency      `pulumi:"endpointLatency"`
-	LensTemplateIndicator *string                     `pulumi:"lensTemplateIndicator"`
+	AdditionalPromqlFilters []SLOSliAdditionalPromqlFilter `pulumi:"additionalPromqlFilters"`
+	CustomDimensionLabels   []string                       `pulumi:"customDimensionLabels"`
+	CustomIndicator         *SLOSliCustomIndicator         `pulumi:"customIndicator"`
+	EndpointAvailability    *SLOSliEndpointAvailability    `pulumi:"endpointAvailability"`
+	EndpointLabel           *string                        `pulumi:"endpointLabel"`
+	EndpointLatency         *SLOSliEndpointLatency         `pulumi:"endpointLatency"`
+	LensTemplateIndicator   *string                        `pulumi:"lensTemplateIndicator"`
 }
 
 // SLOSliInput is an input type that accepts SLOSliArgs and SLOSliOutput values.
@@ -13521,12 +13634,13 @@ type SLOSliInput interface {
 }
 
 type SLOSliArgs struct {
-	CustomDimensionLabels pulumi.StringArrayInput            `pulumi:"customDimensionLabels"`
-	CustomIndicator       SLOSliCustomIndicatorPtrInput      `pulumi:"customIndicator"`
-	EndpointAvailability  SLOSliEndpointAvailabilityPtrInput `pulumi:"endpointAvailability"`
-	EndpointLabel         pulumi.StringPtrInput              `pulumi:"endpointLabel"`
-	EndpointLatency       SLOSliEndpointLatencyPtrInput      `pulumi:"endpointLatency"`
-	LensTemplateIndicator pulumi.StringPtrInput              `pulumi:"lensTemplateIndicator"`
+	AdditionalPromqlFilters SLOSliAdditionalPromqlFilterArrayInput `pulumi:"additionalPromqlFilters"`
+	CustomDimensionLabels   pulumi.StringArrayInput                `pulumi:"customDimensionLabels"`
+	CustomIndicator         SLOSliCustomIndicatorPtrInput          `pulumi:"customIndicator"`
+	EndpointAvailability    SLOSliEndpointAvailabilityPtrInput     `pulumi:"endpointAvailability"`
+	EndpointLabel           pulumi.StringPtrInput                  `pulumi:"endpointLabel"`
+	EndpointLatency         SLOSliEndpointLatencyPtrInput          `pulumi:"endpointLatency"`
+	LensTemplateIndicator   pulumi.StringPtrInput                  `pulumi:"lensTemplateIndicator"`
 }
 
 func (SLOSliArgs) ElementType() reflect.Type {
@@ -13606,6 +13720,10 @@ func (o SLOSliOutput) ToSLOSliPtrOutputWithContext(ctx context.Context) SLOSliPt
 	}).(SLOSliPtrOutput)
 }
 
+func (o SLOSliOutput) AdditionalPromqlFilters() SLOSliAdditionalPromqlFilterArrayOutput {
+	return o.ApplyT(func(v SLOSli) []SLOSliAdditionalPromqlFilter { return v.AdditionalPromqlFilters }).(SLOSliAdditionalPromqlFilterArrayOutput)
+}
+
 func (o SLOSliOutput) CustomDimensionLabels() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v SLOSli) []string { return v.CustomDimensionLabels }).(pulumi.StringArrayOutput)
 }
@@ -13652,6 +13770,15 @@ func (o SLOSliPtrOutput) Elem() SLOSliOutput {
 		var ret SLOSli
 		return ret
 	}).(SLOSliOutput)
+}
+
+func (o SLOSliPtrOutput) AdditionalPromqlFilters() SLOSliAdditionalPromqlFilterArrayOutput {
+	return o.ApplyT(func(v *SLOSli) []SLOSliAdditionalPromqlFilter {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalPromqlFilters
+	}).(SLOSliAdditionalPromqlFilterArrayOutput)
 }
 
 func (o SLOSliPtrOutput) CustomDimensionLabels() pulumi.StringArrayOutput {
@@ -13706,6 +13833,112 @@ func (o SLOSliPtrOutput) LensTemplateIndicator() pulumi.StringPtrOutput {
 		}
 		return v.LensTemplateIndicator
 	}).(pulumi.StringPtrOutput)
+}
+
+type SLOSliAdditionalPromqlFilter struct {
+	Name  string `pulumi:"name"`
+	Type  string `pulumi:"type"`
+	Value string `pulumi:"value"`
+}
+
+// SLOSliAdditionalPromqlFilterInput is an input type that accepts SLOSliAdditionalPromqlFilterArgs and SLOSliAdditionalPromqlFilterOutput values.
+// You can construct a concrete instance of `SLOSliAdditionalPromqlFilterInput` via:
+//
+//	SLOSliAdditionalPromqlFilterArgs{...}
+type SLOSliAdditionalPromqlFilterInput interface {
+	pulumi.Input
+
+	ToSLOSliAdditionalPromqlFilterOutput() SLOSliAdditionalPromqlFilterOutput
+	ToSLOSliAdditionalPromqlFilterOutputWithContext(context.Context) SLOSliAdditionalPromqlFilterOutput
+}
+
+type SLOSliAdditionalPromqlFilterArgs struct {
+	Name  pulumi.StringInput `pulumi:"name"`
+	Type  pulumi.StringInput `pulumi:"type"`
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (SLOSliAdditionalPromqlFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SLOSliAdditionalPromqlFilter)(nil)).Elem()
+}
+
+func (i SLOSliAdditionalPromqlFilterArgs) ToSLOSliAdditionalPromqlFilterOutput() SLOSliAdditionalPromqlFilterOutput {
+	return i.ToSLOSliAdditionalPromqlFilterOutputWithContext(context.Background())
+}
+
+func (i SLOSliAdditionalPromqlFilterArgs) ToSLOSliAdditionalPromqlFilterOutputWithContext(ctx context.Context) SLOSliAdditionalPromqlFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SLOSliAdditionalPromqlFilterOutput)
+}
+
+// SLOSliAdditionalPromqlFilterArrayInput is an input type that accepts SLOSliAdditionalPromqlFilterArray and SLOSliAdditionalPromqlFilterArrayOutput values.
+// You can construct a concrete instance of `SLOSliAdditionalPromqlFilterArrayInput` via:
+//
+//	SLOSliAdditionalPromqlFilterArray{ SLOSliAdditionalPromqlFilterArgs{...} }
+type SLOSliAdditionalPromqlFilterArrayInput interface {
+	pulumi.Input
+
+	ToSLOSliAdditionalPromqlFilterArrayOutput() SLOSliAdditionalPromqlFilterArrayOutput
+	ToSLOSliAdditionalPromqlFilterArrayOutputWithContext(context.Context) SLOSliAdditionalPromqlFilterArrayOutput
+}
+
+type SLOSliAdditionalPromqlFilterArray []SLOSliAdditionalPromqlFilterInput
+
+func (SLOSliAdditionalPromqlFilterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SLOSliAdditionalPromqlFilter)(nil)).Elem()
+}
+
+func (i SLOSliAdditionalPromqlFilterArray) ToSLOSliAdditionalPromqlFilterArrayOutput() SLOSliAdditionalPromqlFilterArrayOutput {
+	return i.ToSLOSliAdditionalPromqlFilterArrayOutputWithContext(context.Background())
+}
+
+func (i SLOSliAdditionalPromqlFilterArray) ToSLOSliAdditionalPromqlFilterArrayOutputWithContext(ctx context.Context) SLOSliAdditionalPromqlFilterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SLOSliAdditionalPromqlFilterArrayOutput)
+}
+
+type SLOSliAdditionalPromqlFilterOutput struct{ *pulumi.OutputState }
+
+func (SLOSliAdditionalPromqlFilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SLOSliAdditionalPromqlFilter)(nil)).Elem()
+}
+
+func (o SLOSliAdditionalPromqlFilterOutput) ToSLOSliAdditionalPromqlFilterOutput() SLOSliAdditionalPromqlFilterOutput {
+	return o
+}
+
+func (o SLOSliAdditionalPromqlFilterOutput) ToSLOSliAdditionalPromqlFilterOutputWithContext(ctx context.Context) SLOSliAdditionalPromqlFilterOutput {
+	return o
+}
+
+func (o SLOSliAdditionalPromqlFilterOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v SLOSliAdditionalPromqlFilter) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SLOSliAdditionalPromqlFilterOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v SLOSliAdditionalPromqlFilter) string { return v.Type }).(pulumi.StringOutput)
+}
+
+func (o SLOSliAdditionalPromqlFilterOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v SLOSliAdditionalPromqlFilter) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type SLOSliAdditionalPromqlFilterArrayOutput struct{ *pulumi.OutputState }
+
+func (SLOSliAdditionalPromqlFilterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SLOSliAdditionalPromqlFilter)(nil)).Elem()
+}
+
+func (o SLOSliAdditionalPromqlFilterArrayOutput) ToSLOSliAdditionalPromqlFilterArrayOutput() SLOSliAdditionalPromqlFilterArrayOutput {
+	return o
+}
+
+func (o SLOSliAdditionalPromqlFilterArrayOutput) ToSLOSliAdditionalPromqlFilterArrayOutputWithContext(ctx context.Context) SLOSliAdditionalPromqlFilterArrayOutput {
+	return o
+}
+
+func (o SLOSliAdditionalPromqlFilterArrayOutput) Index(i pulumi.IntInput) SLOSliAdditionalPromqlFilterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SLOSliAdditionalPromqlFilter {
+		return vs[0].([]SLOSliAdditionalPromqlFilter)[vs[1].(int)]
+	}).(SLOSliAdditionalPromqlFilterOutput)
 }
 
 type SLOSliCustomIndicator struct {
@@ -20873,12 +21106,16 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*RollupRuleStoragePoliciesPtrInput)(nil)).Elem(), RollupRuleStoragePoliciesArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SLODefinitionInput)(nil)).Elem(), SLODefinitionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SLODefinitionPtrInput)(nil)).Elem(), SLODefinitionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SLODefinitionBurnRateAlertingConfigInput)(nil)).Elem(), SLODefinitionBurnRateAlertingConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SLODefinitionBurnRateAlertingConfigArrayInput)(nil)).Elem(), SLODefinitionBurnRateAlertingConfigArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SLODefinitionReportingWindowInput)(nil)).Elem(), SLODefinitionReportingWindowArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SLODefinitionReportingWindowArrayInput)(nil)).Elem(), SLODefinitionReportingWindowArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SLOSignalGroupingInput)(nil)).Elem(), SLOSignalGroupingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SLOSignalGroupingPtrInput)(nil)).Elem(), SLOSignalGroupingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SLOSliInput)(nil)).Elem(), SLOSliArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SLOSliPtrInput)(nil)).Elem(), SLOSliArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SLOSliAdditionalPromqlFilterInput)(nil)).Elem(), SLOSliAdditionalPromqlFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SLOSliAdditionalPromqlFilterArrayInput)(nil)).Elem(), SLOSliAdditionalPromqlFilterArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SLOSliCustomIndicatorInput)(nil)).Elem(), SLOSliCustomIndicatorArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SLOSliCustomIndicatorPtrInput)(nil)).Elem(), SLOSliCustomIndicatorArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SLOSliEndpointAvailabilityInput)(nil)).Elem(), SLOSliEndpointAvailabilityArgs{})
@@ -21172,12 +21409,16 @@ func init() {
 	pulumi.RegisterOutputType(RollupRuleStoragePoliciesPtrOutput{})
 	pulumi.RegisterOutputType(SLODefinitionOutput{})
 	pulumi.RegisterOutputType(SLODefinitionPtrOutput{})
+	pulumi.RegisterOutputType(SLODefinitionBurnRateAlertingConfigOutput{})
+	pulumi.RegisterOutputType(SLODefinitionBurnRateAlertingConfigArrayOutput{})
 	pulumi.RegisterOutputType(SLODefinitionReportingWindowOutput{})
 	pulumi.RegisterOutputType(SLODefinitionReportingWindowArrayOutput{})
 	pulumi.RegisterOutputType(SLOSignalGroupingOutput{})
 	pulumi.RegisterOutputType(SLOSignalGroupingPtrOutput{})
 	pulumi.RegisterOutputType(SLOSliOutput{})
 	pulumi.RegisterOutputType(SLOSliPtrOutput{})
+	pulumi.RegisterOutputType(SLOSliAdditionalPromqlFilterOutput{})
+	pulumi.RegisterOutputType(SLOSliAdditionalPromqlFilterArrayOutput{})
 	pulumi.RegisterOutputType(SLOSliCustomIndicatorOutput{})
 	pulumi.RegisterOutputType(SLOSliCustomIndicatorPtrOutput{})
 	pulumi.RegisterOutputType(SLOSliEndpointAvailabilityOutput{})

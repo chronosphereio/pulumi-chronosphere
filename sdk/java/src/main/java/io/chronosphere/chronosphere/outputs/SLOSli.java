@@ -4,6 +4,7 @@
 package io.chronosphere.chronosphere.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import io.chronosphere.chronosphere.outputs.SLOSliAdditionalPromqlFilter;
 import io.chronosphere.chronosphere.outputs.SLOSliCustomIndicator;
 import io.chronosphere.chronosphere.outputs.SLOSliEndpointAvailability;
 import io.chronosphere.chronosphere.outputs.SLOSliEndpointLatency;
@@ -15,6 +16,7 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class SLOSli {
+    private @Nullable List<SLOSliAdditionalPromqlFilter> additionalPromqlFilters;
     private @Nullable List<String> customDimensionLabels;
     private @Nullable SLOSliCustomIndicator customIndicator;
     private @Nullable SLOSliEndpointAvailability endpointAvailability;
@@ -23,6 +25,9 @@ public final class SLOSli {
     private @Nullable String lensTemplateIndicator;
 
     private SLOSli() {}
+    public List<SLOSliAdditionalPromqlFilter> additionalPromqlFilters() {
+        return this.additionalPromqlFilters == null ? List.of() : this.additionalPromqlFilters;
+    }
     public List<String> customDimensionLabels() {
         return this.customDimensionLabels == null ? List.of() : this.customDimensionLabels;
     }
@@ -51,6 +56,7 @@ public final class SLOSli {
     }
     @CustomType.Builder
     public static final class Builder {
+        private @Nullable List<SLOSliAdditionalPromqlFilter> additionalPromqlFilters;
         private @Nullable List<String> customDimensionLabels;
         private @Nullable SLOSliCustomIndicator customIndicator;
         private @Nullable SLOSliEndpointAvailability endpointAvailability;
@@ -60,6 +66,7 @@ public final class SLOSli {
         public Builder() {}
         public Builder(SLOSli defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.additionalPromqlFilters = defaults.additionalPromqlFilters;
     	      this.customDimensionLabels = defaults.customDimensionLabels;
     	      this.customIndicator = defaults.customIndicator;
     	      this.endpointAvailability = defaults.endpointAvailability;
@@ -68,6 +75,14 @@ public final class SLOSli {
     	      this.lensTemplateIndicator = defaults.lensTemplateIndicator;
         }
 
+        @CustomType.Setter
+        public Builder additionalPromqlFilters(@Nullable List<SLOSliAdditionalPromqlFilter> additionalPromqlFilters) {
+            this.additionalPromqlFilters = additionalPromqlFilters;
+            return this;
+        }
+        public Builder additionalPromqlFilters(SLOSliAdditionalPromqlFilter... additionalPromqlFilters) {
+            return additionalPromqlFilters(List.of(additionalPromqlFilters));
+        }
         @CustomType.Setter
         public Builder customDimensionLabels(@Nullable List<String> customDimensionLabels) {
             this.customDimensionLabels = customDimensionLabels;
@@ -103,6 +118,7 @@ public final class SLOSli {
         }
         public SLOSli build() {
             final var o = new SLOSli();
+            o.additionalPromqlFilters = additionalPromqlFilters;
             o.customDimensionLabels = customDimensionLabels;
             o.customIndicator = customIndicator;
             o.endpointAvailability = endpointAvailability;

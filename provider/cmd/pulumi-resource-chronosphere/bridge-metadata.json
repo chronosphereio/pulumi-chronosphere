@@ -316,7 +316,7 @@
                 "newValue": "new_value"
             },
             "chronosphere:index/SLODefinition:SLODefinition": {
-                "lowVolume": "low_volume",
+                "burnRateAlertingConfigs": "burn_rate_alerting_config",
                 "reportingWindows": "reporting_windows"
             },
             "chronosphere:index/SLOSignalGrouping:SLOSignalGrouping": {
@@ -324,6 +324,7 @@
                 "signalPerSeries": "signal_per_series"
             },
             "chronosphere:index/SLOSli:SLOSli": {
+                "additionalPromqlFilters": "additional_promql_filters",
                 "customDimensionLabels": "custom_dimension_labels",
                 "customIndicator": "custom_indicator",
                 "endpointAvailability": "endpoint_availability",
