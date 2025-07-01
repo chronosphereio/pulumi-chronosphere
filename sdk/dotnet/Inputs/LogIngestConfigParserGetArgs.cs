@@ -11,20 +11,17 @@ using Pulumi;
 namespace Chronosphere.Pulumi.Inputs
 {
 
-    public sealed class SLOSliEndpointLatencyAdditionalPromqlFilterArgs : global::Pulumi.ResourceArgs
+    public sealed class LogIngestConfigParserGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
-        [Input("type", required: true)]
-        public Input<string> Type { get; set; } = null!;
+        [Input("regex", required: true)]
+        public Input<string> Regex { get; set; } = null!;
 
-        [Input("value", required: true)]
-        public Input<string> Value { get; set; } = null!;
-
-        public SLOSliEndpointLatencyAdditionalPromqlFilterArgs()
+        public LogIngestConfigParserGetArgs()
         {
         }
-        public static new SLOSliEndpointLatencyAdditionalPromqlFilterArgs Empty => new SLOSliEndpointLatencyAdditionalPromqlFilterArgs();
+        public static new LogIngestConfigParserGetArgs Empty => new LogIngestConfigParserGetArgs();
     }
 }

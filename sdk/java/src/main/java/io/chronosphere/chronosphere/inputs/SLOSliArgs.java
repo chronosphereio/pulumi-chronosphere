@@ -7,8 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import io.chronosphere.chronosphere.inputs.SLOSliAdditionalPromqlFilterArgs;
 import io.chronosphere.chronosphere.inputs.SLOSliCustomIndicatorArgs;
-import io.chronosphere.chronosphere.inputs.SLOSliEndpointAvailabilityArgs;
-import io.chronosphere.chronosphere.inputs.SLOSliEndpointLatencyArgs;
+import io.chronosphere.chronosphere.inputs.SLOSliCustomTimesliceIndicatorArgs;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -41,32 +40,11 @@ public final class SLOSliArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.customIndicator);
     }
 
-    @Import(name="endpointAvailability")
-    private @Nullable Output<SLOSliEndpointAvailabilityArgs> endpointAvailability;
+    @Import(name="customTimesliceIndicator")
+    private @Nullable Output<SLOSliCustomTimesliceIndicatorArgs> customTimesliceIndicator;
 
-    public Optional<Output<SLOSliEndpointAvailabilityArgs>> endpointAvailability() {
-        return Optional.ofNullable(this.endpointAvailability);
-    }
-
-    @Import(name="endpointLabel")
-    private @Nullable Output<String> endpointLabel;
-
-    public Optional<Output<String>> endpointLabel() {
-        return Optional.ofNullable(this.endpointLabel);
-    }
-
-    @Import(name="endpointLatency")
-    private @Nullable Output<SLOSliEndpointLatencyArgs> endpointLatency;
-
-    public Optional<Output<SLOSliEndpointLatencyArgs>> endpointLatency() {
-        return Optional.ofNullable(this.endpointLatency);
-    }
-
-    @Import(name="lensTemplateIndicator")
-    private @Nullable Output<String> lensTemplateIndicator;
-
-    public Optional<Output<String>> lensTemplateIndicator() {
-        return Optional.ofNullable(this.lensTemplateIndicator);
+    public Optional<Output<SLOSliCustomTimesliceIndicatorArgs>> customTimesliceIndicator() {
+        return Optional.ofNullable(this.customTimesliceIndicator);
     }
 
     private SLOSliArgs() {}
@@ -75,10 +53,7 @@ public final class SLOSliArgs extends com.pulumi.resources.ResourceArgs {
         this.additionalPromqlFilters = $.additionalPromqlFilters;
         this.customDimensionLabels = $.customDimensionLabels;
         this.customIndicator = $.customIndicator;
-        this.endpointAvailability = $.endpointAvailability;
-        this.endpointLabel = $.endpointLabel;
-        this.endpointLatency = $.endpointLatency;
-        this.lensTemplateIndicator = $.lensTemplateIndicator;
+        this.customTimesliceIndicator = $.customTimesliceIndicator;
     }
 
     public static Builder builder() {
@@ -134,40 +109,13 @@ public final class SLOSliArgs extends com.pulumi.resources.ResourceArgs {
             return customIndicator(Output.of(customIndicator));
         }
 
-        public Builder endpointAvailability(@Nullable Output<SLOSliEndpointAvailabilityArgs> endpointAvailability) {
-            $.endpointAvailability = endpointAvailability;
+        public Builder customTimesliceIndicator(@Nullable Output<SLOSliCustomTimesliceIndicatorArgs> customTimesliceIndicator) {
+            $.customTimesliceIndicator = customTimesliceIndicator;
             return this;
         }
 
-        public Builder endpointAvailability(SLOSliEndpointAvailabilityArgs endpointAvailability) {
-            return endpointAvailability(Output.of(endpointAvailability));
-        }
-
-        public Builder endpointLabel(@Nullable Output<String> endpointLabel) {
-            $.endpointLabel = endpointLabel;
-            return this;
-        }
-
-        public Builder endpointLabel(String endpointLabel) {
-            return endpointLabel(Output.of(endpointLabel));
-        }
-
-        public Builder endpointLatency(@Nullable Output<SLOSliEndpointLatencyArgs> endpointLatency) {
-            $.endpointLatency = endpointLatency;
-            return this;
-        }
-
-        public Builder endpointLatency(SLOSliEndpointLatencyArgs endpointLatency) {
-            return endpointLatency(Output.of(endpointLatency));
-        }
-
-        public Builder lensTemplateIndicator(@Nullable Output<String> lensTemplateIndicator) {
-            $.lensTemplateIndicator = lensTemplateIndicator;
-            return this;
-        }
-
-        public Builder lensTemplateIndicator(String lensTemplateIndicator) {
-            return lensTemplateIndicator(Output.of(lensTemplateIndicator));
+        public Builder customTimesliceIndicator(SLOSliCustomTimesliceIndicatorArgs customTimesliceIndicator) {
+            return customTimesliceIndicator(Output.of(customTimesliceIndicator));
         }
 
         public SLOSliArgs build() {

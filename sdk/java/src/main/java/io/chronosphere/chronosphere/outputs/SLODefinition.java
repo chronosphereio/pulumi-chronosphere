@@ -5,27 +5,33 @@ package io.chronosphere.chronosphere.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import io.chronosphere.chronosphere.outputs.SLODefinitionBurnRateAlertingConfig;
-import io.chronosphere.chronosphere.outputs.SLODefinitionReportingWindow;
+import io.chronosphere.chronosphere.outputs.SLODefinitionTimeWindow;
+import java.lang.Boolean;
 import java.lang.Double;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import javax.annotation.Nullable;
 
 @CustomType
 public final class SLODefinition {
     private @Nullable List<SLODefinitionBurnRateAlertingConfig> burnRateAlertingConfigs;
+    private @Nullable Boolean enableBurnRateAlerting;
     private Double objective;
-    private List<SLODefinitionReportingWindow> reportingWindows;
+    private @Nullable SLODefinitionTimeWindow timeWindow;
 
     private SLODefinition() {}
     public List<SLODefinitionBurnRateAlertingConfig> burnRateAlertingConfigs() {
         return this.burnRateAlertingConfigs == null ? List.of() : this.burnRateAlertingConfigs;
     }
+    public Optional<Boolean> enableBurnRateAlerting() {
+        return Optional.ofNullable(this.enableBurnRateAlerting);
+    }
     public Double objective() {
         return this.objective;
     }
-    public List<SLODefinitionReportingWindow> reportingWindows() {
-        return this.reportingWindows;
+    public Optional<SLODefinitionTimeWindow> timeWindow() {
+        return Optional.ofNullable(this.timeWindow);
     }
 
     public static Builder builder() {
@@ -38,14 +44,16 @@ public final class SLODefinition {
     @CustomType.Builder
     public static final class Builder {
         private @Nullable List<SLODefinitionBurnRateAlertingConfig> burnRateAlertingConfigs;
+        private @Nullable Boolean enableBurnRateAlerting;
         private Double objective;
-        private List<SLODefinitionReportingWindow> reportingWindows;
+        private @Nullable SLODefinitionTimeWindow timeWindow;
         public Builder() {}
         public Builder(SLODefinition defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.burnRateAlertingConfigs = defaults.burnRateAlertingConfigs;
+    	      this.enableBurnRateAlerting = defaults.enableBurnRateAlerting;
     	      this.objective = defaults.objective;
-    	      this.reportingWindows = defaults.reportingWindows;
+    	      this.timeWindow = defaults.timeWindow;
         }
 
         @CustomType.Setter
@@ -57,23 +65,26 @@ public final class SLODefinition {
             return burnRateAlertingConfigs(List.of(burnRateAlertingConfigs));
         }
         @CustomType.Setter
+        public Builder enableBurnRateAlerting(@Nullable Boolean enableBurnRateAlerting) {
+            this.enableBurnRateAlerting = enableBurnRateAlerting;
+            return this;
+        }
+        @CustomType.Setter
         public Builder objective(Double objective) {
             this.objective = Objects.requireNonNull(objective);
             return this;
         }
         @CustomType.Setter
-        public Builder reportingWindows(List<SLODefinitionReportingWindow> reportingWindows) {
-            this.reportingWindows = Objects.requireNonNull(reportingWindows);
+        public Builder timeWindow(@Nullable SLODefinitionTimeWindow timeWindow) {
+            this.timeWindow = timeWindow;
             return this;
-        }
-        public Builder reportingWindows(SLODefinitionReportingWindow... reportingWindows) {
-            return reportingWindows(List.of(reportingWindows));
         }
         public SLODefinition build() {
             final var o = new SLODefinition();
             o.burnRateAlertingConfigs = burnRateAlertingConfigs;
+            o.enableBurnRateAlerting = enableBurnRateAlerting;
             o.objective = objective;
-            o.reportingWindows = reportingWindows;
+            o.timeWindow = timeWindow;
             return o;
         }
     }

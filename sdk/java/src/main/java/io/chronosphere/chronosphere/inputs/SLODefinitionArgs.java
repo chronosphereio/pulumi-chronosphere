@@ -6,7 +6,8 @@ package io.chronosphere.chronosphere.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import io.chronosphere.chronosphere.inputs.SLODefinitionBurnRateAlertingConfigArgs;
-import io.chronosphere.chronosphere.inputs.SLODefinitionReportingWindowArgs;
+import io.chronosphere.chronosphere.inputs.SLODefinitionTimeWindowArgs;
+import java.lang.Boolean;
 import java.lang.Double;
 import java.util.List;
 import java.util.Objects;
@@ -25,6 +26,13 @@ public final class SLODefinitionArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.burnRateAlertingConfigs);
     }
 
+    @Import(name="enableBurnRateAlerting")
+    private @Nullable Output<Boolean> enableBurnRateAlerting;
+
+    public Optional<Output<Boolean>> enableBurnRateAlerting() {
+        return Optional.ofNullable(this.enableBurnRateAlerting);
+    }
+
     @Import(name="objective", required=true)
     private Output<Double> objective;
 
@@ -32,19 +40,20 @@ public final class SLODefinitionArgs extends com.pulumi.resources.ResourceArgs {
         return this.objective;
     }
 
-    @Import(name="reportingWindows", required=true)
-    private Output<List<SLODefinitionReportingWindowArgs>> reportingWindows;
+    @Import(name="timeWindow")
+    private @Nullable Output<SLODefinitionTimeWindowArgs> timeWindow;
 
-    public Output<List<SLODefinitionReportingWindowArgs>> reportingWindows() {
-        return this.reportingWindows;
+    public Optional<Output<SLODefinitionTimeWindowArgs>> timeWindow() {
+        return Optional.ofNullable(this.timeWindow);
     }
 
     private SLODefinitionArgs() {}
 
     private SLODefinitionArgs(SLODefinitionArgs $) {
         this.burnRateAlertingConfigs = $.burnRateAlertingConfigs;
+        this.enableBurnRateAlerting = $.enableBurnRateAlerting;
         this.objective = $.objective;
-        this.reportingWindows = $.reportingWindows;
+        this.timeWindow = $.timeWindow;
     }
 
     public static Builder builder() {
@@ -78,6 +87,15 @@ public final class SLODefinitionArgs extends com.pulumi.resources.ResourceArgs {
             return burnRateAlertingConfigs(List.of(burnRateAlertingConfigs));
         }
 
+        public Builder enableBurnRateAlerting(@Nullable Output<Boolean> enableBurnRateAlerting) {
+            $.enableBurnRateAlerting = enableBurnRateAlerting;
+            return this;
+        }
+
+        public Builder enableBurnRateAlerting(Boolean enableBurnRateAlerting) {
+            return enableBurnRateAlerting(Output.of(enableBurnRateAlerting));
+        }
+
         public Builder objective(Output<Double> objective) {
             $.objective = objective;
             return this;
@@ -87,22 +105,17 @@ public final class SLODefinitionArgs extends com.pulumi.resources.ResourceArgs {
             return objective(Output.of(objective));
         }
 
-        public Builder reportingWindows(Output<List<SLODefinitionReportingWindowArgs>> reportingWindows) {
-            $.reportingWindows = reportingWindows;
+        public Builder timeWindow(@Nullable Output<SLODefinitionTimeWindowArgs> timeWindow) {
+            $.timeWindow = timeWindow;
             return this;
         }
 
-        public Builder reportingWindows(List<SLODefinitionReportingWindowArgs> reportingWindows) {
-            return reportingWindows(Output.of(reportingWindows));
-        }
-
-        public Builder reportingWindows(SLODefinitionReportingWindowArgs... reportingWindows) {
-            return reportingWindows(List.of(reportingWindows));
+        public Builder timeWindow(SLODefinitionTimeWindowArgs timeWindow) {
+            return timeWindow(Output.of(timeWindow));
         }
 
         public SLODefinitionArgs build() {
             $.objective = Objects.requireNonNull($.objective, "expected parameter 'objective' to be non-null");
-            $.reportingWindows = Objects.requireNonNull($.reportingWindows, "expected parameter 'reportingWindows' to be non-null");
             return $;
         }
     }

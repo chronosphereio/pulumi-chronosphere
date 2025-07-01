@@ -9,9 +9,9 @@ import java.lang.String;
 import java.util.Objects;
 
 
-public final class SLODefinitionReportingWindowArgs extends com.pulumi.resources.ResourceArgs {
+public final class SLODefinitionTimeWindowArgs extends com.pulumi.resources.ResourceArgs {
 
-    public static final SLODefinitionReportingWindowArgs Empty = new SLODefinitionReportingWindowArgs();
+    public static final SLODefinitionTimeWindowArgs Empty = new SLODefinitionTimeWindowArgs();
 
     @Import(name="duration", required=true)
     private Output<String> duration;
@@ -20,28 +20,28 @@ public final class SLODefinitionReportingWindowArgs extends com.pulumi.resources
         return this.duration;
     }
 
-    private SLODefinitionReportingWindowArgs() {}
+    private SLODefinitionTimeWindowArgs() {}
 
-    private SLODefinitionReportingWindowArgs(SLODefinitionReportingWindowArgs $) {
+    private SLODefinitionTimeWindowArgs(SLODefinitionTimeWindowArgs $) {
         this.duration = $.duration;
     }
 
     public static Builder builder() {
         return new Builder();
     }
-    public static Builder builder(SLODefinitionReportingWindowArgs defaults) {
+    public static Builder builder(SLODefinitionTimeWindowArgs defaults) {
         return new Builder(defaults);
     }
 
     public static final class Builder {
-        private SLODefinitionReportingWindowArgs $;
+        private SLODefinitionTimeWindowArgs $;
 
         public Builder() {
-            $ = new SLODefinitionReportingWindowArgs();
+            $ = new SLODefinitionTimeWindowArgs();
         }
 
-        public Builder(SLODefinitionReportingWindowArgs defaults) {
-            $ = new SLODefinitionReportingWindowArgs(Objects.requireNonNull(defaults));
+        public Builder(SLODefinitionTimeWindowArgs defaults) {
+            $ = new SLODefinitionTimeWindowArgs(Objects.requireNonNull(defaults));
         }
 
         public Builder duration(Output<String> duration) {
@@ -53,7 +53,7 @@ public final class SLODefinitionReportingWindowArgs extends com.pulumi.resources
             return duration(Output.of(duration));
         }
 
-        public SLODefinitionReportingWindowArgs build() {
+        public SLODefinitionTimeWindowArgs build() {
             $.duration = Objects.requireNonNull($.duration, "expected parameter 'duration' to be non-null");
             return $;
         }

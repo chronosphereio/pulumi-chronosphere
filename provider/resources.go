@@ -162,6 +162,9 @@ func Provider() tfbridge.ProviderInfo {
 			"chronosphere_slo": {
 				Tok: tfbridge.MakeResource(mainPkg, mainMod, "SLO"),
 			},
+			"chronosphere_log_ingest_config": {
+				Tok: tfbridge.MakeResource(mainPkg, mainMod, "LogIngestConfig"),
+			},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			"chronosphere_bucket": {

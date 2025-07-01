@@ -236,6 +236,11 @@ export interface LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilter {
     query: string;
 }
 
+export interface LogIngestConfigParser {
+    name: string;
+    regex: string;
+}
+
 export interface LogscaleActionEmailAction {
     attachCsv?: boolean;
     bodyTemplate?: string;
@@ -540,8 +545,9 @@ export interface RollupRuleStoragePolicies {
 
 export interface SLODefinition {
     burnRateAlertingConfigs: outputs.SLODefinitionBurnRateAlertingConfig[];
+    enableBurnRateAlerting: boolean;
     objective: number;
-    reportingWindows: outputs.SLODefinitionReportingWindow[];
+    timeWindow: outputs.SLODefinitionTimeWindow;
 }
 
 export interface SLODefinitionBurnRateAlertingConfig {
@@ -551,7 +557,7 @@ export interface SLODefinitionBurnRateAlertingConfig {
     window: string;
 }
 
-export interface SLODefinitionReportingWindow {
+export interface SLODefinitionTimeWindow {
     duration: string;
 }
 
@@ -564,10 +570,7 @@ export interface SLOSli {
     additionalPromqlFilters?: outputs.SLOSliAdditionalPromqlFilter[];
     customDimensionLabels?: string[];
     customIndicator?: outputs.SLOSliCustomIndicator;
-    endpointAvailability?: outputs.SLOSliEndpointAvailability;
-    endpointLabel?: string;
-    endpointLatency?: outputs.SLOSliEndpointLatency;
-    lensTemplateIndicator?: string;
+    customTimesliceIndicator?: outputs.SLOSliCustomTimesliceIndicator;
 }
 
 export interface SLOSliAdditionalPromqlFilter {
@@ -582,29 +585,15 @@ export interface SLOSliCustomIndicator {
     totalQueryTemplate: string;
 }
 
-export interface SLOSliEndpointAvailability {
-    additionalPromqlFilters?: outputs.SLOSliEndpointAvailabilityAdditionalPromqlFilter[];
-    endpointsMonitoreds: string[];
-    errorCodes?: string[];
-    successCodes?: string[];
+export interface SLOSliCustomTimesliceIndicator {
+    condition: outputs.SLOSliCustomTimesliceIndicatorCondition;
+    queryTemplate: string;
+    timesliceSize: string;
 }
 
-export interface SLOSliEndpointAvailabilityAdditionalPromqlFilter {
-    name: string;
-    type: string;
-    value: string;
-}
-
-export interface SLOSliEndpointLatency {
-    additionalPromqlFilters?: outputs.SLOSliEndpointLatencyAdditionalPromqlFilter[];
-    endpointsMonitoreds: string[];
-    latencyBucket: string;
-}
-
-export interface SLOSliEndpointLatencyAdditionalPromqlFilter {
-    name: string;
-    type: string;
-    value: string;
+export interface SLOSliCustomTimesliceIndicatorCondition {
+    op: string;
+    value: number;
 }
 
 export interface ServiceAccountRestriction {

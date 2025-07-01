@@ -8,18 +8,17 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Chronosphere.Pulumi.Outputs
+namespace Chronosphere.Pulumi.Inputs
 {
 
-    [OutputType]
-    public sealed class SLODefinitionReportingWindow
+    public sealed class SLODefinitionTimeWindowArgs : global::Pulumi.ResourceArgs
     {
-        public readonly string Duration;
+        [Input("duration", required: true)]
+        public Input<string> Duration { get; set; } = null!;
 
-        [OutputConstructor]
-        private SLODefinitionReportingWindow(string duration)
+        public SLODefinitionTimeWindowArgs()
         {
-            Duration = duration;
         }
+        public static new SLODefinitionTimeWindowArgs Empty => new SLODefinitionTimeWindowArgs();
     }
 }

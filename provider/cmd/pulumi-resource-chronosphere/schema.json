@@ -765,6 +765,21 @@
                 "query"
             ]
         },
+        "chronosphere:index/LogIngestConfigParser:LogIngestConfigParser": {
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "regex": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "name",
+                "regex"
+            ]
+        },
         "chronosphere:index/LogscaleActionEmailAction:LogscaleActionEmailAction": {
             "properties": {
                 "attachCsv": {
@@ -1665,27 +1680,27 @@
                         "$ref": "#/types/chronosphere:index/SLODefinitionBurnRateAlertingConfig:SLODefinitionBurnRateAlertingConfig"
                     }
                 },
+                "enableBurnRateAlerting": {
+                    "type": "boolean"
+                },
                 "objective": {
                     "type": "number"
                 },
-                "reportingWindows": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/chronosphere:index/SLODefinitionReportingWindow:SLODefinitionReportingWindow"
-                    }
+                "timeWindow": {
+                    "$ref": "#/types/chronosphere:index/SLODefinitionTimeWindow:SLODefinitionTimeWindow"
                 }
             },
             "type": "object",
             "required": [
-                "objective",
-                "reportingWindows"
+                "objective"
             ],
             "language": {
                 "nodejs": {
                     "requiredOutputs": [
                         "burnRateAlertingConfigs",
+                        "enableBurnRateAlerting",
                         "objective",
-                        "reportingWindows"
+                        "timeWindow"
                     ]
                 }
             }
@@ -1715,7 +1730,7 @@
                 "window"
             ]
         },
-        "chronosphere:index/SLODefinitionReportingWindow:SLODefinitionReportingWindow": {
+        "chronosphere:index/SLODefinitionTimeWindow:SLODefinitionTimeWindow": {
             "properties": {
                 "duration": {
                     "type": "string"
@@ -1757,17 +1772,8 @@
                 "customIndicator": {
                     "$ref": "#/types/chronosphere:index/SLOSliCustomIndicator:SLOSliCustomIndicator"
                 },
-                "endpointAvailability": {
-                    "$ref": "#/types/chronosphere:index/SLOSliEndpointAvailability:SLOSliEndpointAvailability"
-                },
-                "endpointLabel": {
-                    "type": "string"
-                },
-                "endpointLatency": {
-                    "$ref": "#/types/chronosphere:index/SLOSliEndpointLatency:SLOSliEndpointLatency"
-                },
-                "lensTemplateIndicator": {
-                    "type": "string"
+                "customTimesliceIndicator": {
+                    "$ref": "#/types/chronosphere:index/SLOSliCustomTimesliceIndicator:SLOSliCustomTimesliceIndicator"
                 }
             },
             "type": "object"
@@ -1808,97 +1814,37 @@
                 "totalQueryTemplate"
             ]
         },
-        "chronosphere:index/SLOSliEndpointAvailability:SLOSliEndpointAvailability": {
+        "chronosphere:index/SLOSliCustomTimesliceIndicator:SLOSliCustomTimesliceIndicator": {
             "properties": {
-                "additionalPromqlFilters": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/chronosphere:index/SLOSliEndpointAvailabilityAdditionalPromqlFilter:SLOSliEndpointAvailabilityAdditionalPromqlFilter"
-                    }
+                "condition": {
+                    "$ref": "#/types/chronosphere:index/SLOSliCustomTimesliceIndicatorCondition:SLOSliCustomTimesliceIndicatorCondition"
                 },
-                "endpointsMonitoreds": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
+                "queryTemplate": {
+                    "type": "string"
                 },
-                "errorCodes": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "successCodes": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
+                "timesliceSize": {
+                    "type": "string"
                 }
             },
             "type": "object",
             "required": [
-                "endpointsMonitoreds"
+                "condition",
+                "queryTemplate",
+                "timesliceSize"
             ]
         },
-        "chronosphere:index/SLOSliEndpointAvailabilityAdditionalPromqlFilter:SLOSliEndpointAvailabilityAdditionalPromqlFilter": {
+        "chronosphere:index/SLOSliCustomTimesliceIndicatorCondition:SLOSliCustomTimesliceIndicatorCondition": {
             "properties": {
-                "name": {
-                    "type": "string"
-                },
-                "type": {
+                "op": {
                     "type": "string"
                 },
                 "value": {
-                    "type": "string"
+                    "type": "number"
                 }
             },
             "type": "object",
             "required": [
-                "name",
-                "type",
-                "value"
-            ]
-        },
-        "chronosphere:index/SLOSliEndpointLatency:SLOSliEndpointLatency": {
-            "properties": {
-                "additionalPromqlFilters": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/chronosphere:index/SLOSliEndpointLatencyAdditionalPromqlFilter:SLOSliEndpointLatencyAdditionalPromqlFilter"
-                    }
-                },
-                "endpointsMonitoreds": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "latencyBucket": {
-                    "type": "string"
-                }
-            },
-            "type": "object",
-            "required": [
-                "endpointsMonitoreds",
-                "latencyBucket"
-            ]
-        },
-        "chronosphere:index/SLOSliEndpointLatencyAdditionalPromqlFilter:SLOSliEndpointLatencyAdditionalPromqlFilter": {
-            "properties": {
-                "name": {
-                    "type": "string"
-                },
-                "type": {
-                    "type": "string"
-                },
-                "value": {
-                    "type": "string"
-                }
-            },
-            "type": "object",
-            "required": [
-                "name",
-                "type",
+                "op",
                 "value"
             ]
         },
@@ -3490,6 +3436,36 @@
                     },
                     "defaultDataset": {
                         "$ref": "#/types/chronosphere:index/LogAllocationConfigDefaultDataset:LogAllocationConfigDefaultDataset"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "chronosphere:index/logIngestConfig:LogIngestConfig": {
+            "properties": {
+                "parsers": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/chronosphere:index/LogIngestConfigParser:LogIngestConfigParser"
+                    }
+                }
+            },
+            "inputProperties": {
+                "parsers": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/chronosphere:index/LogIngestConfigParser:LogIngestConfigParser"
+                    }
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering LogIngestConfig resources.\n",
+                "properties": {
+                    "parsers": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/chronosphere:index/LogIngestConfigParser:LogIngestConfigParser"
+                        }
                     }
                 },
                 "type": "object"

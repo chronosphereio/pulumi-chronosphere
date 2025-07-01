@@ -15,20 +15,24 @@ namespace Chronosphere.Pulumi.Outputs
     public sealed class SLODefinition
     {
         public readonly ImmutableArray<Outputs.SLODefinitionBurnRateAlertingConfig> BurnRateAlertingConfigs;
+        public readonly bool? EnableBurnRateAlerting;
         public readonly double Objective;
-        public readonly ImmutableArray<Outputs.SLODefinitionReportingWindow> ReportingWindows;
+        public readonly Outputs.SLODefinitionTimeWindow? TimeWindow;
 
         [OutputConstructor]
         private SLODefinition(
             ImmutableArray<Outputs.SLODefinitionBurnRateAlertingConfig> burnRateAlertingConfigs,
 
+            bool? enableBurnRateAlerting,
+
             double objective,
 
-            ImmutableArray<Outputs.SLODefinitionReportingWindow> reportingWindows)
+            Outputs.SLODefinitionTimeWindow? timeWindow)
         {
             BurnRateAlertingConfigs = burnRateAlertingConfigs;
+            EnableBurnRateAlerting = enableBurnRateAlerting;
             Objective = objective;
-            ReportingWindows = reportingWindows;
+            TimeWindow = timeWindow;
         }
     }
 }

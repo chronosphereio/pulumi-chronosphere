@@ -12,23 +12,14 @@ namespace Chronosphere.Pulumi.Outputs
 {
 
     [OutputType]
-    public sealed class SLOSliEndpointLatencyAdditionalPromqlFilter
+    public sealed class SLODefinitionTimeWindow
     {
-        public readonly string Name;
-        public readonly string Type;
-        public readonly string Value;
+        public readonly string Duration;
 
         [OutputConstructor]
-        private SLOSliEndpointLatencyAdditionalPromqlFilter(
-            string name,
-
-            string type,
-
-            string value)
+        private SLODefinitionTimeWindow(string duration)
         {
-            Name = name;
-            Type = type;
-            Value = value;
+            Duration = duration;
         }
     }
 }

@@ -11,14 +11,14 @@ using Pulumi;
 namespace Chronosphere.Pulumi.Inputs
 {
 
-    public sealed class SLODefinitionReportingWindowArgs : global::Pulumi.ResourceArgs
+    public sealed class SLODefinitionTimeWindowGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("duration", required: true)]
         public Input<string> Duration { get; set; } = null!;
 
-        public SLODefinitionReportingWindowArgs()
+        public SLODefinitionTimeWindowGetArgs()
         {
         }
-        public static new SLODefinitionReportingWindowArgs Empty => new SLODefinitionReportingWindowArgs();
+        public static new SLODefinitionTimeWindowGetArgs Empty => new SLODefinitionTimeWindowGetArgs();
     }
 }
