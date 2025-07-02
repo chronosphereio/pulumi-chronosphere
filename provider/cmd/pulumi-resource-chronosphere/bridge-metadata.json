@@ -13,6 +13,7 @@
             "chronosphere:index/emailAlertNotifier:EmailAlertNotifier": "chronosphere_email_alert_notifier",
             "chronosphere:index/gcpMetricsIntegration:GcpMetricsIntegration": "chronosphere_gcp_metrics_integration",
             "chronosphere:index/logAllocationConfig:LogAllocationConfig": "chronosphere_log_allocation_config",
+            "chronosphere:index/logIngestConfig:LogIngestConfig": "chronosphere_log_ingest_config",
             "chronosphere:index/logscaleAction:LogscaleAction": "chronosphere_logscale_action",
             "chronosphere:index/logscaleAlert:LogscaleAlert": "chronosphere_logscale_alert",
             "chronosphere:index/mappingRule:MappingRule": "chronosphere_mapping_rule",
@@ -317,7 +318,8 @@
             },
             "chronosphere:index/SLODefinition:SLODefinition": {
                 "burnRateAlertingConfigs": "burn_rate_alerting_config",
-                "reportingWindows": "reporting_windows"
+                "enableBurnRateAlerting": "enable_burn_rate_alerting",
+                "timeWindow": "time_window"
             },
             "chronosphere:index/SLOSignalGrouping:SLOSignalGrouping": {
                 "labelNames": "label_names",
@@ -327,26 +329,16 @@
                 "additionalPromqlFilters": "additional_promql_filters",
                 "customDimensionLabels": "custom_dimension_labels",
                 "customIndicator": "custom_indicator",
-                "endpointAvailability": "endpoint_availability",
-                "endpointLabel": "endpoint_label",
-                "endpointLatency": "endpoint_latency",
-                "lensTemplateIndicator": "lens_template_indicator"
+                "customTimesliceIndicator": "custom_timeslice_indicator"
             },
             "chronosphere:index/SLOSliCustomIndicator:SLOSliCustomIndicator": {
                 "badQueryTemplate": "bad_query_template",
                 "goodQueryTemplate": "good_query_template",
                 "totalQueryTemplate": "total_query_template"
             },
-            "chronosphere:index/SLOSliEndpointAvailability:SLOSliEndpointAvailability": {
-                "additionalPromqlFilters": "additional_promql_filters",
-                "endpointsMonitoreds": "endpoints_monitored",
-                "errorCodes": "error_codes",
-                "successCodes": "success_codes"
-            },
-            "chronosphere:index/SLOSliEndpointLatency:SLOSliEndpointLatency": {
-                "additionalPromqlFilters": "additional_promql_filters",
-                "endpointsMonitoreds": "endpoints_monitored",
-                "latencyBucket": "latency_bucket"
+            "chronosphere:index/SLOSliCustomTimesliceIndicator:SLOSliCustomTimesliceIndicator": {
+                "queryTemplate": "query_template",
+                "timesliceSize": "timeslice_size"
             },
             "chronosphere:index/SlackAlertNotifierAction:SlackAlertNotifierAction": {
                 "actionConfirmDismissText": "action_confirm_dismiss_text",
@@ -506,6 +498,9 @@
             "chronosphere:index/logAllocationConfig:LogAllocationConfig": {
                 "datasetAllocations": "dataset_allocation",
                 "defaultDataset": "default_dataset"
+            },
+            "chronosphere:index/logIngestConfig:LogIngestConfig": {
+                "parsers": "parser"
             },
             "chronosphere:index/logscaleAction:LogscaleAction": {
                 "emailAction": "email_action",

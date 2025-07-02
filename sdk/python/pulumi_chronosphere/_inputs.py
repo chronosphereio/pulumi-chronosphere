@@ -56,6 +56,7 @@ __all__ = [
     'LogAllocationConfigDefaultDatasetPrioritiesArgs',
     'LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterArgs',
     'LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterArgs',
+    'LogIngestConfigParserArgs',
     'LogscaleActionEmailActionArgs',
     'LogscaleActionHumioActionArgs',
     'LogscaleActionOpsGenieActionArgs',
@@ -110,15 +111,13 @@ __all__ = [
     'RollupRuleStoragePoliciesArgs',
     'SLODefinitionArgs',
     'SLODefinitionBurnRateAlertingConfigArgs',
-    'SLODefinitionReportingWindowArgs',
+    'SLODefinitionTimeWindowArgs',
     'SLOSignalGroupingArgs',
     'SLOSliArgs',
     'SLOSliAdditionalPromqlFilterArgs',
     'SLOSliCustomIndicatorArgs',
-    'SLOSliEndpointAvailabilityArgs',
-    'SLOSliEndpointAvailabilityAdditionalPromqlFilterArgs',
-    'SLOSliEndpointLatencyArgs',
-    'SLOSliEndpointLatencyAdditionalPromqlFilterArgs',
+    'SLOSliCustomTimesliceIndicatorArgs',
+    'SLOSliCustomTimesliceIndicatorConditionArgs',
     'ServiceAccountRestrictionArgs',
     'SlackAlertNotifierActionArgs',
     'SlackAlertNotifierFieldArgs',
@@ -1473,6 +1472,33 @@ class LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterArgs:
     @query.setter
     def query(self, value: pulumi.Input[str]):
         pulumi.set(self, "query", value)
+
+
+@pulumi.input_type
+class LogIngestConfigParserArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[str],
+                 regex: pulumi.Input[str]):
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "regex", regex)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def regex(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "regex")
+
+    @regex.setter
+    def regex(self, value: pulumi.Input[str]):
+        pulumi.set(self, "regex", value)
 
 
 @pulumi.input_type
@@ -3410,12 +3436,16 @@ class RollupRuleStoragePoliciesArgs:
 class SLODefinitionArgs:
     def __init__(__self__, *,
                  objective: pulumi.Input[float],
-                 reporting_windows: pulumi.Input[Sequence[pulumi.Input['SLODefinitionReportingWindowArgs']]],
-                 burn_rate_alerting_configs: Optional[pulumi.Input[Sequence[pulumi.Input['SLODefinitionBurnRateAlertingConfigArgs']]]] = None):
+                 burn_rate_alerting_configs: Optional[pulumi.Input[Sequence[pulumi.Input['SLODefinitionBurnRateAlertingConfigArgs']]]] = None,
+                 enable_burn_rate_alerting: Optional[pulumi.Input[bool]] = None,
+                 time_window: Optional[pulumi.Input['SLODefinitionTimeWindowArgs']] = None):
         pulumi.set(__self__, "objective", objective)
-        pulumi.set(__self__, "reporting_windows", reporting_windows)
         if burn_rate_alerting_configs is not None:
             pulumi.set(__self__, "burn_rate_alerting_configs", burn_rate_alerting_configs)
+        if enable_burn_rate_alerting is not None:
+            pulumi.set(__self__, "enable_burn_rate_alerting", enable_burn_rate_alerting)
+        if time_window is not None:
+            pulumi.set(__self__, "time_window", time_window)
 
     @property
     @pulumi.getter
@@ -3427,15 +3457,6 @@ class SLODefinitionArgs:
         pulumi.set(self, "objective", value)
 
     @property
-    @pulumi.getter(name="reportingWindows")
-    def reporting_windows(self) -> pulumi.Input[Sequence[pulumi.Input['SLODefinitionReportingWindowArgs']]]:
-        return pulumi.get(self, "reporting_windows")
-
-    @reporting_windows.setter
-    def reporting_windows(self, value: pulumi.Input[Sequence[pulumi.Input['SLODefinitionReportingWindowArgs']]]):
-        pulumi.set(self, "reporting_windows", value)
-
-    @property
     @pulumi.getter(name="burnRateAlertingConfigs")
     def burn_rate_alerting_configs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SLODefinitionBurnRateAlertingConfigArgs']]]]:
         return pulumi.get(self, "burn_rate_alerting_configs")
@@ -3443,6 +3464,24 @@ class SLODefinitionArgs:
     @burn_rate_alerting_configs.setter
     def burn_rate_alerting_configs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SLODefinitionBurnRateAlertingConfigArgs']]]]):
         pulumi.set(self, "burn_rate_alerting_configs", value)
+
+    @property
+    @pulumi.getter(name="enableBurnRateAlerting")
+    def enable_burn_rate_alerting(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "enable_burn_rate_alerting")
+
+    @enable_burn_rate_alerting.setter
+    def enable_burn_rate_alerting(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "enable_burn_rate_alerting", value)
+
+    @property
+    @pulumi.getter(name="timeWindow")
+    def time_window(self) -> Optional[pulumi.Input['SLODefinitionTimeWindowArgs']]:
+        return pulumi.get(self, "time_window")
+
+    @time_window.setter
+    def time_window(self, value: Optional[pulumi.Input['SLODefinitionTimeWindowArgs']]):
+        pulumi.set(self, "time_window", value)
 
 
 @pulumi.input_type
@@ -3496,7 +3535,7 @@ class SLODefinitionBurnRateAlertingConfigArgs:
 
 
 @pulumi.input_type
-class SLODefinitionReportingWindowArgs:
+class SLODefinitionTimeWindowArgs:
     def __init__(__self__, *,
                  duration: pulumi.Input[str]):
         pulumi.set(__self__, "duration", duration)
@@ -3546,24 +3585,15 @@ class SLOSliArgs:
                  additional_promql_filters: Optional[pulumi.Input[Sequence[pulumi.Input['SLOSliAdditionalPromqlFilterArgs']]]] = None,
                  custom_dimension_labels: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  custom_indicator: Optional[pulumi.Input['SLOSliCustomIndicatorArgs']] = None,
-                 endpoint_availability: Optional[pulumi.Input['SLOSliEndpointAvailabilityArgs']] = None,
-                 endpoint_label: Optional[pulumi.Input[str]] = None,
-                 endpoint_latency: Optional[pulumi.Input['SLOSliEndpointLatencyArgs']] = None,
-                 lens_template_indicator: Optional[pulumi.Input[str]] = None):
+                 custom_timeslice_indicator: Optional[pulumi.Input['SLOSliCustomTimesliceIndicatorArgs']] = None):
         if additional_promql_filters is not None:
             pulumi.set(__self__, "additional_promql_filters", additional_promql_filters)
         if custom_dimension_labels is not None:
             pulumi.set(__self__, "custom_dimension_labels", custom_dimension_labels)
         if custom_indicator is not None:
             pulumi.set(__self__, "custom_indicator", custom_indicator)
-        if endpoint_availability is not None:
-            pulumi.set(__self__, "endpoint_availability", endpoint_availability)
-        if endpoint_label is not None:
-            pulumi.set(__self__, "endpoint_label", endpoint_label)
-        if endpoint_latency is not None:
-            pulumi.set(__self__, "endpoint_latency", endpoint_latency)
-        if lens_template_indicator is not None:
-            pulumi.set(__self__, "lens_template_indicator", lens_template_indicator)
+        if custom_timeslice_indicator is not None:
+            pulumi.set(__self__, "custom_timeslice_indicator", custom_timeslice_indicator)
 
     @property
     @pulumi.getter(name="additionalPromqlFilters")
@@ -3593,40 +3623,13 @@ class SLOSliArgs:
         pulumi.set(self, "custom_indicator", value)
 
     @property
-    @pulumi.getter(name="endpointAvailability")
-    def endpoint_availability(self) -> Optional[pulumi.Input['SLOSliEndpointAvailabilityArgs']]:
-        return pulumi.get(self, "endpoint_availability")
+    @pulumi.getter(name="customTimesliceIndicator")
+    def custom_timeslice_indicator(self) -> Optional[pulumi.Input['SLOSliCustomTimesliceIndicatorArgs']]:
+        return pulumi.get(self, "custom_timeslice_indicator")
 
-    @endpoint_availability.setter
-    def endpoint_availability(self, value: Optional[pulumi.Input['SLOSliEndpointAvailabilityArgs']]):
-        pulumi.set(self, "endpoint_availability", value)
-
-    @property
-    @pulumi.getter(name="endpointLabel")
-    def endpoint_label(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "endpoint_label")
-
-    @endpoint_label.setter
-    def endpoint_label(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "endpoint_label", value)
-
-    @property
-    @pulumi.getter(name="endpointLatency")
-    def endpoint_latency(self) -> Optional[pulumi.Input['SLOSliEndpointLatencyArgs']]:
-        return pulumi.get(self, "endpoint_latency")
-
-    @endpoint_latency.setter
-    def endpoint_latency(self, value: Optional[pulumi.Input['SLOSliEndpointLatencyArgs']]):
-        pulumi.set(self, "endpoint_latency", value)
-
-    @property
-    @pulumi.getter(name="lensTemplateIndicator")
-    def lens_template_indicator(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "lens_template_indicator")
-
-    @lens_template_indicator.setter
-    def lens_template_indicator(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "lens_template_indicator", value)
+    @custom_timeslice_indicator.setter
+    def custom_timeslice_indicator(self, value: Optional[pulumi.Input['SLOSliCustomTimesliceIndicatorArgs']]):
+        pulumi.set(self, "custom_timeslice_indicator", value)
 
 
 @pulumi.input_type
@@ -3708,169 +3711,67 @@ class SLOSliCustomIndicatorArgs:
 
 
 @pulumi.input_type
-class SLOSliEndpointAvailabilityArgs:
+class SLOSliCustomTimesliceIndicatorArgs:
     def __init__(__self__, *,
-                 endpoints_monitoreds: pulumi.Input[Sequence[pulumi.Input[str]]],
-                 additional_promql_filters: Optional[pulumi.Input[Sequence[pulumi.Input['SLOSliEndpointAvailabilityAdditionalPromqlFilterArgs']]]] = None,
-                 error_codes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 success_codes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
-        pulumi.set(__self__, "endpoints_monitoreds", endpoints_monitoreds)
-        if additional_promql_filters is not None:
-            pulumi.set(__self__, "additional_promql_filters", additional_promql_filters)
-        if error_codes is not None:
-            pulumi.set(__self__, "error_codes", error_codes)
-        if success_codes is not None:
-            pulumi.set(__self__, "success_codes", success_codes)
+                 condition: pulumi.Input['SLOSliCustomTimesliceIndicatorConditionArgs'],
+                 query_template: pulumi.Input[str],
+                 timeslice_size: pulumi.Input[str]):
+        pulumi.set(__self__, "condition", condition)
+        pulumi.set(__self__, "query_template", query_template)
+        pulumi.set(__self__, "timeslice_size", timeslice_size)
 
     @property
-    @pulumi.getter(name="endpointsMonitoreds")
-    def endpoints_monitoreds(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
-        return pulumi.get(self, "endpoints_monitoreds")
+    @pulumi.getter
+    def condition(self) -> pulumi.Input['SLOSliCustomTimesliceIndicatorConditionArgs']:
+        return pulumi.get(self, "condition")
 
-    @endpoints_monitoreds.setter
-    def endpoints_monitoreds(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
-        pulumi.set(self, "endpoints_monitoreds", value)
-
-    @property
-    @pulumi.getter(name="additionalPromqlFilters")
-    def additional_promql_filters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SLOSliEndpointAvailabilityAdditionalPromqlFilterArgs']]]]:
-        return pulumi.get(self, "additional_promql_filters")
-
-    @additional_promql_filters.setter
-    def additional_promql_filters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SLOSliEndpointAvailabilityAdditionalPromqlFilterArgs']]]]):
-        pulumi.set(self, "additional_promql_filters", value)
+    @condition.setter
+    def condition(self, value: pulumi.Input['SLOSliCustomTimesliceIndicatorConditionArgs']):
+        pulumi.set(self, "condition", value)
 
     @property
-    @pulumi.getter(name="errorCodes")
-    def error_codes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        return pulumi.get(self, "error_codes")
+    @pulumi.getter(name="queryTemplate")
+    def query_template(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "query_template")
 
-    @error_codes.setter
-    def error_codes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "error_codes", value)
+    @query_template.setter
+    def query_template(self, value: pulumi.Input[str]):
+        pulumi.set(self, "query_template", value)
 
     @property
-    @pulumi.getter(name="successCodes")
-    def success_codes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        return pulumi.get(self, "success_codes")
+    @pulumi.getter(name="timesliceSize")
+    def timeslice_size(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "timeslice_size")
 
-    @success_codes.setter
-    def success_codes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "success_codes", value)
+    @timeslice_size.setter
+    def timeslice_size(self, value: pulumi.Input[str]):
+        pulumi.set(self, "timeslice_size", value)
 
 
 @pulumi.input_type
-class SLOSliEndpointAvailabilityAdditionalPromqlFilterArgs:
+class SLOSliCustomTimesliceIndicatorConditionArgs:
     def __init__(__self__, *,
-                 name: pulumi.Input[str],
-                 type: pulumi.Input[str],
-                 value: pulumi.Input[str]):
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "type", type)
+                 op: pulumi.Input[str],
+                 value: pulumi.Input[float]):
+        pulumi.set(__self__, "op", op)
         pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
-    def name(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "name")
+    def op(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "op")
 
-    @name.setter
-    def name(self, value: pulumi.Input[str]):
-        pulumi.set(self, "name", value)
-
-    @property
-    @pulumi.getter
-    def type(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "type")
-
-    @type.setter
-    def type(self, value: pulumi.Input[str]):
-        pulumi.set(self, "type", value)
+    @op.setter
+    def op(self, value: pulumi.Input[str]):
+        pulumi.set(self, "op", value)
 
     @property
     @pulumi.getter
-    def value(self) -> pulumi.Input[str]:
+    def value(self) -> pulumi.Input[float]:
         return pulumi.get(self, "value")
 
     @value.setter
-    def value(self, value: pulumi.Input[str]):
-        pulumi.set(self, "value", value)
-
-
-@pulumi.input_type
-class SLOSliEndpointLatencyArgs:
-    def __init__(__self__, *,
-                 endpoints_monitoreds: pulumi.Input[Sequence[pulumi.Input[str]]],
-                 latency_bucket: pulumi.Input[str],
-                 additional_promql_filters: Optional[pulumi.Input[Sequence[pulumi.Input['SLOSliEndpointLatencyAdditionalPromqlFilterArgs']]]] = None):
-        pulumi.set(__self__, "endpoints_monitoreds", endpoints_monitoreds)
-        pulumi.set(__self__, "latency_bucket", latency_bucket)
-        if additional_promql_filters is not None:
-            pulumi.set(__self__, "additional_promql_filters", additional_promql_filters)
-
-    @property
-    @pulumi.getter(name="endpointsMonitoreds")
-    def endpoints_monitoreds(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
-        return pulumi.get(self, "endpoints_monitoreds")
-
-    @endpoints_monitoreds.setter
-    def endpoints_monitoreds(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
-        pulumi.set(self, "endpoints_monitoreds", value)
-
-    @property
-    @pulumi.getter(name="latencyBucket")
-    def latency_bucket(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "latency_bucket")
-
-    @latency_bucket.setter
-    def latency_bucket(self, value: pulumi.Input[str]):
-        pulumi.set(self, "latency_bucket", value)
-
-    @property
-    @pulumi.getter(name="additionalPromqlFilters")
-    def additional_promql_filters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SLOSliEndpointLatencyAdditionalPromqlFilterArgs']]]]:
-        return pulumi.get(self, "additional_promql_filters")
-
-    @additional_promql_filters.setter
-    def additional_promql_filters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SLOSliEndpointLatencyAdditionalPromqlFilterArgs']]]]):
-        pulumi.set(self, "additional_promql_filters", value)
-
-
-@pulumi.input_type
-class SLOSliEndpointLatencyAdditionalPromqlFilterArgs:
-    def __init__(__self__, *,
-                 name: pulumi.Input[str],
-                 type: pulumi.Input[str],
-                 value: pulumi.Input[str]):
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "type", type)
-        pulumi.set(__self__, "value", value)
-
-    @property
-    @pulumi.getter
-    def name(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: pulumi.Input[str]):
-        pulumi.set(self, "name", value)
-
-    @property
-    @pulumi.getter
-    def type(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "type")
-
-    @type.setter
-    def type(self, value: pulumi.Input[str]):
-        pulumi.set(self, "type", value)
-
-    @property
-    @pulumi.getter
-    def value(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "value")
-
-    @value.setter
-    def value(self, value: pulumi.Input[str]):
+    def value(self, value: pulumi.Input[float]):
         pulumi.set(self, "value", value)
 
 

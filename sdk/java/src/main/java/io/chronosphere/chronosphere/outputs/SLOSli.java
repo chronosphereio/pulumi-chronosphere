@@ -6,8 +6,7 @@ package io.chronosphere.chronosphere.outputs;
 import com.pulumi.core.annotations.CustomType;
 import io.chronosphere.chronosphere.outputs.SLOSliAdditionalPromqlFilter;
 import io.chronosphere.chronosphere.outputs.SLOSliCustomIndicator;
-import io.chronosphere.chronosphere.outputs.SLOSliEndpointAvailability;
-import io.chronosphere.chronosphere.outputs.SLOSliEndpointLatency;
+import io.chronosphere.chronosphere.outputs.SLOSliCustomTimesliceIndicator;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -19,10 +18,7 @@ public final class SLOSli {
     private @Nullable List<SLOSliAdditionalPromqlFilter> additionalPromqlFilters;
     private @Nullable List<String> customDimensionLabels;
     private @Nullable SLOSliCustomIndicator customIndicator;
-    private @Nullable SLOSliEndpointAvailability endpointAvailability;
-    private @Nullable String endpointLabel;
-    private @Nullable SLOSliEndpointLatency endpointLatency;
-    private @Nullable String lensTemplateIndicator;
+    private @Nullable SLOSliCustomTimesliceIndicator customTimesliceIndicator;
 
     private SLOSli() {}
     public List<SLOSliAdditionalPromqlFilter> additionalPromqlFilters() {
@@ -34,17 +30,8 @@ public final class SLOSli {
     public Optional<SLOSliCustomIndicator> customIndicator() {
         return Optional.ofNullable(this.customIndicator);
     }
-    public Optional<SLOSliEndpointAvailability> endpointAvailability() {
-        return Optional.ofNullable(this.endpointAvailability);
-    }
-    public Optional<String> endpointLabel() {
-        return Optional.ofNullable(this.endpointLabel);
-    }
-    public Optional<SLOSliEndpointLatency> endpointLatency() {
-        return Optional.ofNullable(this.endpointLatency);
-    }
-    public Optional<String> lensTemplateIndicator() {
-        return Optional.ofNullable(this.lensTemplateIndicator);
+    public Optional<SLOSliCustomTimesliceIndicator> customTimesliceIndicator() {
+        return Optional.ofNullable(this.customTimesliceIndicator);
     }
 
     public static Builder builder() {
@@ -59,20 +46,14 @@ public final class SLOSli {
         private @Nullable List<SLOSliAdditionalPromqlFilter> additionalPromqlFilters;
         private @Nullable List<String> customDimensionLabels;
         private @Nullable SLOSliCustomIndicator customIndicator;
-        private @Nullable SLOSliEndpointAvailability endpointAvailability;
-        private @Nullable String endpointLabel;
-        private @Nullable SLOSliEndpointLatency endpointLatency;
-        private @Nullable String lensTemplateIndicator;
+        private @Nullable SLOSliCustomTimesliceIndicator customTimesliceIndicator;
         public Builder() {}
         public Builder(SLOSli defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.additionalPromqlFilters = defaults.additionalPromqlFilters;
     	      this.customDimensionLabels = defaults.customDimensionLabels;
     	      this.customIndicator = defaults.customIndicator;
-    	      this.endpointAvailability = defaults.endpointAvailability;
-    	      this.endpointLabel = defaults.endpointLabel;
-    	      this.endpointLatency = defaults.endpointLatency;
-    	      this.lensTemplateIndicator = defaults.lensTemplateIndicator;
+    	      this.customTimesliceIndicator = defaults.customTimesliceIndicator;
         }
 
         @CustomType.Setter
@@ -97,23 +78,8 @@ public final class SLOSli {
             return this;
         }
         @CustomType.Setter
-        public Builder endpointAvailability(@Nullable SLOSliEndpointAvailability endpointAvailability) {
-            this.endpointAvailability = endpointAvailability;
-            return this;
-        }
-        @CustomType.Setter
-        public Builder endpointLabel(@Nullable String endpointLabel) {
-            this.endpointLabel = endpointLabel;
-            return this;
-        }
-        @CustomType.Setter
-        public Builder endpointLatency(@Nullable SLOSliEndpointLatency endpointLatency) {
-            this.endpointLatency = endpointLatency;
-            return this;
-        }
-        @CustomType.Setter
-        public Builder lensTemplateIndicator(@Nullable String lensTemplateIndicator) {
-            this.lensTemplateIndicator = lensTemplateIndicator;
+        public Builder customTimesliceIndicator(@Nullable SLOSliCustomTimesliceIndicator customTimesliceIndicator) {
+            this.customTimesliceIndicator = customTimesliceIndicator;
             return this;
         }
         public SLOSli build() {
@@ -121,10 +87,7 @@ public final class SLOSli {
             o.additionalPromqlFilters = additionalPromqlFilters;
             o.customDimensionLabels = customDimensionLabels;
             o.customIndicator = customIndicator;
-            o.endpointAvailability = endpointAvailability;
-            o.endpointLabel = endpointLabel;
-            o.endpointLatency = endpointLatency;
-            o.lensTemplateIndicator = lensTemplateIndicator;
+            o.customTimesliceIndicator = customTimesliceIndicator;
             return o;
         }
     }

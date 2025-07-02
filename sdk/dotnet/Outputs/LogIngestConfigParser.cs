@@ -12,23 +12,19 @@ namespace Chronosphere.Pulumi.Outputs
 {
 
     [OutputType]
-    public sealed class SLOSliEndpointAvailabilityAdditionalPromqlFilter
+    public sealed class LogIngestConfigParser
     {
         public readonly string Name;
-        public readonly string Type;
-        public readonly string Value;
+        public readonly string Regex;
 
         [OutputConstructor]
-        private SLOSliEndpointAvailabilityAdditionalPromqlFilter(
+        private LogIngestConfigParser(
             string name,
 
-            string type,
-
-            string value)
+            string regex)
         {
             Name = name;
-            Type = type;
-            Value = value;
+            Regex = regex;
         }
     }
 }

@@ -236,6 +236,11 @@ export interface LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilter {
     query: pulumi.Input<string>;
 }
 
+export interface LogIngestConfigParser {
+    name: pulumi.Input<string>;
+    regex: pulumi.Input<string>;
+}
+
 export interface LogscaleActionEmailAction {
     attachCsv?: pulumi.Input<boolean>;
     bodyTemplate?: pulumi.Input<string>;
@@ -540,8 +545,9 @@ export interface RollupRuleStoragePolicies {
 
 export interface SLODefinition {
     burnRateAlertingConfigs?: pulumi.Input<pulumi.Input<inputs.SLODefinitionBurnRateAlertingConfig>[]>;
+    enableBurnRateAlerting?: pulumi.Input<boolean>;
     objective: pulumi.Input<number>;
-    reportingWindows: pulumi.Input<pulumi.Input<inputs.SLODefinitionReportingWindow>[]>;
+    timeWindow?: pulumi.Input<inputs.SLODefinitionTimeWindow>;
 }
 
 export interface SLODefinitionBurnRateAlertingConfig {
@@ -551,7 +557,7 @@ export interface SLODefinitionBurnRateAlertingConfig {
     window: pulumi.Input<string>;
 }
 
-export interface SLODefinitionReportingWindow {
+export interface SLODefinitionTimeWindow {
     duration: pulumi.Input<string>;
 }
 
@@ -564,10 +570,7 @@ export interface SLOSli {
     additionalPromqlFilters?: pulumi.Input<pulumi.Input<inputs.SLOSliAdditionalPromqlFilter>[]>;
     customDimensionLabels?: pulumi.Input<pulumi.Input<string>[]>;
     customIndicator?: pulumi.Input<inputs.SLOSliCustomIndicator>;
-    endpointAvailability?: pulumi.Input<inputs.SLOSliEndpointAvailability>;
-    endpointLabel?: pulumi.Input<string>;
-    endpointLatency?: pulumi.Input<inputs.SLOSliEndpointLatency>;
-    lensTemplateIndicator?: pulumi.Input<string>;
+    customTimesliceIndicator?: pulumi.Input<inputs.SLOSliCustomTimesliceIndicator>;
 }
 
 export interface SLOSliAdditionalPromqlFilter {
@@ -582,29 +585,15 @@ export interface SLOSliCustomIndicator {
     totalQueryTemplate: pulumi.Input<string>;
 }
 
-export interface SLOSliEndpointAvailability {
-    additionalPromqlFilters?: pulumi.Input<pulumi.Input<inputs.SLOSliEndpointAvailabilityAdditionalPromqlFilter>[]>;
-    endpointsMonitoreds: pulumi.Input<pulumi.Input<string>[]>;
-    errorCodes?: pulumi.Input<pulumi.Input<string>[]>;
-    successCodes?: pulumi.Input<pulumi.Input<string>[]>;
+export interface SLOSliCustomTimesliceIndicator {
+    condition: pulumi.Input<inputs.SLOSliCustomTimesliceIndicatorCondition>;
+    queryTemplate: pulumi.Input<string>;
+    timesliceSize: pulumi.Input<string>;
 }
 
-export interface SLOSliEndpointAvailabilityAdditionalPromqlFilter {
-    name: pulumi.Input<string>;
-    type: pulumi.Input<string>;
-    value: pulumi.Input<string>;
-}
-
-export interface SLOSliEndpointLatency {
-    additionalPromqlFilters?: pulumi.Input<pulumi.Input<inputs.SLOSliEndpointLatencyAdditionalPromqlFilter>[]>;
-    endpointsMonitoreds: pulumi.Input<pulumi.Input<string>[]>;
-    latencyBucket: pulumi.Input<string>;
-}
-
-export interface SLOSliEndpointLatencyAdditionalPromqlFilter {
-    name: pulumi.Input<string>;
-    type: pulumi.Input<string>;
-    value: pulumi.Input<string>;
+export interface SLOSliCustomTimesliceIndicatorCondition {
+    op: pulumi.Input<string>;
+    value: pulumi.Input<number>;
 }
 
 export interface ServiceAccountRestriction {

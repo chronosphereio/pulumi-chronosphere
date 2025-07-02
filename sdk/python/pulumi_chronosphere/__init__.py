@@ -19,6 +19,7 @@ from .drop_rule import *
 from .email_alert_notifier import *
 from .gcp_metrics_integration import *
 from .log_allocation_config import *
+from .log_ingest_config import *
 from .logscale_action import *
 from .logscale_alert import *
 from .mapping_rule import *
@@ -148,6 +149,14 @@ _utilities.register(
   "fqn": "pulumi_chronosphere",
   "classes": {
    "chronosphere:index/logAllocationConfig:LogAllocationConfig": "LogAllocationConfig"
+  }
+ },
+ {
+  "pkg": "chronosphere",
+  "mod": "index/logIngestConfig",
+  "fqn": "pulumi_chronosphere",
+  "classes": {
+   "chronosphere:index/logIngestConfig:LogIngestConfig": "LogIngestConfig"
   }
  },
  {

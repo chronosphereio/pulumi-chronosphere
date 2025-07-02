@@ -2,6 +2,21 @@
 
 ## Unreleased
 
+v0.9.9
+Added:
+
+* Add timeslice indicator support to chronosphere_slo resource with custom_timeslice_indicator field.
+* Add enable burn rate alerting field to the unstable chronosphere_slo resource.
+* Add time window to the unstable chronosphere_slo resource.
+* Moved chronosphere_slo resource from stable to v1 API.
+* Add log_allocation_config from model conversion
+* Add chronosphere_log_ingest_config resource.
+
+Removed:
+
+* Remove query less SLO fields from unstable chronosphere_slo resource.
+* Remove reporting_windows from unstable chronosphere_slo resource.
+
 ## v0.9.8
 
 Removed:

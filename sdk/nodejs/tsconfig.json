@@ -30,6 +30,7 @@
         "gcpMetricsIntegration.ts",
         "index.ts",
         "logAllocationConfig.ts",
+        "logIngestConfig.ts",
         "logscaleAction.ts",
         "logscaleAlert.ts",
         "mappingRule.ts",

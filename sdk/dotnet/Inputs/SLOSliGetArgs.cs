@@ -32,17 +32,8 @@ namespace Chronosphere.Pulumi.Inputs
         [Input("customIndicator")]
         public Input<Inputs.SLOSliCustomIndicatorGetArgs>? CustomIndicator { get; set; }
 
-        [Input("endpointAvailability")]
-        public Input<Inputs.SLOSliEndpointAvailabilityGetArgs>? EndpointAvailability { get; set; }
-
-        [Input("endpointLabel")]
-        public Input<string>? EndpointLabel { get; set; }
-
-        [Input("endpointLatency")]
-        public Input<Inputs.SLOSliEndpointLatencyGetArgs>? EndpointLatency { get; set; }
-
-        [Input("lensTemplateIndicator")]
-        public Input<string>? LensTemplateIndicator { get; set; }
+        [Input("customTimesliceIndicator")]
+        public Input<Inputs.SLOSliCustomTimesliceIndicatorGetArgs>? CustomTimesliceIndicator { get; set; }
 
         public SLOSliGetArgs()
         {

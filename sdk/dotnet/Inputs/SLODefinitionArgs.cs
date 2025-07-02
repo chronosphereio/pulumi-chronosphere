@@ -21,16 +21,14 @@ namespace Chronosphere.Pulumi.Inputs
             set => _burnRateAlertingConfigs = value;
         }
 
+        [Input("enableBurnRateAlerting")]
+        public Input<bool>? EnableBurnRateAlerting { get; set; }
+
         [Input("objective", required: true)]
         public Input<double> Objective { get; set; } = null!;
 
-        [Input("reportingWindows", required: true)]
-        private InputList<Inputs.SLODefinitionReportingWindowArgs>? _reportingWindows;
-        public InputList<Inputs.SLODefinitionReportingWindowArgs> ReportingWindows
-        {
-            get => _reportingWindows ?? (_reportingWindows = new InputList<Inputs.SLODefinitionReportingWindowArgs>());
-            set => _reportingWindows = value;
-        }
+        [Input("timeWindow")]
+        public Input<Inputs.SLODefinitionTimeWindowArgs>? TimeWindow { get; set; }
 
         public SLODefinitionArgs()
         {

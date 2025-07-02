@@ -17,10 +17,7 @@ namespace Chronosphere.Pulumi.Outputs
         public readonly ImmutableArray<Outputs.SLOSliAdditionalPromqlFilter> AdditionalPromqlFilters;
         public readonly ImmutableArray<string> CustomDimensionLabels;
         public readonly Outputs.SLOSliCustomIndicator? CustomIndicator;
-        public readonly Outputs.SLOSliEndpointAvailability? EndpointAvailability;
-        public readonly string? EndpointLabel;
-        public readonly Outputs.SLOSliEndpointLatency? EndpointLatency;
-        public readonly string? LensTemplateIndicator;
+        public readonly Outputs.SLOSliCustomTimesliceIndicator? CustomTimesliceIndicator;
 
         [OutputConstructor]
         private SLOSli(
@@ -30,21 +27,12 @@ namespace Chronosphere.Pulumi.Outputs
 
             Outputs.SLOSliCustomIndicator? customIndicator,
 
-            Outputs.SLOSliEndpointAvailability? endpointAvailability,
-
-            string? endpointLabel,
-
-            Outputs.SLOSliEndpointLatency? endpointLatency,
-
-            string? lensTemplateIndicator)
+            Outputs.SLOSliCustomTimesliceIndicator? customTimesliceIndicator)
         {
             AdditionalPromqlFilters = additionalPromqlFilters;
             CustomDimensionLabels = customDimensionLabels;
             CustomIndicator = customIndicator;
-            EndpointAvailability = endpointAvailability;
-            EndpointLabel = endpointLabel;
-            EndpointLatency = endpointLatency;
-            LensTemplateIndicator = lensTemplateIndicator;
+            CustomTimesliceIndicator = customTimesliceIndicator;
         }
     }
 }

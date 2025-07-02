@@ -8,10 +8,10 @@ import java.lang.String;
 import java.util.Objects;
 
 @CustomType
-public final class SLODefinitionReportingWindow {
+public final class SLODefinitionTimeWindow {
     private String duration;
 
-    private SLODefinitionReportingWindow() {}
+    private SLODefinitionTimeWindow() {}
     public String duration() {
         return this.duration;
     }
@@ -20,14 +20,14 @@ public final class SLODefinitionReportingWindow {
         return new Builder();
     }
 
-    public static Builder builder(SLODefinitionReportingWindow defaults) {
+    public static Builder builder(SLODefinitionTimeWindow defaults) {
         return new Builder(defaults);
     }
     @CustomType.Builder
     public static final class Builder {
         private String duration;
         public Builder() {}
-        public Builder(SLODefinitionReportingWindow defaults) {
+        public Builder(SLODefinitionTimeWindow defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.duration = defaults.duration;
         }
@@ -37,8 +37,8 @@ public final class SLODefinitionReportingWindow {
             this.duration = Objects.requireNonNull(duration);
             return this;
         }
-        public SLODefinitionReportingWindow build() {
-            final var o = new SLODefinitionReportingWindow();
+        public SLODefinitionTimeWindow build() {
+            final var o = new SLODefinitionTimeWindow();
             o.duration = duration;
             return o;
         }
