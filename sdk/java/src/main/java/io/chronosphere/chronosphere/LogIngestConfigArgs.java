@@ -5,7 +5,9 @@ package io.chronosphere.chronosphere;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
-import io.chronosphere.chronosphere.inputs.LogIngestConfigParserArgs;
+import io.chronosphere.chronosphere.inputs.LogIngestConfigFieldNormalizationArgs;
+import io.chronosphere.chronosphere.inputs.LogIngestConfigFieldParserArgs;
+import io.chronosphere.chronosphere.inputs.LogIngestConfigPlaintextParserArgs;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -16,17 +18,33 @@ public final class LogIngestConfigArgs extends com.pulumi.resources.ResourceArgs
 
     public static final LogIngestConfigArgs Empty = new LogIngestConfigArgs();
 
-    @Import(name="parsers")
-    private @Nullable Output<List<LogIngestConfigParserArgs>> parsers;
+    @Import(name="fieldNormalization")
+    private @Nullable Output<LogIngestConfigFieldNormalizationArgs> fieldNormalization;
 
-    public Optional<Output<List<LogIngestConfigParserArgs>>> parsers() {
-        return Optional.ofNullable(this.parsers);
+    public Optional<Output<LogIngestConfigFieldNormalizationArgs>> fieldNormalization() {
+        return Optional.ofNullable(this.fieldNormalization);
+    }
+
+    @Import(name="fieldParsers")
+    private @Nullable Output<List<LogIngestConfigFieldParserArgs>> fieldParsers;
+
+    public Optional<Output<List<LogIngestConfigFieldParserArgs>>> fieldParsers() {
+        return Optional.ofNullable(this.fieldParsers);
+    }
+
+    @Import(name="plaintextParsers")
+    private @Nullable Output<List<LogIngestConfigPlaintextParserArgs>> plaintextParsers;
+
+    public Optional<Output<List<LogIngestConfigPlaintextParserArgs>>> plaintextParsers() {
+        return Optional.ofNullable(this.plaintextParsers);
     }
 
     private LogIngestConfigArgs() {}
 
     private LogIngestConfigArgs(LogIngestConfigArgs $) {
-        this.parsers = $.parsers;
+        this.fieldNormalization = $.fieldNormalization;
+        this.fieldParsers = $.fieldParsers;
+        this.plaintextParsers = $.plaintextParsers;
     }
 
     public static Builder builder() {
@@ -47,17 +65,39 @@ public final class LogIngestConfigArgs extends com.pulumi.resources.ResourceArgs
             $ = new LogIngestConfigArgs(Objects.requireNonNull(defaults));
         }
 
-        public Builder parsers(@Nullable Output<List<LogIngestConfigParserArgs>> parsers) {
-            $.parsers = parsers;
+        public Builder fieldNormalization(@Nullable Output<LogIngestConfigFieldNormalizationArgs> fieldNormalization) {
+            $.fieldNormalization = fieldNormalization;
             return this;
         }
 
-        public Builder parsers(List<LogIngestConfigParserArgs> parsers) {
-            return parsers(Output.of(parsers));
+        public Builder fieldNormalization(LogIngestConfigFieldNormalizationArgs fieldNormalization) {
+            return fieldNormalization(Output.of(fieldNormalization));
         }
 
-        public Builder parsers(LogIngestConfigParserArgs... parsers) {
-            return parsers(List.of(parsers));
+        public Builder fieldParsers(@Nullable Output<List<LogIngestConfigFieldParserArgs>> fieldParsers) {
+            $.fieldParsers = fieldParsers;
+            return this;
+        }
+
+        public Builder fieldParsers(List<LogIngestConfigFieldParserArgs> fieldParsers) {
+            return fieldParsers(Output.of(fieldParsers));
+        }
+
+        public Builder fieldParsers(LogIngestConfigFieldParserArgs... fieldParsers) {
+            return fieldParsers(List.of(fieldParsers));
+        }
+
+        public Builder plaintextParsers(@Nullable Output<List<LogIngestConfigPlaintextParserArgs>> plaintextParsers) {
+            $.plaintextParsers = plaintextParsers;
+            return this;
+        }
+
+        public Builder plaintextParsers(List<LogIngestConfigPlaintextParserArgs> plaintextParsers) {
+            return plaintextParsers(Output.of(plaintextParsers));
+        }
+
+        public Builder plaintextParsers(LogIngestConfigPlaintextParserArgs... plaintextParsers) {
+            return plaintextParsers(List.of(plaintextParsers));
         }
 
         public LogIngestConfigArgs build() {

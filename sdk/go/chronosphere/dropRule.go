@@ -15,15 +15,17 @@ import (
 type DropRule struct {
 	pulumi.CustomResourceState
 
-	ActivatedDropDuration pulumi.StringPtrOutput          `pulumi:"activatedDropDuration"`
-	Active                pulumi.BoolPtrOutput            `pulumi:"active"`
-	ConditionalDrop       pulumi.BoolPtrOutput            `pulumi:"conditionalDrop"`
-	DropNanValue          pulumi.BoolPtrOutput            `pulumi:"dropNanValue"`
-	Name                  pulumi.StringOutput             `pulumi:"name"`
-	Queries               pulumi.StringArrayOutput        `pulumi:"queries"`
-	RateLimitThreshold    pulumi.Float64PtrOutput         `pulumi:"rateLimitThreshold"`
-	Slug                  pulumi.StringOutput             `pulumi:"slug"`
-	ValueBasedDrop        DropRuleValueBasedDropPtrOutput `pulumi:"valueBasedDrop"`
+	ActivatedDropDuration pulumi.StringPtrOutput `pulumi:"activatedDropDuration"`
+	// Deprecated: use `mode` instead
+	Active             pulumi.BoolPtrOutput            `pulumi:"active"`
+	ConditionalDrop    pulumi.BoolPtrOutput            `pulumi:"conditionalDrop"`
+	DropNanValue       pulumi.BoolPtrOutput            `pulumi:"dropNanValue"`
+	Mode               pulumi.StringPtrOutput          `pulumi:"mode"`
+	Name               pulumi.StringOutput             `pulumi:"name"`
+	Queries            pulumi.StringArrayOutput        `pulumi:"queries"`
+	RateLimitThreshold pulumi.Float64PtrOutput         `pulumi:"rateLimitThreshold"`
+	Slug               pulumi.StringOutput             `pulumi:"slug"`
+	ValueBasedDrop     DropRuleValueBasedDropPtrOutput `pulumi:"valueBasedDrop"`
 }
 
 // NewDropRule registers a new resource with the given unique name, arguments, and options.
@@ -62,27 +64,31 @@ func GetDropRule(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering DropRule resources.
 type dropRuleState struct {
-	ActivatedDropDuration *string                 `pulumi:"activatedDropDuration"`
-	Active                *bool                   `pulumi:"active"`
-	ConditionalDrop       *bool                   `pulumi:"conditionalDrop"`
-	DropNanValue          *bool                   `pulumi:"dropNanValue"`
-	Name                  *string                 `pulumi:"name"`
-	Queries               []string                `pulumi:"queries"`
-	RateLimitThreshold    *float64                `pulumi:"rateLimitThreshold"`
-	Slug                  *string                 `pulumi:"slug"`
-	ValueBasedDrop        *DropRuleValueBasedDrop `pulumi:"valueBasedDrop"`
+	ActivatedDropDuration *string `pulumi:"activatedDropDuration"`
+	// Deprecated: use `mode` instead
+	Active             *bool                   `pulumi:"active"`
+	ConditionalDrop    *bool                   `pulumi:"conditionalDrop"`
+	DropNanValue       *bool                   `pulumi:"dropNanValue"`
+	Mode               *string                 `pulumi:"mode"`
+	Name               *string                 `pulumi:"name"`
+	Queries            []string                `pulumi:"queries"`
+	RateLimitThreshold *float64                `pulumi:"rateLimitThreshold"`
+	Slug               *string                 `pulumi:"slug"`
+	ValueBasedDrop     *DropRuleValueBasedDrop `pulumi:"valueBasedDrop"`
 }
 
 type DropRuleState struct {
 	ActivatedDropDuration pulumi.StringPtrInput
-	Active                pulumi.BoolPtrInput
-	ConditionalDrop       pulumi.BoolPtrInput
-	DropNanValue          pulumi.BoolPtrInput
-	Name                  pulumi.StringPtrInput
-	Queries               pulumi.StringArrayInput
-	RateLimitThreshold    pulumi.Float64PtrInput
-	Slug                  pulumi.StringPtrInput
-	ValueBasedDrop        DropRuleValueBasedDropPtrInput
+	// Deprecated: use `mode` instead
+	Active             pulumi.BoolPtrInput
+	ConditionalDrop    pulumi.BoolPtrInput
+	DropNanValue       pulumi.BoolPtrInput
+	Mode               pulumi.StringPtrInput
+	Name               pulumi.StringPtrInput
+	Queries            pulumi.StringArrayInput
+	RateLimitThreshold pulumi.Float64PtrInput
+	Slug               pulumi.StringPtrInput
+	ValueBasedDrop     DropRuleValueBasedDropPtrInput
 }
 
 func (DropRuleState) ElementType() reflect.Type {
@@ -90,28 +96,32 @@ func (DropRuleState) ElementType() reflect.Type {
 }
 
 type dropRuleArgs struct {
-	ActivatedDropDuration *string                 `pulumi:"activatedDropDuration"`
-	Active                *bool                   `pulumi:"active"`
-	ConditionalDrop       *bool                   `pulumi:"conditionalDrop"`
-	DropNanValue          *bool                   `pulumi:"dropNanValue"`
-	Name                  string                  `pulumi:"name"`
-	Queries               []string                `pulumi:"queries"`
-	RateLimitThreshold    *float64                `pulumi:"rateLimitThreshold"`
-	Slug                  *string                 `pulumi:"slug"`
-	ValueBasedDrop        *DropRuleValueBasedDrop `pulumi:"valueBasedDrop"`
+	ActivatedDropDuration *string `pulumi:"activatedDropDuration"`
+	// Deprecated: use `mode` instead
+	Active             *bool                   `pulumi:"active"`
+	ConditionalDrop    *bool                   `pulumi:"conditionalDrop"`
+	DropNanValue       *bool                   `pulumi:"dropNanValue"`
+	Mode               *string                 `pulumi:"mode"`
+	Name               string                  `pulumi:"name"`
+	Queries            []string                `pulumi:"queries"`
+	RateLimitThreshold *float64                `pulumi:"rateLimitThreshold"`
+	Slug               *string                 `pulumi:"slug"`
+	ValueBasedDrop     *DropRuleValueBasedDrop `pulumi:"valueBasedDrop"`
 }
 
 // The set of arguments for constructing a DropRule resource.
 type DropRuleArgs struct {
 	ActivatedDropDuration pulumi.StringPtrInput
-	Active                pulumi.BoolPtrInput
-	ConditionalDrop       pulumi.BoolPtrInput
-	DropNanValue          pulumi.BoolPtrInput
-	Name                  pulumi.StringInput
-	Queries               pulumi.StringArrayInput
-	RateLimitThreshold    pulumi.Float64PtrInput
-	Slug                  pulumi.StringPtrInput
-	ValueBasedDrop        DropRuleValueBasedDropPtrInput
+	// Deprecated: use `mode` instead
+	Active             pulumi.BoolPtrInput
+	ConditionalDrop    pulumi.BoolPtrInput
+	DropNanValue       pulumi.BoolPtrInput
+	Mode               pulumi.StringPtrInput
+	Name               pulumi.StringInput
+	Queries            pulumi.StringArrayInput
+	RateLimitThreshold pulumi.Float64PtrInput
+	Slug               pulumi.StringPtrInput
+	ValueBasedDrop     DropRuleValueBasedDropPtrInput
 }
 
 func (DropRuleArgs) ElementType() reflect.Type {
@@ -205,6 +215,7 @@ func (o DropRuleOutput) ActivatedDropDuration() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DropRule) pulumi.StringPtrOutput { return v.ActivatedDropDuration }).(pulumi.StringPtrOutput)
 }
 
+// Deprecated: use `mode` instead
 func (o DropRuleOutput) Active() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *DropRule) pulumi.BoolPtrOutput { return v.Active }).(pulumi.BoolPtrOutput)
 }
@@ -215,6 +226,10 @@ func (o DropRuleOutput) ConditionalDrop() pulumi.BoolPtrOutput {
 
 func (o DropRuleOutput) DropNanValue() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *DropRule) pulumi.BoolPtrOutput { return v.DropNanValue }).(pulumi.BoolPtrOutput)
+}
+
+func (o DropRuleOutput) Mode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DropRule) pulumi.StringPtrOutput { return v.Mode }).(pulumi.StringPtrOutput)
 }
 
 func (o DropRuleOutput) Name() pulumi.StringOutput {

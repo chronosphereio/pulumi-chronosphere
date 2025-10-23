@@ -25,6 +25,9 @@ namespace Chronosphere.Pulumi
         [Output("dropNanValue")]
         public Output<bool?> DropNanValue { get; private set; } = null!;
 
+        [Output("mode")]
+        public Output<string?> Mode { get; private set; } = null!;
+
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
@@ -99,6 +102,9 @@ namespace Chronosphere.Pulumi
         [Input("dropNanValue")]
         public Input<bool>? DropNanValue { get; set; }
 
+        [Input("mode")]
+        public Input<string>? Mode { get; set; }
+
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
@@ -138,6 +144,9 @@ namespace Chronosphere.Pulumi
 
         [Input("dropNanValue")]
         public Input<bool>? DropNanValue { get; set; }
+
+        [Input("mode")]
+        public Input<string>? Mode { get; set; }
 
         [Input("name")]
         public Input<string>? Name { get; set; }

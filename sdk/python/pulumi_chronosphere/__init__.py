@@ -5,12 +5,15 @@
 from . import _utilities
 import typing
 # Export this package's modules as members:
+from .azure_metrics_integration import *
 from .blackhole_alert_notifier import *
 from .bucket import *
 from .bucket_data_source import *
 from .classic_dashboard import *
 from .collection import *
 from .collection_data_source import *
+from .consumption_budget import *
+from .consumption_config import *
 from .dashboard import *
 from .dataset import *
 from .derived_label import *
@@ -19,6 +22,7 @@ from .drop_rule import *
 from .email_alert_notifier import *
 from .gcp_metrics_integration import *
 from .log_allocation_config import *
+from .log_control_config import *
 from .log_ingest_config import *
 from .logscale_action import *
 from .logscale_alert import *
@@ -57,6 +61,14 @@ _utilities.register(
 [
  {
   "pkg": "chronosphere",
+  "mod": "index/azureMetricsIntegration",
+  "fqn": "pulumi_chronosphere",
+  "classes": {
+   "chronosphere:index/azureMetricsIntegration:AzureMetricsIntegration": "AzureMetricsIntegration"
+  }
+ },
+ {
+  "pkg": "chronosphere",
   "mod": "index/blackholeAlertNotifier",
   "fqn": "pulumi_chronosphere",
   "classes": {
@@ -85,6 +97,22 @@ _utilities.register(
   "fqn": "pulumi_chronosphere",
   "classes": {
    "chronosphere:index/collection:Collection": "Collection"
+  }
+ },
+ {
+  "pkg": "chronosphere",
+  "mod": "index/consumptionBudget",
+  "fqn": "pulumi_chronosphere",
+  "classes": {
+   "chronosphere:index/consumptionBudget:ConsumptionBudget": "ConsumptionBudget"
+  }
+ },
+ {
+  "pkg": "chronosphere",
+  "mod": "index/consumptionConfig",
+  "fqn": "pulumi_chronosphere",
+  "classes": {
+   "chronosphere:index/consumptionConfig:ConsumptionConfig": "ConsumptionConfig"
   }
  },
  {
@@ -149,6 +177,14 @@ _utilities.register(
   "fqn": "pulumi_chronosphere",
   "classes": {
    "chronosphere:index/logAllocationConfig:LogAllocationConfig": "LogAllocationConfig"
+  }
+ },
+ {
+  "pkg": "chronosphere",
+  "mod": "index/logControlConfig",
+  "fqn": "pulumi_chronosphere",
+  "classes": {
+   "chronosphere:index/logControlConfig:LogControlConfig": "LogControlConfig"
   }
  },
  {

@@ -16,41 +16,89 @@ __all__ = ['LogIngestConfigArgs', 'LogIngestConfig']
 @pulumi.input_type
 class LogIngestConfigArgs:
     def __init__(__self__, *,
-                 parsers: Optional[pulumi.Input[Sequence[pulumi.Input['LogIngestConfigParserArgs']]]] = None):
+                 field_normalization: Optional[pulumi.Input['LogIngestConfigFieldNormalizationArgs']] = None,
+                 field_parsers: Optional[pulumi.Input[Sequence[pulumi.Input['LogIngestConfigFieldParserArgs']]]] = None,
+                 plaintext_parsers: Optional[pulumi.Input[Sequence[pulumi.Input['LogIngestConfigPlaintextParserArgs']]]] = None):
         """
         The set of arguments for constructing a LogIngestConfig resource.
         """
-        if parsers is not None:
-            pulumi.set(__self__, "parsers", parsers)
+        if field_normalization is not None:
+            pulumi.set(__self__, "field_normalization", field_normalization)
+        if field_parsers is not None:
+            pulumi.set(__self__, "field_parsers", field_parsers)
+        if plaintext_parsers is not None:
+            pulumi.set(__self__, "plaintext_parsers", plaintext_parsers)
 
     @property
-    @pulumi.getter
-    def parsers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LogIngestConfigParserArgs']]]]:
-        return pulumi.get(self, "parsers")
+    @pulumi.getter(name="fieldNormalization")
+    def field_normalization(self) -> Optional[pulumi.Input['LogIngestConfigFieldNormalizationArgs']]:
+        return pulumi.get(self, "field_normalization")
 
-    @parsers.setter
-    def parsers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['LogIngestConfigParserArgs']]]]):
-        pulumi.set(self, "parsers", value)
+    @field_normalization.setter
+    def field_normalization(self, value: Optional[pulumi.Input['LogIngestConfigFieldNormalizationArgs']]):
+        pulumi.set(self, "field_normalization", value)
+
+    @property
+    @pulumi.getter(name="fieldParsers")
+    def field_parsers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LogIngestConfigFieldParserArgs']]]]:
+        return pulumi.get(self, "field_parsers")
+
+    @field_parsers.setter
+    def field_parsers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['LogIngestConfigFieldParserArgs']]]]):
+        pulumi.set(self, "field_parsers", value)
+
+    @property
+    @pulumi.getter(name="plaintextParsers")
+    def plaintext_parsers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LogIngestConfigPlaintextParserArgs']]]]:
+        return pulumi.get(self, "plaintext_parsers")
+
+    @plaintext_parsers.setter
+    def plaintext_parsers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['LogIngestConfigPlaintextParserArgs']]]]):
+        pulumi.set(self, "plaintext_parsers", value)
 
 
 @pulumi.input_type
 class _LogIngestConfigState:
     def __init__(__self__, *,
-                 parsers: Optional[pulumi.Input[Sequence[pulumi.Input['LogIngestConfigParserArgs']]]] = None):
+                 field_normalization: Optional[pulumi.Input['LogIngestConfigFieldNormalizationArgs']] = None,
+                 field_parsers: Optional[pulumi.Input[Sequence[pulumi.Input['LogIngestConfigFieldParserArgs']]]] = None,
+                 plaintext_parsers: Optional[pulumi.Input[Sequence[pulumi.Input['LogIngestConfigPlaintextParserArgs']]]] = None):
         """
         Input properties used for looking up and filtering LogIngestConfig resources.
         """
-        if parsers is not None:
-            pulumi.set(__self__, "parsers", parsers)
+        if field_normalization is not None:
+            pulumi.set(__self__, "field_normalization", field_normalization)
+        if field_parsers is not None:
+            pulumi.set(__self__, "field_parsers", field_parsers)
+        if plaintext_parsers is not None:
+            pulumi.set(__self__, "plaintext_parsers", plaintext_parsers)
 
     @property
-    @pulumi.getter
-    def parsers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LogIngestConfigParserArgs']]]]:
-        return pulumi.get(self, "parsers")
+    @pulumi.getter(name="fieldNormalization")
+    def field_normalization(self) -> Optional[pulumi.Input['LogIngestConfigFieldNormalizationArgs']]:
+        return pulumi.get(self, "field_normalization")
 
-    @parsers.setter
-    def parsers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['LogIngestConfigParserArgs']]]]):
-        pulumi.set(self, "parsers", value)
+    @field_normalization.setter
+    def field_normalization(self, value: Optional[pulumi.Input['LogIngestConfigFieldNormalizationArgs']]):
+        pulumi.set(self, "field_normalization", value)
+
+    @property
+    @pulumi.getter(name="fieldParsers")
+    def field_parsers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LogIngestConfigFieldParserArgs']]]]:
+        return pulumi.get(self, "field_parsers")
+
+    @field_parsers.setter
+    def field_parsers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['LogIngestConfigFieldParserArgs']]]]):
+        pulumi.set(self, "field_parsers", value)
+
+    @property
+    @pulumi.getter(name="plaintextParsers")
+    def plaintext_parsers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LogIngestConfigPlaintextParserArgs']]]]:
+        return pulumi.get(self, "plaintext_parsers")
+
+    @plaintext_parsers.setter
+    def plaintext_parsers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['LogIngestConfigPlaintextParserArgs']]]]):
+        pulumi.set(self, "plaintext_parsers", value)
 
 
 class LogIngestConfig(pulumi.CustomResource):
@@ -58,7 +106,9 @@ class LogIngestConfig(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 parsers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LogIngestConfigParserArgs']]]]] = None,
+                 field_normalization: Optional[pulumi.Input[pulumi.InputType['LogIngestConfigFieldNormalizationArgs']]] = None,
+                 field_parsers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LogIngestConfigFieldParserArgs']]]]] = None,
+                 plaintext_parsers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LogIngestConfigPlaintextParserArgs']]]]] = None,
                  __props__=None):
         """
         Create a LogIngestConfig resource with the given unique name, props, and options.
@@ -88,7 +138,9 @@ class LogIngestConfig(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 parsers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LogIngestConfigParserArgs']]]]] = None,
+                 field_normalization: Optional[pulumi.Input[pulumi.InputType['LogIngestConfigFieldNormalizationArgs']]] = None,
+                 field_parsers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LogIngestConfigFieldParserArgs']]]]] = None,
+                 plaintext_parsers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LogIngestConfigPlaintextParserArgs']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -98,7 +150,9 @@ class LogIngestConfig(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = LogIngestConfigArgs.__new__(LogIngestConfigArgs)
 
-            __props__.__dict__["parsers"] = parsers
+            __props__.__dict__["field_normalization"] = field_normalization
+            __props__.__dict__["field_parsers"] = field_parsers
+            __props__.__dict__["plaintext_parsers"] = plaintext_parsers
         super(LogIngestConfig, __self__).__init__(
             'chronosphere:index/logIngestConfig:LogIngestConfig',
             resource_name,
@@ -109,7 +163,9 @@ class LogIngestConfig(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            parsers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LogIngestConfigParserArgs']]]]] = None) -> 'LogIngestConfig':
+            field_normalization: Optional[pulumi.Input[pulumi.InputType['LogIngestConfigFieldNormalizationArgs']]] = None,
+            field_parsers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LogIngestConfigFieldParserArgs']]]]] = None,
+            plaintext_parsers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LogIngestConfigPlaintextParserArgs']]]]] = None) -> 'LogIngestConfig':
         """
         Get an existing LogIngestConfig resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -122,11 +178,23 @@ class LogIngestConfig(pulumi.CustomResource):
 
         __props__ = _LogIngestConfigState.__new__(_LogIngestConfigState)
 
-        __props__.__dict__["parsers"] = parsers
+        __props__.__dict__["field_normalization"] = field_normalization
+        __props__.__dict__["field_parsers"] = field_parsers
+        __props__.__dict__["plaintext_parsers"] = plaintext_parsers
         return LogIngestConfig(resource_name, opts=opts, __props__=__props__)
 
     @property
-    @pulumi.getter
-    def parsers(self) -> pulumi.Output[Optional[Sequence['outputs.LogIngestConfigParser']]]:
-        return pulumi.get(self, "parsers")
+    @pulumi.getter(name="fieldNormalization")
+    def field_normalization(self) -> pulumi.Output[Optional['outputs.LogIngestConfigFieldNormalization']]:
+        return pulumi.get(self, "field_normalization")
+
+    @property
+    @pulumi.getter(name="fieldParsers")
+    def field_parsers(self) -> pulumi.Output[Optional[Sequence['outputs.LogIngestConfigFieldParser']]]:
+        return pulumi.get(self, "field_parsers")
+
+    @property
+    @pulumi.getter(name="plaintextParsers")
+    def plaintext_parsers(self) -> pulumi.Output[Optional[Sequence['outputs.LogIngestConfigPlaintextParser']]]:
+        return pulumi.get(self, "plaintext_parsers")
 

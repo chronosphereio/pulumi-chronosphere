@@ -22,6 +22,7 @@ class DropRuleArgs:
                  active: Optional[pulumi.Input[bool]] = None,
                  conditional_drop: Optional[pulumi.Input[bool]] = None,
                  drop_nan_value: Optional[pulumi.Input[bool]] = None,
+                 mode: Optional[pulumi.Input[str]] = None,
                  rate_limit_threshold: Optional[pulumi.Input[float]] = None,
                  slug: Optional[pulumi.Input[str]] = None,
                  value_based_drop: Optional[pulumi.Input['DropRuleValueBasedDropArgs']] = None):
@@ -33,11 +34,16 @@ class DropRuleArgs:
         if activated_drop_duration is not None:
             pulumi.set(__self__, "activated_drop_duration", activated_drop_duration)
         if active is not None:
+            warnings.warn("""use `mode` instead""", DeprecationWarning)
+            pulumi.log.warn("""active is deprecated: use `mode` instead""")
+        if active is not None:
             pulumi.set(__self__, "active", active)
         if conditional_drop is not None:
             pulumi.set(__self__, "conditional_drop", conditional_drop)
         if drop_nan_value is not None:
             pulumi.set(__self__, "drop_nan_value", drop_nan_value)
+        if mode is not None:
+            pulumi.set(__self__, "mode", mode)
         if rate_limit_threshold is not None:
             pulumi.set(__self__, "rate_limit_threshold", rate_limit_threshold)
         if slug is not None:
@@ -75,6 +81,9 @@ class DropRuleArgs:
     @property
     @pulumi.getter
     def active(self) -> Optional[pulumi.Input[bool]]:
+        warnings.warn("""use `mode` instead""", DeprecationWarning)
+        pulumi.log.warn("""active is deprecated: use `mode` instead""")
+
         return pulumi.get(self, "active")
 
     @active.setter
@@ -98,6 +107,15 @@ class DropRuleArgs:
     @drop_nan_value.setter
     def drop_nan_value(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "drop_nan_value", value)
+
+    @property
+    @pulumi.getter
+    def mode(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "mode")
+
+    @mode.setter
+    def mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mode", value)
 
     @property
     @pulumi.getter(name="rateLimitThreshold")
@@ -134,6 +152,7 @@ class _DropRuleState:
                  active: Optional[pulumi.Input[bool]] = None,
                  conditional_drop: Optional[pulumi.Input[bool]] = None,
                  drop_nan_value: Optional[pulumi.Input[bool]] = None,
+                 mode: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  queries: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  rate_limit_threshold: Optional[pulumi.Input[float]] = None,
@@ -145,11 +164,16 @@ class _DropRuleState:
         if activated_drop_duration is not None:
             pulumi.set(__self__, "activated_drop_duration", activated_drop_duration)
         if active is not None:
+            warnings.warn("""use `mode` instead""", DeprecationWarning)
+            pulumi.log.warn("""active is deprecated: use `mode` instead""")
+        if active is not None:
             pulumi.set(__self__, "active", active)
         if conditional_drop is not None:
             pulumi.set(__self__, "conditional_drop", conditional_drop)
         if drop_nan_value is not None:
             pulumi.set(__self__, "drop_nan_value", drop_nan_value)
+        if mode is not None:
+            pulumi.set(__self__, "mode", mode)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if queries is not None:
@@ -173,6 +197,9 @@ class _DropRuleState:
     @property
     @pulumi.getter
     def active(self) -> Optional[pulumi.Input[bool]]:
+        warnings.warn("""use `mode` instead""", DeprecationWarning)
+        pulumi.log.warn("""active is deprecated: use `mode` instead""")
+
         return pulumi.get(self, "active")
 
     @active.setter
@@ -196,6 +223,15 @@ class _DropRuleState:
     @drop_nan_value.setter
     def drop_nan_value(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "drop_nan_value", value)
+
+    @property
+    @pulumi.getter
+    def mode(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "mode")
+
+    @mode.setter
+    def mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mode", value)
 
     @property
     @pulumi.getter
@@ -252,6 +288,7 @@ class DropRule(pulumi.CustomResource):
                  active: Optional[pulumi.Input[bool]] = None,
                  conditional_drop: Optional[pulumi.Input[bool]] = None,
                  drop_nan_value: Optional[pulumi.Input[bool]] = None,
+                 mode: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  queries: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  rate_limit_threshold: Optional[pulumi.Input[float]] = None,
@@ -290,6 +327,7 @@ class DropRule(pulumi.CustomResource):
                  active: Optional[pulumi.Input[bool]] = None,
                  conditional_drop: Optional[pulumi.Input[bool]] = None,
                  drop_nan_value: Optional[pulumi.Input[bool]] = None,
+                 mode: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  queries: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  rate_limit_threshold: Optional[pulumi.Input[float]] = None,
@@ -308,6 +346,7 @@ class DropRule(pulumi.CustomResource):
             __props__.__dict__["active"] = active
             __props__.__dict__["conditional_drop"] = conditional_drop
             __props__.__dict__["drop_nan_value"] = drop_nan_value
+            __props__.__dict__["mode"] = mode
             if name is None and not opts.urn:
                 raise TypeError("Missing required property 'name'")
             __props__.__dict__["name"] = name
@@ -331,6 +370,7 @@ class DropRule(pulumi.CustomResource):
             active: Optional[pulumi.Input[bool]] = None,
             conditional_drop: Optional[pulumi.Input[bool]] = None,
             drop_nan_value: Optional[pulumi.Input[bool]] = None,
+            mode: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             queries: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             rate_limit_threshold: Optional[pulumi.Input[float]] = None,
@@ -352,6 +392,7 @@ class DropRule(pulumi.CustomResource):
         __props__.__dict__["active"] = active
         __props__.__dict__["conditional_drop"] = conditional_drop
         __props__.__dict__["drop_nan_value"] = drop_nan_value
+        __props__.__dict__["mode"] = mode
         __props__.__dict__["name"] = name
         __props__.__dict__["queries"] = queries
         __props__.__dict__["rate_limit_threshold"] = rate_limit_threshold
@@ -367,6 +408,9 @@ class DropRule(pulumi.CustomResource):
     @property
     @pulumi.getter
     def active(self) -> pulumi.Output[Optional[bool]]:
+        warnings.warn("""use `mode` instead""", DeprecationWarning)
+        pulumi.log.warn("""active is deprecated: use `mode` instead""")
+
         return pulumi.get(self, "active")
 
     @property
@@ -378,6 +422,11 @@ class DropRule(pulumi.CustomResource):
     @pulumi.getter(name="dropNanValue")
     def drop_nan_value(self) -> pulumi.Output[Optional[bool]]:
         return pulumi.get(self, "drop_nan_value")
+
+    @property
+    @pulumi.getter
+    def mode(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "mode")
 
     @property
     @pulumi.getter

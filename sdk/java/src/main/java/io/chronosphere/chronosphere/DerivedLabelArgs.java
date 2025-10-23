@@ -6,6 +6,7 @@ package io.chronosphere.chronosphere;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import io.chronosphere.chronosphere.inputs.DerivedLabelMetricLabelArgs;
+import io.chronosphere.chronosphere.inputs.DerivedLabelSpanTagArgs;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -37,11 +38,11 @@ public final class DerivedLabelArgs extends com.pulumi.resources.ResourceArgs {
         return this.labelName;
     }
 
-    @Import(name="metricLabel", required=true)
-    private Output<DerivedLabelMetricLabelArgs> metricLabel;
+    @Import(name="metricLabel")
+    private @Nullable Output<DerivedLabelMetricLabelArgs> metricLabel;
 
-    public Output<DerivedLabelMetricLabelArgs> metricLabel() {
-        return this.metricLabel;
+    public Optional<Output<DerivedLabelMetricLabelArgs>> metricLabel() {
+        return Optional.ofNullable(this.metricLabel);
     }
 
     @Import(name="name", required=true)
@@ -58,6 +59,13 @@ public final class DerivedLabelArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.slug);
     }
 
+    @Import(name="spanTag")
+    private @Nullable Output<DerivedLabelSpanTagArgs> spanTag;
+
+    public Optional<Output<DerivedLabelSpanTagArgs>> spanTag() {
+        return Optional.ofNullable(this.spanTag);
+    }
+
     private DerivedLabelArgs() {}
 
     private DerivedLabelArgs(DerivedLabelArgs $) {
@@ -67,6 +75,7 @@ public final class DerivedLabelArgs extends com.pulumi.resources.ResourceArgs {
         this.metricLabel = $.metricLabel;
         this.name = $.name;
         this.slug = $.slug;
+        this.spanTag = $.spanTag;
     }
 
     public static Builder builder() {
@@ -114,7 +123,7 @@ public final class DerivedLabelArgs extends com.pulumi.resources.ResourceArgs {
             return labelName(Output.of(labelName));
         }
 
-        public Builder metricLabel(Output<DerivedLabelMetricLabelArgs> metricLabel) {
+        public Builder metricLabel(@Nullable Output<DerivedLabelMetricLabelArgs> metricLabel) {
             $.metricLabel = metricLabel;
             return this;
         }
@@ -141,9 +150,17 @@ public final class DerivedLabelArgs extends com.pulumi.resources.ResourceArgs {
             return slug(Output.of(slug));
         }
 
+        public Builder spanTag(@Nullable Output<DerivedLabelSpanTagArgs> spanTag) {
+            $.spanTag = spanTag;
+            return this;
+        }
+
+        public Builder spanTag(DerivedLabelSpanTagArgs spanTag) {
+            return spanTag(Output.of(spanTag));
+        }
+
         public DerivedLabelArgs build() {
             $.labelName = Objects.requireNonNull($.labelName, "expected parameter 'labelName' to be non-null");
-            $.metricLabel = Objects.requireNonNull($.metricLabel, "expected parameter 'metricLabel' to be non-null");
             $.name = Objects.requireNonNull($.name, "expected parameter 'name' to be non-null");
             return $;
         }

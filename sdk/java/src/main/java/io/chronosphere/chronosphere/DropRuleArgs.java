@@ -26,9 +26,21 @@ public final class DropRuleArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.activatedDropDuration);
     }
 
+    /**
+     * @deprecated
+     * use `mode` instead
+     * 
+     */
+    @Deprecated /* use `mode` instead */
     @Import(name="active")
     private @Nullable Output<Boolean> active;
 
+    /**
+     * @deprecated
+     * use `mode` instead
+     * 
+     */
+    @Deprecated /* use `mode` instead */
     public Optional<Output<Boolean>> active() {
         return Optional.ofNullable(this.active);
     }
@@ -45,6 +57,13 @@ public final class DropRuleArgs extends com.pulumi.resources.ResourceArgs {
 
     public Optional<Output<Boolean>> dropNanValue() {
         return Optional.ofNullable(this.dropNanValue);
+    }
+
+    @Import(name="mode")
+    private @Nullable Output<String> mode;
+
+    public Optional<Output<String>> mode() {
+        return Optional.ofNullable(this.mode);
     }
 
     @Import(name="name", required=true)
@@ -89,6 +108,7 @@ public final class DropRuleArgs extends com.pulumi.resources.ResourceArgs {
         this.active = $.active;
         this.conditionalDrop = $.conditionalDrop;
         this.dropNanValue = $.dropNanValue;
+        this.mode = $.mode;
         this.name = $.name;
         this.queries = $.queries;
         this.rateLimitThreshold = $.rateLimitThreshold;
@@ -123,11 +143,27 @@ public final class DropRuleArgs extends com.pulumi.resources.ResourceArgs {
             return activatedDropDuration(Output.of(activatedDropDuration));
         }
 
+        /**
+         * @return builder
+         * 
+         * @deprecated
+         * use `mode` instead
+         * 
+         */
+        @Deprecated /* use `mode` instead */
         public Builder active(@Nullable Output<Boolean> active) {
             $.active = active;
             return this;
         }
 
+        /**
+         * @return builder
+         * 
+         * @deprecated
+         * use `mode` instead
+         * 
+         */
+        @Deprecated /* use `mode` instead */
         public Builder active(Boolean active) {
             return active(Output.of(active));
         }
@@ -148,6 +184,15 @@ public final class DropRuleArgs extends com.pulumi.resources.ResourceArgs {
 
         public Builder dropNanValue(Boolean dropNanValue) {
             return dropNanValue(Output.of(dropNanValue));
+        }
+
+        public Builder mode(@Nullable Output<String> mode) {
+            $.mode = mode;
+            return this;
+        }
+
+        public Builder mode(String mode) {
+            return mode(Output.of(mode));
         }
 
         public Builder name(Output<String> name) {

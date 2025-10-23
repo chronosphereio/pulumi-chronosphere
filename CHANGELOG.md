@@ -2,6 +2,17 @@
 
 ## Unreleased
 
+v0.9.10
+
+* Add `azure_metrics_integration` resource for configuring the cloudscraper Azure metrics integration.
+* Add `mode` field to the `chronosphere_drop_rule` resource. This field replaces the `active` field, which is deprecated. The mode field accepts values of `enabled`, `disabled`, and `preview`. Defaults to `enabled`. The `active` field was `disabled` by default.  **This is a breaking change**.
+* Add `chronosphere_consumption_budget` and `chronosphere_consumption_config` resources.
+* Add `chronosphere_log_control_config` resource.
+* Add `field_normalization` to `chronosphere_log_ingest_config` resource.
+
+Deprecated:
+* Deprecate the `active` field in the `chronosphere_drop_rule` resource in favor of the `mode` field. This field can't be set to `false`, and is a breaking change that requires switching to the `mode` field.
+
 v0.9.9
 Added:
 

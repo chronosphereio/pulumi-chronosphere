@@ -5,6 +5,11 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 // Export members:
+export { AzureMetricsIntegrationArgs, AzureMetricsIntegrationState } from "./azureMetricsIntegration";
+export type AzureMetricsIntegration = import("./azureMetricsIntegration").AzureMetricsIntegration;
+export const AzureMetricsIntegration: typeof import("./azureMetricsIntegration").AzureMetricsIntegration = null as any;
+utilities.lazyLoad(exports, ["AzureMetricsIntegration"], () => require("./azureMetricsIntegration"));
+
 export { BlackholeAlertNotifierArgs, BlackholeAlertNotifierState } from "./blackholeAlertNotifier";
 export type BlackholeAlertNotifier = import("./blackholeAlertNotifier").BlackholeAlertNotifier;
 export const BlackholeAlertNotifier: typeof import("./blackholeAlertNotifier").BlackholeAlertNotifier = null as any;
@@ -34,6 +39,16 @@ export { CollectionDataSourceArgs, CollectionDataSourceResult, CollectionDataSou
 export const collectionDataSource: typeof import("./collectionDataSource").collectionDataSource = null as any;
 export const collectionDataSourceOutput: typeof import("./collectionDataSource").collectionDataSourceOutput = null as any;
 utilities.lazyLoad(exports, ["collectionDataSource","collectionDataSourceOutput"], () => require("./collectionDataSource"));
+
+export { ConsumptionBudgetArgs, ConsumptionBudgetState } from "./consumptionBudget";
+export type ConsumptionBudget = import("./consumptionBudget").ConsumptionBudget;
+export const ConsumptionBudget: typeof import("./consumptionBudget").ConsumptionBudget = null as any;
+utilities.lazyLoad(exports, ["ConsumptionBudget"], () => require("./consumptionBudget"));
+
+export { ConsumptionConfigArgs, ConsumptionConfigState } from "./consumptionConfig";
+export type ConsumptionConfig = import("./consumptionConfig").ConsumptionConfig;
+export const ConsumptionConfig: typeof import("./consumptionConfig").ConsumptionConfig = null as any;
+utilities.lazyLoad(exports, ["ConsumptionConfig"], () => require("./consumptionConfig"));
 
 export { DashboardArgs, DashboardState } from "./dashboard";
 export type Dashboard = import("./dashboard").Dashboard;
@@ -74,6 +89,11 @@ export { LogAllocationConfigArgs, LogAllocationConfigState } from "./logAllocati
 export type LogAllocationConfig = import("./logAllocationConfig").LogAllocationConfig;
 export const LogAllocationConfig: typeof import("./logAllocationConfig").LogAllocationConfig = null as any;
 utilities.lazyLoad(exports, ["LogAllocationConfig"], () => require("./logAllocationConfig"));
+
+export { LogControlConfigArgs, LogControlConfigState } from "./logControlConfig";
+export type LogControlConfig = import("./logControlConfig").LogControlConfig;
+export const LogControlConfig: typeof import("./logControlConfig").LogControlConfig = null as any;
+utilities.lazyLoad(exports, ["LogControlConfig"], () => require("./logControlConfig"));
 
 export { LogIngestConfigArgs, LogIngestConfigState } from "./logIngestConfig";
 export type LogIngestConfig = import("./logIngestConfig").LogIngestConfig;
@@ -204,6 +224,8 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
+            case "chronosphere:index/azureMetricsIntegration:AzureMetricsIntegration":
+                return new AzureMetricsIntegration(name, <any>undefined, { urn })
             case "chronosphere:index/blackholeAlertNotifier:BlackholeAlertNotifier":
                 return new BlackholeAlertNotifier(name, <any>undefined, { urn })
             case "chronosphere:index/bucket:Bucket":
@@ -212,6 +234,10 @@ const _module = {
                 return new ClassicDashboard(name, <any>undefined, { urn })
             case "chronosphere:index/collection:Collection":
                 return new Collection(name, <any>undefined, { urn })
+            case "chronosphere:index/consumptionBudget:ConsumptionBudget":
+                return new ConsumptionBudget(name, <any>undefined, { urn })
+            case "chronosphere:index/consumptionConfig:ConsumptionConfig":
+                return new ConsumptionConfig(name, <any>undefined, { urn })
             case "chronosphere:index/dashboard:Dashboard":
                 return new Dashboard(name, <any>undefined, { urn })
             case "chronosphere:index/dataset:Dataset":
@@ -228,6 +254,8 @@ const _module = {
                 return new GcpMetricsIntegration(name, <any>undefined, { urn })
             case "chronosphere:index/logAllocationConfig:LogAllocationConfig":
                 return new LogAllocationConfig(name, <any>undefined, { urn })
+            case "chronosphere:index/logControlConfig:LogControlConfig":
+                return new LogControlConfig(name, <any>undefined, { urn })
             case "chronosphere:index/logIngestConfig:LogIngestConfig":
                 return new LogIngestConfig(name, <any>undefined, { urn })
             case "chronosphere:index/logscaleAction:LogscaleAction":
@@ -275,10 +303,13 @@ const _module = {
         }
     },
 };
+pulumi.runtime.registerResourceModule("chronosphere", "index/azureMetricsIntegration", _module)
 pulumi.runtime.registerResourceModule("chronosphere", "index/blackholeAlertNotifier", _module)
 pulumi.runtime.registerResourceModule("chronosphere", "index/bucket", _module)
 pulumi.runtime.registerResourceModule("chronosphere", "index/classicDashboard", _module)
 pulumi.runtime.registerResourceModule("chronosphere", "index/collection", _module)
+pulumi.runtime.registerResourceModule("chronosphere", "index/consumptionBudget", _module)
+pulumi.runtime.registerResourceModule("chronosphere", "index/consumptionConfig", _module)
 pulumi.runtime.registerResourceModule("chronosphere", "index/dashboard", _module)
 pulumi.runtime.registerResourceModule("chronosphere", "index/dataset", _module)
 pulumi.runtime.registerResourceModule("chronosphere", "index/derivedLabel", _module)
@@ -287,6 +318,7 @@ pulumi.runtime.registerResourceModule("chronosphere", "index/dropRule", _module)
 pulumi.runtime.registerResourceModule("chronosphere", "index/emailAlertNotifier", _module)
 pulumi.runtime.registerResourceModule("chronosphere", "index/gcpMetricsIntegration", _module)
 pulumi.runtime.registerResourceModule("chronosphere", "index/logAllocationConfig", _module)
+pulumi.runtime.registerResourceModule("chronosphere", "index/logControlConfig", _module)
 pulumi.runtime.registerResourceModule("chronosphere", "index/logIngestConfig", _module)
 pulumi.runtime.registerResourceModule("chronosphere", "index/logscaleAction", _module)
 pulumi.runtime.registerResourceModule("chronosphere", "index/logscaleAlert", _module)

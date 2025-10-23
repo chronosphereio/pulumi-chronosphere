@@ -11,6 +11,40 @@ from . import _utilities
 from . import outputs
 
 __all__ = [
+    'AzureMetricsIntegrationPrincipal',
+    'AzureMetricsIntegrationScrapeConfig',
+    'AzureMetricsIntegrationScrapeConfigResourceType',
+    'ConsumptionBudgetAlertActionConfig',
+    'ConsumptionBudgetPriority',
+    'ConsumptionBudgetPriorityFilter',
+    'ConsumptionBudgetPriorityFilterLogFilter',
+    'ConsumptionBudgetThreshold',
+    'ConsumptionBudgetThresholdInstantRate',
+    'ConsumptionBudgetThresholdVolume',
+    'ConsumptionConfigPartition',
+    'ConsumptionConfigPartitionFilter',
+    'ConsumptionConfigPartitionFilterCondition',
+    'ConsumptionConfigPartitionFilterConditionLogFilter',
+    'ConsumptionConfigPartitionPartition',
+    'ConsumptionConfigPartitionPartitionFilter',
+    'ConsumptionConfigPartitionPartitionFilterCondition',
+    'ConsumptionConfigPartitionPartitionFilterConditionLogFilter',
+    'ConsumptionConfigPartitionPartitionPartition',
+    'ConsumptionConfigPartitionPartitionPartitionFilter',
+    'ConsumptionConfigPartitionPartitionPartitionFilterCondition',
+    'ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilter',
+    'ConsumptionConfigPartitionPartitionPartitionPartition',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionFilter',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionFilterCondition',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilter',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartition',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilter',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterCondition',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartition',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilter',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterCondition',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter',
     'DatasetConfiguration',
     'DatasetConfigurationLogDataset',
     'DatasetConfigurationLogDatasetMatchCriteria',
@@ -40,6 +74,8 @@ __all__ = [
     'DerivedLabelMetricLabelMappingLabelNameMappingFilter',
     'DerivedLabelMetricLabelMappingLabelNameMappingValueMapping',
     'DerivedLabelMetricLabelMappingLabelValueMapping',
+    'DerivedLabelSpanTag',
+    'DerivedLabelSpanTagNameMapping',
     'DerivedMetricQuery',
     'DerivedMetricQueryQuery',
     'DerivedMetricQueryQueryVariable',
@@ -57,7 +93,47 @@ __all__ = [
     'LogAllocationConfigDefaultDatasetPriorities',
     'LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilter',
     'LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilter',
-    'LogIngestConfigParser',
+    'LogControlConfigRule',
+    'LogControlConfigRuleDropField',
+    'LogControlConfigRuleDropFieldParentPath',
+    'LogControlConfigRuleEmitMetrics',
+    'LogControlConfigRuleEmitMetricsCounter',
+    'LogControlConfigRuleEmitMetricsCounterValue',
+    'LogControlConfigRuleEmitMetricsGauge',
+    'LogControlConfigRuleEmitMetricsGaugeValue',
+    'LogControlConfigRuleEmitMetricsHistogram',
+    'LogControlConfigRuleEmitMetricsHistogramValue',
+    'LogControlConfigRuleEmitMetricsLabel',
+    'LogControlConfigRuleEmitMetricsLabelValue',
+    'LogControlConfigRuleReplaceField',
+    'LogControlConfigRuleReplaceFieldField',
+    'LogControlConfigRuleReplaceFieldMappedValue',
+    'LogControlConfigRuleReplaceFieldMappedValuePair',
+    'LogControlConfigRuleReplaceFieldStaticValue',
+    'LogControlConfigRuleSample',
+    'LogIngestConfigFieldNormalization',
+    'LogIngestConfigFieldNormalizationCustomFieldNormalization',
+    'LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalization',
+    'LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSource',
+    'LogIngestConfigFieldNormalizationMessage',
+    'LogIngestConfigFieldNormalizationMessageSource',
+    'LogIngestConfigFieldNormalizationPrimaryKey',
+    'LogIngestConfigFieldNormalizationPrimaryKeyNormalization',
+    'LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSource',
+    'LogIngestConfigFieldNormalizationSeverity',
+    'LogIngestConfigFieldNormalizationSeveritySource',
+    'LogIngestConfigFieldNormalizationTimestamp',
+    'LogIngestConfigFieldNormalizationTimestampSource',
+    'LogIngestConfigFieldParser',
+    'LogIngestConfigFieldParserDestination',
+    'LogIngestConfigFieldParserParser',
+    'LogIngestConfigFieldParserParserKeyValueParser',
+    'LogIngestConfigFieldParserParserRegexParser',
+    'LogIngestConfigFieldParserSource',
+    'LogIngestConfigPlaintextParser',
+    'LogIngestConfigPlaintextParserParser',
+    'LogIngestConfigPlaintextParserParserKeyValueParser',
+    'LogIngestConfigPlaintextParserParserRegexParser',
     'LogscaleActionEmailAction',
     'LogscaleActionHumioAction',
     'LogscaleActionOpsGenieAction',
@@ -165,6 +241,1017 @@ __all__ = [
     'TraceTailSamplingRulesRuleFilterTraceDuration',
     'TraceTailSamplingRulesRuleFilterTraceError',
 ]
+
+@pulumi.output_type
+class AzureMetricsIntegrationPrincipal(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "clientId":
+            suggest = "client_id"
+        elif key == "tenantId":
+            suggest = "tenant_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AzureMetricsIntegrationPrincipal. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AzureMetricsIntegrationPrincipal.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AzureMetricsIntegrationPrincipal.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 client_id: Optional[str] = None,
+                 tenant_id: Optional[str] = None):
+        if client_id is not None:
+            pulumi.set(__self__, "client_id", client_id)
+        if tenant_id is not None:
+            pulumi.set(__self__, "tenant_id", tenant_id)
+
+    @property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> Optional[str]:
+        return pulumi.get(self, "client_id")
+
+    @property
+    @pulumi.getter(name="tenantId")
+    def tenant_id(self) -> Optional[str]:
+        return pulumi.get(self, "tenant_id")
+
+
+@pulumi.output_type
+class AzureMetricsIntegrationScrapeConfig(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "resourceTypes":
+            suggest = "resource_types"
+        elif key == "subscriptionIds":
+            suggest = "subscription_ids"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AzureMetricsIntegrationScrapeConfig. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AzureMetricsIntegrationScrapeConfig.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AzureMetricsIntegrationScrapeConfig.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 locations: Optional[Sequence[str]] = None,
+                 resource_types: Optional[Sequence['outputs.AzureMetricsIntegrationScrapeConfigResourceType']] = None,
+                 subscription_ids: Optional[Sequence[str]] = None):
+        if locations is not None:
+            pulumi.set(__self__, "locations", locations)
+        if resource_types is not None:
+            pulumi.set(__self__, "resource_types", resource_types)
+        if subscription_ids is not None:
+            pulumi.set(__self__, "subscription_ids", subscription_ids)
+
+    @property
+    @pulumi.getter
+    def locations(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "locations")
+
+    @property
+    @pulumi.getter(name="resourceTypes")
+    def resource_types(self) -> Optional[Sequence['outputs.AzureMetricsIntegrationScrapeConfigResourceType']]:
+        return pulumi.get(self, "resource_types")
+
+    @property
+    @pulumi.getter(name="subscriptionIds")
+    def subscription_ids(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "subscription_ids")
+
+
+@pulumi.output_type
+class AzureMetricsIntegrationScrapeConfigResourceType(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "metricNames":
+            suggest = "metric_names"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AzureMetricsIntegrationScrapeConfigResourceType. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AzureMetricsIntegrationScrapeConfigResourceType.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AzureMetricsIntegrationScrapeConfigResourceType.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 metric_names: Optional[Sequence[str]] = None,
+                 name: Optional[str] = None):
+        if metric_names is not None:
+            pulumi.set(__self__, "metric_names", metric_names)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter(name="metricNames")
+    def metric_names(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "metric_names")
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class ConsumptionBudgetAlertActionConfig(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "instantRateSustainSecs":
+            suggest = "instant_rate_sustain_secs"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumptionBudgetAlertActionConfig. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumptionBudgetAlertActionConfig.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumptionBudgetAlertActionConfig.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 annotations: Optional[Mapping[str, str]] = None,
+                 instant_rate_sustain_secs: Optional[int] = None,
+                 labels: Optional[Mapping[str, str]] = None):
+        if annotations is not None:
+            pulumi.set(__self__, "annotations", annotations)
+        if instant_rate_sustain_secs is not None:
+            pulumi.set(__self__, "instant_rate_sustain_secs", instant_rate_sustain_secs)
+        if labels is not None:
+            pulumi.set(__self__, "labels", labels)
+
+    @property
+    @pulumi.getter
+    def annotations(self) -> Optional[Mapping[str, str]]:
+        return pulumi.get(self, "annotations")
+
+    @property
+    @pulumi.getter(name="instantRateSustainSecs")
+    def instant_rate_sustain_secs(self) -> Optional[int]:
+        return pulumi.get(self, "instant_rate_sustain_secs")
+
+    @property
+    @pulumi.getter
+    def labels(self) -> Optional[Mapping[str, str]]:
+        return pulumi.get(self, "labels")
+
+
+@pulumi.output_type
+class ConsumptionBudgetPriority(dict):
+    def __init__(__self__, *,
+                 filters: Optional[Sequence['outputs.ConsumptionBudgetPriorityFilter']] = None,
+                 priority: Optional[int] = None):
+        if filters is not None:
+            pulumi.set(__self__, "filters", filters)
+        if priority is not None:
+            pulumi.set(__self__, "priority", priority)
+
+    @property
+    @pulumi.getter
+    def filters(self) -> Optional[Sequence['outputs.ConsumptionBudgetPriorityFilter']]:
+        return pulumi.get(self, "filters")
+
+    @property
+    @pulumi.getter
+    def priority(self) -> Optional[int]:
+        return pulumi.get(self, "priority")
+
+
+@pulumi.output_type
+class ConsumptionBudgetPriorityFilter(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "datasetId":
+            suggest = "dataset_id"
+        elif key == "logFilter":
+            suggest = "log_filter"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumptionBudgetPriorityFilter. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumptionBudgetPriorityFilter.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumptionBudgetPriorityFilter.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 dataset_id: Optional[str] = None,
+                 log_filter: Optional['outputs.ConsumptionBudgetPriorityFilterLogFilter'] = None):
+        if dataset_id is not None:
+            pulumi.set(__self__, "dataset_id", dataset_id)
+        if log_filter is not None:
+            pulumi.set(__self__, "log_filter", log_filter)
+
+    @property
+    @pulumi.getter(name="datasetId")
+    def dataset_id(self) -> Optional[str]:
+        return pulumi.get(self, "dataset_id")
+
+    @property
+    @pulumi.getter(name="logFilter")
+    def log_filter(self) -> Optional['outputs.ConsumptionBudgetPriorityFilterLogFilter']:
+        return pulumi.get(self, "log_filter")
+
+
+@pulumi.output_type
+class ConsumptionBudgetPriorityFilterLogFilter(dict):
+    def __init__(__self__, *,
+                 query: str):
+        pulumi.set(__self__, "query", query)
+
+    @property
+    @pulumi.getter
+    def query(self) -> str:
+        return pulumi.get(self, "query")
+
+
+@pulumi.output_type
+class ConsumptionBudgetThreshold(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "instantRate":
+            suggest = "instant_rate"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumptionBudgetThreshold. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumptionBudgetThreshold.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumptionBudgetThreshold.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 action: Optional[str] = None,
+                 instant_rate: Optional['outputs.ConsumptionBudgetThresholdInstantRate'] = None,
+                 type: Optional[str] = None,
+                 volume: Optional['outputs.ConsumptionBudgetThresholdVolume'] = None):
+        if action is not None:
+            pulumi.set(__self__, "action", action)
+        if instant_rate is not None:
+            pulumi.set(__self__, "instant_rate", instant_rate)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if volume is not None:
+            pulumi.set(__self__, "volume", volume)
+
+    @property
+    @pulumi.getter
+    def action(self) -> Optional[str]:
+        return pulumi.get(self, "action")
+
+    @property
+    @pulumi.getter(name="instantRate")
+    def instant_rate(self) -> Optional['outputs.ConsumptionBudgetThresholdInstantRate']:
+        return pulumi.get(self, "instant_rate")
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[str]:
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter
+    def volume(self) -> Optional['outputs.ConsumptionBudgetThresholdVolume']:
+        return pulumi.get(self, "volume")
+
+
+@pulumi.output_type
+class ConsumptionBudgetThresholdInstantRate(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "fixedValuePerSec":
+            suggest = "fixed_value_per_sec"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumptionBudgetThresholdInstantRate. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumptionBudgetThresholdInstantRate.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumptionBudgetThresholdInstantRate.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 fixed_value_per_sec: Optional[int] = None):
+        if fixed_value_per_sec is not None:
+            pulumi.set(__self__, "fixed_value_per_sec", fixed_value_per_sec)
+
+    @property
+    @pulumi.getter(name="fixedValuePerSec")
+    def fixed_value_per_sec(self) -> Optional[int]:
+        return pulumi.get(self, "fixed_value_per_sec")
+
+
+@pulumi.output_type
+class ConsumptionBudgetThresholdVolume(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "fixedValue":
+            suggest = "fixed_value"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumptionBudgetThresholdVolume. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumptionBudgetThresholdVolume.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumptionBudgetThresholdVolume.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 fixed_value: Optional[int] = None):
+        if fixed_value is not None:
+            pulumi.set(__self__, "fixed_value", fixed_value)
+
+    @property
+    @pulumi.getter(name="fixedValue")
+    def fixed_value(self) -> Optional[int]:
+        return pulumi.get(self, "fixed_value")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartition(dict):
+    def __init__(__self__, *,
+                 filters: Optional[Sequence['outputs.ConsumptionConfigPartitionFilter']] = None,
+                 name: Optional[str] = None,
+                 partitions: Optional[Sequence['outputs.ConsumptionConfigPartitionPartition']] = None,
+                 slug: Optional[str] = None):
+        if filters is not None:
+            pulumi.set(__self__, "filters", filters)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if partitions is not None:
+            pulumi.set(__self__, "partitions", partitions)
+        if slug is not None:
+            pulumi.set(__self__, "slug", slug)
+
+    @property
+    @pulumi.getter
+    def filters(self) -> Optional[Sequence['outputs.ConsumptionConfigPartitionFilter']]:
+        return pulumi.get(self, "filters")
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def partitions(self) -> Optional[Sequence['outputs.ConsumptionConfigPartitionPartition']]:
+        return pulumi.get(self, "partitions")
+
+    @property
+    @pulumi.getter
+    def slug(self) -> Optional[str]:
+        return pulumi.get(self, "slug")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionFilter(dict):
+    def __init__(__self__, *,
+                 conditions: Optional[Sequence['outputs.ConsumptionConfigPartitionFilterCondition']] = None,
+                 operator: Optional[str] = None):
+        if conditions is not None:
+            pulumi.set(__self__, "conditions", conditions)
+        if operator is not None:
+            pulumi.set(__self__, "operator", operator)
+
+    @property
+    @pulumi.getter
+    def conditions(self) -> Optional[Sequence['outputs.ConsumptionConfigPartitionFilterCondition']]:
+        return pulumi.get(self, "conditions")
+
+    @property
+    @pulumi.getter
+    def operator(self) -> Optional[str]:
+        return pulumi.get(self, "operator")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionFilterCondition(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "datasetId":
+            suggest = "dataset_id"
+        elif key == "logFilter":
+            suggest = "log_filter"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionFilterCondition. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumptionConfigPartitionFilterCondition.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumptionConfigPartitionFilterCondition.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 dataset_id: Optional[str] = None,
+                 log_filter: Optional['outputs.ConsumptionConfigPartitionFilterConditionLogFilter'] = None):
+        if dataset_id is not None:
+            pulumi.set(__self__, "dataset_id", dataset_id)
+        if log_filter is not None:
+            pulumi.set(__self__, "log_filter", log_filter)
+
+    @property
+    @pulumi.getter(name="datasetId")
+    def dataset_id(self) -> Optional[str]:
+        return pulumi.get(self, "dataset_id")
+
+    @property
+    @pulumi.getter(name="logFilter")
+    def log_filter(self) -> Optional['outputs.ConsumptionConfigPartitionFilterConditionLogFilter']:
+        return pulumi.get(self, "log_filter")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionFilterConditionLogFilter(dict):
+    def __init__(__self__, *,
+                 query: str):
+        pulumi.set(__self__, "query", query)
+
+    @property
+    @pulumi.getter
+    def query(self) -> str:
+        return pulumi.get(self, "query")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartition(dict):
+    def __init__(__self__, *,
+                 filters: Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionFilter']] = None,
+                 name: Optional[str] = None,
+                 partitions: Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartition']] = None,
+                 slug: Optional[str] = None):
+        if filters is not None:
+            pulumi.set(__self__, "filters", filters)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if partitions is not None:
+            pulumi.set(__self__, "partitions", partitions)
+        if slug is not None:
+            pulumi.set(__self__, "slug", slug)
+
+    @property
+    @pulumi.getter
+    def filters(self) -> Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionFilter']]:
+        return pulumi.get(self, "filters")
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def partitions(self) -> Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartition']]:
+        return pulumi.get(self, "partitions")
+
+    @property
+    @pulumi.getter
+    def slug(self) -> Optional[str]:
+        return pulumi.get(self, "slug")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionFilter(dict):
+    def __init__(__self__, *,
+                 conditions: Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionFilterCondition']] = None,
+                 operator: Optional[str] = None):
+        if conditions is not None:
+            pulumi.set(__self__, "conditions", conditions)
+        if operator is not None:
+            pulumi.set(__self__, "operator", operator)
+
+    @property
+    @pulumi.getter
+    def conditions(self) -> Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionFilterCondition']]:
+        return pulumi.get(self, "conditions")
+
+    @property
+    @pulumi.getter
+    def operator(self) -> Optional[str]:
+        return pulumi.get(self, "operator")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionFilterCondition(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "datasetId":
+            suggest = "dataset_id"
+        elif key == "logFilter":
+            suggest = "log_filter"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionPartitionFilterCondition. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumptionConfigPartitionPartitionFilterCondition.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumptionConfigPartitionPartitionFilterCondition.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 dataset_id: Optional[str] = None,
+                 log_filter: Optional['outputs.ConsumptionConfigPartitionPartitionFilterConditionLogFilter'] = None):
+        if dataset_id is not None:
+            pulumi.set(__self__, "dataset_id", dataset_id)
+        if log_filter is not None:
+            pulumi.set(__self__, "log_filter", log_filter)
+
+    @property
+    @pulumi.getter(name="datasetId")
+    def dataset_id(self) -> Optional[str]:
+        return pulumi.get(self, "dataset_id")
+
+    @property
+    @pulumi.getter(name="logFilter")
+    def log_filter(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionFilterConditionLogFilter']:
+        return pulumi.get(self, "log_filter")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionFilterConditionLogFilter(dict):
+    def __init__(__self__, *,
+                 query: str):
+        pulumi.set(__self__, "query", query)
+
+    @property
+    @pulumi.getter
+    def query(self) -> str:
+        return pulumi.get(self, "query")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartition(dict):
+    def __init__(__self__, *,
+                 filters: Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionFilter']] = None,
+                 name: Optional[str] = None,
+                 partitions: Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionPartition']] = None,
+                 slug: Optional[str] = None):
+        if filters is not None:
+            pulumi.set(__self__, "filters", filters)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if partitions is not None:
+            pulumi.set(__self__, "partitions", partitions)
+        if slug is not None:
+            pulumi.set(__self__, "slug", slug)
+
+    @property
+    @pulumi.getter
+    def filters(self) -> Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionFilter']]:
+        return pulumi.get(self, "filters")
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def partitions(self) -> Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionPartition']]:
+        return pulumi.get(self, "partitions")
+
+    @property
+    @pulumi.getter
+    def slug(self) -> Optional[str]:
+        return pulumi.get(self, "slug")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionFilter(dict):
+    def __init__(__self__, *,
+                 conditions: Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionFilterCondition']] = None,
+                 operator: Optional[str] = None):
+        if conditions is not None:
+            pulumi.set(__self__, "conditions", conditions)
+        if operator is not None:
+            pulumi.set(__self__, "operator", operator)
+
+    @property
+    @pulumi.getter
+    def conditions(self) -> Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionFilterCondition']]:
+        return pulumi.get(self, "conditions")
+
+    @property
+    @pulumi.getter
+    def operator(self) -> Optional[str]:
+        return pulumi.get(self, "operator")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionFilterCondition(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "datasetId":
+            suggest = "dataset_id"
+        elif key == "logFilter":
+            suggest = "log_filter"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionPartitionPartitionFilterCondition. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionFilterCondition.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionFilterCondition.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 dataset_id: Optional[str] = None,
+                 log_filter: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilter'] = None):
+        if dataset_id is not None:
+            pulumi.set(__self__, "dataset_id", dataset_id)
+        if log_filter is not None:
+            pulumi.set(__self__, "log_filter", log_filter)
+
+    @property
+    @pulumi.getter(name="datasetId")
+    def dataset_id(self) -> Optional[str]:
+        return pulumi.get(self, "dataset_id")
+
+    @property
+    @pulumi.getter(name="logFilter")
+    def log_filter(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilter']:
+        return pulumi.get(self, "log_filter")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilter(dict):
+    def __init__(__self__, *,
+                 query: str):
+        pulumi.set(__self__, "query", query)
+
+    @property
+    @pulumi.getter
+    def query(self) -> str:
+        return pulumi.get(self, "query")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionPartition(dict):
+    def __init__(__self__, *,
+                 filters: Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilter']] = None,
+                 name: Optional[str] = None,
+                 partitions: Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartition']] = None,
+                 slug: Optional[str] = None):
+        if filters is not None:
+            pulumi.set(__self__, "filters", filters)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if partitions is not None:
+            pulumi.set(__self__, "partitions", partitions)
+        if slug is not None:
+            pulumi.set(__self__, "slug", slug)
+
+    @property
+    @pulumi.getter
+    def filters(self) -> Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilter']]:
+        return pulumi.get(self, "filters")
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def partitions(self) -> Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartition']]:
+        return pulumi.get(self, "partitions")
+
+    @property
+    @pulumi.getter
+    def slug(self) -> Optional[str]:
+        return pulumi.get(self, "slug")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionFilter(dict):
+    def __init__(__self__, *,
+                 conditions: Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterCondition']] = None,
+                 operator: Optional[str] = None):
+        if conditions is not None:
+            pulumi.set(__self__, "conditions", conditions)
+        if operator is not None:
+            pulumi.set(__self__, "operator", operator)
+
+    @property
+    @pulumi.getter
+    def conditions(self) -> Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterCondition']]:
+        return pulumi.get(self, "conditions")
+
+    @property
+    @pulumi.getter
+    def operator(self) -> Optional[str]:
+        return pulumi.get(self, "operator")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionFilterCondition(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "datasetId":
+            suggest = "dataset_id"
+        elif key == "logFilter":
+            suggest = "log_filter"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionPartitionPartitionPartitionFilterCondition. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionPartitionFilterCondition.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionPartitionFilterCondition.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 dataset_id: Optional[str] = None,
+                 log_filter: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilter'] = None):
+        if dataset_id is not None:
+            pulumi.set(__self__, "dataset_id", dataset_id)
+        if log_filter is not None:
+            pulumi.set(__self__, "log_filter", log_filter)
+
+    @property
+    @pulumi.getter(name="datasetId")
+    def dataset_id(self) -> Optional[str]:
+        return pulumi.get(self, "dataset_id")
+
+    @property
+    @pulumi.getter(name="logFilter")
+    def log_filter(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilter']:
+        return pulumi.get(self, "log_filter")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilter(dict):
+    def __init__(__self__, *,
+                 query: str):
+        pulumi.set(__self__, "query", query)
+
+    @property
+    @pulumi.getter
+    def query(self) -> str:
+        return pulumi.get(self, "query")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartition(dict):
+    def __init__(__self__, *,
+                 filters: Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilter']] = None,
+                 name: Optional[str] = None,
+                 partitions: Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartition']] = None,
+                 slug: Optional[str] = None):
+        if filters is not None:
+            pulumi.set(__self__, "filters", filters)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if partitions is not None:
+            pulumi.set(__self__, "partitions", partitions)
+        if slug is not None:
+            pulumi.set(__self__, "slug", slug)
+
+    @property
+    @pulumi.getter
+    def filters(self) -> Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilter']]:
+        return pulumi.get(self, "filters")
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def partitions(self) -> Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartition']]:
+        return pulumi.get(self, "partitions")
+
+    @property
+    @pulumi.getter
+    def slug(self) -> Optional[str]:
+        return pulumi.get(self, "slug")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilter(dict):
+    def __init__(__self__, *,
+                 conditions: Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterCondition']] = None,
+                 operator: Optional[str] = None):
+        if conditions is not None:
+            pulumi.set(__self__, "conditions", conditions)
+        if operator is not None:
+            pulumi.set(__self__, "operator", operator)
+
+    @property
+    @pulumi.getter
+    def conditions(self) -> Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterCondition']]:
+        return pulumi.get(self, "conditions")
+
+    @property
+    @pulumi.getter
+    def operator(self) -> Optional[str]:
+        return pulumi.get(self, "operator")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterCondition(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "datasetId":
+            suggest = "dataset_id"
+        elif key == "logFilter":
+            suggest = "log_filter"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterCondition. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterCondition.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterCondition.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 dataset_id: Optional[str] = None,
+                 log_filter: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter'] = None):
+        if dataset_id is not None:
+            pulumi.set(__self__, "dataset_id", dataset_id)
+        if log_filter is not None:
+            pulumi.set(__self__, "log_filter", log_filter)
+
+    @property
+    @pulumi.getter(name="datasetId")
+    def dataset_id(self) -> Optional[str]:
+        return pulumi.get(self, "dataset_id")
+
+    @property
+    @pulumi.getter(name="logFilter")
+    def log_filter(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter']:
+        return pulumi.get(self, "log_filter")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter(dict):
+    def __init__(__self__, *,
+                 query: str):
+        pulumi.set(__self__, "query", query)
+
+    @property
+    @pulumi.getter
+    def query(self) -> str:
+        return pulumi.get(self, "query")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartition(dict):
+    def __init__(__self__, *,
+                 filters: Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilter']] = None,
+                 name: Optional[str] = None,
+                 slug: Optional[str] = None):
+        if filters is not None:
+            pulumi.set(__self__, "filters", filters)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if slug is not None:
+            pulumi.set(__self__, "slug", slug)
+
+    @property
+    @pulumi.getter
+    def filters(self) -> Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilter']]:
+        return pulumi.get(self, "filters")
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def slug(self) -> Optional[str]:
+        return pulumi.get(self, "slug")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilter(dict):
+    def __init__(__self__, *,
+                 conditions: Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterCondition']] = None,
+                 operator: Optional[str] = None):
+        if conditions is not None:
+            pulumi.set(__self__, "conditions", conditions)
+        if operator is not None:
+            pulumi.set(__self__, "operator", operator)
+
+    @property
+    @pulumi.getter
+    def conditions(self) -> Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterCondition']]:
+        return pulumi.get(self, "conditions")
+
+    @property
+    @pulumi.getter
+    def operator(self) -> Optional[str]:
+        return pulumi.get(self, "operator")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterCondition(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "datasetId":
+            suggest = "dataset_id"
+        elif key == "logFilter":
+            suggest = "log_filter"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterCondition. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterCondition.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterCondition.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 dataset_id: Optional[str] = None,
+                 log_filter: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter'] = None):
+        if dataset_id is not None:
+            pulumi.set(__self__, "dataset_id", dataset_id)
+        if log_filter is not None:
+            pulumi.set(__self__, "log_filter", log_filter)
+
+    @property
+    @pulumi.getter(name="datasetId")
+    def dataset_id(self) -> Optional[str]:
+        return pulumi.get(self, "dataset_id")
+
+    @property
+    @pulumi.getter(name="logFilter")
+    def log_filter(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter']:
+        return pulumi.get(self, "log_filter")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter(dict):
+    def __init__(__self__, *,
+                 query: str):
+        pulumi.set(__self__, "query", query)
+
+    @property
+    @pulumi.getter
+    def query(self) -> str:
+        return pulumi.get(self, "query")
+
 
 @pulumi.output_type
 class DatasetConfiguration(dict):
@@ -1191,6 +2278,65 @@ class DerivedLabelMetricLabelMappingLabelValueMapping(dict):
 
 
 @pulumi.output_type
+class DerivedLabelSpanTag(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "nameMappings":
+            suggest = "name_mappings"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DerivedLabelSpanTag. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DerivedLabelSpanTag.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DerivedLabelSpanTag.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 name_mappings: Optional[Sequence['outputs.DerivedLabelSpanTagNameMapping']] = None):
+        if name_mappings is not None:
+            pulumi.set(__self__, "name_mappings", name_mappings)
+
+    @property
+    @pulumi.getter(name="nameMappings")
+    def name_mappings(self) -> Optional[Sequence['outputs.DerivedLabelSpanTagNameMapping']]:
+        return pulumi.get(self, "name_mappings")
+
+
+@pulumi.output_type
+class DerivedLabelSpanTagNameMapping(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "sourceTag":
+            suggest = "source_tag"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DerivedLabelSpanTagNameMapping. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DerivedLabelSpanTagNameMapping.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DerivedLabelSpanTagNameMapping.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 source_tag: str):
+        pulumi.set(__self__, "source_tag", source_tag)
+
+    @property
+    @pulumi.getter(name="sourceTag")
+    def source_tag(self) -> str:
+        return pulumi.get(self, "source_tag")
+
+
+@pulumi.output_type
 class DerivedMetricQuery(dict):
     def __init__(__self__, *,
                  query: 'outputs.DerivedMetricQueryQuery',
@@ -1625,17 +2771,1278 @@ class LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilter(dict):
 
 
 @pulumi.output_type
-class LogIngestConfigParser(dict):
+class LogControlConfigRule(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "dropField":
+            suggest = "drop_field"
+        elif key == "emitMetrics":
+            suggest = "emit_metrics"
+        elif key == "replaceField":
+            suggest = "replace_field"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in LogControlConfigRule. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        LogControlConfigRule.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        LogControlConfigRule.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 drop_field: Optional['outputs.LogControlConfigRuleDropField'] = None,
+                 emit_metrics: Optional['outputs.LogControlConfigRuleEmitMetrics'] = None,
+                 filter: Optional[str] = None,
+                 mode: Optional[str] = None,
+                 name: Optional[str] = None,
+                 replace_field: Optional['outputs.LogControlConfigRuleReplaceField'] = None,
+                 sample: Optional['outputs.LogControlConfigRuleSample'] = None,
+                 type: Optional[str] = None):
+        if drop_field is not None:
+            pulumi.set(__self__, "drop_field", drop_field)
+        if emit_metrics is not None:
+            pulumi.set(__self__, "emit_metrics", emit_metrics)
+        if filter is not None:
+            pulumi.set(__self__, "filter", filter)
+        if mode is not None:
+            pulumi.set(__self__, "mode", mode)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if replace_field is not None:
+            pulumi.set(__self__, "replace_field", replace_field)
+        if sample is not None:
+            pulumi.set(__self__, "sample", sample)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter(name="dropField")
+    def drop_field(self) -> Optional['outputs.LogControlConfigRuleDropField']:
+        return pulumi.get(self, "drop_field")
+
+    @property
+    @pulumi.getter(name="emitMetrics")
+    def emit_metrics(self) -> Optional['outputs.LogControlConfigRuleEmitMetrics']:
+        return pulumi.get(self, "emit_metrics")
+
+    @property
+    @pulumi.getter
+    def filter(self) -> Optional[str]:
+        return pulumi.get(self, "filter")
+
+    @property
+    @pulumi.getter
+    def mode(self) -> Optional[str]:
+        return pulumi.get(self, "mode")
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="replaceField")
+    def replace_field(self) -> Optional['outputs.LogControlConfigRuleReplaceField']:
+        return pulumi.get(self, "replace_field")
+
+    @property
+    @pulumi.getter
+    def sample(self) -> Optional['outputs.LogControlConfigRuleSample']:
+        return pulumi.get(self, "sample")
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[str]:
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class LogControlConfigRuleDropField(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "fieldRegex":
+            suggest = "field_regex"
+        elif key == "parentPath":
+            suggest = "parent_path"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in LogControlConfigRuleDropField. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        LogControlConfigRuleDropField.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        LogControlConfigRuleDropField.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 field_regex: Optional[str] = None,
+                 parent_path: Optional['outputs.LogControlConfigRuleDropFieldParentPath'] = None):
+        if field_regex is not None:
+            pulumi.set(__self__, "field_regex", field_regex)
+        if parent_path is not None:
+            pulumi.set(__self__, "parent_path", parent_path)
+
+    @property
+    @pulumi.getter(name="fieldRegex")
+    def field_regex(self) -> Optional[str]:
+        return pulumi.get(self, "field_regex")
+
+    @property
+    @pulumi.getter(name="parentPath")
+    def parent_path(self) -> Optional['outputs.LogControlConfigRuleDropFieldParentPath']:
+        return pulumi.get(self, "parent_path")
+
+
+@pulumi.output_type
+class LogControlConfigRuleDropFieldParentPath(dict):
+    def __init__(__self__, *,
+                 selector: Optional[str] = None):
+        if selector is not None:
+            pulumi.set(__self__, "selector", selector)
+
+    @property
+    @pulumi.getter
+    def selector(self) -> Optional[str]:
+        return pulumi.get(self, "selector")
+
+
+@pulumi.output_type
+class LogControlConfigRuleEmitMetrics(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "dropLog":
+            suggest = "drop_log"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in LogControlConfigRuleEmitMetrics. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        LogControlConfigRuleEmitMetrics.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        LogControlConfigRuleEmitMetrics.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 counter: Optional['outputs.LogControlConfigRuleEmitMetricsCounter'] = None,
+                 drop_log: Optional[bool] = None,
+                 gauge: Optional['outputs.LogControlConfigRuleEmitMetricsGauge'] = None,
+                 histogram: Optional['outputs.LogControlConfigRuleEmitMetricsHistogram'] = None,
+                 labels: Optional[Sequence['outputs.LogControlConfigRuleEmitMetricsLabel']] = None,
+                 mode: Optional[str] = None,
+                 name: Optional[str] = None):
+        if counter is not None:
+            pulumi.set(__self__, "counter", counter)
+        if drop_log is not None:
+            pulumi.set(__self__, "drop_log", drop_log)
+        if gauge is not None:
+            pulumi.set(__self__, "gauge", gauge)
+        if histogram is not None:
+            pulumi.set(__self__, "histogram", histogram)
+        if labels is not None:
+            pulumi.set(__self__, "labels", labels)
+        if mode is not None:
+            pulumi.set(__self__, "mode", mode)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def counter(self) -> Optional['outputs.LogControlConfigRuleEmitMetricsCounter']:
+        return pulumi.get(self, "counter")
+
+    @property
+    @pulumi.getter(name="dropLog")
+    def drop_log(self) -> Optional[bool]:
+        return pulumi.get(self, "drop_log")
+
+    @property
+    @pulumi.getter
+    def gauge(self) -> Optional['outputs.LogControlConfigRuleEmitMetricsGauge']:
+        return pulumi.get(self, "gauge")
+
+    @property
+    @pulumi.getter
+    def histogram(self) -> Optional['outputs.LogControlConfigRuleEmitMetricsHistogram']:
+        return pulumi.get(self, "histogram")
+
+    @property
+    @pulumi.getter
+    def labels(self) -> Optional[Sequence['outputs.LogControlConfigRuleEmitMetricsLabel']]:
+        return pulumi.get(self, "labels")
+
+    @property
+    @pulumi.getter
+    def mode(self) -> Optional[str]:
+        return pulumi.get(self, "mode")
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class LogControlConfigRuleEmitMetricsCounter(dict):
+    def __init__(__self__, *,
+                 value: Optional['outputs.LogControlConfigRuleEmitMetricsCounterValue'] = None):
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional['outputs.LogControlConfigRuleEmitMetricsCounterValue']:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class LogControlConfigRuleEmitMetricsCounterValue(dict):
+    def __init__(__self__, *,
+                 selector: Optional[str] = None):
+        if selector is not None:
+            pulumi.set(__self__, "selector", selector)
+
+    @property
+    @pulumi.getter
+    def selector(self) -> Optional[str]:
+        return pulumi.get(self, "selector")
+
+
+@pulumi.output_type
+class LogControlConfigRuleEmitMetricsGauge(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "aggregationType":
+            suggest = "aggregation_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in LogControlConfigRuleEmitMetricsGauge. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        LogControlConfigRuleEmitMetricsGauge.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        LogControlConfigRuleEmitMetricsGauge.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 aggregation_type: Optional[str] = None,
+                 value: Optional['outputs.LogControlConfigRuleEmitMetricsGaugeValue'] = None):
+        if aggregation_type is not None:
+            pulumi.set(__self__, "aggregation_type", aggregation_type)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="aggregationType")
+    def aggregation_type(self) -> Optional[str]:
+        return pulumi.get(self, "aggregation_type")
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional['outputs.LogControlConfigRuleEmitMetricsGaugeValue']:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class LogControlConfigRuleEmitMetricsGaugeValue(dict):
+    def __init__(__self__, *,
+                 selector: Optional[str] = None):
+        if selector is not None:
+            pulumi.set(__self__, "selector", selector)
+
+    @property
+    @pulumi.getter
+    def selector(self) -> Optional[str]:
+        return pulumi.get(self, "selector")
+
+
+@pulumi.output_type
+class LogControlConfigRuleEmitMetricsHistogram(dict):
+    def __init__(__self__, *,
+                 value: Optional['outputs.LogControlConfigRuleEmitMetricsHistogramValue'] = None):
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional['outputs.LogControlConfigRuleEmitMetricsHistogramValue']:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class LogControlConfigRuleEmitMetricsHistogramValue(dict):
+    def __init__(__self__, *,
+                 selector: Optional[str] = None):
+        if selector is not None:
+            pulumi.set(__self__, "selector", selector)
+
+    @property
+    @pulumi.getter
+    def selector(self) -> Optional[str]:
+        return pulumi.get(self, "selector")
+
+
+@pulumi.output_type
+class LogControlConfigRuleEmitMetricsLabel(dict):
+    def __init__(__self__, *,
+                 key: Optional[str] = None,
+                 value: Optional['outputs.LogControlConfigRuleEmitMetricsLabelValue'] = None):
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> Optional[str]:
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional['outputs.LogControlConfigRuleEmitMetricsLabelValue']:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class LogControlConfigRuleEmitMetricsLabelValue(dict):
+    def __init__(__self__, *,
+                 selector: Optional[str] = None):
+        if selector is not None:
+            pulumi.set(__self__, "selector", selector)
+
+    @property
+    @pulumi.getter
+    def selector(self) -> Optional[str]:
+        return pulumi.get(self, "selector")
+
+
+@pulumi.output_type
+class LogControlConfigRuleReplaceField(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "mappedValue":
+            suggest = "mapped_value"
+        elif key == "replaceAll":
+            suggest = "replace_all"
+        elif key == "replaceMode":
+            suggest = "replace_mode"
+        elif key == "replaceRegex":
+            suggest = "replace_regex"
+        elif key == "staticValue":
+            suggest = "static_value"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in LogControlConfigRuleReplaceField. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        LogControlConfigRuleReplaceField.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        LogControlConfigRuleReplaceField.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 field: Optional['outputs.LogControlConfigRuleReplaceFieldField'] = None,
+                 mapped_value: Optional['outputs.LogControlConfigRuleReplaceFieldMappedValue'] = None,
+                 replace_all: Optional[bool] = None,
+                 replace_mode: Optional[str] = None,
+                 replace_regex: Optional[str] = None,
+                 static_value: Optional['outputs.LogControlConfigRuleReplaceFieldStaticValue'] = None):
+        if field is not None:
+            pulumi.set(__self__, "field", field)
+        if mapped_value is not None:
+            pulumi.set(__self__, "mapped_value", mapped_value)
+        if replace_all is not None:
+            pulumi.set(__self__, "replace_all", replace_all)
+        if replace_mode is not None:
+            pulumi.set(__self__, "replace_mode", replace_mode)
+        if replace_regex is not None:
+            pulumi.set(__self__, "replace_regex", replace_regex)
+        if static_value is not None:
+            pulumi.set(__self__, "static_value", static_value)
+
+    @property
+    @pulumi.getter
+    def field(self) -> Optional['outputs.LogControlConfigRuleReplaceFieldField']:
+        return pulumi.get(self, "field")
+
+    @property
+    @pulumi.getter(name="mappedValue")
+    def mapped_value(self) -> Optional['outputs.LogControlConfigRuleReplaceFieldMappedValue']:
+        return pulumi.get(self, "mapped_value")
+
+    @property
+    @pulumi.getter(name="replaceAll")
+    def replace_all(self) -> Optional[bool]:
+        return pulumi.get(self, "replace_all")
+
+    @property
+    @pulumi.getter(name="replaceMode")
+    def replace_mode(self) -> Optional[str]:
+        return pulumi.get(self, "replace_mode")
+
+    @property
+    @pulumi.getter(name="replaceRegex")
+    def replace_regex(self) -> Optional[str]:
+        return pulumi.get(self, "replace_regex")
+
+    @property
+    @pulumi.getter(name="staticValue")
+    def static_value(self) -> Optional['outputs.LogControlConfigRuleReplaceFieldStaticValue']:
+        return pulumi.get(self, "static_value")
+
+
+@pulumi.output_type
+class LogControlConfigRuleReplaceFieldField(dict):
+    def __init__(__self__, *,
+                 selector: Optional[str] = None):
+        if selector is not None:
+            pulumi.set(__self__, "selector", selector)
+
+    @property
+    @pulumi.getter
+    def selector(self) -> Optional[str]:
+        return pulumi.get(self, "selector")
+
+
+@pulumi.output_type
+class LogControlConfigRuleReplaceFieldMappedValue(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "defaultValue":
+            suggest = "default_value"
+        elif key == "useDefault":
+            suggest = "use_default"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in LogControlConfigRuleReplaceFieldMappedValue. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        LogControlConfigRuleReplaceFieldMappedValue.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        LogControlConfigRuleReplaceFieldMappedValue.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 default_value: Optional[str] = None,
+                 pairs: Optional[Sequence['outputs.LogControlConfigRuleReplaceFieldMappedValuePair']] = None,
+                 use_default: Optional[bool] = None):
+        if default_value is not None:
+            pulumi.set(__self__, "default_value", default_value)
+        if pairs is not None:
+            pulumi.set(__self__, "pairs", pairs)
+        if use_default is not None:
+            pulumi.set(__self__, "use_default", use_default)
+
+    @property
+    @pulumi.getter(name="defaultValue")
+    def default_value(self) -> Optional[str]:
+        return pulumi.get(self, "default_value")
+
+    @property
+    @pulumi.getter
+    def pairs(self) -> Optional[Sequence['outputs.LogControlConfigRuleReplaceFieldMappedValuePair']]:
+        return pulumi.get(self, "pairs")
+
+    @property
+    @pulumi.getter(name="useDefault")
+    def use_default(self) -> Optional[bool]:
+        return pulumi.get(self, "use_default")
+
+
+@pulumi.output_type
+class LogControlConfigRuleReplaceFieldMappedValuePair(dict):
+    def __init__(__self__, *,
+                 key: Optional[str] = None,
+                 value: Optional[str] = None):
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> Optional[str]:
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[str]:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class LogControlConfigRuleReplaceFieldStaticValue(dict):
+    def __init__(__self__, *,
+                 value: Optional[str] = None):
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[str]:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class LogControlConfigRuleSample(dict):
+    def __init__(__self__, *,
+                 rate: Optional[float] = None):
+        if rate is not None:
+            pulumi.set(__self__, "rate", rate)
+
+    @property
+    @pulumi.getter
+    def rate(self) -> Optional[float]:
+        return pulumi.get(self, "rate")
+
+
+@pulumi.output_type
+class LogIngestConfigFieldNormalization(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "customFieldNormalizations":
+            suggest = "custom_field_normalizations"
+        elif key == "primaryKey":
+            suggest = "primary_key"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in LogIngestConfigFieldNormalization. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        LogIngestConfigFieldNormalization.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        LogIngestConfigFieldNormalization.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 custom_field_normalizations: Optional[Sequence['outputs.LogIngestConfigFieldNormalizationCustomFieldNormalization']] = None,
+                 message: Optional['outputs.LogIngestConfigFieldNormalizationMessage'] = None,
+                 primary_key: Optional['outputs.LogIngestConfigFieldNormalizationPrimaryKey'] = None,
+                 severity: Optional['outputs.LogIngestConfigFieldNormalizationSeverity'] = None,
+                 timestamp: Optional['outputs.LogIngestConfigFieldNormalizationTimestamp'] = None):
+        if custom_field_normalizations is not None:
+            pulumi.set(__self__, "custom_field_normalizations", custom_field_normalizations)
+        if message is not None:
+            pulumi.set(__self__, "message", message)
+        if primary_key is not None:
+            pulumi.set(__self__, "primary_key", primary_key)
+        if severity is not None:
+            pulumi.set(__self__, "severity", severity)
+        if timestamp is not None:
+            pulumi.set(__self__, "timestamp", timestamp)
+
+    @property
+    @pulumi.getter(name="customFieldNormalizations")
+    def custom_field_normalizations(self) -> Optional[Sequence['outputs.LogIngestConfigFieldNormalizationCustomFieldNormalization']]:
+        return pulumi.get(self, "custom_field_normalizations")
+
+    @property
+    @pulumi.getter
+    def message(self) -> Optional['outputs.LogIngestConfigFieldNormalizationMessage']:
+        return pulumi.get(self, "message")
+
+    @property
+    @pulumi.getter(name="primaryKey")
+    def primary_key(self) -> Optional['outputs.LogIngestConfigFieldNormalizationPrimaryKey']:
+        return pulumi.get(self, "primary_key")
+
+    @property
+    @pulumi.getter
+    def severity(self) -> Optional['outputs.LogIngestConfigFieldNormalizationSeverity']:
+        return pulumi.get(self, "severity")
+
+    @property
+    @pulumi.getter
+    def timestamp(self) -> Optional['outputs.LogIngestConfigFieldNormalizationTimestamp']:
+        return pulumi.get(self, "timestamp")
+
+
+@pulumi.output_type
+class LogIngestConfigFieldNormalizationCustomFieldNormalization(dict):
+    def __init__(__self__, *,
+                 normalization: Optional['outputs.LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalization'] = None,
+                 target: Optional[str] = None):
+        if normalization is not None:
+            pulumi.set(__self__, "normalization", normalization)
+        if target is not None:
+            pulumi.set(__self__, "target", target)
+
+    @property
+    @pulumi.getter
+    def normalization(self) -> Optional['outputs.LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalization']:
+        return pulumi.get(self, "normalization")
+
+    @property
+    @pulumi.getter
+    def target(self) -> Optional[str]:
+        return pulumi.get(self, "target")
+
+
+@pulumi.output_type
+class LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalization(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "defaultValue":
+            suggest = "default_value"
+        elif key == "sanitizePatterns":
+            suggest = "sanitize_patterns"
+        elif key == "valueMap":
+            suggest = "value_map"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalization. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalization.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalization.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 default_value: Optional[str] = None,
+                 sanitize_patterns: Optional[Sequence[str]] = None,
+                 sources: Optional[Sequence['outputs.LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSource']] = None,
+                 value_map: Optional[Mapping[str, str]] = None):
+        if default_value is not None:
+            pulumi.set(__self__, "default_value", default_value)
+        if sanitize_patterns is not None:
+            pulumi.set(__self__, "sanitize_patterns", sanitize_patterns)
+        if sources is not None:
+            pulumi.set(__self__, "sources", sources)
+        if value_map is not None:
+            pulumi.set(__self__, "value_map", value_map)
+
+    @property
+    @pulumi.getter(name="defaultValue")
+    def default_value(self) -> Optional[str]:
+        return pulumi.get(self, "default_value")
+
+    @property
+    @pulumi.getter(name="sanitizePatterns")
+    def sanitize_patterns(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "sanitize_patterns")
+
+    @property
+    @pulumi.getter
+    def sources(self) -> Optional[Sequence['outputs.LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSource']]:
+        return pulumi.get(self, "sources")
+
+    @property
+    @pulumi.getter(name="valueMap")
+    def value_map(self) -> Optional[Mapping[str, str]]:
+        return pulumi.get(self, "value_map")
+
+
+@pulumi.output_type
+class LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSource(dict):
+    def __init__(__self__, *,
+                 selector: str):
+        pulumi.set(__self__, "selector", selector)
+
+    @property
+    @pulumi.getter
+    def selector(self) -> str:
+        return pulumi.get(self, "selector")
+
+
+@pulumi.output_type
+class LogIngestConfigFieldNormalizationMessage(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "defaultValue":
+            suggest = "default_value"
+        elif key == "sanitizePatterns":
+            suggest = "sanitize_patterns"
+        elif key == "valueMap":
+            suggest = "value_map"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in LogIngestConfigFieldNormalizationMessage. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        LogIngestConfigFieldNormalizationMessage.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        LogIngestConfigFieldNormalizationMessage.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 default_value: Optional[str] = None,
+                 sanitize_patterns: Optional[Sequence[str]] = None,
+                 sources: Optional[Sequence['outputs.LogIngestConfigFieldNormalizationMessageSource']] = None,
+                 value_map: Optional[Mapping[str, str]] = None):
+        if default_value is not None:
+            pulumi.set(__self__, "default_value", default_value)
+        if sanitize_patterns is not None:
+            pulumi.set(__self__, "sanitize_patterns", sanitize_patterns)
+        if sources is not None:
+            pulumi.set(__self__, "sources", sources)
+        if value_map is not None:
+            pulumi.set(__self__, "value_map", value_map)
+
+    @property
+    @pulumi.getter(name="defaultValue")
+    def default_value(self) -> Optional[str]:
+        return pulumi.get(self, "default_value")
+
+    @property
+    @pulumi.getter(name="sanitizePatterns")
+    def sanitize_patterns(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "sanitize_patterns")
+
+    @property
+    @pulumi.getter
+    def sources(self) -> Optional[Sequence['outputs.LogIngestConfigFieldNormalizationMessageSource']]:
+        return pulumi.get(self, "sources")
+
+    @property
+    @pulumi.getter(name="valueMap")
+    def value_map(self) -> Optional[Mapping[str, str]]:
+        return pulumi.get(self, "value_map")
+
+
+@pulumi.output_type
+class LogIngestConfigFieldNormalizationMessageSource(dict):
+    def __init__(__self__, *,
+                 selector: str):
+        pulumi.set(__self__, "selector", selector)
+
+    @property
+    @pulumi.getter
+    def selector(self) -> str:
+        return pulumi.get(self, "selector")
+
+
+@pulumi.output_type
+class LogIngestConfigFieldNormalizationPrimaryKey(dict):
+    def __init__(__self__, *,
+                 normalization: Optional['outputs.LogIngestConfigFieldNormalizationPrimaryKeyNormalization'] = None,
+                 target: Optional[str] = None):
+        if normalization is not None:
+            pulumi.set(__self__, "normalization", normalization)
+        if target is not None:
+            pulumi.set(__self__, "target", target)
+
+    @property
+    @pulumi.getter
+    def normalization(self) -> Optional['outputs.LogIngestConfigFieldNormalizationPrimaryKeyNormalization']:
+        return pulumi.get(self, "normalization")
+
+    @property
+    @pulumi.getter
+    def target(self) -> Optional[str]:
+        return pulumi.get(self, "target")
+
+
+@pulumi.output_type
+class LogIngestConfigFieldNormalizationPrimaryKeyNormalization(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "defaultValue":
+            suggest = "default_value"
+        elif key == "sanitizePatterns":
+            suggest = "sanitize_patterns"
+        elif key == "valueMap":
+            suggest = "value_map"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in LogIngestConfigFieldNormalizationPrimaryKeyNormalization. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        LogIngestConfigFieldNormalizationPrimaryKeyNormalization.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        LogIngestConfigFieldNormalizationPrimaryKeyNormalization.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 default_value: Optional[str] = None,
+                 sanitize_patterns: Optional[Sequence[str]] = None,
+                 sources: Optional[Sequence['outputs.LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSource']] = None,
+                 value_map: Optional[Mapping[str, str]] = None):
+        if default_value is not None:
+            pulumi.set(__self__, "default_value", default_value)
+        if sanitize_patterns is not None:
+            pulumi.set(__self__, "sanitize_patterns", sanitize_patterns)
+        if sources is not None:
+            pulumi.set(__self__, "sources", sources)
+        if value_map is not None:
+            pulumi.set(__self__, "value_map", value_map)
+
+    @property
+    @pulumi.getter(name="defaultValue")
+    def default_value(self) -> Optional[str]:
+        return pulumi.get(self, "default_value")
+
+    @property
+    @pulumi.getter(name="sanitizePatterns")
+    def sanitize_patterns(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "sanitize_patterns")
+
+    @property
+    @pulumi.getter
+    def sources(self) -> Optional[Sequence['outputs.LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSource']]:
+        return pulumi.get(self, "sources")
+
+    @property
+    @pulumi.getter(name="valueMap")
+    def value_map(self) -> Optional[Mapping[str, str]]:
+        return pulumi.get(self, "value_map")
+
+
+@pulumi.output_type
+class LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSource(dict):
+    def __init__(__self__, *,
+                 selector: str):
+        pulumi.set(__self__, "selector", selector)
+
+    @property
+    @pulumi.getter
+    def selector(self) -> str:
+        return pulumi.get(self, "selector")
+
+
+@pulumi.output_type
+class LogIngestConfigFieldNormalizationSeverity(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "defaultValue":
+            suggest = "default_value"
+        elif key == "sanitizePatterns":
+            suggest = "sanitize_patterns"
+        elif key == "valueMap":
+            suggest = "value_map"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in LogIngestConfigFieldNormalizationSeverity. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        LogIngestConfigFieldNormalizationSeverity.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        LogIngestConfigFieldNormalizationSeverity.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 default_value: Optional[str] = None,
+                 sanitize_patterns: Optional[Sequence[str]] = None,
+                 sources: Optional[Sequence['outputs.LogIngestConfigFieldNormalizationSeveritySource']] = None,
+                 value_map: Optional[Mapping[str, str]] = None):
+        if default_value is not None:
+            pulumi.set(__self__, "default_value", default_value)
+        if sanitize_patterns is not None:
+            pulumi.set(__self__, "sanitize_patterns", sanitize_patterns)
+        if sources is not None:
+            pulumi.set(__self__, "sources", sources)
+        if value_map is not None:
+            pulumi.set(__self__, "value_map", value_map)
+
+    @property
+    @pulumi.getter(name="defaultValue")
+    def default_value(self) -> Optional[str]:
+        return pulumi.get(self, "default_value")
+
+    @property
+    @pulumi.getter(name="sanitizePatterns")
+    def sanitize_patterns(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "sanitize_patterns")
+
+    @property
+    @pulumi.getter
+    def sources(self) -> Optional[Sequence['outputs.LogIngestConfigFieldNormalizationSeveritySource']]:
+        return pulumi.get(self, "sources")
+
+    @property
+    @pulumi.getter(name="valueMap")
+    def value_map(self) -> Optional[Mapping[str, str]]:
+        return pulumi.get(self, "value_map")
+
+
+@pulumi.output_type
+class LogIngestConfigFieldNormalizationSeveritySource(dict):
+    def __init__(__self__, *,
+                 selector: str):
+        pulumi.set(__self__, "selector", selector)
+
+    @property
+    @pulumi.getter
+    def selector(self) -> str:
+        return pulumi.get(self, "selector")
+
+
+@pulumi.output_type
+class LogIngestConfigFieldNormalizationTimestamp(dict):
+    def __init__(__self__, *,
+                 sources: Optional[Sequence['outputs.LogIngestConfigFieldNormalizationTimestampSource']] = None):
+        if sources is not None:
+            pulumi.set(__self__, "sources", sources)
+
+    @property
+    @pulumi.getter
+    def sources(self) -> Optional[Sequence['outputs.LogIngestConfigFieldNormalizationTimestampSource']]:
+        return pulumi.get(self, "sources")
+
+
+@pulumi.output_type
+class LogIngestConfigFieldNormalizationTimestampSource(dict):
+    def __init__(__self__, *,
+                 selector: str):
+        pulumi.set(__self__, "selector", selector)
+
+    @property
+    @pulumi.getter
+    def selector(self) -> str:
+        return pulumi.get(self, "selector")
+
+
+@pulumi.output_type
+class LogIngestConfigFieldParser(dict):
+    def __init__(__self__, *,
+                 parser: 'outputs.LogIngestConfigFieldParserParser',
+                 source: 'outputs.LogIngestConfigFieldParserSource',
+                 destination: Optional['outputs.LogIngestConfigFieldParserDestination'] = None,
+                 mode: Optional[str] = None):
+        pulumi.set(__self__, "parser", parser)
+        pulumi.set(__self__, "source", source)
+        if destination is not None:
+            pulumi.set(__self__, "destination", destination)
+        if mode is not None:
+            pulumi.set(__self__, "mode", mode)
+
+    @property
+    @pulumi.getter
+    def parser(self) -> 'outputs.LogIngestConfigFieldParserParser':
+        return pulumi.get(self, "parser")
+
+    @property
+    @pulumi.getter
+    def source(self) -> 'outputs.LogIngestConfigFieldParserSource':
+        return pulumi.get(self, "source")
+
+    @property
+    @pulumi.getter
+    def destination(self) -> Optional['outputs.LogIngestConfigFieldParserDestination']:
+        return pulumi.get(self, "destination")
+
+    @property
+    @pulumi.getter
+    def mode(self) -> Optional[str]:
+        return pulumi.get(self, "mode")
+
+
+@pulumi.output_type
+class LogIngestConfigFieldParserDestination(dict):
+    def __init__(__self__, *,
+                 selector: str):
+        pulumi.set(__self__, "selector", selector)
+
+    @property
+    @pulumi.getter
+    def selector(self) -> str:
+        return pulumi.get(self, "selector")
+
+
+@pulumi.output_type
+class LogIngestConfigFieldParserParser(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "parserType":
+            suggest = "parser_type"
+        elif key == "keyValueParser":
+            suggest = "key_value_parser"
+        elif key == "regexParser":
+            suggest = "regex_parser"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in LogIngestConfigFieldParserParser. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        LogIngestConfigFieldParserParser.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        LogIngestConfigFieldParserParser.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 parser_type: str,
+                 key_value_parser: Optional['outputs.LogIngestConfigFieldParserParserKeyValueParser'] = None,
+                 regex_parser: Optional['outputs.LogIngestConfigFieldParserParserRegexParser'] = None):
+        pulumi.set(__self__, "parser_type", parser_type)
+        if key_value_parser is not None:
+            pulumi.set(__self__, "key_value_parser", key_value_parser)
+        if regex_parser is not None:
+            pulumi.set(__self__, "regex_parser", regex_parser)
+
+    @property
+    @pulumi.getter(name="parserType")
+    def parser_type(self) -> str:
+        return pulumi.get(self, "parser_type")
+
+    @property
+    @pulumi.getter(name="keyValueParser")
+    def key_value_parser(self) -> Optional['outputs.LogIngestConfigFieldParserParserKeyValueParser']:
+        return pulumi.get(self, "key_value_parser")
+
+    @property
+    @pulumi.getter(name="regexParser")
+    def regex_parser(self) -> Optional['outputs.LogIngestConfigFieldParserParserRegexParser']:
+        return pulumi.get(self, "regex_parser")
+
+
+@pulumi.output_type
+class LogIngestConfigFieldParserParserKeyValueParser(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "pairSeparator":
+            suggest = "pair_separator"
+        elif key == "trimSet":
+            suggest = "trim_set"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in LogIngestConfigFieldParserParserKeyValueParser. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        LogIngestConfigFieldParserParserKeyValueParser.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        LogIngestConfigFieldParserParserKeyValueParser.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 delimiter: str,
+                 pair_separator: str,
+                 trim_set: Optional[str] = None):
+        pulumi.set(__self__, "delimiter", delimiter)
+        pulumi.set(__self__, "pair_separator", pair_separator)
+        if trim_set is not None:
+            pulumi.set(__self__, "trim_set", trim_set)
+
+    @property
+    @pulumi.getter
+    def delimiter(self) -> str:
+        return pulumi.get(self, "delimiter")
+
+    @property
+    @pulumi.getter(name="pairSeparator")
+    def pair_separator(self) -> str:
+        return pulumi.get(self, "pair_separator")
+
+    @property
+    @pulumi.getter(name="trimSet")
+    def trim_set(self) -> Optional[str]:
+        return pulumi.get(self, "trim_set")
+
+
+@pulumi.output_type
+class LogIngestConfigFieldParserParserRegexParser(dict):
+    def __init__(__self__, *,
+                 regex: str):
+        pulumi.set(__self__, "regex", regex)
+
+    @property
+    @pulumi.getter
+    def regex(self) -> str:
+        return pulumi.get(self, "regex")
+
+
+@pulumi.output_type
+class LogIngestConfigFieldParserSource(dict):
+    def __init__(__self__, *,
+                 selector: str):
+        pulumi.set(__self__, "selector", selector)
+
+    @property
+    @pulumi.getter
+    def selector(self) -> str:
+        return pulumi.get(self, "selector")
+
+
+@pulumi.output_type
+class LogIngestConfigPlaintextParser(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "keepOriginal":
+            suggest = "keep_original"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in LogIngestConfigPlaintextParser. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        LogIngestConfigPlaintextParser.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        LogIngestConfigPlaintextParser.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  name: str,
-                 regex: str):
+                 parser: 'outputs.LogIngestConfigPlaintextParserParser',
+                 keep_original: Optional[bool] = None,
+                 mode: Optional[str] = None):
         pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "regex", regex)
+        pulumi.set(__self__, "parser", parser)
+        if keep_original is not None:
+            pulumi.set(__self__, "keep_original", keep_original)
+        if mode is not None:
+            pulumi.set(__self__, "mode", mode)
 
     @property
     @pulumi.getter
     def name(self) -> str:
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def parser(self) -> 'outputs.LogIngestConfigPlaintextParserParser':
+        return pulumi.get(self, "parser")
+
+    @property
+    @pulumi.getter(name="keepOriginal")
+    def keep_original(self) -> Optional[bool]:
+        return pulumi.get(self, "keep_original")
+
+    @property
+    @pulumi.getter
+    def mode(self) -> Optional[str]:
+        return pulumi.get(self, "mode")
+
+
+@pulumi.output_type
+class LogIngestConfigPlaintextParserParser(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "parserType":
+            suggest = "parser_type"
+        elif key == "keyValueParser":
+            suggest = "key_value_parser"
+        elif key == "regexParser":
+            suggest = "regex_parser"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in LogIngestConfigPlaintextParserParser. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        LogIngestConfigPlaintextParserParser.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        LogIngestConfigPlaintextParserParser.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 parser_type: str,
+                 key_value_parser: Optional['outputs.LogIngestConfigPlaintextParserParserKeyValueParser'] = None,
+                 regex_parser: Optional['outputs.LogIngestConfigPlaintextParserParserRegexParser'] = None):
+        pulumi.set(__self__, "parser_type", parser_type)
+        if key_value_parser is not None:
+            pulumi.set(__self__, "key_value_parser", key_value_parser)
+        if regex_parser is not None:
+            pulumi.set(__self__, "regex_parser", regex_parser)
+
+    @property
+    @pulumi.getter(name="parserType")
+    def parser_type(self) -> str:
+        return pulumi.get(self, "parser_type")
+
+    @property
+    @pulumi.getter(name="keyValueParser")
+    def key_value_parser(self) -> Optional['outputs.LogIngestConfigPlaintextParserParserKeyValueParser']:
+        return pulumi.get(self, "key_value_parser")
+
+    @property
+    @pulumi.getter(name="regexParser")
+    def regex_parser(self) -> Optional['outputs.LogIngestConfigPlaintextParserParserRegexParser']:
+        return pulumi.get(self, "regex_parser")
+
+
+@pulumi.output_type
+class LogIngestConfigPlaintextParserParserKeyValueParser(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "pairSeparator":
+            suggest = "pair_separator"
+        elif key == "trimSet":
+            suggest = "trim_set"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in LogIngestConfigPlaintextParserParserKeyValueParser. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        LogIngestConfigPlaintextParserParserKeyValueParser.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        LogIngestConfigPlaintextParserParserKeyValueParser.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 delimiter: str,
+                 pair_separator: str,
+                 trim_set: Optional[str] = None):
+        pulumi.set(__self__, "delimiter", delimiter)
+        pulumi.set(__self__, "pair_separator", pair_separator)
+        if trim_set is not None:
+            pulumi.set(__self__, "trim_set", trim_set)
+
+    @property
+    @pulumi.getter
+    def delimiter(self) -> str:
+        return pulumi.get(self, "delimiter")
+
+    @property
+    @pulumi.getter(name="pairSeparator")
+    def pair_separator(self) -> str:
+        return pulumi.get(self, "pair_separator")
+
+    @property
+    @pulumi.getter(name="trimSet")
+    def trim_set(self) -> Optional[str]:
+        return pulumi.get(self, "trim_set")
+
+
+@pulumi.output_type
+class LogIngestConfigPlaintextParserParserRegexParser(dict):
+    def __init__(__self__, *,
+                 regex: str):
+        pulumi.set(__self__, "regex", regex)
 
     @property
     @pulumi.getter

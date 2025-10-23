@@ -5,6 +5,182 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
+export interface AzureMetricsIntegrationPrincipal {
+    clientId?: string;
+    tenantId?: string;
+}
+
+export interface AzureMetricsIntegrationScrapeConfig {
+    locations?: string[];
+    resourceTypes?: outputs.AzureMetricsIntegrationScrapeConfigResourceType[];
+    subscriptionIds?: string[];
+}
+
+export interface AzureMetricsIntegrationScrapeConfigResourceType {
+    metricNames?: string[];
+    name?: string;
+}
+
+export interface ConsumptionBudgetAlertActionConfig {
+    annotations?: {[key: string]: string};
+    instantRateSustainSecs?: number;
+    labels?: {[key: string]: string};
+}
+
+export interface ConsumptionBudgetPriority {
+    filters?: outputs.ConsumptionBudgetPriorityFilter[];
+    priority?: number;
+}
+
+export interface ConsumptionBudgetPriorityFilter {
+    datasetId?: string;
+    logFilter?: outputs.ConsumptionBudgetPriorityFilterLogFilter;
+}
+
+export interface ConsumptionBudgetPriorityFilterLogFilter {
+    query: string;
+}
+
+export interface ConsumptionBudgetThreshold {
+    action?: string;
+    instantRate?: outputs.ConsumptionBudgetThresholdInstantRate;
+    type?: string;
+    volume?: outputs.ConsumptionBudgetThresholdVolume;
+}
+
+export interface ConsumptionBudgetThresholdInstantRate {
+    fixedValuePerSec?: number;
+}
+
+export interface ConsumptionBudgetThresholdVolume {
+    fixedValue?: number;
+}
+
+export interface ConsumptionConfigPartition {
+    filters?: outputs.ConsumptionConfigPartitionFilter[];
+    name?: string;
+    partitions?: outputs.ConsumptionConfigPartitionPartition[];
+    slug?: string;
+}
+
+export interface ConsumptionConfigPartitionFilter {
+    conditions?: outputs.ConsumptionConfigPartitionFilterCondition[];
+    operator?: string;
+}
+
+export interface ConsumptionConfigPartitionFilterCondition {
+    datasetId?: string;
+    logFilter?: outputs.ConsumptionConfigPartitionFilterConditionLogFilter;
+}
+
+export interface ConsumptionConfigPartitionFilterConditionLogFilter {
+    query: string;
+}
+
+export interface ConsumptionConfigPartitionPartition {
+    filters?: outputs.ConsumptionConfigPartitionPartitionFilter[];
+    name?: string;
+    partitions?: outputs.ConsumptionConfigPartitionPartitionPartition[];
+    slug?: string;
+}
+
+export interface ConsumptionConfigPartitionPartitionFilter {
+    conditions?: outputs.ConsumptionConfigPartitionPartitionFilterCondition[];
+    operator?: string;
+}
+
+export interface ConsumptionConfigPartitionPartitionFilterCondition {
+    datasetId?: string;
+    logFilter?: outputs.ConsumptionConfigPartitionPartitionFilterConditionLogFilter;
+}
+
+export interface ConsumptionConfigPartitionPartitionFilterConditionLogFilter {
+    query: string;
+}
+
+export interface ConsumptionConfigPartitionPartitionPartition {
+    filters?: outputs.ConsumptionConfigPartitionPartitionPartitionFilter[];
+    name?: string;
+    partitions?: outputs.ConsumptionConfigPartitionPartitionPartitionPartition[];
+    slug?: string;
+}
+
+export interface ConsumptionConfigPartitionPartitionPartitionFilter {
+    conditions?: outputs.ConsumptionConfigPartitionPartitionPartitionFilterCondition[];
+    operator?: string;
+}
+
+export interface ConsumptionConfigPartitionPartitionPartitionFilterCondition {
+    datasetId?: string;
+    logFilter?: outputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilter;
+}
+
+export interface ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilter {
+    query: string;
+}
+
+export interface ConsumptionConfigPartitionPartitionPartitionPartition {
+    filters?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilter[];
+    name?: string;
+    partitions?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartition[];
+    slug?: string;
+}
+
+export interface ConsumptionConfigPartitionPartitionPartitionPartitionFilter {
+    conditions?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterCondition[];
+    operator?: string;
+}
+
+export interface ConsumptionConfigPartitionPartitionPartitionPartitionFilterCondition {
+    datasetId?: string;
+    logFilter?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilter;
+}
+
+export interface ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilter {
+    query: string;
+}
+
+export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartition {
+    filters?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilter[];
+    name?: string;
+    partitions?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartition[];
+    slug?: string;
+}
+
+export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilter {
+    conditions?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterCondition[];
+    operator?: string;
+}
+
+export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterCondition {
+    datasetId?: string;
+    logFilter?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter;
+}
+
+export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter {
+    query: string;
+}
+
+export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartition {
+    filters?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilter[];
+    name?: string;
+    slug?: string;
+}
+
+export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilter {
+    conditions?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterCondition[];
+    operator?: string;
+}
+
+export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterCondition {
+    datasetId?: string;
+    logFilter?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter;
+}
+
+export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter {
+    query: string;
+}
+
 export interface DatasetConfiguration {
     logDataset?: outputs.DatasetConfigurationLogDataset;
     traceDataset?: outputs.DatasetConfigurationTraceDataset;
@@ -159,6 +335,14 @@ export interface DerivedLabelMetricLabelMappingLabelValueMapping {
     targetValue: string;
 }
 
+export interface DerivedLabelSpanTag {
+    nameMappings?: outputs.DerivedLabelSpanTagNameMapping[];
+}
+
+export interface DerivedLabelSpanTagNameMapping {
+    sourceTag: string;
+}
+
 export interface DerivedMetricQuery {
     query: outputs.DerivedMetricQueryQuery;
     selector?: outputs.DerivedMetricQuerySelector;
@@ -236,8 +420,223 @@ export interface LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilter {
     query: string;
 }
 
-export interface LogIngestConfigParser {
+export interface LogControlConfigRule {
+    dropField?: outputs.LogControlConfigRuleDropField;
+    emitMetrics?: outputs.LogControlConfigRuleEmitMetrics;
+    filter?: string;
+    mode?: string;
+    name?: string;
+    replaceField?: outputs.LogControlConfigRuleReplaceField;
+    sample?: outputs.LogControlConfigRuleSample;
+    type?: string;
+}
+
+export interface LogControlConfigRuleDropField {
+    fieldRegex?: string;
+    parentPath?: outputs.LogControlConfigRuleDropFieldParentPath;
+}
+
+export interface LogControlConfigRuleDropFieldParentPath {
+    selector?: string;
+}
+
+export interface LogControlConfigRuleEmitMetrics {
+    counter?: outputs.LogControlConfigRuleEmitMetricsCounter;
+    dropLog?: boolean;
+    gauge?: outputs.LogControlConfigRuleEmitMetricsGauge;
+    histogram?: outputs.LogControlConfigRuleEmitMetricsHistogram;
+    labels?: outputs.LogControlConfigRuleEmitMetricsLabel[];
+    mode?: string;
+    name?: string;
+}
+
+export interface LogControlConfigRuleEmitMetricsCounter {
+    value?: outputs.LogControlConfigRuleEmitMetricsCounterValue;
+}
+
+export interface LogControlConfigRuleEmitMetricsCounterValue {
+    selector?: string;
+}
+
+export interface LogControlConfigRuleEmitMetricsGauge {
+    aggregationType?: string;
+    value?: outputs.LogControlConfigRuleEmitMetricsGaugeValue;
+}
+
+export interface LogControlConfigRuleEmitMetricsGaugeValue {
+    selector?: string;
+}
+
+export interface LogControlConfigRuleEmitMetricsHistogram {
+    value?: outputs.LogControlConfigRuleEmitMetricsHistogramValue;
+}
+
+export interface LogControlConfigRuleEmitMetricsHistogramValue {
+    selector?: string;
+}
+
+export interface LogControlConfigRuleEmitMetricsLabel {
+    key?: string;
+    value?: outputs.LogControlConfigRuleEmitMetricsLabelValue;
+}
+
+export interface LogControlConfigRuleEmitMetricsLabelValue {
+    selector?: string;
+}
+
+export interface LogControlConfigRuleReplaceField {
+    field?: outputs.LogControlConfigRuleReplaceFieldField;
+    mappedValue?: outputs.LogControlConfigRuleReplaceFieldMappedValue;
+    replaceAll?: boolean;
+    replaceMode?: string;
+    replaceRegex?: string;
+    staticValue?: outputs.LogControlConfigRuleReplaceFieldStaticValue;
+}
+
+export interface LogControlConfigRuleReplaceFieldField {
+    selector?: string;
+}
+
+export interface LogControlConfigRuleReplaceFieldMappedValue {
+    defaultValue?: string;
+    pairs?: outputs.LogControlConfigRuleReplaceFieldMappedValuePair[];
+    useDefault?: boolean;
+}
+
+export interface LogControlConfigRuleReplaceFieldMappedValuePair {
+    key?: string;
+    value?: string;
+}
+
+export interface LogControlConfigRuleReplaceFieldStaticValue {
+    value?: string;
+}
+
+export interface LogControlConfigRuleSample {
+    rate?: number;
+}
+
+export interface LogIngestConfigFieldNormalization {
+    customFieldNormalizations?: outputs.LogIngestConfigFieldNormalizationCustomFieldNormalization[];
+    message?: outputs.LogIngestConfigFieldNormalizationMessage;
+    primaryKey?: outputs.LogIngestConfigFieldNormalizationPrimaryKey;
+    severity?: outputs.LogIngestConfigFieldNormalizationSeverity;
+    timestamp?: outputs.LogIngestConfigFieldNormalizationTimestamp;
+}
+
+export interface LogIngestConfigFieldNormalizationCustomFieldNormalization {
+    normalization?: outputs.LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalization;
+    target?: string;
+}
+
+export interface LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalization {
+    defaultValue?: string;
+    sanitizePatterns?: string[];
+    sources?: outputs.LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSource[];
+    valueMap?: {[key: string]: string};
+}
+
+export interface LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSource {
+    selector: string;
+}
+
+export interface LogIngestConfigFieldNormalizationMessage {
+    defaultValue?: string;
+    sanitizePatterns?: string[];
+    sources?: outputs.LogIngestConfigFieldNormalizationMessageSource[];
+    valueMap?: {[key: string]: string};
+}
+
+export interface LogIngestConfigFieldNormalizationMessageSource {
+    selector: string;
+}
+
+export interface LogIngestConfigFieldNormalizationPrimaryKey {
+    normalization?: outputs.LogIngestConfigFieldNormalizationPrimaryKeyNormalization;
+    target?: string;
+}
+
+export interface LogIngestConfigFieldNormalizationPrimaryKeyNormalization {
+    defaultValue?: string;
+    sanitizePatterns?: string[];
+    sources?: outputs.LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSource[];
+    valueMap?: {[key: string]: string};
+}
+
+export interface LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSource {
+    selector: string;
+}
+
+export interface LogIngestConfigFieldNormalizationSeverity {
+    defaultValue?: string;
+    sanitizePatterns?: string[];
+    sources?: outputs.LogIngestConfigFieldNormalizationSeveritySource[];
+    valueMap?: {[key: string]: string};
+}
+
+export interface LogIngestConfigFieldNormalizationSeveritySource {
+    selector: string;
+}
+
+export interface LogIngestConfigFieldNormalizationTimestamp {
+    sources?: outputs.LogIngestConfigFieldNormalizationTimestampSource[];
+}
+
+export interface LogIngestConfigFieldNormalizationTimestampSource {
+    selector: string;
+}
+
+export interface LogIngestConfigFieldParser {
+    destination?: outputs.LogIngestConfigFieldParserDestination;
+    mode?: string;
+    parser: outputs.LogIngestConfigFieldParserParser;
+    source: outputs.LogIngestConfigFieldParserSource;
+}
+
+export interface LogIngestConfigFieldParserDestination {
+    selector: string;
+}
+
+export interface LogIngestConfigFieldParserParser {
+    keyValueParser?: outputs.LogIngestConfigFieldParserParserKeyValueParser;
+    parserType: string;
+    regexParser?: outputs.LogIngestConfigFieldParserParserRegexParser;
+}
+
+export interface LogIngestConfigFieldParserParserKeyValueParser {
+    delimiter: string;
+    pairSeparator: string;
+    trimSet?: string;
+}
+
+export interface LogIngestConfigFieldParserParserRegexParser {
+    regex: string;
+}
+
+export interface LogIngestConfigFieldParserSource {
+    selector: string;
+}
+
+export interface LogIngestConfigPlaintextParser {
+    keepOriginal?: boolean;
+    mode?: string;
     name: string;
+    parser: outputs.LogIngestConfigPlaintextParserParser;
+}
+
+export interface LogIngestConfigPlaintextParserParser {
+    keyValueParser?: outputs.LogIngestConfigPlaintextParserParserKeyValueParser;
+    parserType: string;
+    regexParser?: outputs.LogIngestConfigPlaintextParserParserRegexParser;
+}
+
+export interface LogIngestConfigPlaintextParserParserKeyValueParser {
+    delimiter: string;
+    pairSeparator: string;
+    trimSet?: string;
+}
+
+export interface LogIngestConfigPlaintextParserParserRegexParser {
     regex: string;
 }
 

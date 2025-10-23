@@ -98,6 +98,12 @@ public class RollupRule extends com.pulumi.resources.CustomResource {
     public Output<Optional<String>> newMetric() {
         return Codegen.optional(this.newMetric);
     }
+    /**
+     * @deprecated
+     * permissive is no longer supported
+     * 
+     */
+    @Deprecated /* permissive is no longer supported */
     @Export(name="permissive", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> permissive;
 
