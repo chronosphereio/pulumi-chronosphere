@@ -34,7 +34,7 @@ build_dotnet:
 	pulumictl get version --language dotnet
 	$(WORKING_DIR)/bin/$(TFGEN) dotnet --out sdk/dotnet/
 	cd sdk/dotnet/ && \
-		printf "module fake_dotnet_module // Exclude this directory from Go tools\n\ngo 1.21\n" > go.mod && \
+		printf "module fake_dotnet_module // Exclude this directory from Go tools\n\ngo 1.24.5\n" > go.mod && \
 		echo "$(DOTNET_VERSION)" >version.txt && \
 		dotnet build /p:Version=$(DOTNET_VERSION)
 
@@ -46,14 +46,14 @@ build_java: PACKAGE_VERSION := $(shell pulumictl get version --language generic)
 build_java: bin/pulumi-java-gen
 	$(WORKING_DIR)/bin/$(JAVA_GEN) generate --schema provider/cmd/$(PROVIDER)/schema.json --out sdk/java  --build gradle-nexus
 	cd sdk/java/ && \
-		printf "module fake_java_module // Exclude this directory from Go tools\n\ngo 1.21\n" > go.mod && \
+		printf "module fake_java_module // Exclude this directory from Go tools\n\ngo 1.24.5\n" > go.mod && \
 		gradle --console=plain build
 
 build_nodejs: VERSION := $(shell pulumictl get version --language javascript)
 build_nodejs:
 	$(WORKING_DIR)/bin/$(TFGEN) nodejs --out sdk/nodejs/
 	cd sdk/nodejs/ && \
-		printf "module fake_nodejs_module // Exclude this directory from Go tools\n\ngo 1.21\n" > go.mod && \
+		printf "module fake_nodejs_module // Exclude this directory from Go tools\n\ngo 1.24.5\n" > go.mod && \
 		yarn install && \
 		yarn run tsc && \
 		cp ../../README.md ../../LICENSE* package.json yarn.lock ./bin/ && \
@@ -67,7 +67,7 @@ build_python:
 	rm -rf sdk/python/
 	PULUMI_CONVERT=$(PULUMI_CONVERT) PULUMI_DISABLE_AUTOMATIC_PLUGIN_ACQUISITION=$(PULUMI_CONVERT) $(WORKING_DIR)/bin/$(TFGEN) python --out sdk/python/
 	cd sdk/python/ && \
-		printf "module fake_python_module // Exclude this directory from Go tools\n\ngo 1.21\n" > go.mod && \
+		printf "module fake_python_module // Exclude this directory from Go tools\n\ngo 1.24.5\n" > go.mod && \
 		cp ../../README.md . && \
 		rm -rf ./bin/ ../python.bin/ && cp -R . ../python.bin && mv ../python.bin ./bin && \
 		cp ../../pyproject.toml ./bin/ && \

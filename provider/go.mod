@@ -1,8 +1,6 @@
 module github.com/chronosphereio/pulumi-chronosphere/provider
 
-go 1.22.3
-
-toolchain go1.22.4
+go 1.24.5
 
 require (
 	github.com/chronosphereio/terraform-provider-chronosphere/shim v0.0.0-00010101000000-000000000000

@@ -1,3 +1,3 @@
 module fake_nodejs_module // Exclude this directory from Go tools
 
-go 1.21
+go 1.24.5
