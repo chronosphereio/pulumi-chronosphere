@@ -3,7 +3,7 @@ run:
   # concurrency: 4
 
   # timeout for analysis, e.g. 30s, 5m, default is 1m
-  deadline: 10m
+  timeout: 10m
 
   # exit code when at least one issue was found, default is 1
   issues-exit-code: 1
@@ -13,17 +13,6 @@ run:
 
   # list of build tags, all linters use it. Default is empty list.
   build-tags: []
-
-  # which dirs to skip: they won't be analyzed;
-  # can use regexp here: generated.*, regexp is applied on full path;
-  # default value is empty list, but next dirs are always skipped independently
-  # from this option's value:
-  #     vendor$, third_party$, testdata$, examples$, Godeps$, builtin$
-  skip-dirs:
-    - generated
-    - thirdparty
-    - instrument
-    - scripts
 
   # by default isn't set. If set we pass it to "go list -mod={option}". From "go help modules":
   # If invoked with -mod=readonly, the go command is disallowed from the implicit
@@ -36,17 +25,8 @@ run:
   # modules-download-mode: readonly|release|vendor
   modules-download-mode: readonly
 
-  # Define the Go version limit.
-  # Mainly related to generics support in go1.18.
-  # Default: use Go version from the go.mod file, fallback on the env var `GOVERSION`, fallback on 1.17
-  go: "1.18"
-
 # output configuration options
 output:
-  # colored-line-number|line-number|json|tab|checkstyle|code-climate, default is
-  # "colored-line-number"
-  format: colored-line-number
-
   # print lines of code with issue, default is true
   print-issued-lines: true
 
@@ -57,13 +37,11 @@ output:
 linters-settings:
   govet:
     # report about shadowed variables
-    check-shadowing: true
+    enable:
+      - shadow
   gocyclo:
     # minimal code complexity to report, 30 by default (but we recommend 10-20)
     min-complexity: 10
-  maligned:
-    # print struct with more effective memory layout or not, false by default
-    suggest-new: true
   dupl:
     # tokens count to trigger issue, 150 by default
     threshold: 100
@@ -73,20 +51,17 @@ linters-settings:
     # minimal occurrences count to trigger, 3 by default
     min-occurrences: 3
   depguard:
-    exclude-rules:
-    list-type: blacklist
-    include-go-root: false
-    packages:
-      - hash/fnv
-      - github.com/sirupsen/logrus
-      - github.com/tj/assert
-      - github.com/golang/protobuf/jsonpb
-    packages-with-error-messages:
-      # specify an error message to output when a blacklisted package is used
-      hash/fnv: "use github.com/cespare/xxhash/v2"
-      github.com/sirupsen/logrus: "logging is allowed only by logutils.Log"
-      github.com/tj/assert: "use github.com/stretchr/testify/assert"
-      github.com/golang/protobuf/jsonpb: "replace with github.com/gogo/protobuf/jsonpb"
+    rules:
+      main:
+        deny:
+          - pkg: "hash/fnv"
+            desc: "use github.com/cespare/xxhash/v2"
+          - pkg: "github.com/sirupsen/logrus"
+            desc: "logging is allowed only by logutils.Log"
+          - pkg: "github.com/tj/assert"
+            desc: "use github.com/stretchr/testify/assert"
+          - pkg: "github.com/golang/protobuf/jsonpb"
+            desc: "replace with github.com/gogo/protobuf/jsonpb"
   misspell:
     # Correct spellings using locale preferences for US or UK.
     # Default is to use a neutral variety of English.
@@ -102,12 +77,6 @@ linters-settings:
     line-length: 120
     # tab width in spaces. Default to 1.
     tab-width: 1
-  unused:
-    # treat code as a program (not a library) and report unused exported identifiers; default is false.
-    # XXX: if you enable this setting, unused will report a lot of false-positives in text editors:
-    # if it's called for subdir of a project it can't find funcs usages. All text editor integrations
-    # with golangci-lint call it on a directory with the changed file.
-    check-exported: false
   unparam:
     # Inspect exported functions, default is false. Set to true if no external program/library imports your code.
     # XXX: if you enable this setting, unparam will report a lot of false-positives in text editors:
@@ -168,8 +137,8 @@ linters-settings:
 
   revive:
     rules:
-      name: exported
-      arguments: ['sayRepetitiveInsteadOfStutters']
+      - name: exported
+        arguments: ['sayRepetitiveInsteadOfStutters']
 
 
 linters:
@@ -177,20 +146,24 @@ linters:
     # TODO: enable this linter and make it pass
     # - depguard
     - errcheck
-    - exportloopref
+    - copyloopvar
     - gosimple
     - govet
     - goimports
     - ineffassign
-    - megacheck
     - revive
     - staticcheck
-    - typecheck
     - unused
   enable-all: false
   fast: false
 
 issues:
+  exclude-dirs:
+    - generated
+    - thirdparty
+    - instrument
+    - scripts
+
   # List of regexps of issue texts to exclude, empty list by default.
   # But independently from this option we use default exclude patterns,
   # it can be disabled by `exclude-use-default: false`. To list all

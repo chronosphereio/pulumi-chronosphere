@@ -14,7 +14,7 @@ env:
   DOTNETVERSION: |
     6.0.x
     3.1.301
-  GOVERSION: 1.21.x
+  GOVERSION: 1.24.x
   GRADLEVERSION: "7.6"
   JAVAVERSION: "11"
   NODEVERSION: 20.x
@@ -37,7 +37,7 @@ jobs:
       - name: Install Go
         uses: actions/setup-go@v5
         with:
-          go-version: 1.21
+          go-version: 1.24.5
           cache: false
       # This step is performed because we some of the go:embed files are generated. However, we
       # can lint the code without having to do a full build/generate cycle. Therefore we
@@ -47,9 +47,9 @@ jobs:
         run: |
           git grep -l 'go:embed' -- provider | xargs sed -i 's/go:embed/ goembed/g'
       - name: golangci-lint
-        uses: golangci/golangci-lint-action@v4
+        uses: golangci/golangci-lint-action@v6
         with:
-          version: v1.55.2
+          version: v1.64.8
           working-directory: provider
           args: -c ../.golangci.yml
 
@@ -62,7 +62,7 @@ jobs:
       - name: Install Go
         uses: actions/setup-go@v5
         with:
-          go-version: 1.21
+          go-version: 1.24.5
           cache: false
       - name: Install pulumictl
         uses: jaxxstorm/action-install-gh-release@v1.11.0
@@ -86,7 +86,7 @@ jobs:
       - name: Install Go
         uses: actions/setup-go@v5
         with:
-          go-version: 1.21
+          go-version: 1.24.5
           cache: false
       - name: Install pulumictl
         uses: jaxxstorm/action-install-gh-release@v1.11.0
