@@ -19,10 +19,11 @@ import (
 	"fmt"
 	"path/filepath"
 
-	"github.com/chronosphereio/pulumi-chronosphere/provider/pkg/version"
-	provider "github.com/chronosphereio/terraform-provider-chronosphere/shim"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
+
+	"github.com/chronosphereio/pulumi-chronosphere/provider/pkg/version"
+	provider "github.com/chronosphereio/terraform-provider-chronosphere/shim"
 )
 
 //go:embed cmd/pulumi-resource-chronosphere/bridge-metadata.json
@@ -164,6 +165,18 @@ func Provider() tfbridge.ProviderInfo {
 			},
 			"chronosphere_log_ingest_config": {
 				Tok: tfbridge.MakeResource(mainPkg, mainMod, "LogIngestConfig"),
+			},
+			"chronosphere_azure_metrics_integration": {
+				Tok: tfbridge.MakeResource(mainPkg, mainMod, "AzureMetricsIntegration"),
+			},
+			"chronosphere_consumption_budget": {
+				Tok: tfbridge.MakeResource(mainPkg, mainMod, "ConsumptionBudget"),
+			},
+			"chronosphere_consumption_config": {
+				Tok: tfbridge.MakeResource(mainPkg, mainMod, "ConsumptionConfig"),
+			},
+			"chronosphere_log_control_config": {
+				Tok: tfbridge.MakeResource(mainPkg, mainMod, "LogControlConfig"),
 			},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{

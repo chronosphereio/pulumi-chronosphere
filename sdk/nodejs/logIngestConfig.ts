@@ -34,7 +34,9 @@ export class LogIngestConfig extends pulumi.CustomResource {
         return obj['__pulumiType'] === LogIngestConfig.__pulumiType;
     }
 
-    public readonly parsers!: pulumi.Output<outputs.LogIngestConfigParser[] | undefined>;
+    public readonly fieldNormalization!: pulumi.Output<outputs.LogIngestConfigFieldNormalization | undefined>;
+    public readonly fieldParsers!: pulumi.Output<outputs.LogIngestConfigFieldParser[] | undefined>;
+    public readonly plaintextParsers!: pulumi.Output<outputs.LogIngestConfigPlaintextParser[] | undefined>;
 
     /**
      * Create a LogIngestConfig resource with the given unique name, arguments, and options.
@@ -49,10 +51,14 @@ export class LogIngestConfig extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as LogIngestConfigState | undefined;
-            resourceInputs["parsers"] = state ? state.parsers : undefined;
+            resourceInputs["fieldNormalization"] = state ? state.fieldNormalization : undefined;
+            resourceInputs["fieldParsers"] = state ? state.fieldParsers : undefined;
+            resourceInputs["plaintextParsers"] = state ? state.plaintextParsers : undefined;
         } else {
             const args = argsOrState as LogIngestConfigArgs | undefined;
-            resourceInputs["parsers"] = args ? args.parsers : undefined;
+            resourceInputs["fieldNormalization"] = args ? args.fieldNormalization : undefined;
+            resourceInputs["fieldParsers"] = args ? args.fieldParsers : undefined;
+            resourceInputs["plaintextParsers"] = args ? args.plaintextParsers : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(LogIngestConfig.__pulumiType, name, resourceInputs, opts);
@@ -63,12 +69,16 @@ export class LogIngestConfig extends pulumi.CustomResource {
  * Input properties used for looking up and filtering LogIngestConfig resources.
  */
 export interface LogIngestConfigState {
-    parsers?: pulumi.Input<pulumi.Input<inputs.LogIngestConfigParser>[]>;
+    fieldNormalization?: pulumi.Input<inputs.LogIngestConfigFieldNormalization>;
+    fieldParsers?: pulumi.Input<pulumi.Input<inputs.LogIngestConfigFieldParser>[]>;
+    plaintextParsers?: pulumi.Input<pulumi.Input<inputs.LogIngestConfigPlaintextParser>[]>;
 }
 
 /**
  * The set of arguments for constructing a LogIngestConfig resource.
  */
 export interface LogIngestConfigArgs {
-    parsers?: pulumi.Input<pulumi.Input<inputs.LogIngestConfigParser>[]>;
+    fieldNormalization?: pulumi.Input<inputs.LogIngestConfigFieldNormalization>;
+    fieldParsers?: pulumi.Input<pulumi.Input<inputs.LogIngestConfigFieldParser>[]>;
+    plaintextParsers?: pulumi.Input<pulumi.Input<inputs.LogIngestConfigPlaintextParser>[]>;
 }

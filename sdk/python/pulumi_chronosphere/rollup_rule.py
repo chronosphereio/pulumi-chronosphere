@@ -60,6 +60,9 @@ class RollupRuleArgs:
         if new_metric is not None:
             pulumi.set(__self__, "new_metric", new_metric)
         if permissive is not None:
+            warnings.warn("""permissive is no longer supported""", DeprecationWarning)
+            pulumi.log.warn("""permissive is deprecated: permissive is no longer supported""")
+        if permissive is not None:
             pulumi.set(__self__, "permissive", permissive)
         if storage_policies is not None:
             warnings.warn("""use `interval` instead""", DeprecationWarning)
@@ -196,6 +199,9 @@ class RollupRuleArgs:
     @property
     @pulumi.getter
     def permissive(self) -> Optional[pulumi.Input[bool]]:
+        warnings.warn("""permissive is no longer supported""", DeprecationWarning)
+        pulumi.log.warn("""permissive is deprecated: permissive is no longer supported""")
+
         return pulumi.get(self, "permissive")
 
     @permissive.setter
@@ -263,6 +269,9 @@ class _RollupRuleState:
             pulumi.set(__self__, "name", name)
         if new_metric is not None:
             pulumi.set(__self__, "new_metric", new_metric)
+        if permissive is not None:
+            warnings.warn("""permissive is no longer supported""", DeprecationWarning)
+            pulumi.log.warn("""permissive is deprecated: permissive is no longer supported""")
         if permissive is not None:
             pulumi.set(__self__, "permissive", permissive)
         if slug is not None:
@@ -393,6 +402,9 @@ class _RollupRuleState:
     @property
     @pulumi.getter
     def permissive(self) -> Optional[pulumi.Input[bool]]:
+        warnings.warn("""permissive is no longer supported""", DeprecationWarning)
+        pulumi.log.warn("""permissive is deprecated: permissive is no longer supported""")
+
         return pulumi.get(self, "permissive")
 
     @permissive.setter
@@ -644,6 +656,9 @@ class RollupRule(pulumi.CustomResource):
     @property
     @pulumi.getter
     def permissive(self) -> pulumi.Output[Optional[bool]]:
+        warnings.warn("""permissive is no longer supported""", DeprecationWarning)
+        pulumi.log.warn("""permissive is deprecated: permissive is no longer supported""")
+
         return pulumi.get(self, "permissive")
 
     @property

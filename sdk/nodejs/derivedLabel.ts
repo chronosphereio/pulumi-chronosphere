@@ -37,9 +37,10 @@ export class DerivedLabel extends pulumi.CustomResource {
     public readonly description!: pulumi.Output<string | undefined>;
     public readonly existingLabelPolicy!: pulumi.Output<string | undefined>;
     public readonly labelName!: pulumi.Output<string>;
-    public readonly metricLabel!: pulumi.Output<outputs.DerivedLabelMetricLabel>;
+    public readonly metricLabel!: pulumi.Output<outputs.DerivedLabelMetricLabel | undefined>;
     public readonly name!: pulumi.Output<string>;
     public readonly slug!: pulumi.Output<string>;
+    public readonly spanTag!: pulumi.Output<outputs.DerivedLabelSpanTag | undefined>;
 
     /**
      * Create a DerivedLabel resource with the given unique name, arguments, and options.
@@ -60,13 +61,11 @@ export class DerivedLabel extends pulumi.CustomResource {
             resourceInputs["metricLabel"] = state ? state.metricLabel : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["slug"] = state ? state.slug : undefined;
+            resourceInputs["spanTag"] = state ? state.spanTag : undefined;
         } else {
             const args = argsOrState as DerivedLabelArgs | undefined;
             if ((!args || args.labelName === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'labelName'");
-            }
-            if ((!args || args.metricLabel === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'metricLabel'");
             }
             if ((!args || args.name === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'name'");
@@ -77,6 +76,7 @@ export class DerivedLabel extends pulumi.CustomResource {
             resourceInputs["metricLabel"] = args ? args.metricLabel : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["slug"] = args ? args.slug : undefined;
+            resourceInputs["spanTag"] = args ? args.spanTag : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(DerivedLabel.__pulumiType, name, resourceInputs, opts);
@@ -93,6 +93,7 @@ export interface DerivedLabelState {
     metricLabel?: pulumi.Input<inputs.DerivedLabelMetricLabel>;
     name?: pulumi.Input<string>;
     slug?: pulumi.Input<string>;
+    spanTag?: pulumi.Input<inputs.DerivedLabelSpanTag>;
 }
 
 /**
@@ -102,7 +103,8 @@ export interface DerivedLabelArgs {
     description?: pulumi.Input<string>;
     existingLabelPolicy?: pulumi.Input<string>;
     labelName: pulumi.Input<string>;
-    metricLabel: pulumi.Input<inputs.DerivedLabelMetricLabel>;
+    metricLabel?: pulumi.Input<inputs.DerivedLabelMetricLabel>;
     name: pulumi.Input<string>;
     slug?: pulumi.Input<string>;
+    spanTag?: pulumi.Input<inputs.DerivedLabelSpanTag>;
 }

@@ -10,18 +10,32 @@ import com.pulumi.core.internal.Codegen;
 import io.chronosphere.chronosphere.LogIngestConfigArgs;
 import io.chronosphere.chronosphere.Utilities;
 import io.chronosphere.chronosphere.inputs.LogIngestConfigState;
-import io.chronosphere.chronosphere.outputs.LogIngestConfigParser;
+import io.chronosphere.chronosphere.outputs.LogIngestConfigFieldNormalization;
+import io.chronosphere.chronosphere.outputs.LogIngestConfigFieldParser;
+import io.chronosphere.chronosphere.outputs.LogIngestConfigPlaintextParser;
 import java.util.List;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
 @ResourceType(type="chronosphere:index/logIngestConfig:LogIngestConfig")
 public class LogIngestConfig extends com.pulumi.resources.CustomResource {
-    @Export(name="parsers", refs={List.class,LogIngestConfigParser.class}, tree="[0,1]")
-    private Output</* @Nullable */ List<LogIngestConfigParser>> parsers;
+    @Export(name="fieldNormalization", refs={LogIngestConfigFieldNormalization.class}, tree="[0]")
+    private Output</* @Nullable */ LogIngestConfigFieldNormalization> fieldNormalization;
 
-    public Output<Optional<List<LogIngestConfigParser>>> parsers() {
-        return Codegen.optional(this.parsers);
+    public Output<Optional<LogIngestConfigFieldNormalization>> fieldNormalization() {
+        return Codegen.optional(this.fieldNormalization);
+    }
+    @Export(name="fieldParsers", refs={List.class,LogIngestConfigFieldParser.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<LogIngestConfigFieldParser>> fieldParsers;
+
+    public Output<Optional<List<LogIngestConfigFieldParser>>> fieldParsers() {
+        return Codegen.optional(this.fieldParsers);
+    }
+    @Export(name="plaintextParsers", refs={List.class,LogIngestConfigPlaintextParser.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<LogIngestConfigPlaintextParser>> plaintextParsers;
+
+    public Output<Optional<List<LogIngestConfigPlaintextParser>>> plaintextParsers() {
+        return Codegen.optional(this.plaintextParsers);
     }
 
     /**

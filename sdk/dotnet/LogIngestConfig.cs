@@ -13,8 +13,14 @@ namespace Chronosphere.Pulumi
     [PulumiResourceType("chronosphere:index/logIngestConfig:LogIngestConfig")]
     public partial class LogIngestConfig : global::Pulumi.CustomResource
     {
-        [Output("parsers")]
-        public Output<ImmutableArray<Outputs.LogIngestConfigParser>> Parsers { get; private set; } = null!;
+        [Output("fieldNormalization")]
+        public Output<Outputs.LogIngestConfigFieldNormalization?> FieldNormalization { get; private set; } = null!;
+
+        [Output("fieldParsers")]
+        public Output<ImmutableArray<Outputs.LogIngestConfigFieldParser>> FieldParsers { get; private set; } = null!;
+
+        [Output("plaintextParsers")]
+        public Output<ImmutableArray<Outputs.LogIngestConfigPlaintextParser>> PlaintextParsers { get; private set; } = null!;
 
 
         /// <summary>
@@ -63,12 +69,23 @@ namespace Chronosphere.Pulumi
 
     public sealed class LogIngestConfigArgs : global::Pulumi.ResourceArgs
     {
-        [Input("parsers")]
-        private InputList<Inputs.LogIngestConfigParserArgs>? _parsers;
-        public InputList<Inputs.LogIngestConfigParserArgs> Parsers
+        [Input("fieldNormalization")]
+        public Input<Inputs.LogIngestConfigFieldNormalizationArgs>? FieldNormalization { get; set; }
+
+        [Input("fieldParsers")]
+        private InputList<Inputs.LogIngestConfigFieldParserArgs>? _fieldParsers;
+        public InputList<Inputs.LogIngestConfigFieldParserArgs> FieldParsers
         {
-            get => _parsers ?? (_parsers = new InputList<Inputs.LogIngestConfigParserArgs>());
-            set => _parsers = value;
+            get => _fieldParsers ?? (_fieldParsers = new InputList<Inputs.LogIngestConfigFieldParserArgs>());
+            set => _fieldParsers = value;
+        }
+
+        [Input("plaintextParsers")]
+        private InputList<Inputs.LogIngestConfigPlaintextParserArgs>? _plaintextParsers;
+        public InputList<Inputs.LogIngestConfigPlaintextParserArgs> PlaintextParsers
+        {
+            get => _plaintextParsers ?? (_plaintextParsers = new InputList<Inputs.LogIngestConfigPlaintextParserArgs>());
+            set => _plaintextParsers = value;
         }
 
         public LogIngestConfigArgs()
@@ -79,12 +96,23 @@ namespace Chronosphere.Pulumi
 
     public sealed class LogIngestConfigState : global::Pulumi.ResourceArgs
     {
-        [Input("parsers")]
-        private InputList<Inputs.LogIngestConfigParserGetArgs>? _parsers;
-        public InputList<Inputs.LogIngestConfigParserGetArgs> Parsers
+        [Input("fieldNormalization")]
+        public Input<Inputs.LogIngestConfigFieldNormalizationGetArgs>? FieldNormalization { get; set; }
+
+        [Input("fieldParsers")]
+        private InputList<Inputs.LogIngestConfigFieldParserGetArgs>? _fieldParsers;
+        public InputList<Inputs.LogIngestConfigFieldParserGetArgs> FieldParsers
         {
-            get => _parsers ?? (_parsers = new InputList<Inputs.LogIngestConfigParserGetArgs>());
-            set => _parsers = value;
+            get => _fieldParsers ?? (_fieldParsers = new InputList<Inputs.LogIngestConfigFieldParserGetArgs>());
+            set => _fieldParsers = value;
+        }
+
+        [Input("plaintextParsers")]
+        private InputList<Inputs.LogIngestConfigPlaintextParserGetArgs>? _plaintextParsers;
+        public InputList<Inputs.LogIngestConfigPlaintextParserGetArgs> PlaintextParsers
+        {
+            get => _plaintextParsers ?? (_plaintextParsers = new InputList<Inputs.LogIngestConfigPlaintextParserGetArgs>());
+            set => _plaintextParsers = value;
         }
 
         public LogIngestConfigState()

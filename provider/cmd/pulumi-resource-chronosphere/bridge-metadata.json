@@ -1,10 +1,13 @@
 {
     "renames": {
         "resources": {
+            "chronosphere:index/azureMetricsIntegration:AzureMetricsIntegration": "chronosphere_azure_metrics_integration",
             "chronosphere:index/blackholeAlertNotifier:BlackholeAlertNotifier": "chronosphere_blackhole_alert_notifier",
             "chronosphere:index/bucket:Bucket": "chronosphere_bucket",
             "chronosphere:index/classicDashboard:ClassicDashboard": "chronosphere_classic_dashboard",
             "chronosphere:index/collection:Collection": "chronosphere_collection",
+            "chronosphere:index/consumptionBudget:ConsumptionBudget": "chronosphere_consumption_budget",
+            "chronosphere:index/consumptionConfig:ConsumptionConfig": "chronosphere_consumption_config",
             "chronosphere:index/dashboard:Dashboard": "chronosphere_dashboard",
             "chronosphere:index/dataset:Dataset": "chronosphere_dataset",
             "chronosphere:index/derivedLabel:DerivedLabel": "chronosphere_derived_label",
@@ -13,6 +16,7 @@
             "chronosphere:index/emailAlertNotifier:EmailAlertNotifier": "chronosphere_email_alert_notifier",
             "chronosphere:index/gcpMetricsIntegration:GcpMetricsIntegration": "chronosphere_gcp_metrics_integration",
             "chronosphere:index/logAllocationConfig:LogAllocationConfig": "chronosphere_log_allocation_config",
+            "chronosphere:index/logControlConfig:LogControlConfig": "chronosphere_log_control_config",
             "chronosphere:index/logIngestConfig:LogIngestConfig": "chronosphere_log_ingest_config",
             "chronosphere:index/logscaleAction:LogscaleAction": "chronosphere_logscale_action",
             "chronosphere:index/logscaleAlert:LogscaleAlert": "chronosphere_logscale_alert",
@@ -41,6 +45,101 @@
             "chronosphere:index/serviceDataSource:ServiceDataSource": "chronosphere_service"
         },
         "renamedProperties": {
+            "chronosphere:index/AzureMetricsIntegrationPrincipal:AzureMetricsIntegrationPrincipal": {
+                "clientId": "client_id",
+                "tenantId": "tenant_id"
+            },
+            "chronosphere:index/AzureMetricsIntegrationScrapeConfig:AzureMetricsIntegrationScrapeConfig": {
+                "resourceTypes": "resource_type",
+                "subscriptionIds": "subscription_ids"
+            },
+            "chronosphere:index/AzureMetricsIntegrationScrapeConfigResourceType:AzureMetricsIntegrationScrapeConfigResourceType": {
+                "metricNames": "metric_names"
+            },
+            "chronosphere:index/ConsumptionBudgetAlertActionConfig:ConsumptionBudgetAlertActionConfig": {
+                "instantRateSustainSecs": "instant_rate_sustain_secs"
+            },
+            "chronosphere:index/ConsumptionBudgetPriority:ConsumptionBudgetPriority": {
+                "filters": "filter"
+            },
+            "chronosphere:index/ConsumptionBudgetPriorityFilter:ConsumptionBudgetPriorityFilter": {
+                "datasetId": "dataset_id",
+                "logFilter": "log_filter"
+            },
+            "chronosphere:index/ConsumptionBudgetThreshold:ConsumptionBudgetThreshold": {
+                "instantRate": "instant_rate"
+            },
+            "chronosphere:index/ConsumptionBudgetThresholdInstantRate:ConsumptionBudgetThresholdInstantRate": {
+                "fixedValuePerSec": "fixed_value_per_sec"
+            },
+            "chronosphere:index/ConsumptionBudgetThresholdVolume:ConsumptionBudgetThresholdVolume": {
+                "fixedValue": "fixed_value"
+            },
+            "chronosphere:index/ConsumptionConfigPartition:ConsumptionConfigPartition": {
+                "filters": "filter",
+                "partitions": "partition"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionFilter:ConsumptionConfigPartitionFilter": {
+                "conditions": "condition"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionFilterCondition:ConsumptionConfigPartitionFilterCondition": {
+                "datasetId": "dataset_id",
+                "logFilter": "log_filter"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionPartition:ConsumptionConfigPartitionPartition": {
+                "filters": "filter",
+                "partitions": "partition"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionPartitionFilter:ConsumptionConfigPartitionPartitionFilter": {
+                "conditions": "condition"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionPartitionFilterCondition:ConsumptionConfigPartitionPartitionFilterCondition": {
+                "datasetId": "dataset_id",
+                "logFilter": "log_filter"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionPartitionPartition:ConsumptionConfigPartitionPartitionPartition": {
+                "filters": "filter",
+                "partitions": "partition"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionPartitionPartitionFilter:ConsumptionConfigPartitionPartitionPartitionFilter": {
+                "conditions": "condition"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionPartitionPartitionFilterCondition:ConsumptionConfigPartitionPartitionPartitionFilterCondition": {
+                "datasetId": "dataset_id",
+                "logFilter": "log_filter"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionPartitionPartitionPartition:ConsumptionConfigPartitionPartitionPartitionPartition": {
+                "filters": "filter",
+                "partitions": "partition"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionPartitionPartitionPartitionFilter:ConsumptionConfigPartitionPartitionPartitionPartitionFilter": {
+                "conditions": "condition"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionPartitionPartitionPartitionFilterCondition:ConsumptionConfigPartitionPartitionPartitionPartitionFilterCondition": {
+                "datasetId": "dataset_id",
+                "logFilter": "log_filter"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionPartitionPartitionPartitionPartition:ConsumptionConfigPartitionPartitionPartitionPartitionPartition": {
+                "filters": "filter",
+                "partitions": "partition"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilter:ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilter": {
+                "conditions": "condition"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterCondition:ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterCondition": {
+                "datasetId": "dataset_id",
+                "logFilter": "log_filter"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartition:ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartition": {
+                "filters": "filter"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilter:ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilter": {
+                "conditions": "condition"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterCondition:ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterCondition": {
+                "datasetId": "dataset_id",
+                "logFilter": "log_filter"
+            },
             "chronosphere:index/DatasetConfiguration:DatasetConfiguration": {
                 "logDataset": "log_dataset",
                 "traceDataset": "trace_dataset"
@@ -117,6 +216,12 @@
                 "sourceValueGlobs": "source_value_globs",
                 "targetValue": "target_value"
             },
+            "chronosphere:index/DerivedLabelSpanTag:DerivedLabelSpanTag": {
+                "nameMappings": "name_mappings"
+            },
+            "chronosphere:index/DerivedLabelSpanTagNameMapping:DerivedLabelSpanTagNameMapping": {
+                "sourceTag": "source_tag"
+            },
             "chronosphere:index/DerivedMetricQueryQueryVariable:DerivedMetricQueryQueryVariable": {
                 "defaultSelector": "default_selector"
             },
@@ -145,6 +250,84 @@
             "chronosphere:index/LogAllocationConfigDefaultDatasetPriorities:LogAllocationConfigDefaultDatasetPriorities": {
                 "highPriorityFilters": "high_priority_filter",
                 "lowPriorityFilters": "low_priority_filter"
+            },
+            "chronosphere:index/LogControlConfigRule:LogControlConfigRule": {
+                "dropField": "drop_field",
+                "emitMetrics": "emit_metrics",
+                "replaceField": "replace_field"
+            },
+            "chronosphere:index/LogControlConfigRuleDropField:LogControlConfigRuleDropField": {
+                "fieldRegex": "field_regex",
+                "parentPath": "parent_path"
+            },
+            "chronosphere:index/LogControlConfigRuleEmitMetrics:LogControlConfigRuleEmitMetrics": {
+                "dropLog": "drop_log"
+            },
+            "chronosphere:index/LogControlConfigRuleEmitMetricsGauge:LogControlConfigRuleEmitMetricsGauge": {
+                "aggregationType": "aggregation_type"
+            },
+            "chronosphere:index/LogControlConfigRuleReplaceField:LogControlConfigRuleReplaceField": {
+                "mappedValue": "mapped_value",
+                "replaceAll": "replace_all",
+                "replaceMode": "replace_mode",
+                "replaceRegex": "replace_regex",
+                "staticValue": "static_value"
+            },
+            "chronosphere:index/LogControlConfigRuleReplaceFieldMappedValue:LogControlConfigRuleReplaceFieldMappedValue": {
+                "defaultValue": "default_value",
+                "useDefault": "use_default"
+            },
+            "chronosphere:index/LogIngestConfigFieldNormalization:LogIngestConfigFieldNormalization": {
+                "customFieldNormalizations": "custom_field_normalization",
+                "primaryKey": "primary_key"
+            },
+            "chronosphere:index/LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalization:LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalization": {
+                "defaultValue": "default_value",
+                "sanitizePatterns": "sanitize_patterns",
+                "sources": "source",
+                "valueMap": "value_map"
+            },
+            "chronosphere:index/LogIngestConfigFieldNormalizationMessage:LogIngestConfigFieldNormalizationMessage": {
+                "defaultValue": "default_value",
+                "sanitizePatterns": "sanitize_patterns",
+                "sources": "source",
+                "valueMap": "value_map"
+            },
+            "chronosphere:index/LogIngestConfigFieldNormalizationPrimaryKeyNormalization:LogIngestConfigFieldNormalizationPrimaryKeyNormalization": {
+                "defaultValue": "default_value",
+                "sanitizePatterns": "sanitize_patterns",
+                "sources": "source",
+                "valueMap": "value_map"
+            },
+            "chronosphere:index/LogIngestConfigFieldNormalizationSeverity:LogIngestConfigFieldNormalizationSeverity": {
+                "defaultValue": "default_value",
+                "sanitizePatterns": "sanitize_patterns",
+                "sources": "source",
+                "valueMap": "value_map"
+            },
+            "chronosphere:index/LogIngestConfigFieldNormalizationTimestamp:LogIngestConfigFieldNormalizationTimestamp": {
+                "sources": "source"
+            },
+            "chronosphere:index/LogIngestConfigFieldParserParser:LogIngestConfigFieldParserParser": {
+                "keyValueParser": "key_value_parser",
+                "parserType": "parser_type",
+                "regexParser": "regex_parser"
+            },
+            "chronosphere:index/LogIngestConfigFieldParserParserKeyValueParser:LogIngestConfigFieldParserParserKeyValueParser": {
+                "pairSeparator": "pair_separator",
+                "trimSet": "trim_set"
+            },
+            "chronosphere:index/LogIngestConfigPlaintextParser:LogIngestConfigPlaintextParser": {
+                "keepOriginal": "keep_original"
+            },
+            "chronosphere:index/LogIngestConfigPlaintextParserParser:LogIngestConfigPlaintextParserParser": {
+                "keyValueParser": "key_value_parser",
+                "parserType": "parser_type",
+                "regexParser": "regex_parser"
+            },
+            "chronosphere:index/LogIngestConfigPlaintextParserParserKeyValueParser:LogIngestConfigPlaintextParserParserKeyValueParser": {
+                "pairSeparator": "pair_separator",
+                "trimSet": "trim_set"
             },
             "chronosphere:index/LogscaleActionEmailAction:LogscaleActionEmailAction": {
                 "attachCsv": "attach_csv",
@@ -453,6 +636,12 @@
                 "maxSecs": "max_secs",
                 "minSecs": "min_secs"
             },
+            "chronosphere:index/azureMetricsIntegration:AzureMetricsIntegration": {
+                "countMetricsEnabled": "count_metrics_enabled",
+                "propagateTags": "propagate_tags",
+                "scrapeConfig": "scrape_config",
+                "usageMetricsEnabled": "usage_metrics_enabled"
+            },
             "chronosphere:index/bucket:Bucket": {
                 "notificationPolicyData": "notification_policy_data",
                 "notificationPolicyId": "notification_policy_id",
@@ -468,6 +657,18 @@
                 "notificationPolicyId": "notification_policy_id",
                 "teamId": "team_id"
             },
+            "chronosphere:index/consumptionBudget:ConsumptionBudget": {
+                "alertActionConfig": "alert_action_config",
+                "consumptionConfigId": "consumption_config_id",
+                "defaultPriority": "default_priority",
+                "notificationPolicyId": "notification_policy_id",
+                "partitionSlugPath": "partition_slug_path",
+                "priorities": "priority",
+                "thresholds": "threshold"
+            },
+            "chronosphere:index/consumptionConfig:ConsumptionConfig": {
+                "partitions": "partition"
+            },
             "chronosphere:index/dashboard:Dashboard": {
                 "collectionId": "collection_id",
                 "dashboardJson": "dashboard_json"
@@ -475,7 +676,8 @@
             "chronosphere:index/derivedLabel:DerivedLabel": {
                 "existingLabelPolicy": "existing_label_policy",
                 "labelName": "label_name",
-                "metricLabel": "metric_label"
+                "metricLabel": "metric_label",
+                "spanTag": "span_tag"
             },
             "chronosphere:index/derivedMetric:DerivedMetric": {
                 "metricName": "metric_name"
@@ -500,7 +702,9 @@
                 "defaultDataset": "default_dataset"
             },
             "chronosphere:index/logIngestConfig:LogIngestConfig": {
-                "parsers": "parser"
+                "fieldNormalization": "field_normalization",
+                "fieldParsers": "field_parser",
+                "plaintextParsers": "plaintext_parser"
             },
             "chronosphere:index/logscaleAction:LogscaleAction": {
                 "emailAction": "email_action",

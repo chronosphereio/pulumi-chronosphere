@@ -21,6 +21,8 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
+	case "chronosphere:index/azureMetricsIntegration:AzureMetricsIntegration":
+		r = &AzureMetricsIntegration{}
 	case "chronosphere:index/blackholeAlertNotifier:BlackholeAlertNotifier":
 		r = &BlackholeAlertNotifier{}
 	case "chronosphere:index/bucket:Bucket":
@@ -29,6 +31,10 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &ClassicDashboard{}
 	case "chronosphere:index/collection:Collection":
 		r = &Collection{}
+	case "chronosphere:index/consumptionBudget:ConsumptionBudget":
+		r = &ConsumptionBudget{}
+	case "chronosphere:index/consumptionConfig:ConsumptionConfig":
+		r = &ConsumptionConfig{}
 	case "chronosphere:index/dashboard:Dashboard":
 		r = &Dashboard{}
 	case "chronosphere:index/dataset:Dataset":
@@ -45,6 +51,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &GcpMetricsIntegration{}
 	case "chronosphere:index/logAllocationConfig:LogAllocationConfig":
 		r = &LogAllocationConfig{}
+	case "chronosphere:index/logControlConfig:LogControlConfig":
+		r = &LogControlConfig{}
 	case "chronosphere:index/logIngestConfig:LogIngestConfig":
 		r = &LogIngestConfig{}
 	case "chronosphere:index/logscaleAction:LogscaleAction":
@@ -120,6 +128,11 @@ func init() {
 	}
 	pulumi.RegisterResourceModule(
 		"chronosphere",
+		"index/azureMetricsIntegration",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"chronosphere",
 		"index/blackholeAlertNotifier",
 		&module{version},
 	)
@@ -136,6 +149,16 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"chronosphere",
 		"index/collection",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"chronosphere",
+		"index/consumptionBudget",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"chronosphere",
+		"index/consumptionConfig",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -176,6 +199,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"chronosphere",
 		"index/logAllocationConfig",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"chronosphere",
+		"index/logControlConfig",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

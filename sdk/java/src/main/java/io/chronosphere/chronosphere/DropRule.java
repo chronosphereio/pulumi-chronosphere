@@ -26,6 +26,12 @@ public class DropRule extends com.pulumi.resources.CustomResource {
     public Output<Optional<String>> activatedDropDuration() {
         return Codegen.optional(this.activatedDropDuration);
     }
+    /**
+     * @deprecated
+     * use `mode` instead
+     * 
+     */
+    @Deprecated /* use `mode` instead */
     @Export(name="active", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> active;
 
@@ -43,6 +49,12 @@ public class DropRule extends com.pulumi.resources.CustomResource {
 
     public Output<Optional<Boolean>> dropNanValue() {
         return Codegen.optional(this.dropNanValue);
+    }
+    @Export(name="mode", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> mode;
+
+    public Output<Optional<String>> mode() {
+        return Codegen.optional(this.mode);
     }
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;

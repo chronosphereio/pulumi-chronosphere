@@ -110,9 +110,21 @@ public final class RollupRuleState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.newMetric);
     }
 
+    /**
+     * @deprecated
+     * permissive is no longer supported
+     * 
+     */
+    @Deprecated /* permissive is no longer supported */
     @Import(name="permissive")
     private @Nullable Output<Boolean> permissive;
 
+    /**
+     * @deprecated
+     * permissive is no longer supported
+     * 
+     */
+    @Deprecated /* permissive is no longer supported */
     public Optional<Output<Boolean>> permissive() {
         return Optional.ofNullable(this.permissive);
     }
@@ -307,11 +319,27 @@ public final class RollupRuleState extends com.pulumi.resources.ResourceArgs {
             return newMetric(Output.of(newMetric));
         }
 
+        /**
+         * @return builder
+         * 
+         * @deprecated
+         * permissive is no longer supported
+         * 
+         */
+        @Deprecated /* permissive is no longer supported */
         public Builder permissive(@Nullable Output<Boolean> permissive) {
             $.permissive = permissive;
             return this;
         }
 
+        /**
+         * @return builder
+         * 
+         * @deprecated
+         * permissive is no longer supported
+         * 
+         */
+        @Deprecated /* permissive is no longer supported */
         public Builder permissive(Boolean permissive) {
             return permissive(Output.of(permissive));
         }

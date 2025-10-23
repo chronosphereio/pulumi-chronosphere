@@ -15,12 +15,13 @@ import (
 type DerivedLabel struct {
 	pulumi.CustomResourceState
 
-	Description         pulumi.StringPtrOutput        `pulumi:"description"`
-	ExistingLabelPolicy pulumi.StringPtrOutput        `pulumi:"existingLabelPolicy"`
-	LabelName           pulumi.StringOutput           `pulumi:"labelName"`
-	MetricLabel         DerivedLabelMetricLabelOutput `pulumi:"metricLabel"`
-	Name                pulumi.StringOutput           `pulumi:"name"`
-	Slug                pulumi.StringOutput           `pulumi:"slug"`
+	Description         pulumi.StringPtrOutput           `pulumi:"description"`
+	ExistingLabelPolicy pulumi.StringPtrOutput           `pulumi:"existingLabelPolicy"`
+	LabelName           pulumi.StringOutput              `pulumi:"labelName"`
+	MetricLabel         DerivedLabelMetricLabelPtrOutput `pulumi:"metricLabel"`
+	Name                pulumi.StringOutput              `pulumi:"name"`
+	Slug                pulumi.StringOutput              `pulumi:"slug"`
+	SpanTag             DerivedLabelSpanTagPtrOutput     `pulumi:"spanTag"`
 }
 
 // NewDerivedLabel registers a new resource with the given unique name, arguments, and options.
@@ -32,9 +33,6 @@ func NewDerivedLabel(ctx *pulumi.Context,
 
 	if args.LabelName == nil {
 		return nil, errors.New("invalid value for required argument 'LabelName'")
-	}
-	if args.MetricLabel == nil {
-		return nil, errors.New("invalid value for required argument 'MetricLabel'")
 	}
 	if args.Name == nil {
 		return nil, errors.New("invalid value for required argument 'Name'")
@@ -68,6 +66,7 @@ type derivedLabelState struct {
 	MetricLabel         *DerivedLabelMetricLabel `pulumi:"metricLabel"`
 	Name                *string                  `pulumi:"name"`
 	Slug                *string                  `pulumi:"slug"`
+	SpanTag             *DerivedLabelSpanTag     `pulumi:"spanTag"`
 }
 
 type DerivedLabelState struct {
@@ -77,6 +76,7 @@ type DerivedLabelState struct {
 	MetricLabel         DerivedLabelMetricLabelPtrInput
 	Name                pulumi.StringPtrInput
 	Slug                pulumi.StringPtrInput
+	SpanTag             DerivedLabelSpanTagPtrInput
 }
 
 func (DerivedLabelState) ElementType() reflect.Type {
@@ -84,12 +84,13 @@ func (DerivedLabelState) ElementType() reflect.Type {
 }
 
 type derivedLabelArgs struct {
-	Description         *string                 `pulumi:"description"`
-	ExistingLabelPolicy *string                 `pulumi:"existingLabelPolicy"`
-	LabelName           string                  `pulumi:"labelName"`
-	MetricLabel         DerivedLabelMetricLabel `pulumi:"metricLabel"`
-	Name                string                  `pulumi:"name"`
-	Slug                *string                 `pulumi:"slug"`
+	Description         *string                  `pulumi:"description"`
+	ExistingLabelPolicy *string                  `pulumi:"existingLabelPolicy"`
+	LabelName           string                   `pulumi:"labelName"`
+	MetricLabel         *DerivedLabelMetricLabel `pulumi:"metricLabel"`
+	Name                string                   `pulumi:"name"`
+	Slug                *string                  `pulumi:"slug"`
+	SpanTag             *DerivedLabelSpanTag     `pulumi:"spanTag"`
 }
 
 // The set of arguments for constructing a DerivedLabel resource.
@@ -97,9 +98,10 @@ type DerivedLabelArgs struct {
 	Description         pulumi.StringPtrInput
 	ExistingLabelPolicy pulumi.StringPtrInput
 	LabelName           pulumi.StringInput
-	MetricLabel         DerivedLabelMetricLabelInput
+	MetricLabel         DerivedLabelMetricLabelPtrInput
 	Name                pulumi.StringInput
 	Slug                pulumi.StringPtrInput
+	SpanTag             DerivedLabelSpanTagPtrInput
 }
 
 func (DerivedLabelArgs) ElementType() reflect.Type {
@@ -201,8 +203,8 @@ func (o DerivedLabelOutput) LabelName() pulumi.StringOutput {
 	return o.ApplyT(func(v *DerivedLabel) pulumi.StringOutput { return v.LabelName }).(pulumi.StringOutput)
 }
 
-func (o DerivedLabelOutput) MetricLabel() DerivedLabelMetricLabelOutput {
-	return o.ApplyT(func(v *DerivedLabel) DerivedLabelMetricLabelOutput { return v.MetricLabel }).(DerivedLabelMetricLabelOutput)
+func (o DerivedLabelOutput) MetricLabel() DerivedLabelMetricLabelPtrOutput {
+	return o.ApplyT(func(v *DerivedLabel) DerivedLabelMetricLabelPtrOutput { return v.MetricLabel }).(DerivedLabelMetricLabelPtrOutput)
 }
 
 func (o DerivedLabelOutput) Name() pulumi.StringOutput {
@@ -211,6 +213,10 @@ func (o DerivedLabelOutput) Name() pulumi.StringOutput {
 
 func (o DerivedLabelOutput) Slug() pulumi.StringOutput {
 	return o.ApplyT(func(v *DerivedLabel) pulumi.StringOutput { return v.Slug }).(pulumi.StringOutput)
+}
+
+func (o DerivedLabelOutput) SpanTag() DerivedLabelSpanTagPtrOutput {
+	return o.ApplyT(func(v *DerivedLabel) DerivedLabelSpanTagPtrOutput { return v.SpanTag }).(DerivedLabelSpanTagPtrOutput)
 }
 
 type DerivedLabelArrayOutput struct{ *pulumi.OutputState }

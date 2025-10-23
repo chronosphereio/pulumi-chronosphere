@@ -13,6 +13,4015 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
+type AzureMetricsIntegrationPrincipal struct {
+	ClientId *string `pulumi:"clientId"`
+	TenantId *string `pulumi:"tenantId"`
+}
+
+// AzureMetricsIntegrationPrincipalInput is an input type that accepts AzureMetricsIntegrationPrincipalArgs and AzureMetricsIntegrationPrincipalOutput values.
+// You can construct a concrete instance of `AzureMetricsIntegrationPrincipalInput` via:
+//
+//	AzureMetricsIntegrationPrincipalArgs{...}
+type AzureMetricsIntegrationPrincipalInput interface {
+	pulumi.Input
+
+	ToAzureMetricsIntegrationPrincipalOutput() AzureMetricsIntegrationPrincipalOutput
+	ToAzureMetricsIntegrationPrincipalOutputWithContext(context.Context) AzureMetricsIntegrationPrincipalOutput
+}
+
+type AzureMetricsIntegrationPrincipalArgs struct {
+	ClientId pulumi.StringPtrInput `pulumi:"clientId"`
+	TenantId pulumi.StringPtrInput `pulumi:"tenantId"`
+}
+
+func (AzureMetricsIntegrationPrincipalArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AzureMetricsIntegrationPrincipal)(nil)).Elem()
+}
+
+func (i AzureMetricsIntegrationPrincipalArgs) ToAzureMetricsIntegrationPrincipalOutput() AzureMetricsIntegrationPrincipalOutput {
+	return i.ToAzureMetricsIntegrationPrincipalOutputWithContext(context.Background())
+}
+
+func (i AzureMetricsIntegrationPrincipalArgs) ToAzureMetricsIntegrationPrincipalOutputWithContext(ctx context.Context) AzureMetricsIntegrationPrincipalOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AzureMetricsIntegrationPrincipalOutput)
+}
+
+func (i AzureMetricsIntegrationPrincipalArgs) ToAzureMetricsIntegrationPrincipalPtrOutput() AzureMetricsIntegrationPrincipalPtrOutput {
+	return i.ToAzureMetricsIntegrationPrincipalPtrOutputWithContext(context.Background())
+}
+
+func (i AzureMetricsIntegrationPrincipalArgs) ToAzureMetricsIntegrationPrincipalPtrOutputWithContext(ctx context.Context) AzureMetricsIntegrationPrincipalPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AzureMetricsIntegrationPrincipalOutput).ToAzureMetricsIntegrationPrincipalPtrOutputWithContext(ctx)
+}
+
+// AzureMetricsIntegrationPrincipalPtrInput is an input type that accepts AzureMetricsIntegrationPrincipalArgs, AzureMetricsIntegrationPrincipalPtr and AzureMetricsIntegrationPrincipalPtrOutput values.
+// You can construct a concrete instance of `AzureMetricsIntegrationPrincipalPtrInput` via:
+//
+//	        AzureMetricsIntegrationPrincipalArgs{...}
+//
+//	or:
+//
+//	        nil
+type AzureMetricsIntegrationPrincipalPtrInput interface {
+	pulumi.Input
+
+	ToAzureMetricsIntegrationPrincipalPtrOutput() AzureMetricsIntegrationPrincipalPtrOutput
+	ToAzureMetricsIntegrationPrincipalPtrOutputWithContext(context.Context) AzureMetricsIntegrationPrincipalPtrOutput
+}
+
+type azureMetricsIntegrationPrincipalPtrType AzureMetricsIntegrationPrincipalArgs
+
+func AzureMetricsIntegrationPrincipalPtr(v *AzureMetricsIntegrationPrincipalArgs) AzureMetricsIntegrationPrincipalPtrInput {
+	return (*azureMetricsIntegrationPrincipalPtrType)(v)
+}
+
+func (*azureMetricsIntegrationPrincipalPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AzureMetricsIntegrationPrincipal)(nil)).Elem()
+}
+
+func (i *azureMetricsIntegrationPrincipalPtrType) ToAzureMetricsIntegrationPrincipalPtrOutput() AzureMetricsIntegrationPrincipalPtrOutput {
+	return i.ToAzureMetricsIntegrationPrincipalPtrOutputWithContext(context.Background())
+}
+
+func (i *azureMetricsIntegrationPrincipalPtrType) ToAzureMetricsIntegrationPrincipalPtrOutputWithContext(ctx context.Context) AzureMetricsIntegrationPrincipalPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AzureMetricsIntegrationPrincipalPtrOutput)
+}
+
+type AzureMetricsIntegrationPrincipalOutput struct{ *pulumi.OutputState }
+
+func (AzureMetricsIntegrationPrincipalOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AzureMetricsIntegrationPrincipal)(nil)).Elem()
+}
+
+func (o AzureMetricsIntegrationPrincipalOutput) ToAzureMetricsIntegrationPrincipalOutput() AzureMetricsIntegrationPrincipalOutput {
+	return o
+}
+
+func (o AzureMetricsIntegrationPrincipalOutput) ToAzureMetricsIntegrationPrincipalOutputWithContext(ctx context.Context) AzureMetricsIntegrationPrincipalOutput {
+	return o
+}
+
+func (o AzureMetricsIntegrationPrincipalOutput) ToAzureMetricsIntegrationPrincipalPtrOutput() AzureMetricsIntegrationPrincipalPtrOutput {
+	return o.ToAzureMetricsIntegrationPrincipalPtrOutputWithContext(context.Background())
+}
+
+func (o AzureMetricsIntegrationPrincipalOutput) ToAzureMetricsIntegrationPrincipalPtrOutputWithContext(ctx context.Context) AzureMetricsIntegrationPrincipalPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AzureMetricsIntegrationPrincipal) *AzureMetricsIntegrationPrincipal {
+		return &v
+	}).(AzureMetricsIntegrationPrincipalPtrOutput)
+}
+
+func (o AzureMetricsIntegrationPrincipalOutput) ClientId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AzureMetricsIntegrationPrincipal) *string { return v.ClientId }).(pulumi.StringPtrOutput)
+}
+
+func (o AzureMetricsIntegrationPrincipalOutput) TenantId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AzureMetricsIntegrationPrincipal) *string { return v.TenantId }).(pulumi.StringPtrOutput)
+}
+
+type AzureMetricsIntegrationPrincipalPtrOutput struct{ *pulumi.OutputState }
+
+func (AzureMetricsIntegrationPrincipalPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AzureMetricsIntegrationPrincipal)(nil)).Elem()
+}
+
+func (o AzureMetricsIntegrationPrincipalPtrOutput) ToAzureMetricsIntegrationPrincipalPtrOutput() AzureMetricsIntegrationPrincipalPtrOutput {
+	return o
+}
+
+func (o AzureMetricsIntegrationPrincipalPtrOutput) ToAzureMetricsIntegrationPrincipalPtrOutputWithContext(ctx context.Context) AzureMetricsIntegrationPrincipalPtrOutput {
+	return o
+}
+
+func (o AzureMetricsIntegrationPrincipalPtrOutput) Elem() AzureMetricsIntegrationPrincipalOutput {
+	return o.ApplyT(func(v *AzureMetricsIntegrationPrincipal) AzureMetricsIntegrationPrincipal {
+		if v != nil {
+			return *v
+		}
+		var ret AzureMetricsIntegrationPrincipal
+		return ret
+	}).(AzureMetricsIntegrationPrincipalOutput)
+}
+
+func (o AzureMetricsIntegrationPrincipalPtrOutput) ClientId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AzureMetricsIntegrationPrincipal) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ClientId
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o AzureMetricsIntegrationPrincipalPtrOutput) TenantId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AzureMetricsIntegrationPrincipal) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TenantId
+	}).(pulumi.StringPtrOutput)
+}
+
+type AzureMetricsIntegrationScrapeConfig struct {
+	Locations       []string                                          `pulumi:"locations"`
+	ResourceTypes   []AzureMetricsIntegrationScrapeConfigResourceType `pulumi:"resourceTypes"`
+	SubscriptionIds []string                                          `pulumi:"subscriptionIds"`
+}
+
+// AzureMetricsIntegrationScrapeConfigInput is an input type that accepts AzureMetricsIntegrationScrapeConfigArgs and AzureMetricsIntegrationScrapeConfigOutput values.
+// You can construct a concrete instance of `AzureMetricsIntegrationScrapeConfigInput` via:
+//
+//	AzureMetricsIntegrationScrapeConfigArgs{...}
+type AzureMetricsIntegrationScrapeConfigInput interface {
+	pulumi.Input
+
+	ToAzureMetricsIntegrationScrapeConfigOutput() AzureMetricsIntegrationScrapeConfigOutput
+	ToAzureMetricsIntegrationScrapeConfigOutputWithContext(context.Context) AzureMetricsIntegrationScrapeConfigOutput
+}
+
+type AzureMetricsIntegrationScrapeConfigArgs struct {
+	Locations       pulumi.StringArrayInput                                   `pulumi:"locations"`
+	ResourceTypes   AzureMetricsIntegrationScrapeConfigResourceTypeArrayInput `pulumi:"resourceTypes"`
+	SubscriptionIds pulumi.StringArrayInput                                   `pulumi:"subscriptionIds"`
+}
+
+func (AzureMetricsIntegrationScrapeConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AzureMetricsIntegrationScrapeConfig)(nil)).Elem()
+}
+
+func (i AzureMetricsIntegrationScrapeConfigArgs) ToAzureMetricsIntegrationScrapeConfigOutput() AzureMetricsIntegrationScrapeConfigOutput {
+	return i.ToAzureMetricsIntegrationScrapeConfigOutputWithContext(context.Background())
+}
+
+func (i AzureMetricsIntegrationScrapeConfigArgs) ToAzureMetricsIntegrationScrapeConfigOutputWithContext(ctx context.Context) AzureMetricsIntegrationScrapeConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AzureMetricsIntegrationScrapeConfigOutput)
+}
+
+func (i AzureMetricsIntegrationScrapeConfigArgs) ToAzureMetricsIntegrationScrapeConfigPtrOutput() AzureMetricsIntegrationScrapeConfigPtrOutput {
+	return i.ToAzureMetricsIntegrationScrapeConfigPtrOutputWithContext(context.Background())
+}
+
+func (i AzureMetricsIntegrationScrapeConfigArgs) ToAzureMetricsIntegrationScrapeConfigPtrOutputWithContext(ctx context.Context) AzureMetricsIntegrationScrapeConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AzureMetricsIntegrationScrapeConfigOutput).ToAzureMetricsIntegrationScrapeConfigPtrOutputWithContext(ctx)
+}
+
+// AzureMetricsIntegrationScrapeConfigPtrInput is an input type that accepts AzureMetricsIntegrationScrapeConfigArgs, AzureMetricsIntegrationScrapeConfigPtr and AzureMetricsIntegrationScrapeConfigPtrOutput values.
+// You can construct a concrete instance of `AzureMetricsIntegrationScrapeConfigPtrInput` via:
+//
+//	        AzureMetricsIntegrationScrapeConfigArgs{...}
+//
+//	or:
+//
+//	        nil
+type AzureMetricsIntegrationScrapeConfigPtrInput interface {
+	pulumi.Input
+
+	ToAzureMetricsIntegrationScrapeConfigPtrOutput() AzureMetricsIntegrationScrapeConfigPtrOutput
+	ToAzureMetricsIntegrationScrapeConfigPtrOutputWithContext(context.Context) AzureMetricsIntegrationScrapeConfigPtrOutput
+}
+
+type azureMetricsIntegrationScrapeConfigPtrType AzureMetricsIntegrationScrapeConfigArgs
+
+func AzureMetricsIntegrationScrapeConfigPtr(v *AzureMetricsIntegrationScrapeConfigArgs) AzureMetricsIntegrationScrapeConfigPtrInput {
+	return (*azureMetricsIntegrationScrapeConfigPtrType)(v)
+}
+
+func (*azureMetricsIntegrationScrapeConfigPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AzureMetricsIntegrationScrapeConfig)(nil)).Elem()
+}
+
+func (i *azureMetricsIntegrationScrapeConfigPtrType) ToAzureMetricsIntegrationScrapeConfigPtrOutput() AzureMetricsIntegrationScrapeConfigPtrOutput {
+	return i.ToAzureMetricsIntegrationScrapeConfigPtrOutputWithContext(context.Background())
+}
+
+func (i *azureMetricsIntegrationScrapeConfigPtrType) ToAzureMetricsIntegrationScrapeConfigPtrOutputWithContext(ctx context.Context) AzureMetricsIntegrationScrapeConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AzureMetricsIntegrationScrapeConfigPtrOutput)
+}
+
+type AzureMetricsIntegrationScrapeConfigOutput struct{ *pulumi.OutputState }
+
+func (AzureMetricsIntegrationScrapeConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AzureMetricsIntegrationScrapeConfig)(nil)).Elem()
+}
+
+func (o AzureMetricsIntegrationScrapeConfigOutput) ToAzureMetricsIntegrationScrapeConfigOutput() AzureMetricsIntegrationScrapeConfigOutput {
+	return o
+}
+
+func (o AzureMetricsIntegrationScrapeConfigOutput) ToAzureMetricsIntegrationScrapeConfigOutputWithContext(ctx context.Context) AzureMetricsIntegrationScrapeConfigOutput {
+	return o
+}
+
+func (o AzureMetricsIntegrationScrapeConfigOutput) ToAzureMetricsIntegrationScrapeConfigPtrOutput() AzureMetricsIntegrationScrapeConfigPtrOutput {
+	return o.ToAzureMetricsIntegrationScrapeConfigPtrOutputWithContext(context.Background())
+}
+
+func (o AzureMetricsIntegrationScrapeConfigOutput) ToAzureMetricsIntegrationScrapeConfigPtrOutputWithContext(ctx context.Context) AzureMetricsIntegrationScrapeConfigPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AzureMetricsIntegrationScrapeConfig) *AzureMetricsIntegrationScrapeConfig {
+		return &v
+	}).(AzureMetricsIntegrationScrapeConfigPtrOutput)
+}
+
+func (o AzureMetricsIntegrationScrapeConfigOutput) Locations() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v AzureMetricsIntegrationScrapeConfig) []string { return v.Locations }).(pulumi.StringArrayOutput)
+}
+
+func (o AzureMetricsIntegrationScrapeConfigOutput) ResourceTypes() AzureMetricsIntegrationScrapeConfigResourceTypeArrayOutput {
+	return o.ApplyT(func(v AzureMetricsIntegrationScrapeConfig) []AzureMetricsIntegrationScrapeConfigResourceType {
+		return v.ResourceTypes
+	}).(AzureMetricsIntegrationScrapeConfigResourceTypeArrayOutput)
+}
+
+func (o AzureMetricsIntegrationScrapeConfigOutput) SubscriptionIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v AzureMetricsIntegrationScrapeConfig) []string { return v.SubscriptionIds }).(pulumi.StringArrayOutput)
+}
+
+type AzureMetricsIntegrationScrapeConfigPtrOutput struct{ *pulumi.OutputState }
+
+func (AzureMetricsIntegrationScrapeConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AzureMetricsIntegrationScrapeConfig)(nil)).Elem()
+}
+
+func (o AzureMetricsIntegrationScrapeConfigPtrOutput) ToAzureMetricsIntegrationScrapeConfigPtrOutput() AzureMetricsIntegrationScrapeConfigPtrOutput {
+	return o
+}
+
+func (o AzureMetricsIntegrationScrapeConfigPtrOutput) ToAzureMetricsIntegrationScrapeConfigPtrOutputWithContext(ctx context.Context) AzureMetricsIntegrationScrapeConfigPtrOutput {
+	return o
+}
+
+func (o AzureMetricsIntegrationScrapeConfigPtrOutput) Elem() AzureMetricsIntegrationScrapeConfigOutput {
+	return o.ApplyT(func(v *AzureMetricsIntegrationScrapeConfig) AzureMetricsIntegrationScrapeConfig {
+		if v != nil {
+			return *v
+		}
+		var ret AzureMetricsIntegrationScrapeConfig
+		return ret
+	}).(AzureMetricsIntegrationScrapeConfigOutput)
+}
+
+func (o AzureMetricsIntegrationScrapeConfigPtrOutput) Locations() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AzureMetricsIntegrationScrapeConfig) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Locations
+	}).(pulumi.StringArrayOutput)
+}
+
+func (o AzureMetricsIntegrationScrapeConfigPtrOutput) ResourceTypes() AzureMetricsIntegrationScrapeConfigResourceTypeArrayOutput {
+	return o.ApplyT(func(v *AzureMetricsIntegrationScrapeConfig) []AzureMetricsIntegrationScrapeConfigResourceType {
+		if v == nil {
+			return nil
+		}
+		return v.ResourceTypes
+	}).(AzureMetricsIntegrationScrapeConfigResourceTypeArrayOutput)
+}
+
+func (o AzureMetricsIntegrationScrapeConfigPtrOutput) SubscriptionIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AzureMetricsIntegrationScrapeConfig) []string {
+		if v == nil {
+			return nil
+		}
+		return v.SubscriptionIds
+	}).(pulumi.StringArrayOutput)
+}
+
+type AzureMetricsIntegrationScrapeConfigResourceType struct {
+	MetricNames []string `pulumi:"metricNames"`
+	Name        *string  `pulumi:"name"`
+}
+
+// AzureMetricsIntegrationScrapeConfigResourceTypeInput is an input type that accepts AzureMetricsIntegrationScrapeConfigResourceTypeArgs and AzureMetricsIntegrationScrapeConfigResourceTypeOutput values.
+// You can construct a concrete instance of `AzureMetricsIntegrationScrapeConfigResourceTypeInput` via:
+//
+//	AzureMetricsIntegrationScrapeConfigResourceTypeArgs{...}
+type AzureMetricsIntegrationScrapeConfigResourceTypeInput interface {
+	pulumi.Input
+
+	ToAzureMetricsIntegrationScrapeConfigResourceTypeOutput() AzureMetricsIntegrationScrapeConfigResourceTypeOutput
+	ToAzureMetricsIntegrationScrapeConfigResourceTypeOutputWithContext(context.Context) AzureMetricsIntegrationScrapeConfigResourceTypeOutput
+}
+
+type AzureMetricsIntegrationScrapeConfigResourceTypeArgs struct {
+	MetricNames pulumi.StringArrayInput `pulumi:"metricNames"`
+	Name        pulumi.StringPtrInput   `pulumi:"name"`
+}
+
+func (AzureMetricsIntegrationScrapeConfigResourceTypeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AzureMetricsIntegrationScrapeConfigResourceType)(nil)).Elem()
+}
+
+func (i AzureMetricsIntegrationScrapeConfigResourceTypeArgs) ToAzureMetricsIntegrationScrapeConfigResourceTypeOutput() AzureMetricsIntegrationScrapeConfigResourceTypeOutput {
+	return i.ToAzureMetricsIntegrationScrapeConfigResourceTypeOutputWithContext(context.Background())
+}
+
+func (i AzureMetricsIntegrationScrapeConfigResourceTypeArgs) ToAzureMetricsIntegrationScrapeConfigResourceTypeOutputWithContext(ctx context.Context) AzureMetricsIntegrationScrapeConfigResourceTypeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AzureMetricsIntegrationScrapeConfigResourceTypeOutput)
+}
+
+// AzureMetricsIntegrationScrapeConfigResourceTypeArrayInput is an input type that accepts AzureMetricsIntegrationScrapeConfigResourceTypeArray and AzureMetricsIntegrationScrapeConfigResourceTypeArrayOutput values.
+// You can construct a concrete instance of `AzureMetricsIntegrationScrapeConfigResourceTypeArrayInput` via:
+//
+//	AzureMetricsIntegrationScrapeConfigResourceTypeArray{ AzureMetricsIntegrationScrapeConfigResourceTypeArgs{...} }
+type AzureMetricsIntegrationScrapeConfigResourceTypeArrayInput interface {
+	pulumi.Input
+
+	ToAzureMetricsIntegrationScrapeConfigResourceTypeArrayOutput() AzureMetricsIntegrationScrapeConfigResourceTypeArrayOutput
+	ToAzureMetricsIntegrationScrapeConfigResourceTypeArrayOutputWithContext(context.Context) AzureMetricsIntegrationScrapeConfigResourceTypeArrayOutput
+}
+
+type AzureMetricsIntegrationScrapeConfigResourceTypeArray []AzureMetricsIntegrationScrapeConfigResourceTypeInput
+
+func (AzureMetricsIntegrationScrapeConfigResourceTypeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AzureMetricsIntegrationScrapeConfigResourceType)(nil)).Elem()
+}
+
+func (i AzureMetricsIntegrationScrapeConfigResourceTypeArray) ToAzureMetricsIntegrationScrapeConfigResourceTypeArrayOutput() AzureMetricsIntegrationScrapeConfigResourceTypeArrayOutput {
+	return i.ToAzureMetricsIntegrationScrapeConfigResourceTypeArrayOutputWithContext(context.Background())
+}
+
+func (i AzureMetricsIntegrationScrapeConfigResourceTypeArray) ToAzureMetricsIntegrationScrapeConfigResourceTypeArrayOutputWithContext(ctx context.Context) AzureMetricsIntegrationScrapeConfigResourceTypeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AzureMetricsIntegrationScrapeConfigResourceTypeArrayOutput)
+}
+
+type AzureMetricsIntegrationScrapeConfigResourceTypeOutput struct{ *pulumi.OutputState }
+
+func (AzureMetricsIntegrationScrapeConfigResourceTypeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AzureMetricsIntegrationScrapeConfigResourceType)(nil)).Elem()
+}
+
+func (o AzureMetricsIntegrationScrapeConfigResourceTypeOutput) ToAzureMetricsIntegrationScrapeConfigResourceTypeOutput() AzureMetricsIntegrationScrapeConfigResourceTypeOutput {
+	return o
+}
+
+func (o AzureMetricsIntegrationScrapeConfigResourceTypeOutput) ToAzureMetricsIntegrationScrapeConfigResourceTypeOutputWithContext(ctx context.Context) AzureMetricsIntegrationScrapeConfigResourceTypeOutput {
+	return o
+}
+
+func (o AzureMetricsIntegrationScrapeConfigResourceTypeOutput) MetricNames() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v AzureMetricsIntegrationScrapeConfigResourceType) []string { return v.MetricNames }).(pulumi.StringArrayOutput)
+}
+
+func (o AzureMetricsIntegrationScrapeConfigResourceTypeOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AzureMetricsIntegrationScrapeConfigResourceType) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type AzureMetricsIntegrationScrapeConfigResourceTypeArrayOutput struct{ *pulumi.OutputState }
+
+func (AzureMetricsIntegrationScrapeConfigResourceTypeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AzureMetricsIntegrationScrapeConfigResourceType)(nil)).Elem()
+}
+
+func (o AzureMetricsIntegrationScrapeConfigResourceTypeArrayOutput) ToAzureMetricsIntegrationScrapeConfigResourceTypeArrayOutput() AzureMetricsIntegrationScrapeConfigResourceTypeArrayOutput {
+	return o
+}
+
+func (o AzureMetricsIntegrationScrapeConfigResourceTypeArrayOutput) ToAzureMetricsIntegrationScrapeConfigResourceTypeArrayOutputWithContext(ctx context.Context) AzureMetricsIntegrationScrapeConfigResourceTypeArrayOutput {
+	return o
+}
+
+func (o AzureMetricsIntegrationScrapeConfigResourceTypeArrayOutput) Index(i pulumi.IntInput) AzureMetricsIntegrationScrapeConfigResourceTypeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AzureMetricsIntegrationScrapeConfigResourceType {
+		return vs[0].([]AzureMetricsIntegrationScrapeConfigResourceType)[vs[1].(int)]
+	}).(AzureMetricsIntegrationScrapeConfigResourceTypeOutput)
+}
+
+type ConsumptionBudgetAlertActionConfig struct {
+	Annotations            map[string]string `pulumi:"annotations"`
+	InstantRateSustainSecs *int              `pulumi:"instantRateSustainSecs"`
+	Labels                 map[string]string `pulumi:"labels"`
+}
+
+// ConsumptionBudgetAlertActionConfigInput is an input type that accepts ConsumptionBudgetAlertActionConfigArgs and ConsumptionBudgetAlertActionConfigOutput values.
+// You can construct a concrete instance of `ConsumptionBudgetAlertActionConfigInput` via:
+//
+//	ConsumptionBudgetAlertActionConfigArgs{...}
+type ConsumptionBudgetAlertActionConfigInput interface {
+	pulumi.Input
+
+	ToConsumptionBudgetAlertActionConfigOutput() ConsumptionBudgetAlertActionConfigOutput
+	ToConsumptionBudgetAlertActionConfigOutputWithContext(context.Context) ConsumptionBudgetAlertActionConfigOutput
+}
+
+type ConsumptionBudgetAlertActionConfigArgs struct {
+	Annotations            pulumi.StringMapInput `pulumi:"annotations"`
+	InstantRateSustainSecs pulumi.IntPtrInput    `pulumi:"instantRateSustainSecs"`
+	Labels                 pulumi.StringMapInput `pulumi:"labels"`
+}
+
+func (ConsumptionBudgetAlertActionConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConsumptionBudgetAlertActionConfig)(nil)).Elem()
+}
+
+func (i ConsumptionBudgetAlertActionConfigArgs) ToConsumptionBudgetAlertActionConfigOutput() ConsumptionBudgetAlertActionConfigOutput {
+	return i.ToConsumptionBudgetAlertActionConfigOutputWithContext(context.Background())
+}
+
+func (i ConsumptionBudgetAlertActionConfigArgs) ToConsumptionBudgetAlertActionConfigOutputWithContext(ctx context.Context) ConsumptionBudgetAlertActionConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionBudgetAlertActionConfigOutput)
+}
+
+func (i ConsumptionBudgetAlertActionConfigArgs) ToConsumptionBudgetAlertActionConfigPtrOutput() ConsumptionBudgetAlertActionConfigPtrOutput {
+	return i.ToConsumptionBudgetAlertActionConfigPtrOutputWithContext(context.Background())
+}
+
+func (i ConsumptionBudgetAlertActionConfigArgs) ToConsumptionBudgetAlertActionConfigPtrOutputWithContext(ctx context.Context) ConsumptionBudgetAlertActionConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionBudgetAlertActionConfigOutput).ToConsumptionBudgetAlertActionConfigPtrOutputWithContext(ctx)
+}
+
+// ConsumptionBudgetAlertActionConfigPtrInput is an input type that accepts ConsumptionBudgetAlertActionConfigArgs, ConsumptionBudgetAlertActionConfigPtr and ConsumptionBudgetAlertActionConfigPtrOutput values.
+// You can construct a concrete instance of `ConsumptionBudgetAlertActionConfigPtrInput` via:
+//
+//	        ConsumptionBudgetAlertActionConfigArgs{...}
+//
+//	or:
+//
+//	        nil
+type ConsumptionBudgetAlertActionConfigPtrInput interface {
+	pulumi.Input
+
+	ToConsumptionBudgetAlertActionConfigPtrOutput() ConsumptionBudgetAlertActionConfigPtrOutput
+	ToConsumptionBudgetAlertActionConfigPtrOutputWithContext(context.Context) ConsumptionBudgetAlertActionConfigPtrOutput
+}
+
+type consumptionBudgetAlertActionConfigPtrType ConsumptionBudgetAlertActionConfigArgs
+
+func ConsumptionBudgetAlertActionConfigPtr(v *ConsumptionBudgetAlertActionConfigArgs) ConsumptionBudgetAlertActionConfigPtrInput {
+	return (*consumptionBudgetAlertActionConfigPtrType)(v)
+}
+
+func (*consumptionBudgetAlertActionConfigPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ConsumptionBudgetAlertActionConfig)(nil)).Elem()
+}
+
+func (i *consumptionBudgetAlertActionConfigPtrType) ToConsumptionBudgetAlertActionConfigPtrOutput() ConsumptionBudgetAlertActionConfigPtrOutput {
+	return i.ToConsumptionBudgetAlertActionConfigPtrOutputWithContext(context.Background())
+}
+
+func (i *consumptionBudgetAlertActionConfigPtrType) ToConsumptionBudgetAlertActionConfigPtrOutputWithContext(ctx context.Context) ConsumptionBudgetAlertActionConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionBudgetAlertActionConfigPtrOutput)
+}
+
+type ConsumptionBudgetAlertActionConfigOutput struct{ *pulumi.OutputState }
+
+func (ConsumptionBudgetAlertActionConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConsumptionBudgetAlertActionConfig)(nil)).Elem()
+}
+
+func (o ConsumptionBudgetAlertActionConfigOutput) ToConsumptionBudgetAlertActionConfigOutput() ConsumptionBudgetAlertActionConfigOutput {
+	return o
+}
+
+func (o ConsumptionBudgetAlertActionConfigOutput) ToConsumptionBudgetAlertActionConfigOutputWithContext(ctx context.Context) ConsumptionBudgetAlertActionConfigOutput {
+	return o
+}
+
+func (o ConsumptionBudgetAlertActionConfigOutput) ToConsumptionBudgetAlertActionConfigPtrOutput() ConsumptionBudgetAlertActionConfigPtrOutput {
+	return o.ToConsumptionBudgetAlertActionConfigPtrOutputWithContext(context.Background())
+}
+
+func (o ConsumptionBudgetAlertActionConfigOutput) ToConsumptionBudgetAlertActionConfigPtrOutputWithContext(ctx context.Context) ConsumptionBudgetAlertActionConfigPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ConsumptionBudgetAlertActionConfig) *ConsumptionBudgetAlertActionConfig {
+		return &v
+	}).(ConsumptionBudgetAlertActionConfigPtrOutput)
+}
+
+func (o ConsumptionBudgetAlertActionConfigOutput) Annotations() pulumi.StringMapOutput {
+	return o.ApplyT(func(v ConsumptionBudgetAlertActionConfig) map[string]string { return v.Annotations }).(pulumi.StringMapOutput)
+}
+
+func (o ConsumptionBudgetAlertActionConfigOutput) InstantRateSustainSecs() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ConsumptionBudgetAlertActionConfig) *int { return v.InstantRateSustainSecs }).(pulumi.IntPtrOutput)
+}
+
+func (o ConsumptionBudgetAlertActionConfigOutput) Labels() pulumi.StringMapOutput {
+	return o.ApplyT(func(v ConsumptionBudgetAlertActionConfig) map[string]string { return v.Labels }).(pulumi.StringMapOutput)
+}
+
+type ConsumptionBudgetAlertActionConfigPtrOutput struct{ *pulumi.OutputState }
+
+func (ConsumptionBudgetAlertActionConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ConsumptionBudgetAlertActionConfig)(nil)).Elem()
+}
+
+func (o ConsumptionBudgetAlertActionConfigPtrOutput) ToConsumptionBudgetAlertActionConfigPtrOutput() ConsumptionBudgetAlertActionConfigPtrOutput {
+	return o
+}
+
+func (o ConsumptionBudgetAlertActionConfigPtrOutput) ToConsumptionBudgetAlertActionConfigPtrOutputWithContext(ctx context.Context) ConsumptionBudgetAlertActionConfigPtrOutput {
+	return o
+}
+
+func (o ConsumptionBudgetAlertActionConfigPtrOutput) Elem() ConsumptionBudgetAlertActionConfigOutput {
+	return o.ApplyT(func(v *ConsumptionBudgetAlertActionConfig) ConsumptionBudgetAlertActionConfig {
+		if v != nil {
+			return *v
+		}
+		var ret ConsumptionBudgetAlertActionConfig
+		return ret
+	}).(ConsumptionBudgetAlertActionConfigOutput)
+}
+
+func (o ConsumptionBudgetAlertActionConfigPtrOutput) Annotations() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *ConsumptionBudgetAlertActionConfig) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.Annotations
+	}).(pulumi.StringMapOutput)
+}
+
+func (o ConsumptionBudgetAlertActionConfigPtrOutput) InstantRateSustainSecs() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ConsumptionBudgetAlertActionConfig) *int {
+		if v == nil {
+			return nil
+		}
+		return v.InstantRateSustainSecs
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o ConsumptionBudgetAlertActionConfigPtrOutput) Labels() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *ConsumptionBudgetAlertActionConfig) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.Labels
+	}).(pulumi.StringMapOutput)
+}
+
+type ConsumptionBudgetPriority struct {
+	Filters  []ConsumptionBudgetPriorityFilter `pulumi:"filters"`
+	Priority *int                              `pulumi:"priority"`
+}
+
+// ConsumptionBudgetPriorityInput is an input type that accepts ConsumptionBudgetPriorityArgs and ConsumptionBudgetPriorityOutput values.
+// You can construct a concrete instance of `ConsumptionBudgetPriorityInput` via:
+//
+//	ConsumptionBudgetPriorityArgs{...}
+type ConsumptionBudgetPriorityInput interface {
+	pulumi.Input
+
+	ToConsumptionBudgetPriorityOutput() ConsumptionBudgetPriorityOutput
+	ToConsumptionBudgetPriorityOutputWithContext(context.Context) ConsumptionBudgetPriorityOutput
+}
+
+type ConsumptionBudgetPriorityArgs struct {
+	Filters  ConsumptionBudgetPriorityFilterArrayInput `pulumi:"filters"`
+	Priority pulumi.IntPtrInput                        `pulumi:"priority"`
+}
+
+func (ConsumptionBudgetPriorityArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConsumptionBudgetPriority)(nil)).Elem()
+}
+
+func (i ConsumptionBudgetPriorityArgs) ToConsumptionBudgetPriorityOutput() ConsumptionBudgetPriorityOutput {
+	return i.ToConsumptionBudgetPriorityOutputWithContext(context.Background())
+}
+
+func (i ConsumptionBudgetPriorityArgs) ToConsumptionBudgetPriorityOutputWithContext(ctx context.Context) ConsumptionBudgetPriorityOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionBudgetPriorityOutput)
+}
+
+// ConsumptionBudgetPriorityArrayInput is an input type that accepts ConsumptionBudgetPriorityArray and ConsumptionBudgetPriorityArrayOutput values.
+// You can construct a concrete instance of `ConsumptionBudgetPriorityArrayInput` via:
+//
+//	ConsumptionBudgetPriorityArray{ ConsumptionBudgetPriorityArgs{...} }
+type ConsumptionBudgetPriorityArrayInput interface {
+	pulumi.Input
+
+	ToConsumptionBudgetPriorityArrayOutput() ConsumptionBudgetPriorityArrayOutput
+	ToConsumptionBudgetPriorityArrayOutputWithContext(context.Context) ConsumptionBudgetPriorityArrayOutput
+}
+
+type ConsumptionBudgetPriorityArray []ConsumptionBudgetPriorityInput
+
+func (ConsumptionBudgetPriorityArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ConsumptionBudgetPriority)(nil)).Elem()
+}
+
+func (i ConsumptionBudgetPriorityArray) ToConsumptionBudgetPriorityArrayOutput() ConsumptionBudgetPriorityArrayOutput {
+	return i.ToConsumptionBudgetPriorityArrayOutputWithContext(context.Background())
+}
+
+func (i ConsumptionBudgetPriorityArray) ToConsumptionBudgetPriorityArrayOutputWithContext(ctx context.Context) ConsumptionBudgetPriorityArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionBudgetPriorityArrayOutput)
+}
+
+type ConsumptionBudgetPriorityOutput struct{ *pulumi.OutputState }
+
+func (ConsumptionBudgetPriorityOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConsumptionBudgetPriority)(nil)).Elem()
+}
+
+func (o ConsumptionBudgetPriorityOutput) ToConsumptionBudgetPriorityOutput() ConsumptionBudgetPriorityOutput {
+	return o
+}
+
+func (o ConsumptionBudgetPriorityOutput) ToConsumptionBudgetPriorityOutputWithContext(ctx context.Context) ConsumptionBudgetPriorityOutput {
+	return o
+}
+
+func (o ConsumptionBudgetPriorityOutput) Filters() ConsumptionBudgetPriorityFilterArrayOutput {
+	return o.ApplyT(func(v ConsumptionBudgetPriority) []ConsumptionBudgetPriorityFilter { return v.Filters }).(ConsumptionBudgetPriorityFilterArrayOutput)
+}
+
+func (o ConsumptionBudgetPriorityOutput) Priority() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ConsumptionBudgetPriority) *int { return v.Priority }).(pulumi.IntPtrOutput)
+}
+
+type ConsumptionBudgetPriorityArrayOutput struct{ *pulumi.OutputState }
+
+func (ConsumptionBudgetPriorityArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ConsumptionBudgetPriority)(nil)).Elem()
+}
+
+func (o ConsumptionBudgetPriorityArrayOutput) ToConsumptionBudgetPriorityArrayOutput() ConsumptionBudgetPriorityArrayOutput {
+	return o
+}
+
+func (o ConsumptionBudgetPriorityArrayOutput) ToConsumptionBudgetPriorityArrayOutputWithContext(ctx context.Context) ConsumptionBudgetPriorityArrayOutput {
+	return o
+}
+
+func (o ConsumptionBudgetPriorityArrayOutput) Index(i pulumi.IntInput) ConsumptionBudgetPriorityOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ConsumptionBudgetPriority {
+		return vs[0].([]ConsumptionBudgetPriority)[vs[1].(int)]
+	}).(ConsumptionBudgetPriorityOutput)
+}
+
+type ConsumptionBudgetPriorityFilter struct {
+	DatasetId *string                                   `pulumi:"datasetId"`
+	LogFilter *ConsumptionBudgetPriorityFilterLogFilter `pulumi:"logFilter"`
+}
+
+// ConsumptionBudgetPriorityFilterInput is an input type that accepts ConsumptionBudgetPriorityFilterArgs and ConsumptionBudgetPriorityFilterOutput values.
+// You can construct a concrete instance of `ConsumptionBudgetPriorityFilterInput` via:
+//
+//	ConsumptionBudgetPriorityFilterArgs{...}
+type ConsumptionBudgetPriorityFilterInput interface {
+	pulumi.Input
+
+	ToConsumptionBudgetPriorityFilterOutput() ConsumptionBudgetPriorityFilterOutput
+	ToConsumptionBudgetPriorityFilterOutputWithContext(context.Context) ConsumptionBudgetPriorityFilterOutput
+}
+
+type ConsumptionBudgetPriorityFilterArgs struct {
+	DatasetId pulumi.StringPtrInput                            `pulumi:"datasetId"`
+	LogFilter ConsumptionBudgetPriorityFilterLogFilterPtrInput `pulumi:"logFilter"`
+}
+
+func (ConsumptionBudgetPriorityFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConsumptionBudgetPriorityFilter)(nil)).Elem()
+}
+
+func (i ConsumptionBudgetPriorityFilterArgs) ToConsumptionBudgetPriorityFilterOutput() ConsumptionBudgetPriorityFilterOutput {
+	return i.ToConsumptionBudgetPriorityFilterOutputWithContext(context.Background())
+}
+
+func (i ConsumptionBudgetPriorityFilterArgs) ToConsumptionBudgetPriorityFilterOutputWithContext(ctx context.Context) ConsumptionBudgetPriorityFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionBudgetPriorityFilterOutput)
+}
+
+// ConsumptionBudgetPriorityFilterArrayInput is an input type that accepts ConsumptionBudgetPriorityFilterArray and ConsumptionBudgetPriorityFilterArrayOutput values.
+// You can construct a concrete instance of `ConsumptionBudgetPriorityFilterArrayInput` via:
+//
+//	ConsumptionBudgetPriorityFilterArray{ ConsumptionBudgetPriorityFilterArgs{...} }
+type ConsumptionBudgetPriorityFilterArrayInput interface {
+	pulumi.Input
+
+	ToConsumptionBudgetPriorityFilterArrayOutput() ConsumptionBudgetPriorityFilterArrayOutput
+	ToConsumptionBudgetPriorityFilterArrayOutputWithContext(context.Context) ConsumptionBudgetPriorityFilterArrayOutput
+}
+
+type ConsumptionBudgetPriorityFilterArray []ConsumptionBudgetPriorityFilterInput
+
+func (ConsumptionBudgetPriorityFilterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ConsumptionBudgetPriorityFilter)(nil)).Elem()
+}
+
+func (i ConsumptionBudgetPriorityFilterArray) ToConsumptionBudgetPriorityFilterArrayOutput() ConsumptionBudgetPriorityFilterArrayOutput {
+	return i.ToConsumptionBudgetPriorityFilterArrayOutputWithContext(context.Background())
+}
+
+func (i ConsumptionBudgetPriorityFilterArray) ToConsumptionBudgetPriorityFilterArrayOutputWithContext(ctx context.Context) ConsumptionBudgetPriorityFilterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionBudgetPriorityFilterArrayOutput)
+}
+
+type ConsumptionBudgetPriorityFilterOutput struct{ *pulumi.OutputState }
+
+func (ConsumptionBudgetPriorityFilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConsumptionBudgetPriorityFilter)(nil)).Elem()
+}
+
+func (o ConsumptionBudgetPriorityFilterOutput) ToConsumptionBudgetPriorityFilterOutput() ConsumptionBudgetPriorityFilterOutput {
+	return o
+}
+
+func (o ConsumptionBudgetPriorityFilterOutput) ToConsumptionBudgetPriorityFilterOutputWithContext(ctx context.Context) ConsumptionBudgetPriorityFilterOutput {
+	return o
+}
+
+func (o ConsumptionBudgetPriorityFilterOutput) DatasetId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ConsumptionBudgetPriorityFilter) *string { return v.DatasetId }).(pulumi.StringPtrOutput)
+}
+
+func (o ConsumptionBudgetPriorityFilterOutput) LogFilter() ConsumptionBudgetPriorityFilterLogFilterPtrOutput {
+	return o.ApplyT(func(v ConsumptionBudgetPriorityFilter) *ConsumptionBudgetPriorityFilterLogFilter { return v.LogFilter }).(ConsumptionBudgetPriorityFilterLogFilterPtrOutput)
+}
+
+type ConsumptionBudgetPriorityFilterArrayOutput struct{ *pulumi.OutputState }
+
+func (ConsumptionBudgetPriorityFilterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ConsumptionBudgetPriorityFilter)(nil)).Elem()
+}
+
+func (o ConsumptionBudgetPriorityFilterArrayOutput) ToConsumptionBudgetPriorityFilterArrayOutput() ConsumptionBudgetPriorityFilterArrayOutput {
+	return o
+}
+
+func (o ConsumptionBudgetPriorityFilterArrayOutput) ToConsumptionBudgetPriorityFilterArrayOutputWithContext(ctx context.Context) ConsumptionBudgetPriorityFilterArrayOutput {
+	return o
+}
+
+func (o ConsumptionBudgetPriorityFilterArrayOutput) Index(i pulumi.IntInput) ConsumptionBudgetPriorityFilterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ConsumptionBudgetPriorityFilter {
+		return vs[0].([]ConsumptionBudgetPriorityFilter)[vs[1].(int)]
+	}).(ConsumptionBudgetPriorityFilterOutput)
+}
+
+type ConsumptionBudgetPriorityFilterLogFilter struct {
+	Query string `pulumi:"query"`
+}
+
+// ConsumptionBudgetPriorityFilterLogFilterInput is an input type that accepts ConsumptionBudgetPriorityFilterLogFilterArgs and ConsumptionBudgetPriorityFilterLogFilterOutput values.
+// You can construct a concrete instance of `ConsumptionBudgetPriorityFilterLogFilterInput` via:
+//
+//	ConsumptionBudgetPriorityFilterLogFilterArgs{...}
+type ConsumptionBudgetPriorityFilterLogFilterInput interface {
+	pulumi.Input
+
+	ToConsumptionBudgetPriorityFilterLogFilterOutput() ConsumptionBudgetPriorityFilterLogFilterOutput
+	ToConsumptionBudgetPriorityFilterLogFilterOutputWithContext(context.Context) ConsumptionBudgetPriorityFilterLogFilterOutput
+}
+
+type ConsumptionBudgetPriorityFilterLogFilterArgs struct {
+	Query pulumi.StringInput `pulumi:"query"`
+}
+
+func (ConsumptionBudgetPriorityFilterLogFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConsumptionBudgetPriorityFilterLogFilter)(nil)).Elem()
+}
+
+func (i ConsumptionBudgetPriorityFilterLogFilterArgs) ToConsumptionBudgetPriorityFilterLogFilterOutput() ConsumptionBudgetPriorityFilterLogFilterOutput {
+	return i.ToConsumptionBudgetPriorityFilterLogFilterOutputWithContext(context.Background())
+}
+
+func (i ConsumptionBudgetPriorityFilterLogFilterArgs) ToConsumptionBudgetPriorityFilterLogFilterOutputWithContext(ctx context.Context) ConsumptionBudgetPriorityFilterLogFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionBudgetPriorityFilterLogFilterOutput)
+}
+
+func (i ConsumptionBudgetPriorityFilterLogFilterArgs) ToConsumptionBudgetPriorityFilterLogFilterPtrOutput() ConsumptionBudgetPriorityFilterLogFilterPtrOutput {
+	return i.ToConsumptionBudgetPriorityFilterLogFilterPtrOutputWithContext(context.Background())
+}
+
+func (i ConsumptionBudgetPriorityFilterLogFilterArgs) ToConsumptionBudgetPriorityFilterLogFilterPtrOutputWithContext(ctx context.Context) ConsumptionBudgetPriorityFilterLogFilterPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionBudgetPriorityFilterLogFilterOutput).ToConsumptionBudgetPriorityFilterLogFilterPtrOutputWithContext(ctx)
+}
+
+// ConsumptionBudgetPriorityFilterLogFilterPtrInput is an input type that accepts ConsumptionBudgetPriorityFilterLogFilterArgs, ConsumptionBudgetPriorityFilterLogFilterPtr and ConsumptionBudgetPriorityFilterLogFilterPtrOutput values.
+// You can construct a concrete instance of `ConsumptionBudgetPriorityFilterLogFilterPtrInput` via:
+//
+//	        ConsumptionBudgetPriorityFilterLogFilterArgs{...}
+//
+//	or:
+//
+//	        nil
+type ConsumptionBudgetPriorityFilterLogFilterPtrInput interface {
+	pulumi.Input
+
+	ToConsumptionBudgetPriorityFilterLogFilterPtrOutput() ConsumptionBudgetPriorityFilterLogFilterPtrOutput
+	ToConsumptionBudgetPriorityFilterLogFilterPtrOutputWithContext(context.Context) ConsumptionBudgetPriorityFilterLogFilterPtrOutput
+}
+
+type consumptionBudgetPriorityFilterLogFilterPtrType ConsumptionBudgetPriorityFilterLogFilterArgs
+
+func ConsumptionBudgetPriorityFilterLogFilterPtr(v *ConsumptionBudgetPriorityFilterLogFilterArgs) ConsumptionBudgetPriorityFilterLogFilterPtrInput {
+	return (*consumptionBudgetPriorityFilterLogFilterPtrType)(v)
+}
+
+func (*consumptionBudgetPriorityFilterLogFilterPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ConsumptionBudgetPriorityFilterLogFilter)(nil)).Elem()
+}
+
+func (i *consumptionBudgetPriorityFilterLogFilterPtrType) ToConsumptionBudgetPriorityFilterLogFilterPtrOutput() ConsumptionBudgetPriorityFilterLogFilterPtrOutput {
+	return i.ToConsumptionBudgetPriorityFilterLogFilterPtrOutputWithContext(context.Background())
+}
+
+func (i *consumptionBudgetPriorityFilterLogFilterPtrType) ToConsumptionBudgetPriorityFilterLogFilterPtrOutputWithContext(ctx context.Context) ConsumptionBudgetPriorityFilterLogFilterPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionBudgetPriorityFilterLogFilterPtrOutput)
+}
+
+type ConsumptionBudgetPriorityFilterLogFilterOutput struct{ *pulumi.OutputState }
+
+func (ConsumptionBudgetPriorityFilterLogFilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConsumptionBudgetPriorityFilterLogFilter)(nil)).Elem()
+}
+
+func (o ConsumptionBudgetPriorityFilterLogFilterOutput) ToConsumptionBudgetPriorityFilterLogFilterOutput() ConsumptionBudgetPriorityFilterLogFilterOutput {
+	return o
+}
+
+func (o ConsumptionBudgetPriorityFilterLogFilterOutput) ToConsumptionBudgetPriorityFilterLogFilterOutputWithContext(ctx context.Context) ConsumptionBudgetPriorityFilterLogFilterOutput {
+	return o
+}
+
+func (o ConsumptionBudgetPriorityFilterLogFilterOutput) ToConsumptionBudgetPriorityFilterLogFilterPtrOutput() ConsumptionBudgetPriorityFilterLogFilterPtrOutput {
+	return o.ToConsumptionBudgetPriorityFilterLogFilterPtrOutputWithContext(context.Background())
+}
+
+func (o ConsumptionBudgetPriorityFilterLogFilterOutput) ToConsumptionBudgetPriorityFilterLogFilterPtrOutputWithContext(ctx context.Context) ConsumptionBudgetPriorityFilterLogFilterPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ConsumptionBudgetPriorityFilterLogFilter) *ConsumptionBudgetPriorityFilterLogFilter {
+		return &v
+	}).(ConsumptionBudgetPriorityFilterLogFilterPtrOutput)
+}
+
+func (o ConsumptionBudgetPriorityFilterLogFilterOutput) Query() pulumi.StringOutput {
+	return o.ApplyT(func(v ConsumptionBudgetPriorityFilterLogFilter) string { return v.Query }).(pulumi.StringOutput)
+}
+
+type ConsumptionBudgetPriorityFilterLogFilterPtrOutput struct{ *pulumi.OutputState }
+
+func (ConsumptionBudgetPriorityFilterLogFilterPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ConsumptionBudgetPriorityFilterLogFilter)(nil)).Elem()
+}
+
+func (o ConsumptionBudgetPriorityFilterLogFilterPtrOutput) ToConsumptionBudgetPriorityFilterLogFilterPtrOutput() ConsumptionBudgetPriorityFilterLogFilterPtrOutput {
+	return o
+}
+
+func (o ConsumptionBudgetPriorityFilterLogFilterPtrOutput) ToConsumptionBudgetPriorityFilterLogFilterPtrOutputWithContext(ctx context.Context) ConsumptionBudgetPriorityFilterLogFilterPtrOutput {
+	return o
+}
+
+func (o ConsumptionBudgetPriorityFilterLogFilterPtrOutput) Elem() ConsumptionBudgetPriorityFilterLogFilterOutput {
+	return o.ApplyT(func(v *ConsumptionBudgetPriorityFilterLogFilter) ConsumptionBudgetPriorityFilterLogFilter {
+		if v != nil {
+			return *v
+		}
+		var ret ConsumptionBudgetPriorityFilterLogFilter
+		return ret
+	}).(ConsumptionBudgetPriorityFilterLogFilterOutput)
+}
+
+func (o ConsumptionBudgetPriorityFilterLogFilterPtrOutput) Query() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ConsumptionBudgetPriorityFilterLogFilter) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Query
+	}).(pulumi.StringPtrOutput)
+}
+
+type ConsumptionBudgetThreshold struct {
+	Action      *string                                `pulumi:"action"`
+	InstantRate *ConsumptionBudgetThresholdInstantRate `pulumi:"instantRate"`
+	Type        *string                                `pulumi:"type"`
+	Volume      *ConsumptionBudgetThresholdVolume      `pulumi:"volume"`
+}
+
+// ConsumptionBudgetThresholdInput is an input type that accepts ConsumptionBudgetThresholdArgs and ConsumptionBudgetThresholdOutput values.
+// You can construct a concrete instance of `ConsumptionBudgetThresholdInput` via:
+//
+//	ConsumptionBudgetThresholdArgs{...}
+type ConsumptionBudgetThresholdInput interface {
+	pulumi.Input
+
+	ToConsumptionBudgetThresholdOutput() ConsumptionBudgetThresholdOutput
+	ToConsumptionBudgetThresholdOutputWithContext(context.Context) ConsumptionBudgetThresholdOutput
+}
+
+type ConsumptionBudgetThresholdArgs struct {
+	Action      pulumi.StringPtrInput                         `pulumi:"action"`
+	InstantRate ConsumptionBudgetThresholdInstantRatePtrInput `pulumi:"instantRate"`
+	Type        pulumi.StringPtrInput                         `pulumi:"type"`
+	Volume      ConsumptionBudgetThresholdVolumePtrInput      `pulumi:"volume"`
+}
+
+func (ConsumptionBudgetThresholdArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConsumptionBudgetThreshold)(nil)).Elem()
+}
+
+func (i ConsumptionBudgetThresholdArgs) ToConsumptionBudgetThresholdOutput() ConsumptionBudgetThresholdOutput {
+	return i.ToConsumptionBudgetThresholdOutputWithContext(context.Background())
+}
+
+func (i ConsumptionBudgetThresholdArgs) ToConsumptionBudgetThresholdOutputWithContext(ctx context.Context) ConsumptionBudgetThresholdOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionBudgetThresholdOutput)
+}
+
+// ConsumptionBudgetThresholdArrayInput is an input type that accepts ConsumptionBudgetThresholdArray and ConsumptionBudgetThresholdArrayOutput values.
+// You can construct a concrete instance of `ConsumptionBudgetThresholdArrayInput` via:
+//
+//	ConsumptionBudgetThresholdArray{ ConsumptionBudgetThresholdArgs{...} }
+type ConsumptionBudgetThresholdArrayInput interface {
+	pulumi.Input
+
+	ToConsumptionBudgetThresholdArrayOutput() ConsumptionBudgetThresholdArrayOutput
+	ToConsumptionBudgetThresholdArrayOutputWithContext(context.Context) ConsumptionBudgetThresholdArrayOutput
+}
+
+type ConsumptionBudgetThresholdArray []ConsumptionBudgetThresholdInput
+
+func (ConsumptionBudgetThresholdArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ConsumptionBudgetThreshold)(nil)).Elem()
+}
+
+func (i ConsumptionBudgetThresholdArray) ToConsumptionBudgetThresholdArrayOutput() ConsumptionBudgetThresholdArrayOutput {
+	return i.ToConsumptionBudgetThresholdArrayOutputWithContext(context.Background())
+}
+
+func (i ConsumptionBudgetThresholdArray) ToConsumptionBudgetThresholdArrayOutputWithContext(ctx context.Context) ConsumptionBudgetThresholdArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionBudgetThresholdArrayOutput)
+}
+
+type ConsumptionBudgetThresholdOutput struct{ *pulumi.OutputState }
+
+func (ConsumptionBudgetThresholdOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConsumptionBudgetThreshold)(nil)).Elem()
+}
+
+func (o ConsumptionBudgetThresholdOutput) ToConsumptionBudgetThresholdOutput() ConsumptionBudgetThresholdOutput {
+	return o
+}
+
+func (o ConsumptionBudgetThresholdOutput) ToConsumptionBudgetThresholdOutputWithContext(ctx context.Context) ConsumptionBudgetThresholdOutput {
+	return o
+}
+
+func (o ConsumptionBudgetThresholdOutput) Action() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ConsumptionBudgetThreshold) *string { return v.Action }).(pulumi.StringPtrOutput)
+}
+
+func (o ConsumptionBudgetThresholdOutput) InstantRate() ConsumptionBudgetThresholdInstantRatePtrOutput {
+	return o.ApplyT(func(v ConsumptionBudgetThreshold) *ConsumptionBudgetThresholdInstantRate { return v.InstantRate }).(ConsumptionBudgetThresholdInstantRatePtrOutput)
+}
+
+func (o ConsumptionBudgetThresholdOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ConsumptionBudgetThreshold) *string { return v.Type }).(pulumi.StringPtrOutput)
+}
+
+func (o ConsumptionBudgetThresholdOutput) Volume() ConsumptionBudgetThresholdVolumePtrOutput {
+	return o.ApplyT(func(v ConsumptionBudgetThreshold) *ConsumptionBudgetThresholdVolume { return v.Volume }).(ConsumptionBudgetThresholdVolumePtrOutput)
+}
+
+type ConsumptionBudgetThresholdArrayOutput struct{ *pulumi.OutputState }
+
+func (ConsumptionBudgetThresholdArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ConsumptionBudgetThreshold)(nil)).Elem()
+}
+
+func (o ConsumptionBudgetThresholdArrayOutput) ToConsumptionBudgetThresholdArrayOutput() ConsumptionBudgetThresholdArrayOutput {
+	return o
+}
+
+func (o ConsumptionBudgetThresholdArrayOutput) ToConsumptionBudgetThresholdArrayOutputWithContext(ctx context.Context) ConsumptionBudgetThresholdArrayOutput {
+	return o
+}
+
+func (o ConsumptionBudgetThresholdArrayOutput) Index(i pulumi.IntInput) ConsumptionBudgetThresholdOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ConsumptionBudgetThreshold {
+		return vs[0].([]ConsumptionBudgetThreshold)[vs[1].(int)]
+	}).(ConsumptionBudgetThresholdOutput)
+}
+
+type ConsumptionBudgetThresholdInstantRate struct {
+	FixedValuePerSec *int `pulumi:"fixedValuePerSec"`
+}
+
+// ConsumptionBudgetThresholdInstantRateInput is an input type that accepts ConsumptionBudgetThresholdInstantRateArgs and ConsumptionBudgetThresholdInstantRateOutput values.
+// You can construct a concrete instance of `ConsumptionBudgetThresholdInstantRateInput` via:
+//
+//	ConsumptionBudgetThresholdInstantRateArgs{...}
+type ConsumptionBudgetThresholdInstantRateInput interface {
+	pulumi.Input
+
+	ToConsumptionBudgetThresholdInstantRateOutput() ConsumptionBudgetThresholdInstantRateOutput
+	ToConsumptionBudgetThresholdInstantRateOutputWithContext(context.Context) ConsumptionBudgetThresholdInstantRateOutput
+}
+
+type ConsumptionBudgetThresholdInstantRateArgs struct {
+	FixedValuePerSec pulumi.IntPtrInput `pulumi:"fixedValuePerSec"`
+}
+
+func (ConsumptionBudgetThresholdInstantRateArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConsumptionBudgetThresholdInstantRate)(nil)).Elem()
+}
+
+func (i ConsumptionBudgetThresholdInstantRateArgs) ToConsumptionBudgetThresholdInstantRateOutput() ConsumptionBudgetThresholdInstantRateOutput {
+	return i.ToConsumptionBudgetThresholdInstantRateOutputWithContext(context.Background())
+}
+
+func (i ConsumptionBudgetThresholdInstantRateArgs) ToConsumptionBudgetThresholdInstantRateOutputWithContext(ctx context.Context) ConsumptionBudgetThresholdInstantRateOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionBudgetThresholdInstantRateOutput)
+}
+
+func (i ConsumptionBudgetThresholdInstantRateArgs) ToConsumptionBudgetThresholdInstantRatePtrOutput() ConsumptionBudgetThresholdInstantRatePtrOutput {
+	return i.ToConsumptionBudgetThresholdInstantRatePtrOutputWithContext(context.Background())
+}
+
+func (i ConsumptionBudgetThresholdInstantRateArgs) ToConsumptionBudgetThresholdInstantRatePtrOutputWithContext(ctx context.Context) ConsumptionBudgetThresholdInstantRatePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionBudgetThresholdInstantRateOutput).ToConsumptionBudgetThresholdInstantRatePtrOutputWithContext(ctx)
+}
+
+// ConsumptionBudgetThresholdInstantRatePtrInput is an input type that accepts ConsumptionBudgetThresholdInstantRateArgs, ConsumptionBudgetThresholdInstantRatePtr and ConsumptionBudgetThresholdInstantRatePtrOutput values.
+// You can construct a concrete instance of `ConsumptionBudgetThresholdInstantRatePtrInput` via:
+//
+//	        ConsumptionBudgetThresholdInstantRateArgs{...}
+//
+//	or:
+//
+//	        nil
+type ConsumptionBudgetThresholdInstantRatePtrInput interface {
+	pulumi.Input
+
+	ToConsumptionBudgetThresholdInstantRatePtrOutput() ConsumptionBudgetThresholdInstantRatePtrOutput
+	ToConsumptionBudgetThresholdInstantRatePtrOutputWithContext(context.Context) ConsumptionBudgetThresholdInstantRatePtrOutput
+}
+
+type consumptionBudgetThresholdInstantRatePtrType ConsumptionBudgetThresholdInstantRateArgs
+
+func ConsumptionBudgetThresholdInstantRatePtr(v *ConsumptionBudgetThresholdInstantRateArgs) ConsumptionBudgetThresholdInstantRatePtrInput {
+	return (*consumptionBudgetThresholdInstantRatePtrType)(v)
+}
+
+func (*consumptionBudgetThresholdInstantRatePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ConsumptionBudgetThresholdInstantRate)(nil)).Elem()
+}
+
+func (i *consumptionBudgetThresholdInstantRatePtrType) ToConsumptionBudgetThresholdInstantRatePtrOutput() ConsumptionBudgetThresholdInstantRatePtrOutput {
+	return i.ToConsumptionBudgetThresholdInstantRatePtrOutputWithContext(context.Background())
+}
+
+func (i *consumptionBudgetThresholdInstantRatePtrType) ToConsumptionBudgetThresholdInstantRatePtrOutputWithContext(ctx context.Context) ConsumptionBudgetThresholdInstantRatePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionBudgetThresholdInstantRatePtrOutput)
+}
+
+type ConsumptionBudgetThresholdInstantRateOutput struct{ *pulumi.OutputState }
+
+func (ConsumptionBudgetThresholdInstantRateOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConsumptionBudgetThresholdInstantRate)(nil)).Elem()
+}
+
+func (o ConsumptionBudgetThresholdInstantRateOutput) ToConsumptionBudgetThresholdInstantRateOutput() ConsumptionBudgetThresholdInstantRateOutput {
+	return o
+}
+
+func (o ConsumptionBudgetThresholdInstantRateOutput) ToConsumptionBudgetThresholdInstantRateOutputWithContext(ctx context.Context) ConsumptionBudgetThresholdInstantRateOutput {
+	return o
+}
+
+func (o ConsumptionBudgetThresholdInstantRateOutput) ToConsumptionBudgetThresholdInstantRatePtrOutput() ConsumptionBudgetThresholdInstantRatePtrOutput {
+	return o.ToConsumptionBudgetThresholdInstantRatePtrOutputWithContext(context.Background())
+}
+
+func (o ConsumptionBudgetThresholdInstantRateOutput) ToConsumptionBudgetThresholdInstantRatePtrOutputWithContext(ctx context.Context) ConsumptionBudgetThresholdInstantRatePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ConsumptionBudgetThresholdInstantRate) *ConsumptionBudgetThresholdInstantRate {
+		return &v
+	}).(ConsumptionBudgetThresholdInstantRatePtrOutput)
+}
+
+func (o ConsumptionBudgetThresholdInstantRateOutput) FixedValuePerSec() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ConsumptionBudgetThresholdInstantRate) *int { return v.FixedValuePerSec }).(pulumi.IntPtrOutput)
+}
+
+type ConsumptionBudgetThresholdInstantRatePtrOutput struct{ *pulumi.OutputState }
+
+func (ConsumptionBudgetThresholdInstantRatePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ConsumptionBudgetThresholdInstantRate)(nil)).Elem()
+}
+
+func (o ConsumptionBudgetThresholdInstantRatePtrOutput) ToConsumptionBudgetThresholdInstantRatePtrOutput() ConsumptionBudgetThresholdInstantRatePtrOutput {
+	return o
+}
+
+func (o ConsumptionBudgetThresholdInstantRatePtrOutput) ToConsumptionBudgetThresholdInstantRatePtrOutputWithContext(ctx context.Context) ConsumptionBudgetThresholdInstantRatePtrOutput {
+	return o
+}
+
+func (o ConsumptionBudgetThresholdInstantRatePtrOutput) Elem() ConsumptionBudgetThresholdInstantRateOutput {
+	return o.ApplyT(func(v *ConsumptionBudgetThresholdInstantRate) ConsumptionBudgetThresholdInstantRate {
+		if v != nil {
+			return *v
+		}
+		var ret ConsumptionBudgetThresholdInstantRate
+		return ret
+	}).(ConsumptionBudgetThresholdInstantRateOutput)
+}
+
+func (o ConsumptionBudgetThresholdInstantRatePtrOutput) FixedValuePerSec() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ConsumptionBudgetThresholdInstantRate) *int {
+		if v == nil {
+			return nil
+		}
+		return v.FixedValuePerSec
+	}).(pulumi.IntPtrOutput)
+}
+
+type ConsumptionBudgetThresholdVolume struct {
+	FixedValue *int `pulumi:"fixedValue"`
+}
+
+// ConsumptionBudgetThresholdVolumeInput is an input type that accepts ConsumptionBudgetThresholdVolumeArgs and ConsumptionBudgetThresholdVolumeOutput values.
+// You can construct a concrete instance of `ConsumptionBudgetThresholdVolumeInput` via:
+//
+//	ConsumptionBudgetThresholdVolumeArgs{...}
+type ConsumptionBudgetThresholdVolumeInput interface {
+	pulumi.Input
+
+	ToConsumptionBudgetThresholdVolumeOutput() ConsumptionBudgetThresholdVolumeOutput
+	ToConsumptionBudgetThresholdVolumeOutputWithContext(context.Context) ConsumptionBudgetThresholdVolumeOutput
+}
+
+type ConsumptionBudgetThresholdVolumeArgs struct {
+	FixedValue pulumi.IntPtrInput `pulumi:"fixedValue"`
+}
+
+func (ConsumptionBudgetThresholdVolumeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConsumptionBudgetThresholdVolume)(nil)).Elem()
+}
+
+func (i ConsumptionBudgetThresholdVolumeArgs) ToConsumptionBudgetThresholdVolumeOutput() ConsumptionBudgetThresholdVolumeOutput {
+	return i.ToConsumptionBudgetThresholdVolumeOutputWithContext(context.Background())
+}
+
+func (i ConsumptionBudgetThresholdVolumeArgs) ToConsumptionBudgetThresholdVolumeOutputWithContext(ctx context.Context) ConsumptionBudgetThresholdVolumeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionBudgetThresholdVolumeOutput)
+}
+
+func (i ConsumptionBudgetThresholdVolumeArgs) ToConsumptionBudgetThresholdVolumePtrOutput() ConsumptionBudgetThresholdVolumePtrOutput {
+	return i.ToConsumptionBudgetThresholdVolumePtrOutputWithContext(context.Background())
+}
+
+func (i ConsumptionBudgetThresholdVolumeArgs) ToConsumptionBudgetThresholdVolumePtrOutputWithContext(ctx context.Context) ConsumptionBudgetThresholdVolumePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionBudgetThresholdVolumeOutput).ToConsumptionBudgetThresholdVolumePtrOutputWithContext(ctx)
+}
+
+// ConsumptionBudgetThresholdVolumePtrInput is an input type that accepts ConsumptionBudgetThresholdVolumeArgs, ConsumptionBudgetThresholdVolumePtr and ConsumptionBudgetThresholdVolumePtrOutput values.
+// You can construct a concrete instance of `ConsumptionBudgetThresholdVolumePtrInput` via:
+//
+//	        ConsumptionBudgetThresholdVolumeArgs{...}
+//
+//	or:
+//
+//	        nil
+type ConsumptionBudgetThresholdVolumePtrInput interface {
+	pulumi.Input
+
+	ToConsumptionBudgetThresholdVolumePtrOutput() ConsumptionBudgetThresholdVolumePtrOutput
+	ToConsumptionBudgetThresholdVolumePtrOutputWithContext(context.Context) ConsumptionBudgetThresholdVolumePtrOutput
+}
+
+type consumptionBudgetThresholdVolumePtrType ConsumptionBudgetThresholdVolumeArgs
+
+func ConsumptionBudgetThresholdVolumePtr(v *ConsumptionBudgetThresholdVolumeArgs) ConsumptionBudgetThresholdVolumePtrInput {
+	return (*consumptionBudgetThresholdVolumePtrType)(v)
+}
+
+func (*consumptionBudgetThresholdVolumePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ConsumptionBudgetThresholdVolume)(nil)).Elem()
+}
+
+func (i *consumptionBudgetThresholdVolumePtrType) ToConsumptionBudgetThresholdVolumePtrOutput() ConsumptionBudgetThresholdVolumePtrOutput {
+	return i.ToConsumptionBudgetThresholdVolumePtrOutputWithContext(context.Background())
+}
+
+func (i *consumptionBudgetThresholdVolumePtrType) ToConsumptionBudgetThresholdVolumePtrOutputWithContext(ctx context.Context) ConsumptionBudgetThresholdVolumePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionBudgetThresholdVolumePtrOutput)
+}
+
+type ConsumptionBudgetThresholdVolumeOutput struct{ *pulumi.OutputState }
+
+func (ConsumptionBudgetThresholdVolumeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConsumptionBudgetThresholdVolume)(nil)).Elem()
+}
+
+func (o ConsumptionBudgetThresholdVolumeOutput) ToConsumptionBudgetThresholdVolumeOutput() ConsumptionBudgetThresholdVolumeOutput {
+	return o
+}
+
+func (o ConsumptionBudgetThresholdVolumeOutput) ToConsumptionBudgetThresholdVolumeOutputWithContext(ctx context.Context) ConsumptionBudgetThresholdVolumeOutput {
+	return o
+}
+
+func (o ConsumptionBudgetThresholdVolumeOutput) ToConsumptionBudgetThresholdVolumePtrOutput() ConsumptionBudgetThresholdVolumePtrOutput {
+	return o.ToConsumptionBudgetThresholdVolumePtrOutputWithContext(context.Background())
+}
+
+func (o ConsumptionBudgetThresholdVolumeOutput) ToConsumptionBudgetThresholdVolumePtrOutputWithContext(ctx context.Context) ConsumptionBudgetThresholdVolumePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ConsumptionBudgetThresholdVolume) *ConsumptionBudgetThresholdVolume {
+		return &v
+	}).(ConsumptionBudgetThresholdVolumePtrOutput)
+}
+
+func (o ConsumptionBudgetThresholdVolumeOutput) FixedValue() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ConsumptionBudgetThresholdVolume) *int { return v.FixedValue }).(pulumi.IntPtrOutput)
+}
+
+type ConsumptionBudgetThresholdVolumePtrOutput struct{ *pulumi.OutputState }
+
+func (ConsumptionBudgetThresholdVolumePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ConsumptionBudgetThresholdVolume)(nil)).Elem()
+}
+
+func (o ConsumptionBudgetThresholdVolumePtrOutput) ToConsumptionBudgetThresholdVolumePtrOutput() ConsumptionBudgetThresholdVolumePtrOutput {
+	return o
+}
+
+func (o ConsumptionBudgetThresholdVolumePtrOutput) ToConsumptionBudgetThresholdVolumePtrOutputWithContext(ctx context.Context) ConsumptionBudgetThresholdVolumePtrOutput {
+	return o
+}
+
+func (o ConsumptionBudgetThresholdVolumePtrOutput) Elem() ConsumptionBudgetThresholdVolumeOutput {
+	return o.ApplyT(func(v *ConsumptionBudgetThresholdVolume) ConsumptionBudgetThresholdVolume {
+		if v != nil {
+			return *v
+		}
+		var ret ConsumptionBudgetThresholdVolume
+		return ret
+	}).(ConsumptionBudgetThresholdVolumeOutput)
+}
+
+func (o ConsumptionBudgetThresholdVolumePtrOutput) FixedValue() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ConsumptionBudgetThresholdVolume) *int {
+		if v == nil {
+			return nil
+		}
+		return v.FixedValue
+	}).(pulumi.IntPtrOutput)
+}
+
+type ConsumptionConfigPartition struct {
+	Filters    []ConsumptionConfigPartitionFilter    `pulumi:"filters"`
+	Name       *string                               `pulumi:"name"`
+	Partitions []ConsumptionConfigPartitionPartition `pulumi:"partitions"`
+	Slug       *string                               `pulumi:"slug"`
+}
+
+// ConsumptionConfigPartitionInput is an input type that accepts ConsumptionConfigPartitionArgs and ConsumptionConfigPartitionOutput values.
+// You can construct a concrete instance of `ConsumptionConfigPartitionInput` via:
+//
+//	ConsumptionConfigPartitionArgs{...}
+type ConsumptionConfigPartitionInput interface {
+	pulumi.Input
+
+	ToConsumptionConfigPartitionOutput() ConsumptionConfigPartitionOutput
+	ToConsumptionConfigPartitionOutputWithContext(context.Context) ConsumptionConfigPartitionOutput
+}
+
+type ConsumptionConfigPartitionArgs struct {
+	Filters    ConsumptionConfigPartitionFilterArrayInput    `pulumi:"filters"`
+	Name       pulumi.StringPtrInput                         `pulumi:"name"`
+	Partitions ConsumptionConfigPartitionPartitionArrayInput `pulumi:"partitions"`
+	Slug       pulumi.StringPtrInput                         `pulumi:"slug"`
+}
+
+func (ConsumptionConfigPartitionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConsumptionConfigPartition)(nil)).Elem()
+}
+
+func (i ConsumptionConfigPartitionArgs) ToConsumptionConfigPartitionOutput() ConsumptionConfigPartitionOutput {
+	return i.ToConsumptionConfigPartitionOutputWithContext(context.Background())
+}
+
+func (i ConsumptionConfigPartitionArgs) ToConsumptionConfigPartitionOutputWithContext(ctx context.Context) ConsumptionConfigPartitionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionConfigPartitionOutput)
+}
+
+// ConsumptionConfigPartitionArrayInput is an input type that accepts ConsumptionConfigPartitionArray and ConsumptionConfigPartitionArrayOutput values.
+// You can construct a concrete instance of `ConsumptionConfigPartitionArrayInput` via:
+//
+//	ConsumptionConfigPartitionArray{ ConsumptionConfigPartitionArgs{...} }
+type ConsumptionConfigPartitionArrayInput interface {
+	pulumi.Input
+
+	ToConsumptionConfigPartitionArrayOutput() ConsumptionConfigPartitionArrayOutput
+	ToConsumptionConfigPartitionArrayOutputWithContext(context.Context) ConsumptionConfigPartitionArrayOutput
+}
+
+type ConsumptionConfigPartitionArray []ConsumptionConfigPartitionInput
+
+func (ConsumptionConfigPartitionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ConsumptionConfigPartition)(nil)).Elem()
+}
+
+func (i ConsumptionConfigPartitionArray) ToConsumptionConfigPartitionArrayOutput() ConsumptionConfigPartitionArrayOutput {
+	return i.ToConsumptionConfigPartitionArrayOutputWithContext(context.Background())
+}
+
+func (i ConsumptionConfigPartitionArray) ToConsumptionConfigPartitionArrayOutputWithContext(ctx context.Context) ConsumptionConfigPartitionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionConfigPartitionArrayOutput)
+}
+
+type ConsumptionConfigPartitionOutput struct{ *pulumi.OutputState }
+
+func (ConsumptionConfigPartitionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConsumptionConfigPartition)(nil)).Elem()
+}
+
+func (o ConsumptionConfigPartitionOutput) ToConsumptionConfigPartitionOutput() ConsumptionConfigPartitionOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionOutput) ToConsumptionConfigPartitionOutputWithContext(ctx context.Context) ConsumptionConfigPartitionOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionOutput) Filters() ConsumptionConfigPartitionFilterArrayOutput {
+	return o.ApplyT(func(v ConsumptionConfigPartition) []ConsumptionConfigPartitionFilter { return v.Filters }).(ConsumptionConfigPartitionFilterArrayOutput)
+}
+
+func (o ConsumptionConfigPartitionOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ConsumptionConfigPartition) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+func (o ConsumptionConfigPartitionOutput) Partitions() ConsumptionConfigPartitionPartitionArrayOutput {
+	return o.ApplyT(func(v ConsumptionConfigPartition) []ConsumptionConfigPartitionPartition { return v.Partitions }).(ConsumptionConfigPartitionPartitionArrayOutput)
+}
+
+func (o ConsumptionConfigPartitionOutput) Slug() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ConsumptionConfigPartition) *string { return v.Slug }).(pulumi.StringPtrOutput)
+}
+
+type ConsumptionConfigPartitionArrayOutput struct{ *pulumi.OutputState }
+
+func (ConsumptionConfigPartitionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ConsumptionConfigPartition)(nil)).Elem()
+}
+
+func (o ConsumptionConfigPartitionArrayOutput) ToConsumptionConfigPartitionArrayOutput() ConsumptionConfigPartitionArrayOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionArrayOutput) ToConsumptionConfigPartitionArrayOutputWithContext(ctx context.Context) ConsumptionConfigPartitionArrayOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionArrayOutput) Index(i pulumi.IntInput) ConsumptionConfigPartitionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ConsumptionConfigPartition {
+		return vs[0].([]ConsumptionConfigPartition)[vs[1].(int)]
+	}).(ConsumptionConfigPartitionOutput)
+}
+
+type ConsumptionConfigPartitionFilter struct {
+	Conditions []ConsumptionConfigPartitionFilterCondition `pulumi:"conditions"`
+	Operator   *string                                     `pulumi:"operator"`
+}
+
+// ConsumptionConfigPartitionFilterInput is an input type that accepts ConsumptionConfigPartitionFilterArgs and ConsumptionConfigPartitionFilterOutput values.
+// You can construct a concrete instance of `ConsumptionConfigPartitionFilterInput` via:
+//
+//	ConsumptionConfigPartitionFilterArgs{...}
+type ConsumptionConfigPartitionFilterInput interface {
+	pulumi.Input
+
+	ToConsumptionConfigPartitionFilterOutput() ConsumptionConfigPartitionFilterOutput
+	ToConsumptionConfigPartitionFilterOutputWithContext(context.Context) ConsumptionConfigPartitionFilterOutput
+}
+
+type ConsumptionConfigPartitionFilterArgs struct {
+	Conditions ConsumptionConfigPartitionFilterConditionArrayInput `pulumi:"conditions"`
+	Operator   pulumi.StringPtrInput                               `pulumi:"operator"`
+}
+
+func (ConsumptionConfigPartitionFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConsumptionConfigPartitionFilter)(nil)).Elem()
+}
+
+func (i ConsumptionConfigPartitionFilterArgs) ToConsumptionConfigPartitionFilterOutput() ConsumptionConfigPartitionFilterOutput {
+	return i.ToConsumptionConfigPartitionFilterOutputWithContext(context.Background())
+}
+
+func (i ConsumptionConfigPartitionFilterArgs) ToConsumptionConfigPartitionFilterOutputWithContext(ctx context.Context) ConsumptionConfigPartitionFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionConfigPartitionFilterOutput)
+}
+
+// ConsumptionConfigPartitionFilterArrayInput is an input type that accepts ConsumptionConfigPartitionFilterArray and ConsumptionConfigPartitionFilterArrayOutput values.
+// You can construct a concrete instance of `ConsumptionConfigPartitionFilterArrayInput` via:
+//
+//	ConsumptionConfigPartitionFilterArray{ ConsumptionConfigPartitionFilterArgs{...} }
+type ConsumptionConfigPartitionFilterArrayInput interface {
+	pulumi.Input
+
+	ToConsumptionConfigPartitionFilterArrayOutput() ConsumptionConfigPartitionFilterArrayOutput
+	ToConsumptionConfigPartitionFilterArrayOutputWithContext(context.Context) ConsumptionConfigPartitionFilterArrayOutput
+}
+
+type ConsumptionConfigPartitionFilterArray []ConsumptionConfigPartitionFilterInput
+
+func (ConsumptionConfigPartitionFilterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ConsumptionConfigPartitionFilter)(nil)).Elem()
+}
+
+func (i ConsumptionConfigPartitionFilterArray) ToConsumptionConfigPartitionFilterArrayOutput() ConsumptionConfigPartitionFilterArrayOutput {
+	return i.ToConsumptionConfigPartitionFilterArrayOutputWithContext(context.Background())
+}
+
+func (i ConsumptionConfigPartitionFilterArray) ToConsumptionConfigPartitionFilterArrayOutputWithContext(ctx context.Context) ConsumptionConfigPartitionFilterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionConfigPartitionFilterArrayOutput)
+}
+
+type ConsumptionConfigPartitionFilterOutput struct{ *pulumi.OutputState }
+
+func (ConsumptionConfigPartitionFilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConsumptionConfigPartitionFilter)(nil)).Elem()
+}
+
+func (o ConsumptionConfigPartitionFilterOutput) ToConsumptionConfigPartitionFilterOutput() ConsumptionConfigPartitionFilterOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionFilterOutput) ToConsumptionConfigPartitionFilterOutputWithContext(ctx context.Context) ConsumptionConfigPartitionFilterOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionFilterOutput) Conditions() ConsumptionConfigPartitionFilterConditionArrayOutput {
+	return o.ApplyT(func(v ConsumptionConfigPartitionFilter) []ConsumptionConfigPartitionFilterCondition {
+		return v.Conditions
+	}).(ConsumptionConfigPartitionFilterConditionArrayOutput)
+}
+
+func (o ConsumptionConfigPartitionFilterOutput) Operator() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ConsumptionConfigPartitionFilter) *string { return v.Operator }).(pulumi.StringPtrOutput)
+}
+
+type ConsumptionConfigPartitionFilterArrayOutput struct{ *pulumi.OutputState }
+
+func (ConsumptionConfigPartitionFilterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ConsumptionConfigPartitionFilter)(nil)).Elem()
+}
+
+func (o ConsumptionConfigPartitionFilterArrayOutput) ToConsumptionConfigPartitionFilterArrayOutput() ConsumptionConfigPartitionFilterArrayOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionFilterArrayOutput) ToConsumptionConfigPartitionFilterArrayOutputWithContext(ctx context.Context) ConsumptionConfigPartitionFilterArrayOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionFilterArrayOutput) Index(i pulumi.IntInput) ConsumptionConfigPartitionFilterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ConsumptionConfigPartitionFilter {
+		return vs[0].([]ConsumptionConfigPartitionFilter)[vs[1].(int)]
+	}).(ConsumptionConfigPartitionFilterOutput)
+}
+
+type ConsumptionConfigPartitionFilterCondition struct {
+	DatasetId *string                                             `pulumi:"datasetId"`
+	LogFilter *ConsumptionConfigPartitionFilterConditionLogFilter `pulumi:"logFilter"`
+}
+
+// ConsumptionConfigPartitionFilterConditionInput is an input type that accepts ConsumptionConfigPartitionFilterConditionArgs and ConsumptionConfigPartitionFilterConditionOutput values.
+// You can construct a concrete instance of `ConsumptionConfigPartitionFilterConditionInput` via:
+//
+//	ConsumptionConfigPartitionFilterConditionArgs{...}
+type ConsumptionConfigPartitionFilterConditionInput interface {
+	pulumi.Input
+
+	ToConsumptionConfigPartitionFilterConditionOutput() ConsumptionConfigPartitionFilterConditionOutput
+	ToConsumptionConfigPartitionFilterConditionOutputWithContext(context.Context) ConsumptionConfigPartitionFilterConditionOutput
+}
+
+type ConsumptionConfigPartitionFilterConditionArgs struct {
+	DatasetId pulumi.StringPtrInput                                      `pulumi:"datasetId"`
+	LogFilter ConsumptionConfigPartitionFilterConditionLogFilterPtrInput `pulumi:"logFilter"`
+}
+
+func (ConsumptionConfigPartitionFilterConditionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConsumptionConfigPartitionFilterCondition)(nil)).Elem()
+}
+
+func (i ConsumptionConfigPartitionFilterConditionArgs) ToConsumptionConfigPartitionFilterConditionOutput() ConsumptionConfigPartitionFilterConditionOutput {
+	return i.ToConsumptionConfigPartitionFilterConditionOutputWithContext(context.Background())
+}
+
+func (i ConsumptionConfigPartitionFilterConditionArgs) ToConsumptionConfigPartitionFilterConditionOutputWithContext(ctx context.Context) ConsumptionConfigPartitionFilterConditionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionConfigPartitionFilterConditionOutput)
+}
+
+// ConsumptionConfigPartitionFilterConditionArrayInput is an input type that accepts ConsumptionConfigPartitionFilterConditionArray and ConsumptionConfigPartitionFilterConditionArrayOutput values.
+// You can construct a concrete instance of `ConsumptionConfigPartitionFilterConditionArrayInput` via:
+//
+//	ConsumptionConfigPartitionFilterConditionArray{ ConsumptionConfigPartitionFilterConditionArgs{...} }
+type ConsumptionConfigPartitionFilterConditionArrayInput interface {
+	pulumi.Input
+
+	ToConsumptionConfigPartitionFilterConditionArrayOutput() ConsumptionConfigPartitionFilterConditionArrayOutput
+	ToConsumptionConfigPartitionFilterConditionArrayOutputWithContext(context.Context) ConsumptionConfigPartitionFilterConditionArrayOutput
+}
+
+type ConsumptionConfigPartitionFilterConditionArray []ConsumptionConfigPartitionFilterConditionInput
+
+func (ConsumptionConfigPartitionFilterConditionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ConsumptionConfigPartitionFilterCondition)(nil)).Elem()
+}
+
+func (i ConsumptionConfigPartitionFilterConditionArray) ToConsumptionConfigPartitionFilterConditionArrayOutput() ConsumptionConfigPartitionFilterConditionArrayOutput {
+	return i.ToConsumptionConfigPartitionFilterConditionArrayOutputWithContext(context.Background())
+}
+
+func (i ConsumptionConfigPartitionFilterConditionArray) ToConsumptionConfigPartitionFilterConditionArrayOutputWithContext(ctx context.Context) ConsumptionConfigPartitionFilterConditionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionConfigPartitionFilterConditionArrayOutput)
+}
+
+type ConsumptionConfigPartitionFilterConditionOutput struct{ *pulumi.OutputState }
+
+func (ConsumptionConfigPartitionFilterConditionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConsumptionConfigPartitionFilterCondition)(nil)).Elem()
+}
+
+func (o ConsumptionConfigPartitionFilterConditionOutput) ToConsumptionConfigPartitionFilterConditionOutput() ConsumptionConfigPartitionFilterConditionOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionFilterConditionOutput) ToConsumptionConfigPartitionFilterConditionOutputWithContext(ctx context.Context) ConsumptionConfigPartitionFilterConditionOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionFilterConditionOutput) DatasetId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ConsumptionConfigPartitionFilterCondition) *string { return v.DatasetId }).(pulumi.StringPtrOutput)
+}
+
+func (o ConsumptionConfigPartitionFilterConditionOutput) LogFilter() ConsumptionConfigPartitionFilterConditionLogFilterPtrOutput {
+	return o.ApplyT(func(v ConsumptionConfigPartitionFilterCondition) *ConsumptionConfigPartitionFilterConditionLogFilter {
+		return v.LogFilter
+	}).(ConsumptionConfigPartitionFilterConditionLogFilterPtrOutput)
+}
+
+type ConsumptionConfigPartitionFilterConditionArrayOutput struct{ *pulumi.OutputState }
+
+func (ConsumptionConfigPartitionFilterConditionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ConsumptionConfigPartitionFilterCondition)(nil)).Elem()
+}
+
+func (o ConsumptionConfigPartitionFilterConditionArrayOutput) ToConsumptionConfigPartitionFilterConditionArrayOutput() ConsumptionConfigPartitionFilterConditionArrayOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionFilterConditionArrayOutput) ToConsumptionConfigPartitionFilterConditionArrayOutputWithContext(ctx context.Context) ConsumptionConfigPartitionFilterConditionArrayOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionFilterConditionArrayOutput) Index(i pulumi.IntInput) ConsumptionConfigPartitionFilterConditionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ConsumptionConfigPartitionFilterCondition {
+		return vs[0].([]ConsumptionConfigPartitionFilterCondition)[vs[1].(int)]
+	}).(ConsumptionConfigPartitionFilterConditionOutput)
+}
+
+type ConsumptionConfigPartitionFilterConditionLogFilter struct {
+	Query string `pulumi:"query"`
+}
+
+// ConsumptionConfigPartitionFilterConditionLogFilterInput is an input type that accepts ConsumptionConfigPartitionFilterConditionLogFilterArgs and ConsumptionConfigPartitionFilterConditionLogFilterOutput values.
+// You can construct a concrete instance of `ConsumptionConfigPartitionFilterConditionLogFilterInput` via:
+//
+//	ConsumptionConfigPartitionFilterConditionLogFilterArgs{...}
+type ConsumptionConfigPartitionFilterConditionLogFilterInput interface {
+	pulumi.Input
+
+	ToConsumptionConfigPartitionFilterConditionLogFilterOutput() ConsumptionConfigPartitionFilterConditionLogFilterOutput
+	ToConsumptionConfigPartitionFilterConditionLogFilterOutputWithContext(context.Context) ConsumptionConfigPartitionFilterConditionLogFilterOutput
+}
+
+type ConsumptionConfigPartitionFilterConditionLogFilterArgs struct {
+	Query pulumi.StringInput `pulumi:"query"`
+}
+
+func (ConsumptionConfigPartitionFilterConditionLogFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConsumptionConfigPartitionFilterConditionLogFilter)(nil)).Elem()
+}
+
+func (i ConsumptionConfigPartitionFilterConditionLogFilterArgs) ToConsumptionConfigPartitionFilterConditionLogFilterOutput() ConsumptionConfigPartitionFilterConditionLogFilterOutput {
+	return i.ToConsumptionConfigPartitionFilterConditionLogFilterOutputWithContext(context.Background())
+}
+
+func (i ConsumptionConfigPartitionFilterConditionLogFilterArgs) ToConsumptionConfigPartitionFilterConditionLogFilterOutputWithContext(ctx context.Context) ConsumptionConfigPartitionFilterConditionLogFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionConfigPartitionFilterConditionLogFilterOutput)
+}
+
+func (i ConsumptionConfigPartitionFilterConditionLogFilterArgs) ToConsumptionConfigPartitionFilterConditionLogFilterPtrOutput() ConsumptionConfigPartitionFilterConditionLogFilterPtrOutput {
+	return i.ToConsumptionConfigPartitionFilterConditionLogFilterPtrOutputWithContext(context.Background())
+}
+
+func (i ConsumptionConfigPartitionFilterConditionLogFilterArgs) ToConsumptionConfigPartitionFilterConditionLogFilterPtrOutputWithContext(ctx context.Context) ConsumptionConfigPartitionFilterConditionLogFilterPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionConfigPartitionFilterConditionLogFilterOutput).ToConsumptionConfigPartitionFilterConditionLogFilterPtrOutputWithContext(ctx)
+}
+
+// ConsumptionConfigPartitionFilterConditionLogFilterPtrInput is an input type that accepts ConsumptionConfigPartitionFilterConditionLogFilterArgs, ConsumptionConfigPartitionFilterConditionLogFilterPtr and ConsumptionConfigPartitionFilterConditionLogFilterPtrOutput values.
+// You can construct a concrete instance of `ConsumptionConfigPartitionFilterConditionLogFilterPtrInput` via:
+//
+//	        ConsumptionConfigPartitionFilterConditionLogFilterArgs{...}
+//
+//	or:
+//
+//	        nil
+type ConsumptionConfigPartitionFilterConditionLogFilterPtrInput interface {
+	pulumi.Input
+
+	ToConsumptionConfigPartitionFilterConditionLogFilterPtrOutput() ConsumptionConfigPartitionFilterConditionLogFilterPtrOutput
+	ToConsumptionConfigPartitionFilterConditionLogFilterPtrOutputWithContext(context.Context) ConsumptionConfigPartitionFilterConditionLogFilterPtrOutput
+}
+
+type consumptionConfigPartitionFilterConditionLogFilterPtrType ConsumptionConfigPartitionFilterConditionLogFilterArgs
+
+func ConsumptionConfigPartitionFilterConditionLogFilterPtr(v *ConsumptionConfigPartitionFilterConditionLogFilterArgs) ConsumptionConfigPartitionFilterConditionLogFilterPtrInput {
+	return (*consumptionConfigPartitionFilterConditionLogFilterPtrType)(v)
+}
+
+func (*consumptionConfigPartitionFilterConditionLogFilterPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ConsumptionConfigPartitionFilterConditionLogFilter)(nil)).Elem()
+}
+
+func (i *consumptionConfigPartitionFilterConditionLogFilterPtrType) ToConsumptionConfigPartitionFilterConditionLogFilterPtrOutput() ConsumptionConfigPartitionFilterConditionLogFilterPtrOutput {
+	return i.ToConsumptionConfigPartitionFilterConditionLogFilterPtrOutputWithContext(context.Background())
+}
+
+func (i *consumptionConfigPartitionFilterConditionLogFilterPtrType) ToConsumptionConfigPartitionFilterConditionLogFilterPtrOutputWithContext(ctx context.Context) ConsumptionConfigPartitionFilterConditionLogFilterPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionConfigPartitionFilterConditionLogFilterPtrOutput)
+}
+
+type ConsumptionConfigPartitionFilterConditionLogFilterOutput struct{ *pulumi.OutputState }
+
+func (ConsumptionConfigPartitionFilterConditionLogFilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConsumptionConfigPartitionFilterConditionLogFilter)(nil)).Elem()
+}
+
+func (o ConsumptionConfigPartitionFilterConditionLogFilterOutput) ToConsumptionConfigPartitionFilterConditionLogFilterOutput() ConsumptionConfigPartitionFilterConditionLogFilterOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionFilterConditionLogFilterOutput) ToConsumptionConfigPartitionFilterConditionLogFilterOutputWithContext(ctx context.Context) ConsumptionConfigPartitionFilterConditionLogFilterOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionFilterConditionLogFilterOutput) ToConsumptionConfigPartitionFilterConditionLogFilterPtrOutput() ConsumptionConfigPartitionFilterConditionLogFilterPtrOutput {
+	return o.ToConsumptionConfigPartitionFilterConditionLogFilterPtrOutputWithContext(context.Background())
+}
+
+func (o ConsumptionConfigPartitionFilterConditionLogFilterOutput) ToConsumptionConfigPartitionFilterConditionLogFilterPtrOutputWithContext(ctx context.Context) ConsumptionConfigPartitionFilterConditionLogFilterPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ConsumptionConfigPartitionFilterConditionLogFilter) *ConsumptionConfigPartitionFilterConditionLogFilter {
+		return &v
+	}).(ConsumptionConfigPartitionFilterConditionLogFilterPtrOutput)
+}
+
+func (o ConsumptionConfigPartitionFilterConditionLogFilterOutput) Query() pulumi.StringOutput {
+	return o.ApplyT(func(v ConsumptionConfigPartitionFilterConditionLogFilter) string { return v.Query }).(pulumi.StringOutput)
+}
+
+type ConsumptionConfigPartitionFilterConditionLogFilterPtrOutput struct{ *pulumi.OutputState }
+
+func (ConsumptionConfigPartitionFilterConditionLogFilterPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ConsumptionConfigPartitionFilterConditionLogFilter)(nil)).Elem()
+}
+
+func (o ConsumptionConfigPartitionFilterConditionLogFilterPtrOutput) ToConsumptionConfigPartitionFilterConditionLogFilterPtrOutput() ConsumptionConfigPartitionFilterConditionLogFilterPtrOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionFilterConditionLogFilterPtrOutput) ToConsumptionConfigPartitionFilterConditionLogFilterPtrOutputWithContext(ctx context.Context) ConsumptionConfigPartitionFilterConditionLogFilterPtrOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionFilterConditionLogFilterPtrOutput) Elem() ConsumptionConfigPartitionFilterConditionLogFilterOutput {
+	return o.ApplyT(func(v *ConsumptionConfigPartitionFilterConditionLogFilter) ConsumptionConfigPartitionFilterConditionLogFilter {
+		if v != nil {
+			return *v
+		}
+		var ret ConsumptionConfigPartitionFilterConditionLogFilter
+		return ret
+	}).(ConsumptionConfigPartitionFilterConditionLogFilterOutput)
+}
+
+func (o ConsumptionConfigPartitionFilterConditionLogFilterPtrOutput) Query() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ConsumptionConfigPartitionFilterConditionLogFilter) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Query
+	}).(pulumi.StringPtrOutput)
+}
+
+type ConsumptionConfigPartitionPartition struct {
+	Filters    []ConsumptionConfigPartitionPartitionFilter    `pulumi:"filters"`
+	Name       *string                                        `pulumi:"name"`
+	Partitions []ConsumptionConfigPartitionPartitionPartition `pulumi:"partitions"`
+	Slug       *string                                        `pulumi:"slug"`
+}
+
+// ConsumptionConfigPartitionPartitionInput is an input type that accepts ConsumptionConfigPartitionPartitionArgs and ConsumptionConfigPartitionPartitionOutput values.
+// You can construct a concrete instance of `ConsumptionConfigPartitionPartitionInput` via:
+//
+//	ConsumptionConfigPartitionPartitionArgs{...}
+type ConsumptionConfigPartitionPartitionInput interface {
+	pulumi.Input
+
+	ToConsumptionConfigPartitionPartitionOutput() ConsumptionConfigPartitionPartitionOutput
+	ToConsumptionConfigPartitionPartitionOutputWithContext(context.Context) ConsumptionConfigPartitionPartitionOutput
+}
+
+type ConsumptionConfigPartitionPartitionArgs struct {
+	Filters    ConsumptionConfigPartitionPartitionFilterArrayInput    `pulumi:"filters"`
+	Name       pulumi.StringPtrInput                                  `pulumi:"name"`
+	Partitions ConsumptionConfigPartitionPartitionPartitionArrayInput `pulumi:"partitions"`
+	Slug       pulumi.StringPtrInput                                  `pulumi:"slug"`
+}
+
+func (ConsumptionConfigPartitionPartitionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConsumptionConfigPartitionPartition)(nil)).Elem()
+}
+
+func (i ConsumptionConfigPartitionPartitionArgs) ToConsumptionConfigPartitionPartitionOutput() ConsumptionConfigPartitionPartitionOutput {
+	return i.ToConsumptionConfigPartitionPartitionOutputWithContext(context.Background())
+}
+
+func (i ConsumptionConfigPartitionPartitionArgs) ToConsumptionConfigPartitionPartitionOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionConfigPartitionPartitionOutput)
+}
+
+// ConsumptionConfigPartitionPartitionArrayInput is an input type that accepts ConsumptionConfigPartitionPartitionArray and ConsumptionConfigPartitionPartitionArrayOutput values.
+// You can construct a concrete instance of `ConsumptionConfigPartitionPartitionArrayInput` via:
+//
+//	ConsumptionConfigPartitionPartitionArray{ ConsumptionConfigPartitionPartitionArgs{...} }
+type ConsumptionConfigPartitionPartitionArrayInput interface {
+	pulumi.Input
+
+	ToConsumptionConfigPartitionPartitionArrayOutput() ConsumptionConfigPartitionPartitionArrayOutput
+	ToConsumptionConfigPartitionPartitionArrayOutputWithContext(context.Context) ConsumptionConfigPartitionPartitionArrayOutput
+}
+
+type ConsumptionConfigPartitionPartitionArray []ConsumptionConfigPartitionPartitionInput
+
+func (ConsumptionConfigPartitionPartitionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ConsumptionConfigPartitionPartition)(nil)).Elem()
+}
+
+func (i ConsumptionConfigPartitionPartitionArray) ToConsumptionConfigPartitionPartitionArrayOutput() ConsumptionConfigPartitionPartitionArrayOutput {
+	return i.ToConsumptionConfigPartitionPartitionArrayOutputWithContext(context.Background())
+}
+
+func (i ConsumptionConfigPartitionPartitionArray) ToConsumptionConfigPartitionPartitionArrayOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionConfigPartitionPartitionArrayOutput)
+}
+
+type ConsumptionConfigPartitionPartitionOutput struct{ *pulumi.OutputState }
+
+func (ConsumptionConfigPartitionPartitionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConsumptionConfigPartitionPartition)(nil)).Elem()
+}
+
+func (o ConsumptionConfigPartitionPartitionOutput) ToConsumptionConfigPartitionPartitionOutput() ConsumptionConfigPartitionPartitionOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionOutput) ToConsumptionConfigPartitionPartitionOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionOutput) Filters() ConsumptionConfigPartitionPartitionFilterArrayOutput {
+	return o.ApplyT(func(v ConsumptionConfigPartitionPartition) []ConsumptionConfigPartitionPartitionFilter {
+		return v.Filters
+	}).(ConsumptionConfigPartitionPartitionFilterArrayOutput)
+}
+
+func (o ConsumptionConfigPartitionPartitionOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ConsumptionConfigPartitionPartition) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+func (o ConsumptionConfigPartitionPartitionOutput) Partitions() ConsumptionConfigPartitionPartitionPartitionArrayOutput {
+	return o.ApplyT(func(v ConsumptionConfigPartitionPartition) []ConsumptionConfigPartitionPartitionPartition {
+		return v.Partitions
+	}).(ConsumptionConfigPartitionPartitionPartitionArrayOutput)
+}
+
+func (o ConsumptionConfigPartitionPartitionOutput) Slug() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ConsumptionConfigPartitionPartition) *string { return v.Slug }).(pulumi.StringPtrOutput)
+}
+
+type ConsumptionConfigPartitionPartitionArrayOutput struct{ *pulumi.OutputState }
+
+func (ConsumptionConfigPartitionPartitionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ConsumptionConfigPartitionPartition)(nil)).Elem()
+}
+
+func (o ConsumptionConfigPartitionPartitionArrayOutput) ToConsumptionConfigPartitionPartitionArrayOutput() ConsumptionConfigPartitionPartitionArrayOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionArrayOutput) ToConsumptionConfigPartitionPartitionArrayOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionArrayOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionArrayOutput) Index(i pulumi.IntInput) ConsumptionConfigPartitionPartitionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ConsumptionConfigPartitionPartition {
+		return vs[0].([]ConsumptionConfigPartitionPartition)[vs[1].(int)]
+	}).(ConsumptionConfigPartitionPartitionOutput)
+}
+
+type ConsumptionConfigPartitionPartitionFilter struct {
+	Conditions []ConsumptionConfigPartitionPartitionFilterCondition `pulumi:"conditions"`
+	Operator   *string                                              `pulumi:"operator"`
+}
+
+// ConsumptionConfigPartitionPartitionFilterInput is an input type that accepts ConsumptionConfigPartitionPartitionFilterArgs and ConsumptionConfigPartitionPartitionFilterOutput values.
+// You can construct a concrete instance of `ConsumptionConfigPartitionPartitionFilterInput` via:
+//
+//	ConsumptionConfigPartitionPartitionFilterArgs{...}
+type ConsumptionConfigPartitionPartitionFilterInput interface {
+	pulumi.Input
+
+	ToConsumptionConfigPartitionPartitionFilterOutput() ConsumptionConfigPartitionPartitionFilterOutput
+	ToConsumptionConfigPartitionPartitionFilterOutputWithContext(context.Context) ConsumptionConfigPartitionPartitionFilterOutput
+}
+
+type ConsumptionConfigPartitionPartitionFilterArgs struct {
+	Conditions ConsumptionConfigPartitionPartitionFilterConditionArrayInput `pulumi:"conditions"`
+	Operator   pulumi.StringPtrInput                                        `pulumi:"operator"`
+}
+
+func (ConsumptionConfigPartitionPartitionFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConsumptionConfigPartitionPartitionFilter)(nil)).Elem()
+}
+
+func (i ConsumptionConfigPartitionPartitionFilterArgs) ToConsumptionConfigPartitionPartitionFilterOutput() ConsumptionConfigPartitionPartitionFilterOutput {
+	return i.ToConsumptionConfigPartitionPartitionFilterOutputWithContext(context.Background())
+}
+
+func (i ConsumptionConfigPartitionPartitionFilterArgs) ToConsumptionConfigPartitionPartitionFilterOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionConfigPartitionPartitionFilterOutput)
+}
+
+// ConsumptionConfigPartitionPartitionFilterArrayInput is an input type that accepts ConsumptionConfigPartitionPartitionFilterArray and ConsumptionConfigPartitionPartitionFilterArrayOutput values.
+// You can construct a concrete instance of `ConsumptionConfigPartitionPartitionFilterArrayInput` via:
+//
+//	ConsumptionConfigPartitionPartitionFilterArray{ ConsumptionConfigPartitionPartitionFilterArgs{...} }
+type ConsumptionConfigPartitionPartitionFilterArrayInput interface {
+	pulumi.Input
+
+	ToConsumptionConfigPartitionPartitionFilterArrayOutput() ConsumptionConfigPartitionPartitionFilterArrayOutput
+	ToConsumptionConfigPartitionPartitionFilterArrayOutputWithContext(context.Context) ConsumptionConfigPartitionPartitionFilterArrayOutput
+}
+
+type ConsumptionConfigPartitionPartitionFilterArray []ConsumptionConfigPartitionPartitionFilterInput
+
+func (ConsumptionConfigPartitionPartitionFilterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ConsumptionConfigPartitionPartitionFilter)(nil)).Elem()
+}
+
+func (i ConsumptionConfigPartitionPartitionFilterArray) ToConsumptionConfigPartitionPartitionFilterArrayOutput() ConsumptionConfigPartitionPartitionFilterArrayOutput {
+	return i.ToConsumptionConfigPartitionPartitionFilterArrayOutputWithContext(context.Background())
+}
+
+func (i ConsumptionConfigPartitionPartitionFilterArray) ToConsumptionConfigPartitionPartitionFilterArrayOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionFilterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionConfigPartitionPartitionFilterArrayOutput)
+}
+
+type ConsumptionConfigPartitionPartitionFilterOutput struct{ *pulumi.OutputState }
+
+func (ConsumptionConfigPartitionPartitionFilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConsumptionConfigPartitionPartitionFilter)(nil)).Elem()
+}
+
+func (o ConsumptionConfigPartitionPartitionFilterOutput) ToConsumptionConfigPartitionPartitionFilterOutput() ConsumptionConfigPartitionPartitionFilterOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionFilterOutput) ToConsumptionConfigPartitionPartitionFilterOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionFilterOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionFilterOutput) Conditions() ConsumptionConfigPartitionPartitionFilterConditionArrayOutput {
+	return o.ApplyT(func(v ConsumptionConfigPartitionPartitionFilter) []ConsumptionConfigPartitionPartitionFilterCondition {
+		return v.Conditions
+	}).(ConsumptionConfigPartitionPartitionFilterConditionArrayOutput)
+}
+
+func (o ConsumptionConfigPartitionPartitionFilterOutput) Operator() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ConsumptionConfigPartitionPartitionFilter) *string { return v.Operator }).(pulumi.StringPtrOutput)
+}
+
+type ConsumptionConfigPartitionPartitionFilterArrayOutput struct{ *pulumi.OutputState }
+
+func (ConsumptionConfigPartitionPartitionFilterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ConsumptionConfigPartitionPartitionFilter)(nil)).Elem()
+}
+
+func (o ConsumptionConfigPartitionPartitionFilterArrayOutput) ToConsumptionConfigPartitionPartitionFilterArrayOutput() ConsumptionConfigPartitionPartitionFilterArrayOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionFilterArrayOutput) ToConsumptionConfigPartitionPartitionFilterArrayOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionFilterArrayOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionFilterArrayOutput) Index(i pulumi.IntInput) ConsumptionConfigPartitionPartitionFilterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ConsumptionConfigPartitionPartitionFilter {
+		return vs[0].([]ConsumptionConfigPartitionPartitionFilter)[vs[1].(int)]
+	}).(ConsumptionConfigPartitionPartitionFilterOutput)
+}
+
+type ConsumptionConfigPartitionPartitionFilterCondition struct {
+	DatasetId *string                                                      `pulumi:"datasetId"`
+	LogFilter *ConsumptionConfigPartitionPartitionFilterConditionLogFilter `pulumi:"logFilter"`
+}
+
+// ConsumptionConfigPartitionPartitionFilterConditionInput is an input type that accepts ConsumptionConfigPartitionPartitionFilterConditionArgs and ConsumptionConfigPartitionPartitionFilterConditionOutput values.
+// You can construct a concrete instance of `ConsumptionConfigPartitionPartitionFilterConditionInput` via:
+//
+//	ConsumptionConfigPartitionPartitionFilterConditionArgs{...}
+type ConsumptionConfigPartitionPartitionFilterConditionInput interface {
+	pulumi.Input
+
+	ToConsumptionConfigPartitionPartitionFilterConditionOutput() ConsumptionConfigPartitionPartitionFilterConditionOutput
+	ToConsumptionConfigPartitionPartitionFilterConditionOutputWithContext(context.Context) ConsumptionConfigPartitionPartitionFilterConditionOutput
+}
+
+type ConsumptionConfigPartitionPartitionFilterConditionArgs struct {
+	DatasetId pulumi.StringPtrInput                                               `pulumi:"datasetId"`
+	LogFilter ConsumptionConfigPartitionPartitionFilterConditionLogFilterPtrInput `pulumi:"logFilter"`
+}
+
+func (ConsumptionConfigPartitionPartitionFilterConditionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConsumptionConfigPartitionPartitionFilterCondition)(nil)).Elem()
+}
+
+func (i ConsumptionConfigPartitionPartitionFilterConditionArgs) ToConsumptionConfigPartitionPartitionFilterConditionOutput() ConsumptionConfigPartitionPartitionFilterConditionOutput {
+	return i.ToConsumptionConfigPartitionPartitionFilterConditionOutputWithContext(context.Background())
+}
+
+func (i ConsumptionConfigPartitionPartitionFilterConditionArgs) ToConsumptionConfigPartitionPartitionFilterConditionOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionFilterConditionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionConfigPartitionPartitionFilterConditionOutput)
+}
+
+// ConsumptionConfigPartitionPartitionFilterConditionArrayInput is an input type that accepts ConsumptionConfigPartitionPartitionFilterConditionArray and ConsumptionConfigPartitionPartitionFilterConditionArrayOutput values.
+// You can construct a concrete instance of `ConsumptionConfigPartitionPartitionFilterConditionArrayInput` via:
+//
+//	ConsumptionConfigPartitionPartitionFilterConditionArray{ ConsumptionConfigPartitionPartitionFilterConditionArgs{...} }
+type ConsumptionConfigPartitionPartitionFilterConditionArrayInput interface {
+	pulumi.Input
+
+	ToConsumptionConfigPartitionPartitionFilterConditionArrayOutput() ConsumptionConfigPartitionPartitionFilterConditionArrayOutput
+	ToConsumptionConfigPartitionPartitionFilterConditionArrayOutputWithContext(context.Context) ConsumptionConfigPartitionPartitionFilterConditionArrayOutput
+}
+
+type ConsumptionConfigPartitionPartitionFilterConditionArray []ConsumptionConfigPartitionPartitionFilterConditionInput
+
+func (ConsumptionConfigPartitionPartitionFilterConditionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ConsumptionConfigPartitionPartitionFilterCondition)(nil)).Elem()
+}
+
+func (i ConsumptionConfigPartitionPartitionFilterConditionArray) ToConsumptionConfigPartitionPartitionFilterConditionArrayOutput() ConsumptionConfigPartitionPartitionFilterConditionArrayOutput {
+	return i.ToConsumptionConfigPartitionPartitionFilterConditionArrayOutputWithContext(context.Background())
+}
+
+func (i ConsumptionConfigPartitionPartitionFilterConditionArray) ToConsumptionConfigPartitionPartitionFilterConditionArrayOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionFilterConditionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionConfigPartitionPartitionFilterConditionArrayOutput)
+}
+
+type ConsumptionConfigPartitionPartitionFilterConditionOutput struct{ *pulumi.OutputState }
+
+func (ConsumptionConfigPartitionPartitionFilterConditionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConsumptionConfigPartitionPartitionFilterCondition)(nil)).Elem()
+}
+
+func (o ConsumptionConfigPartitionPartitionFilterConditionOutput) ToConsumptionConfigPartitionPartitionFilterConditionOutput() ConsumptionConfigPartitionPartitionFilterConditionOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionFilterConditionOutput) ToConsumptionConfigPartitionPartitionFilterConditionOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionFilterConditionOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionFilterConditionOutput) DatasetId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ConsumptionConfigPartitionPartitionFilterCondition) *string { return v.DatasetId }).(pulumi.StringPtrOutput)
+}
+
+func (o ConsumptionConfigPartitionPartitionFilterConditionOutput) LogFilter() ConsumptionConfigPartitionPartitionFilterConditionLogFilterPtrOutput {
+	return o.ApplyT(func(v ConsumptionConfigPartitionPartitionFilterCondition) *ConsumptionConfigPartitionPartitionFilterConditionLogFilter {
+		return v.LogFilter
+	}).(ConsumptionConfigPartitionPartitionFilterConditionLogFilterPtrOutput)
+}
+
+type ConsumptionConfigPartitionPartitionFilterConditionArrayOutput struct{ *pulumi.OutputState }
+
+func (ConsumptionConfigPartitionPartitionFilterConditionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ConsumptionConfigPartitionPartitionFilterCondition)(nil)).Elem()
+}
+
+func (o ConsumptionConfigPartitionPartitionFilterConditionArrayOutput) ToConsumptionConfigPartitionPartitionFilterConditionArrayOutput() ConsumptionConfigPartitionPartitionFilterConditionArrayOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionFilterConditionArrayOutput) ToConsumptionConfigPartitionPartitionFilterConditionArrayOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionFilterConditionArrayOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionFilterConditionArrayOutput) Index(i pulumi.IntInput) ConsumptionConfigPartitionPartitionFilterConditionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ConsumptionConfigPartitionPartitionFilterCondition {
+		return vs[0].([]ConsumptionConfigPartitionPartitionFilterCondition)[vs[1].(int)]
+	}).(ConsumptionConfigPartitionPartitionFilterConditionOutput)
+}
+
+type ConsumptionConfigPartitionPartitionFilterConditionLogFilter struct {
+	Query string `pulumi:"query"`
+}
+
+// ConsumptionConfigPartitionPartitionFilterConditionLogFilterInput is an input type that accepts ConsumptionConfigPartitionPartitionFilterConditionLogFilterArgs and ConsumptionConfigPartitionPartitionFilterConditionLogFilterOutput values.
+// You can construct a concrete instance of `ConsumptionConfigPartitionPartitionFilterConditionLogFilterInput` via:
+//
+//	ConsumptionConfigPartitionPartitionFilterConditionLogFilterArgs{...}
+type ConsumptionConfigPartitionPartitionFilterConditionLogFilterInput interface {
+	pulumi.Input
+
+	ToConsumptionConfigPartitionPartitionFilterConditionLogFilterOutput() ConsumptionConfigPartitionPartitionFilterConditionLogFilterOutput
+	ToConsumptionConfigPartitionPartitionFilterConditionLogFilterOutputWithContext(context.Context) ConsumptionConfigPartitionPartitionFilterConditionLogFilterOutput
+}
+
+type ConsumptionConfigPartitionPartitionFilterConditionLogFilterArgs struct {
+	Query pulumi.StringInput `pulumi:"query"`
+}
+
+func (ConsumptionConfigPartitionPartitionFilterConditionLogFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConsumptionConfigPartitionPartitionFilterConditionLogFilter)(nil)).Elem()
+}
+
+func (i ConsumptionConfigPartitionPartitionFilterConditionLogFilterArgs) ToConsumptionConfigPartitionPartitionFilterConditionLogFilterOutput() ConsumptionConfigPartitionPartitionFilterConditionLogFilterOutput {
+	return i.ToConsumptionConfigPartitionPartitionFilterConditionLogFilterOutputWithContext(context.Background())
+}
+
+func (i ConsumptionConfigPartitionPartitionFilterConditionLogFilterArgs) ToConsumptionConfigPartitionPartitionFilterConditionLogFilterOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionFilterConditionLogFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionConfigPartitionPartitionFilterConditionLogFilterOutput)
+}
+
+func (i ConsumptionConfigPartitionPartitionFilterConditionLogFilterArgs) ToConsumptionConfigPartitionPartitionFilterConditionLogFilterPtrOutput() ConsumptionConfigPartitionPartitionFilterConditionLogFilterPtrOutput {
+	return i.ToConsumptionConfigPartitionPartitionFilterConditionLogFilterPtrOutputWithContext(context.Background())
+}
+
+func (i ConsumptionConfigPartitionPartitionFilterConditionLogFilterArgs) ToConsumptionConfigPartitionPartitionFilterConditionLogFilterPtrOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionFilterConditionLogFilterPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionConfigPartitionPartitionFilterConditionLogFilterOutput).ToConsumptionConfigPartitionPartitionFilterConditionLogFilterPtrOutputWithContext(ctx)
+}
+
+// ConsumptionConfigPartitionPartitionFilterConditionLogFilterPtrInput is an input type that accepts ConsumptionConfigPartitionPartitionFilterConditionLogFilterArgs, ConsumptionConfigPartitionPartitionFilterConditionLogFilterPtr and ConsumptionConfigPartitionPartitionFilterConditionLogFilterPtrOutput values.
+// You can construct a concrete instance of `ConsumptionConfigPartitionPartitionFilterConditionLogFilterPtrInput` via:
+//
+//	        ConsumptionConfigPartitionPartitionFilterConditionLogFilterArgs{...}
+//
+//	or:
+//
+//	        nil
+type ConsumptionConfigPartitionPartitionFilterConditionLogFilterPtrInput interface {
+	pulumi.Input
+
+	ToConsumptionConfigPartitionPartitionFilterConditionLogFilterPtrOutput() ConsumptionConfigPartitionPartitionFilterConditionLogFilterPtrOutput
+	ToConsumptionConfigPartitionPartitionFilterConditionLogFilterPtrOutputWithContext(context.Context) ConsumptionConfigPartitionPartitionFilterConditionLogFilterPtrOutput
+}
+
+type consumptionConfigPartitionPartitionFilterConditionLogFilterPtrType ConsumptionConfigPartitionPartitionFilterConditionLogFilterArgs
+
+func ConsumptionConfigPartitionPartitionFilterConditionLogFilterPtr(v *ConsumptionConfigPartitionPartitionFilterConditionLogFilterArgs) ConsumptionConfigPartitionPartitionFilterConditionLogFilterPtrInput {
+	return (*consumptionConfigPartitionPartitionFilterConditionLogFilterPtrType)(v)
+}
+
+func (*consumptionConfigPartitionPartitionFilterConditionLogFilterPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ConsumptionConfigPartitionPartitionFilterConditionLogFilter)(nil)).Elem()
+}
+
+func (i *consumptionConfigPartitionPartitionFilterConditionLogFilterPtrType) ToConsumptionConfigPartitionPartitionFilterConditionLogFilterPtrOutput() ConsumptionConfigPartitionPartitionFilterConditionLogFilterPtrOutput {
+	return i.ToConsumptionConfigPartitionPartitionFilterConditionLogFilterPtrOutputWithContext(context.Background())
+}
+
+func (i *consumptionConfigPartitionPartitionFilterConditionLogFilterPtrType) ToConsumptionConfigPartitionPartitionFilterConditionLogFilterPtrOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionFilterConditionLogFilterPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionConfigPartitionPartitionFilterConditionLogFilterPtrOutput)
+}
+
+type ConsumptionConfigPartitionPartitionFilterConditionLogFilterOutput struct{ *pulumi.OutputState }
+
+func (ConsumptionConfigPartitionPartitionFilterConditionLogFilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConsumptionConfigPartitionPartitionFilterConditionLogFilter)(nil)).Elem()
+}
+
+func (o ConsumptionConfigPartitionPartitionFilterConditionLogFilterOutput) ToConsumptionConfigPartitionPartitionFilterConditionLogFilterOutput() ConsumptionConfigPartitionPartitionFilterConditionLogFilterOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionFilterConditionLogFilterOutput) ToConsumptionConfigPartitionPartitionFilterConditionLogFilterOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionFilterConditionLogFilterOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionFilterConditionLogFilterOutput) ToConsumptionConfigPartitionPartitionFilterConditionLogFilterPtrOutput() ConsumptionConfigPartitionPartitionFilterConditionLogFilterPtrOutput {
+	return o.ToConsumptionConfigPartitionPartitionFilterConditionLogFilterPtrOutputWithContext(context.Background())
+}
+
+func (o ConsumptionConfigPartitionPartitionFilterConditionLogFilterOutput) ToConsumptionConfigPartitionPartitionFilterConditionLogFilterPtrOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionFilterConditionLogFilterPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ConsumptionConfigPartitionPartitionFilterConditionLogFilter) *ConsumptionConfigPartitionPartitionFilterConditionLogFilter {
+		return &v
+	}).(ConsumptionConfigPartitionPartitionFilterConditionLogFilterPtrOutput)
+}
+
+func (o ConsumptionConfigPartitionPartitionFilterConditionLogFilterOutput) Query() pulumi.StringOutput {
+	return o.ApplyT(func(v ConsumptionConfigPartitionPartitionFilterConditionLogFilter) string { return v.Query }).(pulumi.StringOutput)
+}
+
+type ConsumptionConfigPartitionPartitionFilterConditionLogFilterPtrOutput struct{ *pulumi.OutputState }
+
+func (ConsumptionConfigPartitionPartitionFilterConditionLogFilterPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ConsumptionConfigPartitionPartitionFilterConditionLogFilter)(nil)).Elem()
+}
+
+func (o ConsumptionConfigPartitionPartitionFilterConditionLogFilterPtrOutput) ToConsumptionConfigPartitionPartitionFilterConditionLogFilterPtrOutput() ConsumptionConfigPartitionPartitionFilterConditionLogFilterPtrOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionFilterConditionLogFilterPtrOutput) ToConsumptionConfigPartitionPartitionFilterConditionLogFilterPtrOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionFilterConditionLogFilterPtrOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionFilterConditionLogFilterPtrOutput) Elem() ConsumptionConfigPartitionPartitionFilterConditionLogFilterOutput {
+	return o.ApplyT(func(v *ConsumptionConfigPartitionPartitionFilterConditionLogFilter) ConsumptionConfigPartitionPartitionFilterConditionLogFilter {
+		if v != nil {
+			return *v
+		}
+		var ret ConsumptionConfigPartitionPartitionFilterConditionLogFilter
+		return ret
+	}).(ConsumptionConfigPartitionPartitionFilterConditionLogFilterOutput)
+}
+
+func (o ConsumptionConfigPartitionPartitionFilterConditionLogFilterPtrOutput) Query() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ConsumptionConfigPartitionPartitionFilterConditionLogFilter) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Query
+	}).(pulumi.StringPtrOutput)
+}
+
+type ConsumptionConfigPartitionPartitionPartition struct {
+	Filters    []ConsumptionConfigPartitionPartitionPartitionFilter    `pulumi:"filters"`
+	Name       *string                                                 `pulumi:"name"`
+	Partitions []ConsumptionConfigPartitionPartitionPartitionPartition `pulumi:"partitions"`
+	Slug       *string                                                 `pulumi:"slug"`
+}
+
+// ConsumptionConfigPartitionPartitionPartitionInput is an input type that accepts ConsumptionConfigPartitionPartitionPartitionArgs and ConsumptionConfigPartitionPartitionPartitionOutput values.
+// You can construct a concrete instance of `ConsumptionConfigPartitionPartitionPartitionInput` via:
+//
+//	ConsumptionConfigPartitionPartitionPartitionArgs{...}
+type ConsumptionConfigPartitionPartitionPartitionInput interface {
+	pulumi.Input
+
+	ToConsumptionConfigPartitionPartitionPartitionOutput() ConsumptionConfigPartitionPartitionPartitionOutput
+	ToConsumptionConfigPartitionPartitionPartitionOutputWithContext(context.Context) ConsumptionConfigPartitionPartitionPartitionOutput
+}
+
+type ConsumptionConfigPartitionPartitionPartitionArgs struct {
+	Filters    ConsumptionConfigPartitionPartitionPartitionFilterArrayInput    `pulumi:"filters"`
+	Name       pulumi.StringPtrInput                                           `pulumi:"name"`
+	Partitions ConsumptionConfigPartitionPartitionPartitionPartitionArrayInput `pulumi:"partitions"`
+	Slug       pulumi.StringPtrInput                                           `pulumi:"slug"`
+}
+
+func (ConsumptionConfigPartitionPartitionPartitionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConsumptionConfigPartitionPartitionPartition)(nil)).Elem()
+}
+
+func (i ConsumptionConfigPartitionPartitionPartitionArgs) ToConsumptionConfigPartitionPartitionPartitionOutput() ConsumptionConfigPartitionPartitionPartitionOutput {
+	return i.ToConsumptionConfigPartitionPartitionPartitionOutputWithContext(context.Background())
+}
+
+func (i ConsumptionConfigPartitionPartitionPartitionArgs) ToConsumptionConfigPartitionPartitionPartitionOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionConfigPartitionPartitionPartitionOutput)
+}
+
+// ConsumptionConfigPartitionPartitionPartitionArrayInput is an input type that accepts ConsumptionConfigPartitionPartitionPartitionArray and ConsumptionConfigPartitionPartitionPartitionArrayOutput values.
+// You can construct a concrete instance of `ConsumptionConfigPartitionPartitionPartitionArrayInput` via:
+//
+//	ConsumptionConfigPartitionPartitionPartitionArray{ ConsumptionConfigPartitionPartitionPartitionArgs{...} }
+type ConsumptionConfigPartitionPartitionPartitionArrayInput interface {
+	pulumi.Input
+
+	ToConsumptionConfigPartitionPartitionPartitionArrayOutput() ConsumptionConfigPartitionPartitionPartitionArrayOutput
+	ToConsumptionConfigPartitionPartitionPartitionArrayOutputWithContext(context.Context) ConsumptionConfigPartitionPartitionPartitionArrayOutput
+}
+
+type ConsumptionConfigPartitionPartitionPartitionArray []ConsumptionConfigPartitionPartitionPartitionInput
+
+func (ConsumptionConfigPartitionPartitionPartitionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ConsumptionConfigPartitionPartitionPartition)(nil)).Elem()
+}
+
+func (i ConsumptionConfigPartitionPartitionPartitionArray) ToConsumptionConfigPartitionPartitionPartitionArrayOutput() ConsumptionConfigPartitionPartitionPartitionArrayOutput {
+	return i.ToConsumptionConfigPartitionPartitionPartitionArrayOutputWithContext(context.Background())
+}
+
+func (i ConsumptionConfigPartitionPartitionPartitionArray) ToConsumptionConfigPartitionPartitionPartitionArrayOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionConfigPartitionPartitionPartitionArrayOutput)
+}
+
+type ConsumptionConfigPartitionPartitionPartitionOutput struct{ *pulumi.OutputState }
+
+func (ConsumptionConfigPartitionPartitionPartitionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConsumptionConfigPartitionPartitionPartition)(nil)).Elem()
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionOutput) ToConsumptionConfigPartitionPartitionPartitionOutput() ConsumptionConfigPartitionPartitionPartitionOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionOutput) ToConsumptionConfigPartitionPartitionPartitionOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionOutput) Filters() ConsumptionConfigPartitionPartitionPartitionFilterArrayOutput {
+	return o.ApplyT(func(v ConsumptionConfigPartitionPartitionPartition) []ConsumptionConfigPartitionPartitionPartitionFilter {
+		return v.Filters
+	}).(ConsumptionConfigPartitionPartitionPartitionFilterArrayOutput)
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ConsumptionConfigPartitionPartitionPartition) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionOutput) Partitions() ConsumptionConfigPartitionPartitionPartitionPartitionArrayOutput {
+	return o.ApplyT(func(v ConsumptionConfigPartitionPartitionPartition) []ConsumptionConfigPartitionPartitionPartitionPartition {
+		return v.Partitions
+	}).(ConsumptionConfigPartitionPartitionPartitionPartitionArrayOutput)
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionOutput) Slug() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ConsumptionConfigPartitionPartitionPartition) *string { return v.Slug }).(pulumi.StringPtrOutput)
+}
+
+type ConsumptionConfigPartitionPartitionPartitionArrayOutput struct{ *pulumi.OutputState }
+
+func (ConsumptionConfigPartitionPartitionPartitionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ConsumptionConfigPartitionPartitionPartition)(nil)).Elem()
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionArrayOutput) ToConsumptionConfigPartitionPartitionPartitionArrayOutput() ConsumptionConfigPartitionPartitionPartitionArrayOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionArrayOutput) ToConsumptionConfigPartitionPartitionPartitionArrayOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionArrayOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionArrayOutput) Index(i pulumi.IntInput) ConsumptionConfigPartitionPartitionPartitionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ConsumptionConfigPartitionPartitionPartition {
+		return vs[0].([]ConsumptionConfigPartitionPartitionPartition)[vs[1].(int)]
+	}).(ConsumptionConfigPartitionPartitionPartitionOutput)
+}
+
+type ConsumptionConfigPartitionPartitionPartitionFilter struct {
+	Conditions []ConsumptionConfigPartitionPartitionPartitionFilterCondition `pulumi:"conditions"`
+	Operator   *string                                                       `pulumi:"operator"`
+}
+
+// ConsumptionConfigPartitionPartitionPartitionFilterInput is an input type that accepts ConsumptionConfigPartitionPartitionPartitionFilterArgs and ConsumptionConfigPartitionPartitionPartitionFilterOutput values.
+// You can construct a concrete instance of `ConsumptionConfigPartitionPartitionPartitionFilterInput` via:
+//
+//	ConsumptionConfigPartitionPartitionPartitionFilterArgs{...}
+type ConsumptionConfigPartitionPartitionPartitionFilterInput interface {
+	pulumi.Input
+
+	ToConsumptionConfigPartitionPartitionPartitionFilterOutput() ConsumptionConfigPartitionPartitionPartitionFilterOutput
+	ToConsumptionConfigPartitionPartitionPartitionFilterOutputWithContext(context.Context) ConsumptionConfigPartitionPartitionPartitionFilterOutput
+}
+
+type ConsumptionConfigPartitionPartitionPartitionFilterArgs struct {
+	Conditions ConsumptionConfigPartitionPartitionPartitionFilterConditionArrayInput `pulumi:"conditions"`
+	Operator   pulumi.StringPtrInput                                                 `pulumi:"operator"`
+}
+
+func (ConsumptionConfigPartitionPartitionPartitionFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConsumptionConfigPartitionPartitionPartitionFilter)(nil)).Elem()
+}
+
+func (i ConsumptionConfigPartitionPartitionPartitionFilterArgs) ToConsumptionConfigPartitionPartitionPartitionFilterOutput() ConsumptionConfigPartitionPartitionPartitionFilterOutput {
+	return i.ToConsumptionConfigPartitionPartitionPartitionFilterOutputWithContext(context.Background())
+}
+
+func (i ConsumptionConfigPartitionPartitionPartitionFilterArgs) ToConsumptionConfigPartitionPartitionPartitionFilterOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionConfigPartitionPartitionPartitionFilterOutput)
+}
+
+// ConsumptionConfigPartitionPartitionPartitionFilterArrayInput is an input type that accepts ConsumptionConfigPartitionPartitionPartitionFilterArray and ConsumptionConfigPartitionPartitionPartitionFilterArrayOutput values.
+// You can construct a concrete instance of `ConsumptionConfigPartitionPartitionPartitionFilterArrayInput` via:
+//
+//	ConsumptionConfigPartitionPartitionPartitionFilterArray{ ConsumptionConfigPartitionPartitionPartitionFilterArgs{...} }
+type ConsumptionConfigPartitionPartitionPartitionFilterArrayInput interface {
+	pulumi.Input
+
+	ToConsumptionConfigPartitionPartitionPartitionFilterArrayOutput() ConsumptionConfigPartitionPartitionPartitionFilterArrayOutput
+	ToConsumptionConfigPartitionPartitionPartitionFilterArrayOutputWithContext(context.Context) ConsumptionConfigPartitionPartitionPartitionFilterArrayOutput
+}
+
+type ConsumptionConfigPartitionPartitionPartitionFilterArray []ConsumptionConfigPartitionPartitionPartitionFilterInput
+
+func (ConsumptionConfigPartitionPartitionPartitionFilterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ConsumptionConfigPartitionPartitionPartitionFilter)(nil)).Elem()
+}
+
+func (i ConsumptionConfigPartitionPartitionPartitionFilterArray) ToConsumptionConfigPartitionPartitionPartitionFilterArrayOutput() ConsumptionConfigPartitionPartitionPartitionFilterArrayOutput {
+	return i.ToConsumptionConfigPartitionPartitionPartitionFilterArrayOutputWithContext(context.Background())
+}
+
+func (i ConsumptionConfigPartitionPartitionPartitionFilterArray) ToConsumptionConfigPartitionPartitionPartitionFilterArrayOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionFilterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionConfigPartitionPartitionPartitionFilterArrayOutput)
+}
+
+type ConsumptionConfigPartitionPartitionPartitionFilterOutput struct{ *pulumi.OutputState }
+
+func (ConsumptionConfigPartitionPartitionPartitionFilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConsumptionConfigPartitionPartitionPartitionFilter)(nil)).Elem()
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionFilterOutput) ToConsumptionConfigPartitionPartitionPartitionFilterOutput() ConsumptionConfigPartitionPartitionPartitionFilterOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionFilterOutput) ToConsumptionConfigPartitionPartitionPartitionFilterOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionFilterOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionFilterOutput) Conditions() ConsumptionConfigPartitionPartitionPartitionFilterConditionArrayOutput {
+	return o.ApplyT(func(v ConsumptionConfigPartitionPartitionPartitionFilter) []ConsumptionConfigPartitionPartitionPartitionFilterCondition {
+		return v.Conditions
+	}).(ConsumptionConfigPartitionPartitionPartitionFilterConditionArrayOutput)
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionFilterOutput) Operator() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ConsumptionConfigPartitionPartitionPartitionFilter) *string { return v.Operator }).(pulumi.StringPtrOutput)
+}
+
+type ConsumptionConfigPartitionPartitionPartitionFilterArrayOutput struct{ *pulumi.OutputState }
+
+func (ConsumptionConfigPartitionPartitionPartitionFilterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ConsumptionConfigPartitionPartitionPartitionFilter)(nil)).Elem()
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionFilterArrayOutput) ToConsumptionConfigPartitionPartitionPartitionFilterArrayOutput() ConsumptionConfigPartitionPartitionPartitionFilterArrayOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionFilterArrayOutput) ToConsumptionConfigPartitionPartitionPartitionFilterArrayOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionFilterArrayOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionFilterArrayOutput) Index(i pulumi.IntInput) ConsumptionConfigPartitionPartitionPartitionFilterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ConsumptionConfigPartitionPartitionPartitionFilter {
+		return vs[0].([]ConsumptionConfigPartitionPartitionPartitionFilter)[vs[1].(int)]
+	}).(ConsumptionConfigPartitionPartitionPartitionFilterOutput)
+}
+
+type ConsumptionConfigPartitionPartitionPartitionFilterCondition struct {
+	DatasetId *string                                                               `pulumi:"datasetId"`
+	LogFilter *ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilter `pulumi:"logFilter"`
+}
+
+// ConsumptionConfigPartitionPartitionPartitionFilterConditionInput is an input type that accepts ConsumptionConfigPartitionPartitionPartitionFilterConditionArgs and ConsumptionConfigPartitionPartitionPartitionFilterConditionOutput values.
+// You can construct a concrete instance of `ConsumptionConfigPartitionPartitionPartitionFilterConditionInput` via:
+//
+//	ConsumptionConfigPartitionPartitionPartitionFilterConditionArgs{...}
+type ConsumptionConfigPartitionPartitionPartitionFilterConditionInput interface {
+	pulumi.Input
+
+	ToConsumptionConfigPartitionPartitionPartitionFilterConditionOutput() ConsumptionConfigPartitionPartitionPartitionFilterConditionOutput
+	ToConsumptionConfigPartitionPartitionPartitionFilterConditionOutputWithContext(context.Context) ConsumptionConfigPartitionPartitionPartitionFilterConditionOutput
+}
+
+type ConsumptionConfigPartitionPartitionPartitionFilterConditionArgs struct {
+	DatasetId pulumi.StringPtrInput                                                        `pulumi:"datasetId"`
+	LogFilter ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterPtrInput `pulumi:"logFilter"`
+}
+
+func (ConsumptionConfigPartitionPartitionPartitionFilterConditionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConsumptionConfigPartitionPartitionPartitionFilterCondition)(nil)).Elem()
+}
+
+func (i ConsumptionConfigPartitionPartitionPartitionFilterConditionArgs) ToConsumptionConfigPartitionPartitionPartitionFilterConditionOutput() ConsumptionConfigPartitionPartitionPartitionFilterConditionOutput {
+	return i.ToConsumptionConfigPartitionPartitionPartitionFilterConditionOutputWithContext(context.Background())
+}
+
+func (i ConsumptionConfigPartitionPartitionPartitionFilterConditionArgs) ToConsumptionConfigPartitionPartitionPartitionFilterConditionOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionFilterConditionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionConfigPartitionPartitionPartitionFilterConditionOutput)
+}
+
+// ConsumptionConfigPartitionPartitionPartitionFilterConditionArrayInput is an input type that accepts ConsumptionConfigPartitionPartitionPartitionFilterConditionArray and ConsumptionConfigPartitionPartitionPartitionFilterConditionArrayOutput values.
+// You can construct a concrete instance of `ConsumptionConfigPartitionPartitionPartitionFilterConditionArrayInput` via:
+//
+//	ConsumptionConfigPartitionPartitionPartitionFilterConditionArray{ ConsumptionConfigPartitionPartitionPartitionFilterConditionArgs{...} }
+type ConsumptionConfigPartitionPartitionPartitionFilterConditionArrayInput interface {
+	pulumi.Input
+
+	ToConsumptionConfigPartitionPartitionPartitionFilterConditionArrayOutput() ConsumptionConfigPartitionPartitionPartitionFilterConditionArrayOutput
+	ToConsumptionConfigPartitionPartitionPartitionFilterConditionArrayOutputWithContext(context.Context) ConsumptionConfigPartitionPartitionPartitionFilterConditionArrayOutput
+}
+
+type ConsumptionConfigPartitionPartitionPartitionFilterConditionArray []ConsumptionConfigPartitionPartitionPartitionFilterConditionInput
+
+func (ConsumptionConfigPartitionPartitionPartitionFilterConditionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ConsumptionConfigPartitionPartitionPartitionFilterCondition)(nil)).Elem()
+}
+
+func (i ConsumptionConfigPartitionPartitionPartitionFilterConditionArray) ToConsumptionConfigPartitionPartitionPartitionFilterConditionArrayOutput() ConsumptionConfigPartitionPartitionPartitionFilterConditionArrayOutput {
+	return i.ToConsumptionConfigPartitionPartitionPartitionFilterConditionArrayOutputWithContext(context.Background())
+}
+
+func (i ConsumptionConfigPartitionPartitionPartitionFilterConditionArray) ToConsumptionConfigPartitionPartitionPartitionFilterConditionArrayOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionFilterConditionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionConfigPartitionPartitionPartitionFilterConditionArrayOutput)
+}
+
+type ConsumptionConfigPartitionPartitionPartitionFilterConditionOutput struct{ *pulumi.OutputState }
+
+func (ConsumptionConfigPartitionPartitionPartitionFilterConditionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConsumptionConfigPartitionPartitionPartitionFilterCondition)(nil)).Elem()
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionFilterConditionOutput) ToConsumptionConfigPartitionPartitionPartitionFilterConditionOutput() ConsumptionConfigPartitionPartitionPartitionFilterConditionOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionFilterConditionOutput) ToConsumptionConfigPartitionPartitionPartitionFilterConditionOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionFilterConditionOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionFilterConditionOutput) DatasetId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ConsumptionConfigPartitionPartitionPartitionFilterCondition) *string { return v.DatasetId }).(pulumi.StringPtrOutput)
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionFilterConditionOutput) LogFilter() ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterPtrOutput {
+	return o.ApplyT(func(v ConsumptionConfigPartitionPartitionPartitionFilterCondition) *ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilter {
+		return v.LogFilter
+	}).(ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterPtrOutput)
+}
+
+type ConsumptionConfigPartitionPartitionPartitionFilterConditionArrayOutput struct{ *pulumi.OutputState }
+
+func (ConsumptionConfigPartitionPartitionPartitionFilterConditionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ConsumptionConfigPartitionPartitionPartitionFilterCondition)(nil)).Elem()
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionFilterConditionArrayOutput) ToConsumptionConfigPartitionPartitionPartitionFilterConditionArrayOutput() ConsumptionConfigPartitionPartitionPartitionFilterConditionArrayOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionFilterConditionArrayOutput) ToConsumptionConfigPartitionPartitionPartitionFilterConditionArrayOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionFilterConditionArrayOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionFilterConditionArrayOutput) Index(i pulumi.IntInput) ConsumptionConfigPartitionPartitionPartitionFilterConditionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ConsumptionConfigPartitionPartitionPartitionFilterCondition {
+		return vs[0].([]ConsumptionConfigPartitionPartitionPartitionFilterCondition)[vs[1].(int)]
+	}).(ConsumptionConfigPartitionPartitionPartitionFilterConditionOutput)
+}
+
+type ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilter struct {
+	Query string `pulumi:"query"`
+}
+
+// ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterInput is an input type that accepts ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterArgs and ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterOutput values.
+// You can construct a concrete instance of `ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterInput` via:
+//
+//	ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterArgs{...}
+type ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterInput interface {
+	pulumi.Input
+
+	ToConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterOutput() ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterOutput
+	ToConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterOutputWithContext(context.Context) ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterOutput
+}
+
+type ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterArgs struct {
+	Query pulumi.StringInput `pulumi:"query"`
+}
+
+func (ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilter)(nil)).Elem()
+}
+
+func (i ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterArgs) ToConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterOutput() ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterOutput {
+	return i.ToConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterOutputWithContext(context.Background())
+}
+
+func (i ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterArgs) ToConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterOutput)
+}
+
+func (i ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterArgs) ToConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterPtrOutput() ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterPtrOutput {
+	return i.ToConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterPtrOutputWithContext(context.Background())
+}
+
+func (i ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterArgs) ToConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterPtrOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterOutput).ToConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterPtrOutputWithContext(ctx)
+}
+
+// ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterPtrInput is an input type that accepts ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterArgs, ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterPtr and ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterPtrOutput values.
+// You can construct a concrete instance of `ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterPtrInput` via:
+//
+//	        ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterArgs{...}
+//
+//	or:
+//
+//	        nil
+type ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterPtrInput interface {
+	pulumi.Input
+
+	ToConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterPtrOutput() ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterPtrOutput
+	ToConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterPtrOutputWithContext(context.Context) ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterPtrOutput
+}
+
+type consumptionConfigPartitionPartitionPartitionFilterConditionLogFilterPtrType ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterArgs
+
+func ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterPtr(v *ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterArgs) ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterPtrInput {
+	return (*consumptionConfigPartitionPartitionPartitionFilterConditionLogFilterPtrType)(v)
+}
+
+func (*consumptionConfigPartitionPartitionPartitionFilterConditionLogFilterPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilter)(nil)).Elem()
+}
+
+func (i *consumptionConfigPartitionPartitionPartitionFilterConditionLogFilterPtrType) ToConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterPtrOutput() ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterPtrOutput {
+	return i.ToConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterPtrOutputWithContext(context.Background())
+}
+
+func (i *consumptionConfigPartitionPartitionPartitionFilterConditionLogFilterPtrType) ToConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterPtrOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterPtrOutput)
+}
+
+type ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterOutput struct{ *pulumi.OutputState }
+
+func (ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilter)(nil)).Elem()
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterOutput) ToConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterOutput() ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterOutput) ToConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterOutput) ToConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterPtrOutput() ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterPtrOutput {
+	return o.ToConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterPtrOutputWithContext(context.Background())
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterOutput) ToConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterPtrOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilter) *ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilter {
+		return &v
+	}).(ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterPtrOutput)
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterOutput) Query() pulumi.StringOutput {
+	return o.ApplyT(func(v ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilter) string { return v.Query }).(pulumi.StringOutput)
+}
+
+type ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterPtrOutput struct{ *pulumi.OutputState }
+
+func (ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilter)(nil)).Elem()
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterPtrOutput) ToConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterPtrOutput() ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterPtrOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterPtrOutput) ToConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterPtrOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterPtrOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterPtrOutput) Elem() ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterOutput {
+	return o.ApplyT(func(v *ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilter) ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilter {
+		if v != nil {
+			return *v
+		}
+		var ret ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilter
+		return ret
+	}).(ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterOutput)
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterPtrOutput) Query() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilter) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Query
+	}).(pulumi.StringPtrOutput)
+}
+
+type ConsumptionConfigPartitionPartitionPartitionPartition struct {
+	Filters    []ConsumptionConfigPartitionPartitionPartitionPartitionFilter    `pulumi:"filters"`
+	Name       *string                                                          `pulumi:"name"`
+	Partitions []ConsumptionConfigPartitionPartitionPartitionPartitionPartition `pulumi:"partitions"`
+	Slug       *string                                                          `pulumi:"slug"`
+}
+
+// ConsumptionConfigPartitionPartitionPartitionPartitionInput is an input type that accepts ConsumptionConfigPartitionPartitionPartitionPartitionArgs and ConsumptionConfigPartitionPartitionPartitionPartitionOutput values.
+// You can construct a concrete instance of `ConsumptionConfigPartitionPartitionPartitionPartitionInput` via:
+//
+//	ConsumptionConfigPartitionPartitionPartitionPartitionArgs{...}
+type ConsumptionConfigPartitionPartitionPartitionPartitionInput interface {
+	pulumi.Input
+
+	ToConsumptionConfigPartitionPartitionPartitionPartitionOutput() ConsumptionConfigPartitionPartitionPartitionPartitionOutput
+	ToConsumptionConfigPartitionPartitionPartitionPartitionOutputWithContext(context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionOutput
+}
+
+type ConsumptionConfigPartitionPartitionPartitionPartitionArgs struct {
+	Filters    ConsumptionConfigPartitionPartitionPartitionPartitionFilterArrayInput    `pulumi:"filters"`
+	Name       pulumi.StringPtrInput                                                    `pulumi:"name"`
+	Partitions ConsumptionConfigPartitionPartitionPartitionPartitionPartitionArrayInput `pulumi:"partitions"`
+	Slug       pulumi.StringPtrInput                                                    `pulumi:"slug"`
+}
+
+func (ConsumptionConfigPartitionPartitionPartitionPartitionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConsumptionConfigPartitionPartitionPartitionPartition)(nil)).Elem()
+}
+
+func (i ConsumptionConfigPartitionPartitionPartitionPartitionArgs) ToConsumptionConfigPartitionPartitionPartitionPartitionOutput() ConsumptionConfigPartitionPartitionPartitionPartitionOutput {
+	return i.ToConsumptionConfigPartitionPartitionPartitionPartitionOutputWithContext(context.Background())
+}
+
+func (i ConsumptionConfigPartitionPartitionPartitionPartitionArgs) ToConsumptionConfigPartitionPartitionPartitionPartitionOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionConfigPartitionPartitionPartitionPartitionOutput)
+}
+
+// ConsumptionConfigPartitionPartitionPartitionPartitionArrayInput is an input type that accepts ConsumptionConfigPartitionPartitionPartitionPartitionArray and ConsumptionConfigPartitionPartitionPartitionPartitionArrayOutput values.
+// You can construct a concrete instance of `ConsumptionConfigPartitionPartitionPartitionPartitionArrayInput` via:
+//
+//	ConsumptionConfigPartitionPartitionPartitionPartitionArray{ ConsumptionConfigPartitionPartitionPartitionPartitionArgs{...} }
+type ConsumptionConfigPartitionPartitionPartitionPartitionArrayInput interface {
+	pulumi.Input
+
+	ToConsumptionConfigPartitionPartitionPartitionPartitionArrayOutput() ConsumptionConfigPartitionPartitionPartitionPartitionArrayOutput
+	ToConsumptionConfigPartitionPartitionPartitionPartitionArrayOutputWithContext(context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionArrayOutput
+}
+
+type ConsumptionConfigPartitionPartitionPartitionPartitionArray []ConsumptionConfigPartitionPartitionPartitionPartitionInput
+
+func (ConsumptionConfigPartitionPartitionPartitionPartitionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ConsumptionConfigPartitionPartitionPartitionPartition)(nil)).Elem()
+}
+
+func (i ConsumptionConfigPartitionPartitionPartitionPartitionArray) ToConsumptionConfigPartitionPartitionPartitionPartitionArrayOutput() ConsumptionConfigPartitionPartitionPartitionPartitionArrayOutput {
+	return i.ToConsumptionConfigPartitionPartitionPartitionPartitionArrayOutputWithContext(context.Background())
+}
+
+func (i ConsumptionConfigPartitionPartitionPartitionPartitionArray) ToConsumptionConfigPartitionPartitionPartitionPartitionArrayOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionConfigPartitionPartitionPartitionPartitionArrayOutput)
+}
+
+type ConsumptionConfigPartitionPartitionPartitionPartitionOutput struct{ *pulumi.OutputState }
+
+func (ConsumptionConfigPartitionPartitionPartitionPartitionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConsumptionConfigPartitionPartitionPartitionPartition)(nil)).Elem()
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionOutput) ToConsumptionConfigPartitionPartitionPartitionPartitionOutput() ConsumptionConfigPartitionPartitionPartitionPartitionOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionOutput) ToConsumptionConfigPartitionPartitionPartitionPartitionOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionOutput) Filters() ConsumptionConfigPartitionPartitionPartitionPartitionFilterArrayOutput {
+	return o.ApplyT(func(v ConsumptionConfigPartitionPartitionPartitionPartition) []ConsumptionConfigPartitionPartitionPartitionPartitionFilter {
+		return v.Filters
+	}).(ConsumptionConfigPartitionPartitionPartitionPartitionFilterArrayOutput)
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ConsumptionConfigPartitionPartitionPartitionPartition) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionOutput) Partitions() ConsumptionConfigPartitionPartitionPartitionPartitionPartitionArrayOutput {
+	return o.ApplyT(func(v ConsumptionConfigPartitionPartitionPartitionPartition) []ConsumptionConfigPartitionPartitionPartitionPartitionPartition {
+		return v.Partitions
+	}).(ConsumptionConfigPartitionPartitionPartitionPartitionPartitionArrayOutput)
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionOutput) Slug() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ConsumptionConfigPartitionPartitionPartitionPartition) *string { return v.Slug }).(pulumi.StringPtrOutput)
+}
+
+type ConsumptionConfigPartitionPartitionPartitionPartitionArrayOutput struct{ *pulumi.OutputState }
+
+func (ConsumptionConfigPartitionPartitionPartitionPartitionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ConsumptionConfigPartitionPartitionPartitionPartition)(nil)).Elem()
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionArrayOutput) ToConsumptionConfigPartitionPartitionPartitionPartitionArrayOutput() ConsumptionConfigPartitionPartitionPartitionPartitionArrayOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionArrayOutput) ToConsumptionConfigPartitionPartitionPartitionPartitionArrayOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionArrayOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionArrayOutput) Index(i pulumi.IntInput) ConsumptionConfigPartitionPartitionPartitionPartitionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ConsumptionConfigPartitionPartitionPartitionPartition {
+		return vs[0].([]ConsumptionConfigPartitionPartitionPartitionPartition)[vs[1].(int)]
+	}).(ConsumptionConfigPartitionPartitionPartitionPartitionOutput)
+}
+
+type ConsumptionConfigPartitionPartitionPartitionPartitionFilter struct {
+	Conditions []ConsumptionConfigPartitionPartitionPartitionPartitionFilterCondition `pulumi:"conditions"`
+	Operator   *string                                                                `pulumi:"operator"`
+}
+
+// ConsumptionConfigPartitionPartitionPartitionPartitionFilterInput is an input type that accepts ConsumptionConfigPartitionPartitionPartitionPartitionFilterArgs and ConsumptionConfigPartitionPartitionPartitionPartitionFilterOutput values.
+// You can construct a concrete instance of `ConsumptionConfigPartitionPartitionPartitionPartitionFilterInput` via:
+//
+//	ConsumptionConfigPartitionPartitionPartitionPartitionFilterArgs{...}
+type ConsumptionConfigPartitionPartitionPartitionPartitionFilterInput interface {
+	pulumi.Input
+
+	ToConsumptionConfigPartitionPartitionPartitionPartitionFilterOutput() ConsumptionConfigPartitionPartitionPartitionPartitionFilterOutput
+	ToConsumptionConfigPartitionPartitionPartitionPartitionFilterOutputWithContext(context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionFilterOutput
+}
+
+type ConsumptionConfigPartitionPartitionPartitionPartitionFilterArgs struct {
+	Conditions ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionArrayInput `pulumi:"conditions"`
+	Operator   pulumi.StringPtrInput                                                          `pulumi:"operator"`
+}
+
+func (ConsumptionConfigPartitionPartitionPartitionPartitionFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConsumptionConfigPartitionPartitionPartitionPartitionFilter)(nil)).Elem()
+}
+
+func (i ConsumptionConfigPartitionPartitionPartitionPartitionFilterArgs) ToConsumptionConfigPartitionPartitionPartitionPartitionFilterOutput() ConsumptionConfigPartitionPartitionPartitionPartitionFilterOutput {
+	return i.ToConsumptionConfigPartitionPartitionPartitionPartitionFilterOutputWithContext(context.Background())
+}
+
+func (i ConsumptionConfigPartitionPartitionPartitionPartitionFilterArgs) ToConsumptionConfigPartitionPartitionPartitionPartitionFilterOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionConfigPartitionPartitionPartitionPartitionFilterOutput)
+}
+
+// ConsumptionConfigPartitionPartitionPartitionPartitionFilterArrayInput is an input type that accepts ConsumptionConfigPartitionPartitionPartitionPartitionFilterArray and ConsumptionConfigPartitionPartitionPartitionPartitionFilterArrayOutput values.
+// You can construct a concrete instance of `ConsumptionConfigPartitionPartitionPartitionPartitionFilterArrayInput` via:
+//
+//	ConsumptionConfigPartitionPartitionPartitionPartitionFilterArray{ ConsumptionConfigPartitionPartitionPartitionPartitionFilterArgs{...} }
+type ConsumptionConfigPartitionPartitionPartitionPartitionFilterArrayInput interface {
+	pulumi.Input
+
+	ToConsumptionConfigPartitionPartitionPartitionPartitionFilterArrayOutput() ConsumptionConfigPartitionPartitionPartitionPartitionFilterArrayOutput
+	ToConsumptionConfigPartitionPartitionPartitionPartitionFilterArrayOutputWithContext(context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionFilterArrayOutput
+}
+
+type ConsumptionConfigPartitionPartitionPartitionPartitionFilterArray []ConsumptionConfigPartitionPartitionPartitionPartitionFilterInput
+
+func (ConsumptionConfigPartitionPartitionPartitionPartitionFilterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ConsumptionConfigPartitionPartitionPartitionPartitionFilter)(nil)).Elem()
+}
+
+func (i ConsumptionConfigPartitionPartitionPartitionPartitionFilterArray) ToConsumptionConfigPartitionPartitionPartitionPartitionFilterArrayOutput() ConsumptionConfigPartitionPartitionPartitionPartitionFilterArrayOutput {
+	return i.ToConsumptionConfigPartitionPartitionPartitionPartitionFilterArrayOutputWithContext(context.Background())
+}
+
+func (i ConsumptionConfigPartitionPartitionPartitionPartitionFilterArray) ToConsumptionConfigPartitionPartitionPartitionPartitionFilterArrayOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionFilterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionConfigPartitionPartitionPartitionPartitionFilterArrayOutput)
+}
+
+type ConsumptionConfigPartitionPartitionPartitionPartitionFilterOutput struct{ *pulumi.OutputState }
+
+func (ConsumptionConfigPartitionPartitionPartitionPartitionFilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConsumptionConfigPartitionPartitionPartitionPartitionFilter)(nil)).Elem()
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionFilterOutput) ToConsumptionConfigPartitionPartitionPartitionPartitionFilterOutput() ConsumptionConfigPartitionPartitionPartitionPartitionFilterOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionFilterOutput) ToConsumptionConfigPartitionPartitionPartitionPartitionFilterOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionFilterOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionFilterOutput) Conditions() ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionArrayOutput {
+	return o.ApplyT(func(v ConsumptionConfigPartitionPartitionPartitionPartitionFilter) []ConsumptionConfigPartitionPartitionPartitionPartitionFilterCondition {
+		return v.Conditions
+	}).(ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionArrayOutput)
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionFilterOutput) Operator() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ConsumptionConfigPartitionPartitionPartitionPartitionFilter) *string { return v.Operator }).(pulumi.StringPtrOutput)
+}
+
+type ConsumptionConfigPartitionPartitionPartitionPartitionFilterArrayOutput struct{ *pulumi.OutputState }
+
+func (ConsumptionConfigPartitionPartitionPartitionPartitionFilterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ConsumptionConfigPartitionPartitionPartitionPartitionFilter)(nil)).Elem()
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionFilterArrayOutput) ToConsumptionConfigPartitionPartitionPartitionPartitionFilterArrayOutput() ConsumptionConfigPartitionPartitionPartitionPartitionFilterArrayOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionFilterArrayOutput) ToConsumptionConfigPartitionPartitionPartitionPartitionFilterArrayOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionFilterArrayOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionFilterArrayOutput) Index(i pulumi.IntInput) ConsumptionConfigPartitionPartitionPartitionPartitionFilterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ConsumptionConfigPartitionPartitionPartitionPartitionFilter {
+		return vs[0].([]ConsumptionConfigPartitionPartitionPartitionPartitionFilter)[vs[1].(int)]
+	}).(ConsumptionConfigPartitionPartitionPartitionPartitionFilterOutput)
+}
+
+type ConsumptionConfigPartitionPartitionPartitionPartitionFilterCondition struct {
+	DatasetId *string                                                                        `pulumi:"datasetId"`
+	LogFilter *ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilter `pulumi:"logFilter"`
+}
+
+// ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionInput is an input type that accepts ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionArgs and ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionOutput values.
+// You can construct a concrete instance of `ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionInput` via:
+//
+//	ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionArgs{...}
+type ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionInput interface {
+	pulumi.Input
+
+	ToConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionOutput() ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionOutput
+	ToConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionOutputWithContext(context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionOutput
+}
+
+type ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionArgs struct {
+	DatasetId pulumi.StringPtrInput                                                                 `pulumi:"datasetId"`
+	LogFilter ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrInput `pulumi:"logFilter"`
+}
+
+func (ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConsumptionConfigPartitionPartitionPartitionPartitionFilterCondition)(nil)).Elem()
+}
+
+func (i ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionArgs) ToConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionOutput() ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionOutput {
+	return i.ToConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionOutputWithContext(context.Background())
+}
+
+func (i ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionArgs) ToConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionOutput)
+}
+
+// ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionArrayInput is an input type that accepts ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionArray and ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionArrayOutput values.
+// You can construct a concrete instance of `ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionArrayInput` via:
+//
+//	ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionArray{ ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionArgs{...} }
+type ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionArrayInput interface {
+	pulumi.Input
+
+	ToConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionArrayOutput() ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionArrayOutput
+	ToConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionArrayOutputWithContext(context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionArrayOutput
+}
+
+type ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionArray []ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionInput
+
+func (ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ConsumptionConfigPartitionPartitionPartitionPartitionFilterCondition)(nil)).Elem()
+}
+
+func (i ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionArray) ToConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionArrayOutput() ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionArrayOutput {
+	return i.ToConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionArrayOutputWithContext(context.Background())
+}
+
+func (i ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionArray) ToConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionArrayOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionArrayOutput)
+}
+
+type ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionOutput struct{ *pulumi.OutputState }
+
+func (ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConsumptionConfigPartitionPartitionPartitionPartitionFilterCondition)(nil)).Elem()
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionOutput) ToConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionOutput() ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionOutput) ToConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionOutput) DatasetId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ConsumptionConfigPartitionPartitionPartitionPartitionFilterCondition) *string {
+		return v.DatasetId
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionOutput) LogFilter() ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput {
+	return o.ApplyT(func(v ConsumptionConfigPartitionPartitionPartitionPartitionFilterCondition) *ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilter {
+		return v.LogFilter
+	}).(ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput)
+}
+
+type ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionArrayOutput struct{ *pulumi.OutputState }
+
+func (ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ConsumptionConfigPartitionPartitionPartitionPartitionFilterCondition)(nil)).Elem()
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionArrayOutput) ToConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionArrayOutput() ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionArrayOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionArrayOutput) ToConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionArrayOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionArrayOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionArrayOutput) Index(i pulumi.IntInput) ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ConsumptionConfigPartitionPartitionPartitionPartitionFilterCondition {
+		return vs[0].([]ConsumptionConfigPartitionPartitionPartitionPartitionFilterCondition)[vs[1].(int)]
+	}).(ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionOutput)
+}
+
+type ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilter struct {
+	Query string `pulumi:"query"`
+}
+
+// ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterInput is an input type that accepts ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterArgs and ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterOutput values.
+// You can construct a concrete instance of `ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterInput` via:
+//
+//	ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterArgs{...}
+type ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterInput interface {
+	pulumi.Input
+
+	ToConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterOutput() ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterOutput
+	ToConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterOutputWithContext(context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterOutput
+}
+
+type ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterArgs struct {
+	Query pulumi.StringInput `pulumi:"query"`
+}
+
+func (ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilter)(nil)).Elem()
+}
+
+func (i ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterArgs) ToConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterOutput() ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterOutput {
+	return i.ToConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterOutputWithContext(context.Background())
+}
+
+func (i ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterArgs) ToConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterOutput)
+}
+
+func (i ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterArgs) ToConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput() ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput {
+	return i.ToConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutputWithContext(context.Background())
+}
+
+func (i ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterArgs) ToConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterOutput).ToConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutputWithContext(ctx)
+}
+
+// ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrInput is an input type that accepts ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterArgs, ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterPtr and ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput values.
+// You can construct a concrete instance of `ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrInput` via:
+//
+//	        ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterArgs{...}
+//
+//	or:
+//
+//	        nil
+type ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrInput interface {
+	pulumi.Input
+
+	ToConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput() ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput
+	ToConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutputWithContext(context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput
+}
+
+type consumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrType ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterArgs
+
+func ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterPtr(v *ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterArgs) ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrInput {
+	return (*consumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrType)(v)
+}
+
+func (*consumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilter)(nil)).Elem()
+}
+
+func (i *consumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrType) ToConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput() ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput {
+	return i.ToConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutputWithContext(context.Background())
+}
+
+func (i *consumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrType) ToConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput)
+}
+
+type ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterOutput struct{ *pulumi.OutputState }
+
+func (ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilter)(nil)).Elem()
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterOutput) ToConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterOutput() ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterOutput) ToConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterOutput) ToConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput() ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput {
+	return o.ToConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutputWithContext(context.Background())
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterOutput) ToConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilter) *ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilter {
+		return &v
+	}).(ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput)
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterOutput) Query() pulumi.StringOutput {
+	return o.ApplyT(func(v ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilter) string {
+		return v.Query
+	}).(pulumi.StringOutput)
+}
+
+type ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput struct{ *pulumi.OutputState }
+
+func (ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilter)(nil)).Elem()
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput) ToConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput() ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput) ToConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput) Elem() ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterOutput {
+	return o.ApplyT(func(v *ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilter) ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilter {
+		if v != nil {
+			return *v
+		}
+		var ret ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilter
+		return ret
+	}).(ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterOutput)
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput) Query() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilter) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Query
+	}).(pulumi.StringPtrOutput)
+}
+
+type ConsumptionConfigPartitionPartitionPartitionPartitionPartition struct {
+	Filters    []ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilter    `pulumi:"filters"`
+	Name       *string                                                                   `pulumi:"name"`
+	Partitions []ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartition `pulumi:"partitions"`
+	Slug       *string                                                                   `pulumi:"slug"`
+}
+
+// ConsumptionConfigPartitionPartitionPartitionPartitionPartitionInput is an input type that accepts ConsumptionConfigPartitionPartitionPartitionPartitionPartitionArgs and ConsumptionConfigPartitionPartitionPartitionPartitionPartitionOutput values.
+// You can construct a concrete instance of `ConsumptionConfigPartitionPartitionPartitionPartitionPartitionInput` via:
+//
+//	ConsumptionConfigPartitionPartitionPartitionPartitionPartitionArgs{...}
+type ConsumptionConfigPartitionPartitionPartitionPartitionPartitionInput interface {
+	pulumi.Input
+
+	ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionOutput() ConsumptionConfigPartitionPartitionPartitionPartitionPartitionOutput
+	ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionOutputWithContext(context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionPartitionOutput
+}
+
+type ConsumptionConfigPartitionPartitionPartitionPartitionPartitionArgs struct {
+	Filters    ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterArrayInput    `pulumi:"filters"`
+	Name       pulumi.StringPtrInput                                                             `pulumi:"name"`
+	Partitions ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionArrayInput `pulumi:"partitions"`
+	Slug       pulumi.StringPtrInput                                                             `pulumi:"slug"`
+}
+
+func (ConsumptionConfigPartitionPartitionPartitionPartitionPartitionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConsumptionConfigPartitionPartitionPartitionPartitionPartition)(nil)).Elem()
+}
+
+func (i ConsumptionConfigPartitionPartitionPartitionPartitionPartitionArgs) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionOutput() ConsumptionConfigPartitionPartitionPartitionPartitionPartitionOutput {
+	return i.ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionOutputWithContext(context.Background())
+}
+
+func (i ConsumptionConfigPartitionPartitionPartitionPartitionPartitionArgs) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionPartitionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionConfigPartitionPartitionPartitionPartitionPartitionOutput)
+}
+
+// ConsumptionConfigPartitionPartitionPartitionPartitionPartitionArrayInput is an input type that accepts ConsumptionConfigPartitionPartitionPartitionPartitionPartitionArray and ConsumptionConfigPartitionPartitionPartitionPartitionPartitionArrayOutput values.
+// You can construct a concrete instance of `ConsumptionConfigPartitionPartitionPartitionPartitionPartitionArrayInput` via:
+//
+//	ConsumptionConfigPartitionPartitionPartitionPartitionPartitionArray{ ConsumptionConfigPartitionPartitionPartitionPartitionPartitionArgs{...} }
+type ConsumptionConfigPartitionPartitionPartitionPartitionPartitionArrayInput interface {
+	pulumi.Input
+
+	ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionArrayOutput() ConsumptionConfigPartitionPartitionPartitionPartitionPartitionArrayOutput
+	ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionArrayOutputWithContext(context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionPartitionArrayOutput
+}
+
+type ConsumptionConfigPartitionPartitionPartitionPartitionPartitionArray []ConsumptionConfigPartitionPartitionPartitionPartitionPartitionInput
+
+func (ConsumptionConfigPartitionPartitionPartitionPartitionPartitionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ConsumptionConfigPartitionPartitionPartitionPartitionPartition)(nil)).Elem()
+}
+
+func (i ConsumptionConfigPartitionPartitionPartitionPartitionPartitionArray) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionArrayOutput() ConsumptionConfigPartitionPartitionPartitionPartitionPartitionArrayOutput {
+	return i.ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionArrayOutputWithContext(context.Background())
+}
+
+func (i ConsumptionConfigPartitionPartitionPartitionPartitionPartitionArray) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionArrayOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionPartitionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionConfigPartitionPartitionPartitionPartitionPartitionArrayOutput)
+}
+
+type ConsumptionConfigPartitionPartitionPartitionPartitionPartitionOutput struct{ *pulumi.OutputState }
+
+func (ConsumptionConfigPartitionPartitionPartitionPartitionPartitionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConsumptionConfigPartitionPartitionPartitionPartitionPartition)(nil)).Elem()
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionPartitionOutput) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionOutput() ConsumptionConfigPartitionPartitionPartitionPartitionPartitionOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionPartitionOutput) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionPartitionOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionPartitionOutput) Filters() ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterArrayOutput {
+	return o.ApplyT(func(v ConsumptionConfigPartitionPartitionPartitionPartitionPartition) []ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilter {
+		return v.Filters
+	}).(ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterArrayOutput)
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionPartitionOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ConsumptionConfigPartitionPartitionPartitionPartitionPartition) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionPartitionOutput) Partitions() ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionArrayOutput {
+	return o.ApplyT(func(v ConsumptionConfigPartitionPartitionPartitionPartitionPartition) []ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartition {
+		return v.Partitions
+	}).(ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionArrayOutput)
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionPartitionOutput) Slug() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ConsumptionConfigPartitionPartitionPartitionPartitionPartition) *string { return v.Slug }).(pulumi.StringPtrOutput)
+}
+
+type ConsumptionConfigPartitionPartitionPartitionPartitionPartitionArrayOutput struct{ *pulumi.OutputState }
+
+func (ConsumptionConfigPartitionPartitionPartitionPartitionPartitionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ConsumptionConfigPartitionPartitionPartitionPartitionPartition)(nil)).Elem()
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionPartitionArrayOutput) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionArrayOutput() ConsumptionConfigPartitionPartitionPartitionPartitionPartitionArrayOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionPartitionArrayOutput) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionArrayOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionPartitionArrayOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionPartitionArrayOutput) Index(i pulumi.IntInput) ConsumptionConfigPartitionPartitionPartitionPartitionPartitionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ConsumptionConfigPartitionPartitionPartitionPartitionPartition {
+		return vs[0].([]ConsumptionConfigPartitionPartitionPartitionPartitionPartition)[vs[1].(int)]
+	}).(ConsumptionConfigPartitionPartitionPartitionPartitionPartitionOutput)
+}
+
+type ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilter struct {
+	Conditions []ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterCondition `pulumi:"conditions"`
+	Operator   *string                                                                         `pulumi:"operator"`
+}
+
+// ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterInput is an input type that accepts ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterArgs and ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterOutput values.
+// You can construct a concrete instance of `ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterInput` via:
+//
+//	ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterArgs{...}
+type ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterInput interface {
+	pulumi.Input
+
+	ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterOutput() ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterOutput
+	ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterOutputWithContext(context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterOutput
+}
+
+type ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterArgs struct {
+	Conditions ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionArrayInput `pulumi:"conditions"`
+	Operator   pulumi.StringPtrInput                                                                   `pulumi:"operator"`
+}
+
+func (ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilter)(nil)).Elem()
+}
+
+func (i ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterArgs) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterOutput() ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterOutput {
+	return i.ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterOutputWithContext(context.Background())
+}
+
+func (i ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterArgs) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterOutput)
+}
+
+// ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterArrayInput is an input type that accepts ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterArray and ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterArrayOutput values.
+// You can construct a concrete instance of `ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterArrayInput` via:
+//
+//	ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterArray{ ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterArgs{...} }
+type ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterArrayInput interface {
+	pulumi.Input
+
+	ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterArrayOutput() ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterArrayOutput
+	ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterArrayOutputWithContext(context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterArrayOutput
+}
+
+type ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterArray []ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterInput
+
+func (ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilter)(nil)).Elem()
+}
+
+func (i ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterArray) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterArrayOutput() ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterArrayOutput {
+	return i.ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterArrayOutputWithContext(context.Background())
+}
+
+func (i ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterArray) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterArrayOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterArrayOutput)
+}
+
+type ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterOutput struct{ *pulumi.OutputState }
+
+func (ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilter)(nil)).Elem()
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterOutput) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterOutput() ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterOutput) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterOutput) Conditions() ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionArrayOutput {
+	return o.ApplyT(func(v ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilter) []ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterCondition {
+		return v.Conditions
+	}).(ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionArrayOutput)
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterOutput) Operator() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilter) *string {
+		return v.Operator
+	}).(pulumi.StringPtrOutput)
+}
+
+type ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterArrayOutput struct{ *pulumi.OutputState }
+
+func (ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilter)(nil)).Elem()
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterArrayOutput) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterArrayOutput() ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterArrayOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterArrayOutput) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterArrayOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterArrayOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterArrayOutput) Index(i pulumi.IntInput) ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilter {
+		return vs[0].([]ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilter)[vs[1].(int)]
+	}).(ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterOutput)
+}
+
+type ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterCondition struct {
+	DatasetId *string                                                                                 `pulumi:"datasetId"`
+	LogFilter *ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter `pulumi:"logFilter"`
+}
+
+// ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionInput is an input type that accepts ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionArgs and ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionOutput values.
+// You can construct a concrete instance of `ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionInput` via:
+//
+//	ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionArgs{...}
+type ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionInput interface {
+	pulumi.Input
+
+	ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionOutput() ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionOutput
+	ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionOutputWithContext(context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionOutput
+}
+
+type ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionArgs struct {
+	DatasetId pulumi.StringPtrInput                                                                          `pulumi:"datasetId"`
+	LogFilter ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrInput `pulumi:"logFilter"`
+}
+
+func (ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterCondition)(nil)).Elem()
+}
+
+func (i ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionArgs) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionOutput() ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionOutput {
+	return i.ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionOutputWithContext(context.Background())
+}
+
+func (i ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionArgs) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionOutput)
+}
+
+// ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionArrayInput is an input type that accepts ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionArray and ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionArrayOutput values.
+// You can construct a concrete instance of `ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionArrayInput` via:
+//
+//	ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionArray{ ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionArgs{...} }
+type ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionArrayInput interface {
+	pulumi.Input
+
+	ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionArrayOutput() ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionArrayOutput
+	ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionArrayOutputWithContext(context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionArrayOutput
+}
+
+type ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionArray []ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionInput
+
+func (ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterCondition)(nil)).Elem()
+}
+
+func (i ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionArray) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionArrayOutput() ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionArrayOutput {
+	return i.ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionArrayOutputWithContext(context.Background())
+}
+
+func (i ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionArray) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionArrayOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionArrayOutput)
+}
+
+type ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionOutput struct{ *pulumi.OutputState }
+
+func (ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterCondition)(nil)).Elem()
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionOutput) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionOutput() ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionOutput) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionOutput) DatasetId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterCondition) *string {
+		return v.DatasetId
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionOutput) LogFilter() ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput {
+	return o.ApplyT(func(v ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterCondition) *ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter {
+		return v.LogFilter
+	}).(ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput)
+}
+
+type ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionArrayOutput struct{ *pulumi.OutputState }
+
+func (ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterCondition)(nil)).Elem()
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionArrayOutput) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionArrayOutput() ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionArrayOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionArrayOutput) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionArrayOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionArrayOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionArrayOutput) Index(i pulumi.IntInput) ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterCondition {
+		return vs[0].([]ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterCondition)[vs[1].(int)]
+	}).(ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionOutput)
+}
+
+type ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter struct {
+	Query string `pulumi:"query"`
+}
+
+// ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterInput is an input type that accepts ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterArgs and ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterOutput values.
+// You can construct a concrete instance of `ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterInput` via:
+//
+//	ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterArgs{...}
+type ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterInput interface {
+	pulumi.Input
+
+	ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterOutput() ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterOutput
+	ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterOutputWithContext(context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterOutput
+}
+
+type ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterArgs struct {
+	Query pulumi.StringInput `pulumi:"query"`
+}
+
+func (ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter)(nil)).Elem()
+}
+
+func (i ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterArgs) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterOutput() ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterOutput {
+	return i.ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterOutputWithContext(context.Background())
+}
+
+func (i ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterArgs) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterOutput)
+}
+
+func (i ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterArgs) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput() ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput {
+	return i.ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutputWithContext(context.Background())
+}
+
+func (i ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterArgs) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterOutput).ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutputWithContext(ctx)
+}
+
+// ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrInput is an input type that accepts ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterArgs, ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtr and ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput values.
+// You can construct a concrete instance of `ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrInput` via:
+//
+//	        ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterArgs{...}
+//
+//	or:
+//
+//	        nil
+type ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrInput interface {
+	pulumi.Input
+
+	ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput() ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput
+	ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutputWithContext(context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput
+}
+
+type consumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrType ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterArgs
+
+func ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtr(v *ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterArgs) ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrInput {
+	return (*consumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrType)(v)
+}
+
+func (*consumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter)(nil)).Elem()
+}
+
+func (i *consumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrType) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput() ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput {
+	return i.ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutputWithContext(context.Background())
+}
+
+func (i *consumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrType) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput)
+}
+
+type ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterOutput struct{ *pulumi.OutputState }
+
+func (ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter)(nil)).Elem()
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterOutput) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterOutput() ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterOutput) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterOutput) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput() ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput {
+	return o.ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutputWithContext(context.Background())
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterOutput) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter) *ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter {
+		return &v
+	}).(ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput)
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterOutput) Query() pulumi.StringOutput {
+	return o.ApplyT(func(v ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter) string {
+		return v.Query
+	}).(pulumi.StringOutput)
+}
+
+type ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput struct{ *pulumi.OutputState }
+
+func (ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter)(nil)).Elem()
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput() ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput) Elem() ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterOutput {
+	return o.ApplyT(func(v *ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter) ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter {
+		if v != nil {
+			return *v
+		}
+		var ret ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter
+		return ret
+	}).(ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterOutput)
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput) Query() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Query
+	}).(pulumi.StringPtrOutput)
+}
+
+type ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartition struct {
+	Filters []ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilter `pulumi:"filters"`
+	Name    *string                                                                         `pulumi:"name"`
+	Slug    *string                                                                         `pulumi:"slug"`
+}
+
+// ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionInput is an input type that accepts ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionArgs and ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionOutput values.
+// You can construct a concrete instance of `ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionInput` via:
+//
+//	ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionArgs{...}
+type ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionInput interface {
+	pulumi.Input
+
+	ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionOutput() ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionOutput
+	ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionOutputWithContext(context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionOutput
+}
+
+type ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionArgs struct {
+	Filters ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterArrayInput `pulumi:"filters"`
+	Name    pulumi.StringPtrInput                                                                   `pulumi:"name"`
+	Slug    pulumi.StringPtrInput                                                                   `pulumi:"slug"`
+}
+
+func (ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartition)(nil)).Elem()
+}
+
+func (i ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionArgs) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionOutput() ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionOutput {
+	return i.ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionOutputWithContext(context.Background())
+}
+
+func (i ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionArgs) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionOutput)
+}
+
+// ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionArrayInput is an input type that accepts ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionArray and ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionArrayOutput values.
+// You can construct a concrete instance of `ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionArrayInput` via:
+//
+//	ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionArray{ ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionArgs{...} }
+type ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionArrayInput interface {
+	pulumi.Input
+
+	ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionArrayOutput() ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionArrayOutput
+	ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionArrayOutputWithContext(context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionArrayOutput
+}
+
+type ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionArray []ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionInput
+
+func (ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartition)(nil)).Elem()
+}
+
+func (i ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionArray) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionArrayOutput() ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionArrayOutput {
+	return i.ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionArrayOutputWithContext(context.Background())
+}
+
+func (i ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionArray) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionArrayOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionArrayOutput)
+}
+
+type ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionOutput struct{ *pulumi.OutputState }
+
+func (ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartition)(nil)).Elem()
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionOutput) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionOutput() ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionOutput) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionOutput) Filters() ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterArrayOutput {
+	return o.ApplyT(func(v ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartition) []ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilter {
+		return v.Filters
+	}).(ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterArrayOutput)
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartition) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionOutput) Slug() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartition) *string { return v.Slug }).(pulumi.StringPtrOutput)
+}
+
+type ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionArrayOutput struct{ *pulumi.OutputState }
+
+func (ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartition)(nil)).Elem()
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionArrayOutput) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionArrayOutput() ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionArrayOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionArrayOutput) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionArrayOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionArrayOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionArrayOutput) Index(i pulumi.IntInput) ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartition {
+		return vs[0].([]ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartition)[vs[1].(int)]
+	}).(ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionOutput)
+}
+
+type ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilter struct {
+	Conditions []ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterCondition `pulumi:"conditions"`
+	Operator   *string                                                                                  `pulumi:"operator"`
+}
+
+// ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterInput is an input type that accepts ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterArgs and ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterOutput values.
+// You can construct a concrete instance of `ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterInput` via:
+//
+//	ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterArgs{...}
+type ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterInput interface {
+	pulumi.Input
+
+	ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterOutput() ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterOutput
+	ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterOutputWithContext(context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterOutput
+}
+
+type ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterArgs struct {
+	Conditions ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionArrayInput `pulumi:"conditions"`
+	Operator   pulumi.StringPtrInput                                                                            `pulumi:"operator"`
+}
+
+func (ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilter)(nil)).Elem()
+}
+
+func (i ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterArgs) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterOutput() ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterOutput {
+	return i.ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterOutputWithContext(context.Background())
+}
+
+func (i ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterArgs) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterOutput)
+}
+
+// ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterArrayInput is an input type that accepts ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterArray and ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterArrayOutput values.
+// You can construct a concrete instance of `ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterArrayInput` via:
+//
+//	ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterArray{ ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterArgs{...} }
+type ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterArrayInput interface {
+	pulumi.Input
+
+	ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterArrayOutput() ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterArrayOutput
+	ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterArrayOutputWithContext(context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterArrayOutput
+}
+
+type ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterArray []ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterInput
+
+func (ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilter)(nil)).Elem()
+}
+
+func (i ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterArray) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterArrayOutput() ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterArrayOutput {
+	return i.ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterArrayOutputWithContext(context.Background())
+}
+
+func (i ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterArray) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterArrayOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterArrayOutput)
+}
+
+type ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterOutput struct{ *pulumi.OutputState }
+
+func (ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilter)(nil)).Elem()
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterOutput) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterOutput() ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterOutput) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterOutput) Conditions() ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionArrayOutput {
+	return o.ApplyT(func(v ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilter) []ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterCondition {
+		return v.Conditions
+	}).(ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionArrayOutput)
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterOutput) Operator() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilter) *string {
+		return v.Operator
+	}).(pulumi.StringPtrOutput)
+}
+
+type ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterArrayOutput struct{ *pulumi.OutputState }
+
+func (ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilter)(nil)).Elem()
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterArrayOutput) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterArrayOutput() ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterArrayOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterArrayOutput) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterArrayOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterArrayOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterArrayOutput) Index(i pulumi.IntInput) ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilter {
+		return vs[0].([]ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilter)[vs[1].(int)]
+	}).(ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterOutput)
+}
+
+type ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterCondition struct {
+	DatasetId *string                                                                                          `pulumi:"datasetId"`
+	LogFilter *ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter `pulumi:"logFilter"`
+}
+
+// ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionInput is an input type that accepts ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionArgs and ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionOutput values.
+// You can construct a concrete instance of `ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionInput` via:
+//
+//	ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionArgs{...}
+type ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionInput interface {
+	pulumi.Input
+
+	ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionOutput() ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionOutput
+	ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionOutputWithContext(context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionOutput
+}
+
+type ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionArgs struct {
+	DatasetId pulumi.StringPtrInput                                                                                   `pulumi:"datasetId"`
+	LogFilter ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrInput `pulumi:"logFilter"`
+}
+
+func (ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterCondition)(nil)).Elem()
+}
+
+func (i ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionArgs) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionOutput() ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionOutput {
+	return i.ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionOutputWithContext(context.Background())
+}
+
+func (i ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionArgs) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionOutput)
+}
+
+// ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionArrayInput is an input type that accepts ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionArray and ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionArrayOutput values.
+// You can construct a concrete instance of `ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionArrayInput` via:
+//
+//	ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionArray{ ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionArgs{...} }
+type ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionArrayInput interface {
+	pulumi.Input
+
+	ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionArrayOutput() ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionArrayOutput
+	ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionArrayOutputWithContext(context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionArrayOutput
+}
+
+type ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionArray []ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionInput
+
+func (ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterCondition)(nil)).Elem()
+}
+
+func (i ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionArray) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionArrayOutput() ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionArrayOutput {
+	return i.ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionArrayOutputWithContext(context.Background())
+}
+
+func (i ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionArray) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionArrayOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionArrayOutput)
+}
+
+type ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionOutput struct{ *pulumi.OutputState }
+
+func (ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterCondition)(nil)).Elem()
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionOutput) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionOutput() ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionOutput) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionOutput) DatasetId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterCondition) *string {
+		return v.DatasetId
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionOutput) LogFilter() ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput {
+	return o.ApplyT(func(v ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterCondition) *ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter {
+		return v.LogFilter
+	}).(ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput)
+}
+
+type ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionArrayOutput struct{ *pulumi.OutputState }
+
+func (ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterCondition)(nil)).Elem()
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionArrayOutput) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionArrayOutput() ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionArrayOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionArrayOutput) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionArrayOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionArrayOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionArrayOutput) Index(i pulumi.IntInput) ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterCondition {
+		return vs[0].([]ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterCondition)[vs[1].(int)]
+	}).(ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionOutput)
+}
+
+type ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter struct {
+	Query string `pulumi:"query"`
+}
+
+// ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterInput is an input type that accepts ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterArgs and ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterOutput values.
+// You can construct a concrete instance of `ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterInput` via:
+//
+//	ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterArgs{...}
+type ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterInput interface {
+	pulumi.Input
+
+	ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterOutput() ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterOutput
+	ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterOutputWithContext(context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterOutput
+}
+
+type ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterArgs struct {
+	Query pulumi.StringInput `pulumi:"query"`
+}
+
+func (ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter)(nil)).Elem()
+}
+
+func (i ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterArgs) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterOutput() ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterOutput {
+	return i.ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterOutputWithContext(context.Background())
+}
+
+func (i ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterArgs) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterOutput)
+}
+
+func (i ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterArgs) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput() ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput {
+	return i.ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutputWithContext(context.Background())
+}
+
+func (i ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterArgs) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterOutput).ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutputWithContext(ctx)
+}
+
+// ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrInput is an input type that accepts ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterArgs, ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtr and ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput values.
+// You can construct a concrete instance of `ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrInput` via:
+//
+//	        ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterArgs{...}
+//
+//	or:
+//
+//	        nil
+type ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrInput interface {
+	pulumi.Input
+
+	ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput() ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput
+	ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutputWithContext(context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput
+}
+
+type consumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrType ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterArgs
+
+func ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtr(v *ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterArgs) ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrInput {
+	return (*consumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrType)(v)
+}
+
+func (*consumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter)(nil)).Elem()
+}
+
+func (i *consumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrType) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput() ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput {
+	return i.ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutputWithContext(context.Background())
+}
+
+func (i *consumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrType) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput)
+}
+
+type ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterOutput struct{ *pulumi.OutputState }
+
+func (ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter)(nil)).Elem()
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterOutput) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterOutput() ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterOutput) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterOutput) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput() ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput {
+	return o.ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutputWithContext(context.Background())
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterOutput) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter) *ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter {
+		return &v
+	}).(ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput)
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterOutput) Query() pulumi.StringOutput {
+	return o.ApplyT(func(v ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter) string {
+		return v.Query
+	}).(pulumi.StringOutput)
+}
+
+type ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput struct{ *pulumi.OutputState }
+
+func (ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter)(nil)).Elem()
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput() ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput) ToConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutputWithContext(ctx context.Context) ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput {
+	return o
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput) Elem() ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterOutput {
+	return o.ApplyT(func(v *ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter) ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter {
+		if v != nil {
+			return *v
+		}
+		var ret ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter
+		return ret
+	}).(ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterOutput)
+}
+
+func (o ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput) Query() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Query
+	}).(pulumi.StringPtrOutput)
+}
+
 type DatasetConfiguration struct {
 	LogDataset   *DatasetConfigurationLogDataset   `pulumi:"logDataset"`
 	TraceDataset *DatasetConfigurationTraceDataset `pulumi:"traceDataset"`
@@ -4012,6 +8021,233 @@ func (o DerivedLabelMetricLabelMappingLabelValueMappingArrayOutput) Index(i pulu
 	}).(DerivedLabelMetricLabelMappingLabelValueMappingOutput)
 }
 
+type DerivedLabelSpanTag struct {
+	NameMappings []DerivedLabelSpanTagNameMapping `pulumi:"nameMappings"`
+}
+
+// DerivedLabelSpanTagInput is an input type that accepts DerivedLabelSpanTagArgs and DerivedLabelSpanTagOutput values.
+// You can construct a concrete instance of `DerivedLabelSpanTagInput` via:
+//
+//	DerivedLabelSpanTagArgs{...}
+type DerivedLabelSpanTagInput interface {
+	pulumi.Input
+
+	ToDerivedLabelSpanTagOutput() DerivedLabelSpanTagOutput
+	ToDerivedLabelSpanTagOutputWithContext(context.Context) DerivedLabelSpanTagOutput
+}
+
+type DerivedLabelSpanTagArgs struct {
+	NameMappings DerivedLabelSpanTagNameMappingArrayInput `pulumi:"nameMappings"`
+}
+
+func (DerivedLabelSpanTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DerivedLabelSpanTag)(nil)).Elem()
+}
+
+func (i DerivedLabelSpanTagArgs) ToDerivedLabelSpanTagOutput() DerivedLabelSpanTagOutput {
+	return i.ToDerivedLabelSpanTagOutputWithContext(context.Background())
+}
+
+func (i DerivedLabelSpanTagArgs) ToDerivedLabelSpanTagOutputWithContext(ctx context.Context) DerivedLabelSpanTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DerivedLabelSpanTagOutput)
+}
+
+func (i DerivedLabelSpanTagArgs) ToDerivedLabelSpanTagPtrOutput() DerivedLabelSpanTagPtrOutput {
+	return i.ToDerivedLabelSpanTagPtrOutputWithContext(context.Background())
+}
+
+func (i DerivedLabelSpanTagArgs) ToDerivedLabelSpanTagPtrOutputWithContext(ctx context.Context) DerivedLabelSpanTagPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DerivedLabelSpanTagOutput).ToDerivedLabelSpanTagPtrOutputWithContext(ctx)
+}
+
+// DerivedLabelSpanTagPtrInput is an input type that accepts DerivedLabelSpanTagArgs, DerivedLabelSpanTagPtr and DerivedLabelSpanTagPtrOutput values.
+// You can construct a concrete instance of `DerivedLabelSpanTagPtrInput` via:
+//
+//	        DerivedLabelSpanTagArgs{...}
+//
+//	or:
+//
+//	        nil
+type DerivedLabelSpanTagPtrInput interface {
+	pulumi.Input
+
+	ToDerivedLabelSpanTagPtrOutput() DerivedLabelSpanTagPtrOutput
+	ToDerivedLabelSpanTagPtrOutputWithContext(context.Context) DerivedLabelSpanTagPtrOutput
+}
+
+type derivedLabelSpanTagPtrType DerivedLabelSpanTagArgs
+
+func DerivedLabelSpanTagPtr(v *DerivedLabelSpanTagArgs) DerivedLabelSpanTagPtrInput {
+	return (*derivedLabelSpanTagPtrType)(v)
+}
+
+func (*derivedLabelSpanTagPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DerivedLabelSpanTag)(nil)).Elem()
+}
+
+func (i *derivedLabelSpanTagPtrType) ToDerivedLabelSpanTagPtrOutput() DerivedLabelSpanTagPtrOutput {
+	return i.ToDerivedLabelSpanTagPtrOutputWithContext(context.Background())
+}
+
+func (i *derivedLabelSpanTagPtrType) ToDerivedLabelSpanTagPtrOutputWithContext(ctx context.Context) DerivedLabelSpanTagPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DerivedLabelSpanTagPtrOutput)
+}
+
+type DerivedLabelSpanTagOutput struct{ *pulumi.OutputState }
+
+func (DerivedLabelSpanTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DerivedLabelSpanTag)(nil)).Elem()
+}
+
+func (o DerivedLabelSpanTagOutput) ToDerivedLabelSpanTagOutput() DerivedLabelSpanTagOutput {
+	return o
+}
+
+func (o DerivedLabelSpanTagOutput) ToDerivedLabelSpanTagOutputWithContext(ctx context.Context) DerivedLabelSpanTagOutput {
+	return o
+}
+
+func (o DerivedLabelSpanTagOutput) ToDerivedLabelSpanTagPtrOutput() DerivedLabelSpanTagPtrOutput {
+	return o.ToDerivedLabelSpanTagPtrOutputWithContext(context.Background())
+}
+
+func (o DerivedLabelSpanTagOutput) ToDerivedLabelSpanTagPtrOutputWithContext(ctx context.Context) DerivedLabelSpanTagPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DerivedLabelSpanTag) *DerivedLabelSpanTag {
+		return &v
+	}).(DerivedLabelSpanTagPtrOutput)
+}
+
+func (o DerivedLabelSpanTagOutput) NameMappings() DerivedLabelSpanTagNameMappingArrayOutput {
+	return o.ApplyT(func(v DerivedLabelSpanTag) []DerivedLabelSpanTagNameMapping { return v.NameMappings }).(DerivedLabelSpanTagNameMappingArrayOutput)
+}
+
+type DerivedLabelSpanTagPtrOutput struct{ *pulumi.OutputState }
+
+func (DerivedLabelSpanTagPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DerivedLabelSpanTag)(nil)).Elem()
+}
+
+func (o DerivedLabelSpanTagPtrOutput) ToDerivedLabelSpanTagPtrOutput() DerivedLabelSpanTagPtrOutput {
+	return o
+}
+
+func (o DerivedLabelSpanTagPtrOutput) ToDerivedLabelSpanTagPtrOutputWithContext(ctx context.Context) DerivedLabelSpanTagPtrOutput {
+	return o
+}
+
+func (o DerivedLabelSpanTagPtrOutput) Elem() DerivedLabelSpanTagOutput {
+	return o.ApplyT(func(v *DerivedLabelSpanTag) DerivedLabelSpanTag {
+		if v != nil {
+			return *v
+		}
+		var ret DerivedLabelSpanTag
+		return ret
+	}).(DerivedLabelSpanTagOutput)
+}
+
+func (o DerivedLabelSpanTagPtrOutput) NameMappings() DerivedLabelSpanTagNameMappingArrayOutput {
+	return o.ApplyT(func(v *DerivedLabelSpanTag) []DerivedLabelSpanTagNameMapping {
+		if v == nil {
+			return nil
+		}
+		return v.NameMappings
+	}).(DerivedLabelSpanTagNameMappingArrayOutput)
+}
+
+type DerivedLabelSpanTagNameMapping struct {
+	SourceTag string `pulumi:"sourceTag"`
+}
+
+// DerivedLabelSpanTagNameMappingInput is an input type that accepts DerivedLabelSpanTagNameMappingArgs and DerivedLabelSpanTagNameMappingOutput values.
+// You can construct a concrete instance of `DerivedLabelSpanTagNameMappingInput` via:
+//
+//	DerivedLabelSpanTagNameMappingArgs{...}
+type DerivedLabelSpanTagNameMappingInput interface {
+	pulumi.Input
+
+	ToDerivedLabelSpanTagNameMappingOutput() DerivedLabelSpanTagNameMappingOutput
+	ToDerivedLabelSpanTagNameMappingOutputWithContext(context.Context) DerivedLabelSpanTagNameMappingOutput
+}
+
+type DerivedLabelSpanTagNameMappingArgs struct {
+	SourceTag pulumi.StringInput `pulumi:"sourceTag"`
+}
+
+func (DerivedLabelSpanTagNameMappingArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DerivedLabelSpanTagNameMapping)(nil)).Elem()
+}
+
+func (i DerivedLabelSpanTagNameMappingArgs) ToDerivedLabelSpanTagNameMappingOutput() DerivedLabelSpanTagNameMappingOutput {
+	return i.ToDerivedLabelSpanTagNameMappingOutputWithContext(context.Background())
+}
+
+func (i DerivedLabelSpanTagNameMappingArgs) ToDerivedLabelSpanTagNameMappingOutputWithContext(ctx context.Context) DerivedLabelSpanTagNameMappingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DerivedLabelSpanTagNameMappingOutput)
+}
+
+// DerivedLabelSpanTagNameMappingArrayInput is an input type that accepts DerivedLabelSpanTagNameMappingArray and DerivedLabelSpanTagNameMappingArrayOutput values.
+// You can construct a concrete instance of `DerivedLabelSpanTagNameMappingArrayInput` via:
+//
+//	DerivedLabelSpanTagNameMappingArray{ DerivedLabelSpanTagNameMappingArgs{...} }
+type DerivedLabelSpanTagNameMappingArrayInput interface {
+	pulumi.Input
+
+	ToDerivedLabelSpanTagNameMappingArrayOutput() DerivedLabelSpanTagNameMappingArrayOutput
+	ToDerivedLabelSpanTagNameMappingArrayOutputWithContext(context.Context) DerivedLabelSpanTagNameMappingArrayOutput
+}
+
+type DerivedLabelSpanTagNameMappingArray []DerivedLabelSpanTagNameMappingInput
+
+func (DerivedLabelSpanTagNameMappingArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DerivedLabelSpanTagNameMapping)(nil)).Elem()
+}
+
+func (i DerivedLabelSpanTagNameMappingArray) ToDerivedLabelSpanTagNameMappingArrayOutput() DerivedLabelSpanTagNameMappingArrayOutput {
+	return i.ToDerivedLabelSpanTagNameMappingArrayOutputWithContext(context.Background())
+}
+
+func (i DerivedLabelSpanTagNameMappingArray) ToDerivedLabelSpanTagNameMappingArrayOutputWithContext(ctx context.Context) DerivedLabelSpanTagNameMappingArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DerivedLabelSpanTagNameMappingArrayOutput)
+}
+
+type DerivedLabelSpanTagNameMappingOutput struct{ *pulumi.OutputState }
+
+func (DerivedLabelSpanTagNameMappingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DerivedLabelSpanTagNameMapping)(nil)).Elem()
+}
+
+func (o DerivedLabelSpanTagNameMappingOutput) ToDerivedLabelSpanTagNameMappingOutput() DerivedLabelSpanTagNameMappingOutput {
+	return o
+}
+
+func (o DerivedLabelSpanTagNameMappingOutput) ToDerivedLabelSpanTagNameMappingOutputWithContext(ctx context.Context) DerivedLabelSpanTagNameMappingOutput {
+	return o
+}
+
+func (o DerivedLabelSpanTagNameMappingOutput) SourceTag() pulumi.StringOutput {
+	return o.ApplyT(func(v DerivedLabelSpanTagNameMapping) string { return v.SourceTag }).(pulumi.StringOutput)
+}
+
+type DerivedLabelSpanTagNameMappingArrayOutput struct{ *pulumi.OutputState }
+
+func (DerivedLabelSpanTagNameMappingArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DerivedLabelSpanTagNameMapping)(nil)).Elem()
+}
+
+func (o DerivedLabelSpanTagNameMappingArrayOutput) ToDerivedLabelSpanTagNameMappingArrayOutput() DerivedLabelSpanTagNameMappingArrayOutput {
+	return o
+}
+
+func (o DerivedLabelSpanTagNameMappingArrayOutput) ToDerivedLabelSpanTagNameMappingArrayOutputWithContext(ctx context.Context) DerivedLabelSpanTagNameMappingArrayOutput {
+	return o
+}
+
+func (o DerivedLabelSpanTagNameMappingArrayOutput) Index(i pulumi.IntInput) DerivedLabelSpanTagNameMappingOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DerivedLabelSpanTagNameMapping {
+		return vs[0].([]DerivedLabelSpanTagNameMapping)[vs[1].(int)]
+	}).(DerivedLabelSpanTagNameMappingOutput)
+}
+
 type DerivedMetricQuery struct {
 	Query    DerivedMetricQueryQuery     `pulumi:"query"`
 	Selector *DerivedMetricQuerySelector `pulumi:"selector"`
@@ -5890,104 +10126,5488 @@ func (o LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterArrayOutput)
 	}).(LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterOutput)
 }
 
-type LogIngestConfigParser struct {
-	Name  string `pulumi:"name"`
+type LogControlConfigRule struct {
+	DropField    *LogControlConfigRuleDropField    `pulumi:"dropField"`
+	EmitMetrics  *LogControlConfigRuleEmitMetrics  `pulumi:"emitMetrics"`
+	Filter       *string                           `pulumi:"filter"`
+	Mode         *string                           `pulumi:"mode"`
+	Name         *string                           `pulumi:"name"`
+	ReplaceField *LogControlConfigRuleReplaceField `pulumi:"replaceField"`
+	Sample       *LogControlConfigRuleSample       `pulumi:"sample"`
+	Type         *string                           `pulumi:"type"`
+}
+
+// LogControlConfigRuleInput is an input type that accepts LogControlConfigRuleArgs and LogControlConfigRuleOutput values.
+// You can construct a concrete instance of `LogControlConfigRuleInput` via:
+//
+//	LogControlConfigRuleArgs{...}
+type LogControlConfigRuleInput interface {
+	pulumi.Input
+
+	ToLogControlConfigRuleOutput() LogControlConfigRuleOutput
+	ToLogControlConfigRuleOutputWithContext(context.Context) LogControlConfigRuleOutput
+}
+
+type LogControlConfigRuleArgs struct {
+	DropField    LogControlConfigRuleDropFieldPtrInput    `pulumi:"dropField"`
+	EmitMetrics  LogControlConfigRuleEmitMetricsPtrInput  `pulumi:"emitMetrics"`
+	Filter       pulumi.StringPtrInput                    `pulumi:"filter"`
+	Mode         pulumi.StringPtrInput                    `pulumi:"mode"`
+	Name         pulumi.StringPtrInput                    `pulumi:"name"`
+	ReplaceField LogControlConfigRuleReplaceFieldPtrInput `pulumi:"replaceField"`
+	Sample       LogControlConfigRuleSamplePtrInput       `pulumi:"sample"`
+	Type         pulumi.StringPtrInput                    `pulumi:"type"`
+}
+
+func (LogControlConfigRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogControlConfigRule)(nil)).Elem()
+}
+
+func (i LogControlConfigRuleArgs) ToLogControlConfigRuleOutput() LogControlConfigRuleOutput {
+	return i.ToLogControlConfigRuleOutputWithContext(context.Background())
+}
+
+func (i LogControlConfigRuleArgs) ToLogControlConfigRuleOutputWithContext(ctx context.Context) LogControlConfigRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogControlConfigRuleOutput)
+}
+
+// LogControlConfigRuleArrayInput is an input type that accepts LogControlConfigRuleArray and LogControlConfigRuleArrayOutput values.
+// You can construct a concrete instance of `LogControlConfigRuleArrayInput` via:
+//
+//	LogControlConfigRuleArray{ LogControlConfigRuleArgs{...} }
+type LogControlConfigRuleArrayInput interface {
+	pulumi.Input
+
+	ToLogControlConfigRuleArrayOutput() LogControlConfigRuleArrayOutput
+	ToLogControlConfigRuleArrayOutputWithContext(context.Context) LogControlConfigRuleArrayOutput
+}
+
+type LogControlConfigRuleArray []LogControlConfigRuleInput
+
+func (LogControlConfigRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LogControlConfigRule)(nil)).Elem()
+}
+
+func (i LogControlConfigRuleArray) ToLogControlConfigRuleArrayOutput() LogControlConfigRuleArrayOutput {
+	return i.ToLogControlConfigRuleArrayOutputWithContext(context.Background())
+}
+
+func (i LogControlConfigRuleArray) ToLogControlConfigRuleArrayOutputWithContext(ctx context.Context) LogControlConfigRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogControlConfigRuleArrayOutput)
+}
+
+type LogControlConfigRuleOutput struct{ *pulumi.OutputState }
+
+func (LogControlConfigRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogControlConfigRule)(nil)).Elem()
+}
+
+func (o LogControlConfigRuleOutput) ToLogControlConfigRuleOutput() LogControlConfigRuleOutput {
+	return o
+}
+
+func (o LogControlConfigRuleOutput) ToLogControlConfigRuleOutputWithContext(ctx context.Context) LogControlConfigRuleOutput {
+	return o
+}
+
+func (o LogControlConfigRuleOutput) DropField() LogControlConfigRuleDropFieldPtrOutput {
+	return o.ApplyT(func(v LogControlConfigRule) *LogControlConfigRuleDropField { return v.DropField }).(LogControlConfigRuleDropFieldPtrOutput)
+}
+
+func (o LogControlConfigRuleOutput) EmitMetrics() LogControlConfigRuleEmitMetricsPtrOutput {
+	return o.ApplyT(func(v LogControlConfigRule) *LogControlConfigRuleEmitMetrics { return v.EmitMetrics }).(LogControlConfigRuleEmitMetricsPtrOutput)
+}
+
+func (o LogControlConfigRuleOutput) Filter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LogControlConfigRule) *string { return v.Filter }).(pulumi.StringPtrOutput)
+}
+
+func (o LogControlConfigRuleOutput) Mode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LogControlConfigRule) *string { return v.Mode }).(pulumi.StringPtrOutput)
+}
+
+func (o LogControlConfigRuleOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LogControlConfigRule) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+func (o LogControlConfigRuleOutput) ReplaceField() LogControlConfigRuleReplaceFieldPtrOutput {
+	return o.ApplyT(func(v LogControlConfigRule) *LogControlConfigRuleReplaceField { return v.ReplaceField }).(LogControlConfigRuleReplaceFieldPtrOutput)
+}
+
+func (o LogControlConfigRuleOutput) Sample() LogControlConfigRuleSamplePtrOutput {
+	return o.ApplyT(func(v LogControlConfigRule) *LogControlConfigRuleSample { return v.Sample }).(LogControlConfigRuleSamplePtrOutput)
+}
+
+func (o LogControlConfigRuleOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LogControlConfigRule) *string { return v.Type }).(pulumi.StringPtrOutput)
+}
+
+type LogControlConfigRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (LogControlConfigRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LogControlConfigRule)(nil)).Elem()
+}
+
+func (o LogControlConfigRuleArrayOutput) ToLogControlConfigRuleArrayOutput() LogControlConfigRuleArrayOutput {
+	return o
+}
+
+func (o LogControlConfigRuleArrayOutput) ToLogControlConfigRuleArrayOutputWithContext(ctx context.Context) LogControlConfigRuleArrayOutput {
+	return o
+}
+
+func (o LogControlConfigRuleArrayOutput) Index(i pulumi.IntInput) LogControlConfigRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LogControlConfigRule {
+		return vs[0].([]LogControlConfigRule)[vs[1].(int)]
+	}).(LogControlConfigRuleOutput)
+}
+
+type LogControlConfigRuleDropField struct {
+	FieldRegex *string                                  `pulumi:"fieldRegex"`
+	ParentPath *LogControlConfigRuleDropFieldParentPath `pulumi:"parentPath"`
+}
+
+// LogControlConfigRuleDropFieldInput is an input type that accepts LogControlConfigRuleDropFieldArgs and LogControlConfigRuleDropFieldOutput values.
+// You can construct a concrete instance of `LogControlConfigRuleDropFieldInput` via:
+//
+//	LogControlConfigRuleDropFieldArgs{...}
+type LogControlConfigRuleDropFieldInput interface {
+	pulumi.Input
+
+	ToLogControlConfigRuleDropFieldOutput() LogControlConfigRuleDropFieldOutput
+	ToLogControlConfigRuleDropFieldOutputWithContext(context.Context) LogControlConfigRuleDropFieldOutput
+}
+
+type LogControlConfigRuleDropFieldArgs struct {
+	FieldRegex pulumi.StringPtrInput                           `pulumi:"fieldRegex"`
+	ParentPath LogControlConfigRuleDropFieldParentPathPtrInput `pulumi:"parentPath"`
+}
+
+func (LogControlConfigRuleDropFieldArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogControlConfigRuleDropField)(nil)).Elem()
+}
+
+func (i LogControlConfigRuleDropFieldArgs) ToLogControlConfigRuleDropFieldOutput() LogControlConfigRuleDropFieldOutput {
+	return i.ToLogControlConfigRuleDropFieldOutputWithContext(context.Background())
+}
+
+func (i LogControlConfigRuleDropFieldArgs) ToLogControlConfigRuleDropFieldOutputWithContext(ctx context.Context) LogControlConfigRuleDropFieldOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogControlConfigRuleDropFieldOutput)
+}
+
+func (i LogControlConfigRuleDropFieldArgs) ToLogControlConfigRuleDropFieldPtrOutput() LogControlConfigRuleDropFieldPtrOutput {
+	return i.ToLogControlConfigRuleDropFieldPtrOutputWithContext(context.Background())
+}
+
+func (i LogControlConfigRuleDropFieldArgs) ToLogControlConfigRuleDropFieldPtrOutputWithContext(ctx context.Context) LogControlConfigRuleDropFieldPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogControlConfigRuleDropFieldOutput).ToLogControlConfigRuleDropFieldPtrOutputWithContext(ctx)
+}
+
+// LogControlConfigRuleDropFieldPtrInput is an input type that accepts LogControlConfigRuleDropFieldArgs, LogControlConfigRuleDropFieldPtr and LogControlConfigRuleDropFieldPtrOutput values.
+// You can construct a concrete instance of `LogControlConfigRuleDropFieldPtrInput` via:
+//
+//	        LogControlConfigRuleDropFieldArgs{...}
+//
+//	or:
+//
+//	        nil
+type LogControlConfigRuleDropFieldPtrInput interface {
+	pulumi.Input
+
+	ToLogControlConfigRuleDropFieldPtrOutput() LogControlConfigRuleDropFieldPtrOutput
+	ToLogControlConfigRuleDropFieldPtrOutputWithContext(context.Context) LogControlConfigRuleDropFieldPtrOutput
+}
+
+type logControlConfigRuleDropFieldPtrType LogControlConfigRuleDropFieldArgs
+
+func LogControlConfigRuleDropFieldPtr(v *LogControlConfigRuleDropFieldArgs) LogControlConfigRuleDropFieldPtrInput {
+	return (*logControlConfigRuleDropFieldPtrType)(v)
+}
+
+func (*logControlConfigRuleDropFieldPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogControlConfigRuleDropField)(nil)).Elem()
+}
+
+func (i *logControlConfigRuleDropFieldPtrType) ToLogControlConfigRuleDropFieldPtrOutput() LogControlConfigRuleDropFieldPtrOutput {
+	return i.ToLogControlConfigRuleDropFieldPtrOutputWithContext(context.Background())
+}
+
+func (i *logControlConfigRuleDropFieldPtrType) ToLogControlConfigRuleDropFieldPtrOutputWithContext(ctx context.Context) LogControlConfigRuleDropFieldPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogControlConfigRuleDropFieldPtrOutput)
+}
+
+type LogControlConfigRuleDropFieldOutput struct{ *pulumi.OutputState }
+
+func (LogControlConfigRuleDropFieldOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogControlConfigRuleDropField)(nil)).Elem()
+}
+
+func (o LogControlConfigRuleDropFieldOutput) ToLogControlConfigRuleDropFieldOutput() LogControlConfigRuleDropFieldOutput {
+	return o
+}
+
+func (o LogControlConfigRuleDropFieldOutput) ToLogControlConfigRuleDropFieldOutputWithContext(ctx context.Context) LogControlConfigRuleDropFieldOutput {
+	return o
+}
+
+func (o LogControlConfigRuleDropFieldOutput) ToLogControlConfigRuleDropFieldPtrOutput() LogControlConfigRuleDropFieldPtrOutput {
+	return o.ToLogControlConfigRuleDropFieldPtrOutputWithContext(context.Background())
+}
+
+func (o LogControlConfigRuleDropFieldOutput) ToLogControlConfigRuleDropFieldPtrOutputWithContext(ctx context.Context) LogControlConfigRuleDropFieldPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v LogControlConfigRuleDropField) *LogControlConfigRuleDropField {
+		return &v
+	}).(LogControlConfigRuleDropFieldPtrOutput)
+}
+
+func (o LogControlConfigRuleDropFieldOutput) FieldRegex() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LogControlConfigRuleDropField) *string { return v.FieldRegex }).(pulumi.StringPtrOutput)
+}
+
+func (o LogControlConfigRuleDropFieldOutput) ParentPath() LogControlConfigRuleDropFieldParentPathPtrOutput {
+	return o.ApplyT(func(v LogControlConfigRuleDropField) *LogControlConfigRuleDropFieldParentPath { return v.ParentPath }).(LogControlConfigRuleDropFieldParentPathPtrOutput)
+}
+
+type LogControlConfigRuleDropFieldPtrOutput struct{ *pulumi.OutputState }
+
+func (LogControlConfigRuleDropFieldPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogControlConfigRuleDropField)(nil)).Elem()
+}
+
+func (o LogControlConfigRuleDropFieldPtrOutput) ToLogControlConfigRuleDropFieldPtrOutput() LogControlConfigRuleDropFieldPtrOutput {
+	return o
+}
+
+func (o LogControlConfigRuleDropFieldPtrOutput) ToLogControlConfigRuleDropFieldPtrOutputWithContext(ctx context.Context) LogControlConfigRuleDropFieldPtrOutput {
+	return o
+}
+
+func (o LogControlConfigRuleDropFieldPtrOutput) Elem() LogControlConfigRuleDropFieldOutput {
+	return o.ApplyT(func(v *LogControlConfigRuleDropField) LogControlConfigRuleDropField {
+		if v != nil {
+			return *v
+		}
+		var ret LogControlConfigRuleDropField
+		return ret
+	}).(LogControlConfigRuleDropFieldOutput)
+}
+
+func (o LogControlConfigRuleDropFieldPtrOutput) FieldRegex() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogControlConfigRuleDropField) *string {
+		if v == nil {
+			return nil
+		}
+		return v.FieldRegex
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o LogControlConfigRuleDropFieldPtrOutput) ParentPath() LogControlConfigRuleDropFieldParentPathPtrOutput {
+	return o.ApplyT(func(v *LogControlConfigRuleDropField) *LogControlConfigRuleDropFieldParentPath {
+		if v == nil {
+			return nil
+		}
+		return v.ParentPath
+	}).(LogControlConfigRuleDropFieldParentPathPtrOutput)
+}
+
+type LogControlConfigRuleDropFieldParentPath struct {
+	Selector *string `pulumi:"selector"`
+}
+
+// LogControlConfigRuleDropFieldParentPathInput is an input type that accepts LogControlConfigRuleDropFieldParentPathArgs and LogControlConfigRuleDropFieldParentPathOutput values.
+// You can construct a concrete instance of `LogControlConfigRuleDropFieldParentPathInput` via:
+//
+//	LogControlConfigRuleDropFieldParentPathArgs{...}
+type LogControlConfigRuleDropFieldParentPathInput interface {
+	pulumi.Input
+
+	ToLogControlConfigRuleDropFieldParentPathOutput() LogControlConfigRuleDropFieldParentPathOutput
+	ToLogControlConfigRuleDropFieldParentPathOutputWithContext(context.Context) LogControlConfigRuleDropFieldParentPathOutput
+}
+
+type LogControlConfigRuleDropFieldParentPathArgs struct {
+	Selector pulumi.StringPtrInput `pulumi:"selector"`
+}
+
+func (LogControlConfigRuleDropFieldParentPathArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogControlConfigRuleDropFieldParentPath)(nil)).Elem()
+}
+
+func (i LogControlConfigRuleDropFieldParentPathArgs) ToLogControlConfigRuleDropFieldParentPathOutput() LogControlConfigRuleDropFieldParentPathOutput {
+	return i.ToLogControlConfigRuleDropFieldParentPathOutputWithContext(context.Background())
+}
+
+func (i LogControlConfigRuleDropFieldParentPathArgs) ToLogControlConfigRuleDropFieldParentPathOutputWithContext(ctx context.Context) LogControlConfigRuleDropFieldParentPathOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogControlConfigRuleDropFieldParentPathOutput)
+}
+
+func (i LogControlConfigRuleDropFieldParentPathArgs) ToLogControlConfigRuleDropFieldParentPathPtrOutput() LogControlConfigRuleDropFieldParentPathPtrOutput {
+	return i.ToLogControlConfigRuleDropFieldParentPathPtrOutputWithContext(context.Background())
+}
+
+func (i LogControlConfigRuleDropFieldParentPathArgs) ToLogControlConfigRuleDropFieldParentPathPtrOutputWithContext(ctx context.Context) LogControlConfigRuleDropFieldParentPathPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogControlConfigRuleDropFieldParentPathOutput).ToLogControlConfigRuleDropFieldParentPathPtrOutputWithContext(ctx)
+}
+
+// LogControlConfigRuleDropFieldParentPathPtrInput is an input type that accepts LogControlConfigRuleDropFieldParentPathArgs, LogControlConfigRuleDropFieldParentPathPtr and LogControlConfigRuleDropFieldParentPathPtrOutput values.
+// You can construct a concrete instance of `LogControlConfigRuleDropFieldParentPathPtrInput` via:
+//
+//	        LogControlConfigRuleDropFieldParentPathArgs{...}
+//
+//	or:
+//
+//	        nil
+type LogControlConfigRuleDropFieldParentPathPtrInput interface {
+	pulumi.Input
+
+	ToLogControlConfigRuleDropFieldParentPathPtrOutput() LogControlConfigRuleDropFieldParentPathPtrOutput
+	ToLogControlConfigRuleDropFieldParentPathPtrOutputWithContext(context.Context) LogControlConfigRuleDropFieldParentPathPtrOutput
+}
+
+type logControlConfigRuleDropFieldParentPathPtrType LogControlConfigRuleDropFieldParentPathArgs
+
+func LogControlConfigRuleDropFieldParentPathPtr(v *LogControlConfigRuleDropFieldParentPathArgs) LogControlConfigRuleDropFieldParentPathPtrInput {
+	return (*logControlConfigRuleDropFieldParentPathPtrType)(v)
+}
+
+func (*logControlConfigRuleDropFieldParentPathPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogControlConfigRuleDropFieldParentPath)(nil)).Elem()
+}
+
+func (i *logControlConfigRuleDropFieldParentPathPtrType) ToLogControlConfigRuleDropFieldParentPathPtrOutput() LogControlConfigRuleDropFieldParentPathPtrOutput {
+	return i.ToLogControlConfigRuleDropFieldParentPathPtrOutputWithContext(context.Background())
+}
+
+func (i *logControlConfigRuleDropFieldParentPathPtrType) ToLogControlConfigRuleDropFieldParentPathPtrOutputWithContext(ctx context.Context) LogControlConfigRuleDropFieldParentPathPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogControlConfigRuleDropFieldParentPathPtrOutput)
+}
+
+type LogControlConfigRuleDropFieldParentPathOutput struct{ *pulumi.OutputState }
+
+func (LogControlConfigRuleDropFieldParentPathOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogControlConfigRuleDropFieldParentPath)(nil)).Elem()
+}
+
+func (o LogControlConfigRuleDropFieldParentPathOutput) ToLogControlConfigRuleDropFieldParentPathOutput() LogControlConfigRuleDropFieldParentPathOutput {
+	return o
+}
+
+func (o LogControlConfigRuleDropFieldParentPathOutput) ToLogControlConfigRuleDropFieldParentPathOutputWithContext(ctx context.Context) LogControlConfigRuleDropFieldParentPathOutput {
+	return o
+}
+
+func (o LogControlConfigRuleDropFieldParentPathOutput) ToLogControlConfigRuleDropFieldParentPathPtrOutput() LogControlConfigRuleDropFieldParentPathPtrOutput {
+	return o.ToLogControlConfigRuleDropFieldParentPathPtrOutputWithContext(context.Background())
+}
+
+func (o LogControlConfigRuleDropFieldParentPathOutput) ToLogControlConfigRuleDropFieldParentPathPtrOutputWithContext(ctx context.Context) LogControlConfigRuleDropFieldParentPathPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v LogControlConfigRuleDropFieldParentPath) *LogControlConfigRuleDropFieldParentPath {
+		return &v
+	}).(LogControlConfigRuleDropFieldParentPathPtrOutput)
+}
+
+func (o LogControlConfigRuleDropFieldParentPathOutput) Selector() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LogControlConfigRuleDropFieldParentPath) *string { return v.Selector }).(pulumi.StringPtrOutput)
+}
+
+type LogControlConfigRuleDropFieldParentPathPtrOutput struct{ *pulumi.OutputState }
+
+func (LogControlConfigRuleDropFieldParentPathPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogControlConfigRuleDropFieldParentPath)(nil)).Elem()
+}
+
+func (o LogControlConfigRuleDropFieldParentPathPtrOutput) ToLogControlConfigRuleDropFieldParentPathPtrOutput() LogControlConfigRuleDropFieldParentPathPtrOutput {
+	return o
+}
+
+func (o LogControlConfigRuleDropFieldParentPathPtrOutput) ToLogControlConfigRuleDropFieldParentPathPtrOutputWithContext(ctx context.Context) LogControlConfigRuleDropFieldParentPathPtrOutput {
+	return o
+}
+
+func (o LogControlConfigRuleDropFieldParentPathPtrOutput) Elem() LogControlConfigRuleDropFieldParentPathOutput {
+	return o.ApplyT(func(v *LogControlConfigRuleDropFieldParentPath) LogControlConfigRuleDropFieldParentPath {
+		if v != nil {
+			return *v
+		}
+		var ret LogControlConfigRuleDropFieldParentPath
+		return ret
+	}).(LogControlConfigRuleDropFieldParentPathOutput)
+}
+
+func (o LogControlConfigRuleDropFieldParentPathPtrOutput) Selector() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogControlConfigRuleDropFieldParentPath) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Selector
+	}).(pulumi.StringPtrOutput)
+}
+
+type LogControlConfigRuleEmitMetrics struct {
+	Counter   *LogControlConfigRuleEmitMetricsCounter   `pulumi:"counter"`
+	DropLog   *bool                                     `pulumi:"dropLog"`
+	Gauge     *LogControlConfigRuleEmitMetricsGauge     `pulumi:"gauge"`
+	Histogram *LogControlConfigRuleEmitMetricsHistogram `pulumi:"histogram"`
+	Labels    []LogControlConfigRuleEmitMetricsLabel    `pulumi:"labels"`
+	Mode      *string                                   `pulumi:"mode"`
+	Name      *string                                   `pulumi:"name"`
+}
+
+// LogControlConfigRuleEmitMetricsInput is an input type that accepts LogControlConfigRuleEmitMetricsArgs and LogControlConfigRuleEmitMetricsOutput values.
+// You can construct a concrete instance of `LogControlConfigRuleEmitMetricsInput` via:
+//
+//	LogControlConfigRuleEmitMetricsArgs{...}
+type LogControlConfigRuleEmitMetricsInput interface {
+	pulumi.Input
+
+	ToLogControlConfigRuleEmitMetricsOutput() LogControlConfigRuleEmitMetricsOutput
+	ToLogControlConfigRuleEmitMetricsOutputWithContext(context.Context) LogControlConfigRuleEmitMetricsOutput
+}
+
+type LogControlConfigRuleEmitMetricsArgs struct {
+	Counter   LogControlConfigRuleEmitMetricsCounterPtrInput   `pulumi:"counter"`
+	DropLog   pulumi.BoolPtrInput                              `pulumi:"dropLog"`
+	Gauge     LogControlConfigRuleEmitMetricsGaugePtrInput     `pulumi:"gauge"`
+	Histogram LogControlConfigRuleEmitMetricsHistogramPtrInput `pulumi:"histogram"`
+	Labels    LogControlConfigRuleEmitMetricsLabelArrayInput   `pulumi:"labels"`
+	Mode      pulumi.StringPtrInput                            `pulumi:"mode"`
+	Name      pulumi.StringPtrInput                            `pulumi:"name"`
+}
+
+func (LogControlConfigRuleEmitMetricsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogControlConfigRuleEmitMetrics)(nil)).Elem()
+}
+
+func (i LogControlConfigRuleEmitMetricsArgs) ToLogControlConfigRuleEmitMetricsOutput() LogControlConfigRuleEmitMetricsOutput {
+	return i.ToLogControlConfigRuleEmitMetricsOutputWithContext(context.Background())
+}
+
+func (i LogControlConfigRuleEmitMetricsArgs) ToLogControlConfigRuleEmitMetricsOutputWithContext(ctx context.Context) LogControlConfigRuleEmitMetricsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogControlConfigRuleEmitMetricsOutput)
+}
+
+func (i LogControlConfigRuleEmitMetricsArgs) ToLogControlConfigRuleEmitMetricsPtrOutput() LogControlConfigRuleEmitMetricsPtrOutput {
+	return i.ToLogControlConfigRuleEmitMetricsPtrOutputWithContext(context.Background())
+}
+
+func (i LogControlConfigRuleEmitMetricsArgs) ToLogControlConfigRuleEmitMetricsPtrOutputWithContext(ctx context.Context) LogControlConfigRuleEmitMetricsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogControlConfigRuleEmitMetricsOutput).ToLogControlConfigRuleEmitMetricsPtrOutputWithContext(ctx)
+}
+
+// LogControlConfigRuleEmitMetricsPtrInput is an input type that accepts LogControlConfigRuleEmitMetricsArgs, LogControlConfigRuleEmitMetricsPtr and LogControlConfigRuleEmitMetricsPtrOutput values.
+// You can construct a concrete instance of `LogControlConfigRuleEmitMetricsPtrInput` via:
+//
+//	        LogControlConfigRuleEmitMetricsArgs{...}
+//
+//	or:
+//
+//	        nil
+type LogControlConfigRuleEmitMetricsPtrInput interface {
+	pulumi.Input
+
+	ToLogControlConfigRuleEmitMetricsPtrOutput() LogControlConfigRuleEmitMetricsPtrOutput
+	ToLogControlConfigRuleEmitMetricsPtrOutputWithContext(context.Context) LogControlConfigRuleEmitMetricsPtrOutput
+}
+
+type logControlConfigRuleEmitMetricsPtrType LogControlConfigRuleEmitMetricsArgs
+
+func LogControlConfigRuleEmitMetricsPtr(v *LogControlConfigRuleEmitMetricsArgs) LogControlConfigRuleEmitMetricsPtrInput {
+	return (*logControlConfigRuleEmitMetricsPtrType)(v)
+}
+
+func (*logControlConfigRuleEmitMetricsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogControlConfigRuleEmitMetrics)(nil)).Elem()
+}
+
+func (i *logControlConfigRuleEmitMetricsPtrType) ToLogControlConfigRuleEmitMetricsPtrOutput() LogControlConfigRuleEmitMetricsPtrOutput {
+	return i.ToLogControlConfigRuleEmitMetricsPtrOutputWithContext(context.Background())
+}
+
+func (i *logControlConfigRuleEmitMetricsPtrType) ToLogControlConfigRuleEmitMetricsPtrOutputWithContext(ctx context.Context) LogControlConfigRuleEmitMetricsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogControlConfigRuleEmitMetricsPtrOutput)
+}
+
+type LogControlConfigRuleEmitMetricsOutput struct{ *pulumi.OutputState }
+
+func (LogControlConfigRuleEmitMetricsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogControlConfigRuleEmitMetrics)(nil)).Elem()
+}
+
+func (o LogControlConfigRuleEmitMetricsOutput) ToLogControlConfigRuleEmitMetricsOutput() LogControlConfigRuleEmitMetricsOutput {
+	return o
+}
+
+func (o LogControlConfigRuleEmitMetricsOutput) ToLogControlConfigRuleEmitMetricsOutputWithContext(ctx context.Context) LogControlConfigRuleEmitMetricsOutput {
+	return o
+}
+
+func (o LogControlConfigRuleEmitMetricsOutput) ToLogControlConfigRuleEmitMetricsPtrOutput() LogControlConfigRuleEmitMetricsPtrOutput {
+	return o.ToLogControlConfigRuleEmitMetricsPtrOutputWithContext(context.Background())
+}
+
+func (o LogControlConfigRuleEmitMetricsOutput) ToLogControlConfigRuleEmitMetricsPtrOutputWithContext(ctx context.Context) LogControlConfigRuleEmitMetricsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v LogControlConfigRuleEmitMetrics) *LogControlConfigRuleEmitMetrics {
+		return &v
+	}).(LogControlConfigRuleEmitMetricsPtrOutput)
+}
+
+func (o LogControlConfigRuleEmitMetricsOutput) Counter() LogControlConfigRuleEmitMetricsCounterPtrOutput {
+	return o.ApplyT(func(v LogControlConfigRuleEmitMetrics) *LogControlConfigRuleEmitMetricsCounter { return v.Counter }).(LogControlConfigRuleEmitMetricsCounterPtrOutput)
+}
+
+func (o LogControlConfigRuleEmitMetricsOutput) DropLog() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v LogControlConfigRuleEmitMetrics) *bool { return v.DropLog }).(pulumi.BoolPtrOutput)
+}
+
+func (o LogControlConfigRuleEmitMetricsOutput) Gauge() LogControlConfigRuleEmitMetricsGaugePtrOutput {
+	return o.ApplyT(func(v LogControlConfigRuleEmitMetrics) *LogControlConfigRuleEmitMetricsGauge { return v.Gauge }).(LogControlConfigRuleEmitMetricsGaugePtrOutput)
+}
+
+func (o LogControlConfigRuleEmitMetricsOutput) Histogram() LogControlConfigRuleEmitMetricsHistogramPtrOutput {
+	return o.ApplyT(func(v LogControlConfigRuleEmitMetrics) *LogControlConfigRuleEmitMetricsHistogram { return v.Histogram }).(LogControlConfigRuleEmitMetricsHistogramPtrOutput)
+}
+
+func (o LogControlConfigRuleEmitMetricsOutput) Labels() LogControlConfigRuleEmitMetricsLabelArrayOutput {
+	return o.ApplyT(func(v LogControlConfigRuleEmitMetrics) []LogControlConfigRuleEmitMetricsLabel { return v.Labels }).(LogControlConfigRuleEmitMetricsLabelArrayOutput)
+}
+
+func (o LogControlConfigRuleEmitMetricsOutput) Mode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LogControlConfigRuleEmitMetrics) *string { return v.Mode }).(pulumi.StringPtrOutput)
+}
+
+func (o LogControlConfigRuleEmitMetricsOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LogControlConfigRuleEmitMetrics) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type LogControlConfigRuleEmitMetricsPtrOutput struct{ *pulumi.OutputState }
+
+func (LogControlConfigRuleEmitMetricsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogControlConfigRuleEmitMetrics)(nil)).Elem()
+}
+
+func (o LogControlConfigRuleEmitMetricsPtrOutput) ToLogControlConfigRuleEmitMetricsPtrOutput() LogControlConfigRuleEmitMetricsPtrOutput {
+	return o
+}
+
+func (o LogControlConfigRuleEmitMetricsPtrOutput) ToLogControlConfigRuleEmitMetricsPtrOutputWithContext(ctx context.Context) LogControlConfigRuleEmitMetricsPtrOutput {
+	return o
+}
+
+func (o LogControlConfigRuleEmitMetricsPtrOutput) Elem() LogControlConfigRuleEmitMetricsOutput {
+	return o.ApplyT(func(v *LogControlConfigRuleEmitMetrics) LogControlConfigRuleEmitMetrics {
+		if v != nil {
+			return *v
+		}
+		var ret LogControlConfigRuleEmitMetrics
+		return ret
+	}).(LogControlConfigRuleEmitMetricsOutput)
+}
+
+func (o LogControlConfigRuleEmitMetricsPtrOutput) Counter() LogControlConfigRuleEmitMetricsCounterPtrOutput {
+	return o.ApplyT(func(v *LogControlConfigRuleEmitMetrics) *LogControlConfigRuleEmitMetricsCounter {
+		if v == nil {
+			return nil
+		}
+		return v.Counter
+	}).(LogControlConfigRuleEmitMetricsCounterPtrOutput)
+}
+
+func (o LogControlConfigRuleEmitMetricsPtrOutput) DropLog() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *LogControlConfigRuleEmitMetrics) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.DropLog
+	}).(pulumi.BoolPtrOutput)
+}
+
+func (o LogControlConfigRuleEmitMetricsPtrOutput) Gauge() LogControlConfigRuleEmitMetricsGaugePtrOutput {
+	return o.ApplyT(func(v *LogControlConfigRuleEmitMetrics) *LogControlConfigRuleEmitMetricsGauge {
+		if v == nil {
+			return nil
+		}
+		return v.Gauge
+	}).(LogControlConfigRuleEmitMetricsGaugePtrOutput)
+}
+
+func (o LogControlConfigRuleEmitMetricsPtrOutput) Histogram() LogControlConfigRuleEmitMetricsHistogramPtrOutput {
+	return o.ApplyT(func(v *LogControlConfigRuleEmitMetrics) *LogControlConfigRuleEmitMetricsHistogram {
+		if v == nil {
+			return nil
+		}
+		return v.Histogram
+	}).(LogControlConfigRuleEmitMetricsHistogramPtrOutput)
+}
+
+func (o LogControlConfigRuleEmitMetricsPtrOutput) Labels() LogControlConfigRuleEmitMetricsLabelArrayOutput {
+	return o.ApplyT(func(v *LogControlConfigRuleEmitMetrics) []LogControlConfigRuleEmitMetricsLabel {
+		if v == nil {
+			return nil
+		}
+		return v.Labels
+	}).(LogControlConfigRuleEmitMetricsLabelArrayOutput)
+}
+
+func (o LogControlConfigRuleEmitMetricsPtrOutput) Mode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogControlConfigRuleEmitMetrics) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Mode
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o LogControlConfigRuleEmitMetricsPtrOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogControlConfigRuleEmitMetrics) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Name
+	}).(pulumi.StringPtrOutput)
+}
+
+type LogControlConfigRuleEmitMetricsCounter struct {
+	Value *LogControlConfigRuleEmitMetricsCounterValue `pulumi:"value"`
+}
+
+// LogControlConfigRuleEmitMetricsCounterInput is an input type that accepts LogControlConfigRuleEmitMetricsCounterArgs and LogControlConfigRuleEmitMetricsCounterOutput values.
+// You can construct a concrete instance of `LogControlConfigRuleEmitMetricsCounterInput` via:
+//
+//	LogControlConfigRuleEmitMetricsCounterArgs{...}
+type LogControlConfigRuleEmitMetricsCounterInput interface {
+	pulumi.Input
+
+	ToLogControlConfigRuleEmitMetricsCounterOutput() LogControlConfigRuleEmitMetricsCounterOutput
+	ToLogControlConfigRuleEmitMetricsCounterOutputWithContext(context.Context) LogControlConfigRuleEmitMetricsCounterOutput
+}
+
+type LogControlConfigRuleEmitMetricsCounterArgs struct {
+	Value LogControlConfigRuleEmitMetricsCounterValuePtrInput `pulumi:"value"`
+}
+
+func (LogControlConfigRuleEmitMetricsCounterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogControlConfigRuleEmitMetricsCounter)(nil)).Elem()
+}
+
+func (i LogControlConfigRuleEmitMetricsCounterArgs) ToLogControlConfigRuleEmitMetricsCounterOutput() LogControlConfigRuleEmitMetricsCounterOutput {
+	return i.ToLogControlConfigRuleEmitMetricsCounterOutputWithContext(context.Background())
+}
+
+func (i LogControlConfigRuleEmitMetricsCounterArgs) ToLogControlConfigRuleEmitMetricsCounterOutputWithContext(ctx context.Context) LogControlConfigRuleEmitMetricsCounterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogControlConfigRuleEmitMetricsCounterOutput)
+}
+
+func (i LogControlConfigRuleEmitMetricsCounterArgs) ToLogControlConfigRuleEmitMetricsCounterPtrOutput() LogControlConfigRuleEmitMetricsCounterPtrOutput {
+	return i.ToLogControlConfigRuleEmitMetricsCounterPtrOutputWithContext(context.Background())
+}
+
+func (i LogControlConfigRuleEmitMetricsCounterArgs) ToLogControlConfigRuleEmitMetricsCounterPtrOutputWithContext(ctx context.Context) LogControlConfigRuleEmitMetricsCounterPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogControlConfigRuleEmitMetricsCounterOutput).ToLogControlConfigRuleEmitMetricsCounterPtrOutputWithContext(ctx)
+}
+
+// LogControlConfigRuleEmitMetricsCounterPtrInput is an input type that accepts LogControlConfigRuleEmitMetricsCounterArgs, LogControlConfigRuleEmitMetricsCounterPtr and LogControlConfigRuleEmitMetricsCounterPtrOutput values.
+// You can construct a concrete instance of `LogControlConfigRuleEmitMetricsCounterPtrInput` via:
+//
+//	        LogControlConfigRuleEmitMetricsCounterArgs{...}
+//
+//	or:
+//
+//	        nil
+type LogControlConfigRuleEmitMetricsCounterPtrInput interface {
+	pulumi.Input
+
+	ToLogControlConfigRuleEmitMetricsCounterPtrOutput() LogControlConfigRuleEmitMetricsCounterPtrOutput
+	ToLogControlConfigRuleEmitMetricsCounterPtrOutputWithContext(context.Context) LogControlConfigRuleEmitMetricsCounterPtrOutput
+}
+
+type logControlConfigRuleEmitMetricsCounterPtrType LogControlConfigRuleEmitMetricsCounterArgs
+
+func LogControlConfigRuleEmitMetricsCounterPtr(v *LogControlConfigRuleEmitMetricsCounterArgs) LogControlConfigRuleEmitMetricsCounterPtrInput {
+	return (*logControlConfigRuleEmitMetricsCounterPtrType)(v)
+}
+
+func (*logControlConfigRuleEmitMetricsCounterPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogControlConfigRuleEmitMetricsCounter)(nil)).Elem()
+}
+
+func (i *logControlConfigRuleEmitMetricsCounterPtrType) ToLogControlConfigRuleEmitMetricsCounterPtrOutput() LogControlConfigRuleEmitMetricsCounterPtrOutput {
+	return i.ToLogControlConfigRuleEmitMetricsCounterPtrOutputWithContext(context.Background())
+}
+
+func (i *logControlConfigRuleEmitMetricsCounterPtrType) ToLogControlConfigRuleEmitMetricsCounterPtrOutputWithContext(ctx context.Context) LogControlConfigRuleEmitMetricsCounterPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogControlConfigRuleEmitMetricsCounterPtrOutput)
+}
+
+type LogControlConfigRuleEmitMetricsCounterOutput struct{ *pulumi.OutputState }
+
+func (LogControlConfigRuleEmitMetricsCounterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogControlConfigRuleEmitMetricsCounter)(nil)).Elem()
+}
+
+func (o LogControlConfigRuleEmitMetricsCounterOutput) ToLogControlConfigRuleEmitMetricsCounterOutput() LogControlConfigRuleEmitMetricsCounterOutput {
+	return o
+}
+
+func (o LogControlConfigRuleEmitMetricsCounterOutput) ToLogControlConfigRuleEmitMetricsCounterOutputWithContext(ctx context.Context) LogControlConfigRuleEmitMetricsCounterOutput {
+	return o
+}
+
+func (o LogControlConfigRuleEmitMetricsCounterOutput) ToLogControlConfigRuleEmitMetricsCounterPtrOutput() LogControlConfigRuleEmitMetricsCounterPtrOutput {
+	return o.ToLogControlConfigRuleEmitMetricsCounterPtrOutputWithContext(context.Background())
+}
+
+func (o LogControlConfigRuleEmitMetricsCounterOutput) ToLogControlConfigRuleEmitMetricsCounterPtrOutputWithContext(ctx context.Context) LogControlConfigRuleEmitMetricsCounterPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v LogControlConfigRuleEmitMetricsCounter) *LogControlConfigRuleEmitMetricsCounter {
+		return &v
+	}).(LogControlConfigRuleEmitMetricsCounterPtrOutput)
+}
+
+func (o LogControlConfigRuleEmitMetricsCounterOutput) Value() LogControlConfigRuleEmitMetricsCounterValuePtrOutput {
+	return o.ApplyT(func(v LogControlConfigRuleEmitMetricsCounter) *LogControlConfigRuleEmitMetricsCounterValue {
+		return v.Value
+	}).(LogControlConfigRuleEmitMetricsCounterValuePtrOutput)
+}
+
+type LogControlConfigRuleEmitMetricsCounterPtrOutput struct{ *pulumi.OutputState }
+
+func (LogControlConfigRuleEmitMetricsCounterPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogControlConfigRuleEmitMetricsCounter)(nil)).Elem()
+}
+
+func (o LogControlConfigRuleEmitMetricsCounterPtrOutput) ToLogControlConfigRuleEmitMetricsCounterPtrOutput() LogControlConfigRuleEmitMetricsCounterPtrOutput {
+	return o
+}
+
+func (o LogControlConfigRuleEmitMetricsCounterPtrOutput) ToLogControlConfigRuleEmitMetricsCounterPtrOutputWithContext(ctx context.Context) LogControlConfigRuleEmitMetricsCounterPtrOutput {
+	return o
+}
+
+func (o LogControlConfigRuleEmitMetricsCounterPtrOutput) Elem() LogControlConfigRuleEmitMetricsCounterOutput {
+	return o.ApplyT(func(v *LogControlConfigRuleEmitMetricsCounter) LogControlConfigRuleEmitMetricsCounter {
+		if v != nil {
+			return *v
+		}
+		var ret LogControlConfigRuleEmitMetricsCounter
+		return ret
+	}).(LogControlConfigRuleEmitMetricsCounterOutput)
+}
+
+func (o LogControlConfigRuleEmitMetricsCounterPtrOutput) Value() LogControlConfigRuleEmitMetricsCounterValuePtrOutput {
+	return o.ApplyT(func(v *LogControlConfigRuleEmitMetricsCounter) *LogControlConfigRuleEmitMetricsCounterValue {
+		if v == nil {
+			return nil
+		}
+		return v.Value
+	}).(LogControlConfigRuleEmitMetricsCounterValuePtrOutput)
+}
+
+type LogControlConfigRuleEmitMetricsCounterValue struct {
+	Selector *string `pulumi:"selector"`
+}
+
+// LogControlConfigRuleEmitMetricsCounterValueInput is an input type that accepts LogControlConfigRuleEmitMetricsCounterValueArgs and LogControlConfigRuleEmitMetricsCounterValueOutput values.
+// You can construct a concrete instance of `LogControlConfigRuleEmitMetricsCounterValueInput` via:
+//
+//	LogControlConfigRuleEmitMetricsCounterValueArgs{...}
+type LogControlConfigRuleEmitMetricsCounterValueInput interface {
+	pulumi.Input
+
+	ToLogControlConfigRuleEmitMetricsCounterValueOutput() LogControlConfigRuleEmitMetricsCounterValueOutput
+	ToLogControlConfigRuleEmitMetricsCounterValueOutputWithContext(context.Context) LogControlConfigRuleEmitMetricsCounterValueOutput
+}
+
+type LogControlConfigRuleEmitMetricsCounterValueArgs struct {
+	Selector pulumi.StringPtrInput `pulumi:"selector"`
+}
+
+func (LogControlConfigRuleEmitMetricsCounterValueArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogControlConfigRuleEmitMetricsCounterValue)(nil)).Elem()
+}
+
+func (i LogControlConfigRuleEmitMetricsCounterValueArgs) ToLogControlConfigRuleEmitMetricsCounterValueOutput() LogControlConfigRuleEmitMetricsCounterValueOutput {
+	return i.ToLogControlConfigRuleEmitMetricsCounterValueOutputWithContext(context.Background())
+}
+
+func (i LogControlConfigRuleEmitMetricsCounterValueArgs) ToLogControlConfigRuleEmitMetricsCounterValueOutputWithContext(ctx context.Context) LogControlConfigRuleEmitMetricsCounterValueOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogControlConfigRuleEmitMetricsCounterValueOutput)
+}
+
+func (i LogControlConfigRuleEmitMetricsCounterValueArgs) ToLogControlConfigRuleEmitMetricsCounterValuePtrOutput() LogControlConfigRuleEmitMetricsCounterValuePtrOutput {
+	return i.ToLogControlConfigRuleEmitMetricsCounterValuePtrOutputWithContext(context.Background())
+}
+
+func (i LogControlConfigRuleEmitMetricsCounterValueArgs) ToLogControlConfigRuleEmitMetricsCounterValuePtrOutputWithContext(ctx context.Context) LogControlConfigRuleEmitMetricsCounterValuePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogControlConfigRuleEmitMetricsCounterValueOutput).ToLogControlConfigRuleEmitMetricsCounterValuePtrOutputWithContext(ctx)
+}
+
+// LogControlConfigRuleEmitMetricsCounterValuePtrInput is an input type that accepts LogControlConfigRuleEmitMetricsCounterValueArgs, LogControlConfigRuleEmitMetricsCounterValuePtr and LogControlConfigRuleEmitMetricsCounterValuePtrOutput values.
+// You can construct a concrete instance of `LogControlConfigRuleEmitMetricsCounterValuePtrInput` via:
+//
+//	        LogControlConfigRuleEmitMetricsCounterValueArgs{...}
+//
+//	or:
+//
+//	        nil
+type LogControlConfigRuleEmitMetricsCounterValuePtrInput interface {
+	pulumi.Input
+
+	ToLogControlConfigRuleEmitMetricsCounterValuePtrOutput() LogControlConfigRuleEmitMetricsCounterValuePtrOutput
+	ToLogControlConfigRuleEmitMetricsCounterValuePtrOutputWithContext(context.Context) LogControlConfigRuleEmitMetricsCounterValuePtrOutput
+}
+
+type logControlConfigRuleEmitMetricsCounterValuePtrType LogControlConfigRuleEmitMetricsCounterValueArgs
+
+func LogControlConfigRuleEmitMetricsCounterValuePtr(v *LogControlConfigRuleEmitMetricsCounterValueArgs) LogControlConfigRuleEmitMetricsCounterValuePtrInput {
+	return (*logControlConfigRuleEmitMetricsCounterValuePtrType)(v)
+}
+
+func (*logControlConfigRuleEmitMetricsCounterValuePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogControlConfigRuleEmitMetricsCounterValue)(nil)).Elem()
+}
+
+func (i *logControlConfigRuleEmitMetricsCounterValuePtrType) ToLogControlConfigRuleEmitMetricsCounterValuePtrOutput() LogControlConfigRuleEmitMetricsCounterValuePtrOutput {
+	return i.ToLogControlConfigRuleEmitMetricsCounterValuePtrOutputWithContext(context.Background())
+}
+
+func (i *logControlConfigRuleEmitMetricsCounterValuePtrType) ToLogControlConfigRuleEmitMetricsCounterValuePtrOutputWithContext(ctx context.Context) LogControlConfigRuleEmitMetricsCounterValuePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogControlConfigRuleEmitMetricsCounterValuePtrOutput)
+}
+
+type LogControlConfigRuleEmitMetricsCounterValueOutput struct{ *pulumi.OutputState }
+
+func (LogControlConfigRuleEmitMetricsCounterValueOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogControlConfigRuleEmitMetricsCounterValue)(nil)).Elem()
+}
+
+func (o LogControlConfigRuleEmitMetricsCounterValueOutput) ToLogControlConfigRuleEmitMetricsCounterValueOutput() LogControlConfigRuleEmitMetricsCounterValueOutput {
+	return o
+}
+
+func (o LogControlConfigRuleEmitMetricsCounterValueOutput) ToLogControlConfigRuleEmitMetricsCounterValueOutputWithContext(ctx context.Context) LogControlConfigRuleEmitMetricsCounterValueOutput {
+	return o
+}
+
+func (o LogControlConfigRuleEmitMetricsCounterValueOutput) ToLogControlConfigRuleEmitMetricsCounterValuePtrOutput() LogControlConfigRuleEmitMetricsCounterValuePtrOutput {
+	return o.ToLogControlConfigRuleEmitMetricsCounterValuePtrOutputWithContext(context.Background())
+}
+
+func (o LogControlConfigRuleEmitMetricsCounterValueOutput) ToLogControlConfigRuleEmitMetricsCounterValuePtrOutputWithContext(ctx context.Context) LogControlConfigRuleEmitMetricsCounterValuePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v LogControlConfigRuleEmitMetricsCounterValue) *LogControlConfigRuleEmitMetricsCounterValue {
+		return &v
+	}).(LogControlConfigRuleEmitMetricsCounterValuePtrOutput)
+}
+
+func (o LogControlConfigRuleEmitMetricsCounterValueOutput) Selector() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LogControlConfigRuleEmitMetricsCounterValue) *string { return v.Selector }).(pulumi.StringPtrOutput)
+}
+
+type LogControlConfigRuleEmitMetricsCounterValuePtrOutput struct{ *pulumi.OutputState }
+
+func (LogControlConfigRuleEmitMetricsCounterValuePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogControlConfigRuleEmitMetricsCounterValue)(nil)).Elem()
+}
+
+func (o LogControlConfigRuleEmitMetricsCounterValuePtrOutput) ToLogControlConfigRuleEmitMetricsCounterValuePtrOutput() LogControlConfigRuleEmitMetricsCounterValuePtrOutput {
+	return o
+}
+
+func (o LogControlConfigRuleEmitMetricsCounterValuePtrOutput) ToLogControlConfigRuleEmitMetricsCounterValuePtrOutputWithContext(ctx context.Context) LogControlConfigRuleEmitMetricsCounterValuePtrOutput {
+	return o
+}
+
+func (o LogControlConfigRuleEmitMetricsCounterValuePtrOutput) Elem() LogControlConfigRuleEmitMetricsCounterValueOutput {
+	return o.ApplyT(func(v *LogControlConfigRuleEmitMetricsCounterValue) LogControlConfigRuleEmitMetricsCounterValue {
+		if v != nil {
+			return *v
+		}
+		var ret LogControlConfigRuleEmitMetricsCounterValue
+		return ret
+	}).(LogControlConfigRuleEmitMetricsCounterValueOutput)
+}
+
+func (o LogControlConfigRuleEmitMetricsCounterValuePtrOutput) Selector() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogControlConfigRuleEmitMetricsCounterValue) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Selector
+	}).(pulumi.StringPtrOutput)
+}
+
+type LogControlConfigRuleEmitMetricsGauge struct {
+	AggregationType *string                                    `pulumi:"aggregationType"`
+	Value           *LogControlConfigRuleEmitMetricsGaugeValue `pulumi:"value"`
+}
+
+// LogControlConfigRuleEmitMetricsGaugeInput is an input type that accepts LogControlConfigRuleEmitMetricsGaugeArgs and LogControlConfigRuleEmitMetricsGaugeOutput values.
+// You can construct a concrete instance of `LogControlConfigRuleEmitMetricsGaugeInput` via:
+//
+//	LogControlConfigRuleEmitMetricsGaugeArgs{...}
+type LogControlConfigRuleEmitMetricsGaugeInput interface {
+	pulumi.Input
+
+	ToLogControlConfigRuleEmitMetricsGaugeOutput() LogControlConfigRuleEmitMetricsGaugeOutput
+	ToLogControlConfigRuleEmitMetricsGaugeOutputWithContext(context.Context) LogControlConfigRuleEmitMetricsGaugeOutput
+}
+
+type LogControlConfigRuleEmitMetricsGaugeArgs struct {
+	AggregationType pulumi.StringPtrInput                             `pulumi:"aggregationType"`
+	Value           LogControlConfigRuleEmitMetricsGaugeValuePtrInput `pulumi:"value"`
+}
+
+func (LogControlConfigRuleEmitMetricsGaugeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogControlConfigRuleEmitMetricsGauge)(nil)).Elem()
+}
+
+func (i LogControlConfigRuleEmitMetricsGaugeArgs) ToLogControlConfigRuleEmitMetricsGaugeOutput() LogControlConfigRuleEmitMetricsGaugeOutput {
+	return i.ToLogControlConfigRuleEmitMetricsGaugeOutputWithContext(context.Background())
+}
+
+func (i LogControlConfigRuleEmitMetricsGaugeArgs) ToLogControlConfigRuleEmitMetricsGaugeOutputWithContext(ctx context.Context) LogControlConfigRuleEmitMetricsGaugeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogControlConfigRuleEmitMetricsGaugeOutput)
+}
+
+func (i LogControlConfigRuleEmitMetricsGaugeArgs) ToLogControlConfigRuleEmitMetricsGaugePtrOutput() LogControlConfigRuleEmitMetricsGaugePtrOutput {
+	return i.ToLogControlConfigRuleEmitMetricsGaugePtrOutputWithContext(context.Background())
+}
+
+func (i LogControlConfigRuleEmitMetricsGaugeArgs) ToLogControlConfigRuleEmitMetricsGaugePtrOutputWithContext(ctx context.Context) LogControlConfigRuleEmitMetricsGaugePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogControlConfigRuleEmitMetricsGaugeOutput).ToLogControlConfigRuleEmitMetricsGaugePtrOutputWithContext(ctx)
+}
+
+// LogControlConfigRuleEmitMetricsGaugePtrInput is an input type that accepts LogControlConfigRuleEmitMetricsGaugeArgs, LogControlConfigRuleEmitMetricsGaugePtr and LogControlConfigRuleEmitMetricsGaugePtrOutput values.
+// You can construct a concrete instance of `LogControlConfigRuleEmitMetricsGaugePtrInput` via:
+//
+//	        LogControlConfigRuleEmitMetricsGaugeArgs{...}
+//
+//	or:
+//
+//	        nil
+type LogControlConfigRuleEmitMetricsGaugePtrInput interface {
+	pulumi.Input
+
+	ToLogControlConfigRuleEmitMetricsGaugePtrOutput() LogControlConfigRuleEmitMetricsGaugePtrOutput
+	ToLogControlConfigRuleEmitMetricsGaugePtrOutputWithContext(context.Context) LogControlConfigRuleEmitMetricsGaugePtrOutput
+}
+
+type logControlConfigRuleEmitMetricsGaugePtrType LogControlConfigRuleEmitMetricsGaugeArgs
+
+func LogControlConfigRuleEmitMetricsGaugePtr(v *LogControlConfigRuleEmitMetricsGaugeArgs) LogControlConfigRuleEmitMetricsGaugePtrInput {
+	return (*logControlConfigRuleEmitMetricsGaugePtrType)(v)
+}
+
+func (*logControlConfigRuleEmitMetricsGaugePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogControlConfigRuleEmitMetricsGauge)(nil)).Elem()
+}
+
+func (i *logControlConfigRuleEmitMetricsGaugePtrType) ToLogControlConfigRuleEmitMetricsGaugePtrOutput() LogControlConfigRuleEmitMetricsGaugePtrOutput {
+	return i.ToLogControlConfigRuleEmitMetricsGaugePtrOutputWithContext(context.Background())
+}
+
+func (i *logControlConfigRuleEmitMetricsGaugePtrType) ToLogControlConfigRuleEmitMetricsGaugePtrOutputWithContext(ctx context.Context) LogControlConfigRuleEmitMetricsGaugePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogControlConfigRuleEmitMetricsGaugePtrOutput)
+}
+
+type LogControlConfigRuleEmitMetricsGaugeOutput struct{ *pulumi.OutputState }
+
+func (LogControlConfigRuleEmitMetricsGaugeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogControlConfigRuleEmitMetricsGauge)(nil)).Elem()
+}
+
+func (o LogControlConfigRuleEmitMetricsGaugeOutput) ToLogControlConfigRuleEmitMetricsGaugeOutput() LogControlConfigRuleEmitMetricsGaugeOutput {
+	return o
+}
+
+func (o LogControlConfigRuleEmitMetricsGaugeOutput) ToLogControlConfigRuleEmitMetricsGaugeOutputWithContext(ctx context.Context) LogControlConfigRuleEmitMetricsGaugeOutput {
+	return o
+}
+
+func (o LogControlConfigRuleEmitMetricsGaugeOutput) ToLogControlConfigRuleEmitMetricsGaugePtrOutput() LogControlConfigRuleEmitMetricsGaugePtrOutput {
+	return o.ToLogControlConfigRuleEmitMetricsGaugePtrOutputWithContext(context.Background())
+}
+
+func (o LogControlConfigRuleEmitMetricsGaugeOutput) ToLogControlConfigRuleEmitMetricsGaugePtrOutputWithContext(ctx context.Context) LogControlConfigRuleEmitMetricsGaugePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v LogControlConfigRuleEmitMetricsGauge) *LogControlConfigRuleEmitMetricsGauge {
+		return &v
+	}).(LogControlConfigRuleEmitMetricsGaugePtrOutput)
+}
+
+func (o LogControlConfigRuleEmitMetricsGaugeOutput) AggregationType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LogControlConfigRuleEmitMetricsGauge) *string { return v.AggregationType }).(pulumi.StringPtrOutput)
+}
+
+func (o LogControlConfigRuleEmitMetricsGaugeOutput) Value() LogControlConfigRuleEmitMetricsGaugeValuePtrOutput {
+	return o.ApplyT(func(v LogControlConfigRuleEmitMetricsGauge) *LogControlConfigRuleEmitMetricsGaugeValue {
+		return v.Value
+	}).(LogControlConfigRuleEmitMetricsGaugeValuePtrOutput)
+}
+
+type LogControlConfigRuleEmitMetricsGaugePtrOutput struct{ *pulumi.OutputState }
+
+func (LogControlConfigRuleEmitMetricsGaugePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogControlConfigRuleEmitMetricsGauge)(nil)).Elem()
+}
+
+func (o LogControlConfigRuleEmitMetricsGaugePtrOutput) ToLogControlConfigRuleEmitMetricsGaugePtrOutput() LogControlConfigRuleEmitMetricsGaugePtrOutput {
+	return o
+}
+
+func (o LogControlConfigRuleEmitMetricsGaugePtrOutput) ToLogControlConfigRuleEmitMetricsGaugePtrOutputWithContext(ctx context.Context) LogControlConfigRuleEmitMetricsGaugePtrOutput {
+	return o
+}
+
+func (o LogControlConfigRuleEmitMetricsGaugePtrOutput) Elem() LogControlConfigRuleEmitMetricsGaugeOutput {
+	return o.ApplyT(func(v *LogControlConfigRuleEmitMetricsGauge) LogControlConfigRuleEmitMetricsGauge {
+		if v != nil {
+			return *v
+		}
+		var ret LogControlConfigRuleEmitMetricsGauge
+		return ret
+	}).(LogControlConfigRuleEmitMetricsGaugeOutput)
+}
+
+func (o LogControlConfigRuleEmitMetricsGaugePtrOutput) AggregationType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogControlConfigRuleEmitMetricsGauge) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AggregationType
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o LogControlConfigRuleEmitMetricsGaugePtrOutput) Value() LogControlConfigRuleEmitMetricsGaugeValuePtrOutput {
+	return o.ApplyT(func(v *LogControlConfigRuleEmitMetricsGauge) *LogControlConfigRuleEmitMetricsGaugeValue {
+		if v == nil {
+			return nil
+		}
+		return v.Value
+	}).(LogControlConfigRuleEmitMetricsGaugeValuePtrOutput)
+}
+
+type LogControlConfigRuleEmitMetricsGaugeValue struct {
+	Selector *string `pulumi:"selector"`
+}
+
+// LogControlConfigRuleEmitMetricsGaugeValueInput is an input type that accepts LogControlConfigRuleEmitMetricsGaugeValueArgs and LogControlConfigRuleEmitMetricsGaugeValueOutput values.
+// You can construct a concrete instance of `LogControlConfigRuleEmitMetricsGaugeValueInput` via:
+//
+//	LogControlConfigRuleEmitMetricsGaugeValueArgs{...}
+type LogControlConfigRuleEmitMetricsGaugeValueInput interface {
+	pulumi.Input
+
+	ToLogControlConfigRuleEmitMetricsGaugeValueOutput() LogControlConfigRuleEmitMetricsGaugeValueOutput
+	ToLogControlConfigRuleEmitMetricsGaugeValueOutputWithContext(context.Context) LogControlConfigRuleEmitMetricsGaugeValueOutput
+}
+
+type LogControlConfigRuleEmitMetricsGaugeValueArgs struct {
+	Selector pulumi.StringPtrInput `pulumi:"selector"`
+}
+
+func (LogControlConfigRuleEmitMetricsGaugeValueArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogControlConfigRuleEmitMetricsGaugeValue)(nil)).Elem()
+}
+
+func (i LogControlConfigRuleEmitMetricsGaugeValueArgs) ToLogControlConfigRuleEmitMetricsGaugeValueOutput() LogControlConfigRuleEmitMetricsGaugeValueOutput {
+	return i.ToLogControlConfigRuleEmitMetricsGaugeValueOutputWithContext(context.Background())
+}
+
+func (i LogControlConfigRuleEmitMetricsGaugeValueArgs) ToLogControlConfigRuleEmitMetricsGaugeValueOutputWithContext(ctx context.Context) LogControlConfigRuleEmitMetricsGaugeValueOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogControlConfigRuleEmitMetricsGaugeValueOutput)
+}
+
+func (i LogControlConfigRuleEmitMetricsGaugeValueArgs) ToLogControlConfigRuleEmitMetricsGaugeValuePtrOutput() LogControlConfigRuleEmitMetricsGaugeValuePtrOutput {
+	return i.ToLogControlConfigRuleEmitMetricsGaugeValuePtrOutputWithContext(context.Background())
+}
+
+func (i LogControlConfigRuleEmitMetricsGaugeValueArgs) ToLogControlConfigRuleEmitMetricsGaugeValuePtrOutputWithContext(ctx context.Context) LogControlConfigRuleEmitMetricsGaugeValuePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogControlConfigRuleEmitMetricsGaugeValueOutput).ToLogControlConfigRuleEmitMetricsGaugeValuePtrOutputWithContext(ctx)
+}
+
+// LogControlConfigRuleEmitMetricsGaugeValuePtrInput is an input type that accepts LogControlConfigRuleEmitMetricsGaugeValueArgs, LogControlConfigRuleEmitMetricsGaugeValuePtr and LogControlConfigRuleEmitMetricsGaugeValuePtrOutput values.
+// You can construct a concrete instance of `LogControlConfigRuleEmitMetricsGaugeValuePtrInput` via:
+//
+//	        LogControlConfigRuleEmitMetricsGaugeValueArgs{...}
+//
+//	or:
+//
+//	        nil
+type LogControlConfigRuleEmitMetricsGaugeValuePtrInput interface {
+	pulumi.Input
+
+	ToLogControlConfigRuleEmitMetricsGaugeValuePtrOutput() LogControlConfigRuleEmitMetricsGaugeValuePtrOutput
+	ToLogControlConfigRuleEmitMetricsGaugeValuePtrOutputWithContext(context.Context) LogControlConfigRuleEmitMetricsGaugeValuePtrOutput
+}
+
+type logControlConfigRuleEmitMetricsGaugeValuePtrType LogControlConfigRuleEmitMetricsGaugeValueArgs
+
+func LogControlConfigRuleEmitMetricsGaugeValuePtr(v *LogControlConfigRuleEmitMetricsGaugeValueArgs) LogControlConfigRuleEmitMetricsGaugeValuePtrInput {
+	return (*logControlConfigRuleEmitMetricsGaugeValuePtrType)(v)
+}
+
+func (*logControlConfigRuleEmitMetricsGaugeValuePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogControlConfigRuleEmitMetricsGaugeValue)(nil)).Elem()
+}
+
+func (i *logControlConfigRuleEmitMetricsGaugeValuePtrType) ToLogControlConfigRuleEmitMetricsGaugeValuePtrOutput() LogControlConfigRuleEmitMetricsGaugeValuePtrOutput {
+	return i.ToLogControlConfigRuleEmitMetricsGaugeValuePtrOutputWithContext(context.Background())
+}
+
+func (i *logControlConfigRuleEmitMetricsGaugeValuePtrType) ToLogControlConfigRuleEmitMetricsGaugeValuePtrOutputWithContext(ctx context.Context) LogControlConfigRuleEmitMetricsGaugeValuePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogControlConfigRuleEmitMetricsGaugeValuePtrOutput)
+}
+
+type LogControlConfigRuleEmitMetricsGaugeValueOutput struct{ *pulumi.OutputState }
+
+func (LogControlConfigRuleEmitMetricsGaugeValueOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogControlConfigRuleEmitMetricsGaugeValue)(nil)).Elem()
+}
+
+func (o LogControlConfigRuleEmitMetricsGaugeValueOutput) ToLogControlConfigRuleEmitMetricsGaugeValueOutput() LogControlConfigRuleEmitMetricsGaugeValueOutput {
+	return o
+}
+
+func (o LogControlConfigRuleEmitMetricsGaugeValueOutput) ToLogControlConfigRuleEmitMetricsGaugeValueOutputWithContext(ctx context.Context) LogControlConfigRuleEmitMetricsGaugeValueOutput {
+	return o
+}
+
+func (o LogControlConfigRuleEmitMetricsGaugeValueOutput) ToLogControlConfigRuleEmitMetricsGaugeValuePtrOutput() LogControlConfigRuleEmitMetricsGaugeValuePtrOutput {
+	return o.ToLogControlConfigRuleEmitMetricsGaugeValuePtrOutputWithContext(context.Background())
+}
+
+func (o LogControlConfigRuleEmitMetricsGaugeValueOutput) ToLogControlConfigRuleEmitMetricsGaugeValuePtrOutputWithContext(ctx context.Context) LogControlConfigRuleEmitMetricsGaugeValuePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v LogControlConfigRuleEmitMetricsGaugeValue) *LogControlConfigRuleEmitMetricsGaugeValue {
+		return &v
+	}).(LogControlConfigRuleEmitMetricsGaugeValuePtrOutput)
+}
+
+func (o LogControlConfigRuleEmitMetricsGaugeValueOutput) Selector() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LogControlConfigRuleEmitMetricsGaugeValue) *string { return v.Selector }).(pulumi.StringPtrOutput)
+}
+
+type LogControlConfigRuleEmitMetricsGaugeValuePtrOutput struct{ *pulumi.OutputState }
+
+func (LogControlConfigRuleEmitMetricsGaugeValuePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogControlConfigRuleEmitMetricsGaugeValue)(nil)).Elem()
+}
+
+func (o LogControlConfigRuleEmitMetricsGaugeValuePtrOutput) ToLogControlConfigRuleEmitMetricsGaugeValuePtrOutput() LogControlConfigRuleEmitMetricsGaugeValuePtrOutput {
+	return o
+}
+
+func (o LogControlConfigRuleEmitMetricsGaugeValuePtrOutput) ToLogControlConfigRuleEmitMetricsGaugeValuePtrOutputWithContext(ctx context.Context) LogControlConfigRuleEmitMetricsGaugeValuePtrOutput {
+	return o
+}
+
+func (o LogControlConfigRuleEmitMetricsGaugeValuePtrOutput) Elem() LogControlConfigRuleEmitMetricsGaugeValueOutput {
+	return o.ApplyT(func(v *LogControlConfigRuleEmitMetricsGaugeValue) LogControlConfigRuleEmitMetricsGaugeValue {
+		if v != nil {
+			return *v
+		}
+		var ret LogControlConfigRuleEmitMetricsGaugeValue
+		return ret
+	}).(LogControlConfigRuleEmitMetricsGaugeValueOutput)
+}
+
+func (o LogControlConfigRuleEmitMetricsGaugeValuePtrOutput) Selector() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogControlConfigRuleEmitMetricsGaugeValue) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Selector
+	}).(pulumi.StringPtrOutput)
+}
+
+type LogControlConfigRuleEmitMetricsHistogram struct {
+	Value *LogControlConfigRuleEmitMetricsHistogramValue `pulumi:"value"`
+}
+
+// LogControlConfigRuleEmitMetricsHistogramInput is an input type that accepts LogControlConfigRuleEmitMetricsHistogramArgs and LogControlConfigRuleEmitMetricsHistogramOutput values.
+// You can construct a concrete instance of `LogControlConfigRuleEmitMetricsHistogramInput` via:
+//
+//	LogControlConfigRuleEmitMetricsHistogramArgs{...}
+type LogControlConfigRuleEmitMetricsHistogramInput interface {
+	pulumi.Input
+
+	ToLogControlConfigRuleEmitMetricsHistogramOutput() LogControlConfigRuleEmitMetricsHistogramOutput
+	ToLogControlConfigRuleEmitMetricsHistogramOutputWithContext(context.Context) LogControlConfigRuleEmitMetricsHistogramOutput
+}
+
+type LogControlConfigRuleEmitMetricsHistogramArgs struct {
+	Value LogControlConfigRuleEmitMetricsHistogramValuePtrInput `pulumi:"value"`
+}
+
+func (LogControlConfigRuleEmitMetricsHistogramArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogControlConfigRuleEmitMetricsHistogram)(nil)).Elem()
+}
+
+func (i LogControlConfigRuleEmitMetricsHistogramArgs) ToLogControlConfigRuleEmitMetricsHistogramOutput() LogControlConfigRuleEmitMetricsHistogramOutput {
+	return i.ToLogControlConfigRuleEmitMetricsHistogramOutputWithContext(context.Background())
+}
+
+func (i LogControlConfigRuleEmitMetricsHistogramArgs) ToLogControlConfigRuleEmitMetricsHistogramOutputWithContext(ctx context.Context) LogControlConfigRuleEmitMetricsHistogramOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogControlConfigRuleEmitMetricsHistogramOutput)
+}
+
+func (i LogControlConfigRuleEmitMetricsHistogramArgs) ToLogControlConfigRuleEmitMetricsHistogramPtrOutput() LogControlConfigRuleEmitMetricsHistogramPtrOutput {
+	return i.ToLogControlConfigRuleEmitMetricsHistogramPtrOutputWithContext(context.Background())
+}
+
+func (i LogControlConfigRuleEmitMetricsHistogramArgs) ToLogControlConfigRuleEmitMetricsHistogramPtrOutputWithContext(ctx context.Context) LogControlConfigRuleEmitMetricsHistogramPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogControlConfigRuleEmitMetricsHistogramOutput).ToLogControlConfigRuleEmitMetricsHistogramPtrOutputWithContext(ctx)
+}
+
+// LogControlConfigRuleEmitMetricsHistogramPtrInput is an input type that accepts LogControlConfigRuleEmitMetricsHistogramArgs, LogControlConfigRuleEmitMetricsHistogramPtr and LogControlConfigRuleEmitMetricsHistogramPtrOutput values.
+// You can construct a concrete instance of `LogControlConfigRuleEmitMetricsHistogramPtrInput` via:
+//
+//	        LogControlConfigRuleEmitMetricsHistogramArgs{...}
+//
+//	or:
+//
+//	        nil
+type LogControlConfigRuleEmitMetricsHistogramPtrInput interface {
+	pulumi.Input
+
+	ToLogControlConfigRuleEmitMetricsHistogramPtrOutput() LogControlConfigRuleEmitMetricsHistogramPtrOutput
+	ToLogControlConfigRuleEmitMetricsHistogramPtrOutputWithContext(context.Context) LogControlConfigRuleEmitMetricsHistogramPtrOutput
+}
+
+type logControlConfigRuleEmitMetricsHistogramPtrType LogControlConfigRuleEmitMetricsHistogramArgs
+
+func LogControlConfigRuleEmitMetricsHistogramPtr(v *LogControlConfigRuleEmitMetricsHistogramArgs) LogControlConfigRuleEmitMetricsHistogramPtrInput {
+	return (*logControlConfigRuleEmitMetricsHistogramPtrType)(v)
+}
+
+func (*logControlConfigRuleEmitMetricsHistogramPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogControlConfigRuleEmitMetricsHistogram)(nil)).Elem()
+}
+
+func (i *logControlConfigRuleEmitMetricsHistogramPtrType) ToLogControlConfigRuleEmitMetricsHistogramPtrOutput() LogControlConfigRuleEmitMetricsHistogramPtrOutput {
+	return i.ToLogControlConfigRuleEmitMetricsHistogramPtrOutputWithContext(context.Background())
+}
+
+func (i *logControlConfigRuleEmitMetricsHistogramPtrType) ToLogControlConfigRuleEmitMetricsHistogramPtrOutputWithContext(ctx context.Context) LogControlConfigRuleEmitMetricsHistogramPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogControlConfigRuleEmitMetricsHistogramPtrOutput)
+}
+
+type LogControlConfigRuleEmitMetricsHistogramOutput struct{ *pulumi.OutputState }
+
+func (LogControlConfigRuleEmitMetricsHistogramOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogControlConfigRuleEmitMetricsHistogram)(nil)).Elem()
+}
+
+func (o LogControlConfigRuleEmitMetricsHistogramOutput) ToLogControlConfigRuleEmitMetricsHistogramOutput() LogControlConfigRuleEmitMetricsHistogramOutput {
+	return o
+}
+
+func (o LogControlConfigRuleEmitMetricsHistogramOutput) ToLogControlConfigRuleEmitMetricsHistogramOutputWithContext(ctx context.Context) LogControlConfigRuleEmitMetricsHistogramOutput {
+	return o
+}
+
+func (o LogControlConfigRuleEmitMetricsHistogramOutput) ToLogControlConfigRuleEmitMetricsHistogramPtrOutput() LogControlConfigRuleEmitMetricsHistogramPtrOutput {
+	return o.ToLogControlConfigRuleEmitMetricsHistogramPtrOutputWithContext(context.Background())
+}
+
+func (o LogControlConfigRuleEmitMetricsHistogramOutput) ToLogControlConfigRuleEmitMetricsHistogramPtrOutputWithContext(ctx context.Context) LogControlConfigRuleEmitMetricsHistogramPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v LogControlConfigRuleEmitMetricsHistogram) *LogControlConfigRuleEmitMetricsHistogram {
+		return &v
+	}).(LogControlConfigRuleEmitMetricsHistogramPtrOutput)
+}
+
+func (o LogControlConfigRuleEmitMetricsHistogramOutput) Value() LogControlConfigRuleEmitMetricsHistogramValuePtrOutput {
+	return o.ApplyT(func(v LogControlConfigRuleEmitMetricsHistogram) *LogControlConfigRuleEmitMetricsHistogramValue {
+		return v.Value
+	}).(LogControlConfigRuleEmitMetricsHistogramValuePtrOutput)
+}
+
+type LogControlConfigRuleEmitMetricsHistogramPtrOutput struct{ *pulumi.OutputState }
+
+func (LogControlConfigRuleEmitMetricsHistogramPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogControlConfigRuleEmitMetricsHistogram)(nil)).Elem()
+}
+
+func (o LogControlConfigRuleEmitMetricsHistogramPtrOutput) ToLogControlConfigRuleEmitMetricsHistogramPtrOutput() LogControlConfigRuleEmitMetricsHistogramPtrOutput {
+	return o
+}
+
+func (o LogControlConfigRuleEmitMetricsHistogramPtrOutput) ToLogControlConfigRuleEmitMetricsHistogramPtrOutputWithContext(ctx context.Context) LogControlConfigRuleEmitMetricsHistogramPtrOutput {
+	return o
+}
+
+func (o LogControlConfigRuleEmitMetricsHistogramPtrOutput) Elem() LogControlConfigRuleEmitMetricsHistogramOutput {
+	return o.ApplyT(func(v *LogControlConfigRuleEmitMetricsHistogram) LogControlConfigRuleEmitMetricsHistogram {
+		if v != nil {
+			return *v
+		}
+		var ret LogControlConfigRuleEmitMetricsHistogram
+		return ret
+	}).(LogControlConfigRuleEmitMetricsHistogramOutput)
+}
+
+func (o LogControlConfigRuleEmitMetricsHistogramPtrOutput) Value() LogControlConfigRuleEmitMetricsHistogramValuePtrOutput {
+	return o.ApplyT(func(v *LogControlConfigRuleEmitMetricsHistogram) *LogControlConfigRuleEmitMetricsHistogramValue {
+		if v == nil {
+			return nil
+		}
+		return v.Value
+	}).(LogControlConfigRuleEmitMetricsHistogramValuePtrOutput)
+}
+
+type LogControlConfigRuleEmitMetricsHistogramValue struct {
+	Selector *string `pulumi:"selector"`
+}
+
+// LogControlConfigRuleEmitMetricsHistogramValueInput is an input type that accepts LogControlConfigRuleEmitMetricsHistogramValueArgs and LogControlConfigRuleEmitMetricsHistogramValueOutput values.
+// You can construct a concrete instance of `LogControlConfigRuleEmitMetricsHistogramValueInput` via:
+//
+//	LogControlConfigRuleEmitMetricsHistogramValueArgs{...}
+type LogControlConfigRuleEmitMetricsHistogramValueInput interface {
+	pulumi.Input
+
+	ToLogControlConfigRuleEmitMetricsHistogramValueOutput() LogControlConfigRuleEmitMetricsHistogramValueOutput
+	ToLogControlConfigRuleEmitMetricsHistogramValueOutputWithContext(context.Context) LogControlConfigRuleEmitMetricsHistogramValueOutput
+}
+
+type LogControlConfigRuleEmitMetricsHistogramValueArgs struct {
+	Selector pulumi.StringPtrInput `pulumi:"selector"`
+}
+
+func (LogControlConfigRuleEmitMetricsHistogramValueArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogControlConfigRuleEmitMetricsHistogramValue)(nil)).Elem()
+}
+
+func (i LogControlConfigRuleEmitMetricsHistogramValueArgs) ToLogControlConfigRuleEmitMetricsHistogramValueOutput() LogControlConfigRuleEmitMetricsHistogramValueOutput {
+	return i.ToLogControlConfigRuleEmitMetricsHistogramValueOutputWithContext(context.Background())
+}
+
+func (i LogControlConfigRuleEmitMetricsHistogramValueArgs) ToLogControlConfigRuleEmitMetricsHistogramValueOutputWithContext(ctx context.Context) LogControlConfigRuleEmitMetricsHistogramValueOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogControlConfigRuleEmitMetricsHistogramValueOutput)
+}
+
+func (i LogControlConfigRuleEmitMetricsHistogramValueArgs) ToLogControlConfigRuleEmitMetricsHistogramValuePtrOutput() LogControlConfigRuleEmitMetricsHistogramValuePtrOutput {
+	return i.ToLogControlConfigRuleEmitMetricsHistogramValuePtrOutputWithContext(context.Background())
+}
+
+func (i LogControlConfigRuleEmitMetricsHistogramValueArgs) ToLogControlConfigRuleEmitMetricsHistogramValuePtrOutputWithContext(ctx context.Context) LogControlConfigRuleEmitMetricsHistogramValuePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogControlConfigRuleEmitMetricsHistogramValueOutput).ToLogControlConfigRuleEmitMetricsHistogramValuePtrOutputWithContext(ctx)
+}
+
+// LogControlConfigRuleEmitMetricsHistogramValuePtrInput is an input type that accepts LogControlConfigRuleEmitMetricsHistogramValueArgs, LogControlConfigRuleEmitMetricsHistogramValuePtr and LogControlConfigRuleEmitMetricsHistogramValuePtrOutput values.
+// You can construct a concrete instance of `LogControlConfigRuleEmitMetricsHistogramValuePtrInput` via:
+//
+//	        LogControlConfigRuleEmitMetricsHistogramValueArgs{...}
+//
+//	or:
+//
+//	        nil
+type LogControlConfigRuleEmitMetricsHistogramValuePtrInput interface {
+	pulumi.Input
+
+	ToLogControlConfigRuleEmitMetricsHistogramValuePtrOutput() LogControlConfigRuleEmitMetricsHistogramValuePtrOutput
+	ToLogControlConfigRuleEmitMetricsHistogramValuePtrOutputWithContext(context.Context) LogControlConfigRuleEmitMetricsHistogramValuePtrOutput
+}
+
+type logControlConfigRuleEmitMetricsHistogramValuePtrType LogControlConfigRuleEmitMetricsHistogramValueArgs
+
+func LogControlConfigRuleEmitMetricsHistogramValuePtr(v *LogControlConfigRuleEmitMetricsHistogramValueArgs) LogControlConfigRuleEmitMetricsHistogramValuePtrInput {
+	return (*logControlConfigRuleEmitMetricsHistogramValuePtrType)(v)
+}
+
+func (*logControlConfigRuleEmitMetricsHistogramValuePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogControlConfigRuleEmitMetricsHistogramValue)(nil)).Elem()
+}
+
+func (i *logControlConfigRuleEmitMetricsHistogramValuePtrType) ToLogControlConfigRuleEmitMetricsHistogramValuePtrOutput() LogControlConfigRuleEmitMetricsHistogramValuePtrOutput {
+	return i.ToLogControlConfigRuleEmitMetricsHistogramValuePtrOutputWithContext(context.Background())
+}
+
+func (i *logControlConfigRuleEmitMetricsHistogramValuePtrType) ToLogControlConfigRuleEmitMetricsHistogramValuePtrOutputWithContext(ctx context.Context) LogControlConfigRuleEmitMetricsHistogramValuePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogControlConfigRuleEmitMetricsHistogramValuePtrOutput)
+}
+
+type LogControlConfigRuleEmitMetricsHistogramValueOutput struct{ *pulumi.OutputState }
+
+func (LogControlConfigRuleEmitMetricsHistogramValueOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogControlConfigRuleEmitMetricsHistogramValue)(nil)).Elem()
+}
+
+func (o LogControlConfigRuleEmitMetricsHistogramValueOutput) ToLogControlConfigRuleEmitMetricsHistogramValueOutput() LogControlConfigRuleEmitMetricsHistogramValueOutput {
+	return o
+}
+
+func (o LogControlConfigRuleEmitMetricsHistogramValueOutput) ToLogControlConfigRuleEmitMetricsHistogramValueOutputWithContext(ctx context.Context) LogControlConfigRuleEmitMetricsHistogramValueOutput {
+	return o
+}
+
+func (o LogControlConfigRuleEmitMetricsHistogramValueOutput) ToLogControlConfigRuleEmitMetricsHistogramValuePtrOutput() LogControlConfigRuleEmitMetricsHistogramValuePtrOutput {
+	return o.ToLogControlConfigRuleEmitMetricsHistogramValuePtrOutputWithContext(context.Background())
+}
+
+func (o LogControlConfigRuleEmitMetricsHistogramValueOutput) ToLogControlConfigRuleEmitMetricsHistogramValuePtrOutputWithContext(ctx context.Context) LogControlConfigRuleEmitMetricsHistogramValuePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v LogControlConfigRuleEmitMetricsHistogramValue) *LogControlConfigRuleEmitMetricsHistogramValue {
+		return &v
+	}).(LogControlConfigRuleEmitMetricsHistogramValuePtrOutput)
+}
+
+func (o LogControlConfigRuleEmitMetricsHistogramValueOutput) Selector() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LogControlConfigRuleEmitMetricsHistogramValue) *string { return v.Selector }).(pulumi.StringPtrOutput)
+}
+
+type LogControlConfigRuleEmitMetricsHistogramValuePtrOutput struct{ *pulumi.OutputState }
+
+func (LogControlConfigRuleEmitMetricsHistogramValuePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogControlConfigRuleEmitMetricsHistogramValue)(nil)).Elem()
+}
+
+func (o LogControlConfigRuleEmitMetricsHistogramValuePtrOutput) ToLogControlConfigRuleEmitMetricsHistogramValuePtrOutput() LogControlConfigRuleEmitMetricsHistogramValuePtrOutput {
+	return o
+}
+
+func (o LogControlConfigRuleEmitMetricsHistogramValuePtrOutput) ToLogControlConfigRuleEmitMetricsHistogramValuePtrOutputWithContext(ctx context.Context) LogControlConfigRuleEmitMetricsHistogramValuePtrOutput {
+	return o
+}
+
+func (o LogControlConfigRuleEmitMetricsHistogramValuePtrOutput) Elem() LogControlConfigRuleEmitMetricsHistogramValueOutput {
+	return o.ApplyT(func(v *LogControlConfigRuleEmitMetricsHistogramValue) LogControlConfigRuleEmitMetricsHistogramValue {
+		if v != nil {
+			return *v
+		}
+		var ret LogControlConfigRuleEmitMetricsHistogramValue
+		return ret
+	}).(LogControlConfigRuleEmitMetricsHistogramValueOutput)
+}
+
+func (o LogControlConfigRuleEmitMetricsHistogramValuePtrOutput) Selector() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogControlConfigRuleEmitMetricsHistogramValue) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Selector
+	}).(pulumi.StringPtrOutput)
+}
+
+type LogControlConfigRuleEmitMetricsLabel struct {
+	Key   *string                                    `pulumi:"key"`
+	Value *LogControlConfigRuleEmitMetricsLabelValue `pulumi:"value"`
+}
+
+// LogControlConfigRuleEmitMetricsLabelInput is an input type that accepts LogControlConfigRuleEmitMetricsLabelArgs and LogControlConfigRuleEmitMetricsLabelOutput values.
+// You can construct a concrete instance of `LogControlConfigRuleEmitMetricsLabelInput` via:
+//
+//	LogControlConfigRuleEmitMetricsLabelArgs{...}
+type LogControlConfigRuleEmitMetricsLabelInput interface {
+	pulumi.Input
+
+	ToLogControlConfigRuleEmitMetricsLabelOutput() LogControlConfigRuleEmitMetricsLabelOutput
+	ToLogControlConfigRuleEmitMetricsLabelOutputWithContext(context.Context) LogControlConfigRuleEmitMetricsLabelOutput
+}
+
+type LogControlConfigRuleEmitMetricsLabelArgs struct {
+	Key   pulumi.StringPtrInput                             `pulumi:"key"`
+	Value LogControlConfigRuleEmitMetricsLabelValuePtrInput `pulumi:"value"`
+}
+
+func (LogControlConfigRuleEmitMetricsLabelArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogControlConfigRuleEmitMetricsLabel)(nil)).Elem()
+}
+
+func (i LogControlConfigRuleEmitMetricsLabelArgs) ToLogControlConfigRuleEmitMetricsLabelOutput() LogControlConfigRuleEmitMetricsLabelOutput {
+	return i.ToLogControlConfigRuleEmitMetricsLabelOutputWithContext(context.Background())
+}
+
+func (i LogControlConfigRuleEmitMetricsLabelArgs) ToLogControlConfigRuleEmitMetricsLabelOutputWithContext(ctx context.Context) LogControlConfigRuleEmitMetricsLabelOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogControlConfigRuleEmitMetricsLabelOutput)
+}
+
+// LogControlConfigRuleEmitMetricsLabelArrayInput is an input type that accepts LogControlConfigRuleEmitMetricsLabelArray and LogControlConfigRuleEmitMetricsLabelArrayOutput values.
+// You can construct a concrete instance of `LogControlConfigRuleEmitMetricsLabelArrayInput` via:
+//
+//	LogControlConfigRuleEmitMetricsLabelArray{ LogControlConfigRuleEmitMetricsLabelArgs{...} }
+type LogControlConfigRuleEmitMetricsLabelArrayInput interface {
+	pulumi.Input
+
+	ToLogControlConfigRuleEmitMetricsLabelArrayOutput() LogControlConfigRuleEmitMetricsLabelArrayOutput
+	ToLogControlConfigRuleEmitMetricsLabelArrayOutputWithContext(context.Context) LogControlConfigRuleEmitMetricsLabelArrayOutput
+}
+
+type LogControlConfigRuleEmitMetricsLabelArray []LogControlConfigRuleEmitMetricsLabelInput
+
+func (LogControlConfigRuleEmitMetricsLabelArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LogControlConfigRuleEmitMetricsLabel)(nil)).Elem()
+}
+
+func (i LogControlConfigRuleEmitMetricsLabelArray) ToLogControlConfigRuleEmitMetricsLabelArrayOutput() LogControlConfigRuleEmitMetricsLabelArrayOutput {
+	return i.ToLogControlConfigRuleEmitMetricsLabelArrayOutputWithContext(context.Background())
+}
+
+func (i LogControlConfigRuleEmitMetricsLabelArray) ToLogControlConfigRuleEmitMetricsLabelArrayOutputWithContext(ctx context.Context) LogControlConfigRuleEmitMetricsLabelArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogControlConfigRuleEmitMetricsLabelArrayOutput)
+}
+
+type LogControlConfigRuleEmitMetricsLabelOutput struct{ *pulumi.OutputState }
+
+func (LogControlConfigRuleEmitMetricsLabelOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogControlConfigRuleEmitMetricsLabel)(nil)).Elem()
+}
+
+func (o LogControlConfigRuleEmitMetricsLabelOutput) ToLogControlConfigRuleEmitMetricsLabelOutput() LogControlConfigRuleEmitMetricsLabelOutput {
+	return o
+}
+
+func (o LogControlConfigRuleEmitMetricsLabelOutput) ToLogControlConfigRuleEmitMetricsLabelOutputWithContext(ctx context.Context) LogControlConfigRuleEmitMetricsLabelOutput {
+	return o
+}
+
+func (o LogControlConfigRuleEmitMetricsLabelOutput) Key() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LogControlConfigRuleEmitMetricsLabel) *string { return v.Key }).(pulumi.StringPtrOutput)
+}
+
+func (o LogControlConfigRuleEmitMetricsLabelOutput) Value() LogControlConfigRuleEmitMetricsLabelValuePtrOutput {
+	return o.ApplyT(func(v LogControlConfigRuleEmitMetricsLabel) *LogControlConfigRuleEmitMetricsLabelValue {
+		return v.Value
+	}).(LogControlConfigRuleEmitMetricsLabelValuePtrOutput)
+}
+
+type LogControlConfigRuleEmitMetricsLabelArrayOutput struct{ *pulumi.OutputState }
+
+func (LogControlConfigRuleEmitMetricsLabelArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LogControlConfigRuleEmitMetricsLabel)(nil)).Elem()
+}
+
+func (o LogControlConfigRuleEmitMetricsLabelArrayOutput) ToLogControlConfigRuleEmitMetricsLabelArrayOutput() LogControlConfigRuleEmitMetricsLabelArrayOutput {
+	return o
+}
+
+func (o LogControlConfigRuleEmitMetricsLabelArrayOutput) ToLogControlConfigRuleEmitMetricsLabelArrayOutputWithContext(ctx context.Context) LogControlConfigRuleEmitMetricsLabelArrayOutput {
+	return o
+}
+
+func (o LogControlConfigRuleEmitMetricsLabelArrayOutput) Index(i pulumi.IntInput) LogControlConfigRuleEmitMetricsLabelOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LogControlConfigRuleEmitMetricsLabel {
+		return vs[0].([]LogControlConfigRuleEmitMetricsLabel)[vs[1].(int)]
+	}).(LogControlConfigRuleEmitMetricsLabelOutput)
+}
+
+type LogControlConfigRuleEmitMetricsLabelValue struct {
+	Selector *string `pulumi:"selector"`
+}
+
+// LogControlConfigRuleEmitMetricsLabelValueInput is an input type that accepts LogControlConfigRuleEmitMetricsLabelValueArgs and LogControlConfigRuleEmitMetricsLabelValueOutput values.
+// You can construct a concrete instance of `LogControlConfigRuleEmitMetricsLabelValueInput` via:
+//
+//	LogControlConfigRuleEmitMetricsLabelValueArgs{...}
+type LogControlConfigRuleEmitMetricsLabelValueInput interface {
+	pulumi.Input
+
+	ToLogControlConfigRuleEmitMetricsLabelValueOutput() LogControlConfigRuleEmitMetricsLabelValueOutput
+	ToLogControlConfigRuleEmitMetricsLabelValueOutputWithContext(context.Context) LogControlConfigRuleEmitMetricsLabelValueOutput
+}
+
+type LogControlConfigRuleEmitMetricsLabelValueArgs struct {
+	Selector pulumi.StringPtrInput `pulumi:"selector"`
+}
+
+func (LogControlConfigRuleEmitMetricsLabelValueArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogControlConfigRuleEmitMetricsLabelValue)(nil)).Elem()
+}
+
+func (i LogControlConfigRuleEmitMetricsLabelValueArgs) ToLogControlConfigRuleEmitMetricsLabelValueOutput() LogControlConfigRuleEmitMetricsLabelValueOutput {
+	return i.ToLogControlConfigRuleEmitMetricsLabelValueOutputWithContext(context.Background())
+}
+
+func (i LogControlConfigRuleEmitMetricsLabelValueArgs) ToLogControlConfigRuleEmitMetricsLabelValueOutputWithContext(ctx context.Context) LogControlConfigRuleEmitMetricsLabelValueOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogControlConfigRuleEmitMetricsLabelValueOutput)
+}
+
+func (i LogControlConfigRuleEmitMetricsLabelValueArgs) ToLogControlConfigRuleEmitMetricsLabelValuePtrOutput() LogControlConfigRuleEmitMetricsLabelValuePtrOutput {
+	return i.ToLogControlConfigRuleEmitMetricsLabelValuePtrOutputWithContext(context.Background())
+}
+
+func (i LogControlConfigRuleEmitMetricsLabelValueArgs) ToLogControlConfigRuleEmitMetricsLabelValuePtrOutputWithContext(ctx context.Context) LogControlConfigRuleEmitMetricsLabelValuePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogControlConfigRuleEmitMetricsLabelValueOutput).ToLogControlConfigRuleEmitMetricsLabelValuePtrOutputWithContext(ctx)
+}
+
+// LogControlConfigRuleEmitMetricsLabelValuePtrInput is an input type that accepts LogControlConfigRuleEmitMetricsLabelValueArgs, LogControlConfigRuleEmitMetricsLabelValuePtr and LogControlConfigRuleEmitMetricsLabelValuePtrOutput values.
+// You can construct a concrete instance of `LogControlConfigRuleEmitMetricsLabelValuePtrInput` via:
+//
+//	        LogControlConfigRuleEmitMetricsLabelValueArgs{...}
+//
+//	or:
+//
+//	        nil
+type LogControlConfigRuleEmitMetricsLabelValuePtrInput interface {
+	pulumi.Input
+
+	ToLogControlConfigRuleEmitMetricsLabelValuePtrOutput() LogControlConfigRuleEmitMetricsLabelValuePtrOutput
+	ToLogControlConfigRuleEmitMetricsLabelValuePtrOutputWithContext(context.Context) LogControlConfigRuleEmitMetricsLabelValuePtrOutput
+}
+
+type logControlConfigRuleEmitMetricsLabelValuePtrType LogControlConfigRuleEmitMetricsLabelValueArgs
+
+func LogControlConfigRuleEmitMetricsLabelValuePtr(v *LogControlConfigRuleEmitMetricsLabelValueArgs) LogControlConfigRuleEmitMetricsLabelValuePtrInput {
+	return (*logControlConfigRuleEmitMetricsLabelValuePtrType)(v)
+}
+
+func (*logControlConfigRuleEmitMetricsLabelValuePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogControlConfigRuleEmitMetricsLabelValue)(nil)).Elem()
+}
+
+func (i *logControlConfigRuleEmitMetricsLabelValuePtrType) ToLogControlConfigRuleEmitMetricsLabelValuePtrOutput() LogControlConfigRuleEmitMetricsLabelValuePtrOutput {
+	return i.ToLogControlConfigRuleEmitMetricsLabelValuePtrOutputWithContext(context.Background())
+}
+
+func (i *logControlConfigRuleEmitMetricsLabelValuePtrType) ToLogControlConfigRuleEmitMetricsLabelValuePtrOutputWithContext(ctx context.Context) LogControlConfigRuleEmitMetricsLabelValuePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogControlConfigRuleEmitMetricsLabelValuePtrOutput)
+}
+
+type LogControlConfigRuleEmitMetricsLabelValueOutput struct{ *pulumi.OutputState }
+
+func (LogControlConfigRuleEmitMetricsLabelValueOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogControlConfigRuleEmitMetricsLabelValue)(nil)).Elem()
+}
+
+func (o LogControlConfigRuleEmitMetricsLabelValueOutput) ToLogControlConfigRuleEmitMetricsLabelValueOutput() LogControlConfigRuleEmitMetricsLabelValueOutput {
+	return o
+}
+
+func (o LogControlConfigRuleEmitMetricsLabelValueOutput) ToLogControlConfigRuleEmitMetricsLabelValueOutputWithContext(ctx context.Context) LogControlConfigRuleEmitMetricsLabelValueOutput {
+	return o
+}
+
+func (o LogControlConfigRuleEmitMetricsLabelValueOutput) ToLogControlConfigRuleEmitMetricsLabelValuePtrOutput() LogControlConfigRuleEmitMetricsLabelValuePtrOutput {
+	return o.ToLogControlConfigRuleEmitMetricsLabelValuePtrOutputWithContext(context.Background())
+}
+
+func (o LogControlConfigRuleEmitMetricsLabelValueOutput) ToLogControlConfigRuleEmitMetricsLabelValuePtrOutputWithContext(ctx context.Context) LogControlConfigRuleEmitMetricsLabelValuePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v LogControlConfigRuleEmitMetricsLabelValue) *LogControlConfigRuleEmitMetricsLabelValue {
+		return &v
+	}).(LogControlConfigRuleEmitMetricsLabelValuePtrOutput)
+}
+
+func (o LogControlConfigRuleEmitMetricsLabelValueOutput) Selector() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LogControlConfigRuleEmitMetricsLabelValue) *string { return v.Selector }).(pulumi.StringPtrOutput)
+}
+
+type LogControlConfigRuleEmitMetricsLabelValuePtrOutput struct{ *pulumi.OutputState }
+
+func (LogControlConfigRuleEmitMetricsLabelValuePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogControlConfigRuleEmitMetricsLabelValue)(nil)).Elem()
+}
+
+func (o LogControlConfigRuleEmitMetricsLabelValuePtrOutput) ToLogControlConfigRuleEmitMetricsLabelValuePtrOutput() LogControlConfigRuleEmitMetricsLabelValuePtrOutput {
+	return o
+}
+
+func (o LogControlConfigRuleEmitMetricsLabelValuePtrOutput) ToLogControlConfigRuleEmitMetricsLabelValuePtrOutputWithContext(ctx context.Context) LogControlConfigRuleEmitMetricsLabelValuePtrOutput {
+	return o
+}
+
+func (o LogControlConfigRuleEmitMetricsLabelValuePtrOutput) Elem() LogControlConfigRuleEmitMetricsLabelValueOutput {
+	return o.ApplyT(func(v *LogControlConfigRuleEmitMetricsLabelValue) LogControlConfigRuleEmitMetricsLabelValue {
+		if v != nil {
+			return *v
+		}
+		var ret LogControlConfigRuleEmitMetricsLabelValue
+		return ret
+	}).(LogControlConfigRuleEmitMetricsLabelValueOutput)
+}
+
+func (o LogControlConfigRuleEmitMetricsLabelValuePtrOutput) Selector() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogControlConfigRuleEmitMetricsLabelValue) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Selector
+	}).(pulumi.StringPtrOutput)
+}
+
+type LogControlConfigRuleReplaceField struct {
+	Field        *LogControlConfigRuleReplaceFieldField       `pulumi:"field"`
+	MappedValue  *LogControlConfigRuleReplaceFieldMappedValue `pulumi:"mappedValue"`
+	ReplaceAll   *bool                                        `pulumi:"replaceAll"`
+	ReplaceMode  *string                                      `pulumi:"replaceMode"`
+	ReplaceRegex *string                                      `pulumi:"replaceRegex"`
+	StaticValue  *LogControlConfigRuleReplaceFieldStaticValue `pulumi:"staticValue"`
+}
+
+// LogControlConfigRuleReplaceFieldInput is an input type that accepts LogControlConfigRuleReplaceFieldArgs and LogControlConfigRuleReplaceFieldOutput values.
+// You can construct a concrete instance of `LogControlConfigRuleReplaceFieldInput` via:
+//
+//	LogControlConfigRuleReplaceFieldArgs{...}
+type LogControlConfigRuleReplaceFieldInput interface {
+	pulumi.Input
+
+	ToLogControlConfigRuleReplaceFieldOutput() LogControlConfigRuleReplaceFieldOutput
+	ToLogControlConfigRuleReplaceFieldOutputWithContext(context.Context) LogControlConfigRuleReplaceFieldOutput
+}
+
+type LogControlConfigRuleReplaceFieldArgs struct {
+	Field        LogControlConfigRuleReplaceFieldFieldPtrInput       `pulumi:"field"`
+	MappedValue  LogControlConfigRuleReplaceFieldMappedValuePtrInput `pulumi:"mappedValue"`
+	ReplaceAll   pulumi.BoolPtrInput                                 `pulumi:"replaceAll"`
+	ReplaceMode  pulumi.StringPtrInput                               `pulumi:"replaceMode"`
+	ReplaceRegex pulumi.StringPtrInput                               `pulumi:"replaceRegex"`
+	StaticValue  LogControlConfigRuleReplaceFieldStaticValuePtrInput `pulumi:"staticValue"`
+}
+
+func (LogControlConfigRuleReplaceFieldArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogControlConfigRuleReplaceField)(nil)).Elem()
+}
+
+func (i LogControlConfigRuleReplaceFieldArgs) ToLogControlConfigRuleReplaceFieldOutput() LogControlConfigRuleReplaceFieldOutput {
+	return i.ToLogControlConfigRuleReplaceFieldOutputWithContext(context.Background())
+}
+
+func (i LogControlConfigRuleReplaceFieldArgs) ToLogControlConfigRuleReplaceFieldOutputWithContext(ctx context.Context) LogControlConfigRuleReplaceFieldOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogControlConfigRuleReplaceFieldOutput)
+}
+
+func (i LogControlConfigRuleReplaceFieldArgs) ToLogControlConfigRuleReplaceFieldPtrOutput() LogControlConfigRuleReplaceFieldPtrOutput {
+	return i.ToLogControlConfigRuleReplaceFieldPtrOutputWithContext(context.Background())
+}
+
+func (i LogControlConfigRuleReplaceFieldArgs) ToLogControlConfigRuleReplaceFieldPtrOutputWithContext(ctx context.Context) LogControlConfigRuleReplaceFieldPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogControlConfigRuleReplaceFieldOutput).ToLogControlConfigRuleReplaceFieldPtrOutputWithContext(ctx)
+}
+
+// LogControlConfigRuleReplaceFieldPtrInput is an input type that accepts LogControlConfigRuleReplaceFieldArgs, LogControlConfigRuleReplaceFieldPtr and LogControlConfigRuleReplaceFieldPtrOutput values.
+// You can construct a concrete instance of `LogControlConfigRuleReplaceFieldPtrInput` via:
+//
+//	        LogControlConfigRuleReplaceFieldArgs{...}
+//
+//	or:
+//
+//	        nil
+type LogControlConfigRuleReplaceFieldPtrInput interface {
+	pulumi.Input
+
+	ToLogControlConfigRuleReplaceFieldPtrOutput() LogControlConfigRuleReplaceFieldPtrOutput
+	ToLogControlConfigRuleReplaceFieldPtrOutputWithContext(context.Context) LogControlConfigRuleReplaceFieldPtrOutput
+}
+
+type logControlConfigRuleReplaceFieldPtrType LogControlConfigRuleReplaceFieldArgs
+
+func LogControlConfigRuleReplaceFieldPtr(v *LogControlConfigRuleReplaceFieldArgs) LogControlConfigRuleReplaceFieldPtrInput {
+	return (*logControlConfigRuleReplaceFieldPtrType)(v)
+}
+
+func (*logControlConfigRuleReplaceFieldPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogControlConfigRuleReplaceField)(nil)).Elem()
+}
+
+func (i *logControlConfigRuleReplaceFieldPtrType) ToLogControlConfigRuleReplaceFieldPtrOutput() LogControlConfigRuleReplaceFieldPtrOutput {
+	return i.ToLogControlConfigRuleReplaceFieldPtrOutputWithContext(context.Background())
+}
+
+func (i *logControlConfigRuleReplaceFieldPtrType) ToLogControlConfigRuleReplaceFieldPtrOutputWithContext(ctx context.Context) LogControlConfigRuleReplaceFieldPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogControlConfigRuleReplaceFieldPtrOutput)
+}
+
+type LogControlConfigRuleReplaceFieldOutput struct{ *pulumi.OutputState }
+
+func (LogControlConfigRuleReplaceFieldOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogControlConfigRuleReplaceField)(nil)).Elem()
+}
+
+func (o LogControlConfigRuleReplaceFieldOutput) ToLogControlConfigRuleReplaceFieldOutput() LogControlConfigRuleReplaceFieldOutput {
+	return o
+}
+
+func (o LogControlConfigRuleReplaceFieldOutput) ToLogControlConfigRuleReplaceFieldOutputWithContext(ctx context.Context) LogControlConfigRuleReplaceFieldOutput {
+	return o
+}
+
+func (o LogControlConfigRuleReplaceFieldOutput) ToLogControlConfigRuleReplaceFieldPtrOutput() LogControlConfigRuleReplaceFieldPtrOutput {
+	return o.ToLogControlConfigRuleReplaceFieldPtrOutputWithContext(context.Background())
+}
+
+func (o LogControlConfigRuleReplaceFieldOutput) ToLogControlConfigRuleReplaceFieldPtrOutputWithContext(ctx context.Context) LogControlConfigRuleReplaceFieldPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v LogControlConfigRuleReplaceField) *LogControlConfigRuleReplaceField {
+		return &v
+	}).(LogControlConfigRuleReplaceFieldPtrOutput)
+}
+
+func (o LogControlConfigRuleReplaceFieldOutput) Field() LogControlConfigRuleReplaceFieldFieldPtrOutput {
+	return o.ApplyT(func(v LogControlConfigRuleReplaceField) *LogControlConfigRuleReplaceFieldField { return v.Field }).(LogControlConfigRuleReplaceFieldFieldPtrOutput)
+}
+
+func (o LogControlConfigRuleReplaceFieldOutput) MappedValue() LogControlConfigRuleReplaceFieldMappedValuePtrOutput {
+	return o.ApplyT(func(v LogControlConfigRuleReplaceField) *LogControlConfigRuleReplaceFieldMappedValue {
+		return v.MappedValue
+	}).(LogControlConfigRuleReplaceFieldMappedValuePtrOutput)
+}
+
+func (o LogControlConfigRuleReplaceFieldOutput) ReplaceAll() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v LogControlConfigRuleReplaceField) *bool { return v.ReplaceAll }).(pulumi.BoolPtrOutput)
+}
+
+func (o LogControlConfigRuleReplaceFieldOutput) ReplaceMode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LogControlConfigRuleReplaceField) *string { return v.ReplaceMode }).(pulumi.StringPtrOutput)
+}
+
+func (o LogControlConfigRuleReplaceFieldOutput) ReplaceRegex() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LogControlConfigRuleReplaceField) *string { return v.ReplaceRegex }).(pulumi.StringPtrOutput)
+}
+
+func (o LogControlConfigRuleReplaceFieldOutput) StaticValue() LogControlConfigRuleReplaceFieldStaticValuePtrOutput {
+	return o.ApplyT(func(v LogControlConfigRuleReplaceField) *LogControlConfigRuleReplaceFieldStaticValue {
+		return v.StaticValue
+	}).(LogControlConfigRuleReplaceFieldStaticValuePtrOutput)
+}
+
+type LogControlConfigRuleReplaceFieldPtrOutput struct{ *pulumi.OutputState }
+
+func (LogControlConfigRuleReplaceFieldPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogControlConfigRuleReplaceField)(nil)).Elem()
+}
+
+func (o LogControlConfigRuleReplaceFieldPtrOutput) ToLogControlConfigRuleReplaceFieldPtrOutput() LogControlConfigRuleReplaceFieldPtrOutput {
+	return o
+}
+
+func (o LogControlConfigRuleReplaceFieldPtrOutput) ToLogControlConfigRuleReplaceFieldPtrOutputWithContext(ctx context.Context) LogControlConfigRuleReplaceFieldPtrOutput {
+	return o
+}
+
+func (o LogControlConfigRuleReplaceFieldPtrOutput) Elem() LogControlConfigRuleReplaceFieldOutput {
+	return o.ApplyT(func(v *LogControlConfigRuleReplaceField) LogControlConfigRuleReplaceField {
+		if v != nil {
+			return *v
+		}
+		var ret LogControlConfigRuleReplaceField
+		return ret
+	}).(LogControlConfigRuleReplaceFieldOutput)
+}
+
+func (o LogControlConfigRuleReplaceFieldPtrOutput) Field() LogControlConfigRuleReplaceFieldFieldPtrOutput {
+	return o.ApplyT(func(v *LogControlConfigRuleReplaceField) *LogControlConfigRuleReplaceFieldField {
+		if v == nil {
+			return nil
+		}
+		return v.Field
+	}).(LogControlConfigRuleReplaceFieldFieldPtrOutput)
+}
+
+func (o LogControlConfigRuleReplaceFieldPtrOutput) MappedValue() LogControlConfigRuleReplaceFieldMappedValuePtrOutput {
+	return o.ApplyT(func(v *LogControlConfigRuleReplaceField) *LogControlConfigRuleReplaceFieldMappedValue {
+		if v == nil {
+			return nil
+		}
+		return v.MappedValue
+	}).(LogControlConfigRuleReplaceFieldMappedValuePtrOutput)
+}
+
+func (o LogControlConfigRuleReplaceFieldPtrOutput) ReplaceAll() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *LogControlConfigRuleReplaceField) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.ReplaceAll
+	}).(pulumi.BoolPtrOutput)
+}
+
+func (o LogControlConfigRuleReplaceFieldPtrOutput) ReplaceMode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogControlConfigRuleReplaceField) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ReplaceMode
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o LogControlConfigRuleReplaceFieldPtrOutput) ReplaceRegex() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogControlConfigRuleReplaceField) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ReplaceRegex
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o LogControlConfigRuleReplaceFieldPtrOutput) StaticValue() LogControlConfigRuleReplaceFieldStaticValuePtrOutput {
+	return o.ApplyT(func(v *LogControlConfigRuleReplaceField) *LogControlConfigRuleReplaceFieldStaticValue {
+		if v == nil {
+			return nil
+		}
+		return v.StaticValue
+	}).(LogControlConfigRuleReplaceFieldStaticValuePtrOutput)
+}
+
+type LogControlConfigRuleReplaceFieldField struct {
+	Selector *string `pulumi:"selector"`
+}
+
+// LogControlConfigRuleReplaceFieldFieldInput is an input type that accepts LogControlConfigRuleReplaceFieldFieldArgs and LogControlConfigRuleReplaceFieldFieldOutput values.
+// You can construct a concrete instance of `LogControlConfigRuleReplaceFieldFieldInput` via:
+//
+//	LogControlConfigRuleReplaceFieldFieldArgs{...}
+type LogControlConfigRuleReplaceFieldFieldInput interface {
+	pulumi.Input
+
+	ToLogControlConfigRuleReplaceFieldFieldOutput() LogControlConfigRuleReplaceFieldFieldOutput
+	ToLogControlConfigRuleReplaceFieldFieldOutputWithContext(context.Context) LogControlConfigRuleReplaceFieldFieldOutput
+}
+
+type LogControlConfigRuleReplaceFieldFieldArgs struct {
+	Selector pulumi.StringPtrInput `pulumi:"selector"`
+}
+
+func (LogControlConfigRuleReplaceFieldFieldArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogControlConfigRuleReplaceFieldField)(nil)).Elem()
+}
+
+func (i LogControlConfigRuleReplaceFieldFieldArgs) ToLogControlConfigRuleReplaceFieldFieldOutput() LogControlConfigRuleReplaceFieldFieldOutput {
+	return i.ToLogControlConfigRuleReplaceFieldFieldOutputWithContext(context.Background())
+}
+
+func (i LogControlConfigRuleReplaceFieldFieldArgs) ToLogControlConfigRuleReplaceFieldFieldOutputWithContext(ctx context.Context) LogControlConfigRuleReplaceFieldFieldOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogControlConfigRuleReplaceFieldFieldOutput)
+}
+
+func (i LogControlConfigRuleReplaceFieldFieldArgs) ToLogControlConfigRuleReplaceFieldFieldPtrOutput() LogControlConfigRuleReplaceFieldFieldPtrOutput {
+	return i.ToLogControlConfigRuleReplaceFieldFieldPtrOutputWithContext(context.Background())
+}
+
+func (i LogControlConfigRuleReplaceFieldFieldArgs) ToLogControlConfigRuleReplaceFieldFieldPtrOutputWithContext(ctx context.Context) LogControlConfigRuleReplaceFieldFieldPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogControlConfigRuleReplaceFieldFieldOutput).ToLogControlConfigRuleReplaceFieldFieldPtrOutputWithContext(ctx)
+}
+
+// LogControlConfigRuleReplaceFieldFieldPtrInput is an input type that accepts LogControlConfigRuleReplaceFieldFieldArgs, LogControlConfigRuleReplaceFieldFieldPtr and LogControlConfigRuleReplaceFieldFieldPtrOutput values.
+// You can construct a concrete instance of `LogControlConfigRuleReplaceFieldFieldPtrInput` via:
+//
+//	        LogControlConfigRuleReplaceFieldFieldArgs{...}
+//
+//	or:
+//
+//	        nil
+type LogControlConfigRuleReplaceFieldFieldPtrInput interface {
+	pulumi.Input
+
+	ToLogControlConfigRuleReplaceFieldFieldPtrOutput() LogControlConfigRuleReplaceFieldFieldPtrOutput
+	ToLogControlConfigRuleReplaceFieldFieldPtrOutputWithContext(context.Context) LogControlConfigRuleReplaceFieldFieldPtrOutput
+}
+
+type logControlConfigRuleReplaceFieldFieldPtrType LogControlConfigRuleReplaceFieldFieldArgs
+
+func LogControlConfigRuleReplaceFieldFieldPtr(v *LogControlConfigRuleReplaceFieldFieldArgs) LogControlConfigRuleReplaceFieldFieldPtrInput {
+	return (*logControlConfigRuleReplaceFieldFieldPtrType)(v)
+}
+
+func (*logControlConfigRuleReplaceFieldFieldPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogControlConfigRuleReplaceFieldField)(nil)).Elem()
+}
+
+func (i *logControlConfigRuleReplaceFieldFieldPtrType) ToLogControlConfigRuleReplaceFieldFieldPtrOutput() LogControlConfigRuleReplaceFieldFieldPtrOutput {
+	return i.ToLogControlConfigRuleReplaceFieldFieldPtrOutputWithContext(context.Background())
+}
+
+func (i *logControlConfigRuleReplaceFieldFieldPtrType) ToLogControlConfigRuleReplaceFieldFieldPtrOutputWithContext(ctx context.Context) LogControlConfigRuleReplaceFieldFieldPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogControlConfigRuleReplaceFieldFieldPtrOutput)
+}
+
+type LogControlConfigRuleReplaceFieldFieldOutput struct{ *pulumi.OutputState }
+
+func (LogControlConfigRuleReplaceFieldFieldOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogControlConfigRuleReplaceFieldField)(nil)).Elem()
+}
+
+func (o LogControlConfigRuleReplaceFieldFieldOutput) ToLogControlConfigRuleReplaceFieldFieldOutput() LogControlConfigRuleReplaceFieldFieldOutput {
+	return o
+}
+
+func (o LogControlConfigRuleReplaceFieldFieldOutput) ToLogControlConfigRuleReplaceFieldFieldOutputWithContext(ctx context.Context) LogControlConfigRuleReplaceFieldFieldOutput {
+	return o
+}
+
+func (o LogControlConfigRuleReplaceFieldFieldOutput) ToLogControlConfigRuleReplaceFieldFieldPtrOutput() LogControlConfigRuleReplaceFieldFieldPtrOutput {
+	return o.ToLogControlConfigRuleReplaceFieldFieldPtrOutputWithContext(context.Background())
+}
+
+func (o LogControlConfigRuleReplaceFieldFieldOutput) ToLogControlConfigRuleReplaceFieldFieldPtrOutputWithContext(ctx context.Context) LogControlConfigRuleReplaceFieldFieldPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v LogControlConfigRuleReplaceFieldField) *LogControlConfigRuleReplaceFieldField {
+		return &v
+	}).(LogControlConfigRuleReplaceFieldFieldPtrOutput)
+}
+
+func (o LogControlConfigRuleReplaceFieldFieldOutput) Selector() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LogControlConfigRuleReplaceFieldField) *string { return v.Selector }).(pulumi.StringPtrOutput)
+}
+
+type LogControlConfigRuleReplaceFieldFieldPtrOutput struct{ *pulumi.OutputState }
+
+func (LogControlConfigRuleReplaceFieldFieldPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogControlConfigRuleReplaceFieldField)(nil)).Elem()
+}
+
+func (o LogControlConfigRuleReplaceFieldFieldPtrOutput) ToLogControlConfigRuleReplaceFieldFieldPtrOutput() LogControlConfigRuleReplaceFieldFieldPtrOutput {
+	return o
+}
+
+func (o LogControlConfigRuleReplaceFieldFieldPtrOutput) ToLogControlConfigRuleReplaceFieldFieldPtrOutputWithContext(ctx context.Context) LogControlConfigRuleReplaceFieldFieldPtrOutput {
+	return o
+}
+
+func (o LogControlConfigRuleReplaceFieldFieldPtrOutput) Elem() LogControlConfigRuleReplaceFieldFieldOutput {
+	return o.ApplyT(func(v *LogControlConfigRuleReplaceFieldField) LogControlConfigRuleReplaceFieldField {
+		if v != nil {
+			return *v
+		}
+		var ret LogControlConfigRuleReplaceFieldField
+		return ret
+	}).(LogControlConfigRuleReplaceFieldFieldOutput)
+}
+
+func (o LogControlConfigRuleReplaceFieldFieldPtrOutput) Selector() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogControlConfigRuleReplaceFieldField) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Selector
+	}).(pulumi.StringPtrOutput)
+}
+
+type LogControlConfigRuleReplaceFieldMappedValue struct {
+	DefaultValue *string                                           `pulumi:"defaultValue"`
+	Pairs        []LogControlConfigRuleReplaceFieldMappedValuePair `pulumi:"pairs"`
+	UseDefault   *bool                                             `pulumi:"useDefault"`
+}
+
+// LogControlConfigRuleReplaceFieldMappedValueInput is an input type that accepts LogControlConfigRuleReplaceFieldMappedValueArgs and LogControlConfigRuleReplaceFieldMappedValueOutput values.
+// You can construct a concrete instance of `LogControlConfigRuleReplaceFieldMappedValueInput` via:
+//
+//	LogControlConfigRuleReplaceFieldMappedValueArgs{...}
+type LogControlConfigRuleReplaceFieldMappedValueInput interface {
+	pulumi.Input
+
+	ToLogControlConfigRuleReplaceFieldMappedValueOutput() LogControlConfigRuleReplaceFieldMappedValueOutput
+	ToLogControlConfigRuleReplaceFieldMappedValueOutputWithContext(context.Context) LogControlConfigRuleReplaceFieldMappedValueOutput
+}
+
+type LogControlConfigRuleReplaceFieldMappedValueArgs struct {
+	DefaultValue pulumi.StringPtrInput                                     `pulumi:"defaultValue"`
+	Pairs        LogControlConfigRuleReplaceFieldMappedValuePairArrayInput `pulumi:"pairs"`
+	UseDefault   pulumi.BoolPtrInput                                       `pulumi:"useDefault"`
+}
+
+func (LogControlConfigRuleReplaceFieldMappedValueArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogControlConfigRuleReplaceFieldMappedValue)(nil)).Elem()
+}
+
+func (i LogControlConfigRuleReplaceFieldMappedValueArgs) ToLogControlConfigRuleReplaceFieldMappedValueOutput() LogControlConfigRuleReplaceFieldMappedValueOutput {
+	return i.ToLogControlConfigRuleReplaceFieldMappedValueOutputWithContext(context.Background())
+}
+
+func (i LogControlConfigRuleReplaceFieldMappedValueArgs) ToLogControlConfigRuleReplaceFieldMappedValueOutputWithContext(ctx context.Context) LogControlConfigRuleReplaceFieldMappedValueOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogControlConfigRuleReplaceFieldMappedValueOutput)
+}
+
+func (i LogControlConfigRuleReplaceFieldMappedValueArgs) ToLogControlConfigRuleReplaceFieldMappedValuePtrOutput() LogControlConfigRuleReplaceFieldMappedValuePtrOutput {
+	return i.ToLogControlConfigRuleReplaceFieldMappedValuePtrOutputWithContext(context.Background())
+}
+
+func (i LogControlConfigRuleReplaceFieldMappedValueArgs) ToLogControlConfigRuleReplaceFieldMappedValuePtrOutputWithContext(ctx context.Context) LogControlConfigRuleReplaceFieldMappedValuePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogControlConfigRuleReplaceFieldMappedValueOutput).ToLogControlConfigRuleReplaceFieldMappedValuePtrOutputWithContext(ctx)
+}
+
+// LogControlConfigRuleReplaceFieldMappedValuePtrInput is an input type that accepts LogControlConfigRuleReplaceFieldMappedValueArgs, LogControlConfigRuleReplaceFieldMappedValuePtr and LogControlConfigRuleReplaceFieldMappedValuePtrOutput values.
+// You can construct a concrete instance of `LogControlConfigRuleReplaceFieldMappedValuePtrInput` via:
+//
+//	        LogControlConfigRuleReplaceFieldMappedValueArgs{...}
+//
+//	or:
+//
+//	        nil
+type LogControlConfigRuleReplaceFieldMappedValuePtrInput interface {
+	pulumi.Input
+
+	ToLogControlConfigRuleReplaceFieldMappedValuePtrOutput() LogControlConfigRuleReplaceFieldMappedValuePtrOutput
+	ToLogControlConfigRuleReplaceFieldMappedValuePtrOutputWithContext(context.Context) LogControlConfigRuleReplaceFieldMappedValuePtrOutput
+}
+
+type logControlConfigRuleReplaceFieldMappedValuePtrType LogControlConfigRuleReplaceFieldMappedValueArgs
+
+func LogControlConfigRuleReplaceFieldMappedValuePtr(v *LogControlConfigRuleReplaceFieldMappedValueArgs) LogControlConfigRuleReplaceFieldMappedValuePtrInput {
+	return (*logControlConfigRuleReplaceFieldMappedValuePtrType)(v)
+}
+
+func (*logControlConfigRuleReplaceFieldMappedValuePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogControlConfigRuleReplaceFieldMappedValue)(nil)).Elem()
+}
+
+func (i *logControlConfigRuleReplaceFieldMappedValuePtrType) ToLogControlConfigRuleReplaceFieldMappedValuePtrOutput() LogControlConfigRuleReplaceFieldMappedValuePtrOutput {
+	return i.ToLogControlConfigRuleReplaceFieldMappedValuePtrOutputWithContext(context.Background())
+}
+
+func (i *logControlConfigRuleReplaceFieldMappedValuePtrType) ToLogControlConfigRuleReplaceFieldMappedValuePtrOutputWithContext(ctx context.Context) LogControlConfigRuleReplaceFieldMappedValuePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogControlConfigRuleReplaceFieldMappedValuePtrOutput)
+}
+
+type LogControlConfigRuleReplaceFieldMappedValueOutput struct{ *pulumi.OutputState }
+
+func (LogControlConfigRuleReplaceFieldMappedValueOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogControlConfigRuleReplaceFieldMappedValue)(nil)).Elem()
+}
+
+func (o LogControlConfigRuleReplaceFieldMappedValueOutput) ToLogControlConfigRuleReplaceFieldMappedValueOutput() LogControlConfigRuleReplaceFieldMappedValueOutput {
+	return o
+}
+
+func (o LogControlConfigRuleReplaceFieldMappedValueOutput) ToLogControlConfigRuleReplaceFieldMappedValueOutputWithContext(ctx context.Context) LogControlConfigRuleReplaceFieldMappedValueOutput {
+	return o
+}
+
+func (o LogControlConfigRuleReplaceFieldMappedValueOutput) ToLogControlConfigRuleReplaceFieldMappedValuePtrOutput() LogControlConfigRuleReplaceFieldMappedValuePtrOutput {
+	return o.ToLogControlConfigRuleReplaceFieldMappedValuePtrOutputWithContext(context.Background())
+}
+
+func (o LogControlConfigRuleReplaceFieldMappedValueOutput) ToLogControlConfigRuleReplaceFieldMappedValuePtrOutputWithContext(ctx context.Context) LogControlConfigRuleReplaceFieldMappedValuePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v LogControlConfigRuleReplaceFieldMappedValue) *LogControlConfigRuleReplaceFieldMappedValue {
+		return &v
+	}).(LogControlConfigRuleReplaceFieldMappedValuePtrOutput)
+}
+
+func (o LogControlConfigRuleReplaceFieldMappedValueOutput) DefaultValue() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LogControlConfigRuleReplaceFieldMappedValue) *string { return v.DefaultValue }).(pulumi.StringPtrOutput)
+}
+
+func (o LogControlConfigRuleReplaceFieldMappedValueOutput) Pairs() LogControlConfigRuleReplaceFieldMappedValuePairArrayOutput {
+	return o.ApplyT(func(v LogControlConfigRuleReplaceFieldMappedValue) []LogControlConfigRuleReplaceFieldMappedValuePair {
+		return v.Pairs
+	}).(LogControlConfigRuleReplaceFieldMappedValuePairArrayOutput)
+}
+
+func (o LogControlConfigRuleReplaceFieldMappedValueOutput) UseDefault() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v LogControlConfigRuleReplaceFieldMappedValue) *bool { return v.UseDefault }).(pulumi.BoolPtrOutput)
+}
+
+type LogControlConfigRuleReplaceFieldMappedValuePtrOutput struct{ *pulumi.OutputState }
+
+func (LogControlConfigRuleReplaceFieldMappedValuePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogControlConfigRuleReplaceFieldMappedValue)(nil)).Elem()
+}
+
+func (o LogControlConfigRuleReplaceFieldMappedValuePtrOutput) ToLogControlConfigRuleReplaceFieldMappedValuePtrOutput() LogControlConfigRuleReplaceFieldMappedValuePtrOutput {
+	return o
+}
+
+func (o LogControlConfigRuleReplaceFieldMappedValuePtrOutput) ToLogControlConfigRuleReplaceFieldMappedValuePtrOutputWithContext(ctx context.Context) LogControlConfigRuleReplaceFieldMappedValuePtrOutput {
+	return o
+}
+
+func (o LogControlConfigRuleReplaceFieldMappedValuePtrOutput) Elem() LogControlConfigRuleReplaceFieldMappedValueOutput {
+	return o.ApplyT(func(v *LogControlConfigRuleReplaceFieldMappedValue) LogControlConfigRuleReplaceFieldMappedValue {
+		if v != nil {
+			return *v
+		}
+		var ret LogControlConfigRuleReplaceFieldMappedValue
+		return ret
+	}).(LogControlConfigRuleReplaceFieldMappedValueOutput)
+}
+
+func (o LogControlConfigRuleReplaceFieldMappedValuePtrOutput) DefaultValue() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogControlConfigRuleReplaceFieldMappedValue) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DefaultValue
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o LogControlConfigRuleReplaceFieldMappedValuePtrOutput) Pairs() LogControlConfigRuleReplaceFieldMappedValuePairArrayOutput {
+	return o.ApplyT(func(v *LogControlConfigRuleReplaceFieldMappedValue) []LogControlConfigRuleReplaceFieldMappedValuePair {
+		if v == nil {
+			return nil
+		}
+		return v.Pairs
+	}).(LogControlConfigRuleReplaceFieldMappedValuePairArrayOutput)
+}
+
+func (o LogControlConfigRuleReplaceFieldMappedValuePtrOutput) UseDefault() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *LogControlConfigRuleReplaceFieldMappedValue) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.UseDefault
+	}).(pulumi.BoolPtrOutput)
+}
+
+type LogControlConfigRuleReplaceFieldMappedValuePair struct {
+	Key   *string `pulumi:"key"`
+	Value *string `pulumi:"value"`
+}
+
+// LogControlConfigRuleReplaceFieldMappedValuePairInput is an input type that accepts LogControlConfigRuleReplaceFieldMappedValuePairArgs and LogControlConfigRuleReplaceFieldMappedValuePairOutput values.
+// You can construct a concrete instance of `LogControlConfigRuleReplaceFieldMappedValuePairInput` via:
+//
+//	LogControlConfigRuleReplaceFieldMappedValuePairArgs{...}
+type LogControlConfigRuleReplaceFieldMappedValuePairInput interface {
+	pulumi.Input
+
+	ToLogControlConfigRuleReplaceFieldMappedValuePairOutput() LogControlConfigRuleReplaceFieldMappedValuePairOutput
+	ToLogControlConfigRuleReplaceFieldMappedValuePairOutputWithContext(context.Context) LogControlConfigRuleReplaceFieldMappedValuePairOutput
+}
+
+type LogControlConfigRuleReplaceFieldMappedValuePairArgs struct {
+	Key   pulumi.StringPtrInput `pulumi:"key"`
+	Value pulumi.StringPtrInput `pulumi:"value"`
+}
+
+func (LogControlConfigRuleReplaceFieldMappedValuePairArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogControlConfigRuleReplaceFieldMappedValuePair)(nil)).Elem()
+}
+
+func (i LogControlConfigRuleReplaceFieldMappedValuePairArgs) ToLogControlConfigRuleReplaceFieldMappedValuePairOutput() LogControlConfigRuleReplaceFieldMappedValuePairOutput {
+	return i.ToLogControlConfigRuleReplaceFieldMappedValuePairOutputWithContext(context.Background())
+}
+
+func (i LogControlConfigRuleReplaceFieldMappedValuePairArgs) ToLogControlConfigRuleReplaceFieldMappedValuePairOutputWithContext(ctx context.Context) LogControlConfigRuleReplaceFieldMappedValuePairOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogControlConfigRuleReplaceFieldMappedValuePairOutput)
+}
+
+// LogControlConfigRuleReplaceFieldMappedValuePairArrayInput is an input type that accepts LogControlConfigRuleReplaceFieldMappedValuePairArray and LogControlConfigRuleReplaceFieldMappedValuePairArrayOutput values.
+// You can construct a concrete instance of `LogControlConfigRuleReplaceFieldMappedValuePairArrayInput` via:
+//
+//	LogControlConfigRuleReplaceFieldMappedValuePairArray{ LogControlConfigRuleReplaceFieldMappedValuePairArgs{...} }
+type LogControlConfigRuleReplaceFieldMappedValuePairArrayInput interface {
+	pulumi.Input
+
+	ToLogControlConfigRuleReplaceFieldMappedValuePairArrayOutput() LogControlConfigRuleReplaceFieldMappedValuePairArrayOutput
+	ToLogControlConfigRuleReplaceFieldMappedValuePairArrayOutputWithContext(context.Context) LogControlConfigRuleReplaceFieldMappedValuePairArrayOutput
+}
+
+type LogControlConfigRuleReplaceFieldMappedValuePairArray []LogControlConfigRuleReplaceFieldMappedValuePairInput
+
+func (LogControlConfigRuleReplaceFieldMappedValuePairArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LogControlConfigRuleReplaceFieldMappedValuePair)(nil)).Elem()
+}
+
+func (i LogControlConfigRuleReplaceFieldMappedValuePairArray) ToLogControlConfigRuleReplaceFieldMappedValuePairArrayOutput() LogControlConfigRuleReplaceFieldMappedValuePairArrayOutput {
+	return i.ToLogControlConfigRuleReplaceFieldMappedValuePairArrayOutputWithContext(context.Background())
+}
+
+func (i LogControlConfigRuleReplaceFieldMappedValuePairArray) ToLogControlConfigRuleReplaceFieldMappedValuePairArrayOutputWithContext(ctx context.Context) LogControlConfigRuleReplaceFieldMappedValuePairArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogControlConfigRuleReplaceFieldMappedValuePairArrayOutput)
+}
+
+type LogControlConfigRuleReplaceFieldMappedValuePairOutput struct{ *pulumi.OutputState }
+
+func (LogControlConfigRuleReplaceFieldMappedValuePairOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogControlConfigRuleReplaceFieldMappedValuePair)(nil)).Elem()
+}
+
+func (o LogControlConfigRuleReplaceFieldMappedValuePairOutput) ToLogControlConfigRuleReplaceFieldMappedValuePairOutput() LogControlConfigRuleReplaceFieldMappedValuePairOutput {
+	return o
+}
+
+func (o LogControlConfigRuleReplaceFieldMappedValuePairOutput) ToLogControlConfigRuleReplaceFieldMappedValuePairOutputWithContext(ctx context.Context) LogControlConfigRuleReplaceFieldMappedValuePairOutput {
+	return o
+}
+
+func (o LogControlConfigRuleReplaceFieldMappedValuePairOutput) Key() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LogControlConfigRuleReplaceFieldMappedValuePair) *string { return v.Key }).(pulumi.StringPtrOutput)
+}
+
+func (o LogControlConfigRuleReplaceFieldMappedValuePairOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LogControlConfigRuleReplaceFieldMappedValuePair) *string { return v.Value }).(pulumi.StringPtrOutput)
+}
+
+type LogControlConfigRuleReplaceFieldMappedValuePairArrayOutput struct{ *pulumi.OutputState }
+
+func (LogControlConfigRuleReplaceFieldMappedValuePairArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LogControlConfigRuleReplaceFieldMappedValuePair)(nil)).Elem()
+}
+
+func (o LogControlConfigRuleReplaceFieldMappedValuePairArrayOutput) ToLogControlConfigRuleReplaceFieldMappedValuePairArrayOutput() LogControlConfigRuleReplaceFieldMappedValuePairArrayOutput {
+	return o
+}
+
+func (o LogControlConfigRuleReplaceFieldMappedValuePairArrayOutput) ToLogControlConfigRuleReplaceFieldMappedValuePairArrayOutputWithContext(ctx context.Context) LogControlConfigRuleReplaceFieldMappedValuePairArrayOutput {
+	return o
+}
+
+func (o LogControlConfigRuleReplaceFieldMappedValuePairArrayOutput) Index(i pulumi.IntInput) LogControlConfigRuleReplaceFieldMappedValuePairOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LogControlConfigRuleReplaceFieldMappedValuePair {
+		return vs[0].([]LogControlConfigRuleReplaceFieldMappedValuePair)[vs[1].(int)]
+	}).(LogControlConfigRuleReplaceFieldMappedValuePairOutput)
+}
+
+type LogControlConfigRuleReplaceFieldStaticValue struct {
+	Value *string `pulumi:"value"`
+}
+
+// LogControlConfigRuleReplaceFieldStaticValueInput is an input type that accepts LogControlConfigRuleReplaceFieldStaticValueArgs and LogControlConfigRuleReplaceFieldStaticValueOutput values.
+// You can construct a concrete instance of `LogControlConfigRuleReplaceFieldStaticValueInput` via:
+//
+//	LogControlConfigRuleReplaceFieldStaticValueArgs{...}
+type LogControlConfigRuleReplaceFieldStaticValueInput interface {
+	pulumi.Input
+
+	ToLogControlConfigRuleReplaceFieldStaticValueOutput() LogControlConfigRuleReplaceFieldStaticValueOutput
+	ToLogControlConfigRuleReplaceFieldStaticValueOutputWithContext(context.Context) LogControlConfigRuleReplaceFieldStaticValueOutput
+}
+
+type LogControlConfigRuleReplaceFieldStaticValueArgs struct {
+	Value pulumi.StringPtrInput `pulumi:"value"`
+}
+
+func (LogControlConfigRuleReplaceFieldStaticValueArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogControlConfigRuleReplaceFieldStaticValue)(nil)).Elem()
+}
+
+func (i LogControlConfigRuleReplaceFieldStaticValueArgs) ToLogControlConfigRuleReplaceFieldStaticValueOutput() LogControlConfigRuleReplaceFieldStaticValueOutput {
+	return i.ToLogControlConfigRuleReplaceFieldStaticValueOutputWithContext(context.Background())
+}
+
+func (i LogControlConfigRuleReplaceFieldStaticValueArgs) ToLogControlConfigRuleReplaceFieldStaticValueOutputWithContext(ctx context.Context) LogControlConfigRuleReplaceFieldStaticValueOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogControlConfigRuleReplaceFieldStaticValueOutput)
+}
+
+func (i LogControlConfigRuleReplaceFieldStaticValueArgs) ToLogControlConfigRuleReplaceFieldStaticValuePtrOutput() LogControlConfigRuleReplaceFieldStaticValuePtrOutput {
+	return i.ToLogControlConfigRuleReplaceFieldStaticValuePtrOutputWithContext(context.Background())
+}
+
+func (i LogControlConfigRuleReplaceFieldStaticValueArgs) ToLogControlConfigRuleReplaceFieldStaticValuePtrOutputWithContext(ctx context.Context) LogControlConfigRuleReplaceFieldStaticValuePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogControlConfigRuleReplaceFieldStaticValueOutput).ToLogControlConfigRuleReplaceFieldStaticValuePtrOutputWithContext(ctx)
+}
+
+// LogControlConfigRuleReplaceFieldStaticValuePtrInput is an input type that accepts LogControlConfigRuleReplaceFieldStaticValueArgs, LogControlConfigRuleReplaceFieldStaticValuePtr and LogControlConfigRuleReplaceFieldStaticValuePtrOutput values.
+// You can construct a concrete instance of `LogControlConfigRuleReplaceFieldStaticValuePtrInput` via:
+//
+//	        LogControlConfigRuleReplaceFieldStaticValueArgs{...}
+//
+//	or:
+//
+//	        nil
+type LogControlConfigRuleReplaceFieldStaticValuePtrInput interface {
+	pulumi.Input
+
+	ToLogControlConfigRuleReplaceFieldStaticValuePtrOutput() LogControlConfigRuleReplaceFieldStaticValuePtrOutput
+	ToLogControlConfigRuleReplaceFieldStaticValuePtrOutputWithContext(context.Context) LogControlConfigRuleReplaceFieldStaticValuePtrOutput
+}
+
+type logControlConfigRuleReplaceFieldStaticValuePtrType LogControlConfigRuleReplaceFieldStaticValueArgs
+
+func LogControlConfigRuleReplaceFieldStaticValuePtr(v *LogControlConfigRuleReplaceFieldStaticValueArgs) LogControlConfigRuleReplaceFieldStaticValuePtrInput {
+	return (*logControlConfigRuleReplaceFieldStaticValuePtrType)(v)
+}
+
+func (*logControlConfigRuleReplaceFieldStaticValuePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogControlConfigRuleReplaceFieldStaticValue)(nil)).Elem()
+}
+
+func (i *logControlConfigRuleReplaceFieldStaticValuePtrType) ToLogControlConfigRuleReplaceFieldStaticValuePtrOutput() LogControlConfigRuleReplaceFieldStaticValuePtrOutput {
+	return i.ToLogControlConfigRuleReplaceFieldStaticValuePtrOutputWithContext(context.Background())
+}
+
+func (i *logControlConfigRuleReplaceFieldStaticValuePtrType) ToLogControlConfigRuleReplaceFieldStaticValuePtrOutputWithContext(ctx context.Context) LogControlConfigRuleReplaceFieldStaticValuePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogControlConfigRuleReplaceFieldStaticValuePtrOutput)
+}
+
+type LogControlConfigRuleReplaceFieldStaticValueOutput struct{ *pulumi.OutputState }
+
+func (LogControlConfigRuleReplaceFieldStaticValueOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogControlConfigRuleReplaceFieldStaticValue)(nil)).Elem()
+}
+
+func (o LogControlConfigRuleReplaceFieldStaticValueOutput) ToLogControlConfigRuleReplaceFieldStaticValueOutput() LogControlConfigRuleReplaceFieldStaticValueOutput {
+	return o
+}
+
+func (o LogControlConfigRuleReplaceFieldStaticValueOutput) ToLogControlConfigRuleReplaceFieldStaticValueOutputWithContext(ctx context.Context) LogControlConfigRuleReplaceFieldStaticValueOutput {
+	return o
+}
+
+func (o LogControlConfigRuleReplaceFieldStaticValueOutput) ToLogControlConfigRuleReplaceFieldStaticValuePtrOutput() LogControlConfigRuleReplaceFieldStaticValuePtrOutput {
+	return o.ToLogControlConfigRuleReplaceFieldStaticValuePtrOutputWithContext(context.Background())
+}
+
+func (o LogControlConfigRuleReplaceFieldStaticValueOutput) ToLogControlConfigRuleReplaceFieldStaticValuePtrOutputWithContext(ctx context.Context) LogControlConfigRuleReplaceFieldStaticValuePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v LogControlConfigRuleReplaceFieldStaticValue) *LogControlConfigRuleReplaceFieldStaticValue {
+		return &v
+	}).(LogControlConfigRuleReplaceFieldStaticValuePtrOutput)
+}
+
+func (o LogControlConfigRuleReplaceFieldStaticValueOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LogControlConfigRuleReplaceFieldStaticValue) *string { return v.Value }).(pulumi.StringPtrOutput)
+}
+
+type LogControlConfigRuleReplaceFieldStaticValuePtrOutput struct{ *pulumi.OutputState }
+
+func (LogControlConfigRuleReplaceFieldStaticValuePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogControlConfigRuleReplaceFieldStaticValue)(nil)).Elem()
+}
+
+func (o LogControlConfigRuleReplaceFieldStaticValuePtrOutput) ToLogControlConfigRuleReplaceFieldStaticValuePtrOutput() LogControlConfigRuleReplaceFieldStaticValuePtrOutput {
+	return o
+}
+
+func (o LogControlConfigRuleReplaceFieldStaticValuePtrOutput) ToLogControlConfigRuleReplaceFieldStaticValuePtrOutputWithContext(ctx context.Context) LogControlConfigRuleReplaceFieldStaticValuePtrOutput {
+	return o
+}
+
+func (o LogControlConfigRuleReplaceFieldStaticValuePtrOutput) Elem() LogControlConfigRuleReplaceFieldStaticValueOutput {
+	return o.ApplyT(func(v *LogControlConfigRuleReplaceFieldStaticValue) LogControlConfigRuleReplaceFieldStaticValue {
+		if v != nil {
+			return *v
+		}
+		var ret LogControlConfigRuleReplaceFieldStaticValue
+		return ret
+	}).(LogControlConfigRuleReplaceFieldStaticValueOutput)
+}
+
+func (o LogControlConfigRuleReplaceFieldStaticValuePtrOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogControlConfigRuleReplaceFieldStaticValue) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Value
+	}).(pulumi.StringPtrOutput)
+}
+
+type LogControlConfigRuleSample struct {
+	Rate *float64 `pulumi:"rate"`
+}
+
+// LogControlConfigRuleSampleInput is an input type that accepts LogControlConfigRuleSampleArgs and LogControlConfigRuleSampleOutput values.
+// You can construct a concrete instance of `LogControlConfigRuleSampleInput` via:
+//
+//	LogControlConfigRuleSampleArgs{...}
+type LogControlConfigRuleSampleInput interface {
+	pulumi.Input
+
+	ToLogControlConfigRuleSampleOutput() LogControlConfigRuleSampleOutput
+	ToLogControlConfigRuleSampleOutputWithContext(context.Context) LogControlConfigRuleSampleOutput
+}
+
+type LogControlConfigRuleSampleArgs struct {
+	Rate pulumi.Float64PtrInput `pulumi:"rate"`
+}
+
+func (LogControlConfigRuleSampleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogControlConfigRuleSample)(nil)).Elem()
+}
+
+func (i LogControlConfigRuleSampleArgs) ToLogControlConfigRuleSampleOutput() LogControlConfigRuleSampleOutput {
+	return i.ToLogControlConfigRuleSampleOutputWithContext(context.Background())
+}
+
+func (i LogControlConfigRuleSampleArgs) ToLogControlConfigRuleSampleOutputWithContext(ctx context.Context) LogControlConfigRuleSampleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogControlConfigRuleSampleOutput)
+}
+
+func (i LogControlConfigRuleSampleArgs) ToLogControlConfigRuleSamplePtrOutput() LogControlConfigRuleSamplePtrOutput {
+	return i.ToLogControlConfigRuleSamplePtrOutputWithContext(context.Background())
+}
+
+func (i LogControlConfigRuleSampleArgs) ToLogControlConfigRuleSamplePtrOutputWithContext(ctx context.Context) LogControlConfigRuleSamplePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogControlConfigRuleSampleOutput).ToLogControlConfigRuleSamplePtrOutputWithContext(ctx)
+}
+
+// LogControlConfigRuleSamplePtrInput is an input type that accepts LogControlConfigRuleSampleArgs, LogControlConfigRuleSamplePtr and LogControlConfigRuleSamplePtrOutput values.
+// You can construct a concrete instance of `LogControlConfigRuleSamplePtrInput` via:
+//
+//	        LogControlConfigRuleSampleArgs{...}
+//
+//	or:
+//
+//	        nil
+type LogControlConfigRuleSamplePtrInput interface {
+	pulumi.Input
+
+	ToLogControlConfigRuleSamplePtrOutput() LogControlConfigRuleSamplePtrOutput
+	ToLogControlConfigRuleSamplePtrOutputWithContext(context.Context) LogControlConfigRuleSamplePtrOutput
+}
+
+type logControlConfigRuleSamplePtrType LogControlConfigRuleSampleArgs
+
+func LogControlConfigRuleSamplePtr(v *LogControlConfigRuleSampleArgs) LogControlConfigRuleSamplePtrInput {
+	return (*logControlConfigRuleSamplePtrType)(v)
+}
+
+func (*logControlConfigRuleSamplePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogControlConfigRuleSample)(nil)).Elem()
+}
+
+func (i *logControlConfigRuleSamplePtrType) ToLogControlConfigRuleSamplePtrOutput() LogControlConfigRuleSamplePtrOutput {
+	return i.ToLogControlConfigRuleSamplePtrOutputWithContext(context.Background())
+}
+
+func (i *logControlConfigRuleSamplePtrType) ToLogControlConfigRuleSamplePtrOutputWithContext(ctx context.Context) LogControlConfigRuleSamplePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogControlConfigRuleSamplePtrOutput)
+}
+
+type LogControlConfigRuleSampleOutput struct{ *pulumi.OutputState }
+
+func (LogControlConfigRuleSampleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogControlConfigRuleSample)(nil)).Elem()
+}
+
+func (o LogControlConfigRuleSampleOutput) ToLogControlConfigRuleSampleOutput() LogControlConfigRuleSampleOutput {
+	return o
+}
+
+func (o LogControlConfigRuleSampleOutput) ToLogControlConfigRuleSampleOutputWithContext(ctx context.Context) LogControlConfigRuleSampleOutput {
+	return o
+}
+
+func (o LogControlConfigRuleSampleOutput) ToLogControlConfigRuleSamplePtrOutput() LogControlConfigRuleSamplePtrOutput {
+	return o.ToLogControlConfigRuleSamplePtrOutputWithContext(context.Background())
+}
+
+func (o LogControlConfigRuleSampleOutput) ToLogControlConfigRuleSamplePtrOutputWithContext(ctx context.Context) LogControlConfigRuleSamplePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v LogControlConfigRuleSample) *LogControlConfigRuleSample {
+		return &v
+	}).(LogControlConfigRuleSamplePtrOutput)
+}
+
+func (o LogControlConfigRuleSampleOutput) Rate() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v LogControlConfigRuleSample) *float64 { return v.Rate }).(pulumi.Float64PtrOutput)
+}
+
+type LogControlConfigRuleSamplePtrOutput struct{ *pulumi.OutputState }
+
+func (LogControlConfigRuleSamplePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogControlConfigRuleSample)(nil)).Elem()
+}
+
+func (o LogControlConfigRuleSamplePtrOutput) ToLogControlConfigRuleSamplePtrOutput() LogControlConfigRuleSamplePtrOutput {
+	return o
+}
+
+func (o LogControlConfigRuleSamplePtrOutput) ToLogControlConfigRuleSamplePtrOutputWithContext(ctx context.Context) LogControlConfigRuleSamplePtrOutput {
+	return o
+}
+
+func (o LogControlConfigRuleSamplePtrOutput) Elem() LogControlConfigRuleSampleOutput {
+	return o.ApplyT(func(v *LogControlConfigRuleSample) LogControlConfigRuleSample {
+		if v != nil {
+			return *v
+		}
+		var ret LogControlConfigRuleSample
+		return ret
+	}).(LogControlConfigRuleSampleOutput)
+}
+
+func (o LogControlConfigRuleSamplePtrOutput) Rate() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *LogControlConfigRuleSample) *float64 {
+		if v == nil {
+			return nil
+		}
+		return v.Rate
+	}).(pulumi.Float64PtrOutput)
+}
+
+type LogIngestConfigFieldNormalization struct {
+	CustomFieldNormalizations []LogIngestConfigFieldNormalizationCustomFieldNormalization `pulumi:"customFieldNormalizations"`
+	Message                   *LogIngestConfigFieldNormalizationMessage                   `pulumi:"message"`
+	PrimaryKey                *LogIngestConfigFieldNormalizationPrimaryKey                `pulumi:"primaryKey"`
+	Severity                  *LogIngestConfigFieldNormalizationSeverity                  `pulumi:"severity"`
+	Timestamp                 *LogIngestConfigFieldNormalizationTimestamp                 `pulumi:"timestamp"`
+}
+
+// LogIngestConfigFieldNormalizationInput is an input type that accepts LogIngestConfigFieldNormalizationArgs and LogIngestConfigFieldNormalizationOutput values.
+// You can construct a concrete instance of `LogIngestConfigFieldNormalizationInput` via:
+//
+//	LogIngestConfigFieldNormalizationArgs{...}
+type LogIngestConfigFieldNormalizationInput interface {
+	pulumi.Input
+
+	ToLogIngestConfigFieldNormalizationOutput() LogIngestConfigFieldNormalizationOutput
+	ToLogIngestConfigFieldNormalizationOutputWithContext(context.Context) LogIngestConfigFieldNormalizationOutput
+}
+
+type LogIngestConfigFieldNormalizationArgs struct {
+	CustomFieldNormalizations LogIngestConfigFieldNormalizationCustomFieldNormalizationArrayInput `pulumi:"customFieldNormalizations"`
+	Message                   LogIngestConfigFieldNormalizationMessagePtrInput                    `pulumi:"message"`
+	PrimaryKey                LogIngestConfigFieldNormalizationPrimaryKeyPtrInput                 `pulumi:"primaryKey"`
+	Severity                  LogIngestConfigFieldNormalizationSeverityPtrInput                   `pulumi:"severity"`
+	Timestamp                 LogIngestConfigFieldNormalizationTimestampPtrInput                  `pulumi:"timestamp"`
+}
+
+func (LogIngestConfigFieldNormalizationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogIngestConfigFieldNormalization)(nil)).Elem()
+}
+
+func (i LogIngestConfigFieldNormalizationArgs) ToLogIngestConfigFieldNormalizationOutput() LogIngestConfigFieldNormalizationOutput {
+	return i.ToLogIngestConfigFieldNormalizationOutputWithContext(context.Background())
+}
+
+func (i LogIngestConfigFieldNormalizationArgs) ToLogIngestConfigFieldNormalizationOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogIngestConfigFieldNormalizationOutput)
+}
+
+func (i LogIngestConfigFieldNormalizationArgs) ToLogIngestConfigFieldNormalizationPtrOutput() LogIngestConfigFieldNormalizationPtrOutput {
+	return i.ToLogIngestConfigFieldNormalizationPtrOutputWithContext(context.Background())
+}
+
+func (i LogIngestConfigFieldNormalizationArgs) ToLogIngestConfigFieldNormalizationPtrOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogIngestConfigFieldNormalizationOutput).ToLogIngestConfigFieldNormalizationPtrOutputWithContext(ctx)
+}
+
+// LogIngestConfigFieldNormalizationPtrInput is an input type that accepts LogIngestConfigFieldNormalizationArgs, LogIngestConfigFieldNormalizationPtr and LogIngestConfigFieldNormalizationPtrOutput values.
+// You can construct a concrete instance of `LogIngestConfigFieldNormalizationPtrInput` via:
+//
+//	        LogIngestConfigFieldNormalizationArgs{...}
+//
+//	or:
+//
+//	        nil
+type LogIngestConfigFieldNormalizationPtrInput interface {
+	pulumi.Input
+
+	ToLogIngestConfigFieldNormalizationPtrOutput() LogIngestConfigFieldNormalizationPtrOutput
+	ToLogIngestConfigFieldNormalizationPtrOutputWithContext(context.Context) LogIngestConfigFieldNormalizationPtrOutput
+}
+
+type logIngestConfigFieldNormalizationPtrType LogIngestConfigFieldNormalizationArgs
+
+func LogIngestConfigFieldNormalizationPtr(v *LogIngestConfigFieldNormalizationArgs) LogIngestConfigFieldNormalizationPtrInput {
+	return (*logIngestConfigFieldNormalizationPtrType)(v)
+}
+
+func (*logIngestConfigFieldNormalizationPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogIngestConfigFieldNormalization)(nil)).Elem()
+}
+
+func (i *logIngestConfigFieldNormalizationPtrType) ToLogIngestConfigFieldNormalizationPtrOutput() LogIngestConfigFieldNormalizationPtrOutput {
+	return i.ToLogIngestConfigFieldNormalizationPtrOutputWithContext(context.Background())
+}
+
+func (i *logIngestConfigFieldNormalizationPtrType) ToLogIngestConfigFieldNormalizationPtrOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogIngestConfigFieldNormalizationPtrOutput)
+}
+
+type LogIngestConfigFieldNormalizationOutput struct{ *pulumi.OutputState }
+
+func (LogIngestConfigFieldNormalizationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogIngestConfigFieldNormalization)(nil)).Elem()
+}
+
+func (o LogIngestConfigFieldNormalizationOutput) ToLogIngestConfigFieldNormalizationOutput() LogIngestConfigFieldNormalizationOutput {
+	return o
+}
+
+func (o LogIngestConfigFieldNormalizationOutput) ToLogIngestConfigFieldNormalizationOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationOutput {
+	return o
+}
+
+func (o LogIngestConfigFieldNormalizationOutput) ToLogIngestConfigFieldNormalizationPtrOutput() LogIngestConfigFieldNormalizationPtrOutput {
+	return o.ToLogIngestConfigFieldNormalizationPtrOutputWithContext(context.Background())
+}
+
+func (o LogIngestConfigFieldNormalizationOutput) ToLogIngestConfigFieldNormalizationPtrOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v LogIngestConfigFieldNormalization) *LogIngestConfigFieldNormalization {
+		return &v
+	}).(LogIngestConfigFieldNormalizationPtrOutput)
+}
+
+func (o LogIngestConfigFieldNormalizationOutput) CustomFieldNormalizations() LogIngestConfigFieldNormalizationCustomFieldNormalizationArrayOutput {
+	return o.ApplyT(func(v LogIngestConfigFieldNormalization) []LogIngestConfigFieldNormalizationCustomFieldNormalization {
+		return v.CustomFieldNormalizations
+	}).(LogIngestConfigFieldNormalizationCustomFieldNormalizationArrayOutput)
+}
+
+func (o LogIngestConfigFieldNormalizationOutput) Message() LogIngestConfigFieldNormalizationMessagePtrOutput {
+	return o.ApplyT(func(v LogIngestConfigFieldNormalization) *LogIngestConfigFieldNormalizationMessage { return v.Message }).(LogIngestConfigFieldNormalizationMessagePtrOutput)
+}
+
+func (o LogIngestConfigFieldNormalizationOutput) PrimaryKey() LogIngestConfigFieldNormalizationPrimaryKeyPtrOutput {
+	return o.ApplyT(func(v LogIngestConfigFieldNormalization) *LogIngestConfigFieldNormalizationPrimaryKey {
+		return v.PrimaryKey
+	}).(LogIngestConfigFieldNormalizationPrimaryKeyPtrOutput)
+}
+
+func (o LogIngestConfigFieldNormalizationOutput) Severity() LogIngestConfigFieldNormalizationSeverityPtrOutput {
+	return o.ApplyT(func(v LogIngestConfigFieldNormalization) *LogIngestConfigFieldNormalizationSeverity {
+		return v.Severity
+	}).(LogIngestConfigFieldNormalizationSeverityPtrOutput)
+}
+
+func (o LogIngestConfigFieldNormalizationOutput) Timestamp() LogIngestConfigFieldNormalizationTimestampPtrOutput {
+	return o.ApplyT(func(v LogIngestConfigFieldNormalization) *LogIngestConfigFieldNormalizationTimestamp {
+		return v.Timestamp
+	}).(LogIngestConfigFieldNormalizationTimestampPtrOutput)
+}
+
+type LogIngestConfigFieldNormalizationPtrOutput struct{ *pulumi.OutputState }
+
+func (LogIngestConfigFieldNormalizationPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogIngestConfigFieldNormalization)(nil)).Elem()
+}
+
+func (o LogIngestConfigFieldNormalizationPtrOutput) ToLogIngestConfigFieldNormalizationPtrOutput() LogIngestConfigFieldNormalizationPtrOutput {
+	return o
+}
+
+func (o LogIngestConfigFieldNormalizationPtrOutput) ToLogIngestConfigFieldNormalizationPtrOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationPtrOutput {
+	return o
+}
+
+func (o LogIngestConfigFieldNormalizationPtrOutput) Elem() LogIngestConfigFieldNormalizationOutput {
+	return o.ApplyT(func(v *LogIngestConfigFieldNormalization) LogIngestConfigFieldNormalization {
+		if v != nil {
+			return *v
+		}
+		var ret LogIngestConfigFieldNormalization
+		return ret
+	}).(LogIngestConfigFieldNormalizationOutput)
+}
+
+func (o LogIngestConfigFieldNormalizationPtrOutput) CustomFieldNormalizations() LogIngestConfigFieldNormalizationCustomFieldNormalizationArrayOutput {
+	return o.ApplyT(func(v *LogIngestConfigFieldNormalization) []LogIngestConfigFieldNormalizationCustomFieldNormalization {
+		if v == nil {
+			return nil
+		}
+		return v.CustomFieldNormalizations
+	}).(LogIngestConfigFieldNormalizationCustomFieldNormalizationArrayOutput)
+}
+
+func (o LogIngestConfigFieldNormalizationPtrOutput) Message() LogIngestConfigFieldNormalizationMessagePtrOutput {
+	return o.ApplyT(func(v *LogIngestConfigFieldNormalization) *LogIngestConfigFieldNormalizationMessage {
+		if v == nil {
+			return nil
+		}
+		return v.Message
+	}).(LogIngestConfigFieldNormalizationMessagePtrOutput)
+}
+
+func (o LogIngestConfigFieldNormalizationPtrOutput) PrimaryKey() LogIngestConfigFieldNormalizationPrimaryKeyPtrOutput {
+	return o.ApplyT(func(v *LogIngestConfigFieldNormalization) *LogIngestConfigFieldNormalizationPrimaryKey {
+		if v == nil {
+			return nil
+		}
+		return v.PrimaryKey
+	}).(LogIngestConfigFieldNormalizationPrimaryKeyPtrOutput)
+}
+
+func (o LogIngestConfigFieldNormalizationPtrOutput) Severity() LogIngestConfigFieldNormalizationSeverityPtrOutput {
+	return o.ApplyT(func(v *LogIngestConfigFieldNormalization) *LogIngestConfigFieldNormalizationSeverity {
+		if v == nil {
+			return nil
+		}
+		return v.Severity
+	}).(LogIngestConfigFieldNormalizationSeverityPtrOutput)
+}
+
+func (o LogIngestConfigFieldNormalizationPtrOutput) Timestamp() LogIngestConfigFieldNormalizationTimestampPtrOutput {
+	return o.ApplyT(func(v *LogIngestConfigFieldNormalization) *LogIngestConfigFieldNormalizationTimestamp {
+		if v == nil {
+			return nil
+		}
+		return v.Timestamp
+	}).(LogIngestConfigFieldNormalizationTimestampPtrOutput)
+}
+
+type LogIngestConfigFieldNormalizationCustomFieldNormalization struct {
+	Normalization *LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalization `pulumi:"normalization"`
+	Target        *string                                                                 `pulumi:"target"`
+}
+
+// LogIngestConfigFieldNormalizationCustomFieldNormalizationInput is an input type that accepts LogIngestConfigFieldNormalizationCustomFieldNormalizationArgs and LogIngestConfigFieldNormalizationCustomFieldNormalizationOutput values.
+// You can construct a concrete instance of `LogIngestConfigFieldNormalizationCustomFieldNormalizationInput` via:
+//
+//	LogIngestConfigFieldNormalizationCustomFieldNormalizationArgs{...}
+type LogIngestConfigFieldNormalizationCustomFieldNormalizationInput interface {
+	pulumi.Input
+
+	ToLogIngestConfigFieldNormalizationCustomFieldNormalizationOutput() LogIngestConfigFieldNormalizationCustomFieldNormalizationOutput
+	ToLogIngestConfigFieldNormalizationCustomFieldNormalizationOutputWithContext(context.Context) LogIngestConfigFieldNormalizationCustomFieldNormalizationOutput
+}
+
+type LogIngestConfigFieldNormalizationCustomFieldNormalizationArgs struct {
+	Normalization LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationPtrInput `pulumi:"normalization"`
+	Target        pulumi.StringPtrInput                                                          `pulumi:"target"`
+}
+
+func (LogIngestConfigFieldNormalizationCustomFieldNormalizationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogIngestConfigFieldNormalizationCustomFieldNormalization)(nil)).Elem()
+}
+
+func (i LogIngestConfigFieldNormalizationCustomFieldNormalizationArgs) ToLogIngestConfigFieldNormalizationCustomFieldNormalizationOutput() LogIngestConfigFieldNormalizationCustomFieldNormalizationOutput {
+	return i.ToLogIngestConfigFieldNormalizationCustomFieldNormalizationOutputWithContext(context.Background())
+}
+
+func (i LogIngestConfigFieldNormalizationCustomFieldNormalizationArgs) ToLogIngestConfigFieldNormalizationCustomFieldNormalizationOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationCustomFieldNormalizationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogIngestConfigFieldNormalizationCustomFieldNormalizationOutput)
+}
+
+// LogIngestConfigFieldNormalizationCustomFieldNormalizationArrayInput is an input type that accepts LogIngestConfigFieldNormalizationCustomFieldNormalizationArray and LogIngestConfigFieldNormalizationCustomFieldNormalizationArrayOutput values.
+// You can construct a concrete instance of `LogIngestConfigFieldNormalizationCustomFieldNormalizationArrayInput` via:
+//
+//	LogIngestConfigFieldNormalizationCustomFieldNormalizationArray{ LogIngestConfigFieldNormalizationCustomFieldNormalizationArgs{...} }
+type LogIngestConfigFieldNormalizationCustomFieldNormalizationArrayInput interface {
+	pulumi.Input
+
+	ToLogIngestConfigFieldNormalizationCustomFieldNormalizationArrayOutput() LogIngestConfigFieldNormalizationCustomFieldNormalizationArrayOutput
+	ToLogIngestConfigFieldNormalizationCustomFieldNormalizationArrayOutputWithContext(context.Context) LogIngestConfigFieldNormalizationCustomFieldNormalizationArrayOutput
+}
+
+type LogIngestConfigFieldNormalizationCustomFieldNormalizationArray []LogIngestConfigFieldNormalizationCustomFieldNormalizationInput
+
+func (LogIngestConfigFieldNormalizationCustomFieldNormalizationArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LogIngestConfigFieldNormalizationCustomFieldNormalization)(nil)).Elem()
+}
+
+func (i LogIngestConfigFieldNormalizationCustomFieldNormalizationArray) ToLogIngestConfigFieldNormalizationCustomFieldNormalizationArrayOutput() LogIngestConfigFieldNormalizationCustomFieldNormalizationArrayOutput {
+	return i.ToLogIngestConfigFieldNormalizationCustomFieldNormalizationArrayOutputWithContext(context.Background())
+}
+
+func (i LogIngestConfigFieldNormalizationCustomFieldNormalizationArray) ToLogIngestConfigFieldNormalizationCustomFieldNormalizationArrayOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationCustomFieldNormalizationArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogIngestConfigFieldNormalizationCustomFieldNormalizationArrayOutput)
+}
+
+type LogIngestConfigFieldNormalizationCustomFieldNormalizationOutput struct{ *pulumi.OutputState }
+
+func (LogIngestConfigFieldNormalizationCustomFieldNormalizationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogIngestConfigFieldNormalizationCustomFieldNormalization)(nil)).Elem()
+}
+
+func (o LogIngestConfigFieldNormalizationCustomFieldNormalizationOutput) ToLogIngestConfigFieldNormalizationCustomFieldNormalizationOutput() LogIngestConfigFieldNormalizationCustomFieldNormalizationOutput {
+	return o
+}
+
+func (o LogIngestConfigFieldNormalizationCustomFieldNormalizationOutput) ToLogIngestConfigFieldNormalizationCustomFieldNormalizationOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationCustomFieldNormalizationOutput {
+	return o
+}
+
+func (o LogIngestConfigFieldNormalizationCustomFieldNormalizationOutput) Normalization() LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationPtrOutput {
+	return o.ApplyT(func(v LogIngestConfigFieldNormalizationCustomFieldNormalization) *LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalization {
+		return v.Normalization
+	}).(LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationPtrOutput)
+}
+
+func (o LogIngestConfigFieldNormalizationCustomFieldNormalizationOutput) Target() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LogIngestConfigFieldNormalizationCustomFieldNormalization) *string { return v.Target }).(pulumi.StringPtrOutput)
+}
+
+type LogIngestConfigFieldNormalizationCustomFieldNormalizationArrayOutput struct{ *pulumi.OutputState }
+
+func (LogIngestConfigFieldNormalizationCustomFieldNormalizationArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LogIngestConfigFieldNormalizationCustomFieldNormalization)(nil)).Elem()
+}
+
+func (o LogIngestConfigFieldNormalizationCustomFieldNormalizationArrayOutput) ToLogIngestConfigFieldNormalizationCustomFieldNormalizationArrayOutput() LogIngestConfigFieldNormalizationCustomFieldNormalizationArrayOutput {
+	return o
+}
+
+func (o LogIngestConfigFieldNormalizationCustomFieldNormalizationArrayOutput) ToLogIngestConfigFieldNormalizationCustomFieldNormalizationArrayOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationCustomFieldNormalizationArrayOutput {
+	return o
+}
+
+func (o LogIngestConfigFieldNormalizationCustomFieldNormalizationArrayOutput) Index(i pulumi.IntInput) LogIngestConfigFieldNormalizationCustomFieldNormalizationOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LogIngestConfigFieldNormalizationCustomFieldNormalization {
+		return vs[0].([]LogIngestConfigFieldNormalizationCustomFieldNormalization)[vs[1].(int)]
+	}).(LogIngestConfigFieldNormalizationCustomFieldNormalizationOutput)
+}
+
+type LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalization struct {
+	DefaultValue     *string                                                                        `pulumi:"defaultValue"`
+	SanitizePatterns []string                                                                       `pulumi:"sanitizePatterns"`
+	Sources          []LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSource `pulumi:"sources"`
+	ValueMap         map[string]string                                                              `pulumi:"valueMap"`
+}
+
+// LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationInput is an input type that accepts LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationArgs and LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationOutput values.
+// You can construct a concrete instance of `LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationInput` via:
+//
+//	LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationArgs{...}
+type LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationInput interface {
+	pulumi.Input
+
+	ToLogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationOutput() LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationOutput
+	ToLogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationOutputWithContext(context.Context) LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationOutput
+}
+
+type LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationArgs struct {
+	DefaultValue     pulumi.StringPtrInput                                                                  `pulumi:"defaultValue"`
+	SanitizePatterns pulumi.StringArrayInput                                                                `pulumi:"sanitizePatterns"`
+	Sources          LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceArrayInput `pulumi:"sources"`
+	ValueMap         pulumi.StringMapInput                                                                  `pulumi:"valueMap"`
+}
+
+func (LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalization)(nil)).Elem()
+}
+
+func (i LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationArgs) ToLogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationOutput() LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationOutput {
+	return i.ToLogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationOutputWithContext(context.Background())
+}
+
+func (i LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationArgs) ToLogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationOutput)
+}
+
+func (i LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationArgs) ToLogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationPtrOutput() LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationPtrOutput {
+	return i.ToLogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationPtrOutputWithContext(context.Background())
+}
+
+func (i LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationArgs) ToLogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationPtrOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationOutput).ToLogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationPtrOutputWithContext(ctx)
+}
+
+// LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationPtrInput is an input type that accepts LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationArgs, LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationPtr and LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationPtrOutput values.
+// You can construct a concrete instance of `LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationPtrInput` via:
+//
+//	        LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationArgs{...}
+//
+//	or:
+//
+//	        nil
+type LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationPtrInput interface {
+	pulumi.Input
+
+	ToLogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationPtrOutput() LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationPtrOutput
+	ToLogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationPtrOutputWithContext(context.Context) LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationPtrOutput
+}
+
+type logIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationPtrType LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationArgs
+
+func LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationPtr(v *LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationArgs) LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationPtrInput {
+	return (*logIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationPtrType)(v)
+}
+
+func (*logIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalization)(nil)).Elem()
+}
+
+func (i *logIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationPtrType) ToLogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationPtrOutput() LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationPtrOutput {
+	return i.ToLogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationPtrOutputWithContext(context.Background())
+}
+
+func (i *logIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationPtrType) ToLogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationPtrOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationPtrOutput)
+}
+
+type LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationOutput struct{ *pulumi.OutputState }
+
+func (LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalization)(nil)).Elem()
+}
+
+func (o LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationOutput) ToLogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationOutput() LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationOutput {
+	return o
+}
+
+func (o LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationOutput) ToLogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationOutput {
+	return o
+}
+
+func (o LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationOutput) ToLogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationPtrOutput() LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationPtrOutput {
+	return o.ToLogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationPtrOutputWithContext(context.Background())
+}
+
+func (o LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationOutput) ToLogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationPtrOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalization) *LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalization {
+		return &v
+	}).(LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationPtrOutput)
+}
+
+func (o LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationOutput) DefaultValue() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalization) *string {
+		return v.DefaultValue
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationOutput) SanitizePatterns() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalization) []string {
+		return v.SanitizePatterns
+	}).(pulumi.StringArrayOutput)
+}
+
+func (o LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationOutput) Sources() LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceArrayOutput {
+	return o.ApplyT(func(v LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalization) []LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSource {
+		return v.Sources
+	}).(LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceArrayOutput)
+}
+
+func (o LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationOutput) ValueMap() pulumi.StringMapOutput {
+	return o.ApplyT(func(v LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalization) map[string]string {
+		return v.ValueMap
+	}).(pulumi.StringMapOutput)
+}
+
+type LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationPtrOutput struct{ *pulumi.OutputState }
+
+func (LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalization)(nil)).Elem()
+}
+
+func (o LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationPtrOutput) ToLogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationPtrOutput() LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationPtrOutput {
+	return o
+}
+
+func (o LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationPtrOutput) ToLogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationPtrOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationPtrOutput {
+	return o
+}
+
+func (o LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationPtrOutput) Elem() LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationOutput {
+	return o.ApplyT(func(v *LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalization) LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalization {
+		if v != nil {
+			return *v
+		}
+		var ret LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalization
+		return ret
+	}).(LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationOutput)
+}
+
+func (o LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationPtrOutput) DefaultValue() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalization) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DefaultValue
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationPtrOutput) SanitizePatterns() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalization) []string {
+		if v == nil {
+			return nil
+		}
+		return v.SanitizePatterns
+	}).(pulumi.StringArrayOutput)
+}
+
+func (o LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationPtrOutput) Sources() LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceArrayOutput {
+	return o.ApplyT(func(v *LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalization) []LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSource {
+		if v == nil {
+			return nil
+		}
+		return v.Sources
+	}).(LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceArrayOutput)
+}
+
+func (o LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationPtrOutput) ValueMap() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalization) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.ValueMap
+	}).(pulumi.StringMapOutput)
+}
+
+type LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSource struct {
+	Selector string `pulumi:"selector"`
+}
+
+// LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceInput is an input type that accepts LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceArgs and LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceOutput values.
+// You can construct a concrete instance of `LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceInput` via:
+//
+//	LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceArgs{...}
+type LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceInput interface {
+	pulumi.Input
+
+	ToLogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceOutput() LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceOutput
+	ToLogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceOutputWithContext(context.Context) LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceOutput
+}
+
+type LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceArgs struct {
+	Selector pulumi.StringInput `pulumi:"selector"`
+}
+
+func (LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSource)(nil)).Elem()
+}
+
+func (i LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceArgs) ToLogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceOutput() LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceOutput {
+	return i.ToLogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceOutputWithContext(context.Background())
+}
+
+func (i LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceArgs) ToLogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceOutput)
+}
+
+// LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceArrayInput is an input type that accepts LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceArray and LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceArrayOutput values.
+// You can construct a concrete instance of `LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceArrayInput` via:
+//
+//	LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceArray{ LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceArgs{...} }
+type LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceArrayInput interface {
+	pulumi.Input
+
+	ToLogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceArrayOutput() LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceArrayOutput
+	ToLogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceArrayOutputWithContext(context.Context) LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceArrayOutput
+}
+
+type LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceArray []LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceInput
+
+func (LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSource)(nil)).Elem()
+}
+
+func (i LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceArray) ToLogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceArrayOutput() LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceArrayOutput {
+	return i.ToLogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceArrayOutputWithContext(context.Background())
+}
+
+func (i LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceArray) ToLogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceArrayOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceArrayOutput)
+}
+
+type LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceOutput struct{ *pulumi.OutputState }
+
+func (LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSource)(nil)).Elem()
+}
+
+func (o LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceOutput) ToLogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceOutput() LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceOutput {
+	return o
+}
+
+func (o LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceOutput) ToLogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceOutput {
+	return o
+}
+
+func (o LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceOutput) Selector() pulumi.StringOutput {
+	return o.ApplyT(func(v LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSource) string {
+		return v.Selector
+	}).(pulumi.StringOutput)
+}
+
+type LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceArrayOutput struct{ *pulumi.OutputState }
+
+func (LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSource)(nil)).Elem()
+}
+
+func (o LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceArrayOutput) ToLogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceArrayOutput() LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceArrayOutput {
+	return o
+}
+
+func (o LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceArrayOutput) ToLogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceArrayOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceArrayOutput {
+	return o
+}
+
+func (o LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceArrayOutput) Index(i pulumi.IntInput) LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSource {
+		return vs[0].([]LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSource)[vs[1].(int)]
+	}).(LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceOutput)
+}
+
+type LogIngestConfigFieldNormalizationMessage struct {
+	DefaultValue     *string                                          `pulumi:"defaultValue"`
+	SanitizePatterns []string                                         `pulumi:"sanitizePatterns"`
+	Sources          []LogIngestConfigFieldNormalizationMessageSource `pulumi:"sources"`
+	ValueMap         map[string]string                                `pulumi:"valueMap"`
+}
+
+// LogIngestConfigFieldNormalizationMessageInput is an input type that accepts LogIngestConfigFieldNormalizationMessageArgs and LogIngestConfigFieldNormalizationMessageOutput values.
+// You can construct a concrete instance of `LogIngestConfigFieldNormalizationMessageInput` via:
+//
+//	LogIngestConfigFieldNormalizationMessageArgs{...}
+type LogIngestConfigFieldNormalizationMessageInput interface {
+	pulumi.Input
+
+	ToLogIngestConfigFieldNormalizationMessageOutput() LogIngestConfigFieldNormalizationMessageOutput
+	ToLogIngestConfigFieldNormalizationMessageOutputWithContext(context.Context) LogIngestConfigFieldNormalizationMessageOutput
+}
+
+type LogIngestConfigFieldNormalizationMessageArgs struct {
+	DefaultValue     pulumi.StringPtrInput                                    `pulumi:"defaultValue"`
+	SanitizePatterns pulumi.StringArrayInput                                  `pulumi:"sanitizePatterns"`
+	Sources          LogIngestConfigFieldNormalizationMessageSourceArrayInput `pulumi:"sources"`
+	ValueMap         pulumi.StringMapInput                                    `pulumi:"valueMap"`
+}
+
+func (LogIngestConfigFieldNormalizationMessageArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogIngestConfigFieldNormalizationMessage)(nil)).Elem()
+}
+
+func (i LogIngestConfigFieldNormalizationMessageArgs) ToLogIngestConfigFieldNormalizationMessageOutput() LogIngestConfigFieldNormalizationMessageOutput {
+	return i.ToLogIngestConfigFieldNormalizationMessageOutputWithContext(context.Background())
+}
+
+func (i LogIngestConfigFieldNormalizationMessageArgs) ToLogIngestConfigFieldNormalizationMessageOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationMessageOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogIngestConfigFieldNormalizationMessageOutput)
+}
+
+func (i LogIngestConfigFieldNormalizationMessageArgs) ToLogIngestConfigFieldNormalizationMessagePtrOutput() LogIngestConfigFieldNormalizationMessagePtrOutput {
+	return i.ToLogIngestConfigFieldNormalizationMessagePtrOutputWithContext(context.Background())
+}
+
+func (i LogIngestConfigFieldNormalizationMessageArgs) ToLogIngestConfigFieldNormalizationMessagePtrOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationMessagePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogIngestConfigFieldNormalizationMessageOutput).ToLogIngestConfigFieldNormalizationMessagePtrOutputWithContext(ctx)
+}
+
+// LogIngestConfigFieldNormalizationMessagePtrInput is an input type that accepts LogIngestConfigFieldNormalizationMessageArgs, LogIngestConfigFieldNormalizationMessagePtr and LogIngestConfigFieldNormalizationMessagePtrOutput values.
+// You can construct a concrete instance of `LogIngestConfigFieldNormalizationMessagePtrInput` via:
+//
+//	        LogIngestConfigFieldNormalizationMessageArgs{...}
+//
+//	or:
+//
+//	        nil
+type LogIngestConfigFieldNormalizationMessagePtrInput interface {
+	pulumi.Input
+
+	ToLogIngestConfigFieldNormalizationMessagePtrOutput() LogIngestConfigFieldNormalizationMessagePtrOutput
+	ToLogIngestConfigFieldNormalizationMessagePtrOutputWithContext(context.Context) LogIngestConfigFieldNormalizationMessagePtrOutput
+}
+
+type logIngestConfigFieldNormalizationMessagePtrType LogIngestConfigFieldNormalizationMessageArgs
+
+func LogIngestConfigFieldNormalizationMessagePtr(v *LogIngestConfigFieldNormalizationMessageArgs) LogIngestConfigFieldNormalizationMessagePtrInput {
+	return (*logIngestConfigFieldNormalizationMessagePtrType)(v)
+}
+
+func (*logIngestConfigFieldNormalizationMessagePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogIngestConfigFieldNormalizationMessage)(nil)).Elem()
+}
+
+func (i *logIngestConfigFieldNormalizationMessagePtrType) ToLogIngestConfigFieldNormalizationMessagePtrOutput() LogIngestConfigFieldNormalizationMessagePtrOutput {
+	return i.ToLogIngestConfigFieldNormalizationMessagePtrOutputWithContext(context.Background())
+}
+
+func (i *logIngestConfigFieldNormalizationMessagePtrType) ToLogIngestConfigFieldNormalizationMessagePtrOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationMessagePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogIngestConfigFieldNormalizationMessagePtrOutput)
+}
+
+type LogIngestConfigFieldNormalizationMessageOutput struct{ *pulumi.OutputState }
+
+func (LogIngestConfigFieldNormalizationMessageOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogIngestConfigFieldNormalizationMessage)(nil)).Elem()
+}
+
+func (o LogIngestConfigFieldNormalizationMessageOutput) ToLogIngestConfigFieldNormalizationMessageOutput() LogIngestConfigFieldNormalizationMessageOutput {
+	return o
+}
+
+func (o LogIngestConfigFieldNormalizationMessageOutput) ToLogIngestConfigFieldNormalizationMessageOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationMessageOutput {
+	return o
+}
+
+func (o LogIngestConfigFieldNormalizationMessageOutput) ToLogIngestConfigFieldNormalizationMessagePtrOutput() LogIngestConfigFieldNormalizationMessagePtrOutput {
+	return o.ToLogIngestConfigFieldNormalizationMessagePtrOutputWithContext(context.Background())
+}
+
+func (o LogIngestConfigFieldNormalizationMessageOutput) ToLogIngestConfigFieldNormalizationMessagePtrOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationMessagePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v LogIngestConfigFieldNormalizationMessage) *LogIngestConfigFieldNormalizationMessage {
+		return &v
+	}).(LogIngestConfigFieldNormalizationMessagePtrOutput)
+}
+
+func (o LogIngestConfigFieldNormalizationMessageOutput) DefaultValue() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LogIngestConfigFieldNormalizationMessage) *string { return v.DefaultValue }).(pulumi.StringPtrOutput)
+}
+
+func (o LogIngestConfigFieldNormalizationMessageOutput) SanitizePatterns() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LogIngestConfigFieldNormalizationMessage) []string { return v.SanitizePatterns }).(pulumi.StringArrayOutput)
+}
+
+func (o LogIngestConfigFieldNormalizationMessageOutput) Sources() LogIngestConfigFieldNormalizationMessageSourceArrayOutput {
+	return o.ApplyT(func(v LogIngestConfigFieldNormalizationMessage) []LogIngestConfigFieldNormalizationMessageSource {
+		return v.Sources
+	}).(LogIngestConfigFieldNormalizationMessageSourceArrayOutput)
+}
+
+func (o LogIngestConfigFieldNormalizationMessageOutput) ValueMap() pulumi.StringMapOutput {
+	return o.ApplyT(func(v LogIngestConfigFieldNormalizationMessage) map[string]string { return v.ValueMap }).(pulumi.StringMapOutput)
+}
+
+type LogIngestConfigFieldNormalizationMessagePtrOutput struct{ *pulumi.OutputState }
+
+func (LogIngestConfigFieldNormalizationMessagePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogIngestConfigFieldNormalizationMessage)(nil)).Elem()
+}
+
+func (o LogIngestConfigFieldNormalizationMessagePtrOutput) ToLogIngestConfigFieldNormalizationMessagePtrOutput() LogIngestConfigFieldNormalizationMessagePtrOutput {
+	return o
+}
+
+func (o LogIngestConfigFieldNormalizationMessagePtrOutput) ToLogIngestConfigFieldNormalizationMessagePtrOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationMessagePtrOutput {
+	return o
+}
+
+func (o LogIngestConfigFieldNormalizationMessagePtrOutput) Elem() LogIngestConfigFieldNormalizationMessageOutput {
+	return o.ApplyT(func(v *LogIngestConfigFieldNormalizationMessage) LogIngestConfigFieldNormalizationMessage {
+		if v != nil {
+			return *v
+		}
+		var ret LogIngestConfigFieldNormalizationMessage
+		return ret
+	}).(LogIngestConfigFieldNormalizationMessageOutput)
+}
+
+func (o LogIngestConfigFieldNormalizationMessagePtrOutput) DefaultValue() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogIngestConfigFieldNormalizationMessage) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DefaultValue
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o LogIngestConfigFieldNormalizationMessagePtrOutput) SanitizePatterns() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *LogIngestConfigFieldNormalizationMessage) []string {
+		if v == nil {
+			return nil
+		}
+		return v.SanitizePatterns
+	}).(pulumi.StringArrayOutput)
+}
+
+func (o LogIngestConfigFieldNormalizationMessagePtrOutput) Sources() LogIngestConfigFieldNormalizationMessageSourceArrayOutput {
+	return o.ApplyT(func(v *LogIngestConfigFieldNormalizationMessage) []LogIngestConfigFieldNormalizationMessageSource {
+		if v == nil {
+			return nil
+		}
+		return v.Sources
+	}).(LogIngestConfigFieldNormalizationMessageSourceArrayOutput)
+}
+
+func (o LogIngestConfigFieldNormalizationMessagePtrOutput) ValueMap() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *LogIngestConfigFieldNormalizationMessage) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.ValueMap
+	}).(pulumi.StringMapOutput)
+}
+
+type LogIngestConfigFieldNormalizationMessageSource struct {
+	Selector string `pulumi:"selector"`
+}
+
+// LogIngestConfigFieldNormalizationMessageSourceInput is an input type that accepts LogIngestConfigFieldNormalizationMessageSourceArgs and LogIngestConfigFieldNormalizationMessageSourceOutput values.
+// You can construct a concrete instance of `LogIngestConfigFieldNormalizationMessageSourceInput` via:
+//
+//	LogIngestConfigFieldNormalizationMessageSourceArgs{...}
+type LogIngestConfigFieldNormalizationMessageSourceInput interface {
+	pulumi.Input
+
+	ToLogIngestConfigFieldNormalizationMessageSourceOutput() LogIngestConfigFieldNormalizationMessageSourceOutput
+	ToLogIngestConfigFieldNormalizationMessageSourceOutputWithContext(context.Context) LogIngestConfigFieldNormalizationMessageSourceOutput
+}
+
+type LogIngestConfigFieldNormalizationMessageSourceArgs struct {
+	Selector pulumi.StringInput `pulumi:"selector"`
+}
+
+func (LogIngestConfigFieldNormalizationMessageSourceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogIngestConfigFieldNormalizationMessageSource)(nil)).Elem()
+}
+
+func (i LogIngestConfigFieldNormalizationMessageSourceArgs) ToLogIngestConfigFieldNormalizationMessageSourceOutput() LogIngestConfigFieldNormalizationMessageSourceOutput {
+	return i.ToLogIngestConfigFieldNormalizationMessageSourceOutputWithContext(context.Background())
+}
+
+func (i LogIngestConfigFieldNormalizationMessageSourceArgs) ToLogIngestConfigFieldNormalizationMessageSourceOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationMessageSourceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogIngestConfigFieldNormalizationMessageSourceOutput)
+}
+
+// LogIngestConfigFieldNormalizationMessageSourceArrayInput is an input type that accepts LogIngestConfigFieldNormalizationMessageSourceArray and LogIngestConfigFieldNormalizationMessageSourceArrayOutput values.
+// You can construct a concrete instance of `LogIngestConfigFieldNormalizationMessageSourceArrayInput` via:
+//
+//	LogIngestConfigFieldNormalizationMessageSourceArray{ LogIngestConfigFieldNormalizationMessageSourceArgs{...} }
+type LogIngestConfigFieldNormalizationMessageSourceArrayInput interface {
+	pulumi.Input
+
+	ToLogIngestConfigFieldNormalizationMessageSourceArrayOutput() LogIngestConfigFieldNormalizationMessageSourceArrayOutput
+	ToLogIngestConfigFieldNormalizationMessageSourceArrayOutputWithContext(context.Context) LogIngestConfigFieldNormalizationMessageSourceArrayOutput
+}
+
+type LogIngestConfigFieldNormalizationMessageSourceArray []LogIngestConfigFieldNormalizationMessageSourceInput
+
+func (LogIngestConfigFieldNormalizationMessageSourceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LogIngestConfigFieldNormalizationMessageSource)(nil)).Elem()
+}
+
+func (i LogIngestConfigFieldNormalizationMessageSourceArray) ToLogIngestConfigFieldNormalizationMessageSourceArrayOutput() LogIngestConfigFieldNormalizationMessageSourceArrayOutput {
+	return i.ToLogIngestConfigFieldNormalizationMessageSourceArrayOutputWithContext(context.Background())
+}
+
+func (i LogIngestConfigFieldNormalizationMessageSourceArray) ToLogIngestConfigFieldNormalizationMessageSourceArrayOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationMessageSourceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogIngestConfigFieldNormalizationMessageSourceArrayOutput)
+}
+
+type LogIngestConfigFieldNormalizationMessageSourceOutput struct{ *pulumi.OutputState }
+
+func (LogIngestConfigFieldNormalizationMessageSourceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogIngestConfigFieldNormalizationMessageSource)(nil)).Elem()
+}
+
+func (o LogIngestConfigFieldNormalizationMessageSourceOutput) ToLogIngestConfigFieldNormalizationMessageSourceOutput() LogIngestConfigFieldNormalizationMessageSourceOutput {
+	return o
+}
+
+func (o LogIngestConfigFieldNormalizationMessageSourceOutput) ToLogIngestConfigFieldNormalizationMessageSourceOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationMessageSourceOutput {
+	return o
+}
+
+func (o LogIngestConfigFieldNormalizationMessageSourceOutput) Selector() pulumi.StringOutput {
+	return o.ApplyT(func(v LogIngestConfigFieldNormalizationMessageSource) string { return v.Selector }).(pulumi.StringOutput)
+}
+
+type LogIngestConfigFieldNormalizationMessageSourceArrayOutput struct{ *pulumi.OutputState }
+
+func (LogIngestConfigFieldNormalizationMessageSourceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LogIngestConfigFieldNormalizationMessageSource)(nil)).Elem()
+}
+
+func (o LogIngestConfigFieldNormalizationMessageSourceArrayOutput) ToLogIngestConfigFieldNormalizationMessageSourceArrayOutput() LogIngestConfigFieldNormalizationMessageSourceArrayOutput {
+	return o
+}
+
+func (o LogIngestConfigFieldNormalizationMessageSourceArrayOutput) ToLogIngestConfigFieldNormalizationMessageSourceArrayOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationMessageSourceArrayOutput {
+	return o
+}
+
+func (o LogIngestConfigFieldNormalizationMessageSourceArrayOutput) Index(i pulumi.IntInput) LogIngestConfigFieldNormalizationMessageSourceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LogIngestConfigFieldNormalizationMessageSource {
+		return vs[0].([]LogIngestConfigFieldNormalizationMessageSource)[vs[1].(int)]
+	}).(LogIngestConfigFieldNormalizationMessageSourceOutput)
+}
+
+type LogIngestConfigFieldNormalizationPrimaryKey struct {
+	Normalization *LogIngestConfigFieldNormalizationPrimaryKeyNormalization `pulumi:"normalization"`
+	Target        *string                                                   `pulumi:"target"`
+}
+
+// LogIngestConfigFieldNormalizationPrimaryKeyInput is an input type that accepts LogIngestConfigFieldNormalizationPrimaryKeyArgs and LogIngestConfigFieldNormalizationPrimaryKeyOutput values.
+// You can construct a concrete instance of `LogIngestConfigFieldNormalizationPrimaryKeyInput` via:
+//
+//	LogIngestConfigFieldNormalizationPrimaryKeyArgs{...}
+type LogIngestConfigFieldNormalizationPrimaryKeyInput interface {
+	pulumi.Input
+
+	ToLogIngestConfigFieldNormalizationPrimaryKeyOutput() LogIngestConfigFieldNormalizationPrimaryKeyOutput
+	ToLogIngestConfigFieldNormalizationPrimaryKeyOutputWithContext(context.Context) LogIngestConfigFieldNormalizationPrimaryKeyOutput
+}
+
+type LogIngestConfigFieldNormalizationPrimaryKeyArgs struct {
+	Normalization LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrInput `pulumi:"normalization"`
+	Target        pulumi.StringPtrInput                                            `pulumi:"target"`
+}
+
+func (LogIngestConfigFieldNormalizationPrimaryKeyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogIngestConfigFieldNormalizationPrimaryKey)(nil)).Elem()
+}
+
+func (i LogIngestConfigFieldNormalizationPrimaryKeyArgs) ToLogIngestConfigFieldNormalizationPrimaryKeyOutput() LogIngestConfigFieldNormalizationPrimaryKeyOutput {
+	return i.ToLogIngestConfigFieldNormalizationPrimaryKeyOutputWithContext(context.Background())
+}
+
+func (i LogIngestConfigFieldNormalizationPrimaryKeyArgs) ToLogIngestConfigFieldNormalizationPrimaryKeyOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationPrimaryKeyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogIngestConfigFieldNormalizationPrimaryKeyOutput)
+}
+
+func (i LogIngestConfigFieldNormalizationPrimaryKeyArgs) ToLogIngestConfigFieldNormalizationPrimaryKeyPtrOutput() LogIngestConfigFieldNormalizationPrimaryKeyPtrOutput {
+	return i.ToLogIngestConfigFieldNormalizationPrimaryKeyPtrOutputWithContext(context.Background())
+}
+
+func (i LogIngestConfigFieldNormalizationPrimaryKeyArgs) ToLogIngestConfigFieldNormalizationPrimaryKeyPtrOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationPrimaryKeyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogIngestConfigFieldNormalizationPrimaryKeyOutput).ToLogIngestConfigFieldNormalizationPrimaryKeyPtrOutputWithContext(ctx)
+}
+
+// LogIngestConfigFieldNormalizationPrimaryKeyPtrInput is an input type that accepts LogIngestConfigFieldNormalizationPrimaryKeyArgs, LogIngestConfigFieldNormalizationPrimaryKeyPtr and LogIngestConfigFieldNormalizationPrimaryKeyPtrOutput values.
+// You can construct a concrete instance of `LogIngestConfigFieldNormalizationPrimaryKeyPtrInput` via:
+//
+//	        LogIngestConfigFieldNormalizationPrimaryKeyArgs{...}
+//
+//	or:
+//
+//	        nil
+type LogIngestConfigFieldNormalizationPrimaryKeyPtrInput interface {
+	pulumi.Input
+
+	ToLogIngestConfigFieldNormalizationPrimaryKeyPtrOutput() LogIngestConfigFieldNormalizationPrimaryKeyPtrOutput
+	ToLogIngestConfigFieldNormalizationPrimaryKeyPtrOutputWithContext(context.Context) LogIngestConfigFieldNormalizationPrimaryKeyPtrOutput
+}
+
+type logIngestConfigFieldNormalizationPrimaryKeyPtrType LogIngestConfigFieldNormalizationPrimaryKeyArgs
+
+func LogIngestConfigFieldNormalizationPrimaryKeyPtr(v *LogIngestConfigFieldNormalizationPrimaryKeyArgs) LogIngestConfigFieldNormalizationPrimaryKeyPtrInput {
+	return (*logIngestConfigFieldNormalizationPrimaryKeyPtrType)(v)
+}
+
+func (*logIngestConfigFieldNormalizationPrimaryKeyPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogIngestConfigFieldNormalizationPrimaryKey)(nil)).Elem()
+}
+
+func (i *logIngestConfigFieldNormalizationPrimaryKeyPtrType) ToLogIngestConfigFieldNormalizationPrimaryKeyPtrOutput() LogIngestConfigFieldNormalizationPrimaryKeyPtrOutput {
+	return i.ToLogIngestConfigFieldNormalizationPrimaryKeyPtrOutputWithContext(context.Background())
+}
+
+func (i *logIngestConfigFieldNormalizationPrimaryKeyPtrType) ToLogIngestConfigFieldNormalizationPrimaryKeyPtrOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationPrimaryKeyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogIngestConfigFieldNormalizationPrimaryKeyPtrOutput)
+}
+
+type LogIngestConfigFieldNormalizationPrimaryKeyOutput struct{ *pulumi.OutputState }
+
+func (LogIngestConfigFieldNormalizationPrimaryKeyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogIngestConfigFieldNormalizationPrimaryKey)(nil)).Elem()
+}
+
+func (o LogIngestConfigFieldNormalizationPrimaryKeyOutput) ToLogIngestConfigFieldNormalizationPrimaryKeyOutput() LogIngestConfigFieldNormalizationPrimaryKeyOutput {
+	return o
+}
+
+func (o LogIngestConfigFieldNormalizationPrimaryKeyOutput) ToLogIngestConfigFieldNormalizationPrimaryKeyOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationPrimaryKeyOutput {
+	return o
+}
+
+func (o LogIngestConfigFieldNormalizationPrimaryKeyOutput) ToLogIngestConfigFieldNormalizationPrimaryKeyPtrOutput() LogIngestConfigFieldNormalizationPrimaryKeyPtrOutput {
+	return o.ToLogIngestConfigFieldNormalizationPrimaryKeyPtrOutputWithContext(context.Background())
+}
+
+func (o LogIngestConfigFieldNormalizationPrimaryKeyOutput) ToLogIngestConfigFieldNormalizationPrimaryKeyPtrOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationPrimaryKeyPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v LogIngestConfigFieldNormalizationPrimaryKey) *LogIngestConfigFieldNormalizationPrimaryKey {
+		return &v
+	}).(LogIngestConfigFieldNormalizationPrimaryKeyPtrOutput)
+}
+
+func (o LogIngestConfigFieldNormalizationPrimaryKeyOutput) Normalization() LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutput {
+	return o.ApplyT(func(v LogIngestConfigFieldNormalizationPrimaryKey) *LogIngestConfigFieldNormalizationPrimaryKeyNormalization {
+		return v.Normalization
+	}).(LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutput)
+}
+
+func (o LogIngestConfigFieldNormalizationPrimaryKeyOutput) Target() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LogIngestConfigFieldNormalizationPrimaryKey) *string { return v.Target }).(pulumi.StringPtrOutput)
+}
+
+type LogIngestConfigFieldNormalizationPrimaryKeyPtrOutput struct{ *pulumi.OutputState }
+
+func (LogIngestConfigFieldNormalizationPrimaryKeyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogIngestConfigFieldNormalizationPrimaryKey)(nil)).Elem()
+}
+
+func (o LogIngestConfigFieldNormalizationPrimaryKeyPtrOutput) ToLogIngestConfigFieldNormalizationPrimaryKeyPtrOutput() LogIngestConfigFieldNormalizationPrimaryKeyPtrOutput {
+	return o
+}
+
+func (o LogIngestConfigFieldNormalizationPrimaryKeyPtrOutput) ToLogIngestConfigFieldNormalizationPrimaryKeyPtrOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationPrimaryKeyPtrOutput {
+	return o
+}
+
+func (o LogIngestConfigFieldNormalizationPrimaryKeyPtrOutput) Elem() LogIngestConfigFieldNormalizationPrimaryKeyOutput {
+	return o.ApplyT(func(v *LogIngestConfigFieldNormalizationPrimaryKey) LogIngestConfigFieldNormalizationPrimaryKey {
+		if v != nil {
+			return *v
+		}
+		var ret LogIngestConfigFieldNormalizationPrimaryKey
+		return ret
+	}).(LogIngestConfigFieldNormalizationPrimaryKeyOutput)
+}
+
+func (o LogIngestConfigFieldNormalizationPrimaryKeyPtrOutput) Normalization() LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutput {
+	return o.ApplyT(func(v *LogIngestConfigFieldNormalizationPrimaryKey) *LogIngestConfigFieldNormalizationPrimaryKeyNormalization {
+		if v == nil {
+			return nil
+		}
+		return v.Normalization
+	}).(LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutput)
+}
+
+func (o LogIngestConfigFieldNormalizationPrimaryKeyPtrOutput) Target() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogIngestConfigFieldNormalizationPrimaryKey) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Target
+	}).(pulumi.StringPtrOutput)
+}
+
+type LogIngestConfigFieldNormalizationPrimaryKeyNormalization struct {
+	DefaultValue     *string                                                          `pulumi:"defaultValue"`
+	SanitizePatterns []string                                                         `pulumi:"sanitizePatterns"`
+	Sources          []LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSource `pulumi:"sources"`
+	ValueMap         map[string]string                                                `pulumi:"valueMap"`
+}
+
+// LogIngestConfigFieldNormalizationPrimaryKeyNormalizationInput is an input type that accepts LogIngestConfigFieldNormalizationPrimaryKeyNormalizationArgs and LogIngestConfigFieldNormalizationPrimaryKeyNormalizationOutput values.
+// You can construct a concrete instance of `LogIngestConfigFieldNormalizationPrimaryKeyNormalizationInput` via:
+//
+//	LogIngestConfigFieldNormalizationPrimaryKeyNormalizationArgs{...}
+type LogIngestConfigFieldNormalizationPrimaryKeyNormalizationInput interface {
+	pulumi.Input
+
+	ToLogIngestConfigFieldNormalizationPrimaryKeyNormalizationOutput() LogIngestConfigFieldNormalizationPrimaryKeyNormalizationOutput
+	ToLogIngestConfigFieldNormalizationPrimaryKeyNormalizationOutputWithContext(context.Context) LogIngestConfigFieldNormalizationPrimaryKeyNormalizationOutput
+}
+
+type LogIngestConfigFieldNormalizationPrimaryKeyNormalizationArgs struct {
+	DefaultValue     pulumi.StringPtrInput                                                    `pulumi:"defaultValue"`
+	SanitizePatterns pulumi.StringArrayInput                                                  `pulumi:"sanitizePatterns"`
+	Sources          LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArrayInput `pulumi:"sources"`
+	ValueMap         pulumi.StringMapInput                                                    `pulumi:"valueMap"`
+}
+
+func (LogIngestConfigFieldNormalizationPrimaryKeyNormalizationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogIngestConfigFieldNormalizationPrimaryKeyNormalization)(nil)).Elem()
+}
+
+func (i LogIngestConfigFieldNormalizationPrimaryKeyNormalizationArgs) ToLogIngestConfigFieldNormalizationPrimaryKeyNormalizationOutput() LogIngestConfigFieldNormalizationPrimaryKeyNormalizationOutput {
+	return i.ToLogIngestConfigFieldNormalizationPrimaryKeyNormalizationOutputWithContext(context.Background())
+}
+
+func (i LogIngestConfigFieldNormalizationPrimaryKeyNormalizationArgs) ToLogIngestConfigFieldNormalizationPrimaryKeyNormalizationOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationPrimaryKeyNormalizationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogIngestConfigFieldNormalizationPrimaryKeyNormalizationOutput)
+}
+
+func (i LogIngestConfigFieldNormalizationPrimaryKeyNormalizationArgs) ToLogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutput() LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutput {
+	return i.ToLogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutputWithContext(context.Background())
+}
+
+func (i LogIngestConfigFieldNormalizationPrimaryKeyNormalizationArgs) ToLogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogIngestConfigFieldNormalizationPrimaryKeyNormalizationOutput).ToLogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutputWithContext(ctx)
+}
+
+// LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrInput is an input type that accepts LogIngestConfigFieldNormalizationPrimaryKeyNormalizationArgs, LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtr and LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutput values.
+// You can construct a concrete instance of `LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrInput` via:
+//
+//	        LogIngestConfigFieldNormalizationPrimaryKeyNormalizationArgs{...}
+//
+//	or:
+//
+//	        nil
+type LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrInput interface {
+	pulumi.Input
+
+	ToLogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutput() LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutput
+	ToLogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutputWithContext(context.Context) LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutput
+}
+
+type logIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrType LogIngestConfigFieldNormalizationPrimaryKeyNormalizationArgs
+
+func LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtr(v *LogIngestConfigFieldNormalizationPrimaryKeyNormalizationArgs) LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrInput {
+	return (*logIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrType)(v)
+}
+
+func (*logIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogIngestConfigFieldNormalizationPrimaryKeyNormalization)(nil)).Elem()
+}
+
+func (i *logIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrType) ToLogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutput() LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutput {
+	return i.ToLogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutputWithContext(context.Background())
+}
+
+func (i *logIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrType) ToLogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutput)
+}
+
+type LogIngestConfigFieldNormalizationPrimaryKeyNormalizationOutput struct{ *pulumi.OutputState }
+
+func (LogIngestConfigFieldNormalizationPrimaryKeyNormalizationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogIngestConfigFieldNormalizationPrimaryKeyNormalization)(nil)).Elem()
+}
+
+func (o LogIngestConfigFieldNormalizationPrimaryKeyNormalizationOutput) ToLogIngestConfigFieldNormalizationPrimaryKeyNormalizationOutput() LogIngestConfigFieldNormalizationPrimaryKeyNormalizationOutput {
+	return o
+}
+
+func (o LogIngestConfigFieldNormalizationPrimaryKeyNormalizationOutput) ToLogIngestConfigFieldNormalizationPrimaryKeyNormalizationOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationPrimaryKeyNormalizationOutput {
+	return o
+}
+
+func (o LogIngestConfigFieldNormalizationPrimaryKeyNormalizationOutput) ToLogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutput() LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutput {
+	return o.ToLogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutputWithContext(context.Background())
+}
+
+func (o LogIngestConfigFieldNormalizationPrimaryKeyNormalizationOutput) ToLogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v LogIngestConfigFieldNormalizationPrimaryKeyNormalization) *LogIngestConfigFieldNormalizationPrimaryKeyNormalization {
+		return &v
+	}).(LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutput)
+}
+
+func (o LogIngestConfigFieldNormalizationPrimaryKeyNormalizationOutput) DefaultValue() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LogIngestConfigFieldNormalizationPrimaryKeyNormalization) *string { return v.DefaultValue }).(pulumi.StringPtrOutput)
+}
+
+func (o LogIngestConfigFieldNormalizationPrimaryKeyNormalizationOutput) SanitizePatterns() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LogIngestConfigFieldNormalizationPrimaryKeyNormalization) []string { return v.SanitizePatterns }).(pulumi.StringArrayOutput)
+}
+
+func (o LogIngestConfigFieldNormalizationPrimaryKeyNormalizationOutput) Sources() LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArrayOutput {
+	return o.ApplyT(func(v LogIngestConfigFieldNormalizationPrimaryKeyNormalization) []LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSource {
+		return v.Sources
+	}).(LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArrayOutput)
+}
+
+func (o LogIngestConfigFieldNormalizationPrimaryKeyNormalizationOutput) ValueMap() pulumi.StringMapOutput {
+	return o.ApplyT(func(v LogIngestConfigFieldNormalizationPrimaryKeyNormalization) map[string]string { return v.ValueMap }).(pulumi.StringMapOutput)
+}
+
+type LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutput struct{ *pulumi.OutputState }
+
+func (LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogIngestConfigFieldNormalizationPrimaryKeyNormalization)(nil)).Elem()
+}
+
+func (o LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutput) ToLogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutput() LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutput {
+	return o
+}
+
+func (o LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutput) ToLogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutput {
+	return o
+}
+
+func (o LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutput) Elem() LogIngestConfigFieldNormalizationPrimaryKeyNormalizationOutput {
+	return o.ApplyT(func(v *LogIngestConfigFieldNormalizationPrimaryKeyNormalization) LogIngestConfigFieldNormalizationPrimaryKeyNormalization {
+		if v != nil {
+			return *v
+		}
+		var ret LogIngestConfigFieldNormalizationPrimaryKeyNormalization
+		return ret
+	}).(LogIngestConfigFieldNormalizationPrimaryKeyNormalizationOutput)
+}
+
+func (o LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutput) DefaultValue() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogIngestConfigFieldNormalizationPrimaryKeyNormalization) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DefaultValue
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutput) SanitizePatterns() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *LogIngestConfigFieldNormalizationPrimaryKeyNormalization) []string {
+		if v == nil {
+			return nil
+		}
+		return v.SanitizePatterns
+	}).(pulumi.StringArrayOutput)
+}
+
+func (o LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutput) Sources() LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArrayOutput {
+	return o.ApplyT(func(v *LogIngestConfigFieldNormalizationPrimaryKeyNormalization) []LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSource {
+		if v == nil {
+			return nil
+		}
+		return v.Sources
+	}).(LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArrayOutput)
+}
+
+func (o LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutput) ValueMap() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *LogIngestConfigFieldNormalizationPrimaryKeyNormalization) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.ValueMap
+	}).(pulumi.StringMapOutput)
+}
+
+type LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSource struct {
+	Selector string `pulumi:"selector"`
+}
+
+// LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceInput is an input type that accepts LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArgs and LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceOutput values.
+// You can construct a concrete instance of `LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceInput` via:
+//
+//	LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArgs{...}
+type LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceInput interface {
+	pulumi.Input
+
+	ToLogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceOutput() LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceOutput
+	ToLogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceOutputWithContext(context.Context) LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceOutput
+}
+
+type LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArgs struct {
+	Selector pulumi.StringInput `pulumi:"selector"`
+}
+
+func (LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSource)(nil)).Elem()
+}
+
+func (i LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArgs) ToLogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceOutput() LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceOutput {
+	return i.ToLogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceOutputWithContext(context.Background())
+}
+
+func (i LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArgs) ToLogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceOutput)
+}
+
+// LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArrayInput is an input type that accepts LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArray and LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArrayOutput values.
+// You can construct a concrete instance of `LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArrayInput` via:
+//
+//	LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArray{ LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArgs{...} }
+type LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArrayInput interface {
+	pulumi.Input
+
+	ToLogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArrayOutput() LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArrayOutput
+	ToLogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArrayOutputWithContext(context.Context) LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArrayOutput
+}
+
+type LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArray []LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceInput
+
+func (LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSource)(nil)).Elem()
+}
+
+func (i LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArray) ToLogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArrayOutput() LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArrayOutput {
+	return i.ToLogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArrayOutputWithContext(context.Background())
+}
+
+func (i LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArray) ToLogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArrayOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArrayOutput)
+}
+
+type LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceOutput struct{ *pulumi.OutputState }
+
+func (LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSource)(nil)).Elem()
+}
+
+func (o LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceOutput) ToLogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceOutput() LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceOutput {
+	return o
+}
+
+func (o LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceOutput) ToLogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceOutput {
+	return o
+}
+
+func (o LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceOutput) Selector() pulumi.StringOutput {
+	return o.ApplyT(func(v LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSource) string { return v.Selector }).(pulumi.StringOutput)
+}
+
+type LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArrayOutput struct{ *pulumi.OutputState }
+
+func (LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSource)(nil)).Elem()
+}
+
+func (o LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArrayOutput) ToLogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArrayOutput() LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArrayOutput {
+	return o
+}
+
+func (o LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArrayOutput) ToLogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArrayOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArrayOutput {
+	return o
+}
+
+func (o LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArrayOutput) Index(i pulumi.IntInput) LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSource {
+		return vs[0].([]LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSource)[vs[1].(int)]
+	}).(LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceOutput)
+}
+
+type LogIngestConfigFieldNormalizationSeverity struct {
+	DefaultValue     *string                                           `pulumi:"defaultValue"`
+	SanitizePatterns []string                                          `pulumi:"sanitizePatterns"`
+	Sources          []LogIngestConfigFieldNormalizationSeveritySource `pulumi:"sources"`
+	ValueMap         map[string]string                                 `pulumi:"valueMap"`
+}
+
+// LogIngestConfigFieldNormalizationSeverityInput is an input type that accepts LogIngestConfigFieldNormalizationSeverityArgs and LogIngestConfigFieldNormalizationSeverityOutput values.
+// You can construct a concrete instance of `LogIngestConfigFieldNormalizationSeverityInput` via:
+//
+//	LogIngestConfigFieldNormalizationSeverityArgs{...}
+type LogIngestConfigFieldNormalizationSeverityInput interface {
+	pulumi.Input
+
+	ToLogIngestConfigFieldNormalizationSeverityOutput() LogIngestConfigFieldNormalizationSeverityOutput
+	ToLogIngestConfigFieldNormalizationSeverityOutputWithContext(context.Context) LogIngestConfigFieldNormalizationSeverityOutput
+}
+
+type LogIngestConfigFieldNormalizationSeverityArgs struct {
+	DefaultValue     pulumi.StringPtrInput                                     `pulumi:"defaultValue"`
+	SanitizePatterns pulumi.StringArrayInput                                   `pulumi:"sanitizePatterns"`
+	Sources          LogIngestConfigFieldNormalizationSeveritySourceArrayInput `pulumi:"sources"`
+	ValueMap         pulumi.StringMapInput                                     `pulumi:"valueMap"`
+}
+
+func (LogIngestConfigFieldNormalizationSeverityArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogIngestConfigFieldNormalizationSeverity)(nil)).Elem()
+}
+
+func (i LogIngestConfigFieldNormalizationSeverityArgs) ToLogIngestConfigFieldNormalizationSeverityOutput() LogIngestConfigFieldNormalizationSeverityOutput {
+	return i.ToLogIngestConfigFieldNormalizationSeverityOutputWithContext(context.Background())
+}
+
+func (i LogIngestConfigFieldNormalizationSeverityArgs) ToLogIngestConfigFieldNormalizationSeverityOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationSeverityOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogIngestConfigFieldNormalizationSeverityOutput)
+}
+
+func (i LogIngestConfigFieldNormalizationSeverityArgs) ToLogIngestConfigFieldNormalizationSeverityPtrOutput() LogIngestConfigFieldNormalizationSeverityPtrOutput {
+	return i.ToLogIngestConfigFieldNormalizationSeverityPtrOutputWithContext(context.Background())
+}
+
+func (i LogIngestConfigFieldNormalizationSeverityArgs) ToLogIngestConfigFieldNormalizationSeverityPtrOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationSeverityPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogIngestConfigFieldNormalizationSeverityOutput).ToLogIngestConfigFieldNormalizationSeverityPtrOutputWithContext(ctx)
+}
+
+// LogIngestConfigFieldNormalizationSeverityPtrInput is an input type that accepts LogIngestConfigFieldNormalizationSeverityArgs, LogIngestConfigFieldNormalizationSeverityPtr and LogIngestConfigFieldNormalizationSeverityPtrOutput values.
+// You can construct a concrete instance of `LogIngestConfigFieldNormalizationSeverityPtrInput` via:
+//
+//	        LogIngestConfigFieldNormalizationSeverityArgs{...}
+//
+//	or:
+//
+//	        nil
+type LogIngestConfigFieldNormalizationSeverityPtrInput interface {
+	pulumi.Input
+
+	ToLogIngestConfigFieldNormalizationSeverityPtrOutput() LogIngestConfigFieldNormalizationSeverityPtrOutput
+	ToLogIngestConfigFieldNormalizationSeverityPtrOutputWithContext(context.Context) LogIngestConfigFieldNormalizationSeverityPtrOutput
+}
+
+type logIngestConfigFieldNormalizationSeverityPtrType LogIngestConfigFieldNormalizationSeverityArgs
+
+func LogIngestConfigFieldNormalizationSeverityPtr(v *LogIngestConfigFieldNormalizationSeverityArgs) LogIngestConfigFieldNormalizationSeverityPtrInput {
+	return (*logIngestConfigFieldNormalizationSeverityPtrType)(v)
+}
+
+func (*logIngestConfigFieldNormalizationSeverityPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogIngestConfigFieldNormalizationSeverity)(nil)).Elem()
+}
+
+func (i *logIngestConfigFieldNormalizationSeverityPtrType) ToLogIngestConfigFieldNormalizationSeverityPtrOutput() LogIngestConfigFieldNormalizationSeverityPtrOutput {
+	return i.ToLogIngestConfigFieldNormalizationSeverityPtrOutputWithContext(context.Background())
+}
+
+func (i *logIngestConfigFieldNormalizationSeverityPtrType) ToLogIngestConfigFieldNormalizationSeverityPtrOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationSeverityPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogIngestConfigFieldNormalizationSeverityPtrOutput)
+}
+
+type LogIngestConfigFieldNormalizationSeverityOutput struct{ *pulumi.OutputState }
+
+func (LogIngestConfigFieldNormalizationSeverityOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogIngestConfigFieldNormalizationSeverity)(nil)).Elem()
+}
+
+func (o LogIngestConfigFieldNormalizationSeverityOutput) ToLogIngestConfigFieldNormalizationSeverityOutput() LogIngestConfigFieldNormalizationSeverityOutput {
+	return o
+}
+
+func (o LogIngestConfigFieldNormalizationSeverityOutput) ToLogIngestConfigFieldNormalizationSeverityOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationSeverityOutput {
+	return o
+}
+
+func (o LogIngestConfigFieldNormalizationSeverityOutput) ToLogIngestConfigFieldNormalizationSeverityPtrOutput() LogIngestConfigFieldNormalizationSeverityPtrOutput {
+	return o.ToLogIngestConfigFieldNormalizationSeverityPtrOutputWithContext(context.Background())
+}
+
+func (o LogIngestConfigFieldNormalizationSeverityOutput) ToLogIngestConfigFieldNormalizationSeverityPtrOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationSeverityPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v LogIngestConfigFieldNormalizationSeverity) *LogIngestConfigFieldNormalizationSeverity {
+		return &v
+	}).(LogIngestConfigFieldNormalizationSeverityPtrOutput)
+}
+
+func (o LogIngestConfigFieldNormalizationSeverityOutput) DefaultValue() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LogIngestConfigFieldNormalizationSeverity) *string { return v.DefaultValue }).(pulumi.StringPtrOutput)
+}
+
+func (o LogIngestConfigFieldNormalizationSeverityOutput) SanitizePatterns() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LogIngestConfigFieldNormalizationSeverity) []string { return v.SanitizePatterns }).(pulumi.StringArrayOutput)
+}
+
+func (o LogIngestConfigFieldNormalizationSeverityOutput) Sources() LogIngestConfigFieldNormalizationSeveritySourceArrayOutput {
+	return o.ApplyT(func(v LogIngestConfigFieldNormalizationSeverity) []LogIngestConfigFieldNormalizationSeveritySource {
+		return v.Sources
+	}).(LogIngestConfigFieldNormalizationSeveritySourceArrayOutput)
+}
+
+func (o LogIngestConfigFieldNormalizationSeverityOutput) ValueMap() pulumi.StringMapOutput {
+	return o.ApplyT(func(v LogIngestConfigFieldNormalizationSeverity) map[string]string { return v.ValueMap }).(pulumi.StringMapOutput)
+}
+
+type LogIngestConfigFieldNormalizationSeverityPtrOutput struct{ *pulumi.OutputState }
+
+func (LogIngestConfigFieldNormalizationSeverityPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogIngestConfigFieldNormalizationSeverity)(nil)).Elem()
+}
+
+func (o LogIngestConfigFieldNormalizationSeverityPtrOutput) ToLogIngestConfigFieldNormalizationSeverityPtrOutput() LogIngestConfigFieldNormalizationSeverityPtrOutput {
+	return o
+}
+
+func (o LogIngestConfigFieldNormalizationSeverityPtrOutput) ToLogIngestConfigFieldNormalizationSeverityPtrOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationSeverityPtrOutput {
+	return o
+}
+
+func (o LogIngestConfigFieldNormalizationSeverityPtrOutput) Elem() LogIngestConfigFieldNormalizationSeverityOutput {
+	return o.ApplyT(func(v *LogIngestConfigFieldNormalizationSeverity) LogIngestConfigFieldNormalizationSeverity {
+		if v != nil {
+			return *v
+		}
+		var ret LogIngestConfigFieldNormalizationSeverity
+		return ret
+	}).(LogIngestConfigFieldNormalizationSeverityOutput)
+}
+
+func (o LogIngestConfigFieldNormalizationSeverityPtrOutput) DefaultValue() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogIngestConfigFieldNormalizationSeverity) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DefaultValue
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o LogIngestConfigFieldNormalizationSeverityPtrOutput) SanitizePatterns() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *LogIngestConfigFieldNormalizationSeverity) []string {
+		if v == nil {
+			return nil
+		}
+		return v.SanitizePatterns
+	}).(pulumi.StringArrayOutput)
+}
+
+func (o LogIngestConfigFieldNormalizationSeverityPtrOutput) Sources() LogIngestConfigFieldNormalizationSeveritySourceArrayOutput {
+	return o.ApplyT(func(v *LogIngestConfigFieldNormalizationSeverity) []LogIngestConfigFieldNormalizationSeveritySource {
+		if v == nil {
+			return nil
+		}
+		return v.Sources
+	}).(LogIngestConfigFieldNormalizationSeveritySourceArrayOutput)
+}
+
+func (o LogIngestConfigFieldNormalizationSeverityPtrOutput) ValueMap() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *LogIngestConfigFieldNormalizationSeverity) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.ValueMap
+	}).(pulumi.StringMapOutput)
+}
+
+type LogIngestConfigFieldNormalizationSeveritySource struct {
+	Selector string `pulumi:"selector"`
+}
+
+// LogIngestConfigFieldNormalizationSeveritySourceInput is an input type that accepts LogIngestConfigFieldNormalizationSeveritySourceArgs and LogIngestConfigFieldNormalizationSeveritySourceOutput values.
+// You can construct a concrete instance of `LogIngestConfigFieldNormalizationSeveritySourceInput` via:
+//
+//	LogIngestConfigFieldNormalizationSeveritySourceArgs{...}
+type LogIngestConfigFieldNormalizationSeveritySourceInput interface {
+	pulumi.Input
+
+	ToLogIngestConfigFieldNormalizationSeveritySourceOutput() LogIngestConfigFieldNormalizationSeveritySourceOutput
+	ToLogIngestConfigFieldNormalizationSeveritySourceOutputWithContext(context.Context) LogIngestConfigFieldNormalizationSeveritySourceOutput
+}
+
+type LogIngestConfigFieldNormalizationSeveritySourceArgs struct {
+	Selector pulumi.StringInput `pulumi:"selector"`
+}
+
+func (LogIngestConfigFieldNormalizationSeveritySourceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogIngestConfigFieldNormalizationSeveritySource)(nil)).Elem()
+}
+
+func (i LogIngestConfigFieldNormalizationSeveritySourceArgs) ToLogIngestConfigFieldNormalizationSeveritySourceOutput() LogIngestConfigFieldNormalizationSeveritySourceOutput {
+	return i.ToLogIngestConfigFieldNormalizationSeveritySourceOutputWithContext(context.Background())
+}
+
+func (i LogIngestConfigFieldNormalizationSeveritySourceArgs) ToLogIngestConfigFieldNormalizationSeveritySourceOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationSeveritySourceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogIngestConfigFieldNormalizationSeveritySourceOutput)
+}
+
+// LogIngestConfigFieldNormalizationSeveritySourceArrayInput is an input type that accepts LogIngestConfigFieldNormalizationSeveritySourceArray and LogIngestConfigFieldNormalizationSeveritySourceArrayOutput values.
+// You can construct a concrete instance of `LogIngestConfigFieldNormalizationSeveritySourceArrayInput` via:
+//
+//	LogIngestConfigFieldNormalizationSeveritySourceArray{ LogIngestConfigFieldNormalizationSeveritySourceArgs{...} }
+type LogIngestConfigFieldNormalizationSeveritySourceArrayInput interface {
+	pulumi.Input
+
+	ToLogIngestConfigFieldNormalizationSeveritySourceArrayOutput() LogIngestConfigFieldNormalizationSeveritySourceArrayOutput
+	ToLogIngestConfigFieldNormalizationSeveritySourceArrayOutputWithContext(context.Context) LogIngestConfigFieldNormalizationSeveritySourceArrayOutput
+}
+
+type LogIngestConfigFieldNormalizationSeveritySourceArray []LogIngestConfigFieldNormalizationSeveritySourceInput
+
+func (LogIngestConfigFieldNormalizationSeveritySourceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LogIngestConfigFieldNormalizationSeveritySource)(nil)).Elem()
+}
+
+func (i LogIngestConfigFieldNormalizationSeveritySourceArray) ToLogIngestConfigFieldNormalizationSeveritySourceArrayOutput() LogIngestConfigFieldNormalizationSeveritySourceArrayOutput {
+	return i.ToLogIngestConfigFieldNormalizationSeveritySourceArrayOutputWithContext(context.Background())
+}
+
+func (i LogIngestConfigFieldNormalizationSeveritySourceArray) ToLogIngestConfigFieldNormalizationSeveritySourceArrayOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationSeveritySourceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogIngestConfigFieldNormalizationSeveritySourceArrayOutput)
+}
+
+type LogIngestConfigFieldNormalizationSeveritySourceOutput struct{ *pulumi.OutputState }
+
+func (LogIngestConfigFieldNormalizationSeveritySourceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogIngestConfigFieldNormalizationSeveritySource)(nil)).Elem()
+}
+
+func (o LogIngestConfigFieldNormalizationSeveritySourceOutput) ToLogIngestConfigFieldNormalizationSeveritySourceOutput() LogIngestConfigFieldNormalizationSeveritySourceOutput {
+	return o
+}
+
+func (o LogIngestConfigFieldNormalizationSeveritySourceOutput) ToLogIngestConfigFieldNormalizationSeveritySourceOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationSeveritySourceOutput {
+	return o
+}
+
+func (o LogIngestConfigFieldNormalizationSeveritySourceOutput) Selector() pulumi.StringOutput {
+	return o.ApplyT(func(v LogIngestConfigFieldNormalizationSeveritySource) string { return v.Selector }).(pulumi.StringOutput)
+}
+
+type LogIngestConfigFieldNormalizationSeveritySourceArrayOutput struct{ *pulumi.OutputState }
+
+func (LogIngestConfigFieldNormalizationSeveritySourceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LogIngestConfigFieldNormalizationSeveritySource)(nil)).Elem()
+}
+
+func (o LogIngestConfigFieldNormalizationSeveritySourceArrayOutput) ToLogIngestConfigFieldNormalizationSeveritySourceArrayOutput() LogIngestConfigFieldNormalizationSeveritySourceArrayOutput {
+	return o
+}
+
+func (o LogIngestConfigFieldNormalizationSeveritySourceArrayOutput) ToLogIngestConfigFieldNormalizationSeveritySourceArrayOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationSeveritySourceArrayOutput {
+	return o
+}
+
+func (o LogIngestConfigFieldNormalizationSeveritySourceArrayOutput) Index(i pulumi.IntInput) LogIngestConfigFieldNormalizationSeveritySourceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LogIngestConfigFieldNormalizationSeveritySource {
+		return vs[0].([]LogIngestConfigFieldNormalizationSeveritySource)[vs[1].(int)]
+	}).(LogIngestConfigFieldNormalizationSeveritySourceOutput)
+}
+
+type LogIngestConfigFieldNormalizationTimestamp struct {
+	Sources []LogIngestConfigFieldNormalizationTimestampSource `pulumi:"sources"`
+}
+
+// LogIngestConfigFieldNormalizationTimestampInput is an input type that accepts LogIngestConfigFieldNormalizationTimestampArgs and LogIngestConfigFieldNormalizationTimestampOutput values.
+// You can construct a concrete instance of `LogIngestConfigFieldNormalizationTimestampInput` via:
+//
+//	LogIngestConfigFieldNormalizationTimestampArgs{...}
+type LogIngestConfigFieldNormalizationTimestampInput interface {
+	pulumi.Input
+
+	ToLogIngestConfigFieldNormalizationTimestampOutput() LogIngestConfigFieldNormalizationTimestampOutput
+	ToLogIngestConfigFieldNormalizationTimestampOutputWithContext(context.Context) LogIngestConfigFieldNormalizationTimestampOutput
+}
+
+type LogIngestConfigFieldNormalizationTimestampArgs struct {
+	Sources LogIngestConfigFieldNormalizationTimestampSourceArrayInput `pulumi:"sources"`
+}
+
+func (LogIngestConfigFieldNormalizationTimestampArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogIngestConfigFieldNormalizationTimestamp)(nil)).Elem()
+}
+
+func (i LogIngestConfigFieldNormalizationTimestampArgs) ToLogIngestConfigFieldNormalizationTimestampOutput() LogIngestConfigFieldNormalizationTimestampOutput {
+	return i.ToLogIngestConfigFieldNormalizationTimestampOutputWithContext(context.Background())
+}
+
+func (i LogIngestConfigFieldNormalizationTimestampArgs) ToLogIngestConfigFieldNormalizationTimestampOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationTimestampOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogIngestConfigFieldNormalizationTimestampOutput)
+}
+
+func (i LogIngestConfigFieldNormalizationTimestampArgs) ToLogIngestConfigFieldNormalizationTimestampPtrOutput() LogIngestConfigFieldNormalizationTimestampPtrOutput {
+	return i.ToLogIngestConfigFieldNormalizationTimestampPtrOutputWithContext(context.Background())
+}
+
+func (i LogIngestConfigFieldNormalizationTimestampArgs) ToLogIngestConfigFieldNormalizationTimestampPtrOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationTimestampPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogIngestConfigFieldNormalizationTimestampOutput).ToLogIngestConfigFieldNormalizationTimestampPtrOutputWithContext(ctx)
+}
+
+// LogIngestConfigFieldNormalizationTimestampPtrInput is an input type that accepts LogIngestConfigFieldNormalizationTimestampArgs, LogIngestConfigFieldNormalizationTimestampPtr and LogIngestConfigFieldNormalizationTimestampPtrOutput values.
+// You can construct a concrete instance of `LogIngestConfigFieldNormalizationTimestampPtrInput` via:
+//
+//	        LogIngestConfigFieldNormalizationTimestampArgs{...}
+//
+//	or:
+//
+//	        nil
+type LogIngestConfigFieldNormalizationTimestampPtrInput interface {
+	pulumi.Input
+
+	ToLogIngestConfigFieldNormalizationTimestampPtrOutput() LogIngestConfigFieldNormalizationTimestampPtrOutput
+	ToLogIngestConfigFieldNormalizationTimestampPtrOutputWithContext(context.Context) LogIngestConfigFieldNormalizationTimestampPtrOutput
+}
+
+type logIngestConfigFieldNormalizationTimestampPtrType LogIngestConfigFieldNormalizationTimestampArgs
+
+func LogIngestConfigFieldNormalizationTimestampPtr(v *LogIngestConfigFieldNormalizationTimestampArgs) LogIngestConfigFieldNormalizationTimestampPtrInput {
+	return (*logIngestConfigFieldNormalizationTimestampPtrType)(v)
+}
+
+func (*logIngestConfigFieldNormalizationTimestampPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogIngestConfigFieldNormalizationTimestamp)(nil)).Elem()
+}
+
+func (i *logIngestConfigFieldNormalizationTimestampPtrType) ToLogIngestConfigFieldNormalizationTimestampPtrOutput() LogIngestConfigFieldNormalizationTimestampPtrOutput {
+	return i.ToLogIngestConfigFieldNormalizationTimestampPtrOutputWithContext(context.Background())
+}
+
+func (i *logIngestConfigFieldNormalizationTimestampPtrType) ToLogIngestConfigFieldNormalizationTimestampPtrOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationTimestampPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogIngestConfigFieldNormalizationTimestampPtrOutput)
+}
+
+type LogIngestConfigFieldNormalizationTimestampOutput struct{ *pulumi.OutputState }
+
+func (LogIngestConfigFieldNormalizationTimestampOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogIngestConfigFieldNormalizationTimestamp)(nil)).Elem()
+}
+
+func (o LogIngestConfigFieldNormalizationTimestampOutput) ToLogIngestConfigFieldNormalizationTimestampOutput() LogIngestConfigFieldNormalizationTimestampOutput {
+	return o
+}
+
+func (o LogIngestConfigFieldNormalizationTimestampOutput) ToLogIngestConfigFieldNormalizationTimestampOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationTimestampOutput {
+	return o
+}
+
+func (o LogIngestConfigFieldNormalizationTimestampOutput) ToLogIngestConfigFieldNormalizationTimestampPtrOutput() LogIngestConfigFieldNormalizationTimestampPtrOutput {
+	return o.ToLogIngestConfigFieldNormalizationTimestampPtrOutputWithContext(context.Background())
+}
+
+func (o LogIngestConfigFieldNormalizationTimestampOutput) ToLogIngestConfigFieldNormalizationTimestampPtrOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationTimestampPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v LogIngestConfigFieldNormalizationTimestamp) *LogIngestConfigFieldNormalizationTimestamp {
+		return &v
+	}).(LogIngestConfigFieldNormalizationTimestampPtrOutput)
+}
+
+func (o LogIngestConfigFieldNormalizationTimestampOutput) Sources() LogIngestConfigFieldNormalizationTimestampSourceArrayOutput {
+	return o.ApplyT(func(v LogIngestConfigFieldNormalizationTimestamp) []LogIngestConfigFieldNormalizationTimestampSource {
+		return v.Sources
+	}).(LogIngestConfigFieldNormalizationTimestampSourceArrayOutput)
+}
+
+type LogIngestConfigFieldNormalizationTimestampPtrOutput struct{ *pulumi.OutputState }
+
+func (LogIngestConfigFieldNormalizationTimestampPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogIngestConfigFieldNormalizationTimestamp)(nil)).Elem()
+}
+
+func (o LogIngestConfigFieldNormalizationTimestampPtrOutput) ToLogIngestConfigFieldNormalizationTimestampPtrOutput() LogIngestConfigFieldNormalizationTimestampPtrOutput {
+	return o
+}
+
+func (o LogIngestConfigFieldNormalizationTimestampPtrOutput) ToLogIngestConfigFieldNormalizationTimestampPtrOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationTimestampPtrOutput {
+	return o
+}
+
+func (o LogIngestConfigFieldNormalizationTimestampPtrOutput) Elem() LogIngestConfigFieldNormalizationTimestampOutput {
+	return o.ApplyT(func(v *LogIngestConfigFieldNormalizationTimestamp) LogIngestConfigFieldNormalizationTimestamp {
+		if v != nil {
+			return *v
+		}
+		var ret LogIngestConfigFieldNormalizationTimestamp
+		return ret
+	}).(LogIngestConfigFieldNormalizationTimestampOutput)
+}
+
+func (o LogIngestConfigFieldNormalizationTimestampPtrOutput) Sources() LogIngestConfigFieldNormalizationTimestampSourceArrayOutput {
+	return o.ApplyT(func(v *LogIngestConfigFieldNormalizationTimestamp) []LogIngestConfigFieldNormalizationTimestampSource {
+		if v == nil {
+			return nil
+		}
+		return v.Sources
+	}).(LogIngestConfigFieldNormalizationTimestampSourceArrayOutput)
+}
+
+type LogIngestConfigFieldNormalizationTimestampSource struct {
+	Selector string `pulumi:"selector"`
+}
+
+// LogIngestConfigFieldNormalizationTimestampSourceInput is an input type that accepts LogIngestConfigFieldNormalizationTimestampSourceArgs and LogIngestConfigFieldNormalizationTimestampSourceOutput values.
+// You can construct a concrete instance of `LogIngestConfigFieldNormalizationTimestampSourceInput` via:
+//
+//	LogIngestConfigFieldNormalizationTimestampSourceArgs{...}
+type LogIngestConfigFieldNormalizationTimestampSourceInput interface {
+	pulumi.Input
+
+	ToLogIngestConfigFieldNormalizationTimestampSourceOutput() LogIngestConfigFieldNormalizationTimestampSourceOutput
+	ToLogIngestConfigFieldNormalizationTimestampSourceOutputWithContext(context.Context) LogIngestConfigFieldNormalizationTimestampSourceOutput
+}
+
+type LogIngestConfigFieldNormalizationTimestampSourceArgs struct {
+	Selector pulumi.StringInput `pulumi:"selector"`
+}
+
+func (LogIngestConfigFieldNormalizationTimestampSourceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogIngestConfigFieldNormalizationTimestampSource)(nil)).Elem()
+}
+
+func (i LogIngestConfigFieldNormalizationTimestampSourceArgs) ToLogIngestConfigFieldNormalizationTimestampSourceOutput() LogIngestConfigFieldNormalizationTimestampSourceOutput {
+	return i.ToLogIngestConfigFieldNormalizationTimestampSourceOutputWithContext(context.Background())
+}
+
+func (i LogIngestConfigFieldNormalizationTimestampSourceArgs) ToLogIngestConfigFieldNormalizationTimestampSourceOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationTimestampSourceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogIngestConfigFieldNormalizationTimestampSourceOutput)
+}
+
+// LogIngestConfigFieldNormalizationTimestampSourceArrayInput is an input type that accepts LogIngestConfigFieldNormalizationTimestampSourceArray and LogIngestConfigFieldNormalizationTimestampSourceArrayOutput values.
+// You can construct a concrete instance of `LogIngestConfigFieldNormalizationTimestampSourceArrayInput` via:
+//
+//	LogIngestConfigFieldNormalizationTimestampSourceArray{ LogIngestConfigFieldNormalizationTimestampSourceArgs{...} }
+type LogIngestConfigFieldNormalizationTimestampSourceArrayInput interface {
+	pulumi.Input
+
+	ToLogIngestConfigFieldNormalizationTimestampSourceArrayOutput() LogIngestConfigFieldNormalizationTimestampSourceArrayOutput
+	ToLogIngestConfigFieldNormalizationTimestampSourceArrayOutputWithContext(context.Context) LogIngestConfigFieldNormalizationTimestampSourceArrayOutput
+}
+
+type LogIngestConfigFieldNormalizationTimestampSourceArray []LogIngestConfigFieldNormalizationTimestampSourceInput
+
+func (LogIngestConfigFieldNormalizationTimestampSourceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LogIngestConfigFieldNormalizationTimestampSource)(nil)).Elem()
+}
+
+func (i LogIngestConfigFieldNormalizationTimestampSourceArray) ToLogIngestConfigFieldNormalizationTimestampSourceArrayOutput() LogIngestConfigFieldNormalizationTimestampSourceArrayOutput {
+	return i.ToLogIngestConfigFieldNormalizationTimestampSourceArrayOutputWithContext(context.Background())
+}
+
+func (i LogIngestConfigFieldNormalizationTimestampSourceArray) ToLogIngestConfigFieldNormalizationTimestampSourceArrayOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationTimestampSourceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogIngestConfigFieldNormalizationTimestampSourceArrayOutput)
+}
+
+type LogIngestConfigFieldNormalizationTimestampSourceOutput struct{ *pulumi.OutputState }
+
+func (LogIngestConfigFieldNormalizationTimestampSourceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogIngestConfigFieldNormalizationTimestampSource)(nil)).Elem()
+}
+
+func (o LogIngestConfigFieldNormalizationTimestampSourceOutput) ToLogIngestConfigFieldNormalizationTimestampSourceOutput() LogIngestConfigFieldNormalizationTimestampSourceOutput {
+	return o
+}
+
+func (o LogIngestConfigFieldNormalizationTimestampSourceOutput) ToLogIngestConfigFieldNormalizationTimestampSourceOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationTimestampSourceOutput {
+	return o
+}
+
+func (o LogIngestConfigFieldNormalizationTimestampSourceOutput) Selector() pulumi.StringOutput {
+	return o.ApplyT(func(v LogIngestConfigFieldNormalizationTimestampSource) string { return v.Selector }).(pulumi.StringOutput)
+}
+
+type LogIngestConfigFieldNormalizationTimestampSourceArrayOutput struct{ *pulumi.OutputState }
+
+func (LogIngestConfigFieldNormalizationTimestampSourceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LogIngestConfigFieldNormalizationTimestampSource)(nil)).Elem()
+}
+
+func (o LogIngestConfigFieldNormalizationTimestampSourceArrayOutput) ToLogIngestConfigFieldNormalizationTimestampSourceArrayOutput() LogIngestConfigFieldNormalizationTimestampSourceArrayOutput {
+	return o
+}
+
+func (o LogIngestConfigFieldNormalizationTimestampSourceArrayOutput) ToLogIngestConfigFieldNormalizationTimestampSourceArrayOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationTimestampSourceArrayOutput {
+	return o
+}
+
+func (o LogIngestConfigFieldNormalizationTimestampSourceArrayOutput) Index(i pulumi.IntInput) LogIngestConfigFieldNormalizationTimestampSourceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LogIngestConfigFieldNormalizationTimestampSource {
+		return vs[0].([]LogIngestConfigFieldNormalizationTimestampSource)[vs[1].(int)]
+	}).(LogIngestConfigFieldNormalizationTimestampSourceOutput)
+}
+
+type LogIngestConfigFieldParser struct {
+	Destination *LogIngestConfigFieldParserDestination `pulumi:"destination"`
+	Mode        *string                                `pulumi:"mode"`
+	Parser      LogIngestConfigFieldParserParser       `pulumi:"parser"`
+	Source      LogIngestConfigFieldParserSource       `pulumi:"source"`
+}
+
+// LogIngestConfigFieldParserInput is an input type that accepts LogIngestConfigFieldParserArgs and LogIngestConfigFieldParserOutput values.
+// You can construct a concrete instance of `LogIngestConfigFieldParserInput` via:
+//
+//	LogIngestConfigFieldParserArgs{...}
+type LogIngestConfigFieldParserInput interface {
+	pulumi.Input
+
+	ToLogIngestConfigFieldParserOutput() LogIngestConfigFieldParserOutput
+	ToLogIngestConfigFieldParserOutputWithContext(context.Context) LogIngestConfigFieldParserOutput
+}
+
+type LogIngestConfigFieldParserArgs struct {
+	Destination LogIngestConfigFieldParserDestinationPtrInput `pulumi:"destination"`
+	Mode        pulumi.StringPtrInput                         `pulumi:"mode"`
+	Parser      LogIngestConfigFieldParserParserInput         `pulumi:"parser"`
+	Source      LogIngestConfigFieldParserSourceInput         `pulumi:"source"`
+}
+
+func (LogIngestConfigFieldParserArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogIngestConfigFieldParser)(nil)).Elem()
+}
+
+func (i LogIngestConfigFieldParserArgs) ToLogIngestConfigFieldParserOutput() LogIngestConfigFieldParserOutput {
+	return i.ToLogIngestConfigFieldParserOutputWithContext(context.Background())
+}
+
+func (i LogIngestConfigFieldParserArgs) ToLogIngestConfigFieldParserOutputWithContext(ctx context.Context) LogIngestConfigFieldParserOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogIngestConfigFieldParserOutput)
+}
+
+// LogIngestConfigFieldParserArrayInput is an input type that accepts LogIngestConfigFieldParserArray and LogIngestConfigFieldParserArrayOutput values.
+// You can construct a concrete instance of `LogIngestConfigFieldParserArrayInput` via:
+//
+//	LogIngestConfigFieldParserArray{ LogIngestConfigFieldParserArgs{...} }
+type LogIngestConfigFieldParserArrayInput interface {
+	pulumi.Input
+
+	ToLogIngestConfigFieldParserArrayOutput() LogIngestConfigFieldParserArrayOutput
+	ToLogIngestConfigFieldParserArrayOutputWithContext(context.Context) LogIngestConfigFieldParserArrayOutput
+}
+
+type LogIngestConfigFieldParserArray []LogIngestConfigFieldParserInput
+
+func (LogIngestConfigFieldParserArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LogIngestConfigFieldParser)(nil)).Elem()
+}
+
+func (i LogIngestConfigFieldParserArray) ToLogIngestConfigFieldParserArrayOutput() LogIngestConfigFieldParserArrayOutput {
+	return i.ToLogIngestConfigFieldParserArrayOutputWithContext(context.Background())
+}
+
+func (i LogIngestConfigFieldParserArray) ToLogIngestConfigFieldParserArrayOutputWithContext(ctx context.Context) LogIngestConfigFieldParserArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogIngestConfigFieldParserArrayOutput)
+}
+
+type LogIngestConfigFieldParserOutput struct{ *pulumi.OutputState }
+
+func (LogIngestConfigFieldParserOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogIngestConfigFieldParser)(nil)).Elem()
+}
+
+func (o LogIngestConfigFieldParserOutput) ToLogIngestConfigFieldParserOutput() LogIngestConfigFieldParserOutput {
+	return o
+}
+
+func (o LogIngestConfigFieldParserOutput) ToLogIngestConfigFieldParserOutputWithContext(ctx context.Context) LogIngestConfigFieldParserOutput {
+	return o
+}
+
+func (o LogIngestConfigFieldParserOutput) Destination() LogIngestConfigFieldParserDestinationPtrOutput {
+	return o.ApplyT(func(v LogIngestConfigFieldParser) *LogIngestConfigFieldParserDestination { return v.Destination }).(LogIngestConfigFieldParserDestinationPtrOutput)
+}
+
+func (o LogIngestConfigFieldParserOutput) Mode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LogIngestConfigFieldParser) *string { return v.Mode }).(pulumi.StringPtrOutput)
+}
+
+func (o LogIngestConfigFieldParserOutput) Parser() LogIngestConfigFieldParserParserOutput {
+	return o.ApplyT(func(v LogIngestConfigFieldParser) LogIngestConfigFieldParserParser { return v.Parser }).(LogIngestConfigFieldParserParserOutput)
+}
+
+func (o LogIngestConfigFieldParserOutput) Source() LogIngestConfigFieldParserSourceOutput {
+	return o.ApplyT(func(v LogIngestConfigFieldParser) LogIngestConfigFieldParserSource { return v.Source }).(LogIngestConfigFieldParserSourceOutput)
+}
+
+type LogIngestConfigFieldParserArrayOutput struct{ *pulumi.OutputState }
+
+func (LogIngestConfigFieldParserArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LogIngestConfigFieldParser)(nil)).Elem()
+}
+
+func (o LogIngestConfigFieldParserArrayOutput) ToLogIngestConfigFieldParserArrayOutput() LogIngestConfigFieldParserArrayOutput {
+	return o
+}
+
+func (o LogIngestConfigFieldParserArrayOutput) ToLogIngestConfigFieldParserArrayOutputWithContext(ctx context.Context) LogIngestConfigFieldParserArrayOutput {
+	return o
+}
+
+func (o LogIngestConfigFieldParserArrayOutput) Index(i pulumi.IntInput) LogIngestConfigFieldParserOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LogIngestConfigFieldParser {
+		return vs[0].([]LogIngestConfigFieldParser)[vs[1].(int)]
+	}).(LogIngestConfigFieldParserOutput)
+}
+
+type LogIngestConfigFieldParserDestination struct {
+	Selector string `pulumi:"selector"`
+}
+
+// LogIngestConfigFieldParserDestinationInput is an input type that accepts LogIngestConfigFieldParserDestinationArgs and LogIngestConfigFieldParserDestinationOutput values.
+// You can construct a concrete instance of `LogIngestConfigFieldParserDestinationInput` via:
+//
+//	LogIngestConfigFieldParserDestinationArgs{...}
+type LogIngestConfigFieldParserDestinationInput interface {
+	pulumi.Input
+
+	ToLogIngestConfigFieldParserDestinationOutput() LogIngestConfigFieldParserDestinationOutput
+	ToLogIngestConfigFieldParserDestinationOutputWithContext(context.Context) LogIngestConfigFieldParserDestinationOutput
+}
+
+type LogIngestConfigFieldParserDestinationArgs struct {
+	Selector pulumi.StringInput `pulumi:"selector"`
+}
+
+func (LogIngestConfigFieldParserDestinationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogIngestConfigFieldParserDestination)(nil)).Elem()
+}
+
+func (i LogIngestConfigFieldParserDestinationArgs) ToLogIngestConfigFieldParserDestinationOutput() LogIngestConfigFieldParserDestinationOutput {
+	return i.ToLogIngestConfigFieldParserDestinationOutputWithContext(context.Background())
+}
+
+func (i LogIngestConfigFieldParserDestinationArgs) ToLogIngestConfigFieldParserDestinationOutputWithContext(ctx context.Context) LogIngestConfigFieldParserDestinationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogIngestConfigFieldParserDestinationOutput)
+}
+
+func (i LogIngestConfigFieldParserDestinationArgs) ToLogIngestConfigFieldParserDestinationPtrOutput() LogIngestConfigFieldParserDestinationPtrOutput {
+	return i.ToLogIngestConfigFieldParserDestinationPtrOutputWithContext(context.Background())
+}
+
+func (i LogIngestConfigFieldParserDestinationArgs) ToLogIngestConfigFieldParserDestinationPtrOutputWithContext(ctx context.Context) LogIngestConfigFieldParserDestinationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogIngestConfigFieldParserDestinationOutput).ToLogIngestConfigFieldParserDestinationPtrOutputWithContext(ctx)
+}
+
+// LogIngestConfigFieldParserDestinationPtrInput is an input type that accepts LogIngestConfigFieldParserDestinationArgs, LogIngestConfigFieldParserDestinationPtr and LogIngestConfigFieldParserDestinationPtrOutput values.
+// You can construct a concrete instance of `LogIngestConfigFieldParserDestinationPtrInput` via:
+//
+//	        LogIngestConfigFieldParserDestinationArgs{...}
+//
+//	or:
+//
+//	        nil
+type LogIngestConfigFieldParserDestinationPtrInput interface {
+	pulumi.Input
+
+	ToLogIngestConfigFieldParserDestinationPtrOutput() LogIngestConfigFieldParserDestinationPtrOutput
+	ToLogIngestConfigFieldParserDestinationPtrOutputWithContext(context.Context) LogIngestConfigFieldParserDestinationPtrOutput
+}
+
+type logIngestConfigFieldParserDestinationPtrType LogIngestConfigFieldParserDestinationArgs
+
+func LogIngestConfigFieldParserDestinationPtr(v *LogIngestConfigFieldParserDestinationArgs) LogIngestConfigFieldParserDestinationPtrInput {
+	return (*logIngestConfigFieldParserDestinationPtrType)(v)
+}
+
+func (*logIngestConfigFieldParserDestinationPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogIngestConfigFieldParserDestination)(nil)).Elem()
+}
+
+func (i *logIngestConfigFieldParserDestinationPtrType) ToLogIngestConfigFieldParserDestinationPtrOutput() LogIngestConfigFieldParserDestinationPtrOutput {
+	return i.ToLogIngestConfigFieldParserDestinationPtrOutputWithContext(context.Background())
+}
+
+func (i *logIngestConfigFieldParserDestinationPtrType) ToLogIngestConfigFieldParserDestinationPtrOutputWithContext(ctx context.Context) LogIngestConfigFieldParserDestinationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogIngestConfigFieldParserDestinationPtrOutput)
+}
+
+type LogIngestConfigFieldParserDestinationOutput struct{ *pulumi.OutputState }
+
+func (LogIngestConfigFieldParserDestinationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogIngestConfigFieldParserDestination)(nil)).Elem()
+}
+
+func (o LogIngestConfigFieldParserDestinationOutput) ToLogIngestConfigFieldParserDestinationOutput() LogIngestConfigFieldParserDestinationOutput {
+	return o
+}
+
+func (o LogIngestConfigFieldParserDestinationOutput) ToLogIngestConfigFieldParserDestinationOutputWithContext(ctx context.Context) LogIngestConfigFieldParserDestinationOutput {
+	return o
+}
+
+func (o LogIngestConfigFieldParserDestinationOutput) ToLogIngestConfigFieldParserDestinationPtrOutput() LogIngestConfigFieldParserDestinationPtrOutput {
+	return o.ToLogIngestConfigFieldParserDestinationPtrOutputWithContext(context.Background())
+}
+
+func (o LogIngestConfigFieldParserDestinationOutput) ToLogIngestConfigFieldParserDestinationPtrOutputWithContext(ctx context.Context) LogIngestConfigFieldParserDestinationPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v LogIngestConfigFieldParserDestination) *LogIngestConfigFieldParserDestination {
+		return &v
+	}).(LogIngestConfigFieldParserDestinationPtrOutput)
+}
+
+func (o LogIngestConfigFieldParserDestinationOutput) Selector() pulumi.StringOutput {
+	return o.ApplyT(func(v LogIngestConfigFieldParserDestination) string { return v.Selector }).(pulumi.StringOutput)
+}
+
+type LogIngestConfigFieldParserDestinationPtrOutput struct{ *pulumi.OutputState }
+
+func (LogIngestConfigFieldParserDestinationPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogIngestConfigFieldParserDestination)(nil)).Elem()
+}
+
+func (o LogIngestConfigFieldParserDestinationPtrOutput) ToLogIngestConfigFieldParserDestinationPtrOutput() LogIngestConfigFieldParserDestinationPtrOutput {
+	return o
+}
+
+func (o LogIngestConfigFieldParserDestinationPtrOutput) ToLogIngestConfigFieldParserDestinationPtrOutputWithContext(ctx context.Context) LogIngestConfigFieldParserDestinationPtrOutput {
+	return o
+}
+
+func (o LogIngestConfigFieldParserDestinationPtrOutput) Elem() LogIngestConfigFieldParserDestinationOutput {
+	return o.ApplyT(func(v *LogIngestConfigFieldParserDestination) LogIngestConfigFieldParserDestination {
+		if v != nil {
+			return *v
+		}
+		var ret LogIngestConfigFieldParserDestination
+		return ret
+	}).(LogIngestConfigFieldParserDestinationOutput)
+}
+
+func (o LogIngestConfigFieldParserDestinationPtrOutput) Selector() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogIngestConfigFieldParserDestination) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Selector
+	}).(pulumi.StringPtrOutput)
+}
+
+type LogIngestConfigFieldParserParser struct {
+	KeyValueParser *LogIngestConfigFieldParserParserKeyValueParser `pulumi:"keyValueParser"`
+	ParserType     string                                          `pulumi:"parserType"`
+	RegexParser    *LogIngestConfigFieldParserParserRegexParser    `pulumi:"regexParser"`
+}
+
+// LogIngestConfigFieldParserParserInput is an input type that accepts LogIngestConfigFieldParserParserArgs and LogIngestConfigFieldParserParserOutput values.
+// You can construct a concrete instance of `LogIngestConfigFieldParserParserInput` via:
+//
+//	LogIngestConfigFieldParserParserArgs{...}
+type LogIngestConfigFieldParserParserInput interface {
+	pulumi.Input
+
+	ToLogIngestConfigFieldParserParserOutput() LogIngestConfigFieldParserParserOutput
+	ToLogIngestConfigFieldParserParserOutputWithContext(context.Context) LogIngestConfigFieldParserParserOutput
+}
+
+type LogIngestConfigFieldParserParserArgs struct {
+	KeyValueParser LogIngestConfigFieldParserParserKeyValueParserPtrInput `pulumi:"keyValueParser"`
+	ParserType     pulumi.StringInput                                     `pulumi:"parserType"`
+	RegexParser    LogIngestConfigFieldParserParserRegexParserPtrInput    `pulumi:"regexParser"`
+}
+
+func (LogIngestConfigFieldParserParserArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogIngestConfigFieldParserParser)(nil)).Elem()
+}
+
+func (i LogIngestConfigFieldParserParserArgs) ToLogIngestConfigFieldParserParserOutput() LogIngestConfigFieldParserParserOutput {
+	return i.ToLogIngestConfigFieldParserParserOutputWithContext(context.Background())
+}
+
+func (i LogIngestConfigFieldParserParserArgs) ToLogIngestConfigFieldParserParserOutputWithContext(ctx context.Context) LogIngestConfigFieldParserParserOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogIngestConfigFieldParserParserOutput)
+}
+
+type LogIngestConfigFieldParserParserOutput struct{ *pulumi.OutputState }
+
+func (LogIngestConfigFieldParserParserOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogIngestConfigFieldParserParser)(nil)).Elem()
+}
+
+func (o LogIngestConfigFieldParserParserOutput) ToLogIngestConfigFieldParserParserOutput() LogIngestConfigFieldParserParserOutput {
+	return o
+}
+
+func (o LogIngestConfigFieldParserParserOutput) ToLogIngestConfigFieldParserParserOutputWithContext(ctx context.Context) LogIngestConfigFieldParserParserOutput {
+	return o
+}
+
+func (o LogIngestConfigFieldParserParserOutput) KeyValueParser() LogIngestConfigFieldParserParserKeyValueParserPtrOutput {
+	return o.ApplyT(func(v LogIngestConfigFieldParserParser) *LogIngestConfigFieldParserParserKeyValueParser {
+		return v.KeyValueParser
+	}).(LogIngestConfigFieldParserParserKeyValueParserPtrOutput)
+}
+
+func (o LogIngestConfigFieldParserParserOutput) ParserType() pulumi.StringOutput {
+	return o.ApplyT(func(v LogIngestConfigFieldParserParser) string { return v.ParserType }).(pulumi.StringOutput)
+}
+
+func (o LogIngestConfigFieldParserParserOutput) RegexParser() LogIngestConfigFieldParserParserRegexParserPtrOutput {
+	return o.ApplyT(func(v LogIngestConfigFieldParserParser) *LogIngestConfigFieldParserParserRegexParser {
+		return v.RegexParser
+	}).(LogIngestConfigFieldParserParserRegexParserPtrOutput)
+}
+
+type LogIngestConfigFieldParserParserKeyValueParser struct {
+	Delimiter     string  `pulumi:"delimiter"`
+	PairSeparator string  `pulumi:"pairSeparator"`
+	TrimSet       *string `pulumi:"trimSet"`
+}
+
+// LogIngestConfigFieldParserParserKeyValueParserInput is an input type that accepts LogIngestConfigFieldParserParserKeyValueParserArgs and LogIngestConfigFieldParserParserKeyValueParserOutput values.
+// You can construct a concrete instance of `LogIngestConfigFieldParserParserKeyValueParserInput` via:
+//
+//	LogIngestConfigFieldParserParserKeyValueParserArgs{...}
+type LogIngestConfigFieldParserParserKeyValueParserInput interface {
+	pulumi.Input
+
+	ToLogIngestConfigFieldParserParserKeyValueParserOutput() LogIngestConfigFieldParserParserKeyValueParserOutput
+	ToLogIngestConfigFieldParserParserKeyValueParserOutputWithContext(context.Context) LogIngestConfigFieldParserParserKeyValueParserOutput
+}
+
+type LogIngestConfigFieldParserParserKeyValueParserArgs struct {
+	Delimiter     pulumi.StringInput    `pulumi:"delimiter"`
+	PairSeparator pulumi.StringInput    `pulumi:"pairSeparator"`
+	TrimSet       pulumi.StringPtrInput `pulumi:"trimSet"`
+}
+
+func (LogIngestConfigFieldParserParserKeyValueParserArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogIngestConfigFieldParserParserKeyValueParser)(nil)).Elem()
+}
+
+func (i LogIngestConfigFieldParserParserKeyValueParserArgs) ToLogIngestConfigFieldParserParserKeyValueParserOutput() LogIngestConfigFieldParserParserKeyValueParserOutput {
+	return i.ToLogIngestConfigFieldParserParserKeyValueParserOutputWithContext(context.Background())
+}
+
+func (i LogIngestConfigFieldParserParserKeyValueParserArgs) ToLogIngestConfigFieldParserParserKeyValueParserOutputWithContext(ctx context.Context) LogIngestConfigFieldParserParserKeyValueParserOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogIngestConfigFieldParserParserKeyValueParserOutput)
+}
+
+func (i LogIngestConfigFieldParserParserKeyValueParserArgs) ToLogIngestConfigFieldParserParserKeyValueParserPtrOutput() LogIngestConfigFieldParserParserKeyValueParserPtrOutput {
+	return i.ToLogIngestConfigFieldParserParserKeyValueParserPtrOutputWithContext(context.Background())
+}
+
+func (i LogIngestConfigFieldParserParserKeyValueParserArgs) ToLogIngestConfigFieldParserParserKeyValueParserPtrOutputWithContext(ctx context.Context) LogIngestConfigFieldParserParserKeyValueParserPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogIngestConfigFieldParserParserKeyValueParserOutput).ToLogIngestConfigFieldParserParserKeyValueParserPtrOutputWithContext(ctx)
+}
+
+// LogIngestConfigFieldParserParserKeyValueParserPtrInput is an input type that accepts LogIngestConfigFieldParserParserKeyValueParserArgs, LogIngestConfigFieldParserParserKeyValueParserPtr and LogIngestConfigFieldParserParserKeyValueParserPtrOutput values.
+// You can construct a concrete instance of `LogIngestConfigFieldParserParserKeyValueParserPtrInput` via:
+//
+//	        LogIngestConfigFieldParserParserKeyValueParserArgs{...}
+//
+//	or:
+//
+//	        nil
+type LogIngestConfigFieldParserParserKeyValueParserPtrInput interface {
+	pulumi.Input
+
+	ToLogIngestConfigFieldParserParserKeyValueParserPtrOutput() LogIngestConfigFieldParserParserKeyValueParserPtrOutput
+	ToLogIngestConfigFieldParserParserKeyValueParserPtrOutputWithContext(context.Context) LogIngestConfigFieldParserParserKeyValueParserPtrOutput
+}
+
+type logIngestConfigFieldParserParserKeyValueParserPtrType LogIngestConfigFieldParserParserKeyValueParserArgs
+
+func LogIngestConfigFieldParserParserKeyValueParserPtr(v *LogIngestConfigFieldParserParserKeyValueParserArgs) LogIngestConfigFieldParserParserKeyValueParserPtrInput {
+	return (*logIngestConfigFieldParserParserKeyValueParserPtrType)(v)
+}
+
+func (*logIngestConfigFieldParserParserKeyValueParserPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogIngestConfigFieldParserParserKeyValueParser)(nil)).Elem()
+}
+
+func (i *logIngestConfigFieldParserParserKeyValueParserPtrType) ToLogIngestConfigFieldParserParserKeyValueParserPtrOutput() LogIngestConfigFieldParserParserKeyValueParserPtrOutput {
+	return i.ToLogIngestConfigFieldParserParserKeyValueParserPtrOutputWithContext(context.Background())
+}
+
+func (i *logIngestConfigFieldParserParserKeyValueParserPtrType) ToLogIngestConfigFieldParserParserKeyValueParserPtrOutputWithContext(ctx context.Context) LogIngestConfigFieldParserParserKeyValueParserPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogIngestConfigFieldParserParserKeyValueParserPtrOutput)
+}
+
+type LogIngestConfigFieldParserParserKeyValueParserOutput struct{ *pulumi.OutputState }
+
+func (LogIngestConfigFieldParserParserKeyValueParserOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogIngestConfigFieldParserParserKeyValueParser)(nil)).Elem()
+}
+
+func (o LogIngestConfigFieldParserParserKeyValueParserOutput) ToLogIngestConfigFieldParserParserKeyValueParserOutput() LogIngestConfigFieldParserParserKeyValueParserOutput {
+	return o
+}
+
+func (o LogIngestConfigFieldParserParserKeyValueParserOutput) ToLogIngestConfigFieldParserParserKeyValueParserOutputWithContext(ctx context.Context) LogIngestConfigFieldParserParserKeyValueParserOutput {
+	return o
+}
+
+func (o LogIngestConfigFieldParserParserKeyValueParserOutput) ToLogIngestConfigFieldParserParserKeyValueParserPtrOutput() LogIngestConfigFieldParserParserKeyValueParserPtrOutput {
+	return o.ToLogIngestConfigFieldParserParserKeyValueParserPtrOutputWithContext(context.Background())
+}
+
+func (o LogIngestConfigFieldParserParserKeyValueParserOutput) ToLogIngestConfigFieldParserParserKeyValueParserPtrOutputWithContext(ctx context.Context) LogIngestConfigFieldParserParserKeyValueParserPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v LogIngestConfigFieldParserParserKeyValueParser) *LogIngestConfigFieldParserParserKeyValueParser {
+		return &v
+	}).(LogIngestConfigFieldParserParserKeyValueParserPtrOutput)
+}
+
+func (o LogIngestConfigFieldParserParserKeyValueParserOutput) Delimiter() pulumi.StringOutput {
+	return o.ApplyT(func(v LogIngestConfigFieldParserParserKeyValueParser) string { return v.Delimiter }).(pulumi.StringOutput)
+}
+
+func (o LogIngestConfigFieldParserParserKeyValueParserOutput) PairSeparator() pulumi.StringOutput {
+	return o.ApplyT(func(v LogIngestConfigFieldParserParserKeyValueParser) string { return v.PairSeparator }).(pulumi.StringOutput)
+}
+
+func (o LogIngestConfigFieldParserParserKeyValueParserOutput) TrimSet() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LogIngestConfigFieldParserParserKeyValueParser) *string { return v.TrimSet }).(pulumi.StringPtrOutput)
+}
+
+type LogIngestConfigFieldParserParserKeyValueParserPtrOutput struct{ *pulumi.OutputState }
+
+func (LogIngestConfigFieldParserParserKeyValueParserPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogIngestConfigFieldParserParserKeyValueParser)(nil)).Elem()
+}
+
+func (o LogIngestConfigFieldParserParserKeyValueParserPtrOutput) ToLogIngestConfigFieldParserParserKeyValueParserPtrOutput() LogIngestConfigFieldParserParserKeyValueParserPtrOutput {
+	return o
+}
+
+func (o LogIngestConfigFieldParserParserKeyValueParserPtrOutput) ToLogIngestConfigFieldParserParserKeyValueParserPtrOutputWithContext(ctx context.Context) LogIngestConfigFieldParserParserKeyValueParserPtrOutput {
+	return o
+}
+
+func (o LogIngestConfigFieldParserParserKeyValueParserPtrOutput) Elem() LogIngestConfigFieldParserParserKeyValueParserOutput {
+	return o.ApplyT(func(v *LogIngestConfigFieldParserParserKeyValueParser) LogIngestConfigFieldParserParserKeyValueParser {
+		if v != nil {
+			return *v
+		}
+		var ret LogIngestConfigFieldParserParserKeyValueParser
+		return ret
+	}).(LogIngestConfigFieldParserParserKeyValueParserOutput)
+}
+
+func (o LogIngestConfigFieldParserParserKeyValueParserPtrOutput) Delimiter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogIngestConfigFieldParserParserKeyValueParser) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Delimiter
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o LogIngestConfigFieldParserParserKeyValueParserPtrOutput) PairSeparator() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogIngestConfigFieldParserParserKeyValueParser) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.PairSeparator
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o LogIngestConfigFieldParserParserKeyValueParserPtrOutput) TrimSet() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogIngestConfigFieldParserParserKeyValueParser) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TrimSet
+	}).(pulumi.StringPtrOutput)
+}
+
+type LogIngestConfigFieldParserParserRegexParser struct {
 	Regex string `pulumi:"regex"`
 }
 
-// LogIngestConfigParserInput is an input type that accepts LogIngestConfigParserArgs and LogIngestConfigParserOutput values.
-// You can construct a concrete instance of `LogIngestConfigParserInput` via:
+// LogIngestConfigFieldParserParserRegexParserInput is an input type that accepts LogIngestConfigFieldParserParserRegexParserArgs and LogIngestConfigFieldParserParserRegexParserOutput values.
+// You can construct a concrete instance of `LogIngestConfigFieldParserParserRegexParserInput` via:
 //
-//	LogIngestConfigParserArgs{...}
-type LogIngestConfigParserInput interface {
+//	LogIngestConfigFieldParserParserRegexParserArgs{...}
+type LogIngestConfigFieldParserParserRegexParserInput interface {
 	pulumi.Input
 
-	ToLogIngestConfigParserOutput() LogIngestConfigParserOutput
-	ToLogIngestConfigParserOutputWithContext(context.Context) LogIngestConfigParserOutput
+	ToLogIngestConfigFieldParserParserRegexParserOutput() LogIngestConfigFieldParserParserRegexParserOutput
+	ToLogIngestConfigFieldParserParserRegexParserOutputWithContext(context.Context) LogIngestConfigFieldParserParserRegexParserOutput
 }
 
-type LogIngestConfigParserArgs struct {
-	Name  pulumi.StringInput `pulumi:"name"`
+type LogIngestConfigFieldParserParserRegexParserArgs struct {
 	Regex pulumi.StringInput `pulumi:"regex"`
 }
 
-func (LogIngestConfigParserArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*LogIngestConfigParser)(nil)).Elem()
+func (LogIngestConfigFieldParserParserRegexParserArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogIngestConfigFieldParserParserRegexParser)(nil)).Elem()
 }
 
-func (i LogIngestConfigParserArgs) ToLogIngestConfigParserOutput() LogIngestConfigParserOutput {
-	return i.ToLogIngestConfigParserOutputWithContext(context.Background())
+func (i LogIngestConfigFieldParserParserRegexParserArgs) ToLogIngestConfigFieldParserParserRegexParserOutput() LogIngestConfigFieldParserParserRegexParserOutput {
+	return i.ToLogIngestConfigFieldParserParserRegexParserOutputWithContext(context.Background())
 }
 
-func (i LogIngestConfigParserArgs) ToLogIngestConfigParserOutputWithContext(ctx context.Context) LogIngestConfigParserOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LogIngestConfigParserOutput)
+func (i LogIngestConfigFieldParserParserRegexParserArgs) ToLogIngestConfigFieldParserParserRegexParserOutputWithContext(ctx context.Context) LogIngestConfigFieldParserParserRegexParserOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogIngestConfigFieldParserParserRegexParserOutput)
 }
 
-// LogIngestConfigParserArrayInput is an input type that accepts LogIngestConfigParserArray and LogIngestConfigParserArrayOutput values.
-// You can construct a concrete instance of `LogIngestConfigParserArrayInput` via:
+func (i LogIngestConfigFieldParserParserRegexParserArgs) ToLogIngestConfigFieldParserParserRegexParserPtrOutput() LogIngestConfigFieldParserParserRegexParserPtrOutput {
+	return i.ToLogIngestConfigFieldParserParserRegexParserPtrOutputWithContext(context.Background())
+}
+
+func (i LogIngestConfigFieldParserParserRegexParserArgs) ToLogIngestConfigFieldParserParserRegexParserPtrOutputWithContext(ctx context.Context) LogIngestConfigFieldParserParserRegexParserPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogIngestConfigFieldParserParserRegexParserOutput).ToLogIngestConfigFieldParserParserRegexParserPtrOutputWithContext(ctx)
+}
+
+// LogIngestConfigFieldParserParserRegexParserPtrInput is an input type that accepts LogIngestConfigFieldParserParserRegexParserArgs, LogIngestConfigFieldParserParserRegexParserPtr and LogIngestConfigFieldParserParserRegexParserPtrOutput values.
+// You can construct a concrete instance of `LogIngestConfigFieldParserParserRegexParserPtrInput` via:
 //
-//	LogIngestConfigParserArray{ LogIngestConfigParserArgs{...} }
-type LogIngestConfigParserArrayInput interface {
+//	        LogIngestConfigFieldParserParserRegexParserArgs{...}
+//
+//	or:
+//
+//	        nil
+type LogIngestConfigFieldParserParserRegexParserPtrInput interface {
 	pulumi.Input
 
-	ToLogIngestConfigParserArrayOutput() LogIngestConfigParserArrayOutput
-	ToLogIngestConfigParserArrayOutputWithContext(context.Context) LogIngestConfigParserArrayOutput
+	ToLogIngestConfigFieldParserParserRegexParserPtrOutput() LogIngestConfigFieldParserParserRegexParserPtrOutput
+	ToLogIngestConfigFieldParserParserRegexParserPtrOutputWithContext(context.Context) LogIngestConfigFieldParserParserRegexParserPtrOutput
 }
 
-type LogIngestConfigParserArray []LogIngestConfigParserInput
+type logIngestConfigFieldParserParserRegexParserPtrType LogIngestConfigFieldParserParserRegexParserArgs
 
-func (LogIngestConfigParserArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]LogIngestConfigParser)(nil)).Elem()
+func LogIngestConfigFieldParserParserRegexParserPtr(v *LogIngestConfigFieldParserParserRegexParserArgs) LogIngestConfigFieldParserParserRegexParserPtrInput {
+	return (*logIngestConfigFieldParserParserRegexParserPtrType)(v)
 }
 
-func (i LogIngestConfigParserArray) ToLogIngestConfigParserArrayOutput() LogIngestConfigParserArrayOutput {
-	return i.ToLogIngestConfigParserArrayOutputWithContext(context.Background())
+func (*logIngestConfigFieldParserParserRegexParserPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogIngestConfigFieldParserParserRegexParser)(nil)).Elem()
 }
 
-func (i LogIngestConfigParserArray) ToLogIngestConfigParserArrayOutputWithContext(ctx context.Context) LogIngestConfigParserArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LogIngestConfigParserArrayOutput)
+func (i *logIngestConfigFieldParserParserRegexParserPtrType) ToLogIngestConfigFieldParserParserRegexParserPtrOutput() LogIngestConfigFieldParserParserRegexParserPtrOutput {
+	return i.ToLogIngestConfigFieldParserParserRegexParserPtrOutputWithContext(context.Background())
 }
 
-type LogIngestConfigParserOutput struct{ *pulumi.OutputState }
-
-func (LogIngestConfigParserOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LogIngestConfigParser)(nil)).Elem()
+func (i *logIngestConfigFieldParserParserRegexParserPtrType) ToLogIngestConfigFieldParserParserRegexParserPtrOutputWithContext(ctx context.Context) LogIngestConfigFieldParserParserRegexParserPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogIngestConfigFieldParserParserRegexParserPtrOutput)
 }
 
-func (o LogIngestConfigParserOutput) ToLogIngestConfigParserOutput() LogIngestConfigParserOutput {
+type LogIngestConfigFieldParserParserRegexParserOutput struct{ *pulumi.OutputState }
+
+func (LogIngestConfigFieldParserParserRegexParserOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogIngestConfigFieldParserParserRegexParser)(nil)).Elem()
+}
+
+func (o LogIngestConfigFieldParserParserRegexParserOutput) ToLogIngestConfigFieldParserParserRegexParserOutput() LogIngestConfigFieldParserParserRegexParserOutput {
 	return o
 }
 
-func (o LogIngestConfigParserOutput) ToLogIngestConfigParserOutputWithContext(ctx context.Context) LogIngestConfigParserOutput {
+func (o LogIngestConfigFieldParserParserRegexParserOutput) ToLogIngestConfigFieldParserParserRegexParserOutputWithContext(ctx context.Context) LogIngestConfigFieldParserParserRegexParserOutput {
 	return o
 }
 
-func (o LogIngestConfigParserOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v LogIngestConfigParser) string { return v.Name }).(pulumi.StringOutput)
+func (o LogIngestConfigFieldParserParserRegexParserOutput) ToLogIngestConfigFieldParserParserRegexParserPtrOutput() LogIngestConfigFieldParserParserRegexParserPtrOutput {
+	return o.ToLogIngestConfigFieldParserParserRegexParserPtrOutputWithContext(context.Background())
 }
 
-func (o LogIngestConfigParserOutput) Regex() pulumi.StringOutput {
-	return o.ApplyT(func(v LogIngestConfigParser) string { return v.Regex }).(pulumi.StringOutput)
+func (o LogIngestConfigFieldParserParserRegexParserOutput) ToLogIngestConfigFieldParserParserRegexParserPtrOutputWithContext(ctx context.Context) LogIngestConfigFieldParserParserRegexParserPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v LogIngestConfigFieldParserParserRegexParser) *LogIngestConfigFieldParserParserRegexParser {
+		return &v
+	}).(LogIngestConfigFieldParserParserRegexParserPtrOutput)
 }
 
-type LogIngestConfigParserArrayOutput struct{ *pulumi.OutputState }
-
-func (LogIngestConfigParserArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]LogIngestConfigParser)(nil)).Elem()
+func (o LogIngestConfigFieldParserParserRegexParserOutput) Regex() pulumi.StringOutput {
+	return o.ApplyT(func(v LogIngestConfigFieldParserParserRegexParser) string { return v.Regex }).(pulumi.StringOutput)
 }
 
-func (o LogIngestConfigParserArrayOutput) ToLogIngestConfigParserArrayOutput() LogIngestConfigParserArrayOutput {
+type LogIngestConfigFieldParserParserRegexParserPtrOutput struct{ *pulumi.OutputState }
+
+func (LogIngestConfigFieldParserParserRegexParserPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogIngestConfigFieldParserParserRegexParser)(nil)).Elem()
+}
+
+func (o LogIngestConfigFieldParserParserRegexParserPtrOutput) ToLogIngestConfigFieldParserParserRegexParserPtrOutput() LogIngestConfigFieldParserParserRegexParserPtrOutput {
 	return o
 }
 
-func (o LogIngestConfigParserArrayOutput) ToLogIngestConfigParserArrayOutputWithContext(ctx context.Context) LogIngestConfigParserArrayOutput {
+func (o LogIngestConfigFieldParserParserRegexParserPtrOutput) ToLogIngestConfigFieldParserParserRegexParserPtrOutputWithContext(ctx context.Context) LogIngestConfigFieldParserParserRegexParserPtrOutput {
 	return o
 }
 
-func (o LogIngestConfigParserArrayOutput) Index(i pulumi.IntInput) LogIngestConfigParserOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LogIngestConfigParser {
-		return vs[0].([]LogIngestConfigParser)[vs[1].(int)]
-	}).(LogIngestConfigParserOutput)
+func (o LogIngestConfigFieldParserParserRegexParserPtrOutput) Elem() LogIngestConfigFieldParserParserRegexParserOutput {
+	return o.ApplyT(func(v *LogIngestConfigFieldParserParserRegexParser) LogIngestConfigFieldParserParserRegexParser {
+		if v != nil {
+			return *v
+		}
+		var ret LogIngestConfigFieldParserParserRegexParser
+		return ret
+	}).(LogIngestConfigFieldParserParserRegexParserOutput)
+}
+
+func (o LogIngestConfigFieldParserParserRegexParserPtrOutput) Regex() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogIngestConfigFieldParserParserRegexParser) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Regex
+	}).(pulumi.StringPtrOutput)
+}
+
+type LogIngestConfigFieldParserSource struct {
+	Selector string `pulumi:"selector"`
+}
+
+// LogIngestConfigFieldParserSourceInput is an input type that accepts LogIngestConfigFieldParserSourceArgs and LogIngestConfigFieldParserSourceOutput values.
+// You can construct a concrete instance of `LogIngestConfigFieldParserSourceInput` via:
+//
+//	LogIngestConfigFieldParserSourceArgs{...}
+type LogIngestConfigFieldParserSourceInput interface {
+	pulumi.Input
+
+	ToLogIngestConfigFieldParserSourceOutput() LogIngestConfigFieldParserSourceOutput
+	ToLogIngestConfigFieldParserSourceOutputWithContext(context.Context) LogIngestConfigFieldParserSourceOutput
+}
+
+type LogIngestConfigFieldParserSourceArgs struct {
+	Selector pulumi.StringInput `pulumi:"selector"`
+}
+
+func (LogIngestConfigFieldParserSourceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogIngestConfigFieldParserSource)(nil)).Elem()
+}
+
+func (i LogIngestConfigFieldParserSourceArgs) ToLogIngestConfigFieldParserSourceOutput() LogIngestConfigFieldParserSourceOutput {
+	return i.ToLogIngestConfigFieldParserSourceOutputWithContext(context.Background())
+}
+
+func (i LogIngestConfigFieldParserSourceArgs) ToLogIngestConfigFieldParserSourceOutputWithContext(ctx context.Context) LogIngestConfigFieldParserSourceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogIngestConfigFieldParserSourceOutput)
+}
+
+type LogIngestConfigFieldParserSourceOutput struct{ *pulumi.OutputState }
+
+func (LogIngestConfigFieldParserSourceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogIngestConfigFieldParserSource)(nil)).Elem()
+}
+
+func (o LogIngestConfigFieldParserSourceOutput) ToLogIngestConfigFieldParserSourceOutput() LogIngestConfigFieldParserSourceOutput {
+	return o
+}
+
+func (o LogIngestConfigFieldParserSourceOutput) ToLogIngestConfigFieldParserSourceOutputWithContext(ctx context.Context) LogIngestConfigFieldParserSourceOutput {
+	return o
+}
+
+func (o LogIngestConfigFieldParserSourceOutput) Selector() pulumi.StringOutput {
+	return o.ApplyT(func(v LogIngestConfigFieldParserSource) string { return v.Selector }).(pulumi.StringOutput)
+}
+
+type LogIngestConfigPlaintextParser struct {
+	KeepOriginal *bool                                `pulumi:"keepOriginal"`
+	Mode         *string                              `pulumi:"mode"`
+	Name         string                               `pulumi:"name"`
+	Parser       LogIngestConfigPlaintextParserParser `pulumi:"parser"`
+}
+
+// LogIngestConfigPlaintextParserInput is an input type that accepts LogIngestConfigPlaintextParserArgs and LogIngestConfigPlaintextParserOutput values.
+// You can construct a concrete instance of `LogIngestConfigPlaintextParserInput` via:
+//
+//	LogIngestConfigPlaintextParserArgs{...}
+type LogIngestConfigPlaintextParserInput interface {
+	pulumi.Input
+
+	ToLogIngestConfigPlaintextParserOutput() LogIngestConfigPlaintextParserOutput
+	ToLogIngestConfigPlaintextParserOutputWithContext(context.Context) LogIngestConfigPlaintextParserOutput
+}
+
+type LogIngestConfigPlaintextParserArgs struct {
+	KeepOriginal pulumi.BoolPtrInput                       `pulumi:"keepOriginal"`
+	Mode         pulumi.StringPtrInput                     `pulumi:"mode"`
+	Name         pulumi.StringInput                        `pulumi:"name"`
+	Parser       LogIngestConfigPlaintextParserParserInput `pulumi:"parser"`
+}
+
+func (LogIngestConfigPlaintextParserArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogIngestConfigPlaintextParser)(nil)).Elem()
+}
+
+func (i LogIngestConfigPlaintextParserArgs) ToLogIngestConfigPlaintextParserOutput() LogIngestConfigPlaintextParserOutput {
+	return i.ToLogIngestConfigPlaintextParserOutputWithContext(context.Background())
+}
+
+func (i LogIngestConfigPlaintextParserArgs) ToLogIngestConfigPlaintextParserOutputWithContext(ctx context.Context) LogIngestConfigPlaintextParserOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogIngestConfigPlaintextParserOutput)
+}
+
+// LogIngestConfigPlaintextParserArrayInput is an input type that accepts LogIngestConfigPlaintextParserArray and LogIngestConfigPlaintextParserArrayOutput values.
+// You can construct a concrete instance of `LogIngestConfigPlaintextParserArrayInput` via:
+//
+//	LogIngestConfigPlaintextParserArray{ LogIngestConfigPlaintextParserArgs{...} }
+type LogIngestConfigPlaintextParserArrayInput interface {
+	pulumi.Input
+
+	ToLogIngestConfigPlaintextParserArrayOutput() LogIngestConfigPlaintextParserArrayOutput
+	ToLogIngestConfigPlaintextParserArrayOutputWithContext(context.Context) LogIngestConfigPlaintextParserArrayOutput
+}
+
+type LogIngestConfigPlaintextParserArray []LogIngestConfigPlaintextParserInput
+
+func (LogIngestConfigPlaintextParserArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LogIngestConfigPlaintextParser)(nil)).Elem()
+}
+
+func (i LogIngestConfigPlaintextParserArray) ToLogIngestConfigPlaintextParserArrayOutput() LogIngestConfigPlaintextParserArrayOutput {
+	return i.ToLogIngestConfigPlaintextParserArrayOutputWithContext(context.Background())
+}
+
+func (i LogIngestConfigPlaintextParserArray) ToLogIngestConfigPlaintextParserArrayOutputWithContext(ctx context.Context) LogIngestConfigPlaintextParserArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogIngestConfigPlaintextParserArrayOutput)
+}
+
+type LogIngestConfigPlaintextParserOutput struct{ *pulumi.OutputState }
+
+func (LogIngestConfigPlaintextParserOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogIngestConfigPlaintextParser)(nil)).Elem()
+}
+
+func (o LogIngestConfigPlaintextParserOutput) ToLogIngestConfigPlaintextParserOutput() LogIngestConfigPlaintextParserOutput {
+	return o
+}
+
+func (o LogIngestConfigPlaintextParserOutput) ToLogIngestConfigPlaintextParserOutputWithContext(ctx context.Context) LogIngestConfigPlaintextParserOutput {
+	return o
+}
+
+func (o LogIngestConfigPlaintextParserOutput) KeepOriginal() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v LogIngestConfigPlaintextParser) *bool { return v.KeepOriginal }).(pulumi.BoolPtrOutput)
+}
+
+func (o LogIngestConfigPlaintextParserOutput) Mode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LogIngestConfigPlaintextParser) *string { return v.Mode }).(pulumi.StringPtrOutput)
+}
+
+func (o LogIngestConfigPlaintextParserOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LogIngestConfigPlaintextParser) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o LogIngestConfigPlaintextParserOutput) Parser() LogIngestConfigPlaintextParserParserOutput {
+	return o.ApplyT(func(v LogIngestConfigPlaintextParser) LogIngestConfigPlaintextParserParser { return v.Parser }).(LogIngestConfigPlaintextParserParserOutput)
+}
+
+type LogIngestConfigPlaintextParserArrayOutput struct{ *pulumi.OutputState }
+
+func (LogIngestConfigPlaintextParserArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LogIngestConfigPlaintextParser)(nil)).Elem()
+}
+
+func (o LogIngestConfigPlaintextParserArrayOutput) ToLogIngestConfigPlaintextParserArrayOutput() LogIngestConfigPlaintextParserArrayOutput {
+	return o
+}
+
+func (o LogIngestConfigPlaintextParserArrayOutput) ToLogIngestConfigPlaintextParserArrayOutputWithContext(ctx context.Context) LogIngestConfigPlaintextParserArrayOutput {
+	return o
+}
+
+func (o LogIngestConfigPlaintextParserArrayOutput) Index(i pulumi.IntInput) LogIngestConfigPlaintextParserOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LogIngestConfigPlaintextParser {
+		return vs[0].([]LogIngestConfigPlaintextParser)[vs[1].(int)]
+	}).(LogIngestConfigPlaintextParserOutput)
+}
+
+type LogIngestConfigPlaintextParserParser struct {
+	KeyValueParser *LogIngestConfigPlaintextParserParserKeyValueParser `pulumi:"keyValueParser"`
+	ParserType     string                                              `pulumi:"parserType"`
+	RegexParser    *LogIngestConfigPlaintextParserParserRegexParser    `pulumi:"regexParser"`
+}
+
+// LogIngestConfigPlaintextParserParserInput is an input type that accepts LogIngestConfigPlaintextParserParserArgs and LogIngestConfigPlaintextParserParserOutput values.
+// You can construct a concrete instance of `LogIngestConfigPlaintextParserParserInput` via:
+//
+//	LogIngestConfigPlaintextParserParserArgs{...}
+type LogIngestConfigPlaintextParserParserInput interface {
+	pulumi.Input
+
+	ToLogIngestConfigPlaintextParserParserOutput() LogIngestConfigPlaintextParserParserOutput
+	ToLogIngestConfigPlaintextParserParserOutputWithContext(context.Context) LogIngestConfigPlaintextParserParserOutput
+}
+
+type LogIngestConfigPlaintextParserParserArgs struct {
+	KeyValueParser LogIngestConfigPlaintextParserParserKeyValueParserPtrInput `pulumi:"keyValueParser"`
+	ParserType     pulumi.StringInput                                         `pulumi:"parserType"`
+	RegexParser    LogIngestConfigPlaintextParserParserRegexParserPtrInput    `pulumi:"regexParser"`
+}
+
+func (LogIngestConfigPlaintextParserParserArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogIngestConfigPlaintextParserParser)(nil)).Elem()
+}
+
+func (i LogIngestConfigPlaintextParserParserArgs) ToLogIngestConfigPlaintextParserParserOutput() LogIngestConfigPlaintextParserParserOutput {
+	return i.ToLogIngestConfigPlaintextParserParserOutputWithContext(context.Background())
+}
+
+func (i LogIngestConfigPlaintextParserParserArgs) ToLogIngestConfigPlaintextParserParserOutputWithContext(ctx context.Context) LogIngestConfigPlaintextParserParserOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogIngestConfigPlaintextParserParserOutput)
+}
+
+type LogIngestConfigPlaintextParserParserOutput struct{ *pulumi.OutputState }
+
+func (LogIngestConfigPlaintextParserParserOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogIngestConfigPlaintextParserParser)(nil)).Elem()
+}
+
+func (o LogIngestConfigPlaintextParserParserOutput) ToLogIngestConfigPlaintextParserParserOutput() LogIngestConfigPlaintextParserParserOutput {
+	return o
+}
+
+func (o LogIngestConfigPlaintextParserParserOutput) ToLogIngestConfigPlaintextParserParserOutputWithContext(ctx context.Context) LogIngestConfigPlaintextParserParserOutput {
+	return o
+}
+
+func (o LogIngestConfigPlaintextParserParserOutput) KeyValueParser() LogIngestConfigPlaintextParserParserKeyValueParserPtrOutput {
+	return o.ApplyT(func(v LogIngestConfigPlaintextParserParser) *LogIngestConfigPlaintextParserParserKeyValueParser {
+		return v.KeyValueParser
+	}).(LogIngestConfigPlaintextParserParserKeyValueParserPtrOutput)
+}
+
+func (o LogIngestConfigPlaintextParserParserOutput) ParserType() pulumi.StringOutput {
+	return o.ApplyT(func(v LogIngestConfigPlaintextParserParser) string { return v.ParserType }).(pulumi.StringOutput)
+}
+
+func (o LogIngestConfigPlaintextParserParserOutput) RegexParser() LogIngestConfigPlaintextParserParserRegexParserPtrOutput {
+	return o.ApplyT(func(v LogIngestConfigPlaintextParserParser) *LogIngestConfigPlaintextParserParserRegexParser {
+		return v.RegexParser
+	}).(LogIngestConfigPlaintextParserParserRegexParserPtrOutput)
+}
+
+type LogIngestConfigPlaintextParserParserKeyValueParser struct {
+	Delimiter     string  `pulumi:"delimiter"`
+	PairSeparator string  `pulumi:"pairSeparator"`
+	TrimSet       *string `pulumi:"trimSet"`
+}
+
+// LogIngestConfigPlaintextParserParserKeyValueParserInput is an input type that accepts LogIngestConfigPlaintextParserParserKeyValueParserArgs and LogIngestConfigPlaintextParserParserKeyValueParserOutput values.
+// You can construct a concrete instance of `LogIngestConfigPlaintextParserParserKeyValueParserInput` via:
+//
+//	LogIngestConfigPlaintextParserParserKeyValueParserArgs{...}
+type LogIngestConfigPlaintextParserParserKeyValueParserInput interface {
+	pulumi.Input
+
+	ToLogIngestConfigPlaintextParserParserKeyValueParserOutput() LogIngestConfigPlaintextParserParserKeyValueParserOutput
+	ToLogIngestConfigPlaintextParserParserKeyValueParserOutputWithContext(context.Context) LogIngestConfigPlaintextParserParserKeyValueParserOutput
+}
+
+type LogIngestConfigPlaintextParserParserKeyValueParserArgs struct {
+	Delimiter     pulumi.StringInput    `pulumi:"delimiter"`
+	PairSeparator pulumi.StringInput    `pulumi:"pairSeparator"`
+	TrimSet       pulumi.StringPtrInput `pulumi:"trimSet"`
+}
+
+func (LogIngestConfigPlaintextParserParserKeyValueParserArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogIngestConfigPlaintextParserParserKeyValueParser)(nil)).Elem()
+}
+
+func (i LogIngestConfigPlaintextParserParserKeyValueParserArgs) ToLogIngestConfigPlaintextParserParserKeyValueParserOutput() LogIngestConfigPlaintextParserParserKeyValueParserOutput {
+	return i.ToLogIngestConfigPlaintextParserParserKeyValueParserOutputWithContext(context.Background())
+}
+
+func (i LogIngestConfigPlaintextParserParserKeyValueParserArgs) ToLogIngestConfigPlaintextParserParserKeyValueParserOutputWithContext(ctx context.Context) LogIngestConfigPlaintextParserParserKeyValueParserOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogIngestConfigPlaintextParserParserKeyValueParserOutput)
+}
+
+func (i LogIngestConfigPlaintextParserParserKeyValueParserArgs) ToLogIngestConfigPlaintextParserParserKeyValueParserPtrOutput() LogIngestConfigPlaintextParserParserKeyValueParserPtrOutput {
+	return i.ToLogIngestConfigPlaintextParserParserKeyValueParserPtrOutputWithContext(context.Background())
+}
+
+func (i LogIngestConfigPlaintextParserParserKeyValueParserArgs) ToLogIngestConfigPlaintextParserParserKeyValueParserPtrOutputWithContext(ctx context.Context) LogIngestConfigPlaintextParserParserKeyValueParserPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogIngestConfigPlaintextParserParserKeyValueParserOutput).ToLogIngestConfigPlaintextParserParserKeyValueParserPtrOutputWithContext(ctx)
+}
+
+// LogIngestConfigPlaintextParserParserKeyValueParserPtrInput is an input type that accepts LogIngestConfigPlaintextParserParserKeyValueParserArgs, LogIngestConfigPlaintextParserParserKeyValueParserPtr and LogIngestConfigPlaintextParserParserKeyValueParserPtrOutput values.
+// You can construct a concrete instance of `LogIngestConfigPlaintextParserParserKeyValueParserPtrInput` via:
+//
+//	        LogIngestConfigPlaintextParserParserKeyValueParserArgs{...}
+//
+//	or:
+//
+//	        nil
+type LogIngestConfigPlaintextParserParserKeyValueParserPtrInput interface {
+	pulumi.Input
+
+	ToLogIngestConfigPlaintextParserParserKeyValueParserPtrOutput() LogIngestConfigPlaintextParserParserKeyValueParserPtrOutput
+	ToLogIngestConfigPlaintextParserParserKeyValueParserPtrOutputWithContext(context.Context) LogIngestConfigPlaintextParserParserKeyValueParserPtrOutput
+}
+
+type logIngestConfigPlaintextParserParserKeyValueParserPtrType LogIngestConfigPlaintextParserParserKeyValueParserArgs
+
+func LogIngestConfigPlaintextParserParserKeyValueParserPtr(v *LogIngestConfigPlaintextParserParserKeyValueParserArgs) LogIngestConfigPlaintextParserParserKeyValueParserPtrInput {
+	return (*logIngestConfigPlaintextParserParserKeyValueParserPtrType)(v)
+}
+
+func (*logIngestConfigPlaintextParserParserKeyValueParserPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogIngestConfigPlaintextParserParserKeyValueParser)(nil)).Elem()
+}
+
+func (i *logIngestConfigPlaintextParserParserKeyValueParserPtrType) ToLogIngestConfigPlaintextParserParserKeyValueParserPtrOutput() LogIngestConfigPlaintextParserParserKeyValueParserPtrOutput {
+	return i.ToLogIngestConfigPlaintextParserParserKeyValueParserPtrOutputWithContext(context.Background())
+}
+
+func (i *logIngestConfigPlaintextParserParserKeyValueParserPtrType) ToLogIngestConfigPlaintextParserParserKeyValueParserPtrOutputWithContext(ctx context.Context) LogIngestConfigPlaintextParserParserKeyValueParserPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogIngestConfigPlaintextParserParserKeyValueParserPtrOutput)
+}
+
+type LogIngestConfigPlaintextParserParserKeyValueParserOutput struct{ *pulumi.OutputState }
+
+func (LogIngestConfigPlaintextParserParserKeyValueParserOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogIngestConfigPlaintextParserParserKeyValueParser)(nil)).Elem()
+}
+
+func (o LogIngestConfigPlaintextParserParserKeyValueParserOutput) ToLogIngestConfigPlaintextParserParserKeyValueParserOutput() LogIngestConfigPlaintextParserParserKeyValueParserOutput {
+	return o
+}
+
+func (o LogIngestConfigPlaintextParserParserKeyValueParserOutput) ToLogIngestConfigPlaintextParserParserKeyValueParserOutputWithContext(ctx context.Context) LogIngestConfigPlaintextParserParserKeyValueParserOutput {
+	return o
+}
+
+func (o LogIngestConfigPlaintextParserParserKeyValueParserOutput) ToLogIngestConfigPlaintextParserParserKeyValueParserPtrOutput() LogIngestConfigPlaintextParserParserKeyValueParserPtrOutput {
+	return o.ToLogIngestConfigPlaintextParserParserKeyValueParserPtrOutputWithContext(context.Background())
+}
+
+func (o LogIngestConfigPlaintextParserParserKeyValueParserOutput) ToLogIngestConfigPlaintextParserParserKeyValueParserPtrOutputWithContext(ctx context.Context) LogIngestConfigPlaintextParserParserKeyValueParserPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v LogIngestConfigPlaintextParserParserKeyValueParser) *LogIngestConfigPlaintextParserParserKeyValueParser {
+		return &v
+	}).(LogIngestConfigPlaintextParserParserKeyValueParserPtrOutput)
+}
+
+func (o LogIngestConfigPlaintextParserParserKeyValueParserOutput) Delimiter() pulumi.StringOutput {
+	return o.ApplyT(func(v LogIngestConfigPlaintextParserParserKeyValueParser) string { return v.Delimiter }).(pulumi.StringOutput)
+}
+
+func (o LogIngestConfigPlaintextParserParserKeyValueParserOutput) PairSeparator() pulumi.StringOutput {
+	return o.ApplyT(func(v LogIngestConfigPlaintextParserParserKeyValueParser) string { return v.PairSeparator }).(pulumi.StringOutput)
+}
+
+func (o LogIngestConfigPlaintextParserParserKeyValueParserOutput) TrimSet() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LogIngestConfigPlaintextParserParserKeyValueParser) *string { return v.TrimSet }).(pulumi.StringPtrOutput)
+}
+
+type LogIngestConfigPlaintextParserParserKeyValueParserPtrOutput struct{ *pulumi.OutputState }
+
+func (LogIngestConfigPlaintextParserParserKeyValueParserPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogIngestConfigPlaintextParserParserKeyValueParser)(nil)).Elem()
+}
+
+func (o LogIngestConfigPlaintextParserParserKeyValueParserPtrOutput) ToLogIngestConfigPlaintextParserParserKeyValueParserPtrOutput() LogIngestConfigPlaintextParserParserKeyValueParserPtrOutput {
+	return o
+}
+
+func (o LogIngestConfigPlaintextParserParserKeyValueParserPtrOutput) ToLogIngestConfigPlaintextParserParserKeyValueParserPtrOutputWithContext(ctx context.Context) LogIngestConfigPlaintextParserParserKeyValueParserPtrOutput {
+	return o
+}
+
+func (o LogIngestConfigPlaintextParserParserKeyValueParserPtrOutput) Elem() LogIngestConfigPlaintextParserParserKeyValueParserOutput {
+	return o.ApplyT(func(v *LogIngestConfigPlaintextParserParserKeyValueParser) LogIngestConfigPlaintextParserParserKeyValueParser {
+		if v != nil {
+			return *v
+		}
+		var ret LogIngestConfigPlaintextParserParserKeyValueParser
+		return ret
+	}).(LogIngestConfigPlaintextParserParserKeyValueParserOutput)
+}
+
+func (o LogIngestConfigPlaintextParserParserKeyValueParserPtrOutput) Delimiter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogIngestConfigPlaintextParserParserKeyValueParser) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Delimiter
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o LogIngestConfigPlaintextParserParserKeyValueParserPtrOutput) PairSeparator() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogIngestConfigPlaintextParserParserKeyValueParser) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.PairSeparator
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o LogIngestConfigPlaintextParserParserKeyValueParserPtrOutput) TrimSet() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogIngestConfigPlaintextParserParserKeyValueParser) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TrimSet
+	}).(pulumi.StringPtrOutput)
+}
+
+type LogIngestConfigPlaintextParserParserRegexParser struct {
+	Regex string `pulumi:"regex"`
+}
+
+// LogIngestConfigPlaintextParserParserRegexParserInput is an input type that accepts LogIngestConfigPlaintextParserParserRegexParserArgs and LogIngestConfigPlaintextParserParserRegexParserOutput values.
+// You can construct a concrete instance of `LogIngestConfigPlaintextParserParserRegexParserInput` via:
+//
+//	LogIngestConfigPlaintextParserParserRegexParserArgs{...}
+type LogIngestConfigPlaintextParserParserRegexParserInput interface {
+	pulumi.Input
+
+	ToLogIngestConfigPlaintextParserParserRegexParserOutput() LogIngestConfigPlaintextParserParserRegexParserOutput
+	ToLogIngestConfigPlaintextParserParserRegexParserOutputWithContext(context.Context) LogIngestConfigPlaintextParserParserRegexParserOutput
+}
+
+type LogIngestConfigPlaintextParserParserRegexParserArgs struct {
+	Regex pulumi.StringInput `pulumi:"regex"`
+}
+
+func (LogIngestConfigPlaintextParserParserRegexParserArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogIngestConfigPlaintextParserParserRegexParser)(nil)).Elem()
+}
+
+func (i LogIngestConfigPlaintextParserParserRegexParserArgs) ToLogIngestConfigPlaintextParserParserRegexParserOutput() LogIngestConfigPlaintextParserParserRegexParserOutput {
+	return i.ToLogIngestConfigPlaintextParserParserRegexParserOutputWithContext(context.Background())
+}
+
+func (i LogIngestConfigPlaintextParserParserRegexParserArgs) ToLogIngestConfigPlaintextParserParserRegexParserOutputWithContext(ctx context.Context) LogIngestConfigPlaintextParserParserRegexParserOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogIngestConfigPlaintextParserParserRegexParserOutput)
+}
+
+func (i LogIngestConfigPlaintextParserParserRegexParserArgs) ToLogIngestConfigPlaintextParserParserRegexParserPtrOutput() LogIngestConfigPlaintextParserParserRegexParserPtrOutput {
+	return i.ToLogIngestConfigPlaintextParserParserRegexParserPtrOutputWithContext(context.Background())
+}
+
+func (i LogIngestConfigPlaintextParserParserRegexParserArgs) ToLogIngestConfigPlaintextParserParserRegexParserPtrOutputWithContext(ctx context.Context) LogIngestConfigPlaintextParserParserRegexParserPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogIngestConfigPlaintextParserParserRegexParserOutput).ToLogIngestConfigPlaintextParserParserRegexParserPtrOutputWithContext(ctx)
+}
+
+// LogIngestConfigPlaintextParserParserRegexParserPtrInput is an input type that accepts LogIngestConfigPlaintextParserParserRegexParserArgs, LogIngestConfigPlaintextParserParserRegexParserPtr and LogIngestConfigPlaintextParserParserRegexParserPtrOutput values.
+// You can construct a concrete instance of `LogIngestConfigPlaintextParserParserRegexParserPtrInput` via:
+//
+//	        LogIngestConfigPlaintextParserParserRegexParserArgs{...}
+//
+//	or:
+//
+//	        nil
+type LogIngestConfigPlaintextParserParserRegexParserPtrInput interface {
+	pulumi.Input
+
+	ToLogIngestConfigPlaintextParserParserRegexParserPtrOutput() LogIngestConfigPlaintextParserParserRegexParserPtrOutput
+	ToLogIngestConfigPlaintextParserParserRegexParserPtrOutputWithContext(context.Context) LogIngestConfigPlaintextParserParserRegexParserPtrOutput
+}
+
+type logIngestConfigPlaintextParserParserRegexParserPtrType LogIngestConfigPlaintextParserParserRegexParserArgs
+
+func LogIngestConfigPlaintextParserParserRegexParserPtr(v *LogIngestConfigPlaintextParserParserRegexParserArgs) LogIngestConfigPlaintextParserParserRegexParserPtrInput {
+	return (*logIngestConfigPlaintextParserParserRegexParserPtrType)(v)
+}
+
+func (*logIngestConfigPlaintextParserParserRegexParserPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogIngestConfigPlaintextParserParserRegexParser)(nil)).Elem()
+}
+
+func (i *logIngestConfigPlaintextParserParserRegexParserPtrType) ToLogIngestConfigPlaintextParserParserRegexParserPtrOutput() LogIngestConfigPlaintextParserParserRegexParserPtrOutput {
+	return i.ToLogIngestConfigPlaintextParserParserRegexParserPtrOutputWithContext(context.Background())
+}
+
+func (i *logIngestConfigPlaintextParserParserRegexParserPtrType) ToLogIngestConfigPlaintextParserParserRegexParserPtrOutputWithContext(ctx context.Context) LogIngestConfigPlaintextParserParserRegexParserPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogIngestConfigPlaintextParserParserRegexParserPtrOutput)
+}
+
+type LogIngestConfigPlaintextParserParserRegexParserOutput struct{ *pulumi.OutputState }
+
+func (LogIngestConfigPlaintextParserParserRegexParserOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogIngestConfigPlaintextParserParserRegexParser)(nil)).Elem()
+}
+
+func (o LogIngestConfigPlaintextParserParserRegexParserOutput) ToLogIngestConfigPlaintextParserParserRegexParserOutput() LogIngestConfigPlaintextParserParserRegexParserOutput {
+	return o
+}
+
+func (o LogIngestConfigPlaintextParserParserRegexParserOutput) ToLogIngestConfigPlaintextParserParserRegexParserOutputWithContext(ctx context.Context) LogIngestConfigPlaintextParserParserRegexParserOutput {
+	return o
+}
+
+func (o LogIngestConfigPlaintextParserParserRegexParserOutput) ToLogIngestConfigPlaintextParserParserRegexParserPtrOutput() LogIngestConfigPlaintextParserParserRegexParserPtrOutput {
+	return o.ToLogIngestConfigPlaintextParserParserRegexParserPtrOutputWithContext(context.Background())
+}
+
+func (o LogIngestConfigPlaintextParserParserRegexParserOutput) ToLogIngestConfigPlaintextParserParserRegexParserPtrOutputWithContext(ctx context.Context) LogIngestConfigPlaintextParserParserRegexParserPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v LogIngestConfigPlaintextParserParserRegexParser) *LogIngestConfigPlaintextParserParserRegexParser {
+		return &v
+	}).(LogIngestConfigPlaintextParserParserRegexParserPtrOutput)
+}
+
+func (o LogIngestConfigPlaintextParserParserRegexParserOutput) Regex() pulumi.StringOutput {
+	return o.ApplyT(func(v LogIngestConfigPlaintextParserParserRegexParser) string { return v.Regex }).(pulumi.StringOutput)
+}
+
+type LogIngestConfigPlaintextParserParserRegexParserPtrOutput struct{ *pulumi.OutputState }
+
+func (LogIngestConfigPlaintextParserParserRegexParserPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogIngestConfigPlaintextParserParserRegexParser)(nil)).Elem()
+}
+
+func (o LogIngestConfigPlaintextParserParserRegexParserPtrOutput) ToLogIngestConfigPlaintextParserParserRegexParserPtrOutput() LogIngestConfigPlaintextParserParserRegexParserPtrOutput {
+	return o
+}
+
+func (o LogIngestConfigPlaintextParserParserRegexParserPtrOutput) ToLogIngestConfigPlaintextParserParserRegexParserPtrOutputWithContext(ctx context.Context) LogIngestConfigPlaintextParserParserRegexParserPtrOutput {
+	return o
+}
+
+func (o LogIngestConfigPlaintextParserParserRegexParserPtrOutput) Elem() LogIngestConfigPlaintextParserParserRegexParserOutput {
+	return o.ApplyT(func(v *LogIngestConfigPlaintextParserParserRegexParser) LogIngestConfigPlaintextParserParserRegexParser {
+		if v != nil {
+			return *v
+		}
+		var ret LogIngestConfigPlaintextParserParserRegexParser
+		return ret
+	}).(LogIngestConfigPlaintextParserParserRegexParserOutput)
+}
+
+func (o LogIngestConfigPlaintextParserParserRegexParserPtrOutput) Regex() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogIngestConfigPlaintextParserParserRegexParser) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Regex
+	}).(pulumi.StringPtrOutput)
 }
 
 type LogscaleActionEmailAction struct {
@@ -20773,6 +30393,74 @@ func (o TraceTailSamplingRulesRuleFilterTraceErrorPtrOutput) Value() pulumi.Bool
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*AzureMetricsIntegrationPrincipalInput)(nil)).Elem(), AzureMetricsIntegrationPrincipalArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AzureMetricsIntegrationPrincipalPtrInput)(nil)).Elem(), AzureMetricsIntegrationPrincipalArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AzureMetricsIntegrationScrapeConfigInput)(nil)).Elem(), AzureMetricsIntegrationScrapeConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AzureMetricsIntegrationScrapeConfigPtrInput)(nil)).Elem(), AzureMetricsIntegrationScrapeConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AzureMetricsIntegrationScrapeConfigResourceTypeInput)(nil)).Elem(), AzureMetricsIntegrationScrapeConfigResourceTypeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AzureMetricsIntegrationScrapeConfigResourceTypeArrayInput)(nil)).Elem(), AzureMetricsIntegrationScrapeConfigResourceTypeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ConsumptionBudgetAlertActionConfigInput)(nil)).Elem(), ConsumptionBudgetAlertActionConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ConsumptionBudgetAlertActionConfigPtrInput)(nil)).Elem(), ConsumptionBudgetAlertActionConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ConsumptionBudgetPriorityInput)(nil)).Elem(), ConsumptionBudgetPriorityArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ConsumptionBudgetPriorityArrayInput)(nil)).Elem(), ConsumptionBudgetPriorityArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ConsumptionBudgetPriorityFilterInput)(nil)).Elem(), ConsumptionBudgetPriorityFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ConsumptionBudgetPriorityFilterArrayInput)(nil)).Elem(), ConsumptionBudgetPriorityFilterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ConsumptionBudgetPriorityFilterLogFilterInput)(nil)).Elem(), ConsumptionBudgetPriorityFilterLogFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ConsumptionBudgetPriorityFilterLogFilterPtrInput)(nil)).Elem(), ConsumptionBudgetPriorityFilterLogFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ConsumptionBudgetThresholdInput)(nil)).Elem(), ConsumptionBudgetThresholdArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ConsumptionBudgetThresholdArrayInput)(nil)).Elem(), ConsumptionBudgetThresholdArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ConsumptionBudgetThresholdInstantRateInput)(nil)).Elem(), ConsumptionBudgetThresholdInstantRateArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ConsumptionBudgetThresholdInstantRatePtrInput)(nil)).Elem(), ConsumptionBudgetThresholdInstantRateArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ConsumptionBudgetThresholdVolumeInput)(nil)).Elem(), ConsumptionBudgetThresholdVolumeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ConsumptionBudgetThresholdVolumePtrInput)(nil)).Elem(), ConsumptionBudgetThresholdVolumeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ConsumptionConfigPartitionInput)(nil)).Elem(), ConsumptionConfigPartitionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ConsumptionConfigPartitionArrayInput)(nil)).Elem(), ConsumptionConfigPartitionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ConsumptionConfigPartitionFilterInput)(nil)).Elem(), ConsumptionConfigPartitionFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ConsumptionConfigPartitionFilterArrayInput)(nil)).Elem(), ConsumptionConfigPartitionFilterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ConsumptionConfigPartitionFilterConditionInput)(nil)).Elem(), ConsumptionConfigPartitionFilterConditionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ConsumptionConfigPartitionFilterConditionArrayInput)(nil)).Elem(), ConsumptionConfigPartitionFilterConditionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ConsumptionConfigPartitionFilterConditionLogFilterInput)(nil)).Elem(), ConsumptionConfigPartitionFilterConditionLogFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ConsumptionConfigPartitionFilterConditionLogFilterPtrInput)(nil)).Elem(), ConsumptionConfigPartitionFilterConditionLogFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ConsumptionConfigPartitionPartitionInput)(nil)).Elem(), ConsumptionConfigPartitionPartitionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ConsumptionConfigPartitionPartitionArrayInput)(nil)).Elem(), ConsumptionConfigPartitionPartitionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ConsumptionConfigPartitionPartitionFilterInput)(nil)).Elem(), ConsumptionConfigPartitionPartitionFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ConsumptionConfigPartitionPartitionFilterArrayInput)(nil)).Elem(), ConsumptionConfigPartitionPartitionFilterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ConsumptionConfigPartitionPartitionFilterConditionInput)(nil)).Elem(), ConsumptionConfigPartitionPartitionFilterConditionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ConsumptionConfigPartitionPartitionFilterConditionArrayInput)(nil)).Elem(), ConsumptionConfigPartitionPartitionFilterConditionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ConsumptionConfigPartitionPartitionFilterConditionLogFilterInput)(nil)).Elem(), ConsumptionConfigPartitionPartitionFilterConditionLogFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ConsumptionConfigPartitionPartitionFilterConditionLogFilterPtrInput)(nil)).Elem(), ConsumptionConfigPartitionPartitionFilterConditionLogFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ConsumptionConfigPartitionPartitionPartitionInput)(nil)).Elem(), ConsumptionConfigPartitionPartitionPartitionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ConsumptionConfigPartitionPartitionPartitionArrayInput)(nil)).Elem(), ConsumptionConfigPartitionPartitionPartitionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ConsumptionConfigPartitionPartitionPartitionFilterInput)(nil)).Elem(), ConsumptionConfigPartitionPartitionPartitionFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ConsumptionConfigPartitionPartitionPartitionFilterArrayInput)(nil)).Elem(), ConsumptionConfigPartitionPartitionPartitionFilterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ConsumptionConfigPartitionPartitionPartitionFilterConditionInput)(nil)).Elem(), ConsumptionConfigPartitionPartitionPartitionFilterConditionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ConsumptionConfigPartitionPartitionPartitionFilterConditionArrayInput)(nil)).Elem(), ConsumptionConfigPartitionPartitionPartitionFilterConditionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterInput)(nil)).Elem(), ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterPtrInput)(nil)).Elem(), ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ConsumptionConfigPartitionPartitionPartitionPartitionInput)(nil)).Elem(), ConsumptionConfigPartitionPartitionPartitionPartitionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ConsumptionConfigPartitionPartitionPartitionPartitionArrayInput)(nil)).Elem(), ConsumptionConfigPartitionPartitionPartitionPartitionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ConsumptionConfigPartitionPartitionPartitionPartitionFilterInput)(nil)).Elem(), ConsumptionConfigPartitionPartitionPartitionPartitionFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ConsumptionConfigPartitionPartitionPartitionPartitionFilterArrayInput)(nil)).Elem(), ConsumptionConfigPartitionPartitionPartitionPartitionFilterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionInput)(nil)).Elem(), ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionArrayInput)(nil)).Elem(), ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterInput)(nil)).Elem(), ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrInput)(nil)).Elem(), ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ConsumptionConfigPartitionPartitionPartitionPartitionPartitionInput)(nil)).Elem(), ConsumptionConfigPartitionPartitionPartitionPartitionPartitionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ConsumptionConfigPartitionPartitionPartitionPartitionPartitionArrayInput)(nil)).Elem(), ConsumptionConfigPartitionPartitionPartitionPartitionPartitionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterInput)(nil)).Elem(), ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterArrayInput)(nil)).Elem(), ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionInput)(nil)).Elem(), ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionArrayInput)(nil)).Elem(), ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterInput)(nil)).Elem(), ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrInput)(nil)).Elem(), ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionInput)(nil)).Elem(), ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionArrayInput)(nil)).Elem(), ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterInput)(nil)).Elem(), ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterArrayInput)(nil)).Elem(), ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionInput)(nil)).Elem(), ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionArrayInput)(nil)).Elem(), ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterInput)(nil)).Elem(), ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrInput)(nil)).Elem(), ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DatasetConfigurationInput)(nil)).Elem(), DatasetConfigurationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DatasetConfigurationPtrInput)(nil)).Elem(), DatasetConfigurationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DatasetConfigurationLogDatasetInput)(nil)).Elem(), DatasetConfigurationLogDatasetArgs{})
@@ -20831,6 +30519,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DerivedLabelMetricLabelMappingLabelNameMappingValueMappingArrayInput)(nil)).Elem(), DerivedLabelMetricLabelMappingLabelNameMappingValueMappingArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DerivedLabelMetricLabelMappingLabelValueMappingInput)(nil)).Elem(), DerivedLabelMetricLabelMappingLabelValueMappingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DerivedLabelMetricLabelMappingLabelValueMappingArrayInput)(nil)).Elem(), DerivedLabelMetricLabelMappingLabelValueMappingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DerivedLabelSpanTagInput)(nil)).Elem(), DerivedLabelSpanTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DerivedLabelSpanTagPtrInput)(nil)).Elem(), DerivedLabelSpanTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DerivedLabelSpanTagNameMappingInput)(nil)).Elem(), DerivedLabelSpanTagNameMappingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DerivedLabelSpanTagNameMappingArrayInput)(nil)).Elem(), DerivedLabelSpanTagNameMappingArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DerivedMetricQueryInput)(nil)).Elem(), DerivedMetricQueryArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DerivedMetricQueryArrayInput)(nil)).Elem(), DerivedMetricQueryArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DerivedMetricQueryQueryInput)(nil)).Elem(), DerivedMetricQueryQueryArgs{})
@@ -20863,8 +30555,85 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterArrayInput)(nil)).Elem(), LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterInput)(nil)).Elem(), LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterArrayInput)(nil)).Elem(), LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*LogIngestConfigParserInput)(nil)).Elem(), LogIngestConfigParserArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*LogIngestConfigParserArrayInput)(nil)).Elem(), LogIngestConfigParserArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogControlConfigRuleInput)(nil)).Elem(), LogControlConfigRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogControlConfigRuleArrayInput)(nil)).Elem(), LogControlConfigRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogControlConfigRuleDropFieldInput)(nil)).Elem(), LogControlConfigRuleDropFieldArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogControlConfigRuleDropFieldPtrInput)(nil)).Elem(), LogControlConfigRuleDropFieldArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogControlConfigRuleDropFieldParentPathInput)(nil)).Elem(), LogControlConfigRuleDropFieldParentPathArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogControlConfigRuleDropFieldParentPathPtrInput)(nil)).Elem(), LogControlConfigRuleDropFieldParentPathArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogControlConfigRuleEmitMetricsInput)(nil)).Elem(), LogControlConfigRuleEmitMetricsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogControlConfigRuleEmitMetricsPtrInput)(nil)).Elem(), LogControlConfigRuleEmitMetricsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogControlConfigRuleEmitMetricsCounterInput)(nil)).Elem(), LogControlConfigRuleEmitMetricsCounterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogControlConfigRuleEmitMetricsCounterPtrInput)(nil)).Elem(), LogControlConfigRuleEmitMetricsCounterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogControlConfigRuleEmitMetricsCounterValueInput)(nil)).Elem(), LogControlConfigRuleEmitMetricsCounterValueArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogControlConfigRuleEmitMetricsCounterValuePtrInput)(nil)).Elem(), LogControlConfigRuleEmitMetricsCounterValueArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogControlConfigRuleEmitMetricsGaugeInput)(nil)).Elem(), LogControlConfigRuleEmitMetricsGaugeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogControlConfigRuleEmitMetricsGaugePtrInput)(nil)).Elem(), LogControlConfigRuleEmitMetricsGaugeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogControlConfigRuleEmitMetricsGaugeValueInput)(nil)).Elem(), LogControlConfigRuleEmitMetricsGaugeValueArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogControlConfigRuleEmitMetricsGaugeValuePtrInput)(nil)).Elem(), LogControlConfigRuleEmitMetricsGaugeValueArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogControlConfigRuleEmitMetricsHistogramInput)(nil)).Elem(), LogControlConfigRuleEmitMetricsHistogramArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogControlConfigRuleEmitMetricsHistogramPtrInput)(nil)).Elem(), LogControlConfigRuleEmitMetricsHistogramArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogControlConfigRuleEmitMetricsHistogramValueInput)(nil)).Elem(), LogControlConfigRuleEmitMetricsHistogramValueArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogControlConfigRuleEmitMetricsHistogramValuePtrInput)(nil)).Elem(), LogControlConfigRuleEmitMetricsHistogramValueArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogControlConfigRuleEmitMetricsLabelInput)(nil)).Elem(), LogControlConfigRuleEmitMetricsLabelArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogControlConfigRuleEmitMetricsLabelArrayInput)(nil)).Elem(), LogControlConfigRuleEmitMetricsLabelArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogControlConfigRuleEmitMetricsLabelValueInput)(nil)).Elem(), LogControlConfigRuleEmitMetricsLabelValueArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogControlConfigRuleEmitMetricsLabelValuePtrInput)(nil)).Elem(), LogControlConfigRuleEmitMetricsLabelValueArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogControlConfigRuleReplaceFieldInput)(nil)).Elem(), LogControlConfigRuleReplaceFieldArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogControlConfigRuleReplaceFieldPtrInput)(nil)).Elem(), LogControlConfigRuleReplaceFieldArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogControlConfigRuleReplaceFieldFieldInput)(nil)).Elem(), LogControlConfigRuleReplaceFieldFieldArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogControlConfigRuleReplaceFieldFieldPtrInput)(nil)).Elem(), LogControlConfigRuleReplaceFieldFieldArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogControlConfigRuleReplaceFieldMappedValueInput)(nil)).Elem(), LogControlConfigRuleReplaceFieldMappedValueArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogControlConfigRuleReplaceFieldMappedValuePtrInput)(nil)).Elem(), LogControlConfigRuleReplaceFieldMappedValueArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogControlConfigRuleReplaceFieldMappedValuePairInput)(nil)).Elem(), LogControlConfigRuleReplaceFieldMappedValuePairArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogControlConfigRuleReplaceFieldMappedValuePairArrayInput)(nil)).Elem(), LogControlConfigRuleReplaceFieldMappedValuePairArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogControlConfigRuleReplaceFieldStaticValueInput)(nil)).Elem(), LogControlConfigRuleReplaceFieldStaticValueArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogControlConfigRuleReplaceFieldStaticValuePtrInput)(nil)).Elem(), LogControlConfigRuleReplaceFieldStaticValueArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogControlConfigRuleSampleInput)(nil)).Elem(), LogControlConfigRuleSampleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogControlConfigRuleSamplePtrInput)(nil)).Elem(), LogControlConfigRuleSampleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogIngestConfigFieldNormalizationInput)(nil)).Elem(), LogIngestConfigFieldNormalizationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogIngestConfigFieldNormalizationPtrInput)(nil)).Elem(), LogIngestConfigFieldNormalizationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogIngestConfigFieldNormalizationCustomFieldNormalizationInput)(nil)).Elem(), LogIngestConfigFieldNormalizationCustomFieldNormalizationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogIngestConfigFieldNormalizationCustomFieldNormalizationArrayInput)(nil)).Elem(), LogIngestConfigFieldNormalizationCustomFieldNormalizationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationInput)(nil)).Elem(), LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationPtrInput)(nil)).Elem(), LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceInput)(nil)).Elem(), LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceArrayInput)(nil)).Elem(), LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogIngestConfigFieldNormalizationMessageInput)(nil)).Elem(), LogIngestConfigFieldNormalizationMessageArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogIngestConfigFieldNormalizationMessagePtrInput)(nil)).Elem(), LogIngestConfigFieldNormalizationMessageArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogIngestConfigFieldNormalizationMessageSourceInput)(nil)).Elem(), LogIngestConfigFieldNormalizationMessageSourceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogIngestConfigFieldNormalizationMessageSourceArrayInput)(nil)).Elem(), LogIngestConfigFieldNormalizationMessageSourceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogIngestConfigFieldNormalizationPrimaryKeyInput)(nil)).Elem(), LogIngestConfigFieldNormalizationPrimaryKeyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogIngestConfigFieldNormalizationPrimaryKeyPtrInput)(nil)).Elem(), LogIngestConfigFieldNormalizationPrimaryKeyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogIngestConfigFieldNormalizationPrimaryKeyNormalizationInput)(nil)).Elem(), LogIngestConfigFieldNormalizationPrimaryKeyNormalizationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrInput)(nil)).Elem(), LogIngestConfigFieldNormalizationPrimaryKeyNormalizationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceInput)(nil)).Elem(), LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArrayInput)(nil)).Elem(), LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogIngestConfigFieldNormalizationSeverityInput)(nil)).Elem(), LogIngestConfigFieldNormalizationSeverityArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogIngestConfigFieldNormalizationSeverityPtrInput)(nil)).Elem(), LogIngestConfigFieldNormalizationSeverityArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogIngestConfigFieldNormalizationSeveritySourceInput)(nil)).Elem(), LogIngestConfigFieldNormalizationSeveritySourceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogIngestConfigFieldNormalizationSeveritySourceArrayInput)(nil)).Elem(), LogIngestConfigFieldNormalizationSeveritySourceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogIngestConfigFieldNormalizationTimestampInput)(nil)).Elem(), LogIngestConfigFieldNormalizationTimestampArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogIngestConfigFieldNormalizationTimestampPtrInput)(nil)).Elem(), LogIngestConfigFieldNormalizationTimestampArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogIngestConfigFieldNormalizationTimestampSourceInput)(nil)).Elem(), LogIngestConfigFieldNormalizationTimestampSourceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogIngestConfigFieldNormalizationTimestampSourceArrayInput)(nil)).Elem(), LogIngestConfigFieldNormalizationTimestampSourceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogIngestConfigFieldParserInput)(nil)).Elem(), LogIngestConfigFieldParserArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogIngestConfigFieldParserArrayInput)(nil)).Elem(), LogIngestConfigFieldParserArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogIngestConfigFieldParserDestinationInput)(nil)).Elem(), LogIngestConfigFieldParserDestinationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogIngestConfigFieldParserDestinationPtrInput)(nil)).Elem(), LogIngestConfigFieldParserDestinationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogIngestConfigFieldParserParserInput)(nil)).Elem(), LogIngestConfigFieldParserParserArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogIngestConfigFieldParserParserKeyValueParserInput)(nil)).Elem(), LogIngestConfigFieldParserParserKeyValueParserArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogIngestConfigFieldParserParserKeyValueParserPtrInput)(nil)).Elem(), LogIngestConfigFieldParserParserKeyValueParserArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogIngestConfigFieldParserParserRegexParserInput)(nil)).Elem(), LogIngestConfigFieldParserParserRegexParserArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogIngestConfigFieldParserParserRegexParserPtrInput)(nil)).Elem(), LogIngestConfigFieldParserParserRegexParserArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogIngestConfigFieldParserSourceInput)(nil)).Elem(), LogIngestConfigFieldParserSourceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogIngestConfigPlaintextParserInput)(nil)).Elem(), LogIngestConfigPlaintextParserArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogIngestConfigPlaintextParserArrayInput)(nil)).Elem(), LogIngestConfigPlaintextParserArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogIngestConfigPlaintextParserParserInput)(nil)).Elem(), LogIngestConfigPlaintextParserParserArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogIngestConfigPlaintextParserParserKeyValueParserInput)(nil)).Elem(), LogIngestConfigPlaintextParserParserKeyValueParserArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogIngestConfigPlaintextParserParserKeyValueParserPtrInput)(nil)).Elem(), LogIngestConfigPlaintextParserParserKeyValueParserArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogIngestConfigPlaintextParserParserRegexParserInput)(nil)).Elem(), LogIngestConfigPlaintextParserParserRegexParserArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogIngestConfigPlaintextParserParserRegexParserPtrInput)(nil)).Elem(), LogIngestConfigPlaintextParserParserRegexParserArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LogscaleActionEmailActionInput)(nil)).Elem(), LogscaleActionEmailActionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LogscaleActionEmailActionPtrInput)(nil)).Elem(), LogscaleActionEmailActionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LogscaleActionHumioActionInput)(nil)).Elem(), LogscaleActionHumioActionArgs{})
@@ -21074,6 +30843,74 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*TraceTailSamplingRulesRuleFilterTraceDurationPtrInput)(nil)).Elem(), TraceTailSamplingRulesRuleFilterTraceDurationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TraceTailSamplingRulesRuleFilterTraceErrorInput)(nil)).Elem(), TraceTailSamplingRulesRuleFilterTraceErrorArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TraceTailSamplingRulesRuleFilterTraceErrorPtrInput)(nil)).Elem(), TraceTailSamplingRulesRuleFilterTraceErrorArgs{})
+	pulumi.RegisterOutputType(AzureMetricsIntegrationPrincipalOutput{})
+	pulumi.RegisterOutputType(AzureMetricsIntegrationPrincipalPtrOutput{})
+	pulumi.RegisterOutputType(AzureMetricsIntegrationScrapeConfigOutput{})
+	pulumi.RegisterOutputType(AzureMetricsIntegrationScrapeConfigPtrOutput{})
+	pulumi.RegisterOutputType(AzureMetricsIntegrationScrapeConfigResourceTypeOutput{})
+	pulumi.RegisterOutputType(AzureMetricsIntegrationScrapeConfigResourceTypeArrayOutput{})
+	pulumi.RegisterOutputType(ConsumptionBudgetAlertActionConfigOutput{})
+	pulumi.RegisterOutputType(ConsumptionBudgetAlertActionConfigPtrOutput{})
+	pulumi.RegisterOutputType(ConsumptionBudgetPriorityOutput{})
+	pulumi.RegisterOutputType(ConsumptionBudgetPriorityArrayOutput{})
+	pulumi.RegisterOutputType(ConsumptionBudgetPriorityFilterOutput{})
+	pulumi.RegisterOutputType(ConsumptionBudgetPriorityFilterArrayOutput{})
+	pulumi.RegisterOutputType(ConsumptionBudgetPriorityFilterLogFilterOutput{})
+	pulumi.RegisterOutputType(ConsumptionBudgetPriorityFilterLogFilterPtrOutput{})
+	pulumi.RegisterOutputType(ConsumptionBudgetThresholdOutput{})
+	pulumi.RegisterOutputType(ConsumptionBudgetThresholdArrayOutput{})
+	pulumi.RegisterOutputType(ConsumptionBudgetThresholdInstantRateOutput{})
+	pulumi.RegisterOutputType(ConsumptionBudgetThresholdInstantRatePtrOutput{})
+	pulumi.RegisterOutputType(ConsumptionBudgetThresholdVolumeOutput{})
+	pulumi.RegisterOutputType(ConsumptionBudgetThresholdVolumePtrOutput{})
+	pulumi.RegisterOutputType(ConsumptionConfigPartitionOutput{})
+	pulumi.RegisterOutputType(ConsumptionConfigPartitionArrayOutput{})
+	pulumi.RegisterOutputType(ConsumptionConfigPartitionFilterOutput{})
+	pulumi.RegisterOutputType(ConsumptionConfigPartitionFilterArrayOutput{})
+	pulumi.RegisterOutputType(ConsumptionConfigPartitionFilterConditionOutput{})
+	pulumi.RegisterOutputType(ConsumptionConfigPartitionFilterConditionArrayOutput{})
+	pulumi.RegisterOutputType(ConsumptionConfigPartitionFilterConditionLogFilterOutput{})
+	pulumi.RegisterOutputType(ConsumptionConfigPartitionFilterConditionLogFilterPtrOutput{})
+	pulumi.RegisterOutputType(ConsumptionConfigPartitionPartitionOutput{})
+	pulumi.RegisterOutputType(ConsumptionConfigPartitionPartitionArrayOutput{})
+	pulumi.RegisterOutputType(ConsumptionConfigPartitionPartitionFilterOutput{})
+	pulumi.RegisterOutputType(ConsumptionConfigPartitionPartitionFilterArrayOutput{})
+	pulumi.RegisterOutputType(ConsumptionConfigPartitionPartitionFilterConditionOutput{})
+	pulumi.RegisterOutputType(ConsumptionConfigPartitionPartitionFilterConditionArrayOutput{})
+	pulumi.RegisterOutputType(ConsumptionConfigPartitionPartitionFilterConditionLogFilterOutput{})
+	pulumi.RegisterOutputType(ConsumptionConfigPartitionPartitionFilterConditionLogFilterPtrOutput{})
+	pulumi.RegisterOutputType(ConsumptionConfigPartitionPartitionPartitionOutput{})
+	pulumi.RegisterOutputType(ConsumptionConfigPartitionPartitionPartitionArrayOutput{})
+	pulumi.RegisterOutputType(ConsumptionConfigPartitionPartitionPartitionFilterOutput{})
+	pulumi.RegisterOutputType(ConsumptionConfigPartitionPartitionPartitionFilterArrayOutput{})
+	pulumi.RegisterOutputType(ConsumptionConfigPartitionPartitionPartitionFilterConditionOutput{})
+	pulumi.RegisterOutputType(ConsumptionConfigPartitionPartitionPartitionFilterConditionArrayOutput{})
+	pulumi.RegisterOutputType(ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterOutput{})
+	pulumi.RegisterOutputType(ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterPtrOutput{})
+	pulumi.RegisterOutputType(ConsumptionConfigPartitionPartitionPartitionPartitionOutput{})
+	pulumi.RegisterOutputType(ConsumptionConfigPartitionPartitionPartitionPartitionArrayOutput{})
+	pulumi.RegisterOutputType(ConsumptionConfigPartitionPartitionPartitionPartitionFilterOutput{})
+	pulumi.RegisterOutputType(ConsumptionConfigPartitionPartitionPartitionPartitionFilterArrayOutput{})
+	pulumi.RegisterOutputType(ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionOutput{})
+	pulumi.RegisterOutputType(ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionArrayOutput{})
+	pulumi.RegisterOutputType(ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterOutput{})
+	pulumi.RegisterOutputType(ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput{})
+	pulumi.RegisterOutputType(ConsumptionConfigPartitionPartitionPartitionPartitionPartitionOutput{})
+	pulumi.RegisterOutputType(ConsumptionConfigPartitionPartitionPartitionPartitionPartitionArrayOutput{})
+	pulumi.RegisterOutputType(ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterOutput{})
+	pulumi.RegisterOutputType(ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterArrayOutput{})
+	pulumi.RegisterOutputType(ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionOutput{})
+	pulumi.RegisterOutputType(ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionArrayOutput{})
+	pulumi.RegisterOutputType(ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterOutput{})
+	pulumi.RegisterOutputType(ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput{})
+	pulumi.RegisterOutputType(ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionOutput{})
+	pulumi.RegisterOutputType(ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionArrayOutput{})
+	pulumi.RegisterOutputType(ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterOutput{})
+	pulumi.RegisterOutputType(ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterArrayOutput{})
+	pulumi.RegisterOutputType(ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionOutput{})
+	pulumi.RegisterOutputType(ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionArrayOutput{})
+	pulumi.RegisterOutputType(ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterOutput{})
+	pulumi.RegisterOutputType(ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterPtrOutput{})
 	pulumi.RegisterOutputType(DatasetConfigurationOutput{})
 	pulumi.RegisterOutputType(DatasetConfigurationPtrOutput{})
 	pulumi.RegisterOutputType(DatasetConfigurationLogDatasetOutput{})
@@ -21132,6 +30969,10 @@ func init() {
 	pulumi.RegisterOutputType(DerivedLabelMetricLabelMappingLabelNameMappingValueMappingArrayOutput{})
 	pulumi.RegisterOutputType(DerivedLabelMetricLabelMappingLabelValueMappingOutput{})
 	pulumi.RegisterOutputType(DerivedLabelMetricLabelMappingLabelValueMappingArrayOutput{})
+	pulumi.RegisterOutputType(DerivedLabelSpanTagOutput{})
+	pulumi.RegisterOutputType(DerivedLabelSpanTagPtrOutput{})
+	pulumi.RegisterOutputType(DerivedLabelSpanTagNameMappingOutput{})
+	pulumi.RegisterOutputType(DerivedLabelSpanTagNameMappingArrayOutput{})
 	pulumi.RegisterOutputType(DerivedMetricQueryOutput{})
 	pulumi.RegisterOutputType(DerivedMetricQueryArrayOutput{})
 	pulumi.RegisterOutputType(DerivedMetricQueryQueryOutput{})
@@ -21164,8 +31005,85 @@ func init() {
 	pulumi.RegisterOutputType(LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterArrayOutput{})
 	pulumi.RegisterOutputType(LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterOutput{})
 	pulumi.RegisterOutputType(LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterArrayOutput{})
-	pulumi.RegisterOutputType(LogIngestConfigParserOutput{})
-	pulumi.RegisterOutputType(LogIngestConfigParserArrayOutput{})
+	pulumi.RegisterOutputType(LogControlConfigRuleOutput{})
+	pulumi.RegisterOutputType(LogControlConfigRuleArrayOutput{})
+	pulumi.RegisterOutputType(LogControlConfigRuleDropFieldOutput{})
+	pulumi.RegisterOutputType(LogControlConfigRuleDropFieldPtrOutput{})
+	pulumi.RegisterOutputType(LogControlConfigRuleDropFieldParentPathOutput{})
+	pulumi.RegisterOutputType(LogControlConfigRuleDropFieldParentPathPtrOutput{})
+	pulumi.RegisterOutputType(LogControlConfigRuleEmitMetricsOutput{})
+	pulumi.RegisterOutputType(LogControlConfigRuleEmitMetricsPtrOutput{})
+	pulumi.RegisterOutputType(LogControlConfigRuleEmitMetricsCounterOutput{})
+	pulumi.RegisterOutputType(LogControlConfigRuleEmitMetricsCounterPtrOutput{})
+	pulumi.RegisterOutputType(LogControlConfigRuleEmitMetricsCounterValueOutput{})
+	pulumi.RegisterOutputType(LogControlConfigRuleEmitMetricsCounterValuePtrOutput{})
+	pulumi.RegisterOutputType(LogControlConfigRuleEmitMetricsGaugeOutput{})
+	pulumi.RegisterOutputType(LogControlConfigRuleEmitMetricsGaugePtrOutput{})
+	pulumi.RegisterOutputType(LogControlConfigRuleEmitMetricsGaugeValueOutput{})
+	pulumi.RegisterOutputType(LogControlConfigRuleEmitMetricsGaugeValuePtrOutput{})
+	pulumi.RegisterOutputType(LogControlConfigRuleEmitMetricsHistogramOutput{})
+	pulumi.RegisterOutputType(LogControlConfigRuleEmitMetricsHistogramPtrOutput{})
+	pulumi.RegisterOutputType(LogControlConfigRuleEmitMetricsHistogramValueOutput{})
+	pulumi.RegisterOutputType(LogControlConfigRuleEmitMetricsHistogramValuePtrOutput{})
+	pulumi.RegisterOutputType(LogControlConfigRuleEmitMetricsLabelOutput{})
+	pulumi.RegisterOutputType(LogControlConfigRuleEmitMetricsLabelArrayOutput{})
+	pulumi.RegisterOutputType(LogControlConfigRuleEmitMetricsLabelValueOutput{})
+	pulumi.RegisterOutputType(LogControlConfigRuleEmitMetricsLabelValuePtrOutput{})
+	pulumi.RegisterOutputType(LogControlConfigRuleReplaceFieldOutput{})
+	pulumi.RegisterOutputType(LogControlConfigRuleReplaceFieldPtrOutput{})
+	pulumi.RegisterOutputType(LogControlConfigRuleReplaceFieldFieldOutput{})
+	pulumi.RegisterOutputType(LogControlConfigRuleReplaceFieldFieldPtrOutput{})
+	pulumi.RegisterOutputType(LogControlConfigRuleReplaceFieldMappedValueOutput{})
+	pulumi.RegisterOutputType(LogControlConfigRuleReplaceFieldMappedValuePtrOutput{})
+	pulumi.RegisterOutputType(LogControlConfigRuleReplaceFieldMappedValuePairOutput{})
+	pulumi.RegisterOutputType(LogControlConfigRuleReplaceFieldMappedValuePairArrayOutput{})
+	pulumi.RegisterOutputType(LogControlConfigRuleReplaceFieldStaticValueOutput{})
+	pulumi.RegisterOutputType(LogControlConfigRuleReplaceFieldStaticValuePtrOutput{})
+	pulumi.RegisterOutputType(LogControlConfigRuleSampleOutput{})
+	pulumi.RegisterOutputType(LogControlConfigRuleSamplePtrOutput{})
+	pulumi.RegisterOutputType(LogIngestConfigFieldNormalizationOutput{})
+	pulumi.RegisterOutputType(LogIngestConfigFieldNormalizationPtrOutput{})
+	pulumi.RegisterOutputType(LogIngestConfigFieldNormalizationCustomFieldNormalizationOutput{})
+	pulumi.RegisterOutputType(LogIngestConfigFieldNormalizationCustomFieldNormalizationArrayOutput{})
+	pulumi.RegisterOutputType(LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationOutput{})
+	pulumi.RegisterOutputType(LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationPtrOutput{})
+	pulumi.RegisterOutputType(LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceOutput{})
+	pulumi.RegisterOutputType(LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceArrayOutput{})
+	pulumi.RegisterOutputType(LogIngestConfigFieldNormalizationMessageOutput{})
+	pulumi.RegisterOutputType(LogIngestConfigFieldNormalizationMessagePtrOutput{})
+	pulumi.RegisterOutputType(LogIngestConfigFieldNormalizationMessageSourceOutput{})
+	pulumi.RegisterOutputType(LogIngestConfigFieldNormalizationMessageSourceArrayOutput{})
+	pulumi.RegisterOutputType(LogIngestConfigFieldNormalizationPrimaryKeyOutput{})
+	pulumi.RegisterOutputType(LogIngestConfigFieldNormalizationPrimaryKeyPtrOutput{})
+	pulumi.RegisterOutputType(LogIngestConfigFieldNormalizationPrimaryKeyNormalizationOutput{})
+	pulumi.RegisterOutputType(LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutput{})
+	pulumi.RegisterOutputType(LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceOutput{})
+	pulumi.RegisterOutputType(LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArrayOutput{})
+	pulumi.RegisterOutputType(LogIngestConfigFieldNormalizationSeverityOutput{})
+	pulumi.RegisterOutputType(LogIngestConfigFieldNormalizationSeverityPtrOutput{})
+	pulumi.RegisterOutputType(LogIngestConfigFieldNormalizationSeveritySourceOutput{})
+	pulumi.RegisterOutputType(LogIngestConfigFieldNormalizationSeveritySourceArrayOutput{})
+	pulumi.RegisterOutputType(LogIngestConfigFieldNormalizationTimestampOutput{})
+	pulumi.RegisterOutputType(LogIngestConfigFieldNormalizationTimestampPtrOutput{})
+	pulumi.RegisterOutputType(LogIngestConfigFieldNormalizationTimestampSourceOutput{})
+	pulumi.RegisterOutputType(LogIngestConfigFieldNormalizationTimestampSourceArrayOutput{})
+	pulumi.RegisterOutputType(LogIngestConfigFieldParserOutput{})
+	pulumi.RegisterOutputType(LogIngestConfigFieldParserArrayOutput{})
+	pulumi.RegisterOutputType(LogIngestConfigFieldParserDestinationOutput{})
+	pulumi.RegisterOutputType(LogIngestConfigFieldParserDestinationPtrOutput{})
+	pulumi.RegisterOutputType(LogIngestConfigFieldParserParserOutput{})
+	pulumi.RegisterOutputType(LogIngestConfigFieldParserParserKeyValueParserOutput{})
+	pulumi.RegisterOutputType(LogIngestConfigFieldParserParserKeyValueParserPtrOutput{})
+	pulumi.RegisterOutputType(LogIngestConfigFieldParserParserRegexParserOutput{})
+	pulumi.RegisterOutputType(LogIngestConfigFieldParserParserRegexParserPtrOutput{})
+	pulumi.RegisterOutputType(LogIngestConfigFieldParserSourceOutput{})
+	pulumi.RegisterOutputType(LogIngestConfigPlaintextParserOutput{})
+	pulumi.RegisterOutputType(LogIngestConfigPlaintextParserArrayOutput{})
+	pulumi.RegisterOutputType(LogIngestConfigPlaintextParserParserOutput{})
+	pulumi.RegisterOutputType(LogIngestConfigPlaintextParserParserKeyValueParserOutput{})
+	pulumi.RegisterOutputType(LogIngestConfigPlaintextParserParserKeyValueParserPtrOutput{})
+	pulumi.RegisterOutputType(LogIngestConfigPlaintextParserParserRegexParserOutput{})
+	pulumi.RegisterOutputType(LogIngestConfigPlaintextParserParserRegexParserPtrOutput{})
 	pulumi.RegisterOutputType(LogscaleActionEmailActionOutput{})
 	pulumi.RegisterOutputType(LogscaleActionEmailActionPtrOutput{})
 	pulumi.RegisterOutputType(LogscaleActionHumioActionOutput{})

@@ -23,13 +23,16 @@ namespace Chronosphere.Pulumi
         public Output<string> LabelName { get; private set; } = null!;
 
         [Output("metricLabel")]
-        public Output<Outputs.DerivedLabelMetricLabel> MetricLabel { get; private set; } = null!;
+        public Output<Outputs.DerivedLabelMetricLabel?> MetricLabel { get; private set; } = null!;
 
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         [Output("slug")]
         public Output<string> Slug { get; private set; } = null!;
+
+        [Output("spanTag")]
+        public Output<Outputs.DerivedLabelSpanTag?> SpanTag { get; private set; } = null!;
 
 
         /// <summary>
@@ -87,14 +90,17 @@ namespace Chronosphere.Pulumi
         [Input("labelName", required: true)]
         public Input<string> LabelName { get; set; } = null!;
 
-        [Input("metricLabel", required: true)]
-        public Input<Inputs.DerivedLabelMetricLabelArgs> MetricLabel { get; set; } = null!;
+        [Input("metricLabel")]
+        public Input<Inputs.DerivedLabelMetricLabelArgs>? MetricLabel { get; set; }
 
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
         [Input("slug")]
         public Input<string>? Slug { get; set; }
+
+        [Input("spanTag")]
+        public Input<Inputs.DerivedLabelSpanTagArgs>? SpanTag { get; set; }
 
         public DerivedLabelArgs()
         {
@@ -121,6 +127,9 @@ namespace Chronosphere.Pulumi
 
         [Input("slug")]
         public Input<string>? Slug { get; set; }
+
+        [Input("spanTag")]
+        public Input<Inputs.DerivedLabelSpanTagGetArgs>? SpanTag { get; set; }
 
         public DerivedLabelState()
         {

@@ -5,6 +5,182 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
+export interface AzureMetricsIntegrationPrincipal {
+    clientId?: pulumi.Input<string>;
+    tenantId?: pulumi.Input<string>;
+}
+
+export interface AzureMetricsIntegrationScrapeConfig {
+    locations?: pulumi.Input<pulumi.Input<string>[]>;
+    resourceTypes?: pulumi.Input<pulumi.Input<inputs.AzureMetricsIntegrationScrapeConfigResourceType>[]>;
+    subscriptionIds?: pulumi.Input<pulumi.Input<string>[]>;
+}
+
+export interface AzureMetricsIntegrationScrapeConfigResourceType {
+    metricNames?: pulumi.Input<pulumi.Input<string>[]>;
+    name?: pulumi.Input<string>;
+}
+
+export interface ConsumptionBudgetAlertActionConfig {
+    annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    instantRateSustainSecs?: pulumi.Input<number>;
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+}
+
+export interface ConsumptionBudgetPriority {
+    filters?: pulumi.Input<pulumi.Input<inputs.ConsumptionBudgetPriorityFilter>[]>;
+    priority?: pulumi.Input<number>;
+}
+
+export interface ConsumptionBudgetPriorityFilter {
+    datasetId?: pulumi.Input<string>;
+    logFilter?: pulumi.Input<inputs.ConsumptionBudgetPriorityFilterLogFilter>;
+}
+
+export interface ConsumptionBudgetPriorityFilterLogFilter {
+    query: pulumi.Input<string>;
+}
+
+export interface ConsumptionBudgetThreshold {
+    action?: pulumi.Input<string>;
+    instantRate?: pulumi.Input<inputs.ConsumptionBudgetThresholdInstantRate>;
+    type?: pulumi.Input<string>;
+    volume?: pulumi.Input<inputs.ConsumptionBudgetThresholdVolume>;
+}
+
+export interface ConsumptionBudgetThresholdInstantRate {
+    fixedValuePerSec?: pulumi.Input<number>;
+}
+
+export interface ConsumptionBudgetThresholdVolume {
+    fixedValue?: pulumi.Input<number>;
+}
+
+export interface ConsumptionConfigPartition {
+    filters?: pulumi.Input<pulumi.Input<inputs.ConsumptionConfigPartitionFilter>[]>;
+    name?: pulumi.Input<string>;
+    partitions?: pulumi.Input<pulumi.Input<inputs.ConsumptionConfigPartitionPartition>[]>;
+    slug?: pulumi.Input<string>;
+}
+
+export interface ConsumptionConfigPartitionFilter {
+    conditions?: pulumi.Input<pulumi.Input<inputs.ConsumptionConfigPartitionFilterCondition>[]>;
+    operator?: pulumi.Input<string>;
+}
+
+export interface ConsumptionConfigPartitionFilterCondition {
+    datasetId?: pulumi.Input<string>;
+    logFilter?: pulumi.Input<inputs.ConsumptionConfigPartitionFilterConditionLogFilter>;
+}
+
+export interface ConsumptionConfigPartitionFilterConditionLogFilter {
+    query: pulumi.Input<string>;
+}
+
+export interface ConsumptionConfigPartitionPartition {
+    filters?: pulumi.Input<pulumi.Input<inputs.ConsumptionConfigPartitionPartitionFilter>[]>;
+    name?: pulumi.Input<string>;
+    partitions?: pulumi.Input<pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartition>[]>;
+    slug?: pulumi.Input<string>;
+}
+
+export interface ConsumptionConfigPartitionPartitionFilter {
+    conditions?: pulumi.Input<pulumi.Input<inputs.ConsumptionConfigPartitionPartitionFilterCondition>[]>;
+    operator?: pulumi.Input<string>;
+}
+
+export interface ConsumptionConfigPartitionPartitionFilterCondition {
+    datasetId?: pulumi.Input<string>;
+    logFilter?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionFilterConditionLogFilter>;
+}
+
+export interface ConsumptionConfigPartitionPartitionFilterConditionLogFilter {
+    query: pulumi.Input<string>;
+}
+
+export interface ConsumptionConfigPartitionPartitionPartition {
+    filters?: pulumi.Input<pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionFilter>[]>;
+    name?: pulumi.Input<string>;
+    partitions?: pulumi.Input<pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartition>[]>;
+    slug?: pulumi.Input<string>;
+}
+
+export interface ConsumptionConfigPartitionPartitionPartitionFilter {
+    conditions?: pulumi.Input<pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionFilterCondition>[]>;
+    operator?: pulumi.Input<string>;
+}
+
+export interface ConsumptionConfigPartitionPartitionPartitionFilterCondition {
+    datasetId?: pulumi.Input<string>;
+    logFilter?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilter>;
+}
+
+export interface ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilter {
+    query: pulumi.Input<string>;
+}
+
+export interface ConsumptionConfigPartitionPartitionPartitionPartition {
+    filters?: pulumi.Input<pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilter>[]>;
+    name?: pulumi.Input<string>;
+    partitions?: pulumi.Input<pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartition>[]>;
+    slug?: pulumi.Input<string>;
+}
+
+export interface ConsumptionConfigPartitionPartitionPartitionPartitionFilter {
+    conditions?: pulumi.Input<pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterCondition>[]>;
+    operator?: pulumi.Input<string>;
+}
+
+export interface ConsumptionConfigPartitionPartitionPartitionPartitionFilterCondition {
+    datasetId?: pulumi.Input<string>;
+    logFilter?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilter>;
+}
+
+export interface ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilter {
+    query: pulumi.Input<string>;
+}
+
+export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartition {
+    filters?: pulumi.Input<pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilter>[]>;
+    name?: pulumi.Input<string>;
+    partitions?: pulumi.Input<pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartition>[]>;
+    slug?: pulumi.Input<string>;
+}
+
+export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilter {
+    conditions?: pulumi.Input<pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterCondition>[]>;
+    operator?: pulumi.Input<string>;
+}
+
+export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterCondition {
+    datasetId?: pulumi.Input<string>;
+    logFilter?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter>;
+}
+
+export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter {
+    query: pulumi.Input<string>;
+}
+
+export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartition {
+    filters?: pulumi.Input<pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilter>[]>;
+    name?: pulumi.Input<string>;
+    slug?: pulumi.Input<string>;
+}
+
+export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilter {
+    conditions?: pulumi.Input<pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterCondition>[]>;
+    operator?: pulumi.Input<string>;
+}
+
+export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterCondition {
+    datasetId?: pulumi.Input<string>;
+    logFilter?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter>;
+}
+
+export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter {
+    query: pulumi.Input<string>;
+}
+
 export interface DatasetConfiguration {
     logDataset?: pulumi.Input<inputs.DatasetConfigurationLogDataset>;
     traceDataset?: pulumi.Input<inputs.DatasetConfigurationTraceDataset>;
@@ -159,6 +335,14 @@ export interface DerivedLabelMetricLabelMappingLabelValueMapping {
     targetValue: pulumi.Input<string>;
 }
 
+export interface DerivedLabelSpanTag {
+    nameMappings?: pulumi.Input<pulumi.Input<inputs.DerivedLabelSpanTagNameMapping>[]>;
+}
+
+export interface DerivedLabelSpanTagNameMapping {
+    sourceTag: pulumi.Input<string>;
+}
+
 export interface DerivedMetricQuery {
     query: pulumi.Input<inputs.DerivedMetricQueryQuery>;
     selector?: pulumi.Input<inputs.DerivedMetricQuerySelector>;
@@ -236,8 +420,223 @@ export interface LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilter {
     query: pulumi.Input<string>;
 }
 
-export interface LogIngestConfigParser {
+export interface LogControlConfigRule {
+    dropField?: pulumi.Input<inputs.LogControlConfigRuleDropField>;
+    emitMetrics?: pulumi.Input<inputs.LogControlConfigRuleEmitMetrics>;
+    filter?: pulumi.Input<string>;
+    mode?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
+    replaceField?: pulumi.Input<inputs.LogControlConfigRuleReplaceField>;
+    sample?: pulumi.Input<inputs.LogControlConfigRuleSample>;
+    type?: pulumi.Input<string>;
+}
+
+export interface LogControlConfigRuleDropField {
+    fieldRegex?: pulumi.Input<string>;
+    parentPath?: pulumi.Input<inputs.LogControlConfigRuleDropFieldParentPath>;
+}
+
+export interface LogControlConfigRuleDropFieldParentPath {
+    selector?: pulumi.Input<string>;
+}
+
+export interface LogControlConfigRuleEmitMetrics {
+    counter?: pulumi.Input<inputs.LogControlConfigRuleEmitMetricsCounter>;
+    dropLog?: pulumi.Input<boolean>;
+    gauge?: pulumi.Input<inputs.LogControlConfigRuleEmitMetricsGauge>;
+    histogram?: pulumi.Input<inputs.LogControlConfigRuleEmitMetricsHistogram>;
+    labels?: pulumi.Input<pulumi.Input<inputs.LogControlConfigRuleEmitMetricsLabel>[]>;
+    mode?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
+}
+
+export interface LogControlConfigRuleEmitMetricsCounter {
+    value?: pulumi.Input<inputs.LogControlConfigRuleEmitMetricsCounterValue>;
+}
+
+export interface LogControlConfigRuleEmitMetricsCounterValue {
+    selector?: pulumi.Input<string>;
+}
+
+export interface LogControlConfigRuleEmitMetricsGauge {
+    aggregationType?: pulumi.Input<string>;
+    value?: pulumi.Input<inputs.LogControlConfigRuleEmitMetricsGaugeValue>;
+}
+
+export interface LogControlConfigRuleEmitMetricsGaugeValue {
+    selector?: pulumi.Input<string>;
+}
+
+export interface LogControlConfigRuleEmitMetricsHistogram {
+    value?: pulumi.Input<inputs.LogControlConfigRuleEmitMetricsHistogramValue>;
+}
+
+export interface LogControlConfigRuleEmitMetricsHistogramValue {
+    selector?: pulumi.Input<string>;
+}
+
+export interface LogControlConfigRuleEmitMetricsLabel {
+    key?: pulumi.Input<string>;
+    value?: pulumi.Input<inputs.LogControlConfigRuleEmitMetricsLabelValue>;
+}
+
+export interface LogControlConfigRuleEmitMetricsLabelValue {
+    selector?: pulumi.Input<string>;
+}
+
+export interface LogControlConfigRuleReplaceField {
+    field?: pulumi.Input<inputs.LogControlConfigRuleReplaceFieldField>;
+    mappedValue?: pulumi.Input<inputs.LogControlConfigRuleReplaceFieldMappedValue>;
+    replaceAll?: pulumi.Input<boolean>;
+    replaceMode?: pulumi.Input<string>;
+    replaceRegex?: pulumi.Input<string>;
+    staticValue?: pulumi.Input<inputs.LogControlConfigRuleReplaceFieldStaticValue>;
+}
+
+export interface LogControlConfigRuleReplaceFieldField {
+    selector?: pulumi.Input<string>;
+}
+
+export interface LogControlConfigRuleReplaceFieldMappedValue {
+    defaultValue?: pulumi.Input<string>;
+    pairs?: pulumi.Input<pulumi.Input<inputs.LogControlConfigRuleReplaceFieldMappedValuePair>[]>;
+    useDefault?: pulumi.Input<boolean>;
+}
+
+export interface LogControlConfigRuleReplaceFieldMappedValuePair {
+    key?: pulumi.Input<string>;
+    value?: pulumi.Input<string>;
+}
+
+export interface LogControlConfigRuleReplaceFieldStaticValue {
+    value?: pulumi.Input<string>;
+}
+
+export interface LogControlConfigRuleSample {
+    rate?: pulumi.Input<number>;
+}
+
+export interface LogIngestConfigFieldNormalization {
+    customFieldNormalizations?: pulumi.Input<pulumi.Input<inputs.LogIngestConfigFieldNormalizationCustomFieldNormalization>[]>;
+    message?: pulumi.Input<inputs.LogIngestConfigFieldNormalizationMessage>;
+    primaryKey?: pulumi.Input<inputs.LogIngestConfigFieldNormalizationPrimaryKey>;
+    severity?: pulumi.Input<inputs.LogIngestConfigFieldNormalizationSeverity>;
+    timestamp?: pulumi.Input<inputs.LogIngestConfigFieldNormalizationTimestamp>;
+}
+
+export interface LogIngestConfigFieldNormalizationCustomFieldNormalization {
+    normalization?: pulumi.Input<inputs.LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalization>;
+    target?: pulumi.Input<string>;
+}
+
+export interface LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalization {
+    defaultValue?: pulumi.Input<string>;
+    sanitizePatterns?: pulumi.Input<pulumi.Input<string>[]>;
+    sources?: pulumi.Input<pulumi.Input<inputs.LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSource>[]>;
+    valueMap?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+}
+
+export interface LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSource {
+    selector: pulumi.Input<string>;
+}
+
+export interface LogIngestConfigFieldNormalizationMessage {
+    defaultValue?: pulumi.Input<string>;
+    sanitizePatterns?: pulumi.Input<pulumi.Input<string>[]>;
+    sources?: pulumi.Input<pulumi.Input<inputs.LogIngestConfigFieldNormalizationMessageSource>[]>;
+    valueMap?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+}
+
+export interface LogIngestConfigFieldNormalizationMessageSource {
+    selector: pulumi.Input<string>;
+}
+
+export interface LogIngestConfigFieldNormalizationPrimaryKey {
+    normalization?: pulumi.Input<inputs.LogIngestConfigFieldNormalizationPrimaryKeyNormalization>;
+    target?: pulumi.Input<string>;
+}
+
+export interface LogIngestConfigFieldNormalizationPrimaryKeyNormalization {
+    defaultValue?: pulumi.Input<string>;
+    sanitizePatterns?: pulumi.Input<pulumi.Input<string>[]>;
+    sources?: pulumi.Input<pulumi.Input<inputs.LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSource>[]>;
+    valueMap?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+}
+
+export interface LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSource {
+    selector: pulumi.Input<string>;
+}
+
+export interface LogIngestConfigFieldNormalizationSeverity {
+    defaultValue?: pulumi.Input<string>;
+    sanitizePatterns?: pulumi.Input<pulumi.Input<string>[]>;
+    sources?: pulumi.Input<pulumi.Input<inputs.LogIngestConfigFieldNormalizationSeveritySource>[]>;
+    valueMap?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+}
+
+export interface LogIngestConfigFieldNormalizationSeveritySource {
+    selector: pulumi.Input<string>;
+}
+
+export interface LogIngestConfigFieldNormalizationTimestamp {
+    sources?: pulumi.Input<pulumi.Input<inputs.LogIngestConfigFieldNormalizationTimestampSource>[]>;
+}
+
+export interface LogIngestConfigFieldNormalizationTimestampSource {
+    selector: pulumi.Input<string>;
+}
+
+export interface LogIngestConfigFieldParser {
+    destination?: pulumi.Input<inputs.LogIngestConfigFieldParserDestination>;
+    mode?: pulumi.Input<string>;
+    parser: pulumi.Input<inputs.LogIngestConfigFieldParserParser>;
+    source: pulumi.Input<inputs.LogIngestConfigFieldParserSource>;
+}
+
+export interface LogIngestConfigFieldParserDestination {
+    selector: pulumi.Input<string>;
+}
+
+export interface LogIngestConfigFieldParserParser {
+    keyValueParser?: pulumi.Input<inputs.LogIngestConfigFieldParserParserKeyValueParser>;
+    parserType: pulumi.Input<string>;
+    regexParser?: pulumi.Input<inputs.LogIngestConfigFieldParserParserRegexParser>;
+}
+
+export interface LogIngestConfigFieldParserParserKeyValueParser {
+    delimiter: pulumi.Input<string>;
+    pairSeparator: pulumi.Input<string>;
+    trimSet?: pulumi.Input<string>;
+}
+
+export interface LogIngestConfigFieldParserParserRegexParser {
+    regex: pulumi.Input<string>;
+}
+
+export interface LogIngestConfigFieldParserSource {
+    selector: pulumi.Input<string>;
+}
+
+export interface LogIngestConfigPlaintextParser {
+    keepOriginal?: pulumi.Input<boolean>;
+    mode?: pulumi.Input<string>;
     name: pulumi.Input<string>;
+    parser: pulumi.Input<inputs.LogIngestConfigPlaintextParserParser>;
+}
+
+export interface LogIngestConfigPlaintextParserParser {
+    keyValueParser?: pulumi.Input<inputs.LogIngestConfigPlaintextParserParserKeyValueParser>;
+    parserType: pulumi.Input<string>;
+    regexParser?: pulumi.Input<inputs.LogIngestConfigPlaintextParserParserRegexParser>;
+}
+
+export interface LogIngestConfigPlaintextParserParserKeyValueParser {
+    delimiter: pulumi.Input<string>;
+    pairSeparator: pulumi.Input<string>;
+    trimSet?: pulumi.Input<string>;
+}
+
+export interface LogIngestConfigPlaintextParserParserRegexParser {
     regex: pulumi.Input<string>;
 }
 

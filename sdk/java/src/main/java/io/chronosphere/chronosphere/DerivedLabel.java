@@ -11,6 +11,7 @@ import io.chronosphere.chronosphere.DerivedLabelArgs;
 import io.chronosphere.chronosphere.Utilities;
 import io.chronosphere.chronosphere.inputs.DerivedLabelState;
 import io.chronosphere.chronosphere.outputs.DerivedLabelMetricLabel;
+import io.chronosphere.chronosphere.outputs.DerivedLabelSpanTag;
 import java.lang.String;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -36,10 +37,10 @@ public class DerivedLabel extends com.pulumi.resources.CustomResource {
         return this.labelName;
     }
     @Export(name="metricLabel", refs={DerivedLabelMetricLabel.class}, tree="[0]")
-    private Output<DerivedLabelMetricLabel> metricLabel;
+    private Output</* @Nullable */ DerivedLabelMetricLabel> metricLabel;
 
-    public Output<DerivedLabelMetricLabel> metricLabel() {
-        return this.metricLabel;
+    public Output<Optional<DerivedLabelMetricLabel>> metricLabel() {
+        return Codegen.optional(this.metricLabel);
     }
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
@@ -52,6 +53,12 @@ public class DerivedLabel extends com.pulumi.resources.CustomResource {
 
     public Output<String> slug() {
         return this.slug;
+    }
+    @Export(name="spanTag", refs={DerivedLabelSpanTag.class}, tree="[0]")
+    private Output</* @Nullable */ DerivedLabelSpanTag> spanTag;
+
+    public Output<Optional<DerivedLabelSpanTag>> spanTag() {
+        return Codegen.optional(this.spanTag);
     }
 
     /**

@@ -6,6 +6,7 @@ package io.chronosphere.chronosphere.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import io.chronosphere.chronosphere.inputs.DerivedLabelMetricLabelArgs;
+import io.chronosphere.chronosphere.inputs.DerivedLabelSpanTagArgs;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -58,6 +59,13 @@ public final class DerivedLabelState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.slug);
     }
 
+    @Import(name="spanTag")
+    private @Nullable Output<DerivedLabelSpanTagArgs> spanTag;
+
+    public Optional<Output<DerivedLabelSpanTagArgs>> spanTag() {
+        return Optional.ofNullable(this.spanTag);
+    }
+
     private DerivedLabelState() {}
 
     private DerivedLabelState(DerivedLabelState $) {
@@ -67,6 +75,7 @@ public final class DerivedLabelState extends com.pulumi.resources.ResourceArgs {
         this.metricLabel = $.metricLabel;
         this.name = $.name;
         this.slug = $.slug;
+        this.spanTag = $.spanTag;
     }
 
     public static Builder builder() {
@@ -139,6 +148,15 @@ public final class DerivedLabelState extends com.pulumi.resources.ResourceArgs {
 
         public Builder slug(String slug) {
             return slug(Output.of(slug));
+        }
+
+        public Builder spanTag(@Nullable Output<DerivedLabelSpanTagArgs> spanTag) {
+            $.spanTag = spanTag;
+            return this;
+        }
+
+        public Builder spanTag(DerivedLabelSpanTagArgs spanTag) {
+            return spanTag(Output.of(spanTag));
         }
 
         public DerivedLabelState build() {

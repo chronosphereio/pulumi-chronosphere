@@ -47,6 +47,9 @@ export class RollupRule extends pulumi.CustomResource {
     public readonly mode!: pulumi.Output<string | undefined>;
     public readonly name!: pulumi.Output<string>;
     public readonly newMetric!: pulumi.Output<string | undefined>;
+    /**
+     * @deprecated permissive is no longer supported
+     */
     public readonly permissive!: pulumi.Output<boolean | undefined>;
     public readonly slug!: pulumi.Output<string>;
     /**
@@ -136,6 +139,9 @@ export interface RollupRuleState {
     mode?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     newMetric?: pulumi.Input<string>;
+    /**
+     * @deprecated permissive is no longer supported
+     */
     permissive?: pulumi.Input<boolean>;
     slug?: pulumi.Input<string>;
     /**
@@ -161,6 +167,9 @@ export interface RollupRuleArgs {
     mode?: pulumi.Input<string>;
     name: pulumi.Input<string>;
     newMetric?: pulumi.Input<string>;
+    /**
+     * @deprecated permissive is no longer supported
+     */
     permissive?: pulumi.Input<boolean>;
     slug: pulumi.Input<string>;
     /**

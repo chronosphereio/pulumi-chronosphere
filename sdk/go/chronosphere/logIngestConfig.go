@@ -14,7 +14,9 @@ import (
 type LogIngestConfig struct {
 	pulumi.CustomResourceState
 
-	Parsers LogIngestConfigParserArrayOutput `pulumi:"parsers"`
+	FieldNormalization LogIngestConfigFieldNormalizationPtrOutput `pulumi:"fieldNormalization"`
+	FieldParsers       LogIngestConfigFieldParserArrayOutput      `pulumi:"fieldParsers"`
+	PlaintextParsers   LogIngestConfigPlaintextParserArrayOutput  `pulumi:"plaintextParsers"`
 }
 
 // NewLogIngestConfig registers a new resource with the given unique name, arguments, and options.
@@ -47,11 +49,15 @@ func GetLogIngestConfig(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering LogIngestConfig resources.
 type logIngestConfigState struct {
-	Parsers []LogIngestConfigParser `pulumi:"parsers"`
+	FieldNormalization *LogIngestConfigFieldNormalization `pulumi:"fieldNormalization"`
+	FieldParsers       []LogIngestConfigFieldParser       `pulumi:"fieldParsers"`
+	PlaintextParsers   []LogIngestConfigPlaintextParser   `pulumi:"plaintextParsers"`
 }
 
 type LogIngestConfigState struct {
-	Parsers LogIngestConfigParserArrayInput
+	FieldNormalization LogIngestConfigFieldNormalizationPtrInput
+	FieldParsers       LogIngestConfigFieldParserArrayInput
+	PlaintextParsers   LogIngestConfigPlaintextParserArrayInput
 }
 
 func (LogIngestConfigState) ElementType() reflect.Type {
@@ -59,12 +65,16 @@ func (LogIngestConfigState) ElementType() reflect.Type {
 }
 
 type logIngestConfigArgs struct {
-	Parsers []LogIngestConfigParser `pulumi:"parsers"`
+	FieldNormalization *LogIngestConfigFieldNormalization `pulumi:"fieldNormalization"`
+	FieldParsers       []LogIngestConfigFieldParser       `pulumi:"fieldParsers"`
+	PlaintextParsers   []LogIngestConfigPlaintextParser   `pulumi:"plaintextParsers"`
 }
 
 // The set of arguments for constructing a LogIngestConfig resource.
 type LogIngestConfigArgs struct {
-	Parsers LogIngestConfigParserArrayInput
+	FieldNormalization LogIngestConfigFieldNormalizationPtrInput
+	FieldParsers       LogIngestConfigFieldParserArrayInput
+	PlaintextParsers   LogIngestConfigPlaintextParserArrayInput
 }
 
 func (LogIngestConfigArgs) ElementType() reflect.Type {
@@ -154,8 +164,16 @@ func (o LogIngestConfigOutput) ToLogIngestConfigOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o LogIngestConfigOutput) Parsers() LogIngestConfigParserArrayOutput {
-	return o.ApplyT(func(v *LogIngestConfig) LogIngestConfigParserArrayOutput { return v.Parsers }).(LogIngestConfigParserArrayOutput)
+func (o LogIngestConfigOutput) FieldNormalization() LogIngestConfigFieldNormalizationPtrOutput {
+	return o.ApplyT(func(v *LogIngestConfig) LogIngestConfigFieldNormalizationPtrOutput { return v.FieldNormalization }).(LogIngestConfigFieldNormalizationPtrOutput)
+}
+
+func (o LogIngestConfigOutput) FieldParsers() LogIngestConfigFieldParserArrayOutput {
+	return o.ApplyT(func(v *LogIngestConfig) LogIngestConfigFieldParserArrayOutput { return v.FieldParsers }).(LogIngestConfigFieldParserArrayOutput)
+}
+
+func (o LogIngestConfigOutput) PlaintextParsers() LogIngestConfigPlaintextParserArrayOutput {
+	return o.ApplyT(func(v *LogIngestConfig) LogIngestConfigPlaintextParserArrayOutput { return v.PlaintextParsers }).(LogIngestConfigPlaintextParserArrayOutput)
 }
 
 type LogIngestConfigArrayOutput struct{ *pulumi.OutputState }

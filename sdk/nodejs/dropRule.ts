@@ -35,9 +35,13 @@ export class DropRule extends pulumi.CustomResource {
     }
 
     public readonly activatedDropDuration!: pulumi.Output<string | undefined>;
+    /**
+     * @deprecated use `mode` instead
+     */
     public readonly active!: pulumi.Output<boolean | undefined>;
     public readonly conditionalDrop!: pulumi.Output<boolean | undefined>;
     public readonly dropNanValue!: pulumi.Output<boolean | undefined>;
+    public readonly mode!: pulumi.Output<string | undefined>;
     public readonly name!: pulumi.Output<string>;
     public readonly queries!: pulumi.Output<string[]>;
     public readonly rateLimitThreshold!: pulumi.Output<number | undefined>;
@@ -61,6 +65,7 @@ export class DropRule extends pulumi.CustomResource {
             resourceInputs["active"] = state ? state.active : undefined;
             resourceInputs["conditionalDrop"] = state ? state.conditionalDrop : undefined;
             resourceInputs["dropNanValue"] = state ? state.dropNanValue : undefined;
+            resourceInputs["mode"] = state ? state.mode : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["queries"] = state ? state.queries : undefined;
             resourceInputs["rateLimitThreshold"] = state ? state.rateLimitThreshold : undefined;
@@ -78,6 +83,7 @@ export class DropRule extends pulumi.CustomResource {
             resourceInputs["active"] = args ? args.active : undefined;
             resourceInputs["conditionalDrop"] = args ? args.conditionalDrop : undefined;
             resourceInputs["dropNanValue"] = args ? args.dropNanValue : undefined;
+            resourceInputs["mode"] = args ? args.mode : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["queries"] = args ? args.queries : undefined;
             resourceInputs["rateLimitThreshold"] = args ? args.rateLimitThreshold : undefined;
@@ -94,9 +100,13 @@ export class DropRule extends pulumi.CustomResource {
  */
 export interface DropRuleState {
     activatedDropDuration?: pulumi.Input<string>;
+    /**
+     * @deprecated use `mode` instead
+     */
     active?: pulumi.Input<boolean>;
     conditionalDrop?: pulumi.Input<boolean>;
     dropNanValue?: pulumi.Input<boolean>;
+    mode?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     queries?: pulumi.Input<pulumi.Input<string>[]>;
     rateLimitThreshold?: pulumi.Input<number>;
@@ -109,9 +119,13 @@ export interface DropRuleState {
  */
 export interface DropRuleArgs {
     activatedDropDuration?: pulumi.Input<string>;
+    /**
+     * @deprecated use `mode` instead
+     */
     active?: pulumi.Input<boolean>;
     conditionalDrop?: pulumi.Input<boolean>;
     dropNanValue?: pulumi.Input<boolean>;
+    mode?: pulumi.Input<string>;
     name: pulumi.Input<string>;
     queries: pulumi.Input<pulumi.Input<string>[]>;
     rateLimitThreshold?: pulumi.Input<number>;
