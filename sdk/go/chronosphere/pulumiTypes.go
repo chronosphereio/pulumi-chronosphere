@@ -12699,7 +12699,7 @@ func (o LogControlConfigRuleSamplePtrOutput) Rate() pulumi.Float64PtrOutput {
 type LogIngestConfigFieldNormalization struct {
 	CustomFieldNormalizations []LogIngestConfigFieldNormalizationCustomFieldNormalization `pulumi:"customFieldNormalizations"`
 	Message                   *LogIngestConfigFieldNormalizationMessage                   `pulumi:"message"`
-	PrimaryKey                *LogIngestConfigFieldNormalizationPrimaryKey                `pulumi:"primaryKey"`
+	Service                   *LogIngestConfigFieldNormalizationService                   `pulumi:"service"`
 	Severity                  *LogIngestConfigFieldNormalizationSeverity                  `pulumi:"severity"`
 	Timestamp                 *LogIngestConfigFieldNormalizationTimestamp                 `pulumi:"timestamp"`
 }
@@ -12718,7 +12718,7 @@ type LogIngestConfigFieldNormalizationInput interface {
 type LogIngestConfigFieldNormalizationArgs struct {
 	CustomFieldNormalizations LogIngestConfigFieldNormalizationCustomFieldNormalizationArrayInput `pulumi:"customFieldNormalizations"`
 	Message                   LogIngestConfigFieldNormalizationMessagePtrInput                    `pulumi:"message"`
-	PrimaryKey                LogIngestConfigFieldNormalizationPrimaryKeyPtrInput                 `pulumi:"primaryKey"`
+	Service                   LogIngestConfigFieldNormalizationServicePtrInput                    `pulumi:"service"`
 	Severity                  LogIngestConfigFieldNormalizationSeverityPtrInput                   `pulumi:"severity"`
 	Timestamp                 LogIngestConfigFieldNormalizationTimestampPtrInput                  `pulumi:"timestamp"`
 }
@@ -12810,10 +12810,8 @@ func (o LogIngestConfigFieldNormalizationOutput) Message() LogIngestConfigFieldN
 	return o.ApplyT(func(v LogIngestConfigFieldNormalization) *LogIngestConfigFieldNormalizationMessage { return v.Message }).(LogIngestConfigFieldNormalizationMessagePtrOutput)
 }
 
-func (o LogIngestConfigFieldNormalizationOutput) PrimaryKey() LogIngestConfigFieldNormalizationPrimaryKeyPtrOutput {
-	return o.ApplyT(func(v LogIngestConfigFieldNormalization) *LogIngestConfigFieldNormalizationPrimaryKey {
-		return v.PrimaryKey
-	}).(LogIngestConfigFieldNormalizationPrimaryKeyPtrOutput)
+func (o LogIngestConfigFieldNormalizationOutput) Service() LogIngestConfigFieldNormalizationServicePtrOutput {
+	return o.ApplyT(func(v LogIngestConfigFieldNormalization) *LogIngestConfigFieldNormalizationService { return v.Service }).(LogIngestConfigFieldNormalizationServicePtrOutput)
 }
 
 func (o LogIngestConfigFieldNormalizationOutput) Severity() LogIngestConfigFieldNormalizationSeverityPtrOutput {
@@ -12870,13 +12868,13 @@ func (o LogIngestConfigFieldNormalizationPtrOutput) Message() LogIngestConfigFie
 	}).(LogIngestConfigFieldNormalizationMessagePtrOutput)
 }
 
-func (o LogIngestConfigFieldNormalizationPtrOutput) PrimaryKey() LogIngestConfigFieldNormalizationPrimaryKeyPtrOutput {
-	return o.ApplyT(func(v *LogIngestConfigFieldNormalization) *LogIngestConfigFieldNormalizationPrimaryKey {
+func (o LogIngestConfigFieldNormalizationPtrOutput) Service() LogIngestConfigFieldNormalizationServicePtrOutput {
+	return o.ApplyT(func(v *LogIngestConfigFieldNormalization) *LogIngestConfigFieldNormalizationService {
 		if v == nil {
 			return nil
 		}
-		return v.PrimaryKey
-	}).(LogIngestConfigFieldNormalizationPrimaryKeyPtrOutput)
+		return v.Service
+	}).(LogIngestConfigFieldNormalizationServicePtrOutput)
 }
 
 func (o LogIngestConfigFieldNormalizationPtrOutput) Severity() LogIngestConfigFieldNormalizationSeverityPtrOutput {
@@ -13555,302 +13553,152 @@ func (o LogIngestConfigFieldNormalizationMessageSourceArrayOutput) Index(i pulum
 	}).(LogIngestConfigFieldNormalizationMessageSourceOutput)
 }
 
-type LogIngestConfigFieldNormalizationPrimaryKey struct {
-	Normalization *LogIngestConfigFieldNormalizationPrimaryKeyNormalization `pulumi:"normalization"`
-	Target        *string                                                   `pulumi:"target"`
+type LogIngestConfigFieldNormalizationService struct {
+	DefaultValue     *string                                          `pulumi:"defaultValue"`
+	SanitizePatterns []string                                         `pulumi:"sanitizePatterns"`
+	Sources          []LogIngestConfigFieldNormalizationServiceSource `pulumi:"sources"`
+	ValueMap         map[string]string                                `pulumi:"valueMap"`
 }
 
-// LogIngestConfigFieldNormalizationPrimaryKeyInput is an input type that accepts LogIngestConfigFieldNormalizationPrimaryKeyArgs and LogIngestConfigFieldNormalizationPrimaryKeyOutput values.
-// You can construct a concrete instance of `LogIngestConfigFieldNormalizationPrimaryKeyInput` via:
+// LogIngestConfigFieldNormalizationServiceInput is an input type that accepts LogIngestConfigFieldNormalizationServiceArgs and LogIngestConfigFieldNormalizationServiceOutput values.
+// You can construct a concrete instance of `LogIngestConfigFieldNormalizationServiceInput` via:
 //
-//	LogIngestConfigFieldNormalizationPrimaryKeyArgs{...}
-type LogIngestConfigFieldNormalizationPrimaryKeyInput interface {
+//	LogIngestConfigFieldNormalizationServiceArgs{...}
+type LogIngestConfigFieldNormalizationServiceInput interface {
 	pulumi.Input
 
-	ToLogIngestConfigFieldNormalizationPrimaryKeyOutput() LogIngestConfigFieldNormalizationPrimaryKeyOutput
-	ToLogIngestConfigFieldNormalizationPrimaryKeyOutputWithContext(context.Context) LogIngestConfigFieldNormalizationPrimaryKeyOutput
+	ToLogIngestConfigFieldNormalizationServiceOutput() LogIngestConfigFieldNormalizationServiceOutput
+	ToLogIngestConfigFieldNormalizationServiceOutputWithContext(context.Context) LogIngestConfigFieldNormalizationServiceOutput
 }
 
-type LogIngestConfigFieldNormalizationPrimaryKeyArgs struct {
-	Normalization LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrInput `pulumi:"normalization"`
-	Target        pulumi.StringPtrInput                                            `pulumi:"target"`
+type LogIngestConfigFieldNormalizationServiceArgs struct {
+	DefaultValue     pulumi.StringPtrInput                                    `pulumi:"defaultValue"`
+	SanitizePatterns pulumi.StringArrayInput                                  `pulumi:"sanitizePatterns"`
+	Sources          LogIngestConfigFieldNormalizationServiceSourceArrayInput `pulumi:"sources"`
+	ValueMap         pulumi.StringMapInput                                    `pulumi:"valueMap"`
 }
 
-func (LogIngestConfigFieldNormalizationPrimaryKeyArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*LogIngestConfigFieldNormalizationPrimaryKey)(nil)).Elem()
+func (LogIngestConfigFieldNormalizationServiceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogIngestConfigFieldNormalizationService)(nil)).Elem()
 }
 
-func (i LogIngestConfigFieldNormalizationPrimaryKeyArgs) ToLogIngestConfigFieldNormalizationPrimaryKeyOutput() LogIngestConfigFieldNormalizationPrimaryKeyOutput {
-	return i.ToLogIngestConfigFieldNormalizationPrimaryKeyOutputWithContext(context.Background())
+func (i LogIngestConfigFieldNormalizationServiceArgs) ToLogIngestConfigFieldNormalizationServiceOutput() LogIngestConfigFieldNormalizationServiceOutput {
+	return i.ToLogIngestConfigFieldNormalizationServiceOutputWithContext(context.Background())
 }
 
-func (i LogIngestConfigFieldNormalizationPrimaryKeyArgs) ToLogIngestConfigFieldNormalizationPrimaryKeyOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationPrimaryKeyOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LogIngestConfigFieldNormalizationPrimaryKeyOutput)
+func (i LogIngestConfigFieldNormalizationServiceArgs) ToLogIngestConfigFieldNormalizationServiceOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationServiceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogIngestConfigFieldNormalizationServiceOutput)
 }
 
-func (i LogIngestConfigFieldNormalizationPrimaryKeyArgs) ToLogIngestConfigFieldNormalizationPrimaryKeyPtrOutput() LogIngestConfigFieldNormalizationPrimaryKeyPtrOutput {
-	return i.ToLogIngestConfigFieldNormalizationPrimaryKeyPtrOutputWithContext(context.Background())
+func (i LogIngestConfigFieldNormalizationServiceArgs) ToLogIngestConfigFieldNormalizationServicePtrOutput() LogIngestConfigFieldNormalizationServicePtrOutput {
+	return i.ToLogIngestConfigFieldNormalizationServicePtrOutputWithContext(context.Background())
 }
 
-func (i LogIngestConfigFieldNormalizationPrimaryKeyArgs) ToLogIngestConfigFieldNormalizationPrimaryKeyPtrOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationPrimaryKeyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LogIngestConfigFieldNormalizationPrimaryKeyOutput).ToLogIngestConfigFieldNormalizationPrimaryKeyPtrOutputWithContext(ctx)
+func (i LogIngestConfigFieldNormalizationServiceArgs) ToLogIngestConfigFieldNormalizationServicePtrOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationServicePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogIngestConfigFieldNormalizationServiceOutput).ToLogIngestConfigFieldNormalizationServicePtrOutputWithContext(ctx)
 }
 
-// LogIngestConfigFieldNormalizationPrimaryKeyPtrInput is an input type that accepts LogIngestConfigFieldNormalizationPrimaryKeyArgs, LogIngestConfigFieldNormalizationPrimaryKeyPtr and LogIngestConfigFieldNormalizationPrimaryKeyPtrOutput values.
-// You can construct a concrete instance of `LogIngestConfigFieldNormalizationPrimaryKeyPtrInput` via:
+// LogIngestConfigFieldNormalizationServicePtrInput is an input type that accepts LogIngestConfigFieldNormalizationServiceArgs, LogIngestConfigFieldNormalizationServicePtr and LogIngestConfigFieldNormalizationServicePtrOutput values.
+// You can construct a concrete instance of `LogIngestConfigFieldNormalizationServicePtrInput` via:
 //
-//	        LogIngestConfigFieldNormalizationPrimaryKeyArgs{...}
+//	        LogIngestConfigFieldNormalizationServiceArgs{...}
 //
 //	or:
 //
 //	        nil
-type LogIngestConfigFieldNormalizationPrimaryKeyPtrInput interface {
+type LogIngestConfigFieldNormalizationServicePtrInput interface {
 	pulumi.Input
 
-	ToLogIngestConfigFieldNormalizationPrimaryKeyPtrOutput() LogIngestConfigFieldNormalizationPrimaryKeyPtrOutput
-	ToLogIngestConfigFieldNormalizationPrimaryKeyPtrOutputWithContext(context.Context) LogIngestConfigFieldNormalizationPrimaryKeyPtrOutput
+	ToLogIngestConfigFieldNormalizationServicePtrOutput() LogIngestConfigFieldNormalizationServicePtrOutput
+	ToLogIngestConfigFieldNormalizationServicePtrOutputWithContext(context.Context) LogIngestConfigFieldNormalizationServicePtrOutput
 }
 
-type logIngestConfigFieldNormalizationPrimaryKeyPtrType LogIngestConfigFieldNormalizationPrimaryKeyArgs
+type logIngestConfigFieldNormalizationServicePtrType LogIngestConfigFieldNormalizationServiceArgs
 
-func LogIngestConfigFieldNormalizationPrimaryKeyPtr(v *LogIngestConfigFieldNormalizationPrimaryKeyArgs) LogIngestConfigFieldNormalizationPrimaryKeyPtrInput {
-	return (*logIngestConfigFieldNormalizationPrimaryKeyPtrType)(v)
+func LogIngestConfigFieldNormalizationServicePtr(v *LogIngestConfigFieldNormalizationServiceArgs) LogIngestConfigFieldNormalizationServicePtrInput {
+	return (*logIngestConfigFieldNormalizationServicePtrType)(v)
 }
 
-func (*logIngestConfigFieldNormalizationPrimaryKeyPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**LogIngestConfigFieldNormalizationPrimaryKey)(nil)).Elem()
+func (*logIngestConfigFieldNormalizationServicePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogIngestConfigFieldNormalizationService)(nil)).Elem()
 }
 
-func (i *logIngestConfigFieldNormalizationPrimaryKeyPtrType) ToLogIngestConfigFieldNormalizationPrimaryKeyPtrOutput() LogIngestConfigFieldNormalizationPrimaryKeyPtrOutput {
-	return i.ToLogIngestConfigFieldNormalizationPrimaryKeyPtrOutputWithContext(context.Background())
+func (i *logIngestConfigFieldNormalizationServicePtrType) ToLogIngestConfigFieldNormalizationServicePtrOutput() LogIngestConfigFieldNormalizationServicePtrOutput {
+	return i.ToLogIngestConfigFieldNormalizationServicePtrOutputWithContext(context.Background())
 }
 
-func (i *logIngestConfigFieldNormalizationPrimaryKeyPtrType) ToLogIngestConfigFieldNormalizationPrimaryKeyPtrOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationPrimaryKeyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LogIngestConfigFieldNormalizationPrimaryKeyPtrOutput)
+func (i *logIngestConfigFieldNormalizationServicePtrType) ToLogIngestConfigFieldNormalizationServicePtrOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationServicePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogIngestConfigFieldNormalizationServicePtrOutput)
 }
 
-type LogIngestConfigFieldNormalizationPrimaryKeyOutput struct{ *pulumi.OutputState }
+type LogIngestConfigFieldNormalizationServiceOutput struct{ *pulumi.OutputState }
 
-func (LogIngestConfigFieldNormalizationPrimaryKeyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LogIngestConfigFieldNormalizationPrimaryKey)(nil)).Elem()
+func (LogIngestConfigFieldNormalizationServiceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogIngestConfigFieldNormalizationService)(nil)).Elem()
 }
 
-func (o LogIngestConfigFieldNormalizationPrimaryKeyOutput) ToLogIngestConfigFieldNormalizationPrimaryKeyOutput() LogIngestConfigFieldNormalizationPrimaryKeyOutput {
+func (o LogIngestConfigFieldNormalizationServiceOutput) ToLogIngestConfigFieldNormalizationServiceOutput() LogIngestConfigFieldNormalizationServiceOutput {
 	return o
 }
 
-func (o LogIngestConfigFieldNormalizationPrimaryKeyOutput) ToLogIngestConfigFieldNormalizationPrimaryKeyOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationPrimaryKeyOutput {
+func (o LogIngestConfigFieldNormalizationServiceOutput) ToLogIngestConfigFieldNormalizationServiceOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationServiceOutput {
 	return o
 }
 
-func (o LogIngestConfigFieldNormalizationPrimaryKeyOutput) ToLogIngestConfigFieldNormalizationPrimaryKeyPtrOutput() LogIngestConfigFieldNormalizationPrimaryKeyPtrOutput {
-	return o.ToLogIngestConfigFieldNormalizationPrimaryKeyPtrOutputWithContext(context.Background())
+func (o LogIngestConfigFieldNormalizationServiceOutput) ToLogIngestConfigFieldNormalizationServicePtrOutput() LogIngestConfigFieldNormalizationServicePtrOutput {
+	return o.ToLogIngestConfigFieldNormalizationServicePtrOutputWithContext(context.Background())
 }
 
-func (o LogIngestConfigFieldNormalizationPrimaryKeyOutput) ToLogIngestConfigFieldNormalizationPrimaryKeyPtrOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationPrimaryKeyPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v LogIngestConfigFieldNormalizationPrimaryKey) *LogIngestConfigFieldNormalizationPrimaryKey {
+func (o LogIngestConfigFieldNormalizationServiceOutput) ToLogIngestConfigFieldNormalizationServicePtrOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationServicePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v LogIngestConfigFieldNormalizationService) *LogIngestConfigFieldNormalizationService {
 		return &v
-	}).(LogIngestConfigFieldNormalizationPrimaryKeyPtrOutput)
+	}).(LogIngestConfigFieldNormalizationServicePtrOutput)
 }
 
-func (o LogIngestConfigFieldNormalizationPrimaryKeyOutput) Normalization() LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutput {
-	return o.ApplyT(func(v LogIngestConfigFieldNormalizationPrimaryKey) *LogIngestConfigFieldNormalizationPrimaryKeyNormalization {
-		return v.Normalization
-	}).(LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutput)
+func (o LogIngestConfigFieldNormalizationServiceOutput) DefaultValue() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LogIngestConfigFieldNormalizationService) *string { return v.DefaultValue }).(pulumi.StringPtrOutput)
 }
 
-func (o LogIngestConfigFieldNormalizationPrimaryKeyOutput) Target() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LogIngestConfigFieldNormalizationPrimaryKey) *string { return v.Target }).(pulumi.StringPtrOutput)
+func (o LogIngestConfigFieldNormalizationServiceOutput) SanitizePatterns() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LogIngestConfigFieldNormalizationService) []string { return v.SanitizePatterns }).(pulumi.StringArrayOutput)
 }
 
-type LogIngestConfigFieldNormalizationPrimaryKeyPtrOutput struct{ *pulumi.OutputState }
-
-func (LogIngestConfigFieldNormalizationPrimaryKeyPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**LogIngestConfigFieldNormalizationPrimaryKey)(nil)).Elem()
-}
-
-func (o LogIngestConfigFieldNormalizationPrimaryKeyPtrOutput) ToLogIngestConfigFieldNormalizationPrimaryKeyPtrOutput() LogIngestConfigFieldNormalizationPrimaryKeyPtrOutput {
-	return o
-}
-
-func (o LogIngestConfigFieldNormalizationPrimaryKeyPtrOutput) ToLogIngestConfigFieldNormalizationPrimaryKeyPtrOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationPrimaryKeyPtrOutput {
-	return o
-}
-
-func (o LogIngestConfigFieldNormalizationPrimaryKeyPtrOutput) Elem() LogIngestConfigFieldNormalizationPrimaryKeyOutput {
-	return o.ApplyT(func(v *LogIngestConfigFieldNormalizationPrimaryKey) LogIngestConfigFieldNormalizationPrimaryKey {
-		if v != nil {
-			return *v
-		}
-		var ret LogIngestConfigFieldNormalizationPrimaryKey
-		return ret
-	}).(LogIngestConfigFieldNormalizationPrimaryKeyOutput)
-}
-
-func (o LogIngestConfigFieldNormalizationPrimaryKeyPtrOutput) Normalization() LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutput {
-	return o.ApplyT(func(v *LogIngestConfigFieldNormalizationPrimaryKey) *LogIngestConfigFieldNormalizationPrimaryKeyNormalization {
-		if v == nil {
-			return nil
-		}
-		return v.Normalization
-	}).(LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutput)
-}
-
-func (o LogIngestConfigFieldNormalizationPrimaryKeyPtrOutput) Target() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *LogIngestConfigFieldNormalizationPrimaryKey) *string {
-		if v == nil {
-			return nil
-		}
-		return v.Target
-	}).(pulumi.StringPtrOutput)
-}
-
-type LogIngestConfigFieldNormalizationPrimaryKeyNormalization struct {
-	DefaultValue     *string                                                          `pulumi:"defaultValue"`
-	SanitizePatterns []string                                                         `pulumi:"sanitizePatterns"`
-	Sources          []LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSource `pulumi:"sources"`
-	ValueMap         map[string]string                                                `pulumi:"valueMap"`
-}
-
-// LogIngestConfigFieldNormalizationPrimaryKeyNormalizationInput is an input type that accepts LogIngestConfigFieldNormalizationPrimaryKeyNormalizationArgs and LogIngestConfigFieldNormalizationPrimaryKeyNormalizationOutput values.
-// You can construct a concrete instance of `LogIngestConfigFieldNormalizationPrimaryKeyNormalizationInput` via:
-//
-//	LogIngestConfigFieldNormalizationPrimaryKeyNormalizationArgs{...}
-type LogIngestConfigFieldNormalizationPrimaryKeyNormalizationInput interface {
-	pulumi.Input
-
-	ToLogIngestConfigFieldNormalizationPrimaryKeyNormalizationOutput() LogIngestConfigFieldNormalizationPrimaryKeyNormalizationOutput
-	ToLogIngestConfigFieldNormalizationPrimaryKeyNormalizationOutputWithContext(context.Context) LogIngestConfigFieldNormalizationPrimaryKeyNormalizationOutput
-}
-
-type LogIngestConfigFieldNormalizationPrimaryKeyNormalizationArgs struct {
-	DefaultValue     pulumi.StringPtrInput                                                    `pulumi:"defaultValue"`
-	SanitizePatterns pulumi.StringArrayInput                                                  `pulumi:"sanitizePatterns"`
-	Sources          LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArrayInput `pulumi:"sources"`
-	ValueMap         pulumi.StringMapInput                                                    `pulumi:"valueMap"`
-}
-
-func (LogIngestConfigFieldNormalizationPrimaryKeyNormalizationArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*LogIngestConfigFieldNormalizationPrimaryKeyNormalization)(nil)).Elem()
-}
-
-func (i LogIngestConfigFieldNormalizationPrimaryKeyNormalizationArgs) ToLogIngestConfigFieldNormalizationPrimaryKeyNormalizationOutput() LogIngestConfigFieldNormalizationPrimaryKeyNormalizationOutput {
-	return i.ToLogIngestConfigFieldNormalizationPrimaryKeyNormalizationOutputWithContext(context.Background())
-}
-
-func (i LogIngestConfigFieldNormalizationPrimaryKeyNormalizationArgs) ToLogIngestConfigFieldNormalizationPrimaryKeyNormalizationOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationPrimaryKeyNormalizationOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LogIngestConfigFieldNormalizationPrimaryKeyNormalizationOutput)
-}
-
-func (i LogIngestConfigFieldNormalizationPrimaryKeyNormalizationArgs) ToLogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutput() LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutput {
-	return i.ToLogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutputWithContext(context.Background())
-}
-
-func (i LogIngestConfigFieldNormalizationPrimaryKeyNormalizationArgs) ToLogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LogIngestConfigFieldNormalizationPrimaryKeyNormalizationOutput).ToLogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutputWithContext(ctx)
-}
-
-// LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrInput is an input type that accepts LogIngestConfigFieldNormalizationPrimaryKeyNormalizationArgs, LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtr and LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutput values.
-// You can construct a concrete instance of `LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrInput` via:
-//
-//	        LogIngestConfigFieldNormalizationPrimaryKeyNormalizationArgs{...}
-//
-//	or:
-//
-//	        nil
-type LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrInput interface {
-	pulumi.Input
-
-	ToLogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutput() LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutput
-	ToLogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutputWithContext(context.Context) LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutput
-}
-
-type logIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrType LogIngestConfigFieldNormalizationPrimaryKeyNormalizationArgs
-
-func LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtr(v *LogIngestConfigFieldNormalizationPrimaryKeyNormalizationArgs) LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrInput {
-	return (*logIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrType)(v)
-}
-
-func (*logIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**LogIngestConfigFieldNormalizationPrimaryKeyNormalization)(nil)).Elem()
-}
-
-func (i *logIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrType) ToLogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutput() LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutput {
-	return i.ToLogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutputWithContext(context.Background())
-}
-
-func (i *logIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrType) ToLogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutput)
-}
-
-type LogIngestConfigFieldNormalizationPrimaryKeyNormalizationOutput struct{ *pulumi.OutputState }
-
-func (LogIngestConfigFieldNormalizationPrimaryKeyNormalizationOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LogIngestConfigFieldNormalizationPrimaryKeyNormalization)(nil)).Elem()
-}
-
-func (o LogIngestConfigFieldNormalizationPrimaryKeyNormalizationOutput) ToLogIngestConfigFieldNormalizationPrimaryKeyNormalizationOutput() LogIngestConfigFieldNormalizationPrimaryKeyNormalizationOutput {
-	return o
-}
-
-func (o LogIngestConfigFieldNormalizationPrimaryKeyNormalizationOutput) ToLogIngestConfigFieldNormalizationPrimaryKeyNormalizationOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationPrimaryKeyNormalizationOutput {
-	return o
-}
-
-func (o LogIngestConfigFieldNormalizationPrimaryKeyNormalizationOutput) ToLogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutput() LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutput {
-	return o.ToLogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutputWithContext(context.Background())
-}
-
-func (o LogIngestConfigFieldNormalizationPrimaryKeyNormalizationOutput) ToLogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v LogIngestConfigFieldNormalizationPrimaryKeyNormalization) *LogIngestConfigFieldNormalizationPrimaryKeyNormalization {
-		return &v
-	}).(LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutput)
-}
-
-func (o LogIngestConfigFieldNormalizationPrimaryKeyNormalizationOutput) DefaultValue() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LogIngestConfigFieldNormalizationPrimaryKeyNormalization) *string { return v.DefaultValue }).(pulumi.StringPtrOutput)
-}
-
-func (o LogIngestConfigFieldNormalizationPrimaryKeyNormalizationOutput) SanitizePatterns() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v LogIngestConfigFieldNormalizationPrimaryKeyNormalization) []string { return v.SanitizePatterns }).(pulumi.StringArrayOutput)
-}
-
-func (o LogIngestConfigFieldNormalizationPrimaryKeyNormalizationOutput) Sources() LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArrayOutput {
-	return o.ApplyT(func(v LogIngestConfigFieldNormalizationPrimaryKeyNormalization) []LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSource {
+func (o LogIngestConfigFieldNormalizationServiceOutput) Sources() LogIngestConfigFieldNormalizationServiceSourceArrayOutput {
+	return o.ApplyT(func(v LogIngestConfigFieldNormalizationService) []LogIngestConfigFieldNormalizationServiceSource {
 		return v.Sources
-	}).(LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArrayOutput)
+	}).(LogIngestConfigFieldNormalizationServiceSourceArrayOutput)
 }
 
-func (o LogIngestConfigFieldNormalizationPrimaryKeyNormalizationOutput) ValueMap() pulumi.StringMapOutput {
-	return o.ApplyT(func(v LogIngestConfigFieldNormalizationPrimaryKeyNormalization) map[string]string { return v.ValueMap }).(pulumi.StringMapOutput)
+func (o LogIngestConfigFieldNormalizationServiceOutput) ValueMap() pulumi.StringMapOutput {
+	return o.ApplyT(func(v LogIngestConfigFieldNormalizationService) map[string]string { return v.ValueMap }).(pulumi.StringMapOutput)
 }
 
-type LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutput struct{ *pulumi.OutputState }
+type LogIngestConfigFieldNormalizationServicePtrOutput struct{ *pulumi.OutputState }
 
-func (LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**LogIngestConfigFieldNormalizationPrimaryKeyNormalization)(nil)).Elem()
+func (LogIngestConfigFieldNormalizationServicePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**LogIngestConfigFieldNormalizationService)(nil)).Elem()
 }
 
-func (o LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutput) ToLogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutput() LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutput {
+func (o LogIngestConfigFieldNormalizationServicePtrOutput) ToLogIngestConfigFieldNormalizationServicePtrOutput() LogIngestConfigFieldNormalizationServicePtrOutput {
 	return o
 }
 
-func (o LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutput) ToLogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutput {
+func (o LogIngestConfigFieldNormalizationServicePtrOutput) ToLogIngestConfigFieldNormalizationServicePtrOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationServicePtrOutput {
 	return o
 }
 
-func (o LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutput) Elem() LogIngestConfigFieldNormalizationPrimaryKeyNormalizationOutput {
-	return o.ApplyT(func(v *LogIngestConfigFieldNormalizationPrimaryKeyNormalization) LogIngestConfigFieldNormalizationPrimaryKeyNormalization {
+func (o LogIngestConfigFieldNormalizationServicePtrOutput) Elem() LogIngestConfigFieldNormalizationServiceOutput {
+	return o.ApplyT(func(v *LogIngestConfigFieldNormalizationService) LogIngestConfigFieldNormalizationService {
 		if v != nil {
 			return *v
 		}
-		var ret LogIngestConfigFieldNormalizationPrimaryKeyNormalization
+		var ret LogIngestConfigFieldNormalizationService
 		return ret
-	}).(LogIngestConfigFieldNormalizationPrimaryKeyNormalizationOutput)
+	}).(LogIngestConfigFieldNormalizationServiceOutput)
 }
 
-func (o LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutput) DefaultValue() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *LogIngestConfigFieldNormalizationPrimaryKeyNormalization) *string {
+func (o LogIngestConfigFieldNormalizationServicePtrOutput) DefaultValue() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogIngestConfigFieldNormalizationService) *string {
 		if v == nil {
 			return nil
 		}
@@ -13858,8 +13706,8 @@ func (o LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutput) Defau
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutput) SanitizePatterns() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v *LogIngestConfigFieldNormalizationPrimaryKeyNormalization) []string {
+func (o LogIngestConfigFieldNormalizationServicePtrOutput) SanitizePatterns() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *LogIngestConfigFieldNormalizationService) []string {
 		if v == nil {
 			return nil
 		}
@@ -13867,17 +13715,17 @@ func (o LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutput) Sanit
 	}).(pulumi.StringArrayOutput)
 }
 
-func (o LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutput) Sources() LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArrayOutput {
-	return o.ApplyT(func(v *LogIngestConfigFieldNormalizationPrimaryKeyNormalization) []LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSource {
+func (o LogIngestConfigFieldNormalizationServicePtrOutput) Sources() LogIngestConfigFieldNormalizationServiceSourceArrayOutput {
+	return o.ApplyT(func(v *LogIngestConfigFieldNormalizationService) []LogIngestConfigFieldNormalizationServiceSource {
 		if v == nil {
 			return nil
 		}
 		return v.Sources
-	}).(LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArrayOutput)
+	}).(LogIngestConfigFieldNormalizationServiceSourceArrayOutput)
 }
 
-func (o LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutput) ValueMap() pulumi.StringMapOutput {
-	return o.ApplyT(func(v *LogIngestConfigFieldNormalizationPrimaryKeyNormalization) map[string]string {
+func (o LogIngestConfigFieldNormalizationServicePtrOutput) ValueMap() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *LogIngestConfigFieldNormalizationService) map[string]string {
 		if v == nil {
 			return nil
 		}
@@ -13885,98 +13733,98 @@ func (o LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutput) Value
 	}).(pulumi.StringMapOutput)
 }
 
-type LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSource struct {
+type LogIngestConfigFieldNormalizationServiceSource struct {
 	Selector string `pulumi:"selector"`
 }
 
-// LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceInput is an input type that accepts LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArgs and LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceOutput values.
-// You can construct a concrete instance of `LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceInput` via:
+// LogIngestConfigFieldNormalizationServiceSourceInput is an input type that accepts LogIngestConfigFieldNormalizationServiceSourceArgs and LogIngestConfigFieldNormalizationServiceSourceOutput values.
+// You can construct a concrete instance of `LogIngestConfigFieldNormalizationServiceSourceInput` via:
 //
-//	LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArgs{...}
-type LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceInput interface {
+//	LogIngestConfigFieldNormalizationServiceSourceArgs{...}
+type LogIngestConfigFieldNormalizationServiceSourceInput interface {
 	pulumi.Input
 
-	ToLogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceOutput() LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceOutput
-	ToLogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceOutputWithContext(context.Context) LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceOutput
+	ToLogIngestConfigFieldNormalizationServiceSourceOutput() LogIngestConfigFieldNormalizationServiceSourceOutput
+	ToLogIngestConfigFieldNormalizationServiceSourceOutputWithContext(context.Context) LogIngestConfigFieldNormalizationServiceSourceOutput
 }
 
-type LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArgs struct {
+type LogIngestConfigFieldNormalizationServiceSourceArgs struct {
 	Selector pulumi.StringInput `pulumi:"selector"`
 }
 
-func (LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSource)(nil)).Elem()
+func (LogIngestConfigFieldNormalizationServiceSourceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogIngestConfigFieldNormalizationServiceSource)(nil)).Elem()
 }
 
-func (i LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArgs) ToLogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceOutput() LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceOutput {
-	return i.ToLogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceOutputWithContext(context.Background())
+func (i LogIngestConfigFieldNormalizationServiceSourceArgs) ToLogIngestConfigFieldNormalizationServiceSourceOutput() LogIngestConfigFieldNormalizationServiceSourceOutput {
+	return i.ToLogIngestConfigFieldNormalizationServiceSourceOutputWithContext(context.Background())
 }
 
-func (i LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArgs) ToLogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceOutput)
+func (i LogIngestConfigFieldNormalizationServiceSourceArgs) ToLogIngestConfigFieldNormalizationServiceSourceOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationServiceSourceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogIngestConfigFieldNormalizationServiceSourceOutput)
 }
 
-// LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArrayInput is an input type that accepts LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArray and LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArrayOutput values.
-// You can construct a concrete instance of `LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArrayInput` via:
+// LogIngestConfigFieldNormalizationServiceSourceArrayInput is an input type that accepts LogIngestConfigFieldNormalizationServiceSourceArray and LogIngestConfigFieldNormalizationServiceSourceArrayOutput values.
+// You can construct a concrete instance of `LogIngestConfigFieldNormalizationServiceSourceArrayInput` via:
 //
-//	LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArray{ LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArgs{...} }
-type LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArrayInput interface {
+//	LogIngestConfigFieldNormalizationServiceSourceArray{ LogIngestConfigFieldNormalizationServiceSourceArgs{...} }
+type LogIngestConfigFieldNormalizationServiceSourceArrayInput interface {
 	pulumi.Input
 
-	ToLogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArrayOutput() LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArrayOutput
-	ToLogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArrayOutputWithContext(context.Context) LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArrayOutput
+	ToLogIngestConfigFieldNormalizationServiceSourceArrayOutput() LogIngestConfigFieldNormalizationServiceSourceArrayOutput
+	ToLogIngestConfigFieldNormalizationServiceSourceArrayOutputWithContext(context.Context) LogIngestConfigFieldNormalizationServiceSourceArrayOutput
 }
 
-type LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArray []LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceInput
+type LogIngestConfigFieldNormalizationServiceSourceArray []LogIngestConfigFieldNormalizationServiceSourceInput
 
-func (LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSource)(nil)).Elem()
+func (LogIngestConfigFieldNormalizationServiceSourceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LogIngestConfigFieldNormalizationServiceSource)(nil)).Elem()
 }
 
-func (i LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArray) ToLogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArrayOutput() LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArrayOutput {
-	return i.ToLogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArrayOutputWithContext(context.Background())
+func (i LogIngestConfigFieldNormalizationServiceSourceArray) ToLogIngestConfigFieldNormalizationServiceSourceArrayOutput() LogIngestConfigFieldNormalizationServiceSourceArrayOutput {
+	return i.ToLogIngestConfigFieldNormalizationServiceSourceArrayOutputWithContext(context.Background())
 }
 
-func (i LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArray) ToLogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArrayOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArrayOutput)
+func (i LogIngestConfigFieldNormalizationServiceSourceArray) ToLogIngestConfigFieldNormalizationServiceSourceArrayOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationServiceSourceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogIngestConfigFieldNormalizationServiceSourceArrayOutput)
 }
 
-type LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceOutput struct{ *pulumi.OutputState }
+type LogIngestConfigFieldNormalizationServiceSourceOutput struct{ *pulumi.OutputState }
 
-func (LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSource)(nil)).Elem()
+func (LogIngestConfigFieldNormalizationServiceSourceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogIngestConfigFieldNormalizationServiceSource)(nil)).Elem()
 }
 
-func (o LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceOutput) ToLogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceOutput() LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceOutput {
+func (o LogIngestConfigFieldNormalizationServiceSourceOutput) ToLogIngestConfigFieldNormalizationServiceSourceOutput() LogIngestConfigFieldNormalizationServiceSourceOutput {
 	return o
 }
 
-func (o LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceOutput) ToLogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceOutput {
+func (o LogIngestConfigFieldNormalizationServiceSourceOutput) ToLogIngestConfigFieldNormalizationServiceSourceOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationServiceSourceOutput {
 	return o
 }
 
-func (o LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceOutput) Selector() pulumi.StringOutput {
-	return o.ApplyT(func(v LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSource) string { return v.Selector }).(pulumi.StringOutput)
+func (o LogIngestConfigFieldNormalizationServiceSourceOutput) Selector() pulumi.StringOutput {
+	return o.ApplyT(func(v LogIngestConfigFieldNormalizationServiceSource) string { return v.Selector }).(pulumi.StringOutput)
 }
 
-type LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArrayOutput struct{ *pulumi.OutputState }
+type LogIngestConfigFieldNormalizationServiceSourceArrayOutput struct{ *pulumi.OutputState }
 
-func (LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSource)(nil)).Elem()
+func (LogIngestConfigFieldNormalizationServiceSourceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LogIngestConfigFieldNormalizationServiceSource)(nil)).Elem()
 }
 
-func (o LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArrayOutput) ToLogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArrayOutput() LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArrayOutput {
+func (o LogIngestConfigFieldNormalizationServiceSourceArrayOutput) ToLogIngestConfigFieldNormalizationServiceSourceArrayOutput() LogIngestConfigFieldNormalizationServiceSourceArrayOutput {
 	return o
 }
 
-func (o LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArrayOutput) ToLogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArrayOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArrayOutput {
+func (o LogIngestConfigFieldNormalizationServiceSourceArrayOutput) ToLogIngestConfigFieldNormalizationServiceSourceArrayOutputWithContext(ctx context.Context) LogIngestConfigFieldNormalizationServiceSourceArrayOutput {
 	return o
 }
 
-func (o LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArrayOutput) Index(i pulumi.IntInput) LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSource {
-		return vs[0].([]LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSource)[vs[1].(int)]
-	}).(LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceOutput)
+func (o LogIngestConfigFieldNormalizationServiceSourceArrayOutput) Index(i pulumi.IntInput) LogIngestConfigFieldNormalizationServiceSourceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LogIngestConfigFieldNormalizationServiceSource {
+		return vs[0].([]LogIngestConfigFieldNormalizationServiceSource)[vs[1].(int)]
+	}).(LogIngestConfigFieldNormalizationServiceSourceOutput)
 }
 
 type LogIngestConfigFieldNormalizationSeverity struct {
@@ -30603,12 +30451,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*LogIngestConfigFieldNormalizationMessagePtrInput)(nil)).Elem(), LogIngestConfigFieldNormalizationMessageArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LogIngestConfigFieldNormalizationMessageSourceInput)(nil)).Elem(), LogIngestConfigFieldNormalizationMessageSourceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LogIngestConfigFieldNormalizationMessageSourceArrayInput)(nil)).Elem(), LogIngestConfigFieldNormalizationMessageSourceArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*LogIngestConfigFieldNormalizationPrimaryKeyInput)(nil)).Elem(), LogIngestConfigFieldNormalizationPrimaryKeyArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*LogIngestConfigFieldNormalizationPrimaryKeyPtrInput)(nil)).Elem(), LogIngestConfigFieldNormalizationPrimaryKeyArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*LogIngestConfigFieldNormalizationPrimaryKeyNormalizationInput)(nil)).Elem(), LogIngestConfigFieldNormalizationPrimaryKeyNormalizationArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrInput)(nil)).Elem(), LogIngestConfigFieldNormalizationPrimaryKeyNormalizationArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceInput)(nil)).Elem(), LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArrayInput)(nil)).Elem(), LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogIngestConfigFieldNormalizationServiceInput)(nil)).Elem(), LogIngestConfigFieldNormalizationServiceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogIngestConfigFieldNormalizationServicePtrInput)(nil)).Elem(), LogIngestConfigFieldNormalizationServiceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogIngestConfigFieldNormalizationServiceSourceInput)(nil)).Elem(), LogIngestConfigFieldNormalizationServiceSourceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogIngestConfigFieldNormalizationServiceSourceArrayInput)(nil)).Elem(), LogIngestConfigFieldNormalizationServiceSourceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LogIngestConfigFieldNormalizationSeverityInput)(nil)).Elem(), LogIngestConfigFieldNormalizationSeverityArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LogIngestConfigFieldNormalizationSeverityPtrInput)(nil)).Elem(), LogIngestConfigFieldNormalizationSeverityArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LogIngestConfigFieldNormalizationSeveritySourceInput)(nil)).Elem(), LogIngestConfigFieldNormalizationSeveritySourceArgs{})
@@ -31053,12 +30899,10 @@ func init() {
 	pulumi.RegisterOutputType(LogIngestConfigFieldNormalizationMessagePtrOutput{})
 	pulumi.RegisterOutputType(LogIngestConfigFieldNormalizationMessageSourceOutput{})
 	pulumi.RegisterOutputType(LogIngestConfigFieldNormalizationMessageSourceArrayOutput{})
-	pulumi.RegisterOutputType(LogIngestConfigFieldNormalizationPrimaryKeyOutput{})
-	pulumi.RegisterOutputType(LogIngestConfigFieldNormalizationPrimaryKeyPtrOutput{})
-	pulumi.RegisterOutputType(LogIngestConfigFieldNormalizationPrimaryKeyNormalizationOutput{})
-	pulumi.RegisterOutputType(LogIngestConfigFieldNormalizationPrimaryKeyNormalizationPtrOutput{})
-	pulumi.RegisterOutputType(LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceOutput{})
-	pulumi.RegisterOutputType(LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArrayOutput{})
+	pulumi.RegisterOutputType(LogIngestConfigFieldNormalizationServiceOutput{})
+	pulumi.RegisterOutputType(LogIngestConfigFieldNormalizationServicePtrOutput{})
+	pulumi.RegisterOutputType(LogIngestConfigFieldNormalizationServiceSourceOutput{})
+	pulumi.RegisterOutputType(LogIngestConfigFieldNormalizationServiceSourceArrayOutput{})
 	pulumi.RegisterOutputType(LogIngestConfigFieldNormalizationSeverityOutput{})
 	pulumi.RegisterOutputType(LogIngestConfigFieldNormalizationSeverityPtrOutput{})
 	pulumi.RegisterOutputType(LogIngestConfigFieldNormalizationSeveritySourceOutput{})

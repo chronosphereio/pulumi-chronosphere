@@ -12,12 +12,12 @@ namespace Chronosphere.Pulumi.Outputs
 {
 
     [OutputType]
-    public sealed class LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSource
+    public sealed class LogIngestConfigFieldNormalizationServiceSource
     {
         public readonly string Selector;
 
         [OutputConstructor]
-        private LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSource(string selector)
+        private LogIngestConfigFieldNormalizationServiceSource(string selector)
         {
             Selector = selector;
         }

@@ -5,7 +5,7 @@ package io.chronosphere.chronosphere.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
-import io.chronosphere.chronosphere.inputs.LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArgs;
+import io.chronosphere.chronosphere.inputs.LogIngestConfigFieldNormalizationServiceSourceArgs;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -14,9 +14,9 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 
-public final class LogIngestConfigFieldNormalizationPrimaryKeyNormalizationArgs extends com.pulumi.resources.ResourceArgs {
+public final class LogIngestConfigFieldNormalizationServiceArgs extends com.pulumi.resources.ResourceArgs {
 
-    public static final LogIngestConfigFieldNormalizationPrimaryKeyNormalizationArgs Empty = new LogIngestConfigFieldNormalizationPrimaryKeyNormalizationArgs();
+    public static final LogIngestConfigFieldNormalizationServiceArgs Empty = new LogIngestConfigFieldNormalizationServiceArgs();
 
     @Import(name="defaultValue")
     private @Nullable Output<String> defaultValue;
@@ -33,9 +33,9 @@ public final class LogIngestConfigFieldNormalizationPrimaryKeyNormalizationArgs 
     }
 
     @Import(name="sources")
-    private @Nullable Output<List<LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArgs>> sources;
+    private @Nullable Output<List<LogIngestConfigFieldNormalizationServiceSourceArgs>> sources;
 
-    public Optional<Output<List<LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArgs>>> sources() {
+    public Optional<Output<List<LogIngestConfigFieldNormalizationServiceSourceArgs>>> sources() {
         return Optional.ofNullable(this.sources);
     }
 
@@ -46,9 +46,9 @@ public final class LogIngestConfigFieldNormalizationPrimaryKeyNormalizationArgs 
         return Optional.ofNullable(this.valueMap);
     }
 
-    private LogIngestConfigFieldNormalizationPrimaryKeyNormalizationArgs() {}
+    private LogIngestConfigFieldNormalizationServiceArgs() {}
 
-    private LogIngestConfigFieldNormalizationPrimaryKeyNormalizationArgs(LogIngestConfigFieldNormalizationPrimaryKeyNormalizationArgs $) {
+    private LogIngestConfigFieldNormalizationServiceArgs(LogIngestConfigFieldNormalizationServiceArgs $) {
         this.defaultValue = $.defaultValue;
         this.sanitizePatterns = $.sanitizePatterns;
         this.sources = $.sources;
@@ -58,19 +58,19 @@ public final class LogIngestConfigFieldNormalizationPrimaryKeyNormalizationArgs 
     public static Builder builder() {
         return new Builder();
     }
-    public static Builder builder(LogIngestConfigFieldNormalizationPrimaryKeyNormalizationArgs defaults) {
+    public static Builder builder(LogIngestConfigFieldNormalizationServiceArgs defaults) {
         return new Builder(defaults);
     }
 
     public static final class Builder {
-        private LogIngestConfigFieldNormalizationPrimaryKeyNormalizationArgs $;
+        private LogIngestConfigFieldNormalizationServiceArgs $;
 
         public Builder() {
-            $ = new LogIngestConfigFieldNormalizationPrimaryKeyNormalizationArgs();
+            $ = new LogIngestConfigFieldNormalizationServiceArgs();
         }
 
-        public Builder(LogIngestConfigFieldNormalizationPrimaryKeyNormalizationArgs defaults) {
-            $ = new LogIngestConfigFieldNormalizationPrimaryKeyNormalizationArgs(Objects.requireNonNull(defaults));
+        public Builder(LogIngestConfigFieldNormalizationServiceArgs defaults) {
+            $ = new LogIngestConfigFieldNormalizationServiceArgs(Objects.requireNonNull(defaults));
         }
 
         public Builder defaultValue(@Nullable Output<String> defaultValue) {
@@ -95,16 +95,16 @@ public final class LogIngestConfigFieldNormalizationPrimaryKeyNormalizationArgs 
             return sanitizePatterns(List.of(sanitizePatterns));
         }
 
-        public Builder sources(@Nullable Output<List<LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArgs>> sources) {
+        public Builder sources(@Nullable Output<List<LogIngestConfigFieldNormalizationServiceSourceArgs>> sources) {
             $.sources = sources;
             return this;
         }
 
-        public Builder sources(List<LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArgs> sources) {
+        public Builder sources(List<LogIngestConfigFieldNormalizationServiceSourceArgs> sources) {
             return sources(Output.of(sources));
         }
 
-        public Builder sources(LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArgs... sources) {
+        public Builder sources(LogIngestConfigFieldNormalizationServiceSourceArgs... sources) {
             return sources(List.of(sources));
         }
 
@@ -117,7 +117,7 @@ public final class LogIngestConfigFieldNormalizationPrimaryKeyNormalizationArgs 
             return valueMap(Output.of(valueMap));
         }
 
-        public LogIngestConfigFieldNormalizationPrimaryKeyNormalizationArgs build() {
+        public LogIngestConfigFieldNormalizationServiceArgs build() {
             return $;
         }
     }

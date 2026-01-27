@@ -117,9 +117,8 @@ __all__ = [
     'LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSource',
     'LogIngestConfigFieldNormalizationMessage',
     'LogIngestConfigFieldNormalizationMessageSource',
-    'LogIngestConfigFieldNormalizationPrimaryKey',
-    'LogIngestConfigFieldNormalizationPrimaryKeyNormalization',
-    'LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSource',
+    'LogIngestConfigFieldNormalizationService',
+    'LogIngestConfigFieldNormalizationServiceSource',
     'LogIngestConfigFieldNormalizationSeverity',
     'LogIngestConfigFieldNormalizationSeveritySource',
     'LogIngestConfigFieldNormalizationTimestamp',
@@ -3321,8 +3320,6 @@ class LogIngestConfigFieldNormalization(dict):
         suggest = None
         if key == "customFieldNormalizations":
             suggest = "custom_field_normalizations"
-        elif key == "primaryKey":
-            suggest = "primary_key"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in LogIngestConfigFieldNormalization. Access the value via the '{suggest}' property getter instead.")
@@ -3338,15 +3335,15 @@ class LogIngestConfigFieldNormalization(dict):
     def __init__(__self__, *,
                  custom_field_normalizations: Optional[Sequence['outputs.LogIngestConfigFieldNormalizationCustomFieldNormalization']] = None,
                  message: Optional['outputs.LogIngestConfigFieldNormalizationMessage'] = None,
-                 primary_key: Optional['outputs.LogIngestConfigFieldNormalizationPrimaryKey'] = None,
+                 service: Optional['outputs.LogIngestConfigFieldNormalizationService'] = None,
                  severity: Optional['outputs.LogIngestConfigFieldNormalizationSeverity'] = None,
                  timestamp: Optional['outputs.LogIngestConfigFieldNormalizationTimestamp'] = None):
         if custom_field_normalizations is not None:
             pulumi.set(__self__, "custom_field_normalizations", custom_field_normalizations)
         if message is not None:
             pulumi.set(__self__, "message", message)
-        if primary_key is not None:
-            pulumi.set(__self__, "primary_key", primary_key)
+        if service is not None:
+            pulumi.set(__self__, "service", service)
         if severity is not None:
             pulumi.set(__self__, "severity", severity)
         if timestamp is not None:
@@ -3363,9 +3360,9 @@ class LogIngestConfigFieldNormalization(dict):
         return pulumi.get(self, "message")
 
     @property
-    @pulumi.getter(name="primaryKey")
-    def primary_key(self) -> Optional['outputs.LogIngestConfigFieldNormalizationPrimaryKey']:
-        return pulumi.get(self, "primary_key")
+    @pulumi.getter
+    def service(self) -> Optional['outputs.LogIngestConfigFieldNormalizationService']:
+        return pulumi.get(self, "service")
 
     @property
     @pulumi.getter
@@ -3540,28 +3537,7 @@ class LogIngestConfigFieldNormalizationMessageSource(dict):
 
 
 @pulumi.output_type
-class LogIngestConfigFieldNormalizationPrimaryKey(dict):
-    def __init__(__self__, *,
-                 normalization: Optional['outputs.LogIngestConfigFieldNormalizationPrimaryKeyNormalization'] = None,
-                 target: Optional[str] = None):
-        if normalization is not None:
-            pulumi.set(__self__, "normalization", normalization)
-        if target is not None:
-            pulumi.set(__self__, "target", target)
-
-    @property
-    @pulumi.getter
-    def normalization(self) -> Optional['outputs.LogIngestConfigFieldNormalizationPrimaryKeyNormalization']:
-        return pulumi.get(self, "normalization")
-
-    @property
-    @pulumi.getter
-    def target(self) -> Optional[str]:
-        return pulumi.get(self, "target")
-
-
-@pulumi.output_type
-class LogIngestConfigFieldNormalizationPrimaryKeyNormalization(dict):
+class LogIngestConfigFieldNormalizationService(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
@@ -3573,20 +3549,20 @@ class LogIngestConfigFieldNormalizationPrimaryKeyNormalization(dict):
             suggest = "value_map"
 
         if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in LogIngestConfigFieldNormalizationPrimaryKeyNormalization. Access the value via the '{suggest}' property getter instead.")
+            pulumi.log.warn(f"Key '{key}' not found in LogIngestConfigFieldNormalizationService. Access the value via the '{suggest}' property getter instead.")
 
     def __getitem__(self, key: str) -> Any:
-        LogIngestConfigFieldNormalizationPrimaryKeyNormalization.__key_warning(key)
+        LogIngestConfigFieldNormalizationService.__key_warning(key)
         return super().__getitem__(key)
 
     def get(self, key: str, default = None) -> Any:
-        LogIngestConfigFieldNormalizationPrimaryKeyNormalization.__key_warning(key)
+        LogIngestConfigFieldNormalizationService.__key_warning(key)
         return super().get(key, default)
 
     def __init__(__self__, *,
                  default_value: Optional[str] = None,
                  sanitize_patterns: Optional[Sequence[str]] = None,
-                 sources: Optional[Sequence['outputs.LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSource']] = None,
+                 sources: Optional[Sequence['outputs.LogIngestConfigFieldNormalizationServiceSource']] = None,
                  value_map: Optional[Mapping[str, str]] = None):
         if default_value is not None:
             pulumi.set(__self__, "default_value", default_value)
@@ -3609,7 +3585,7 @@ class LogIngestConfigFieldNormalizationPrimaryKeyNormalization(dict):
 
     @property
     @pulumi.getter
-    def sources(self) -> Optional[Sequence['outputs.LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSource']]:
+    def sources(self) -> Optional[Sequence['outputs.LogIngestConfigFieldNormalizationServiceSource']]:
         return pulumi.get(self, "sources")
 
     @property
@@ -3619,7 +3595,7 @@ class LogIngestConfigFieldNormalizationPrimaryKeyNormalization(dict):
 
 
 @pulumi.output_type
-class LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSource(dict):
+class LogIngestConfigFieldNormalizationServiceSource(dict):
     def __init__(__self__, *,
                  selector: str):
         pulumi.set(__self__, "selector", selector)

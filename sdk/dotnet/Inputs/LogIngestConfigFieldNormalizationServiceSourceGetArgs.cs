@@ -11,14 +11,14 @@ using Pulumi;
 namespace Chronosphere.Pulumi.Inputs
 {
 
-    public sealed class LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceGetArgs : global::Pulumi.ResourceArgs
+    public sealed class LogIngestConfigFieldNormalizationServiceSourceGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("selector", required: true)]
         public Input<string> Selector { get; set; } = null!;
 
-        public LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceGetArgs()
+        public LogIngestConfigFieldNormalizationServiceSourceGetArgs()
         {
         }
-        public static new LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceGetArgs Empty => new LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceGetArgs();
+        public static new LogIngestConfigFieldNormalizationServiceSourceGetArgs Empty => new LogIngestConfigFieldNormalizationServiceSourceGetArgs();
     }
 }

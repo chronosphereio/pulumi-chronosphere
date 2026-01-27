@@ -8,10 +8,10 @@ import java.lang.String;
 import java.util.Objects;
 
 @CustomType
-public final class LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSource {
+public final class LogIngestConfigFieldNormalizationServiceSource {
     private String selector;
 
-    private LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSource() {}
+    private LogIngestConfigFieldNormalizationServiceSource() {}
     public String selector() {
         return this.selector;
     }
@@ -20,14 +20,14 @@ public final class LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourc
         return new Builder();
     }
 
-    public static Builder builder(LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSource defaults) {
+    public static Builder builder(LogIngestConfigFieldNormalizationServiceSource defaults) {
         return new Builder(defaults);
     }
     @CustomType.Builder
     public static final class Builder {
         private String selector;
         public Builder() {}
-        public Builder(LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSource defaults) {
+        public Builder(LogIngestConfigFieldNormalizationServiceSource defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.selector = defaults.selector;
         }
@@ -37,8 +37,8 @@ public final class LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourc
             this.selector = Objects.requireNonNull(selector);
             return this;
         }
-        public LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSource build() {
-            final var o = new LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSource();
+        public LogIngestConfigFieldNormalizationServiceSource build() {
+            final var o = new LogIngestConfigFieldNormalizationServiceSource();
             o.selector = selector;
             return o;
         }

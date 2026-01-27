@@ -7,7 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import io.chronosphere.chronosphere.inputs.LogIngestConfigFieldNormalizationCustomFieldNormalizationArgs;
 import io.chronosphere.chronosphere.inputs.LogIngestConfigFieldNormalizationMessageArgs;
-import io.chronosphere.chronosphere.inputs.LogIngestConfigFieldNormalizationPrimaryKeyArgs;
+import io.chronosphere.chronosphere.inputs.LogIngestConfigFieldNormalizationServiceArgs;
 import io.chronosphere.chronosphere.inputs.LogIngestConfigFieldNormalizationSeverityArgs;
 import io.chronosphere.chronosphere.inputs.LogIngestConfigFieldNormalizationTimestampArgs;
 import java.util.List;
@@ -34,11 +34,11 @@ public final class LogIngestConfigFieldNormalizationArgs extends com.pulumi.reso
         return Optional.ofNullable(this.message);
     }
 
-    @Import(name="primaryKey")
-    private @Nullable Output<LogIngestConfigFieldNormalizationPrimaryKeyArgs> primaryKey;
+    @Import(name="service")
+    private @Nullable Output<LogIngestConfigFieldNormalizationServiceArgs> service;
 
-    public Optional<Output<LogIngestConfigFieldNormalizationPrimaryKeyArgs>> primaryKey() {
-        return Optional.ofNullable(this.primaryKey);
+    public Optional<Output<LogIngestConfigFieldNormalizationServiceArgs>> service() {
+        return Optional.ofNullable(this.service);
     }
 
     @Import(name="severity")
@@ -60,7 +60,7 @@ public final class LogIngestConfigFieldNormalizationArgs extends com.pulumi.reso
     private LogIngestConfigFieldNormalizationArgs(LogIngestConfigFieldNormalizationArgs $) {
         this.customFieldNormalizations = $.customFieldNormalizations;
         this.message = $.message;
-        this.primaryKey = $.primaryKey;
+        this.service = $.service;
         this.severity = $.severity;
         this.timestamp = $.timestamp;
     }
@@ -105,13 +105,13 @@ public final class LogIngestConfigFieldNormalizationArgs extends com.pulumi.reso
             return message(Output.of(message));
         }
 
-        public Builder primaryKey(@Nullable Output<LogIngestConfigFieldNormalizationPrimaryKeyArgs> primaryKey) {
-            $.primaryKey = primaryKey;
+        public Builder service(@Nullable Output<LogIngestConfigFieldNormalizationServiceArgs> service) {
+            $.service = service;
             return this;
         }
 
-        public Builder primaryKey(LogIngestConfigFieldNormalizationPrimaryKeyArgs primaryKey) {
-            return primaryKey(Output.of(primaryKey));
+        public Builder service(LogIngestConfigFieldNormalizationServiceArgs service) {
+            return service(Output.of(service));
         }
 
         public Builder severity(@Nullable Output<LogIngestConfigFieldNormalizationSeverityArgs> severity) {

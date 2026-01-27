@@ -1505,8 +1505,8 @@
                 "message": {
                     "$ref": "#/types/chronosphere:index/LogIngestConfigFieldNormalizationMessage:LogIngestConfigFieldNormalizationMessage"
                 },
-                "primaryKey": {
-                    "$ref": "#/types/chronosphere:index/LogIngestConfigFieldNormalizationPrimaryKey:LogIngestConfigFieldNormalizationPrimaryKey"
+                "service": {
+                    "$ref": "#/types/chronosphere:index/LogIngestConfigFieldNormalizationService:LogIngestConfigFieldNormalizationService"
                 },
                 "severity": {
                     "$ref": "#/types/chronosphere:index/LogIngestConfigFieldNormalizationSeverity:LogIngestConfigFieldNormalizationSeverity"
@@ -1602,18 +1602,7 @@
                 "selector"
             ]
         },
-        "chronosphere:index/LogIngestConfigFieldNormalizationPrimaryKey:LogIngestConfigFieldNormalizationPrimaryKey": {
-            "properties": {
-                "normalization": {
-                    "$ref": "#/types/chronosphere:index/LogIngestConfigFieldNormalizationPrimaryKeyNormalization:LogIngestConfigFieldNormalizationPrimaryKeyNormalization"
-                },
-                "target": {
-                    "type": "string"
-                }
-            },
-            "type": "object"
-        },
-        "chronosphere:index/LogIngestConfigFieldNormalizationPrimaryKeyNormalization:LogIngestConfigFieldNormalizationPrimaryKeyNormalization": {
+        "chronosphere:index/LogIngestConfigFieldNormalizationService:LogIngestConfigFieldNormalizationService": {
             "properties": {
                 "defaultValue": {
                     "type": "string"
@@ -1627,7 +1616,7 @@
                 "sources": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/chronosphere:index/LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSource:LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSource"
+                        "$ref": "#/types/chronosphere:index/LogIngestConfigFieldNormalizationServiceSource:LogIngestConfigFieldNormalizationServiceSource"
                     }
                 },
                 "valueMap": {
@@ -1639,7 +1628,7 @@
             },
             "type": "object"
         },
-        "chronosphere:index/LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSource:LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSource": {
+        "chronosphere:index/LogIngestConfigFieldNormalizationServiceSource:LogIngestConfigFieldNormalizationServiceSource": {
             "properties": {
                 "selector": {
                     "type": "string"
@@ -6259,6 +6248,9 @@
                     "type": "boolean",
                     "deprecationMessage": "permissive is no longer supported"
                 },
+                "skipOnConflict": {
+                    "type": "boolean"
+                },
                 "slug": {
                     "type": "string"
                 },
@@ -6323,6 +6315,9 @@
                 "permissive": {
                     "type": "boolean",
                     "deprecationMessage": "permissive is no longer supported"
+                },
+                "skipOnConflict": {
+                    "type": "boolean"
                 },
                 "slug": {
                     "type": "string",
@@ -6390,6 +6385,9 @@
                     "permissive": {
                         "type": "boolean",
                         "deprecationMessage": "permissive is no longer supported"
+                    },
+                    "skipOnConflict": {
+                        "type": "boolean"
                     },
                     "slug": {
                         "type": "string",
@@ -6612,6 +6610,86 @@
                     "unrestricted": {
                         "type": "boolean",
                         "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "chronosphere:index/serviceAttribute:ServiceAttribute": {
+            "properties": {
+                "description": {
+                    "type": "string",
+                    "description": "Human-readable description of the service\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of the service\n"
+                },
+                "notificationPolicyId": {
+                    "type": "string",
+                    "description": "Notification policy ID for alerts\n"
+                },
+                "serviceSlug": {
+                    "type": "string",
+                    "description": "The slug of the service to associate attributes with\n"
+                },
+                "teamId": {
+                    "type": "string",
+                    "description": "Team that owns the service\n"
+                }
+            },
+            "required": [
+                "serviceSlug"
+            ],
+            "inputProperties": {
+                "description": {
+                    "type": "string",
+                    "description": "Human-readable description of the service\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of the service\n"
+                },
+                "notificationPolicyId": {
+                    "type": "string",
+                    "description": "Notification policy ID for alerts\n"
+                },
+                "serviceSlug": {
+                    "type": "string",
+                    "description": "The slug of the service to associate attributes with\n",
+                    "willReplaceOnChanges": true
+                },
+                "teamId": {
+                    "type": "string",
+                    "description": "Team that owns the service\n"
+                }
+            },
+            "requiredInputs": [
+                "serviceSlug"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering ServiceAttribute resources.\n",
+                "properties": {
+                    "description": {
+                        "type": "string",
+                        "description": "Human-readable description of the service\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Name of the service\n"
+                    },
+                    "notificationPolicyId": {
+                        "type": "string",
+                        "description": "Notification policy ID for alerts\n"
+                    },
+                    "serviceSlug": {
+                        "type": "string",
+                        "description": "The slug of the service to associate attributes with\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "teamId": {
+                        "type": "string",
+                        "description": "Team that owns the service\n"
                     }
                 },
                 "type": "object"

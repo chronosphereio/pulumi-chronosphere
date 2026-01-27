@@ -129,6 +129,13 @@ public final class RollupRuleArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.permissive);
     }
 
+    @Import(name="skipOnConflict")
+    private @Nullable Output<Boolean> skipOnConflict;
+
+    public Optional<Output<Boolean>> skipOnConflict() {
+        return Optional.ofNullable(this.skipOnConflict);
+    }
+
     @Import(name="slug", required=true)
     private Output<String> slug;
 
@@ -172,6 +179,7 @@ public final class RollupRuleArgs extends com.pulumi.resources.ResourceArgs {
         this.name = $.name;
         this.newMetric = $.newMetric;
         this.permissive = $.permissive;
+        this.skipOnConflict = $.skipOnConflict;
         this.slug = $.slug;
         this.storagePolicies = $.storagePolicies;
     }
@@ -342,6 +350,15 @@ public final class RollupRuleArgs extends com.pulumi.resources.ResourceArgs {
         @Deprecated /* permissive is no longer supported */
         public Builder permissive(Boolean permissive) {
             return permissive(Output.of(permissive));
+        }
+
+        public Builder skipOnConflict(@Nullable Output<Boolean> skipOnConflict) {
+            $.skipOnConflict = skipOnConflict;
+            return this;
+        }
+
+        public Builder skipOnConflict(Boolean skipOnConflict) {
+            return skipOnConflict(Output.of(skipOnConflict));
         }
 
         public Builder slug(Output<String> slug) {

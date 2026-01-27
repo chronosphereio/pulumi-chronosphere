@@ -12,20 +12,20 @@ namespace Chronosphere.Pulumi.Outputs
 {
 
     [OutputType]
-    public sealed class LogIngestConfigFieldNormalizationPrimaryKeyNormalization
+    public sealed class LogIngestConfigFieldNormalizationService
     {
         public readonly string? DefaultValue;
         public readonly ImmutableArray<string> SanitizePatterns;
-        public readonly ImmutableArray<Outputs.LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSource> Sources;
+        public readonly ImmutableArray<Outputs.LogIngestConfigFieldNormalizationServiceSource> Sources;
         public readonly ImmutableDictionary<string, string>? ValueMap;
 
         [OutputConstructor]
-        private LogIngestConfigFieldNormalizationPrimaryKeyNormalization(
+        private LogIngestConfigFieldNormalizationService(
             string? defaultValue,
 
             ImmutableArray<string> sanitizePatterns,
 
-            ImmutableArray<Outputs.LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSource> sources,
+            ImmutableArray<Outputs.LogIngestConfigFieldNormalizationServiceSource> sources,
 
             ImmutableDictionary<string, string>? valueMap)
         {

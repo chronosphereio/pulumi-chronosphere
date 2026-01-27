@@ -55,6 +55,9 @@ namespace Chronosphere.Pulumi
         [Output("permissive")]
         public Output<bool?> Permissive { get; private set; } = null!;
 
+        [Output("skipOnConflict")]
+        public Output<bool?> SkipOnConflict { get; private set; } = null!;
+
         [Output("slug")]
         public Output<string> Slug { get; private set; } = null!;
 
@@ -160,6 +163,9 @@ namespace Chronosphere.Pulumi
         [Input("permissive")]
         public Input<bool>? Permissive { get; set; }
 
+        [Input("skipOnConflict")]
+        public Input<bool>? SkipOnConflict { get; set; }
+
         [Input("slug", required: true)]
         public Input<string> Slug { get; set; } = null!;
 
@@ -225,6 +231,9 @@ namespace Chronosphere.Pulumi
 
         [Input("permissive")]
         public Input<bool>? Permissive { get; set; }
+
+        [Input("skipOnConflict")]
+        public Input<bool>? SkipOnConflict { get; set; }
 
         [Input("slug")]
         public Input<string>? Slug { get; set; }

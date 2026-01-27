@@ -519,7 +519,7 @@ export interface LogControlConfigRuleSample {
 export interface LogIngestConfigFieldNormalization {
     customFieldNormalizations?: outputs.LogIngestConfigFieldNormalizationCustomFieldNormalization[];
     message?: outputs.LogIngestConfigFieldNormalizationMessage;
-    primaryKey?: outputs.LogIngestConfigFieldNormalizationPrimaryKey;
+    service?: outputs.LogIngestConfigFieldNormalizationService;
     severity?: outputs.LogIngestConfigFieldNormalizationSeverity;
     timestamp?: outputs.LogIngestConfigFieldNormalizationTimestamp;
 }
@@ -551,19 +551,14 @@ export interface LogIngestConfigFieldNormalizationMessageSource {
     selector: string;
 }
 
-export interface LogIngestConfigFieldNormalizationPrimaryKey {
-    normalization?: outputs.LogIngestConfigFieldNormalizationPrimaryKeyNormalization;
-    target?: string;
-}
-
-export interface LogIngestConfigFieldNormalizationPrimaryKeyNormalization {
+export interface LogIngestConfigFieldNormalizationService {
     defaultValue?: string;
     sanitizePatterns?: string[];
-    sources?: outputs.LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSource[];
+    sources?: outputs.LogIngestConfigFieldNormalizationServiceSource[];
     valueMap?: {[key: string]: string};
 }
 
-export interface LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSource {
+export interface LogIngestConfigFieldNormalizationServiceSource {
     selector: string;
 }
 

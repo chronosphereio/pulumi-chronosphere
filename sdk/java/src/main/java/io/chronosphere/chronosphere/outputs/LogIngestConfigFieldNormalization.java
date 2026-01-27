@@ -6,7 +6,7 @@ package io.chronosphere.chronosphere.outputs;
 import com.pulumi.core.annotations.CustomType;
 import io.chronosphere.chronosphere.outputs.LogIngestConfigFieldNormalizationCustomFieldNormalization;
 import io.chronosphere.chronosphere.outputs.LogIngestConfigFieldNormalizationMessage;
-import io.chronosphere.chronosphere.outputs.LogIngestConfigFieldNormalizationPrimaryKey;
+import io.chronosphere.chronosphere.outputs.LogIngestConfigFieldNormalizationService;
 import io.chronosphere.chronosphere.outputs.LogIngestConfigFieldNormalizationSeverity;
 import io.chronosphere.chronosphere.outputs.LogIngestConfigFieldNormalizationTimestamp;
 import java.util.List;
@@ -18,7 +18,7 @@ import javax.annotation.Nullable;
 public final class LogIngestConfigFieldNormalization {
     private @Nullable List<LogIngestConfigFieldNormalizationCustomFieldNormalization> customFieldNormalizations;
     private @Nullable LogIngestConfigFieldNormalizationMessage message;
-    private @Nullable LogIngestConfigFieldNormalizationPrimaryKey primaryKey;
+    private @Nullable LogIngestConfigFieldNormalizationService service;
     private @Nullable LogIngestConfigFieldNormalizationSeverity severity;
     private @Nullable LogIngestConfigFieldNormalizationTimestamp timestamp;
 
@@ -29,8 +29,8 @@ public final class LogIngestConfigFieldNormalization {
     public Optional<LogIngestConfigFieldNormalizationMessage> message() {
         return Optional.ofNullable(this.message);
     }
-    public Optional<LogIngestConfigFieldNormalizationPrimaryKey> primaryKey() {
-        return Optional.ofNullable(this.primaryKey);
+    public Optional<LogIngestConfigFieldNormalizationService> service() {
+        return Optional.ofNullable(this.service);
     }
     public Optional<LogIngestConfigFieldNormalizationSeverity> severity() {
         return Optional.ofNullable(this.severity);
@@ -50,7 +50,7 @@ public final class LogIngestConfigFieldNormalization {
     public static final class Builder {
         private @Nullable List<LogIngestConfigFieldNormalizationCustomFieldNormalization> customFieldNormalizations;
         private @Nullable LogIngestConfigFieldNormalizationMessage message;
-        private @Nullable LogIngestConfigFieldNormalizationPrimaryKey primaryKey;
+        private @Nullable LogIngestConfigFieldNormalizationService service;
         private @Nullable LogIngestConfigFieldNormalizationSeverity severity;
         private @Nullable LogIngestConfigFieldNormalizationTimestamp timestamp;
         public Builder() {}
@@ -58,7 +58,7 @@ public final class LogIngestConfigFieldNormalization {
     	      Objects.requireNonNull(defaults);
     	      this.customFieldNormalizations = defaults.customFieldNormalizations;
     	      this.message = defaults.message;
-    	      this.primaryKey = defaults.primaryKey;
+    	      this.service = defaults.service;
     	      this.severity = defaults.severity;
     	      this.timestamp = defaults.timestamp;
         }
@@ -77,8 +77,8 @@ public final class LogIngestConfigFieldNormalization {
             return this;
         }
         @CustomType.Setter
-        public Builder primaryKey(@Nullable LogIngestConfigFieldNormalizationPrimaryKey primaryKey) {
-            this.primaryKey = primaryKey;
+        public Builder service(@Nullable LogIngestConfigFieldNormalizationService service) {
+            this.service = service;
             return this;
         }
         @CustomType.Setter
@@ -95,7 +95,7 @@ public final class LogIngestConfigFieldNormalization {
             final var o = new LogIngestConfigFieldNormalization();
             o.customFieldNormalizations = customFieldNormalizations;
             o.message = message;
-            o.primaryKey = primaryKey;
+            o.service = service;
             o.severity = severity;
             o.timestamp = timestamp;
             return o;

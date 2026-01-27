@@ -519,7 +519,7 @@ export interface LogControlConfigRuleSample {
 export interface LogIngestConfigFieldNormalization {
     customFieldNormalizations?: pulumi.Input<pulumi.Input<inputs.LogIngestConfigFieldNormalizationCustomFieldNormalization>[]>;
     message?: pulumi.Input<inputs.LogIngestConfigFieldNormalizationMessage>;
-    primaryKey?: pulumi.Input<inputs.LogIngestConfigFieldNormalizationPrimaryKey>;
+    service?: pulumi.Input<inputs.LogIngestConfigFieldNormalizationService>;
     severity?: pulumi.Input<inputs.LogIngestConfigFieldNormalizationSeverity>;
     timestamp?: pulumi.Input<inputs.LogIngestConfigFieldNormalizationTimestamp>;
 }
@@ -551,19 +551,14 @@ export interface LogIngestConfigFieldNormalizationMessageSource {
     selector: pulumi.Input<string>;
 }
 
-export interface LogIngestConfigFieldNormalizationPrimaryKey {
-    normalization?: pulumi.Input<inputs.LogIngestConfigFieldNormalizationPrimaryKeyNormalization>;
-    target?: pulumi.Input<string>;
-}
-
-export interface LogIngestConfigFieldNormalizationPrimaryKeyNormalization {
+export interface LogIngestConfigFieldNormalizationService {
     defaultValue?: pulumi.Input<string>;
     sanitizePatterns?: pulumi.Input<pulumi.Input<string>[]>;
-    sources?: pulumi.Input<pulumi.Input<inputs.LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSource>[]>;
+    sources?: pulumi.Input<pulumi.Input<inputs.LogIngestConfigFieldNormalizationServiceSource>[]>;
     valueMap?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }
 
-export interface LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSource {
+export interface LogIngestConfigFieldNormalizationServiceSource {
     selector: pulumi.Input<string>;
 }
 
