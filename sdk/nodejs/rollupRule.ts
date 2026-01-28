@@ -51,6 +51,7 @@ export class RollupRule extends pulumi.CustomResource {
      * @deprecated permissive is no longer supported
      */
     public readonly permissive!: pulumi.Output<boolean | undefined>;
+    public readonly skipOnConflict!: pulumi.Output<boolean | undefined>;
     public readonly slug!: pulumi.Output<string>;
     /**
      * @deprecated use `interval` instead
@@ -84,6 +85,7 @@ export class RollupRule extends pulumi.CustomResource {
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["newMetric"] = state ? state.newMetric : undefined;
             resourceInputs["permissive"] = state ? state.permissive : undefined;
+            resourceInputs["skipOnConflict"] = state ? state.skipOnConflict : undefined;
             resourceInputs["slug"] = state ? state.slug : undefined;
             resourceInputs["storagePolicies"] = state ? state.storagePolicies : undefined;
         } else {
@@ -114,6 +116,7 @@ export class RollupRule extends pulumi.CustomResource {
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["newMetric"] = args ? args.newMetric : undefined;
             resourceInputs["permissive"] = args ? args.permissive : undefined;
+            resourceInputs["skipOnConflict"] = args ? args.skipOnConflict : undefined;
             resourceInputs["slug"] = args ? args.slug : undefined;
             resourceInputs["storagePolicies"] = args ? args.storagePolicies : undefined;
         }
@@ -143,6 +146,7 @@ export interface RollupRuleState {
      * @deprecated permissive is no longer supported
      */
     permissive?: pulumi.Input<boolean>;
+    skipOnConflict?: pulumi.Input<boolean>;
     slug?: pulumi.Input<string>;
     /**
      * @deprecated use `interval` instead
@@ -171,6 +175,7 @@ export interface RollupRuleArgs {
      * @deprecated permissive is no longer supported
      */
     permissive?: pulumi.Input<boolean>;
+    skipOnConflict?: pulumi.Input<boolean>;
     slug: pulumi.Input<string>;
     /**
      * @deprecated use `interval` instead

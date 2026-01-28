@@ -31,6 +31,7 @@ class RollupRuleArgs:
                  mode: Optional[pulumi.Input[str]] = None,
                  new_metric: Optional[pulumi.Input[str]] = None,
                  permissive: Optional[pulumi.Input[bool]] = None,
+                 skip_on_conflict: Optional[pulumi.Input[bool]] = None,
                  storage_policies: Optional[pulumi.Input['RollupRuleStoragePoliciesArgs']] = None):
         """
         The set of arguments for constructing a RollupRule resource.
@@ -64,6 +65,8 @@ class RollupRuleArgs:
             pulumi.log.warn("""permissive is deprecated: permissive is no longer supported""")
         if permissive is not None:
             pulumi.set(__self__, "permissive", permissive)
+        if skip_on_conflict is not None:
+            pulumi.set(__self__, "skip_on_conflict", skip_on_conflict)
         if storage_policies is not None:
             warnings.warn("""use `interval` instead""", DeprecationWarning)
             pulumi.log.warn("""storage_policies is deprecated: use `interval` instead""")
@@ -209,6 +212,15 @@ class RollupRuleArgs:
         pulumi.set(self, "permissive", value)
 
     @property
+    @pulumi.getter(name="skipOnConflict")
+    def skip_on_conflict(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "skip_on_conflict")
+
+    @skip_on_conflict.setter
+    def skip_on_conflict(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "skip_on_conflict", value)
+
+    @property
     @pulumi.getter(name="storagePolicies")
     def storage_policies(self) -> Optional[pulumi.Input['RollupRuleStoragePoliciesArgs']]:
         warnings.warn("""use `interval` instead""", DeprecationWarning)
@@ -238,6 +250,7 @@ class _RollupRuleState:
                  name: Optional[pulumi.Input[str]] = None,
                  new_metric: Optional[pulumi.Input[str]] = None,
                  permissive: Optional[pulumi.Input[bool]] = None,
+                 skip_on_conflict: Optional[pulumi.Input[bool]] = None,
                  slug: Optional[pulumi.Input[str]] = None,
                  storage_policies: Optional[pulumi.Input['RollupRuleStoragePoliciesArgs']] = None):
         """
@@ -274,6 +287,8 @@ class _RollupRuleState:
             pulumi.log.warn("""permissive is deprecated: permissive is no longer supported""")
         if permissive is not None:
             pulumi.set(__self__, "permissive", permissive)
+        if skip_on_conflict is not None:
+            pulumi.set(__self__, "skip_on_conflict", skip_on_conflict)
         if slug is not None:
             pulumi.set(__self__, "slug", slug)
         if storage_policies is not None:
@@ -412,6 +427,15 @@ class _RollupRuleState:
         pulumi.set(self, "permissive", value)
 
     @property
+    @pulumi.getter(name="skipOnConflict")
+    def skip_on_conflict(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "skip_on_conflict")
+
+    @skip_on_conflict.setter
+    def skip_on_conflict(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "skip_on_conflict", value)
+
+    @property
     @pulumi.getter
     def slug(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "slug")
@@ -452,6 +476,7 @@ class RollupRule(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  new_metric: Optional[pulumi.Input[str]] = None,
                  permissive: Optional[pulumi.Input[bool]] = None,
+                 skip_on_conflict: Optional[pulumi.Input[bool]] = None,
                  slug: Optional[pulumi.Input[str]] = None,
                  storage_policies: Optional[pulumi.Input[pulumi.InputType['RollupRuleStoragePoliciesArgs']]] = None,
                  __props__=None):
@@ -497,6 +522,7 @@ class RollupRule(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  new_metric: Optional[pulumi.Input[str]] = None,
                  permissive: Optional[pulumi.Input[bool]] = None,
+                 skip_on_conflict: Optional[pulumi.Input[bool]] = None,
                  slug: Optional[pulumi.Input[str]] = None,
                  storage_policies: Optional[pulumi.Input[pulumi.InputType['RollupRuleStoragePoliciesArgs']]] = None,
                  __props__=None):
@@ -528,6 +554,7 @@ class RollupRule(pulumi.CustomResource):
             __props__.__dict__["name"] = name
             __props__.__dict__["new_metric"] = new_metric
             __props__.__dict__["permissive"] = permissive
+            __props__.__dict__["skip_on_conflict"] = skip_on_conflict
             if slug is None and not opts.urn:
                 raise TypeError("Missing required property 'slug'")
             __props__.__dict__["slug"] = slug
@@ -556,6 +583,7 @@ class RollupRule(pulumi.CustomResource):
             name: Optional[pulumi.Input[str]] = None,
             new_metric: Optional[pulumi.Input[str]] = None,
             permissive: Optional[pulumi.Input[bool]] = None,
+            skip_on_conflict: Optional[pulumi.Input[bool]] = None,
             slug: Optional[pulumi.Input[str]] = None,
             storage_policies: Optional[pulumi.Input[pulumi.InputType['RollupRuleStoragePoliciesArgs']]] = None) -> 'RollupRule':
         """
@@ -584,6 +612,7 @@ class RollupRule(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["new_metric"] = new_metric
         __props__.__dict__["permissive"] = permissive
+        __props__.__dict__["skip_on_conflict"] = skip_on_conflict
         __props__.__dict__["slug"] = slug
         __props__.__dict__["storage_policies"] = storage_policies
         return RollupRule(resource_name, opts=opts, __props__=__props__)
@@ -660,6 +689,11 @@ class RollupRule(pulumi.CustomResource):
         pulumi.log.warn("""permissive is deprecated: permissive is no longer supported""")
 
         return pulumi.get(self, "permissive")
+
+    @property
+    @pulumi.getter(name="skipOnConflict")
+    def skip_on_conflict(self) -> pulumi.Output[Optional[bool]]:
+        return pulumi.get(self, "skip_on_conflict")
 
     @property
     @pulumi.getter

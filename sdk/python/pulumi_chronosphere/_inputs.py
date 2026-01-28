@@ -116,9 +116,8 @@ __all__ = [
     'LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceArgs',
     'LogIngestConfigFieldNormalizationMessageArgs',
     'LogIngestConfigFieldNormalizationMessageSourceArgs',
-    'LogIngestConfigFieldNormalizationPrimaryKeyArgs',
-    'LogIngestConfigFieldNormalizationPrimaryKeyNormalizationArgs',
-    'LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArgs',
+    'LogIngestConfigFieldNormalizationServiceArgs',
+    'LogIngestConfigFieldNormalizationServiceSourceArgs',
     'LogIngestConfigFieldNormalizationSeverityArgs',
     'LogIngestConfigFieldNormalizationSeveritySourceArgs',
     'LogIngestConfigFieldNormalizationTimestampArgs',
@@ -3233,15 +3232,15 @@ class LogIngestConfigFieldNormalizationArgs:
     def __init__(__self__, *,
                  custom_field_normalizations: Optional[pulumi.Input[Sequence[pulumi.Input['LogIngestConfigFieldNormalizationCustomFieldNormalizationArgs']]]] = None,
                  message: Optional[pulumi.Input['LogIngestConfigFieldNormalizationMessageArgs']] = None,
-                 primary_key: Optional[pulumi.Input['LogIngestConfigFieldNormalizationPrimaryKeyArgs']] = None,
+                 service: Optional[pulumi.Input['LogIngestConfigFieldNormalizationServiceArgs']] = None,
                  severity: Optional[pulumi.Input['LogIngestConfigFieldNormalizationSeverityArgs']] = None,
                  timestamp: Optional[pulumi.Input['LogIngestConfigFieldNormalizationTimestampArgs']] = None):
         if custom_field_normalizations is not None:
             pulumi.set(__self__, "custom_field_normalizations", custom_field_normalizations)
         if message is not None:
             pulumi.set(__self__, "message", message)
-        if primary_key is not None:
-            pulumi.set(__self__, "primary_key", primary_key)
+        if service is not None:
+            pulumi.set(__self__, "service", service)
         if severity is not None:
             pulumi.set(__self__, "severity", severity)
         if timestamp is not None:
@@ -3266,13 +3265,13 @@ class LogIngestConfigFieldNormalizationArgs:
         pulumi.set(self, "message", value)
 
     @property
-    @pulumi.getter(name="primaryKey")
-    def primary_key(self) -> Optional[pulumi.Input['LogIngestConfigFieldNormalizationPrimaryKeyArgs']]:
-        return pulumi.get(self, "primary_key")
+    @pulumi.getter
+    def service(self) -> Optional[pulumi.Input['LogIngestConfigFieldNormalizationServiceArgs']]:
+        return pulumi.get(self, "service")
 
-    @primary_key.setter
-    def primary_key(self, value: Optional[pulumi.Input['LogIngestConfigFieldNormalizationPrimaryKeyArgs']]):
-        pulumi.set(self, "primary_key", value)
+    @service.setter
+    def service(self, value: Optional[pulumi.Input['LogIngestConfigFieldNormalizationServiceArgs']]):
+        pulumi.set(self, "service", value)
 
     @property
     @pulumi.getter
@@ -3461,40 +3460,11 @@ class LogIngestConfigFieldNormalizationMessageSourceArgs:
 
 
 @pulumi.input_type
-class LogIngestConfigFieldNormalizationPrimaryKeyArgs:
-    def __init__(__self__, *,
-                 normalization: Optional[pulumi.Input['LogIngestConfigFieldNormalizationPrimaryKeyNormalizationArgs']] = None,
-                 target: Optional[pulumi.Input[str]] = None):
-        if normalization is not None:
-            pulumi.set(__self__, "normalization", normalization)
-        if target is not None:
-            pulumi.set(__self__, "target", target)
-
-    @property
-    @pulumi.getter
-    def normalization(self) -> Optional[pulumi.Input['LogIngestConfigFieldNormalizationPrimaryKeyNormalizationArgs']]:
-        return pulumi.get(self, "normalization")
-
-    @normalization.setter
-    def normalization(self, value: Optional[pulumi.Input['LogIngestConfigFieldNormalizationPrimaryKeyNormalizationArgs']]):
-        pulumi.set(self, "normalization", value)
-
-    @property
-    @pulumi.getter
-    def target(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "target")
-
-    @target.setter
-    def target(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "target", value)
-
-
-@pulumi.input_type
-class LogIngestConfigFieldNormalizationPrimaryKeyNormalizationArgs:
+class LogIngestConfigFieldNormalizationServiceArgs:
     def __init__(__self__, *,
                  default_value: Optional[pulumi.Input[str]] = None,
                  sanitize_patterns: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 sources: Optional[pulumi.Input[Sequence[pulumi.Input['LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArgs']]]] = None,
+                 sources: Optional[pulumi.Input[Sequence[pulumi.Input['LogIngestConfigFieldNormalizationServiceSourceArgs']]]] = None,
                  value_map: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None):
         if default_value is not None:
             pulumi.set(__self__, "default_value", default_value)
@@ -3525,11 +3495,11 @@ class LogIngestConfigFieldNormalizationPrimaryKeyNormalizationArgs:
 
     @property
     @pulumi.getter
-    def sources(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArgs']]]]:
+    def sources(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LogIngestConfigFieldNormalizationServiceSourceArgs']]]]:
         return pulumi.get(self, "sources")
 
     @sources.setter
-    def sources(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArgs']]]]):
+    def sources(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['LogIngestConfigFieldNormalizationServiceSourceArgs']]]]):
         pulumi.set(self, "sources", value)
 
     @property
@@ -3543,7 +3513,7 @@ class LogIngestConfigFieldNormalizationPrimaryKeyNormalizationArgs:
 
 
 @pulumi.input_type
-class LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceArgs:
+class LogIngestConfigFieldNormalizationServiceSourceArgs:
     def __init__(__self__, *,
                  selector: pulumi.Input[str]):
         pulumi.set(__self__, "selector", selector)

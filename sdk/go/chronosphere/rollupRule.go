@@ -29,8 +29,9 @@ type RollupRule struct {
 	Name                pulumi.StringOutput                    `pulumi:"name"`
 	NewMetric           pulumi.StringPtrOutput                 `pulumi:"newMetric"`
 	// Deprecated: permissive is no longer supported
-	Permissive pulumi.BoolPtrOutput `pulumi:"permissive"`
-	Slug       pulumi.StringOutput  `pulumi:"slug"`
+	Permissive     pulumi.BoolPtrOutput `pulumi:"permissive"`
+	SkipOnConflict pulumi.BoolPtrOutput `pulumi:"skipOnConflict"`
+	Slug           pulumi.StringOutput  `pulumi:"slug"`
 	// Deprecated: use `interval` instead
 	StoragePolicies RollupRuleStoragePoliciesPtrOutput `pulumi:"storagePolicies"`
 }
@@ -91,8 +92,9 @@ type rollupRuleState struct {
 	Name                *string                        `pulumi:"name"`
 	NewMetric           *string                        `pulumi:"newMetric"`
 	// Deprecated: permissive is no longer supported
-	Permissive *bool   `pulumi:"permissive"`
-	Slug       *string `pulumi:"slug"`
+	Permissive     *bool   `pulumi:"permissive"`
+	SkipOnConflict *bool   `pulumi:"skipOnConflict"`
+	Slug           *string `pulumi:"slug"`
 	// Deprecated: use `interval` instead
 	StoragePolicies *RollupRuleStoragePolicies `pulumi:"storagePolicies"`
 }
@@ -112,8 +114,9 @@ type RollupRuleState struct {
 	Name                pulumi.StringPtrInput
 	NewMetric           pulumi.StringPtrInput
 	// Deprecated: permissive is no longer supported
-	Permissive pulumi.BoolPtrInput
-	Slug       pulumi.StringPtrInput
+	Permissive     pulumi.BoolPtrInput
+	SkipOnConflict pulumi.BoolPtrInput
+	Slug           pulumi.StringPtrInput
 	// Deprecated: use `interval` instead
 	StoragePolicies RollupRuleStoragePoliciesPtrInput
 }
@@ -137,8 +140,9 @@ type rollupRuleArgs struct {
 	Name                string                         `pulumi:"name"`
 	NewMetric           *string                        `pulumi:"newMetric"`
 	// Deprecated: permissive is no longer supported
-	Permissive *bool  `pulumi:"permissive"`
-	Slug       string `pulumi:"slug"`
+	Permissive     *bool  `pulumi:"permissive"`
+	SkipOnConflict *bool  `pulumi:"skipOnConflict"`
+	Slug           string `pulumi:"slug"`
 	// Deprecated: use `interval` instead
 	StoragePolicies *RollupRuleStoragePolicies `pulumi:"storagePolicies"`
 }
@@ -159,8 +163,9 @@ type RollupRuleArgs struct {
 	Name                pulumi.StringInput
 	NewMetric           pulumi.StringPtrInput
 	// Deprecated: permissive is no longer supported
-	Permissive pulumi.BoolPtrInput
-	Slug       pulumi.StringInput
+	Permissive     pulumi.BoolPtrInput
+	SkipOnConflict pulumi.BoolPtrInput
+	Slug           pulumi.StringInput
 	// Deprecated: use `interval` instead
 	StoragePolicies RollupRuleStoragePoliciesPtrInput
 }
@@ -307,6 +312,10 @@ func (o RollupRuleOutput) NewMetric() pulumi.StringPtrOutput {
 // Deprecated: permissive is no longer supported
 func (o RollupRuleOutput) Permissive() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *RollupRule) pulumi.BoolPtrOutput { return v.Permissive }).(pulumi.BoolPtrOutput)
+}
+
+func (o RollupRuleOutput) SkipOnConflict() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *RollupRule) pulumi.BoolPtrOutput { return v.SkipOnConflict }).(pulumi.BoolPtrOutput)
 }
 
 func (o RollupRuleOutput) Slug() pulumi.StringOutput {

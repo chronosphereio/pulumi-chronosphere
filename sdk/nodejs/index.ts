@@ -165,6 +165,11 @@ export type ServiceAccount = import("./serviceAccount").ServiceAccount;
 export const ServiceAccount: typeof import("./serviceAccount").ServiceAccount = null as any;
 utilities.lazyLoad(exports, ["ServiceAccount"], () => require("./serviceAccount"));
 
+export { ServiceAttributeArgs, ServiceAttributeState } from "./serviceAttribute";
+export type ServiceAttribute = import("./serviceAttribute").ServiceAttribute;
+export const ServiceAttribute: typeof import("./serviceAttribute").ServiceAttribute = null as any;
+utilities.lazyLoad(exports, ["ServiceAttribute"], () => require("./serviceAttribute"));
+
 export { ServiceDataSourceArgs, ServiceDataSourceResult, ServiceDataSourceOutputArgs } from "./serviceDataSource";
 export const serviceDataSource: typeof import("./serviceDataSource").serviceDataSource = null as any;
 export const serviceDataSourceOutput: typeof import("./serviceDataSource").serviceDataSourceOutput = null as any;
@@ -284,6 +289,8 @@ const _module = {
                 return new SLO(name, <any>undefined, { urn })
             case "chronosphere:index/serviceAccount:ServiceAccount":
                 return new ServiceAccount(name, <any>undefined, { urn })
+            case "chronosphere:index/serviceAttribute:ServiceAttribute":
+                return new ServiceAttribute(name, <any>undefined, { urn })
             case "chronosphere:index/slackAlertNotifier:SlackAlertNotifier":
                 return new SlackAlertNotifier(name, <any>undefined, { urn })
             case "chronosphere:index/team:Team":
@@ -333,6 +340,7 @@ pulumi.runtime.registerResourceModule("chronosphere", "index/resourcePoolsConfig
 pulumi.runtime.registerResourceModule("chronosphere", "index/rollupRule", _module)
 pulumi.runtime.registerResourceModule("chronosphere", "index/sLO", _module)
 pulumi.runtime.registerResourceModule("chronosphere", "index/serviceAccount", _module)
+pulumi.runtime.registerResourceModule("chronosphere", "index/serviceAttribute", _module)
 pulumi.runtime.registerResourceModule("chronosphere", "index/slackAlertNotifier", _module)
 pulumi.runtime.registerResourceModule("chronosphere", "index/team", _module)
 pulumi.runtime.registerResourceModule("chronosphere", "index/traceJaegerRemoteSamplingStrategy", _module)

@@ -11,7 +11,7 @@ using Pulumi;
 namespace Chronosphere.Pulumi.Inputs
 {
 
-    public sealed class LogIngestConfigFieldNormalizationPrimaryKeyNormalizationGetArgs : global::Pulumi.ResourceArgs
+    public sealed class LogIngestConfigFieldNormalizationServiceGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("defaultValue")]
         public Input<string>? DefaultValue { get; set; }
@@ -25,10 +25,10 @@ namespace Chronosphere.Pulumi.Inputs
         }
 
         [Input("sources")]
-        private InputList<Inputs.LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceGetArgs>? _sources;
-        public InputList<Inputs.LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceGetArgs> Sources
+        private InputList<Inputs.LogIngestConfigFieldNormalizationServiceSourceGetArgs>? _sources;
+        public InputList<Inputs.LogIngestConfigFieldNormalizationServiceSourceGetArgs> Sources
         {
-            get => _sources ?? (_sources = new InputList<Inputs.LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSourceGetArgs>());
+            get => _sources ?? (_sources = new InputList<Inputs.LogIngestConfigFieldNormalizationServiceSourceGetArgs>());
             set => _sources = value;
         }
 
@@ -40,9 +40,9 @@ namespace Chronosphere.Pulumi.Inputs
             set => _valueMap = value;
         }
 
-        public LogIngestConfigFieldNormalizationPrimaryKeyNormalizationGetArgs()
+        public LogIngestConfigFieldNormalizationServiceGetArgs()
         {
         }
-        public static new LogIngestConfigFieldNormalizationPrimaryKeyNormalizationGetArgs Empty => new LogIngestConfigFieldNormalizationPrimaryKeyNormalizationGetArgs();
+        public static new LogIngestConfigFieldNormalizationServiceGetArgs Empty => new LogIngestConfigFieldNormalizationServiceGetArgs();
     }
 }

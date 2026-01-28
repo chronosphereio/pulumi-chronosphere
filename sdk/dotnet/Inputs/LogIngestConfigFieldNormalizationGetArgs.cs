@@ -24,8 +24,8 @@ namespace Chronosphere.Pulumi.Inputs
         [Input("message")]
         public Input<Inputs.LogIngestConfigFieldNormalizationMessageGetArgs>? Message { get; set; }
 
-        [Input("primaryKey")]
-        public Input<Inputs.LogIngestConfigFieldNormalizationPrimaryKeyGetArgs>? PrimaryKey { get; set; }
+        [Input("service")]
+        public Input<Inputs.LogIngestConfigFieldNormalizationServiceGetArgs>? Service { get; set; }
 
         [Input("severity")]
         public Input<Inputs.LogIngestConfigFieldNormalizationSeverityGetArgs>? Severity { get; set; }

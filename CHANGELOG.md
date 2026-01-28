@@ -2,8 +2,18 @@
 
 ## Unreleased
 
+v0.9.11
+
+Added:
+* Add `ROLLING_1_DAY_VOLUME` and `ROLLING_7_DAY_VOLUME` thresholds to `chronosphere_consumption_budget` resource.
+* Add `service` to `chronosphere_log_ingest_config` resource.
+* Add `chronosphere_service_attributes` resource for setting up service attributes.
+* Add `skip_on_conflict` field to `chronosphere_rollup_rule` resource.
+* Add `ROLLING_1_HOUR_VOLUME` and `ROLLING_3_HOUR_VOLUME `thresholds to `chronosphere_consumption_budget` resource.
+
 v0.9.10
 
+Added:
 * Add `azure_metrics_integration` resource for configuring the cloudscraper Azure metrics integration.
 * Add `mode` field to the `chronosphere_drop_rule` resource. This field replaces the `active` field, which is deprecated. The mode field accepts values of `enabled`, `disabled`, and `preview`. Defaults to `enabled`. The `active` field was `disabled` by default.  **This is a breaking change**.
 * Add `chronosphere_consumption_budget` and `chronosphere_consumption_config` resources.

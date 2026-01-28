@@ -37,6 +37,7 @@ from .recording_rule import *
 from .resource_pools_config import *
 from .rollup_rule import *
 from .service_account import *
+from .service_attribute import *
 from .service_data_source import *
 from .slack_alert_notifier import *
 from .slo import *
@@ -297,6 +298,14 @@ _utilities.register(
   "fqn": "pulumi_chronosphere",
   "classes": {
    "chronosphere:index/serviceAccount:ServiceAccount": "ServiceAccount"
+  }
+ },
+ {
+  "pkg": "chronosphere",
+  "mod": "index/serviceAttribute",
+  "fqn": "pulumi_chronosphere",
+  "classes": {
+   "chronosphere:index/serviceAttribute:ServiceAttribute": "ServiceAttribute"
   }
  },
  {

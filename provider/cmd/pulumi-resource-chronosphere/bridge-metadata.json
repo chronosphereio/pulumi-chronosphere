@@ -31,6 +31,7 @@
             "chronosphere:index/rollupRule:RollupRule": "chronosphere_rollup_rule",
             "chronosphere:index/sLO:SLO": "chronosphere_slo",
             "chronosphere:index/serviceAccount:ServiceAccount": "chronosphere_service_account",
+            "chronosphere:index/serviceAttribute:ServiceAttribute": "chronosphere_service_attribute",
             "chronosphere:index/slackAlertNotifier:SlackAlertNotifier": "chronosphere_slack_alert_notifier",
             "chronosphere:index/team:Team": "chronosphere_team",
             "chronosphere:index/traceJaegerRemoteSamplingStrategy:TraceJaegerRemoteSamplingStrategy": "chronosphere_trace_jaeger_remote_sampling_strategy",
@@ -278,8 +279,7 @@
                 "useDefault": "use_default"
             },
             "chronosphere:index/LogIngestConfigFieldNormalization:LogIngestConfigFieldNormalization": {
-                "customFieldNormalizations": "custom_field_normalization",
-                "primaryKey": "primary_key"
+                "customFieldNormalizations": "custom_field_normalization"
             },
             "chronosphere:index/LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalization:LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalization": {
                 "defaultValue": "default_value",
@@ -293,7 +293,7 @@
                 "sources": "source",
                 "valueMap": "value_map"
             },
-            "chronosphere:index/LogIngestConfigFieldNormalizationPrimaryKeyNormalization:LogIngestConfigFieldNormalizationPrimaryKeyNormalization": {
+            "chronosphere:index/LogIngestConfigFieldNormalizationService:LogIngestConfigFieldNormalizationService": {
                 "defaultValue": "default_value",
                 "sanitizePatterns": "sanitize_patterns",
                 "sources": "source",
@@ -788,12 +788,18 @@
                 "metricType": "metric_type",
                 "metricTypeTag": "metric_type_tag",
                 "newMetric": "new_metric",
+                "skipOnConflict": "skip_on_conflict",
                 "storagePolicies": "storage_policies"
             },
             "chronosphere:index/sLO:SLO": {
                 "collectionId": "collection_id",
                 "notificationPolicyId": "notification_policy_id",
                 "signalGrouping": "signal_grouping"
+            },
+            "chronosphere:index/serviceAttribute:ServiceAttribute": {
+                "notificationPolicyId": "notification_policy_id",
+                "serviceSlug": "service_slug",
+                "teamId": "team_id"
             },
             "chronosphere:index/slackAlertNotifier:SlackAlertNotifier": {
                 "actions": "action",

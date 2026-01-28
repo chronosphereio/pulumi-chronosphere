@@ -4,7 +4,7 @@
 package io.chronosphere.chronosphere.outputs;
 
 import com.pulumi.core.annotations.CustomType;
-import io.chronosphere.chronosphere.outputs.LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSource;
+import io.chronosphere.chronosphere.outputs.LogIngestConfigFieldNormalizationServiceSource;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -13,20 +13,20 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 @CustomType
-public final class LogIngestConfigFieldNormalizationPrimaryKeyNormalization {
+public final class LogIngestConfigFieldNormalizationService {
     private @Nullable String defaultValue;
     private @Nullable List<String> sanitizePatterns;
-    private @Nullable List<LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSource> sources;
+    private @Nullable List<LogIngestConfigFieldNormalizationServiceSource> sources;
     private @Nullable Map<String,String> valueMap;
 
-    private LogIngestConfigFieldNormalizationPrimaryKeyNormalization() {}
+    private LogIngestConfigFieldNormalizationService() {}
     public Optional<String> defaultValue() {
         return Optional.ofNullable(this.defaultValue);
     }
     public List<String> sanitizePatterns() {
         return this.sanitizePatterns == null ? List.of() : this.sanitizePatterns;
     }
-    public List<LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSource> sources() {
+    public List<LogIngestConfigFieldNormalizationServiceSource> sources() {
         return this.sources == null ? List.of() : this.sources;
     }
     public Map<String,String> valueMap() {
@@ -37,17 +37,17 @@ public final class LogIngestConfigFieldNormalizationPrimaryKeyNormalization {
         return new Builder();
     }
 
-    public static Builder builder(LogIngestConfigFieldNormalizationPrimaryKeyNormalization defaults) {
+    public static Builder builder(LogIngestConfigFieldNormalizationService defaults) {
         return new Builder(defaults);
     }
     @CustomType.Builder
     public static final class Builder {
         private @Nullable String defaultValue;
         private @Nullable List<String> sanitizePatterns;
-        private @Nullable List<LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSource> sources;
+        private @Nullable List<LogIngestConfigFieldNormalizationServiceSource> sources;
         private @Nullable Map<String,String> valueMap;
         public Builder() {}
-        public Builder(LogIngestConfigFieldNormalizationPrimaryKeyNormalization defaults) {
+        public Builder(LogIngestConfigFieldNormalizationService defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.defaultValue = defaults.defaultValue;
     	      this.sanitizePatterns = defaults.sanitizePatterns;
@@ -69,11 +69,11 @@ public final class LogIngestConfigFieldNormalizationPrimaryKeyNormalization {
             return sanitizePatterns(List.of(sanitizePatterns));
         }
         @CustomType.Setter
-        public Builder sources(@Nullable List<LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSource> sources) {
+        public Builder sources(@Nullable List<LogIngestConfigFieldNormalizationServiceSource> sources) {
             this.sources = sources;
             return this;
         }
-        public Builder sources(LogIngestConfigFieldNormalizationPrimaryKeyNormalizationSource... sources) {
+        public Builder sources(LogIngestConfigFieldNormalizationServiceSource... sources) {
             return sources(List.of(sources));
         }
         @CustomType.Setter
@@ -81,8 +81,8 @@ public final class LogIngestConfigFieldNormalizationPrimaryKeyNormalization {
             this.valueMap = valueMap;
             return this;
         }
-        public LogIngestConfigFieldNormalizationPrimaryKeyNormalization build() {
-            final var o = new LogIngestConfigFieldNormalizationPrimaryKeyNormalization();
+        public LogIngestConfigFieldNormalizationService build() {
+            final var o = new LogIngestConfigFieldNormalizationService();
             o.defaultValue = defaultValue;
             o.sanitizePatterns = sanitizePatterns;
             o.sources = sources;

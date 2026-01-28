@@ -48,6 +48,7 @@
         "resourcePoolsConfig.ts",
         "rollupRule.ts",
         "serviceAccount.ts",
+        "serviceAttribute.ts",
         "serviceDataSource.ts",
         "slackAlertNotifier.ts",
         "slo.ts",

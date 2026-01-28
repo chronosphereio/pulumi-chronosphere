@@ -178,6 +178,9 @@ func Provider() tfbridge.ProviderInfo {
 			"chronosphere_log_control_config": {
 				Tok: tfbridge.MakeResource(mainPkg, mainMod, "LogControlConfig"),
 			},
+			"chronosphere_service_attribute": {
+				Tok: tfbridge.MakeResource(mainPkg, mainMod, "ServiceAttribute"),
+			},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			"chronosphere_bucket": {

@@ -110,6 +110,12 @@ public class RollupRule extends com.pulumi.resources.CustomResource {
     public Output<Optional<Boolean>> permissive() {
         return Codegen.optional(this.permissive);
     }
+    @Export(name="skipOnConflict", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> skipOnConflict;
+
+    public Output<Optional<Boolean>> skipOnConflict() {
+        return Codegen.optional(this.skipOnConflict);
+    }
     @Export(name="slug", refs={String.class}, tree="[0]")
     private Output<String> slug;
 

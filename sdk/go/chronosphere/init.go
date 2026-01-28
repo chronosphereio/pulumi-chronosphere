@@ -81,6 +81,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &SLO{}
 	case "chronosphere:index/serviceAccount:ServiceAccount":
 		r = &ServiceAccount{}
+	case "chronosphere:index/serviceAttribute:ServiceAttribute":
+		r = &ServiceAttribute{}
 	case "chronosphere:index/slackAlertNotifier:SlackAlertNotifier":
 		r = &SlackAlertNotifier{}
 	case "chronosphere:index/team:Team":
@@ -274,6 +276,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"chronosphere",
 		"index/serviceAccount",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"chronosphere",
+		"index/serviceAttribute",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

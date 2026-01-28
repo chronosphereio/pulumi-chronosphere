@@ -16,7 +16,7 @@ namespace Chronosphere.Pulumi.Outputs
     {
         public readonly ImmutableArray<Outputs.LogIngestConfigFieldNormalizationCustomFieldNormalization> CustomFieldNormalizations;
         public readonly Outputs.LogIngestConfigFieldNormalizationMessage? Message;
-        public readonly Outputs.LogIngestConfigFieldNormalizationPrimaryKey? PrimaryKey;
+        public readonly Outputs.LogIngestConfigFieldNormalizationService? Service;
         public readonly Outputs.LogIngestConfigFieldNormalizationSeverity? Severity;
         public readonly Outputs.LogIngestConfigFieldNormalizationTimestamp? Timestamp;
 
@@ -26,7 +26,7 @@ namespace Chronosphere.Pulumi.Outputs
 
             Outputs.LogIngestConfigFieldNormalizationMessage? message,
 
-            Outputs.LogIngestConfigFieldNormalizationPrimaryKey? primaryKey,
+            Outputs.LogIngestConfigFieldNormalizationService? service,
 
             Outputs.LogIngestConfigFieldNormalizationSeverity? severity,
 
@@ -34,7 +34,7 @@ namespace Chronosphere.Pulumi.Outputs
         {
             CustomFieldNormalizations = customFieldNormalizations;
             Message = message;
-            PrimaryKey = primaryKey;
+            Service = service;
             Severity = severity;
             Timestamp = timestamp;
         }
