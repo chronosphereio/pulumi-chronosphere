@@ -5,6 +5,7 @@ package io.chronosphere.chronosphere.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import io.chronosphere.chronosphere.inputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterArgs;
 import io.chronosphere.chronosphere.inputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanArgs;
 import io.chronosphere.chronosphere.inputs.DatasetConfigurationTraceDatasetMatchCriteriaTraceArgs;
 import java.util.List;
@@ -16,6 +17,13 @@ import javax.annotation.Nullable;
 public final class DatasetConfigurationTraceDatasetMatchCriteriaArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final DatasetConfigurationTraceDatasetMatchCriteriaArgs Empty = new DatasetConfigurationTraceDatasetMatchCriteriaArgs();
+
+    @Import(name="scopeFilter")
+    private @Nullable Output<DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterArgs> scopeFilter;
+
+    public Optional<Output<DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterArgs>> scopeFilter() {
+        return Optional.ofNullable(this.scopeFilter);
+    }
 
     @Import(name="spans")
     private @Nullable Output<List<DatasetConfigurationTraceDatasetMatchCriteriaSpanArgs>> spans;
@@ -34,6 +42,7 @@ public final class DatasetConfigurationTraceDatasetMatchCriteriaArgs extends com
     private DatasetConfigurationTraceDatasetMatchCriteriaArgs() {}
 
     private DatasetConfigurationTraceDatasetMatchCriteriaArgs(DatasetConfigurationTraceDatasetMatchCriteriaArgs $) {
+        this.scopeFilter = $.scopeFilter;
         this.spans = $.spans;
         this.trace = $.trace;
     }
@@ -54,6 +63,15 @@ public final class DatasetConfigurationTraceDatasetMatchCriteriaArgs extends com
 
         public Builder(DatasetConfigurationTraceDatasetMatchCriteriaArgs defaults) {
             $ = new DatasetConfigurationTraceDatasetMatchCriteriaArgs(Objects.requireNonNull(defaults));
+        }
+
+        public Builder scopeFilter(@Nullable Output<DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterArgs> scopeFilter) {
+            $.scopeFilter = scopeFilter;
+            return this;
+        }
+
+        public Builder scopeFilter(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterArgs scopeFilter) {
+            return scopeFilter(Output.of(scopeFilter));
         }
 
         public Builder spans(@Nullable Output<List<DatasetConfigurationTraceDatasetMatchCriteriaSpanArgs>> spans) {

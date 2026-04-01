@@ -55,6 +55,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &LogControlConfig{}
 	case "chronosphere:index/logIngestConfig:LogIngestConfig":
 		r = &LogIngestConfig{}
+	case "chronosphere:index/logRetentionConfig:LogRetentionConfig":
+		r = &LogRetentionConfig{}
 	case "chronosphere:index/logscaleAction:LogscaleAction":
 		r = &LogscaleAction{}
 	case "chronosphere:index/logscaleAlert:LogscaleAlert":
@@ -211,6 +213,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"chronosphere",
 		"index/logIngestConfig",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"chronosphere",
+		"index/logRetentionConfig",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

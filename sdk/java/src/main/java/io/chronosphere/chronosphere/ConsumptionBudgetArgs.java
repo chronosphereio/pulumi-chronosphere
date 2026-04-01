@@ -69,9 +69,21 @@ public final class ConsumptionBudgetArgs extends com.pulumi.resources.ResourceAr
         return Optional.ofNullable(this.priorities);
     }
 
+    /**
+     * @deprecated
+     * use threshold.sku_group and threshold.unit instead
+     * 
+     */
+    @Deprecated /* use threshold.sku_group and threshold.unit instead */
     @Import(name="resource")
     private @Nullable Output<String> resource;
 
+    /**
+     * @deprecated
+     * use threshold.sku_group and threshold.unit instead
+     * 
+     */
+    @Deprecated /* use threshold.sku_group and threshold.unit instead */
     public Optional<Output<String>> resource() {
         return Optional.ofNullable(this.resource);
     }
@@ -190,11 +202,27 @@ public final class ConsumptionBudgetArgs extends com.pulumi.resources.ResourceAr
             return priorities(List.of(priorities));
         }
 
+        /**
+         * @return builder
+         * 
+         * @deprecated
+         * use threshold.sku_group and threshold.unit instead
+         * 
+         */
+        @Deprecated /* use threshold.sku_group and threshold.unit instead */
         public Builder resource(@Nullable Output<String> resource) {
             $.resource = resource;
             return this;
         }
 
+        /**
+         * @return builder
+         * 
+         * @deprecated
+         * use threshold.sku_group and threshold.unit instead
+         * 
+         */
+        @Deprecated /* use threshold.sku_group and threshold.unit instead */
         public Builder resource(String resource) {
             return resource(Output.of(resource));
         }

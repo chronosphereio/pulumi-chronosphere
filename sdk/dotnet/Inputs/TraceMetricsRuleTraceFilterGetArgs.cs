@@ -13,6 +13,9 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class TraceMetricsRuleTraceFilterGetArgs : global::Pulumi.ResourceArgs
     {
+        [Input("scopeFilter")]
+        public Input<Inputs.TraceMetricsRuleTraceFilterScopeFilterGetArgs>? ScopeFilter { get; set; }
+
         [Input("spans")]
         private InputList<Inputs.TraceMetricsRuleTraceFilterSpanGetArgs>? _spans;
         public InputList<Inputs.TraceMetricsRuleTraceFilterSpanGetArgs> Spans

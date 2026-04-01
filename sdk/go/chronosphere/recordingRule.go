@@ -17,6 +17,7 @@ type RecordingRule struct {
 
 	BucketId       pulumi.StringPtrOutput `pulumi:"bucketId"`
 	ExecutionGroup pulumi.StringPtrOutput `pulumi:"executionGroup"`
+	ExecutionMode  pulumi.StringPtrOutput `pulumi:"executionMode"`
 	Expr           pulumi.StringOutput    `pulumi:"expr"`
 	Interval       pulumi.StringPtrOutput `pulumi:"interval"`
 	Labels         pulumi.StringMapOutput `pulumi:"labels"`
@@ -63,6 +64,7 @@ func GetRecordingRule(ctx *pulumi.Context,
 type recordingRuleState struct {
 	BucketId       *string           `pulumi:"bucketId"`
 	ExecutionGroup *string           `pulumi:"executionGroup"`
+	ExecutionMode  *string           `pulumi:"executionMode"`
 	Expr           *string           `pulumi:"expr"`
 	Interval       *string           `pulumi:"interval"`
 	Labels         map[string]string `pulumi:"labels"`
@@ -74,6 +76,7 @@ type recordingRuleState struct {
 type RecordingRuleState struct {
 	BucketId       pulumi.StringPtrInput
 	ExecutionGroup pulumi.StringPtrInput
+	ExecutionMode  pulumi.StringPtrInput
 	Expr           pulumi.StringPtrInput
 	Interval       pulumi.StringPtrInput
 	Labels         pulumi.StringMapInput
@@ -89,6 +92,7 @@ func (RecordingRuleState) ElementType() reflect.Type {
 type recordingRuleArgs struct {
 	BucketId       *string           `pulumi:"bucketId"`
 	ExecutionGroup *string           `pulumi:"executionGroup"`
+	ExecutionMode  *string           `pulumi:"executionMode"`
 	Expr           string            `pulumi:"expr"`
 	Interval       *string           `pulumi:"interval"`
 	Labels         map[string]string `pulumi:"labels"`
@@ -101,6 +105,7 @@ type recordingRuleArgs struct {
 type RecordingRuleArgs struct {
 	BucketId       pulumi.StringPtrInput
 	ExecutionGroup pulumi.StringPtrInput
+	ExecutionMode  pulumi.StringPtrInput
 	Expr           pulumi.StringInput
 	Interval       pulumi.StringPtrInput
 	Labels         pulumi.StringMapInput
@@ -202,6 +207,10 @@ func (o RecordingRuleOutput) BucketId() pulumi.StringPtrOutput {
 
 func (o RecordingRuleOutput) ExecutionGroup() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RecordingRule) pulumi.StringPtrOutput { return v.ExecutionGroup }).(pulumi.StringPtrOutput)
+}
+
+func (o RecordingRuleOutput) ExecutionMode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RecordingRule) pulumi.StringPtrOutput { return v.ExecutionMode }).(pulumi.StringPtrOutput)
 }
 
 func (o RecordingRuleOutput) Expr() pulumi.StringOutput {

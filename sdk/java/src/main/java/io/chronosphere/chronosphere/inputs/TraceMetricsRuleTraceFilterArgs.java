@@ -5,6 +5,7 @@ package io.chronosphere.chronosphere.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import io.chronosphere.chronosphere.inputs.TraceMetricsRuleTraceFilterScopeFilterArgs;
 import io.chronosphere.chronosphere.inputs.TraceMetricsRuleTraceFilterSpanArgs;
 import io.chronosphere.chronosphere.inputs.TraceMetricsRuleTraceFilterTraceArgs;
 import java.util.List;
@@ -16,6 +17,13 @@ import javax.annotation.Nullable;
 public final class TraceMetricsRuleTraceFilterArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final TraceMetricsRuleTraceFilterArgs Empty = new TraceMetricsRuleTraceFilterArgs();
+
+    @Import(name="scopeFilter")
+    private @Nullable Output<TraceMetricsRuleTraceFilterScopeFilterArgs> scopeFilter;
+
+    public Optional<Output<TraceMetricsRuleTraceFilterScopeFilterArgs>> scopeFilter() {
+        return Optional.ofNullable(this.scopeFilter);
+    }
 
     @Import(name="spans")
     private @Nullable Output<List<TraceMetricsRuleTraceFilterSpanArgs>> spans;
@@ -34,6 +42,7 @@ public final class TraceMetricsRuleTraceFilterArgs extends com.pulumi.resources.
     private TraceMetricsRuleTraceFilterArgs() {}
 
     private TraceMetricsRuleTraceFilterArgs(TraceMetricsRuleTraceFilterArgs $) {
+        this.scopeFilter = $.scopeFilter;
         this.spans = $.spans;
         this.trace = $.trace;
     }
@@ -54,6 +63,15 @@ public final class TraceMetricsRuleTraceFilterArgs extends com.pulumi.resources.
 
         public Builder(TraceMetricsRuleTraceFilterArgs defaults) {
             $ = new TraceMetricsRuleTraceFilterArgs(Objects.requireNonNull(defaults));
+        }
+
+        public Builder scopeFilter(@Nullable Output<TraceMetricsRuleTraceFilterScopeFilterArgs> scopeFilter) {
+            $.scopeFilter = scopeFilter;
+            return this;
+        }
+
+        public Builder scopeFilter(TraceMetricsRuleTraceFilterScopeFilterArgs scopeFilter) {
+            return scopeFilter(Output.of(scopeFilter));
         }
 
         public Builder spans(@Nullable Output<List<TraceMetricsRuleTraceFilterSpanArgs>> spans) {

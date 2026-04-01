@@ -63,6 +63,12 @@ public class ConsumptionBudget extends com.pulumi.resources.CustomResource {
     public Output<Optional<List<ConsumptionBudgetPriority>>> priorities() {
         return Codegen.optional(this.priorities);
     }
+    /**
+     * @deprecated
+     * use threshold.sku_group and threshold.unit instead
+     * 
+     */
+    @Deprecated /* use threshold.sku_group and threshold.unit instead */
     @Export(name="resource", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> resource;
 

@@ -925,7 +925,9 @@ func (o ConsumptionBudgetPriorityFilterLogFilterPtrOutput) Query() pulumi.String
 type ConsumptionBudgetThreshold struct {
 	Action      *string                                `pulumi:"action"`
 	InstantRate *ConsumptionBudgetThresholdInstantRate `pulumi:"instantRate"`
+	SkuGroup    *string                                `pulumi:"skuGroup"`
 	Type        *string                                `pulumi:"type"`
+	Unit        *string                                `pulumi:"unit"`
 	Volume      *ConsumptionBudgetThresholdVolume      `pulumi:"volume"`
 }
 
@@ -943,7 +945,9 @@ type ConsumptionBudgetThresholdInput interface {
 type ConsumptionBudgetThresholdArgs struct {
 	Action      pulumi.StringPtrInput                         `pulumi:"action"`
 	InstantRate ConsumptionBudgetThresholdInstantRatePtrInput `pulumi:"instantRate"`
+	SkuGroup    pulumi.StringPtrInput                         `pulumi:"skuGroup"`
 	Type        pulumi.StringPtrInput                         `pulumi:"type"`
+	Unit        pulumi.StringPtrInput                         `pulumi:"unit"`
 	Volume      ConsumptionBudgetThresholdVolumePtrInput      `pulumi:"volume"`
 }
 
@@ -1006,8 +1010,16 @@ func (o ConsumptionBudgetThresholdOutput) InstantRate() ConsumptionBudgetThresho
 	return o.ApplyT(func(v ConsumptionBudgetThreshold) *ConsumptionBudgetThresholdInstantRate { return v.InstantRate }).(ConsumptionBudgetThresholdInstantRatePtrOutput)
 }
 
+func (o ConsumptionBudgetThresholdOutput) SkuGroup() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ConsumptionBudgetThreshold) *string { return v.SkuGroup }).(pulumi.StringPtrOutput)
+}
+
 func (o ConsumptionBudgetThresholdOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ConsumptionBudgetThreshold) *string { return v.Type }).(pulumi.StringPtrOutput)
+}
+
+func (o ConsumptionBudgetThresholdOutput) Unit() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ConsumptionBudgetThreshold) *string { return v.Unit }).(pulumi.StringPtrOutput)
 }
 
 func (o ConsumptionBudgetThresholdOutput) Volume() ConsumptionBudgetThresholdVolumePtrOutput {
@@ -4589,8 +4601,9 @@ func (o DatasetConfigurationTraceDatasetPtrOutput) MatchCriteria() DatasetConfig
 }
 
 type DatasetConfigurationTraceDatasetMatchCriteria struct {
-	Spans []DatasetConfigurationTraceDatasetMatchCriteriaSpan `pulumi:"spans"`
-	Trace *DatasetConfigurationTraceDatasetMatchCriteriaTrace `pulumi:"trace"`
+	ScopeFilter *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilter `pulumi:"scopeFilter"`
+	Spans       []DatasetConfigurationTraceDatasetMatchCriteriaSpan       `pulumi:"spans"`
+	Trace       *DatasetConfigurationTraceDatasetMatchCriteriaTrace       `pulumi:"trace"`
 }
 
 // DatasetConfigurationTraceDatasetMatchCriteriaInput is an input type that accepts DatasetConfigurationTraceDatasetMatchCriteriaArgs and DatasetConfigurationTraceDatasetMatchCriteriaOutput values.
@@ -4605,8 +4618,9 @@ type DatasetConfigurationTraceDatasetMatchCriteriaInput interface {
 }
 
 type DatasetConfigurationTraceDatasetMatchCriteriaArgs struct {
-	Spans DatasetConfigurationTraceDatasetMatchCriteriaSpanArrayInput `pulumi:"spans"`
-	Trace DatasetConfigurationTraceDatasetMatchCriteriaTracePtrInput  `pulumi:"trace"`
+	ScopeFilter DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterPtrInput `pulumi:"scopeFilter"`
+	Spans       DatasetConfigurationTraceDatasetMatchCriteriaSpanArrayInput      `pulumi:"spans"`
+	Trace       DatasetConfigurationTraceDatasetMatchCriteriaTracePtrInput       `pulumi:"trace"`
 }
 
 func (DatasetConfigurationTraceDatasetMatchCriteriaArgs) ElementType() reflect.Type {
@@ -4686,6 +4700,12 @@ func (o DatasetConfigurationTraceDatasetMatchCriteriaOutput) ToDatasetConfigurat
 	}).(DatasetConfigurationTraceDatasetMatchCriteriaPtrOutput)
 }
 
+func (o DatasetConfigurationTraceDatasetMatchCriteriaOutput) ScopeFilter() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterPtrOutput {
+	return o.ApplyT(func(v DatasetConfigurationTraceDatasetMatchCriteria) *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilter {
+		return v.ScopeFilter
+	}).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterPtrOutput)
+}
+
 func (o DatasetConfigurationTraceDatasetMatchCriteriaOutput) Spans() DatasetConfigurationTraceDatasetMatchCriteriaSpanArrayOutput {
 	return o.ApplyT(func(v DatasetConfigurationTraceDatasetMatchCriteria) []DatasetConfigurationTraceDatasetMatchCriteriaSpan {
 		return v.Spans
@@ -4722,6 +4742,15 @@ func (o DatasetConfigurationTraceDatasetMatchCriteriaPtrOutput) Elem() DatasetCo
 	}).(DatasetConfigurationTraceDatasetMatchCriteriaOutput)
 }
 
+func (o DatasetConfigurationTraceDatasetMatchCriteriaPtrOutput) ScopeFilter() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterPtrOutput {
+	return o.ApplyT(func(v *DatasetConfigurationTraceDatasetMatchCriteria) *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilter {
+		if v == nil {
+			return nil
+		}
+		return v.ScopeFilter
+	}).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterPtrOutput)
+}
+
 func (o DatasetConfigurationTraceDatasetMatchCriteriaPtrOutput) Spans() DatasetConfigurationTraceDatasetMatchCriteriaSpanArrayOutput {
 	return o.ApplyT(func(v *DatasetConfigurationTraceDatasetMatchCriteria) []DatasetConfigurationTraceDatasetMatchCriteriaSpan {
 		if v == nil {
@@ -4738,6 +4767,1982 @@ func (o DatasetConfigurationTraceDatasetMatchCriteriaPtrOutput) Trace() DatasetC
 		}
 		return v.Trace
 	}).(DatasetConfigurationTraceDatasetMatchCriteriaTracePtrOutput)
+}
+
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilter struct {
+	SpanScopes []DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScope `pulumi:"spanScopes"`
+}
+
+// DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterInput is an input type that accepts DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterArgs and DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterOutput values.
+// You can construct a concrete instance of `DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterInput` via:
+//
+//	DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterArgs{...}
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterInput interface {
+	pulumi.Input
+
+	ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterOutput
+	ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterOutputWithContext(context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterOutput
+}
+
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterArgs struct {
+	SpanScopes DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeArrayInput `pulumi:"spanScopes"`
+}
+
+func (DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatasetConfigurationTraceDatasetMatchCriteriaScopeFilter)(nil)).Elem()
+}
+
+func (i DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterArgs) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterOutput {
+	return i.ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterOutputWithContext(context.Background())
+}
+
+func (i DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterArgs) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterOutput)
+}
+
+func (i DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterArgs) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterPtrOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterPtrOutput {
+	return i.ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterPtrOutputWithContext(context.Background())
+}
+
+func (i DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterArgs) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterPtrOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterOutput).ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterPtrOutputWithContext(ctx)
+}
+
+// DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterPtrInput is an input type that accepts DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterArgs, DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterPtr and DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterPtrOutput values.
+// You can construct a concrete instance of `DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterPtrInput` via:
+//
+//	        DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterArgs{...}
+//
+//	or:
+//
+//	        nil
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterPtrInput interface {
+	pulumi.Input
+
+	ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterPtrOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterPtrOutput
+	ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterPtrOutputWithContext(context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterPtrOutput
+}
+
+type datasetConfigurationTraceDatasetMatchCriteriaScopeFilterPtrType DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterArgs
+
+func DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterPtr(v *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterArgs) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterPtrInput {
+	return (*datasetConfigurationTraceDatasetMatchCriteriaScopeFilterPtrType)(v)
+}
+
+func (*datasetConfigurationTraceDatasetMatchCriteriaScopeFilterPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DatasetConfigurationTraceDatasetMatchCriteriaScopeFilter)(nil)).Elem()
+}
+
+func (i *datasetConfigurationTraceDatasetMatchCriteriaScopeFilterPtrType) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterPtrOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterPtrOutput {
+	return i.ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterPtrOutputWithContext(context.Background())
+}
+
+func (i *datasetConfigurationTraceDatasetMatchCriteriaScopeFilterPtrType) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterPtrOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterPtrOutput)
+}
+
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterOutput struct{ *pulumi.OutputState }
+
+func (DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatasetConfigurationTraceDatasetMatchCriteriaScopeFilter)(nil)).Elem()
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterOutput {
+	return o
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterOutput {
+	return o
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterPtrOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterPtrOutput {
+	return o.ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterPtrOutputWithContext(context.Background())
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterPtrOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DatasetConfigurationTraceDatasetMatchCriteriaScopeFilter) *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilter {
+		return &v
+	}).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterPtrOutput)
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterOutput) SpanScopes() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeArrayOutput {
+	return o.ApplyT(func(v DatasetConfigurationTraceDatasetMatchCriteriaScopeFilter) []DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScope {
+		return v.SpanScopes
+	}).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeArrayOutput)
+}
+
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterPtrOutput struct{ *pulumi.OutputState }
+
+func (DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DatasetConfigurationTraceDatasetMatchCriteriaScopeFilter)(nil)).Elem()
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterPtrOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterPtrOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterPtrOutput {
+	return o
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterPtrOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterPtrOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterPtrOutput {
+	return o
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterPtrOutput) Elem() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterOutput {
+	return o.ApplyT(func(v *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilter) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilter {
+		if v != nil {
+			return *v
+		}
+		var ret DatasetConfigurationTraceDatasetMatchCriteriaScopeFilter
+		return ret
+	}).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterOutput)
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterPtrOutput) SpanScopes() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeArrayOutput {
+	return o.ApplyT(func(v *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilter) []DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScope {
+		if v == nil {
+			return nil
+		}
+		return v.SpanScopes
+	}).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeArrayOutput)
+}
+
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScope struct {
+	Duration        *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDuration        `pulumi:"duration"`
+	Error           *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeError           `pulumi:"error"`
+	IsRootSpan      *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpan      `pulumi:"isRootSpan"`
+	MatchType       *string                                                                           `pulumi:"matchType"`
+	Operation       *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperation       `pulumi:"operation"`
+	ParentOperation *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperation `pulumi:"parentOperation"`
+	ParentService   *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentService   `pulumi:"parentService"`
+	Service         *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeService         `pulumi:"service"`
+	SpanCount       *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCount       `pulumi:"spanCount"`
+	Tags            []DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTag            `pulumi:"tags"`
+}
+
+// DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeInput is an input type that accepts DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeArgs and DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOutput values.
+// You can construct a concrete instance of `DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeInput` via:
+//
+//	DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeArgs{...}
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeInput interface {
+	pulumi.Input
+
+	ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOutput
+	ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOutputWithContext(context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOutput
+}
+
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeArgs struct {
+	Duration        DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationPtrInput        `pulumi:"duration"`
+	Error           DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorPtrInput           `pulumi:"error"`
+	IsRootSpan      DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanPtrInput      `pulumi:"isRootSpan"`
+	MatchType       pulumi.StringPtrInput                                                                    `pulumi:"matchType"`
+	Operation       DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationPtrInput       `pulumi:"operation"`
+	ParentOperation DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationPtrInput `pulumi:"parentOperation"`
+	ParentService   DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServicePtrInput   `pulumi:"parentService"`
+	Service         DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServicePtrInput         `pulumi:"service"`
+	SpanCount       DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountPtrInput       `pulumi:"spanCount"`
+	Tags            DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagArrayInput           `pulumi:"tags"`
+}
+
+func (DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScope)(nil)).Elem()
+}
+
+func (i DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeArgs) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOutput {
+	return i.ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOutputWithContext(context.Background())
+}
+
+func (i DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeArgs) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOutput)
+}
+
+// DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeArrayInput is an input type that accepts DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeArray and DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeArrayOutput values.
+// You can construct a concrete instance of `DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeArrayInput` via:
+//
+//	DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeArray{ DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeArgs{...} }
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeArrayInput interface {
+	pulumi.Input
+
+	ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeArrayOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeArrayOutput
+	ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeArrayOutputWithContext(context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeArrayOutput
+}
+
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeArray []DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeInput
+
+func (DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScope)(nil)).Elem()
+}
+
+func (i DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeArray) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeArrayOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeArrayOutput {
+	return i.ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeArrayOutputWithContext(context.Background())
+}
+
+func (i DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeArray) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeArrayOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeArrayOutput)
+}
+
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOutput struct{ *pulumi.OutputState }
+
+func (DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScope)(nil)).Elem()
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOutput {
+	return o
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOutput {
+	return o
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOutput) Duration() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationPtrOutput {
+	return o.ApplyT(func(v DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScope) *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDuration {
+		return v.Duration
+	}).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationPtrOutput)
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOutput) Error() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorPtrOutput {
+	return o.ApplyT(func(v DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScope) *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeError {
+		return v.Error
+	}).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorPtrOutput)
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOutput) IsRootSpan() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanPtrOutput {
+	return o.ApplyT(func(v DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScope) *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpan {
+		return v.IsRootSpan
+	}).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanPtrOutput)
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOutput) MatchType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScope) *string { return v.MatchType }).(pulumi.StringPtrOutput)
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOutput) Operation() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationPtrOutput {
+	return o.ApplyT(func(v DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScope) *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperation {
+		return v.Operation
+	}).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationPtrOutput)
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOutput) ParentOperation() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationPtrOutput {
+	return o.ApplyT(func(v DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScope) *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperation {
+		return v.ParentOperation
+	}).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationPtrOutput)
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOutput) ParentService() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServicePtrOutput {
+	return o.ApplyT(func(v DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScope) *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentService {
+		return v.ParentService
+	}).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServicePtrOutput)
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOutput) Service() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServicePtrOutput {
+	return o.ApplyT(func(v DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScope) *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeService {
+		return v.Service
+	}).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServicePtrOutput)
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOutput) SpanCount() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountPtrOutput {
+	return o.ApplyT(func(v DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScope) *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCount {
+		return v.SpanCount
+	}).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountPtrOutput)
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOutput) Tags() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagArrayOutput {
+	return o.ApplyT(func(v DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScope) []DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTag {
+		return v.Tags
+	}).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagArrayOutput)
+}
+
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeArrayOutput struct{ *pulumi.OutputState }
+
+func (DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScope)(nil)).Elem()
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeArrayOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeArrayOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeArrayOutput {
+	return o
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeArrayOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeArrayOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeArrayOutput {
+	return o
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeArrayOutput) Index(i pulumi.IntInput) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScope {
+		return vs[0].([]DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScope)[vs[1].(int)]
+	}).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOutput)
+}
+
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDuration struct {
+	MaxSecs *float64 `pulumi:"maxSecs"`
+	MinSecs *float64 `pulumi:"minSecs"`
+}
+
+// DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationInput is an input type that accepts DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationArgs and DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationOutput values.
+// You can construct a concrete instance of `DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationInput` via:
+//
+//	DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationArgs{...}
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationInput interface {
+	pulumi.Input
+
+	ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationOutput
+	ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationOutputWithContext(context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationOutput
+}
+
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationArgs struct {
+	MaxSecs pulumi.Float64PtrInput `pulumi:"maxSecs"`
+	MinSecs pulumi.Float64PtrInput `pulumi:"minSecs"`
+}
+
+func (DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDuration)(nil)).Elem()
+}
+
+func (i DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationArgs) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationOutput {
+	return i.ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationOutputWithContext(context.Background())
+}
+
+func (i DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationArgs) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationOutput)
+}
+
+func (i DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationArgs) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationPtrOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationPtrOutput {
+	return i.ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationPtrOutputWithContext(context.Background())
+}
+
+func (i DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationArgs) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationPtrOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationOutput).ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationPtrOutputWithContext(ctx)
+}
+
+// DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationPtrInput is an input type that accepts DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationArgs, DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationPtr and DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationPtrOutput values.
+// You can construct a concrete instance of `DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationPtrInput` via:
+//
+//	        DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationArgs{...}
+//
+//	or:
+//
+//	        nil
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationPtrInput interface {
+	pulumi.Input
+
+	ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationPtrOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationPtrOutput
+	ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationPtrOutputWithContext(context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationPtrOutput
+}
+
+type datasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationPtrType DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationArgs
+
+func DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationPtr(v *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationArgs) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationPtrInput {
+	return (*datasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationPtrType)(v)
+}
+
+func (*datasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDuration)(nil)).Elem()
+}
+
+func (i *datasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationPtrType) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationPtrOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationPtrOutput {
+	return i.ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationPtrOutputWithContext(context.Background())
+}
+
+func (i *datasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationPtrType) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationPtrOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationPtrOutput)
+}
+
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationOutput struct{ *pulumi.OutputState }
+
+func (DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDuration)(nil)).Elem()
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationOutput {
+	return o
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationOutput {
+	return o
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationPtrOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationPtrOutput {
+	return o.ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationPtrOutputWithContext(context.Background())
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationPtrOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDuration) *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDuration {
+		return &v
+	}).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationPtrOutput)
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationOutput) MaxSecs() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDuration) *float64 {
+		return v.MaxSecs
+	}).(pulumi.Float64PtrOutput)
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationOutput) MinSecs() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDuration) *float64 {
+		return v.MinSecs
+	}).(pulumi.Float64PtrOutput)
+}
+
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationPtrOutput struct{ *pulumi.OutputState }
+
+func (DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDuration)(nil)).Elem()
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationPtrOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationPtrOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationPtrOutput {
+	return o
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationPtrOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationPtrOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationPtrOutput {
+	return o
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationPtrOutput) Elem() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationOutput {
+	return o.ApplyT(func(v *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDuration) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDuration {
+		if v != nil {
+			return *v
+		}
+		var ret DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDuration
+		return ret
+	}).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationOutput)
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationPtrOutput) MaxSecs() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDuration) *float64 {
+		if v == nil {
+			return nil
+		}
+		return v.MaxSecs
+	}).(pulumi.Float64PtrOutput)
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationPtrOutput) MinSecs() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDuration) *float64 {
+		if v == nil {
+			return nil
+		}
+		return v.MinSecs
+	}).(pulumi.Float64PtrOutput)
+}
+
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeError struct {
+	Value bool `pulumi:"value"`
+}
+
+// DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorInput is an input type that accepts DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorArgs and DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorOutput values.
+// You can construct a concrete instance of `DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorInput` via:
+//
+//	DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorArgs{...}
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorInput interface {
+	pulumi.Input
+
+	ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorOutput
+	ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorOutputWithContext(context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorOutput
+}
+
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorArgs struct {
+	Value pulumi.BoolInput `pulumi:"value"`
+}
+
+func (DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeError)(nil)).Elem()
+}
+
+func (i DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorArgs) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorOutput {
+	return i.ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorOutputWithContext(context.Background())
+}
+
+func (i DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorArgs) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorOutput)
+}
+
+func (i DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorArgs) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorPtrOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorPtrOutput {
+	return i.ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorPtrOutputWithContext(context.Background())
+}
+
+func (i DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorArgs) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorPtrOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorOutput).ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorPtrOutputWithContext(ctx)
+}
+
+// DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorPtrInput is an input type that accepts DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorArgs, DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorPtr and DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorPtrOutput values.
+// You can construct a concrete instance of `DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorPtrInput` via:
+//
+//	        DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorArgs{...}
+//
+//	or:
+//
+//	        nil
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorPtrInput interface {
+	pulumi.Input
+
+	ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorPtrOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorPtrOutput
+	ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorPtrOutputWithContext(context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorPtrOutput
+}
+
+type datasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorPtrType DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorArgs
+
+func DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorPtr(v *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorArgs) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorPtrInput {
+	return (*datasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorPtrType)(v)
+}
+
+func (*datasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeError)(nil)).Elem()
+}
+
+func (i *datasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorPtrType) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorPtrOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorPtrOutput {
+	return i.ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorPtrOutputWithContext(context.Background())
+}
+
+func (i *datasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorPtrType) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorPtrOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorPtrOutput)
+}
+
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorOutput struct{ *pulumi.OutputState }
+
+func (DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeError)(nil)).Elem()
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorOutput {
+	return o
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorOutput {
+	return o
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorPtrOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorPtrOutput {
+	return o.ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorPtrOutputWithContext(context.Background())
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorPtrOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeError) *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeError {
+		return &v
+	}).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorPtrOutput)
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorOutput) Value() pulumi.BoolOutput {
+	return o.ApplyT(func(v DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeError) bool { return v.Value }).(pulumi.BoolOutput)
+}
+
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorPtrOutput struct{ *pulumi.OutputState }
+
+func (DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeError)(nil)).Elem()
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorPtrOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorPtrOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorPtrOutput {
+	return o
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorPtrOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorPtrOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorPtrOutput {
+	return o
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorPtrOutput) Elem() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorOutput {
+	return o.ApplyT(func(v *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeError) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeError {
+		if v != nil {
+			return *v
+		}
+		var ret DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeError
+		return ret
+	}).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorOutput)
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorPtrOutput) Value() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeError) *bool {
+		if v == nil {
+			return nil
+		}
+		return &v.Value
+	}).(pulumi.BoolPtrOutput)
+}
+
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpan struct {
+	Value bool `pulumi:"value"`
+}
+
+// DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanInput is an input type that accepts DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanArgs and DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanOutput values.
+// You can construct a concrete instance of `DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanInput` via:
+//
+//	DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanArgs{...}
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanInput interface {
+	pulumi.Input
+
+	ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanOutput
+	ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanOutputWithContext(context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanOutput
+}
+
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanArgs struct {
+	Value pulumi.BoolInput `pulumi:"value"`
+}
+
+func (DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpan)(nil)).Elem()
+}
+
+func (i DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanArgs) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanOutput {
+	return i.ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanOutputWithContext(context.Background())
+}
+
+func (i DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanArgs) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanOutput)
+}
+
+func (i DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanArgs) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanPtrOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanPtrOutput {
+	return i.ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanPtrOutputWithContext(context.Background())
+}
+
+func (i DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanArgs) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanPtrOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanOutput).ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanPtrOutputWithContext(ctx)
+}
+
+// DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanPtrInput is an input type that accepts DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanArgs, DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanPtr and DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanPtrOutput values.
+// You can construct a concrete instance of `DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanPtrInput` via:
+//
+//	        DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanArgs{...}
+//
+//	or:
+//
+//	        nil
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanPtrInput interface {
+	pulumi.Input
+
+	ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanPtrOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanPtrOutput
+	ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanPtrOutputWithContext(context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanPtrOutput
+}
+
+type datasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanPtrType DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanArgs
+
+func DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanPtr(v *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanArgs) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanPtrInput {
+	return (*datasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanPtrType)(v)
+}
+
+func (*datasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpan)(nil)).Elem()
+}
+
+func (i *datasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanPtrType) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanPtrOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanPtrOutput {
+	return i.ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanPtrOutputWithContext(context.Background())
+}
+
+func (i *datasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanPtrType) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanPtrOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanPtrOutput)
+}
+
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanOutput struct{ *pulumi.OutputState }
+
+func (DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpan)(nil)).Elem()
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanOutput {
+	return o
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanOutput {
+	return o
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanPtrOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanPtrOutput {
+	return o.ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanPtrOutputWithContext(context.Background())
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanPtrOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpan) *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpan {
+		return &v
+	}).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanPtrOutput)
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanOutput) Value() pulumi.BoolOutput {
+	return o.ApplyT(func(v DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpan) bool {
+		return v.Value
+	}).(pulumi.BoolOutput)
+}
+
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanPtrOutput struct{ *pulumi.OutputState }
+
+func (DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpan)(nil)).Elem()
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanPtrOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanPtrOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanPtrOutput {
+	return o
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanPtrOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanPtrOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanPtrOutput {
+	return o
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanPtrOutput) Elem() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanOutput {
+	return o.ApplyT(func(v *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpan) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpan {
+		if v != nil {
+			return *v
+		}
+		var ret DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpan
+		return ret
+	}).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanOutput)
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanPtrOutput) Value() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpan) *bool {
+		if v == nil {
+			return nil
+		}
+		return &v.Value
+	}).(pulumi.BoolPtrOutput)
+}
+
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperation struct {
+	InValues []string `pulumi:"inValues"`
+	Match    *string  `pulumi:"match"`
+	Value    *string  `pulumi:"value"`
+}
+
+// DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationInput is an input type that accepts DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationArgs and DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationOutput values.
+// You can construct a concrete instance of `DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationInput` via:
+//
+//	DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationArgs{...}
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationInput interface {
+	pulumi.Input
+
+	ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationOutput
+	ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationOutputWithContext(context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationOutput
+}
+
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationArgs struct {
+	InValues pulumi.StringArrayInput `pulumi:"inValues"`
+	Match    pulumi.StringPtrInput   `pulumi:"match"`
+	Value    pulumi.StringPtrInput   `pulumi:"value"`
+}
+
+func (DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperation)(nil)).Elem()
+}
+
+func (i DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationArgs) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationOutput {
+	return i.ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationOutputWithContext(context.Background())
+}
+
+func (i DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationArgs) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationOutput)
+}
+
+func (i DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationArgs) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationPtrOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationPtrOutput {
+	return i.ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationPtrOutputWithContext(context.Background())
+}
+
+func (i DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationArgs) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationPtrOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationOutput).ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationPtrOutputWithContext(ctx)
+}
+
+// DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationPtrInput is an input type that accepts DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationArgs, DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationPtr and DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationPtrOutput values.
+// You can construct a concrete instance of `DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationPtrInput` via:
+//
+//	        DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationArgs{...}
+//
+//	or:
+//
+//	        nil
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationPtrInput interface {
+	pulumi.Input
+
+	ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationPtrOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationPtrOutput
+	ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationPtrOutputWithContext(context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationPtrOutput
+}
+
+type datasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationPtrType DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationArgs
+
+func DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationPtr(v *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationArgs) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationPtrInput {
+	return (*datasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationPtrType)(v)
+}
+
+func (*datasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperation)(nil)).Elem()
+}
+
+func (i *datasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationPtrType) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationPtrOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationPtrOutput {
+	return i.ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationPtrOutputWithContext(context.Background())
+}
+
+func (i *datasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationPtrType) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationPtrOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationPtrOutput)
+}
+
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationOutput struct{ *pulumi.OutputState }
+
+func (DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperation)(nil)).Elem()
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationOutput {
+	return o
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationOutput {
+	return o
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationPtrOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationPtrOutput {
+	return o.ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationPtrOutputWithContext(context.Background())
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationPtrOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperation) *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperation {
+		return &v
+	}).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationPtrOutput)
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationOutput) InValues() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperation) []string {
+		return v.InValues
+	}).(pulumi.StringArrayOutput)
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationOutput) Match() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperation) *string {
+		return v.Match
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperation) *string {
+		return v.Value
+	}).(pulumi.StringPtrOutput)
+}
+
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationPtrOutput struct{ *pulumi.OutputState }
+
+func (DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperation)(nil)).Elem()
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationPtrOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationPtrOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationPtrOutput {
+	return o
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationPtrOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationPtrOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationPtrOutput {
+	return o
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationPtrOutput) Elem() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationOutput {
+	return o.ApplyT(func(v *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperation) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperation {
+		if v != nil {
+			return *v
+		}
+		var ret DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperation
+		return ret
+	}).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationOutput)
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationPtrOutput) InValues() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperation) []string {
+		if v == nil {
+			return nil
+		}
+		return v.InValues
+	}).(pulumi.StringArrayOutput)
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationPtrOutput) Match() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperation) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Match
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationPtrOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperation) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Value
+	}).(pulumi.StringPtrOutput)
+}
+
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperation struct {
+	InValues []string `pulumi:"inValues"`
+	Match    *string  `pulumi:"match"`
+	Value    *string  `pulumi:"value"`
+}
+
+// DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationInput is an input type that accepts DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationArgs and DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationOutput values.
+// You can construct a concrete instance of `DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationInput` via:
+//
+//	DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationArgs{...}
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationInput interface {
+	pulumi.Input
+
+	ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationOutput
+	ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationOutputWithContext(context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationOutput
+}
+
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationArgs struct {
+	InValues pulumi.StringArrayInput `pulumi:"inValues"`
+	Match    pulumi.StringPtrInput   `pulumi:"match"`
+	Value    pulumi.StringPtrInput   `pulumi:"value"`
+}
+
+func (DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperation)(nil)).Elem()
+}
+
+func (i DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationArgs) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationOutput {
+	return i.ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationOutputWithContext(context.Background())
+}
+
+func (i DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationArgs) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationOutput)
+}
+
+func (i DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationArgs) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationPtrOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationPtrOutput {
+	return i.ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationPtrOutputWithContext(context.Background())
+}
+
+func (i DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationArgs) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationPtrOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationOutput).ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationPtrOutputWithContext(ctx)
+}
+
+// DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationPtrInput is an input type that accepts DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationArgs, DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationPtr and DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationPtrOutput values.
+// You can construct a concrete instance of `DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationPtrInput` via:
+//
+//	        DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationArgs{...}
+//
+//	or:
+//
+//	        nil
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationPtrInput interface {
+	pulumi.Input
+
+	ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationPtrOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationPtrOutput
+	ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationPtrOutputWithContext(context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationPtrOutput
+}
+
+type datasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationPtrType DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationArgs
+
+func DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationPtr(v *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationArgs) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationPtrInput {
+	return (*datasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationPtrType)(v)
+}
+
+func (*datasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperation)(nil)).Elem()
+}
+
+func (i *datasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationPtrType) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationPtrOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationPtrOutput {
+	return i.ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationPtrOutputWithContext(context.Background())
+}
+
+func (i *datasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationPtrType) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationPtrOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationPtrOutput)
+}
+
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationOutput struct{ *pulumi.OutputState }
+
+func (DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperation)(nil)).Elem()
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationOutput {
+	return o
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationOutput {
+	return o
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationPtrOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationPtrOutput {
+	return o.ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationPtrOutputWithContext(context.Background())
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationPtrOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperation) *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperation {
+		return &v
+	}).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationPtrOutput)
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationOutput) InValues() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperation) []string {
+		return v.InValues
+	}).(pulumi.StringArrayOutput)
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationOutput) Match() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperation) *string {
+		return v.Match
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperation) *string {
+		return v.Value
+	}).(pulumi.StringPtrOutput)
+}
+
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationPtrOutput struct{ *pulumi.OutputState }
+
+func (DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperation)(nil)).Elem()
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationPtrOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationPtrOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationPtrOutput {
+	return o
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationPtrOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationPtrOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationPtrOutput {
+	return o
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationPtrOutput) Elem() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationOutput {
+	return o.ApplyT(func(v *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperation) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperation {
+		if v != nil {
+			return *v
+		}
+		var ret DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperation
+		return ret
+	}).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationOutput)
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationPtrOutput) InValues() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperation) []string {
+		if v == nil {
+			return nil
+		}
+		return v.InValues
+	}).(pulumi.StringArrayOutput)
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationPtrOutput) Match() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperation) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Match
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationPtrOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperation) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Value
+	}).(pulumi.StringPtrOutput)
+}
+
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentService struct {
+	InValues []string `pulumi:"inValues"`
+	Match    *string  `pulumi:"match"`
+	Value    *string  `pulumi:"value"`
+}
+
+// DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServiceInput is an input type that accepts DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServiceArgs and DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServiceOutput values.
+// You can construct a concrete instance of `DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServiceInput` via:
+//
+//	DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServiceArgs{...}
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServiceInput interface {
+	pulumi.Input
+
+	ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServiceOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServiceOutput
+	ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServiceOutputWithContext(context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServiceOutput
+}
+
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServiceArgs struct {
+	InValues pulumi.StringArrayInput `pulumi:"inValues"`
+	Match    pulumi.StringPtrInput   `pulumi:"match"`
+	Value    pulumi.StringPtrInput   `pulumi:"value"`
+}
+
+func (DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServiceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentService)(nil)).Elem()
+}
+
+func (i DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServiceArgs) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServiceOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServiceOutput {
+	return i.ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServiceOutputWithContext(context.Background())
+}
+
+func (i DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServiceArgs) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServiceOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServiceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServiceOutput)
+}
+
+func (i DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServiceArgs) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServicePtrOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServicePtrOutput {
+	return i.ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServicePtrOutputWithContext(context.Background())
+}
+
+func (i DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServiceArgs) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServicePtrOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServicePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServiceOutput).ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServicePtrOutputWithContext(ctx)
+}
+
+// DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServicePtrInput is an input type that accepts DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServiceArgs, DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServicePtr and DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServicePtrOutput values.
+// You can construct a concrete instance of `DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServicePtrInput` via:
+//
+//	        DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServiceArgs{...}
+//
+//	or:
+//
+//	        nil
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServicePtrInput interface {
+	pulumi.Input
+
+	ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServicePtrOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServicePtrOutput
+	ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServicePtrOutputWithContext(context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServicePtrOutput
+}
+
+type datasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServicePtrType DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServiceArgs
+
+func DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServicePtr(v *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServiceArgs) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServicePtrInput {
+	return (*datasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServicePtrType)(v)
+}
+
+func (*datasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServicePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentService)(nil)).Elem()
+}
+
+func (i *datasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServicePtrType) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServicePtrOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServicePtrOutput {
+	return i.ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServicePtrOutputWithContext(context.Background())
+}
+
+func (i *datasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServicePtrType) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServicePtrOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServicePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServicePtrOutput)
+}
+
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServiceOutput struct{ *pulumi.OutputState }
+
+func (DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServiceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentService)(nil)).Elem()
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServiceOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServiceOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServiceOutput {
+	return o
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServiceOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServiceOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServiceOutput {
+	return o
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServiceOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServicePtrOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServicePtrOutput {
+	return o.ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServicePtrOutputWithContext(context.Background())
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServiceOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServicePtrOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServicePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentService) *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentService {
+		return &v
+	}).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServicePtrOutput)
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServiceOutput) InValues() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentService) []string {
+		return v.InValues
+	}).(pulumi.StringArrayOutput)
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServiceOutput) Match() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentService) *string {
+		return v.Match
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServiceOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentService) *string {
+		return v.Value
+	}).(pulumi.StringPtrOutput)
+}
+
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServicePtrOutput struct{ *pulumi.OutputState }
+
+func (DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServicePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentService)(nil)).Elem()
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServicePtrOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServicePtrOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServicePtrOutput {
+	return o
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServicePtrOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServicePtrOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServicePtrOutput {
+	return o
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServicePtrOutput) Elem() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServiceOutput {
+	return o.ApplyT(func(v *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentService) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentService {
+		if v != nil {
+			return *v
+		}
+		var ret DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentService
+		return ret
+	}).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServiceOutput)
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServicePtrOutput) InValues() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentService) []string {
+		if v == nil {
+			return nil
+		}
+		return v.InValues
+	}).(pulumi.StringArrayOutput)
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServicePtrOutput) Match() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentService) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Match
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServicePtrOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentService) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Value
+	}).(pulumi.StringPtrOutput)
+}
+
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeService struct {
+	InValues []string `pulumi:"inValues"`
+	Match    *string  `pulumi:"match"`
+	Value    *string  `pulumi:"value"`
+}
+
+// DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServiceInput is an input type that accepts DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServiceArgs and DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServiceOutput values.
+// You can construct a concrete instance of `DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServiceInput` via:
+//
+//	DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServiceArgs{...}
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServiceInput interface {
+	pulumi.Input
+
+	ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServiceOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServiceOutput
+	ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServiceOutputWithContext(context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServiceOutput
+}
+
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServiceArgs struct {
+	InValues pulumi.StringArrayInput `pulumi:"inValues"`
+	Match    pulumi.StringPtrInput   `pulumi:"match"`
+	Value    pulumi.StringPtrInput   `pulumi:"value"`
+}
+
+func (DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServiceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeService)(nil)).Elem()
+}
+
+func (i DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServiceArgs) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServiceOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServiceOutput {
+	return i.ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServiceOutputWithContext(context.Background())
+}
+
+func (i DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServiceArgs) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServiceOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServiceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServiceOutput)
+}
+
+func (i DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServiceArgs) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServicePtrOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServicePtrOutput {
+	return i.ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServicePtrOutputWithContext(context.Background())
+}
+
+func (i DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServiceArgs) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServicePtrOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServicePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServiceOutput).ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServicePtrOutputWithContext(ctx)
+}
+
+// DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServicePtrInput is an input type that accepts DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServiceArgs, DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServicePtr and DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServicePtrOutput values.
+// You can construct a concrete instance of `DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServicePtrInput` via:
+//
+//	        DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServiceArgs{...}
+//
+//	or:
+//
+//	        nil
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServicePtrInput interface {
+	pulumi.Input
+
+	ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServicePtrOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServicePtrOutput
+	ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServicePtrOutputWithContext(context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServicePtrOutput
+}
+
+type datasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServicePtrType DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServiceArgs
+
+func DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServicePtr(v *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServiceArgs) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServicePtrInput {
+	return (*datasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServicePtrType)(v)
+}
+
+func (*datasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServicePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeService)(nil)).Elem()
+}
+
+func (i *datasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServicePtrType) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServicePtrOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServicePtrOutput {
+	return i.ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServicePtrOutputWithContext(context.Background())
+}
+
+func (i *datasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServicePtrType) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServicePtrOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServicePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServicePtrOutput)
+}
+
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServiceOutput struct{ *pulumi.OutputState }
+
+func (DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServiceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeService)(nil)).Elem()
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServiceOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServiceOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServiceOutput {
+	return o
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServiceOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServiceOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServiceOutput {
+	return o
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServiceOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServicePtrOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServicePtrOutput {
+	return o.ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServicePtrOutputWithContext(context.Background())
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServiceOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServicePtrOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServicePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeService) *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeService {
+		return &v
+	}).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServicePtrOutput)
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServiceOutput) InValues() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeService) []string {
+		return v.InValues
+	}).(pulumi.StringArrayOutput)
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServiceOutput) Match() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeService) *string {
+		return v.Match
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServiceOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeService) *string {
+		return v.Value
+	}).(pulumi.StringPtrOutput)
+}
+
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServicePtrOutput struct{ *pulumi.OutputState }
+
+func (DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServicePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeService)(nil)).Elem()
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServicePtrOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServicePtrOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServicePtrOutput {
+	return o
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServicePtrOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServicePtrOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServicePtrOutput {
+	return o
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServicePtrOutput) Elem() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServiceOutput {
+	return o.ApplyT(func(v *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeService) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeService {
+		if v != nil {
+			return *v
+		}
+		var ret DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeService
+		return ret
+	}).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServiceOutput)
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServicePtrOutput) InValues() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeService) []string {
+		if v == nil {
+			return nil
+		}
+		return v.InValues
+	}).(pulumi.StringArrayOutput)
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServicePtrOutput) Match() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeService) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Match
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServicePtrOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeService) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Value
+	}).(pulumi.StringPtrOutput)
+}
+
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCount struct {
+	Max *int `pulumi:"max"`
+	Min *int `pulumi:"min"`
+}
+
+// DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountInput is an input type that accepts DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountArgs and DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountOutput values.
+// You can construct a concrete instance of `DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountInput` via:
+//
+//	DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountArgs{...}
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountInput interface {
+	pulumi.Input
+
+	ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountOutput
+	ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountOutputWithContext(context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountOutput
+}
+
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountArgs struct {
+	Max pulumi.IntPtrInput `pulumi:"max"`
+	Min pulumi.IntPtrInput `pulumi:"min"`
+}
+
+func (DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCount)(nil)).Elem()
+}
+
+func (i DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountArgs) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountOutput {
+	return i.ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountOutputWithContext(context.Background())
+}
+
+func (i DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountArgs) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountOutput)
+}
+
+func (i DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountArgs) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountPtrOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountPtrOutput {
+	return i.ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountPtrOutputWithContext(context.Background())
+}
+
+func (i DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountArgs) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountPtrOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountOutput).ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountPtrOutputWithContext(ctx)
+}
+
+// DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountPtrInput is an input type that accepts DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountArgs, DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountPtr and DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountPtrOutput values.
+// You can construct a concrete instance of `DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountPtrInput` via:
+//
+//	        DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountArgs{...}
+//
+//	or:
+//
+//	        nil
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountPtrInput interface {
+	pulumi.Input
+
+	ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountPtrOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountPtrOutput
+	ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountPtrOutputWithContext(context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountPtrOutput
+}
+
+type datasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountPtrType DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountArgs
+
+func DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountPtr(v *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountArgs) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountPtrInput {
+	return (*datasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountPtrType)(v)
+}
+
+func (*datasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCount)(nil)).Elem()
+}
+
+func (i *datasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountPtrType) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountPtrOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountPtrOutput {
+	return i.ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountPtrOutputWithContext(context.Background())
+}
+
+func (i *datasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountPtrType) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountPtrOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountPtrOutput)
+}
+
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountOutput struct{ *pulumi.OutputState }
+
+func (DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCount)(nil)).Elem()
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountOutput {
+	return o
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountOutput {
+	return o
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountPtrOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountPtrOutput {
+	return o.ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountPtrOutputWithContext(context.Background())
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountPtrOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCount) *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCount {
+		return &v
+	}).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountPtrOutput)
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountOutput) Max() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCount) *int { return v.Max }).(pulumi.IntPtrOutput)
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountOutput) Min() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCount) *int { return v.Min }).(pulumi.IntPtrOutput)
+}
+
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountPtrOutput struct{ *pulumi.OutputState }
+
+func (DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCount)(nil)).Elem()
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountPtrOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountPtrOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountPtrOutput {
+	return o
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountPtrOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountPtrOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountPtrOutput {
+	return o
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountPtrOutput) Elem() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountOutput {
+	return o.ApplyT(func(v *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCount) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCount {
+		if v != nil {
+			return *v
+		}
+		var ret DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCount
+		return ret
+	}).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountOutput)
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountPtrOutput) Max() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCount) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Max
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountPtrOutput) Min() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCount) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Min
+	}).(pulumi.IntPtrOutput)
+}
+
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTag struct {
+	Key          *string                                                                           `pulumi:"key"`
+	NumericValue *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValue `pulumi:"numericValue"`
+	Value        *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValue        `pulumi:"value"`
+}
+
+// DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagInput is an input type that accepts DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagArgs and DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagOutput values.
+// You can construct a concrete instance of `DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagInput` via:
+//
+//	DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagArgs{...}
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagInput interface {
+	pulumi.Input
+
+	ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagOutput
+	ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagOutputWithContext(context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagOutput
+}
+
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagArgs struct {
+	Key          pulumi.StringPtrInput                                                                    `pulumi:"key"`
+	NumericValue DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValuePtrInput `pulumi:"numericValue"`
+	Value        DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValuePtrInput        `pulumi:"value"`
+}
+
+func (DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTag)(nil)).Elem()
+}
+
+func (i DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagArgs) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagOutput {
+	return i.ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagOutputWithContext(context.Background())
+}
+
+func (i DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagArgs) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagOutput)
+}
+
+// DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagArrayInput is an input type that accepts DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagArray and DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagArrayOutput values.
+// You can construct a concrete instance of `DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagArrayInput` via:
+//
+//	DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagArray{ DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagArgs{...} }
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagArrayInput interface {
+	pulumi.Input
+
+	ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagArrayOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagArrayOutput
+	ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagArrayOutputWithContext(context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagArrayOutput
+}
+
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagArray []DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagInput
+
+func (DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTag)(nil)).Elem()
+}
+
+func (i DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagArray) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagArrayOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagArrayOutput {
+	return i.ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagArrayOutputWithContext(context.Background())
+}
+
+func (i DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagArray) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagArrayOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagArrayOutput)
+}
+
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagOutput struct{ *pulumi.OutputState }
+
+func (DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTag)(nil)).Elem()
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagOutput {
+	return o
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagOutput {
+	return o
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagOutput) Key() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTag) *string { return v.Key }).(pulumi.StringPtrOutput)
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagOutput) NumericValue() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValuePtrOutput {
+	return o.ApplyT(func(v DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTag) *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValue {
+		return v.NumericValue
+	}).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValuePtrOutput)
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagOutput) Value() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValuePtrOutput {
+	return o.ApplyT(func(v DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTag) *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValue {
+		return v.Value
+	}).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValuePtrOutput)
+}
+
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagArrayOutput struct{ *pulumi.OutputState }
+
+func (DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTag)(nil)).Elem()
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagArrayOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagArrayOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagArrayOutput {
+	return o
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagArrayOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagArrayOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagArrayOutput {
+	return o
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagArrayOutput) Index(i pulumi.IntInput) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTag {
+		return vs[0].([]DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTag)[vs[1].(int)]
+	}).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagOutput)
+}
+
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValue struct {
+	Comparison string  `pulumi:"comparison"`
+	Value      float64 `pulumi:"value"`
+}
+
+// DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValueInput is an input type that accepts DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValueArgs and DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValueOutput values.
+// You can construct a concrete instance of `DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValueInput` via:
+//
+//	DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValueArgs{...}
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValueInput interface {
+	pulumi.Input
+
+	ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValueOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValueOutput
+	ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValueOutputWithContext(context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValueOutput
+}
+
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValueArgs struct {
+	Comparison pulumi.StringInput  `pulumi:"comparison"`
+	Value      pulumi.Float64Input `pulumi:"value"`
+}
+
+func (DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValueArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValue)(nil)).Elem()
+}
+
+func (i DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValueArgs) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValueOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValueOutput {
+	return i.ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValueOutputWithContext(context.Background())
+}
+
+func (i DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValueArgs) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValueOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValueOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValueOutput)
+}
+
+func (i DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValueArgs) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValuePtrOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValuePtrOutput {
+	return i.ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValuePtrOutputWithContext(context.Background())
+}
+
+func (i DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValueArgs) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValuePtrOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValuePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValueOutput).ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValuePtrOutputWithContext(ctx)
+}
+
+// DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValuePtrInput is an input type that accepts DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValueArgs, DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValuePtr and DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValuePtrOutput values.
+// You can construct a concrete instance of `DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValuePtrInput` via:
+//
+//	        DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValueArgs{...}
+//
+//	or:
+//
+//	        nil
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValuePtrInput interface {
+	pulumi.Input
+
+	ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValuePtrOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValuePtrOutput
+	ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValuePtrOutputWithContext(context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValuePtrOutput
+}
+
+type datasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValuePtrType DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValueArgs
+
+func DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValuePtr(v *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValueArgs) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValuePtrInput {
+	return (*datasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValuePtrType)(v)
+}
+
+func (*datasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValuePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValue)(nil)).Elem()
+}
+
+func (i *datasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValuePtrType) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValuePtrOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValuePtrOutput {
+	return i.ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValuePtrOutputWithContext(context.Background())
+}
+
+func (i *datasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValuePtrType) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValuePtrOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValuePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValuePtrOutput)
+}
+
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValueOutput struct{ *pulumi.OutputState }
+
+func (DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValueOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValue)(nil)).Elem()
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValueOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValueOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValueOutput {
+	return o
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValueOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValueOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValueOutput {
+	return o
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValueOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValuePtrOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValuePtrOutput {
+	return o.ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValuePtrOutputWithContext(context.Background())
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValueOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValuePtrOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValuePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValue) *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValue {
+		return &v
+	}).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValuePtrOutput)
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValueOutput) Comparison() pulumi.StringOutput {
+	return o.ApplyT(func(v DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValue) string {
+		return v.Comparison
+	}).(pulumi.StringOutput)
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValueOutput) Value() pulumi.Float64Output {
+	return o.ApplyT(func(v DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValue) float64 {
+		return v.Value
+	}).(pulumi.Float64Output)
+}
+
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValuePtrOutput struct{ *pulumi.OutputState }
+
+func (DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValuePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValue)(nil)).Elem()
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValuePtrOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValuePtrOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValuePtrOutput {
+	return o
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValuePtrOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValuePtrOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValuePtrOutput {
+	return o
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValuePtrOutput) Elem() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValueOutput {
+	return o.ApplyT(func(v *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValue) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValue {
+		if v != nil {
+			return *v
+		}
+		var ret DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValue
+		return ret
+	}).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValueOutput)
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValuePtrOutput) Comparison() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValue) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Comparison
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValuePtrOutput) Value() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValue) *float64 {
+		if v == nil {
+			return nil
+		}
+		return &v.Value
+	}).(pulumi.Float64PtrOutput)
+}
+
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValue struct {
+	InValues []string `pulumi:"inValues"`
+	Match    *string  `pulumi:"match"`
+	Value    *string  `pulumi:"value"`
+}
+
+// DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValueInput is an input type that accepts DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValueArgs and DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValueOutput values.
+// You can construct a concrete instance of `DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValueInput` via:
+//
+//	DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValueArgs{...}
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValueInput interface {
+	pulumi.Input
+
+	ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValueOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValueOutput
+	ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValueOutputWithContext(context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValueOutput
+}
+
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValueArgs struct {
+	InValues pulumi.StringArrayInput `pulumi:"inValues"`
+	Match    pulumi.StringPtrInput   `pulumi:"match"`
+	Value    pulumi.StringPtrInput   `pulumi:"value"`
+}
+
+func (DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValueArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValue)(nil)).Elem()
+}
+
+func (i DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValueArgs) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValueOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValueOutput {
+	return i.ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValueOutputWithContext(context.Background())
+}
+
+func (i DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValueArgs) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValueOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValueOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValueOutput)
+}
+
+func (i DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValueArgs) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValuePtrOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValuePtrOutput {
+	return i.ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValuePtrOutputWithContext(context.Background())
+}
+
+func (i DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValueArgs) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValuePtrOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValuePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValueOutput).ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValuePtrOutputWithContext(ctx)
+}
+
+// DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValuePtrInput is an input type that accepts DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValueArgs, DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValuePtr and DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValuePtrOutput values.
+// You can construct a concrete instance of `DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValuePtrInput` via:
+//
+//	        DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValueArgs{...}
+//
+//	or:
+//
+//	        nil
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValuePtrInput interface {
+	pulumi.Input
+
+	ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValuePtrOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValuePtrOutput
+	ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValuePtrOutputWithContext(context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValuePtrOutput
+}
+
+type datasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValuePtrType DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValueArgs
+
+func DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValuePtr(v *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValueArgs) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValuePtrInput {
+	return (*datasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValuePtrType)(v)
+}
+
+func (*datasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValuePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValue)(nil)).Elem()
+}
+
+func (i *datasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValuePtrType) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValuePtrOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValuePtrOutput {
+	return i.ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValuePtrOutputWithContext(context.Background())
+}
+
+func (i *datasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValuePtrType) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValuePtrOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValuePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValuePtrOutput)
+}
+
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValueOutput struct{ *pulumi.OutputState }
+
+func (DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValueOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValue)(nil)).Elem()
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValueOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValueOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValueOutput {
+	return o
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValueOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValueOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValueOutput {
+	return o
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValueOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValuePtrOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValuePtrOutput {
+	return o.ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValuePtrOutputWithContext(context.Background())
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValueOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValuePtrOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValuePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValue) *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValue {
+		return &v
+	}).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValuePtrOutput)
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValueOutput) InValues() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValue) []string {
+		return v.InValues
+	}).(pulumi.StringArrayOutput)
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValueOutput) Match() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValue) *string {
+		return v.Match
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValueOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValue) *string {
+		return v.Value
+	}).(pulumi.StringPtrOutput)
+}
+
+type DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValuePtrOutput struct{ *pulumi.OutputState }
+
+func (DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValuePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValue)(nil)).Elem()
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValuePtrOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValuePtrOutput() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValuePtrOutput {
+	return o
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValuePtrOutput) ToDatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValuePtrOutputWithContext(ctx context.Context) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValuePtrOutput {
+	return o
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValuePtrOutput) Elem() DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValueOutput {
+	return o.ApplyT(func(v *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValue) DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValue {
+		if v != nil {
+			return *v
+		}
+		var ret DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValue
+		return ret
+	}).(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValueOutput)
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValuePtrOutput) InValues() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValue) []string {
+		if v == nil {
+			return nil
+		}
+		return v.InValues
+	}).(pulumi.StringArrayOutput)
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValuePtrOutput) Match() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValue) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Match
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValuePtrOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValue) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Value
+	}).(pulumi.StringPtrOutput)
 }
 
 type DatasetConfigurationTraceDatasetMatchCriteriaSpan struct {
@@ -8770,8 +10775,10 @@ func (o DropRuleValueBasedDropPtrOutput) TargetDropValue() pulumi.Float64PtrOutp
 }
 
 type GcpMetricsIntegrationMetricGroup struct {
-	Prefixes  []string `pulumi:"prefixes"`
-	ProjectId string   `pulumi:"projectId"`
+	Filters     []GcpMetricsIntegrationMetricGroupFilter     `pulumi:"filters"`
+	Prefixes    []string                                     `pulumi:"prefixes"`
+	ProjectId   string                                       `pulumi:"projectId"`
+	RollupRules []GcpMetricsIntegrationMetricGroupRollupRule `pulumi:"rollupRules"`
 }
 
 // GcpMetricsIntegrationMetricGroupInput is an input type that accepts GcpMetricsIntegrationMetricGroupArgs and GcpMetricsIntegrationMetricGroupOutput values.
@@ -8786,8 +10793,10 @@ type GcpMetricsIntegrationMetricGroupInput interface {
 }
 
 type GcpMetricsIntegrationMetricGroupArgs struct {
-	Prefixes  pulumi.StringArrayInput `pulumi:"prefixes"`
-	ProjectId pulumi.StringInput      `pulumi:"projectId"`
+	Filters     GcpMetricsIntegrationMetricGroupFilterArrayInput     `pulumi:"filters"`
+	Prefixes    pulumi.StringArrayInput                              `pulumi:"prefixes"`
+	ProjectId   pulumi.StringInput                                   `pulumi:"projectId"`
+	RollupRules GcpMetricsIntegrationMetricGroupRollupRuleArrayInput `pulumi:"rollupRules"`
 }
 
 func (GcpMetricsIntegrationMetricGroupArgs) ElementType() reflect.Type {
@@ -8841,12 +10850,22 @@ func (o GcpMetricsIntegrationMetricGroupOutput) ToGcpMetricsIntegrationMetricGro
 	return o
 }
 
+func (o GcpMetricsIntegrationMetricGroupOutput) Filters() GcpMetricsIntegrationMetricGroupFilterArrayOutput {
+	return o.ApplyT(func(v GcpMetricsIntegrationMetricGroup) []GcpMetricsIntegrationMetricGroupFilter { return v.Filters }).(GcpMetricsIntegrationMetricGroupFilterArrayOutput)
+}
+
 func (o GcpMetricsIntegrationMetricGroupOutput) Prefixes() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GcpMetricsIntegrationMetricGroup) []string { return v.Prefixes }).(pulumi.StringArrayOutput)
 }
 
 func (o GcpMetricsIntegrationMetricGroupOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GcpMetricsIntegrationMetricGroup) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+func (o GcpMetricsIntegrationMetricGroupOutput) RollupRules() GcpMetricsIntegrationMetricGroupRollupRuleArrayOutput {
+	return o.ApplyT(func(v GcpMetricsIntegrationMetricGroup) []GcpMetricsIntegrationMetricGroupRollupRule {
+		return v.RollupRules
+	}).(GcpMetricsIntegrationMetricGroupRollupRuleArrayOutput)
 }
 
 type GcpMetricsIntegrationMetricGroupArrayOutput struct{ *pulumi.OutputState }
@@ -8867,6 +10886,455 @@ func (o GcpMetricsIntegrationMetricGroupArrayOutput) Index(i pulumi.IntInput) Gc
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GcpMetricsIntegrationMetricGroup {
 		return vs[0].([]GcpMetricsIntegrationMetricGroup)[vs[1].(int)]
 	}).(GcpMetricsIntegrationMetricGroupOutput)
+}
+
+type GcpMetricsIntegrationMetricGroupFilter struct {
+	Context   *string `pulumi:"context"`
+	Name      *string `pulumi:"name"`
+	ValueGlob *string `pulumi:"valueGlob"`
+}
+
+// GcpMetricsIntegrationMetricGroupFilterInput is an input type that accepts GcpMetricsIntegrationMetricGroupFilterArgs and GcpMetricsIntegrationMetricGroupFilterOutput values.
+// You can construct a concrete instance of `GcpMetricsIntegrationMetricGroupFilterInput` via:
+//
+//	GcpMetricsIntegrationMetricGroupFilterArgs{...}
+type GcpMetricsIntegrationMetricGroupFilterInput interface {
+	pulumi.Input
+
+	ToGcpMetricsIntegrationMetricGroupFilterOutput() GcpMetricsIntegrationMetricGroupFilterOutput
+	ToGcpMetricsIntegrationMetricGroupFilterOutputWithContext(context.Context) GcpMetricsIntegrationMetricGroupFilterOutput
+}
+
+type GcpMetricsIntegrationMetricGroupFilterArgs struct {
+	Context   pulumi.StringPtrInput `pulumi:"context"`
+	Name      pulumi.StringPtrInput `pulumi:"name"`
+	ValueGlob pulumi.StringPtrInput `pulumi:"valueGlob"`
+}
+
+func (GcpMetricsIntegrationMetricGroupFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GcpMetricsIntegrationMetricGroupFilter)(nil)).Elem()
+}
+
+func (i GcpMetricsIntegrationMetricGroupFilterArgs) ToGcpMetricsIntegrationMetricGroupFilterOutput() GcpMetricsIntegrationMetricGroupFilterOutput {
+	return i.ToGcpMetricsIntegrationMetricGroupFilterOutputWithContext(context.Background())
+}
+
+func (i GcpMetricsIntegrationMetricGroupFilterArgs) ToGcpMetricsIntegrationMetricGroupFilterOutputWithContext(ctx context.Context) GcpMetricsIntegrationMetricGroupFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GcpMetricsIntegrationMetricGroupFilterOutput)
+}
+
+// GcpMetricsIntegrationMetricGroupFilterArrayInput is an input type that accepts GcpMetricsIntegrationMetricGroupFilterArray and GcpMetricsIntegrationMetricGroupFilterArrayOutput values.
+// You can construct a concrete instance of `GcpMetricsIntegrationMetricGroupFilterArrayInput` via:
+//
+//	GcpMetricsIntegrationMetricGroupFilterArray{ GcpMetricsIntegrationMetricGroupFilterArgs{...} }
+type GcpMetricsIntegrationMetricGroupFilterArrayInput interface {
+	pulumi.Input
+
+	ToGcpMetricsIntegrationMetricGroupFilterArrayOutput() GcpMetricsIntegrationMetricGroupFilterArrayOutput
+	ToGcpMetricsIntegrationMetricGroupFilterArrayOutputWithContext(context.Context) GcpMetricsIntegrationMetricGroupFilterArrayOutput
+}
+
+type GcpMetricsIntegrationMetricGroupFilterArray []GcpMetricsIntegrationMetricGroupFilterInput
+
+func (GcpMetricsIntegrationMetricGroupFilterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GcpMetricsIntegrationMetricGroupFilter)(nil)).Elem()
+}
+
+func (i GcpMetricsIntegrationMetricGroupFilterArray) ToGcpMetricsIntegrationMetricGroupFilterArrayOutput() GcpMetricsIntegrationMetricGroupFilterArrayOutput {
+	return i.ToGcpMetricsIntegrationMetricGroupFilterArrayOutputWithContext(context.Background())
+}
+
+func (i GcpMetricsIntegrationMetricGroupFilterArray) ToGcpMetricsIntegrationMetricGroupFilterArrayOutputWithContext(ctx context.Context) GcpMetricsIntegrationMetricGroupFilterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GcpMetricsIntegrationMetricGroupFilterArrayOutput)
+}
+
+type GcpMetricsIntegrationMetricGroupFilterOutput struct{ *pulumi.OutputState }
+
+func (GcpMetricsIntegrationMetricGroupFilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GcpMetricsIntegrationMetricGroupFilter)(nil)).Elem()
+}
+
+func (o GcpMetricsIntegrationMetricGroupFilterOutput) ToGcpMetricsIntegrationMetricGroupFilterOutput() GcpMetricsIntegrationMetricGroupFilterOutput {
+	return o
+}
+
+func (o GcpMetricsIntegrationMetricGroupFilterOutput) ToGcpMetricsIntegrationMetricGroupFilterOutputWithContext(ctx context.Context) GcpMetricsIntegrationMetricGroupFilterOutput {
+	return o
+}
+
+func (o GcpMetricsIntegrationMetricGroupFilterOutput) Context() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GcpMetricsIntegrationMetricGroupFilter) *string { return v.Context }).(pulumi.StringPtrOutput)
+}
+
+func (o GcpMetricsIntegrationMetricGroupFilterOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GcpMetricsIntegrationMetricGroupFilter) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+func (o GcpMetricsIntegrationMetricGroupFilterOutput) ValueGlob() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GcpMetricsIntegrationMetricGroupFilter) *string { return v.ValueGlob }).(pulumi.StringPtrOutput)
+}
+
+type GcpMetricsIntegrationMetricGroupFilterArrayOutput struct{ *pulumi.OutputState }
+
+func (GcpMetricsIntegrationMetricGroupFilterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GcpMetricsIntegrationMetricGroupFilter)(nil)).Elem()
+}
+
+func (o GcpMetricsIntegrationMetricGroupFilterArrayOutput) ToGcpMetricsIntegrationMetricGroupFilterArrayOutput() GcpMetricsIntegrationMetricGroupFilterArrayOutput {
+	return o
+}
+
+func (o GcpMetricsIntegrationMetricGroupFilterArrayOutput) ToGcpMetricsIntegrationMetricGroupFilterArrayOutputWithContext(ctx context.Context) GcpMetricsIntegrationMetricGroupFilterArrayOutput {
+	return o
+}
+
+func (o GcpMetricsIntegrationMetricGroupFilterArrayOutput) Index(i pulumi.IntInput) GcpMetricsIntegrationMetricGroupFilterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GcpMetricsIntegrationMetricGroupFilter {
+		return vs[0].([]GcpMetricsIntegrationMetricGroupFilter)[vs[1].(int)]
+	}).(GcpMetricsIntegrationMetricGroupFilterOutput)
+}
+
+type GcpMetricsIntegrationMetricGroupRollupRule struct {
+	Aggregation *string                                                `pulumi:"aggregation"`
+	LabelPolicy *GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicy `pulumi:"labelPolicy"`
+	MetricName  *string                                                `pulumi:"metricName"`
+}
+
+// GcpMetricsIntegrationMetricGroupRollupRuleInput is an input type that accepts GcpMetricsIntegrationMetricGroupRollupRuleArgs and GcpMetricsIntegrationMetricGroupRollupRuleOutput values.
+// You can construct a concrete instance of `GcpMetricsIntegrationMetricGroupRollupRuleInput` via:
+//
+//	GcpMetricsIntegrationMetricGroupRollupRuleArgs{...}
+type GcpMetricsIntegrationMetricGroupRollupRuleInput interface {
+	pulumi.Input
+
+	ToGcpMetricsIntegrationMetricGroupRollupRuleOutput() GcpMetricsIntegrationMetricGroupRollupRuleOutput
+	ToGcpMetricsIntegrationMetricGroupRollupRuleOutputWithContext(context.Context) GcpMetricsIntegrationMetricGroupRollupRuleOutput
+}
+
+type GcpMetricsIntegrationMetricGroupRollupRuleArgs struct {
+	Aggregation pulumi.StringPtrInput                                         `pulumi:"aggregation"`
+	LabelPolicy GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyPtrInput `pulumi:"labelPolicy"`
+	MetricName  pulumi.StringPtrInput                                         `pulumi:"metricName"`
+}
+
+func (GcpMetricsIntegrationMetricGroupRollupRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GcpMetricsIntegrationMetricGroupRollupRule)(nil)).Elem()
+}
+
+func (i GcpMetricsIntegrationMetricGroupRollupRuleArgs) ToGcpMetricsIntegrationMetricGroupRollupRuleOutput() GcpMetricsIntegrationMetricGroupRollupRuleOutput {
+	return i.ToGcpMetricsIntegrationMetricGroupRollupRuleOutputWithContext(context.Background())
+}
+
+func (i GcpMetricsIntegrationMetricGroupRollupRuleArgs) ToGcpMetricsIntegrationMetricGroupRollupRuleOutputWithContext(ctx context.Context) GcpMetricsIntegrationMetricGroupRollupRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GcpMetricsIntegrationMetricGroupRollupRuleOutput)
+}
+
+// GcpMetricsIntegrationMetricGroupRollupRuleArrayInput is an input type that accepts GcpMetricsIntegrationMetricGroupRollupRuleArray and GcpMetricsIntegrationMetricGroupRollupRuleArrayOutput values.
+// You can construct a concrete instance of `GcpMetricsIntegrationMetricGroupRollupRuleArrayInput` via:
+//
+//	GcpMetricsIntegrationMetricGroupRollupRuleArray{ GcpMetricsIntegrationMetricGroupRollupRuleArgs{...} }
+type GcpMetricsIntegrationMetricGroupRollupRuleArrayInput interface {
+	pulumi.Input
+
+	ToGcpMetricsIntegrationMetricGroupRollupRuleArrayOutput() GcpMetricsIntegrationMetricGroupRollupRuleArrayOutput
+	ToGcpMetricsIntegrationMetricGroupRollupRuleArrayOutputWithContext(context.Context) GcpMetricsIntegrationMetricGroupRollupRuleArrayOutput
+}
+
+type GcpMetricsIntegrationMetricGroupRollupRuleArray []GcpMetricsIntegrationMetricGroupRollupRuleInput
+
+func (GcpMetricsIntegrationMetricGroupRollupRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GcpMetricsIntegrationMetricGroupRollupRule)(nil)).Elem()
+}
+
+func (i GcpMetricsIntegrationMetricGroupRollupRuleArray) ToGcpMetricsIntegrationMetricGroupRollupRuleArrayOutput() GcpMetricsIntegrationMetricGroupRollupRuleArrayOutput {
+	return i.ToGcpMetricsIntegrationMetricGroupRollupRuleArrayOutputWithContext(context.Background())
+}
+
+func (i GcpMetricsIntegrationMetricGroupRollupRuleArray) ToGcpMetricsIntegrationMetricGroupRollupRuleArrayOutputWithContext(ctx context.Context) GcpMetricsIntegrationMetricGroupRollupRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GcpMetricsIntegrationMetricGroupRollupRuleArrayOutput)
+}
+
+type GcpMetricsIntegrationMetricGroupRollupRuleOutput struct{ *pulumi.OutputState }
+
+func (GcpMetricsIntegrationMetricGroupRollupRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GcpMetricsIntegrationMetricGroupRollupRule)(nil)).Elem()
+}
+
+func (o GcpMetricsIntegrationMetricGroupRollupRuleOutput) ToGcpMetricsIntegrationMetricGroupRollupRuleOutput() GcpMetricsIntegrationMetricGroupRollupRuleOutput {
+	return o
+}
+
+func (o GcpMetricsIntegrationMetricGroupRollupRuleOutput) ToGcpMetricsIntegrationMetricGroupRollupRuleOutputWithContext(ctx context.Context) GcpMetricsIntegrationMetricGroupRollupRuleOutput {
+	return o
+}
+
+func (o GcpMetricsIntegrationMetricGroupRollupRuleOutput) Aggregation() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GcpMetricsIntegrationMetricGroupRollupRule) *string { return v.Aggregation }).(pulumi.StringPtrOutput)
+}
+
+func (o GcpMetricsIntegrationMetricGroupRollupRuleOutput) LabelPolicy() GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyPtrOutput {
+	return o.ApplyT(func(v GcpMetricsIntegrationMetricGroupRollupRule) *GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicy {
+		return v.LabelPolicy
+	}).(GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyPtrOutput)
+}
+
+func (o GcpMetricsIntegrationMetricGroupRollupRuleOutput) MetricName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GcpMetricsIntegrationMetricGroupRollupRule) *string { return v.MetricName }).(pulumi.StringPtrOutput)
+}
+
+type GcpMetricsIntegrationMetricGroupRollupRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (GcpMetricsIntegrationMetricGroupRollupRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GcpMetricsIntegrationMetricGroupRollupRule)(nil)).Elem()
+}
+
+func (o GcpMetricsIntegrationMetricGroupRollupRuleArrayOutput) ToGcpMetricsIntegrationMetricGroupRollupRuleArrayOutput() GcpMetricsIntegrationMetricGroupRollupRuleArrayOutput {
+	return o
+}
+
+func (o GcpMetricsIntegrationMetricGroupRollupRuleArrayOutput) ToGcpMetricsIntegrationMetricGroupRollupRuleArrayOutputWithContext(ctx context.Context) GcpMetricsIntegrationMetricGroupRollupRuleArrayOutput {
+	return o
+}
+
+func (o GcpMetricsIntegrationMetricGroupRollupRuleArrayOutput) Index(i pulumi.IntInput) GcpMetricsIntegrationMetricGroupRollupRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GcpMetricsIntegrationMetricGroupRollupRule {
+		return vs[0].([]GcpMetricsIntegrationMetricGroupRollupRule)[vs[1].(int)]
+	}).(GcpMetricsIntegrationMetricGroupRollupRuleOutput)
+}
+
+type GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicy struct {
+	Keeps []GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeep `pulumi:"keeps"`
+}
+
+// GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyInput is an input type that accepts GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyArgs and GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyOutput values.
+// You can construct a concrete instance of `GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyInput` via:
+//
+//	GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyArgs{...}
+type GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyInput interface {
+	pulumi.Input
+
+	ToGcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyOutput() GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyOutput
+	ToGcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyOutputWithContext(context.Context) GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyOutput
+}
+
+type GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyArgs struct {
+	Keeps GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepArrayInput `pulumi:"keeps"`
+}
+
+func (GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicy)(nil)).Elem()
+}
+
+func (i GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyArgs) ToGcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyOutput() GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyOutput {
+	return i.ToGcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyOutputWithContext(context.Background())
+}
+
+func (i GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyArgs) ToGcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyOutputWithContext(ctx context.Context) GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyOutput)
+}
+
+func (i GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyArgs) ToGcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyPtrOutput() GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyPtrOutput {
+	return i.ToGcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyArgs) ToGcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyPtrOutputWithContext(ctx context.Context) GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyOutput).ToGcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyPtrOutputWithContext(ctx)
+}
+
+// GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyPtrInput is an input type that accepts GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyArgs, GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyPtr and GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyPtrOutput values.
+// You can construct a concrete instance of `GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyPtrInput` via:
+//
+//	        GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyArgs{...}
+//
+//	or:
+//
+//	        nil
+type GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyPtrInput interface {
+	pulumi.Input
+
+	ToGcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyPtrOutput() GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyPtrOutput
+	ToGcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyPtrOutputWithContext(context.Context) GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyPtrOutput
+}
+
+type gcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyPtrType GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyArgs
+
+func GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyPtr(v *GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyArgs) GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyPtrInput {
+	return (*gcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyPtrType)(v)
+}
+
+func (*gcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicy)(nil)).Elem()
+}
+
+func (i *gcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyPtrType) ToGcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyPtrOutput() GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyPtrOutput {
+	return i.ToGcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i *gcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyPtrType) ToGcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyPtrOutputWithContext(ctx context.Context) GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyPtrOutput)
+}
+
+type GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyOutput struct{ *pulumi.OutputState }
+
+func (GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicy)(nil)).Elem()
+}
+
+func (o GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyOutput) ToGcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyOutput() GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyOutput {
+	return o
+}
+
+func (o GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyOutput) ToGcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyOutputWithContext(ctx context.Context) GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyOutput {
+	return o
+}
+
+func (o GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyOutput) ToGcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyPtrOutput() GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyPtrOutput {
+	return o.ToGcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyPtrOutputWithContext(context.Background())
+}
+
+func (o GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyOutput) ToGcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyPtrOutputWithContext(ctx context.Context) GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicy) *GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicy {
+		return &v
+	}).(GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyPtrOutput)
+}
+
+func (o GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyOutput) Keeps() GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepArrayOutput {
+	return o.ApplyT(func(v GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicy) []GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeep {
+		return v.Keeps
+	}).(GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepArrayOutput)
+}
+
+type GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyPtrOutput struct{ *pulumi.OutputState }
+
+func (GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicy)(nil)).Elem()
+}
+
+func (o GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyPtrOutput) ToGcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyPtrOutput() GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyPtrOutput {
+	return o
+}
+
+func (o GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyPtrOutput) ToGcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyPtrOutputWithContext(ctx context.Context) GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyPtrOutput {
+	return o
+}
+
+func (o GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyPtrOutput) Elem() GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyOutput {
+	return o.ApplyT(func(v *GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicy) GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicy {
+		if v != nil {
+			return *v
+		}
+		var ret GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicy
+		return ret
+	}).(GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyOutput)
+}
+
+func (o GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyPtrOutput) Keeps() GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepArrayOutput {
+	return o.ApplyT(func(v *GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicy) []GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeep {
+		if v == nil {
+			return nil
+		}
+		return v.Keeps
+	}).(GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepArrayOutput)
+}
+
+type GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeep struct {
+	Context *string `pulumi:"context"`
+	Name    *string `pulumi:"name"`
+}
+
+// GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepInput is an input type that accepts GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepArgs and GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepOutput values.
+// You can construct a concrete instance of `GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepInput` via:
+//
+//	GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepArgs{...}
+type GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepInput interface {
+	pulumi.Input
+
+	ToGcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepOutput() GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepOutput
+	ToGcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepOutputWithContext(context.Context) GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepOutput
+}
+
+type GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepArgs struct {
+	Context pulumi.StringPtrInput `pulumi:"context"`
+	Name    pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeep)(nil)).Elem()
+}
+
+func (i GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepArgs) ToGcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepOutput() GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepOutput {
+	return i.ToGcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepOutputWithContext(context.Background())
+}
+
+func (i GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepArgs) ToGcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepOutputWithContext(ctx context.Context) GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepOutput)
+}
+
+// GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepArrayInput is an input type that accepts GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepArray and GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepArrayOutput values.
+// You can construct a concrete instance of `GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepArrayInput` via:
+//
+//	GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepArray{ GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepArgs{...} }
+type GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepArrayInput interface {
+	pulumi.Input
+
+	ToGcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepArrayOutput() GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepArrayOutput
+	ToGcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepArrayOutputWithContext(context.Context) GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepArrayOutput
+}
+
+type GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepArray []GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepInput
+
+func (GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeep)(nil)).Elem()
+}
+
+func (i GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepArray) ToGcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepArrayOutput() GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepArrayOutput {
+	return i.ToGcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepArrayOutputWithContext(context.Background())
+}
+
+func (i GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepArray) ToGcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepArrayOutputWithContext(ctx context.Context) GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepArrayOutput)
+}
+
+type GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepOutput struct{ *pulumi.OutputState }
+
+func (GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeep)(nil)).Elem()
+}
+
+func (o GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepOutput) ToGcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepOutput() GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepOutput {
+	return o
+}
+
+func (o GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepOutput) ToGcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepOutputWithContext(ctx context.Context) GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepOutput {
+	return o
+}
+
+func (o GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepOutput) Context() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeep) *string { return v.Context }).(pulumi.StringPtrOutput)
+}
+
+func (o GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeep) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepArrayOutput struct{ *pulumi.OutputState }
+
+func (GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeep)(nil)).Elem()
+}
+
+func (o GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepArrayOutput) ToGcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepArrayOutput() GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepArrayOutput {
+	return o
+}
+
+func (o GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepArrayOutput) ToGcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepArrayOutputWithContext(ctx context.Context) GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepArrayOutput {
+	return o
+}
+
+func (o GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepArrayOutput) Index(i pulumi.IntInput) GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeep {
+		return vs[0].([]GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeep)[vs[1].(int)]
+	}).(GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepOutput)
 }
 
 type GcpMetricsIntegrationServiceAccount struct {
@@ -25329,9 +27797,1942 @@ func (o TraceMetricsRuleGroupByKeyOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v TraceMetricsRuleGroupByKey) string { return v.Type }).(pulumi.StringOutput)
 }
 
+type TraceMetricsRuleScopeFilter struct {
+	SpanScopes []TraceMetricsRuleScopeFilterSpanScope `pulumi:"spanScopes"`
+}
+
+// TraceMetricsRuleScopeFilterInput is an input type that accepts TraceMetricsRuleScopeFilterArgs and TraceMetricsRuleScopeFilterOutput values.
+// You can construct a concrete instance of `TraceMetricsRuleScopeFilterInput` via:
+//
+//	TraceMetricsRuleScopeFilterArgs{...}
+type TraceMetricsRuleScopeFilterInput interface {
+	pulumi.Input
+
+	ToTraceMetricsRuleScopeFilterOutput() TraceMetricsRuleScopeFilterOutput
+	ToTraceMetricsRuleScopeFilterOutputWithContext(context.Context) TraceMetricsRuleScopeFilterOutput
+}
+
+type TraceMetricsRuleScopeFilterArgs struct {
+	SpanScopes TraceMetricsRuleScopeFilterSpanScopeArrayInput `pulumi:"spanScopes"`
+}
+
+func (TraceMetricsRuleScopeFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceMetricsRuleScopeFilter)(nil)).Elem()
+}
+
+func (i TraceMetricsRuleScopeFilterArgs) ToTraceMetricsRuleScopeFilterOutput() TraceMetricsRuleScopeFilterOutput {
+	return i.ToTraceMetricsRuleScopeFilterOutputWithContext(context.Background())
+}
+
+func (i TraceMetricsRuleScopeFilterArgs) ToTraceMetricsRuleScopeFilterOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleScopeFilterOutput)
+}
+
+func (i TraceMetricsRuleScopeFilterArgs) ToTraceMetricsRuleScopeFilterPtrOutput() TraceMetricsRuleScopeFilterPtrOutput {
+	return i.ToTraceMetricsRuleScopeFilterPtrOutputWithContext(context.Background())
+}
+
+func (i TraceMetricsRuleScopeFilterArgs) ToTraceMetricsRuleScopeFilterPtrOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleScopeFilterOutput).ToTraceMetricsRuleScopeFilterPtrOutputWithContext(ctx)
+}
+
+// TraceMetricsRuleScopeFilterPtrInput is an input type that accepts TraceMetricsRuleScopeFilterArgs, TraceMetricsRuleScopeFilterPtr and TraceMetricsRuleScopeFilterPtrOutput values.
+// You can construct a concrete instance of `TraceMetricsRuleScopeFilterPtrInput` via:
+//
+//	        TraceMetricsRuleScopeFilterArgs{...}
+//
+//	or:
+//
+//	        nil
+type TraceMetricsRuleScopeFilterPtrInput interface {
+	pulumi.Input
+
+	ToTraceMetricsRuleScopeFilterPtrOutput() TraceMetricsRuleScopeFilterPtrOutput
+	ToTraceMetricsRuleScopeFilterPtrOutputWithContext(context.Context) TraceMetricsRuleScopeFilterPtrOutput
+}
+
+type traceMetricsRuleScopeFilterPtrType TraceMetricsRuleScopeFilterArgs
+
+func TraceMetricsRuleScopeFilterPtr(v *TraceMetricsRuleScopeFilterArgs) TraceMetricsRuleScopeFilterPtrInput {
+	return (*traceMetricsRuleScopeFilterPtrType)(v)
+}
+
+func (*traceMetricsRuleScopeFilterPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**TraceMetricsRuleScopeFilter)(nil)).Elem()
+}
+
+func (i *traceMetricsRuleScopeFilterPtrType) ToTraceMetricsRuleScopeFilterPtrOutput() TraceMetricsRuleScopeFilterPtrOutput {
+	return i.ToTraceMetricsRuleScopeFilterPtrOutputWithContext(context.Background())
+}
+
+func (i *traceMetricsRuleScopeFilterPtrType) ToTraceMetricsRuleScopeFilterPtrOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleScopeFilterPtrOutput)
+}
+
+type TraceMetricsRuleScopeFilterOutput struct{ *pulumi.OutputState }
+
+func (TraceMetricsRuleScopeFilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceMetricsRuleScopeFilter)(nil)).Elem()
+}
+
+func (o TraceMetricsRuleScopeFilterOutput) ToTraceMetricsRuleScopeFilterOutput() TraceMetricsRuleScopeFilterOutput {
+	return o
+}
+
+func (o TraceMetricsRuleScopeFilterOutput) ToTraceMetricsRuleScopeFilterOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterOutput {
+	return o
+}
+
+func (o TraceMetricsRuleScopeFilterOutput) ToTraceMetricsRuleScopeFilterPtrOutput() TraceMetricsRuleScopeFilterPtrOutput {
+	return o.ToTraceMetricsRuleScopeFilterPtrOutputWithContext(context.Background())
+}
+
+func (o TraceMetricsRuleScopeFilterOutput) ToTraceMetricsRuleScopeFilterPtrOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v TraceMetricsRuleScopeFilter) *TraceMetricsRuleScopeFilter {
+		return &v
+	}).(TraceMetricsRuleScopeFilterPtrOutput)
+}
+
+func (o TraceMetricsRuleScopeFilterOutput) SpanScopes() TraceMetricsRuleScopeFilterSpanScopeArrayOutput {
+	return o.ApplyT(func(v TraceMetricsRuleScopeFilter) []TraceMetricsRuleScopeFilterSpanScope { return v.SpanScopes }).(TraceMetricsRuleScopeFilterSpanScopeArrayOutput)
+}
+
+type TraceMetricsRuleScopeFilterPtrOutput struct{ *pulumi.OutputState }
+
+func (TraceMetricsRuleScopeFilterPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**TraceMetricsRuleScopeFilter)(nil)).Elem()
+}
+
+func (o TraceMetricsRuleScopeFilterPtrOutput) ToTraceMetricsRuleScopeFilterPtrOutput() TraceMetricsRuleScopeFilterPtrOutput {
+	return o
+}
+
+func (o TraceMetricsRuleScopeFilterPtrOutput) ToTraceMetricsRuleScopeFilterPtrOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterPtrOutput {
+	return o
+}
+
+func (o TraceMetricsRuleScopeFilterPtrOutput) Elem() TraceMetricsRuleScopeFilterOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleScopeFilter) TraceMetricsRuleScopeFilter {
+		if v != nil {
+			return *v
+		}
+		var ret TraceMetricsRuleScopeFilter
+		return ret
+	}).(TraceMetricsRuleScopeFilterOutput)
+}
+
+func (o TraceMetricsRuleScopeFilterPtrOutput) SpanScopes() TraceMetricsRuleScopeFilterSpanScopeArrayOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleScopeFilter) []TraceMetricsRuleScopeFilterSpanScope {
+		if v == nil {
+			return nil
+		}
+		return v.SpanScopes
+	}).(TraceMetricsRuleScopeFilterSpanScopeArrayOutput)
+}
+
+type TraceMetricsRuleScopeFilterSpanScope struct {
+	Duration        *TraceMetricsRuleScopeFilterSpanScopeDuration        `pulumi:"duration"`
+	Error           *TraceMetricsRuleScopeFilterSpanScopeError           `pulumi:"error"`
+	IsRootSpan      *TraceMetricsRuleScopeFilterSpanScopeIsRootSpan      `pulumi:"isRootSpan"`
+	MatchType       *string                                              `pulumi:"matchType"`
+	Operation       *TraceMetricsRuleScopeFilterSpanScopeOperation       `pulumi:"operation"`
+	ParentOperation *TraceMetricsRuleScopeFilterSpanScopeParentOperation `pulumi:"parentOperation"`
+	ParentService   *TraceMetricsRuleScopeFilterSpanScopeParentService   `pulumi:"parentService"`
+	Service         *TraceMetricsRuleScopeFilterSpanScopeService         `pulumi:"service"`
+	SpanCount       *TraceMetricsRuleScopeFilterSpanScopeSpanCount       `pulumi:"spanCount"`
+	Tags            []TraceMetricsRuleScopeFilterSpanScopeTag            `pulumi:"tags"`
+}
+
+// TraceMetricsRuleScopeFilterSpanScopeInput is an input type that accepts TraceMetricsRuleScopeFilterSpanScopeArgs and TraceMetricsRuleScopeFilterSpanScopeOutput values.
+// You can construct a concrete instance of `TraceMetricsRuleScopeFilterSpanScopeInput` via:
+//
+//	TraceMetricsRuleScopeFilterSpanScopeArgs{...}
+type TraceMetricsRuleScopeFilterSpanScopeInput interface {
+	pulumi.Input
+
+	ToTraceMetricsRuleScopeFilterSpanScopeOutput() TraceMetricsRuleScopeFilterSpanScopeOutput
+	ToTraceMetricsRuleScopeFilterSpanScopeOutputWithContext(context.Context) TraceMetricsRuleScopeFilterSpanScopeOutput
+}
+
+type TraceMetricsRuleScopeFilterSpanScopeArgs struct {
+	Duration        TraceMetricsRuleScopeFilterSpanScopeDurationPtrInput        `pulumi:"duration"`
+	Error           TraceMetricsRuleScopeFilterSpanScopeErrorPtrInput           `pulumi:"error"`
+	IsRootSpan      TraceMetricsRuleScopeFilterSpanScopeIsRootSpanPtrInput      `pulumi:"isRootSpan"`
+	MatchType       pulumi.StringPtrInput                                       `pulumi:"matchType"`
+	Operation       TraceMetricsRuleScopeFilterSpanScopeOperationPtrInput       `pulumi:"operation"`
+	ParentOperation TraceMetricsRuleScopeFilterSpanScopeParentOperationPtrInput `pulumi:"parentOperation"`
+	ParentService   TraceMetricsRuleScopeFilterSpanScopeParentServicePtrInput   `pulumi:"parentService"`
+	Service         TraceMetricsRuleScopeFilterSpanScopeServicePtrInput         `pulumi:"service"`
+	SpanCount       TraceMetricsRuleScopeFilterSpanScopeSpanCountPtrInput       `pulumi:"spanCount"`
+	Tags            TraceMetricsRuleScopeFilterSpanScopeTagArrayInput           `pulumi:"tags"`
+}
+
+func (TraceMetricsRuleScopeFilterSpanScopeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceMetricsRuleScopeFilterSpanScope)(nil)).Elem()
+}
+
+func (i TraceMetricsRuleScopeFilterSpanScopeArgs) ToTraceMetricsRuleScopeFilterSpanScopeOutput() TraceMetricsRuleScopeFilterSpanScopeOutput {
+	return i.ToTraceMetricsRuleScopeFilterSpanScopeOutputWithContext(context.Background())
+}
+
+func (i TraceMetricsRuleScopeFilterSpanScopeArgs) ToTraceMetricsRuleScopeFilterSpanScopeOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterSpanScopeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleScopeFilterSpanScopeOutput)
+}
+
+// TraceMetricsRuleScopeFilterSpanScopeArrayInput is an input type that accepts TraceMetricsRuleScopeFilterSpanScopeArray and TraceMetricsRuleScopeFilterSpanScopeArrayOutput values.
+// You can construct a concrete instance of `TraceMetricsRuleScopeFilterSpanScopeArrayInput` via:
+//
+//	TraceMetricsRuleScopeFilterSpanScopeArray{ TraceMetricsRuleScopeFilterSpanScopeArgs{...} }
+type TraceMetricsRuleScopeFilterSpanScopeArrayInput interface {
+	pulumi.Input
+
+	ToTraceMetricsRuleScopeFilterSpanScopeArrayOutput() TraceMetricsRuleScopeFilterSpanScopeArrayOutput
+	ToTraceMetricsRuleScopeFilterSpanScopeArrayOutputWithContext(context.Context) TraceMetricsRuleScopeFilterSpanScopeArrayOutput
+}
+
+type TraceMetricsRuleScopeFilterSpanScopeArray []TraceMetricsRuleScopeFilterSpanScopeInput
+
+func (TraceMetricsRuleScopeFilterSpanScopeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TraceMetricsRuleScopeFilterSpanScope)(nil)).Elem()
+}
+
+func (i TraceMetricsRuleScopeFilterSpanScopeArray) ToTraceMetricsRuleScopeFilterSpanScopeArrayOutput() TraceMetricsRuleScopeFilterSpanScopeArrayOutput {
+	return i.ToTraceMetricsRuleScopeFilterSpanScopeArrayOutputWithContext(context.Background())
+}
+
+func (i TraceMetricsRuleScopeFilterSpanScopeArray) ToTraceMetricsRuleScopeFilterSpanScopeArrayOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterSpanScopeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleScopeFilterSpanScopeArrayOutput)
+}
+
+type TraceMetricsRuleScopeFilterSpanScopeOutput struct{ *pulumi.OutputState }
+
+func (TraceMetricsRuleScopeFilterSpanScopeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceMetricsRuleScopeFilterSpanScope)(nil)).Elem()
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeOutput) ToTraceMetricsRuleScopeFilterSpanScopeOutput() TraceMetricsRuleScopeFilterSpanScopeOutput {
+	return o
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeOutput) ToTraceMetricsRuleScopeFilterSpanScopeOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterSpanScopeOutput {
+	return o
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeOutput) Duration() TraceMetricsRuleScopeFilterSpanScopeDurationPtrOutput {
+	return o.ApplyT(func(v TraceMetricsRuleScopeFilterSpanScope) *TraceMetricsRuleScopeFilterSpanScopeDuration {
+		return v.Duration
+	}).(TraceMetricsRuleScopeFilterSpanScopeDurationPtrOutput)
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeOutput) Error() TraceMetricsRuleScopeFilterSpanScopeErrorPtrOutput {
+	return o.ApplyT(func(v TraceMetricsRuleScopeFilterSpanScope) *TraceMetricsRuleScopeFilterSpanScopeError {
+		return v.Error
+	}).(TraceMetricsRuleScopeFilterSpanScopeErrorPtrOutput)
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeOutput) IsRootSpan() TraceMetricsRuleScopeFilterSpanScopeIsRootSpanPtrOutput {
+	return o.ApplyT(func(v TraceMetricsRuleScopeFilterSpanScope) *TraceMetricsRuleScopeFilterSpanScopeIsRootSpan {
+		return v.IsRootSpan
+	}).(TraceMetricsRuleScopeFilterSpanScopeIsRootSpanPtrOutput)
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeOutput) MatchType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v TraceMetricsRuleScopeFilterSpanScope) *string { return v.MatchType }).(pulumi.StringPtrOutput)
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeOutput) Operation() TraceMetricsRuleScopeFilterSpanScopeOperationPtrOutput {
+	return o.ApplyT(func(v TraceMetricsRuleScopeFilterSpanScope) *TraceMetricsRuleScopeFilterSpanScopeOperation {
+		return v.Operation
+	}).(TraceMetricsRuleScopeFilterSpanScopeOperationPtrOutput)
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeOutput) ParentOperation() TraceMetricsRuleScopeFilterSpanScopeParentOperationPtrOutput {
+	return o.ApplyT(func(v TraceMetricsRuleScopeFilterSpanScope) *TraceMetricsRuleScopeFilterSpanScopeParentOperation {
+		return v.ParentOperation
+	}).(TraceMetricsRuleScopeFilterSpanScopeParentOperationPtrOutput)
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeOutput) ParentService() TraceMetricsRuleScopeFilterSpanScopeParentServicePtrOutput {
+	return o.ApplyT(func(v TraceMetricsRuleScopeFilterSpanScope) *TraceMetricsRuleScopeFilterSpanScopeParentService {
+		return v.ParentService
+	}).(TraceMetricsRuleScopeFilterSpanScopeParentServicePtrOutput)
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeOutput) Service() TraceMetricsRuleScopeFilterSpanScopeServicePtrOutput {
+	return o.ApplyT(func(v TraceMetricsRuleScopeFilterSpanScope) *TraceMetricsRuleScopeFilterSpanScopeService {
+		return v.Service
+	}).(TraceMetricsRuleScopeFilterSpanScopeServicePtrOutput)
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeOutput) SpanCount() TraceMetricsRuleScopeFilterSpanScopeSpanCountPtrOutput {
+	return o.ApplyT(func(v TraceMetricsRuleScopeFilterSpanScope) *TraceMetricsRuleScopeFilterSpanScopeSpanCount {
+		return v.SpanCount
+	}).(TraceMetricsRuleScopeFilterSpanScopeSpanCountPtrOutput)
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeOutput) Tags() TraceMetricsRuleScopeFilterSpanScopeTagArrayOutput {
+	return o.ApplyT(func(v TraceMetricsRuleScopeFilterSpanScope) []TraceMetricsRuleScopeFilterSpanScopeTag { return v.Tags }).(TraceMetricsRuleScopeFilterSpanScopeTagArrayOutput)
+}
+
+type TraceMetricsRuleScopeFilterSpanScopeArrayOutput struct{ *pulumi.OutputState }
+
+func (TraceMetricsRuleScopeFilterSpanScopeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TraceMetricsRuleScopeFilterSpanScope)(nil)).Elem()
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeArrayOutput) ToTraceMetricsRuleScopeFilterSpanScopeArrayOutput() TraceMetricsRuleScopeFilterSpanScopeArrayOutput {
+	return o
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeArrayOutput) ToTraceMetricsRuleScopeFilterSpanScopeArrayOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterSpanScopeArrayOutput {
+	return o
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeArrayOutput) Index(i pulumi.IntInput) TraceMetricsRuleScopeFilterSpanScopeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) TraceMetricsRuleScopeFilterSpanScope {
+		return vs[0].([]TraceMetricsRuleScopeFilterSpanScope)[vs[1].(int)]
+	}).(TraceMetricsRuleScopeFilterSpanScopeOutput)
+}
+
+type TraceMetricsRuleScopeFilterSpanScopeDuration struct {
+	MaxSecs *float64 `pulumi:"maxSecs"`
+	MinSecs *float64 `pulumi:"minSecs"`
+}
+
+// TraceMetricsRuleScopeFilterSpanScopeDurationInput is an input type that accepts TraceMetricsRuleScopeFilterSpanScopeDurationArgs and TraceMetricsRuleScopeFilterSpanScopeDurationOutput values.
+// You can construct a concrete instance of `TraceMetricsRuleScopeFilterSpanScopeDurationInput` via:
+//
+//	TraceMetricsRuleScopeFilterSpanScopeDurationArgs{...}
+type TraceMetricsRuleScopeFilterSpanScopeDurationInput interface {
+	pulumi.Input
+
+	ToTraceMetricsRuleScopeFilterSpanScopeDurationOutput() TraceMetricsRuleScopeFilterSpanScopeDurationOutput
+	ToTraceMetricsRuleScopeFilterSpanScopeDurationOutputWithContext(context.Context) TraceMetricsRuleScopeFilterSpanScopeDurationOutput
+}
+
+type TraceMetricsRuleScopeFilterSpanScopeDurationArgs struct {
+	MaxSecs pulumi.Float64PtrInput `pulumi:"maxSecs"`
+	MinSecs pulumi.Float64PtrInput `pulumi:"minSecs"`
+}
+
+func (TraceMetricsRuleScopeFilterSpanScopeDurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceMetricsRuleScopeFilterSpanScopeDuration)(nil)).Elem()
+}
+
+func (i TraceMetricsRuleScopeFilterSpanScopeDurationArgs) ToTraceMetricsRuleScopeFilterSpanScopeDurationOutput() TraceMetricsRuleScopeFilterSpanScopeDurationOutput {
+	return i.ToTraceMetricsRuleScopeFilterSpanScopeDurationOutputWithContext(context.Background())
+}
+
+func (i TraceMetricsRuleScopeFilterSpanScopeDurationArgs) ToTraceMetricsRuleScopeFilterSpanScopeDurationOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterSpanScopeDurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleScopeFilterSpanScopeDurationOutput)
+}
+
+func (i TraceMetricsRuleScopeFilterSpanScopeDurationArgs) ToTraceMetricsRuleScopeFilterSpanScopeDurationPtrOutput() TraceMetricsRuleScopeFilterSpanScopeDurationPtrOutput {
+	return i.ToTraceMetricsRuleScopeFilterSpanScopeDurationPtrOutputWithContext(context.Background())
+}
+
+func (i TraceMetricsRuleScopeFilterSpanScopeDurationArgs) ToTraceMetricsRuleScopeFilterSpanScopeDurationPtrOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterSpanScopeDurationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleScopeFilterSpanScopeDurationOutput).ToTraceMetricsRuleScopeFilterSpanScopeDurationPtrOutputWithContext(ctx)
+}
+
+// TraceMetricsRuleScopeFilterSpanScopeDurationPtrInput is an input type that accepts TraceMetricsRuleScopeFilterSpanScopeDurationArgs, TraceMetricsRuleScopeFilterSpanScopeDurationPtr and TraceMetricsRuleScopeFilterSpanScopeDurationPtrOutput values.
+// You can construct a concrete instance of `TraceMetricsRuleScopeFilterSpanScopeDurationPtrInput` via:
+//
+//	        TraceMetricsRuleScopeFilterSpanScopeDurationArgs{...}
+//
+//	or:
+//
+//	        nil
+type TraceMetricsRuleScopeFilterSpanScopeDurationPtrInput interface {
+	pulumi.Input
+
+	ToTraceMetricsRuleScopeFilterSpanScopeDurationPtrOutput() TraceMetricsRuleScopeFilterSpanScopeDurationPtrOutput
+	ToTraceMetricsRuleScopeFilterSpanScopeDurationPtrOutputWithContext(context.Context) TraceMetricsRuleScopeFilterSpanScopeDurationPtrOutput
+}
+
+type traceMetricsRuleScopeFilterSpanScopeDurationPtrType TraceMetricsRuleScopeFilterSpanScopeDurationArgs
+
+func TraceMetricsRuleScopeFilterSpanScopeDurationPtr(v *TraceMetricsRuleScopeFilterSpanScopeDurationArgs) TraceMetricsRuleScopeFilterSpanScopeDurationPtrInput {
+	return (*traceMetricsRuleScopeFilterSpanScopeDurationPtrType)(v)
+}
+
+func (*traceMetricsRuleScopeFilterSpanScopeDurationPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**TraceMetricsRuleScopeFilterSpanScopeDuration)(nil)).Elem()
+}
+
+func (i *traceMetricsRuleScopeFilterSpanScopeDurationPtrType) ToTraceMetricsRuleScopeFilterSpanScopeDurationPtrOutput() TraceMetricsRuleScopeFilterSpanScopeDurationPtrOutput {
+	return i.ToTraceMetricsRuleScopeFilterSpanScopeDurationPtrOutputWithContext(context.Background())
+}
+
+func (i *traceMetricsRuleScopeFilterSpanScopeDurationPtrType) ToTraceMetricsRuleScopeFilterSpanScopeDurationPtrOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterSpanScopeDurationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleScopeFilterSpanScopeDurationPtrOutput)
+}
+
+type TraceMetricsRuleScopeFilterSpanScopeDurationOutput struct{ *pulumi.OutputState }
+
+func (TraceMetricsRuleScopeFilterSpanScopeDurationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceMetricsRuleScopeFilterSpanScopeDuration)(nil)).Elem()
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeDurationOutput) ToTraceMetricsRuleScopeFilterSpanScopeDurationOutput() TraceMetricsRuleScopeFilterSpanScopeDurationOutput {
+	return o
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeDurationOutput) ToTraceMetricsRuleScopeFilterSpanScopeDurationOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterSpanScopeDurationOutput {
+	return o
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeDurationOutput) ToTraceMetricsRuleScopeFilterSpanScopeDurationPtrOutput() TraceMetricsRuleScopeFilterSpanScopeDurationPtrOutput {
+	return o.ToTraceMetricsRuleScopeFilterSpanScopeDurationPtrOutputWithContext(context.Background())
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeDurationOutput) ToTraceMetricsRuleScopeFilterSpanScopeDurationPtrOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterSpanScopeDurationPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v TraceMetricsRuleScopeFilterSpanScopeDuration) *TraceMetricsRuleScopeFilterSpanScopeDuration {
+		return &v
+	}).(TraceMetricsRuleScopeFilterSpanScopeDurationPtrOutput)
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeDurationOutput) MaxSecs() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v TraceMetricsRuleScopeFilterSpanScopeDuration) *float64 { return v.MaxSecs }).(pulumi.Float64PtrOutput)
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeDurationOutput) MinSecs() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v TraceMetricsRuleScopeFilterSpanScopeDuration) *float64 { return v.MinSecs }).(pulumi.Float64PtrOutput)
+}
+
+type TraceMetricsRuleScopeFilterSpanScopeDurationPtrOutput struct{ *pulumi.OutputState }
+
+func (TraceMetricsRuleScopeFilterSpanScopeDurationPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**TraceMetricsRuleScopeFilterSpanScopeDuration)(nil)).Elem()
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeDurationPtrOutput) ToTraceMetricsRuleScopeFilterSpanScopeDurationPtrOutput() TraceMetricsRuleScopeFilterSpanScopeDurationPtrOutput {
+	return o
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeDurationPtrOutput) ToTraceMetricsRuleScopeFilterSpanScopeDurationPtrOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterSpanScopeDurationPtrOutput {
+	return o
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeDurationPtrOutput) Elem() TraceMetricsRuleScopeFilterSpanScopeDurationOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleScopeFilterSpanScopeDuration) TraceMetricsRuleScopeFilterSpanScopeDuration {
+		if v != nil {
+			return *v
+		}
+		var ret TraceMetricsRuleScopeFilterSpanScopeDuration
+		return ret
+	}).(TraceMetricsRuleScopeFilterSpanScopeDurationOutput)
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeDurationPtrOutput) MaxSecs() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleScopeFilterSpanScopeDuration) *float64 {
+		if v == nil {
+			return nil
+		}
+		return v.MaxSecs
+	}).(pulumi.Float64PtrOutput)
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeDurationPtrOutput) MinSecs() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleScopeFilterSpanScopeDuration) *float64 {
+		if v == nil {
+			return nil
+		}
+		return v.MinSecs
+	}).(pulumi.Float64PtrOutput)
+}
+
+type TraceMetricsRuleScopeFilterSpanScopeError struct {
+	Value bool `pulumi:"value"`
+}
+
+// TraceMetricsRuleScopeFilterSpanScopeErrorInput is an input type that accepts TraceMetricsRuleScopeFilterSpanScopeErrorArgs and TraceMetricsRuleScopeFilterSpanScopeErrorOutput values.
+// You can construct a concrete instance of `TraceMetricsRuleScopeFilterSpanScopeErrorInput` via:
+//
+//	TraceMetricsRuleScopeFilterSpanScopeErrorArgs{...}
+type TraceMetricsRuleScopeFilterSpanScopeErrorInput interface {
+	pulumi.Input
+
+	ToTraceMetricsRuleScopeFilterSpanScopeErrorOutput() TraceMetricsRuleScopeFilterSpanScopeErrorOutput
+	ToTraceMetricsRuleScopeFilterSpanScopeErrorOutputWithContext(context.Context) TraceMetricsRuleScopeFilterSpanScopeErrorOutput
+}
+
+type TraceMetricsRuleScopeFilterSpanScopeErrorArgs struct {
+	Value pulumi.BoolInput `pulumi:"value"`
+}
+
+func (TraceMetricsRuleScopeFilterSpanScopeErrorArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceMetricsRuleScopeFilterSpanScopeError)(nil)).Elem()
+}
+
+func (i TraceMetricsRuleScopeFilterSpanScopeErrorArgs) ToTraceMetricsRuleScopeFilterSpanScopeErrorOutput() TraceMetricsRuleScopeFilterSpanScopeErrorOutput {
+	return i.ToTraceMetricsRuleScopeFilterSpanScopeErrorOutputWithContext(context.Background())
+}
+
+func (i TraceMetricsRuleScopeFilterSpanScopeErrorArgs) ToTraceMetricsRuleScopeFilterSpanScopeErrorOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterSpanScopeErrorOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleScopeFilterSpanScopeErrorOutput)
+}
+
+func (i TraceMetricsRuleScopeFilterSpanScopeErrorArgs) ToTraceMetricsRuleScopeFilterSpanScopeErrorPtrOutput() TraceMetricsRuleScopeFilterSpanScopeErrorPtrOutput {
+	return i.ToTraceMetricsRuleScopeFilterSpanScopeErrorPtrOutputWithContext(context.Background())
+}
+
+func (i TraceMetricsRuleScopeFilterSpanScopeErrorArgs) ToTraceMetricsRuleScopeFilterSpanScopeErrorPtrOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterSpanScopeErrorPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleScopeFilterSpanScopeErrorOutput).ToTraceMetricsRuleScopeFilterSpanScopeErrorPtrOutputWithContext(ctx)
+}
+
+// TraceMetricsRuleScopeFilterSpanScopeErrorPtrInput is an input type that accepts TraceMetricsRuleScopeFilterSpanScopeErrorArgs, TraceMetricsRuleScopeFilterSpanScopeErrorPtr and TraceMetricsRuleScopeFilterSpanScopeErrorPtrOutput values.
+// You can construct a concrete instance of `TraceMetricsRuleScopeFilterSpanScopeErrorPtrInput` via:
+//
+//	        TraceMetricsRuleScopeFilterSpanScopeErrorArgs{...}
+//
+//	or:
+//
+//	        nil
+type TraceMetricsRuleScopeFilterSpanScopeErrorPtrInput interface {
+	pulumi.Input
+
+	ToTraceMetricsRuleScopeFilterSpanScopeErrorPtrOutput() TraceMetricsRuleScopeFilterSpanScopeErrorPtrOutput
+	ToTraceMetricsRuleScopeFilterSpanScopeErrorPtrOutputWithContext(context.Context) TraceMetricsRuleScopeFilterSpanScopeErrorPtrOutput
+}
+
+type traceMetricsRuleScopeFilterSpanScopeErrorPtrType TraceMetricsRuleScopeFilterSpanScopeErrorArgs
+
+func TraceMetricsRuleScopeFilterSpanScopeErrorPtr(v *TraceMetricsRuleScopeFilterSpanScopeErrorArgs) TraceMetricsRuleScopeFilterSpanScopeErrorPtrInput {
+	return (*traceMetricsRuleScopeFilterSpanScopeErrorPtrType)(v)
+}
+
+func (*traceMetricsRuleScopeFilterSpanScopeErrorPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**TraceMetricsRuleScopeFilterSpanScopeError)(nil)).Elem()
+}
+
+func (i *traceMetricsRuleScopeFilterSpanScopeErrorPtrType) ToTraceMetricsRuleScopeFilterSpanScopeErrorPtrOutput() TraceMetricsRuleScopeFilterSpanScopeErrorPtrOutput {
+	return i.ToTraceMetricsRuleScopeFilterSpanScopeErrorPtrOutputWithContext(context.Background())
+}
+
+func (i *traceMetricsRuleScopeFilterSpanScopeErrorPtrType) ToTraceMetricsRuleScopeFilterSpanScopeErrorPtrOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterSpanScopeErrorPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleScopeFilterSpanScopeErrorPtrOutput)
+}
+
+type TraceMetricsRuleScopeFilterSpanScopeErrorOutput struct{ *pulumi.OutputState }
+
+func (TraceMetricsRuleScopeFilterSpanScopeErrorOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceMetricsRuleScopeFilterSpanScopeError)(nil)).Elem()
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeErrorOutput) ToTraceMetricsRuleScopeFilterSpanScopeErrorOutput() TraceMetricsRuleScopeFilterSpanScopeErrorOutput {
+	return o
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeErrorOutput) ToTraceMetricsRuleScopeFilterSpanScopeErrorOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterSpanScopeErrorOutput {
+	return o
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeErrorOutput) ToTraceMetricsRuleScopeFilterSpanScopeErrorPtrOutput() TraceMetricsRuleScopeFilterSpanScopeErrorPtrOutput {
+	return o.ToTraceMetricsRuleScopeFilterSpanScopeErrorPtrOutputWithContext(context.Background())
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeErrorOutput) ToTraceMetricsRuleScopeFilterSpanScopeErrorPtrOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterSpanScopeErrorPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v TraceMetricsRuleScopeFilterSpanScopeError) *TraceMetricsRuleScopeFilterSpanScopeError {
+		return &v
+	}).(TraceMetricsRuleScopeFilterSpanScopeErrorPtrOutput)
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeErrorOutput) Value() pulumi.BoolOutput {
+	return o.ApplyT(func(v TraceMetricsRuleScopeFilterSpanScopeError) bool { return v.Value }).(pulumi.BoolOutput)
+}
+
+type TraceMetricsRuleScopeFilterSpanScopeErrorPtrOutput struct{ *pulumi.OutputState }
+
+func (TraceMetricsRuleScopeFilterSpanScopeErrorPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**TraceMetricsRuleScopeFilterSpanScopeError)(nil)).Elem()
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeErrorPtrOutput) ToTraceMetricsRuleScopeFilterSpanScopeErrorPtrOutput() TraceMetricsRuleScopeFilterSpanScopeErrorPtrOutput {
+	return o
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeErrorPtrOutput) ToTraceMetricsRuleScopeFilterSpanScopeErrorPtrOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterSpanScopeErrorPtrOutput {
+	return o
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeErrorPtrOutput) Elem() TraceMetricsRuleScopeFilterSpanScopeErrorOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleScopeFilterSpanScopeError) TraceMetricsRuleScopeFilterSpanScopeError {
+		if v != nil {
+			return *v
+		}
+		var ret TraceMetricsRuleScopeFilterSpanScopeError
+		return ret
+	}).(TraceMetricsRuleScopeFilterSpanScopeErrorOutput)
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeErrorPtrOutput) Value() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleScopeFilterSpanScopeError) *bool {
+		if v == nil {
+			return nil
+		}
+		return &v.Value
+	}).(pulumi.BoolPtrOutput)
+}
+
+type TraceMetricsRuleScopeFilterSpanScopeIsRootSpan struct {
+	Value bool `pulumi:"value"`
+}
+
+// TraceMetricsRuleScopeFilterSpanScopeIsRootSpanInput is an input type that accepts TraceMetricsRuleScopeFilterSpanScopeIsRootSpanArgs and TraceMetricsRuleScopeFilterSpanScopeIsRootSpanOutput values.
+// You can construct a concrete instance of `TraceMetricsRuleScopeFilterSpanScopeIsRootSpanInput` via:
+//
+//	TraceMetricsRuleScopeFilterSpanScopeIsRootSpanArgs{...}
+type TraceMetricsRuleScopeFilterSpanScopeIsRootSpanInput interface {
+	pulumi.Input
+
+	ToTraceMetricsRuleScopeFilterSpanScopeIsRootSpanOutput() TraceMetricsRuleScopeFilterSpanScopeIsRootSpanOutput
+	ToTraceMetricsRuleScopeFilterSpanScopeIsRootSpanOutputWithContext(context.Context) TraceMetricsRuleScopeFilterSpanScopeIsRootSpanOutput
+}
+
+type TraceMetricsRuleScopeFilterSpanScopeIsRootSpanArgs struct {
+	Value pulumi.BoolInput `pulumi:"value"`
+}
+
+func (TraceMetricsRuleScopeFilterSpanScopeIsRootSpanArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceMetricsRuleScopeFilterSpanScopeIsRootSpan)(nil)).Elem()
+}
+
+func (i TraceMetricsRuleScopeFilterSpanScopeIsRootSpanArgs) ToTraceMetricsRuleScopeFilterSpanScopeIsRootSpanOutput() TraceMetricsRuleScopeFilterSpanScopeIsRootSpanOutput {
+	return i.ToTraceMetricsRuleScopeFilterSpanScopeIsRootSpanOutputWithContext(context.Background())
+}
+
+func (i TraceMetricsRuleScopeFilterSpanScopeIsRootSpanArgs) ToTraceMetricsRuleScopeFilterSpanScopeIsRootSpanOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterSpanScopeIsRootSpanOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleScopeFilterSpanScopeIsRootSpanOutput)
+}
+
+func (i TraceMetricsRuleScopeFilterSpanScopeIsRootSpanArgs) ToTraceMetricsRuleScopeFilterSpanScopeIsRootSpanPtrOutput() TraceMetricsRuleScopeFilterSpanScopeIsRootSpanPtrOutput {
+	return i.ToTraceMetricsRuleScopeFilterSpanScopeIsRootSpanPtrOutputWithContext(context.Background())
+}
+
+func (i TraceMetricsRuleScopeFilterSpanScopeIsRootSpanArgs) ToTraceMetricsRuleScopeFilterSpanScopeIsRootSpanPtrOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterSpanScopeIsRootSpanPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleScopeFilterSpanScopeIsRootSpanOutput).ToTraceMetricsRuleScopeFilterSpanScopeIsRootSpanPtrOutputWithContext(ctx)
+}
+
+// TraceMetricsRuleScopeFilterSpanScopeIsRootSpanPtrInput is an input type that accepts TraceMetricsRuleScopeFilterSpanScopeIsRootSpanArgs, TraceMetricsRuleScopeFilterSpanScopeIsRootSpanPtr and TraceMetricsRuleScopeFilterSpanScopeIsRootSpanPtrOutput values.
+// You can construct a concrete instance of `TraceMetricsRuleScopeFilterSpanScopeIsRootSpanPtrInput` via:
+//
+//	        TraceMetricsRuleScopeFilterSpanScopeIsRootSpanArgs{...}
+//
+//	or:
+//
+//	        nil
+type TraceMetricsRuleScopeFilterSpanScopeIsRootSpanPtrInput interface {
+	pulumi.Input
+
+	ToTraceMetricsRuleScopeFilterSpanScopeIsRootSpanPtrOutput() TraceMetricsRuleScopeFilterSpanScopeIsRootSpanPtrOutput
+	ToTraceMetricsRuleScopeFilterSpanScopeIsRootSpanPtrOutputWithContext(context.Context) TraceMetricsRuleScopeFilterSpanScopeIsRootSpanPtrOutput
+}
+
+type traceMetricsRuleScopeFilterSpanScopeIsRootSpanPtrType TraceMetricsRuleScopeFilterSpanScopeIsRootSpanArgs
+
+func TraceMetricsRuleScopeFilterSpanScopeIsRootSpanPtr(v *TraceMetricsRuleScopeFilterSpanScopeIsRootSpanArgs) TraceMetricsRuleScopeFilterSpanScopeIsRootSpanPtrInput {
+	return (*traceMetricsRuleScopeFilterSpanScopeIsRootSpanPtrType)(v)
+}
+
+func (*traceMetricsRuleScopeFilterSpanScopeIsRootSpanPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**TraceMetricsRuleScopeFilterSpanScopeIsRootSpan)(nil)).Elem()
+}
+
+func (i *traceMetricsRuleScopeFilterSpanScopeIsRootSpanPtrType) ToTraceMetricsRuleScopeFilterSpanScopeIsRootSpanPtrOutput() TraceMetricsRuleScopeFilterSpanScopeIsRootSpanPtrOutput {
+	return i.ToTraceMetricsRuleScopeFilterSpanScopeIsRootSpanPtrOutputWithContext(context.Background())
+}
+
+func (i *traceMetricsRuleScopeFilterSpanScopeIsRootSpanPtrType) ToTraceMetricsRuleScopeFilterSpanScopeIsRootSpanPtrOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterSpanScopeIsRootSpanPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleScopeFilterSpanScopeIsRootSpanPtrOutput)
+}
+
+type TraceMetricsRuleScopeFilterSpanScopeIsRootSpanOutput struct{ *pulumi.OutputState }
+
+func (TraceMetricsRuleScopeFilterSpanScopeIsRootSpanOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceMetricsRuleScopeFilterSpanScopeIsRootSpan)(nil)).Elem()
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeIsRootSpanOutput) ToTraceMetricsRuleScopeFilterSpanScopeIsRootSpanOutput() TraceMetricsRuleScopeFilterSpanScopeIsRootSpanOutput {
+	return o
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeIsRootSpanOutput) ToTraceMetricsRuleScopeFilterSpanScopeIsRootSpanOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterSpanScopeIsRootSpanOutput {
+	return o
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeIsRootSpanOutput) ToTraceMetricsRuleScopeFilterSpanScopeIsRootSpanPtrOutput() TraceMetricsRuleScopeFilterSpanScopeIsRootSpanPtrOutput {
+	return o.ToTraceMetricsRuleScopeFilterSpanScopeIsRootSpanPtrOutputWithContext(context.Background())
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeIsRootSpanOutput) ToTraceMetricsRuleScopeFilterSpanScopeIsRootSpanPtrOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterSpanScopeIsRootSpanPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v TraceMetricsRuleScopeFilterSpanScopeIsRootSpan) *TraceMetricsRuleScopeFilterSpanScopeIsRootSpan {
+		return &v
+	}).(TraceMetricsRuleScopeFilterSpanScopeIsRootSpanPtrOutput)
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeIsRootSpanOutput) Value() pulumi.BoolOutput {
+	return o.ApplyT(func(v TraceMetricsRuleScopeFilterSpanScopeIsRootSpan) bool { return v.Value }).(pulumi.BoolOutput)
+}
+
+type TraceMetricsRuleScopeFilterSpanScopeIsRootSpanPtrOutput struct{ *pulumi.OutputState }
+
+func (TraceMetricsRuleScopeFilterSpanScopeIsRootSpanPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**TraceMetricsRuleScopeFilterSpanScopeIsRootSpan)(nil)).Elem()
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeIsRootSpanPtrOutput) ToTraceMetricsRuleScopeFilterSpanScopeIsRootSpanPtrOutput() TraceMetricsRuleScopeFilterSpanScopeIsRootSpanPtrOutput {
+	return o
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeIsRootSpanPtrOutput) ToTraceMetricsRuleScopeFilterSpanScopeIsRootSpanPtrOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterSpanScopeIsRootSpanPtrOutput {
+	return o
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeIsRootSpanPtrOutput) Elem() TraceMetricsRuleScopeFilterSpanScopeIsRootSpanOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleScopeFilterSpanScopeIsRootSpan) TraceMetricsRuleScopeFilterSpanScopeIsRootSpan {
+		if v != nil {
+			return *v
+		}
+		var ret TraceMetricsRuleScopeFilterSpanScopeIsRootSpan
+		return ret
+	}).(TraceMetricsRuleScopeFilterSpanScopeIsRootSpanOutput)
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeIsRootSpanPtrOutput) Value() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleScopeFilterSpanScopeIsRootSpan) *bool {
+		if v == nil {
+			return nil
+		}
+		return &v.Value
+	}).(pulumi.BoolPtrOutput)
+}
+
+type TraceMetricsRuleScopeFilterSpanScopeOperation struct {
+	InValues []string `pulumi:"inValues"`
+	Match    *string  `pulumi:"match"`
+	Value    *string  `pulumi:"value"`
+}
+
+// TraceMetricsRuleScopeFilterSpanScopeOperationInput is an input type that accepts TraceMetricsRuleScopeFilterSpanScopeOperationArgs and TraceMetricsRuleScopeFilterSpanScopeOperationOutput values.
+// You can construct a concrete instance of `TraceMetricsRuleScopeFilterSpanScopeOperationInput` via:
+//
+//	TraceMetricsRuleScopeFilterSpanScopeOperationArgs{...}
+type TraceMetricsRuleScopeFilterSpanScopeOperationInput interface {
+	pulumi.Input
+
+	ToTraceMetricsRuleScopeFilterSpanScopeOperationOutput() TraceMetricsRuleScopeFilterSpanScopeOperationOutput
+	ToTraceMetricsRuleScopeFilterSpanScopeOperationOutputWithContext(context.Context) TraceMetricsRuleScopeFilterSpanScopeOperationOutput
+}
+
+type TraceMetricsRuleScopeFilterSpanScopeOperationArgs struct {
+	InValues pulumi.StringArrayInput `pulumi:"inValues"`
+	Match    pulumi.StringPtrInput   `pulumi:"match"`
+	Value    pulumi.StringPtrInput   `pulumi:"value"`
+}
+
+func (TraceMetricsRuleScopeFilterSpanScopeOperationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceMetricsRuleScopeFilterSpanScopeOperation)(nil)).Elem()
+}
+
+func (i TraceMetricsRuleScopeFilterSpanScopeOperationArgs) ToTraceMetricsRuleScopeFilterSpanScopeOperationOutput() TraceMetricsRuleScopeFilterSpanScopeOperationOutput {
+	return i.ToTraceMetricsRuleScopeFilterSpanScopeOperationOutputWithContext(context.Background())
+}
+
+func (i TraceMetricsRuleScopeFilterSpanScopeOperationArgs) ToTraceMetricsRuleScopeFilterSpanScopeOperationOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterSpanScopeOperationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleScopeFilterSpanScopeOperationOutput)
+}
+
+func (i TraceMetricsRuleScopeFilterSpanScopeOperationArgs) ToTraceMetricsRuleScopeFilterSpanScopeOperationPtrOutput() TraceMetricsRuleScopeFilterSpanScopeOperationPtrOutput {
+	return i.ToTraceMetricsRuleScopeFilterSpanScopeOperationPtrOutputWithContext(context.Background())
+}
+
+func (i TraceMetricsRuleScopeFilterSpanScopeOperationArgs) ToTraceMetricsRuleScopeFilterSpanScopeOperationPtrOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterSpanScopeOperationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleScopeFilterSpanScopeOperationOutput).ToTraceMetricsRuleScopeFilterSpanScopeOperationPtrOutputWithContext(ctx)
+}
+
+// TraceMetricsRuleScopeFilterSpanScopeOperationPtrInput is an input type that accepts TraceMetricsRuleScopeFilterSpanScopeOperationArgs, TraceMetricsRuleScopeFilterSpanScopeOperationPtr and TraceMetricsRuleScopeFilterSpanScopeOperationPtrOutput values.
+// You can construct a concrete instance of `TraceMetricsRuleScopeFilterSpanScopeOperationPtrInput` via:
+//
+//	        TraceMetricsRuleScopeFilterSpanScopeOperationArgs{...}
+//
+//	or:
+//
+//	        nil
+type TraceMetricsRuleScopeFilterSpanScopeOperationPtrInput interface {
+	pulumi.Input
+
+	ToTraceMetricsRuleScopeFilterSpanScopeOperationPtrOutput() TraceMetricsRuleScopeFilterSpanScopeOperationPtrOutput
+	ToTraceMetricsRuleScopeFilterSpanScopeOperationPtrOutputWithContext(context.Context) TraceMetricsRuleScopeFilterSpanScopeOperationPtrOutput
+}
+
+type traceMetricsRuleScopeFilterSpanScopeOperationPtrType TraceMetricsRuleScopeFilterSpanScopeOperationArgs
+
+func TraceMetricsRuleScopeFilterSpanScopeOperationPtr(v *TraceMetricsRuleScopeFilterSpanScopeOperationArgs) TraceMetricsRuleScopeFilterSpanScopeOperationPtrInput {
+	return (*traceMetricsRuleScopeFilterSpanScopeOperationPtrType)(v)
+}
+
+func (*traceMetricsRuleScopeFilterSpanScopeOperationPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**TraceMetricsRuleScopeFilterSpanScopeOperation)(nil)).Elem()
+}
+
+func (i *traceMetricsRuleScopeFilterSpanScopeOperationPtrType) ToTraceMetricsRuleScopeFilterSpanScopeOperationPtrOutput() TraceMetricsRuleScopeFilterSpanScopeOperationPtrOutput {
+	return i.ToTraceMetricsRuleScopeFilterSpanScopeOperationPtrOutputWithContext(context.Background())
+}
+
+func (i *traceMetricsRuleScopeFilterSpanScopeOperationPtrType) ToTraceMetricsRuleScopeFilterSpanScopeOperationPtrOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterSpanScopeOperationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleScopeFilterSpanScopeOperationPtrOutput)
+}
+
+type TraceMetricsRuleScopeFilterSpanScopeOperationOutput struct{ *pulumi.OutputState }
+
+func (TraceMetricsRuleScopeFilterSpanScopeOperationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceMetricsRuleScopeFilterSpanScopeOperation)(nil)).Elem()
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeOperationOutput) ToTraceMetricsRuleScopeFilterSpanScopeOperationOutput() TraceMetricsRuleScopeFilterSpanScopeOperationOutput {
+	return o
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeOperationOutput) ToTraceMetricsRuleScopeFilterSpanScopeOperationOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterSpanScopeOperationOutput {
+	return o
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeOperationOutput) ToTraceMetricsRuleScopeFilterSpanScopeOperationPtrOutput() TraceMetricsRuleScopeFilterSpanScopeOperationPtrOutput {
+	return o.ToTraceMetricsRuleScopeFilterSpanScopeOperationPtrOutputWithContext(context.Background())
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeOperationOutput) ToTraceMetricsRuleScopeFilterSpanScopeOperationPtrOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterSpanScopeOperationPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v TraceMetricsRuleScopeFilterSpanScopeOperation) *TraceMetricsRuleScopeFilterSpanScopeOperation {
+		return &v
+	}).(TraceMetricsRuleScopeFilterSpanScopeOperationPtrOutput)
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeOperationOutput) InValues() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v TraceMetricsRuleScopeFilterSpanScopeOperation) []string { return v.InValues }).(pulumi.StringArrayOutput)
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeOperationOutput) Match() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v TraceMetricsRuleScopeFilterSpanScopeOperation) *string { return v.Match }).(pulumi.StringPtrOutput)
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeOperationOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v TraceMetricsRuleScopeFilterSpanScopeOperation) *string { return v.Value }).(pulumi.StringPtrOutput)
+}
+
+type TraceMetricsRuleScopeFilterSpanScopeOperationPtrOutput struct{ *pulumi.OutputState }
+
+func (TraceMetricsRuleScopeFilterSpanScopeOperationPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**TraceMetricsRuleScopeFilterSpanScopeOperation)(nil)).Elem()
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeOperationPtrOutput) ToTraceMetricsRuleScopeFilterSpanScopeOperationPtrOutput() TraceMetricsRuleScopeFilterSpanScopeOperationPtrOutput {
+	return o
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeOperationPtrOutput) ToTraceMetricsRuleScopeFilterSpanScopeOperationPtrOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterSpanScopeOperationPtrOutput {
+	return o
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeOperationPtrOutput) Elem() TraceMetricsRuleScopeFilterSpanScopeOperationOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleScopeFilterSpanScopeOperation) TraceMetricsRuleScopeFilterSpanScopeOperation {
+		if v != nil {
+			return *v
+		}
+		var ret TraceMetricsRuleScopeFilterSpanScopeOperation
+		return ret
+	}).(TraceMetricsRuleScopeFilterSpanScopeOperationOutput)
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeOperationPtrOutput) InValues() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleScopeFilterSpanScopeOperation) []string {
+		if v == nil {
+			return nil
+		}
+		return v.InValues
+	}).(pulumi.StringArrayOutput)
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeOperationPtrOutput) Match() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleScopeFilterSpanScopeOperation) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Match
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeOperationPtrOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleScopeFilterSpanScopeOperation) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Value
+	}).(pulumi.StringPtrOutput)
+}
+
+type TraceMetricsRuleScopeFilterSpanScopeParentOperation struct {
+	InValues []string `pulumi:"inValues"`
+	Match    *string  `pulumi:"match"`
+	Value    *string  `pulumi:"value"`
+}
+
+// TraceMetricsRuleScopeFilterSpanScopeParentOperationInput is an input type that accepts TraceMetricsRuleScopeFilterSpanScopeParentOperationArgs and TraceMetricsRuleScopeFilterSpanScopeParentOperationOutput values.
+// You can construct a concrete instance of `TraceMetricsRuleScopeFilterSpanScopeParentOperationInput` via:
+//
+//	TraceMetricsRuleScopeFilterSpanScopeParentOperationArgs{...}
+type TraceMetricsRuleScopeFilterSpanScopeParentOperationInput interface {
+	pulumi.Input
+
+	ToTraceMetricsRuleScopeFilterSpanScopeParentOperationOutput() TraceMetricsRuleScopeFilterSpanScopeParentOperationOutput
+	ToTraceMetricsRuleScopeFilterSpanScopeParentOperationOutputWithContext(context.Context) TraceMetricsRuleScopeFilterSpanScopeParentOperationOutput
+}
+
+type TraceMetricsRuleScopeFilterSpanScopeParentOperationArgs struct {
+	InValues pulumi.StringArrayInput `pulumi:"inValues"`
+	Match    pulumi.StringPtrInput   `pulumi:"match"`
+	Value    pulumi.StringPtrInput   `pulumi:"value"`
+}
+
+func (TraceMetricsRuleScopeFilterSpanScopeParentOperationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceMetricsRuleScopeFilterSpanScopeParentOperation)(nil)).Elem()
+}
+
+func (i TraceMetricsRuleScopeFilterSpanScopeParentOperationArgs) ToTraceMetricsRuleScopeFilterSpanScopeParentOperationOutput() TraceMetricsRuleScopeFilterSpanScopeParentOperationOutput {
+	return i.ToTraceMetricsRuleScopeFilterSpanScopeParentOperationOutputWithContext(context.Background())
+}
+
+func (i TraceMetricsRuleScopeFilterSpanScopeParentOperationArgs) ToTraceMetricsRuleScopeFilterSpanScopeParentOperationOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterSpanScopeParentOperationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleScopeFilterSpanScopeParentOperationOutput)
+}
+
+func (i TraceMetricsRuleScopeFilterSpanScopeParentOperationArgs) ToTraceMetricsRuleScopeFilterSpanScopeParentOperationPtrOutput() TraceMetricsRuleScopeFilterSpanScopeParentOperationPtrOutput {
+	return i.ToTraceMetricsRuleScopeFilterSpanScopeParentOperationPtrOutputWithContext(context.Background())
+}
+
+func (i TraceMetricsRuleScopeFilterSpanScopeParentOperationArgs) ToTraceMetricsRuleScopeFilterSpanScopeParentOperationPtrOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterSpanScopeParentOperationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleScopeFilterSpanScopeParentOperationOutput).ToTraceMetricsRuleScopeFilterSpanScopeParentOperationPtrOutputWithContext(ctx)
+}
+
+// TraceMetricsRuleScopeFilterSpanScopeParentOperationPtrInput is an input type that accepts TraceMetricsRuleScopeFilterSpanScopeParentOperationArgs, TraceMetricsRuleScopeFilterSpanScopeParentOperationPtr and TraceMetricsRuleScopeFilterSpanScopeParentOperationPtrOutput values.
+// You can construct a concrete instance of `TraceMetricsRuleScopeFilterSpanScopeParentOperationPtrInput` via:
+//
+//	        TraceMetricsRuleScopeFilterSpanScopeParentOperationArgs{...}
+//
+//	or:
+//
+//	        nil
+type TraceMetricsRuleScopeFilterSpanScopeParentOperationPtrInput interface {
+	pulumi.Input
+
+	ToTraceMetricsRuleScopeFilterSpanScopeParentOperationPtrOutput() TraceMetricsRuleScopeFilterSpanScopeParentOperationPtrOutput
+	ToTraceMetricsRuleScopeFilterSpanScopeParentOperationPtrOutputWithContext(context.Context) TraceMetricsRuleScopeFilterSpanScopeParentOperationPtrOutput
+}
+
+type traceMetricsRuleScopeFilterSpanScopeParentOperationPtrType TraceMetricsRuleScopeFilterSpanScopeParentOperationArgs
+
+func TraceMetricsRuleScopeFilterSpanScopeParentOperationPtr(v *TraceMetricsRuleScopeFilterSpanScopeParentOperationArgs) TraceMetricsRuleScopeFilterSpanScopeParentOperationPtrInput {
+	return (*traceMetricsRuleScopeFilterSpanScopeParentOperationPtrType)(v)
+}
+
+func (*traceMetricsRuleScopeFilterSpanScopeParentOperationPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**TraceMetricsRuleScopeFilterSpanScopeParentOperation)(nil)).Elem()
+}
+
+func (i *traceMetricsRuleScopeFilterSpanScopeParentOperationPtrType) ToTraceMetricsRuleScopeFilterSpanScopeParentOperationPtrOutput() TraceMetricsRuleScopeFilterSpanScopeParentOperationPtrOutput {
+	return i.ToTraceMetricsRuleScopeFilterSpanScopeParentOperationPtrOutputWithContext(context.Background())
+}
+
+func (i *traceMetricsRuleScopeFilterSpanScopeParentOperationPtrType) ToTraceMetricsRuleScopeFilterSpanScopeParentOperationPtrOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterSpanScopeParentOperationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleScopeFilterSpanScopeParentOperationPtrOutput)
+}
+
+type TraceMetricsRuleScopeFilterSpanScopeParentOperationOutput struct{ *pulumi.OutputState }
+
+func (TraceMetricsRuleScopeFilterSpanScopeParentOperationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceMetricsRuleScopeFilterSpanScopeParentOperation)(nil)).Elem()
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeParentOperationOutput) ToTraceMetricsRuleScopeFilterSpanScopeParentOperationOutput() TraceMetricsRuleScopeFilterSpanScopeParentOperationOutput {
+	return o
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeParentOperationOutput) ToTraceMetricsRuleScopeFilterSpanScopeParentOperationOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterSpanScopeParentOperationOutput {
+	return o
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeParentOperationOutput) ToTraceMetricsRuleScopeFilterSpanScopeParentOperationPtrOutput() TraceMetricsRuleScopeFilterSpanScopeParentOperationPtrOutput {
+	return o.ToTraceMetricsRuleScopeFilterSpanScopeParentOperationPtrOutputWithContext(context.Background())
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeParentOperationOutput) ToTraceMetricsRuleScopeFilterSpanScopeParentOperationPtrOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterSpanScopeParentOperationPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v TraceMetricsRuleScopeFilterSpanScopeParentOperation) *TraceMetricsRuleScopeFilterSpanScopeParentOperation {
+		return &v
+	}).(TraceMetricsRuleScopeFilterSpanScopeParentOperationPtrOutput)
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeParentOperationOutput) InValues() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v TraceMetricsRuleScopeFilterSpanScopeParentOperation) []string { return v.InValues }).(pulumi.StringArrayOutput)
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeParentOperationOutput) Match() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v TraceMetricsRuleScopeFilterSpanScopeParentOperation) *string { return v.Match }).(pulumi.StringPtrOutput)
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeParentOperationOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v TraceMetricsRuleScopeFilterSpanScopeParentOperation) *string { return v.Value }).(pulumi.StringPtrOutput)
+}
+
+type TraceMetricsRuleScopeFilterSpanScopeParentOperationPtrOutput struct{ *pulumi.OutputState }
+
+func (TraceMetricsRuleScopeFilterSpanScopeParentOperationPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**TraceMetricsRuleScopeFilterSpanScopeParentOperation)(nil)).Elem()
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeParentOperationPtrOutput) ToTraceMetricsRuleScopeFilterSpanScopeParentOperationPtrOutput() TraceMetricsRuleScopeFilterSpanScopeParentOperationPtrOutput {
+	return o
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeParentOperationPtrOutput) ToTraceMetricsRuleScopeFilterSpanScopeParentOperationPtrOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterSpanScopeParentOperationPtrOutput {
+	return o
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeParentOperationPtrOutput) Elem() TraceMetricsRuleScopeFilterSpanScopeParentOperationOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleScopeFilterSpanScopeParentOperation) TraceMetricsRuleScopeFilterSpanScopeParentOperation {
+		if v != nil {
+			return *v
+		}
+		var ret TraceMetricsRuleScopeFilterSpanScopeParentOperation
+		return ret
+	}).(TraceMetricsRuleScopeFilterSpanScopeParentOperationOutput)
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeParentOperationPtrOutput) InValues() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleScopeFilterSpanScopeParentOperation) []string {
+		if v == nil {
+			return nil
+		}
+		return v.InValues
+	}).(pulumi.StringArrayOutput)
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeParentOperationPtrOutput) Match() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleScopeFilterSpanScopeParentOperation) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Match
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeParentOperationPtrOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleScopeFilterSpanScopeParentOperation) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Value
+	}).(pulumi.StringPtrOutput)
+}
+
+type TraceMetricsRuleScopeFilterSpanScopeParentService struct {
+	InValues []string `pulumi:"inValues"`
+	Match    *string  `pulumi:"match"`
+	Value    *string  `pulumi:"value"`
+}
+
+// TraceMetricsRuleScopeFilterSpanScopeParentServiceInput is an input type that accepts TraceMetricsRuleScopeFilterSpanScopeParentServiceArgs and TraceMetricsRuleScopeFilterSpanScopeParentServiceOutput values.
+// You can construct a concrete instance of `TraceMetricsRuleScopeFilterSpanScopeParentServiceInput` via:
+//
+//	TraceMetricsRuleScopeFilterSpanScopeParentServiceArgs{...}
+type TraceMetricsRuleScopeFilterSpanScopeParentServiceInput interface {
+	pulumi.Input
+
+	ToTraceMetricsRuleScopeFilterSpanScopeParentServiceOutput() TraceMetricsRuleScopeFilterSpanScopeParentServiceOutput
+	ToTraceMetricsRuleScopeFilterSpanScopeParentServiceOutputWithContext(context.Context) TraceMetricsRuleScopeFilterSpanScopeParentServiceOutput
+}
+
+type TraceMetricsRuleScopeFilterSpanScopeParentServiceArgs struct {
+	InValues pulumi.StringArrayInput `pulumi:"inValues"`
+	Match    pulumi.StringPtrInput   `pulumi:"match"`
+	Value    pulumi.StringPtrInput   `pulumi:"value"`
+}
+
+func (TraceMetricsRuleScopeFilterSpanScopeParentServiceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceMetricsRuleScopeFilterSpanScopeParentService)(nil)).Elem()
+}
+
+func (i TraceMetricsRuleScopeFilterSpanScopeParentServiceArgs) ToTraceMetricsRuleScopeFilterSpanScopeParentServiceOutput() TraceMetricsRuleScopeFilterSpanScopeParentServiceOutput {
+	return i.ToTraceMetricsRuleScopeFilterSpanScopeParentServiceOutputWithContext(context.Background())
+}
+
+func (i TraceMetricsRuleScopeFilterSpanScopeParentServiceArgs) ToTraceMetricsRuleScopeFilterSpanScopeParentServiceOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterSpanScopeParentServiceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleScopeFilterSpanScopeParentServiceOutput)
+}
+
+func (i TraceMetricsRuleScopeFilterSpanScopeParentServiceArgs) ToTraceMetricsRuleScopeFilterSpanScopeParentServicePtrOutput() TraceMetricsRuleScopeFilterSpanScopeParentServicePtrOutput {
+	return i.ToTraceMetricsRuleScopeFilterSpanScopeParentServicePtrOutputWithContext(context.Background())
+}
+
+func (i TraceMetricsRuleScopeFilterSpanScopeParentServiceArgs) ToTraceMetricsRuleScopeFilterSpanScopeParentServicePtrOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterSpanScopeParentServicePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleScopeFilterSpanScopeParentServiceOutput).ToTraceMetricsRuleScopeFilterSpanScopeParentServicePtrOutputWithContext(ctx)
+}
+
+// TraceMetricsRuleScopeFilterSpanScopeParentServicePtrInput is an input type that accepts TraceMetricsRuleScopeFilterSpanScopeParentServiceArgs, TraceMetricsRuleScopeFilterSpanScopeParentServicePtr and TraceMetricsRuleScopeFilterSpanScopeParentServicePtrOutput values.
+// You can construct a concrete instance of `TraceMetricsRuleScopeFilterSpanScopeParentServicePtrInput` via:
+//
+//	        TraceMetricsRuleScopeFilterSpanScopeParentServiceArgs{...}
+//
+//	or:
+//
+//	        nil
+type TraceMetricsRuleScopeFilterSpanScopeParentServicePtrInput interface {
+	pulumi.Input
+
+	ToTraceMetricsRuleScopeFilterSpanScopeParentServicePtrOutput() TraceMetricsRuleScopeFilterSpanScopeParentServicePtrOutput
+	ToTraceMetricsRuleScopeFilterSpanScopeParentServicePtrOutputWithContext(context.Context) TraceMetricsRuleScopeFilterSpanScopeParentServicePtrOutput
+}
+
+type traceMetricsRuleScopeFilterSpanScopeParentServicePtrType TraceMetricsRuleScopeFilterSpanScopeParentServiceArgs
+
+func TraceMetricsRuleScopeFilterSpanScopeParentServicePtr(v *TraceMetricsRuleScopeFilterSpanScopeParentServiceArgs) TraceMetricsRuleScopeFilterSpanScopeParentServicePtrInput {
+	return (*traceMetricsRuleScopeFilterSpanScopeParentServicePtrType)(v)
+}
+
+func (*traceMetricsRuleScopeFilterSpanScopeParentServicePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**TraceMetricsRuleScopeFilterSpanScopeParentService)(nil)).Elem()
+}
+
+func (i *traceMetricsRuleScopeFilterSpanScopeParentServicePtrType) ToTraceMetricsRuleScopeFilterSpanScopeParentServicePtrOutput() TraceMetricsRuleScopeFilterSpanScopeParentServicePtrOutput {
+	return i.ToTraceMetricsRuleScopeFilterSpanScopeParentServicePtrOutputWithContext(context.Background())
+}
+
+func (i *traceMetricsRuleScopeFilterSpanScopeParentServicePtrType) ToTraceMetricsRuleScopeFilterSpanScopeParentServicePtrOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterSpanScopeParentServicePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleScopeFilterSpanScopeParentServicePtrOutput)
+}
+
+type TraceMetricsRuleScopeFilterSpanScopeParentServiceOutput struct{ *pulumi.OutputState }
+
+func (TraceMetricsRuleScopeFilterSpanScopeParentServiceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceMetricsRuleScopeFilterSpanScopeParentService)(nil)).Elem()
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeParentServiceOutput) ToTraceMetricsRuleScopeFilterSpanScopeParentServiceOutput() TraceMetricsRuleScopeFilterSpanScopeParentServiceOutput {
+	return o
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeParentServiceOutput) ToTraceMetricsRuleScopeFilterSpanScopeParentServiceOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterSpanScopeParentServiceOutput {
+	return o
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeParentServiceOutput) ToTraceMetricsRuleScopeFilterSpanScopeParentServicePtrOutput() TraceMetricsRuleScopeFilterSpanScopeParentServicePtrOutput {
+	return o.ToTraceMetricsRuleScopeFilterSpanScopeParentServicePtrOutputWithContext(context.Background())
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeParentServiceOutput) ToTraceMetricsRuleScopeFilterSpanScopeParentServicePtrOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterSpanScopeParentServicePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v TraceMetricsRuleScopeFilterSpanScopeParentService) *TraceMetricsRuleScopeFilterSpanScopeParentService {
+		return &v
+	}).(TraceMetricsRuleScopeFilterSpanScopeParentServicePtrOutput)
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeParentServiceOutput) InValues() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v TraceMetricsRuleScopeFilterSpanScopeParentService) []string { return v.InValues }).(pulumi.StringArrayOutput)
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeParentServiceOutput) Match() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v TraceMetricsRuleScopeFilterSpanScopeParentService) *string { return v.Match }).(pulumi.StringPtrOutput)
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeParentServiceOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v TraceMetricsRuleScopeFilterSpanScopeParentService) *string { return v.Value }).(pulumi.StringPtrOutput)
+}
+
+type TraceMetricsRuleScopeFilterSpanScopeParentServicePtrOutput struct{ *pulumi.OutputState }
+
+func (TraceMetricsRuleScopeFilterSpanScopeParentServicePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**TraceMetricsRuleScopeFilterSpanScopeParentService)(nil)).Elem()
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeParentServicePtrOutput) ToTraceMetricsRuleScopeFilterSpanScopeParentServicePtrOutput() TraceMetricsRuleScopeFilterSpanScopeParentServicePtrOutput {
+	return o
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeParentServicePtrOutput) ToTraceMetricsRuleScopeFilterSpanScopeParentServicePtrOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterSpanScopeParentServicePtrOutput {
+	return o
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeParentServicePtrOutput) Elem() TraceMetricsRuleScopeFilterSpanScopeParentServiceOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleScopeFilterSpanScopeParentService) TraceMetricsRuleScopeFilterSpanScopeParentService {
+		if v != nil {
+			return *v
+		}
+		var ret TraceMetricsRuleScopeFilterSpanScopeParentService
+		return ret
+	}).(TraceMetricsRuleScopeFilterSpanScopeParentServiceOutput)
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeParentServicePtrOutput) InValues() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleScopeFilterSpanScopeParentService) []string {
+		if v == nil {
+			return nil
+		}
+		return v.InValues
+	}).(pulumi.StringArrayOutput)
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeParentServicePtrOutput) Match() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleScopeFilterSpanScopeParentService) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Match
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeParentServicePtrOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleScopeFilterSpanScopeParentService) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Value
+	}).(pulumi.StringPtrOutput)
+}
+
+type TraceMetricsRuleScopeFilterSpanScopeService struct {
+	InValues []string `pulumi:"inValues"`
+	Match    *string  `pulumi:"match"`
+	Value    *string  `pulumi:"value"`
+}
+
+// TraceMetricsRuleScopeFilterSpanScopeServiceInput is an input type that accepts TraceMetricsRuleScopeFilterSpanScopeServiceArgs and TraceMetricsRuleScopeFilterSpanScopeServiceOutput values.
+// You can construct a concrete instance of `TraceMetricsRuleScopeFilterSpanScopeServiceInput` via:
+//
+//	TraceMetricsRuleScopeFilterSpanScopeServiceArgs{...}
+type TraceMetricsRuleScopeFilterSpanScopeServiceInput interface {
+	pulumi.Input
+
+	ToTraceMetricsRuleScopeFilterSpanScopeServiceOutput() TraceMetricsRuleScopeFilterSpanScopeServiceOutput
+	ToTraceMetricsRuleScopeFilterSpanScopeServiceOutputWithContext(context.Context) TraceMetricsRuleScopeFilterSpanScopeServiceOutput
+}
+
+type TraceMetricsRuleScopeFilterSpanScopeServiceArgs struct {
+	InValues pulumi.StringArrayInput `pulumi:"inValues"`
+	Match    pulumi.StringPtrInput   `pulumi:"match"`
+	Value    pulumi.StringPtrInput   `pulumi:"value"`
+}
+
+func (TraceMetricsRuleScopeFilterSpanScopeServiceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceMetricsRuleScopeFilterSpanScopeService)(nil)).Elem()
+}
+
+func (i TraceMetricsRuleScopeFilterSpanScopeServiceArgs) ToTraceMetricsRuleScopeFilterSpanScopeServiceOutput() TraceMetricsRuleScopeFilterSpanScopeServiceOutput {
+	return i.ToTraceMetricsRuleScopeFilterSpanScopeServiceOutputWithContext(context.Background())
+}
+
+func (i TraceMetricsRuleScopeFilterSpanScopeServiceArgs) ToTraceMetricsRuleScopeFilterSpanScopeServiceOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterSpanScopeServiceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleScopeFilterSpanScopeServiceOutput)
+}
+
+func (i TraceMetricsRuleScopeFilterSpanScopeServiceArgs) ToTraceMetricsRuleScopeFilterSpanScopeServicePtrOutput() TraceMetricsRuleScopeFilterSpanScopeServicePtrOutput {
+	return i.ToTraceMetricsRuleScopeFilterSpanScopeServicePtrOutputWithContext(context.Background())
+}
+
+func (i TraceMetricsRuleScopeFilterSpanScopeServiceArgs) ToTraceMetricsRuleScopeFilterSpanScopeServicePtrOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterSpanScopeServicePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleScopeFilterSpanScopeServiceOutput).ToTraceMetricsRuleScopeFilterSpanScopeServicePtrOutputWithContext(ctx)
+}
+
+// TraceMetricsRuleScopeFilterSpanScopeServicePtrInput is an input type that accepts TraceMetricsRuleScopeFilterSpanScopeServiceArgs, TraceMetricsRuleScopeFilterSpanScopeServicePtr and TraceMetricsRuleScopeFilterSpanScopeServicePtrOutput values.
+// You can construct a concrete instance of `TraceMetricsRuleScopeFilterSpanScopeServicePtrInput` via:
+//
+//	        TraceMetricsRuleScopeFilterSpanScopeServiceArgs{...}
+//
+//	or:
+//
+//	        nil
+type TraceMetricsRuleScopeFilterSpanScopeServicePtrInput interface {
+	pulumi.Input
+
+	ToTraceMetricsRuleScopeFilterSpanScopeServicePtrOutput() TraceMetricsRuleScopeFilterSpanScopeServicePtrOutput
+	ToTraceMetricsRuleScopeFilterSpanScopeServicePtrOutputWithContext(context.Context) TraceMetricsRuleScopeFilterSpanScopeServicePtrOutput
+}
+
+type traceMetricsRuleScopeFilterSpanScopeServicePtrType TraceMetricsRuleScopeFilterSpanScopeServiceArgs
+
+func TraceMetricsRuleScopeFilterSpanScopeServicePtr(v *TraceMetricsRuleScopeFilterSpanScopeServiceArgs) TraceMetricsRuleScopeFilterSpanScopeServicePtrInput {
+	return (*traceMetricsRuleScopeFilterSpanScopeServicePtrType)(v)
+}
+
+func (*traceMetricsRuleScopeFilterSpanScopeServicePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**TraceMetricsRuleScopeFilterSpanScopeService)(nil)).Elem()
+}
+
+func (i *traceMetricsRuleScopeFilterSpanScopeServicePtrType) ToTraceMetricsRuleScopeFilterSpanScopeServicePtrOutput() TraceMetricsRuleScopeFilterSpanScopeServicePtrOutput {
+	return i.ToTraceMetricsRuleScopeFilterSpanScopeServicePtrOutputWithContext(context.Background())
+}
+
+func (i *traceMetricsRuleScopeFilterSpanScopeServicePtrType) ToTraceMetricsRuleScopeFilterSpanScopeServicePtrOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterSpanScopeServicePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleScopeFilterSpanScopeServicePtrOutput)
+}
+
+type TraceMetricsRuleScopeFilterSpanScopeServiceOutput struct{ *pulumi.OutputState }
+
+func (TraceMetricsRuleScopeFilterSpanScopeServiceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceMetricsRuleScopeFilterSpanScopeService)(nil)).Elem()
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeServiceOutput) ToTraceMetricsRuleScopeFilterSpanScopeServiceOutput() TraceMetricsRuleScopeFilterSpanScopeServiceOutput {
+	return o
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeServiceOutput) ToTraceMetricsRuleScopeFilterSpanScopeServiceOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterSpanScopeServiceOutput {
+	return o
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeServiceOutput) ToTraceMetricsRuleScopeFilterSpanScopeServicePtrOutput() TraceMetricsRuleScopeFilterSpanScopeServicePtrOutput {
+	return o.ToTraceMetricsRuleScopeFilterSpanScopeServicePtrOutputWithContext(context.Background())
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeServiceOutput) ToTraceMetricsRuleScopeFilterSpanScopeServicePtrOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterSpanScopeServicePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v TraceMetricsRuleScopeFilterSpanScopeService) *TraceMetricsRuleScopeFilterSpanScopeService {
+		return &v
+	}).(TraceMetricsRuleScopeFilterSpanScopeServicePtrOutput)
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeServiceOutput) InValues() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v TraceMetricsRuleScopeFilterSpanScopeService) []string { return v.InValues }).(pulumi.StringArrayOutput)
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeServiceOutput) Match() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v TraceMetricsRuleScopeFilterSpanScopeService) *string { return v.Match }).(pulumi.StringPtrOutput)
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeServiceOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v TraceMetricsRuleScopeFilterSpanScopeService) *string { return v.Value }).(pulumi.StringPtrOutput)
+}
+
+type TraceMetricsRuleScopeFilterSpanScopeServicePtrOutput struct{ *pulumi.OutputState }
+
+func (TraceMetricsRuleScopeFilterSpanScopeServicePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**TraceMetricsRuleScopeFilterSpanScopeService)(nil)).Elem()
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeServicePtrOutput) ToTraceMetricsRuleScopeFilterSpanScopeServicePtrOutput() TraceMetricsRuleScopeFilterSpanScopeServicePtrOutput {
+	return o
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeServicePtrOutput) ToTraceMetricsRuleScopeFilterSpanScopeServicePtrOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterSpanScopeServicePtrOutput {
+	return o
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeServicePtrOutput) Elem() TraceMetricsRuleScopeFilterSpanScopeServiceOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleScopeFilterSpanScopeService) TraceMetricsRuleScopeFilterSpanScopeService {
+		if v != nil {
+			return *v
+		}
+		var ret TraceMetricsRuleScopeFilterSpanScopeService
+		return ret
+	}).(TraceMetricsRuleScopeFilterSpanScopeServiceOutput)
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeServicePtrOutput) InValues() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleScopeFilterSpanScopeService) []string {
+		if v == nil {
+			return nil
+		}
+		return v.InValues
+	}).(pulumi.StringArrayOutput)
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeServicePtrOutput) Match() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleScopeFilterSpanScopeService) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Match
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeServicePtrOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleScopeFilterSpanScopeService) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Value
+	}).(pulumi.StringPtrOutput)
+}
+
+type TraceMetricsRuleScopeFilterSpanScopeSpanCount struct {
+	Max *int `pulumi:"max"`
+	Min *int `pulumi:"min"`
+}
+
+// TraceMetricsRuleScopeFilterSpanScopeSpanCountInput is an input type that accepts TraceMetricsRuleScopeFilterSpanScopeSpanCountArgs and TraceMetricsRuleScopeFilterSpanScopeSpanCountOutput values.
+// You can construct a concrete instance of `TraceMetricsRuleScopeFilterSpanScopeSpanCountInput` via:
+//
+//	TraceMetricsRuleScopeFilterSpanScopeSpanCountArgs{...}
+type TraceMetricsRuleScopeFilterSpanScopeSpanCountInput interface {
+	pulumi.Input
+
+	ToTraceMetricsRuleScopeFilterSpanScopeSpanCountOutput() TraceMetricsRuleScopeFilterSpanScopeSpanCountOutput
+	ToTraceMetricsRuleScopeFilterSpanScopeSpanCountOutputWithContext(context.Context) TraceMetricsRuleScopeFilterSpanScopeSpanCountOutput
+}
+
+type TraceMetricsRuleScopeFilterSpanScopeSpanCountArgs struct {
+	Max pulumi.IntPtrInput `pulumi:"max"`
+	Min pulumi.IntPtrInput `pulumi:"min"`
+}
+
+func (TraceMetricsRuleScopeFilterSpanScopeSpanCountArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceMetricsRuleScopeFilterSpanScopeSpanCount)(nil)).Elem()
+}
+
+func (i TraceMetricsRuleScopeFilterSpanScopeSpanCountArgs) ToTraceMetricsRuleScopeFilterSpanScopeSpanCountOutput() TraceMetricsRuleScopeFilterSpanScopeSpanCountOutput {
+	return i.ToTraceMetricsRuleScopeFilterSpanScopeSpanCountOutputWithContext(context.Background())
+}
+
+func (i TraceMetricsRuleScopeFilterSpanScopeSpanCountArgs) ToTraceMetricsRuleScopeFilterSpanScopeSpanCountOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterSpanScopeSpanCountOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleScopeFilterSpanScopeSpanCountOutput)
+}
+
+func (i TraceMetricsRuleScopeFilterSpanScopeSpanCountArgs) ToTraceMetricsRuleScopeFilterSpanScopeSpanCountPtrOutput() TraceMetricsRuleScopeFilterSpanScopeSpanCountPtrOutput {
+	return i.ToTraceMetricsRuleScopeFilterSpanScopeSpanCountPtrOutputWithContext(context.Background())
+}
+
+func (i TraceMetricsRuleScopeFilterSpanScopeSpanCountArgs) ToTraceMetricsRuleScopeFilterSpanScopeSpanCountPtrOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterSpanScopeSpanCountPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleScopeFilterSpanScopeSpanCountOutput).ToTraceMetricsRuleScopeFilterSpanScopeSpanCountPtrOutputWithContext(ctx)
+}
+
+// TraceMetricsRuleScopeFilterSpanScopeSpanCountPtrInput is an input type that accepts TraceMetricsRuleScopeFilterSpanScopeSpanCountArgs, TraceMetricsRuleScopeFilterSpanScopeSpanCountPtr and TraceMetricsRuleScopeFilterSpanScopeSpanCountPtrOutput values.
+// You can construct a concrete instance of `TraceMetricsRuleScopeFilterSpanScopeSpanCountPtrInput` via:
+//
+//	        TraceMetricsRuleScopeFilterSpanScopeSpanCountArgs{...}
+//
+//	or:
+//
+//	        nil
+type TraceMetricsRuleScopeFilterSpanScopeSpanCountPtrInput interface {
+	pulumi.Input
+
+	ToTraceMetricsRuleScopeFilterSpanScopeSpanCountPtrOutput() TraceMetricsRuleScopeFilterSpanScopeSpanCountPtrOutput
+	ToTraceMetricsRuleScopeFilterSpanScopeSpanCountPtrOutputWithContext(context.Context) TraceMetricsRuleScopeFilterSpanScopeSpanCountPtrOutput
+}
+
+type traceMetricsRuleScopeFilterSpanScopeSpanCountPtrType TraceMetricsRuleScopeFilterSpanScopeSpanCountArgs
+
+func TraceMetricsRuleScopeFilterSpanScopeSpanCountPtr(v *TraceMetricsRuleScopeFilterSpanScopeSpanCountArgs) TraceMetricsRuleScopeFilterSpanScopeSpanCountPtrInput {
+	return (*traceMetricsRuleScopeFilterSpanScopeSpanCountPtrType)(v)
+}
+
+func (*traceMetricsRuleScopeFilterSpanScopeSpanCountPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**TraceMetricsRuleScopeFilterSpanScopeSpanCount)(nil)).Elem()
+}
+
+func (i *traceMetricsRuleScopeFilterSpanScopeSpanCountPtrType) ToTraceMetricsRuleScopeFilterSpanScopeSpanCountPtrOutput() TraceMetricsRuleScopeFilterSpanScopeSpanCountPtrOutput {
+	return i.ToTraceMetricsRuleScopeFilterSpanScopeSpanCountPtrOutputWithContext(context.Background())
+}
+
+func (i *traceMetricsRuleScopeFilterSpanScopeSpanCountPtrType) ToTraceMetricsRuleScopeFilterSpanScopeSpanCountPtrOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterSpanScopeSpanCountPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleScopeFilterSpanScopeSpanCountPtrOutput)
+}
+
+type TraceMetricsRuleScopeFilterSpanScopeSpanCountOutput struct{ *pulumi.OutputState }
+
+func (TraceMetricsRuleScopeFilterSpanScopeSpanCountOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceMetricsRuleScopeFilterSpanScopeSpanCount)(nil)).Elem()
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeSpanCountOutput) ToTraceMetricsRuleScopeFilterSpanScopeSpanCountOutput() TraceMetricsRuleScopeFilterSpanScopeSpanCountOutput {
+	return o
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeSpanCountOutput) ToTraceMetricsRuleScopeFilterSpanScopeSpanCountOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterSpanScopeSpanCountOutput {
+	return o
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeSpanCountOutput) ToTraceMetricsRuleScopeFilterSpanScopeSpanCountPtrOutput() TraceMetricsRuleScopeFilterSpanScopeSpanCountPtrOutput {
+	return o.ToTraceMetricsRuleScopeFilterSpanScopeSpanCountPtrOutputWithContext(context.Background())
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeSpanCountOutput) ToTraceMetricsRuleScopeFilterSpanScopeSpanCountPtrOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterSpanScopeSpanCountPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v TraceMetricsRuleScopeFilterSpanScopeSpanCount) *TraceMetricsRuleScopeFilterSpanScopeSpanCount {
+		return &v
+	}).(TraceMetricsRuleScopeFilterSpanScopeSpanCountPtrOutput)
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeSpanCountOutput) Max() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v TraceMetricsRuleScopeFilterSpanScopeSpanCount) *int { return v.Max }).(pulumi.IntPtrOutput)
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeSpanCountOutput) Min() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v TraceMetricsRuleScopeFilterSpanScopeSpanCount) *int { return v.Min }).(pulumi.IntPtrOutput)
+}
+
+type TraceMetricsRuleScopeFilterSpanScopeSpanCountPtrOutput struct{ *pulumi.OutputState }
+
+func (TraceMetricsRuleScopeFilterSpanScopeSpanCountPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**TraceMetricsRuleScopeFilterSpanScopeSpanCount)(nil)).Elem()
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeSpanCountPtrOutput) ToTraceMetricsRuleScopeFilterSpanScopeSpanCountPtrOutput() TraceMetricsRuleScopeFilterSpanScopeSpanCountPtrOutput {
+	return o
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeSpanCountPtrOutput) ToTraceMetricsRuleScopeFilterSpanScopeSpanCountPtrOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterSpanScopeSpanCountPtrOutput {
+	return o
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeSpanCountPtrOutput) Elem() TraceMetricsRuleScopeFilterSpanScopeSpanCountOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleScopeFilterSpanScopeSpanCount) TraceMetricsRuleScopeFilterSpanScopeSpanCount {
+		if v != nil {
+			return *v
+		}
+		var ret TraceMetricsRuleScopeFilterSpanScopeSpanCount
+		return ret
+	}).(TraceMetricsRuleScopeFilterSpanScopeSpanCountOutput)
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeSpanCountPtrOutput) Max() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleScopeFilterSpanScopeSpanCount) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Max
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeSpanCountPtrOutput) Min() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleScopeFilterSpanScopeSpanCount) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Min
+	}).(pulumi.IntPtrOutput)
+}
+
+type TraceMetricsRuleScopeFilterSpanScopeTag struct {
+	Key          *string                                              `pulumi:"key"`
+	NumericValue *TraceMetricsRuleScopeFilterSpanScopeTagNumericValue `pulumi:"numericValue"`
+	Value        *TraceMetricsRuleScopeFilterSpanScopeTagValue        `pulumi:"value"`
+}
+
+// TraceMetricsRuleScopeFilterSpanScopeTagInput is an input type that accepts TraceMetricsRuleScopeFilterSpanScopeTagArgs and TraceMetricsRuleScopeFilterSpanScopeTagOutput values.
+// You can construct a concrete instance of `TraceMetricsRuleScopeFilterSpanScopeTagInput` via:
+//
+//	TraceMetricsRuleScopeFilterSpanScopeTagArgs{...}
+type TraceMetricsRuleScopeFilterSpanScopeTagInput interface {
+	pulumi.Input
+
+	ToTraceMetricsRuleScopeFilterSpanScopeTagOutput() TraceMetricsRuleScopeFilterSpanScopeTagOutput
+	ToTraceMetricsRuleScopeFilterSpanScopeTagOutputWithContext(context.Context) TraceMetricsRuleScopeFilterSpanScopeTagOutput
+}
+
+type TraceMetricsRuleScopeFilterSpanScopeTagArgs struct {
+	Key          pulumi.StringPtrInput                                       `pulumi:"key"`
+	NumericValue TraceMetricsRuleScopeFilterSpanScopeTagNumericValuePtrInput `pulumi:"numericValue"`
+	Value        TraceMetricsRuleScopeFilterSpanScopeTagValuePtrInput        `pulumi:"value"`
+}
+
+func (TraceMetricsRuleScopeFilterSpanScopeTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceMetricsRuleScopeFilterSpanScopeTag)(nil)).Elem()
+}
+
+func (i TraceMetricsRuleScopeFilterSpanScopeTagArgs) ToTraceMetricsRuleScopeFilterSpanScopeTagOutput() TraceMetricsRuleScopeFilterSpanScopeTagOutput {
+	return i.ToTraceMetricsRuleScopeFilterSpanScopeTagOutputWithContext(context.Background())
+}
+
+func (i TraceMetricsRuleScopeFilterSpanScopeTagArgs) ToTraceMetricsRuleScopeFilterSpanScopeTagOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterSpanScopeTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleScopeFilterSpanScopeTagOutput)
+}
+
+// TraceMetricsRuleScopeFilterSpanScopeTagArrayInput is an input type that accepts TraceMetricsRuleScopeFilterSpanScopeTagArray and TraceMetricsRuleScopeFilterSpanScopeTagArrayOutput values.
+// You can construct a concrete instance of `TraceMetricsRuleScopeFilterSpanScopeTagArrayInput` via:
+//
+//	TraceMetricsRuleScopeFilterSpanScopeTagArray{ TraceMetricsRuleScopeFilterSpanScopeTagArgs{...} }
+type TraceMetricsRuleScopeFilterSpanScopeTagArrayInput interface {
+	pulumi.Input
+
+	ToTraceMetricsRuleScopeFilterSpanScopeTagArrayOutput() TraceMetricsRuleScopeFilterSpanScopeTagArrayOutput
+	ToTraceMetricsRuleScopeFilterSpanScopeTagArrayOutputWithContext(context.Context) TraceMetricsRuleScopeFilterSpanScopeTagArrayOutput
+}
+
+type TraceMetricsRuleScopeFilterSpanScopeTagArray []TraceMetricsRuleScopeFilterSpanScopeTagInput
+
+func (TraceMetricsRuleScopeFilterSpanScopeTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TraceMetricsRuleScopeFilterSpanScopeTag)(nil)).Elem()
+}
+
+func (i TraceMetricsRuleScopeFilterSpanScopeTagArray) ToTraceMetricsRuleScopeFilterSpanScopeTagArrayOutput() TraceMetricsRuleScopeFilterSpanScopeTagArrayOutput {
+	return i.ToTraceMetricsRuleScopeFilterSpanScopeTagArrayOutputWithContext(context.Background())
+}
+
+func (i TraceMetricsRuleScopeFilterSpanScopeTagArray) ToTraceMetricsRuleScopeFilterSpanScopeTagArrayOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterSpanScopeTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleScopeFilterSpanScopeTagArrayOutput)
+}
+
+type TraceMetricsRuleScopeFilterSpanScopeTagOutput struct{ *pulumi.OutputState }
+
+func (TraceMetricsRuleScopeFilterSpanScopeTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceMetricsRuleScopeFilterSpanScopeTag)(nil)).Elem()
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeTagOutput) ToTraceMetricsRuleScopeFilterSpanScopeTagOutput() TraceMetricsRuleScopeFilterSpanScopeTagOutput {
+	return o
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeTagOutput) ToTraceMetricsRuleScopeFilterSpanScopeTagOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterSpanScopeTagOutput {
+	return o
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeTagOutput) Key() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v TraceMetricsRuleScopeFilterSpanScopeTag) *string { return v.Key }).(pulumi.StringPtrOutput)
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeTagOutput) NumericValue() TraceMetricsRuleScopeFilterSpanScopeTagNumericValuePtrOutput {
+	return o.ApplyT(func(v TraceMetricsRuleScopeFilterSpanScopeTag) *TraceMetricsRuleScopeFilterSpanScopeTagNumericValue {
+		return v.NumericValue
+	}).(TraceMetricsRuleScopeFilterSpanScopeTagNumericValuePtrOutput)
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeTagOutput) Value() TraceMetricsRuleScopeFilterSpanScopeTagValuePtrOutput {
+	return o.ApplyT(func(v TraceMetricsRuleScopeFilterSpanScopeTag) *TraceMetricsRuleScopeFilterSpanScopeTagValue {
+		return v.Value
+	}).(TraceMetricsRuleScopeFilterSpanScopeTagValuePtrOutput)
+}
+
+type TraceMetricsRuleScopeFilterSpanScopeTagArrayOutput struct{ *pulumi.OutputState }
+
+func (TraceMetricsRuleScopeFilterSpanScopeTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TraceMetricsRuleScopeFilterSpanScopeTag)(nil)).Elem()
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeTagArrayOutput) ToTraceMetricsRuleScopeFilterSpanScopeTagArrayOutput() TraceMetricsRuleScopeFilterSpanScopeTagArrayOutput {
+	return o
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeTagArrayOutput) ToTraceMetricsRuleScopeFilterSpanScopeTagArrayOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterSpanScopeTagArrayOutput {
+	return o
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeTagArrayOutput) Index(i pulumi.IntInput) TraceMetricsRuleScopeFilterSpanScopeTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) TraceMetricsRuleScopeFilterSpanScopeTag {
+		return vs[0].([]TraceMetricsRuleScopeFilterSpanScopeTag)[vs[1].(int)]
+	}).(TraceMetricsRuleScopeFilterSpanScopeTagOutput)
+}
+
+type TraceMetricsRuleScopeFilterSpanScopeTagNumericValue struct {
+	Comparison string  `pulumi:"comparison"`
+	Value      float64 `pulumi:"value"`
+}
+
+// TraceMetricsRuleScopeFilterSpanScopeTagNumericValueInput is an input type that accepts TraceMetricsRuleScopeFilterSpanScopeTagNumericValueArgs and TraceMetricsRuleScopeFilterSpanScopeTagNumericValueOutput values.
+// You can construct a concrete instance of `TraceMetricsRuleScopeFilterSpanScopeTagNumericValueInput` via:
+//
+//	TraceMetricsRuleScopeFilterSpanScopeTagNumericValueArgs{...}
+type TraceMetricsRuleScopeFilterSpanScopeTagNumericValueInput interface {
+	pulumi.Input
+
+	ToTraceMetricsRuleScopeFilterSpanScopeTagNumericValueOutput() TraceMetricsRuleScopeFilterSpanScopeTagNumericValueOutput
+	ToTraceMetricsRuleScopeFilterSpanScopeTagNumericValueOutputWithContext(context.Context) TraceMetricsRuleScopeFilterSpanScopeTagNumericValueOutput
+}
+
+type TraceMetricsRuleScopeFilterSpanScopeTagNumericValueArgs struct {
+	Comparison pulumi.StringInput  `pulumi:"comparison"`
+	Value      pulumi.Float64Input `pulumi:"value"`
+}
+
+func (TraceMetricsRuleScopeFilterSpanScopeTagNumericValueArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceMetricsRuleScopeFilterSpanScopeTagNumericValue)(nil)).Elem()
+}
+
+func (i TraceMetricsRuleScopeFilterSpanScopeTagNumericValueArgs) ToTraceMetricsRuleScopeFilterSpanScopeTagNumericValueOutput() TraceMetricsRuleScopeFilterSpanScopeTagNumericValueOutput {
+	return i.ToTraceMetricsRuleScopeFilterSpanScopeTagNumericValueOutputWithContext(context.Background())
+}
+
+func (i TraceMetricsRuleScopeFilterSpanScopeTagNumericValueArgs) ToTraceMetricsRuleScopeFilterSpanScopeTagNumericValueOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterSpanScopeTagNumericValueOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleScopeFilterSpanScopeTagNumericValueOutput)
+}
+
+func (i TraceMetricsRuleScopeFilterSpanScopeTagNumericValueArgs) ToTraceMetricsRuleScopeFilterSpanScopeTagNumericValuePtrOutput() TraceMetricsRuleScopeFilterSpanScopeTagNumericValuePtrOutput {
+	return i.ToTraceMetricsRuleScopeFilterSpanScopeTagNumericValuePtrOutputWithContext(context.Background())
+}
+
+func (i TraceMetricsRuleScopeFilterSpanScopeTagNumericValueArgs) ToTraceMetricsRuleScopeFilterSpanScopeTagNumericValuePtrOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterSpanScopeTagNumericValuePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleScopeFilterSpanScopeTagNumericValueOutput).ToTraceMetricsRuleScopeFilterSpanScopeTagNumericValuePtrOutputWithContext(ctx)
+}
+
+// TraceMetricsRuleScopeFilterSpanScopeTagNumericValuePtrInput is an input type that accepts TraceMetricsRuleScopeFilterSpanScopeTagNumericValueArgs, TraceMetricsRuleScopeFilterSpanScopeTagNumericValuePtr and TraceMetricsRuleScopeFilterSpanScopeTagNumericValuePtrOutput values.
+// You can construct a concrete instance of `TraceMetricsRuleScopeFilterSpanScopeTagNumericValuePtrInput` via:
+//
+//	        TraceMetricsRuleScopeFilterSpanScopeTagNumericValueArgs{...}
+//
+//	or:
+//
+//	        nil
+type TraceMetricsRuleScopeFilterSpanScopeTagNumericValuePtrInput interface {
+	pulumi.Input
+
+	ToTraceMetricsRuleScopeFilterSpanScopeTagNumericValuePtrOutput() TraceMetricsRuleScopeFilterSpanScopeTagNumericValuePtrOutput
+	ToTraceMetricsRuleScopeFilterSpanScopeTagNumericValuePtrOutputWithContext(context.Context) TraceMetricsRuleScopeFilterSpanScopeTagNumericValuePtrOutput
+}
+
+type traceMetricsRuleScopeFilterSpanScopeTagNumericValuePtrType TraceMetricsRuleScopeFilterSpanScopeTagNumericValueArgs
+
+func TraceMetricsRuleScopeFilterSpanScopeTagNumericValuePtr(v *TraceMetricsRuleScopeFilterSpanScopeTagNumericValueArgs) TraceMetricsRuleScopeFilterSpanScopeTagNumericValuePtrInput {
+	return (*traceMetricsRuleScopeFilterSpanScopeTagNumericValuePtrType)(v)
+}
+
+func (*traceMetricsRuleScopeFilterSpanScopeTagNumericValuePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**TraceMetricsRuleScopeFilterSpanScopeTagNumericValue)(nil)).Elem()
+}
+
+func (i *traceMetricsRuleScopeFilterSpanScopeTagNumericValuePtrType) ToTraceMetricsRuleScopeFilterSpanScopeTagNumericValuePtrOutput() TraceMetricsRuleScopeFilterSpanScopeTagNumericValuePtrOutput {
+	return i.ToTraceMetricsRuleScopeFilterSpanScopeTagNumericValuePtrOutputWithContext(context.Background())
+}
+
+func (i *traceMetricsRuleScopeFilterSpanScopeTagNumericValuePtrType) ToTraceMetricsRuleScopeFilterSpanScopeTagNumericValuePtrOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterSpanScopeTagNumericValuePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleScopeFilterSpanScopeTagNumericValuePtrOutput)
+}
+
+type TraceMetricsRuleScopeFilterSpanScopeTagNumericValueOutput struct{ *pulumi.OutputState }
+
+func (TraceMetricsRuleScopeFilterSpanScopeTagNumericValueOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceMetricsRuleScopeFilterSpanScopeTagNumericValue)(nil)).Elem()
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeTagNumericValueOutput) ToTraceMetricsRuleScopeFilterSpanScopeTagNumericValueOutput() TraceMetricsRuleScopeFilterSpanScopeTagNumericValueOutput {
+	return o
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeTagNumericValueOutput) ToTraceMetricsRuleScopeFilterSpanScopeTagNumericValueOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterSpanScopeTagNumericValueOutput {
+	return o
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeTagNumericValueOutput) ToTraceMetricsRuleScopeFilterSpanScopeTagNumericValuePtrOutput() TraceMetricsRuleScopeFilterSpanScopeTagNumericValuePtrOutput {
+	return o.ToTraceMetricsRuleScopeFilterSpanScopeTagNumericValuePtrOutputWithContext(context.Background())
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeTagNumericValueOutput) ToTraceMetricsRuleScopeFilterSpanScopeTagNumericValuePtrOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterSpanScopeTagNumericValuePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v TraceMetricsRuleScopeFilterSpanScopeTagNumericValue) *TraceMetricsRuleScopeFilterSpanScopeTagNumericValue {
+		return &v
+	}).(TraceMetricsRuleScopeFilterSpanScopeTagNumericValuePtrOutput)
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeTagNumericValueOutput) Comparison() pulumi.StringOutput {
+	return o.ApplyT(func(v TraceMetricsRuleScopeFilterSpanScopeTagNumericValue) string { return v.Comparison }).(pulumi.StringOutput)
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeTagNumericValueOutput) Value() pulumi.Float64Output {
+	return o.ApplyT(func(v TraceMetricsRuleScopeFilterSpanScopeTagNumericValue) float64 { return v.Value }).(pulumi.Float64Output)
+}
+
+type TraceMetricsRuleScopeFilterSpanScopeTagNumericValuePtrOutput struct{ *pulumi.OutputState }
+
+func (TraceMetricsRuleScopeFilterSpanScopeTagNumericValuePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**TraceMetricsRuleScopeFilterSpanScopeTagNumericValue)(nil)).Elem()
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeTagNumericValuePtrOutput) ToTraceMetricsRuleScopeFilterSpanScopeTagNumericValuePtrOutput() TraceMetricsRuleScopeFilterSpanScopeTagNumericValuePtrOutput {
+	return o
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeTagNumericValuePtrOutput) ToTraceMetricsRuleScopeFilterSpanScopeTagNumericValuePtrOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterSpanScopeTagNumericValuePtrOutput {
+	return o
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeTagNumericValuePtrOutput) Elem() TraceMetricsRuleScopeFilterSpanScopeTagNumericValueOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleScopeFilterSpanScopeTagNumericValue) TraceMetricsRuleScopeFilterSpanScopeTagNumericValue {
+		if v != nil {
+			return *v
+		}
+		var ret TraceMetricsRuleScopeFilterSpanScopeTagNumericValue
+		return ret
+	}).(TraceMetricsRuleScopeFilterSpanScopeTagNumericValueOutput)
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeTagNumericValuePtrOutput) Comparison() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleScopeFilterSpanScopeTagNumericValue) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Comparison
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeTagNumericValuePtrOutput) Value() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleScopeFilterSpanScopeTagNumericValue) *float64 {
+		if v == nil {
+			return nil
+		}
+		return &v.Value
+	}).(pulumi.Float64PtrOutput)
+}
+
+type TraceMetricsRuleScopeFilterSpanScopeTagValue struct {
+	InValues []string `pulumi:"inValues"`
+	Match    *string  `pulumi:"match"`
+	Value    *string  `pulumi:"value"`
+}
+
+// TraceMetricsRuleScopeFilterSpanScopeTagValueInput is an input type that accepts TraceMetricsRuleScopeFilterSpanScopeTagValueArgs and TraceMetricsRuleScopeFilterSpanScopeTagValueOutput values.
+// You can construct a concrete instance of `TraceMetricsRuleScopeFilterSpanScopeTagValueInput` via:
+//
+//	TraceMetricsRuleScopeFilterSpanScopeTagValueArgs{...}
+type TraceMetricsRuleScopeFilterSpanScopeTagValueInput interface {
+	pulumi.Input
+
+	ToTraceMetricsRuleScopeFilterSpanScopeTagValueOutput() TraceMetricsRuleScopeFilterSpanScopeTagValueOutput
+	ToTraceMetricsRuleScopeFilterSpanScopeTagValueOutputWithContext(context.Context) TraceMetricsRuleScopeFilterSpanScopeTagValueOutput
+}
+
+type TraceMetricsRuleScopeFilterSpanScopeTagValueArgs struct {
+	InValues pulumi.StringArrayInput `pulumi:"inValues"`
+	Match    pulumi.StringPtrInput   `pulumi:"match"`
+	Value    pulumi.StringPtrInput   `pulumi:"value"`
+}
+
+func (TraceMetricsRuleScopeFilterSpanScopeTagValueArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceMetricsRuleScopeFilterSpanScopeTagValue)(nil)).Elem()
+}
+
+func (i TraceMetricsRuleScopeFilterSpanScopeTagValueArgs) ToTraceMetricsRuleScopeFilterSpanScopeTagValueOutput() TraceMetricsRuleScopeFilterSpanScopeTagValueOutput {
+	return i.ToTraceMetricsRuleScopeFilterSpanScopeTagValueOutputWithContext(context.Background())
+}
+
+func (i TraceMetricsRuleScopeFilterSpanScopeTagValueArgs) ToTraceMetricsRuleScopeFilterSpanScopeTagValueOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterSpanScopeTagValueOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleScopeFilterSpanScopeTagValueOutput)
+}
+
+func (i TraceMetricsRuleScopeFilterSpanScopeTagValueArgs) ToTraceMetricsRuleScopeFilterSpanScopeTagValuePtrOutput() TraceMetricsRuleScopeFilterSpanScopeTagValuePtrOutput {
+	return i.ToTraceMetricsRuleScopeFilterSpanScopeTagValuePtrOutputWithContext(context.Background())
+}
+
+func (i TraceMetricsRuleScopeFilterSpanScopeTagValueArgs) ToTraceMetricsRuleScopeFilterSpanScopeTagValuePtrOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterSpanScopeTagValuePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleScopeFilterSpanScopeTagValueOutput).ToTraceMetricsRuleScopeFilterSpanScopeTagValuePtrOutputWithContext(ctx)
+}
+
+// TraceMetricsRuleScopeFilterSpanScopeTagValuePtrInput is an input type that accepts TraceMetricsRuleScopeFilterSpanScopeTagValueArgs, TraceMetricsRuleScopeFilterSpanScopeTagValuePtr and TraceMetricsRuleScopeFilterSpanScopeTagValuePtrOutput values.
+// You can construct a concrete instance of `TraceMetricsRuleScopeFilterSpanScopeTagValuePtrInput` via:
+//
+//	        TraceMetricsRuleScopeFilterSpanScopeTagValueArgs{...}
+//
+//	or:
+//
+//	        nil
+type TraceMetricsRuleScopeFilterSpanScopeTagValuePtrInput interface {
+	pulumi.Input
+
+	ToTraceMetricsRuleScopeFilterSpanScopeTagValuePtrOutput() TraceMetricsRuleScopeFilterSpanScopeTagValuePtrOutput
+	ToTraceMetricsRuleScopeFilterSpanScopeTagValuePtrOutputWithContext(context.Context) TraceMetricsRuleScopeFilterSpanScopeTagValuePtrOutput
+}
+
+type traceMetricsRuleScopeFilterSpanScopeTagValuePtrType TraceMetricsRuleScopeFilterSpanScopeTagValueArgs
+
+func TraceMetricsRuleScopeFilterSpanScopeTagValuePtr(v *TraceMetricsRuleScopeFilterSpanScopeTagValueArgs) TraceMetricsRuleScopeFilterSpanScopeTagValuePtrInput {
+	return (*traceMetricsRuleScopeFilterSpanScopeTagValuePtrType)(v)
+}
+
+func (*traceMetricsRuleScopeFilterSpanScopeTagValuePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**TraceMetricsRuleScopeFilterSpanScopeTagValue)(nil)).Elem()
+}
+
+func (i *traceMetricsRuleScopeFilterSpanScopeTagValuePtrType) ToTraceMetricsRuleScopeFilterSpanScopeTagValuePtrOutput() TraceMetricsRuleScopeFilterSpanScopeTagValuePtrOutput {
+	return i.ToTraceMetricsRuleScopeFilterSpanScopeTagValuePtrOutputWithContext(context.Background())
+}
+
+func (i *traceMetricsRuleScopeFilterSpanScopeTagValuePtrType) ToTraceMetricsRuleScopeFilterSpanScopeTagValuePtrOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterSpanScopeTagValuePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleScopeFilterSpanScopeTagValuePtrOutput)
+}
+
+type TraceMetricsRuleScopeFilterSpanScopeTagValueOutput struct{ *pulumi.OutputState }
+
+func (TraceMetricsRuleScopeFilterSpanScopeTagValueOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceMetricsRuleScopeFilterSpanScopeTagValue)(nil)).Elem()
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeTagValueOutput) ToTraceMetricsRuleScopeFilterSpanScopeTagValueOutput() TraceMetricsRuleScopeFilterSpanScopeTagValueOutput {
+	return o
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeTagValueOutput) ToTraceMetricsRuleScopeFilterSpanScopeTagValueOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterSpanScopeTagValueOutput {
+	return o
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeTagValueOutput) ToTraceMetricsRuleScopeFilterSpanScopeTagValuePtrOutput() TraceMetricsRuleScopeFilterSpanScopeTagValuePtrOutput {
+	return o.ToTraceMetricsRuleScopeFilterSpanScopeTagValuePtrOutputWithContext(context.Background())
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeTagValueOutput) ToTraceMetricsRuleScopeFilterSpanScopeTagValuePtrOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterSpanScopeTagValuePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v TraceMetricsRuleScopeFilterSpanScopeTagValue) *TraceMetricsRuleScopeFilterSpanScopeTagValue {
+		return &v
+	}).(TraceMetricsRuleScopeFilterSpanScopeTagValuePtrOutput)
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeTagValueOutput) InValues() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v TraceMetricsRuleScopeFilterSpanScopeTagValue) []string { return v.InValues }).(pulumi.StringArrayOutput)
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeTagValueOutput) Match() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v TraceMetricsRuleScopeFilterSpanScopeTagValue) *string { return v.Match }).(pulumi.StringPtrOutput)
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeTagValueOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v TraceMetricsRuleScopeFilterSpanScopeTagValue) *string { return v.Value }).(pulumi.StringPtrOutput)
+}
+
+type TraceMetricsRuleScopeFilterSpanScopeTagValuePtrOutput struct{ *pulumi.OutputState }
+
+func (TraceMetricsRuleScopeFilterSpanScopeTagValuePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**TraceMetricsRuleScopeFilterSpanScopeTagValue)(nil)).Elem()
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeTagValuePtrOutput) ToTraceMetricsRuleScopeFilterSpanScopeTagValuePtrOutput() TraceMetricsRuleScopeFilterSpanScopeTagValuePtrOutput {
+	return o
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeTagValuePtrOutput) ToTraceMetricsRuleScopeFilterSpanScopeTagValuePtrOutputWithContext(ctx context.Context) TraceMetricsRuleScopeFilterSpanScopeTagValuePtrOutput {
+	return o
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeTagValuePtrOutput) Elem() TraceMetricsRuleScopeFilterSpanScopeTagValueOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleScopeFilterSpanScopeTagValue) TraceMetricsRuleScopeFilterSpanScopeTagValue {
+		if v != nil {
+			return *v
+		}
+		var ret TraceMetricsRuleScopeFilterSpanScopeTagValue
+		return ret
+	}).(TraceMetricsRuleScopeFilterSpanScopeTagValueOutput)
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeTagValuePtrOutput) InValues() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleScopeFilterSpanScopeTagValue) []string {
+		if v == nil {
+			return nil
+		}
+		return v.InValues
+	}).(pulumi.StringArrayOutput)
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeTagValuePtrOutput) Match() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleScopeFilterSpanScopeTagValue) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Match
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o TraceMetricsRuleScopeFilterSpanScopeTagValuePtrOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleScopeFilterSpanScopeTagValue) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Value
+	}).(pulumi.StringPtrOutput)
+}
+
 type TraceMetricsRuleTraceFilter struct {
-	Spans []TraceMetricsRuleTraceFilterSpan `pulumi:"spans"`
-	Trace *TraceMetricsRuleTraceFilterTrace `pulumi:"trace"`
+	ScopeFilter *TraceMetricsRuleTraceFilterScopeFilter `pulumi:"scopeFilter"`
+	Spans       []TraceMetricsRuleTraceFilterSpan       `pulumi:"spans"`
+	Trace       *TraceMetricsRuleTraceFilterTrace       `pulumi:"trace"`
 }
 
 // TraceMetricsRuleTraceFilterInput is an input type that accepts TraceMetricsRuleTraceFilterArgs and TraceMetricsRuleTraceFilterOutput values.
@@ -25346,8 +29747,9 @@ type TraceMetricsRuleTraceFilterInput interface {
 }
 
 type TraceMetricsRuleTraceFilterArgs struct {
-	Spans TraceMetricsRuleTraceFilterSpanArrayInput `pulumi:"spans"`
-	Trace TraceMetricsRuleTraceFilterTracePtrInput  `pulumi:"trace"`
+	ScopeFilter TraceMetricsRuleTraceFilterScopeFilterPtrInput `pulumi:"scopeFilter"`
+	Spans       TraceMetricsRuleTraceFilterSpanArrayInput      `pulumi:"spans"`
+	Trace       TraceMetricsRuleTraceFilterTracePtrInput       `pulumi:"trace"`
 }
 
 func (TraceMetricsRuleTraceFilterArgs) ElementType() reflect.Type {
@@ -25427,6 +29829,10 @@ func (o TraceMetricsRuleTraceFilterOutput) ToTraceMetricsRuleTraceFilterPtrOutpu
 	}).(TraceMetricsRuleTraceFilterPtrOutput)
 }
 
+func (o TraceMetricsRuleTraceFilterOutput) ScopeFilter() TraceMetricsRuleTraceFilterScopeFilterPtrOutput {
+	return o.ApplyT(func(v TraceMetricsRuleTraceFilter) *TraceMetricsRuleTraceFilterScopeFilter { return v.ScopeFilter }).(TraceMetricsRuleTraceFilterScopeFilterPtrOutput)
+}
+
 func (o TraceMetricsRuleTraceFilterOutput) Spans() TraceMetricsRuleTraceFilterSpanArrayOutput {
 	return o.ApplyT(func(v TraceMetricsRuleTraceFilter) []TraceMetricsRuleTraceFilterSpan { return v.Spans }).(TraceMetricsRuleTraceFilterSpanArrayOutput)
 }
@@ -25459,6 +29865,15 @@ func (o TraceMetricsRuleTraceFilterPtrOutput) Elem() TraceMetricsRuleTraceFilter
 	}).(TraceMetricsRuleTraceFilterOutput)
 }
 
+func (o TraceMetricsRuleTraceFilterPtrOutput) ScopeFilter() TraceMetricsRuleTraceFilterScopeFilterPtrOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleTraceFilter) *TraceMetricsRuleTraceFilterScopeFilter {
+		if v == nil {
+			return nil
+		}
+		return v.ScopeFilter
+	}).(TraceMetricsRuleTraceFilterScopeFilterPtrOutput)
+}
+
 func (o TraceMetricsRuleTraceFilterPtrOutput) Spans() TraceMetricsRuleTraceFilterSpanArrayOutput {
 	return o.ApplyT(func(v *TraceMetricsRuleTraceFilter) []TraceMetricsRuleTraceFilterSpan {
 		if v == nil {
@@ -25475,6 +29890,1942 @@ func (o TraceMetricsRuleTraceFilterPtrOutput) Trace() TraceMetricsRuleTraceFilte
 		}
 		return v.Trace
 	}).(TraceMetricsRuleTraceFilterTracePtrOutput)
+}
+
+type TraceMetricsRuleTraceFilterScopeFilter struct {
+	SpanScopes []TraceMetricsRuleTraceFilterScopeFilterSpanScope `pulumi:"spanScopes"`
+}
+
+// TraceMetricsRuleTraceFilterScopeFilterInput is an input type that accepts TraceMetricsRuleTraceFilterScopeFilterArgs and TraceMetricsRuleTraceFilterScopeFilterOutput values.
+// You can construct a concrete instance of `TraceMetricsRuleTraceFilterScopeFilterInput` via:
+//
+//	TraceMetricsRuleTraceFilterScopeFilterArgs{...}
+type TraceMetricsRuleTraceFilterScopeFilterInput interface {
+	pulumi.Input
+
+	ToTraceMetricsRuleTraceFilterScopeFilterOutput() TraceMetricsRuleTraceFilterScopeFilterOutput
+	ToTraceMetricsRuleTraceFilterScopeFilterOutputWithContext(context.Context) TraceMetricsRuleTraceFilterScopeFilterOutput
+}
+
+type TraceMetricsRuleTraceFilterScopeFilterArgs struct {
+	SpanScopes TraceMetricsRuleTraceFilterScopeFilterSpanScopeArrayInput `pulumi:"spanScopes"`
+}
+
+func (TraceMetricsRuleTraceFilterScopeFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceMetricsRuleTraceFilterScopeFilter)(nil)).Elem()
+}
+
+func (i TraceMetricsRuleTraceFilterScopeFilterArgs) ToTraceMetricsRuleTraceFilterScopeFilterOutput() TraceMetricsRuleTraceFilterScopeFilterOutput {
+	return i.ToTraceMetricsRuleTraceFilterScopeFilterOutputWithContext(context.Background())
+}
+
+func (i TraceMetricsRuleTraceFilterScopeFilterArgs) ToTraceMetricsRuleTraceFilterScopeFilterOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleTraceFilterScopeFilterOutput)
+}
+
+func (i TraceMetricsRuleTraceFilterScopeFilterArgs) ToTraceMetricsRuleTraceFilterScopeFilterPtrOutput() TraceMetricsRuleTraceFilterScopeFilterPtrOutput {
+	return i.ToTraceMetricsRuleTraceFilterScopeFilterPtrOutputWithContext(context.Background())
+}
+
+func (i TraceMetricsRuleTraceFilterScopeFilterArgs) ToTraceMetricsRuleTraceFilterScopeFilterPtrOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleTraceFilterScopeFilterOutput).ToTraceMetricsRuleTraceFilterScopeFilterPtrOutputWithContext(ctx)
+}
+
+// TraceMetricsRuleTraceFilterScopeFilterPtrInput is an input type that accepts TraceMetricsRuleTraceFilterScopeFilterArgs, TraceMetricsRuleTraceFilterScopeFilterPtr and TraceMetricsRuleTraceFilterScopeFilterPtrOutput values.
+// You can construct a concrete instance of `TraceMetricsRuleTraceFilterScopeFilterPtrInput` via:
+//
+//	        TraceMetricsRuleTraceFilterScopeFilterArgs{...}
+//
+//	or:
+//
+//	        nil
+type TraceMetricsRuleTraceFilterScopeFilterPtrInput interface {
+	pulumi.Input
+
+	ToTraceMetricsRuleTraceFilterScopeFilterPtrOutput() TraceMetricsRuleTraceFilterScopeFilterPtrOutput
+	ToTraceMetricsRuleTraceFilterScopeFilterPtrOutputWithContext(context.Context) TraceMetricsRuleTraceFilterScopeFilterPtrOutput
+}
+
+type traceMetricsRuleTraceFilterScopeFilterPtrType TraceMetricsRuleTraceFilterScopeFilterArgs
+
+func TraceMetricsRuleTraceFilterScopeFilterPtr(v *TraceMetricsRuleTraceFilterScopeFilterArgs) TraceMetricsRuleTraceFilterScopeFilterPtrInput {
+	return (*traceMetricsRuleTraceFilterScopeFilterPtrType)(v)
+}
+
+func (*traceMetricsRuleTraceFilterScopeFilterPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**TraceMetricsRuleTraceFilterScopeFilter)(nil)).Elem()
+}
+
+func (i *traceMetricsRuleTraceFilterScopeFilterPtrType) ToTraceMetricsRuleTraceFilterScopeFilterPtrOutput() TraceMetricsRuleTraceFilterScopeFilterPtrOutput {
+	return i.ToTraceMetricsRuleTraceFilterScopeFilterPtrOutputWithContext(context.Background())
+}
+
+func (i *traceMetricsRuleTraceFilterScopeFilterPtrType) ToTraceMetricsRuleTraceFilterScopeFilterPtrOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleTraceFilterScopeFilterPtrOutput)
+}
+
+type TraceMetricsRuleTraceFilterScopeFilterOutput struct{ *pulumi.OutputState }
+
+func (TraceMetricsRuleTraceFilterScopeFilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceMetricsRuleTraceFilterScopeFilter)(nil)).Elem()
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterOutput) ToTraceMetricsRuleTraceFilterScopeFilterOutput() TraceMetricsRuleTraceFilterScopeFilterOutput {
+	return o
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterOutput) ToTraceMetricsRuleTraceFilterScopeFilterOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterOutput {
+	return o
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterOutput) ToTraceMetricsRuleTraceFilterScopeFilterPtrOutput() TraceMetricsRuleTraceFilterScopeFilterPtrOutput {
+	return o.ToTraceMetricsRuleTraceFilterScopeFilterPtrOutputWithContext(context.Background())
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterOutput) ToTraceMetricsRuleTraceFilterScopeFilterPtrOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v TraceMetricsRuleTraceFilterScopeFilter) *TraceMetricsRuleTraceFilterScopeFilter {
+		return &v
+	}).(TraceMetricsRuleTraceFilterScopeFilterPtrOutput)
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterOutput) SpanScopes() TraceMetricsRuleTraceFilterScopeFilterSpanScopeArrayOutput {
+	return o.ApplyT(func(v TraceMetricsRuleTraceFilterScopeFilter) []TraceMetricsRuleTraceFilterScopeFilterSpanScope {
+		return v.SpanScopes
+	}).(TraceMetricsRuleTraceFilterScopeFilterSpanScopeArrayOutput)
+}
+
+type TraceMetricsRuleTraceFilterScopeFilterPtrOutput struct{ *pulumi.OutputState }
+
+func (TraceMetricsRuleTraceFilterScopeFilterPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**TraceMetricsRuleTraceFilterScopeFilter)(nil)).Elem()
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterPtrOutput) ToTraceMetricsRuleTraceFilterScopeFilterPtrOutput() TraceMetricsRuleTraceFilterScopeFilterPtrOutput {
+	return o
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterPtrOutput) ToTraceMetricsRuleTraceFilterScopeFilterPtrOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterPtrOutput {
+	return o
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterPtrOutput) Elem() TraceMetricsRuleTraceFilterScopeFilterOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleTraceFilterScopeFilter) TraceMetricsRuleTraceFilterScopeFilter {
+		if v != nil {
+			return *v
+		}
+		var ret TraceMetricsRuleTraceFilterScopeFilter
+		return ret
+	}).(TraceMetricsRuleTraceFilterScopeFilterOutput)
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterPtrOutput) SpanScopes() TraceMetricsRuleTraceFilterScopeFilterSpanScopeArrayOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleTraceFilterScopeFilter) []TraceMetricsRuleTraceFilterScopeFilterSpanScope {
+		if v == nil {
+			return nil
+		}
+		return v.SpanScopes
+	}).(TraceMetricsRuleTraceFilterScopeFilterSpanScopeArrayOutput)
+}
+
+type TraceMetricsRuleTraceFilterScopeFilterSpanScope struct {
+	Duration        *TraceMetricsRuleTraceFilterScopeFilterSpanScopeDuration        `pulumi:"duration"`
+	Error           *TraceMetricsRuleTraceFilterScopeFilterSpanScopeError           `pulumi:"error"`
+	IsRootSpan      *TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpan      `pulumi:"isRootSpan"`
+	MatchType       *string                                                         `pulumi:"matchType"`
+	Operation       *TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperation       `pulumi:"operation"`
+	ParentOperation *TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperation `pulumi:"parentOperation"`
+	ParentService   *TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentService   `pulumi:"parentService"`
+	Service         *TraceMetricsRuleTraceFilterScopeFilterSpanScopeService         `pulumi:"service"`
+	SpanCount       *TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCount       `pulumi:"spanCount"`
+	Tags            []TraceMetricsRuleTraceFilterScopeFilterSpanScopeTag            `pulumi:"tags"`
+}
+
+// TraceMetricsRuleTraceFilterScopeFilterSpanScopeInput is an input type that accepts TraceMetricsRuleTraceFilterScopeFilterSpanScopeArgs and TraceMetricsRuleTraceFilterScopeFilterSpanScopeOutput values.
+// You can construct a concrete instance of `TraceMetricsRuleTraceFilterScopeFilterSpanScopeInput` via:
+//
+//	TraceMetricsRuleTraceFilterScopeFilterSpanScopeArgs{...}
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeInput interface {
+	pulumi.Input
+
+	ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeOutput
+	ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeOutputWithContext(context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeOutput
+}
+
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeArgs struct {
+	Duration        TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationPtrInput        `pulumi:"duration"`
+	Error           TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorPtrInput           `pulumi:"error"`
+	IsRootSpan      TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanPtrInput      `pulumi:"isRootSpan"`
+	MatchType       pulumi.StringPtrInput                                                  `pulumi:"matchType"`
+	Operation       TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationPtrInput       `pulumi:"operation"`
+	ParentOperation TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationPtrInput `pulumi:"parentOperation"`
+	ParentService   TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServicePtrInput   `pulumi:"parentService"`
+	Service         TraceMetricsRuleTraceFilterScopeFilterSpanScopeServicePtrInput         `pulumi:"service"`
+	SpanCount       TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountPtrInput       `pulumi:"spanCount"`
+	Tags            TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagArrayInput           `pulumi:"tags"`
+}
+
+func (TraceMetricsRuleTraceFilterScopeFilterSpanScopeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceMetricsRuleTraceFilterScopeFilterSpanScope)(nil)).Elem()
+}
+
+func (i TraceMetricsRuleTraceFilterScopeFilterSpanScopeArgs) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeOutput {
+	return i.ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeOutputWithContext(context.Background())
+}
+
+func (i TraceMetricsRuleTraceFilterScopeFilterSpanScopeArgs) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleTraceFilterScopeFilterSpanScopeOutput)
+}
+
+// TraceMetricsRuleTraceFilterScopeFilterSpanScopeArrayInput is an input type that accepts TraceMetricsRuleTraceFilterScopeFilterSpanScopeArray and TraceMetricsRuleTraceFilterScopeFilterSpanScopeArrayOutput values.
+// You can construct a concrete instance of `TraceMetricsRuleTraceFilterScopeFilterSpanScopeArrayInput` via:
+//
+//	TraceMetricsRuleTraceFilterScopeFilterSpanScopeArray{ TraceMetricsRuleTraceFilterScopeFilterSpanScopeArgs{...} }
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeArrayInput interface {
+	pulumi.Input
+
+	ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeArrayOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeArrayOutput
+	ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeArrayOutputWithContext(context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeArrayOutput
+}
+
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeArray []TraceMetricsRuleTraceFilterScopeFilterSpanScopeInput
+
+func (TraceMetricsRuleTraceFilterScopeFilterSpanScopeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TraceMetricsRuleTraceFilterScopeFilterSpanScope)(nil)).Elem()
+}
+
+func (i TraceMetricsRuleTraceFilterScopeFilterSpanScopeArray) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeArrayOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeArrayOutput {
+	return i.ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeArrayOutputWithContext(context.Background())
+}
+
+func (i TraceMetricsRuleTraceFilterScopeFilterSpanScopeArray) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeArrayOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleTraceFilterScopeFilterSpanScopeArrayOutput)
+}
+
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeOutput struct{ *pulumi.OutputState }
+
+func (TraceMetricsRuleTraceFilterScopeFilterSpanScopeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceMetricsRuleTraceFilterScopeFilterSpanScope)(nil)).Elem()
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeOutput) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeOutput {
+	return o
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeOutput) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeOutput {
+	return o
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeOutput) Duration() TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationPtrOutput {
+	return o.ApplyT(func(v TraceMetricsRuleTraceFilterScopeFilterSpanScope) *TraceMetricsRuleTraceFilterScopeFilterSpanScopeDuration {
+		return v.Duration
+	}).(TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationPtrOutput)
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeOutput) Error() TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorPtrOutput {
+	return o.ApplyT(func(v TraceMetricsRuleTraceFilterScopeFilterSpanScope) *TraceMetricsRuleTraceFilterScopeFilterSpanScopeError {
+		return v.Error
+	}).(TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorPtrOutput)
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeOutput) IsRootSpan() TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanPtrOutput {
+	return o.ApplyT(func(v TraceMetricsRuleTraceFilterScopeFilterSpanScope) *TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpan {
+		return v.IsRootSpan
+	}).(TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanPtrOutput)
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeOutput) MatchType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v TraceMetricsRuleTraceFilterScopeFilterSpanScope) *string { return v.MatchType }).(pulumi.StringPtrOutput)
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeOutput) Operation() TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationPtrOutput {
+	return o.ApplyT(func(v TraceMetricsRuleTraceFilterScopeFilterSpanScope) *TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperation {
+		return v.Operation
+	}).(TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationPtrOutput)
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeOutput) ParentOperation() TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationPtrOutput {
+	return o.ApplyT(func(v TraceMetricsRuleTraceFilterScopeFilterSpanScope) *TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperation {
+		return v.ParentOperation
+	}).(TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationPtrOutput)
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeOutput) ParentService() TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServicePtrOutput {
+	return o.ApplyT(func(v TraceMetricsRuleTraceFilterScopeFilterSpanScope) *TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentService {
+		return v.ParentService
+	}).(TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServicePtrOutput)
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeOutput) Service() TraceMetricsRuleTraceFilterScopeFilterSpanScopeServicePtrOutput {
+	return o.ApplyT(func(v TraceMetricsRuleTraceFilterScopeFilterSpanScope) *TraceMetricsRuleTraceFilterScopeFilterSpanScopeService {
+		return v.Service
+	}).(TraceMetricsRuleTraceFilterScopeFilterSpanScopeServicePtrOutput)
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeOutput) SpanCount() TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountPtrOutput {
+	return o.ApplyT(func(v TraceMetricsRuleTraceFilterScopeFilterSpanScope) *TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCount {
+		return v.SpanCount
+	}).(TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountPtrOutput)
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeOutput) Tags() TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagArrayOutput {
+	return o.ApplyT(func(v TraceMetricsRuleTraceFilterScopeFilterSpanScope) []TraceMetricsRuleTraceFilterScopeFilterSpanScopeTag {
+		return v.Tags
+	}).(TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagArrayOutput)
+}
+
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeArrayOutput struct{ *pulumi.OutputState }
+
+func (TraceMetricsRuleTraceFilterScopeFilterSpanScopeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TraceMetricsRuleTraceFilterScopeFilterSpanScope)(nil)).Elem()
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeArrayOutput) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeArrayOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeArrayOutput {
+	return o
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeArrayOutput) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeArrayOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeArrayOutput {
+	return o
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeArrayOutput) Index(i pulumi.IntInput) TraceMetricsRuleTraceFilterScopeFilterSpanScopeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) TraceMetricsRuleTraceFilterScopeFilterSpanScope {
+		return vs[0].([]TraceMetricsRuleTraceFilterScopeFilterSpanScope)[vs[1].(int)]
+	}).(TraceMetricsRuleTraceFilterScopeFilterSpanScopeOutput)
+}
+
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeDuration struct {
+	MaxSecs *float64 `pulumi:"maxSecs"`
+	MinSecs *float64 `pulumi:"minSecs"`
+}
+
+// TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationInput is an input type that accepts TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationArgs and TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationOutput values.
+// You can construct a concrete instance of `TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationInput` via:
+//
+//	TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationArgs{...}
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationInput interface {
+	pulumi.Input
+
+	ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationOutput
+	ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationOutputWithContext(context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationOutput
+}
+
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationArgs struct {
+	MaxSecs pulumi.Float64PtrInput `pulumi:"maxSecs"`
+	MinSecs pulumi.Float64PtrInput `pulumi:"minSecs"`
+}
+
+func (TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceMetricsRuleTraceFilterScopeFilterSpanScopeDuration)(nil)).Elem()
+}
+
+func (i TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationArgs) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationOutput {
+	return i.ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationOutputWithContext(context.Background())
+}
+
+func (i TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationArgs) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationOutput)
+}
+
+func (i TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationArgs) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationPtrOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationPtrOutput {
+	return i.ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationPtrOutputWithContext(context.Background())
+}
+
+func (i TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationArgs) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationPtrOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationOutput).ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationPtrOutputWithContext(ctx)
+}
+
+// TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationPtrInput is an input type that accepts TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationArgs, TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationPtr and TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationPtrOutput values.
+// You can construct a concrete instance of `TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationPtrInput` via:
+//
+//	        TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationArgs{...}
+//
+//	or:
+//
+//	        nil
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationPtrInput interface {
+	pulumi.Input
+
+	ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationPtrOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationPtrOutput
+	ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationPtrOutputWithContext(context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationPtrOutput
+}
+
+type traceMetricsRuleTraceFilterScopeFilterSpanScopeDurationPtrType TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationArgs
+
+func TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationPtr(v *TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationArgs) TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationPtrInput {
+	return (*traceMetricsRuleTraceFilterScopeFilterSpanScopeDurationPtrType)(v)
+}
+
+func (*traceMetricsRuleTraceFilterScopeFilterSpanScopeDurationPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**TraceMetricsRuleTraceFilterScopeFilterSpanScopeDuration)(nil)).Elem()
+}
+
+func (i *traceMetricsRuleTraceFilterScopeFilterSpanScopeDurationPtrType) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationPtrOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationPtrOutput {
+	return i.ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationPtrOutputWithContext(context.Background())
+}
+
+func (i *traceMetricsRuleTraceFilterScopeFilterSpanScopeDurationPtrType) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationPtrOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationPtrOutput)
+}
+
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationOutput struct{ *pulumi.OutputState }
+
+func (TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceMetricsRuleTraceFilterScopeFilterSpanScopeDuration)(nil)).Elem()
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationOutput) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationOutput {
+	return o
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationOutput) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationOutput {
+	return o
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationOutput) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationPtrOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationPtrOutput {
+	return o.ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationPtrOutputWithContext(context.Background())
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationOutput) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationPtrOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v TraceMetricsRuleTraceFilterScopeFilterSpanScopeDuration) *TraceMetricsRuleTraceFilterScopeFilterSpanScopeDuration {
+		return &v
+	}).(TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationPtrOutput)
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationOutput) MaxSecs() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v TraceMetricsRuleTraceFilterScopeFilterSpanScopeDuration) *float64 { return v.MaxSecs }).(pulumi.Float64PtrOutput)
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationOutput) MinSecs() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v TraceMetricsRuleTraceFilterScopeFilterSpanScopeDuration) *float64 { return v.MinSecs }).(pulumi.Float64PtrOutput)
+}
+
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationPtrOutput struct{ *pulumi.OutputState }
+
+func (TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**TraceMetricsRuleTraceFilterScopeFilterSpanScopeDuration)(nil)).Elem()
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationPtrOutput) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationPtrOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationPtrOutput {
+	return o
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationPtrOutput) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationPtrOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationPtrOutput {
+	return o
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationPtrOutput) Elem() TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleTraceFilterScopeFilterSpanScopeDuration) TraceMetricsRuleTraceFilterScopeFilterSpanScopeDuration {
+		if v != nil {
+			return *v
+		}
+		var ret TraceMetricsRuleTraceFilterScopeFilterSpanScopeDuration
+		return ret
+	}).(TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationOutput)
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationPtrOutput) MaxSecs() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleTraceFilterScopeFilterSpanScopeDuration) *float64 {
+		if v == nil {
+			return nil
+		}
+		return v.MaxSecs
+	}).(pulumi.Float64PtrOutput)
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationPtrOutput) MinSecs() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleTraceFilterScopeFilterSpanScopeDuration) *float64 {
+		if v == nil {
+			return nil
+		}
+		return v.MinSecs
+	}).(pulumi.Float64PtrOutput)
+}
+
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeError struct {
+	Value bool `pulumi:"value"`
+}
+
+// TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorInput is an input type that accepts TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorArgs and TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorOutput values.
+// You can construct a concrete instance of `TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorInput` via:
+//
+//	TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorArgs{...}
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorInput interface {
+	pulumi.Input
+
+	ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorOutput
+	ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorOutputWithContext(context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorOutput
+}
+
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorArgs struct {
+	Value pulumi.BoolInput `pulumi:"value"`
+}
+
+func (TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceMetricsRuleTraceFilterScopeFilterSpanScopeError)(nil)).Elem()
+}
+
+func (i TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorArgs) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorOutput {
+	return i.ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorOutputWithContext(context.Background())
+}
+
+func (i TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorArgs) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorOutput)
+}
+
+func (i TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorArgs) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorPtrOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorPtrOutput {
+	return i.ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorPtrOutputWithContext(context.Background())
+}
+
+func (i TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorArgs) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorPtrOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorOutput).ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorPtrOutputWithContext(ctx)
+}
+
+// TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorPtrInput is an input type that accepts TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorArgs, TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorPtr and TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorPtrOutput values.
+// You can construct a concrete instance of `TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorPtrInput` via:
+//
+//	        TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorArgs{...}
+//
+//	or:
+//
+//	        nil
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorPtrInput interface {
+	pulumi.Input
+
+	ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorPtrOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorPtrOutput
+	ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorPtrOutputWithContext(context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorPtrOutput
+}
+
+type traceMetricsRuleTraceFilterScopeFilterSpanScopeErrorPtrType TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorArgs
+
+func TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorPtr(v *TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorArgs) TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorPtrInput {
+	return (*traceMetricsRuleTraceFilterScopeFilterSpanScopeErrorPtrType)(v)
+}
+
+func (*traceMetricsRuleTraceFilterScopeFilterSpanScopeErrorPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**TraceMetricsRuleTraceFilterScopeFilterSpanScopeError)(nil)).Elem()
+}
+
+func (i *traceMetricsRuleTraceFilterScopeFilterSpanScopeErrorPtrType) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorPtrOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorPtrOutput {
+	return i.ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorPtrOutputWithContext(context.Background())
+}
+
+func (i *traceMetricsRuleTraceFilterScopeFilterSpanScopeErrorPtrType) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorPtrOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorPtrOutput)
+}
+
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorOutput struct{ *pulumi.OutputState }
+
+func (TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceMetricsRuleTraceFilterScopeFilterSpanScopeError)(nil)).Elem()
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorOutput) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorOutput {
+	return o
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorOutput) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorOutput {
+	return o
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorOutput) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorPtrOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorPtrOutput {
+	return o.ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorPtrOutputWithContext(context.Background())
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorOutput) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorPtrOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v TraceMetricsRuleTraceFilterScopeFilterSpanScopeError) *TraceMetricsRuleTraceFilterScopeFilterSpanScopeError {
+		return &v
+	}).(TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorPtrOutput)
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorOutput) Value() pulumi.BoolOutput {
+	return o.ApplyT(func(v TraceMetricsRuleTraceFilterScopeFilterSpanScopeError) bool { return v.Value }).(pulumi.BoolOutput)
+}
+
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorPtrOutput struct{ *pulumi.OutputState }
+
+func (TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**TraceMetricsRuleTraceFilterScopeFilterSpanScopeError)(nil)).Elem()
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorPtrOutput) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorPtrOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorPtrOutput {
+	return o
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorPtrOutput) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorPtrOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorPtrOutput {
+	return o
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorPtrOutput) Elem() TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleTraceFilterScopeFilterSpanScopeError) TraceMetricsRuleTraceFilterScopeFilterSpanScopeError {
+		if v != nil {
+			return *v
+		}
+		var ret TraceMetricsRuleTraceFilterScopeFilterSpanScopeError
+		return ret
+	}).(TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorOutput)
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorPtrOutput) Value() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleTraceFilterScopeFilterSpanScopeError) *bool {
+		if v == nil {
+			return nil
+		}
+		return &v.Value
+	}).(pulumi.BoolPtrOutput)
+}
+
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpan struct {
+	Value bool `pulumi:"value"`
+}
+
+// TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanInput is an input type that accepts TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanArgs and TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanOutput values.
+// You can construct a concrete instance of `TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanInput` via:
+//
+//	TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanArgs{...}
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanInput interface {
+	pulumi.Input
+
+	ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanOutput
+	ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanOutputWithContext(context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanOutput
+}
+
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanArgs struct {
+	Value pulumi.BoolInput `pulumi:"value"`
+}
+
+func (TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpan)(nil)).Elem()
+}
+
+func (i TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanArgs) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanOutput {
+	return i.ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanOutputWithContext(context.Background())
+}
+
+func (i TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanArgs) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanOutput)
+}
+
+func (i TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanArgs) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanPtrOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanPtrOutput {
+	return i.ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanPtrOutputWithContext(context.Background())
+}
+
+func (i TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanArgs) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanPtrOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanOutput).ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanPtrOutputWithContext(ctx)
+}
+
+// TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanPtrInput is an input type that accepts TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanArgs, TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanPtr and TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanPtrOutput values.
+// You can construct a concrete instance of `TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanPtrInput` via:
+//
+//	        TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanArgs{...}
+//
+//	or:
+//
+//	        nil
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanPtrInput interface {
+	pulumi.Input
+
+	ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanPtrOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanPtrOutput
+	ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanPtrOutputWithContext(context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanPtrOutput
+}
+
+type traceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanPtrType TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanArgs
+
+func TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanPtr(v *TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanArgs) TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanPtrInput {
+	return (*traceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanPtrType)(v)
+}
+
+func (*traceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpan)(nil)).Elem()
+}
+
+func (i *traceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanPtrType) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanPtrOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanPtrOutput {
+	return i.ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanPtrOutputWithContext(context.Background())
+}
+
+func (i *traceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanPtrType) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanPtrOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanPtrOutput)
+}
+
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanOutput struct{ *pulumi.OutputState }
+
+func (TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpan)(nil)).Elem()
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanOutput) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanOutput {
+	return o
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanOutput) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanOutput {
+	return o
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanOutput) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanPtrOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanPtrOutput {
+	return o.ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanPtrOutputWithContext(context.Background())
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanOutput) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanPtrOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpan) *TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpan {
+		return &v
+	}).(TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanPtrOutput)
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanOutput) Value() pulumi.BoolOutput {
+	return o.ApplyT(func(v TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpan) bool { return v.Value }).(pulumi.BoolOutput)
+}
+
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanPtrOutput struct{ *pulumi.OutputState }
+
+func (TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpan)(nil)).Elem()
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanPtrOutput) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanPtrOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanPtrOutput {
+	return o
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanPtrOutput) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanPtrOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanPtrOutput {
+	return o
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanPtrOutput) Elem() TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpan) TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpan {
+		if v != nil {
+			return *v
+		}
+		var ret TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpan
+		return ret
+	}).(TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanOutput)
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanPtrOutput) Value() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpan) *bool {
+		if v == nil {
+			return nil
+		}
+		return &v.Value
+	}).(pulumi.BoolPtrOutput)
+}
+
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperation struct {
+	InValues []string `pulumi:"inValues"`
+	Match    *string  `pulumi:"match"`
+	Value    *string  `pulumi:"value"`
+}
+
+// TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationInput is an input type that accepts TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationArgs and TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationOutput values.
+// You can construct a concrete instance of `TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationInput` via:
+//
+//	TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationArgs{...}
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationInput interface {
+	pulumi.Input
+
+	ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationOutput
+	ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationOutputWithContext(context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationOutput
+}
+
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationArgs struct {
+	InValues pulumi.StringArrayInput `pulumi:"inValues"`
+	Match    pulumi.StringPtrInput   `pulumi:"match"`
+	Value    pulumi.StringPtrInput   `pulumi:"value"`
+}
+
+func (TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperation)(nil)).Elem()
+}
+
+func (i TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationArgs) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationOutput {
+	return i.ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationOutputWithContext(context.Background())
+}
+
+func (i TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationArgs) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationOutput)
+}
+
+func (i TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationArgs) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationPtrOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationPtrOutput {
+	return i.ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationPtrOutputWithContext(context.Background())
+}
+
+func (i TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationArgs) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationPtrOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationOutput).ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationPtrOutputWithContext(ctx)
+}
+
+// TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationPtrInput is an input type that accepts TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationArgs, TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationPtr and TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationPtrOutput values.
+// You can construct a concrete instance of `TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationPtrInput` via:
+//
+//	        TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationArgs{...}
+//
+//	or:
+//
+//	        nil
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationPtrInput interface {
+	pulumi.Input
+
+	ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationPtrOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationPtrOutput
+	ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationPtrOutputWithContext(context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationPtrOutput
+}
+
+type traceMetricsRuleTraceFilterScopeFilterSpanScopeOperationPtrType TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationArgs
+
+func TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationPtr(v *TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationArgs) TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationPtrInput {
+	return (*traceMetricsRuleTraceFilterScopeFilterSpanScopeOperationPtrType)(v)
+}
+
+func (*traceMetricsRuleTraceFilterScopeFilterSpanScopeOperationPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperation)(nil)).Elem()
+}
+
+func (i *traceMetricsRuleTraceFilterScopeFilterSpanScopeOperationPtrType) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationPtrOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationPtrOutput {
+	return i.ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationPtrOutputWithContext(context.Background())
+}
+
+func (i *traceMetricsRuleTraceFilterScopeFilterSpanScopeOperationPtrType) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationPtrOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationPtrOutput)
+}
+
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationOutput struct{ *pulumi.OutputState }
+
+func (TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperation)(nil)).Elem()
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationOutput) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationOutput {
+	return o
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationOutput) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationOutput {
+	return o
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationOutput) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationPtrOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationPtrOutput {
+	return o.ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationPtrOutputWithContext(context.Background())
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationOutput) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationPtrOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperation) *TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperation {
+		return &v
+	}).(TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationPtrOutput)
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationOutput) InValues() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperation) []string { return v.InValues }).(pulumi.StringArrayOutput)
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationOutput) Match() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperation) *string { return v.Match }).(pulumi.StringPtrOutput)
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperation) *string { return v.Value }).(pulumi.StringPtrOutput)
+}
+
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationPtrOutput struct{ *pulumi.OutputState }
+
+func (TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperation)(nil)).Elem()
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationPtrOutput) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationPtrOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationPtrOutput {
+	return o
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationPtrOutput) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationPtrOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationPtrOutput {
+	return o
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationPtrOutput) Elem() TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperation) TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperation {
+		if v != nil {
+			return *v
+		}
+		var ret TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperation
+		return ret
+	}).(TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationOutput)
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationPtrOutput) InValues() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperation) []string {
+		if v == nil {
+			return nil
+		}
+		return v.InValues
+	}).(pulumi.StringArrayOutput)
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationPtrOutput) Match() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperation) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Match
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationPtrOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperation) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Value
+	}).(pulumi.StringPtrOutput)
+}
+
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperation struct {
+	InValues []string `pulumi:"inValues"`
+	Match    *string  `pulumi:"match"`
+	Value    *string  `pulumi:"value"`
+}
+
+// TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationInput is an input type that accepts TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationArgs and TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationOutput values.
+// You can construct a concrete instance of `TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationInput` via:
+//
+//	TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationArgs{...}
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationInput interface {
+	pulumi.Input
+
+	ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationOutput
+	ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationOutputWithContext(context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationOutput
+}
+
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationArgs struct {
+	InValues pulumi.StringArrayInput `pulumi:"inValues"`
+	Match    pulumi.StringPtrInput   `pulumi:"match"`
+	Value    pulumi.StringPtrInput   `pulumi:"value"`
+}
+
+func (TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperation)(nil)).Elem()
+}
+
+func (i TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationArgs) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationOutput {
+	return i.ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationOutputWithContext(context.Background())
+}
+
+func (i TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationArgs) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationOutput)
+}
+
+func (i TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationArgs) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationPtrOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationPtrOutput {
+	return i.ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationPtrOutputWithContext(context.Background())
+}
+
+func (i TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationArgs) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationPtrOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationOutput).ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationPtrOutputWithContext(ctx)
+}
+
+// TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationPtrInput is an input type that accepts TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationArgs, TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationPtr and TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationPtrOutput values.
+// You can construct a concrete instance of `TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationPtrInput` via:
+//
+//	        TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationArgs{...}
+//
+//	or:
+//
+//	        nil
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationPtrInput interface {
+	pulumi.Input
+
+	ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationPtrOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationPtrOutput
+	ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationPtrOutputWithContext(context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationPtrOutput
+}
+
+type traceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationPtrType TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationArgs
+
+func TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationPtr(v *TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationArgs) TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationPtrInput {
+	return (*traceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationPtrType)(v)
+}
+
+func (*traceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperation)(nil)).Elem()
+}
+
+func (i *traceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationPtrType) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationPtrOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationPtrOutput {
+	return i.ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationPtrOutputWithContext(context.Background())
+}
+
+func (i *traceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationPtrType) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationPtrOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationPtrOutput)
+}
+
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationOutput struct{ *pulumi.OutputState }
+
+func (TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperation)(nil)).Elem()
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationOutput) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationOutput {
+	return o
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationOutput) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationOutput {
+	return o
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationOutput) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationPtrOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationPtrOutput {
+	return o.ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationPtrOutputWithContext(context.Background())
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationOutput) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationPtrOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperation) *TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperation {
+		return &v
+	}).(TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationPtrOutput)
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationOutput) InValues() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperation) []string { return v.InValues }).(pulumi.StringArrayOutput)
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationOutput) Match() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperation) *string { return v.Match }).(pulumi.StringPtrOutput)
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperation) *string { return v.Value }).(pulumi.StringPtrOutput)
+}
+
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationPtrOutput struct{ *pulumi.OutputState }
+
+func (TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperation)(nil)).Elem()
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationPtrOutput) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationPtrOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationPtrOutput {
+	return o
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationPtrOutput) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationPtrOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationPtrOutput {
+	return o
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationPtrOutput) Elem() TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperation) TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperation {
+		if v != nil {
+			return *v
+		}
+		var ret TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperation
+		return ret
+	}).(TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationOutput)
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationPtrOutput) InValues() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperation) []string {
+		if v == nil {
+			return nil
+		}
+		return v.InValues
+	}).(pulumi.StringArrayOutput)
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationPtrOutput) Match() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperation) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Match
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationPtrOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperation) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Value
+	}).(pulumi.StringPtrOutput)
+}
+
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentService struct {
+	InValues []string `pulumi:"inValues"`
+	Match    *string  `pulumi:"match"`
+	Value    *string  `pulumi:"value"`
+}
+
+// TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServiceInput is an input type that accepts TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServiceArgs and TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServiceOutput values.
+// You can construct a concrete instance of `TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServiceInput` via:
+//
+//	TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServiceArgs{...}
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServiceInput interface {
+	pulumi.Input
+
+	ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServiceOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServiceOutput
+	ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServiceOutputWithContext(context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServiceOutput
+}
+
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServiceArgs struct {
+	InValues pulumi.StringArrayInput `pulumi:"inValues"`
+	Match    pulumi.StringPtrInput   `pulumi:"match"`
+	Value    pulumi.StringPtrInput   `pulumi:"value"`
+}
+
+func (TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServiceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentService)(nil)).Elem()
+}
+
+func (i TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServiceArgs) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServiceOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServiceOutput {
+	return i.ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServiceOutputWithContext(context.Background())
+}
+
+func (i TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServiceArgs) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServiceOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServiceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServiceOutput)
+}
+
+func (i TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServiceArgs) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServicePtrOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServicePtrOutput {
+	return i.ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServicePtrOutputWithContext(context.Background())
+}
+
+func (i TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServiceArgs) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServicePtrOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServicePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServiceOutput).ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServicePtrOutputWithContext(ctx)
+}
+
+// TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServicePtrInput is an input type that accepts TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServiceArgs, TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServicePtr and TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServicePtrOutput values.
+// You can construct a concrete instance of `TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServicePtrInput` via:
+//
+//	        TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServiceArgs{...}
+//
+//	or:
+//
+//	        nil
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServicePtrInput interface {
+	pulumi.Input
+
+	ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServicePtrOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServicePtrOutput
+	ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServicePtrOutputWithContext(context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServicePtrOutput
+}
+
+type traceMetricsRuleTraceFilterScopeFilterSpanScopeParentServicePtrType TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServiceArgs
+
+func TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServicePtr(v *TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServiceArgs) TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServicePtrInput {
+	return (*traceMetricsRuleTraceFilterScopeFilterSpanScopeParentServicePtrType)(v)
+}
+
+func (*traceMetricsRuleTraceFilterScopeFilterSpanScopeParentServicePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentService)(nil)).Elem()
+}
+
+func (i *traceMetricsRuleTraceFilterScopeFilterSpanScopeParentServicePtrType) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServicePtrOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServicePtrOutput {
+	return i.ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServicePtrOutputWithContext(context.Background())
+}
+
+func (i *traceMetricsRuleTraceFilterScopeFilterSpanScopeParentServicePtrType) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServicePtrOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServicePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServicePtrOutput)
+}
+
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServiceOutput struct{ *pulumi.OutputState }
+
+func (TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServiceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentService)(nil)).Elem()
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServiceOutput) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServiceOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServiceOutput {
+	return o
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServiceOutput) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServiceOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServiceOutput {
+	return o
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServiceOutput) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServicePtrOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServicePtrOutput {
+	return o.ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServicePtrOutputWithContext(context.Background())
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServiceOutput) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServicePtrOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServicePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentService) *TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentService {
+		return &v
+	}).(TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServicePtrOutput)
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServiceOutput) InValues() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentService) []string { return v.InValues }).(pulumi.StringArrayOutput)
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServiceOutput) Match() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentService) *string { return v.Match }).(pulumi.StringPtrOutput)
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServiceOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentService) *string { return v.Value }).(pulumi.StringPtrOutput)
+}
+
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServicePtrOutput struct{ *pulumi.OutputState }
+
+func (TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServicePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentService)(nil)).Elem()
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServicePtrOutput) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServicePtrOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServicePtrOutput {
+	return o
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServicePtrOutput) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServicePtrOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServicePtrOutput {
+	return o
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServicePtrOutput) Elem() TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServiceOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentService) TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentService {
+		if v != nil {
+			return *v
+		}
+		var ret TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentService
+		return ret
+	}).(TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServiceOutput)
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServicePtrOutput) InValues() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentService) []string {
+		if v == nil {
+			return nil
+		}
+		return v.InValues
+	}).(pulumi.StringArrayOutput)
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServicePtrOutput) Match() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentService) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Match
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServicePtrOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentService) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Value
+	}).(pulumi.StringPtrOutput)
+}
+
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeService struct {
+	InValues []string `pulumi:"inValues"`
+	Match    *string  `pulumi:"match"`
+	Value    *string  `pulumi:"value"`
+}
+
+// TraceMetricsRuleTraceFilterScopeFilterSpanScopeServiceInput is an input type that accepts TraceMetricsRuleTraceFilterScopeFilterSpanScopeServiceArgs and TraceMetricsRuleTraceFilterScopeFilterSpanScopeServiceOutput values.
+// You can construct a concrete instance of `TraceMetricsRuleTraceFilterScopeFilterSpanScopeServiceInput` via:
+//
+//	TraceMetricsRuleTraceFilterScopeFilterSpanScopeServiceArgs{...}
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeServiceInput interface {
+	pulumi.Input
+
+	ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeServiceOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeServiceOutput
+	ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeServiceOutputWithContext(context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeServiceOutput
+}
+
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeServiceArgs struct {
+	InValues pulumi.StringArrayInput `pulumi:"inValues"`
+	Match    pulumi.StringPtrInput   `pulumi:"match"`
+	Value    pulumi.StringPtrInput   `pulumi:"value"`
+}
+
+func (TraceMetricsRuleTraceFilterScopeFilterSpanScopeServiceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceMetricsRuleTraceFilterScopeFilterSpanScopeService)(nil)).Elem()
+}
+
+func (i TraceMetricsRuleTraceFilterScopeFilterSpanScopeServiceArgs) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeServiceOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeServiceOutput {
+	return i.ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeServiceOutputWithContext(context.Background())
+}
+
+func (i TraceMetricsRuleTraceFilterScopeFilterSpanScopeServiceArgs) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeServiceOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeServiceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleTraceFilterScopeFilterSpanScopeServiceOutput)
+}
+
+func (i TraceMetricsRuleTraceFilterScopeFilterSpanScopeServiceArgs) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeServicePtrOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeServicePtrOutput {
+	return i.ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeServicePtrOutputWithContext(context.Background())
+}
+
+func (i TraceMetricsRuleTraceFilterScopeFilterSpanScopeServiceArgs) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeServicePtrOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeServicePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleTraceFilterScopeFilterSpanScopeServiceOutput).ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeServicePtrOutputWithContext(ctx)
+}
+
+// TraceMetricsRuleTraceFilterScopeFilterSpanScopeServicePtrInput is an input type that accepts TraceMetricsRuleTraceFilterScopeFilterSpanScopeServiceArgs, TraceMetricsRuleTraceFilterScopeFilterSpanScopeServicePtr and TraceMetricsRuleTraceFilterScopeFilterSpanScopeServicePtrOutput values.
+// You can construct a concrete instance of `TraceMetricsRuleTraceFilterScopeFilterSpanScopeServicePtrInput` via:
+//
+//	        TraceMetricsRuleTraceFilterScopeFilterSpanScopeServiceArgs{...}
+//
+//	or:
+//
+//	        nil
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeServicePtrInput interface {
+	pulumi.Input
+
+	ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeServicePtrOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeServicePtrOutput
+	ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeServicePtrOutputWithContext(context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeServicePtrOutput
+}
+
+type traceMetricsRuleTraceFilterScopeFilterSpanScopeServicePtrType TraceMetricsRuleTraceFilterScopeFilterSpanScopeServiceArgs
+
+func TraceMetricsRuleTraceFilterScopeFilterSpanScopeServicePtr(v *TraceMetricsRuleTraceFilterScopeFilterSpanScopeServiceArgs) TraceMetricsRuleTraceFilterScopeFilterSpanScopeServicePtrInput {
+	return (*traceMetricsRuleTraceFilterScopeFilterSpanScopeServicePtrType)(v)
+}
+
+func (*traceMetricsRuleTraceFilterScopeFilterSpanScopeServicePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**TraceMetricsRuleTraceFilterScopeFilterSpanScopeService)(nil)).Elem()
+}
+
+func (i *traceMetricsRuleTraceFilterScopeFilterSpanScopeServicePtrType) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeServicePtrOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeServicePtrOutput {
+	return i.ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeServicePtrOutputWithContext(context.Background())
+}
+
+func (i *traceMetricsRuleTraceFilterScopeFilterSpanScopeServicePtrType) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeServicePtrOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeServicePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleTraceFilterScopeFilterSpanScopeServicePtrOutput)
+}
+
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeServiceOutput struct{ *pulumi.OutputState }
+
+func (TraceMetricsRuleTraceFilterScopeFilterSpanScopeServiceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceMetricsRuleTraceFilterScopeFilterSpanScopeService)(nil)).Elem()
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeServiceOutput) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeServiceOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeServiceOutput {
+	return o
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeServiceOutput) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeServiceOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeServiceOutput {
+	return o
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeServiceOutput) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeServicePtrOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeServicePtrOutput {
+	return o.ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeServicePtrOutputWithContext(context.Background())
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeServiceOutput) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeServicePtrOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeServicePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v TraceMetricsRuleTraceFilterScopeFilterSpanScopeService) *TraceMetricsRuleTraceFilterScopeFilterSpanScopeService {
+		return &v
+	}).(TraceMetricsRuleTraceFilterScopeFilterSpanScopeServicePtrOutput)
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeServiceOutput) InValues() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v TraceMetricsRuleTraceFilterScopeFilterSpanScopeService) []string { return v.InValues }).(pulumi.StringArrayOutput)
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeServiceOutput) Match() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v TraceMetricsRuleTraceFilterScopeFilterSpanScopeService) *string { return v.Match }).(pulumi.StringPtrOutput)
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeServiceOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v TraceMetricsRuleTraceFilterScopeFilterSpanScopeService) *string { return v.Value }).(pulumi.StringPtrOutput)
+}
+
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeServicePtrOutput struct{ *pulumi.OutputState }
+
+func (TraceMetricsRuleTraceFilterScopeFilterSpanScopeServicePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**TraceMetricsRuleTraceFilterScopeFilterSpanScopeService)(nil)).Elem()
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeServicePtrOutput) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeServicePtrOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeServicePtrOutput {
+	return o
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeServicePtrOutput) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeServicePtrOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeServicePtrOutput {
+	return o
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeServicePtrOutput) Elem() TraceMetricsRuleTraceFilterScopeFilterSpanScopeServiceOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleTraceFilterScopeFilterSpanScopeService) TraceMetricsRuleTraceFilterScopeFilterSpanScopeService {
+		if v != nil {
+			return *v
+		}
+		var ret TraceMetricsRuleTraceFilterScopeFilterSpanScopeService
+		return ret
+	}).(TraceMetricsRuleTraceFilterScopeFilterSpanScopeServiceOutput)
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeServicePtrOutput) InValues() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleTraceFilterScopeFilterSpanScopeService) []string {
+		if v == nil {
+			return nil
+		}
+		return v.InValues
+	}).(pulumi.StringArrayOutput)
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeServicePtrOutput) Match() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleTraceFilterScopeFilterSpanScopeService) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Match
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeServicePtrOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleTraceFilterScopeFilterSpanScopeService) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Value
+	}).(pulumi.StringPtrOutput)
+}
+
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCount struct {
+	Max *int `pulumi:"max"`
+	Min *int `pulumi:"min"`
+}
+
+// TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountInput is an input type that accepts TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountArgs and TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountOutput values.
+// You can construct a concrete instance of `TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountInput` via:
+//
+//	TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountArgs{...}
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountInput interface {
+	pulumi.Input
+
+	ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountOutput
+	ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountOutputWithContext(context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountOutput
+}
+
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountArgs struct {
+	Max pulumi.IntPtrInput `pulumi:"max"`
+	Min pulumi.IntPtrInput `pulumi:"min"`
+}
+
+func (TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCount)(nil)).Elem()
+}
+
+func (i TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountArgs) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountOutput {
+	return i.ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountOutputWithContext(context.Background())
+}
+
+func (i TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountArgs) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountOutput)
+}
+
+func (i TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountArgs) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountPtrOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountPtrOutput {
+	return i.ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountPtrOutputWithContext(context.Background())
+}
+
+func (i TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountArgs) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountPtrOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountOutput).ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountPtrOutputWithContext(ctx)
+}
+
+// TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountPtrInput is an input type that accepts TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountArgs, TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountPtr and TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountPtrOutput values.
+// You can construct a concrete instance of `TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountPtrInput` via:
+//
+//	        TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountArgs{...}
+//
+//	or:
+//
+//	        nil
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountPtrInput interface {
+	pulumi.Input
+
+	ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountPtrOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountPtrOutput
+	ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountPtrOutputWithContext(context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountPtrOutput
+}
+
+type traceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountPtrType TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountArgs
+
+func TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountPtr(v *TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountArgs) TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountPtrInput {
+	return (*traceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountPtrType)(v)
+}
+
+func (*traceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCount)(nil)).Elem()
+}
+
+func (i *traceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountPtrType) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountPtrOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountPtrOutput {
+	return i.ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountPtrOutputWithContext(context.Background())
+}
+
+func (i *traceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountPtrType) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountPtrOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountPtrOutput)
+}
+
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountOutput struct{ *pulumi.OutputState }
+
+func (TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCount)(nil)).Elem()
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountOutput) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountOutput {
+	return o
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountOutput) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountOutput {
+	return o
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountOutput) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountPtrOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountPtrOutput {
+	return o.ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountPtrOutputWithContext(context.Background())
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountOutput) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountPtrOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCount) *TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCount {
+		return &v
+	}).(TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountPtrOutput)
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountOutput) Max() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCount) *int { return v.Max }).(pulumi.IntPtrOutput)
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountOutput) Min() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCount) *int { return v.Min }).(pulumi.IntPtrOutput)
+}
+
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountPtrOutput struct{ *pulumi.OutputState }
+
+func (TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCount)(nil)).Elem()
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountPtrOutput) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountPtrOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountPtrOutput {
+	return o
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountPtrOutput) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountPtrOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountPtrOutput {
+	return o
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountPtrOutput) Elem() TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCount) TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCount {
+		if v != nil {
+			return *v
+		}
+		var ret TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCount
+		return ret
+	}).(TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountOutput)
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountPtrOutput) Max() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCount) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Max
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountPtrOutput) Min() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCount) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Min
+	}).(pulumi.IntPtrOutput)
+}
+
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeTag struct {
+	Key          *string                                                         `pulumi:"key"`
+	NumericValue *TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValue `pulumi:"numericValue"`
+	Value        *TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValue        `pulumi:"value"`
+}
+
+// TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagInput is an input type that accepts TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagArgs and TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagOutput values.
+// You can construct a concrete instance of `TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagInput` via:
+//
+//	TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagArgs{...}
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagInput interface {
+	pulumi.Input
+
+	ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeTagOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagOutput
+	ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeTagOutputWithContext(context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagOutput
+}
+
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagArgs struct {
+	Key          pulumi.StringPtrInput                                                  `pulumi:"key"`
+	NumericValue TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValuePtrInput `pulumi:"numericValue"`
+	Value        TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValuePtrInput        `pulumi:"value"`
+}
+
+func (TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceMetricsRuleTraceFilterScopeFilterSpanScopeTag)(nil)).Elem()
+}
+
+func (i TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagArgs) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeTagOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagOutput {
+	return i.ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeTagOutputWithContext(context.Background())
+}
+
+func (i TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagArgs) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeTagOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagOutput)
+}
+
+// TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagArrayInput is an input type that accepts TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagArray and TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagArrayOutput values.
+// You can construct a concrete instance of `TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagArrayInput` via:
+//
+//	TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagArray{ TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagArgs{...} }
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagArrayInput interface {
+	pulumi.Input
+
+	ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeTagArrayOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagArrayOutput
+	ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeTagArrayOutputWithContext(context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagArrayOutput
+}
+
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagArray []TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagInput
+
+func (TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TraceMetricsRuleTraceFilterScopeFilterSpanScopeTag)(nil)).Elem()
+}
+
+func (i TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagArray) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeTagArrayOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagArrayOutput {
+	return i.ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeTagArrayOutputWithContext(context.Background())
+}
+
+func (i TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagArray) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeTagArrayOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagArrayOutput)
+}
+
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagOutput struct{ *pulumi.OutputState }
+
+func (TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceMetricsRuleTraceFilterScopeFilterSpanScopeTag)(nil)).Elem()
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagOutput) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeTagOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagOutput {
+	return o
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagOutput) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeTagOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagOutput {
+	return o
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagOutput) Key() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v TraceMetricsRuleTraceFilterScopeFilterSpanScopeTag) *string { return v.Key }).(pulumi.StringPtrOutput)
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagOutput) NumericValue() TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValuePtrOutput {
+	return o.ApplyT(func(v TraceMetricsRuleTraceFilterScopeFilterSpanScopeTag) *TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValue {
+		return v.NumericValue
+	}).(TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValuePtrOutput)
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagOutput) Value() TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValuePtrOutput {
+	return o.ApplyT(func(v TraceMetricsRuleTraceFilterScopeFilterSpanScopeTag) *TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValue {
+		return v.Value
+	}).(TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValuePtrOutput)
+}
+
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagArrayOutput struct{ *pulumi.OutputState }
+
+func (TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TraceMetricsRuleTraceFilterScopeFilterSpanScopeTag)(nil)).Elem()
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagArrayOutput) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeTagArrayOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagArrayOutput {
+	return o
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagArrayOutput) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeTagArrayOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagArrayOutput {
+	return o
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagArrayOutput) Index(i pulumi.IntInput) TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) TraceMetricsRuleTraceFilterScopeFilterSpanScopeTag {
+		return vs[0].([]TraceMetricsRuleTraceFilterScopeFilterSpanScopeTag)[vs[1].(int)]
+	}).(TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagOutput)
+}
+
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValue struct {
+	Comparison string  `pulumi:"comparison"`
+	Value      float64 `pulumi:"value"`
+}
+
+// TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValueInput is an input type that accepts TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValueArgs and TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValueOutput values.
+// You can construct a concrete instance of `TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValueInput` via:
+//
+//	TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValueArgs{...}
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValueInput interface {
+	pulumi.Input
+
+	ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValueOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValueOutput
+	ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValueOutputWithContext(context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValueOutput
+}
+
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValueArgs struct {
+	Comparison pulumi.StringInput  `pulumi:"comparison"`
+	Value      pulumi.Float64Input `pulumi:"value"`
+}
+
+func (TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValueArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValue)(nil)).Elem()
+}
+
+func (i TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValueArgs) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValueOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValueOutput {
+	return i.ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValueOutputWithContext(context.Background())
+}
+
+func (i TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValueArgs) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValueOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValueOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValueOutput)
+}
+
+func (i TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValueArgs) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValuePtrOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValuePtrOutput {
+	return i.ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValuePtrOutputWithContext(context.Background())
+}
+
+func (i TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValueArgs) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValuePtrOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValuePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValueOutput).ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValuePtrOutputWithContext(ctx)
+}
+
+// TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValuePtrInput is an input type that accepts TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValueArgs, TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValuePtr and TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValuePtrOutput values.
+// You can construct a concrete instance of `TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValuePtrInput` via:
+//
+//	        TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValueArgs{...}
+//
+//	or:
+//
+//	        nil
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValuePtrInput interface {
+	pulumi.Input
+
+	ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValuePtrOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValuePtrOutput
+	ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValuePtrOutputWithContext(context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValuePtrOutput
+}
+
+type traceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValuePtrType TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValueArgs
+
+func TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValuePtr(v *TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValueArgs) TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValuePtrInput {
+	return (*traceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValuePtrType)(v)
+}
+
+func (*traceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValuePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValue)(nil)).Elem()
+}
+
+func (i *traceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValuePtrType) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValuePtrOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValuePtrOutput {
+	return i.ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValuePtrOutputWithContext(context.Background())
+}
+
+func (i *traceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValuePtrType) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValuePtrOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValuePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValuePtrOutput)
+}
+
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValueOutput struct{ *pulumi.OutputState }
+
+func (TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValueOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValue)(nil)).Elem()
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValueOutput) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValueOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValueOutput {
+	return o
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValueOutput) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValueOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValueOutput {
+	return o
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValueOutput) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValuePtrOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValuePtrOutput {
+	return o.ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValuePtrOutputWithContext(context.Background())
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValueOutput) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValuePtrOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValuePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValue) *TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValue {
+		return &v
+	}).(TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValuePtrOutput)
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValueOutput) Comparison() pulumi.StringOutput {
+	return o.ApplyT(func(v TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValue) string { return v.Comparison }).(pulumi.StringOutput)
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValueOutput) Value() pulumi.Float64Output {
+	return o.ApplyT(func(v TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValue) float64 { return v.Value }).(pulumi.Float64Output)
+}
+
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValuePtrOutput struct{ *pulumi.OutputState }
+
+func (TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValuePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValue)(nil)).Elem()
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValuePtrOutput) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValuePtrOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValuePtrOutput {
+	return o
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValuePtrOutput) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValuePtrOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValuePtrOutput {
+	return o
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValuePtrOutput) Elem() TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValueOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValue) TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValue {
+		if v != nil {
+			return *v
+		}
+		var ret TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValue
+		return ret
+	}).(TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValueOutput)
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValuePtrOutput) Comparison() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValue) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Comparison
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValuePtrOutput) Value() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValue) *float64 {
+		if v == nil {
+			return nil
+		}
+		return &v.Value
+	}).(pulumi.Float64PtrOutput)
+}
+
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValue struct {
+	InValues []string `pulumi:"inValues"`
+	Match    *string  `pulumi:"match"`
+	Value    *string  `pulumi:"value"`
+}
+
+// TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValueInput is an input type that accepts TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValueArgs and TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValueOutput values.
+// You can construct a concrete instance of `TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValueInput` via:
+//
+//	TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValueArgs{...}
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValueInput interface {
+	pulumi.Input
+
+	ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValueOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValueOutput
+	ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValueOutputWithContext(context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValueOutput
+}
+
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValueArgs struct {
+	InValues pulumi.StringArrayInput `pulumi:"inValues"`
+	Match    pulumi.StringPtrInput   `pulumi:"match"`
+	Value    pulumi.StringPtrInput   `pulumi:"value"`
+}
+
+func (TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValueArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValue)(nil)).Elem()
+}
+
+func (i TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValueArgs) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValueOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValueOutput {
+	return i.ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValueOutputWithContext(context.Background())
+}
+
+func (i TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValueArgs) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValueOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValueOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValueOutput)
+}
+
+func (i TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValueArgs) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValuePtrOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValuePtrOutput {
+	return i.ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValuePtrOutputWithContext(context.Background())
+}
+
+func (i TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValueArgs) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValuePtrOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValuePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValueOutput).ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValuePtrOutputWithContext(ctx)
+}
+
+// TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValuePtrInput is an input type that accepts TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValueArgs, TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValuePtr and TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValuePtrOutput values.
+// You can construct a concrete instance of `TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValuePtrInput` via:
+//
+//	        TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValueArgs{...}
+//
+//	or:
+//
+//	        nil
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValuePtrInput interface {
+	pulumi.Input
+
+	ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValuePtrOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValuePtrOutput
+	ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValuePtrOutputWithContext(context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValuePtrOutput
+}
+
+type traceMetricsRuleTraceFilterScopeFilterSpanScopeTagValuePtrType TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValueArgs
+
+func TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValuePtr(v *TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValueArgs) TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValuePtrInput {
+	return (*traceMetricsRuleTraceFilterScopeFilterSpanScopeTagValuePtrType)(v)
+}
+
+func (*traceMetricsRuleTraceFilterScopeFilterSpanScopeTagValuePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValue)(nil)).Elem()
+}
+
+func (i *traceMetricsRuleTraceFilterScopeFilterSpanScopeTagValuePtrType) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValuePtrOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValuePtrOutput {
+	return i.ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValuePtrOutputWithContext(context.Background())
+}
+
+func (i *traceMetricsRuleTraceFilterScopeFilterSpanScopeTagValuePtrType) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValuePtrOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValuePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValuePtrOutput)
+}
+
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValueOutput struct{ *pulumi.OutputState }
+
+func (TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValueOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValue)(nil)).Elem()
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValueOutput) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValueOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValueOutput {
+	return o
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValueOutput) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValueOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValueOutput {
+	return o
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValueOutput) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValuePtrOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValuePtrOutput {
+	return o.ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValuePtrOutputWithContext(context.Background())
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValueOutput) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValuePtrOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValuePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValue) *TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValue {
+		return &v
+	}).(TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValuePtrOutput)
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValueOutput) InValues() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValue) []string { return v.InValues }).(pulumi.StringArrayOutput)
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValueOutput) Match() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValue) *string { return v.Match }).(pulumi.StringPtrOutput)
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValueOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValue) *string { return v.Value }).(pulumi.StringPtrOutput)
+}
+
+type TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValuePtrOutput struct{ *pulumi.OutputState }
+
+func (TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValuePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValue)(nil)).Elem()
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValuePtrOutput) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValuePtrOutput() TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValuePtrOutput {
+	return o
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValuePtrOutput) ToTraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValuePtrOutputWithContext(ctx context.Context) TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValuePtrOutput {
+	return o
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValuePtrOutput) Elem() TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValueOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValue) TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValue {
+		if v != nil {
+			return *v
+		}
+		var ret TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValue
+		return ret
+	}).(TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValueOutput)
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValuePtrOutput) InValues() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValue) []string {
+		if v == nil {
+			return nil
+		}
+		return v.InValues
+	}).(pulumi.StringArrayOutput)
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValuePtrOutput) Match() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValue) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Match
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValuePtrOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValue) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Value
+	}).(pulumi.StringPtrOutput)
 }
 
 type TraceMetricsRuleTraceFilterSpan struct {
@@ -27954,8 +34305,9 @@ func (o TraceTailSamplingRulesRuleArrayOutput) Index(i pulumi.IntInput) TraceTai
 }
 
 type TraceTailSamplingRulesRuleFilter struct {
-	Spans []TraceTailSamplingRulesRuleFilterSpan `pulumi:"spans"`
-	Trace *TraceTailSamplingRulesRuleFilterTrace `pulumi:"trace"`
+	ScopeFilter *TraceTailSamplingRulesRuleFilterScopeFilter `pulumi:"scopeFilter"`
+	Spans       []TraceTailSamplingRulesRuleFilterSpan       `pulumi:"spans"`
+	Trace       *TraceTailSamplingRulesRuleFilterTrace       `pulumi:"trace"`
 }
 
 // TraceTailSamplingRulesRuleFilterInput is an input type that accepts TraceTailSamplingRulesRuleFilterArgs and TraceTailSamplingRulesRuleFilterOutput values.
@@ -27970,8 +34322,9 @@ type TraceTailSamplingRulesRuleFilterInput interface {
 }
 
 type TraceTailSamplingRulesRuleFilterArgs struct {
-	Spans TraceTailSamplingRulesRuleFilterSpanArrayInput `pulumi:"spans"`
-	Trace TraceTailSamplingRulesRuleFilterTracePtrInput  `pulumi:"trace"`
+	ScopeFilter TraceTailSamplingRulesRuleFilterScopeFilterPtrInput `pulumi:"scopeFilter"`
+	Spans       TraceTailSamplingRulesRuleFilterSpanArrayInput      `pulumi:"spans"`
+	Trace       TraceTailSamplingRulesRuleFilterTracePtrInput       `pulumi:"trace"`
 }
 
 func (TraceTailSamplingRulesRuleFilterArgs) ElementType() reflect.Type {
@@ -28000,12 +34353,1958 @@ func (o TraceTailSamplingRulesRuleFilterOutput) ToTraceTailSamplingRulesRuleFilt
 	return o
 }
 
+func (o TraceTailSamplingRulesRuleFilterOutput) ScopeFilter() TraceTailSamplingRulesRuleFilterScopeFilterPtrOutput {
+	return o.ApplyT(func(v TraceTailSamplingRulesRuleFilter) *TraceTailSamplingRulesRuleFilterScopeFilter {
+		return v.ScopeFilter
+	}).(TraceTailSamplingRulesRuleFilterScopeFilterPtrOutput)
+}
+
 func (o TraceTailSamplingRulesRuleFilterOutput) Spans() TraceTailSamplingRulesRuleFilterSpanArrayOutput {
 	return o.ApplyT(func(v TraceTailSamplingRulesRuleFilter) []TraceTailSamplingRulesRuleFilterSpan { return v.Spans }).(TraceTailSamplingRulesRuleFilterSpanArrayOutput)
 }
 
 func (o TraceTailSamplingRulesRuleFilterOutput) Trace() TraceTailSamplingRulesRuleFilterTracePtrOutput {
 	return o.ApplyT(func(v TraceTailSamplingRulesRuleFilter) *TraceTailSamplingRulesRuleFilterTrace { return v.Trace }).(TraceTailSamplingRulesRuleFilterTracePtrOutput)
+}
+
+type TraceTailSamplingRulesRuleFilterScopeFilter struct {
+	SpanScopes []TraceTailSamplingRulesRuleFilterScopeFilterSpanScope `pulumi:"spanScopes"`
+}
+
+// TraceTailSamplingRulesRuleFilterScopeFilterInput is an input type that accepts TraceTailSamplingRulesRuleFilterScopeFilterArgs and TraceTailSamplingRulesRuleFilterScopeFilterOutput values.
+// You can construct a concrete instance of `TraceTailSamplingRulesRuleFilterScopeFilterInput` via:
+//
+//	TraceTailSamplingRulesRuleFilterScopeFilterArgs{...}
+type TraceTailSamplingRulesRuleFilterScopeFilterInput interface {
+	pulumi.Input
+
+	ToTraceTailSamplingRulesRuleFilterScopeFilterOutput() TraceTailSamplingRulesRuleFilterScopeFilterOutput
+	ToTraceTailSamplingRulesRuleFilterScopeFilterOutputWithContext(context.Context) TraceTailSamplingRulesRuleFilterScopeFilterOutput
+}
+
+type TraceTailSamplingRulesRuleFilterScopeFilterArgs struct {
+	SpanScopes TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeArrayInput `pulumi:"spanScopes"`
+}
+
+func (TraceTailSamplingRulesRuleFilterScopeFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceTailSamplingRulesRuleFilterScopeFilter)(nil)).Elem()
+}
+
+func (i TraceTailSamplingRulesRuleFilterScopeFilterArgs) ToTraceTailSamplingRulesRuleFilterScopeFilterOutput() TraceTailSamplingRulesRuleFilterScopeFilterOutput {
+	return i.ToTraceTailSamplingRulesRuleFilterScopeFilterOutputWithContext(context.Background())
+}
+
+func (i TraceTailSamplingRulesRuleFilterScopeFilterArgs) ToTraceTailSamplingRulesRuleFilterScopeFilterOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceTailSamplingRulesRuleFilterScopeFilterOutput)
+}
+
+func (i TraceTailSamplingRulesRuleFilterScopeFilterArgs) ToTraceTailSamplingRulesRuleFilterScopeFilterPtrOutput() TraceTailSamplingRulesRuleFilterScopeFilterPtrOutput {
+	return i.ToTraceTailSamplingRulesRuleFilterScopeFilterPtrOutputWithContext(context.Background())
+}
+
+func (i TraceTailSamplingRulesRuleFilterScopeFilterArgs) ToTraceTailSamplingRulesRuleFilterScopeFilterPtrOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceTailSamplingRulesRuleFilterScopeFilterOutput).ToTraceTailSamplingRulesRuleFilterScopeFilterPtrOutputWithContext(ctx)
+}
+
+// TraceTailSamplingRulesRuleFilterScopeFilterPtrInput is an input type that accepts TraceTailSamplingRulesRuleFilterScopeFilterArgs, TraceTailSamplingRulesRuleFilterScopeFilterPtr and TraceTailSamplingRulesRuleFilterScopeFilterPtrOutput values.
+// You can construct a concrete instance of `TraceTailSamplingRulesRuleFilterScopeFilterPtrInput` via:
+//
+//	        TraceTailSamplingRulesRuleFilterScopeFilterArgs{...}
+//
+//	or:
+//
+//	        nil
+type TraceTailSamplingRulesRuleFilterScopeFilterPtrInput interface {
+	pulumi.Input
+
+	ToTraceTailSamplingRulesRuleFilterScopeFilterPtrOutput() TraceTailSamplingRulesRuleFilterScopeFilterPtrOutput
+	ToTraceTailSamplingRulesRuleFilterScopeFilterPtrOutputWithContext(context.Context) TraceTailSamplingRulesRuleFilterScopeFilterPtrOutput
+}
+
+type traceTailSamplingRulesRuleFilterScopeFilterPtrType TraceTailSamplingRulesRuleFilterScopeFilterArgs
+
+func TraceTailSamplingRulesRuleFilterScopeFilterPtr(v *TraceTailSamplingRulesRuleFilterScopeFilterArgs) TraceTailSamplingRulesRuleFilterScopeFilterPtrInput {
+	return (*traceTailSamplingRulesRuleFilterScopeFilterPtrType)(v)
+}
+
+func (*traceTailSamplingRulesRuleFilterScopeFilterPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**TraceTailSamplingRulesRuleFilterScopeFilter)(nil)).Elem()
+}
+
+func (i *traceTailSamplingRulesRuleFilterScopeFilterPtrType) ToTraceTailSamplingRulesRuleFilterScopeFilterPtrOutput() TraceTailSamplingRulesRuleFilterScopeFilterPtrOutput {
+	return i.ToTraceTailSamplingRulesRuleFilterScopeFilterPtrOutputWithContext(context.Background())
+}
+
+func (i *traceTailSamplingRulesRuleFilterScopeFilterPtrType) ToTraceTailSamplingRulesRuleFilterScopeFilterPtrOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceTailSamplingRulesRuleFilterScopeFilterPtrOutput)
+}
+
+type TraceTailSamplingRulesRuleFilterScopeFilterOutput struct{ *pulumi.OutputState }
+
+func (TraceTailSamplingRulesRuleFilterScopeFilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceTailSamplingRulesRuleFilterScopeFilter)(nil)).Elem()
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterOutput() TraceTailSamplingRulesRuleFilterScopeFilterOutput {
+	return o
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterOutput {
+	return o
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterPtrOutput() TraceTailSamplingRulesRuleFilterScopeFilterPtrOutput {
+	return o.ToTraceTailSamplingRulesRuleFilterScopeFilterPtrOutputWithContext(context.Background())
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterPtrOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v TraceTailSamplingRulesRuleFilterScopeFilter) *TraceTailSamplingRulesRuleFilterScopeFilter {
+		return &v
+	}).(TraceTailSamplingRulesRuleFilterScopeFilterPtrOutput)
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterOutput) SpanScopes() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeArrayOutput {
+	return o.ApplyT(func(v TraceTailSamplingRulesRuleFilterScopeFilter) []TraceTailSamplingRulesRuleFilterScopeFilterSpanScope {
+		return v.SpanScopes
+	}).(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeArrayOutput)
+}
+
+type TraceTailSamplingRulesRuleFilterScopeFilterPtrOutput struct{ *pulumi.OutputState }
+
+func (TraceTailSamplingRulesRuleFilterScopeFilterPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**TraceTailSamplingRulesRuleFilterScopeFilter)(nil)).Elem()
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterPtrOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterPtrOutput() TraceTailSamplingRulesRuleFilterScopeFilterPtrOutput {
+	return o
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterPtrOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterPtrOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterPtrOutput {
+	return o
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterPtrOutput) Elem() TraceTailSamplingRulesRuleFilterScopeFilterOutput {
+	return o.ApplyT(func(v *TraceTailSamplingRulesRuleFilterScopeFilter) TraceTailSamplingRulesRuleFilterScopeFilter {
+		if v != nil {
+			return *v
+		}
+		var ret TraceTailSamplingRulesRuleFilterScopeFilter
+		return ret
+	}).(TraceTailSamplingRulesRuleFilterScopeFilterOutput)
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterPtrOutput) SpanScopes() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeArrayOutput {
+	return o.ApplyT(func(v *TraceTailSamplingRulesRuleFilterScopeFilter) []TraceTailSamplingRulesRuleFilterScopeFilterSpanScope {
+		if v == nil {
+			return nil
+		}
+		return v.SpanScopes
+	}).(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeArrayOutput)
+}
+
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScope struct {
+	Duration        *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDuration        `pulumi:"duration"`
+	Error           *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeError           `pulumi:"error"`
+	IsRootSpan      *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpan      `pulumi:"isRootSpan"`
+	MatchType       *string                                                              `pulumi:"matchType"`
+	Operation       *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperation       `pulumi:"operation"`
+	ParentOperation *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperation `pulumi:"parentOperation"`
+	ParentService   *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentService   `pulumi:"parentService"`
+	Service         *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeService         `pulumi:"service"`
+	SpanCount       *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCount       `pulumi:"spanCount"`
+	Tags            []TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTag            `pulumi:"tags"`
+}
+
+// TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeInput is an input type that accepts TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeArgs and TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOutput values.
+// You can construct a concrete instance of `TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeInput` via:
+//
+//	TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeArgs{...}
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeInput interface {
+	pulumi.Input
+
+	ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOutput
+	ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOutputWithContext(context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOutput
+}
+
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeArgs struct {
+	Duration        TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationPtrInput        `pulumi:"duration"`
+	Error           TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorPtrInput           `pulumi:"error"`
+	IsRootSpan      TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanPtrInput      `pulumi:"isRootSpan"`
+	MatchType       pulumi.StringPtrInput                                                       `pulumi:"matchType"`
+	Operation       TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationPtrInput       `pulumi:"operation"`
+	ParentOperation TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationPtrInput `pulumi:"parentOperation"`
+	ParentService   TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServicePtrInput   `pulumi:"parentService"`
+	Service         TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServicePtrInput         `pulumi:"service"`
+	SpanCount       TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountPtrInput       `pulumi:"spanCount"`
+	Tags            TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagArrayInput           `pulumi:"tags"`
+}
+
+func (TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceTailSamplingRulesRuleFilterScopeFilterSpanScope)(nil)).Elem()
+}
+
+func (i TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeArgs) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOutput {
+	return i.ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOutputWithContext(context.Background())
+}
+
+func (i TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeArgs) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOutput)
+}
+
+// TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeArrayInput is an input type that accepts TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeArray and TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeArrayOutput values.
+// You can construct a concrete instance of `TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeArrayInput` via:
+//
+//	TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeArray{ TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeArgs{...} }
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeArrayInput interface {
+	pulumi.Input
+
+	ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeArrayOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeArrayOutput
+	ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeArrayOutputWithContext(context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeArrayOutput
+}
+
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeArray []TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeInput
+
+func (TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TraceTailSamplingRulesRuleFilterScopeFilterSpanScope)(nil)).Elem()
+}
+
+func (i TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeArray) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeArrayOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeArrayOutput {
+	return i.ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeArrayOutputWithContext(context.Background())
+}
+
+func (i TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeArray) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeArrayOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeArrayOutput)
+}
+
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOutput struct{ *pulumi.OutputState }
+
+func (TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceTailSamplingRulesRuleFilterScopeFilterSpanScope)(nil)).Elem()
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOutput {
+	return o
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOutput {
+	return o
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOutput) Duration() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationPtrOutput {
+	return o.ApplyT(func(v TraceTailSamplingRulesRuleFilterScopeFilterSpanScope) *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDuration {
+		return v.Duration
+	}).(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationPtrOutput)
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOutput) Error() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorPtrOutput {
+	return o.ApplyT(func(v TraceTailSamplingRulesRuleFilterScopeFilterSpanScope) *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeError {
+		return v.Error
+	}).(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorPtrOutput)
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOutput) IsRootSpan() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanPtrOutput {
+	return o.ApplyT(func(v TraceTailSamplingRulesRuleFilterScopeFilterSpanScope) *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpan {
+		return v.IsRootSpan
+	}).(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanPtrOutput)
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOutput) MatchType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v TraceTailSamplingRulesRuleFilterScopeFilterSpanScope) *string { return v.MatchType }).(pulumi.StringPtrOutput)
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOutput) Operation() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationPtrOutput {
+	return o.ApplyT(func(v TraceTailSamplingRulesRuleFilterScopeFilterSpanScope) *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperation {
+		return v.Operation
+	}).(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationPtrOutput)
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOutput) ParentOperation() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationPtrOutput {
+	return o.ApplyT(func(v TraceTailSamplingRulesRuleFilterScopeFilterSpanScope) *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperation {
+		return v.ParentOperation
+	}).(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationPtrOutput)
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOutput) ParentService() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServicePtrOutput {
+	return o.ApplyT(func(v TraceTailSamplingRulesRuleFilterScopeFilterSpanScope) *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentService {
+		return v.ParentService
+	}).(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServicePtrOutput)
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOutput) Service() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServicePtrOutput {
+	return o.ApplyT(func(v TraceTailSamplingRulesRuleFilterScopeFilterSpanScope) *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeService {
+		return v.Service
+	}).(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServicePtrOutput)
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOutput) SpanCount() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountPtrOutput {
+	return o.ApplyT(func(v TraceTailSamplingRulesRuleFilterScopeFilterSpanScope) *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCount {
+		return v.SpanCount
+	}).(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountPtrOutput)
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOutput) Tags() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagArrayOutput {
+	return o.ApplyT(func(v TraceTailSamplingRulesRuleFilterScopeFilterSpanScope) []TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTag {
+		return v.Tags
+	}).(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagArrayOutput)
+}
+
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeArrayOutput struct{ *pulumi.OutputState }
+
+func (TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TraceTailSamplingRulesRuleFilterScopeFilterSpanScope)(nil)).Elem()
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeArrayOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeArrayOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeArrayOutput {
+	return o
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeArrayOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeArrayOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeArrayOutput {
+	return o
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeArrayOutput) Index(i pulumi.IntInput) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) TraceTailSamplingRulesRuleFilterScopeFilterSpanScope {
+		return vs[0].([]TraceTailSamplingRulesRuleFilterScopeFilterSpanScope)[vs[1].(int)]
+	}).(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOutput)
+}
+
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDuration struct {
+	MaxSecs *float64 `pulumi:"maxSecs"`
+	MinSecs *float64 `pulumi:"minSecs"`
+}
+
+// TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationInput is an input type that accepts TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationArgs and TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationOutput values.
+// You can construct a concrete instance of `TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationInput` via:
+//
+//	TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationArgs{...}
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationInput interface {
+	pulumi.Input
+
+	ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationOutput
+	ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationOutputWithContext(context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationOutput
+}
+
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationArgs struct {
+	MaxSecs pulumi.Float64PtrInput `pulumi:"maxSecs"`
+	MinSecs pulumi.Float64PtrInput `pulumi:"minSecs"`
+}
+
+func (TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDuration)(nil)).Elem()
+}
+
+func (i TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationArgs) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationOutput {
+	return i.ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationOutputWithContext(context.Background())
+}
+
+func (i TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationArgs) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationOutput)
+}
+
+func (i TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationArgs) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationPtrOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationPtrOutput {
+	return i.ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationPtrOutputWithContext(context.Background())
+}
+
+func (i TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationArgs) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationPtrOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationOutput).ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationPtrOutputWithContext(ctx)
+}
+
+// TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationPtrInput is an input type that accepts TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationArgs, TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationPtr and TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationPtrOutput values.
+// You can construct a concrete instance of `TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationPtrInput` via:
+//
+//	        TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationArgs{...}
+//
+//	or:
+//
+//	        nil
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationPtrInput interface {
+	pulumi.Input
+
+	ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationPtrOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationPtrOutput
+	ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationPtrOutputWithContext(context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationPtrOutput
+}
+
+type traceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationPtrType TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationArgs
+
+func TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationPtr(v *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationArgs) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationPtrInput {
+	return (*traceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationPtrType)(v)
+}
+
+func (*traceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDuration)(nil)).Elem()
+}
+
+func (i *traceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationPtrType) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationPtrOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationPtrOutput {
+	return i.ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationPtrOutputWithContext(context.Background())
+}
+
+func (i *traceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationPtrType) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationPtrOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationPtrOutput)
+}
+
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationOutput struct{ *pulumi.OutputState }
+
+func (TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDuration)(nil)).Elem()
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationOutput {
+	return o
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationOutput {
+	return o
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationPtrOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationPtrOutput {
+	return o.ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationPtrOutputWithContext(context.Background())
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationPtrOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDuration) *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDuration {
+		return &v
+	}).(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationPtrOutput)
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationOutput) MaxSecs() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDuration) *float64 { return v.MaxSecs }).(pulumi.Float64PtrOutput)
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationOutput) MinSecs() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDuration) *float64 { return v.MinSecs }).(pulumi.Float64PtrOutput)
+}
+
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationPtrOutput struct{ *pulumi.OutputState }
+
+func (TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDuration)(nil)).Elem()
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationPtrOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationPtrOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationPtrOutput {
+	return o
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationPtrOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationPtrOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationPtrOutput {
+	return o
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationPtrOutput) Elem() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationOutput {
+	return o.ApplyT(func(v *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDuration) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDuration {
+		if v != nil {
+			return *v
+		}
+		var ret TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDuration
+		return ret
+	}).(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationOutput)
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationPtrOutput) MaxSecs() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDuration) *float64 {
+		if v == nil {
+			return nil
+		}
+		return v.MaxSecs
+	}).(pulumi.Float64PtrOutput)
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationPtrOutput) MinSecs() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDuration) *float64 {
+		if v == nil {
+			return nil
+		}
+		return v.MinSecs
+	}).(pulumi.Float64PtrOutput)
+}
+
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeError struct {
+	Value bool `pulumi:"value"`
+}
+
+// TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorInput is an input type that accepts TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorArgs and TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorOutput values.
+// You can construct a concrete instance of `TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorInput` via:
+//
+//	TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorArgs{...}
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorInput interface {
+	pulumi.Input
+
+	ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorOutput
+	ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorOutputWithContext(context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorOutput
+}
+
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorArgs struct {
+	Value pulumi.BoolInput `pulumi:"value"`
+}
+
+func (TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeError)(nil)).Elem()
+}
+
+func (i TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorArgs) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorOutput {
+	return i.ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorOutputWithContext(context.Background())
+}
+
+func (i TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorArgs) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorOutput)
+}
+
+func (i TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorArgs) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorPtrOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorPtrOutput {
+	return i.ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorPtrOutputWithContext(context.Background())
+}
+
+func (i TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorArgs) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorPtrOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorOutput).ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorPtrOutputWithContext(ctx)
+}
+
+// TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorPtrInput is an input type that accepts TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorArgs, TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorPtr and TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorPtrOutput values.
+// You can construct a concrete instance of `TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorPtrInput` via:
+//
+//	        TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorArgs{...}
+//
+//	or:
+//
+//	        nil
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorPtrInput interface {
+	pulumi.Input
+
+	ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorPtrOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorPtrOutput
+	ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorPtrOutputWithContext(context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorPtrOutput
+}
+
+type traceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorPtrType TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorArgs
+
+func TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorPtr(v *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorArgs) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorPtrInput {
+	return (*traceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorPtrType)(v)
+}
+
+func (*traceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeError)(nil)).Elem()
+}
+
+func (i *traceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorPtrType) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorPtrOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorPtrOutput {
+	return i.ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorPtrOutputWithContext(context.Background())
+}
+
+func (i *traceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorPtrType) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorPtrOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorPtrOutput)
+}
+
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorOutput struct{ *pulumi.OutputState }
+
+func (TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeError)(nil)).Elem()
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorOutput {
+	return o
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorOutput {
+	return o
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorPtrOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorPtrOutput {
+	return o.ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorPtrOutputWithContext(context.Background())
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorPtrOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeError) *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeError {
+		return &v
+	}).(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorPtrOutput)
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorOutput) Value() pulumi.BoolOutput {
+	return o.ApplyT(func(v TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeError) bool { return v.Value }).(pulumi.BoolOutput)
+}
+
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorPtrOutput struct{ *pulumi.OutputState }
+
+func (TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeError)(nil)).Elem()
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorPtrOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorPtrOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorPtrOutput {
+	return o
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorPtrOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorPtrOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorPtrOutput {
+	return o
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorPtrOutput) Elem() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorOutput {
+	return o.ApplyT(func(v *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeError) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeError {
+		if v != nil {
+			return *v
+		}
+		var ret TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeError
+		return ret
+	}).(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorOutput)
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorPtrOutput) Value() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeError) *bool {
+		if v == nil {
+			return nil
+		}
+		return &v.Value
+	}).(pulumi.BoolPtrOutput)
+}
+
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpan struct {
+	Value bool `pulumi:"value"`
+}
+
+// TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanInput is an input type that accepts TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanArgs and TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanOutput values.
+// You can construct a concrete instance of `TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanInput` via:
+//
+//	TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanArgs{...}
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanInput interface {
+	pulumi.Input
+
+	ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanOutput
+	ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanOutputWithContext(context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanOutput
+}
+
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanArgs struct {
+	Value pulumi.BoolInput `pulumi:"value"`
+}
+
+func (TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpan)(nil)).Elem()
+}
+
+func (i TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanArgs) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanOutput {
+	return i.ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanOutputWithContext(context.Background())
+}
+
+func (i TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanArgs) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanOutput)
+}
+
+func (i TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanArgs) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanPtrOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanPtrOutput {
+	return i.ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanPtrOutputWithContext(context.Background())
+}
+
+func (i TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanArgs) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanPtrOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanOutput).ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanPtrOutputWithContext(ctx)
+}
+
+// TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanPtrInput is an input type that accepts TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanArgs, TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanPtr and TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanPtrOutput values.
+// You can construct a concrete instance of `TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanPtrInput` via:
+//
+//	        TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanArgs{...}
+//
+//	or:
+//
+//	        nil
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanPtrInput interface {
+	pulumi.Input
+
+	ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanPtrOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanPtrOutput
+	ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanPtrOutputWithContext(context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanPtrOutput
+}
+
+type traceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanPtrType TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanArgs
+
+func TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanPtr(v *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanArgs) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanPtrInput {
+	return (*traceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanPtrType)(v)
+}
+
+func (*traceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpan)(nil)).Elem()
+}
+
+func (i *traceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanPtrType) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanPtrOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanPtrOutput {
+	return i.ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanPtrOutputWithContext(context.Background())
+}
+
+func (i *traceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanPtrType) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanPtrOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanPtrOutput)
+}
+
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanOutput struct{ *pulumi.OutputState }
+
+func (TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpan)(nil)).Elem()
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanOutput {
+	return o
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanOutput {
+	return o
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanPtrOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanPtrOutput {
+	return o.ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanPtrOutputWithContext(context.Background())
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanPtrOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpan) *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpan {
+		return &v
+	}).(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanPtrOutput)
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanOutput) Value() pulumi.BoolOutput {
+	return o.ApplyT(func(v TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpan) bool { return v.Value }).(pulumi.BoolOutput)
+}
+
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanPtrOutput struct{ *pulumi.OutputState }
+
+func (TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpan)(nil)).Elem()
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanPtrOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanPtrOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanPtrOutput {
+	return o
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanPtrOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanPtrOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanPtrOutput {
+	return o
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanPtrOutput) Elem() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanOutput {
+	return o.ApplyT(func(v *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpan) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpan {
+		if v != nil {
+			return *v
+		}
+		var ret TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpan
+		return ret
+	}).(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanOutput)
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanPtrOutput) Value() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpan) *bool {
+		if v == nil {
+			return nil
+		}
+		return &v.Value
+	}).(pulumi.BoolPtrOutput)
+}
+
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperation struct {
+	InValues []string `pulumi:"inValues"`
+	Match    *string  `pulumi:"match"`
+	Value    *string  `pulumi:"value"`
+}
+
+// TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationInput is an input type that accepts TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationArgs and TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationOutput values.
+// You can construct a concrete instance of `TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationInput` via:
+//
+//	TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationArgs{...}
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationInput interface {
+	pulumi.Input
+
+	ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationOutput
+	ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationOutputWithContext(context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationOutput
+}
+
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationArgs struct {
+	InValues pulumi.StringArrayInput `pulumi:"inValues"`
+	Match    pulumi.StringPtrInput   `pulumi:"match"`
+	Value    pulumi.StringPtrInput   `pulumi:"value"`
+}
+
+func (TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperation)(nil)).Elem()
+}
+
+func (i TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationArgs) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationOutput {
+	return i.ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationOutputWithContext(context.Background())
+}
+
+func (i TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationArgs) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationOutput)
+}
+
+func (i TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationArgs) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationPtrOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationPtrOutput {
+	return i.ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationPtrOutputWithContext(context.Background())
+}
+
+func (i TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationArgs) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationPtrOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationOutput).ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationPtrOutputWithContext(ctx)
+}
+
+// TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationPtrInput is an input type that accepts TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationArgs, TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationPtr and TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationPtrOutput values.
+// You can construct a concrete instance of `TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationPtrInput` via:
+//
+//	        TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationArgs{...}
+//
+//	or:
+//
+//	        nil
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationPtrInput interface {
+	pulumi.Input
+
+	ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationPtrOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationPtrOutput
+	ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationPtrOutputWithContext(context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationPtrOutput
+}
+
+type traceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationPtrType TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationArgs
+
+func TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationPtr(v *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationArgs) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationPtrInput {
+	return (*traceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationPtrType)(v)
+}
+
+func (*traceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperation)(nil)).Elem()
+}
+
+func (i *traceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationPtrType) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationPtrOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationPtrOutput {
+	return i.ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationPtrOutputWithContext(context.Background())
+}
+
+func (i *traceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationPtrType) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationPtrOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationPtrOutput)
+}
+
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationOutput struct{ *pulumi.OutputState }
+
+func (TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperation)(nil)).Elem()
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationOutput {
+	return o
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationOutput {
+	return o
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationPtrOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationPtrOutput {
+	return o.ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationPtrOutputWithContext(context.Background())
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationPtrOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperation) *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperation {
+		return &v
+	}).(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationPtrOutput)
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationOutput) InValues() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperation) []string { return v.InValues }).(pulumi.StringArrayOutput)
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationOutput) Match() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperation) *string { return v.Match }).(pulumi.StringPtrOutput)
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperation) *string { return v.Value }).(pulumi.StringPtrOutput)
+}
+
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationPtrOutput struct{ *pulumi.OutputState }
+
+func (TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperation)(nil)).Elem()
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationPtrOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationPtrOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationPtrOutput {
+	return o
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationPtrOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationPtrOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationPtrOutput {
+	return o
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationPtrOutput) Elem() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationOutput {
+	return o.ApplyT(func(v *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperation) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperation {
+		if v != nil {
+			return *v
+		}
+		var ret TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperation
+		return ret
+	}).(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationOutput)
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationPtrOutput) InValues() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperation) []string {
+		if v == nil {
+			return nil
+		}
+		return v.InValues
+	}).(pulumi.StringArrayOutput)
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationPtrOutput) Match() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperation) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Match
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationPtrOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperation) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Value
+	}).(pulumi.StringPtrOutput)
+}
+
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperation struct {
+	InValues []string `pulumi:"inValues"`
+	Match    *string  `pulumi:"match"`
+	Value    *string  `pulumi:"value"`
+}
+
+// TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationInput is an input type that accepts TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationArgs and TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationOutput values.
+// You can construct a concrete instance of `TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationInput` via:
+//
+//	TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationArgs{...}
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationInput interface {
+	pulumi.Input
+
+	ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationOutput
+	ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationOutputWithContext(context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationOutput
+}
+
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationArgs struct {
+	InValues pulumi.StringArrayInput `pulumi:"inValues"`
+	Match    pulumi.StringPtrInput   `pulumi:"match"`
+	Value    pulumi.StringPtrInput   `pulumi:"value"`
+}
+
+func (TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperation)(nil)).Elem()
+}
+
+func (i TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationArgs) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationOutput {
+	return i.ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationOutputWithContext(context.Background())
+}
+
+func (i TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationArgs) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationOutput)
+}
+
+func (i TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationArgs) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationPtrOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationPtrOutput {
+	return i.ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationPtrOutputWithContext(context.Background())
+}
+
+func (i TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationArgs) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationPtrOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationOutput).ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationPtrOutputWithContext(ctx)
+}
+
+// TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationPtrInput is an input type that accepts TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationArgs, TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationPtr and TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationPtrOutput values.
+// You can construct a concrete instance of `TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationPtrInput` via:
+//
+//	        TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationArgs{...}
+//
+//	or:
+//
+//	        nil
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationPtrInput interface {
+	pulumi.Input
+
+	ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationPtrOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationPtrOutput
+	ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationPtrOutputWithContext(context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationPtrOutput
+}
+
+type traceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationPtrType TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationArgs
+
+func TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationPtr(v *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationArgs) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationPtrInput {
+	return (*traceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationPtrType)(v)
+}
+
+func (*traceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperation)(nil)).Elem()
+}
+
+func (i *traceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationPtrType) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationPtrOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationPtrOutput {
+	return i.ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationPtrOutputWithContext(context.Background())
+}
+
+func (i *traceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationPtrType) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationPtrOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationPtrOutput)
+}
+
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationOutput struct{ *pulumi.OutputState }
+
+func (TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperation)(nil)).Elem()
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationOutput {
+	return o
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationOutput {
+	return o
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationPtrOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationPtrOutput {
+	return o.ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationPtrOutputWithContext(context.Background())
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationPtrOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperation) *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperation {
+		return &v
+	}).(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationPtrOutput)
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationOutput) InValues() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperation) []string {
+		return v.InValues
+	}).(pulumi.StringArrayOutput)
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationOutput) Match() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperation) *string { return v.Match }).(pulumi.StringPtrOutput)
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperation) *string { return v.Value }).(pulumi.StringPtrOutput)
+}
+
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationPtrOutput struct{ *pulumi.OutputState }
+
+func (TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperation)(nil)).Elem()
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationPtrOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationPtrOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationPtrOutput {
+	return o
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationPtrOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationPtrOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationPtrOutput {
+	return o
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationPtrOutput) Elem() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationOutput {
+	return o.ApplyT(func(v *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperation) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperation {
+		if v != nil {
+			return *v
+		}
+		var ret TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperation
+		return ret
+	}).(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationOutput)
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationPtrOutput) InValues() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperation) []string {
+		if v == nil {
+			return nil
+		}
+		return v.InValues
+	}).(pulumi.StringArrayOutput)
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationPtrOutput) Match() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperation) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Match
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationPtrOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperation) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Value
+	}).(pulumi.StringPtrOutput)
+}
+
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentService struct {
+	InValues []string `pulumi:"inValues"`
+	Match    *string  `pulumi:"match"`
+	Value    *string  `pulumi:"value"`
+}
+
+// TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServiceInput is an input type that accepts TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServiceArgs and TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServiceOutput values.
+// You can construct a concrete instance of `TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServiceInput` via:
+//
+//	TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServiceArgs{...}
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServiceInput interface {
+	pulumi.Input
+
+	ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServiceOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServiceOutput
+	ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServiceOutputWithContext(context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServiceOutput
+}
+
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServiceArgs struct {
+	InValues pulumi.StringArrayInput `pulumi:"inValues"`
+	Match    pulumi.StringPtrInput   `pulumi:"match"`
+	Value    pulumi.StringPtrInput   `pulumi:"value"`
+}
+
+func (TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServiceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentService)(nil)).Elem()
+}
+
+func (i TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServiceArgs) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServiceOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServiceOutput {
+	return i.ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServiceOutputWithContext(context.Background())
+}
+
+func (i TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServiceArgs) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServiceOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServiceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServiceOutput)
+}
+
+func (i TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServiceArgs) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServicePtrOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServicePtrOutput {
+	return i.ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServicePtrOutputWithContext(context.Background())
+}
+
+func (i TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServiceArgs) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServicePtrOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServicePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServiceOutput).ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServicePtrOutputWithContext(ctx)
+}
+
+// TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServicePtrInput is an input type that accepts TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServiceArgs, TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServicePtr and TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServicePtrOutput values.
+// You can construct a concrete instance of `TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServicePtrInput` via:
+//
+//	        TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServiceArgs{...}
+//
+//	or:
+//
+//	        nil
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServicePtrInput interface {
+	pulumi.Input
+
+	ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServicePtrOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServicePtrOutput
+	ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServicePtrOutputWithContext(context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServicePtrOutput
+}
+
+type traceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServicePtrType TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServiceArgs
+
+func TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServicePtr(v *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServiceArgs) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServicePtrInput {
+	return (*traceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServicePtrType)(v)
+}
+
+func (*traceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServicePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentService)(nil)).Elem()
+}
+
+func (i *traceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServicePtrType) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServicePtrOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServicePtrOutput {
+	return i.ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServicePtrOutputWithContext(context.Background())
+}
+
+func (i *traceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServicePtrType) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServicePtrOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServicePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServicePtrOutput)
+}
+
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServiceOutput struct{ *pulumi.OutputState }
+
+func (TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServiceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentService)(nil)).Elem()
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServiceOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServiceOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServiceOutput {
+	return o
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServiceOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServiceOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServiceOutput {
+	return o
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServiceOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServicePtrOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServicePtrOutput {
+	return o.ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServicePtrOutputWithContext(context.Background())
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServiceOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServicePtrOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServicePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentService) *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentService {
+		return &v
+	}).(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServicePtrOutput)
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServiceOutput) InValues() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentService) []string { return v.InValues }).(pulumi.StringArrayOutput)
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServiceOutput) Match() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentService) *string { return v.Match }).(pulumi.StringPtrOutput)
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServiceOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentService) *string { return v.Value }).(pulumi.StringPtrOutput)
+}
+
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServicePtrOutput struct{ *pulumi.OutputState }
+
+func (TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServicePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentService)(nil)).Elem()
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServicePtrOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServicePtrOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServicePtrOutput {
+	return o
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServicePtrOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServicePtrOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServicePtrOutput {
+	return o
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServicePtrOutput) Elem() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServiceOutput {
+	return o.ApplyT(func(v *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentService) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentService {
+		if v != nil {
+			return *v
+		}
+		var ret TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentService
+		return ret
+	}).(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServiceOutput)
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServicePtrOutput) InValues() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentService) []string {
+		if v == nil {
+			return nil
+		}
+		return v.InValues
+	}).(pulumi.StringArrayOutput)
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServicePtrOutput) Match() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentService) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Match
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServicePtrOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentService) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Value
+	}).(pulumi.StringPtrOutput)
+}
+
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeService struct {
+	InValues []string `pulumi:"inValues"`
+	Match    *string  `pulumi:"match"`
+	Value    *string  `pulumi:"value"`
+}
+
+// TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServiceInput is an input type that accepts TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServiceArgs and TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServiceOutput values.
+// You can construct a concrete instance of `TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServiceInput` via:
+//
+//	TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServiceArgs{...}
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServiceInput interface {
+	pulumi.Input
+
+	ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServiceOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServiceOutput
+	ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServiceOutputWithContext(context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServiceOutput
+}
+
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServiceArgs struct {
+	InValues pulumi.StringArrayInput `pulumi:"inValues"`
+	Match    pulumi.StringPtrInput   `pulumi:"match"`
+	Value    pulumi.StringPtrInput   `pulumi:"value"`
+}
+
+func (TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServiceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeService)(nil)).Elem()
+}
+
+func (i TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServiceArgs) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServiceOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServiceOutput {
+	return i.ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServiceOutputWithContext(context.Background())
+}
+
+func (i TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServiceArgs) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServiceOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServiceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServiceOutput)
+}
+
+func (i TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServiceArgs) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServicePtrOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServicePtrOutput {
+	return i.ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServicePtrOutputWithContext(context.Background())
+}
+
+func (i TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServiceArgs) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServicePtrOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServicePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServiceOutput).ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServicePtrOutputWithContext(ctx)
+}
+
+// TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServicePtrInput is an input type that accepts TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServiceArgs, TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServicePtr and TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServicePtrOutput values.
+// You can construct a concrete instance of `TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServicePtrInput` via:
+//
+//	        TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServiceArgs{...}
+//
+//	or:
+//
+//	        nil
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServicePtrInput interface {
+	pulumi.Input
+
+	ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServicePtrOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServicePtrOutput
+	ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServicePtrOutputWithContext(context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServicePtrOutput
+}
+
+type traceTailSamplingRulesRuleFilterScopeFilterSpanScopeServicePtrType TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServiceArgs
+
+func TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServicePtr(v *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServiceArgs) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServicePtrInput {
+	return (*traceTailSamplingRulesRuleFilterScopeFilterSpanScopeServicePtrType)(v)
+}
+
+func (*traceTailSamplingRulesRuleFilterScopeFilterSpanScopeServicePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeService)(nil)).Elem()
+}
+
+func (i *traceTailSamplingRulesRuleFilterScopeFilterSpanScopeServicePtrType) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServicePtrOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServicePtrOutput {
+	return i.ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServicePtrOutputWithContext(context.Background())
+}
+
+func (i *traceTailSamplingRulesRuleFilterScopeFilterSpanScopeServicePtrType) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServicePtrOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServicePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServicePtrOutput)
+}
+
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServiceOutput struct{ *pulumi.OutputState }
+
+func (TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServiceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeService)(nil)).Elem()
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServiceOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServiceOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServiceOutput {
+	return o
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServiceOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServiceOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServiceOutput {
+	return o
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServiceOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServicePtrOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServicePtrOutput {
+	return o.ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServicePtrOutputWithContext(context.Background())
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServiceOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServicePtrOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServicePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeService) *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeService {
+		return &v
+	}).(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServicePtrOutput)
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServiceOutput) InValues() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeService) []string { return v.InValues }).(pulumi.StringArrayOutput)
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServiceOutput) Match() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeService) *string { return v.Match }).(pulumi.StringPtrOutput)
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServiceOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeService) *string { return v.Value }).(pulumi.StringPtrOutput)
+}
+
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServicePtrOutput struct{ *pulumi.OutputState }
+
+func (TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServicePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeService)(nil)).Elem()
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServicePtrOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServicePtrOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServicePtrOutput {
+	return o
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServicePtrOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServicePtrOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServicePtrOutput {
+	return o
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServicePtrOutput) Elem() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServiceOutput {
+	return o.ApplyT(func(v *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeService) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeService {
+		if v != nil {
+			return *v
+		}
+		var ret TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeService
+		return ret
+	}).(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServiceOutput)
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServicePtrOutput) InValues() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeService) []string {
+		if v == nil {
+			return nil
+		}
+		return v.InValues
+	}).(pulumi.StringArrayOutput)
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServicePtrOutput) Match() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeService) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Match
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServicePtrOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeService) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Value
+	}).(pulumi.StringPtrOutput)
+}
+
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCount struct {
+	Max *int `pulumi:"max"`
+	Min *int `pulumi:"min"`
+}
+
+// TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountInput is an input type that accepts TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountArgs and TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountOutput values.
+// You can construct a concrete instance of `TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountInput` via:
+//
+//	TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountArgs{...}
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountInput interface {
+	pulumi.Input
+
+	ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountOutput
+	ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountOutputWithContext(context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountOutput
+}
+
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountArgs struct {
+	Max pulumi.IntPtrInput `pulumi:"max"`
+	Min pulumi.IntPtrInput `pulumi:"min"`
+}
+
+func (TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCount)(nil)).Elem()
+}
+
+func (i TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountArgs) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountOutput {
+	return i.ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountOutputWithContext(context.Background())
+}
+
+func (i TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountArgs) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountOutput)
+}
+
+func (i TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountArgs) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountPtrOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountPtrOutput {
+	return i.ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountPtrOutputWithContext(context.Background())
+}
+
+func (i TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountArgs) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountPtrOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountOutput).ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountPtrOutputWithContext(ctx)
+}
+
+// TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountPtrInput is an input type that accepts TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountArgs, TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountPtr and TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountPtrOutput values.
+// You can construct a concrete instance of `TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountPtrInput` via:
+//
+//	        TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountArgs{...}
+//
+//	or:
+//
+//	        nil
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountPtrInput interface {
+	pulumi.Input
+
+	ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountPtrOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountPtrOutput
+	ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountPtrOutputWithContext(context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountPtrOutput
+}
+
+type traceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountPtrType TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountArgs
+
+func TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountPtr(v *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountArgs) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountPtrInput {
+	return (*traceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountPtrType)(v)
+}
+
+func (*traceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCount)(nil)).Elem()
+}
+
+func (i *traceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountPtrType) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountPtrOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountPtrOutput {
+	return i.ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountPtrOutputWithContext(context.Background())
+}
+
+func (i *traceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountPtrType) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountPtrOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountPtrOutput)
+}
+
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountOutput struct{ *pulumi.OutputState }
+
+func (TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCount)(nil)).Elem()
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountOutput {
+	return o
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountOutput {
+	return o
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountPtrOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountPtrOutput {
+	return o.ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountPtrOutputWithContext(context.Background())
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountPtrOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCount) *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCount {
+		return &v
+	}).(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountPtrOutput)
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountOutput) Max() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCount) *int { return v.Max }).(pulumi.IntPtrOutput)
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountOutput) Min() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCount) *int { return v.Min }).(pulumi.IntPtrOutput)
+}
+
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountPtrOutput struct{ *pulumi.OutputState }
+
+func (TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCount)(nil)).Elem()
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountPtrOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountPtrOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountPtrOutput {
+	return o
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountPtrOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountPtrOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountPtrOutput {
+	return o
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountPtrOutput) Elem() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountOutput {
+	return o.ApplyT(func(v *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCount) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCount {
+		if v != nil {
+			return *v
+		}
+		var ret TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCount
+		return ret
+	}).(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountOutput)
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountPtrOutput) Max() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCount) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Max
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountPtrOutput) Min() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCount) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Min
+	}).(pulumi.IntPtrOutput)
+}
+
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTag struct {
+	Key          *string                                                              `pulumi:"key"`
+	NumericValue *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValue `pulumi:"numericValue"`
+	Value        *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValue        `pulumi:"value"`
+}
+
+// TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagInput is an input type that accepts TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagArgs and TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagOutput values.
+// You can construct a concrete instance of `TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagInput` via:
+//
+//	TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagArgs{...}
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagInput interface {
+	pulumi.Input
+
+	ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagOutput
+	ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagOutputWithContext(context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagOutput
+}
+
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagArgs struct {
+	Key          pulumi.StringPtrInput                                                       `pulumi:"key"`
+	NumericValue TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValuePtrInput `pulumi:"numericValue"`
+	Value        TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValuePtrInput        `pulumi:"value"`
+}
+
+func (TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTag)(nil)).Elem()
+}
+
+func (i TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagArgs) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagOutput {
+	return i.ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagOutputWithContext(context.Background())
+}
+
+func (i TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagArgs) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagOutput)
+}
+
+// TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagArrayInput is an input type that accepts TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagArray and TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagArrayOutput values.
+// You can construct a concrete instance of `TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagArrayInput` via:
+//
+//	TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagArray{ TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagArgs{...} }
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagArrayInput interface {
+	pulumi.Input
+
+	ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagArrayOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagArrayOutput
+	ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagArrayOutputWithContext(context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagArrayOutput
+}
+
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagArray []TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagInput
+
+func (TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTag)(nil)).Elem()
+}
+
+func (i TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagArray) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagArrayOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagArrayOutput {
+	return i.ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagArrayOutputWithContext(context.Background())
+}
+
+func (i TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagArray) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagArrayOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagArrayOutput)
+}
+
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagOutput struct{ *pulumi.OutputState }
+
+func (TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTag)(nil)).Elem()
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagOutput {
+	return o
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagOutput {
+	return o
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagOutput) Key() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTag) *string { return v.Key }).(pulumi.StringPtrOutput)
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagOutput) NumericValue() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValuePtrOutput {
+	return o.ApplyT(func(v TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTag) *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValue {
+		return v.NumericValue
+	}).(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValuePtrOutput)
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagOutput) Value() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValuePtrOutput {
+	return o.ApplyT(func(v TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTag) *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValue {
+		return v.Value
+	}).(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValuePtrOutput)
+}
+
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagArrayOutput struct{ *pulumi.OutputState }
+
+func (TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTag)(nil)).Elem()
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagArrayOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagArrayOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagArrayOutput {
+	return o
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagArrayOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagArrayOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagArrayOutput {
+	return o
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagArrayOutput) Index(i pulumi.IntInput) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTag {
+		return vs[0].([]TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTag)[vs[1].(int)]
+	}).(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagOutput)
+}
+
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValue struct {
+	Comparison string  `pulumi:"comparison"`
+	Value      float64 `pulumi:"value"`
+}
+
+// TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValueInput is an input type that accepts TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValueArgs and TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValueOutput values.
+// You can construct a concrete instance of `TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValueInput` via:
+//
+//	TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValueArgs{...}
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValueInput interface {
+	pulumi.Input
+
+	ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValueOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValueOutput
+	ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValueOutputWithContext(context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValueOutput
+}
+
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValueArgs struct {
+	Comparison pulumi.StringInput  `pulumi:"comparison"`
+	Value      pulumi.Float64Input `pulumi:"value"`
+}
+
+func (TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValueArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValue)(nil)).Elem()
+}
+
+func (i TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValueArgs) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValueOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValueOutput {
+	return i.ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValueOutputWithContext(context.Background())
+}
+
+func (i TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValueArgs) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValueOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValueOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValueOutput)
+}
+
+func (i TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValueArgs) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValuePtrOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValuePtrOutput {
+	return i.ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValuePtrOutputWithContext(context.Background())
+}
+
+func (i TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValueArgs) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValuePtrOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValuePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValueOutput).ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValuePtrOutputWithContext(ctx)
+}
+
+// TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValuePtrInput is an input type that accepts TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValueArgs, TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValuePtr and TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValuePtrOutput values.
+// You can construct a concrete instance of `TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValuePtrInput` via:
+//
+//	        TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValueArgs{...}
+//
+//	or:
+//
+//	        nil
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValuePtrInput interface {
+	pulumi.Input
+
+	ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValuePtrOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValuePtrOutput
+	ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValuePtrOutputWithContext(context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValuePtrOutput
+}
+
+type traceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValuePtrType TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValueArgs
+
+func TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValuePtr(v *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValueArgs) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValuePtrInput {
+	return (*traceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValuePtrType)(v)
+}
+
+func (*traceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValuePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValue)(nil)).Elem()
+}
+
+func (i *traceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValuePtrType) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValuePtrOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValuePtrOutput {
+	return i.ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValuePtrOutputWithContext(context.Background())
+}
+
+func (i *traceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValuePtrType) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValuePtrOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValuePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValuePtrOutput)
+}
+
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValueOutput struct{ *pulumi.OutputState }
+
+func (TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValueOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValue)(nil)).Elem()
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValueOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValueOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValueOutput {
+	return o
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValueOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValueOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValueOutput {
+	return o
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValueOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValuePtrOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValuePtrOutput {
+	return o.ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValuePtrOutputWithContext(context.Background())
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValueOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValuePtrOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValuePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValue) *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValue {
+		return &v
+	}).(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValuePtrOutput)
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValueOutput) Comparison() pulumi.StringOutput {
+	return o.ApplyT(func(v TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValue) string {
+		return v.Comparison
+	}).(pulumi.StringOutput)
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValueOutput) Value() pulumi.Float64Output {
+	return o.ApplyT(func(v TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValue) float64 { return v.Value }).(pulumi.Float64Output)
+}
+
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValuePtrOutput struct{ *pulumi.OutputState }
+
+func (TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValuePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValue)(nil)).Elem()
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValuePtrOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValuePtrOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValuePtrOutput {
+	return o
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValuePtrOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValuePtrOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValuePtrOutput {
+	return o
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValuePtrOutput) Elem() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValueOutput {
+	return o.ApplyT(func(v *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValue) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValue {
+		if v != nil {
+			return *v
+		}
+		var ret TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValue
+		return ret
+	}).(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValueOutput)
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValuePtrOutput) Comparison() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValue) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Comparison
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValuePtrOutput) Value() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValue) *float64 {
+		if v == nil {
+			return nil
+		}
+		return &v.Value
+	}).(pulumi.Float64PtrOutput)
+}
+
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValue struct {
+	InValues []string `pulumi:"inValues"`
+	Match    *string  `pulumi:"match"`
+	Value    *string  `pulumi:"value"`
+}
+
+// TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValueInput is an input type that accepts TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValueArgs and TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValueOutput values.
+// You can construct a concrete instance of `TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValueInput` via:
+//
+//	TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValueArgs{...}
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValueInput interface {
+	pulumi.Input
+
+	ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValueOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValueOutput
+	ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValueOutputWithContext(context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValueOutput
+}
+
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValueArgs struct {
+	InValues pulumi.StringArrayInput `pulumi:"inValues"`
+	Match    pulumi.StringPtrInput   `pulumi:"match"`
+	Value    pulumi.StringPtrInput   `pulumi:"value"`
+}
+
+func (TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValueArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValue)(nil)).Elem()
+}
+
+func (i TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValueArgs) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValueOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValueOutput {
+	return i.ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValueOutputWithContext(context.Background())
+}
+
+func (i TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValueArgs) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValueOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValueOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValueOutput)
+}
+
+func (i TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValueArgs) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValuePtrOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValuePtrOutput {
+	return i.ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValuePtrOutputWithContext(context.Background())
+}
+
+func (i TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValueArgs) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValuePtrOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValuePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValueOutput).ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValuePtrOutputWithContext(ctx)
+}
+
+// TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValuePtrInput is an input type that accepts TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValueArgs, TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValuePtr and TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValuePtrOutput values.
+// You can construct a concrete instance of `TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValuePtrInput` via:
+//
+//	        TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValueArgs{...}
+//
+//	or:
+//
+//	        nil
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValuePtrInput interface {
+	pulumi.Input
+
+	ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValuePtrOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValuePtrOutput
+	ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValuePtrOutputWithContext(context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValuePtrOutput
+}
+
+type traceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValuePtrType TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValueArgs
+
+func TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValuePtr(v *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValueArgs) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValuePtrInput {
+	return (*traceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValuePtrType)(v)
+}
+
+func (*traceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValuePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValue)(nil)).Elem()
+}
+
+func (i *traceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValuePtrType) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValuePtrOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValuePtrOutput {
+	return i.ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValuePtrOutputWithContext(context.Background())
+}
+
+func (i *traceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValuePtrType) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValuePtrOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValuePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValuePtrOutput)
+}
+
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValueOutput struct{ *pulumi.OutputState }
+
+func (TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValueOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValue)(nil)).Elem()
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValueOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValueOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValueOutput {
+	return o
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValueOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValueOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValueOutput {
+	return o
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValueOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValuePtrOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValuePtrOutput {
+	return o.ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValuePtrOutputWithContext(context.Background())
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValueOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValuePtrOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValuePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValue) *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValue {
+		return &v
+	}).(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValuePtrOutput)
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValueOutput) InValues() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValue) []string { return v.InValues }).(pulumi.StringArrayOutput)
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValueOutput) Match() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValue) *string { return v.Match }).(pulumi.StringPtrOutput)
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValueOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValue) *string { return v.Value }).(pulumi.StringPtrOutput)
+}
+
+type TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValuePtrOutput struct{ *pulumi.OutputState }
+
+func (TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValuePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValue)(nil)).Elem()
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValuePtrOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValuePtrOutput() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValuePtrOutput {
+	return o
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValuePtrOutput) ToTraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValuePtrOutputWithContext(ctx context.Context) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValuePtrOutput {
+	return o
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValuePtrOutput) Elem() TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValueOutput {
+	return o.ApplyT(func(v *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValue) TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValue {
+		if v != nil {
+			return *v
+		}
+		var ret TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValue
+		return ret
+	}).(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValueOutput)
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValuePtrOutput) InValues() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValue) []string {
+		if v == nil {
+			return nil
+		}
+		return v.InValues
+	}).(pulumi.StringArrayOutput)
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValuePtrOutput) Match() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValue) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Match
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValuePtrOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValue) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Value
+	}).(pulumi.StringPtrOutput)
 }
 
 type TraceTailSamplingRulesRuleFilterSpan struct {
@@ -30319,6 +38618,32 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DatasetConfigurationTraceDatasetPtrInput)(nil)).Elem(), DatasetConfigurationTraceDatasetArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DatasetConfigurationTraceDatasetMatchCriteriaInput)(nil)).Elem(), DatasetConfigurationTraceDatasetMatchCriteriaArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DatasetConfigurationTraceDatasetMatchCriteriaPtrInput)(nil)).Elem(), DatasetConfigurationTraceDatasetMatchCriteriaArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterInput)(nil)).Elem(), DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterPtrInput)(nil)).Elem(), DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeInput)(nil)).Elem(), DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeArrayInput)(nil)).Elem(), DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationInput)(nil)).Elem(), DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationPtrInput)(nil)).Elem(), DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorInput)(nil)).Elem(), DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorPtrInput)(nil)).Elem(), DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanInput)(nil)).Elem(), DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanPtrInput)(nil)).Elem(), DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationInput)(nil)).Elem(), DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationPtrInput)(nil)).Elem(), DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationInput)(nil)).Elem(), DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationPtrInput)(nil)).Elem(), DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServiceInput)(nil)).Elem(), DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServiceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServicePtrInput)(nil)).Elem(), DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServiceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServiceInput)(nil)).Elem(), DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServiceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServicePtrInput)(nil)).Elem(), DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServiceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountInput)(nil)).Elem(), DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountPtrInput)(nil)).Elem(), DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagInput)(nil)).Elem(), DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagArrayInput)(nil)).Elem(), DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValueInput)(nil)).Elem(), DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValueArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValuePtrInput)(nil)).Elem(), DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValueArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValueInput)(nil)).Elem(), DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValueArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValuePtrInput)(nil)).Elem(), DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValueArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DatasetConfigurationTraceDatasetMatchCriteriaSpanInput)(nil)).Elem(), DatasetConfigurationTraceDatasetMatchCriteriaSpanArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DatasetConfigurationTraceDatasetMatchCriteriaSpanArrayInput)(nil)).Elem(), DatasetConfigurationTraceDatasetMatchCriteriaSpanArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DatasetConfigurationTraceDatasetMatchCriteriaSpanDurationInput)(nil)).Elem(), DatasetConfigurationTraceDatasetMatchCriteriaSpanDurationArgs{})
@@ -30382,6 +38707,14 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DropRuleValueBasedDropPtrInput)(nil)).Elem(), DropRuleValueBasedDropArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GcpMetricsIntegrationMetricGroupInput)(nil)).Elem(), GcpMetricsIntegrationMetricGroupArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GcpMetricsIntegrationMetricGroupArrayInput)(nil)).Elem(), GcpMetricsIntegrationMetricGroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GcpMetricsIntegrationMetricGroupFilterInput)(nil)).Elem(), GcpMetricsIntegrationMetricGroupFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GcpMetricsIntegrationMetricGroupFilterArrayInput)(nil)).Elem(), GcpMetricsIntegrationMetricGroupFilterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GcpMetricsIntegrationMetricGroupRollupRuleInput)(nil)).Elem(), GcpMetricsIntegrationMetricGroupRollupRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GcpMetricsIntegrationMetricGroupRollupRuleArrayInput)(nil)).Elem(), GcpMetricsIntegrationMetricGroupRollupRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyInput)(nil)).Elem(), GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyPtrInput)(nil)).Elem(), GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepInput)(nil)).Elem(), GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepArrayInput)(nil)).Elem(), GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GcpMetricsIntegrationServiceAccountInput)(nil)).Elem(), GcpMetricsIntegrationServiceAccountArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GcpMetricsIntegrationServiceAccountPtrInput)(nil)).Elem(), GcpMetricsIntegrationServiceAccountArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LogAllocationConfigDatasetAllocationInput)(nil)).Elem(), LogAllocationConfigDatasetAllocationArgs{})
@@ -30622,8 +38955,60 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*TraceMetricsRuleGroupByInput)(nil)).Elem(), TraceMetricsRuleGroupByArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TraceMetricsRuleGroupByArrayInput)(nil)).Elem(), TraceMetricsRuleGroupByArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TraceMetricsRuleGroupByKeyInput)(nil)).Elem(), TraceMetricsRuleGroupByKeyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceMetricsRuleScopeFilterInput)(nil)).Elem(), TraceMetricsRuleScopeFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceMetricsRuleScopeFilterPtrInput)(nil)).Elem(), TraceMetricsRuleScopeFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceMetricsRuleScopeFilterSpanScopeInput)(nil)).Elem(), TraceMetricsRuleScopeFilterSpanScopeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceMetricsRuleScopeFilterSpanScopeArrayInput)(nil)).Elem(), TraceMetricsRuleScopeFilterSpanScopeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceMetricsRuleScopeFilterSpanScopeDurationInput)(nil)).Elem(), TraceMetricsRuleScopeFilterSpanScopeDurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceMetricsRuleScopeFilterSpanScopeDurationPtrInput)(nil)).Elem(), TraceMetricsRuleScopeFilterSpanScopeDurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceMetricsRuleScopeFilterSpanScopeErrorInput)(nil)).Elem(), TraceMetricsRuleScopeFilterSpanScopeErrorArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceMetricsRuleScopeFilterSpanScopeErrorPtrInput)(nil)).Elem(), TraceMetricsRuleScopeFilterSpanScopeErrorArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceMetricsRuleScopeFilterSpanScopeIsRootSpanInput)(nil)).Elem(), TraceMetricsRuleScopeFilterSpanScopeIsRootSpanArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceMetricsRuleScopeFilterSpanScopeIsRootSpanPtrInput)(nil)).Elem(), TraceMetricsRuleScopeFilterSpanScopeIsRootSpanArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceMetricsRuleScopeFilterSpanScopeOperationInput)(nil)).Elem(), TraceMetricsRuleScopeFilterSpanScopeOperationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceMetricsRuleScopeFilterSpanScopeOperationPtrInput)(nil)).Elem(), TraceMetricsRuleScopeFilterSpanScopeOperationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceMetricsRuleScopeFilterSpanScopeParentOperationInput)(nil)).Elem(), TraceMetricsRuleScopeFilterSpanScopeParentOperationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceMetricsRuleScopeFilterSpanScopeParentOperationPtrInput)(nil)).Elem(), TraceMetricsRuleScopeFilterSpanScopeParentOperationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceMetricsRuleScopeFilterSpanScopeParentServiceInput)(nil)).Elem(), TraceMetricsRuleScopeFilterSpanScopeParentServiceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceMetricsRuleScopeFilterSpanScopeParentServicePtrInput)(nil)).Elem(), TraceMetricsRuleScopeFilterSpanScopeParentServiceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceMetricsRuleScopeFilterSpanScopeServiceInput)(nil)).Elem(), TraceMetricsRuleScopeFilterSpanScopeServiceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceMetricsRuleScopeFilterSpanScopeServicePtrInput)(nil)).Elem(), TraceMetricsRuleScopeFilterSpanScopeServiceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceMetricsRuleScopeFilterSpanScopeSpanCountInput)(nil)).Elem(), TraceMetricsRuleScopeFilterSpanScopeSpanCountArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceMetricsRuleScopeFilterSpanScopeSpanCountPtrInput)(nil)).Elem(), TraceMetricsRuleScopeFilterSpanScopeSpanCountArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceMetricsRuleScopeFilterSpanScopeTagInput)(nil)).Elem(), TraceMetricsRuleScopeFilterSpanScopeTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceMetricsRuleScopeFilterSpanScopeTagArrayInput)(nil)).Elem(), TraceMetricsRuleScopeFilterSpanScopeTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceMetricsRuleScopeFilterSpanScopeTagNumericValueInput)(nil)).Elem(), TraceMetricsRuleScopeFilterSpanScopeTagNumericValueArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceMetricsRuleScopeFilterSpanScopeTagNumericValuePtrInput)(nil)).Elem(), TraceMetricsRuleScopeFilterSpanScopeTagNumericValueArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceMetricsRuleScopeFilterSpanScopeTagValueInput)(nil)).Elem(), TraceMetricsRuleScopeFilterSpanScopeTagValueArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceMetricsRuleScopeFilterSpanScopeTagValuePtrInput)(nil)).Elem(), TraceMetricsRuleScopeFilterSpanScopeTagValueArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TraceMetricsRuleTraceFilterInput)(nil)).Elem(), TraceMetricsRuleTraceFilterArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TraceMetricsRuleTraceFilterPtrInput)(nil)).Elem(), TraceMetricsRuleTraceFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceMetricsRuleTraceFilterScopeFilterInput)(nil)).Elem(), TraceMetricsRuleTraceFilterScopeFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceMetricsRuleTraceFilterScopeFilterPtrInput)(nil)).Elem(), TraceMetricsRuleTraceFilterScopeFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceMetricsRuleTraceFilterScopeFilterSpanScopeInput)(nil)).Elem(), TraceMetricsRuleTraceFilterScopeFilterSpanScopeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceMetricsRuleTraceFilterScopeFilterSpanScopeArrayInput)(nil)).Elem(), TraceMetricsRuleTraceFilterScopeFilterSpanScopeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationInput)(nil)).Elem(), TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationPtrInput)(nil)).Elem(), TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorInput)(nil)).Elem(), TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorPtrInput)(nil)).Elem(), TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanInput)(nil)).Elem(), TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanPtrInput)(nil)).Elem(), TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationInput)(nil)).Elem(), TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationPtrInput)(nil)).Elem(), TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationInput)(nil)).Elem(), TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationPtrInput)(nil)).Elem(), TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServiceInput)(nil)).Elem(), TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServiceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServicePtrInput)(nil)).Elem(), TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServiceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceMetricsRuleTraceFilterScopeFilterSpanScopeServiceInput)(nil)).Elem(), TraceMetricsRuleTraceFilterScopeFilterSpanScopeServiceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceMetricsRuleTraceFilterScopeFilterSpanScopeServicePtrInput)(nil)).Elem(), TraceMetricsRuleTraceFilterScopeFilterSpanScopeServiceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountInput)(nil)).Elem(), TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountPtrInput)(nil)).Elem(), TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagInput)(nil)).Elem(), TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagArrayInput)(nil)).Elem(), TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValueInput)(nil)).Elem(), TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValueArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValuePtrInput)(nil)).Elem(), TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValueArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValueInput)(nil)).Elem(), TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValueArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValuePtrInput)(nil)).Elem(), TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValueArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TraceMetricsRuleTraceFilterSpanInput)(nil)).Elem(), TraceMetricsRuleTraceFilterSpanArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TraceMetricsRuleTraceFilterSpanArrayInput)(nil)).Elem(), TraceMetricsRuleTraceFilterSpanArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TraceMetricsRuleTraceFilterSpanDurationInput)(nil)).Elem(), TraceMetricsRuleTraceFilterSpanDurationArgs{})
@@ -30659,6 +39044,32 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*TraceTailSamplingRulesRuleInput)(nil)).Elem(), TraceTailSamplingRulesRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TraceTailSamplingRulesRuleArrayInput)(nil)).Elem(), TraceTailSamplingRulesRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TraceTailSamplingRulesRuleFilterInput)(nil)).Elem(), TraceTailSamplingRulesRuleFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceTailSamplingRulesRuleFilterScopeFilterInput)(nil)).Elem(), TraceTailSamplingRulesRuleFilterScopeFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceTailSamplingRulesRuleFilterScopeFilterPtrInput)(nil)).Elem(), TraceTailSamplingRulesRuleFilterScopeFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeInput)(nil)).Elem(), TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeArrayInput)(nil)).Elem(), TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationInput)(nil)).Elem(), TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationPtrInput)(nil)).Elem(), TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorInput)(nil)).Elem(), TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorPtrInput)(nil)).Elem(), TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanInput)(nil)).Elem(), TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanPtrInput)(nil)).Elem(), TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationInput)(nil)).Elem(), TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationPtrInput)(nil)).Elem(), TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationInput)(nil)).Elem(), TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationPtrInput)(nil)).Elem(), TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServiceInput)(nil)).Elem(), TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServiceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServicePtrInput)(nil)).Elem(), TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServiceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServiceInput)(nil)).Elem(), TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServiceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServicePtrInput)(nil)).Elem(), TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServiceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountInput)(nil)).Elem(), TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountPtrInput)(nil)).Elem(), TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagInput)(nil)).Elem(), TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagArrayInput)(nil)).Elem(), TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValueInput)(nil)).Elem(), TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValueArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValuePtrInput)(nil)).Elem(), TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValueArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValueInput)(nil)).Elem(), TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValueArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValuePtrInput)(nil)).Elem(), TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValueArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TraceTailSamplingRulesRuleFilterSpanInput)(nil)).Elem(), TraceTailSamplingRulesRuleFilterSpanArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TraceTailSamplingRulesRuleFilterSpanArrayInput)(nil)).Elem(), TraceTailSamplingRulesRuleFilterSpanArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TraceTailSamplingRulesRuleFilterSpanDurationInput)(nil)).Elem(), TraceTailSamplingRulesRuleFilterSpanDurationArgs{})
@@ -30767,6 +39178,32 @@ func init() {
 	pulumi.RegisterOutputType(DatasetConfigurationTraceDatasetPtrOutput{})
 	pulumi.RegisterOutputType(DatasetConfigurationTraceDatasetMatchCriteriaOutput{})
 	pulumi.RegisterOutputType(DatasetConfigurationTraceDatasetMatchCriteriaPtrOutput{})
+	pulumi.RegisterOutputType(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterOutput{})
+	pulumi.RegisterOutputType(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterPtrOutput{})
+	pulumi.RegisterOutputType(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOutput{})
+	pulumi.RegisterOutputType(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeArrayOutput{})
+	pulumi.RegisterOutputType(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationOutput{})
+	pulumi.RegisterOutputType(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationPtrOutput{})
+	pulumi.RegisterOutputType(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorOutput{})
+	pulumi.RegisterOutputType(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorPtrOutput{})
+	pulumi.RegisterOutputType(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanOutput{})
+	pulumi.RegisterOutputType(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanPtrOutput{})
+	pulumi.RegisterOutputType(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationOutput{})
+	pulumi.RegisterOutputType(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationPtrOutput{})
+	pulumi.RegisterOutputType(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationOutput{})
+	pulumi.RegisterOutputType(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationPtrOutput{})
+	pulumi.RegisterOutputType(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServiceOutput{})
+	pulumi.RegisterOutputType(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServicePtrOutput{})
+	pulumi.RegisterOutputType(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServiceOutput{})
+	pulumi.RegisterOutputType(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServicePtrOutput{})
+	pulumi.RegisterOutputType(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountOutput{})
+	pulumi.RegisterOutputType(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountPtrOutput{})
+	pulumi.RegisterOutputType(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagOutput{})
+	pulumi.RegisterOutputType(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagArrayOutput{})
+	pulumi.RegisterOutputType(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValueOutput{})
+	pulumi.RegisterOutputType(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValuePtrOutput{})
+	pulumi.RegisterOutputType(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValueOutput{})
+	pulumi.RegisterOutputType(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValuePtrOutput{})
 	pulumi.RegisterOutputType(DatasetConfigurationTraceDatasetMatchCriteriaSpanOutput{})
 	pulumi.RegisterOutputType(DatasetConfigurationTraceDatasetMatchCriteriaSpanArrayOutput{})
 	pulumi.RegisterOutputType(DatasetConfigurationTraceDatasetMatchCriteriaSpanDurationOutput{})
@@ -30830,6 +39267,14 @@ func init() {
 	pulumi.RegisterOutputType(DropRuleValueBasedDropPtrOutput{})
 	pulumi.RegisterOutputType(GcpMetricsIntegrationMetricGroupOutput{})
 	pulumi.RegisterOutputType(GcpMetricsIntegrationMetricGroupArrayOutput{})
+	pulumi.RegisterOutputType(GcpMetricsIntegrationMetricGroupFilterOutput{})
+	pulumi.RegisterOutputType(GcpMetricsIntegrationMetricGroupFilterArrayOutput{})
+	pulumi.RegisterOutputType(GcpMetricsIntegrationMetricGroupRollupRuleOutput{})
+	pulumi.RegisterOutputType(GcpMetricsIntegrationMetricGroupRollupRuleArrayOutput{})
+	pulumi.RegisterOutputType(GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyOutput{})
+	pulumi.RegisterOutputType(GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyPtrOutput{})
+	pulumi.RegisterOutputType(GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepOutput{})
+	pulumi.RegisterOutputType(GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepArrayOutput{})
 	pulumi.RegisterOutputType(GcpMetricsIntegrationServiceAccountOutput{})
 	pulumi.RegisterOutputType(GcpMetricsIntegrationServiceAccountPtrOutput{})
 	pulumi.RegisterOutputType(LogAllocationConfigDatasetAllocationOutput{})
@@ -31070,8 +39515,60 @@ func init() {
 	pulumi.RegisterOutputType(TraceMetricsRuleGroupByOutput{})
 	pulumi.RegisterOutputType(TraceMetricsRuleGroupByArrayOutput{})
 	pulumi.RegisterOutputType(TraceMetricsRuleGroupByKeyOutput{})
+	pulumi.RegisterOutputType(TraceMetricsRuleScopeFilterOutput{})
+	pulumi.RegisterOutputType(TraceMetricsRuleScopeFilterPtrOutput{})
+	pulumi.RegisterOutputType(TraceMetricsRuleScopeFilterSpanScopeOutput{})
+	pulumi.RegisterOutputType(TraceMetricsRuleScopeFilterSpanScopeArrayOutput{})
+	pulumi.RegisterOutputType(TraceMetricsRuleScopeFilterSpanScopeDurationOutput{})
+	pulumi.RegisterOutputType(TraceMetricsRuleScopeFilterSpanScopeDurationPtrOutput{})
+	pulumi.RegisterOutputType(TraceMetricsRuleScopeFilterSpanScopeErrorOutput{})
+	pulumi.RegisterOutputType(TraceMetricsRuleScopeFilterSpanScopeErrorPtrOutput{})
+	pulumi.RegisterOutputType(TraceMetricsRuleScopeFilterSpanScopeIsRootSpanOutput{})
+	pulumi.RegisterOutputType(TraceMetricsRuleScopeFilterSpanScopeIsRootSpanPtrOutput{})
+	pulumi.RegisterOutputType(TraceMetricsRuleScopeFilterSpanScopeOperationOutput{})
+	pulumi.RegisterOutputType(TraceMetricsRuleScopeFilterSpanScopeOperationPtrOutput{})
+	pulumi.RegisterOutputType(TraceMetricsRuleScopeFilterSpanScopeParentOperationOutput{})
+	pulumi.RegisterOutputType(TraceMetricsRuleScopeFilterSpanScopeParentOperationPtrOutput{})
+	pulumi.RegisterOutputType(TraceMetricsRuleScopeFilterSpanScopeParentServiceOutput{})
+	pulumi.RegisterOutputType(TraceMetricsRuleScopeFilterSpanScopeParentServicePtrOutput{})
+	pulumi.RegisterOutputType(TraceMetricsRuleScopeFilterSpanScopeServiceOutput{})
+	pulumi.RegisterOutputType(TraceMetricsRuleScopeFilterSpanScopeServicePtrOutput{})
+	pulumi.RegisterOutputType(TraceMetricsRuleScopeFilterSpanScopeSpanCountOutput{})
+	pulumi.RegisterOutputType(TraceMetricsRuleScopeFilterSpanScopeSpanCountPtrOutput{})
+	pulumi.RegisterOutputType(TraceMetricsRuleScopeFilterSpanScopeTagOutput{})
+	pulumi.RegisterOutputType(TraceMetricsRuleScopeFilterSpanScopeTagArrayOutput{})
+	pulumi.RegisterOutputType(TraceMetricsRuleScopeFilterSpanScopeTagNumericValueOutput{})
+	pulumi.RegisterOutputType(TraceMetricsRuleScopeFilterSpanScopeTagNumericValuePtrOutput{})
+	pulumi.RegisterOutputType(TraceMetricsRuleScopeFilterSpanScopeTagValueOutput{})
+	pulumi.RegisterOutputType(TraceMetricsRuleScopeFilterSpanScopeTagValuePtrOutput{})
 	pulumi.RegisterOutputType(TraceMetricsRuleTraceFilterOutput{})
 	pulumi.RegisterOutputType(TraceMetricsRuleTraceFilterPtrOutput{})
+	pulumi.RegisterOutputType(TraceMetricsRuleTraceFilterScopeFilterOutput{})
+	pulumi.RegisterOutputType(TraceMetricsRuleTraceFilterScopeFilterPtrOutput{})
+	pulumi.RegisterOutputType(TraceMetricsRuleTraceFilterScopeFilterSpanScopeOutput{})
+	pulumi.RegisterOutputType(TraceMetricsRuleTraceFilterScopeFilterSpanScopeArrayOutput{})
+	pulumi.RegisterOutputType(TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationOutput{})
+	pulumi.RegisterOutputType(TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationPtrOutput{})
+	pulumi.RegisterOutputType(TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorOutput{})
+	pulumi.RegisterOutputType(TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorPtrOutput{})
+	pulumi.RegisterOutputType(TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanOutput{})
+	pulumi.RegisterOutputType(TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanPtrOutput{})
+	pulumi.RegisterOutputType(TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationOutput{})
+	pulumi.RegisterOutputType(TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationPtrOutput{})
+	pulumi.RegisterOutputType(TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationOutput{})
+	pulumi.RegisterOutputType(TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationPtrOutput{})
+	pulumi.RegisterOutputType(TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServiceOutput{})
+	pulumi.RegisterOutputType(TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServicePtrOutput{})
+	pulumi.RegisterOutputType(TraceMetricsRuleTraceFilterScopeFilterSpanScopeServiceOutput{})
+	pulumi.RegisterOutputType(TraceMetricsRuleTraceFilterScopeFilterSpanScopeServicePtrOutput{})
+	pulumi.RegisterOutputType(TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountOutput{})
+	pulumi.RegisterOutputType(TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountPtrOutput{})
+	pulumi.RegisterOutputType(TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagOutput{})
+	pulumi.RegisterOutputType(TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagArrayOutput{})
+	pulumi.RegisterOutputType(TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValueOutput{})
+	pulumi.RegisterOutputType(TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValuePtrOutput{})
+	pulumi.RegisterOutputType(TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValueOutput{})
+	pulumi.RegisterOutputType(TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValuePtrOutput{})
 	pulumi.RegisterOutputType(TraceMetricsRuleTraceFilterSpanOutput{})
 	pulumi.RegisterOutputType(TraceMetricsRuleTraceFilterSpanArrayOutput{})
 	pulumi.RegisterOutputType(TraceMetricsRuleTraceFilterSpanDurationOutput{})
@@ -31107,6 +39604,32 @@ func init() {
 	pulumi.RegisterOutputType(TraceTailSamplingRulesRuleOutput{})
 	pulumi.RegisterOutputType(TraceTailSamplingRulesRuleArrayOutput{})
 	pulumi.RegisterOutputType(TraceTailSamplingRulesRuleFilterOutput{})
+	pulumi.RegisterOutputType(TraceTailSamplingRulesRuleFilterScopeFilterOutput{})
+	pulumi.RegisterOutputType(TraceTailSamplingRulesRuleFilterScopeFilterPtrOutput{})
+	pulumi.RegisterOutputType(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOutput{})
+	pulumi.RegisterOutputType(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeArrayOutput{})
+	pulumi.RegisterOutputType(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationOutput{})
+	pulumi.RegisterOutputType(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationPtrOutput{})
+	pulumi.RegisterOutputType(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorOutput{})
+	pulumi.RegisterOutputType(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorPtrOutput{})
+	pulumi.RegisterOutputType(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanOutput{})
+	pulumi.RegisterOutputType(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanPtrOutput{})
+	pulumi.RegisterOutputType(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationOutput{})
+	pulumi.RegisterOutputType(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationPtrOutput{})
+	pulumi.RegisterOutputType(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationOutput{})
+	pulumi.RegisterOutputType(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationPtrOutput{})
+	pulumi.RegisterOutputType(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServiceOutput{})
+	pulumi.RegisterOutputType(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServicePtrOutput{})
+	pulumi.RegisterOutputType(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServiceOutput{})
+	pulumi.RegisterOutputType(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServicePtrOutput{})
+	pulumi.RegisterOutputType(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountOutput{})
+	pulumi.RegisterOutputType(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountPtrOutput{})
+	pulumi.RegisterOutputType(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagOutput{})
+	pulumi.RegisterOutputType(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagArrayOutput{})
+	pulumi.RegisterOutputType(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValueOutput{})
+	pulumi.RegisterOutputType(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValuePtrOutput{})
+	pulumi.RegisterOutputType(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValueOutput{})
+	pulumi.RegisterOutputType(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValuePtrOutput{})
 	pulumi.RegisterOutputType(TraceTailSamplingRulesRuleFilterSpanOutput{})
 	pulumi.RegisterOutputType(TraceTailSamplingRulesRuleFilterSpanArrayOutput{})
 	pulumi.RegisterOutputType(TraceTailSamplingRulesRuleFilterSpanDurationOutput{})

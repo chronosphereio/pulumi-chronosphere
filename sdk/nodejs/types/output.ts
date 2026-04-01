@@ -44,7 +44,9 @@ export interface ConsumptionBudgetPriorityFilterLogFilter {
 export interface ConsumptionBudgetThreshold {
     action?: string;
     instantRate?: outputs.ConsumptionBudgetThresholdInstantRate;
+    skuGroup?: string;
     type?: string;
+    unit?: string;
     volume?: outputs.ConsumptionBudgetThresholdVolume;
 }
 
@@ -200,8 +202,85 @@ export interface DatasetConfigurationTraceDataset {
 }
 
 export interface DatasetConfigurationTraceDatasetMatchCriteria {
+    scopeFilter?: outputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilter;
     spans?: outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpan[];
     trace?: outputs.DatasetConfigurationTraceDatasetMatchCriteriaTrace;
+}
+
+export interface DatasetConfigurationTraceDatasetMatchCriteriaScopeFilter {
+    spanScopes?: outputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScope[];
+}
+
+export interface DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScope {
+    duration?: outputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDuration;
+    error?: outputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeError;
+    isRootSpan?: outputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpan;
+    matchType?: string;
+    operation?: outputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperation;
+    parentOperation?: outputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperation;
+    parentService?: outputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentService;
+    service?: outputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeService;
+    spanCount?: outputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCount;
+    tags?: outputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTag[];
+}
+
+export interface DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDuration {
+    maxSecs?: number;
+    minSecs?: number;
+}
+
+export interface DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeError {
+    value: boolean;
+}
+
+export interface DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpan {
+    value: boolean;
+}
+
+export interface DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperation {
+    inValues?: string[];
+    match?: string;
+    value?: string;
+}
+
+export interface DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperation {
+    inValues?: string[];
+    match?: string;
+    value?: string;
+}
+
+export interface DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentService {
+    inValues?: string[];
+    match?: string;
+    value?: string;
+}
+
+export interface DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeService {
+    inValues?: string[];
+    match?: string;
+    value?: string;
+}
+
+export interface DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCount {
+    max?: number;
+    min?: number;
+}
+
+export interface DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTag {
+    key?: string;
+    numericValue?: outputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValue;
+    value?: outputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValue;
+}
+
+export interface DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValue {
+    comparison: string;
+    value: number;
+}
+
+export interface DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValue {
+    inValues?: string[];
+    match?: string;
+    value?: string;
 }
 
 export interface DatasetConfigurationTraceDatasetMatchCriteriaSpan {
@@ -367,8 +446,31 @@ export interface DropRuleValueBasedDrop {
 }
 
 export interface GcpMetricsIntegrationMetricGroup {
+    filters?: outputs.GcpMetricsIntegrationMetricGroupFilter[];
     prefixes?: string[];
     projectId: string;
+    rollupRules?: outputs.GcpMetricsIntegrationMetricGroupRollupRule[];
+}
+
+export interface GcpMetricsIntegrationMetricGroupFilter {
+    context?: string;
+    name?: string;
+    valueGlob?: string;
+}
+
+export interface GcpMetricsIntegrationMetricGroupRollupRule {
+    aggregation?: string;
+    labelPolicy?: outputs.GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicy;
+    metricName?: string;
+}
+
+export interface GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicy {
+    keeps?: outputs.GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeep[];
+}
+
+export interface GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeep {
+    context?: string;
+    name?: string;
 }
 
 export interface GcpMetricsIntegrationServiceAccount {
@@ -1054,9 +1156,162 @@ export interface TraceMetricsRuleGroupByKey {
     type: string;
 }
 
+export interface TraceMetricsRuleScopeFilter {
+    spanScopes?: outputs.TraceMetricsRuleScopeFilterSpanScope[];
+}
+
+export interface TraceMetricsRuleScopeFilterSpanScope {
+    duration?: outputs.TraceMetricsRuleScopeFilterSpanScopeDuration;
+    error?: outputs.TraceMetricsRuleScopeFilterSpanScopeError;
+    isRootSpan?: outputs.TraceMetricsRuleScopeFilterSpanScopeIsRootSpan;
+    matchType?: string;
+    operation?: outputs.TraceMetricsRuleScopeFilterSpanScopeOperation;
+    parentOperation?: outputs.TraceMetricsRuleScopeFilterSpanScopeParentOperation;
+    parentService?: outputs.TraceMetricsRuleScopeFilterSpanScopeParentService;
+    service?: outputs.TraceMetricsRuleScopeFilterSpanScopeService;
+    spanCount?: outputs.TraceMetricsRuleScopeFilterSpanScopeSpanCount;
+    tags?: outputs.TraceMetricsRuleScopeFilterSpanScopeTag[];
+}
+
+export interface TraceMetricsRuleScopeFilterSpanScopeDuration {
+    maxSecs?: number;
+    minSecs?: number;
+}
+
+export interface TraceMetricsRuleScopeFilterSpanScopeError {
+    value: boolean;
+}
+
+export interface TraceMetricsRuleScopeFilterSpanScopeIsRootSpan {
+    value: boolean;
+}
+
+export interface TraceMetricsRuleScopeFilterSpanScopeOperation {
+    inValues?: string[];
+    match?: string;
+    value?: string;
+}
+
+export interface TraceMetricsRuleScopeFilterSpanScopeParentOperation {
+    inValues?: string[];
+    match?: string;
+    value?: string;
+}
+
+export interface TraceMetricsRuleScopeFilterSpanScopeParentService {
+    inValues?: string[];
+    match?: string;
+    value?: string;
+}
+
+export interface TraceMetricsRuleScopeFilterSpanScopeService {
+    inValues?: string[];
+    match?: string;
+    value?: string;
+}
+
+export interface TraceMetricsRuleScopeFilterSpanScopeSpanCount {
+    max?: number;
+    min?: number;
+}
+
+export interface TraceMetricsRuleScopeFilterSpanScopeTag {
+    key?: string;
+    numericValue?: outputs.TraceMetricsRuleScopeFilterSpanScopeTagNumericValue;
+    value?: outputs.TraceMetricsRuleScopeFilterSpanScopeTagValue;
+}
+
+export interface TraceMetricsRuleScopeFilterSpanScopeTagNumericValue {
+    comparison: string;
+    value: number;
+}
+
+export interface TraceMetricsRuleScopeFilterSpanScopeTagValue {
+    inValues?: string[];
+    match?: string;
+    value?: string;
+}
+
 export interface TraceMetricsRuleTraceFilter {
+    scopeFilter?: outputs.TraceMetricsRuleTraceFilterScopeFilter;
     spans?: outputs.TraceMetricsRuleTraceFilterSpan[];
     trace?: outputs.TraceMetricsRuleTraceFilterTrace;
+}
+
+export interface TraceMetricsRuleTraceFilterScopeFilter {
+    spanScopes?: outputs.TraceMetricsRuleTraceFilterScopeFilterSpanScope[];
+}
+
+export interface TraceMetricsRuleTraceFilterScopeFilterSpanScope {
+    duration?: outputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeDuration;
+    error?: outputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeError;
+    isRootSpan?: outputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpan;
+    matchType?: string;
+    operation?: outputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperation;
+    parentOperation?: outputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperation;
+    parentService?: outputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentService;
+    service?: outputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeService;
+    spanCount?: outputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCount;
+    tags?: outputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeTag[];
+}
+
+export interface TraceMetricsRuleTraceFilterScopeFilterSpanScopeDuration {
+    maxSecs?: number;
+    minSecs?: number;
+}
+
+export interface TraceMetricsRuleTraceFilterScopeFilterSpanScopeError {
+    value: boolean;
+}
+
+export interface TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpan {
+    value: boolean;
+}
+
+export interface TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperation {
+    inValues?: string[];
+    match?: string;
+    value?: string;
+}
+
+export interface TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperation {
+    inValues?: string[];
+    match?: string;
+    value?: string;
+}
+
+export interface TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentService {
+    inValues?: string[];
+    match?: string;
+    value?: string;
+}
+
+export interface TraceMetricsRuleTraceFilterScopeFilterSpanScopeService {
+    inValues?: string[];
+    match?: string;
+    value?: string;
+}
+
+export interface TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCount {
+    max?: number;
+    min?: number;
+}
+
+export interface TraceMetricsRuleTraceFilterScopeFilterSpanScopeTag {
+    key?: string;
+    numericValue?: outputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValue;
+    value?: outputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValue;
+}
+
+export interface TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValue {
+    comparison: string;
+    value: number;
+}
+
+export interface TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValue {
+    inValues?: string[];
+    match?: string;
+    value?: string;
 }
 
 export interface TraceMetricsRuleTraceFilterSpan {
@@ -1158,8 +1413,85 @@ export interface TraceTailSamplingRulesRule {
 }
 
 export interface TraceTailSamplingRulesRuleFilter {
+    scopeFilter?: outputs.TraceTailSamplingRulesRuleFilterScopeFilter;
     spans?: outputs.TraceTailSamplingRulesRuleFilterSpan[];
     trace?: outputs.TraceTailSamplingRulesRuleFilterTrace;
+}
+
+export interface TraceTailSamplingRulesRuleFilterScopeFilter {
+    spanScopes?: outputs.TraceTailSamplingRulesRuleFilterScopeFilterSpanScope[];
+}
+
+export interface TraceTailSamplingRulesRuleFilterScopeFilterSpanScope {
+    duration?: outputs.TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDuration;
+    error?: outputs.TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeError;
+    isRootSpan?: outputs.TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpan;
+    matchType?: string;
+    operation?: outputs.TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperation;
+    parentOperation?: outputs.TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperation;
+    parentService?: outputs.TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentService;
+    service?: outputs.TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeService;
+    spanCount?: outputs.TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCount;
+    tags?: outputs.TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTag[];
+}
+
+export interface TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDuration {
+    maxSecs?: number;
+    minSecs?: number;
+}
+
+export interface TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeError {
+    value: boolean;
+}
+
+export interface TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpan {
+    value: boolean;
+}
+
+export interface TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperation {
+    inValues?: string[];
+    match?: string;
+    value?: string;
+}
+
+export interface TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperation {
+    inValues?: string[];
+    match?: string;
+    value?: string;
+}
+
+export interface TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentService {
+    inValues?: string[];
+    match?: string;
+    value?: string;
+}
+
+export interface TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeService {
+    inValues?: string[];
+    match?: string;
+    value?: string;
+}
+
+export interface TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCount {
+    max?: number;
+    min?: number;
+}
+
+export interface TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTag {
+    key?: string;
+    numericValue?: outputs.TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValue;
+    value?: outputs.TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValue;
+}
+
+export interface TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValue {
+    comparison: string;
+    value: number;
+}
+
+export interface TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValue {
+    inValues?: string[];
+    match?: string;
+    value?: string;
 }
 
 export interface TraceTailSamplingRulesRuleFilterSpan {

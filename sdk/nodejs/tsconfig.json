@@ -35,6 +35,7 @@
         "logAllocationConfig.ts",
         "logControlConfig.ts",
         "logIngestConfig.ts",
+        "logRetentionConfig.ts",
         "logscaleAction.ts",
         "logscaleAlert.ts",
         "mappingRule.ts",

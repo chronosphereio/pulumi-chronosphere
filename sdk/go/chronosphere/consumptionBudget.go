@@ -22,9 +22,10 @@ type ConsumptionBudget struct {
 	NotificationPolicyId pulumi.StringPtrOutput                      `pulumi:"notificationPolicyId"`
 	PartitionSlugPath    pulumi.StringPtrOutput                      `pulumi:"partitionSlugPath"`
 	Priorities           ConsumptionBudgetPriorityArrayOutput        `pulumi:"priorities"`
-	Resource             pulumi.StringPtrOutput                      `pulumi:"resource"`
-	Slug                 pulumi.StringOutput                         `pulumi:"slug"`
-	Thresholds           ConsumptionBudgetThresholdArrayOutput       `pulumi:"thresholds"`
+	// Deprecated: use threshold.sku_group and threshold.unit instead
+	Resource   pulumi.StringPtrOutput                `pulumi:"resource"`
+	Slug       pulumi.StringOutput                   `pulumi:"slug"`
+	Thresholds ConsumptionBudgetThresholdArrayOutput `pulumi:"thresholds"`
 }
 
 // NewConsumptionBudget registers a new resource with the given unique name, arguments, and options.
@@ -70,9 +71,10 @@ type consumptionBudgetState struct {
 	NotificationPolicyId *string                             `pulumi:"notificationPolicyId"`
 	PartitionSlugPath    *string                             `pulumi:"partitionSlugPath"`
 	Priorities           []ConsumptionBudgetPriority         `pulumi:"priorities"`
-	Resource             *string                             `pulumi:"resource"`
-	Slug                 *string                             `pulumi:"slug"`
-	Thresholds           []ConsumptionBudgetThreshold        `pulumi:"thresholds"`
+	// Deprecated: use threshold.sku_group and threshold.unit instead
+	Resource   *string                      `pulumi:"resource"`
+	Slug       *string                      `pulumi:"slug"`
+	Thresholds []ConsumptionBudgetThreshold `pulumi:"thresholds"`
 }
 
 type ConsumptionBudgetState struct {
@@ -83,9 +85,10 @@ type ConsumptionBudgetState struct {
 	NotificationPolicyId pulumi.StringPtrInput
 	PartitionSlugPath    pulumi.StringPtrInput
 	Priorities           ConsumptionBudgetPriorityArrayInput
-	Resource             pulumi.StringPtrInput
-	Slug                 pulumi.StringPtrInput
-	Thresholds           ConsumptionBudgetThresholdArrayInput
+	// Deprecated: use threshold.sku_group and threshold.unit instead
+	Resource   pulumi.StringPtrInput
+	Slug       pulumi.StringPtrInput
+	Thresholds ConsumptionBudgetThresholdArrayInput
 }
 
 func (ConsumptionBudgetState) ElementType() reflect.Type {
@@ -100,9 +103,10 @@ type consumptionBudgetArgs struct {
 	NotificationPolicyId *string                             `pulumi:"notificationPolicyId"`
 	PartitionSlugPath    *string                             `pulumi:"partitionSlugPath"`
 	Priorities           []ConsumptionBudgetPriority         `pulumi:"priorities"`
-	Resource             *string                             `pulumi:"resource"`
-	Slug                 *string                             `pulumi:"slug"`
-	Thresholds           []ConsumptionBudgetThreshold        `pulumi:"thresholds"`
+	// Deprecated: use threshold.sku_group and threshold.unit instead
+	Resource   *string                      `pulumi:"resource"`
+	Slug       *string                      `pulumi:"slug"`
+	Thresholds []ConsumptionBudgetThreshold `pulumi:"thresholds"`
 }
 
 // The set of arguments for constructing a ConsumptionBudget resource.
@@ -114,9 +118,10 @@ type ConsumptionBudgetArgs struct {
 	NotificationPolicyId pulumi.StringPtrInput
 	PartitionSlugPath    pulumi.StringPtrInput
 	Priorities           ConsumptionBudgetPriorityArrayInput
-	Resource             pulumi.StringPtrInput
-	Slug                 pulumi.StringPtrInput
-	Thresholds           ConsumptionBudgetThresholdArrayInput
+	// Deprecated: use threshold.sku_group and threshold.unit instead
+	Resource   pulumi.StringPtrInput
+	Slug       pulumi.StringPtrInput
+	Thresholds ConsumptionBudgetThresholdArrayInput
 }
 
 func (ConsumptionBudgetArgs) ElementType() reflect.Type {
@@ -234,6 +239,7 @@ func (o ConsumptionBudgetOutput) Priorities() ConsumptionBudgetPriorityArrayOutp
 	return o.ApplyT(func(v *ConsumptionBudget) ConsumptionBudgetPriorityArrayOutput { return v.Priorities }).(ConsumptionBudgetPriorityArrayOutput)
 }
 
+// Deprecated: use threshold.sku_group and threshold.unit instead
 func (o ConsumptionBudgetOutput) Resource() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ConsumptionBudget) pulumi.StringPtrOutput { return v.Resource }).(pulumi.StringPtrOutput)
 }

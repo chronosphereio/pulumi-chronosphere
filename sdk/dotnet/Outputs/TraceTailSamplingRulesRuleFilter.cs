@@ -14,15 +14,19 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class TraceTailSamplingRulesRuleFilter
     {
+        public readonly Outputs.TraceTailSamplingRulesRuleFilterScopeFilter? ScopeFilter;
         public readonly ImmutableArray<Outputs.TraceTailSamplingRulesRuleFilterSpan> Spans;
         public readonly Outputs.TraceTailSamplingRulesRuleFilterTrace? Trace;
 
         [OutputConstructor]
         private TraceTailSamplingRulesRuleFilter(
+            Outputs.TraceTailSamplingRulesRuleFilterScopeFilter? scopeFilter,
+
             ImmutableArray<Outputs.TraceTailSamplingRulesRuleFilterSpan> spans,
 
             Outputs.TraceTailSamplingRulesRuleFilterTrace? trace)
         {
+            ScopeFilter = scopeFilter;
             Spans = spans;
             Trace = trace;
         }

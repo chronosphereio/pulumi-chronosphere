@@ -24,6 +24,7 @@ from .gcp_metrics_integration import *
 from .log_allocation_config import *
 from .log_control_config import *
 from .log_ingest_config import *
+from .log_retention_config import *
 from .logscale_action import *
 from .logscale_alert import *
 from .mapping_rule import *
@@ -194,6 +195,14 @@ _utilities.register(
   "fqn": "pulumi_chronosphere",
   "classes": {
    "chronosphere:index/logIngestConfig:LogIngestConfig": "LogIngestConfig"
+  }
+ },
+ {
+  "pkg": "chronosphere",
+  "mod": "index/logRetentionConfig",
+  "fqn": "pulumi_chronosphere",
+  "classes": {
+   "chronosphere:index/logRetentionConfig:LogRetentionConfig": "LogRetentionConfig"
   }
  },
  {

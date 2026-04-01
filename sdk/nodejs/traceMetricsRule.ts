@@ -39,6 +39,7 @@ export class TraceMetricsRule extends pulumi.CustomResource {
     public readonly metricLabels!: pulumi.Output<{[key: string]: string} | undefined>;
     public readonly metricName!: pulumi.Output<string>;
     public readonly name!: pulumi.Output<string>;
+    public readonly scopeFilter!: pulumi.Output<outputs.TraceMetricsRuleScopeFilter | undefined>;
     public readonly slug!: pulumi.Output<string>;
     public readonly traceFilter!: pulumi.Output<outputs.TraceMetricsRuleTraceFilter>;
 
@@ -60,6 +61,7 @@ export class TraceMetricsRule extends pulumi.CustomResource {
             resourceInputs["metricLabels"] = state ? state.metricLabels : undefined;
             resourceInputs["metricName"] = state ? state.metricName : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["scopeFilter"] = state ? state.scopeFilter : undefined;
             resourceInputs["slug"] = state ? state.slug : undefined;
             resourceInputs["traceFilter"] = state ? state.traceFilter : undefined;
         } else {
@@ -78,6 +80,7 @@ export class TraceMetricsRule extends pulumi.CustomResource {
             resourceInputs["metricLabels"] = args ? args.metricLabels : undefined;
             resourceInputs["metricName"] = args ? args.metricName : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["scopeFilter"] = args ? args.scopeFilter : undefined;
             resourceInputs["slug"] = args ? args.slug : undefined;
             resourceInputs["traceFilter"] = args ? args.traceFilter : undefined;
         }
@@ -95,6 +98,7 @@ export interface TraceMetricsRuleState {
     metricLabels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     metricName?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
+    scopeFilter?: pulumi.Input<inputs.TraceMetricsRuleScopeFilter>;
     slug?: pulumi.Input<string>;
     traceFilter?: pulumi.Input<inputs.TraceMetricsRuleTraceFilter>;
 }
@@ -108,6 +112,7 @@ export interface TraceMetricsRuleArgs {
     metricLabels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     metricName: pulumi.Input<string>;
     name: pulumi.Input<string>;
+    scopeFilter?: pulumi.Input<inputs.TraceMetricsRuleScopeFilter>;
     slug?: pulumi.Input<string>;
     traceFilter: pulumi.Input<inputs.TraceMetricsRuleTraceFilter>;
 }

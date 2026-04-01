@@ -41,6 +41,9 @@ export class ConsumptionBudget extends pulumi.CustomResource {
     public readonly notificationPolicyId!: pulumi.Output<string | undefined>;
     public readonly partitionSlugPath!: pulumi.Output<string | undefined>;
     public readonly priorities!: pulumi.Output<outputs.ConsumptionBudgetPriority[] | undefined>;
+    /**
+     * @deprecated use threshold.sku_group and threshold.unit instead
+     */
     public readonly resource!: pulumi.Output<string | undefined>;
     public readonly slug!: pulumi.Output<string>;
     public readonly thresholds!: pulumi.Output<outputs.ConsumptionBudgetThreshold[] | undefined>;
@@ -103,6 +106,9 @@ export interface ConsumptionBudgetState {
     notificationPolicyId?: pulumi.Input<string>;
     partitionSlugPath?: pulumi.Input<string>;
     priorities?: pulumi.Input<pulumi.Input<inputs.ConsumptionBudgetPriority>[]>;
+    /**
+     * @deprecated use threshold.sku_group and threshold.unit instead
+     */
     resource?: pulumi.Input<string>;
     slug?: pulumi.Input<string>;
     thresholds?: pulumi.Input<pulumi.Input<inputs.ConsumptionBudgetThreshold>[]>;
@@ -119,6 +125,9 @@ export interface ConsumptionBudgetArgs {
     notificationPolicyId?: pulumi.Input<string>;
     partitionSlugPath?: pulumi.Input<string>;
     priorities?: pulumi.Input<pulumi.Input<inputs.ConsumptionBudgetPriority>[]>;
+    /**
+     * @deprecated use threshold.sku_group and threshold.unit instead
+     */
     resource?: pulumi.Input<string>;
     slug?: pulumi.Input<string>;
     thresholds?: pulumi.Input<pulumi.Input<inputs.ConsumptionBudgetThreshold>[]>;

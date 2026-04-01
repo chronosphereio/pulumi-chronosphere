@@ -4,6 +4,7 @@
 package io.chronosphere.chronosphere.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import io.chronosphere.chronosphere.outputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilter;
 import io.chronosphere.chronosphere.outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpan;
 import io.chronosphere.chronosphere.outputs.DatasetConfigurationTraceDatasetMatchCriteriaTrace;
 import java.util.List;
@@ -13,10 +14,14 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class DatasetConfigurationTraceDatasetMatchCriteria {
+    private @Nullable DatasetConfigurationTraceDatasetMatchCriteriaScopeFilter scopeFilter;
     private @Nullable List<DatasetConfigurationTraceDatasetMatchCriteriaSpan> spans;
     private @Nullable DatasetConfigurationTraceDatasetMatchCriteriaTrace trace;
 
     private DatasetConfigurationTraceDatasetMatchCriteria() {}
+    public Optional<DatasetConfigurationTraceDatasetMatchCriteriaScopeFilter> scopeFilter() {
+        return Optional.ofNullable(this.scopeFilter);
+    }
     public List<DatasetConfigurationTraceDatasetMatchCriteriaSpan> spans() {
         return this.spans == null ? List.of() : this.spans;
     }
@@ -33,15 +38,22 @@ public final class DatasetConfigurationTraceDatasetMatchCriteria {
     }
     @CustomType.Builder
     public static final class Builder {
+        private @Nullable DatasetConfigurationTraceDatasetMatchCriteriaScopeFilter scopeFilter;
         private @Nullable List<DatasetConfigurationTraceDatasetMatchCriteriaSpan> spans;
         private @Nullable DatasetConfigurationTraceDatasetMatchCriteriaTrace trace;
         public Builder() {}
         public Builder(DatasetConfigurationTraceDatasetMatchCriteria defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.scopeFilter = defaults.scopeFilter;
     	      this.spans = defaults.spans;
     	      this.trace = defaults.trace;
         }
 
+        @CustomType.Setter
+        public Builder scopeFilter(@Nullable DatasetConfigurationTraceDatasetMatchCriteriaScopeFilter scopeFilter) {
+            this.scopeFilter = scopeFilter;
+            return this;
+        }
         @CustomType.Setter
         public Builder spans(@Nullable List<DatasetConfigurationTraceDatasetMatchCriteriaSpan> spans) {
             this.spans = spans;
@@ -57,6 +69,7 @@ public final class DatasetConfigurationTraceDatasetMatchCriteria {
         }
         public DatasetConfigurationTraceDatasetMatchCriteria build() {
             final var o = new DatasetConfigurationTraceDatasetMatchCriteria();
+            o.scopeFilter = scopeFilter;
             o.spans = spans;
             o.trace = trace;
             return o;

@@ -28,6 +28,9 @@ namespace Chronosphere.Pulumi
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        [Output("scopeFilter")]
+        public Output<Outputs.TraceMetricsRuleScopeFilter?> ScopeFilter { get; private set; } = null!;
+
         [Output("slug")]
         public Output<string> Slug { get; private set; } = null!;
 
@@ -111,6 +114,9 @@ namespace Chronosphere.Pulumi
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        [Input("scopeFilter")]
+        public Input<Inputs.TraceMetricsRuleScopeFilterArgs>? ScopeFilter { get; set; }
+
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 
@@ -154,6 +160,9 @@ namespace Chronosphere.Pulumi
 
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        [Input("scopeFilter")]
+        public Input<Inputs.TraceMetricsRuleScopeFilterGetArgs>? ScopeFilter { get; set; }
 
         [Input("slug")]
         public Input<string>? Slug { get; set; }

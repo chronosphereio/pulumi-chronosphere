@@ -14,17 +14,25 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class GcpMetricsIntegrationMetricGroup
     {
+        public readonly ImmutableArray<Outputs.GcpMetricsIntegrationMetricGroupFilter> Filters;
         public readonly ImmutableArray<string> Prefixes;
         public readonly string ProjectId;
+        public readonly ImmutableArray<Outputs.GcpMetricsIntegrationMetricGroupRollupRule> RollupRules;
 
         [OutputConstructor]
         private GcpMetricsIntegrationMetricGroup(
+            ImmutableArray<Outputs.GcpMetricsIntegrationMetricGroupFilter> filters,
+
             ImmutableArray<string> prefixes,
 
-            string projectId)
+            string projectId,
+
+            ImmutableArray<Outputs.GcpMetricsIntegrationMetricGroupRollupRule> rollupRules)
         {
+            Filters = filters;
             Prefixes = prefixes;
             ProjectId = projectId;
+            RollupRules = rollupRules;
         }
     }
 }

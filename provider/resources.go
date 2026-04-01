@@ -97,6 +97,9 @@ func Provider() tfbridge.ProviderInfo {
 			"chronosphere_mapping_rule": {
 				Tok: tfbridge.MakeResource(mainPkg, mainMod, "MappingRule"),
 			},
+			"chronosphere_log_retention_config": {
+				Tok: tfbridge.MakeResource(mainPkg, mainMod, "LogRetentionConfig"),
+			},
 			"chronosphere_monitor": {
 				Tok: tfbridge.MakeResource(mainPkg, mainMod, "Monitor"),
 			},

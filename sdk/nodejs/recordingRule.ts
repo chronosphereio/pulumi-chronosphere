@@ -34,6 +34,7 @@ export class RecordingRule extends pulumi.CustomResource {
 
     public readonly bucketId!: pulumi.Output<string | undefined>;
     public readonly executionGroup!: pulumi.Output<string | undefined>;
+    public readonly executionMode!: pulumi.Output<string | undefined>;
     public readonly expr!: pulumi.Output<string>;
     public readonly interval!: pulumi.Output<string | undefined>;
     public readonly labels!: pulumi.Output<{[key: string]: string} | undefined>;
@@ -56,6 +57,7 @@ export class RecordingRule extends pulumi.CustomResource {
             const state = argsOrState as RecordingRuleState | undefined;
             resourceInputs["bucketId"] = state ? state.bucketId : undefined;
             resourceInputs["executionGroup"] = state ? state.executionGroup : undefined;
+            resourceInputs["executionMode"] = state ? state.executionMode : undefined;
             resourceInputs["expr"] = state ? state.expr : undefined;
             resourceInputs["interval"] = state ? state.interval : undefined;
             resourceInputs["labels"] = state ? state.labels : undefined;
@@ -72,6 +74,7 @@ export class RecordingRule extends pulumi.CustomResource {
             }
             resourceInputs["bucketId"] = args ? args.bucketId : undefined;
             resourceInputs["executionGroup"] = args ? args.executionGroup : undefined;
+            resourceInputs["executionMode"] = args ? args.executionMode : undefined;
             resourceInputs["expr"] = args ? args.expr : undefined;
             resourceInputs["interval"] = args ? args.interval : undefined;
             resourceInputs["labels"] = args ? args.labels : undefined;
@@ -90,6 +93,7 @@ export class RecordingRule extends pulumi.CustomResource {
 export interface RecordingRuleState {
     bucketId?: pulumi.Input<string>;
     executionGroup?: pulumi.Input<string>;
+    executionMode?: pulumi.Input<string>;
     expr?: pulumi.Input<string>;
     interval?: pulumi.Input<string>;
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
@@ -104,6 +108,7 @@ export interface RecordingRuleState {
 export interface RecordingRuleArgs {
     bucketId?: pulumi.Input<string>;
     executionGroup?: pulumi.Input<string>;
+    executionMode?: pulumi.Input<string>;
     expr: pulumi.Input<string>;
     interval?: pulumi.Input<string>;
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;

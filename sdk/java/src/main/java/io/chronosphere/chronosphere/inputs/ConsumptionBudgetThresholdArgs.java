@@ -31,11 +31,25 @@ public final class ConsumptionBudgetThresholdArgs extends com.pulumi.resources.R
         return Optional.ofNullable(this.instantRate);
     }
 
+    @Import(name="skuGroup")
+    private @Nullable Output<String> skuGroup;
+
+    public Optional<Output<String>> skuGroup() {
+        return Optional.ofNullable(this.skuGroup);
+    }
+
     @Import(name="type")
     private @Nullable Output<String> type;
 
     public Optional<Output<String>> type() {
         return Optional.ofNullable(this.type);
+    }
+
+    @Import(name="unit")
+    private @Nullable Output<String> unit;
+
+    public Optional<Output<String>> unit() {
+        return Optional.ofNullable(this.unit);
     }
 
     @Import(name="volume")
@@ -50,7 +64,9 @@ public final class ConsumptionBudgetThresholdArgs extends com.pulumi.resources.R
     private ConsumptionBudgetThresholdArgs(ConsumptionBudgetThresholdArgs $) {
         this.action = $.action;
         this.instantRate = $.instantRate;
+        this.skuGroup = $.skuGroup;
         this.type = $.type;
+        this.unit = $.unit;
         this.volume = $.volume;
     }
 
@@ -90,6 +106,15 @@ public final class ConsumptionBudgetThresholdArgs extends com.pulumi.resources.R
             return instantRate(Output.of(instantRate));
         }
 
+        public Builder skuGroup(@Nullable Output<String> skuGroup) {
+            $.skuGroup = skuGroup;
+            return this;
+        }
+
+        public Builder skuGroup(String skuGroup) {
+            return skuGroup(Output.of(skuGroup));
+        }
+
         public Builder type(@Nullable Output<String> type) {
             $.type = type;
             return this;
@@ -97,6 +122,15 @@ public final class ConsumptionBudgetThresholdArgs extends com.pulumi.resources.R
 
         public Builder type(String type) {
             return type(Output.of(type));
+        }
+
+        public Builder unit(@Nullable Output<String> unit) {
+            $.unit = unit;
+            return this;
+        }
+
+        public Builder unit(String unit) {
+            return unit(Output.of(unit));
         }
 
         public Builder volume(@Nullable Output<ConsumptionBudgetThresholdVolumeArgs> volume) {

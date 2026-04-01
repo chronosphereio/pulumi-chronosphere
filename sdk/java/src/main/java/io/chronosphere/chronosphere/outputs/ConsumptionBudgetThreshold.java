@@ -15,7 +15,9 @@ import javax.annotation.Nullable;
 public final class ConsumptionBudgetThreshold {
     private @Nullable String action;
     private @Nullable ConsumptionBudgetThresholdInstantRate instantRate;
+    private @Nullable String skuGroup;
     private @Nullable String type;
+    private @Nullable String unit;
     private @Nullable ConsumptionBudgetThresholdVolume volume;
 
     private ConsumptionBudgetThreshold() {}
@@ -25,8 +27,14 @@ public final class ConsumptionBudgetThreshold {
     public Optional<ConsumptionBudgetThresholdInstantRate> instantRate() {
         return Optional.ofNullable(this.instantRate);
     }
+    public Optional<String> skuGroup() {
+        return Optional.ofNullable(this.skuGroup);
+    }
     public Optional<String> type() {
         return Optional.ofNullable(this.type);
+    }
+    public Optional<String> unit() {
+        return Optional.ofNullable(this.unit);
     }
     public Optional<ConsumptionBudgetThresholdVolume> volume() {
         return Optional.ofNullable(this.volume);
@@ -43,14 +51,18 @@ public final class ConsumptionBudgetThreshold {
     public static final class Builder {
         private @Nullable String action;
         private @Nullable ConsumptionBudgetThresholdInstantRate instantRate;
+        private @Nullable String skuGroup;
         private @Nullable String type;
+        private @Nullable String unit;
         private @Nullable ConsumptionBudgetThresholdVolume volume;
         public Builder() {}
         public Builder(ConsumptionBudgetThreshold defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.action = defaults.action;
     	      this.instantRate = defaults.instantRate;
+    	      this.skuGroup = defaults.skuGroup;
     	      this.type = defaults.type;
+    	      this.unit = defaults.unit;
     	      this.volume = defaults.volume;
         }
 
@@ -65,8 +77,18 @@ public final class ConsumptionBudgetThreshold {
             return this;
         }
         @CustomType.Setter
+        public Builder skuGroup(@Nullable String skuGroup) {
+            this.skuGroup = skuGroup;
+            return this;
+        }
+        @CustomType.Setter
         public Builder type(@Nullable String type) {
             this.type = type;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder unit(@Nullable String unit) {
+            this.unit = unit;
             return this;
         }
         @CustomType.Setter
@@ -78,7 +100,9 @@ public final class ConsumptionBudgetThreshold {
             final var o = new ConsumptionBudgetThreshold();
             o.action = action;
             o.instantRate = instantRate;
+            o.skuGroup = skuGroup;
             o.type = type;
+            o.unit = unit;
             o.volume = volume;
             return o;
         }

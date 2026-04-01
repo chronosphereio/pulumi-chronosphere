@@ -14,15 +14,19 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class DatasetConfigurationTraceDatasetMatchCriteria
     {
+        public readonly Outputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilter? ScopeFilter;
         public readonly ImmutableArray<Outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpan> Spans;
         public readonly Outputs.DatasetConfigurationTraceDatasetMatchCriteriaTrace? Trace;
 
         [OutputConstructor]
         private DatasetConfigurationTraceDatasetMatchCriteria(
+            Outputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilter? scopeFilter,
+
             ImmutableArray<Outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpan> spans,
 
             Outputs.DatasetConfigurationTraceDatasetMatchCriteriaTrace? trace)
         {
+            ScopeFilter = scopeFilter;
             Spans = spans;
             Trace = trace;
         }

@@ -49,6 +49,19 @@ __all__ = [
     'DatasetConfigurationLogDatasetMatchCriteriaArgs',
     'DatasetConfigurationTraceDatasetArgs',
     'DatasetConfigurationTraceDatasetMatchCriteriaArgs',
+    'DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterArgs',
+    'DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeArgs',
+    'DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationArgs',
+    'DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorArgs',
+    'DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanArgs',
+    'DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationArgs',
+    'DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationArgs',
+    'DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServiceArgs',
+    'DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServiceArgs',
+    'DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountArgs',
+    'DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagArgs',
+    'DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValueArgs',
+    'DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValueArgs',
     'DatasetConfigurationTraceDatasetMatchCriteriaSpanArgs',
     'DatasetConfigurationTraceDatasetMatchCriteriaSpanDurationArgs',
     'DatasetConfigurationTraceDatasetMatchCriteriaSpanErrorArgs',
@@ -81,6 +94,10 @@ __all__ = [
     'DerivedMetricQuerySelectorArgs',
     'DropRuleValueBasedDropArgs',
     'GcpMetricsIntegrationMetricGroupArgs',
+    'GcpMetricsIntegrationMetricGroupFilterArgs',
+    'GcpMetricsIntegrationMetricGroupRollupRuleArgs',
+    'GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyArgs',
+    'GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepArgs',
     'GcpMetricsIntegrationServiceAccountArgs',
     'LogAllocationConfigDatasetAllocationArgs',
     'LogAllocationConfigDatasetAllocationAllocationArgs',
@@ -204,7 +221,33 @@ __all__ = [
     'TraceJaegerRemoteSamplingStrategyAppliedStrategyRateLimitingStrategyArgs',
     'TraceMetricsRuleGroupByArgs',
     'TraceMetricsRuleGroupByKeyArgs',
+    'TraceMetricsRuleScopeFilterArgs',
+    'TraceMetricsRuleScopeFilterSpanScopeArgs',
+    'TraceMetricsRuleScopeFilterSpanScopeDurationArgs',
+    'TraceMetricsRuleScopeFilterSpanScopeErrorArgs',
+    'TraceMetricsRuleScopeFilterSpanScopeIsRootSpanArgs',
+    'TraceMetricsRuleScopeFilterSpanScopeOperationArgs',
+    'TraceMetricsRuleScopeFilterSpanScopeParentOperationArgs',
+    'TraceMetricsRuleScopeFilterSpanScopeParentServiceArgs',
+    'TraceMetricsRuleScopeFilterSpanScopeServiceArgs',
+    'TraceMetricsRuleScopeFilterSpanScopeSpanCountArgs',
+    'TraceMetricsRuleScopeFilterSpanScopeTagArgs',
+    'TraceMetricsRuleScopeFilterSpanScopeTagNumericValueArgs',
+    'TraceMetricsRuleScopeFilterSpanScopeTagValueArgs',
     'TraceMetricsRuleTraceFilterArgs',
+    'TraceMetricsRuleTraceFilterScopeFilterArgs',
+    'TraceMetricsRuleTraceFilterScopeFilterSpanScopeArgs',
+    'TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationArgs',
+    'TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorArgs',
+    'TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanArgs',
+    'TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationArgs',
+    'TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationArgs',
+    'TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServiceArgs',
+    'TraceMetricsRuleTraceFilterScopeFilterSpanScopeServiceArgs',
+    'TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountArgs',
+    'TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagArgs',
+    'TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValueArgs',
+    'TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValueArgs',
     'TraceMetricsRuleTraceFilterSpanArgs',
     'TraceMetricsRuleTraceFilterSpanDurationArgs',
     'TraceMetricsRuleTraceFilterSpanErrorArgs',
@@ -223,6 +266,19 @@ __all__ = [
     'TraceTailSamplingRulesDefaultSampleRateArgs',
     'TraceTailSamplingRulesRuleArgs',
     'TraceTailSamplingRulesRuleFilterArgs',
+    'TraceTailSamplingRulesRuleFilterScopeFilterArgs',
+    'TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeArgs',
+    'TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationArgs',
+    'TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorArgs',
+    'TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanArgs',
+    'TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationArgs',
+    'TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationArgs',
+    'TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServiceArgs',
+    'TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServiceArgs',
+    'TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountArgs',
+    'TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagArgs',
+    'TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValueArgs',
+    'TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValueArgs',
     'TraceTailSamplingRulesRuleFilterSpanArgs',
     'TraceTailSamplingRulesRuleFilterSpanDurationArgs',
     'TraceTailSamplingRulesRuleFilterSpanErrorArgs',
@@ -459,14 +515,20 @@ class ConsumptionBudgetThresholdArgs:
     def __init__(__self__, *,
                  action: Optional[pulumi.Input[str]] = None,
                  instant_rate: Optional[pulumi.Input['ConsumptionBudgetThresholdInstantRateArgs']] = None,
+                 sku_group: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
+                 unit: Optional[pulumi.Input[str]] = None,
                  volume: Optional[pulumi.Input['ConsumptionBudgetThresholdVolumeArgs']] = None):
         if action is not None:
             pulumi.set(__self__, "action", action)
         if instant_rate is not None:
             pulumi.set(__self__, "instant_rate", instant_rate)
+        if sku_group is not None:
+            pulumi.set(__self__, "sku_group", sku_group)
         if type is not None:
             pulumi.set(__self__, "type", type)
+        if unit is not None:
+            pulumi.set(__self__, "unit", unit)
         if volume is not None:
             pulumi.set(__self__, "volume", volume)
 
@@ -489,6 +551,15 @@ class ConsumptionBudgetThresholdArgs:
         pulumi.set(self, "instant_rate", value)
 
     @property
+    @pulumi.getter(name="skuGroup")
+    def sku_group(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "sku_group")
+
+    @sku_group.setter
+    def sku_group(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sku_group", value)
+
+    @property
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "type")
@@ -496,6 +567,15 @@ class ConsumptionBudgetThresholdArgs:
     @type.setter
     def type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "type", value)
+
+    @property
+    @pulumi.getter
+    def unit(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "unit")
+
+    @unit.setter
+    def unit(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "unit", value)
 
     @property
     @pulumi.getter
@@ -1383,12 +1463,24 @@ class DatasetConfigurationTraceDatasetArgs:
 @pulumi.input_type
 class DatasetConfigurationTraceDatasetMatchCriteriaArgs:
     def __init__(__self__, *,
+                 scope_filter: Optional[pulumi.Input['DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterArgs']] = None,
                  spans: Optional[pulumi.Input[Sequence[pulumi.Input['DatasetConfigurationTraceDatasetMatchCriteriaSpanArgs']]]] = None,
                  trace: Optional[pulumi.Input['DatasetConfigurationTraceDatasetMatchCriteriaTraceArgs']] = None):
+        if scope_filter is not None:
+            pulumi.set(__self__, "scope_filter", scope_filter)
         if spans is not None:
             pulumi.set(__self__, "spans", spans)
         if trace is not None:
             pulumi.set(__self__, "trace", trace)
+
+    @property
+    @pulumi.getter(name="scopeFilter")
+    def scope_filter(self) -> Optional[pulumi.Input['DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterArgs']]:
+        return pulumi.get(self, "scope_filter")
+
+    @scope_filter.setter
+    def scope_filter(self, value: Optional[pulumi.Input['DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterArgs']]):
+        pulumi.set(self, "scope_filter", value)
 
     @property
     @pulumi.getter
@@ -1407,6 +1499,511 @@ class DatasetConfigurationTraceDatasetMatchCriteriaArgs:
     @trace.setter
     def trace(self, value: Optional[pulumi.Input['DatasetConfigurationTraceDatasetMatchCriteriaTraceArgs']]):
         pulumi.set(self, "trace", value)
+
+
+@pulumi.input_type
+class DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterArgs:
+    def __init__(__self__, *,
+                 span_scopes: Optional[pulumi.Input[Sequence[pulumi.Input['DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeArgs']]]] = None):
+        if span_scopes is not None:
+            pulumi.set(__self__, "span_scopes", span_scopes)
+
+    @property
+    @pulumi.getter(name="spanScopes")
+    def span_scopes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeArgs']]]]:
+        return pulumi.get(self, "span_scopes")
+
+    @span_scopes.setter
+    def span_scopes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeArgs']]]]):
+        pulumi.set(self, "span_scopes", value)
+
+
+@pulumi.input_type
+class DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeArgs:
+    def __init__(__self__, *,
+                 duration: Optional[pulumi.Input['DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationArgs']] = None,
+                 error: Optional[pulumi.Input['DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorArgs']] = None,
+                 is_root_span: Optional[pulumi.Input['DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanArgs']] = None,
+                 match_type: Optional[pulumi.Input[str]] = None,
+                 operation: Optional[pulumi.Input['DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationArgs']] = None,
+                 parent_operation: Optional[pulumi.Input['DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationArgs']] = None,
+                 parent_service: Optional[pulumi.Input['DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServiceArgs']] = None,
+                 service: Optional[pulumi.Input['DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServiceArgs']] = None,
+                 span_count: Optional[pulumi.Input['DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountArgs']] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagArgs']]]] = None):
+        if duration is not None:
+            pulumi.set(__self__, "duration", duration)
+        if error is not None:
+            pulumi.set(__self__, "error", error)
+        if is_root_span is not None:
+            pulumi.set(__self__, "is_root_span", is_root_span)
+        if match_type is not None:
+            pulumi.set(__self__, "match_type", match_type)
+        if operation is not None:
+            pulumi.set(__self__, "operation", operation)
+        if parent_operation is not None:
+            pulumi.set(__self__, "parent_operation", parent_operation)
+        if parent_service is not None:
+            pulumi.set(__self__, "parent_service", parent_service)
+        if service is not None:
+            pulumi.set(__self__, "service", service)
+        if span_count is not None:
+            pulumi.set(__self__, "span_count", span_count)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+
+    @property
+    @pulumi.getter
+    def duration(self) -> Optional[pulumi.Input['DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationArgs']]:
+        return pulumi.get(self, "duration")
+
+    @duration.setter
+    def duration(self, value: Optional[pulumi.Input['DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationArgs']]):
+        pulumi.set(self, "duration", value)
+
+    @property
+    @pulumi.getter
+    def error(self) -> Optional[pulumi.Input['DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorArgs']]:
+        return pulumi.get(self, "error")
+
+    @error.setter
+    def error(self, value: Optional[pulumi.Input['DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorArgs']]):
+        pulumi.set(self, "error", value)
+
+    @property
+    @pulumi.getter(name="isRootSpan")
+    def is_root_span(self) -> Optional[pulumi.Input['DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanArgs']]:
+        return pulumi.get(self, "is_root_span")
+
+    @is_root_span.setter
+    def is_root_span(self, value: Optional[pulumi.Input['DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanArgs']]):
+        pulumi.set(self, "is_root_span", value)
+
+    @property
+    @pulumi.getter(name="matchType")
+    def match_type(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "match_type")
+
+    @match_type.setter
+    def match_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match_type", value)
+
+    @property
+    @pulumi.getter
+    def operation(self) -> Optional[pulumi.Input['DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationArgs']]:
+        return pulumi.get(self, "operation")
+
+    @operation.setter
+    def operation(self, value: Optional[pulumi.Input['DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationArgs']]):
+        pulumi.set(self, "operation", value)
+
+    @property
+    @pulumi.getter(name="parentOperation")
+    def parent_operation(self) -> Optional[pulumi.Input['DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationArgs']]:
+        return pulumi.get(self, "parent_operation")
+
+    @parent_operation.setter
+    def parent_operation(self, value: Optional[pulumi.Input['DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationArgs']]):
+        pulumi.set(self, "parent_operation", value)
+
+    @property
+    @pulumi.getter(name="parentService")
+    def parent_service(self) -> Optional[pulumi.Input['DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServiceArgs']]:
+        return pulumi.get(self, "parent_service")
+
+    @parent_service.setter
+    def parent_service(self, value: Optional[pulumi.Input['DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServiceArgs']]):
+        pulumi.set(self, "parent_service", value)
+
+    @property
+    @pulumi.getter
+    def service(self) -> Optional[pulumi.Input['DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServiceArgs']]:
+        return pulumi.get(self, "service")
+
+    @service.setter
+    def service(self, value: Optional[pulumi.Input['DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServiceArgs']]):
+        pulumi.set(self, "service", value)
+
+    @property
+    @pulumi.getter(name="spanCount")
+    def span_count(self) -> Optional[pulumi.Input['DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountArgs']]:
+        return pulumi.get(self, "span_count")
+
+    @span_count.setter
+    def span_count(self, value: Optional[pulumi.Input['DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountArgs']]):
+        pulumi.set(self, "span_count", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagArgs']]]]:
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
+
+@pulumi.input_type
+class DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationArgs:
+    def __init__(__self__, *,
+                 max_secs: Optional[pulumi.Input[float]] = None,
+                 min_secs: Optional[pulumi.Input[float]] = None):
+        if max_secs is not None:
+            pulumi.set(__self__, "max_secs", max_secs)
+        if min_secs is not None:
+            pulumi.set(__self__, "min_secs", min_secs)
+
+    @property
+    @pulumi.getter(name="maxSecs")
+    def max_secs(self) -> Optional[pulumi.Input[float]]:
+        return pulumi.get(self, "max_secs")
+
+    @max_secs.setter
+    def max_secs(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "max_secs", value)
+
+    @property
+    @pulumi.getter(name="minSecs")
+    def min_secs(self) -> Optional[pulumi.Input[float]]:
+        return pulumi.get(self, "min_secs")
+
+    @min_secs.setter
+    def min_secs(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "min_secs", value)
+
+
+@pulumi.input_type
+class DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorArgs:
+    def __init__(__self__, *,
+                 value: pulumi.Input[bool]):
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[bool]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[bool]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanArgs:
+    def __init__(__self__, *,
+                 value: pulumi.Input[bool]):
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[bool]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[bool]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationArgs:
+    def __init__(__self__, *,
+                 in_values: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 match: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "in_values")
+
+    @in_values.setter
+    def in_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "in_values", value)
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "match")
+
+    @match.setter
+    def match(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationArgs:
+    def __init__(__self__, *,
+                 in_values: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 match: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "in_values")
+
+    @in_values.setter
+    def in_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "in_values", value)
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "match")
+
+    @match.setter
+    def match(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServiceArgs:
+    def __init__(__self__, *,
+                 in_values: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 match: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "in_values")
+
+    @in_values.setter
+    def in_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "in_values", value)
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "match")
+
+    @match.setter
+    def match(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServiceArgs:
+    def __init__(__self__, *,
+                 in_values: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 match: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "in_values")
+
+    @in_values.setter
+    def in_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "in_values", value)
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "match")
+
+    @match.setter
+    def match(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountArgs:
+    def __init__(__self__, *,
+                 max: Optional[pulumi.Input[int]] = None,
+                 min: Optional[pulumi.Input[int]] = None):
+        if max is not None:
+            pulumi.set(__self__, "max", max)
+        if min is not None:
+            pulumi.set(__self__, "min", min)
+
+    @property
+    @pulumi.getter
+    def max(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "max")
+
+    @max.setter
+    def max(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max", value)
+
+    @property
+    @pulumi.getter
+    def min(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "min")
+
+    @min.setter
+    def min(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "min", value)
+
+
+@pulumi.input_type
+class DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagArgs:
+    def __init__(__self__, *,
+                 key: Optional[pulumi.Input[str]] = None,
+                 numeric_value: Optional[pulumi.Input['DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValueArgs']] = None,
+                 value: Optional[pulumi.Input['DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValueArgs']] = None):
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if numeric_value is not None:
+            pulumi.set(__self__, "numeric_value", numeric_value)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter(name="numericValue")
+    def numeric_value(self) -> Optional[pulumi.Input['DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValueArgs']]:
+        return pulumi.get(self, "numeric_value")
+
+    @numeric_value.setter
+    def numeric_value(self, value: Optional[pulumi.Input['DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValueArgs']]):
+        pulumi.set(self, "numeric_value", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input['DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValueArgs']]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input['DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValueArgs']]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValueArgs:
+    def __init__(__self__, *,
+                 comparison: pulumi.Input[str],
+                 value: pulumi.Input[float]):
+        pulumi.set(__self__, "comparison", comparison)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def comparison(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "comparison")
+
+    @comparison.setter
+    def comparison(self, value: pulumi.Input[str]):
+        pulumi.set(self, "comparison", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[float]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[float]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValueArgs:
+    def __init__(__self__, *,
+                 in_values: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 match: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "in_values")
+
+    @in_values.setter
+    def in_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "in_values", value)
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "match")
+
+    @match.setter
+    def match(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
 
 
 @pulumi.input_type
@@ -2372,10 +2969,16 @@ class DropRuleValueBasedDropArgs:
 class GcpMetricsIntegrationMetricGroupArgs:
     def __init__(__self__, *,
                  project_id: pulumi.Input[str],
-                 prefixes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+                 filters: Optional[pulumi.Input[Sequence[pulumi.Input['GcpMetricsIntegrationMetricGroupFilterArgs']]]] = None,
+                 prefixes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 rollup_rules: Optional[pulumi.Input[Sequence[pulumi.Input['GcpMetricsIntegrationMetricGroupRollupRuleArgs']]]] = None):
         pulumi.set(__self__, "project_id", project_id)
+        if filters is not None:
+            pulumi.set(__self__, "filters", filters)
         if prefixes is not None:
             pulumi.set(__self__, "prefixes", prefixes)
+        if rollup_rules is not None:
+            pulumi.set(__self__, "rollup_rules", rollup_rules)
 
     @property
     @pulumi.getter(name="projectId")
@@ -2388,12 +2991,158 @@ class GcpMetricsIntegrationMetricGroupArgs:
 
     @property
     @pulumi.getter
+    def filters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['GcpMetricsIntegrationMetricGroupFilterArgs']]]]:
+        return pulumi.get(self, "filters")
+
+    @filters.setter
+    def filters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['GcpMetricsIntegrationMetricGroupFilterArgs']]]]):
+        pulumi.set(self, "filters", value)
+
+    @property
+    @pulumi.getter
     def prefixes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         return pulumi.get(self, "prefixes")
 
     @prefixes.setter
     def prefixes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "prefixes", value)
+
+    @property
+    @pulumi.getter(name="rollupRules")
+    def rollup_rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['GcpMetricsIntegrationMetricGroupRollupRuleArgs']]]]:
+        return pulumi.get(self, "rollup_rules")
+
+    @rollup_rules.setter
+    def rollup_rules(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['GcpMetricsIntegrationMetricGroupRollupRuleArgs']]]]):
+        pulumi.set(self, "rollup_rules", value)
+
+
+@pulumi.input_type
+class GcpMetricsIntegrationMetricGroupFilterArgs:
+    def __init__(__self__, *,
+                 context: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 value_glob: Optional[pulumi.Input[str]] = None):
+        if context is not None:
+            pulumi.set(__self__, "context", context)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if value_glob is not None:
+            pulumi.set(__self__, "value_glob", value_glob)
+
+    @property
+    @pulumi.getter
+    def context(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "context")
+
+    @context.setter
+    def context(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "context", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="valueGlob")
+    def value_glob(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "value_glob")
+
+    @value_glob.setter
+    def value_glob(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value_glob", value)
+
+
+@pulumi.input_type
+class GcpMetricsIntegrationMetricGroupRollupRuleArgs:
+    def __init__(__self__, *,
+                 aggregation: Optional[pulumi.Input[str]] = None,
+                 label_policy: Optional[pulumi.Input['GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyArgs']] = None,
+                 metric_name: Optional[pulumi.Input[str]] = None):
+        if aggregation is not None:
+            pulumi.set(__self__, "aggregation", aggregation)
+        if label_policy is not None:
+            pulumi.set(__self__, "label_policy", label_policy)
+        if metric_name is not None:
+            pulumi.set(__self__, "metric_name", metric_name)
+
+    @property
+    @pulumi.getter
+    def aggregation(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "aggregation")
+
+    @aggregation.setter
+    def aggregation(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "aggregation", value)
+
+    @property
+    @pulumi.getter(name="labelPolicy")
+    def label_policy(self) -> Optional[pulumi.Input['GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyArgs']]:
+        return pulumi.get(self, "label_policy")
+
+    @label_policy.setter
+    def label_policy(self, value: Optional[pulumi.Input['GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyArgs']]):
+        pulumi.set(self, "label_policy", value)
+
+    @property
+    @pulumi.getter(name="metricName")
+    def metric_name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "metric_name")
+
+    @metric_name.setter
+    def metric_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "metric_name", value)
+
+
+@pulumi.input_type
+class GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyArgs:
+    def __init__(__self__, *,
+                 keeps: Optional[pulumi.Input[Sequence[pulumi.Input['GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepArgs']]]] = None):
+        if keeps is not None:
+            pulumi.set(__self__, "keeps", keeps)
+
+    @property
+    @pulumi.getter
+    def keeps(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepArgs']]]]:
+        return pulumi.get(self, "keeps")
+
+    @keeps.setter
+    def keeps(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepArgs']]]]):
+        pulumi.set(self, "keeps", value)
+
+
+@pulumi.input_type
+class GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepArgs:
+    def __init__(__self__, *,
+                 context: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None):
+        if context is not None:
+            pulumi.set(__self__, "context", context)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def context(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "context")
+
+    @context.setter
+    def context(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "context", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
 
 
 @pulumi.input_type
@@ -6646,14 +7395,531 @@ class TraceMetricsRuleGroupByKeyArgs:
 
 
 @pulumi.input_type
+class TraceMetricsRuleScopeFilterArgs:
+    def __init__(__self__, *,
+                 span_scopes: Optional[pulumi.Input[Sequence[pulumi.Input['TraceMetricsRuleScopeFilterSpanScopeArgs']]]] = None):
+        if span_scopes is not None:
+            pulumi.set(__self__, "span_scopes", span_scopes)
+
+    @property
+    @pulumi.getter(name="spanScopes")
+    def span_scopes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['TraceMetricsRuleScopeFilterSpanScopeArgs']]]]:
+        return pulumi.get(self, "span_scopes")
+
+    @span_scopes.setter
+    def span_scopes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['TraceMetricsRuleScopeFilterSpanScopeArgs']]]]):
+        pulumi.set(self, "span_scopes", value)
+
+
+@pulumi.input_type
+class TraceMetricsRuleScopeFilterSpanScopeArgs:
+    def __init__(__self__, *,
+                 duration: Optional[pulumi.Input['TraceMetricsRuleScopeFilterSpanScopeDurationArgs']] = None,
+                 error: Optional[pulumi.Input['TraceMetricsRuleScopeFilterSpanScopeErrorArgs']] = None,
+                 is_root_span: Optional[pulumi.Input['TraceMetricsRuleScopeFilterSpanScopeIsRootSpanArgs']] = None,
+                 match_type: Optional[pulumi.Input[str]] = None,
+                 operation: Optional[pulumi.Input['TraceMetricsRuleScopeFilterSpanScopeOperationArgs']] = None,
+                 parent_operation: Optional[pulumi.Input['TraceMetricsRuleScopeFilterSpanScopeParentOperationArgs']] = None,
+                 parent_service: Optional[pulumi.Input['TraceMetricsRuleScopeFilterSpanScopeParentServiceArgs']] = None,
+                 service: Optional[pulumi.Input['TraceMetricsRuleScopeFilterSpanScopeServiceArgs']] = None,
+                 span_count: Optional[pulumi.Input['TraceMetricsRuleScopeFilterSpanScopeSpanCountArgs']] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['TraceMetricsRuleScopeFilterSpanScopeTagArgs']]]] = None):
+        if duration is not None:
+            pulumi.set(__self__, "duration", duration)
+        if error is not None:
+            pulumi.set(__self__, "error", error)
+        if is_root_span is not None:
+            pulumi.set(__self__, "is_root_span", is_root_span)
+        if match_type is not None:
+            pulumi.set(__self__, "match_type", match_type)
+        if operation is not None:
+            pulumi.set(__self__, "operation", operation)
+        if parent_operation is not None:
+            pulumi.set(__self__, "parent_operation", parent_operation)
+        if parent_service is not None:
+            pulumi.set(__self__, "parent_service", parent_service)
+        if service is not None:
+            pulumi.set(__self__, "service", service)
+        if span_count is not None:
+            pulumi.set(__self__, "span_count", span_count)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+
+    @property
+    @pulumi.getter
+    def duration(self) -> Optional[pulumi.Input['TraceMetricsRuleScopeFilterSpanScopeDurationArgs']]:
+        return pulumi.get(self, "duration")
+
+    @duration.setter
+    def duration(self, value: Optional[pulumi.Input['TraceMetricsRuleScopeFilterSpanScopeDurationArgs']]):
+        pulumi.set(self, "duration", value)
+
+    @property
+    @pulumi.getter
+    def error(self) -> Optional[pulumi.Input['TraceMetricsRuleScopeFilterSpanScopeErrorArgs']]:
+        return pulumi.get(self, "error")
+
+    @error.setter
+    def error(self, value: Optional[pulumi.Input['TraceMetricsRuleScopeFilterSpanScopeErrorArgs']]):
+        pulumi.set(self, "error", value)
+
+    @property
+    @pulumi.getter(name="isRootSpan")
+    def is_root_span(self) -> Optional[pulumi.Input['TraceMetricsRuleScopeFilterSpanScopeIsRootSpanArgs']]:
+        return pulumi.get(self, "is_root_span")
+
+    @is_root_span.setter
+    def is_root_span(self, value: Optional[pulumi.Input['TraceMetricsRuleScopeFilterSpanScopeIsRootSpanArgs']]):
+        pulumi.set(self, "is_root_span", value)
+
+    @property
+    @pulumi.getter(name="matchType")
+    def match_type(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "match_type")
+
+    @match_type.setter
+    def match_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match_type", value)
+
+    @property
+    @pulumi.getter
+    def operation(self) -> Optional[pulumi.Input['TraceMetricsRuleScopeFilterSpanScopeOperationArgs']]:
+        return pulumi.get(self, "operation")
+
+    @operation.setter
+    def operation(self, value: Optional[pulumi.Input['TraceMetricsRuleScopeFilterSpanScopeOperationArgs']]):
+        pulumi.set(self, "operation", value)
+
+    @property
+    @pulumi.getter(name="parentOperation")
+    def parent_operation(self) -> Optional[pulumi.Input['TraceMetricsRuleScopeFilterSpanScopeParentOperationArgs']]:
+        return pulumi.get(self, "parent_operation")
+
+    @parent_operation.setter
+    def parent_operation(self, value: Optional[pulumi.Input['TraceMetricsRuleScopeFilterSpanScopeParentOperationArgs']]):
+        pulumi.set(self, "parent_operation", value)
+
+    @property
+    @pulumi.getter(name="parentService")
+    def parent_service(self) -> Optional[pulumi.Input['TraceMetricsRuleScopeFilterSpanScopeParentServiceArgs']]:
+        return pulumi.get(self, "parent_service")
+
+    @parent_service.setter
+    def parent_service(self, value: Optional[pulumi.Input['TraceMetricsRuleScopeFilterSpanScopeParentServiceArgs']]):
+        pulumi.set(self, "parent_service", value)
+
+    @property
+    @pulumi.getter
+    def service(self) -> Optional[pulumi.Input['TraceMetricsRuleScopeFilterSpanScopeServiceArgs']]:
+        return pulumi.get(self, "service")
+
+    @service.setter
+    def service(self, value: Optional[pulumi.Input['TraceMetricsRuleScopeFilterSpanScopeServiceArgs']]):
+        pulumi.set(self, "service", value)
+
+    @property
+    @pulumi.getter(name="spanCount")
+    def span_count(self) -> Optional[pulumi.Input['TraceMetricsRuleScopeFilterSpanScopeSpanCountArgs']]:
+        return pulumi.get(self, "span_count")
+
+    @span_count.setter
+    def span_count(self, value: Optional[pulumi.Input['TraceMetricsRuleScopeFilterSpanScopeSpanCountArgs']]):
+        pulumi.set(self, "span_count", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['TraceMetricsRuleScopeFilterSpanScopeTagArgs']]]]:
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['TraceMetricsRuleScopeFilterSpanScopeTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
+
+@pulumi.input_type
+class TraceMetricsRuleScopeFilterSpanScopeDurationArgs:
+    def __init__(__self__, *,
+                 max_secs: Optional[pulumi.Input[float]] = None,
+                 min_secs: Optional[pulumi.Input[float]] = None):
+        if max_secs is not None:
+            pulumi.set(__self__, "max_secs", max_secs)
+        if min_secs is not None:
+            pulumi.set(__self__, "min_secs", min_secs)
+
+    @property
+    @pulumi.getter(name="maxSecs")
+    def max_secs(self) -> Optional[pulumi.Input[float]]:
+        return pulumi.get(self, "max_secs")
+
+    @max_secs.setter
+    def max_secs(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "max_secs", value)
+
+    @property
+    @pulumi.getter(name="minSecs")
+    def min_secs(self) -> Optional[pulumi.Input[float]]:
+        return pulumi.get(self, "min_secs")
+
+    @min_secs.setter
+    def min_secs(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "min_secs", value)
+
+
+@pulumi.input_type
+class TraceMetricsRuleScopeFilterSpanScopeErrorArgs:
+    def __init__(__self__, *,
+                 value: pulumi.Input[bool]):
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[bool]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[bool]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class TraceMetricsRuleScopeFilterSpanScopeIsRootSpanArgs:
+    def __init__(__self__, *,
+                 value: pulumi.Input[bool]):
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[bool]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[bool]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class TraceMetricsRuleScopeFilterSpanScopeOperationArgs:
+    def __init__(__self__, *,
+                 in_values: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 match: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "in_values")
+
+    @in_values.setter
+    def in_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "in_values", value)
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "match")
+
+    @match.setter
+    def match(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class TraceMetricsRuleScopeFilterSpanScopeParentOperationArgs:
+    def __init__(__self__, *,
+                 in_values: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 match: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "in_values")
+
+    @in_values.setter
+    def in_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "in_values", value)
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "match")
+
+    @match.setter
+    def match(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class TraceMetricsRuleScopeFilterSpanScopeParentServiceArgs:
+    def __init__(__self__, *,
+                 in_values: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 match: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "in_values")
+
+    @in_values.setter
+    def in_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "in_values", value)
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "match")
+
+    @match.setter
+    def match(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class TraceMetricsRuleScopeFilterSpanScopeServiceArgs:
+    def __init__(__self__, *,
+                 in_values: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 match: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "in_values")
+
+    @in_values.setter
+    def in_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "in_values", value)
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "match")
+
+    @match.setter
+    def match(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class TraceMetricsRuleScopeFilterSpanScopeSpanCountArgs:
+    def __init__(__self__, *,
+                 max: Optional[pulumi.Input[int]] = None,
+                 min: Optional[pulumi.Input[int]] = None):
+        if max is not None:
+            pulumi.set(__self__, "max", max)
+        if min is not None:
+            pulumi.set(__self__, "min", min)
+
+    @property
+    @pulumi.getter
+    def max(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "max")
+
+    @max.setter
+    def max(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max", value)
+
+    @property
+    @pulumi.getter
+    def min(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "min")
+
+    @min.setter
+    def min(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "min", value)
+
+
+@pulumi.input_type
+class TraceMetricsRuleScopeFilterSpanScopeTagArgs:
+    def __init__(__self__, *,
+                 key: Optional[pulumi.Input[str]] = None,
+                 numeric_value: Optional[pulumi.Input['TraceMetricsRuleScopeFilterSpanScopeTagNumericValueArgs']] = None,
+                 value: Optional[pulumi.Input['TraceMetricsRuleScopeFilterSpanScopeTagValueArgs']] = None):
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if numeric_value is not None:
+            pulumi.set(__self__, "numeric_value", numeric_value)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter(name="numericValue")
+    def numeric_value(self) -> Optional[pulumi.Input['TraceMetricsRuleScopeFilterSpanScopeTagNumericValueArgs']]:
+        return pulumi.get(self, "numeric_value")
+
+    @numeric_value.setter
+    def numeric_value(self, value: Optional[pulumi.Input['TraceMetricsRuleScopeFilterSpanScopeTagNumericValueArgs']]):
+        pulumi.set(self, "numeric_value", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input['TraceMetricsRuleScopeFilterSpanScopeTagValueArgs']]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input['TraceMetricsRuleScopeFilterSpanScopeTagValueArgs']]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class TraceMetricsRuleScopeFilterSpanScopeTagNumericValueArgs:
+    def __init__(__self__, *,
+                 comparison: pulumi.Input[str],
+                 value: pulumi.Input[float]):
+        pulumi.set(__self__, "comparison", comparison)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def comparison(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "comparison")
+
+    @comparison.setter
+    def comparison(self, value: pulumi.Input[str]):
+        pulumi.set(self, "comparison", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[float]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[float]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class TraceMetricsRuleScopeFilterSpanScopeTagValueArgs:
+    def __init__(__self__, *,
+                 in_values: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 match: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "in_values")
+
+    @in_values.setter
+    def in_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "in_values", value)
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "match")
+
+    @match.setter
+    def match(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
 class TraceMetricsRuleTraceFilterArgs:
     def __init__(__self__, *,
+                 scope_filter: Optional[pulumi.Input['TraceMetricsRuleTraceFilterScopeFilterArgs']] = None,
                  spans: Optional[pulumi.Input[Sequence[pulumi.Input['TraceMetricsRuleTraceFilterSpanArgs']]]] = None,
                  trace: Optional[pulumi.Input['TraceMetricsRuleTraceFilterTraceArgs']] = None):
+        if scope_filter is not None:
+            pulumi.set(__self__, "scope_filter", scope_filter)
         if spans is not None:
             pulumi.set(__self__, "spans", spans)
         if trace is not None:
             pulumi.set(__self__, "trace", trace)
+
+    @property
+    @pulumi.getter(name="scopeFilter")
+    def scope_filter(self) -> Optional[pulumi.Input['TraceMetricsRuleTraceFilterScopeFilterArgs']]:
+        return pulumi.get(self, "scope_filter")
+
+    @scope_filter.setter
+    def scope_filter(self, value: Optional[pulumi.Input['TraceMetricsRuleTraceFilterScopeFilterArgs']]):
+        pulumi.set(self, "scope_filter", value)
 
     @property
     @pulumi.getter
@@ -6672,6 +7938,511 @@ class TraceMetricsRuleTraceFilterArgs:
     @trace.setter
     def trace(self, value: Optional[pulumi.Input['TraceMetricsRuleTraceFilterTraceArgs']]):
         pulumi.set(self, "trace", value)
+
+
+@pulumi.input_type
+class TraceMetricsRuleTraceFilterScopeFilterArgs:
+    def __init__(__self__, *,
+                 span_scopes: Optional[pulumi.Input[Sequence[pulumi.Input['TraceMetricsRuleTraceFilterScopeFilterSpanScopeArgs']]]] = None):
+        if span_scopes is not None:
+            pulumi.set(__self__, "span_scopes", span_scopes)
+
+    @property
+    @pulumi.getter(name="spanScopes")
+    def span_scopes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['TraceMetricsRuleTraceFilterScopeFilterSpanScopeArgs']]]]:
+        return pulumi.get(self, "span_scopes")
+
+    @span_scopes.setter
+    def span_scopes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['TraceMetricsRuleTraceFilterScopeFilterSpanScopeArgs']]]]):
+        pulumi.set(self, "span_scopes", value)
+
+
+@pulumi.input_type
+class TraceMetricsRuleTraceFilterScopeFilterSpanScopeArgs:
+    def __init__(__self__, *,
+                 duration: Optional[pulumi.Input['TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationArgs']] = None,
+                 error: Optional[pulumi.Input['TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorArgs']] = None,
+                 is_root_span: Optional[pulumi.Input['TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanArgs']] = None,
+                 match_type: Optional[pulumi.Input[str]] = None,
+                 operation: Optional[pulumi.Input['TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationArgs']] = None,
+                 parent_operation: Optional[pulumi.Input['TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationArgs']] = None,
+                 parent_service: Optional[pulumi.Input['TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServiceArgs']] = None,
+                 service: Optional[pulumi.Input['TraceMetricsRuleTraceFilterScopeFilterSpanScopeServiceArgs']] = None,
+                 span_count: Optional[pulumi.Input['TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountArgs']] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagArgs']]]] = None):
+        if duration is not None:
+            pulumi.set(__self__, "duration", duration)
+        if error is not None:
+            pulumi.set(__self__, "error", error)
+        if is_root_span is not None:
+            pulumi.set(__self__, "is_root_span", is_root_span)
+        if match_type is not None:
+            pulumi.set(__self__, "match_type", match_type)
+        if operation is not None:
+            pulumi.set(__self__, "operation", operation)
+        if parent_operation is not None:
+            pulumi.set(__self__, "parent_operation", parent_operation)
+        if parent_service is not None:
+            pulumi.set(__self__, "parent_service", parent_service)
+        if service is not None:
+            pulumi.set(__self__, "service", service)
+        if span_count is not None:
+            pulumi.set(__self__, "span_count", span_count)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+
+    @property
+    @pulumi.getter
+    def duration(self) -> Optional[pulumi.Input['TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationArgs']]:
+        return pulumi.get(self, "duration")
+
+    @duration.setter
+    def duration(self, value: Optional[pulumi.Input['TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationArgs']]):
+        pulumi.set(self, "duration", value)
+
+    @property
+    @pulumi.getter
+    def error(self) -> Optional[pulumi.Input['TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorArgs']]:
+        return pulumi.get(self, "error")
+
+    @error.setter
+    def error(self, value: Optional[pulumi.Input['TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorArgs']]):
+        pulumi.set(self, "error", value)
+
+    @property
+    @pulumi.getter(name="isRootSpan")
+    def is_root_span(self) -> Optional[pulumi.Input['TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanArgs']]:
+        return pulumi.get(self, "is_root_span")
+
+    @is_root_span.setter
+    def is_root_span(self, value: Optional[pulumi.Input['TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanArgs']]):
+        pulumi.set(self, "is_root_span", value)
+
+    @property
+    @pulumi.getter(name="matchType")
+    def match_type(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "match_type")
+
+    @match_type.setter
+    def match_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match_type", value)
+
+    @property
+    @pulumi.getter
+    def operation(self) -> Optional[pulumi.Input['TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationArgs']]:
+        return pulumi.get(self, "operation")
+
+    @operation.setter
+    def operation(self, value: Optional[pulumi.Input['TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationArgs']]):
+        pulumi.set(self, "operation", value)
+
+    @property
+    @pulumi.getter(name="parentOperation")
+    def parent_operation(self) -> Optional[pulumi.Input['TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationArgs']]:
+        return pulumi.get(self, "parent_operation")
+
+    @parent_operation.setter
+    def parent_operation(self, value: Optional[pulumi.Input['TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationArgs']]):
+        pulumi.set(self, "parent_operation", value)
+
+    @property
+    @pulumi.getter(name="parentService")
+    def parent_service(self) -> Optional[pulumi.Input['TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServiceArgs']]:
+        return pulumi.get(self, "parent_service")
+
+    @parent_service.setter
+    def parent_service(self, value: Optional[pulumi.Input['TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServiceArgs']]):
+        pulumi.set(self, "parent_service", value)
+
+    @property
+    @pulumi.getter
+    def service(self) -> Optional[pulumi.Input['TraceMetricsRuleTraceFilterScopeFilterSpanScopeServiceArgs']]:
+        return pulumi.get(self, "service")
+
+    @service.setter
+    def service(self, value: Optional[pulumi.Input['TraceMetricsRuleTraceFilterScopeFilterSpanScopeServiceArgs']]):
+        pulumi.set(self, "service", value)
+
+    @property
+    @pulumi.getter(name="spanCount")
+    def span_count(self) -> Optional[pulumi.Input['TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountArgs']]:
+        return pulumi.get(self, "span_count")
+
+    @span_count.setter
+    def span_count(self, value: Optional[pulumi.Input['TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountArgs']]):
+        pulumi.set(self, "span_count", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagArgs']]]]:
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
+
+@pulumi.input_type
+class TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationArgs:
+    def __init__(__self__, *,
+                 max_secs: Optional[pulumi.Input[float]] = None,
+                 min_secs: Optional[pulumi.Input[float]] = None):
+        if max_secs is not None:
+            pulumi.set(__self__, "max_secs", max_secs)
+        if min_secs is not None:
+            pulumi.set(__self__, "min_secs", min_secs)
+
+    @property
+    @pulumi.getter(name="maxSecs")
+    def max_secs(self) -> Optional[pulumi.Input[float]]:
+        return pulumi.get(self, "max_secs")
+
+    @max_secs.setter
+    def max_secs(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "max_secs", value)
+
+    @property
+    @pulumi.getter(name="minSecs")
+    def min_secs(self) -> Optional[pulumi.Input[float]]:
+        return pulumi.get(self, "min_secs")
+
+    @min_secs.setter
+    def min_secs(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "min_secs", value)
+
+
+@pulumi.input_type
+class TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorArgs:
+    def __init__(__self__, *,
+                 value: pulumi.Input[bool]):
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[bool]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[bool]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanArgs:
+    def __init__(__self__, *,
+                 value: pulumi.Input[bool]):
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[bool]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[bool]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationArgs:
+    def __init__(__self__, *,
+                 in_values: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 match: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "in_values")
+
+    @in_values.setter
+    def in_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "in_values", value)
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "match")
+
+    @match.setter
+    def match(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationArgs:
+    def __init__(__self__, *,
+                 in_values: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 match: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "in_values")
+
+    @in_values.setter
+    def in_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "in_values", value)
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "match")
+
+    @match.setter
+    def match(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServiceArgs:
+    def __init__(__self__, *,
+                 in_values: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 match: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "in_values")
+
+    @in_values.setter
+    def in_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "in_values", value)
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "match")
+
+    @match.setter
+    def match(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class TraceMetricsRuleTraceFilterScopeFilterSpanScopeServiceArgs:
+    def __init__(__self__, *,
+                 in_values: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 match: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "in_values")
+
+    @in_values.setter
+    def in_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "in_values", value)
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "match")
+
+    @match.setter
+    def match(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountArgs:
+    def __init__(__self__, *,
+                 max: Optional[pulumi.Input[int]] = None,
+                 min: Optional[pulumi.Input[int]] = None):
+        if max is not None:
+            pulumi.set(__self__, "max", max)
+        if min is not None:
+            pulumi.set(__self__, "min", min)
+
+    @property
+    @pulumi.getter
+    def max(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "max")
+
+    @max.setter
+    def max(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max", value)
+
+    @property
+    @pulumi.getter
+    def min(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "min")
+
+    @min.setter
+    def min(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "min", value)
+
+
+@pulumi.input_type
+class TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagArgs:
+    def __init__(__self__, *,
+                 key: Optional[pulumi.Input[str]] = None,
+                 numeric_value: Optional[pulumi.Input['TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValueArgs']] = None,
+                 value: Optional[pulumi.Input['TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValueArgs']] = None):
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if numeric_value is not None:
+            pulumi.set(__self__, "numeric_value", numeric_value)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter(name="numericValue")
+    def numeric_value(self) -> Optional[pulumi.Input['TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValueArgs']]:
+        return pulumi.get(self, "numeric_value")
+
+    @numeric_value.setter
+    def numeric_value(self, value: Optional[pulumi.Input['TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValueArgs']]):
+        pulumi.set(self, "numeric_value", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input['TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValueArgs']]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input['TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValueArgs']]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValueArgs:
+    def __init__(__self__, *,
+                 comparison: pulumi.Input[str],
+                 value: pulumi.Input[float]):
+        pulumi.set(__self__, "comparison", comparison)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def comparison(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "comparison")
+
+    @comparison.setter
+    def comparison(self, value: pulumi.Input[str]):
+        pulumi.set(self, "comparison", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[float]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[float]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValueArgs:
+    def __init__(__self__, *,
+                 in_values: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 match: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "in_values")
+
+    @in_values.setter
+    def in_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "in_values", value)
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "match")
+
+    @match.setter
+    def match(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
 
 
 @pulumi.input_type
@@ -7318,12 +9089,24 @@ class TraceTailSamplingRulesRuleArgs:
 @pulumi.input_type
 class TraceTailSamplingRulesRuleFilterArgs:
     def __init__(__self__, *,
+                 scope_filter: Optional[pulumi.Input['TraceTailSamplingRulesRuleFilterScopeFilterArgs']] = None,
                  spans: Optional[pulumi.Input[Sequence[pulumi.Input['TraceTailSamplingRulesRuleFilterSpanArgs']]]] = None,
                  trace: Optional[pulumi.Input['TraceTailSamplingRulesRuleFilterTraceArgs']] = None):
+        if scope_filter is not None:
+            pulumi.set(__self__, "scope_filter", scope_filter)
         if spans is not None:
             pulumi.set(__self__, "spans", spans)
         if trace is not None:
             pulumi.set(__self__, "trace", trace)
+
+    @property
+    @pulumi.getter(name="scopeFilter")
+    def scope_filter(self) -> Optional[pulumi.Input['TraceTailSamplingRulesRuleFilterScopeFilterArgs']]:
+        return pulumi.get(self, "scope_filter")
+
+    @scope_filter.setter
+    def scope_filter(self, value: Optional[pulumi.Input['TraceTailSamplingRulesRuleFilterScopeFilterArgs']]):
+        pulumi.set(self, "scope_filter", value)
 
     @property
     @pulumi.getter
@@ -7342,6 +9125,511 @@ class TraceTailSamplingRulesRuleFilterArgs:
     @trace.setter
     def trace(self, value: Optional[pulumi.Input['TraceTailSamplingRulesRuleFilterTraceArgs']]):
         pulumi.set(self, "trace", value)
+
+
+@pulumi.input_type
+class TraceTailSamplingRulesRuleFilterScopeFilterArgs:
+    def __init__(__self__, *,
+                 span_scopes: Optional[pulumi.Input[Sequence[pulumi.Input['TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeArgs']]]] = None):
+        if span_scopes is not None:
+            pulumi.set(__self__, "span_scopes", span_scopes)
+
+    @property
+    @pulumi.getter(name="spanScopes")
+    def span_scopes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeArgs']]]]:
+        return pulumi.get(self, "span_scopes")
+
+    @span_scopes.setter
+    def span_scopes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeArgs']]]]):
+        pulumi.set(self, "span_scopes", value)
+
+
+@pulumi.input_type
+class TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeArgs:
+    def __init__(__self__, *,
+                 duration: Optional[pulumi.Input['TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationArgs']] = None,
+                 error: Optional[pulumi.Input['TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorArgs']] = None,
+                 is_root_span: Optional[pulumi.Input['TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanArgs']] = None,
+                 match_type: Optional[pulumi.Input[str]] = None,
+                 operation: Optional[pulumi.Input['TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationArgs']] = None,
+                 parent_operation: Optional[pulumi.Input['TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationArgs']] = None,
+                 parent_service: Optional[pulumi.Input['TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServiceArgs']] = None,
+                 service: Optional[pulumi.Input['TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServiceArgs']] = None,
+                 span_count: Optional[pulumi.Input['TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountArgs']] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagArgs']]]] = None):
+        if duration is not None:
+            pulumi.set(__self__, "duration", duration)
+        if error is not None:
+            pulumi.set(__self__, "error", error)
+        if is_root_span is not None:
+            pulumi.set(__self__, "is_root_span", is_root_span)
+        if match_type is not None:
+            pulumi.set(__self__, "match_type", match_type)
+        if operation is not None:
+            pulumi.set(__self__, "operation", operation)
+        if parent_operation is not None:
+            pulumi.set(__self__, "parent_operation", parent_operation)
+        if parent_service is not None:
+            pulumi.set(__self__, "parent_service", parent_service)
+        if service is not None:
+            pulumi.set(__self__, "service", service)
+        if span_count is not None:
+            pulumi.set(__self__, "span_count", span_count)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+
+    @property
+    @pulumi.getter
+    def duration(self) -> Optional[pulumi.Input['TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationArgs']]:
+        return pulumi.get(self, "duration")
+
+    @duration.setter
+    def duration(self, value: Optional[pulumi.Input['TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationArgs']]):
+        pulumi.set(self, "duration", value)
+
+    @property
+    @pulumi.getter
+    def error(self) -> Optional[pulumi.Input['TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorArgs']]:
+        return pulumi.get(self, "error")
+
+    @error.setter
+    def error(self, value: Optional[pulumi.Input['TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorArgs']]):
+        pulumi.set(self, "error", value)
+
+    @property
+    @pulumi.getter(name="isRootSpan")
+    def is_root_span(self) -> Optional[pulumi.Input['TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanArgs']]:
+        return pulumi.get(self, "is_root_span")
+
+    @is_root_span.setter
+    def is_root_span(self, value: Optional[pulumi.Input['TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanArgs']]):
+        pulumi.set(self, "is_root_span", value)
+
+    @property
+    @pulumi.getter(name="matchType")
+    def match_type(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "match_type")
+
+    @match_type.setter
+    def match_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match_type", value)
+
+    @property
+    @pulumi.getter
+    def operation(self) -> Optional[pulumi.Input['TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationArgs']]:
+        return pulumi.get(self, "operation")
+
+    @operation.setter
+    def operation(self, value: Optional[pulumi.Input['TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationArgs']]):
+        pulumi.set(self, "operation", value)
+
+    @property
+    @pulumi.getter(name="parentOperation")
+    def parent_operation(self) -> Optional[pulumi.Input['TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationArgs']]:
+        return pulumi.get(self, "parent_operation")
+
+    @parent_operation.setter
+    def parent_operation(self, value: Optional[pulumi.Input['TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationArgs']]):
+        pulumi.set(self, "parent_operation", value)
+
+    @property
+    @pulumi.getter(name="parentService")
+    def parent_service(self) -> Optional[pulumi.Input['TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServiceArgs']]:
+        return pulumi.get(self, "parent_service")
+
+    @parent_service.setter
+    def parent_service(self, value: Optional[pulumi.Input['TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServiceArgs']]):
+        pulumi.set(self, "parent_service", value)
+
+    @property
+    @pulumi.getter
+    def service(self) -> Optional[pulumi.Input['TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServiceArgs']]:
+        return pulumi.get(self, "service")
+
+    @service.setter
+    def service(self, value: Optional[pulumi.Input['TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServiceArgs']]):
+        pulumi.set(self, "service", value)
+
+    @property
+    @pulumi.getter(name="spanCount")
+    def span_count(self) -> Optional[pulumi.Input['TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountArgs']]:
+        return pulumi.get(self, "span_count")
+
+    @span_count.setter
+    def span_count(self, value: Optional[pulumi.Input['TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountArgs']]):
+        pulumi.set(self, "span_count", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagArgs']]]]:
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
+
+@pulumi.input_type
+class TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationArgs:
+    def __init__(__self__, *,
+                 max_secs: Optional[pulumi.Input[float]] = None,
+                 min_secs: Optional[pulumi.Input[float]] = None):
+        if max_secs is not None:
+            pulumi.set(__self__, "max_secs", max_secs)
+        if min_secs is not None:
+            pulumi.set(__self__, "min_secs", min_secs)
+
+    @property
+    @pulumi.getter(name="maxSecs")
+    def max_secs(self) -> Optional[pulumi.Input[float]]:
+        return pulumi.get(self, "max_secs")
+
+    @max_secs.setter
+    def max_secs(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "max_secs", value)
+
+    @property
+    @pulumi.getter(name="minSecs")
+    def min_secs(self) -> Optional[pulumi.Input[float]]:
+        return pulumi.get(self, "min_secs")
+
+    @min_secs.setter
+    def min_secs(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "min_secs", value)
+
+
+@pulumi.input_type
+class TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorArgs:
+    def __init__(__self__, *,
+                 value: pulumi.Input[bool]):
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[bool]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[bool]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanArgs:
+    def __init__(__self__, *,
+                 value: pulumi.Input[bool]):
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[bool]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[bool]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationArgs:
+    def __init__(__self__, *,
+                 in_values: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 match: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "in_values")
+
+    @in_values.setter
+    def in_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "in_values", value)
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "match")
+
+    @match.setter
+    def match(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationArgs:
+    def __init__(__self__, *,
+                 in_values: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 match: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "in_values")
+
+    @in_values.setter
+    def in_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "in_values", value)
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "match")
+
+    @match.setter
+    def match(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServiceArgs:
+    def __init__(__self__, *,
+                 in_values: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 match: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "in_values")
+
+    @in_values.setter
+    def in_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "in_values", value)
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "match")
+
+    @match.setter
+    def match(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServiceArgs:
+    def __init__(__self__, *,
+                 in_values: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 match: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "in_values")
+
+    @in_values.setter
+    def in_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "in_values", value)
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "match")
+
+    @match.setter
+    def match(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountArgs:
+    def __init__(__self__, *,
+                 max: Optional[pulumi.Input[int]] = None,
+                 min: Optional[pulumi.Input[int]] = None):
+        if max is not None:
+            pulumi.set(__self__, "max", max)
+        if min is not None:
+            pulumi.set(__self__, "min", min)
+
+    @property
+    @pulumi.getter
+    def max(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "max")
+
+    @max.setter
+    def max(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max", value)
+
+    @property
+    @pulumi.getter
+    def min(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "min")
+
+    @min.setter
+    def min(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "min", value)
+
+
+@pulumi.input_type
+class TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagArgs:
+    def __init__(__self__, *,
+                 key: Optional[pulumi.Input[str]] = None,
+                 numeric_value: Optional[pulumi.Input['TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValueArgs']] = None,
+                 value: Optional[pulumi.Input['TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValueArgs']] = None):
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if numeric_value is not None:
+            pulumi.set(__self__, "numeric_value", numeric_value)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter(name="numericValue")
+    def numeric_value(self) -> Optional[pulumi.Input['TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValueArgs']]:
+        return pulumi.get(self, "numeric_value")
+
+    @numeric_value.setter
+    def numeric_value(self, value: Optional[pulumi.Input['TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValueArgs']]):
+        pulumi.set(self, "numeric_value", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input['TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValueArgs']]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input['TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValueArgs']]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValueArgs:
+    def __init__(__self__, *,
+                 comparison: pulumi.Input[str],
+                 value: pulumi.Input[float]):
+        pulumi.set(__self__, "comparison", comparison)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def comparison(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "comparison")
+
+    @comparison.setter
+    def comparison(self, value: pulumi.Input[str]):
+        pulumi.set(self, "comparison", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[float]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[float]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValueArgs:
+    def __init__(__self__, *,
+                 in_values: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 match: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "in_values")
+
+    @in_values.setter
+    def in_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "in_values", value)
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "match")
+
+    @match.setter
+    def match(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
 
 
 @pulumi.input_type

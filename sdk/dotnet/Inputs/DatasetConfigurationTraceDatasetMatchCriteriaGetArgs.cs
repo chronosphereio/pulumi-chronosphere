@@ -13,6 +13,9 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class DatasetConfigurationTraceDatasetMatchCriteriaGetArgs : global::Pulumi.ResourceArgs
     {
+        [Input("scopeFilter")]
+        public Input<Inputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterGetArgs>? ScopeFilter { get; set; }
+
         [Input("spans")]
         private InputList<Inputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanGetArgs>? _spans;
         public InputList<Inputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanGetArgs> Spans

@@ -5,6 +5,7 @@ package io.chronosphere.chronosphere.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import io.chronosphere.chronosphere.inputs.TraceTailSamplingRulesRuleFilterScopeFilterArgs;
 import io.chronosphere.chronosphere.inputs.TraceTailSamplingRulesRuleFilterSpanArgs;
 import io.chronosphere.chronosphere.inputs.TraceTailSamplingRulesRuleFilterTraceArgs;
 import java.util.List;
@@ -16,6 +17,13 @@ import javax.annotation.Nullable;
 public final class TraceTailSamplingRulesRuleFilterArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final TraceTailSamplingRulesRuleFilterArgs Empty = new TraceTailSamplingRulesRuleFilterArgs();
+
+    @Import(name="scopeFilter")
+    private @Nullable Output<TraceTailSamplingRulesRuleFilterScopeFilterArgs> scopeFilter;
+
+    public Optional<Output<TraceTailSamplingRulesRuleFilterScopeFilterArgs>> scopeFilter() {
+        return Optional.ofNullable(this.scopeFilter);
+    }
 
     @Import(name="spans")
     private @Nullable Output<List<TraceTailSamplingRulesRuleFilterSpanArgs>> spans;
@@ -34,6 +42,7 @@ public final class TraceTailSamplingRulesRuleFilterArgs extends com.pulumi.resou
     private TraceTailSamplingRulesRuleFilterArgs() {}
 
     private TraceTailSamplingRulesRuleFilterArgs(TraceTailSamplingRulesRuleFilterArgs $) {
+        this.scopeFilter = $.scopeFilter;
         this.spans = $.spans;
         this.trace = $.trace;
     }
@@ -54,6 +63,15 @@ public final class TraceTailSamplingRulesRuleFilterArgs extends com.pulumi.resou
 
         public Builder(TraceTailSamplingRulesRuleFilterArgs defaults) {
             $ = new TraceTailSamplingRulesRuleFilterArgs(Objects.requireNonNull(defaults));
+        }
+
+        public Builder scopeFilter(@Nullable Output<TraceTailSamplingRulesRuleFilterScopeFilterArgs> scopeFilter) {
+            $.scopeFilter = scopeFilter;
+            return this;
+        }
+
+        public Builder scopeFilter(TraceTailSamplingRulesRuleFilterScopeFilterArgs scopeFilter) {
+            return scopeFilter(Output.of(scopeFilter));
         }
 
         public Builder spans(@Nullable Output<List<TraceTailSamplingRulesRuleFilterSpanArgs>> spans) {
