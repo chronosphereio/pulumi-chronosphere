@@ -14,15 +14,19 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class TraceMetricsRuleTraceFilter
     {
+        public readonly Outputs.TraceMetricsRuleTraceFilterScopeFilter? ScopeFilter;
         public readonly ImmutableArray<Outputs.TraceMetricsRuleTraceFilterSpan> Spans;
         public readonly Outputs.TraceMetricsRuleTraceFilterTrace? Trace;
 
         [OutputConstructor]
         private TraceMetricsRuleTraceFilter(
+            Outputs.TraceMetricsRuleTraceFilterScopeFilter? scopeFilter,
+
             ImmutableArray<Outputs.TraceMetricsRuleTraceFilterSpan> spans,
 
             Outputs.TraceMetricsRuleTraceFilterTrace? trace)
         {
+            ScopeFilter = scopeFilter;
             Spans = spans;
             Trace = trace;
         }

@@ -15,13 +15,14 @@ import (
 type TraceMetricsRule struct {
 	pulumi.CustomResourceState
 
-	GroupBies               TraceMetricsRuleGroupByArrayOutput `pulumi:"groupBies"`
-	HistogramBucketsSeconds pulumi.Float64ArrayOutput          `pulumi:"histogramBucketsSeconds"`
-	MetricLabels            pulumi.StringMapOutput             `pulumi:"metricLabels"`
-	MetricName              pulumi.StringOutput                `pulumi:"metricName"`
-	Name                    pulumi.StringOutput                `pulumi:"name"`
-	Slug                    pulumi.StringOutput                `pulumi:"slug"`
-	TraceFilter             TraceMetricsRuleTraceFilterOutput  `pulumi:"traceFilter"`
+	GroupBies               TraceMetricsRuleGroupByArrayOutput   `pulumi:"groupBies"`
+	HistogramBucketsSeconds pulumi.Float64ArrayOutput            `pulumi:"histogramBucketsSeconds"`
+	MetricLabels            pulumi.StringMapOutput               `pulumi:"metricLabels"`
+	MetricName              pulumi.StringOutput                  `pulumi:"metricName"`
+	Name                    pulumi.StringOutput                  `pulumi:"name"`
+	ScopeFilter             TraceMetricsRuleScopeFilterPtrOutput `pulumi:"scopeFilter"`
+	Slug                    pulumi.StringOutput                  `pulumi:"slug"`
+	TraceFilter             TraceMetricsRuleTraceFilterOutput    `pulumi:"traceFilter"`
 }
 
 // NewTraceMetricsRule registers a new resource with the given unique name, arguments, and options.
@@ -68,6 +69,7 @@ type traceMetricsRuleState struct {
 	MetricLabels            map[string]string            `pulumi:"metricLabels"`
 	MetricName              *string                      `pulumi:"metricName"`
 	Name                    *string                      `pulumi:"name"`
+	ScopeFilter             *TraceMetricsRuleScopeFilter `pulumi:"scopeFilter"`
 	Slug                    *string                      `pulumi:"slug"`
 	TraceFilter             *TraceMetricsRuleTraceFilter `pulumi:"traceFilter"`
 }
@@ -78,6 +80,7 @@ type TraceMetricsRuleState struct {
 	MetricLabels            pulumi.StringMapInput
 	MetricName              pulumi.StringPtrInput
 	Name                    pulumi.StringPtrInput
+	ScopeFilter             TraceMetricsRuleScopeFilterPtrInput
 	Slug                    pulumi.StringPtrInput
 	TraceFilter             TraceMetricsRuleTraceFilterPtrInput
 }
@@ -87,13 +90,14 @@ func (TraceMetricsRuleState) ElementType() reflect.Type {
 }
 
 type traceMetricsRuleArgs struct {
-	GroupBies               []TraceMetricsRuleGroupBy   `pulumi:"groupBies"`
-	HistogramBucketsSeconds []float64                   `pulumi:"histogramBucketsSeconds"`
-	MetricLabels            map[string]string           `pulumi:"metricLabels"`
-	MetricName              string                      `pulumi:"metricName"`
-	Name                    string                      `pulumi:"name"`
-	Slug                    *string                     `pulumi:"slug"`
-	TraceFilter             TraceMetricsRuleTraceFilter `pulumi:"traceFilter"`
+	GroupBies               []TraceMetricsRuleGroupBy    `pulumi:"groupBies"`
+	HistogramBucketsSeconds []float64                    `pulumi:"histogramBucketsSeconds"`
+	MetricLabels            map[string]string            `pulumi:"metricLabels"`
+	MetricName              string                       `pulumi:"metricName"`
+	Name                    string                       `pulumi:"name"`
+	ScopeFilter             *TraceMetricsRuleScopeFilter `pulumi:"scopeFilter"`
+	Slug                    *string                      `pulumi:"slug"`
+	TraceFilter             TraceMetricsRuleTraceFilter  `pulumi:"traceFilter"`
 }
 
 // The set of arguments for constructing a TraceMetricsRule resource.
@@ -103,6 +107,7 @@ type TraceMetricsRuleArgs struct {
 	MetricLabels            pulumi.StringMapInput
 	MetricName              pulumi.StringInput
 	Name                    pulumi.StringInput
+	ScopeFilter             TraceMetricsRuleScopeFilterPtrInput
 	Slug                    pulumi.StringPtrInput
 	TraceFilter             TraceMetricsRuleTraceFilterInput
 }
@@ -212,6 +217,10 @@ func (o TraceMetricsRuleOutput) MetricName() pulumi.StringOutput {
 
 func (o TraceMetricsRuleOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *TraceMetricsRule) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o TraceMetricsRuleOutput) ScopeFilter() TraceMetricsRuleScopeFilterPtrOutput {
+	return o.ApplyT(func(v *TraceMetricsRule) TraceMetricsRuleScopeFilterPtrOutput { return v.ScopeFilter }).(TraceMetricsRuleScopeFilterPtrOutput)
 }
 
 func (o TraceMetricsRuleOutput) Slug() pulumi.StringOutput {

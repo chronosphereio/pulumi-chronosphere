@@ -4,6 +4,8 @@
 package io.chronosphere.chronosphere.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import io.chronosphere.chronosphere.outputs.GcpMetricsIntegrationMetricGroupFilter;
+import io.chronosphere.chronosphere.outputs.GcpMetricsIntegrationMetricGroupRollupRule;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -11,15 +13,23 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GcpMetricsIntegrationMetricGroup {
+    private @Nullable List<GcpMetricsIntegrationMetricGroupFilter> filters;
     private @Nullable List<String> prefixes;
     private String projectId;
+    private @Nullable List<GcpMetricsIntegrationMetricGroupRollupRule> rollupRules;
 
     private GcpMetricsIntegrationMetricGroup() {}
+    public List<GcpMetricsIntegrationMetricGroupFilter> filters() {
+        return this.filters == null ? List.of() : this.filters;
+    }
     public List<String> prefixes() {
         return this.prefixes == null ? List.of() : this.prefixes;
     }
     public String projectId() {
         return this.projectId;
+    }
+    public List<GcpMetricsIntegrationMetricGroupRollupRule> rollupRules() {
+        return this.rollupRules == null ? List.of() : this.rollupRules;
     }
 
     public static Builder builder() {
@@ -31,15 +41,27 @@ public final class GcpMetricsIntegrationMetricGroup {
     }
     @CustomType.Builder
     public static final class Builder {
+        private @Nullable List<GcpMetricsIntegrationMetricGroupFilter> filters;
         private @Nullable List<String> prefixes;
         private String projectId;
+        private @Nullable List<GcpMetricsIntegrationMetricGroupRollupRule> rollupRules;
         public Builder() {}
         public Builder(GcpMetricsIntegrationMetricGroup defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.filters = defaults.filters;
     	      this.prefixes = defaults.prefixes;
     	      this.projectId = defaults.projectId;
+    	      this.rollupRules = defaults.rollupRules;
         }
 
+        @CustomType.Setter
+        public Builder filters(@Nullable List<GcpMetricsIntegrationMetricGroupFilter> filters) {
+            this.filters = filters;
+            return this;
+        }
+        public Builder filters(GcpMetricsIntegrationMetricGroupFilter... filters) {
+            return filters(List.of(filters));
+        }
         @CustomType.Setter
         public Builder prefixes(@Nullable List<String> prefixes) {
             this.prefixes = prefixes;
@@ -53,10 +75,20 @@ public final class GcpMetricsIntegrationMetricGroup {
             this.projectId = Objects.requireNonNull(projectId);
             return this;
         }
+        @CustomType.Setter
+        public Builder rollupRules(@Nullable List<GcpMetricsIntegrationMetricGroupRollupRule> rollupRules) {
+            this.rollupRules = rollupRules;
+            return this;
+        }
+        public Builder rollupRules(GcpMetricsIntegrationMetricGroupRollupRule... rollupRules) {
+            return rollupRules(List.of(rollupRules));
+        }
         public GcpMetricsIntegrationMetricGroup build() {
             final var o = new GcpMetricsIntegrationMetricGroup();
+            o.filters = filters;
             o.prefixes = prefixes;
             o.projectId = projectId;
+            o.rollupRules = rollupRules;
             return o;
         }
     }

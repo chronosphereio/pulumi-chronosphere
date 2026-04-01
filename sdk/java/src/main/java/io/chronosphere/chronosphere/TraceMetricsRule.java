@@ -11,6 +11,7 @@ import io.chronosphere.chronosphere.TraceMetricsRuleArgs;
 import io.chronosphere.chronosphere.Utilities;
 import io.chronosphere.chronosphere.inputs.TraceMetricsRuleState;
 import io.chronosphere.chronosphere.outputs.TraceMetricsRuleGroupBy;
+import io.chronosphere.chronosphere.outputs.TraceMetricsRuleScopeFilter;
 import io.chronosphere.chronosphere.outputs.TraceMetricsRuleTraceFilter;
 import java.lang.Double;
 import java.lang.String;
@@ -50,6 +51,12 @@ public class TraceMetricsRule extends com.pulumi.resources.CustomResource {
 
     public Output<String> name() {
         return this.name;
+    }
+    @Export(name="scopeFilter", refs={TraceMetricsRuleScopeFilter.class}, tree="[0]")
+    private Output</* @Nullable */ TraceMetricsRuleScopeFilter> scopeFilter;
+
+    public Output<Optional<TraceMetricsRuleScopeFilter>> scopeFilter() {
+        return Codegen.optional(this.scopeFilter);
     }
     @Export(name="slug", refs={String.class}, tree="[0]")
     private Output<String> slug;

@@ -16,7 +16,9 @@ namespace Chronosphere.Pulumi.Outputs
     {
         public readonly string? Action;
         public readonly Outputs.ConsumptionBudgetThresholdInstantRate? InstantRate;
+        public readonly string? SkuGroup;
         public readonly string? Type;
+        public readonly string? Unit;
         public readonly Outputs.ConsumptionBudgetThresholdVolume? Volume;
 
         [OutputConstructor]
@@ -25,13 +27,19 @@ namespace Chronosphere.Pulumi.Outputs
 
             Outputs.ConsumptionBudgetThresholdInstantRate? instantRate,
 
+            string? skuGroup,
+
             string? type,
+
+            string? unit,
 
             Outputs.ConsumptionBudgetThresholdVolume? volume)
         {
             Action = action;
             InstantRate = instantRate;
+            SkuGroup = skuGroup;
             Type = type;
+            Unit = unit;
             Volume = volume;
         }
     }

@@ -18,6 +18,7 @@
             "chronosphere:index/logAllocationConfig:LogAllocationConfig": "chronosphere_log_allocation_config",
             "chronosphere:index/logControlConfig:LogControlConfig": "chronosphere_log_control_config",
             "chronosphere:index/logIngestConfig:LogIngestConfig": "chronosphere_log_ingest_config",
+            "chronosphere:index/logRetentionConfig:LogRetentionConfig": "chronosphere_log_retention_config",
             "chronosphere:index/logscaleAction:LogscaleAction": "chronosphere_logscale_action",
             "chronosphere:index/logscaleAlert:LogscaleAlert": "chronosphere_logscale_alert",
             "chronosphere:index/mappingRule:MappingRule": "chronosphere_mapping_rule",
@@ -68,7 +69,8 @@
                 "logFilter": "log_filter"
             },
             "chronosphere:index/ConsumptionBudgetThreshold:ConsumptionBudgetThreshold": {
-                "instantRate": "instant_rate"
+                "instantRate": "instant_rate",
+                "skuGroup": "sku_group"
             },
             "chronosphere:index/ConsumptionBudgetThresholdInstantRate:ConsumptionBudgetThresholdInstantRate": {
                 "fixedValuePerSec": "fixed_value_per_sec"
@@ -152,7 +154,41 @@
                 "matchCriteria": "match_criteria"
             },
             "chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteria:DatasetConfigurationTraceDatasetMatchCriteria": {
+                "scopeFilter": "scope_filter",
                 "spans": "span"
+            },
+            "chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaScopeFilter:DatasetConfigurationTraceDatasetMatchCriteriaScopeFilter": {
+                "spanScopes": "span_scopes"
+            },
+            "chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScope:DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScope": {
+                "isRootSpan": "is_root_span",
+                "matchType": "match_type",
+                "parentOperation": "parent_operation",
+                "parentService": "parent_service",
+                "spanCount": "span_count",
+                "tags": "tag"
+            },
+            "chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDuration:DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDuration": {
+                "maxSecs": "max_secs",
+                "minSecs": "min_secs"
+            },
+            "chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperation:DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperation": {
+                "inValues": "in_values"
+            },
+            "chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperation:DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperation": {
+                "inValues": "in_values"
+            },
+            "chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentService:DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentService": {
+                "inValues": "in_values"
+            },
+            "chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeService:DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeService": {
+                "inValues": "in_values"
+            },
+            "chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTag:DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTag": {
+                "numericValue": "numeric_value"
+            },
+            "chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValue:DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValue": {
+                "inValues": "in_values"
             },
             "chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaSpan:DatasetConfigurationTraceDatasetMatchCriteriaSpan": {
                 "isRootSpan": "is_root_span",
@@ -230,7 +266,18 @@
                 "targetDropValue": "target_drop_value"
             },
             "chronosphere:index/GcpMetricsIntegrationMetricGroup:GcpMetricsIntegrationMetricGroup": {
-                "projectId": "project_id"
+                "projectId": "project_id",
+                "rollupRules": "rollup_rules"
+            },
+            "chronosphere:index/GcpMetricsIntegrationMetricGroupFilter:GcpMetricsIntegrationMetricGroupFilter": {
+                "valueGlob": "value_glob"
+            },
+            "chronosphere:index/GcpMetricsIntegrationMetricGroupRollupRule:GcpMetricsIntegrationMetricGroupRollupRule": {
+                "labelPolicy": "label_policy",
+                "metricName": "metric_name"
+            },
+            "chronosphere:index/GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicy:GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicy": {
+                "keeps": "keep"
             },
             "chronosphere:index/GcpMetricsIntegrationServiceAccount:GcpMetricsIntegrationServiceAccount": {
                 "clientEmail": "client_email"
@@ -555,8 +602,75 @@
             "chronosphere:index/TraceMetricsRuleGroupByKey:TraceMetricsRuleGroupByKey": {
                 "namedKey": "named_key"
             },
+            "chronosphere:index/TraceMetricsRuleScopeFilter:TraceMetricsRuleScopeFilter": {
+                "spanScopes": "span_scopes"
+            },
+            "chronosphere:index/TraceMetricsRuleScopeFilterSpanScope:TraceMetricsRuleScopeFilterSpanScope": {
+                "isRootSpan": "is_root_span",
+                "matchType": "match_type",
+                "parentOperation": "parent_operation",
+                "parentService": "parent_service",
+                "spanCount": "span_count",
+                "tags": "tag"
+            },
+            "chronosphere:index/TraceMetricsRuleScopeFilterSpanScopeDuration:TraceMetricsRuleScopeFilterSpanScopeDuration": {
+                "maxSecs": "max_secs",
+                "minSecs": "min_secs"
+            },
+            "chronosphere:index/TraceMetricsRuleScopeFilterSpanScopeOperation:TraceMetricsRuleScopeFilterSpanScopeOperation": {
+                "inValues": "in_values"
+            },
+            "chronosphere:index/TraceMetricsRuleScopeFilterSpanScopeParentOperation:TraceMetricsRuleScopeFilterSpanScopeParentOperation": {
+                "inValues": "in_values"
+            },
+            "chronosphere:index/TraceMetricsRuleScopeFilterSpanScopeParentService:TraceMetricsRuleScopeFilterSpanScopeParentService": {
+                "inValues": "in_values"
+            },
+            "chronosphere:index/TraceMetricsRuleScopeFilterSpanScopeService:TraceMetricsRuleScopeFilterSpanScopeService": {
+                "inValues": "in_values"
+            },
+            "chronosphere:index/TraceMetricsRuleScopeFilterSpanScopeTag:TraceMetricsRuleScopeFilterSpanScopeTag": {
+                "numericValue": "numeric_value"
+            },
+            "chronosphere:index/TraceMetricsRuleScopeFilterSpanScopeTagValue:TraceMetricsRuleScopeFilterSpanScopeTagValue": {
+                "inValues": "in_values"
+            },
             "chronosphere:index/TraceMetricsRuleTraceFilter:TraceMetricsRuleTraceFilter": {
+                "scopeFilter": "scope_filter",
                 "spans": "span"
+            },
+            "chronosphere:index/TraceMetricsRuleTraceFilterScopeFilter:TraceMetricsRuleTraceFilterScopeFilter": {
+                "spanScopes": "span_scopes"
+            },
+            "chronosphere:index/TraceMetricsRuleTraceFilterScopeFilterSpanScope:TraceMetricsRuleTraceFilterScopeFilterSpanScope": {
+                "isRootSpan": "is_root_span",
+                "matchType": "match_type",
+                "parentOperation": "parent_operation",
+                "parentService": "parent_service",
+                "spanCount": "span_count",
+                "tags": "tag"
+            },
+            "chronosphere:index/TraceMetricsRuleTraceFilterScopeFilterSpanScopeDuration:TraceMetricsRuleTraceFilterScopeFilterSpanScopeDuration": {
+                "maxSecs": "max_secs",
+                "minSecs": "min_secs"
+            },
+            "chronosphere:index/TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperation:TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperation": {
+                "inValues": "in_values"
+            },
+            "chronosphere:index/TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperation:TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperation": {
+                "inValues": "in_values"
+            },
+            "chronosphere:index/TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentService:TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentService": {
+                "inValues": "in_values"
+            },
+            "chronosphere:index/TraceMetricsRuleTraceFilterScopeFilterSpanScopeService:TraceMetricsRuleTraceFilterScopeFilterSpanScopeService": {
+                "inValues": "in_values"
+            },
+            "chronosphere:index/TraceMetricsRuleTraceFilterScopeFilterSpanScopeTag:TraceMetricsRuleTraceFilterScopeFilterSpanScopeTag": {
+                "numericValue": "numeric_value"
+            },
+            "chronosphere:index/TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValue:TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValue": {
+                "inValues": "in_values"
             },
             "chronosphere:index/TraceMetricsRuleTraceFilterSpan:TraceMetricsRuleTraceFilterSpan": {
                 "isRootSpan": "is_root_span",
@@ -600,7 +714,41 @@
                 "systemName": "system_name"
             },
             "chronosphere:index/TraceTailSamplingRulesRuleFilter:TraceTailSamplingRulesRuleFilter": {
+                "scopeFilter": "scope_filter",
                 "spans": "span"
+            },
+            "chronosphere:index/TraceTailSamplingRulesRuleFilterScopeFilter:TraceTailSamplingRulesRuleFilterScopeFilter": {
+                "spanScopes": "span_scopes"
+            },
+            "chronosphere:index/TraceTailSamplingRulesRuleFilterScopeFilterSpanScope:TraceTailSamplingRulesRuleFilterScopeFilterSpanScope": {
+                "isRootSpan": "is_root_span",
+                "matchType": "match_type",
+                "parentOperation": "parent_operation",
+                "parentService": "parent_service",
+                "spanCount": "span_count",
+                "tags": "tag"
+            },
+            "chronosphere:index/TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDuration:TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDuration": {
+                "maxSecs": "max_secs",
+                "minSecs": "min_secs"
+            },
+            "chronosphere:index/TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperation:TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperation": {
+                "inValues": "in_values"
+            },
+            "chronosphere:index/TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperation:TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperation": {
+                "inValues": "in_values"
+            },
+            "chronosphere:index/TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentService:TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentService": {
+                "inValues": "in_values"
+            },
+            "chronosphere:index/TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeService:TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeService": {
+                "inValues": "in_values"
+            },
+            "chronosphere:index/TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTag:TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTag": {
+                "numericValue": "numeric_value"
+            },
+            "chronosphere:index/TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValue:TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValue": {
+                "inValues": "in_values"
             },
             "chronosphere:index/TraceTailSamplingRulesRuleFilterSpan:TraceTailSamplingRulesRuleFilterSpan": {
                 "isRootSpan": "is_root_span",
@@ -706,6 +854,9 @@
                 "fieldParsers": "field_parser",
                 "plaintextParsers": "plaintext_parser"
             },
+            "chronosphere:index/logRetentionConfig:LogRetentionConfig": {
+                "retentionDays": "retention_days"
+            },
             "chronosphere:index/logscaleAction:LogscaleAction": {
                 "emailAction": "email_action",
                 "humioAction": "humio_action",
@@ -774,6 +925,7 @@
             "chronosphere:index/recordingRule:RecordingRule": {
                 "bucketId": "bucket_id",
                 "executionGroup": "execution_group",
+                "executionMode": "execution_mode",
                 "metricName": "metric_name"
             },
             "chronosphere:index/resourcePoolsConfig:ResourcePoolsConfig": {
@@ -832,6 +984,7 @@
                 "histogramBucketsSeconds": "histogram_buckets_seconds",
                 "metricLabels": "metric_labels",
                 "metricName": "metric_name",
+                "scopeFilter": "scope_filter",
                 "traceFilter": "trace_filter"
             },
             "chronosphere:index/traceTailSamplingRules:TraceTailSamplingRules": {

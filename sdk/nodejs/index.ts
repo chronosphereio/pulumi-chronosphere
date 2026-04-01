@@ -100,6 +100,11 @@ export type LogIngestConfig = import("./logIngestConfig").LogIngestConfig;
 export const LogIngestConfig: typeof import("./logIngestConfig").LogIngestConfig = null as any;
 utilities.lazyLoad(exports, ["LogIngestConfig"], () => require("./logIngestConfig"));
 
+export { LogRetentionConfigArgs, LogRetentionConfigState } from "./logRetentionConfig";
+export type LogRetentionConfig = import("./logRetentionConfig").LogRetentionConfig;
+export const LogRetentionConfig: typeof import("./logRetentionConfig").LogRetentionConfig = null as any;
+utilities.lazyLoad(exports, ["LogRetentionConfig"], () => require("./logRetentionConfig"));
+
 export { LogscaleActionArgs, LogscaleActionState } from "./logscaleAction";
 export type LogscaleAction = import("./logscaleAction").LogscaleAction;
 export const LogscaleAction: typeof import("./logscaleAction").LogscaleAction = null as any;
@@ -263,6 +268,8 @@ const _module = {
                 return new LogControlConfig(name, <any>undefined, { urn })
             case "chronosphere:index/logIngestConfig:LogIngestConfig":
                 return new LogIngestConfig(name, <any>undefined, { urn })
+            case "chronosphere:index/logRetentionConfig:LogRetentionConfig":
+                return new LogRetentionConfig(name, <any>undefined, { urn })
             case "chronosphere:index/logscaleAction:LogscaleAction":
                 return new LogscaleAction(name, <any>undefined, { urn })
             case "chronosphere:index/logscaleAlert:LogscaleAlert":
@@ -327,6 +334,7 @@ pulumi.runtime.registerResourceModule("chronosphere", "index/gcpMetricsIntegrati
 pulumi.runtime.registerResourceModule("chronosphere", "index/logAllocationConfig", _module)
 pulumi.runtime.registerResourceModule("chronosphere", "index/logControlConfig", _module)
 pulumi.runtime.registerResourceModule("chronosphere", "index/logIngestConfig", _module)
+pulumi.runtime.registerResourceModule("chronosphere", "index/logRetentionConfig", _module)
 pulumi.runtime.registerResourceModule("chronosphere", "index/logscaleAction", _module)
 pulumi.runtime.registerResourceModule("chronosphere", "index/logscaleAlert", _module)
 pulumi.runtime.registerResourceModule("chronosphere", "index/mappingRule", _module)

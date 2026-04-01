@@ -18,6 +18,7 @@ class RecordingRuleArgs:
                  name: pulumi.Input[str],
                  bucket_id: Optional[pulumi.Input[str]] = None,
                  execution_group: Optional[pulumi.Input[str]] = None,
+                 execution_mode: Optional[pulumi.Input[str]] = None,
                  interval: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  metric_name: Optional[pulumi.Input[str]] = None,
@@ -31,6 +32,8 @@ class RecordingRuleArgs:
             pulumi.set(__self__, "bucket_id", bucket_id)
         if execution_group is not None:
             pulumi.set(__self__, "execution_group", execution_group)
+        if execution_mode is not None:
+            pulumi.set(__self__, "execution_mode", execution_mode)
         if interval is not None:
             pulumi.set(__self__, "interval", interval)
         if labels is not None:
@@ -77,6 +80,15 @@ class RecordingRuleArgs:
         pulumi.set(self, "execution_group", value)
 
     @property
+    @pulumi.getter(name="executionMode")
+    def execution_mode(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "execution_mode")
+
+    @execution_mode.setter
+    def execution_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "execution_mode", value)
+
+    @property
     @pulumi.getter
     def interval(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "interval")
@@ -118,6 +130,7 @@ class _RecordingRuleState:
     def __init__(__self__, *,
                  bucket_id: Optional[pulumi.Input[str]] = None,
                  execution_group: Optional[pulumi.Input[str]] = None,
+                 execution_mode: Optional[pulumi.Input[str]] = None,
                  expr: Optional[pulumi.Input[str]] = None,
                  interval: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
@@ -131,6 +144,8 @@ class _RecordingRuleState:
             pulumi.set(__self__, "bucket_id", bucket_id)
         if execution_group is not None:
             pulumi.set(__self__, "execution_group", execution_group)
+        if execution_mode is not None:
+            pulumi.set(__self__, "execution_mode", execution_mode)
         if expr is not None:
             pulumi.set(__self__, "expr", expr)
         if interval is not None:
@@ -161,6 +176,15 @@ class _RecordingRuleState:
     @execution_group.setter
     def execution_group(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "execution_group", value)
+
+    @property
+    @pulumi.getter(name="executionMode")
+    def execution_mode(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "execution_mode")
+
+    @execution_mode.setter
+    def execution_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "execution_mode", value)
 
     @property
     @pulumi.getter
@@ -224,6 +248,7 @@ class RecordingRule(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  bucket_id: Optional[pulumi.Input[str]] = None,
                  execution_group: Optional[pulumi.Input[str]] = None,
+                 execution_mode: Optional[pulumi.Input[str]] = None,
                  expr: Optional[pulumi.Input[str]] = None,
                  interval: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
@@ -261,6 +286,7 @@ class RecordingRule(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  bucket_id: Optional[pulumi.Input[str]] = None,
                  execution_group: Optional[pulumi.Input[str]] = None,
+                 execution_mode: Optional[pulumi.Input[str]] = None,
                  expr: Optional[pulumi.Input[str]] = None,
                  interval: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
@@ -278,6 +304,7 @@ class RecordingRule(pulumi.CustomResource):
 
             __props__.__dict__["bucket_id"] = bucket_id
             __props__.__dict__["execution_group"] = execution_group
+            __props__.__dict__["execution_mode"] = execution_mode
             if expr is None and not opts.urn:
                 raise TypeError("Missing required property 'expr'")
             __props__.__dict__["expr"] = expr
@@ -300,6 +327,7 @@ class RecordingRule(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             bucket_id: Optional[pulumi.Input[str]] = None,
             execution_group: Optional[pulumi.Input[str]] = None,
+            execution_mode: Optional[pulumi.Input[str]] = None,
             expr: Optional[pulumi.Input[str]] = None,
             interval: Optional[pulumi.Input[str]] = None,
             labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
@@ -320,6 +348,7 @@ class RecordingRule(pulumi.CustomResource):
 
         __props__.__dict__["bucket_id"] = bucket_id
         __props__.__dict__["execution_group"] = execution_group
+        __props__.__dict__["execution_mode"] = execution_mode
         __props__.__dict__["expr"] = expr
         __props__.__dict__["interval"] = interval
         __props__.__dict__["labels"] = labels
@@ -337,6 +366,11 @@ class RecordingRule(pulumi.CustomResource):
     @pulumi.getter(name="executionGroup")
     def execution_group(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "execution_group")
+
+    @property
+    @pulumi.getter(name="executionMode")
+    def execution_mode(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "execution_mode")
 
     @property
     @pulumi.getter

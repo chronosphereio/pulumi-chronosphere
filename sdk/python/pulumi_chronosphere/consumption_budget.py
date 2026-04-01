@@ -42,6 +42,9 @@ class ConsumptionBudgetArgs:
         if priorities is not None:
             pulumi.set(__self__, "priorities", priorities)
         if resource is not None:
+            warnings.warn("""use threshold.sku_group and threshold.unit instead""", DeprecationWarning)
+            pulumi.log.warn("""resource is deprecated: use threshold.sku_group and threshold.unit instead""")
+        if resource is not None:
             pulumi.set(__self__, "resource", resource)
         if slug is not None:
             pulumi.set(__self__, "slug", slug)
@@ -114,6 +117,9 @@ class ConsumptionBudgetArgs:
     @property
     @pulumi.getter
     def resource(self) -> Optional[pulumi.Input[str]]:
+        warnings.warn("""use threshold.sku_group and threshold.unit instead""", DeprecationWarning)
+        pulumi.log.warn("""resource is deprecated: use threshold.sku_group and threshold.unit instead""")
+
         return pulumi.get(self, "resource")
 
     @resource.setter
@@ -169,6 +175,9 @@ class _ConsumptionBudgetState:
             pulumi.set(__self__, "partition_slug_path", partition_slug_path)
         if priorities is not None:
             pulumi.set(__self__, "priorities", priorities)
+        if resource is not None:
+            warnings.warn("""use threshold.sku_group and threshold.unit instead""", DeprecationWarning)
+            pulumi.log.warn("""resource is deprecated: use threshold.sku_group and threshold.unit instead""")
         if resource is not None:
             pulumi.set(__self__, "resource", resource)
         if slug is not None:
@@ -242,6 +251,9 @@ class _ConsumptionBudgetState:
     @property
     @pulumi.getter
     def resource(self) -> Optional[pulumi.Input[str]]:
+        warnings.warn("""use threshold.sku_group and threshold.unit instead""", DeprecationWarning)
+        pulumi.log.warn("""resource is deprecated: use threshold.sku_group and threshold.unit instead""")
+
         return pulumi.get(self, "resource")
 
     @resource.setter
@@ -426,6 +438,9 @@ class ConsumptionBudget(pulumi.CustomResource):
     @property
     @pulumi.getter
     def resource(self) -> pulumi.Output[Optional[str]]:
+        warnings.warn("""use threshold.sku_group and threshold.unit instead""", DeprecationWarning)
+        pulumi.log.warn("""resource is deprecated: use threshold.sku_group and threshold.unit instead""")
+
         return pulumi.get(self, "resource")
 
     @property

@@ -209,7 +209,13 @@
                 "instantRate": {
                     "$ref": "#/types/chronosphere:index/ConsumptionBudgetThresholdInstantRate:ConsumptionBudgetThresholdInstantRate"
                 },
+                "skuGroup": {
+                    "type": "string"
+                },
                 "type": {
+                    "type": "string"
+                },
+                "unit": {
                     "type": "string"
                 },
                 "volume": {
@@ -631,6 +637,9 @@
         },
         "chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteria:DatasetConfigurationTraceDatasetMatchCriteria": {
             "properties": {
+                "scopeFilter": {
+                    "$ref": "#/types/chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaScopeFilter:DatasetConfigurationTraceDatasetMatchCriteriaScopeFilter"
+                },
                 "spans": {
                     "type": "array",
                     "items": {
@@ -639,6 +648,213 @@
                 },
                 "trace": {
                     "$ref": "#/types/chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaTrace:DatasetConfigurationTraceDatasetMatchCriteriaTrace"
+                }
+            },
+            "type": "object"
+        },
+        "chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaScopeFilter:DatasetConfigurationTraceDatasetMatchCriteriaScopeFilter": {
+            "properties": {
+                "spanScopes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScope:DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScope"
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScope:DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScope": {
+            "properties": {
+                "duration": {
+                    "$ref": "#/types/chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDuration:DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDuration"
+                },
+                "error": {
+                    "$ref": "#/types/chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeError:DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeError"
+                },
+                "isRootSpan": {
+                    "$ref": "#/types/chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpan:DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpan"
+                },
+                "matchType": {
+                    "type": "string"
+                },
+                "operation": {
+                    "$ref": "#/types/chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperation:DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperation"
+                },
+                "parentOperation": {
+                    "$ref": "#/types/chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperation:DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperation"
+                },
+                "parentService": {
+                    "$ref": "#/types/chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentService:DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentService"
+                },
+                "service": {
+                    "$ref": "#/types/chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeService:DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeService"
+                },
+                "spanCount": {
+                    "$ref": "#/types/chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCount:DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCount"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTag:DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTag"
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDuration:DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDuration": {
+            "properties": {
+                "maxSecs": {
+                    "type": "number"
+                },
+                "minSecs": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeError:DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeError": {
+            "properties": {
+                "value": {
+                    "type": "boolean"
+                }
+            },
+            "type": "object",
+            "required": [
+                "value"
+            ]
+        },
+        "chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpan:DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpan": {
+            "properties": {
+                "value": {
+                    "type": "boolean"
+                }
+            },
+            "type": "object",
+            "required": [
+                "value"
+            ]
+        },
+        "chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperation:DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperation": {
+            "properties": {
+                "inValues": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "match": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperation:DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperation": {
+            "properties": {
+                "inValues": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "match": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentService:DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentService": {
+            "properties": {
+                "inValues": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "match": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeService:DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeService": {
+            "properties": {
+                "inValues": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "match": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCount:DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCount": {
+            "properties": {
+                "max": {
+                    "type": "integer"
+                },
+                "min": {
+                    "type": "integer"
+                }
+            },
+            "type": "object"
+        },
+        "chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTag:DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTag": {
+            "properties": {
+                "key": {
+                    "type": "string"
+                },
+                "numericValue": {
+                    "$ref": "#/types/chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValue:DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValue"
+                },
+                "value": {
+                    "$ref": "#/types/chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValue:DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValue"
+                }
+            },
+            "type": "object"
+        },
+        "chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValue:DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValue": {
+            "properties": {
+                "comparison": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "number"
+                }
+            },
+            "type": "object",
+            "required": [
+                "comparison",
+                "value"
+            ]
+        },
+        "chronosphere:index/DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValue:DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValue": {
+            "properties": {
+                "inValues": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "match": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
                 }
             },
             "type": "object"
@@ -1114,6 +1330,12 @@
         },
         "chronosphere:index/GcpMetricsIntegrationMetricGroup:GcpMetricsIntegrationMetricGroup": {
             "properties": {
+                "filters": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/chronosphere:index/GcpMetricsIntegrationMetricGroupFilter:GcpMetricsIntegrationMetricGroupFilter"
+                    }
+                },
                 "prefixes": {
                     "type": "array",
                     "items": {
@@ -1122,12 +1344,68 @@
                 },
                 "projectId": {
                     "type": "string"
+                },
+                "rollupRules": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/chronosphere:index/GcpMetricsIntegrationMetricGroupRollupRule:GcpMetricsIntegrationMetricGroupRollupRule"
+                    }
                 }
             },
             "type": "object",
             "required": [
                 "projectId"
             ]
+        },
+        "chronosphere:index/GcpMetricsIntegrationMetricGroupFilter:GcpMetricsIntegrationMetricGroupFilter": {
+            "properties": {
+                "context": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "valueGlob": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "chronosphere:index/GcpMetricsIntegrationMetricGroupRollupRule:GcpMetricsIntegrationMetricGroupRollupRule": {
+            "properties": {
+                "aggregation": {
+                    "type": "string"
+                },
+                "labelPolicy": {
+                    "$ref": "#/types/chronosphere:index/GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicy:GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicy"
+                },
+                "metricName": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "chronosphere:index/GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicy:GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicy": {
+            "properties": {
+                "keeps": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/chronosphere:index/GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeep:GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeep"
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "chronosphere:index/GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeep:GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeep": {
+            "properties": {
+                "context": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
         },
         "chronosphere:index/GcpMetricsIntegrationServiceAccount:GcpMetricsIntegrationServiceAccount": {
             "properties": {
@@ -3102,8 +3380,218 @@
                 "type"
             ]
         },
+        "chronosphere:index/TraceMetricsRuleScopeFilter:TraceMetricsRuleScopeFilter": {
+            "properties": {
+                "spanScopes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/chronosphere:index/TraceMetricsRuleScopeFilterSpanScope:TraceMetricsRuleScopeFilterSpanScope"
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "chronosphere:index/TraceMetricsRuleScopeFilterSpanScope:TraceMetricsRuleScopeFilterSpanScope": {
+            "properties": {
+                "duration": {
+                    "$ref": "#/types/chronosphere:index/TraceMetricsRuleScopeFilterSpanScopeDuration:TraceMetricsRuleScopeFilterSpanScopeDuration"
+                },
+                "error": {
+                    "$ref": "#/types/chronosphere:index/TraceMetricsRuleScopeFilterSpanScopeError:TraceMetricsRuleScopeFilterSpanScopeError"
+                },
+                "isRootSpan": {
+                    "$ref": "#/types/chronosphere:index/TraceMetricsRuleScopeFilterSpanScopeIsRootSpan:TraceMetricsRuleScopeFilterSpanScopeIsRootSpan"
+                },
+                "matchType": {
+                    "type": "string"
+                },
+                "operation": {
+                    "$ref": "#/types/chronosphere:index/TraceMetricsRuleScopeFilterSpanScopeOperation:TraceMetricsRuleScopeFilterSpanScopeOperation"
+                },
+                "parentOperation": {
+                    "$ref": "#/types/chronosphere:index/TraceMetricsRuleScopeFilterSpanScopeParentOperation:TraceMetricsRuleScopeFilterSpanScopeParentOperation"
+                },
+                "parentService": {
+                    "$ref": "#/types/chronosphere:index/TraceMetricsRuleScopeFilterSpanScopeParentService:TraceMetricsRuleScopeFilterSpanScopeParentService"
+                },
+                "service": {
+                    "$ref": "#/types/chronosphere:index/TraceMetricsRuleScopeFilterSpanScopeService:TraceMetricsRuleScopeFilterSpanScopeService"
+                },
+                "spanCount": {
+                    "$ref": "#/types/chronosphere:index/TraceMetricsRuleScopeFilterSpanScopeSpanCount:TraceMetricsRuleScopeFilterSpanScopeSpanCount"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/chronosphere:index/TraceMetricsRuleScopeFilterSpanScopeTag:TraceMetricsRuleScopeFilterSpanScopeTag"
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "chronosphere:index/TraceMetricsRuleScopeFilterSpanScopeDuration:TraceMetricsRuleScopeFilterSpanScopeDuration": {
+            "properties": {
+                "maxSecs": {
+                    "type": "number"
+                },
+                "minSecs": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "chronosphere:index/TraceMetricsRuleScopeFilterSpanScopeError:TraceMetricsRuleScopeFilterSpanScopeError": {
+            "properties": {
+                "value": {
+                    "type": "boolean"
+                }
+            },
+            "type": "object",
+            "required": [
+                "value"
+            ]
+        },
+        "chronosphere:index/TraceMetricsRuleScopeFilterSpanScopeIsRootSpan:TraceMetricsRuleScopeFilterSpanScopeIsRootSpan": {
+            "properties": {
+                "value": {
+                    "type": "boolean"
+                }
+            },
+            "type": "object",
+            "required": [
+                "value"
+            ]
+        },
+        "chronosphere:index/TraceMetricsRuleScopeFilterSpanScopeOperation:TraceMetricsRuleScopeFilterSpanScopeOperation": {
+            "properties": {
+                "inValues": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "match": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "chronosphere:index/TraceMetricsRuleScopeFilterSpanScopeParentOperation:TraceMetricsRuleScopeFilterSpanScopeParentOperation": {
+            "properties": {
+                "inValues": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "match": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "chronosphere:index/TraceMetricsRuleScopeFilterSpanScopeParentService:TraceMetricsRuleScopeFilterSpanScopeParentService": {
+            "properties": {
+                "inValues": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "match": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "chronosphere:index/TraceMetricsRuleScopeFilterSpanScopeService:TraceMetricsRuleScopeFilterSpanScopeService": {
+            "properties": {
+                "inValues": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "match": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "chronosphere:index/TraceMetricsRuleScopeFilterSpanScopeSpanCount:TraceMetricsRuleScopeFilterSpanScopeSpanCount": {
+            "properties": {
+                "max": {
+                    "type": "integer"
+                },
+                "min": {
+                    "type": "integer"
+                }
+            },
+            "type": "object"
+        },
+        "chronosphere:index/TraceMetricsRuleScopeFilterSpanScopeTag:TraceMetricsRuleScopeFilterSpanScopeTag": {
+            "properties": {
+                "key": {
+                    "type": "string"
+                },
+                "numericValue": {
+                    "$ref": "#/types/chronosphere:index/TraceMetricsRuleScopeFilterSpanScopeTagNumericValue:TraceMetricsRuleScopeFilterSpanScopeTagNumericValue"
+                },
+                "value": {
+                    "$ref": "#/types/chronosphere:index/TraceMetricsRuleScopeFilterSpanScopeTagValue:TraceMetricsRuleScopeFilterSpanScopeTagValue"
+                }
+            },
+            "type": "object"
+        },
+        "chronosphere:index/TraceMetricsRuleScopeFilterSpanScopeTagNumericValue:TraceMetricsRuleScopeFilterSpanScopeTagNumericValue": {
+            "properties": {
+                "comparison": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "number"
+                }
+            },
+            "type": "object",
+            "required": [
+                "comparison",
+                "value"
+            ]
+        },
+        "chronosphere:index/TraceMetricsRuleScopeFilterSpanScopeTagValue:TraceMetricsRuleScopeFilterSpanScopeTagValue": {
+            "properties": {
+                "inValues": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "match": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
         "chronosphere:index/TraceMetricsRuleTraceFilter:TraceMetricsRuleTraceFilter": {
             "properties": {
+                "scopeFilter": {
+                    "$ref": "#/types/chronosphere:index/TraceMetricsRuleTraceFilterScopeFilter:TraceMetricsRuleTraceFilterScopeFilter"
+                },
                 "spans": {
                     "type": "array",
                     "items": {
@@ -3112,6 +3600,213 @@
                 },
                 "trace": {
                     "$ref": "#/types/chronosphere:index/TraceMetricsRuleTraceFilterTrace:TraceMetricsRuleTraceFilterTrace"
+                }
+            },
+            "type": "object"
+        },
+        "chronosphere:index/TraceMetricsRuleTraceFilterScopeFilter:TraceMetricsRuleTraceFilterScopeFilter": {
+            "properties": {
+                "spanScopes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/chronosphere:index/TraceMetricsRuleTraceFilterScopeFilterSpanScope:TraceMetricsRuleTraceFilterScopeFilterSpanScope"
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "chronosphere:index/TraceMetricsRuleTraceFilterScopeFilterSpanScope:TraceMetricsRuleTraceFilterScopeFilterSpanScope": {
+            "properties": {
+                "duration": {
+                    "$ref": "#/types/chronosphere:index/TraceMetricsRuleTraceFilterScopeFilterSpanScopeDuration:TraceMetricsRuleTraceFilterScopeFilterSpanScopeDuration"
+                },
+                "error": {
+                    "$ref": "#/types/chronosphere:index/TraceMetricsRuleTraceFilterScopeFilterSpanScopeError:TraceMetricsRuleTraceFilterScopeFilterSpanScopeError"
+                },
+                "isRootSpan": {
+                    "$ref": "#/types/chronosphere:index/TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpan:TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpan"
+                },
+                "matchType": {
+                    "type": "string"
+                },
+                "operation": {
+                    "$ref": "#/types/chronosphere:index/TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperation:TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperation"
+                },
+                "parentOperation": {
+                    "$ref": "#/types/chronosphere:index/TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperation:TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperation"
+                },
+                "parentService": {
+                    "$ref": "#/types/chronosphere:index/TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentService:TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentService"
+                },
+                "service": {
+                    "$ref": "#/types/chronosphere:index/TraceMetricsRuleTraceFilterScopeFilterSpanScopeService:TraceMetricsRuleTraceFilterScopeFilterSpanScopeService"
+                },
+                "spanCount": {
+                    "$ref": "#/types/chronosphere:index/TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCount:TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCount"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/chronosphere:index/TraceMetricsRuleTraceFilterScopeFilterSpanScopeTag:TraceMetricsRuleTraceFilterScopeFilterSpanScopeTag"
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "chronosphere:index/TraceMetricsRuleTraceFilterScopeFilterSpanScopeDuration:TraceMetricsRuleTraceFilterScopeFilterSpanScopeDuration": {
+            "properties": {
+                "maxSecs": {
+                    "type": "number"
+                },
+                "minSecs": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "chronosphere:index/TraceMetricsRuleTraceFilterScopeFilterSpanScopeError:TraceMetricsRuleTraceFilterScopeFilterSpanScopeError": {
+            "properties": {
+                "value": {
+                    "type": "boolean"
+                }
+            },
+            "type": "object",
+            "required": [
+                "value"
+            ]
+        },
+        "chronosphere:index/TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpan:TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpan": {
+            "properties": {
+                "value": {
+                    "type": "boolean"
+                }
+            },
+            "type": "object",
+            "required": [
+                "value"
+            ]
+        },
+        "chronosphere:index/TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperation:TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperation": {
+            "properties": {
+                "inValues": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "match": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "chronosphere:index/TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperation:TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperation": {
+            "properties": {
+                "inValues": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "match": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "chronosphere:index/TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentService:TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentService": {
+            "properties": {
+                "inValues": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "match": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "chronosphere:index/TraceMetricsRuleTraceFilterScopeFilterSpanScopeService:TraceMetricsRuleTraceFilterScopeFilterSpanScopeService": {
+            "properties": {
+                "inValues": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "match": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "chronosphere:index/TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCount:TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCount": {
+            "properties": {
+                "max": {
+                    "type": "integer"
+                },
+                "min": {
+                    "type": "integer"
+                }
+            },
+            "type": "object"
+        },
+        "chronosphere:index/TraceMetricsRuleTraceFilterScopeFilterSpanScopeTag:TraceMetricsRuleTraceFilterScopeFilterSpanScopeTag": {
+            "properties": {
+                "key": {
+                    "type": "string"
+                },
+                "numericValue": {
+                    "$ref": "#/types/chronosphere:index/TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValue:TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValue"
+                },
+                "value": {
+                    "$ref": "#/types/chronosphere:index/TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValue:TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValue"
+                }
+            },
+            "type": "object"
+        },
+        "chronosphere:index/TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValue:TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValue": {
+            "properties": {
+                "comparison": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "number"
+                }
+            },
+            "type": "object",
+            "required": [
+                "comparison",
+                "value"
+            ]
+        },
+        "chronosphere:index/TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValue:TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValue": {
+            "properties": {
+                "inValues": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "match": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
                 }
             },
             "type": "object"
@@ -3382,6 +4077,9 @@
         },
         "chronosphere:index/TraceTailSamplingRulesRuleFilter:TraceTailSamplingRulesRuleFilter": {
             "properties": {
+                "scopeFilter": {
+                    "$ref": "#/types/chronosphere:index/TraceTailSamplingRulesRuleFilterScopeFilter:TraceTailSamplingRulesRuleFilterScopeFilter"
+                },
                 "spans": {
                     "type": "array",
                     "items": {
@@ -3390,6 +4088,213 @@
                 },
                 "trace": {
                     "$ref": "#/types/chronosphere:index/TraceTailSamplingRulesRuleFilterTrace:TraceTailSamplingRulesRuleFilterTrace"
+                }
+            },
+            "type": "object"
+        },
+        "chronosphere:index/TraceTailSamplingRulesRuleFilterScopeFilter:TraceTailSamplingRulesRuleFilterScopeFilter": {
+            "properties": {
+                "spanScopes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/chronosphere:index/TraceTailSamplingRulesRuleFilterScopeFilterSpanScope:TraceTailSamplingRulesRuleFilterScopeFilterSpanScope"
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "chronosphere:index/TraceTailSamplingRulesRuleFilterScopeFilterSpanScope:TraceTailSamplingRulesRuleFilterScopeFilterSpanScope": {
+            "properties": {
+                "duration": {
+                    "$ref": "#/types/chronosphere:index/TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDuration:TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDuration"
+                },
+                "error": {
+                    "$ref": "#/types/chronosphere:index/TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeError:TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeError"
+                },
+                "isRootSpan": {
+                    "$ref": "#/types/chronosphere:index/TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpan:TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpan"
+                },
+                "matchType": {
+                    "type": "string"
+                },
+                "operation": {
+                    "$ref": "#/types/chronosphere:index/TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperation:TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperation"
+                },
+                "parentOperation": {
+                    "$ref": "#/types/chronosphere:index/TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperation:TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperation"
+                },
+                "parentService": {
+                    "$ref": "#/types/chronosphere:index/TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentService:TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentService"
+                },
+                "service": {
+                    "$ref": "#/types/chronosphere:index/TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeService:TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeService"
+                },
+                "spanCount": {
+                    "$ref": "#/types/chronosphere:index/TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCount:TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCount"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/chronosphere:index/TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTag:TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTag"
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "chronosphere:index/TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDuration:TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDuration": {
+            "properties": {
+                "maxSecs": {
+                    "type": "number"
+                },
+                "minSecs": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "chronosphere:index/TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeError:TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeError": {
+            "properties": {
+                "value": {
+                    "type": "boolean"
+                }
+            },
+            "type": "object",
+            "required": [
+                "value"
+            ]
+        },
+        "chronosphere:index/TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpan:TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpan": {
+            "properties": {
+                "value": {
+                    "type": "boolean"
+                }
+            },
+            "type": "object",
+            "required": [
+                "value"
+            ]
+        },
+        "chronosphere:index/TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperation:TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperation": {
+            "properties": {
+                "inValues": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "match": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "chronosphere:index/TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperation:TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperation": {
+            "properties": {
+                "inValues": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "match": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "chronosphere:index/TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentService:TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentService": {
+            "properties": {
+                "inValues": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "match": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "chronosphere:index/TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeService:TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeService": {
+            "properties": {
+                "inValues": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "match": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "chronosphere:index/TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCount:TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCount": {
+            "properties": {
+                "max": {
+                    "type": "integer"
+                },
+                "min": {
+                    "type": "integer"
+                }
+            },
+            "type": "object"
+        },
+        "chronosphere:index/TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTag:TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTag": {
+            "properties": {
+                "key": {
+                    "type": "string"
+                },
+                "numericValue": {
+                    "$ref": "#/types/chronosphere:index/TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValue:TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValue"
+                },
+                "value": {
+                    "$ref": "#/types/chronosphere:index/TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValue:TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValue"
+                }
+            },
+            "type": "object"
+        },
+        "chronosphere:index/TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValue:TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValue": {
+            "properties": {
+                "comparison": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "number"
+                }
+            },
+            "type": "object",
+            "required": [
+                "comparison",
+                "value"
+            ]
+        },
+        "chronosphere:index/TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValue:TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValue": {
+            "properties": {
+                "inValues": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "match": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
                 }
             },
             "type": "object"
@@ -4036,7 +4941,8 @@
                     }
                 },
                 "resource": {
-                    "type": "string"
+                    "type": "string",
+                    "deprecationMessage": "use threshold.sku_group and threshold.unit instead"
                 },
                 "slug": {
                     "type": "string"
@@ -4079,7 +4985,8 @@
                     }
                 },
                 "resource": {
-                    "type": "string"
+                    "type": "string",
+                    "deprecationMessage": "use threshold.sku_group and threshold.unit instead"
                 },
                 "slug": {
                     "type": "string",
@@ -4124,7 +5031,8 @@
                         }
                     },
                     "resource": {
-                        "type": "string"
+                        "type": "string",
+                        "deprecationMessage": "use threshold.sku_group and threshold.unit instead"
                     },
                     "slug": {
                         "type": "string",
@@ -4861,6 +5769,78 @@
                         "items": {
                             "$ref": "#/types/chronosphere:index/LogIngestConfigPlaintextParser:LogIngestConfigPlaintextParser"
                         }
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "chronosphere:index/logRetentionConfig:LogRetentionConfig": {
+            "properties": {
+                "filter": {
+                    "type": "string"
+                },
+                "mode": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "retentionDays": {
+                    "type": "integer"
+                },
+                "slug": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "filter",
+                "mode",
+                "name",
+                "retentionDays",
+                "slug"
+            ],
+            "inputProperties": {
+                "filter": {
+                    "type": "string"
+                },
+                "mode": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "retentionDays": {
+                    "type": "integer"
+                },
+                "slug": {
+                    "type": "string",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "requiredInputs": [
+                "filter",
+                "mode",
+                "name",
+                "retentionDays"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering LogRetentionConfig resources.\n",
+                "properties": {
+                    "filter": {
+                        "type": "string"
+                    },
+                    "mode": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "retentionDays": {
+                        "type": "integer"
+                    },
+                    "slug": {
+                        "type": "string",
+                        "willReplaceOnChanges": true
                     }
                 },
                 "type": "object"
@@ -6041,6 +7021,9 @@
                 "executionGroup": {
                     "type": "string"
                 },
+                "executionMode": {
+                    "type": "string"
+                },
                 "expr": {
                     "type": "string"
                 },
@@ -6073,6 +7056,9 @@
                     "type": "string"
                 },
                 "executionGroup": {
+                    "type": "string"
+                },
+                "executionMode": {
                     "type": "string"
                 },
                 "expr": {
@@ -6109,6 +7095,9 @@
                         "type": "string"
                     },
                     "executionGroup": {
+                        "type": "string"
+                    },
+                    "executionMode": {
                         "type": "string"
                     },
                     "expr": {
@@ -7161,6 +8150,9 @@
                 "name": {
                     "type": "string"
                 },
+                "scopeFilter": {
+                    "$ref": "#/types/chronosphere:index/TraceMetricsRuleScopeFilter:TraceMetricsRuleScopeFilter"
+                },
                 "slug": {
                     "type": "string"
                 },
@@ -7198,6 +8190,9 @@
                 },
                 "name": {
                     "type": "string"
+                },
+                "scopeFilter": {
+                    "$ref": "#/types/chronosphere:index/TraceMetricsRuleScopeFilter:TraceMetricsRuleScopeFilter"
                 },
                 "slug": {
                     "type": "string",
@@ -7238,6 +8233,9 @@
                     },
                     "name": {
                         "type": "string"
+                    },
+                    "scopeFilter": {
+                        "$ref": "#/types/chronosphere:index/TraceMetricsRuleScopeFilter:TraceMetricsRuleScopeFilter"
                     },
                     "slug": {
                         "type": "string",

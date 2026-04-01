@@ -44,7 +44,9 @@ export interface ConsumptionBudgetPriorityFilterLogFilter {
 export interface ConsumptionBudgetThreshold {
     action?: pulumi.Input<string>;
     instantRate?: pulumi.Input<inputs.ConsumptionBudgetThresholdInstantRate>;
+    skuGroup?: pulumi.Input<string>;
     type?: pulumi.Input<string>;
+    unit?: pulumi.Input<string>;
     volume?: pulumi.Input<inputs.ConsumptionBudgetThresholdVolume>;
 }
 
@@ -200,8 +202,85 @@ export interface DatasetConfigurationTraceDataset {
 }
 
 export interface DatasetConfigurationTraceDatasetMatchCriteria {
+    scopeFilter?: pulumi.Input<inputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilter>;
     spans?: pulumi.Input<pulumi.Input<inputs.DatasetConfigurationTraceDatasetMatchCriteriaSpan>[]>;
     trace?: pulumi.Input<inputs.DatasetConfigurationTraceDatasetMatchCriteriaTrace>;
+}
+
+export interface DatasetConfigurationTraceDatasetMatchCriteriaScopeFilter {
+    spanScopes?: pulumi.Input<pulumi.Input<inputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScope>[]>;
+}
+
+export interface DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScope {
+    duration?: pulumi.Input<inputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDuration>;
+    error?: pulumi.Input<inputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeError>;
+    isRootSpan?: pulumi.Input<inputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpan>;
+    matchType?: pulumi.Input<string>;
+    operation?: pulumi.Input<inputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperation>;
+    parentOperation?: pulumi.Input<inputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperation>;
+    parentService?: pulumi.Input<inputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentService>;
+    service?: pulumi.Input<inputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeService>;
+    spanCount?: pulumi.Input<inputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCount>;
+    tags?: pulumi.Input<pulumi.Input<inputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTag>[]>;
+}
+
+export interface DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDuration {
+    maxSecs?: pulumi.Input<number>;
+    minSecs?: pulumi.Input<number>;
+}
+
+export interface DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeError {
+    value: pulumi.Input<boolean>;
+}
+
+export interface DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpan {
+    value: pulumi.Input<boolean>;
+}
+
+export interface DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperation {
+    inValues?: pulumi.Input<pulumi.Input<string>[]>;
+    match?: pulumi.Input<string>;
+    value?: pulumi.Input<string>;
+}
+
+export interface DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperation {
+    inValues?: pulumi.Input<pulumi.Input<string>[]>;
+    match?: pulumi.Input<string>;
+    value?: pulumi.Input<string>;
+}
+
+export interface DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentService {
+    inValues?: pulumi.Input<pulumi.Input<string>[]>;
+    match?: pulumi.Input<string>;
+    value?: pulumi.Input<string>;
+}
+
+export interface DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeService {
+    inValues?: pulumi.Input<pulumi.Input<string>[]>;
+    match?: pulumi.Input<string>;
+    value?: pulumi.Input<string>;
+}
+
+export interface DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCount {
+    max?: pulumi.Input<number>;
+    min?: pulumi.Input<number>;
+}
+
+export interface DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTag {
+    key?: pulumi.Input<string>;
+    numericValue?: pulumi.Input<inputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValue>;
+    value?: pulumi.Input<inputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValue>;
+}
+
+export interface DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValue {
+    comparison: pulumi.Input<string>;
+    value: pulumi.Input<number>;
+}
+
+export interface DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValue {
+    inValues?: pulumi.Input<pulumi.Input<string>[]>;
+    match?: pulumi.Input<string>;
+    value?: pulumi.Input<string>;
 }
 
 export interface DatasetConfigurationTraceDatasetMatchCriteriaSpan {
@@ -367,8 +446,31 @@ export interface DropRuleValueBasedDrop {
 }
 
 export interface GcpMetricsIntegrationMetricGroup {
+    filters?: pulumi.Input<pulumi.Input<inputs.GcpMetricsIntegrationMetricGroupFilter>[]>;
     prefixes?: pulumi.Input<pulumi.Input<string>[]>;
     projectId: pulumi.Input<string>;
+    rollupRules?: pulumi.Input<pulumi.Input<inputs.GcpMetricsIntegrationMetricGroupRollupRule>[]>;
+}
+
+export interface GcpMetricsIntegrationMetricGroupFilter {
+    context?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
+    valueGlob?: pulumi.Input<string>;
+}
+
+export interface GcpMetricsIntegrationMetricGroupRollupRule {
+    aggregation?: pulumi.Input<string>;
+    labelPolicy?: pulumi.Input<inputs.GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicy>;
+    metricName?: pulumi.Input<string>;
+}
+
+export interface GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicy {
+    keeps?: pulumi.Input<pulumi.Input<inputs.GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeep>[]>;
+}
+
+export interface GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeep {
+    context?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
 }
 
 export interface GcpMetricsIntegrationServiceAccount {
@@ -1054,9 +1156,162 @@ export interface TraceMetricsRuleGroupByKey {
     type: pulumi.Input<string>;
 }
 
+export interface TraceMetricsRuleScopeFilter {
+    spanScopes?: pulumi.Input<pulumi.Input<inputs.TraceMetricsRuleScopeFilterSpanScope>[]>;
+}
+
+export interface TraceMetricsRuleScopeFilterSpanScope {
+    duration?: pulumi.Input<inputs.TraceMetricsRuleScopeFilterSpanScopeDuration>;
+    error?: pulumi.Input<inputs.TraceMetricsRuleScopeFilterSpanScopeError>;
+    isRootSpan?: pulumi.Input<inputs.TraceMetricsRuleScopeFilterSpanScopeIsRootSpan>;
+    matchType?: pulumi.Input<string>;
+    operation?: pulumi.Input<inputs.TraceMetricsRuleScopeFilterSpanScopeOperation>;
+    parentOperation?: pulumi.Input<inputs.TraceMetricsRuleScopeFilterSpanScopeParentOperation>;
+    parentService?: pulumi.Input<inputs.TraceMetricsRuleScopeFilterSpanScopeParentService>;
+    service?: pulumi.Input<inputs.TraceMetricsRuleScopeFilterSpanScopeService>;
+    spanCount?: pulumi.Input<inputs.TraceMetricsRuleScopeFilterSpanScopeSpanCount>;
+    tags?: pulumi.Input<pulumi.Input<inputs.TraceMetricsRuleScopeFilterSpanScopeTag>[]>;
+}
+
+export interface TraceMetricsRuleScopeFilterSpanScopeDuration {
+    maxSecs?: pulumi.Input<number>;
+    minSecs?: pulumi.Input<number>;
+}
+
+export interface TraceMetricsRuleScopeFilterSpanScopeError {
+    value: pulumi.Input<boolean>;
+}
+
+export interface TraceMetricsRuleScopeFilterSpanScopeIsRootSpan {
+    value: pulumi.Input<boolean>;
+}
+
+export interface TraceMetricsRuleScopeFilterSpanScopeOperation {
+    inValues?: pulumi.Input<pulumi.Input<string>[]>;
+    match?: pulumi.Input<string>;
+    value?: pulumi.Input<string>;
+}
+
+export interface TraceMetricsRuleScopeFilterSpanScopeParentOperation {
+    inValues?: pulumi.Input<pulumi.Input<string>[]>;
+    match?: pulumi.Input<string>;
+    value?: pulumi.Input<string>;
+}
+
+export interface TraceMetricsRuleScopeFilterSpanScopeParentService {
+    inValues?: pulumi.Input<pulumi.Input<string>[]>;
+    match?: pulumi.Input<string>;
+    value?: pulumi.Input<string>;
+}
+
+export interface TraceMetricsRuleScopeFilterSpanScopeService {
+    inValues?: pulumi.Input<pulumi.Input<string>[]>;
+    match?: pulumi.Input<string>;
+    value?: pulumi.Input<string>;
+}
+
+export interface TraceMetricsRuleScopeFilterSpanScopeSpanCount {
+    max?: pulumi.Input<number>;
+    min?: pulumi.Input<number>;
+}
+
+export interface TraceMetricsRuleScopeFilterSpanScopeTag {
+    key?: pulumi.Input<string>;
+    numericValue?: pulumi.Input<inputs.TraceMetricsRuleScopeFilterSpanScopeTagNumericValue>;
+    value?: pulumi.Input<inputs.TraceMetricsRuleScopeFilterSpanScopeTagValue>;
+}
+
+export interface TraceMetricsRuleScopeFilterSpanScopeTagNumericValue {
+    comparison: pulumi.Input<string>;
+    value: pulumi.Input<number>;
+}
+
+export interface TraceMetricsRuleScopeFilterSpanScopeTagValue {
+    inValues?: pulumi.Input<pulumi.Input<string>[]>;
+    match?: pulumi.Input<string>;
+    value?: pulumi.Input<string>;
+}
+
 export interface TraceMetricsRuleTraceFilter {
+    scopeFilter?: pulumi.Input<inputs.TraceMetricsRuleTraceFilterScopeFilter>;
     spans?: pulumi.Input<pulumi.Input<inputs.TraceMetricsRuleTraceFilterSpan>[]>;
     trace?: pulumi.Input<inputs.TraceMetricsRuleTraceFilterTrace>;
+}
+
+export interface TraceMetricsRuleTraceFilterScopeFilter {
+    spanScopes?: pulumi.Input<pulumi.Input<inputs.TraceMetricsRuleTraceFilterScopeFilterSpanScope>[]>;
+}
+
+export interface TraceMetricsRuleTraceFilterScopeFilterSpanScope {
+    duration?: pulumi.Input<inputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeDuration>;
+    error?: pulumi.Input<inputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeError>;
+    isRootSpan?: pulumi.Input<inputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpan>;
+    matchType?: pulumi.Input<string>;
+    operation?: pulumi.Input<inputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperation>;
+    parentOperation?: pulumi.Input<inputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperation>;
+    parentService?: pulumi.Input<inputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentService>;
+    service?: pulumi.Input<inputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeService>;
+    spanCount?: pulumi.Input<inputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCount>;
+    tags?: pulumi.Input<pulumi.Input<inputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeTag>[]>;
+}
+
+export interface TraceMetricsRuleTraceFilterScopeFilterSpanScopeDuration {
+    maxSecs?: pulumi.Input<number>;
+    minSecs?: pulumi.Input<number>;
+}
+
+export interface TraceMetricsRuleTraceFilterScopeFilterSpanScopeError {
+    value: pulumi.Input<boolean>;
+}
+
+export interface TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpan {
+    value: pulumi.Input<boolean>;
+}
+
+export interface TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperation {
+    inValues?: pulumi.Input<pulumi.Input<string>[]>;
+    match?: pulumi.Input<string>;
+    value?: pulumi.Input<string>;
+}
+
+export interface TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperation {
+    inValues?: pulumi.Input<pulumi.Input<string>[]>;
+    match?: pulumi.Input<string>;
+    value?: pulumi.Input<string>;
+}
+
+export interface TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentService {
+    inValues?: pulumi.Input<pulumi.Input<string>[]>;
+    match?: pulumi.Input<string>;
+    value?: pulumi.Input<string>;
+}
+
+export interface TraceMetricsRuleTraceFilterScopeFilterSpanScopeService {
+    inValues?: pulumi.Input<pulumi.Input<string>[]>;
+    match?: pulumi.Input<string>;
+    value?: pulumi.Input<string>;
+}
+
+export interface TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCount {
+    max?: pulumi.Input<number>;
+    min?: pulumi.Input<number>;
+}
+
+export interface TraceMetricsRuleTraceFilterScopeFilterSpanScopeTag {
+    key?: pulumi.Input<string>;
+    numericValue?: pulumi.Input<inputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValue>;
+    value?: pulumi.Input<inputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValue>;
+}
+
+export interface TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValue {
+    comparison: pulumi.Input<string>;
+    value: pulumi.Input<number>;
+}
+
+export interface TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValue {
+    inValues?: pulumi.Input<pulumi.Input<string>[]>;
+    match?: pulumi.Input<string>;
+    value?: pulumi.Input<string>;
 }
 
 export interface TraceMetricsRuleTraceFilterSpan {
@@ -1158,8 +1413,85 @@ export interface TraceTailSamplingRulesRule {
 }
 
 export interface TraceTailSamplingRulesRuleFilter {
+    scopeFilter?: pulumi.Input<inputs.TraceTailSamplingRulesRuleFilterScopeFilter>;
     spans?: pulumi.Input<pulumi.Input<inputs.TraceTailSamplingRulesRuleFilterSpan>[]>;
     trace?: pulumi.Input<inputs.TraceTailSamplingRulesRuleFilterTrace>;
+}
+
+export interface TraceTailSamplingRulesRuleFilterScopeFilter {
+    spanScopes?: pulumi.Input<pulumi.Input<inputs.TraceTailSamplingRulesRuleFilterScopeFilterSpanScope>[]>;
+}
+
+export interface TraceTailSamplingRulesRuleFilterScopeFilterSpanScope {
+    duration?: pulumi.Input<inputs.TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDuration>;
+    error?: pulumi.Input<inputs.TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeError>;
+    isRootSpan?: pulumi.Input<inputs.TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpan>;
+    matchType?: pulumi.Input<string>;
+    operation?: pulumi.Input<inputs.TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperation>;
+    parentOperation?: pulumi.Input<inputs.TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperation>;
+    parentService?: pulumi.Input<inputs.TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentService>;
+    service?: pulumi.Input<inputs.TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeService>;
+    spanCount?: pulumi.Input<inputs.TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCount>;
+    tags?: pulumi.Input<pulumi.Input<inputs.TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTag>[]>;
+}
+
+export interface TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDuration {
+    maxSecs?: pulumi.Input<number>;
+    minSecs?: pulumi.Input<number>;
+}
+
+export interface TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeError {
+    value: pulumi.Input<boolean>;
+}
+
+export interface TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpan {
+    value: pulumi.Input<boolean>;
+}
+
+export interface TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperation {
+    inValues?: pulumi.Input<pulumi.Input<string>[]>;
+    match?: pulumi.Input<string>;
+    value?: pulumi.Input<string>;
+}
+
+export interface TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperation {
+    inValues?: pulumi.Input<pulumi.Input<string>[]>;
+    match?: pulumi.Input<string>;
+    value?: pulumi.Input<string>;
+}
+
+export interface TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentService {
+    inValues?: pulumi.Input<pulumi.Input<string>[]>;
+    match?: pulumi.Input<string>;
+    value?: pulumi.Input<string>;
+}
+
+export interface TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeService {
+    inValues?: pulumi.Input<pulumi.Input<string>[]>;
+    match?: pulumi.Input<string>;
+    value?: pulumi.Input<string>;
+}
+
+export interface TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCount {
+    max?: pulumi.Input<number>;
+    min?: pulumi.Input<number>;
+}
+
+export interface TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTag {
+    key?: pulumi.Input<string>;
+    numericValue?: pulumi.Input<inputs.TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValue>;
+    value?: pulumi.Input<inputs.TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValue>;
+}
+
+export interface TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValue {
+    comparison: pulumi.Input<string>;
+    value: pulumi.Input<number>;
+}
+
+export interface TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValue {
+    inValues?: pulumi.Input<pulumi.Input<string>[]>;
+    match?: pulumi.Input<string>;
+    value?: pulumi.Input<string>;
 }
 
 export interface TraceTailSamplingRulesRuleFilterSpan {

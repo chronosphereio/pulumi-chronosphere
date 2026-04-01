@@ -4,6 +4,7 @@
 package io.chronosphere.chronosphere.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import io.chronosphere.chronosphere.outputs.TraceTailSamplingRulesRuleFilterScopeFilter;
 import io.chronosphere.chronosphere.outputs.TraceTailSamplingRulesRuleFilterSpan;
 import io.chronosphere.chronosphere.outputs.TraceTailSamplingRulesRuleFilterTrace;
 import java.util.List;
@@ -13,10 +14,14 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class TraceTailSamplingRulesRuleFilter {
+    private @Nullable TraceTailSamplingRulesRuleFilterScopeFilter scopeFilter;
     private @Nullable List<TraceTailSamplingRulesRuleFilterSpan> spans;
     private @Nullable TraceTailSamplingRulesRuleFilterTrace trace;
 
     private TraceTailSamplingRulesRuleFilter() {}
+    public Optional<TraceTailSamplingRulesRuleFilterScopeFilter> scopeFilter() {
+        return Optional.ofNullable(this.scopeFilter);
+    }
     public List<TraceTailSamplingRulesRuleFilterSpan> spans() {
         return this.spans == null ? List.of() : this.spans;
     }
@@ -33,15 +38,22 @@ public final class TraceTailSamplingRulesRuleFilter {
     }
     @CustomType.Builder
     public static final class Builder {
+        private @Nullable TraceTailSamplingRulesRuleFilterScopeFilter scopeFilter;
         private @Nullable List<TraceTailSamplingRulesRuleFilterSpan> spans;
         private @Nullable TraceTailSamplingRulesRuleFilterTrace trace;
         public Builder() {}
         public Builder(TraceTailSamplingRulesRuleFilter defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.scopeFilter = defaults.scopeFilter;
     	      this.spans = defaults.spans;
     	      this.trace = defaults.trace;
         }
 
+        @CustomType.Setter
+        public Builder scopeFilter(@Nullable TraceTailSamplingRulesRuleFilterScopeFilter scopeFilter) {
+            this.scopeFilter = scopeFilter;
+            return this;
+        }
         @CustomType.Setter
         public Builder spans(@Nullable List<TraceTailSamplingRulesRuleFilterSpan> spans) {
             this.spans = spans;
@@ -57,6 +69,7 @@ public final class TraceTailSamplingRulesRuleFilter {
         }
         public TraceTailSamplingRulesRuleFilter build() {
             final var o = new TraceTailSamplingRulesRuleFilter();
+            o.scopeFilter = scopeFilter;
             o.spans = spans;
             o.trace = trace;
             return o;

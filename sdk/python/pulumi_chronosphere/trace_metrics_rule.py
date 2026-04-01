@@ -22,6 +22,7 @@ class TraceMetricsRuleArgs:
                  group_bies: Optional[pulumi.Input[Sequence[pulumi.Input['TraceMetricsRuleGroupByArgs']]]] = None,
                  histogram_buckets_seconds: Optional[pulumi.Input[Sequence[pulumi.Input[float]]]] = None,
                  metric_labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 scope_filter: Optional[pulumi.Input['TraceMetricsRuleScopeFilterArgs']] = None,
                  slug: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a TraceMetricsRule resource.
@@ -35,6 +36,8 @@ class TraceMetricsRuleArgs:
             pulumi.set(__self__, "histogram_buckets_seconds", histogram_buckets_seconds)
         if metric_labels is not None:
             pulumi.set(__self__, "metric_labels", metric_labels)
+        if scope_filter is not None:
+            pulumi.set(__self__, "scope_filter", scope_filter)
         if slug is not None:
             pulumi.set(__self__, "slug", slug)
 
@@ -93,6 +96,15 @@ class TraceMetricsRuleArgs:
         pulumi.set(self, "metric_labels", value)
 
     @property
+    @pulumi.getter(name="scopeFilter")
+    def scope_filter(self) -> Optional[pulumi.Input['TraceMetricsRuleScopeFilterArgs']]:
+        return pulumi.get(self, "scope_filter")
+
+    @scope_filter.setter
+    def scope_filter(self, value: Optional[pulumi.Input['TraceMetricsRuleScopeFilterArgs']]):
+        pulumi.set(self, "scope_filter", value)
+
+    @property
     @pulumi.getter
     def slug(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "slug")
@@ -110,6 +122,7 @@ class _TraceMetricsRuleState:
                  metric_labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  metric_name: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 scope_filter: Optional[pulumi.Input['TraceMetricsRuleScopeFilterArgs']] = None,
                  slug: Optional[pulumi.Input[str]] = None,
                  trace_filter: Optional[pulumi.Input['TraceMetricsRuleTraceFilterArgs']] = None):
         """
@@ -125,6 +138,8 @@ class _TraceMetricsRuleState:
             pulumi.set(__self__, "metric_name", metric_name)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if scope_filter is not None:
+            pulumi.set(__self__, "scope_filter", scope_filter)
         if slug is not None:
             pulumi.set(__self__, "slug", slug)
         if trace_filter is not None:
@@ -176,6 +191,15 @@ class _TraceMetricsRuleState:
         pulumi.set(self, "name", value)
 
     @property
+    @pulumi.getter(name="scopeFilter")
+    def scope_filter(self) -> Optional[pulumi.Input['TraceMetricsRuleScopeFilterArgs']]:
+        return pulumi.get(self, "scope_filter")
+
+    @scope_filter.setter
+    def scope_filter(self, value: Optional[pulumi.Input['TraceMetricsRuleScopeFilterArgs']]):
+        pulumi.set(self, "scope_filter", value)
+
+    @property
     @pulumi.getter
     def slug(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "slug")
@@ -204,6 +228,7 @@ class TraceMetricsRule(pulumi.CustomResource):
                  metric_labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  metric_name: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 scope_filter: Optional[pulumi.Input[pulumi.InputType['TraceMetricsRuleScopeFilterArgs']]] = None,
                  slug: Optional[pulumi.Input[str]] = None,
                  trace_filter: Optional[pulumi.Input[pulumi.InputType['TraceMetricsRuleTraceFilterArgs']]] = None,
                  __props__=None):
@@ -240,6 +265,7 @@ class TraceMetricsRule(pulumi.CustomResource):
                  metric_labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  metric_name: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 scope_filter: Optional[pulumi.Input[pulumi.InputType['TraceMetricsRuleScopeFilterArgs']]] = None,
                  slug: Optional[pulumi.Input[str]] = None,
                  trace_filter: Optional[pulumi.Input[pulumi.InputType['TraceMetricsRuleTraceFilterArgs']]] = None,
                  __props__=None):
@@ -260,6 +286,7 @@ class TraceMetricsRule(pulumi.CustomResource):
             if name is None and not opts.urn:
                 raise TypeError("Missing required property 'name'")
             __props__.__dict__["name"] = name
+            __props__.__dict__["scope_filter"] = scope_filter
             __props__.__dict__["slug"] = slug
             if trace_filter is None and not opts.urn:
                 raise TypeError("Missing required property 'trace_filter'")
@@ -279,6 +306,7 @@ class TraceMetricsRule(pulumi.CustomResource):
             metric_labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             metric_name: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            scope_filter: Optional[pulumi.Input[pulumi.InputType['TraceMetricsRuleScopeFilterArgs']]] = None,
             slug: Optional[pulumi.Input[str]] = None,
             trace_filter: Optional[pulumi.Input[pulumi.InputType['TraceMetricsRuleTraceFilterArgs']]] = None) -> 'TraceMetricsRule':
         """
@@ -298,6 +326,7 @@ class TraceMetricsRule(pulumi.CustomResource):
         __props__.__dict__["metric_labels"] = metric_labels
         __props__.__dict__["metric_name"] = metric_name
         __props__.__dict__["name"] = name
+        __props__.__dict__["scope_filter"] = scope_filter
         __props__.__dict__["slug"] = slug
         __props__.__dict__["trace_filter"] = trace_filter
         return TraceMetricsRule(resource_name, opts=opts, __props__=__props__)
@@ -326,6 +355,11 @@ class TraceMetricsRule(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="scopeFilter")
+    def scope_filter(self) -> pulumi.Output[Optional['outputs.TraceMetricsRuleScopeFilter']]:
+        return pulumi.get(self, "scope_filter")
 
     @property
     @pulumi.getter

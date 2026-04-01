@@ -19,6 +19,9 @@ namespace Chronosphere.Pulumi
         [Output("executionGroup")]
         public Output<string?> ExecutionGroup { get; private set; } = null!;
 
+        [Output("executionMode")]
+        public Output<string?> ExecutionMode { get; private set; } = null!;
+
         [Output("expr")]
         public Output<string> Expr { get; private set; } = null!;
 
@@ -90,6 +93,9 @@ namespace Chronosphere.Pulumi
         [Input("executionGroup")]
         public Input<string>? ExecutionGroup { get; set; }
 
+        [Input("executionMode")]
+        public Input<string>? ExecutionMode { get; set; }
+
         [Input("expr", required: true)]
         public Input<string> Expr { get; set; } = null!;
 
@@ -126,6 +132,9 @@ namespace Chronosphere.Pulumi
 
         [Input("executionGroup")]
         public Input<string>? ExecutionGroup { get; set; }
+
+        [Input("executionMode")]
+        public Input<string>? ExecutionMode { get; set; }
 
         [Input("expr")]
         public Input<string>? Expr { get; set; }

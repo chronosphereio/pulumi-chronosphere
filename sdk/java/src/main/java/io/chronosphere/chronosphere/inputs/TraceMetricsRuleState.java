@@ -6,6 +6,7 @@ package io.chronosphere.chronosphere.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import io.chronosphere.chronosphere.inputs.TraceMetricsRuleGroupByArgs;
+import io.chronosphere.chronosphere.inputs.TraceMetricsRuleScopeFilterArgs;
 import io.chronosphere.chronosphere.inputs.TraceMetricsRuleTraceFilterArgs;
 import java.lang.Double;
 import java.lang.String;
@@ -55,6 +56,13 @@ public final class TraceMetricsRuleState extends com.pulumi.resources.ResourceAr
         return Optional.ofNullable(this.name);
     }
 
+    @Import(name="scopeFilter")
+    private @Nullable Output<TraceMetricsRuleScopeFilterArgs> scopeFilter;
+
+    public Optional<Output<TraceMetricsRuleScopeFilterArgs>> scopeFilter() {
+        return Optional.ofNullable(this.scopeFilter);
+    }
+
     @Import(name="slug")
     private @Nullable Output<String> slug;
 
@@ -77,6 +85,7 @@ public final class TraceMetricsRuleState extends com.pulumi.resources.ResourceAr
         this.metricLabels = $.metricLabels;
         this.metricName = $.metricName;
         this.name = $.name;
+        this.scopeFilter = $.scopeFilter;
         this.slug = $.slug;
         this.traceFilter = $.traceFilter;
     }
@@ -150,6 +159,15 @@ public final class TraceMetricsRuleState extends com.pulumi.resources.ResourceAr
 
         public Builder name(String name) {
             return name(Output.of(name));
+        }
+
+        public Builder scopeFilter(@Nullable Output<TraceMetricsRuleScopeFilterArgs> scopeFilter) {
+            $.scopeFilter = scopeFilter;
+            return this;
+        }
+
+        public Builder scopeFilter(TraceMetricsRuleScopeFilterArgs scopeFilter) {
+            return scopeFilter(Output.of(scopeFilter));
         }
 
         public Builder slug(@Nullable Output<String> slug) {

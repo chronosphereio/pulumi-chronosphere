@@ -13,6 +13,9 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class TraceTailSamplingRulesRuleFilterGetArgs : global::Pulumi.ResourceArgs
     {
+        [Input("scopeFilter")]
+        public Input<Inputs.TraceTailSamplingRulesRuleFilterScopeFilterGetArgs>? ScopeFilter { get; set; }
+
         [Input("spans")]
         private InputList<Inputs.TraceTailSamplingRulesRuleFilterSpanGetArgs>? _spans;
         public InputList<Inputs.TraceTailSamplingRulesRuleFilterSpanGetArgs> Spans

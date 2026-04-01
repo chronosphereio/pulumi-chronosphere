@@ -5,6 +5,8 @@ package io.chronosphere.chronosphere.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import io.chronosphere.chronosphere.inputs.GcpMetricsIntegrationMetricGroupFilterArgs;
+import io.chronosphere.chronosphere.inputs.GcpMetricsIntegrationMetricGroupRollupRuleArgs;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -15,6 +17,13 @@ import javax.annotation.Nullable;
 public final class GcpMetricsIntegrationMetricGroupArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final GcpMetricsIntegrationMetricGroupArgs Empty = new GcpMetricsIntegrationMetricGroupArgs();
+
+    @Import(name="filters")
+    private @Nullable Output<List<GcpMetricsIntegrationMetricGroupFilterArgs>> filters;
+
+    public Optional<Output<List<GcpMetricsIntegrationMetricGroupFilterArgs>>> filters() {
+        return Optional.ofNullable(this.filters);
+    }
 
     @Import(name="prefixes")
     private @Nullable Output<List<String>> prefixes;
@@ -30,11 +39,20 @@ public final class GcpMetricsIntegrationMetricGroupArgs extends com.pulumi.resou
         return this.projectId;
     }
 
+    @Import(name="rollupRules")
+    private @Nullable Output<List<GcpMetricsIntegrationMetricGroupRollupRuleArgs>> rollupRules;
+
+    public Optional<Output<List<GcpMetricsIntegrationMetricGroupRollupRuleArgs>>> rollupRules() {
+        return Optional.ofNullable(this.rollupRules);
+    }
+
     private GcpMetricsIntegrationMetricGroupArgs() {}
 
     private GcpMetricsIntegrationMetricGroupArgs(GcpMetricsIntegrationMetricGroupArgs $) {
+        this.filters = $.filters;
         this.prefixes = $.prefixes;
         this.projectId = $.projectId;
+        this.rollupRules = $.rollupRules;
     }
 
     public static Builder builder() {
@@ -53,6 +71,19 @@ public final class GcpMetricsIntegrationMetricGroupArgs extends com.pulumi.resou
 
         public Builder(GcpMetricsIntegrationMetricGroupArgs defaults) {
             $ = new GcpMetricsIntegrationMetricGroupArgs(Objects.requireNonNull(defaults));
+        }
+
+        public Builder filters(@Nullable Output<List<GcpMetricsIntegrationMetricGroupFilterArgs>> filters) {
+            $.filters = filters;
+            return this;
+        }
+
+        public Builder filters(List<GcpMetricsIntegrationMetricGroupFilterArgs> filters) {
+            return filters(Output.of(filters));
+        }
+
+        public Builder filters(GcpMetricsIntegrationMetricGroupFilterArgs... filters) {
+            return filters(List.of(filters));
         }
 
         public Builder prefixes(@Nullable Output<List<String>> prefixes) {
@@ -75,6 +106,19 @@ public final class GcpMetricsIntegrationMetricGroupArgs extends com.pulumi.resou
 
         public Builder projectId(String projectId) {
             return projectId(Output.of(projectId));
+        }
+
+        public Builder rollupRules(@Nullable Output<List<GcpMetricsIntegrationMetricGroupRollupRuleArgs>> rollupRules) {
+            $.rollupRules = rollupRules;
+            return this;
+        }
+
+        public Builder rollupRules(List<GcpMetricsIntegrationMetricGroupRollupRuleArgs> rollupRules) {
+            return rollupRules(Output.of(rollupRules));
+        }
+
+        public Builder rollupRules(GcpMetricsIntegrationMetricGroupRollupRuleArgs... rollupRules) {
+            return rollupRules(List.of(rollupRules));
         }
 
         public GcpMetricsIntegrationMetricGroupArgs build() {

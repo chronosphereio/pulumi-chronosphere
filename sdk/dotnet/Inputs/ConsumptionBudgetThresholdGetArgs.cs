@@ -19,8 +19,14 @@ namespace Chronosphere.Pulumi.Inputs
         [Input("instantRate")]
         public Input<Inputs.ConsumptionBudgetThresholdInstantRateGetArgs>? InstantRate { get; set; }
 
+        [Input("skuGroup")]
+        public Input<string>? SkuGroup { get; set; }
+
         [Input("type")]
         public Input<string>? Type { get; set; }
+
+        [Input("unit")]
+        public Input<string>? Unit { get; set; }
 
         [Input("volume")]
         public Input<Inputs.ConsumptionBudgetThresholdVolumeGetArgs>? Volume { get; set; }

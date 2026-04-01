@@ -29,6 +29,12 @@ public class RecordingRule extends com.pulumi.resources.CustomResource {
     public Output<Optional<String>> executionGroup() {
         return Codegen.optional(this.executionGroup);
     }
+    @Export(name="executionMode", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> executionMode;
+
+    public Output<Optional<String>> executionMode() {
+        return Codegen.optional(this.executionMode);
+    }
     @Export(name="expr", refs={String.class}, tree="[0]")
     private Output<String> expr;
 

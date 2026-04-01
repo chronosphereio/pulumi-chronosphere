@@ -30,6 +30,13 @@ public final class RecordingRuleState extends com.pulumi.resources.ResourceArgs 
         return Optional.ofNullable(this.executionGroup);
     }
 
+    @Import(name="executionMode")
+    private @Nullable Output<String> executionMode;
+
+    public Optional<Output<String>> executionMode() {
+        return Optional.ofNullable(this.executionMode);
+    }
+
     @Import(name="expr")
     private @Nullable Output<String> expr;
 
@@ -77,6 +84,7 @@ public final class RecordingRuleState extends com.pulumi.resources.ResourceArgs 
     private RecordingRuleState(RecordingRuleState $) {
         this.bucketId = $.bucketId;
         this.executionGroup = $.executionGroup;
+        this.executionMode = $.executionMode;
         this.expr = $.expr;
         this.interval = $.interval;
         this.labels = $.labels;
@@ -119,6 +127,15 @@ public final class RecordingRuleState extends com.pulumi.resources.ResourceArgs 
 
         public Builder executionGroup(String executionGroup) {
             return executionGroup(Output.of(executionGroup));
+        }
+
+        public Builder executionMode(@Nullable Output<String> executionMode) {
+            $.executionMode = executionMode;
+            return this;
+        }
+
+        public Builder executionMode(String executionMode) {
+            return executionMode(Output.of(executionMode));
         }
 
         public Builder expr(@Nullable Output<String> expr) {

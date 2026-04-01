@@ -13,6 +13,14 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class GcpMetricsIntegrationMetricGroupArgs : global::Pulumi.ResourceArgs
     {
+        [Input("filters")]
+        private InputList<Inputs.GcpMetricsIntegrationMetricGroupFilterArgs>? _filters;
+        public InputList<Inputs.GcpMetricsIntegrationMetricGroupFilterArgs> Filters
+        {
+            get => _filters ?? (_filters = new InputList<Inputs.GcpMetricsIntegrationMetricGroupFilterArgs>());
+            set => _filters = value;
+        }
+
         [Input("prefixes")]
         private InputList<string>? _prefixes;
         public InputList<string> Prefixes
@@ -23,6 +31,14 @@ namespace Chronosphere.Pulumi.Inputs
 
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
+
+        [Input("rollupRules")]
+        private InputList<Inputs.GcpMetricsIntegrationMetricGroupRollupRuleArgs>? _rollupRules;
+        public InputList<Inputs.GcpMetricsIntegrationMetricGroupRollupRuleArgs> RollupRules
+        {
+            get => _rollupRules ?? (_rollupRules = new InputList<Inputs.GcpMetricsIntegrationMetricGroupRollupRuleArgs>());
+            set => _rollupRules = value;
+        }
 
         public GcpMetricsIntegrationMetricGroupArgs()
         {

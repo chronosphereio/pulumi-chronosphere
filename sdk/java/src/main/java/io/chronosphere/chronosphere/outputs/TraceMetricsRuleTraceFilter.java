@@ -4,6 +4,7 @@
 package io.chronosphere.chronosphere.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import io.chronosphere.chronosphere.outputs.TraceMetricsRuleTraceFilterScopeFilter;
 import io.chronosphere.chronosphere.outputs.TraceMetricsRuleTraceFilterSpan;
 import io.chronosphere.chronosphere.outputs.TraceMetricsRuleTraceFilterTrace;
 import java.util.List;
@@ -13,10 +14,14 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class TraceMetricsRuleTraceFilter {
+    private @Nullable TraceMetricsRuleTraceFilterScopeFilter scopeFilter;
     private @Nullable List<TraceMetricsRuleTraceFilterSpan> spans;
     private @Nullable TraceMetricsRuleTraceFilterTrace trace;
 
     private TraceMetricsRuleTraceFilter() {}
+    public Optional<TraceMetricsRuleTraceFilterScopeFilter> scopeFilter() {
+        return Optional.ofNullable(this.scopeFilter);
+    }
     public List<TraceMetricsRuleTraceFilterSpan> spans() {
         return this.spans == null ? List.of() : this.spans;
     }
@@ -33,15 +38,22 @@ public final class TraceMetricsRuleTraceFilter {
     }
     @CustomType.Builder
     public static final class Builder {
+        private @Nullable TraceMetricsRuleTraceFilterScopeFilter scopeFilter;
         private @Nullable List<TraceMetricsRuleTraceFilterSpan> spans;
         private @Nullable TraceMetricsRuleTraceFilterTrace trace;
         public Builder() {}
         public Builder(TraceMetricsRuleTraceFilter defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.scopeFilter = defaults.scopeFilter;
     	      this.spans = defaults.spans;
     	      this.trace = defaults.trace;
         }
 
+        @CustomType.Setter
+        public Builder scopeFilter(@Nullable TraceMetricsRuleTraceFilterScopeFilter scopeFilter) {
+            this.scopeFilter = scopeFilter;
+            return this;
+        }
         @CustomType.Setter
         public Builder spans(@Nullable List<TraceMetricsRuleTraceFilterSpan> spans) {
             this.spans = spans;
@@ -57,6 +69,7 @@ public final class TraceMetricsRuleTraceFilter {
         }
         public TraceMetricsRuleTraceFilter build() {
             final var o = new TraceMetricsRuleTraceFilter();
+            o.scopeFilter = scopeFilter;
             o.spans = spans;
             o.trace = trace;
             return o;
