@@ -2404,6 +2404,9 @@
                 "resolveSustain": {
                     "type": "string"
                 },
+                "resolveValue": {
+                    "$ref": "#/types/chronosphere:index/MonitorSeriesConditionsConditionResolveValue:MonitorSeriesConditionsConditionResolveValue"
+                },
                 "severity": {
                     "type": "string"
                 },
@@ -2418,6 +2421,21 @@
             "required": [
                 "op",
                 "severity"
+            ]
+        },
+        "chronosphere:index/MonitorSeriesConditionsConditionResolveValue:MonitorSeriesConditionsConditionResolveValue": {
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "value": {
+                    "type": "number"
+                }
+            },
+            "type": "object",
+            "required": [
+                "enabled",
+                "value"
             ]
         },
         "chronosphere:index/MonitorSeriesConditionsOverride:MonitorSeriesConditionsOverride": {
@@ -2449,6 +2467,9 @@
                 "resolveSustain": {
                     "type": "string"
                 },
+                "resolveValue": {
+                    "$ref": "#/types/chronosphere:index/MonitorSeriesConditionsOverrideConditionResolveValue:MonitorSeriesConditionsOverrideConditionResolveValue"
+                },
                 "severity": {
                     "type": "string"
                 },
@@ -2463,6 +2484,21 @@
             "required": [
                 "op",
                 "severity"
+            ]
+        },
+        "chronosphere:index/MonitorSeriesConditionsOverrideConditionResolveValue:MonitorSeriesConditionsOverrideConditionResolveValue": {
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "value": {
+                    "type": "number"
+                }
+            },
+            "type": "object",
+            "required": [
+                "enabled",
+                "value"
             ]
         },
         "chronosphere:index/MonitorSeriesConditionsOverrideLabelMatcher:MonitorSeriesConditionsOverrideLabelMatcher": {

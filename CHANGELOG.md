@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+v0.9.13
+Added:
+* Add `resolve_value` field to `chronosphere_monitor` conditions. Allows configuring a different threshold for resolving an alert.
+
 v0.9.12
 Added:
 * Add `execution_mode` field to `v1/config/RecordingRule`.

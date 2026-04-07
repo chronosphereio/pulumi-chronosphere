@@ -164,8 +164,10 @@ __all__ = [
     'MonitorScheduleRangeArgs',
     'MonitorSeriesConditionsArgs',
     'MonitorSeriesConditionsConditionArgs',
+    'MonitorSeriesConditionsConditionResolveValueArgs',
     'MonitorSeriesConditionsOverrideArgs',
     'MonitorSeriesConditionsOverrideConditionArgs',
+    'MonitorSeriesConditionsOverrideConditionResolveValueArgs',
     'MonitorSeriesConditionsOverrideLabelMatcherArgs',
     'MonitorSignalGroupingArgs',
     'NotificationPolicyOverrideArgs',
@@ -5250,12 +5252,15 @@ class MonitorSeriesConditionsConditionArgs:
                  op: pulumi.Input[str],
                  severity: pulumi.Input[str],
                  resolve_sustain: Optional[pulumi.Input[str]] = None,
+                 resolve_value: Optional[pulumi.Input['MonitorSeriesConditionsConditionResolveValueArgs']] = None,
                  sustain: Optional[pulumi.Input[str]] = None,
                  value: Optional[pulumi.Input[float]] = None):
         pulumi.set(__self__, "op", op)
         pulumi.set(__self__, "severity", severity)
         if resolve_sustain is not None:
             pulumi.set(__self__, "resolve_sustain", resolve_sustain)
+        if resolve_value is not None:
+            pulumi.set(__self__, "resolve_value", resolve_value)
         if sustain is not None:
             pulumi.set(__self__, "sustain", sustain)
         if value is not None:
@@ -5289,6 +5294,15 @@ class MonitorSeriesConditionsConditionArgs:
         pulumi.set(self, "resolve_sustain", value)
 
     @property
+    @pulumi.getter(name="resolveValue")
+    def resolve_value(self) -> Optional[pulumi.Input['MonitorSeriesConditionsConditionResolveValueArgs']]:
+        return pulumi.get(self, "resolve_value")
+
+    @resolve_value.setter
+    def resolve_value(self, value: Optional[pulumi.Input['MonitorSeriesConditionsConditionResolveValueArgs']]):
+        pulumi.set(self, "resolve_value", value)
+
+    @property
     @pulumi.getter
     def sustain(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "sustain")
@@ -5304,6 +5318,33 @@ class MonitorSeriesConditionsConditionArgs:
 
     @value.setter
     def value(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class MonitorSeriesConditionsConditionResolveValueArgs:
+    def __init__(__self__, *,
+                 enabled: pulumi.Input[bool],
+                 value: pulumi.Input[float]):
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> pulumi.Input[bool]:
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: pulumi.Input[bool]):
+        pulumi.set(self, "enabled", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[float]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[float]):
         pulumi.set(self, "value", value)
 
 
@@ -5340,12 +5381,15 @@ class MonitorSeriesConditionsOverrideConditionArgs:
                  op: pulumi.Input[str],
                  severity: pulumi.Input[str],
                  resolve_sustain: Optional[pulumi.Input[str]] = None,
+                 resolve_value: Optional[pulumi.Input['MonitorSeriesConditionsOverrideConditionResolveValueArgs']] = None,
                  sustain: Optional[pulumi.Input[str]] = None,
                  value: Optional[pulumi.Input[float]] = None):
         pulumi.set(__self__, "op", op)
         pulumi.set(__self__, "severity", severity)
         if resolve_sustain is not None:
             pulumi.set(__self__, "resolve_sustain", resolve_sustain)
+        if resolve_value is not None:
+            pulumi.set(__self__, "resolve_value", resolve_value)
         if sustain is not None:
             pulumi.set(__self__, "sustain", sustain)
         if value is not None:
@@ -5379,6 +5423,15 @@ class MonitorSeriesConditionsOverrideConditionArgs:
         pulumi.set(self, "resolve_sustain", value)
 
     @property
+    @pulumi.getter(name="resolveValue")
+    def resolve_value(self) -> Optional[pulumi.Input['MonitorSeriesConditionsOverrideConditionResolveValueArgs']]:
+        return pulumi.get(self, "resolve_value")
+
+    @resolve_value.setter
+    def resolve_value(self, value: Optional[pulumi.Input['MonitorSeriesConditionsOverrideConditionResolveValueArgs']]):
+        pulumi.set(self, "resolve_value", value)
+
+    @property
     @pulumi.getter
     def sustain(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "sustain")
@@ -5394,6 +5447,33 @@ class MonitorSeriesConditionsOverrideConditionArgs:
 
     @value.setter
     def value(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class MonitorSeriesConditionsOverrideConditionResolveValueArgs:
+    def __init__(__self__, *,
+                 enabled: pulumi.Input[bool],
+                 value: pulumi.Input[float]):
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> pulumi.Input[bool]:
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: pulumi.Input[bool]):
+        pulumi.set(self, "enabled", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[float]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[float]):
         pulumi.set(self, "value", value)
 
 

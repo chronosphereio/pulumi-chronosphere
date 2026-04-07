@@ -20137,11 +20137,12 @@ func (o MonitorSeriesConditionsPtrOutput) Overrides() MonitorSeriesConditionsOve
 }
 
 type MonitorSeriesConditionsCondition struct {
-	Op             string   `pulumi:"op"`
-	ResolveSustain *string  `pulumi:"resolveSustain"`
-	Severity       string   `pulumi:"severity"`
-	Sustain        *string  `pulumi:"sustain"`
-	Value          *float64 `pulumi:"value"`
+	Op             string                                        `pulumi:"op"`
+	ResolveSustain *string                                       `pulumi:"resolveSustain"`
+	ResolveValue   *MonitorSeriesConditionsConditionResolveValue `pulumi:"resolveValue"`
+	Severity       string                                        `pulumi:"severity"`
+	Sustain        *string                                       `pulumi:"sustain"`
+	Value          *float64                                      `pulumi:"value"`
 }
 
 // MonitorSeriesConditionsConditionInput is an input type that accepts MonitorSeriesConditionsConditionArgs and MonitorSeriesConditionsConditionOutput values.
@@ -20156,11 +20157,12 @@ type MonitorSeriesConditionsConditionInput interface {
 }
 
 type MonitorSeriesConditionsConditionArgs struct {
-	Op             pulumi.StringInput     `pulumi:"op"`
-	ResolveSustain pulumi.StringPtrInput  `pulumi:"resolveSustain"`
-	Severity       pulumi.StringInput     `pulumi:"severity"`
-	Sustain        pulumi.StringPtrInput  `pulumi:"sustain"`
-	Value          pulumi.Float64PtrInput `pulumi:"value"`
+	Op             pulumi.StringInput                                   `pulumi:"op"`
+	ResolveSustain pulumi.StringPtrInput                                `pulumi:"resolveSustain"`
+	ResolveValue   MonitorSeriesConditionsConditionResolveValuePtrInput `pulumi:"resolveValue"`
+	Severity       pulumi.StringInput                                   `pulumi:"severity"`
+	Sustain        pulumi.StringPtrInput                                `pulumi:"sustain"`
+	Value          pulumi.Float64PtrInput                               `pulumi:"value"`
 }
 
 func (MonitorSeriesConditionsConditionArgs) ElementType() reflect.Type {
@@ -20222,6 +20224,12 @@ func (o MonitorSeriesConditionsConditionOutput) ResolveSustain() pulumi.StringPt
 	return o.ApplyT(func(v MonitorSeriesConditionsCondition) *string { return v.ResolveSustain }).(pulumi.StringPtrOutput)
 }
 
+func (o MonitorSeriesConditionsConditionOutput) ResolveValue() MonitorSeriesConditionsConditionResolveValuePtrOutput {
+	return o.ApplyT(func(v MonitorSeriesConditionsCondition) *MonitorSeriesConditionsConditionResolveValue {
+		return v.ResolveValue
+	}).(MonitorSeriesConditionsConditionResolveValuePtrOutput)
+}
+
 func (o MonitorSeriesConditionsConditionOutput) Severity() pulumi.StringOutput {
 	return o.ApplyT(func(v MonitorSeriesConditionsCondition) string { return v.Severity }).(pulumi.StringOutput)
 }
@@ -20252,6 +20260,154 @@ func (o MonitorSeriesConditionsConditionArrayOutput) Index(i pulumi.IntInput) Mo
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) MonitorSeriesConditionsCondition {
 		return vs[0].([]MonitorSeriesConditionsCondition)[vs[1].(int)]
 	}).(MonitorSeriesConditionsConditionOutput)
+}
+
+type MonitorSeriesConditionsConditionResolveValue struct {
+	Enabled bool    `pulumi:"enabled"`
+	Value   float64 `pulumi:"value"`
+}
+
+// MonitorSeriesConditionsConditionResolveValueInput is an input type that accepts MonitorSeriesConditionsConditionResolveValueArgs and MonitorSeriesConditionsConditionResolveValueOutput values.
+// You can construct a concrete instance of `MonitorSeriesConditionsConditionResolveValueInput` via:
+//
+//	MonitorSeriesConditionsConditionResolveValueArgs{...}
+type MonitorSeriesConditionsConditionResolveValueInput interface {
+	pulumi.Input
+
+	ToMonitorSeriesConditionsConditionResolveValueOutput() MonitorSeriesConditionsConditionResolveValueOutput
+	ToMonitorSeriesConditionsConditionResolveValueOutputWithContext(context.Context) MonitorSeriesConditionsConditionResolveValueOutput
+}
+
+type MonitorSeriesConditionsConditionResolveValueArgs struct {
+	Enabled pulumi.BoolInput    `pulumi:"enabled"`
+	Value   pulumi.Float64Input `pulumi:"value"`
+}
+
+func (MonitorSeriesConditionsConditionResolveValueArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*MonitorSeriesConditionsConditionResolveValue)(nil)).Elem()
+}
+
+func (i MonitorSeriesConditionsConditionResolveValueArgs) ToMonitorSeriesConditionsConditionResolveValueOutput() MonitorSeriesConditionsConditionResolveValueOutput {
+	return i.ToMonitorSeriesConditionsConditionResolveValueOutputWithContext(context.Background())
+}
+
+func (i MonitorSeriesConditionsConditionResolveValueArgs) ToMonitorSeriesConditionsConditionResolveValueOutputWithContext(ctx context.Context) MonitorSeriesConditionsConditionResolveValueOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MonitorSeriesConditionsConditionResolveValueOutput)
+}
+
+func (i MonitorSeriesConditionsConditionResolveValueArgs) ToMonitorSeriesConditionsConditionResolveValuePtrOutput() MonitorSeriesConditionsConditionResolveValuePtrOutput {
+	return i.ToMonitorSeriesConditionsConditionResolveValuePtrOutputWithContext(context.Background())
+}
+
+func (i MonitorSeriesConditionsConditionResolveValueArgs) ToMonitorSeriesConditionsConditionResolveValuePtrOutputWithContext(ctx context.Context) MonitorSeriesConditionsConditionResolveValuePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MonitorSeriesConditionsConditionResolveValueOutput).ToMonitorSeriesConditionsConditionResolveValuePtrOutputWithContext(ctx)
+}
+
+// MonitorSeriesConditionsConditionResolveValuePtrInput is an input type that accepts MonitorSeriesConditionsConditionResolveValueArgs, MonitorSeriesConditionsConditionResolveValuePtr and MonitorSeriesConditionsConditionResolveValuePtrOutput values.
+// You can construct a concrete instance of `MonitorSeriesConditionsConditionResolveValuePtrInput` via:
+//
+//	        MonitorSeriesConditionsConditionResolveValueArgs{...}
+//
+//	or:
+//
+//	        nil
+type MonitorSeriesConditionsConditionResolveValuePtrInput interface {
+	pulumi.Input
+
+	ToMonitorSeriesConditionsConditionResolveValuePtrOutput() MonitorSeriesConditionsConditionResolveValuePtrOutput
+	ToMonitorSeriesConditionsConditionResolveValuePtrOutputWithContext(context.Context) MonitorSeriesConditionsConditionResolveValuePtrOutput
+}
+
+type monitorSeriesConditionsConditionResolveValuePtrType MonitorSeriesConditionsConditionResolveValueArgs
+
+func MonitorSeriesConditionsConditionResolveValuePtr(v *MonitorSeriesConditionsConditionResolveValueArgs) MonitorSeriesConditionsConditionResolveValuePtrInput {
+	return (*monitorSeriesConditionsConditionResolveValuePtrType)(v)
+}
+
+func (*monitorSeriesConditionsConditionResolveValuePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**MonitorSeriesConditionsConditionResolveValue)(nil)).Elem()
+}
+
+func (i *monitorSeriesConditionsConditionResolveValuePtrType) ToMonitorSeriesConditionsConditionResolveValuePtrOutput() MonitorSeriesConditionsConditionResolveValuePtrOutput {
+	return i.ToMonitorSeriesConditionsConditionResolveValuePtrOutputWithContext(context.Background())
+}
+
+func (i *monitorSeriesConditionsConditionResolveValuePtrType) ToMonitorSeriesConditionsConditionResolveValuePtrOutputWithContext(ctx context.Context) MonitorSeriesConditionsConditionResolveValuePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MonitorSeriesConditionsConditionResolveValuePtrOutput)
+}
+
+type MonitorSeriesConditionsConditionResolveValueOutput struct{ *pulumi.OutputState }
+
+func (MonitorSeriesConditionsConditionResolveValueOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*MonitorSeriesConditionsConditionResolveValue)(nil)).Elem()
+}
+
+func (o MonitorSeriesConditionsConditionResolveValueOutput) ToMonitorSeriesConditionsConditionResolveValueOutput() MonitorSeriesConditionsConditionResolveValueOutput {
+	return o
+}
+
+func (o MonitorSeriesConditionsConditionResolveValueOutput) ToMonitorSeriesConditionsConditionResolveValueOutputWithContext(ctx context.Context) MonitorSeriesConditionsConditionResolveValueOutput {
+	return o
+}
+
+func (o MonitorSeriesConditionsConditionResolveValueOutput) ToMonitorSeriesConditionsConditionResolveValuePtrOutput() MonitorSeriesConditionsConditionResolveValuePtrOutput {
+	return o.ToMonitorSeriesConditionsConditionResolveValuePtrOutputWithContext(context.Background())
+}
+
+func (o MonitorSeriesConditionsConditionResolveValueOutput) ToMonitorSeriesConditionsConditionResolveValuePtrOutputWithContext(ctx context.Context) MonitorSeriesConditionsConditionResolveValuePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v MonitorSeriesConditionsConditionResolveValue) *MonitorSeriesConditionsConditionResolveValue {
+		return &v
+	}).(MonitorSeriesConditionsConditionResolveValuePtrOutput)
+}
+
+func (o MonitorSeriesConditionsConditionResolveValueOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v MonitorSeriesConditionsConditionResolveValue) bool { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+func (o MonitorSeriesConditionsConditionResolveValueOutput) Value() pulumi.Float64Output {
+	return o.ApplyT(func(v MonitorSeriesConditionsConditionResolveValue) float64 { return v.Value }).(pulumi.Float64Output)
+}
+
+type MonitorSeriesConditionsConditionResolveValuePtrOutput struct{ *pulumi.OutputState }
+
+func (MonitorSeriesConditionsConditionResolveValuePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**MonitorSeriesConditionsConditionResolveValue)(nil)).Elem()
+}
+
+func (o MonitorSeriesConditionsConditionResolveValuePtrOutput) ToMonitorSeriesConditionsConditionResolveValuePtrOutput() MonitorSeriesConditionsConditionResolveValuePtrOutput {
+	return o
+}
+
+func (o MonitorSeriesConditionsConditionResolveValuePtrOutput) ToMonitorSeriesConditionsConditionResolveValuePtrOutputWithContext(ctx context.Context) MonitorSeriesConditionsConditionResolveValuePtrOutput {
+	return o
+}
+
+func (o MonitorSeriesConditionsConditionResolveValuePtrOutput) Elem() MonitorSeriesConditionsConditionResolveValueOutput {
+	return o.ApplyT(func(v *MonitorSeriesConditionsConditionResolveValue) MonitorSeriesConditionsConditionResolveValue {
+		if v != nil {
+			return *v
+		}
+		var ret MonitorSeriesConditionsConditionResolveValue
+		return ret
+	}).(MonitorSeriesConditionsConditionResolveValueOutput)
+}
+
+func (o MonitorSeriesConditionsConditionResolveValuePtrOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *MonitorSeriesConditionsConditionResolveValue) *bool {
+		if v == nil {
+			return nil
+		}
+		return &v.Enabled
+	}).(pulumi.BoolPtrOutput)
+}
+
+func (o MonitorSeriesConditionsConditionResolveValuePtrOutput) Value() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *MonitorSeriesConditionsConditionResolveValue) *float64 {
+		if v == nil {
+			return nil
+		}
+		return &v.Value
+	}).(pulumi.Float64PtrOutput)
 }
 
 type MonitorSeriesConditionsOverride struct {
@@ -20359,11 +20515,12 @@ func (o MonitorSeriesConditionsOverrideArrayOutput) Index(i pulumi.IntInput) Mon
 }
 
 type MonitorSeriesConditionsOverrideCondition struct {
-	Op             string   `pulumi:"op"`
-	ResolveSustain *string  `pulumi:"resolveSustain"`
-	Severity       string   `pulumi:"severity"`
-	Sustain        *string  `pulumi:"sustain"`
-	Value          *float64 `pulumi:"value"`
+	Op             string                                                `pulumi:"op"`
+	ResolveSustain *string                                               `pulumi:"resolveSustain"`
+	ResolveValue   *MonitorSeriesConditionsOverrideConditionResolveValue `pulumi:"resolveValue"`
+	Severity       string                                                `pulumi:"severity"`
+	Sustain        *string                                               `pulumi:"sustain"`
+	Value          *float64                                              `pulumi:"value"`
 }
 
 // MonitorSeriesConditionsOverrideConditionInput is an input type that accepts MonitorSeriesConditionsOverrideConditionArgs and MonitorSeriesConditionsOverrideConditionOutput values.
@@ -20378,11 +20535,12 @@ type MonitorSeriesConditionsOverrideConditionInput interface {
 }
 
 type MonitorSeriesConditionsOverrideConditionArgs struct {
-	Op             pulumi.StringInput     `pulumi:"op"`
-	ResolveSustain pulumi.StringPtrInput  `pulumi:"resolveSustain"`
-	Severity       pulumi.StringInput     `pulumi:"severity"`
-	Sustain        pulumi.StringPtrInput  `pulumi:"sustain"`
-	Value          pulumi.Float64PtrInput `pulumi:"value"`
+	Op             pulumi.StringInput                                           `pulumi:"op"`
+	ResolveSustain pulumi.StringPtrInput                                        `pulumi:"resolveSustain"`
+	ResolveValue   MonitorSeriesConditionsOverrideConditionResolveValuePtrInput `pulumi:"resolveValue"`
+	Severity       pulumi.StringInput                                           `pulumi:"severity"`
+	Sustain        pulumi.StringPtrInput                                        `pulumi:"sustain"`
+	Value          pulumi.Float64PtrInput                                       `pulumi:"value"`
 }
 
 func (MonitorSeriesConditionsOverrideConditionArgs) ElementType() reflect.Type {
@@ -20444,6 +20602,12 @@ func (o MonitorSeriesConditionsOverrideConditionOutput) ResolveSustain() pulumi.
 	return o.ApplyT(func(v MonitorSeriesConditionsOverrideCondition) *string { return v.ResolveSustain }).(pulumi.StringPtrOutput)
 }
 
+func (o MonitorSeriesConditionsOverrideConditionOutput) ResolveValue() MonitorSeriesConditionsOverrideConditionResolveValuePtrOutput {
+	return o.ApplyT(func(v MonitorSeriesConditionsOverrideCondition) *MonitorSeriesConditionsOverrideConditionResolveValue {
+		return v.ResolveValue
+	}).(MonitorSeriesConditionsOverrideConditionResolveValuePtrOutput)
+}
+
 func (o MonitorSeriesConditionsOverrideConditionOutput) Severity() pulumi.StringOutput {
 	return o.ApplyT(func(v MonitorSeriesConditionsOverrideCondition) string { return v.Severity }).(pulumi.StringOutput)
 }
@@ -20474,6 +20638,154 @@ func (o MonitorSeriesConditionsOverrideConditionArrayOutput) Index(i pulumi.IntI
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) MonitorSeriesConditionsOverrideCondition {
 		return vs[0].([]MonitorSeriesConditionsOverrideCondition)[vs[1].(int)]
 	}).(MonitorSeriesConditionsOverrideConditionOutput)
+}
+
+type MonitorSeriesConditionsOverrideConditionResolveValue struct {
+	Enabled bool    `pulumi:"enabled"`
+	Value   float64 `pulumi:"value"`
+}
+
+// MonitorSeriesConditionsOverrideConditionResolveValueInput is an input type that accepts MonitorSeriesConditionsOverrideConditionResolveValueArgs and MonitorSeriesConditionsOverrideConditionResolveValueOutput values.
+// You can construct a concrete instance of `MonitorSeriesConditionsOverrideConditionResolveValueInput` via:
+//
+//	MonitorSeriesConditionsOverrideConditionResolveValueArgs{...}
+type MonitorSeriesConditionsOverrideConditionResolveValueInput interface {
+	pulumi.Input
+
+	ToMonitorSeriesConditionsOverrideConditionResolveValueOutput() MonitorSeriesConditionsOverrideConditionResolveValueOutput
+	ToMonitorSeriesConditionsOverrideConditionResolveValueOutputWithContext(context.Context) MonitorSeriesConditionsOverrideConditionResolveValueOutput
+}
+
+type MonitorSeriesConditionsOverrideConditionResolveValueArgs struct {
+	Enabled pulumi.BoolInput    `pulumi:"enabled"`
+	Value   pulumi.Float64Input `pulumi:"value"`
+}
+
+func (MonitorSeriesConditionsOverrideConditionResolveValueArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*MonitorSeriesConditionsOverrideConditionResolveValue)(nil)).Elem()
+}
+
+func (i MonitorSeriesConditionsOverrideConditionResolveValueArgs) ToMonitorSeriesConditionsOverrideConditionResolveValueOutput() MonitorSeriesConditionsOverrideConditionResolveValueOutput {
+	return i.ToMonitorSeriesConditionsOverrideConditionResolveValueOutputWithContext(context.Background())
+}
+
+func (i MonitorSeriesConditionsOverrideConditionResolveValueArgs) ToMonitorSeriesConditionsOverrideConditionResolveValueOutputWithContext(ctx context.Context) MonitorSeriesConditionsOverrideConditionResolveValueOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MonitorSeriesConditionsOverrideConditionResolveValueOutput)
+}
+
+func (i MonitorSeriesConditionsOverrideConditionResolveValueArgs) ToMonitorSeriesConditionsOverrideConditionResolveValuePtrOutput() MonitorSeriesConditionsOverrideConditionResolveValuePtrOutput {
+	return i.ToMonitorSeriesConditionsOverrideConditionResolveValuePtrOutputWithContext(context.Background())
+}
+
+func (i MonitorSeriesConditionsOverrideConditionResolveValueArgs) ToMonitorSeriesConditionsOverrideConditionResolveValuePtrOutputWithContext(ctx context.Context) MonitorSeriesConditionsOverrideConditionResolveValuePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MonitorSeriesConditionsOverrideConditionResolveValueOutput).ToMonitorSeriesConditionsOverrideConditionResolveValuePtrOutputWithContext(ctx)
+}
+
+// MonitorSeriesConditionsOverrideConditionResolveValuePtrInput is an input type that accepts MonitorSeriesConditionsOverrideConditionResolveValueArgs, MonitorSeriesConditionsOverrideConditionResolveValuePtr and MonitorSeriesConditionsOverrideConditionResolveValuePtrOutput values.
+// You can construct a concrete instance of `MonitorSeriesConditionsOverrideConditionResolveValuePtrInput` via:
+//
+//	        MonitorSeriesConditionsOverrideConditionResolveValueArgs{...}
+//
+//	or:
+//
+//	        nil
+type MonitorSeriesConditionsOverrideConditionResolveValuePtrInput interface {
+	pulumi.Input
+
+	ToMonitorSeriesConditionsOverrideConditionResolveValuePtrOutput() MonitorSeriesConditionsOverrideConditionResolveValuePtrOutput
+	ToMonitorSeriesConditionsOverrideConditionResolveValuePtrOutputWithContext(context.Context) MonitorSeriesConditionsOverrideConditionResolveValuePtrOutput
+}
+
+type monitorSeriesConditionsOverrideConditionResolveValuePtrType MonitorSeriesConditionsOverrideConditionResolveValueArgs
+
+func MonitorSeriesConditionsOverrideConditionResolveValuePtr(v *MonitorSeriesConditionsOverrideConditionResolveValueArgs) MonitorSeriesConditionsOverrideConditionResolveValuePtrInput {
+	return (*monitorSeriesConditionsOverrideConditionResolveValuePtrType)(v)
+}
+
+func (*monitorSeriesConditionsOverrideConditionResolveValuePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**MonitorSeriesConditionsOverrideConditionResolveValue)(nil)).Elem()
+}
+
+func (i *monitorSeriesConditionsOverrideConditionResolveValuePtrType) ToMonitorSeriesConditionsOverrideConditionResolveValuePtrOutput() MonitorSeriesConditionsOverrideConditionResolveValuePtrOutput {
+	return i.ToMonitorSeriesConditionsOverrideConditionResolveValuePtrOutputWithContext(context.Background())
+}
+
+func (i *monitorSeriesConditionsOverrideConditionResolveValuePtrType) ToMonitorSeriesConditionsOverrideConditionResolveValuePtrOutputWithContext(ctx context.Context) MonitorSeriesConditionsOverrideConditionResolveValuePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MonitorSeriesConditionsOverrideConditionResolveValuePtrOutput)
+}
+
+type MonitorSeriesConditionsOverrideConditionResolveValueOutput struct{ *pulumi.OutputState }
+
+func (MonitorSeriesConditionsOverrideConditionResolveValueOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*MonitorSeriesConditionsOverrideConditionResolveValue)(nil)).Elem()
+}
+
+func (o MonitorSeriesConditionsOverrideConditionResolveValueOutput) ToMonitorSeriesConditionsOverrideConditionResolveValueOutput() MonitorSeriesConditionsOverrideConditionResolveValueOutput {
+	return o
+}
+
+func (o MonitorSeriesConditionsOverrideConditionResolveValueOutput) ToMonitorSeriesConditionsOverrideConditionResolveValueOutputWithContext(ctx context.Context) MonitorSeriesConditionsOverrideConditionResolveValueOutput {
+	return o
+}
+
+func (o MonitorSeriesConditionsOverrideConditionResolveValueOutput) ToMonitorSeriesConditionsOverrideConditionResolveValuePtrOutput() MonitorSeriesConditionsOverrideConditionResolveValuePtrOutput {
+	return o.ToMonitorSeriesConditionsOverrideConditionResolveValuePtrOutputWithContext(context.Background())
+}
+
+func (o MonitorSeriesConditionsOverrideConditionResolveValueOutput) ToMonitorSeriesConditionsOverrideConditionResolveValuePtrOutputWithContext(ctx context.Context) MonitorSeriesConditionsOverrideConditionResolveValuePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v MonitorSeriesConditionsOverrideConditionResolveValue) *MonitorSeriesConditionsOverrideConditionResolveValue {
+		return &v
+	}).(MonitorSeriesConditionsOverrideConditionResolveValuePtrOutput)
+}
+
+func (o MonitorSeriesConditionsOverrideConditionResolveValueOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v MonitorSeriesConditionsOverrideConditionResolveValue) bool { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+func (o MonitorSeriesConditionsOverrideConditionResolveValueOutput) Value() pulumi.Float64Output {
+	return o.ApplyT(func(v MonitorSeriesConditionsOverrideConditionResolveValue) float64 { return v.Value }).(pulumi.Float64Output)
+}
+
+type MonitorSeriesConditionsOverrideConditionResolveValuePtrOutput struct{ *pulumi.OutputState }
+
+func (MonitorSeriesConditionsOverrideConditionResolveValuePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**MonitorSeriesConditionsOverrideConditionResolveValue)(nil)).Elem()
+}
+
+func (o MonitorSeriesConditionsOverrideConditionResolveValuePtrOutput) ToMonitorSeriesConditionsOverrideConditionResolveValuePtrOutput() MonitorSeriesConditionsOverrideConditionResolveValuePtrOutput {
+	return o
+}
+
+func (o MonitorSeriesConditionsOverrideConditionResolveValuePtrOutput) ToMonitorSeriesConditionsOverrideConditionResolveValuePtrOutputWithContext(ctx context.Context) MonitorSeriesConditionsOverrideConditionResolveValuePtrOutput {
+	return o
+}
+
+func (o MonitorSeriesConditionsOverrideConditionResolveValuePtrOutput) Elem() MonitorSeriesConditionsOverrideConditionResolveValueOutput {
+	return o.ApplyT(func(v *MonitorSeriesConditionsOverrideConditionResolveValue) MonitorSeriesConditionsOverrideConditionResolveValue {
+		if v != nil {
+			return *v
+		}
+		var ret MonitorSeriesConditionsOverrideConditionResolveValue
+		return ret
+	}).(MonitorSeriesConditionsOverrideConditionResolveValueOutput)
+}
+
+func (o MonitorSeriesConditionsOverrideConditionResolveValuePtrOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *MonitorSeriesConditionsOverrideConditionResolveValue) *bool {
+		if v == nil {
+			return nil
+		}
+		return &v.Enabled
+	}).(pulumi.BoolPtrOutput)
+}
+
+func (o MonitorSeriesConditionsOverrideConditionResolveValuePtrOutput) Value() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *MonitorSeriesConditionsOverrideConditionResolveValue) *float64 {
+		if v == nil {
+			return nil
+		}
+		return &v.Value
+	}).(pulumi.Float64PtrOutput)
 }
 
 type MonitorSeriesConditionsOverrideLabelMatcher struct {
@@ -38843,10 +39155,14 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*MonitorSeriesConditionsPtrInput)(nil)).Elem(), MonitorSeriesConditionsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MonitorSeriesConditionsConditionInput)(nil)).Elem(), MonitorSeriesConditionsConditionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MonitorSeriesConditionsConditionArrayInput)(nil)).Elem(), MonitorSeriesConditionsConditionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MonitorSeriesConditionsConditionResolveValueInput)(nil)).Elem(), MonitorSeriesConditionsConditionResolveValueArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MonitorSeriesConditionsConditionResolveValuePtrInput)(nil)).Elem(), MonitorSeriesConditionsConditionResolveValueArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MonitorSeriesConditionsOverrideInput)(nil)).Elem(), MonitorSeriesConditionsOverrideArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MonitorSeriesConditionsOverrideArrayInput)(nil)).Elem(), MonitorSeriesConditionsOverrideArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MonitorSeriesConditionsOverrideConditionInput)(nil)).Elem(), MonitorSeriesConditionsOverrideConditionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MonitorSeriesConditionsOverrideConditionArrayInput)(nil)).Elem(), MonitorSeriesConditionsOverrideConditionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MonitorSeriesConditionsOverrideConditionResolveValueInput)(nil)).Elem(), MonitorSeriesConditionsOverrideConditionResolveValueArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MonitorSeriesConditionsOverrideConditionResolveValuePtrInput)(nil)).Elem(), MonitorSeriesConditionsOverrideConditionResolveValueArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MonitorSeriesConditionsOverrideLabelMatcherInput)(nil)).Elem(), MonitorSeriesConditionsOverrideLabelMatcherArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MonitorSeriesConditionsOverrideLabelMatcherArrayInput)(nil)).Elem(), MonitorSeriesConditionsOverrideLabelMatcherArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MonitorSignalGroupingInput)(nil)).Elem(), MonitorSignalGroupingArgs{})
@@ -39403,10 +39719,14 @@ func init() {
 	pulumi.RegisterOutputType(MonitorSeriesConditionsPtrOutput{})
 	pulumi.RegisterOutputType(MonitorSeriesConditionsConditionOutput{})
 	pulumi.RegisterOutputType(MonitorSeriesConditionsConditionArrayOutput{})
+	pulumi.RegisterOutputType(MonitorSeriesConditionsConditionResolveValueOutput{})
+	pulumi.RegisterOutputType(MonitorSeriesConditionsConditionResolveValuePtrOutput{})
 	pulumi.RegisterOutputType(MonitorSeriesConditionsOverrideOutput{})
 	pulumi.RegisterOutputType(MonitorSeriesConditionsOverrideArrayOutput{})
 	pulumi.RegisterOutputType(MonitorSeriesConditionsOverrideConditionOutput{})
 	pulumi.RegisterOutputType(MonitorSeriesConditionsOverrideConditionArrayOutput{})
+	pulumi.RegisterOutputType(MonitorSeriesConditionsOverrideConditionResolveValueOutput{})
+	pulumi.RegisterOutputType(MonitorSeriesConditionsOverrideConditionResolveValuePtrOutput{})
 	pulumi.RegisterOutputType(MonitorSeriesConditionsOverrideLabelMatcherOutput{})
 	pulumi.RegisterOutputType(MonitorSeriesConditionsOverrideLabelMatcherArrayOutput{})
 	pulumi.RegisterOutputType(MonitorSignalGroupingOutput{})

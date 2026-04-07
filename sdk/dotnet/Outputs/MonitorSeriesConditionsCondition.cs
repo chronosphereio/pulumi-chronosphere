@@ -16,6 +16,7 @@ namespace Chronosphere.Pulumi.Outputs
     {
         public readonly string Op;
         public readonly string? ResolveSustain;
+        public readonly Outputs.MonitorSeriesConditionsConditionResolveValue? ResolveValue;
         public readonly string Severity;
         public readonly string? Sustain;
         public readonly double? Value;
@@ -26,6 +27,8 @@ namespace Chronosphere.Pulumi.Outputs
 
             string? resolveSustain,
 
+            Outputs.MonitorSeriesConditionsConditionResolveValue? resolveValue,
+
             string severity,
 
             string? sustain,
@@ -34,6 +37,7 @@ namespace Chronosphere.Pulumi.Outputs
         {
             Op = op;
             ResolveSustain = resolveSustain;
+            ResolveValue = resolveValue;
             Severity = severity;
             Sustain = sustain;
             Value = value;
