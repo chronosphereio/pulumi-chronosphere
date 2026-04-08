@@ -823,9 +823,15 @@ export interface MonitorSeriesConditions {
 export interface MonitorSeriesConditionsCondition {
     op: string;
     resolveSustain?: string;
+    resolveValue?: outputs.MonitorSeriesConditionsConditionResolveValue;
     severity: string;
     sustain?: string;
     value?: number;
+}
+
+export interface MonitorSeriesConditionsConditionResolveValue {
+    enabled: boolean;
+    value: number;
 }
 
 export interface MonitorSeriesConditionsOverride {
@@ -836,9 +842,15 @@ export interface MonitorSeriesConditionsOverride {
 export interface MonitorSeriesConditionsOverrideCondition {
     op: string;
     resolveSustain?: string;
+    resolveValue?: outputs.MonitorSeriesConditionsOverrideConditionResolveValue;
     severity: string;
     sustain?: string;
     value?: number;
+}
+
+export interface MonitorSeriesConditionsOverrideConditionResolveValue {
+    enabled: boolean;
+    value: number;
 }
 
 export interface MonitorSeriesConditionsOverrideLabelMatcher {

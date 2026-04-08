@@ -823,9 +823,15 @@ export interface MonitorSeriesConditions {
 export interface MonitorSeriesConditionsCondition {
     op: pulumi.Input<string>;
     resolveSustain?: pulumi.Input<string>;
+    resolveValue?: pulumi.Input<inputs.MonitorSeriesConditionsConditionResolveValue>;
     severity: pulumi.Input<string>;
     sustain?: pulumi.Input<string>;
     value?: pulumi.Input<number>;
+}
+
+export interface MonitorSeriesConditionsConditionResolveValue {
+    enabled: pulumi.Input<boolean>;
+    value: pulumi.Input<number>;
 }
 
 export interface MonitorSeriesConditionsOverride {
@@ -836,9 +842,15 @@ export interface MonitorSeriesConditionsOverride {
 export interface MonitorSeriesConditionsOverrideCondition {
     op: pulumi.Input<string>;
     resolveSustain?: pulumi.Input<string>;
+    resolveValue?: pulumi.Input<inputs.MonitorSeriesConditionsOverrideConditionResolveValue>;
     severity: pulumi.Input<string>;
     sustain?: pulumi.Input<string>;
     value?: pulumi.Input<number>;
+}
+
+export interface MonitorSeriesConditionsOverrideConditionResolveValue {
+    enabled: pulumi.Input<boolean>;
+    value: pulumi.Input<number>;
 }
 
 export interface MonitorSeriesConditionsOverrideLabelMatcher {

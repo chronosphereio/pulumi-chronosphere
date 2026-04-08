@@ -427,14 +427,16 @@
                 "overrides": "override"
             },
             "chronosphere:index/MonitorSeriesConditionsCondition:MonitorSeriesConditionsCondition": {
-                "resolveSustain": "resolve_sustain"
+                "resolveSustain": "resolve_sustain",
+                "resolveValue": "resolve_value"
             },
             "chronosphere:index/MonitorSeriesConditionsOverride:MonitorSeriesConditionsOverride": {
                 "conditions": "condition",
                 "labelMatchers": "label_matcher"
             },
             "chronosphere:index/MonitorSeriesConditionsOverrideCondition:MonitorSeriesConditionsOverrideCondition": {
-                "resolveSustain": "resolve_sustain"
+                "resolveSustain": "resolve_sustain",
+                "resolveValue": "resolve_value"
             },
             "chronosphere:index/MonitorSignalGrouping:MonitorSignalGrouping": {
                 "labelNames": "label_names",

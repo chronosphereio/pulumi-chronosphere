@@ -19,6 +19,9 @@ namespace Chronosphere.Pulumi.Inputs
         [Input("resolveSustain")]
         public Input<string>? ResolveSustain { get; set; }
 
+        [Input("resolveValue")]
+        public Input<Inputs.MonitorSeriesConditionsOverrideConditionResolveValueArgs>? ResolveValue { get; set; }
+
         [Input("severity", required: true)]
         public Input<string> Severity { get; set; } = null!;
 

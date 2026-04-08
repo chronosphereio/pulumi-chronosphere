@@ -4,6 +4,7 @@
 package io.chronosphere.chronosphere.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import io.chronosphere.chronosphere.outputs.MonitorSeriesConditionsConditionResolveValue;
 import java.lang.Double;
 import java.lang.String;
 import java.util.Objects;
@@ -14,6 +15,7 @@ import javax.annotation.Nullable;
 public final class MonitorSeriesConditionsCondition {
     private String op;
     private @Nullable String resolveSustain;
+    private @Nullable MonitorSeriesConditionsConditionResolveValue resolveValue;
     private String severity;
     private @Nullable String sustain;
     private @Nullable Double value;
@@ -24,6 +26,9 @@ public final class MonitorSeriesConditionsCondition {
     }
     public Optional<String> resolveSustain() {
         return Optional.ofNullable(this.resolveSustain);
+    }
+    public Optional<MonitorSeriesConditionsConditionResolveValue> resolveValue() {
+        return Optional.ofNullable(this.resolveValue);
     }
     public String severity() {
         return this.severity;
@@ -46,6 +51,7 @@ public final class MonitorSeriesConditionsCondition {
     public static final class Builder {
         private String op;
         private @Nullable String resolveSustain;
+        private @Nullable MonitorSeriesConditionsConditionResolveValue resolveValue;
         private String severity;
         private @Nullable String sustain;
         private @Nullable Double value;
@@ -54,6 +60,7 @@ public final class MonitorSeriesConditionsCondition {
     	      Objects.requireNonNull(defaults);
     	      this.op = defaults.op;
     	      this.resolveSustain = defaults.resolveSustain;
+    	      this.resolveValue = defaults.resolveValue;
     	      this.severity = defaults.severity;
     	      this.sustain = defaults.sustain;
     	      this.value = defaults.value;
@@ -67,6 +74,11 @@ public final class MonitorSeriesConditionsCondition {
         @CustomType.Setter
         public Builder resolveSustain(@Nullable String resolveSustain) {
             this.resolveSustain = resolveSustain;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder resolveValue(@Nullable MonitorSeriesConditionsConditionResolveValue resolveValue) {
+            this.resolveValue = resolveValue;
             return this;
         }
         @CustomType.Setter
@@ -88,6 +100,7 @@ public final class MonitorSeriesConditionsCondition {
             final var o = new MonitorSeriesConditionsCondition();
             o.op = op;
             o.resolveSustain = resolveSustain;
+            o.resolveValue = resolveValue;
             o.severity = severity;
             o.sustain = sustain;
             o.value = value;

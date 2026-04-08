@@ -5,6 +5,7 @@ package io.chronosphere.chronosphere.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import io.chronosphere.chronosphere.inputs.MonitorSeriesConditionsConditionResolveValueArgs;
 import java.lang.Double;
 import java.lang.String;
 import java.util.Objects;
@@ -28,6 +29,13 @@ public final class MonitorSeriesConditionsConditionArgs extends com.pulumi.resou
 
     public Optional<Output<String>> resolveSustain() {
         return Optional.ofNullable(this.resolveSustain);
+    }
+
+    @Import(name="resolveValue")
+    private @Nullable Output<MonitorSeriesConditionsConditionResolveValueArgs> resolveValue;
+
+    public Optional<Output<MonitorSeriesConditionsConditionResolveValueArgs>> resolveValue() {
+        return Optional.ofNullable(this.resolveValue);
     }
 
     @Import(name="severity", required=true)
@@ -56,6 +64,7 @@ public final class MonitorSeriesConditionsConditionArgs extends com.pulumi.resou
     private MonitorSeriesConditionsConditionArgs(MonitorSeriesConditionsConditionArgs $) {
         this.op = $.op;
         this.resolveSustain = $.resolveSustain;
+        this.resolveValue = $.resolveValue;
         this.severity = $.severity;
         this.sustain = $.sustain;
         this.value = $.value;
@@ -95,6 +104,15 @@ public final class MonitorSeriesConditionsConditionArgs extends com.pulumi.resou
 
         public Builder resolveSustain(String resolveSustain) {
             return resolveSustain(Output.of(resolveSustain));
+        }
+
+        public Builder resolveValue(@Nullable Output<MonitorSeriesConditionsConditionResolveValueArgs> resolveValue) {
+            $.resolveValue = resolveValue;
+            return this;
+        }
+
+        public Builder resolveValue(MonitorSeriesConditionsConditionResolveValueArgs resolveValue) {
+            return resolveValue(Output.of(resolveValue));
         }
 
         public Builder severity(Output<String> severity) {
