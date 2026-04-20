@@ -7,6 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import io.chronosphere.chronosphere.inputs.LogControlConfigRuleDropFieldArgs;
 import io.chronosphere.chronosphere.inputs.LogControlConfigRuleEmitMetricsArgs;
+import io.chronosphere.chronosphere.inputs.LogControlConfigRuleParseFieldArgs;
 import io.chronosphere.chronosphere.inputs.LogControlConfigRuleReplaceFieldArgs;
 import io.chronosphere.chronosphere.inputs.LogControlConfigRuleSampleArgs;
 import java.lang.String;
@@ -54,6 +55,13 @@ public final class LogControlConfigRuleArgs extends com.pulumi.resources.Resourc
         return Optional.ofNullable(this.name);
     }
 
+    @Import(name="parseField")
+    private @Nullable Output<LogControlConfigRuleParseFieldArgs> parseField;
+
+    public Optional<Output<LogControlConfigRuleParseFieldArgs>> parseField() {
+        return Optional.ofNullable(this.parseField);
+    }
+
     @Import(name="replaceField")
     private @Nullable Output<LogControlConfigRuleReplaceFieldArgs> replaceField;
 
@@ -83,6 +91,7 @@ public final class LogControlConfigRuleArgs extends com.pulumi.resources.Resourc
         this.filter = $.filter;
         this.mode = $.mode;
         this.name = $.name;
+        this.parseField = $.parseField;
         this.replaceField = $.replaceField;
         this.sample = $.sample;
         this.type = $.type;
@@ -149,6 +158,15 @@ public final class LogControlConfigRuleArgs extends com.pulumi.resources.Resourc
 
         public Builder name(String name) {
             return name(Output.of(name));
+        }
+
+        public Builder parseField(@Nullable Output<LogControlConfigRuleParseFieldArgs> parseField) {
+            $.parseField = parseField;
+            return this;
+        }
+
+        public Builder parseField(LogControlConfigRuleParseFieldArgs parseField) {
+            return parseField(Output.of(parseField));
         }
 
         public Builder replaceField(@Nullable Output<LogControlConfigRuleReplaceFieldArgs> replaceField) {

@@ -24,26 +24,128 @@ __all__ = [
     'ConsumptionConfigPartitionFilterArgs',
     'ConsumptionConfigPartitionFilterConditionArgs',
     'ConsumptionConfigPartitionFilterConditionLogFilterArgs',
+    'ConsumptionConfigPartitionFilterConditionMetricFilterArgs',
+    'ConsumptionConfigPartitionFilterConditionTraceFilterArgs',
+    'ConsumptionConfigPartitionFilterConditionTraceFilterSpanArgs',
+    'ConsumptionConfigPartitionFilterConditionTraceFilterSpanDurationArgs',
+    'ConsumptionConfigPartitionFilterConditionTraceFilterSpanErrorArgs',
+    'ConsumptionConfigPartitionFilterConditionTraceFilterSpanIsRootSpanArgs',
+    'ConsumptionConfigPartitionFilterConditionTraceFilterSpanOperationArgs',
+    'ConsumptionConfigPartitionFilterConditionTraceFilterSpanParentOperationArgs',
+    'ConsumptionConfigPartitionFilterConditionTraceFilterSpanParentServiceArgs',
+    'ConsumptionConfigPartitionFilterConditionTraceFilterSpanServiceArgs',
+    'ConsumptionConfigPartitionFilterConditionTraceFilterSpanSpanCountArgs',
+    'ConsumptionConfigPartitionFilterConditionTraceFilterSpanTagArgs',
+    'ConsumptionConfigPartitionFilterConditionTraceFilterSpanTagNumericValueArgs',
+    'ConsumptionConfigPartitionFilterConditionTraceFilterSpanTagValueArgs',
+    'ConsumptionConfigPartitionFilterConditionTraceFilterTraceArgs',
+    'ConsumptionConfigPartitionFilterConditionTraceFilterTraceDurationArgs',
+    'ConsumptionConfigPartitionFilterConditionTraceFilterTraceErrorArgs',
     'ConsumptionConfigPartitionPartitionArgs',
     'ConsumptionConfigPartitionPartitionFilterArgs',
     'ConsumptionConfigPartitionPartitionFilterConditionArgs',
     'ConsumptionConfigPartitionPartitionFilterConditionLogFilterArgs',
+    'ConsumptionConfigPartitionPartitionFilterConditionMetricFilterArgs',
+    'ConsumptionConfigPartitionPartitionFilterConditionTraceFilterArgs',
+    'ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanArgs',
+    'ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanDurationArgs',
+    'ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanErrorArgs',
+    'ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanIsRootSpanArgs',
+    'ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanOperationArgs',
+    'ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanParentOperationArgs',
+    'ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanParentServiceArgs',
+    'ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanServiceArgs',
+    'ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanSpanCountArgs',
+    'ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanTagArgs',
+    'ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanTagNumericValueArgs',
+    'ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanTagValueArgs',
+    'ConsumptionConfigPartitionPartitionFilterConditionTraceFilterTraceArgs',
+    'ConsumptionConfigPartitionPartitionFilterConditionTraceFilterTraceDurationArgs',
+    'ConsumptionConfigPartitionPartitionFilterConditionTraceFilterTraceErrorArgs',
     'ConsumptionConfigPartitionPartitionPartitionArgs',
     'ConsumptionConfigPartitionPartitionPartitionFilterArgs',
     'ConsumptionConfigPartitionPartitionPartitionFilterConditionArgs',
     'ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterArgs',
+    'ConsumptionConfigPartitionPartitionPartitionFilterConditionMetricFilterArgs',
+    'ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterArgs',
+    'ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanArgs',
+    'ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanDurationArgs',
+    'ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanErrorArgs',
+    'ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanIsRootSpanArgs',
+    'ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanOperationArgs',
+    'ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperationArgs',
+    'ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanParentServiceArgs',
+    'ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanServiceArgs',
+    'ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanSpanCountArgs',
+    'ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanTagArgs',
+    'ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanTagNumericValueArgs',
+    'ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValueArgs',
+    'ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterTraceArgs',
+    'ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterTraceDurationArgs',
+    'ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterTraceErrorArgs',
     'ConsumptionConfigPartitionPartitionPartitionPartitionArgs',
     'ConsumptionConfigPartitionPartitionPartitionPartitionFilterArgs',
     'ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionArgs',
     'ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterArgs',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionMetricFilterArgs',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterArgs',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanArgs',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanDurationArgs',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanErrorArgs',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanIsRootSpanArgs',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanOperationArgs',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperationArgs',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentServiceArgs',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanServiceArgs',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanSpanCountArgs',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagArgs',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagNumericValueArgs',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValueArgs',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceArgs',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceDurationArgs',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceErrorArgs',
     'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionArgs',
     'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterArgs',
     'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionArgs',
     'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterArgs',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionMetricFilterArgs',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterArgs',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanArgs',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanDurationArgs',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanErrorArgs',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanIsRootSpanArgs',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanOperationArgs',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperationArgs',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentServiceArgs',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanServiceArgs',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanSpanCountArgs',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagArgs',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagNumericValueArgs',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValueArgs',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceArgs',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceDurationArgs',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceErrorArgs',
     'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionArgs',
     'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterArgs',
     'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionArgs',
     'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterArgs',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionMetricFilterArgs',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterArgs',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanArgs',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanDurationArgs',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanErrorArgs',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanIsRootSpanArgs',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanOperationArgs',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperationArgs',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentServiceArgs',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanServiceArgs',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanSpanCountArgs',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagArgs',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagNumericValueArgs',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValueArgs',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceArgs',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceDurationArgs',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceErrorArgs',
     'DatasetConfigurationArgs',
     'DatasetConfigurationLogDatasetArgs',
     'DatasetConfigurationLogDatasetMatchCriteriaArgs',
@@ -121,6 +223,13 @@ __all__ = [
     'LogControlConfigRuleEmitMetricsHistogramValueArgs',
     'LogControlConfigRuleEmitMetricsLabelArgs',
     'LogControlConfigRuleEmitMetricsLabelValueArgs',
+    'LogControlConfigRuleParseFieldArgs',
+    'LogControlConfigRuleParseFieldDestinationArgs',
+    'LogControlConfigRuleParseFieldParserArgs',
+    'LogControlConfigRuleParseFieldParserGrokParserArgs',
+    'LogControlConfigRuleParseFieldParserKeyValueParserArgs',
+    'LogControlConfigRuleParseFieldParserRegexParserArgs',
+    'LogControlConfigRuleParseFieldSourceArgs',
     'LogControlConfigRuleReplaceFieldArgs',
     'LogControlConfigRuleReplaceFieldFieldArgs',
     'LogControlConfigRuleReplaceFieldMappedValueArgs',
@@ -142,11 +251,13 @@ __all__ = [
     'LogIngestConfigFieldParserArgs',
     'LogIngestConfigFieldParserDestinationArgs',
     'LogIngestConfigFieldParserParserArgs',
+    'LogIngestConfigFieldParserParserGrokParserArgs',
     'LogIngestConfigFieldParserParserKeyValueParserArgs',
     'LogIngestConfigFieldParserParserRegexParserArgs',
     'LogIngestConfigFieldParserSourceArgs',
     'LogIngestConfigPlaintextParserArgs',
     'LogIngestConfigPlaintextParserParserArgs',
+    'LogIngestConfigPlaintextParserParserGrokParserArgs',
     'LogIngestConfigPlaintextParserParserKeyValueParserArgs',
     'LogIngestConfigPlaintextParserParserRegexParserArgs',
     'LogscaleActionEmailActionArgs',
@@ -159,6 +270,7 @@ __all__ = [
     'LogscaleActionVictorOpsActionArgs',
     'LogscaleActionWebhookActionArgs',
     'MappingRuleStoragePolicyArgs',
+    'MonitorNotificationTemplateArgs',
     'MonitorQueryArgs',
     'MonitorScheduleArgs',
     'MonitorScheduleRangeArgs',
@@ -173,8 +285,24 @@ __all__ = [
     'NotificationPolicyOverrideArgs',
     'NotificationPolicyOverrideAlertLabelMatcherArgs',
     'NotificationPolicyOverrideRouteArgs',
+    'NotificationPolicyOverrideRouteDestinationArgs',
+    'NotificationPolicyOverrideRouteDestinationEmailArgs',
+    'NotificationPolicyOverrideRouteDestinationOpsGenieArgs',
+    'NotificationPolicyOverrideRouteDestinationPagerdutyArgs',
+    'NotificationPolicyOverrideRouteDestinationSlackArgs',
+    'NotificationPolicyOverrideRouteDestinationVictorOpsArgs',
+    'NotificationPolicyOverrideRouteDestinationWebhookArgs',
+    'NotificationPolicyOverrideRouteDestinationWebhookQueryParameterArgs',
     'NotificationPolicyOverrideRouteGroupByArgs',
     'NotificationPolicyRouteArgs',
+    'NotificationPolicyRouteDestinationArgs',
+    'NotificationPolicyRouteDestinationEmailArgs',
+    'NotificationPolicyRouteDestinationOpsGenieArgs',
+    'NotificationPolicyRouteDestinationPagerdutyArgs',
+    'NotificationPolicyRouteDestinationSlackArgs',
+    'NotificationPolicyRouteDestinationVictorOpsArgs',
+    'NotificationPolicyRouteDestinationWebhookArgs',
+    'NotificationPolicyRouteDestinationWebhookQueryParameterArgs',
     'NotificationPolicyRouteGroupByArgs',
     'OpsgenieAlertNotifierResponderArgs',
     'OtelMetricsIngestionResourceAttributesArgs',
@@ -709,11 +837,17 @@ class ConsumptionConfigPartitionFilterArgs:
 class ConsumptionConfigPartitionFilterConditionArgs:
     def __init__(__self__, *,
                  dataset_id: Optional[pulumi.Input[str]] = None,
-                 log_filter: Optional[pulumi.Input['ConsumptionConfigPartitionFilterConditionLogFilterArgs']] = None):
+                 log_filter: Optional[pulumi.Input['ConsumptionConfigPartitionFilterConditionLogFilterArgs']] = None,
+                 metric_filters: Optional[pulumi.Input[Sequence[pulumi.Input['ConsumptionConfigPartitionFilterConditionMetricFilterArgs']]]] = None,
+                 trace_filter: Optional[pulumi.Input['ConsumptionConfigPartitionFilterConditionTraceFilterArgs']] = None):
         if dataset_id is not None:
             pulumi.set(__self__, "dataset_id", dataset_id)
         if log_filter is not None:
             pulumi.set(__self__, "log_filter", log_filter)
+        if metric_filters is not None:
+            pulumi.set(__self__, "metric_filters", metric_filters)
+        if trace_filter is not None:
+            pulumi.set(__self__, "trace_filter", trace_filter)
 
     @property
     @pulumi.getter(name="datasetId")
@@ -733,6 +867,24 @@ class ConsumptionConfigPartitionFilterConditionArgs:
     def log_filter(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionFilterConditionLogFilterArgs']]):
         pulumi.set(self, "log_filter", value)
 
+    @property
+    @pulumi.getter(name="metricFilters")
+    def metric_filters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ConsumptionConfigPartitionFilterConditionMetricFilterArgs']]]]:
+        return pulumi.get(self, "metric_filters")
+
+    @metric_filters.setter
+    def metric_filters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ConsumptionConfigPartitionFilterConditionMetricFilterArgs']]]]):
+        pulumi.set(self, "metric_filters", value)
+
+    @property
+    @pulumi.getter(name="traceFilter")
+    def trace_filter(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionFilterConditionTraceFilterArgs']]:
+        return pulumi.get(self, "trace_filter")
+
+    @trace_filter.setter
+    def trace_filter(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionFilterConditionTraceFilterArgs']]):
+        pulumi.set(self, "trace_filter", value)
+
 
 @pulumi.input_type
 class ConsumptionConfigPartitionFilterConditionLogFilterArgs:
@@ -748,6 +900,624 @@ class ConsumptionConfigPartitionFilterConditionLogFilterArgs:
     @query.setter
     def query(self, value: pulumi.Input[str]):
         pulumi.set(self, "query", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionFilterConditionMetricFilterArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[str],
+                 value_glob: pulumi.Input[str]):
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value_glob", value_glob)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="valueGlob")
+    def value_glob(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "value_glob")
+
+    @value_glob.setter
+    def value_glob(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value_glob", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionFilterConditionTraceFilterArgs:
+    def __init__(__self__, *,
+                 spans: Optional[pulumi.Input[Sequence[pulumi.Input['ConsumptionConfigPartitionFilterConditionTraceFilterSpanArgs']]]] = None,
+                 trace: Optional[pulumi.Input['ConsumptionConfigPartitionFilterConditionTraceFilterTraceArgs']] = None):
+        if spans is not None:
+            pulumi.set(__self__, "spans", spans)
+        if trace is not None:
+            pulumi.set(__self__, "trace", trace)
+
+    @property
+    @pulumi.getter
+    def spans(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ConsumptionConfigPartitionFilterConditionTraceFilterSpanArgs']]]]:
+        return pulumi.get(self, "spans")
+
+    @spans.setter
+    def spans(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ConsumptionConfigPartitionFilterConditionTraceFilterSpanArgs']]]]):
+        pulumi.set(self, "spans", value)
+
+    @property
+    @pulumi.getter
+    def trace(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionFilterConditionTraceFilterTraceArgs']]:
+        return pulumi.get(self, "trace")
+
+    @trace.setter
+    def trace(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionFilterConditionTraceFilterTraceArgs']]):
+        pulumi.set(self, "trace", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionFilterConditionTraceFilterSpanArgs:
+    def __init__(__self__, *,
+                 duration: Optional[pulumi.Input['ConsumptionConfigPartitionFilterConditionTraceFilterSpanDurationArgs']] = None,
+                 error: Optional[pulumi.Input['ConsumptionConfigPartitionFilterConditionTraceFilterSpanErrorArgs']] = None,
+                 is_root_span: Optional[pulumi.Input['ConsumptionConfigPartitionFilterConditionTraceFilterSpanIsRootSpanArgs']] = None,
+                 match_type: Optional[pulumi.Input[str]] = None,
+                 operation: Optional[pulumi.Input['ConsumptionConfigPartitionFilterConditionTraceFilterSpanOperationArgs']] = None,
+                 parent_operation: Optional[pulumi.Input['ConsumptionConfigPartitionFilterConditionTraceFilterSpanParentOperationArgs']] = None,
+                 parent_service: Optional[pulumi.Input['ConsumptionConfigPartitionFilterConditionTraceFilterSpanParentServiceArgs']] = None,
+                 service: Optional[pulumi.Input['ConsumptionConfigPartitionFilterConditionTraceFilterSpanServiceArgs']] = None,
+                 span_count: Optional[pulumi.Input['ConsumptionConfigPartitionFilterConditionTraceFilterSpanSpanCountArgs']] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['ConsumptionConfigPartitionFilterConditionTraceFilterSpanTagArgs']]]] = None):
+        if duration is not None:
+            pulumi.set(__self__, "duration", duration)
+        if error is not None:
+            pulumi.set(__self__, "error", error)
+        if is_root_span is not None:
+            pulumi.set(__self__, "is_root_span", is_root_span)
+        if match_type is not None:
+            pulumi.set(__self__, "match_type", match_type)
+        if operation is not None:
+            pulumi.set(__self__, "operation", operation)
+        if parent_operation is not None:
+            pulumi.set(__self__, "parent_operation", parent_operation)
+        if parent_service is not None:
+            pulumi.set(__self__, "parent_service", parent_service)
+        if service is not None:
+            pulumi.set(__self__, "service", service)
+        if span_count is not None:
+            pulumi.set(__self__, "span_count", span_count)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+
+    @property
+    @pulumi.getter
+    def duration(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionFilterConditionTraceFilterSpanDurationArgs']]:
+        return pulumi.get(self, "duration")
+
+    @duration.setter
+    def duration(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionFilterConditionTraceFilterSpanDurationArgs']]):
+        pulumi.set(self, "duration", value)
+
+    @property
+    @pulumi.getter
+    def error(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionFilterConditionTraceFilterSpanErrorArgs']]:
+        return pulumi.get(self, "error")
+
+    @error.setter
+    def error(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionFilterConditionTraceFilterSpanErrorArgs']]):
+        pulumi.set(self, "error", value)
+
+    @property
+    @pulumi.getter(name="isRootSpan")
+    def is_root_span(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionFilterConditionTraceFilterSpanIsRootSpanArgs']]:
+        return pulumi.get(self, "is_root_span")
+
+    @is_root_span.setter
+    def is_root_span(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionFilterConditionTraceFilterSpanIsRootSpanArgs']]):
+        pulumi.set(self, "is_root_span", value)
+
+    @property
+    @pulumi.getter(name="matchType")
+    def match_type(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "match_type")
+
+    @match_type.setter
+    def match_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match_type", value)
+
+    @property
+    @pulumi.getter
+    def operation(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionFilterConditionTraceFilterSpanOperationArgs']]:
+        return pulumi.get(self, "operation")
+
+    @operation.setter
+    def operation(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionFilterConditionTraceFilterSpanOperationArgs']]):
+        pulumi.set(self, "operation", value)
+
+    @property
+    @pulumi.getter(name="parentOperation")
+    def parent_operation(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionFilterConditionTraceFilterSpanParentOperationArgs']]:
+        return pulumi.get(self, "parent_operation")
+
+    @parent_operation.setter
+    def parent_operation(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionFilterConditionTraceFilterSpanParentOperationArgs']]):
+        pulumi.set(self, "parent_operation", value)
+
+    @property
+    @pulumi.getter(name="parentService")
+    def parent_service(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionFilterConditionTraceFilterSpanParentServiceArgs']]:
+        return pulumi.get(self, "parent_service")
+
+    @parent_service.setter
+    def parent_service(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionFilterConditionTraceFilterSpanParentServiceArgs']]):
+        pulumi.set(self, "parent_service", value)
+
+    @property
+    @pulumi.getter
+    def service(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionFilterConditionTraceFilterSpanServiceArgs']]:
+        return pulumi.get(self, "service")
+
+    @service.setter
+    def service(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionFilterConditionTraceFilterSpanServiceArgs']]):
+        pulumi.set(self, "service", value)
+
+    @property
+    @pulumi.getter(name="spanCount")
+    def span_count(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionFilterConditionTraceFilterSpanSpanCountArgs']]:
+        return pulumi.get(self, "span_count")
+
+    @span_count.setter
+    def span_count(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionFilterConditionTraceFilterSpanSpanCountArgs']]):
+        pulumi.set(self, "span_count", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ConsumptionConfigPartitionFilterConditionTraceFilterSpanTagArgs']]]]:
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ConsumptionConfigPartitionFilterConditionTraceFilterSpanTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionFilterConditionTraceFilterSpanDurationArgs:
+    def __init__(__self__, *,
+                 max_secs: Optional[pulumi.Input[float]] = None,
+                 min_secs: Optional[pulumi.Input[float]] = None):
+        if max_secs is not None:
+            pulumi.set(__self__, "max_secs", max_secs)
+        if min_secs is not None:
+            pulumi.set(__self__, "min_secs", min_secs)
+
+    @property
+    @pulumi.getter(name="maxSecs")
+    def max_secs(self) -> Optional[pulumi.Input[float]]:
+        return pulumi.get(self, "max_secs")
+
+    @max_secs.setter
+    def max_secs(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "max_secs", value)
+
+    @property
+    @pulumi.getter(name="minSecs")
+    def min_secs(self) -> Optional[pulumi.Input[float]]:
+        return pulumi.get(self, "min_secs")
+
+    @min_secs.setter
+    def min_secs(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "min_secs", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionFilterConditionTraceFilterSpanErrorArgs:
+    def __init__(__self__, *,
+                 value: pulumi.Input[bool]):
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[bool]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[bool]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionFilterConditionTraceFilterSpanIsRootSpanArgs:
+    def __init__(__self__, *,
+                 value: pulumi.Input[bool]):
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[bool]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[bool]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionFilterConditionTraceFilterSpanOperationArgs:
+    def __init__(__self__, *,
+                 in_values: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 match: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "in_values")
+
+    @in_values.setter
+    def in_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "in_values", value)
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "match")
+
+    @match.setter
+    def match(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionFilterConditionTraceFilterSpanParentOperationArgs:
+    def __init__(__self__, *,
+                 in_values: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 match: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "in_values")
+
+    @in_values.setter
+    def in_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "in_values", value)
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "match")
+
+    @match.setter
+    def match(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionFilterConditionTraceFilterSpanParentServiceArgs:
+    def __init__(__self__, *,
+                 in_values: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 match: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "in_values")
+
+    @in_values.setter
+    def in_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "in_values", value)
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "match")
+
+    @match.setter
+    def match(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionFilterConditionTraceFilterSpanServiceArgs:
+    def __init__(__self__, *,
+                 in_values: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 match: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "in_values")
+
+    @in_values.setter
+    def in_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "in_values", value)
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "match")
+
+    @match.setter
+    def match(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionFilterConditionTraceFilterSpanSpanCountArgs:
+    def __init__(__self__, *,
+                 max: Optional[pulumi.Input[int]] = None,
+                 min: Optional[pulumi.Input[int]] = None):
+        if max is not None:
+            pulumi.set(__self__, "max", max)
+        if min is not None:
+            pulumi.set(__self__, "min", min)
+
+    @property
+    @pulumi.getter
+    def max(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "max")
+
+    @max.setter
+    def max(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max", value)
+
+    @property
+    @pulumi.getter
+    def min(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "min")
+
+    @min.setter
+    def min(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "min", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionFilterConditionTraceFilterSpanTagArgs:
+    def __init__(__self__, *,
+                 key: Optional[pulumi.Input[str]] = None,
+                 numeric_value: Optional[pulumi.Input['ConsumptionConfigPartitionFilterConditionTraceFilterSpanTagNumericValueArgs']] = None,
+                 value: Optional[pulumi.Input['ConsumptionConfigPartitionFilterConditionTraceFilterSpanTagValueArgs']] = None):
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if numeric_value is not None:
+            pulumi.set(__self__, "numeric_value", numeric_value)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter(name="numericValue")
+    def numeric_value(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionFilterConditionTraceFilterSpanTagNumericValueArgs']]:
+        return pulumi.get(self, "numeric_value")
+
+    @numeric_value.setter
+    def numeric_value(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionFilterConditionTraceFilterSpanTagNumericValueArgs']]):
+        pulumi.set(self, "numeric_value", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionFilterConditionTraceFilterSpanTagValueArgs']]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionFilterConditionTraceFilterSpanTagValueArgs']]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionFilterConditionTraceFilterSpanTagNumericValueArgs:
+    def __init__(__self__, *,
+                 comparison: pulumi.Input[str],
+                 value: pulumi.Input[float]):
+        pulumi.set(__self__, "comparison", comparison)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def comparison(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "comparison")
+
+    @comparison.setter
+    def comparison(self, value: pulumi.Input[str]):
+        pulumi.set(self, "comparison", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[float]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[float]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionFilterConditionTraceFilterSpanTagValueArgs:
+    def __init__(__self__, *,
+                 in_values: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 match: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "in_values")
+
+    @in_values.setter
+    def in_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "in_values", value)
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "match")
+
+    @match.setter
+    def match(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionFilterConditionTraceFilterTraceArgs:
+    def __init__(__self__, *,
+                 duration: Optional[pulumi.Input['ConsumptionConfigPartitionFilterConditionTraceFilterTraceDurationArgs']] = None,
+                 error: Optional[pulumi.Input['ConsumptionConfigPartitionFilterConditionTraceFilterTraceErrorArgs']] = None):
+        if duration is not None:
+            pulumi.set(__self__, "duration", duration)
+        if error is not None:
+            pulumi.set(__self__, "error", error)
+
+    @property
+    @pulumi.getter
+    def duration(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionFilterConditionTraceFilterTraceDurationArgs']]:
+        return pulumi.get(self, "duration")
+
+    @duration.setter
+    def duration(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionFilterConditionTraceFilterTraceDurationArgs']]):
+        pulumi.set(self, "duration", value)
+
+    @property
+    @pulumi.getter
+    def error(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionFilterConditionTraceFilterTraceErrorArgs']]:
+        return pulumi.get(self, "error")
+
+    @error.setter
+    def error(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionFilterConditionTraceFilterTraceErrorArgs']]):
+        pulumi.set(self, "error", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionFilterConditionTraceFilterTraceDurationArgs:
+    def __init__(__self__, *,
+                 max_secs: Optional[pulumi.Input[float]] = None,
+                 min_secs: Optional[pulumi.Input[float]] = None):
+        if max_secs is not None:
+            pulumi.set(__self__, "max_secs", max_secs)
+        if min_secs is not None:
+            pulumi.set(__self__, "min_secs", min_secs)
+
+    @property
+    @pulumi.getter(name="maxSecs")
+    def max_secs(self) -> Optional[pulumi.Input[float]]:
+        return pulumi.get(self, "max_secs")
+
+    @max_secs.setter
+    def max_secs(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "max_secs", value)
+
+    @property
+    @pulumi.getter(name="minSecs")
+    def min_secs(self) -> Optional[pulumi.Input[float]]:
+        return pulumi.get(self, "min_secs")
+
+    @min_secs.setter
+    def min_secs(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "min_secs", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionFilterConditionTraceFilterTraceErrorArgs:
+    def __init__(__self__, *,
+                 value: pulumi.Input[bool]):
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[bool]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[bool]):
+        pulumi.set(self, "value", value)
 
 
 @pulumi.input_type
@@ -836,11 +1606,17 @@ class ConsumptionConfigPartitionPartitionFilterArgs:
 class ConsumptionConfigPartitionPartitionFilterConditionArgs:
     def __init__(__self__, *,
                  dataset_id: Optional[pulumi.Input[str]] = None,
-                 log_filter: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionFilterConditionLogFilterArgs']] = None):
+                 log_filter: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionFilterConditionLogFilterArgs']] = None,
+                 metric_filters: Optional[pulumi.Input[Sequence[pulumi.Input['ConsumptionConfigPartitionPartitionFilterConditionMetricFilterArgs']]]] = None,
+                 trace_filter: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionFilterConditionTraceFilterArgs']] = None):
         if dataset_id is not None:
             pulumi.set(__self__, "dataset_id", dataset_id)
         if log_filter is not None:
             pulumi.set(__self__, "log_filter", log_filter)
+        if metric_filters is not None:
+            pulumi.set(__self__, "metric_filters", metric_filters)
+        if trace_filter is not None:
+            pulumi.set(__self__, "trace_filter", trace_filter)
 
     @property
     @pulumi.getter(name="datasetId")
@@ -860,6 +1636,24 @@ class ConsumptionConfigPartitionPartitionFilterConditionArgs:
     def log_filter(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionFilterConditionLogFilterArgs']]):
         pulumi.set(self, "log_filter", value)
 
+    @property
+    @pulumi.getter(name="metricFilters")
+    def metric_filters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ConsumptionConfigPartitionPartitionFilterConditionMetricFilterArgs']]]]:
+        return pulumi.get(self, "metric_filters")
+
+    @metric_filters.setter
+    def metric_filters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ConsumptionConfigPartitionPartitionFilterConditionMetricFilterArgs']]]]):
+        pulumi.set(self, "metric_filters", value)
+
+    @property
+    @pulumi.getter(name="traceFilter")
+    def trace_filter(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionPartitionFilterConditionTraceFilterArgs']]:
+        return pulumi.get(self, "trace_filter")
+
+    @trace_filter.setter
+    def trace_filter(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionFilterConditionTraceFilterArgs']]):
+        pulumi.set(self, "trace_filter", value)
+
 
 @pulumi.input_type
 class ConsumptionConfigPartitionPartitionFilterConditionLogFilterArgs:
@@ -875,6 +1669,624 @@ class ConsumptionConfigPartitionPartitionFilterConditionLogFilterArgs:
     @query.setter
     def query(self, value: pulumi.Input[str]):
         pulumi.set(self, "query", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionFilterConditionMetricFilterArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[str],
+                 value_glob: pulumi.Input[str]):
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value_glob", value_glob)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="valueGlob")
+    def value_glob(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "value_glob")
+
+    @value_glob.setter
+    def value_glob(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value_glob", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionFilterConditionTraceFilterArgs:
+    def __init__(__self__, *,
+                 spans: Optional[pulumi.Input[Sequence[pulumi.Input['ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanArgs']]]] = None,
+                 trace: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionFilterConditionTraceFilterTraceArgs']] = None):
+        if spans is not None:
+            pulumi.set(__self__, "spans", spans)
+        if trace is not None:
+            pulumi.set(__self__, "trace", trace)
+
+    @property
+    @pulumi.getter
+    def spans(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanArgs']]]]:
+        return pulumi.get(self, "spans")
+
+    @spans.setter
+    def spans(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanArgs']]]]):
+        pulumi.set(self, "spans", value)
+
+    @property
+    @pulumi.getter
+    def trace(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionPartitionFilterConditionTraceFilterTraceArgs']]:
+        return pulumi.get(self, "trace")
+
+    @trace.setter
+    def trace(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionFilterConditionTraceFilterTraceArgs']]):
+        pulumi.set(self, "trace", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanArgs:
+    def __init__(__self__, *,
+                 duration: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanDurationArgs']] = None,
+                 error: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanErrorArgs']] = None,
+                 is_root_span: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanIsRootSpanArgs']] = None,
+                 match_type: Optional[pulumi.Input[str]] = None,
+                 operation: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanOperationArgs']] = None,
+                 parent_operation: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanParentOperationArgs']] = None,
+                 parent_service: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanParentServiceArgs']] = None,
+                 service: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanServiceArgs']] = None,
+                 span_count: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanSpanCountArgs']] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanTagArgs']]]] = None):
+        if duration is not None:
+            pulumi.set(__self__, "duration", duration)
+        if error is not None:
+            pulumi.set(__self__, "error", error)
+        if is_root_span is not None:
+            pulumi.set(__self__, "is_root_span", is_root_span)
+        if match_type is not None:
+            pulumi.set(__self__, "match_type", match_type)
+        if operation is not None:
+            pulumi.set(__self__, "operation", operation)
+        if parent_operation is not None:
+            pulumi.set(__self__, "parent_operation", parent_operation)
+        if parent_service is not None:
+            pulumi.set(__self__, "parent_service", parent_service)
+        if service is not None:
+            pulumi.set(__self__, "service", service)
+        if span_count is not None:
+            pulumi.set(__self__, "span_count", span_count)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+
+    @property
+    @pulumi.getter
+    def duration(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanDurationArgs']]:
+        return pulumi.get(self, "duration")
+
+    @duration.setter
+    def duration(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanDurationArgs']]):
+        pulumi.set(self, "duration", value)
+
+    @property
+    @pulumi.getter
+    def error(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanErrorArgs']]:
+        return pulumi.get(self, "error")
+
+    @error.setter
+    def error(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanErrorArgs']]):
+        pulumi.set(self, "error", value)
+
+    @property
+    @pulumi.getter(name="isRootSpan")
+    def is_root_span(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanIsRootSpanArgs']]:
+        return pulumi.get(self, "is_root_span")
+
+    @is_root_span.setter
+    def is_root_span(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanIsRootSpanArgs']]):
+        pulumi.set(self, "is_root_span", value)
+
+    @property
+    @pulumi.getter(name="matchType")
+    def match_type(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "match_type")
+
+    @match_type.setter
+    def match_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match_type", value)
+
+    @property
+    @pulumi.getter
+    def operation(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanOperationArgs']]:
+        return pulumi.get(self, "operation")
+
+    @operation.setter
+    def operation(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanOperationArgs']]):
+        pulumi.set(self, "operation", value)
+
+    @property
+    @pulumi.getter(name="parentOperation")
+    def parent_operation(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanParentOperationArgs']]:
+        return pulumi.get(self, "parent_operation")
+
+    @parent_operation.setter
+    def parent_operation(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanParentOperationArgs']]):
+        pulumi.set(self, "parent_operation", value)
+
+    @property
+    @pulumi.getter(name="parentService")
+    def parent_service(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanParentServiceArgs']]:
+        return pulumi.get(self, "parent_service")
+
+    @parent_service.setter
+    def parent_service(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanParentServiceArgs']]):
+        pulumi.set(self, "parent_service", value)
+
+    @property
+    @pulumi.getter
+    def service(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanServiceArgs']]:
+        return pulumi.get(self, "service")
+
+    @service.setter
+    def service(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanServiceArgs']]):
+        pulumi.set(self, "service", value)
+
+    @property
+    @pulumi.getter(name="spanCount")
+    def span_count(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanSpanCountArgs']]:
+        return pulumi.get(self, "span_count")
+
+    @span_count.setter
+    def span_count(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanSpanCountArgs']]):
+        pulumi.set(self, "span_count", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanTagArgs']]]]:
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanDurationArgs:
+    def __init__(__self__, *,
+                 max_secs: Optional[pulumi.Input[float]] = None,
+                 min_secs: Optional[pulumi.Input[float]] = None):
+        if max_secs is not None:
+            pulumi.set(__self__, "max_secs", max_secs)
+        if min_secs is not None:
+            pulumi.set(__self__, "min_secs", min_secs)
+
+    @property
+    @pulumi.getter(name="maxSecs")
+    def max_secs(self) -> Optional[pulumi.Input[float]]:
+        return pulumi.get(self, "max_secs")
+
+    @max_secs.setter
+    def max_secs(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "max_secs", value)
+
+    @property
+    @pulumi.getter(name="minSecs")
+    def min_secs(self) -> Optional[pulumi.Input[float]]:
+        return pulumi.get(self, "min_secs")
+
+    @min_secs.setter
+    def min_secs(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "min_secs", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanErrorArgs:
+    def __init__(__self__, *,
+                 value: pulumi.Input[bool]):
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[bool]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[bool]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanIsRootSpanArgs:
+    def __init__(__self__, *,
+                 value: pulumi.Input[bool]):
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[bool]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[bool]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanOperationArgs:
+    def __init__(__self__, *,
+                 in_values: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 match: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "in_values")
+
+    @in_values.setter
+    def in_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "in_values", value)
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "match")
+
+    @match.setter
+    def match(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanParentOperationArgs:
+    def __init__(__self__, *,
+                 in_values: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 match: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "in_values")
+
+    @in_values.setter
+    def in_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "in_values", value)
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "match")
+
+    @match.setter
+    def match(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanParentServiceArgs:
+    def __init__(__self__, *,
+                 in_values: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 match: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "in_values")
+
+    @in_values.setter
+    def in_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "in_values", value)
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "match")
+
+    @match.setter
+    def match(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanServiceArgs:
+    def __init__(__self__, *,
+                 in_values: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 match: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "in_values")
+
+    @in_values.setter
+    def in_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "in_values", value)
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "match")
+
+    @match.setter
+    def match(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanSpanCountArgs:
+    def __init__(__self__, *,
+                 max: Optional[pulumi.Input[int]] = None,
+                 min: Optional[pulumi.Input[int]] = None):
+        if max is not None:
+            pulumi.set(__self__, "max", max)
+        if min is not None:
+            pulumi.set(__self__, "min", min)
+
+    @property
+    @pulumi.getter
+    def max(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "max")
+
+    @max.setter
+    def max(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max", value)
+
+    @property
+    @pulumi.getter
+    def min(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "min")
+
+    @min.setter
+    def min(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "min", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanTagArgs:
+    def __init__(__self__, *,
+                 key: Optional[pulumi.Input[str]] = None,
+                 numeric_value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanTagNumericValueArgs']] = None,
+                 value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanTagValueArgs']] = None):
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if numeric_value is not None:
+            pulumi.set(__self__, "numeric_value", numeric_value)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter(name="numericValue")
+    def numeric_value(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanTagNumericValueArgs']]:
+        return pulumi.get(self, "numeric_value")
+
+    @numeric_value.setter
+    def numeric_value(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanTagNumericValueArgs']]):
+        pulumi.set(self, "numeric_value", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanTagValueArgs']]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanTagValueArgs']]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanTagNumericValueArgs:
+    def __init__(__self__, *,
+                 comparison: pulumi.Input[str],
+                 value: pulumi.Input[float]):
+        pulumi.set(__self__, "comparison", comparison)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def comparison(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "comparison")
+
+    @comparison.setter
+    def comparison(self, value: pulumi.Input[str]):
+        pulumi.set(self, "comparison", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[float]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[float]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanTagValueArgs:
+    def __init__(__self__, *,
+                 in_values: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 match: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "in_values")
+
+    @in_values.setter
+    def in_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "in_values", value)
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "match")
+
+    @match.setter
+    def match(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionFilterConditionTraceFilterTraceArgs:
+    def __init__(__self__, *,
+                 duration: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionFilterConditionTraceFilterTraceDurationArgs']] = None,
+                 error: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionFilterConditionTraceFilterTraceErrorArgs']] = None):
+        if duration is not None:
+            pulumi.set(__self__, "duration", duration)
+        if error is not None:
+            pulumi.set(__self__, "error", error)
+
+    @property
+    @pulumi.getter
+    def duration(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionPartitionFilterConditionTraceFilterTraceDurationArgs']]:
+        return pulumi.get(self, "duration")
+
+    @duration.setter
+    def duration(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionFilterConditionTraceFilterTraceDurationArgs']]):
+        pulumi.set(self, "duration", value)
+
+    @property
+    @pulumi.getter
+    def error(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionPartitionFilterConditionTraceFilterTraceErrorArgs']]:
+        return pulumi.get(self, "error")
+
+    @error.setter
+    def error(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionFilterConditionTraceFilterTraceErrorArgs']]):
+        pulumi.set(self, "error", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionFilterConditionTraceFilterTraceDurationArgs:
+    def __init__(__self__, *,
+                 max_secs: Optional[pulumi.Input[float]] = None,
+                 min_secs: Optional[pulumi.Input[float]] = None):
+        if max_secs is not None:
+            pulumi.set(__self__, "max_secs", max_secs)
+        if min_secs is not None:
+            pulumi.set(__self__, "min_secs", min_secs)
+
+    @property
+    @pulumi.getter(name="maxSecs")
+    def max_secs(self) -> Optional[pulumi.Input[float]]:
+        return pulumi.get(self, "max_secs")
+
+    @max_secs.setter
+    def max_secs(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "max_secs", value)
+
+    @property
+    @pulumi.getter(name="minSecs")
+    def min_secs(self) -> Optional[pulumi.Input[float]]:
+        return pulumi.get(self, "min_secs")
+
+    @min_secs.setter
+    def min_secs(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "min_secs", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionFilterConditionTraceFilterTraceErrorArgs:
+    def __init__(__self__, *,
+                 value: pulumi.Input[bool]):
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[bool]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[bool]):
+        pulumi.set(self, "value", value)
 
 
 @pulumi.input_type
@@ -963,11 +2375,17 @@ class ConsumptionConfigPartitionPartitionPartitionFilterArgs:
 class ConsumptionConfigPartitionPartitionPartitionFilterConditionArgs:
     def __init__(__self__, *,
                  dataset_id: Optional[pulumi.Input[str]] = None,
-                 log_filter: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterArgs']] = None):
+                 log_filter: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterArgs']] = None,
+                 metric_filters: Optional[pulumi.Input[Sequence[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionFilterConditionMetricFilterArgs']]]] = None,
+                 trace_filter: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterArgs']] = None):
         if dataset_id is not None:
             pulumi.set(__self__, "dataset_id", dataset_id)
         if log_filter is not None:
             pulumi.set(__self__, "log_filter", log_filter)
+        if metric_filters is not None:
+            pulumi.set(__self__, "metric_filters", metric_filters)
+        if trace_filter is not None:
+            pulumi.set(__self__, "trace_filter", trace_filter)
 
     @property
     @pulumi.getter(name="datasetId")
@@ -987,6 +2405,24 @@ class ConsumptionConfigPartitionPartitionPartitionFilterConditionArgs:
     def log_filter(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterArgs']]):
         pulumi.set(self, "log_filter", value)
 
+    @property
+    @pulumi.getter(name="metricFilters")
+    def metric_filters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionFilterConditionMetricFilterArgs']]]]:
+        return pulumi.get(self, "metric_filters")
+
+    @metric_filters.setter
+    def metric_filters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionFilterConditionMetricFilterArgs']]]]):
+        pulumi.set(self, "metric_filters", value)
+
+    @property
+    @pulumi.getter(name="traceFilter")
+    def trace_filter(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterArgs']]:
+        return pulumi.get(self, "trace_filter")
+
+    @trace_filter.setter
+    def trace_filter(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterArgs']]):
+        pulumi.set(self, "trace_filter", value)
+
 
 @pulumi.input_type
 class ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterArgs:
@@ -1002,6 +2438,624 @@ class ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterArgs:
     @query.setter
     def query(self, value: pulumi.Input[str]):
         pulumi.set(self, "query", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionPartitionFilterConditionMetricFilterArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[str],
+                 value_glob: pulumi.Input[str]):
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value_glob", value_glob)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="valueGlob")
+    def value_glob(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "value_glob")
+
+    @value_glob.setter
+    def value_glob(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value_glob", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterArgs:
+    def __init__(__self__, *,
+                 spans: Optional[pulumi.Input[Sequence[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanArgs']]]] = None,
+                 trace: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterTraceArgs']] = None):
+        if spans is not None:
+            pulumi.set(__self__, "spans", spans)
+        if trace is not None:
+            pulumi.set(__self__, "trace", trace)
+
+    @property
+    @pulumi.getter
+    def spans(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanArgs']]]]:
+        return pulumi.get(self, "spans")
+
+    @spans.setter
+    def spans(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanArgs']]]]):
+        pulumi.set(self, "spans", value)
+
+    @property
+    @pulumi.getter
+    def trace(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterTraceArgs']]:
+        return pulumi.get(self, "trace")
+
+    @trace.setter
+    def trace(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterTraceArgs']]):
+        pulumi.set(self, "trace", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanArgs:
+    def __init__(__self__, *,
+                 duration: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanDurationArgs']] = None,
+                 error: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanErrorArgs']] = None,
+                 is_root_span: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanIsRootSpanArgs']] = None,
+                 match_type: Optional[pulumi.Input[str]] = None,
+                 operation: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanOperationArgs']] = None,
+                 parent_operation: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperationArgs']] = None,
+                 parent_service: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanParentServiceArgs']] = None,
+                 service: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanServiceArgs']] = None,
+                 span_count: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanSpanCountArgs']] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanTagArgs']]]] = None):
+        if duration is not None:
+            pulumi.set(__self__, "duration", duration)
+        if error is not None:
+            pulumi.set(__self__, "error", error)
+        if is_root_span is not None:
+            pulumi.set(__self__, "is_root_span", is_root_span)
+        if match_type is not None:
+            pulumi.set(__self__, "match_type", match_type)
+        if operation is not None:
+            pulumi.set(__self__, "operation", operation)
+        if parent_operation is not None:
+            pulumi.set(__self__, "parent_operation", parent_operation)
+        if parent_service is not None:
+            pulumi.set(__self__, "parent_service", parent_service)
+        if service is not None:
+            pulumi.set(__self__, "service", service)
+        if span_count is not None:
+            pulumi.set(__self__, "span_count", span_count)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+
+    @property
+    @pulumi.getter
+    def duration(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanDurationArgs']]:
+        return pulumi.get(self, "duration")
+
+    @duration.setter
+    def duration(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanDurationArgs']]):
+        pulumi.set(self, "duration", value)
+
+    @property
+    @pulumi.getter
+    def error(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanErrorArgs']]:
+        return pulumi.get(self, "error")
+
+    @error.setter
+    def error(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanErrorArgs']]):
+        pulumi.set(self, "error", value)
+
+    @property
+    @pulumi.getter(name="isRootSpan")
+    def is_root_span(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanIsRootSpanArgs']]:
+        return pulumi.get(self, "is_root_span")
+
+    @is_root_span.setter
+    def is_root_span(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanIsRootSpanArgs']]):
+        pulumi.set(self, "is_root_span", value)
+
+    @property
+    @pulumi.getter(name="matchType")
+    def match_type(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "match_type")
+
+    @match_type.setter
+    def match_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match_type", value)
+
+    @property
+    @pulumi.getter
+    def operation(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanOperationArgs']]:
+        return pulumi.get(self, "operation")
+
+    @operation.setter
+    def operation(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanOperationArgs']]):
+        pulumi.set(self, "operation", value)
+
+    @property
+    @pulumi.getter(name="parentOperation")
+    def parent_operation(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperationArgs']]:
+        return pulumi.get(self, "parent_operation")
+
+    @parent_operation.setter
+    def parent_operation(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperationArgs']]):
+        pulumi.set(self, "parent_operation", value)
+
+    @property
+    @pulumi.getter(name="parentService")
+    def parent_service(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanParentServiceArgs']]:
+        return pulumi.get(self, "parent_service")
+
+    @parent_service.setter
+    def parent_service(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanParentServiceArgs']]):
+        pulumi.set(self, "parent_service", value)
+
+    @property
+    @pulumi.getter
+    def service(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanServiceArgs']]:
+        return pulumi.get(self, "service")
+
+    @service.setter
+    def service(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanServiceArgs']]):
+        pulumi.set(self, "service", value)
+
+    @property
+    @pulumi.getter(name="spanCount")
+    def span_count(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanSpanCountArgs']]:
+        return pulumi.get(self, "span_count")
+
+    @span_count.setter
+    def span_count(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanSpanCountArgs']]):
+        pulumi.set(self, "span_count", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanTagArgs']]]]:
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanDurationArgs:
+    def __init__(__self__, *,
+                 max_secs: Optional[pulumi.Input[float]] = None,
+                 min_secs: Optional[pulumi.Input[float]] = None):
+        if max_secs is not None:
+            pulumi.set(__self__, "max_secs", max_secs)
+        if min_secs is not None:
+            pulumi.set(__self__, "min_secs", min_secs)
+
+    @property
+    @pulumi.getter(name="maxSecs")
+    def max_secs(self) -> Optional[pulumi.Input[float]]:
+        return pulumi.get(self, "max_secs")
+
+    @max_secs.setter
+    def max_secs(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "max_secs", value)
+
+    @property
+    @pulumi.getter(name="minSecs")
+    def min_secs(self) -> Optional[pulumi.Input[float]]:
+        return pulumi.get(self, "min_secs")
+
+    @min_secs.setter
+    def min_secs(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "min_secs", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanErrorArgs:
+    def __init__(__self__, *,
+                 value: pulumi.Input[bool]):
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[bool]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[bool]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanIsRootSpanArgs:
+    def __init__(__self__, *,
+                 value: pulumi.Input[bool]):
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[bool]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[bool]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanOperationArgs:
+    def __init__(__self__, *,
+                 in_values: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 match: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "in_values")
+
+    @in_values.setter
+    def in_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "in_values", value)
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "match")
+
+    @match.setter
+    def match(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperationArgs:
+    def __init__(__self__, *,
+                 in_values: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 match: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "in_values")
+
+    @in_values.setter
+    def in_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "in_values", value)
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "match")
+
+    @match.setter
+    def match(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanParentServiceArgs:
+    def __init__(__self__, *,
+                 in_values: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 match: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "in_values")
+
+    @in_values.setter
+    def in_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "in_values", value)
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "match")
+
+    @match.setter
+    def match(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanServiceArgs:
+    def __init__(__self__, *,
+                 in_values: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 match: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "in_values")
+
+    @in_values.setter
+    def in_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "in_values", value)
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "match")
+
+    @match.setter
+    def match(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanSpanCountArgs:
+    def __init__(__self__, *,
+                 max: Optional[pulumi.Input[int]] = None,
+                 min: Optional[pulumi.Input[int]] = None):
+        if max is not None:
+            pulumi.set(__self__, "max", max)
+        if min is not None:
+            pulumi.set(__self__, "min", min)
+
+    @property
+    @pulumi.getter
+    def max(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "max")
+
+    @max.setter
+    def max(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max", value)
+
+    @property
+    @pulumi.getter
+    def min(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "min")
+
+    @min.setter
+    def min(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "min", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanTagArgs:
+    def __init__(__self__, *,
+                 key: Optional[pulumi.Input[str]] = None,
+                 numeric_value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanTagNumericValueArgs']] = None,
+                 value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValueArgs']] = None):
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if numeric_value is not None:
+            pulumi.set(__self__, "numeric_value", numeric_value)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter(name="numericValue")
+    def numeric_value(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanTagNumericValueArgs']]:
+        return pulumi.get(self, "numeric_value")
+
+    @numeric_value.setter
+    def numeric_value(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanTagNumericValueArgs']]):
+        pulumi.set(self, "numeric_value", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValueArgs']]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValueArgs']]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanTagNumericValueArgs:
+    def __init__(__self__, *,
+                 comparison: pulumi.Input[str],
+                 value: pulumi.Input[float]):
+        pulumi.set(__self__, "comparison", comparison)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def comparison(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "comparison")
+
+    @comparison.setter
+    def comparison(self, value: pulumi.Input[str]):
+        pulumi.set(self, "comparison", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[float]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[float]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValueArgs:
+    def __init__(__self__, *,
+                 in_values: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 match: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "in_values")
+
+    @in_values.setter
+    def in_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "in_values", value)
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "match")
+
+    @match.setter
+    def match(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterTraceArgs:
+    def __init__(__self__, *,
+                 duration: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterTraceDurationArgs']] = None,
+                 error: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterTraceErrorArgs']] = None):
+        if duration is not None:
+            pulumi.set(__self__, "duration", duration)
+        if error is not None:
+            pulumi.set(__self__, "error", error)
+
+    @property
+    @pulumi.getter
+    def duration(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterTraceDurationArgs']]:
+        return pulumi.get(self, "duration")
+
+    @duration.setter
+    def duration(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterTraceDurationArgs']]):
+        pulumi.set(self, "duration", value)
+
+    @property
+    @pulumi.getter
+    def error(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterTraceErrorArgs']]:
+        return pulumi.get(self, "error")
+
+    @error.setter
+    def error(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterTraceErrorArgs']]):
+        pulumi.set(self, "error", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterTraceDurationArgs:
+    def __init__(__self__, *,
+                 max_secs: Optional[pulumi.Input[float]] = None,
+                 min_secs: Optional[pulumi.Input[float]] = None):
+        if max_secs is not None:
+            pulumi.set(__self__, "max_secs", max_secs)
+        if min_secs is not None:
+            pulumi.set(__self__, "min_secs", min_secs)
+
+    @property
+    @pulumi.getter(name="maxSecs")
+    def max_secs(self) -> Optional[pulumi.Input[float]]:
+        return pulumi.get(self, "max_secs")
+
+    @max_secs.setter
+    def max_secs(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "max_secs", value)
+
+    @property
+    @pulumi.getter(name="minSecs")
+    def min_secs(self) -> Optional[pulumi.Input[float]]:
+        return pulumi.get(self, "min_secs")
+
+    @min_secs.setter
+    def min_secs(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "min_secs", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterTraceErrorArgs:
+    def __init__(__self__, *,
+                 value: pulumi.Input[bool]):
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[bool]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[bool]):
+        pulumi.set(self, "value", value)
 
 
 @pulumi.input_type
@@ -1090,11 +3144,17 @@ class ConsumptionConfigPartitionPartitionPartitionPartitionFilterArgs:
 class ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionArgs:
     def __init__(__self__, *,
                  dataset_id: Optional[pulumi.Input[str]] = None,
-                 log_filter: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterArgs']] = None):
+                 log_filter: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterArgs']] = None,
+                 metric_filters: Optional[pulumi.Input[Sequence[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionMetricFilterArgs']]]] = None,
+                 trace_filter: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterArgs']] = None):
         if dataset_id is not None:
             pulumi.set(__self__, "dataset_id", dataset_id)
         if log_filter is not None:
             pulumi.set(__self__, "log_filter", log_filter)
+        if metric_filters is not None:
+            pulumi.set(__self__, "metric_filters", metric_filters)
+        if trace_filter is not None:
+            pulumi.set(__self__, "trace_filter", trace_filter)
 
     @property
     @pulumi.getter(name="datasetId")
@@ -1114,6 +3174,24 @@ class ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionArgs:
     def log_filter(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterArgs']]):
         pulumi.set(self, "log_filter", value)
 
+    @property
+    @pulumi.getter(name="metricFilters")
+    def metric_filters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionMetricFilterArgs']]]]:
+        return pulumi.get(self, "metric_filters")
+
+    @metric_filters.setter
+    def metric_filters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionMetricFilterArgs']]]]):
+        pulumi.set(self, "metric_filters", value)
+
+    @property
+    @pulumi.getter(name="traceFilter")
+    def trace_filter(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterArgs']]:
+        return pulumi.get(self, "trace_filter")
+
+    @trace_filter.setter
+    def trace_filter(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterArgs']]):
+        pulumi.set(self, "trace_filter", value)
+
 
 @pulumi.input_type
 class ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterArgs:
@@ -1129,6 +3207,624 @@ class ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFil
     @query.setter
     def query(self, value: pulumi.Input[str]):
         pulumi.set(self, "query", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionMetricFilterArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[str],
+                 value_glob: pulumi.Input[str]):
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value_glob", value_glob)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="valueGlob")
+    def value_glob(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "value_glob")
+
+    @value_glob.setter
+    def value_glob(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value_glob", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterArgs:
+    def __init__(__self__, *,
+                 spans: Optional[pulumi.Input[Sequence[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanArgs']]]] = None,
+                 trace: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceArgs']] = None):
+        if spans is not None:
+            pulumi.set(__self__, "spans", spans)
+        if trace is not None:
+            pulumi.set(__self__, "trace", trace)
+
+    @property
+    @pulumi.getter
+    def spans(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanArgs']]]]:
+        return pulumi.get(self, "spans")
+
+    @spans.setter
+    def spans(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanArgs']]]]):
+        pulumi.set(self, "spans", value)
+
+    @property
+    @pulumi.getter
+    def trace(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceArgs']]:
+        return pulumi.get(self, "trace")
+
+    @trace.setter
+    def trace(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceArgs']]):
+        pulumi.set(self, "trace", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanArgs:
+    def __init__(__self__, *,
+                 duration: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanDurationArgs']] = None,
+                 error: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanErrorArgs']] = None,
+                 is_root_span: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanIsRootSpanArgs']] = None,
+                 match_type: Optional[pulumi.Input[str]] = None,
+                 operation: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanOperationArgs']] = None,
+                 parent_operation: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperationArgs']] = None,
+                 parent_service: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentServiceArgs']] = None,
+                 service: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanServiceArgs']] = None,
+                 span_count: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanSpanCountArgs']] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagArgs']]]] = None):
+        if duration is not None:
+            pulumi.set(__self__, "duration", duration)
+        if error is not None:
+            pulumi.set(__self__, "error", error)
+        if is_root_span is not None:
+            pulumi.set(__self__, "is_root_span", is_root_span)
+        if match_type is not None:
+            pulumi.set(__self__, "match_type", match_type)
+        if operation is not None:
+            pulumi.set(__self__, "operation", operation)
+        if parent_operation is not None:
+            pulumi.set(__self__, "parent_operation", parent_operation)
+        if parent_service is not None:
+            pulumi.set(__self__, "parent_service", parent_service)
+        if service is not None:
+            pulumi.set(__self__, "service", service)
+        if span_count is not None:
+            pulumi.set(__self__, "span_count", span_count)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+
+    @property
+    @pulumi.getter
+    def duration(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanDurationArgs']]:
+        return pulumi.get(self, "duration")
+
+    @duration.setter
+    def duration(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanDurationArgs']]):
+        pulumi.set(self, "duration", value)
+
+    @property
+    @pulumi.getter
+    def error(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanErrorArgs']]:
+        return pulumi.get(self, "error")
+
+    @error.setter
+    def error(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanErrorArgs']]):
+        pulumi.set(self, "error", value)
+
+    @property
+    @pulumi.getter(name="isRootSpan")
+    def is_root_span(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanIsRootSpanArgs']]:
+        return pulumi.get(self, "is_root_span")
+
+    @is_root_span.setter
+    def is_root_span(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanIsRootSpanArgs']]):
+        pulumi.set(self, "is_root_span", value)
+
+    @property
+    @pulumi.getter(name="matchType")
+    def match_type(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "match_type")
+
+    @match_type.setter
+    def match_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match_type", value)
+
+    @property
+    @pulumi.getter
+    def operation(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanOperationArgs']]:
+        return pulumi.get(self, "operation")
+
+    @operation.setter
+    def operation(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanOperationArgs']]):
+        pulumi.set(self, "operation", value)
+
+    @property
+    @pulumi.getter(name="parentOperation")
+    def parent_operation(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperationArgs']]:
+        return pulumi.get(self, "parent_operation")
+
+    @parent_operation.setter
+    def parent_operation(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperationArgs']]):
+        pulumi.set(self, "parent_operation", value)
+
+    @property
+    @pulumi.getter(name="parentService")
+    def parent_service(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentServiceArgs']]:
+        return pulumi.get(self, "parent_service")
+
+    @parent_service.setter
+    def parent_service(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentServiceArgs']]):
+        pulumi.set(self, "parent_service", value)
+
+    @property
+    @pulumi.getter
+    def service(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanServiceArgs']]:
+        return pulumi.get(self, "service")
+
+    @service.setter
+    def service(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanServiceArgs']]):
+        pulumi.set(self, "service", value)
+
+    @property
+    @pulumi.getter(name="spanCount")
+    def span_count(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanSpanCountArgs']]:
+        return pulumi.get(self, "span_count")
+
+    @span_count.setter
+    def span_count(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanSpanCountArgs']]):
+        pulumi.set(self, "span_count", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagArgs']]]]:
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanDurationArgs:
+    def __init__(__self__, *,
+                 max_secs: Optional[pulumi.Input[float]] = None,
+                 min_secs: Optional[pulumi.Input[float]] = None):
+        if max_secs is not None:
+            pulumi.set(__self__, "max_secs", max_secs)
+        if min_secs is not None:
+            pulumi.set(__self__, "min_secs", min_secs)
+
+    @property
+    @pulumi.getter(name="maxSecs")
+    def max_secs(self) -> Optional[pulumi.Input[float]]:
+        return pulumi.get(self, "max_secs")
+
+    @max_secs.setter
+    def max_secs(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "max_secs", value)
+
+    @property
+    @pulumi.getter(name="minSecs")
+    def min_secs(self) -> Optional[pulumi.Input[float]]:
+        return pulumi.get(self, "min_secs")
+
+    @min_secs.setter
+    def min_secs(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "min_secs", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanErrorArgs:
+    def __init__(__self__, *,
+                 value: pulumi.Input[bool]):
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[bool]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[bool]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanIsRootSpanArgs:
+    def __init__(__self__, *,
+                 value: pulumi.Input[bool]):
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[bool]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[bool]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanOperationArgs:
+    def __init__(__self__, *,
+                 in_values: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 match: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "in_values")
+
+    @in_values.setter
+    def in_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "in_values", value)
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "match")
+
+    @match.setter
+    def match(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperationArgs:
+    def __init__(__self__, *,
+                 in_values: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 match: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "in_values")
+
+    @in_values.setter
+    def in_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "in_values", value)
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "match")
+
+    @match.setter
+    def match(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentServiceArgs:
+    def __init__(__self__, *,
+                 in_values: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 match: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "in_values")
+
+    @in_values.setter
+    def in_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "in_values", value)
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "match")
+
+    @match.setter
+    def match(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanServiceArgs:
+    def __init__(__self__, *,
+                 in_values: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 match: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "in_values")
+
+    @in_values.setter
+    def in_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "in_values", value)
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "match")
+
+    @match.setter
+    def match(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanSpanCountArgs:
+    def __init__(__self__, *,
+                 max: Optional[pulumi.Input[int]] = None,
+                 min: Optional[pulumi.Input[int]] = None):
+        if max is not None:
+            pulumi.set(__self__, "max", max)
+        if min is not None:
+            pulumi.set(__self__, "min", min)
+
+    @property
+    @pulumi.getter
+    def max(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "max")
+
+    @max.setter
+    def max(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max", value)
+
+    @property
+    @pulumi.getter
+    def min(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "min")
+
+    @min.setter
+    def min(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "min", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagArgs:
+    def __init__(__self__, *,
+                 key: Optional[pulumi.Input[str]] = None,
+                 numeric_value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagNumericValueArgs']] = None,
+                 value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValueArgs']] = None):
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if numeric_value is not None:
+            pulumi.set(__self__, "numeric_value", numeric_value)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter(name="numericValue")
+    def numeric_value(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagNumericValueArgs']]:
+        return pulumi.get(self, "numeric_value")
+
+    @numeric_value.setter
+    def numeric_value(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagNumericValueArgs']]):
+        pulumi.set(self, "numeric_value", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValueArgs']]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValueArgs']]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagNumericValueArgs:
+    def __init__(__self__, *,
+                 comparison: pulumi.Input[str],
+                 value: pulumi.Input[float]):
+        pulumi.set(__self__, "comparison", comparison)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def comparison(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "comparison")
+
+    @comparison.setter
+    def comparison(self, value: pulumi.Input[str]):
+        pulumi.set(self, "comparison", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[float]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[float]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValueArgs:
+    def __init__(__self__, *,
+                 in_values: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 match: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "in_values")
+
+    @in_values.setter
+    def in_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "in_values", value)
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "match")
+
+    @match.setter
+    def match(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceArgs:
+    def __init__(__self__, *,
+                 duration: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceDurationArgs']] = None,
+                 error: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceErrorArgs']] = None):
+        if duration is not None:
+            pulumi.set(__self__, "duration", duration)
+        if error is not None:
+            pulumi.set(__self__, "error", error)
+
+    @property
+    @pulumi.getter
+    def duration(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceDurationArgs']]:
+        return pulumi.get(self, "duration")
+
+    @duration.setter
+    def duration(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceDurationArgs']]):
+        pulumi.set(self, "duration", value)
+
+    @property
+    @pulumi.getter
+    def error(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceErrorArgs']]:
+        return pulumi.get(self, "error")
+
+    @error.setter
+    def error(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceErrorArgs']]):
+        pulumi.set(self, "error", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceDurationArgs:
+    def __init__(__self__, *,
+                 max_secs: Optional[pulumi.Input[float]] = None,
+                 min_secs: Optional[pulumi.Input[float]] = None):
+        if max_secs is not None:
+            pulumi.set(__self__, "max_secs", max_secs)
+        if min_secs is not None:
+            pulumi.set(__self__, "min_secs", min_secs)
+
+    @property
+    @pulumi.getter(name="maxSecs")
+    def max_secs(self) -> Optional[pulumi.Input[float]]:
+        return pulumi.get(self, "max_secs")
+
+    @max_secs.setter
+    def max_secs(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "max_secs", value)
+
+    @property
+    @pulumi.getter(name="minSecs")
+    def min_secs(self) -> Optional[pulumi.Input[float]]:
+        return pulumi.get(self, "min_secs")
+
+    @min_secs.setter
+    def min_secs(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "min_secs", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceErrorArgs:
+    def __init__(__self__, *,
+                 value: pulumi.Input[bool]):
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[bool]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[bool]):
+        pulumi.set(self, "value", value)
 
 
 @pulumi.input_type
@@ -1217,11 +3913,17 @@ class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterArgs:
 class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionArgs:
     def __init__(__self__, *,
                  dataset_id: Optional[pulumi.Input[str]] = None,
-                 log_filter: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterArgs']] = None):
+                 log_filter: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterArgs']] = None,
+                 metric_filters: Optional[pulumi.Input[Sequence[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionMetricFilterArgs']]]] = None,
+                 trace_filter: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterArgs']] = None):
         if dataset_id is not None:
             pulumi.set(__self__, "dataset_id", dataset_id)
         if log_filter is not None:
             pulumi.set(__self__, "log_filter", log_filter)
+        if metric_filters is not None:
+            pulumi.set(__self__, "metric_filters", metric_filters)
+        if trace_filter is not None:
+            pulumi.set(__self__, "trace_filter", trace_filter)
 
     @property
     @pulumi.getter(name="datasetId")
@@ -1241,6 +3943,24 @@ class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterCondit
     def log_filter(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterArgs']]):
         pulumi.set(self, "log_filter", value)
 
+    @property
+    @pulumi.getter(name="metricFilters")
+    def metric_filters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionMetricFilterArgs']]]]:
+        return pulumi.get(self, "metric_filters")
+
+    @metric_filters.setter
+    def metric_filters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionMetricFilterArgs']]]]):
+        pulumi.set(self, "metric_filters", value)
+
+    @property
+    @pulumi.getter(name="traceFilter")
+    def trace_filter(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterArgs']]:
+        return pulumi.get(self, "trace_filter")
+
+    @trace_filter.setter
+    def trace_filter(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterArgs']]):
+        pulumi.set(self, "trace_filter", value)
+
 
 @pulumi.input_type
 class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterArgs:
@@ -1256,6 +3976,624 @@ class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterCondit
     @query.setter
     def query(self, value: pulumi.Input[str]):
         pulumi.set(self, "query", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionMetricFilterArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[str],
+                 value_glob: pulumi.Input[str]):
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value_glob", value_glob)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="valueGlob")
+    def value_glob(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "value_glob")
+
+    @value_glob.setter
+    def value_glob(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value_glob", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterArgs:
+    def __init__(__self__, *,
+                 spans: Optional[pulumi.Input[Sequence[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanArgs']]]] = None,
+                 trace: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceArgs']] = None):
+        if spans is not None:
+            pulumi.set(__self__, "spans", spans)
+        if trace is not None:
+            pulumi.set(__self__, "trace", trace)
+
+    @property
+    @pulumi.getter
+    def spans(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanArgs']]]]:
+        return pulumi.get(self, "spans")
+
+    @spans.setter
+    def spans(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanArgs']]]]):
+        pulumi.set(self, "spans", value)
+
+    @property
+    @pulumi.getter
+    def trace(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceArgs']]:
+        return pulumi.get(self, "trace")
+
+    @trace.setter
+    def trace(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceArgs']]):
+        pulumi.set(self, "trace", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanArgs:
+    def __init__(__self__, *,
+                 duration: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanDurationArgs']] = None,
+                 error: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanErrorArgs']] = None,
+                 is_root_span: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanIsRootSpanArgs']] = None,
+                 match_type: Optional[pulumi.Input[str]] = None,
+                 operation: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanOperationArgs']] = None,
+                 parent_operation: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperationArgs']] = None,
+                 parent_service: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentServiceArgs']] = None,
+                 service: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanServiceArgs']] = None,
+                 span_count: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanSpanCountArgs']] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagArgs']]]] = None):
+        if duration is not None:
+            pulumi.set(__self__, "duration", duration)
+        if error is not None:
+            pulumi.set(__self__, "error", error)
+        if is_root_span is not None:
+            pulumi.set(__self__, "is_root_span", is_root_span)
+        if match_type is not None:
+            pulumi.set(__self__, "match_type", match_type)
+        if operation is not None:
+            pulumi.set(__self__, "operation", operation)
+        if parent_operation is not None:
+            pulumi.set(__self__, "parent_operation", parent_operation)
+        if parent_service is not None:
+            pulumi.set(__self__, "parent_service", parent_service)
+        if service is not None:
+            pulumi.set(__self__, "service", service)
+        if span_count is not None:
+            pulumi.set(__self__, "span_count", span_count)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+
+    @property
+    @pulumi.getter
+    def duration(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanDurationArgs']]:
+        return pulumi.get(self, "duration")
+
+    @duration.setter
+    def duration(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanDurationArgs']]):
+        pulumi.set(self, "duration", value)
+
+    @property
+    @pulumi.getter
+    def error(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanErrorArgs']]:
+        return pulumi.get(self, "error")
+
+    @error.setter
+    def error(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanErrorArgs']]):
+        pulumi.set(self, "error", value)
+
+    @property
+    @pulumi.getter(name="isRootSpan")
+    def is_root_span(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanIsRootSpanArgs']]:
+        return pulumi.get(self, "is_root_span")
+
+    @is_root_span.setter
+    def is_root_span(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanIsRootSpanArgs']]):
+        pulumi.set(self, "is_root_span", value)
+
+    @property
+    @pulumi.getter(name="matchType")
+    def match_type(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "match_type")
+
+    @match_type.setter
+    def match_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match_type", value)
+
+    @property
+    @pulumi.getter
+    def operation(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanOperationArgs']]:
+        return pulumi.get(self, "operation")
+
+    @operation.setter
+    def operation(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanOperationArgs']]):
+        pulumi.set(self, "operation", value)
+
+    @property
+    @pulumi.getter(name="parentOperation")
+    def parent_operation(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperationArgs']]:
+        return pulumi.get(self, "parent_operation")
+
+    @parent_operation.setter
+    def parent_operation(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperationArgs']]):
+        pulumi.set(self, "parent_operation", value)
+
+    @property
+    @pulumi.getter(name="parentService")
+    def parent_service(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentServiceArgs']]:
+        return pulumi.get(self, "parent_service")
+
+    @parent_service.setter
+    def parent_service(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentServiceArgs']]):
+        pulumi.set(self, "parent_service", value)
+
+    @property
+    @pulumi.getter
+    def service(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanServiceArgs']]:
+        return pulumi.get(self, "service")
+
+    @service.setter
+    def service(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanServiceArgs']]):
+        pulumi.set(self, "service", value)
+
+    @property
+    @pulumi.getter(name="spanCount")
+    def span_count(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanSpanCountArgs']]:
+        return pulumi.get(self, "span_count")
+
+    @span_count.setter
+    def span_count(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanSpanCountArgs']]):
+        pulumi.set(self, "span_count", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagArgs']]]]:
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanDurationArgs:
+    def __init__(__self__, *,
+                 max_secs: Optional[pulumi.Input[float]] = None,
+                 min_secs: Optional[pulumi.Input[float]] = None):
+        if max_secs is not None:
+            pulumi.set(__self__, "max_secs", max_secs)
+        if min_secs is not None:
+            pulumi.set(__self__, "min_secs", min_secs)
+
+    @property
+    @pulumi.getter(name="maxSecs")
+    def max_secs(self) -> Optional[pulumi.Input[float]]:
+        return pulumi.get(self, "max_secs")
+
+    @max_secs.setter
+    def max_secs(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "max_secs", value)
+
+    @property
+    @pulumi.getter(name="minSecs")
+    def min_secs(self) -> Optional[pulumi.Input[float]]:
+        return pulumi.get(self, "min_secs")
+
+    @min_secs.setter
+    def min_secs(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "min_secs", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanErrorArgs:
+    def __init__(__self__, *,
+                 value: pulumi.Input[bool]):
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[bool]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[bool]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanIsRootSpanArgs:
+    def __init__(__self__, *,
+                 value: pulumi.Input[bool]):
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[bool]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[bool]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanOperationArgs:
+    def __init__(__self__, *,
+                 in_values: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 match: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "in_values")
+
+    @in_values.setter
+    def in_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "in_values", value)
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "match")
+
+    @match.setter
+    def match(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperationArgs:
+    def __init__(__self__, *,
+                 in_values: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 match: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "in_values")
+
+    @in_values.setter
+    def in_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "in_values", value)
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "match")
+
+    @match.setter
+    def match(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentServiceArgs:
+    def __init__(__self__, *,
+                 in_values: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 match: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "in_values")
+
+    @in_values.setter
+    def in_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "in_values", value)
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "match")
+
+    @match.setter
+    def match(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanServiceArgs:
+    def __init__(__self__, *,
+                 in_values: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 match: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "in_values")
+
+    @in_values.setter
+    def in_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "in_values", value)
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "match")
+
+    @match.setter
+    def match(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanSpanCountArgs:
+    def __init__(__self__, *,
+                 max: Optional[pulumi.Input[int]] = None,
+                 min: Optional[pulumi.Input[int]] = None):
+        if max is not None:
+            pulumi.set(__self__, "max", max)
+        if min is not None:
+            pulumi.set(__self__, "min", min)
+
+    @property
+    @pulumi.getter
+    def max(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "max")
+
+    @max.setter
+    def max(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max", value)
+
+    @property
+    @pulumi.getter
+    def min(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "min")
+
+    @min.setter
+    def min(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "min", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagArgs:
+    def __init__(__self__, *,
+                 key: Optional[pulumi.Input[str]] = None,
+                 numeric_value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagNumericValueArgs']] = None,
+                 value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValueArgs']] = None):
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if numeric_value is not None:
+            pulumi.set(__self__, "numeric_value", numeric_value)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter(name="numericValue")
+    def numeric_value(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagNumericValueArgs']]:
+        return pulumi.get(self, "numeric_value")
+
+    @numeric_value.setter
+    def numeric_value(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagNumericValueArgs']]):
+        pulumi.set(self, "numeric_value", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValueArgs']]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValueArgs']]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagNumericValueArgs:
+    def __init__(__self__, *,
+                 comparison: pulumi.Input[str],
+                 value: pulumi.Input[float]):
+        pulumi.set(__self__, "comparison", comparison)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def comparison(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "comparison")
+
+    @comparison.setter
+    def comparison(self, value: pulumi.Input[str]):
+        pulumi.set(self, "comparison", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[float]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[float]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValueArgs:
+    def __init__(__self__, *,
+                 in_values: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 match: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "in_values")
+
+    @in_values.setter
+    def in_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "in_values", value)
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "match")
+
+    @match.setter
+    def match(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceArgs:
+    def __init__(__self__, *,
+                 duration: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceDurationArgs']] = None,
+                 error: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceErrorArgs']] = None):
+        if duration is not None:
+            pulumi.set(__self__, "duration", duration)
+        if error is not None:
+            pulumi.set(__self__, "error", error)
+
+    @property
+    @pulumi.getter
+    def duration(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceDurationArgs']]:
+        return pulumi.get(self, "duration")
+
+    @duration.setter
+    def duration(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceDurationArgs']]):
+        pulumi.set(self, "duration", value)
+
+    @property
+    @pulumi.getter
+    def error(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceErrorArgs']]:
+        return pulumi.get(self, "error")
+
+    @error.setter
+    def error(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceErrorArgs']]):
+        pulumi.set(self, "error", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceDurationArgs:
+    def __init__(__self__, *,
+                 max_secs: Optional[pulumi.Input[float]] = None,
+                 min_secs: Optional[pulumi.Input[float]] = None):
+        if max_secs is not None:
+            pulumi.set(__self__, "max_secs", max_secs)
+        if min_secs is not None:
+            pulumi.set(__self__, "min_secs", min_secs)
+
+    @property
+    @pulumi.getter(name="maxSecs")
+    def max_secs(self) -> Optional[pulumi.Input[float]]:
+        return pulumi.get(self, "max_secs")
+
+    @max_secs.setter
+    def max_secs(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "max_secs", value)
+
+    @property
+    @pulumi.getter(name="minSecs")
+    def min_secs(self) -> Optional[pulumi.Input[float]]:
+        return pulumi.get(self, "min_secs")
+
+    @min_secs.setter
+    def min_secs(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "min_secs", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceErrorArgs:
+    def __init__(__self__, *,
+                 value: pulumi.Input[bool]):
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[bool]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[bool]):
+        pulumi.set(self, "value", value)
 
 
 @pulumi.input_type
@@ -1332,11 +4670,17 @@ class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFil
 class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionArgs:
     def __init__(__self__, *,
                  dataset_id: Optional[pulumi.Input[str]] = None,
-                 log_filter: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterArgs']] = None):
+                 log_filter: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterArgs']] = None,
+                 metric_filters: Optional[pulumi.Input[Sequence[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionMetricFilterArgs']]]] = None,
+                 trace_filter: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterArgs']] = None):
         if dataset_id is not None:
             pulumi.set(__self__, "dataset_id", dataset_id)
         if log_filter is not None:
             pulumi.set(__self__, "log_filter", log_filter)
+        if metric_filters is not None:
+            pulumi.set(__self__, "metric_filters", metric_filters)
+        if trace_filter is not None:
+            pulumi.set(__self__, "trace_filter", trace_filter)
 
     @property
     @pulumi.getter(name="datasetId")
@@ -1356,6 +4700,24 @@ class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFil
     def log_filter(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterArgs']]):
         pulumi.set(self, "log_filter", value)
 
+    @property
+    @pulumi.getter(name="metricFilters")
+    def metric_filters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionMetricFilterArgs']]]]:
+        return pulumi.get(self, "metric_filters")
+
+    @metric_filters.setter
+    def metric_filters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionMetricFilterArgs']]]]):
+        pulumi.set(self, "metric_filters", value)
+
+    @property
+    @pulumi.getter(name="traceFilter")
+    def trace_filter(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterArgs']]:
+        return pulumi.get(self, "trace_filter")
+
+    @trace_filter.setter
+    def trace_filter(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterArgs']]):
+        pulumi.set(self, "trace_filter", value)
+
 
 @pulumi.input_type
 class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterArgs:
@@ -1371,6 +4733,624 @@ class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFil
     @query.setter
     def query(self, value: pulumi.Input[str]):
         pulumi.set(self, "query", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionMetricFilterArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[str],
+                 value_glob: pulumi.Input[str]):
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value_glob", value_glob)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="valueGlob")
+    def value_glob(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "value_glob")
+
+    @value_glob.setter
+    def value_glob(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value_glob", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterArgs:
+    def __init__(__self__, *,
+                 spans: Optional[pulumi.Input[Sequence[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanArgs']]]] = None,
+                 trace: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceArgs']] = None):
+        if spans is not None:
+            pulumi.set(__self__, "spans", spans)
+        if trace is not None:
+            pulumi.set(__self__, "trace", trace)
+
+    @property
+    @pulumi.getter
+    def spans(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanArgs']]]]:
+        return pulumi.get(self, "spans")
+
+    @spans.setter
+    def spans(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanArgs']]]]):
+        pulumi.set(self, "spans", value)
+
+    @property
+    @pulumi.getter
+    def trace(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceArgs']]:
+        return pulumi.get(self, "trace")
+
+    @trace.setter
+    def trace(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceArgs']]):
+        pulumi.set(self, "trace", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanArgs:
+    def __init__(__self__, *,
+                 duration: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanDurationArgs']] = None,
+                 error: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanErrorArgs']] = None,
+                 is_root_span: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanIsRootSpanArgs']] = None,
+                 match_type: Optional[pulumi.Input[str]] = None,
+                 operation: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanOperationArgs']] = None,
+                 parent_operation: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperationArgs']] = None,
+                 parent_service: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentServiceArgs']] = None,
+                 service: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanServiceArgs']] = None,
+                 span_count: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanSpanCountArgs']] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagArgs']]]] = None):
+        if duration is not None:
+            pulumi.set(__self__, "duration", duration)
+        if error is not None:
+            pulumi.set(__self__, "error", error)
+        if is_root_span is not None:
+            pulumi.set(__self__, "is_root_span", is_root_span)
+        if match_type is not None:
+            pulumi.set(__self__, "match_type", match_type)
+        if operation is not None:
+            pulumi.set(__self__, "operation", operation)
+        if parent_operation is not None:
+            pulumi.set(__self__, "parent_operation", parent_operation)
+        if parent_service is not None:
+            pulumi.set(__self__, "parent_service", parent_service)
+        if service is not None:
+            pulumi.set(__self__, "service", service)
+        if span_count is not None:
+            pulumi.set(__self__, "span_count", span_count)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+
+    @property
+    @pulumi.getter
+    def duration(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanDurationArgs']]:
+        return pulumi.get(self, "duration")
+
+    @duration.setter
+    def duration(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanDurationArgs']]):
+        pulumi.set(self, "duration", value)
+
+    @property
+    @pulumi.getter
+    def error(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanErrorArgs']]:
+        return pulumi.get(self, "error")
+
+    @error.setter
+    def error(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanErrorArgs']]):
+        pulumi.set(self, "error", value)
+
+    @property
+    @pulumi.getter(name="isRootSpan")
+    def is_root_span(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanIsRootSpanArgs']]:
+        return pulumi.get(self, "is_root_span")
+
+    @is_root_span.setter
+    def is_root_span(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanIsRootSpanArgs']]):
+        pulumi.set(self, "is_root_span", value)
+
+    @property
+    @pulumi.getter(name="matchType")
+    def match_type(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "match_type")
+
+    @match_type.setter
+    def match_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match_type", value)
+
+    @property
+    @pulumi.getter
+    def operation(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanOperationArgs']]:
+        return pulumi.get(self, "operation")
+
+    @operation.setter
+    def operation(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanOperationArgs']]):
+        pulumi.set(self, "operation", value)
+
+    @property
+    @pulumi.getter(name="parentOperation")
+    def parent_operation(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperationArgs']]:
+        return pulumi.get(self, "parent_operation")
+
+    @parent_operation.setter
+    def parent_operation(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperationArgs']]):
+        pulumi.set(self, "parent_operation", value)
+
+    @property
+    @pulumi.getter(name="parentService")
+    def parent_service(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentServiceArgs']]:
+        return pulumi.get(self, "parent_service")
+
+    @parent_service.setter
+    def parent_service(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentServiceArgs']]):
+        pulumi.set(self, "parent_service", value)
+
+    @property
+    @pulumi.getter
+    def service(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanServiceArgs']]:
+        return pulumi.get(self, "service")
+
+    @service.setter
+    def service(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanServiceArgs']]):
+        pulumi.set(self, "service", value)
+
+    @property
+    @pulumi.getter(name="spanCount")
+    def span_count(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanSpanCountArgs']]:
+        return pulumi.get(self, "span_count")
+
+    @span_count.setter
+    def span_count(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanSpanCountArgs']]):
+        pulumi.set(self, "span_count", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagArgs']]]]:
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanDurationArgs:
+    def __init__(__self__, *,
+                 max_secs: Optional[pulumi.Input[float]] = None,
+                 min_secs: Optional[pulumi.Input[float]] = None):
+        if max_secs is not None:
+            pulumi.set(__self__, "max_secs", max_secs)
+        if min_secs is not None:
+            pulumi.set(__self__, "min_secs", min_secs)
+
+    @property
+    @pulumi.getter(name="maxSecs")
+    def max_secs(self) -> Optional[pulumi.Input[float]]:
+        return pulumi.get(self, "max_secs")
+
+    @max_secs.setter
+    def max_secs(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "max_secs", value)
+
+    @property
+    @pulumi.getter(name="minSecs")
+    def min_secs(self) -> Optional[pulumi.Input[float]]:
+        return pulumi.get(self, "min_secs")
+
+    @min_secs.setter
+    def min_secs(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "min_secs", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanErrorArgs:
+    def __init__(__self__, *,
+                 value: pulumi.Input[bool]):
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[bool]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[bool]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanIsRootSpanArgs:
+    def __init__(__self__, *,
+                 value: pulumi.Input[bool]):
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[bool]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[bool]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanOperationArgs:
+    def __init__(__self__, *,
+                 in_values: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 match: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "in_values")
+
+    @in_values.setter
+    def in_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "in_values", value)
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "match")
+
+    @match.setter
+    def match(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperationArgs:
+    def __init__(__self__, *,
+                 in_values: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 match: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "in_values")
+
+    @in_values.setter
+    def in_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "in_values", value)
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "match")
+
+    @match.setter
+    def match(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentServiceArgs:
+    def __init__(__self__, *,
+                 in_values: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 match: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "in_values")
+
+    @in_values.setter
+    def in_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "in_values", value)
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "match")
+
+    @match.setter
+    def match(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanServiceArgs:
+    def __init__(__self__, *,
+                 in_values: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 match: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "in_values")
+
+    @in_values.setter
+    def in_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "in_values", value)
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "match")
+
+    @match.setter
+    def match(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanSpanCountArgs:
+    def __init__(__self__, *,
+                 max: Optional[pulumi.Input[int]] = None,
+                 min: Optional[pulumi.Input[int]] = None):
+        if max is not None:
+            pulumi.set(__self__, "max", max)
+        if min is not None:
+            pulumi.set(__self__, "min", min)
+
+    @property
+    @pulumi.getter
+    def max(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "max")
+
+    @max.setter
+    def max(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max", value)
+
+    @property
+    @pulumi.getter
+    def min(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "min")
+
+    @min.setter
+    def min(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "min", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagArgs:
+    def __init__(__self__, *,
+                 key: Optional[pulumi.Input[str]] = None,
+                 numeric_value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagNumericValueArgs']] = None,
+                 value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValueArgs']] = None):
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if numeric_value is not None:
+            pulumi.set(__self__, "numeric_value", numeric_value)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter(name="numericValue")
+    def numeric_value(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagNumericValueArgs']]:
+        return pulumi.get(self, "numeric_value")
+
+    @numeric_value.setter
+    def numeric_value(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagNumericValueArgs']]):
+        pulumi.set(self, "numeric_value", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValueArgs']]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValueArgs']]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagNumericValueArgs:
+    def __init__(__self__, *,
+                 comparison: pulumi.Input[str],
+                 value: pulumi.Input[float]):
+        pulumi.set(__self__, "comparison", comparison)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def comparison(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "comparison")
+
+    @comparison.setter
+    def comparison(self, value: pulumi.Input[str]):
+        pulumi.set(self, "comparison", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[float]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[float]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValueArgs:
+    def __init__(__self__, *,
+                 in_values: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 match: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "in_values")
+
+    @in_values.setter
+    def in_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "in_values", value)
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "match")
+
+    @match.setter
+    def match(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceArgs:
+    def __init__(__self__, *,
+                 duration: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceDurationArgs']] = None,
+                 error: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceErrorArgs']] = None):
+        if duration is not None:
+            pulumi.set(__self__, "duration", duration)
+        if error is not None:
+            pulumi.set(__self__, "error", error)
+
+    @property
+    @pulumi.getter
+    def duration(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceDurationArgs']]:
+        return pulumi.get(self, "duration")
+
+    @duration.setter
+    def duration(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceDurationArgs']]):
+        pulumi.set(self, "duration", value)
+
+    @property
+    @pulumi.getter
+    def error(self) -> Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceErrorArgs']]:
+        return pulumi.get(self, "error")
+
+    @error.setter
+    def error(self, value: Optional[pulumi.Input['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceErrorArgs']]):
+        pulumi.set(self, "error", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceDurationArgs:
+    def __init__(__self__, *,
+                 max_secs: Optional[pulumi.Input[float]] = None,
+                 min_secs: Optional[pulumi.Input[float]] = None):
+        if max_secs is not None:
+            pulumi.set(__self__, "max_secs", max_secs)
+        if min_secs is not None:
+            pulumi.set(__self__, "min_secs", min_secs)
+
+    @property
+    @pulumi.getter(name="maxSecs")
+    def max_secs(self) -> Optional[pulumi.Input[float]]:
+        return pulumi.get(self, "max_secs")
+
+    @max_secs.setter
+    def max_secs(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "max_secs", value)
+
+    @property
+    @pulumi.getter(name="minSecs")
+    def min_secs(self) -> Optional[pulumi.Input[float]]:
+        return pulumi.get(self, "min_secs")
+
+    @min_secs.setter
+    def min_secs(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "min_secs", value)
+
+
+@pulumi.input_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceErrorArgs:
+    def __init__(__self__, *,
+                 value: pulumi.Input[bool]):
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[bool]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[bool]):
+        pulumi.set(self, "value", value)
 
 
 @pulumi.input_type
@@ -3392,6 +7372,7 @@ class LogControlConfigRuleArgs:
                  filter: Optional[pulumi.Input[str]] = None,
                  mode: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 parse_field: Optional[pulumi.Input['LogControlConfigRuleParseFieldArgs']] = None,
                  replace_field: Optional[pulumi.Input['LogControlConfigRuleReplaceFieldArgs']] = None,
                  sample: Optional[pulumi.Input['LogControlConfigRuleSampleArgs']] = None,
                  type: Optional[pulumi.Input[str]] = None):
@@ -3405,6 +7386,8 @@ class LogControlConfigRuleArgs:
             pulumi.set(__self__, "mode", mode)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if parse_field is not None:
+            pulumi.set(__self__, "parse_field", parse_field)
         if replace_field is not None:
             pulumi.set(__self__, "replace_field", replace_field)
         if sample is not None:
@@ -3456,6 +7439,15 @@ class LogControlConfigRuleArgs:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="parseField")
+    def parse_field(self) -> Optional[pulumi.Input['LogControlConfigRuleParseFieldArgs']]:
+        return pulumi.get(self, "parse_field")
+
+    @parse_field.setter
+    def parse_field(self, value: Optional[pulumi.Input['LogControlConfigRuleParseFieldArgs']]):
+        pulumi.set(self, "parse_field", value)
 
     @property
     @pulumi.getter(name="replaceField")
@@ -3765,6 +7757,203 @@ class LogControlConfigRuleEmitMetricsLabelArgs:
 
 @pulumi.input_type
 class LogControlConfigRuleEmitMetricsLabelValueArgs:
+    def __init__(__self__, *,
+                 selector: Optional[pulumi.Input[str]] = None):
+        if selector is not None:
+            pulumi.set(__self__, "selector", selector)
+
+    @property
+    @pulumi.getter
+    def selector(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "selector")
+
+    @selector.setter
+    def selector(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "selector", value)
+
+
+@pulumi.input_type
+class LogControlConfigRuleParseFieldArgs:
+    def __init__(__self__, *,
+                 parser: pulumi.Input['LogControlConfigRuleParseFieldParserArgs'],
+                 destination: Optional[pulumi.Input['LogControlConfigRuleParseFieldDestinationArgs']] = None,
+                 source: Optional[pulumi.Input['LogControlConfigRuleParseFieldSourceArgs']] = None):
+        pulumi.set(__self__, "parser", parser)
+        if destination is not None:
+            pulumi.set(__self__, "destination", destination)
+        if source is not None:
+            pulumi.set(__self__, "source", source)
+
+    @property
+    @pulumi.getter
+    def parser(self) -> pulumi.Input['LogControlConfigRuleParseFieldParserArgs']:
+        return pulumi.get(self, "parser")
+
+    @parser.setter
+    def parser(self, value: pulumi.Input['LogControlConfigRuleParseFieldParserArgs']):
+        pulumi.set(self, "parser", value)
+
+    @property
+    @pulumi.getter
+    def destination(self) -> Optional[pulumi.Input['LogControlConfigRuleParseFieldDestinationArgs']]:
+        return pulumi.get(self, "destination")
+
+    @destination.setter
+    def destination(self, value: Optional[pulumi.Input['LogControlConfigRuleParseFieldDestinationArgs']]):
+        pulumi.set(self, "destination", value)
+
+    @property
+    @pulumi.getter
+    def source(self) -> Optional[pulumi.Input['LogControlConfigRuleParseFieldSourceArgs']]:
+        return pulumi.get(self, "source")
+
+    @source.setter
+    def source(self, value: Optional[pulumi.Input['LogControlConfigRuleParseFieldSourceArgs']]):
+        pulumi.set(self, "source", value)
+
+
+@pulumi.input_type
+class LogControlConfigRuleParseFieldDestinationArgs:
+    def __init__(__self__, *,
+                 selector: Optional[pulumi.Input[str]] = None):
+        if selector is not None:
+            pulumi.set(__self__, "selector", selector)
+
+    @property
+    @pulumi.getter
+    def selector(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "selector")
+
+    @selector.setter
+    def selector(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "selector", value)
+
+
+@pulumi.input_type
+class LogControlConfigRuleParseFieldParserArgs:
+    def __init__(__self__, *,
+                 parser_type: pulumi.Input[str],
+                 grok_parser: Optional[pulumi.Input['LogControlConfigRuleParseFieldParserGrokParserArgs']] = None,
+                 key_value_parser: Optional[pulumi.Input['LogControlConfigRuleParseFieldParserKeyValueParserArgs']] = None,
+                 regex_parser: Optional[pulumi.Input['LogControlConfigRuleParseFieldParserRegexParserArgs']] = None):
+        pulumi.set(__self__, "parser_type", parser_type)
+        if grok_parser is not None:
+            pulumi.set(__self__, "grok_parser", grok_parser)
+        if key_value_parser is not None:
+            pulumi.set(__self__, "key_value_parser", key_value_parser)
+        if regex_parser is not None:
+            pulumi.set(__self__, "regex_parser", regex_parser)
+
+    @property
+    @pulumi.getter(name="parserType")
+    def parser_type(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "parser_type")
+
+    @parser_type.setter
+    def parser_type(self, value: pulumi.Input[str]):
+        pulumi.set(self, "parser_type", value)
+
+    @property
+    @pulumi.getter(name="grokParser")
+    def grok_parser(self) -> Optional[pulumi.Input['LogControlConfigRuleParseFieldParserGrokParserArgs']]:
+        return pulumi.get(self, "grok_parser")
+
+    @grok_parser.setter
+    def grok_parser(self, value: Optional[pulumi.Input['LogControlConfigRuleParseFieldParserGrokParserArgs']]):
+        pulumi.set(self, "grok_parser", value)
+
+    @property
+    @pulumi.getter(name="keyValueParser")
+    def key_value_parser(self) -> Optional[pulumi.Input['LogControlConfigRuleParseFieldParserKeyValueParserArgs']]:
+        return pulumi.get(self, "key_value_parser")
+
+    @key_value_parser.setter
+    def key_value_parser(self, value: Optional[pulumi.Input['LogControlConfigRuleParseFieldParserKeyValueParserArgs']]):
+        pulumi.set(self, "key_value_parser", value)
+
+    @property
+    @pulumi.getter(name="regexParser")
+    def regex_parser(self) -> Optional[pulumi.Input['LogControlConfigRuleParseFieldParserRegexParserArgs']]:
+        return pulumi.get(self, "regex_parser")
+
+    @regex_parser.setter
+    def regex_parser(self, value: Optional[pulumi.Input['LogControlConfigRuleParseFieldParserRegexParserArgs']]):
+        pulumi.set(self, "regex_parser", value)
+
+
+@pulumi.input_type
+class LogControlConfigRuleParseFieldParserGrokParserArgs:
+    def __init__(__self__, *,
+                 pattern: pulumi.Input[str]):
+        pulumi.set(__self__, "pattern", pattern)
+
+    @property
+    @pulumi.getter
+    def pattern(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "pattern")
+
+    @pattern.setter
+    def pattern(self, value: pulumi.Input[str]):
+        pulumi.set(self, "pattern", value)
+
+
+@pulumi.input_type
+class LogControlConfigRuleParseFieldParserKeyValueParserArgs:
+    def __init__(__self__, *,
+                 delimiter: pulumi.Input[str],
+                 pair_separator: pulumi.Input[str],
+                 trim_set: Optional[pulumi.Input[str]] = None):
+        pulumi.set(__self__, "delimiter", delimiter)
+        pulumi.set(__self__, "pair_separator", pair_separator)
+        if trim_set is not None:
+            pulumi.set(__self__, "trim_set", trim_set)
+
+    @property
+    @pulumi.getter
+    def delimiter(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "delimiter")
+
+    @delimiter.setter
+    def delimiter(self, value: pulumi.Input[str]):
+        pulumi.set(self, "delimiter", value)
+
+    @property
+    @pulumi.getter(name="pairSeparator")
+    def pair_separator(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "pair_separator")
+
+    @pair_separator.setter
+    def pair_separator(self, value: pulumi.Input[str]):
+        pulumi.set(self, "pair_separator", value)
+
+    @property
+    @pulumi.getter(name="trimSet")
+    def trim_set(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "trim_set")
+
+    @trim_set.setter
+    def trim_set(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "trim_set", value)
+
+
+@pulumi.input_type
+class LogControlConfigRuleParseFieldParserRegexParserArgs:
+    def __init__(__self__, *,
+                 regex: pulumi.Input[str]):
+        pulumi.set(__self__, "regex", regex)
+
+    @property
+    @pulumi.getter
+    def regex(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "regex")
+
+    @regex.setter
+    def regex(self, value: pulumi.Input[str]):
+        pulumi.set(self, "regex", value)
+
+
+@pulumi.input_type
+class LogControlConfigRuleParseFieldSourceArgs:
     def __init__(__self__, *,
                  selector: Optional[pulumi.Input[str]] = None):
         if selector is not None:
@@ -4452,9 +8641,12 @@ class LogIngestConfigFieldParserDestinationArgs:
 class LogIngestConfigFieldParserParserArgs:
     def __init__(__self__, *,
                  parser_type: pulumi.Input[str],
+                 grok_parser: Optional[pulumi.Input['LogIngestConfigFieldParserParserGrokParserArgs']] = None,
                  key_value_parser: Optional[pulumi.Input['LogIngestConfigFieldParserParserKeyValueParserArgs']] = None,
                  regex_parser: Optional[pulumi.Input['LogIngestConfigFieldParserParserRegexParserArgs']] = None):
         pulumi.set(__self__, "parser_type", parser_type)
+        if grok_parser is not None:
+            pulumi.set(__self__, "grok_parser", grok_parser)
         if key_value_parser is not None:
             pulumi.set(__self__, "key_value_parser", key_value_parser)
         if regex_parser is not None:
@@ -4468,6 +8660,15 @@ class LogIngestConfigFieldParserParserArgs:
     @parser_type.setter
     def parser_type(self, value: pulumi.Input[str]):
         pulumi.set(self, "parser_type", value)
+
+    @property
+    @pulumi.getter(name="grokParser")
+    def grok_parser(self) -> Optional[pulumi.Input['LogIngestConfigFieldParserParserGrokParserArgs']]:
+        return pulumi.get(self, "grok_parser")
+
+    @grok_parser.setter
+    def grok_parser(self, value: Optional[pulumi.Input['LogIngestConfigFieldParserParserGrokParserArgs']]):
+        pulumi.set(self, "grok_parser", value)
 
     @property
     @pulumi.getter(name="keyValueParser")
@@ -4486,6 +8687,22 @@ class LogIngestConfigFieldParserParserArgs:
     @regex_parser.setter
     def regex_parser(self, value: Optional[pulumi.Input['LogIngestConfigFieldParserParserRegexParserArgs']]):
         pulumi.set(self, "regex_parser", value)
+
+
+@pulumi.input_type
+class LogIngestConfigFieldParserParserGrokParserArgs:
+    def __init__(__self__, *,
+                 pattern: pulumi.Input[str]):
+        pulumi.set(__self__, "pattern", pattern)
+
+    @property
+    @pulumi.getter
+    def pattern(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "pattern")
+
+    @pattern.setter
+    def pattern(self, value: pulumi.Input[str]):
+        pulumi.set(self, "pattern", value)
 
 
 @pulumi.input_type
@@ -4614,9 +8831,12 @@ class LogIngestConfigPlaintextParserArgs:
 class LogIngestConfigPlaintextParserParserArgs:
     def __init__(__self__, *,
                  parser_type: pulumi.Input[str],
+                 grok_parser: Optional[pulumi.Input['LogIngestConfigPlaintextParserParserGrokParserArgs']] = None,
                  key_value_parser: Optional[pulumi.Input['LogIngestConfigPlaintextParserParserKeyValueParserArgs']] = None,
                  regex_parser: Optional[pulumi.Input['LogIngestConfigPlaintextParserParserRegexParserArgs']] = None):
         pulumi.set(__self__, "parser_type", parser_type)
+        if grok_parser is not None:
+            pulumi.set(__self__, "grok_parser", grok_parser)
         if key_value_parser is not None:
             pulumi.set(__self__, "key_value_parser", key_value_parser)
         if regex_parser is not None:
@@ -4630,6 +8850,15 @@ class LogIngestConfigPlaintextParserParserArgs:
     @parser_type.setter
     def parser_type(self, value: pulumi.Input[str]):
         pulumi.set(self, "parser_type", value)
+
+    @property
+    @pulumi.getter(name="grokParser")
+    def grok_parser(self) -> Optional[pulumi.Input['LogIngestConfigPlaintextParserParserGrokParserArgs']]:
+        return pulumi.get(self, "grok_parser")
+
+    @grok_parser.setter
+    def grok_parser(self, value: Optional[pulumi.Input['LogIngestConfigPlaintextParserParserGrokParserArgs']]):
+        pulumi.set(self, "grok_parser", value)
 
     @property
     @pulumi.getter(name="keyValueParser")
@@ -4648,6 +8877,22 @@ class LogIngestConfigPlaintextParserParserArgs:
     @regex_parser.setter
     def regex_parser(self, value: Optional[pulumi.Input['LogIngestConfigPlaintextParserParserRegexParserArgs']]):
         pulumi.set(self, "regex_parser", value)
+
+
+@pulumi.input_type
+class LogIngestConfigPlaintextParserParserGrokParserArgs:
+    def __init__(__self__, *,
+                 pattern: pulumi.Input[str]):
+        pulumi.set(__self__, "pattern", pattern)
+
+    @property
+    @pulumi.getter
+    def pattern(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "pattern")
+
+    @pattern.setter
+    def pattern(self, value: pulumi.Input[str]):
+        pulumi.set(self, "pattern", value)
 
 
 @pulumi.input_type
@@ -5109,6 +9354,35 @@ class MappingRuleStoragePolicyArgs:
     @retention.setter
     def retention(self, value: pulumi.Input[str]):
         pulumi.set(self, "retention", value)
+
+
+@pulumi.input_type
+class MonitorNotificationTemplateArgs:
+    def __init__(__self__, *,
+                 description: Optional[pulumi.Input[str]] = None,
+                 title: Optional[pulumi.Input[str]] = None):
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if title is not None:
+            pulumi.set(__self__, "title", title)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter
+    def title(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "title")
+
+    @title.setter
+    def title(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "title", value)
 
 
 @pulumi.input_type
@@ -5614,10 +9888,13 @@ class NotificationPolicyOverrideAlertLabelMatcherArgs:
 class NotificationPolicyOverrideRouteArgs:
     def __init__(__self__, *,
                  severity: pulumi.Input[str],
+                 destinations: Optional[pulumi.Input[Sequence[pulumi.Input['NotificationPolicyOverrideRouteDestinationArgs']]]] = None,
                  group_by: Optional[pulumi.Input['NotificationPolicyOverrideRouteGroupByArgs']] = None,
                  notifiers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  repeat_interval: Optional[pulumi.Input[str]] = None):
         pulumi.set(__self__, "severity", severity)
+        if destinations is not None:
+            pulumi.set(__self__, "destinations", destinations)
         if group_by is not None:
             pulumi.set(__self__, "group_by", group_by)
         if notifiers is not None:
@@ -5633,6 +9910,15 @@ class NotificationPolicyOverrideRouteArgs:
     @severity.setter
     def severity(self, value: pulumi.Input[str]):
         pulumi.set(self, "severity", value)
+
+    @property
+    @pulumi.getter
+    def destinations(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NotificationPolicyOverrideRouteDestinationArgs']]]]:
+        return pulumi.get(self, "destinations")
+
+    @destinations.setter
+    def destinations(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['NotificationPolicyOverrideRouteDestinationArgs']]]]):
+        pulumi.set(self, "destinations", value)
 
     @property
     @pulumi.getter(name="groupBy")
@@ -5663,6 +9949,254 @@ class NotificationPolicyOverrideRouteArgs:
 
 
 @pulumi.input_type
+class NotificationPolicyOverrideRouteDestinationArgs:
+    def __init__(__self__, *,
+                 disable_resolves: Optional[pulumi.Input[bool]] = None,
+                 email: Optional[pulumi.Input['NotificationPolicyOverrideRouteDestinationEmailArgs']] = None,
+                 ops_genie: Optional[pulumi.Input['NotificationPolicyOverrideRouteDestinationOpsGenieArgs']] = None,
+                 pagerduty: Optional[pulumi.Input['NotificationPolicyOverrideRouteDestinationPagerdutyArgs']] = None,
+                 slack: Optional[pulumi.Input['NotificationPolicyOverrideRouteDestinationSlackArgs']] = None,
+                 victor_ops: Optional[pulumi.Input['NotificationPolicyOverrideRouteDestinationVictorOpsArgs']] = None,
+                 webhook: Optional[pulumi.Input['NotificationPolicyOverrideRouteDestinationWebhookArgs']] = None):
+        if disable_resolves is not None:
+            pulumi.set(__self__, "disable_resolves", disable_resolves)
+        if email is not None:
+            pulumi.set(__self__, "email", email)
+        if ops_genie is not None:
+            pulumi.set(__self__, "ops_genie", ops_genie)
+        if pagerduty is not None:
+            pulumi.set(__self__, "pagerduty", pagerduty)
+        if slack is not None:
+            pulumi.set(__self__, "slack", slack)
+        if victor_ops is not None:
+            pulumi.set(__self__, "victor_ops", victor_ops)
+        if webhook is not None:
+            pulumi.set(__self__, "webhook", webhook)
+
+    @property
+    @pulumi.getter(name="disableResolves")
+    def disable_resolves(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "disable_resolves")
+
+    @disable_resolves.setter
+    def disable_resolves(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_resolves", value)
+
+    @property
+    @pulumi.getter
+    def email(self) -> Optional[pulumi.Input['NotificationPolicyOverrideRouteDestinationEmailArgs']]:
+        return pulumi.get(self, "email")
+
+    @email.setter
+    def email(self, value: Optional[pulumi.Input['NotificationPolicyOverrideRouteDestinationEmailArgs']]):
+        pulumi.set(self, "email", value)
+
+    @property
+    @pulumi.getter(name="opsGenie")
+    def ops_genie(self) -> Optional[pulumi.Input['NotificationPolicyOverrideRouteDestinationOpsGenieArgs']]:
+        return pulumi.get(self, "ops_genie")
+
+    @ops_genie.setter
+    def ops_genie(self, value: Optional[pulumi.Input['NotificationPolicyOverrideRouteDestinationOpsGenieArgs']]):
+        pulumi.set(self, "ops_genie", value)
+
+    @property
+    @pulumi.getter
+    def pagerduty(self) -> Optional[pulumi.Input['NotificationPolicyOverrideRouteDestinationPagerdutyArgs']]:
+        return pulumi.get(self, "pagerduty")
+
+    @pagerduty.setter
+    def pagerduty(self, value: Optional[pulumi.Input['NotificationPolicyOverrideRouteDestinationPagerdutyArgs']]):
+        pulumi.set(self, "pagerduty", value)
+
+    @property
+    @pulumi.getter
+    def slack(self) -> Optional[pulumi.Input['NotificationPolicyOverrideRouteDestinationSlackArgs']]:
+        return pulumi.get(self, "slack")
+
+    @slack.setter
+    def slack(self, value: Optional[pulumi.Input['NotificationPolicyOverrideRouteDestinationSlackArgs']]):
+        pulumi.set(self, "slack", value)
+
+    @property
+    @pulumi.getter(name="victorOps")
+    def victor_ops(self) -> Optional[pulumi.Input['NotificationPolicyOverrideRouteDestinationVictorOpsArgs']]:
+        return pulumi.get(self, "victor_ops")
+
+    @victor_ops.setter
+    def victor_ops(self, value: Optional[pulumi.Input['NotificationPolicyOverrideRouteDestinationVictorOpsArgs']]):
+        pulumi.set(self, "victor_ops", value)
+
+    @property
+    @pulumi.getter
+    def webhook(self) -> Optional[pulumi.Input['NotificationPolicyOverrideRouteDestinationWebhookArgs']]:
+        return pulumi.get(self, "webhook")
+
+    @webhook.setter
+    def webhook(self, value: Optional[pulumi.Input['NotificationPolicyOverrideRouteDestinationWebhookArgs']]):
+        pulumi.set(self, "webhook", value)
+
+
+@pulumi.input_type
+class NotificationPolicyOverrideRouteDestinationEmailArgs:
+    def __init__(__self__, *,
+                 addresses: pulumi.Input[Sequence[pulumi.Input[str]]]):
+        pulumi.set(__self__, "addresses", addresses)
+
+    @property
+    @pulumi.getter
+    def addresses(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        return pulumi.get(self, "addresses")
+
+    @addresses.setter
+    def addresses(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
+        pulumi.set(self, "addresses", value)
+
+
+@pulumi.input_type
+class NotificationPolicyOverrideRouteDestinationOpsGenieArgs:
+    def __init__(__self__, *,
+                 external_connection_slug: pulumi.Input[str]):
+        pulumi.set(__self__, "external_connection_slug", external_connection_slug)
+
+    @property
+    @pulumi.getter(name="externalConnectionSlug")
+    def external_connection_slug(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "external_connection_slug")
+
+    @external_connection_slug.setter
+    def external_connection_slug(self, value: pulumi.Input[str]):
+        pulumi.set(self, "external_connection_slug", value)
+
+
+@pulumi.input_type
+class NotificationPolicyOverrideRouteDestinationPagerdutyArgs:
+    def __init__(__self__, *,
+                 external_connection_slug: pulumi.Input[str]):
+        pulumi.set(__self__, "external_connection_slug", external_connection_slug)
+
+    @property
+    @pulumi.getter(name="externalConnectionSlug")
+    def external_connection_slug(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "external_connection_slug")
+
+    @external_connection_slug.setter
+    def external_connection_slug(self, value: pulumi.Input[str]):
+        pulumi.set(self, "external_connection_slug", value)
+
+
+@pulumi.input_type
+class NotificationPolicyOverrideRouteDestinationSlackArgs:
+    def __init__(__self__, *,
+                 external_connection_slug: pulumi.Input[str],
+                 channels: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        pulumi.set(__self__, "external_connection_slug", external_connection_slug)
+        if channels is not None:
+            pulumi.set(__self__, "channels", channels)
+
+    @property
+    @pulumi.getter(name="externalConnectionSlug")
+    def external_connection_slug(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "external_connection_slug")
+
+    @external_connection_slug.setter
+    def external_connection_slug(self, value: pulumi.Input[str]):
+        pulumi.set(self, "external_connection_slug", value)
+
+    @property
+    @pulumi.getter
+    def channels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "channels")
+
+    @channels.setter
+    def channels(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "channels", value)
+
+
+@pulumi.input_type
+class NotificationPolicyOverrideRouteDestinationVictorOpsArgs:
+    def __init__(__self__, *,
+                 external_connection_slug: pulumi.Input[str],
+                 routing_key: Optional[pulumi.Input[str]] = None):
+        pulumi.set(__self__, "external_connection_slug", external_connection_slug)
+        if routing_key is not None:
+            pulumi.set(__self__, "routing_key", routing_key)
+
+    @property
+    @pulumi.getter(name="externalConnectionSlug")
+    def external_connection_slug(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "external_connection_slug")
+
+    @external_connection_slug.setter
+    def external_connection_slug(self, value: pulumi.Input[str]):
+        pulumi.set(self, "external_connection_slug", value)
+
+    @property
+    @pulumi.getter(name="routingKey")
+    def routing_key(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "routing_key")
+
+    @routing_key.setter
+    def routing_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "routing_key", value)
+
+
+@pulumi.input_type
+class NotificationPolicyOverrideRouteDestinationWebhookArgs:
+    def __init__(__self__, *,
+                 external_connection_slug: pulumi.Input[str],
+                 query_parameters: Optional[pulumi.Input[Sequence[pulumi.Input['NotificationPolicyOverrideRouteDestinationWebhookQueryParameterArgs']]]] = None):
+        pulumi.set(__self__, "external_connection_slug", external_connection_slug)
+        if query_parameters is not None:
+            pulumi.set(__self__, "query_parameters", query_parameters)
+
+    @property
+    @pulumi.getter(name="externalConnectionSlug")
+    def external_connection_slug(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "external_connection_slug")
+
+    @external_connection_slug.setter
+    def external_connection_slug(self, value: pulumi.Input[str]):
+        pulumi.set(self, "external_connection_slug", value)
+
+    @property
+    @pulumi.getter(name="queryParameters")
+    def query_parameters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NotificationPolicyOverrideRouteDestinationWebhookQueryParameterArgs']]]]:
+        return pulumi.get(self, "query_parameters")
+
+    @query_parameters.setter
+    def query_parameters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['NotificationPolicyOverrideRouteDestinationWebhookQueryParameterArgs']]]]):
+        pulumi.set(self, "query_parameters", value)
+
+
+@pulumi.input_type
+class NotificationPolicyOverrideRouteDestinationWebhookQueryParameterArgs:
+    def __init__(__self__, *,
+                 key: pulumi.Input[str],
+                 value: pulumi.Input[str]):
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[str]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
 class NotificationPolicyOverrideRouteGroupByArgs:
     def __init__(__self__, *,
                  label_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
@@ -5683,10 +10217,13 @@ class NotificationPolicyOverrideRouteGroupByArgs:
 class NotificationPolicyRouteArgs:
     def __init__(__self__, *,
                  severity: pulumi.Input[str],
+                 destinations: Optional[pulumi.Input[Sequence[pulumi.Input['NotificationPolicyRouteDestinationArgs']]]] = None,
                  group_by: Optional[pulumi.Input['NotificationPolicyRouteGroupByArgs']] = None,
                  notifiers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  repeat_interval: Optional[pulumi.Input[str]] = None):
         pulumi.set(__self__, "severity", severity)
+        if destinations is not None:
+            pulumi.set(__self__, "destinations", destinations)
         if group_by is not None:
             pulumi.set(__self__, "group_by", group_by)
         if notifiers is not None:
@@ -5702,6 +10239,15 @@ class NotificationPolicyRouteArgs:
     @severity.setter
     def severity(self, value: pulumi.Input[str]):
         pulumi.set(self, "severity", value)
+
+    @property
+    @pulumi.getter
+    def destinations(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NotificationPolicyRouteDestinationArgs']]]]:
+        return pulumi.get(self, "destinations")
+
+    @destinations.setter
+    def destinations(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['NotificationPolicyRouteDestinationArgs']]]]):
+        pulumi.set(self, "destinations", value)
 
     @property
     @pulumi.getter(name="groupBy")
@@ -5729,6 +10275,254 @@ class NotificationPolicyRouteArgs:
     @repeat_interval.setter
     def repeat_interval(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "repeat_interval", value)
+
+
+@pulumi.input_type
+class NotificationPolicyRouteDestinationArgs:
+    def __init__(__self__, *,
+                 disable_resolves: Optional[pulumi.Input[bool]] = None,
+                 email: Optional[pulumi.Input['NotificationPolicyRouteDestinationEmailArgs']] = None,
+                 ops_genie: Optional[pulumi.Input['NotificationPolicyRouteDestinationOpsGenieArgs']] = None,
+                 pagerduty: Optional[pulumi.Input['NotificationPolicyRouteDestinationPagerdutyArgs']] = None,
+                 slack: Optional[pulumi.Input['NotificationPolicyRouteDestinationSlackArgs']] = None,
+                 victor_ops: Optional[pulumi.Input['NotificationPolicyRouteDestinationVictorOpsArgs']] = None,
+                 webhook: Optional[pulumi.Input['NotificationPolicyRouteDestinationWebhookArgs']] = None):
+        if disable_resolves is not None:
+            pulumi.set(__self__, "disable_resolves", disable_resolves)
+        if email is not None:
+            pulumi.set(__self__, "email", email)
+        if ops_genie is not None:
+            pulumi.set(__self__, "ops_genie", ops_genie)
+        if pagerduty is not None:
+            pulumi.set(__self__, "pagerduty", pagerduty)
+        if slack is not None:
+            pulumi.set(__self__, "slack", slack)
+        if victor_ops is not None:
+            pulumi.set(__self__, "victor_ops", victor_ops)
+        if webhook is not None:
+            pulumi.set(__self__, "webhook", webhook)
+
+    @property
+    @pulumi.getter(name="disableResolves")
+    def disable_resolves(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "disable_resolves")
+
+    @disable_resolves.setter
+    def disable_resolves(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_resolves", value)
+
+    @property
+    @pulumi.getter
+    def email(self) -> Optional[pulumi.Input['NotificationPolicyRouteDestinationEmailArgs']]:
+        return pulumi.get(self, "email")
+
+    @email.setter
+    def email(self, value: Optional[pulumi.Input['NotificationPolicyRouteDestinationEmailArgs']]):
+        pulumi.set(self, "email", value)
+
+    @property
+    @pulumi.getter(name="opsGenie")
+    def ops_genie(self) -> Optional[pulumi.Input['NotificationPolicyRouteDestinationOpsGenieArgs']]:
+        return pulumi.get(self, "ops_genie")
+
+    @ops_genie.setter
+    def ops_genie(self, value: Optional[pulumi.Input['NotificationPolicyRouteDestinationOpsGenieArgs']]):
+        pulumi.set(self, "ops_genie", value)
+
+    @property
+    @pulumi.getter
+    def pagerduty(self) -> Optional[pulumi.Input['NotificationPolicyRouteDestinationPagerdutyArgs']]:
+        return pulumi.get(self, "pagerduty")
+
+    @pagerduty.setter
+    def pagerduty(self, value: Optional[pulumi.Input['NotificationPolicyRouteDestinationPagerdutyArgs']]):
+        pulumi.set(self, "pagerduty", value)
+
+    @property
+    @pulumi.getter
+    def slack(self) -> Optional[pulumi.Input['NotificationPolicyRouteDestinationSlackArgs']]:
+        return pulumi.get(self, "slack")
+
+    @slack.setter
+    def slack(self, value: Optional[pulumi.Input['NotificationPolicyRouteDestinationSlackArgs']]):
+        pulumi.set(self, "slack", value)
+
+    @property
+    @pulumi.getter(name="victorOps")
+    def victor_ops(self) -> Optional[pulumi.Input['NotificationPolicyRouteDestinationVictorOpsArgs']]:
+        return pulumi.get(self, "victor_ops")
+
+    @victor_ops.setter
+    def victor_ops(self, value: Optional[pulumi.Input['NotificationPolicyRouteDestinationVictorOpsArgs']]):
+        pulumi.set(self, "victor_ops", value)
+
+    @property
+    @pulumi.getter
+    def webhook(self) -> Optional[pulumi.Input['NotificationPolicyRouteDestinationWebhookArgs']]:
+        return pulumi.get(self, "webhook")
+
+    @webhook.setter
+    def webhook(self, value: Optional[pulumi.Input['NotificationPolicyRouteDestinationWebhookArgs']]):
+        pulumi.set(self, "webhook", value)
+
+
+@pulumi.input_type
+class NotificationPolicyRouteDestinationEmailArgs:
+    def __init__(__self__, *,
+                 addresses: pulumi.Input[Sequence[pulumi.Input[str]]]):
+        pulumi.set(__self__, "addresses", addresses)
+
+    @property
+    @pulumi.getter
+    def addresses(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        return pulumi.get(self, "addresses")
+
+    @addresses.setter
+    def addresses(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
+        pulumi.set(self, "addresses", value)
+
+
+@pulumi.input_type
+class NotificationPolicyRouteDestinationOpsGenieArgs:
+    def __init__(__self__, *,
+                 external_connection_slug: pulumi.Input[str]):
+        pulumi.set(__self__, "external_connection_slug", external_connection_slug)
+
+    @property
+    @pulumi.getter(name="externalConnectionSlug")
+    def external_connection_slug(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "external_connection_slug")
+
+    @external_connection_slug.setter
+    def external_connection_slug(self, value: pulumi.Input[str]):
+        pulumi.set(self, "external_connection_slug", value)
+
+
+@pulumi.input_type
+class NotificationPolicyRouteDestinationPagerdutyArgs:
+    def __init__(__self__, *,
+                 external_connection_slug: pulumi.Input[str]):
+        pulumi.set(__self__, "external_connection_slug", external_connection_slug)
+
+    @property
+    @pulumi.getter(name="externalConnectionSlug")
+    def external_connection_slug(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "external_connection_slug")
+
+    @external_connection_slug.setter
+    def external_connection_slug(self, value: pulumi.Input[str]):
+        pulumi.set(self, "external_connection_slug", value)
+
+
+@pulumi.input_type
+class NotificationPolicyRouteDestinationSlackArgs:
+    def __init__(__self__, *,
+                 external_connection_slug: pulumi.Input[str],
+                 channels: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        pulumi.set(__self__, "external_connection_slug", external_connection_slug)
+        if channels is not None:
+            pulumi.set(__self__, "channels", channels)
+
+    @property
+    @pulumi.getter(name="externalConnectionSlug")
+    def external_connection_slug(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "external_connection_slug")
+
+    @external_connection_slug.setter
+    def external_connection_slug(self, value: pulumi.Input[str]):
+        pulumi.set(self, "external_connection_slug", value)
+
+    @property
+    @pulumi.getter
+    def channels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "channels")
+
+    @channels.setter
+    def channels(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "channels", value)
+
+
+@pulumi.input_type
+class NotificationPolicyRouteDestinationVictorOpsArgs:
+    def __init__(__self__, *,
+                 external_connection_slug: pulumi.Input[str],
+                 routing_key: Optional[pulumi.Input[str]] = None):
+        pulumi.set(__self__, "external_connection_slug", external_connection_slug)
+        if routing_key is not None:
+            pulumi.set(__self__, "routing_key", routing_key)
+
+    @property
+    @pulumi.getter(name="externalConnectionSlug")
+    def external_connection_slug(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "external_connection_slug")
+
+    @external_connection_slug.setter
+    def external_connection_slug(self, value: pulumi.Input[str]):
+        pulumi.set(self, "external_connection_slug", value)
+
+    @property
+    @pulumi.getter(name="routingKey")
+    def routing_key(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "routing_key")
+
+    @routing_key.setter
+    def routing_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "routing_key", value)
+
+
+@pulumi.input_type
+class NotificationPolicyRouteDestinationWebhookArgs:
+    def __init__(__self__, *,
+                 external_connection_slug: pulumi.Input[str],
+                 query_parameters: Optional[pulumi.Input[Sequence[pulumi.Input['NotificationPolicyRouteDestinationWebhookQueryParameterArgs']]]] = None):
+        pulumi.set(__self__, "external_connection_slug", external_connection_slug)
+        if query_parameters is not None:
+            pulumi.set(__self__, "query_parameters", query_parameters)
+
+    @property
+    @pulumi.getter(name="externalConnectionSlug")
+    def external_connection_slug(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "external_connection_slug")
+
+    @external_connection_slug.setter
+    def external_connection_slug(self, value: pulumi.Input[str]):
+        pulumi.set(self, "external_connection_slug", value)
+
+    @property
+    @pulumi.getter(name="queryParameters")
+    def query_parameters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NotificationPolicyRouteDestinationWebhookQueryParameterArgs']]]]:
+        return pulumi.get(self, "query_parameters")
+
+    @query_parameters.setter
+    def query_parameters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['NotificationPolicyRouteDestinationWebhookQueryParameterArgs']]]]):
+        pulumi.set(self, "query_parameters", value)
+
+
+@pulumi.input_type
+class NotificationPolicyRouteDestinationWebhookQueryParameterArgs:
+    def __init__(__self__, *,
+                 key: pulumi.Input[str],
+                 value: pulumi.Input[str]):
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[str]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
 
 
 @pulumi.input_type

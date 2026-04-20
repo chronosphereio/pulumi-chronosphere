@@ -14,6 +14,7 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class NotificationPolicyRoute
     {
+        public readonly ImmutableArray<Outputs.NotificationPolicyRouteDestination> Destinations;
         public readonly Outputs.NotificationPolicyRouteGroupBy? GroupBy;
         public readonly ImmutableArray<string> Notifiers;
         public readonly string? RepeatInterval;
@@ -21,6 +22,8 @@ namespace Chronosphere.Pulumi.Outputs
 
         [OutputConstructor]
         private NotificationPolicyRoute(
+            ImmutableArray<Outputs.NotificationPolicyRouteDestination> destinations,
+
             Outputs.NotificationPolicyRouteGroupBy? groupBy,
 
             ImmutableArray<string> notifiers,
@@ -29,6 +32,7 @@ namespace Chronosphere.Pulumi.Outputs
 
             string severity)
         {
+            Destinations = destinations;
             GroupBy = groupBy;
             Notifiers = notifiers;
             RepeatInterval = repeatInterval;

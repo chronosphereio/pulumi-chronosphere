@@ -4,6 +4,7 @@
 package io.chronosphere.chronosphere.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import io.chronosphere.chronosphere.outputs.LogIngestConfigFieldParserParserGrokParser;
 import io.chronosphere.chronosphere.outputs.LogIngestConfigFieldParserParserKeyValueParser;
 import io.chronosphere.chronosphere.outputs.LogIngestConfigFieldParserParserRegexParser;
 import java.lang.String;
@@ -13,11 +14,15 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class LogIngestConfigFieldParserParser {
+    private @Nullable LogIngestConfigFieldParserParserGrokParser grokParser;
     private @Nullable LogIngestConfigFieldParserParserKeyValueParser keyValueParser;
     private String parserType;
     private @Nullable LogIngestConfigFieldParserParserRegexParser regexParser;
 
     private LogIngestConfigFieldParserParser() {}
+    public Optional<LogIngestConfigFieldParserParserGrokParser> grokParser() {
+        return Optional.ofNullable(this.grokParser);
+    }
     public Optional<LogIngestConfigFieldParserParserKeyValueParser> keyValueParser() {
         return Optional.ofNullable(this.keyValueParser);
     }
@@ -37,17 +42,24 @@ public final class LogIngestConfigFieldParserParser {
     }
     @CustomType.Builder
     public static final class Builder {
+        private @Nullable LogIngestConfigFieldParserParserGrokParser grokParser;
         private @Nullable LogIngestConfigFieldParserParserKeyValueParser keyValueParser;
         private String parserType;
         private @Nullable LogIngestConfigFieldParserParserRegexParser regexParser;
         public Builder() {}
         public Builder(LogIngestConfigFieldParserParser defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.grokParser = defaults.grokParser;
     	      this.keyValueParser = defaults.keyValueParser;
     	      this.parserType = defaults.parserType;
     	      this.regexParser = defaults.regexParser;
         }
 
+        @CustomType.Setter
+        public Builder grokParser(@Nullable LogIngestConfigFieldParserParserGrokParser grokParser) {
+            this.grokParser = grokParser;
+            return this;
+        }
         @CustomType.Setter
         public Builder keyValueParser(@Nullable LogIngestConfigFieldParserParserKeyValueParser keyValueParser) {
             this.keyValueParser = keyValueParser;
@@ -65,6 +77,7 @@ public final class LogIngestConfigFieldParserParser {
         }
         public LogIngestConfigFieldParserParser build() {
             final var o = new LogIngestConfigFieldParserParser();
+            o.grokParser = grokParser;
             o.keyValueParser = keyValueParser;
             o.parserType = parserType;
             o.regexParser = regexParser;

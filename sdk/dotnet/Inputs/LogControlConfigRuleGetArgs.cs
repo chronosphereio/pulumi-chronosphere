@@ -28,6 +28,9 @@ namespace Chronosphere.Pulumi.Inputs
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        [Input("parseField")]
+        public Input<Inputs.LogControlConfigRuleParseFieldGetArgs>? ParseField { get; set; }
+
         [Input("replaceField")]
         public Input<Inputs.LogControlConfigRuleReplaceFieldGetArgs>? ReplaceField { get; set; }
 

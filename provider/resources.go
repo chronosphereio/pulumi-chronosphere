@@ -145,6 +145,21 @@ func Provider() tfbridge.ProviderInfo {
 			"chronosphere_webhook_alert_notifier": {
 				Tok: tfbridge.MakeResource(mainPkg, mainMod, "WebhookAlertNotifier"),
 			},
+			"chronosphere_slack_external_connection": {
+				Tok: tfbridge.MakeResource(mainPkg, mainMod, "SlackExternalConnection"),
+			},
+			"chronosphere_pagerduty_external_connection": {
+				Tok: tfbridge.MakeResource(mainPkg, mainMod, "PagerdutyExternalConnection"),
+			},
+			"chronosphere_webhook_external_connection": {
+				Tok: tfbridge.MakeResource(mainPkg, mainMod, "WebhookExternalConnection"),
+			},
+			"chronosphere_victorops_external_connection": {
+				Tok: tfbridge.MakeResource(mainPkg, mainMod, "VictoropsExternalConnection"),
+			},
+			"chronosphere_opsgenie_external_connection": {
+				Tok: tfbridge.MakeResource(mainPkg, mainMod, "OpsgenieExternalConnection"),
+			},
 			"chronosphere_gcp_metrics_integration": {
 				Tok: tfbridge.MakeResource(mainPkg, mainMod, "GcpMetricsIntegration"),
 			},

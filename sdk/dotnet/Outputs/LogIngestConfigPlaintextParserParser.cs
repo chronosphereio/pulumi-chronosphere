@@ -14,18 +14,22 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class LogIngestConfigPlaintextParserParser
     {
+        public readonly Outputs.LogIngestConfigPlaintextParserParserGrokParser? GrokParser;
         public readonly Outputs.LogIngestConfigPlaintextParserParserKeyValueParser? KeyValueParser;
         public readonly string ParserType;
         public readonly Outputs.LogIngestConfigPlaintextParserParserRegexParser? RegexParser;
 
         [OutputConstructor]
         private LogIngestConfigPlaintextParserParser(
+            Outputs.LogIngestConfigPlaintextParserParserGrokParser? grokParser,
+
             Outputs.LogIngestConfigPlaintextParserParserKeyValueParser? keyValueParser,
 
             string parserType,
 
             Outputs.LogIngestConfigPlaintextParserParserRegexParser? regexParser)
         {
+            GrokParser = grokParser;
             KeyValueParser = keyValueParser;
             ParserType = parserType;
             RegexParser = regexParser;

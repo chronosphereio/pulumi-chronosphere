@@ -5,7 +5,10 @@ package io.chronosphere.chronosphere.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import io.chronosphere.chronosphere.outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilter;
+import io.chronosphere.chronosphere.outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionMetricFilter;
+import io.chronosphere.chronosphere.outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilter;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -14,6 +17,8 @@ import javax.annotation.Nullable;
 public final class ConsumptionConfigPartitionPartitionPartitionPartitionFilterCondition {
     private @Nullable String datasetId;
     private @Nullable ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilter logFilter;
+    private @Nullable List<ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionMetricFilter> metricFilters;
+    private @Nullable ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilter traceFilter;
 
     private ConsumptionConfigPartitionPartitionPartitionPartitionFilterCondition() {}
     public Optional<String> datasetId() {
@@ -21,6 +26,12 @@ public final class ConsumptionConfigPartitionPartitionPartitionPartitionFilterCo
     }
     public Optional<ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilter> logFilter() {
         return Optional.ofNullable(this.logFilter);
+    }
+    public List<ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionMetricFilter> metricFilters() {
+        return this.metricFilters == null ? List.of() : this.metricFilters;
+    }
+    public Optional<ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilter> traceFilter() {
+        return Optional.ofNullable(this.traceFilter);
     }
 
     public static Builder builder() {
@@ -34,11 +45,15 @@ public final class ConsumptionConfigPartitionPartitionPartitionPartitionFilterCo
     public static final class Builder {
         private @Nullable String datasetId;
         private @Nullable ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilter logFilter;
+        private @Nullable List<ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionMetricFilter> metricFilters;
+        private @Nullable ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilter traceFilter;
         public Builder() {}
         public Builder(ConsumptionConfigPartitionPartitionPartitionPartitionFilterCondition defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.datasetId = defaults.datasetId;
     	      this.logFilter = defaults.logFilter;
+    	      this.metricFilters = defaults.metricFilters;
+    	      this.traceFilter = defaults.traceFilter;
         }
 
         @CustomType.Setter
@@ -51,10 +66,25 @@ public final class ConsumptionConfigPartitionPartitionPartitionPartitionFilterCo
             this.logFilter = logFilter;
             return this;
         }
+        @CustomType.Setter
+        public Builder metricFilters(@Nullable List<ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionMetricFilter> metricFilters) {
+            this.metricFilters = metricFilters;
+            return this;
+        }
+        public Builder metricFilters(ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionMetricFilter... metricFilters) {
+            return metricFilters(List.of(metricFilters));
+        }
+        @CustomType.Setter
+        public Builder traceFilter(@Nullable ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilter traceFilter) {
+            this.traceFilter = traceFilter;
+            return this;
+        }
         public ConsumptionConfigPartitionPartitionPartitionPartitionFilterCondition build() {
             final var o = new ConsumptionConfigPartitionPartitionPartitionPartitionFilterCondition();
             o.datasetId = datasetId;
             o.logFilter = logFilter;
+            o.metricFilters = metricFilters;
+            o.traceFilter = traceFilter;
             return o;
         }
     }

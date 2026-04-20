@@ -25,26 +25,128 @@ __all__ = [
     'ConsumptionConfigPartitionFilter',
     'ConsumptionConfigPartitionFilterCondition',
     'ConsumptionConfigPartitionFilterConditionLogFilter',
+    'ConsumptionConfigPartitionFilterConditionMetricFilter',
+    'ConsumptionConfigPartitionFilterConditionTraceFilter',
+    'ConsumptionConfigPartitionFilterConditionTraceFilterSpan',
+    'ConsumptionConfigPartitionFilterConditionTraceFilterSpanDuration',
+    'ConsumptionConfigPartitionFilterConditionTraceFilterSpanError',
+    'ConsumptionConfigPartitionFilterConditionTraceFilterSpanIsRootSpan',
+    'ConsumptionConfigPartitionFilterConditionTraceFilterSpanOperation',
+    'ConsumptionConfigPartitionFilterConditionTraceFilterSpanParentOperation',
+    'ConsumptionConfigPartitionFilterConditionTraceFilterSpanParentService',
+    'ConsumptionConfigPartitionFilterConditionTraceFilterSpanService',
+    'ConsumptionConfigPartitionFilterConditionTraceFilterSpanSpanCount',
+    'ConsumptionConfigPartitionFilterConditionTraceFilterSpanTag',
+    'ConsumptionConfigPartitionFilterConditionTraceFilterSpanTagNumericValue',
+    'ConsumptionConfigPartitionFilterConditionTraceFilterSpanTagValue',
+    'ConsumptionConfigPartitionFilterConditionTraceFilterTrace',
+    'ConsumptionConfigPartitionFilterConditionTraceFilterTraceDuration',
+    'ConsumptionConfigPartitionFilterConditionTraceFilterTraceError',
     'ConsumptionConfigPartitionPartition',
     'ConsumptionConfigPartitionPartitionFilter',
     'ConsumptionConfigPartitionPartitionFilterCondition',
     'ConsumptionConfigPartitionPartitionFilterConditionLogFilter',
+    'ConsumptionConfigPartitionPartitionFilterConditionMetricFilter',
+    'ConsumptionConfigPartitionPartitionFilterConditionTraceFilter',
+    'ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpan',
+    'ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanDuration',
+    'ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanError',
+    'ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanIsRootSpan',
+    'ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanOperation',
+    'ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanParentOperation',
+    'ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanParentService',
+    'ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanService',
+    'ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanSpanCount',
+    'ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanTag',
+    'ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanTagNumericValue',
+    'ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanTagValue',
+    'ConsumptionConfigPartitionPartitionFilterConditionTraceFilterTrace',
+    'ConsumptionConfigPartitionPartitionFilterConditionTraceFilterTraceDuration',
+    'ConsumptionConfigPartitionPartitionFilterConditionTraceFilterTraceError',
     'ConsumptionConfigPartitionPartitionPartition',
     'ConsumptionConfigPartitionPartitionPartitionFilter',
     'ConsumptionConfigPartitionPartitionPartitionFilterCondition',
     'ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilter',
+    'ConsumptionConfigPartitionPartitionPartitionFilterConditionMetricFilter',
+    'ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilter',
+    'ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpan',
+    'ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanDuration',
+    'ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanError',
+    'ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanIsRootSpan',
+    'ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanOperation',
+    'ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperation',
+    'ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanParentService',
+    'ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanService',
+    'ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanSpanCount',
+    'ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanTag',
+    'ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanTagNumericValue',
+    'ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValue',
+    'ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterTrace',
+    'ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterTraceDuration',
+    'ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterTraceError',
     'ConsumptionConfigPartitionPartitionPartitionPartition',
     'ConsumptionConfigPartitionPartitionPartitionPartitionFilter',
     'ConsumptionConfigPartitionPartitionPartitionPartitionFilterCondition',
     'ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilter',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionMetricFilter',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilter',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpan',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanDuration',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanError',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanIsRootSpan',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanOperation',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperation',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentService',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanService',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanSpanCount',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTag',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagNumericValue',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValue',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterTrace',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceDuration',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceError',
     'ConsumptionConfigPartitionPartitionPartitionPartitionPartition',
     'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilter',
     'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterCondition',
     'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionMetricFilter',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilter',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpan',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanDuration',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanError',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanIsRootSpan',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanOperation',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperation',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentService',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanService',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanSpanCount',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTag',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagNumericValue',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValue',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTrace',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceDuration',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceError',
     'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartition',
     'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilter',
     'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterCondition',
     'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionMetricFilter',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilter',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpan',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanDuration',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanError',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanIsRootSpan',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanOperation',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperation',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentService',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanService',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanSpanCount',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTag',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagNumericValue',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValue',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTrace',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceDuration',
+    'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceError',
     'DatasetConfiguration',
     'DatasetConfigurationLogDataset',
     'DatasetConfigurationLogDatasetMatchCriteria',
@@ -122,6 +224,13 @@ __all__ = [
     'LogControlConfigRuleEmitMetricsHistogramValue',
     'LogControlConfigRuleEmitMetricsLabel',
     'LogControlConfigRuleEmitMetricsLabelValue',
+    'LogControlConfigRuleParseField',
+    'LogControlConfigRuleParseFieldDestination',
+    'LogControlConfigRuleParseFieldParser',
+    'LogControlConfigRuleParseFieldParserGrokParser',
+    'LogControlConfigRuleParseFieldParserKeyValueParser',
+    'LogControlConfigRuleParseFieldParserRegexParser',
+    'LogControlConfigRuleParseFieldSource',
     'LogControlConfigRuleReplaceField',
     'LogControlConfigRuleReplaceFieldField',
     'LogControlConfigRuleReplaceFieldMappedValue',
@@ -143,11 +252,13 @@ __all__ = [
     'LogIngestConfigFieldParser',
     'LogIngestConfigFieldParserDestination',
     'LogIngestConfigFieldParserParser',
+    'LogIngestConfigFieldParserParserGrokParser',
     'LogIngestConfigFieldParserParserKeyValueParser',
     'LogIngestConfigFieldParserParserRegexParser',
     'LogIngestConfigFieldParserSource',
     'LogIngestConfigPlaintextParser',
     'LogIngestConfigPlaintextParserParser',
+    'LogIngestConfigPlaintextParserParserGrokParser',
     'LogIngestConfigPlaintextParserParserKeyValueParser',
     'LogIngestConfigPlaintextParserParserRegexParser',
     'LogscaleActionEmailAction',
@@ -160,6 +271,7 @@ __all__ = [
     'LogscaleActionVictorOpsAction',
     'LogscaleActionWebhookAction',
     'MappingRuleStoragePolicy',
+    'MonitorNotificationTemplate',
     'MonitorQuery',
     'MonitorSchedule',
     'MonitorScheduleRange',
@@ -174,8 +286,24 @@ __all__ = [
     'NotificationPolicyOverride',
     'NotificationPolicyOverrideAlertLabelMatcher',
     'NotificationPolicyOverrideRoute',
+    'NotificationPolicyOverrideRouteDestination',
+    'NotificationPolicyOverrideRouteDestinationEmail',
+    'NotificationPolicyOverrideRouteDestinationOpsGenie',
+    'NotificationPolicyOverrideRouteDestinationPagerduty',
+    'NotificationPolicyOverrideRouteDestinationSlack',
+    'NotificationPolicyOverrideRouteDestinationVictorOps',
+    'NotificationPolicyOverrideRouteDestinationWebhook',
+    'NotificationPolicyOverrideRouteDestinationWebhookQueryParameter',
     'NotificationPolicyOverrideRouteGroupBy',
     'NotificationPolicyRoute',
+    'NotificationPolicyRouteDestination',
+    'NotificationPolicyRouteDestinationEmail',
+    'NotificationPolicyRouteDestinationOpsGenie',
+    'NotificationPolicyRouteDestinationPagerduty',
+    'NotificationPolicyRouteDestinationSlack',
+    'NotificationPolicyRouteDestinationVictorOps',
+    'NotificationPolicyRouteDestinationWebhook',
+    'NotificationPolicyRouteDestinationWebhookQueryParameter',
     'NotificationPolicyRouteGroupBy',
     'OpsgenieAlertNotifierResponder',
     'OtelMetricsIngestionResourceAttributes',
@@ -743,6 +871,10 @@ class ConsumptionConfigPartitionFilterCondition(dict):
             suggest = "dataset_id"
         elif key == "logFilter":
             suggest = "log_filter"
+        elif key == "metricFilters":
+            suggest = "metric_filters"
+        elif key == "traceFilter":
+            suggest = "trace_filter"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionFilterCondition. Access the value via the '{suggest}' property getter instead.")
@@ -757,11 +889,17 @@ class ConsumptionConfigPartitionFilterCondition(dict):
 
     def __init__(__self__, *,
                  dataset_id: Optional[str] = None,
-                 log_filter: Optional['outputs.ConsumptionConfigPartitionFilterConditionLogFilter'] = None):
+                 log_filter: Optional['outputs.ConsumptionConfigPartitionFilterConditionLogFilter'] = None,
+                 metric_filters: Optional[Sequence['outputs.ConsumptionConfigPartitionFilterConditionMetricFilter']] = None,
+                 trace_filter: Optional['outputs.ConsumptionConfigPartitionFilterConditionTraceFilter'] = None):
         if dataset_id is not None:
             pulumi.set(__self__, "dataset_id", dataset_id)
         if log_filter is not None:
             pulumi.set(__self__, "log_filter", log_filter)
+        if metric_filters is not None:
+            pulumi.set(__self__, "metric_filters", metric_filters)
+        if trace_filter is not None:
+            pulumi.set(__self__, "trace_filter", trace_filter)
 
     @property
     @pulumi.getter(name="datasetId")
@@ -772,6 +910,16 @@ class ConsumptionConfigPartitionFilterCondition(dict):
     @pulumi.getter(name="logFilter")
     def log_filter(self) -> Optional['outputs.ConsumptionConfigPartitionFilterConditionLogFilter']:
         return pulumi.get(self, "log_filter")
+
+    @property
+    @pulumi.getter(name="metricFilters")
+    def metric_filters(self) -> Optional[Sequence['outputs.ConsumptionConfigPartitionFilterConditionMetricFilter']]:
+        return pulumi.get(self, "metric_filters")
+
+    @property
+    @pulumi.getter(name="traceFilter")
+    def trace_filter(self) -> Optional['outputs.ConsumptionConfigPartitionFilterConditionTraceFilter']:
+        return pulumi.get(self, "trace_filter")
 
 
 @pulumi.output_type
@@ -784,6 +932,626 @@ class ConsumptionConfigPartitionFilterConditionLogFilter(dict):
     @pulumi.getter
     def query(self) -> str:
         return pulumi.get(self, "query")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionFilterConditionMetricFilter(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "valueGlob":
+            suggest = "value_glob"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionFilterConditionMetricFilter. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumptionConfigPartitionFilterConditionMetricFilter.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumptionConfigPartitionFilterConditionMetricFilter.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 name: str,
+                 value_glob: str):
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value_glob", value_glob)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="valueGlob")
+    def value_glob(self) -> str:
+        return pulumi.get(self, "value_glob")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionFilterConditionTraceFilter(dict):
+    def __init__(__self__, *,
+                 spans: Optional[Sequence['outputs.ConsumptionConfigPartitionFilterConditionTraceFilterSpan']] = None,
+                 trace: Optional['outputs.ConsumptionConfigPartitionFilterConditionTraceFilterTrace'] = None):
+        if spans is not None:
+            pulumi.set(__self__, "spans", spans)
+        if trace is not None:
+            pulumi.set(__self__, "trace", trace)
+
+    @property
+    @pulumi.getter
+    def spans(self) -> Optional[Sequence['outputs.ConsumptionConfigPartitionFilterConditionTraceFilterSpan']]:
+        return pulumi.get(self, "spans")
+
+    @property
+    @pulumi.getter
+    def trace(self) -> Optional['outputs.ConsumptionConfigPartitionFilterConditionTraceFilterTrace']:
+        return pulumi.get(self, "trace")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionFilterConditionTraceFilterSpan(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "isRootSpan":
+            suggest = "is_root_span"
+        elif key == "matchType":
+            suggest = "match_type"
+        elif key == "parentOperation":
+            suggest = "parent_operation"
+        elif key == "parentService":
+            suggest = "parent_service"
+        elif key == "spanCount":
+            suggest = "span_count"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionFilterConditionTraceFilterSpan. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumptionConfigPartitionFilterConditionTraceFilterSpan.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumptionConfigPartitionFilterConditionTraceFilterSpan.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 duration: Optional['outputs.ConsumptionConfigPartitionFilterConditionTraceFilterSpanDuration'] = None,
+                 error: Optional['outputs.ConsumptionConfigPartitionFilterConditionTraceFilterSpanError'] = None,
+                 is_root_span: Optional['outputs.ConsumptionConfigPartitionFilterConditionTraceFilterSpanIsRootSpan'] = None,
+                 match_type: Optional[str] = None,
+                 operation: Optional['outputs.ConsumptionConfigPartitionFilterConditionTraceFilterSpanOperation'] = None,
+                 parent_operation: Optional['outputs.ConsumptionConfigPartitionFilterConditionTraceFilterSpanParentOperation'] = None,
+                 parent_service: Optional['outputs.ConsumptionConfigPartitionFilterConditionTraceFilterSpanParentService'] = None,
+                 service: Optional['outputs.ConsumptionConfigPartitionFilterConditionTraceFilterSpanService'] = None,
+                 span_count: Optional['outputs.ConsumptionConfigPartitionFilterConditionTraceFilterSpanSpanCount'] = None,
+                 tags: Optional[Sequence['outputs.ConsumptionConfigPartitionFilterConditionTraceFilterSpanTag']] = None):
+        if duration is not None:
+            pulumi.set(__self__, "duration", duration)
+        if error is not None:
+            pulumi.set(__self__, "error", error)
+        if is_root_span is not None:
+            pulumi.set(__self__, "is_root_span", is_root_span)
+        if match_type is not None:
+            pulumi.set(__self__, "match_type", match_type)
+        if operation is not None:
+            pulumi.set(__self__, "operation", operation)
+        if parent_operation is not None:
+            pulumi.set(__self__, "parent_operation", parent_operation)
+        if parent_service is not None:
+            pulumi.set(__self__, "parent_service", parent_service)
+        if service is not None:
+            pulumi.set(__self__, "service", service)
+        if span_count is not None:
+            pulumi.set(__self__, "span_count", span_count)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+
+    @property
+    @pulumi.getter
+    def duration(self) -> Optional['outputs.ConsumptionConfigPartitionFilterConditionTraceFilterSpanDuration']:
+        return pulumi.get(self, "duration")
+
+    @property
+    @pulumi.getter
+    def error(self) -> Optional['outputs.ConsumptionConfigPartitionFilterConditionTraceFilterSpanError']:
+        return pulumi.get(self, "error")
+
+    @property
+    @pulumi.getter(name="isRootSpan")
+    def is_root_span(self) -> Optional['outputs.ConsumptionConfigPartitionFilterConditionTraceFilterSpanIsRootSpan']:
+        return pulumi.get(self, "is_root_span")
+
+    @property
+    @pulumi.getter(name="matchType")
+    def match_type(self) -> Optional[str]:
+        return pulumi.get(self, "match_type")
+
+    @property
+    @pulumi.getter
+    def operation(self) -> Optional['outputs.ConsumptionConfigPartitionFilterConditionTraceFilterSpanOperation']:
+        return pulumi.get(self, "operation")
+
+    @property
+    @pulumi.getter(name="parentOperation")
+    def parent_operation(self) -> Optional['outputs.ConsumptionConfigPartitionFilterConditionTraceFilterSpanParentOperation']:
+        return pulumi.get(self, "parent_operation")
+
+    @property
+    @pulumi.getter(name="parentService")
+    def parent_service(self) -> Optional['outputs.ConsumptionConfigPartitionFilterConditionTraceFilterSpanParentService']:
+        return pulumi.get(self, "parent_service")
+
+    @property
+    @pulumi.getter
+    def service(self) -> Optional['outputs.ConsumptionConfigPartitionFilterConditionTraceFilterSpanService']:
+        return pulumi.get(self, "service")
+
+    @property
+    @pulumi.getter(name="spanCount")
+    def span_count(self) -> Optional['outputs.ConsumptionConfigPartitionFilterConditionTraceFilterSpanSpanCount']:
+        return pulumi.get(self, "span_count")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Sequence['outputs.ConsumptionConfigPartitionFilterConditionTraceFilterSpanTag']]:
+        return pulumi.get(self, "tags")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionFilterConditionTraceFilterSpanDuration(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "maxSecs":
+            suggest = "max_secs"
+        elif key == "minSecs":
+            suggest = "min_secs"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionFilterConditionTraceFilterSpanDuration. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumptionConfigPartitionFilterConditionTraceFilterSpanDuration.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumptionConfigPartitionFilterConditionTraceFilterSpanDuration.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 max_secs: Optional[float] = None,
+                 min_secs: Optional[float] = None):
+        if max_secs is not None:
+            pulumi.set(__self__, "max_secs", max_secs)
+        if min_secs is not None:
+            pulumi.set(__self__, "min_secs", min_secs)
+
+    @property
+    @pulumi.getter(name="maxSecs")
+    def max_secs(self) -> Optional[float]:
+        return pulumi.get(self, "max_secs")
+
+    @property
+    @pulumi.getter(name="minSecs")
+    def min_secs(self) -> Optional[float]:
+        return pulumi.get(self, "min_secs")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionFilterConditionTraceFilterSpanError(dict):
+    def __init__(__self__, *,
+                 value: bool):
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> bool:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionFilterConditionTraceFilterSpanIsRootSpan(dict):
+    def __init__(__self__, *,
+                 value: bool):
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> bool:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionFilterConditionTraceFilterSpanOperation(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "inValues":
+            suggest = "in_values"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionFilterConditionTraceFilterSpanOperation. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumptionConfigPartitionFilterConditionTraceFilterSpanOperation.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumptionConfigPartitionFilterConditionTraceFilterSpanOperation.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 in_values: Optional[Sequence[str]] = None,
+                 match: Optional[str] = None,
+                 value: Optional[str] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "in_values")
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[str]:
+        return pulumi.get(self, "match")
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[str]:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionFilterConditionTraceFilterSpanParentOperation(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "inValues":
+            suggest = "in_values"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionFilterConditionTraceFilterSpanParentOperation. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumptionConfigPartitionFilterConditionTraceFilterSpanParentOperation.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumptionConfigPartitionFilterConditionTraceFilterSpanParentOperation.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 in_values: Optional[Sequence[str]] = None,
+                 match: Optional[str] = None,
+                 value: Optional[str] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "in_values")
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[str]:
+        return pulumi.get(self, "match")
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[str]:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionFilterConditionTraceFilterSpanParentService(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "inValues":
+            suggest = "in_values"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionFilterConditionTraceFilterSpanParentService. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumptionConfigPartitionFilterConditionTraceFilterSpanParentService.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumptionConfigPartitionFilterConditionTraceFilterSpanParentService.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 in_values: Optional[Sequence[str]] = None,
+                 match: Optional[str] = None,
+                 value: Optional[str] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "in_values")
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[str]:
+        return pulumi.get(self, "match")
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[str]:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionFilterConditionTraceFilterSpanService(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "inValues":
+            suggest = "in_values"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionFilterConditionTraceFilterSpanService. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumptionConfigPartitionFilterConditionTraceFilterSpanService.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumptionConfigPartitionFilterConditionTraceFilterSpanService.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 in_values: Optional[Sequence[str]] = None,
+                 match: Optional[str] = None,
+                 value: Optional[str] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "in_values")
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[str]:
+        return pulumi.get(self, "match")
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[str]:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionFilterConditionTraceFilterSpanSpanCount(dict):
+    def __init__(__self__, *,
+                 max: Optional[int] = None,
+                 min: Optional[int] = None):
+        if max is not None:
+            pulumi.set(__self__, "max", max)
+        if min is not None:
+            pulumi.set(__self__, "min", min)
+
+    @property
+    @pulumi.getter
+    def max(self) -> Optional[int]:
+        return pulumi.get(self, "max")
+
+    @property
+    @pulumi.getter
+    def min(self) -> Optional[int]:
+        return pulumi.get(self, "min")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionFilterConditionTraceFilterSpanTag(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "numericValue":
+            suggest = "numeric_value"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionFilterConditionTraceFilterSpanTag. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumptionConfigPartitionFilterConditionTraceFilterSpanTag.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumptionConfigPartitionFilterConditionTraceFilterSpanTag.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 key: Optional[str] = None,
+                 numeric_value: Optional['outputs.ConsumptionConfigPartitionFilterConditionTraceFilterSpanTagNumericValue'] = None,
+                 value: Optional['outputs.ConsumptionConfigPartitionFilterConditionTraceFilterSpanTagValue'] = None):
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if numeric_value is not None:
+            pulumi.set(__self__, "numeric_value", numeric_value)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> Optional[str]:
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter(name="numericValue")
+    def numeric_value(self) -> Optional['outputs.ConsumptionConfigPartitionFilterConditionTraceFilterSpanTagNumericValue']:
+        return pulumi.get(self, "numeric_value")
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional['outputs.ConsumptionConfigPartitionFilterConditionTraceFilterSpanTagValue']:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionFilterConditionTraceFilterSpanTagNumericValue(dict):
+    def __init__(__self__, *,
+                 comparison: str,
+                 value: float):
+        pulumi.set(__self__, "comparison", comparison)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def comparison(self) -> str:
+        return pulumi.get(self, "comparison")
+
+    @property
+    @pulumi.getter
+    def value(self) -> float:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionFilterConditionTraceFilterSpanTagValue(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "inValues":
+            suggest = "in_values"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionFilterConditionTraceFilterSpanTagValue. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumptionConfigPartitionFilterConditionTraceFilterSpanTagValue.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumptionConfigPartitionFilterConditionTraceFilterSpanTagValue.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 in_values: Optional[Sequence[str]] = None,
+                 match: Optional[str] = None,
+                 value: Optional[str] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "in_values")
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[str]:
+        return pulumi.get(self, "match")
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[str]:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionFilterConditionTraceFilterTrace(dict):
+    def __init__(__self__, *,
+                 duration: Optional['outputs.ConsumptionConfigPartitionFilterConditionTraceFilterTraceDuration'] = None,
+                 error: Optional['outputs.ConsumptionConfigPartitionFilterConditionTraceFilterTraceError'] = None):
+        if duration is not None:
+            pulumi.set(__self__, "duration", duration)
+        if error is not None:
+            pulumi.set(__self__, "error", error)
+
+    @property
+    @pulumi.getter
+    def duration(self) -> Optional['outputs.ConsumptionConfigPartitionFilterConditionTraceFilterTraceDuration']:
+        return pulumi.get(self, "duration")
+
+    @property
+    @pulumi.getter
+    def error(self) -> Optional['outputs.ConsumptionConfigPartitionFilterConditionTraceFilterTraceError']:
+        return pulumi.get(self, "error")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionFilterConditionTraceFilterTraceDuration(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "maxSecs":
+            suggest = "max_secs"
+        elif key == "minSecs":
+            suggest = "min_secs"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionFilterConditionTraceFilterTraceDuration. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumptionConfigPartitionFilterConditionTraceFilterTraceDuration.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumptionConfigPartitionFilterConditionTraceFilterTraceDuration.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 max_secs: Optional[float] = None,
+                 min_secs: Optional[float] = None):
+        if max_secs is not None:
+            pulumi.set(__self__, "max_secs", max_secs)
+        if min_secs is not None:
+            pulumi.set(__self__, "min_secs", min_secs)
+
+    @property
+    @pulumi.getter(name="maxSecs")
+    def max_secs(self) -> Optional[float]:
+        return pulumi.get(self, "max_secs")
+
+    @property
+    @pulumi.getter(name="minSecs")
+    def min_secs(self) -> Optional[float]:
+        return pulumi.get(self, "min_secs")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionFilterConditionTraceFilterTraceError(dict):
+    def __init__(__self__, *,
+                 value: bool):
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> bool:
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type
@@ -853,6 +1621,10 @@ class ConsumptionConfigPartitionPartitionFilterCondition(dict):
             suggest = "dataset_id"
         elif key == "logFilter":
             suggest = "log_filter"
+        elif key == "metricFilters":
+            suggest = "metric_filters"
+        elif key == "traceFilter":
+            suggest = "trace_filter"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionPartitionFilterCondition. Access the value via the '{suggest}' property getter instead.")
@@ -867,11 +1639,17 @@ class ConsumptionConfigPartitionPartitionFilterCondition(dict):
 
     def __init__(__self__, *,
                  dataset_id: Optional[str] = None,
-                 log_filter: Optional['outputs.ConsumptionConfigPartitionPartitionFilterConditionLogFilter'] = None):
+                 log_filter: Optional['outputs.ConsumptionConfigPartitionPartitionFilterConditionLogFilter'] = None,
+                 metric_filters: Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionFilterConditionMetricFilter']] = None,
+                 trace_filter: Optional['outputs.ConsumptionConfigPartitionPartitionFilterConditionTraceFilter'] = None):
         if dataset_id is not None:
             pulumi.set(__self__, "dataset_id", dataset_id)
         if log_filter is not None:
             pulumi.set(__self__, "log_filter", log_filter)
+        if metric_filters is not None:
+            pulumi.set(__self__, "metric_filters", metric_filters)
+        if trace_filter is not None:
+            pulumi.set(__self__, "trace_filter", trace_filter)
 
     @property
     @pulumi.getter(name="datasetId")
@@ -882,6 +1660,16 @@ class ConsumptionConfigPartitionPartitionFilterCondition(dict):
     @pulumi.getter(name="logFilter")
     def log_filter(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionFilterConditionLogFilter']:
         return pulumi.get(self, "log_filter")
+
+    @property
+    @pulumi.getter(name="metricFilters")
+    def metric_filters(self) -> Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionFilterConditionMetricFilter']]:
+        return pulumi.get(self, "metric_filters")
+
+    @property
+    @pulumi.getter(name="traceFilter")
+    def trace_filter(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionFilterConditionTraceFilter']:
+        return pulumi.get(self, "trace_filter")
 
 
 @pulumi.output_type
@@ -894,6 +1682,626 @@ class ConsumptionConfigPartitionPartitionFilterConditionLogFilter(dict):
     @pulumi.getter
     def query(self) -> str:
         return pulumi.get(self, "query")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionFilterConditionMetricFilter(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "valueGlob":
+            suggest = "value_glob"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionPartitionFilterConditionMetricFilter. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumptionConfigPartitionPartitionFilterConditionMetricFilter.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumptionConfigPartitionPartitionFilterConditionMetricFilter.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 name: str,
+                 value_glob: str):
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value_glob", value_glob)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="valueGlob")
+    def value_glob(self) -> str:
+        return pulumi.get(self, "value_glob")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionFilterConditionTraceFilter(dict):
+    def __init__(__self__, *,
+                 spans: Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpan']] = None,
+                 trace: Optional['outputs.ConsumptionConfigPartitionPartitionFilterConditionTraceFilterTrace'] = None):
+        if spans is not None:
+            pulumi.set(__self__, "spans", spans)
+        if trace is not None:
+            pulumi.set(__self__, "trace", trace)
+
+    @property
+    @pulumi.getter
+    def spans(self) -> Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpan']]:
+        return pulumi.get(self, "spans")
+
+    @property
+    @pulumi.getter
+    def trace(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionFilterConditionTraceFilterTrace']:
+        return pulumi.get(self, "trace")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpan(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "isRootSpan":
+            suggest = "is_root_span"
+        elif key == "matchType":
+            suggest = "match_type"
+        elif key == "parentOperation":
+            suggest = "parent_operation"
+        elif key == "parentService":
+            suggest = "parent_service"
+        elif key == "spanCount":
+            suggest = "span_count"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpan. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpan.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpan.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 duration: Optional['outputs.ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanDuration'] = None,
+                 error: Optional['outputs.ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanError'] = None,
+                 is_root_span: Optional['outputs.ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanIsRootSpan'] = None,
+                 match_type: Optional[str] = None,
+                 operation: Optional['outputs.ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanOperation'] = None,
+                 parent_operation: Optional['outputs.ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanParentOperation'] = None,
+                 parent_service: Optional['outputs.ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanParentService'] = None,
+                 service: Optional['outputs.ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanService'] = None,
+                 span_count: Optional['outputs.ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanSpanCount'] = None,
+                 tags: Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanTag']] = None):
+        if duration is not None:
+            pulumi.set(__self__, "duration", duration)
+        if error is not None:
+            pulumi.set(__self__, "error", error)
+        if is_root_span is not None:
+            pulumi.set(__self__, "is_root_span", is_root_span)
+        if match_type is not None:
+            pulumi.set(__self__, "match_type", match_type)
+        if operation is not None:
+            pulumi.set(__self__, "operation", operation)
+        if parent_operation is not None:
+            pulumi.set(__self__, "parent_operation", parent_operation)
+        if parent_service is not None:
+            pulumi.set(__self__, "parent_service", parent_service)
+        if service is not None:
+            pulumi.set(__self__, "service", service)
+        if span_count is not None:
+            pulumi.set(__self__, "span_count", span_count)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+
+    @property
+    @pulumi.getter
+    def duration(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanDuration']:
+        return pulumi.get(self, "duration")
+
+    @property
+    @pulumi.getter
+    def error(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanError']:
+        return pulumi.get(self, "error")
+
+    @property
+    @pulumi.getter(name="isRootSpan")
+    def is_root_span(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanIsRootSpan']:
+        return pulumi.get(self, "is_root_span")
+
+    @property
+    @pulumi.getter(name="matchType")
+    def match_type(self) -> Optional[str]:
+        return pulumi.get(self, "match_type")
+
+    @property
+    @pulumi.getter
+    def operation(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanOperation']:
+        return pulumi.get(self, "operation")
+
+    @property
+    @pulumi.getter(name="parentOperation")
+    def parent_operation(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanParentOperation']:
+        return pulumi.get(self, "parent_operation")
+
+    @property
+    @pulumi.getter(name="parentService")
+    def parent_service(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanParentService']:
+        return pulumi.get(self, "parent_service")
+
+    @property
+    @pulumi.getter
+    def service(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanService']:
+        return pulumi.get(self, "service")
+
+    @property
+    @pulumi.getter(name="spanCount")
+    def span_count(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanSpanCount']:
+        return pulumi.get(self, "span_count")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanTag']]:
+        return pulumi.get(self, "tags")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanDuration(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "maxSecs":
+            suggest = "max_secs"
+        elif key == "minSecs":
+            suggest = "min_secs"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanDuration. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanDuration.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanDuration.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 max_secs: Optional[float] = None,
+                 min_secs: Optional[float] = None):
+        if max_secs is not None:
+            pulumi.set(__self__, "max_secs", max_secs)
+        if min_secs is not None:
+            pulumi.set(__self__, "min_secs", min_secs)
+
+    @property
+    @pulumi.getter(name="maxSecs")
+    def max_secs(self) -> Optional[float]:
+        return pulumi.get(self, "max_secs")
+
+    @property
+    @pulumi.getter(name="minSecs")
+    def min_secs(self) -> Optional[float]:
+        return pulumi.get(self, "min_secs")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanError(dict):
+    def __init__(__self__, *,
+                 value: bool):
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> bool:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanIsRootSpan(dict):
+    def __init__(__self__, *,
+                 value: bool):
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> bool:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanOperation(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "inValues":
+            suggest = "in_values"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanOperation. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanOperation.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanOperation.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 in_values: Optional[Sequence[str]] = None,
+                 match: Optional[str] = None,
+                 value: Optional[str] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "in_values")
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[str]:
+        return pulumi.get(self, "match")
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[str]:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanParentOperation(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "inValues":
+            suggest = "in_values"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanParentOperation. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanParentOperation.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanParentOperation.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 in_values: Optional[Sequence[str]] = None,
+                 match: Optional[str] = None,
+                 value: Optional[str] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "in_values")
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[str]:
+        return pulumi.get(self, "match")
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[str]:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanParentService(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "inValues":
+            suggest = "in_values"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanParentService. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanParentService.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanParentService.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 in_values: Optional[Sequence[str]] = None,
+                 match: Optional[str] = None,
+                 value: Optional[str] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "in_values")
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[str]:
+        return pulumi.get(self, "match")
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[str]:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanService(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "inValues":
+            suggest = "in_values"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanService. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanService.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanService.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 in_values: Optional[Sequence[str]] = None,
+                 match: Optional[str] = None,
+                 value: Optional[str] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "in_values")
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[str]:
+        return pulumi.get(self, "match")
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[str]:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanSpanCount(dict):
+    def __init__(__self__, *,
+                 max: Optional[int] = None,
+                 min: Optional[int] = None):
+        if max is not None:
+            pulumi.set(__self__, "max", max)
+        if min is not None:
+            pulumi.set(__self__, "min", min)
+
+    @property
+    @pulumi.getter
+    def max(self) -> Optional[int]:
+        return pulumi.get(self, "max")
+
+    @property
+    @pulumi.getter
+    def min(self) -> Optional[int]:
+        return pulumi.get(self, "min")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanTag(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "numericValue":
+            suggest = "numeric_value"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanTag. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanTag.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanTag.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 key: Optional[str] = None,
+                 numeric_value: Optional['outputs.ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanTagNumericValue'] = None,
+                 value: Optional['outputs.ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanTagValue'] = None):
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if numeric_value is not None:
+            pulumi.set(__self__, "numeric_value", numeric_value)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> Optional[str]:
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter(name="numericValue")
+    def numeric_value(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanTagNumericValue']:
+        return pulumi.get(self, "numeric_value")
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanTagValue']:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanTagNumericValue(dict):
+    def __init__(__self__, *,
+                 comparison: str,
+                 value: float):
+        pulumi.set(__self__, "comparison", comparison)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def comparison(self) -> str:
+        return pulumi.get(self, "comparison")
+
+    @property
+    @pulumi.getter
+    def value(self) -> float:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanTagValue(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "inValues":
+            suggest = "in_values"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanTagValue. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanTagValue.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanTagValue.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 in_values: Optional[Sequence[str]] = None,
+                 match: Optional[str] = None,
+                 value: Optional[str] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "in_values")
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[str]:
+        return pulumi.get(self, "match")
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[str]:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionFilterConditionTraceFilterTrace(dict):
+    def __init__(__self__, *,
+                 duration: Optional['outputs.ConsumptionConfigPartitionPartitionFilterConditionTraceFilterTraceDuration'] = None,
+                 error: Optional['outputs.ConsumptionConfigPartitionPartitionFilterConditionTraceFilterTraceError'] = None):
+        if duration is not None:
+            pulumi.set(__self__, "duration", duration)
+        if error is not None:
+            pulumi.set(__self__, "error", error)
+
+    @property
+    @pulumi.getter
+    def duration(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionFilterConditionTraceFilterTraceDuration']:
+        return pulumi.get(self, "duration")
+
+    @property
+    @pulumi.getter
+    def error(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionFilterConditionTraceFilterTraceError']:
+        return pulumi.get(self, "error")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionFilterConditionTraceFilterTraceDuration(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "maxSecs":
+            suggest = "max_secs"
+        elif key == "minSecs":
+            suggest = "min_secs"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionPartitionFilterConditionTraceFilterTraceDuration. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumptionConfigPartitionPartitionFilterConditionTraceFilterTraceDuration.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumptionConfigPartitionPartitionFilterConditionTraceFilterTraceDuration.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 max_secs: Optional[float] = None,
+                 min_secs: Optional[float] = None):
+        if max_secs is not None:
+            pulumi.set(__self__, "max_secs", max_secs)
+        if min_secs is not None:
+            pulumi.set(__self__, "min_secs", min_secs)
+
+    @property
+    @pulumi.getter(name="maxSecs")
+    def max_secs(self) -> Optional[float]:
+        return pulumi.get(self, "max_secs")
+
+    @property
+    @pulumi.getter(name="minSecs")
+    def min_secs(self) -> Optional[float]:
+        return pulumi.get(self, "min_secs")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionFilterConditionTraceFilterTraceError(dict):
+    def __init__(__self__, *,
+                 value: bool):
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> bool:
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type
@@ -963,6 +2371,10 @@ class ConsumptionConfigPartitionPartitionPartitionFilterCondition(dict):
             suggest = "dataset_id"
         elif key == "logFilter":
             suggest = "log_filter"
+        elif key == "metricFilters":
+            suggest = "metric_filters"
+        elif key == "traceFilter":
+            suggest = "trace_filter"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionPartitionPartitionFilterCondition. Access the value via the '{suggest}' property getter instead.")
@@ -977,11 +2389,17 @@ class ConsumptionConfigPartitionPartitionPartitionFilterCondition(dict):
 
     def __init__(__self__, *,
                  dataset_id: Optional[str] = None,
-                 log_filter: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilter'] = None):
+                 log_filter: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilter'] = None,
+                 metric_filters: Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionMetricFilter']] = None,
+                 trace_filter: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilter'] = None):
         if dataset_id is not None:
             pulumi.set(__self__, "dataset_id", dataset_id)
         if log_filter is not None:
             pulumi.set(__self__, "log_filter", log_filter)
+        if metric_filters is not None:
+            pulumi.set(__self__, "metric_filters", metric_filters)
+        if trace_filter is not None:
+            pulumi.set(__self__, "trace_filter", trace_filter)
 
     @property
     @pulumi.getter(name="datasetId")
@@ -992,6 +2410,16 @@ class ConsumptionConfigPartitionPartitionPartitionFilterCondition(dict):
     @pulumi.getter(name="logFilter")
     def log_filter(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilter']:
         return pulumi.get(self, "log_filter")
+
+    @property
+    @pulumi.getter(name="metricFilters")
+    def metric_filters(self) -> Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionMetricFilter']]:
+        return pulumi.get(self, "metric_filters")
+
+    @property
+    @pulumi.getter(name="traceFilter")
+    def trace_filter(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilter']:
+        return pulumi.get(self, "trace_filter")
 
 
 @pulumi.output_type
@@ -1004,6 +2432,626 @@ class ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilter(dict)
     @pulumi.getter
     def query(self) -> str:
         return pulumi.get(self, "query")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionFilterConditionMetricFilter(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "valueGlob":
+            suggest = "value_glob"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionPartitionPartitionFilterConditionMetricFilter. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionFilterConditionMetricFilter.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionFilterConditionMetricFilter.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 name: str,
+                 value_glob: str):
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value_glob", value_glob)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="valueGlob")
+    def value_glob(self) -> str:
+        return pulumi.get(self, "value_glob")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilter(dict):
+    def __init__(__self__, *,
+                 spans: Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpan']] = None,
+                 trace: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterTrace'] = None):
+        if spans is not None:
+            pulumi.set(__self__, "spans", spans)
+        if trace is not None:
+            pulumi.set(__self__, "trace", trace)
+
+    @property
+    @pulumi.getter
+    def spans(self) -> Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpan']]:
+        return pulumi.get(self, "spans")
+
+    @property
+    @pulumi.getter
+    def trace(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterTrace']:
+        return pulumi.get(self, "trace")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpan(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "isRootSpan":
+            suggest = "is_root_span"
+        elif key == "matchType":
+            suggest = "match_type"
+        elif key == "parentOperation":
+            suggest = "parent_operation"
+        elif key == "parentService":
+            suggest = "parent_service"
+        elif key == "spanCount":
+            suggest = "span_count"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpan. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpan.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpan.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 duration: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanDuration'] = None,
+                 error: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanError'] = None,
+                 is_root_span: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanIsRootSpan'] = None,
+                 match_type: Optional[str] = None,
+                 operation: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanOperation'] = None,
+                 parent_operation: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperation'] = None,
+                 parent_service: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanParentService'] = None,
+                 service: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanService'] = None,
+                 span_count: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanSpanCount'] = None,
+                 tags: Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanTag']] = None):
+        if duration is not None:
+            pulumi.set(__self__, "duration", duration)
+        if error is not None:
+            pulumi.set(__self__, "error", error)
+        if is_root_span is not None:
+            pulumi.set(__self__, "is_root_span", is_root_span)
+        if match_type is not None:
+            pulumi.set(__self__, "match_type", match_type)
+        if operation is not None:
+            pulumi.set(__self__, "operation", operation)
+        if parent_operation is not None:
+            pulumi.set(__self__, "parent_operation", parent_operation)
+        if parent_service is not None:
+            pulumi.set(__self__, "parent_service", parent_service)
+        if service is not None:
+            pulumi.set(__self__, "service", service)
+        if span_count is not None:
+            pulumi.set(__self__, "span_count", span_count)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+
+    @property
+    @pulumi.getter
+    def duration(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanDuration']:
+        return pulumi.get(self, "duration")
+
+    @property
+    @pulumi.getter
+    def error(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanError']:
+        return pulumi.get(self, "error")
+
+    @property
+    @pulumi.getter(name="isRootSpan")
+    def is_root_span(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanIsRootSpan']:
+        return pulumi.get(self, "is_root_span")
+
+    @property
+    @pulumi.getter(name="matchType")
+    def match_type(self) -> Optional[str]:
+        return pulumi.get(self, "match_type")
+
+    @property
+    @pulumi.getter
+    def operation(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanOperation']:
+        return pulumi.get(self, "operation")
+
+    @property
+    @pulumi.getter(name="parentOperation")
+    def parent_operation(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperation']:
+        return pulumi.get(self, "parent_operation")
+
+    @property
+    @pulumi.getter(name="parentService")
+    def parent_service(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanParentService']:
+        return pulumi.get(self, "parent_service")
+
+    @property
+    @pulumi.getter
+    def service(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanService']:
+        return pulumi.get(self, "service")
+
+    @property
+    @pulumi.getter(name="spanCount")
+    def span_count(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanSpanCount']:
+        return pulumi.get(self, "span_count")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanTag']]:
+        return pulumi.get(self, "tags")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanDuration(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "maxSecs":
+            suggest = "max_secs"
+        elif key == "minSecs":
+            suggest = "min_secs"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanDuration. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanDuration.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanDuration.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 max_secs: Optional[float] = None,
+                 min_secs: Optional[float] = None):
+        if max_secs is not None:
+            pulumi.set(__self__, "max_secs", max_secs)
+        if min_secs is not None:
+            pulumi.set(__self__, "min_secs", min_secs)
+
+    @property
+    @pulumi.getter(name="maxSecs")
+    def max_secs(self) -> Optional[float]:
+        return pulumi.get(self, "max_secs")
+
+    @property
+    @pulumi.getter(name="minSecs")
+    def min_secs(self) -> Optional[float]:
+        return pulumi.get(self, "min_secs")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanError(dict):
+    def __init__(__self__, *,
+                 value: bool):
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> bool:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanIsRootSpan(dict):
+    def __init__(__self__, *,
+                 value: bool):
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> bool:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanOperation(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "inValues":
+            suggest = "in_values"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanOperation. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanOperation.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanOperation.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 in_values: Optional[Sequence[str]] = None,
+                 match: Optional[str] = None,
+                 value: Optional[str] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "in_values")
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[str]:
+        return pulumi.get(self, "match")
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[str]:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperation(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "inValues":
+            suggest = "in_values"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperation. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperation.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperation.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 in_values: Optional[Sequence[str]] = None,
+                 match: Optional[str] = None,
+                 value: Optional[str] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "in_values")
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[str]:
+        return pulumi.get(self, "match")
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[str]:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanParentService(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "inValues":
+            suggest = "in_values"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanParentService. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanParentService.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanParentService.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 in_values: Optional[Sequence[str]] = None,
+                 match: Optional[str] = None,
+                 value: Optional[str] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "in_values")
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[str]:
+        return pulumi.get(self, "match")
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[str]:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanService(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "inValues":
+            suggest = "in_values"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanService. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanService.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanService.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 in_values: Optional[Sequence[str]] = None,
+                 match: Optional[str] = None,
+                 value: Optional[str] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "in_values")
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[str]:
+        return pulumi.get(self, "match")
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[str]:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanSpanCount(dict):
+    def __init__(__self__, *,
+                 max: Optional[int] = None,
+                 min: Optional[int] = None):
+        if max is not None:
+            pulumi.set(__self__, "max", max)
+        if min is not None:
+            pulumi.set(__self__, "min", min)
+
+    @property
+    @pulumi.getter
+    def max(self) -> Optional[int]:
+        return pulumi.get(self, "max")
+
+    @property
+    @pulumi.getter
+    def min(self) -> Optional[int]:
+        return pulumi.get(self, "min")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanTag(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "numericValue":
+            suggest = "numeric_value"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanTag. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanTag.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanTag.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 key: Optional[str] = None,
+                 numeric_value: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanTagNumericValue'] = None,
+                 value: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValue'] = None):
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if numeric_value is not None:
+            pulumi.set(__self__, "numeric_value", numeric_value)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> Optional[str]:
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter(name="numericValue")
+    def numeric_value(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanTagNumericValue']:
+        return pulumi.get(self, "numeric_value")
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValue']:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanTagNumericValue(dict):
+    def __init__(__self__, *,
+                 comparison: str,
+                 value: float):
+        pulumi.set(__self__, "comparison", comparison)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def comparison(self) -> str:
+        return pulumi.get(self, "comparison")
+
+    @property
+    @pulumi.getter
+    def value(self) -> float:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValue(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "inValues":
+            suggest = "in_values"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValue. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValue.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValue.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 in_values: Optional[Sequence[str]] = None,
+                 match: Optional[str] = None,
+                 value: Optional[str] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "in_values")
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[str]:
+        return pulumi.get(self, "match")
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[str]:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterTrace(dict):
+    def __init__(__self__, *,
+                 duration: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterTraceDuration'] = None,
+                 error: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterTraceError'] = None):
+        if duration is not None:
+            pulumi.set(__self__, "duration", duration)
+        if error is not None:
+            pulumi.set(__self__, "error", error)
+
+    @property
+    @pulumi.getter
+    def duration(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterTraceDuration']:
+        return pulumi.get(self, "duration")
+
+    @property
+    @pulumi.getter
+    def error(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterTraceError']:
+        return pulumi.get(self, "error")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterTraceDuration(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "maxSecs":
+            suggest = "max_secs"
+        elif key == "minSecs":
+            suggest = "min_secs"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterTraceDuration. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterTraceDuration.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterTraceDuration.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 max_secs: Optional[float] = None,
+                 min_secs: Optional[float] = None):
+        if max_secs is not None:
+            pulumi.set(__self__, "max_secs", max_secs)
+        if min_secs is not None:
+            pulumi.set(__self__, "min_secs", min_secs)
+
+    @property
+    @pulumi.getter(name="maxSecs")
+    def max_secs(self) -> Optional[float]:
+        return pulumi.get(self, "max_secs")
+
+    @property
+    @pulumi.getter(name="minSecs")
+    def min_secs(self) -> Optional[float]:
+        return pulumi.get(self, "min_secs")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterTraceError(dict):
+    def __init__(__self__, *,
+                 value: bool):
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> bool:
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type
@@ -1073,6 +3121,10 @@ class ConsumptionConfigPartitionPartitionPartitionPartitionFilterCondition(dict)
             suggest = "dataset_id"
         elif key == "logFilter":
             suggest = "log_filter"
+        elif key == "metricFilters":
+            suggest = "metric_filters"
+        elif key == "traceFilter":
+            suggest = "trace_filter"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionPartitionPartitionPartitionFilterCondition. Access the value via the '{suggest}' property getter instead.")
@@ -1087,11 +3139,17 @@ class ConsumptionConfigPartitionPartitionPartitionPartitionFilterCondition(dict)
 
     def __init__(__self__, *,
                  dataset_id: Optional[str] = None,
-                 log_filter: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilter'] = None):
+                 log_filter: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilter'] = None,
+                 metric_filters: Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionMetricFilter']] = None,
+                 trace_filter: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilter'] = None):
         if dataset_id is not None:
             pulumi.set(__self__, "dataset_id", dataset_id)
         if log_filter is not None:
             pulumi.set(__self__, "log_filter", log_filter)
+        if metric_filters is not None:
+            pulumi.set(__self__, "metric_filters", metric_filters)
+        if trace_filter is not None:
+            pulumi.set(__self__, "trace_filter", trace_filter)
 
     @property
     @pulumi.getter(name="datasetId")
@@ -1102,6 +3160,16 @@ class ConsumptionConfigPartitionPartitionPartitionPartitionFilterCondition(dict)
     @pulumi.getter(name="logFilter")
     def log_filter(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilter']:
         return pulumi.get(self, "log_filter")
+
+    @property
+    @pulumi.getter(name="metricFilters")
+    def metric_filters(self) -> Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionMetricFilter']]:
+        return pulumi.get(self, "metric_filters")
+
+    @property
+    @pulumi.getter(name="traceFilter")
+    def trace_filter(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilter']:
+        return pulumi.get(self, "trace_filter")
 
 
 @pulumi.output_type
@@ -1114,6 +3182,626 @@ class ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFil
     @pulumi.getter
     def query(self) -> str:
         return pulumi.get(self, "query")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionMetricFilter(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "valueGlob":
+            suggest = "value_glob"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionMetricFilter. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionMetricFilter.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionMetricFilter.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 name: str,
+                 value_glob: str):
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value_glob", value_glob)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="valueGlob")
+    def value_glob(self) -> str:
+        return pulumi.get(self, "value_glob")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilter(dict):
+    def __init__(__self__, *,
+                 spans: Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpan']] = None,
+                 trace: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterTrace'] = None):
+        if spans is not None:
+            pulumi.set(__self__, "spans", spans)
+        if trace is not None:
+            pulumi.set(__self__, "trace", trace)
+
+    @property
+    @pulumi.getter
+    def spans(self) -> Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpan']]:
+        return pulumi.get(self, "spans")
+
+    @property
+    @pulumi.getter
+    def trace(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterTrace']:
+        return pulumi.get(self, "trace")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpan(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "isRootSpan":
+            suggest = "is_root_span"
+        elif key == "matchType":
+            suggest = "match_type"
+        elif key == "parentOperation":
+            suggest = "parent_operation"
+        elif key == "parentService":
+            suggest = "parent_service"
+        elif key == "spanCount":
+            suggest = "span_count"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpan. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpan.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpan.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 duration: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanDuration'] = None,
+                 error: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanError'] = None,
+                 is_root_span: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanIsRootSpan'] = None,
+                 match_type: Optional[str] = None,
+                 operation: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanOperation'] = None,
+                 parent_operation: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperation'] = None,
+                 parent_service: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentService'] = None,
+                 service: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanService'] = None,
+                 span_count: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanSpanCount'] = None,
+                 tags: Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTag']] = None):
+        if duration is not None:
+            pulumi.set(__self__, "duration", duration)
+        if error is not None:
+            pulumi.set(__self__, "error", error)
+        if is_root_span is not None:
+            pulumi.set(__self__, "is_root_span", is_root_span)
+        if match_type is not None:
+            pulumi.set(__self__, "match_type", match_type)
+        if operation is not None:
+            pulumi.set(__self__, "operation", operation)
+        if parent_operation is not None:
+            pulumi.set(__self__, "parent_operation", parent_operation)
+        if parent_service is not None:
+            pulumi.set(__self__, "parent_service", parent_service)
+        if service is not None:
+            pulumi.set(__self__, "service", service)
+        if span_count is not None:
+            pulumi.set(__self__, "span_count", span_count)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+
+    @property
+    @pulumi.getter
+    def duration(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanDuration']:
+        return pulumi.get(self, "duration")
+
+    @property
+    @pulumi.getter
+    def error(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanError']:
+        return pulumi.get(self, "error")
+
+    @property
+    @pulumi.getter(name="isRootSpan")
+    def is_root_span(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanIsRootSpan']:
+        return pulumi.get(self, "is_root_span")
+
+    @property
+    @pulumi.getter(name="matchType")
+    def match_type(self) -> Optional[str]:
+        return pulumi.get(self, "match_type")
+
+    @property
+    @pulumi.getter
+    def operation(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanOperation']:
+        return pulumi.get(self, "operation")
+
+    @property
+    @pulumi.getter(name="parentOperation")
+    def parent_operation(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperation']:
+        return pulumi.get(self, "parent_operation")
+
+    @property
+    @pulumi.getter(name="parentService")
+    def parent_service(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentService']:
+        return pulumi.get(self, "parent_service")
+
+    @property
+    @pulumi.getter
+    def service(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanService']:
+        return pulumi.get(self, "service")
+
+    @property
+    @pulumi.getter(name="spanCount")
+    def span_count(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanSpanCount']:
+        return pulumi.get(self, "span_count")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTag']]:
+        return pulumi.get(self, "tags")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanDuration(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "maxSecs":
+            suggest = "max_secs"
+        elif key == "minSecs":
+            suggest = "min_secs"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanDuration. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanDuration.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanDuration.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 max_secs: Optional[float] = None,
+                 min_secs: Optional[float] = None):
+        if max_secs is not None:
+            pulumi.set(__self__, "max_secs", max_secs)
+        if min_secs is not None:
+            pulumi.set(__self__, "min_secs", min_secs)
+
+    @property
+    @pulumi.getter(name="maxSecs")
+    def max_secs(self) -> Optional[float]:
+        return pulumi.get(self, "max_secs")
+
+    @property
+    @pulumi.getter(name="minSecs")
+    def min_secs(self) -> Optional[float]:
+        return pulumi.get(self, "min_secs")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanError(dict):
+    def __init__(__self__, *,
+                 value: bool):
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> bool:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanIsRootSpan(dict):
+    def __init__(__self__, *,
+                 value: bool):
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> bool:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanOperation(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "inValues":
+            suggest = "in_values"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanOperation. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanOperation.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanOperation.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 in_values: Optional[Sequence[str]] = None,
+                 match: Optional[str] = None,
+                 value: Optional[str] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "in_values")
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[str]:
+        return pulumi.get(self, "match")
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[str]:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperation(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "inValues":
+            suggest = "in_values"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperation. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperation.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperation.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 in_values: Optional[Sequence[str]] = None,
+                 match: Optional[str] = None,
+                 value: Optional[str] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "in_values")
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[str]:
+        return pulumi.get(self, "match")
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[str]:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentService(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "inValues":
+            suggest = "in_values"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentService. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentService.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentService.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 in_values: Optional[Sequence[str]] = None,
+                 match: Optional[str] = None,
+                 value: Optional[str] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "in_values")
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[str]:
+        return pulumi.get(self, "match")
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[str]:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanService(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "inValues":
+            suggest = "in_values"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanService. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanService.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanService.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 in_values: Optional[Sequence[str]] = None,
+                 match: Optional[str] = None,
+                 value: Optional[str] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "in_values")
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[str]:
+        return pulumi.get(self, "match")
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[str]:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanSpanCount(dict):
+    def __init__(__self__, *,
+                 max: Optional[int] = None,
+                 min: Optional[int] = None):
+        if max is not None:
+            pulumi.set(__self__, "max", max)
+        if min is not None:
+            pulumi.set(__self__, "min", min)
+
+    @property
+    @pulumi.getter
+    def max(self) -> Optional[int]:
+        return pulumi.get(self, "max")
+
+    @property
+    @pulumi.getter
+    def min(self) -> Optional[int]:
+        return pulumi.get(self, "min")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTag(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "numericValue":
+            suggest = "numeric_value"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTag. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTag.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTag.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 key: Optional[str] = None,
+                 numeric_value: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagNumericValue'] = None,
+                 value: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValue'] = None):
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if numeric_value is not None:
+            pulumi.set(__self__, "numeric_value", numeric_value)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> Optional[str]:
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter(name="numericValue")
+    def numeric_value(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagNumericValue']:
+        return pulumi.get(self, "numeric_value")
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValue']:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagNumericValue(dict):
+    def __init__(__self__, *,
+                 comparison: str,
+                 value: float):
+        pulumi.set(__self__, "comparison", comparison)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def comparison(self) -> str:
+        return pulumi.get(self, "comparison")
+
+    @property
+    @pulumi.getter
+    def value(self) -> float:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValue(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "inValues":
+            suggest = "in_values"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValue. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValue.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValue.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 in_values: Optional[Sequence[str]] = None,
+                 match: Optional[str] = None,
+                 value: Optional[str] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "in_values")
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[str]:
+        return pulumi.get(self, "match")
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[str]:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterTrace(dict):
+    def __init__(__self__, *,
+                 duration: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceDuration'] = None,
+                 error: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceError'] = None):
+        if duration is not None:
+            pulumi.set(__self__, "duration", duration)
+        if error is not None:
+            pulumi.set(__self__, "error", error)
+
+    @property
+    @pulumi.getter
+    def duration(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceDuration']:
+        return pulumi.get(self, "duration")
+
+    @property
+    @pulumi.getter
+    def error(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceError']:
+        return pulumi.get(self, "error")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceDuration(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "maxSecs":
+            suggest = "max_secs"
+        elif key == "minSecs":
+            suggest = "min_secs"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceDuration. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceDuration.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceDuration.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 max_secs: Optional[float] = None,
+                 min_secs: Optional[float] = None):
+        if max_secs is not None:
+            pulumi.set(__self__, "max_secs", max_secs)
+        if min_secs is not None:
+            pulumi.set(__self__, "min_secs", min_secs)
+
+    @property
+    @pulumi.getter(name="maxSecs")
+    def max_secs(self) -> Optional[float]:
+        return pulumi.get(self, "max_secs")
+
+    @property
+    @pulumi.getter(name="minSecs")
+    def min_secs(self) -> Optional[float]:
+        return pulumi.get(self, "min_secs")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceError(dict):
+    def __init__(__self__, *,
+                 value: bool):
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> bool:
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type
@@ -1183,6 +3871,10 @@ class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterCondit
             suggest = "dataset_id"
         elif key == "logFilter":
             suggest = "log_filter"
+        elif key == "metricFilters":
+            suggest = "metric_filters"
+        elif key == "traceFilter":
+            suggest = "trace_filter"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterCondition. Access the value via the '{suggest}' property getter instead.")
@@ -1197,11 +3889,17 @@ class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterCondit
 
     def __init__(__self__, *,
                  dataset_id: Optional[str] = None,
-                 log_filter: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter'] = None):
+                 log_filter: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter'] = None,
+                 metric_filters: Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionMetricFilter']] = None,
+                 trace_filter: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilter'] = None):
         if dataset_id is not None:
             pulumi.set(__self__, "dataset_id", dataset_id)
         if log_filter is not None:
             pulumi.set(__self__, "log_filter", log_filter)
+        if metric_filters is not None:
+            pulumi.set(__self__, "metric_filters", metric_filters)
+        if trace_filter is not None:
+            pulumi.set(__self__, "trace_filter", trace_filter)
 
     @property
     @pulumi.getter(name="datasetId")
@@ -1212,6 +3910,16 @@ class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterCondit
     @pulumi.getter(name="logFilter")
     def log_filter(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter']:
         return pulumi.get(self, "log_filter")
+
+    @property
+    @pulumi.getter(name="metricFilters")
+    def metric_filters(self) -> Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionMetricFilter']]:
+        return pulumi.get(self, "metric_filters")
+
+    @property
+    @pulumi.getter(name="traceFilter")
+    def trace_filter(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilter']:
+        return pulumi.get(self, "trace_filter")
 
 
 @pulumi.output_type
@@ -1224,6 +3932,626 @@ class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterCondit
     @pulumi.getter
     def query(self) -> str:
         return pulumi.get(self, "query")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionMetricFilter(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "valueGlob":
+            suggest = "value_glob"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionMetricFilter. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionMetricFilter.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionMetricFilter.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 name: str,
+                 value_glob: str):
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value_glob", value_glob)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="valueGlob")
+    def value_glob(self) -> str:
+        return pulumi.get(self, "value_glob")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilter(dict):
+    def __init__(__self__, *,
+                 spans: Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpan']] = None,
+                 trace: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTrace'] = None):
+        if spans is not None:
+            pulumi.set(__self__, "spans", spans)
+        if trace is not None:
+            pulumi.set(__self__, "trace", trace)
+
+    @property
+    @pulumi.getter
+    def spans(self) -> Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpan']]:
+        return pulumi.get(self, "spans")
+
+    @property
+    @pulumi.getter
+    def trace(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTrace']:
+        return pulumi.get(self, "trace")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpan(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "isRootSpan":
+            suggest = "is_root_span"
+        elif key == "matchType":
+            suggest = "match_type"
+        elif key == "parentOperation":
+            suggest = "parent_operation"
+        elif key == "parentService":
+            suggest = "parent_service"
+        elif key == "spanCount":
+            suggest = "span_count"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpan. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpan.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpan.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 duration: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanDuration'] = None,
+                 error: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanError'] = None,
+                 is_root_span: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanIsRootSpan'] = None,
+                 match_type: Optional[str] = None,
+                 operation: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanOperation'] = None,
+                 parent_operation: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperation'] = None,
+                 parent_service: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentService'] = None,
+                 service: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanService'] = None,
+                 span_count: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanSpanCount'] = None,
+                 tags: Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTag']] = None):
+        if duration is not None:
+            pulumi.set(__self__, "duration", duration)
+        if error is not None:
+            pulumi.set(__self__, "error", error)
+        if is_root_span is not None:
+            pulumi.set(__self__, "is_root_span", is_root_span)
+        if match_type is not None:
+            pulumi.set(__self__, "match_type", match_type)
+        if operation is not None:
+            pulumi.set(__self__, "operation", operation)
+        if parent_operation is not None:
+            pulumi.set(__self__, "parent_operation", parent_operation)
+        if parent_service is not None:
+            pulumi.set(__self__, "parent_service", parent_service)
+        if service is not None:
+            pulumi.set(__self__, "service", service)
+        if span_count is not None:
+            pulumi.set(__self__, "span_count", span_count)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+
+    @property
+    @pulumi.getter
+    def duration(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanDuration']:
+        return pulumi.get(self, "duration")
+
+    @property
+    @pulumi.getter
+    def error(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanError']:
+        return pulumi.get(self, "error")
+
+    @property
+    @pulumi.getter(name="isRootSpan")
+    def is_root_span(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanIsRootSpan']:
+        return pulumi.get(self, "is_root_span")
+
+    @property
+    @pulumi.getter(name="matchType")
+    def match_type(self) -> Optional[str]:
+        return pulumi.get(self, "match_type")
+
+    @property
+    @pulumi.getter
+    def operation(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanOperation']:
+        return pulumi.get(self, "operation")
+
+    @property
+    @pulumi.getter(name="parentOperation")
+    def parent_operation(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperation']:
+        return pulumi.get(self, "parent_operation")
+
+    @property
+    @pulumi.getter(name="parentService")
+    def parent_service(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentService']:
+        return pulumi.get(self, "parent_service")
+
+    @property
+    @pulumi.getter
+    def service(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanService']:
+        return pulumi.get(self, "service")
+
+    @property
+    @pulumi.getter(name="spanCount")
+    def span_count(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanSpanCount']:
+        return pulumi.get(self, "span_count")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTag']]:
+        return pulumi.get(self, "tags")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanDuration(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "maxSecs":
+            suggest = "max_secs"
+        elif key == "minSecs":
+            suggest = "min_secs"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanDuration. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanDuration.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanDuration.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 max_secs: Optional[float] = None,
+                 min_secs: Optional[float] = None):
+        if max_secs is not None:
+            pulumi.set(__self__, "max_secs", max_secs)
+        if min_secs is not None:
+            pulumi.set(__self__, "min_secs", min_secs)
+
+    @property
+    @pulumi.getter(name="maxSecs")
+    def max_secs(self) -> Optional[float]:
+        return pulumi.get(self, "max_secs")
+
+    @property
+    @pulumi.getter(name="minSecs")
+    def min_secs(self) -> Optional[float]:
+        return pulumi.get(self, "min_secs")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanError(dict):
+    def __init__(__self__, *,
+                 value: bool):
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> bool:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanIsRootSpan(dict):
+    def __init__(__self__, *,
+                 value: bool):
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> bool:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanOperation(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "inValues":
+            suggest = "in_values"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanOperation. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanOperation.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanOperation.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 in_values: Optional[Sequence[str]] = None,
+                 match: Optional[str] = None,
+                 value: Optional[str] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "in_values")
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[str]:
+        return pulumi.get(self, "match")
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[str]:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperation(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "inValues":
+            suggest = "in_values"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperation. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperation.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperation.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 in_values: Optional[Sequence[str]] = None,
+                 match: Optional[str] = None,
+                 value: Optional[str] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "in_values")
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[str]:
+        return pulumi.get(self, "match")
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[str]:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentService(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "inValues":
+            suggest = "in_values"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentService. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentService.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentService.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 in_values: Optional[Sequence[str]] = None,
+                 match: Optional[str] = None,
+                 value: Optional[str] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "in_values")
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[str]:
+        return pulumi.get(self, "match")
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[str]:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanService(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "inValues":
+            suggest = "in_values"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanService. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanService.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanService.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 in_values: Optional[Sequence[str]] = None,
+                 match: Optional[str] = None,
+                 value: Optional[str] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "in_values")
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[str]:
+        return pulumi.get(self, "match")
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[str]:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanSpanCount(dict):
+    def __init__(__self__, *,
+                 max: Optional[int] = None,
+                 min: Optional[int] = None):
+        if max is not None:
+            pulumi.set(__self__, "max", max)
+        if min is not None:
+            pulumi.set(__self__, "min", min)
+
+    @property
+    @pulumi.getter
+    def max(self) -> Optional[int]:
+        return pulumi.get(self, "max")
+
+    @property
+    @pulumi.getter
+    def min(self) -> Optional[int]:
+        return pulumi.get(self, "min")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTag(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "numericValue":
+            suggest = "numeric_value"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTag. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTag.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTag.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 key: Optional[str] = None,
+                 numeric_value: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagNumericValue'] = None,
+                 value: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValue'] = None):
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if numeric_value is not None:
+            pulumi.set(__self__, "numeric_value", numeric_value)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> Optional[str]:
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter(name="numericValue")
+    def numeric_value(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagNumericValue']:
+        return pulumi.get(self, "numeric_value")
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValue']:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagNumericValue(dict):
+    def __init__(__self__, *,
+                 comparison: str,
+                 value: float):
+        pulumi.set(__self__, "comparison", comparison)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def comparison(self) -> str:
+        return pulumi.get(self, "comparison")
+
+    @property
+    @pulumi.getter
+    def value(self) -> float:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValue(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "inValues":
+            suggest = "in_values"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValue. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValue.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValue.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 in_values: Optional[Sequence[str]] = None,
+                 match: Optional[str] = None,
+                 value: Optional[str] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "in_values")
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[str]:
+        return pulumi.get(self, "match")
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[str]:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTrace(dict):
+    def __init__(__self__, *,
+                 duration: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceDuration'] = None,
+                 error: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceError'] = None):
+        if duration is not None:
+            pulumi.set(__self__, "duration", duration)
+        if error is not None:
+            pulumi.set(__self__, "error", error)
+
+    @property
+    @pulumi.getter
+    def duration(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceDuration']:
+        return pulumi.get(self, "duration")
+
+    @property
+    @pulumi.getter
+    def error(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceError']:
+        return pulumi.get(self, "error")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceDuration(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "maxSecs":
+            suggest = "max_secs"
+        elif key == "minSecs":
+            suggest = "min_secs"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceDuration. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceDuration.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceDuration.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 max_secs: Optional[float] = None,
+                 min_secs: Optional[float] = None):
+        if max_secs is not None:
+            pulumi.set(__self__, "max_secs", max_secs)
+        if min_secs is not None:
+            pulumi.set(__self__, "min_secs", min_secs)
+
+    @property
+    @pulumi.getter(name="maxSecs")
+    def max_secs(self) -> Optional[float]:
+        return pulumi.get(self, "max_secs")
+
+    @property
+    @pulumi.getter(name="minSecs")
+    def min_secs(self) -> Optional[float]:
+        return pulumi.get(self, "min_secs")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceError(dict):
+    def __init__(__self__, *,
+                 value: bool):
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> bool:
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type
@@ -1285,6 +4613,10 @@ class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFil
             suggest = "dataset_id"
         elif key == "logFilter":
             suggest = "log_filter"
+        elif key == "metricFilters":
+            suggest = "metric_filters"
+        elif key == "traceFilter":
+            suggest = "trace_filter"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterCondition. Access the value via the '{suggest}' property getter instead.")
@@ -1299,11 +4631,17 @@ class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFil
 
     def __init__(__self__, *,
                  dataset_id: Optional[str] = None,
-                 log_filter: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter'] = None):
+                 log_filter: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter'] = None,
+                 metric_filters: Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionMetricFilter']] = None,
+                 trace_filter: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilter'] = None):
         if dataset_id is not None:
             pulumi.set(__self__, "dataset_id", dataset_id)
         if log_filter is not None:
             pulumi.set(__self__, "log_filter", log_filter)
+        if metric_filters is not None:
+            pulumi.set(__self__, "metric_filters", metric_filters)
+        if trace_filter is not None:
+            pulumi.set(__self__, "trace_filter", trace_filter)
 
     @property
     @pulumi.getter(name="datasetId")
@@ -1314,6 +4652,16 @@ class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFil
     @pulumi.getter(name="logFilter")
     def log_filter(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter']:
         return pulumi.get(self, "log_filter")
+
+    @property
+    @pulumi.getter(name="metricFilters")
+    def metric_filters(self) -> Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionMetricFilter']]:
+        return pulumi.get(self, "metric_filters")
+
+    @property
+    @pulumi.getter(name="traceFilter")
+    def trace_filter(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilter']:
+        return pulumi.get(self, "trace_filter")
 
 
 @pulumi.output_type
@@ -1326,6 +4674,626 @@ class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFil
     @pulumi.getter
     def query(self) -> str:
         return pulumi.get(self, "query")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionMetricFilter(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "valueGlob":
+            suggest = "value_glob"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionMetricFilter. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionMetricFilter.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionMetricFilter.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 name: str,
+                 value_glob: str):
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value_glob", value_glob)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="valueGlob")
+    def value_glob(self) -> str:
+        return pulumi.get(self, "value_glob")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilter(dict):
+    def __init__(__self__, *,
+                 spans: Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpan']] = None,
+                 trace: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTrace'] = None):
+        if spans is not None:
+            pulumi.set(__self__, "spans", spans)
+        if trace is not None:
+            pulumi.set(__self__, "trace", trace)
+
+    @property
+    @pulumi.getter
+    def spans(self) -> Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpan']]:
+        return pulumi.get(self, "spans")
+
+    @property
+    @pulumi.getter
+    def trace(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTrace']:
+        return pulumi.get(self, "trace")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpan(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "isRootSpan":
+            suggest = "is_root_span"
+        elif key == "matchType":
+            suggest = "match_type"
+        elif key == "parentOperation":
+            suggest = "parent_operation"
+        elif key == "parentService":
+            suggest = "parent_service"
+        elif key == "spanCount":
+            suggest = "span_count"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpan. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpan.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpan.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 duration: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanDuration'] = None,
+                 error: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanError'] = None,
+                 is_root_span: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanIsRootSpan'] = None,
+                 match_type: Optional[str] = None,
+                 operation: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanOperation'] = None,
+                 parent_operation: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperation'] = None,
+                 parent_service: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentService'] = None,
+                 service: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanService'] = None,
+                 span_count: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanSpanCount'] = None,
+                 tags: Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTag']] = None):
+        if duration is not None:
+            pulumi.set(__self__, "duration", duration)
+        if error is not None:
+            pulumi.set(__self__, "error", error)
+        if is_root_span is not None:
+            pulumi.set(__self__, "is_root_span", is_root_span)
+        if match_type is not None:
+            pulumi.set(__self__, "match_type", match_type)
+        if operation is not None:
+            pulumi.set(__self__, "operation", operation)
+        if parent_operation is not None:
+            pulumi.set(__self__, "parent_operation", parent_operation)
+        if parent_service is not None:
+            pulumi.set(__self__, "parent_service", parent_service)
+        if service is not None:
+            pulumi.set(__self__, "service", service)
+        if span_count is not None:
+            pulumi.set(__self__, "span_count", span_count)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+
+    @property
+    @pulumi.getter
+    def duration(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanDuration']:
+        return pulumi.get(self, "duration")
+
+    @property
+    @pulumi.getter
+    def error(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanError']:
+        return pulumi.get(self, "error")
+
+    @property
+    @pulumi.getter(name="isRootSpan")
+    def is_root_span(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanIsRootSpan']:
+        return pulumi.get(self, "is_root_span")
+
+    @property
+    @pulumi.getter(name="matchType")
+    def match_type(self) -> Optional[str]:
+        return pulumi.get(self, "match_type")
+
+    @property
+    @pulumi.getter
+    def operation(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanOperation']:
+        return pulumi.get(self, "operation")
+
+    @property
+    @pulumi.getter(name="parentOperation")
+    def parent_operation(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperation']:
+        return pulumi.get(self, "parent_operation")
+
+    @property
+    @pulumi.getter(name="parentService")
+    def parent_service(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentService']:
+        return pulumi.get(self, "parent_service")
+
+    @property
+    @pulumi.getter
+    def service(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanService']:
+        return pulumi.get(self, "service")
+
+    @property
+    @pulumi.getter(name="spanCount")
+    def span_count(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanSpanCount']:
+        return pulumi.get(self, "span_count")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTag']]:
+        return pulumi.get(self, "tags")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanDuration(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "maxSecs":
+            suggest = "max_secs"
+        elif key == "minSecs":
+            suggest = "min_secs"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanDuration. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanDuration.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanDuration.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 max_secs: Optional[float] = None,
+                 min_secs: Optional[float] = None):
+        if max_secs is not None:
+            pulumi.set(__self__, "max_secs", max_secs)
+        if min_secs is not None:
+            pulumi.set(__self__, "min_secs", min_secs)
+
+    @property
+    @pulumi.getter(name="maxSecs")
+    def max_secs(self) -> Optional[float]:
+        return pulumi.get(self, "max_secs")
+
+    @property
+    @pulumi.getter(name="minSecs")
+    def min_secs(self) -> Optional[float]:
+        return pulumi.get(self, "min_secs")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanError(dict):
+    def __init__(__self__, *,
+                 value: bool):
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> bool:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanIsRootSpan(dict):
+    def __init__(__self__, *,
+                 value: bool):
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> bool:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanOperation(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "inValues":
+            suggest = "in_values"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanOperation. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanOperation.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanOperation.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 in_values: Optional[Sequence[str]] = None,
+                 match: Optional[str] = None,
+                 value: Optional[str] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "in_values")
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[str]:
+        return pulumi.get(self, "match")
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[str]:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperation(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "inValues":
+            suggest = "in_values"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperation. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperation.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperation.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 in_values: Optional[Sequence[str]] = None,
+                 match: Optional[str] = None,
+                 value: Optional[str] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "in_values")
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[str]:
+        return pulumi.get(self, "match")
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[str]:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentService(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "inValues":
+            suggest = "in_values"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentService. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentService.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentService.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 in_values: Optional[Sequence[str]] = None,
+                 match: Optional[str] = None,
+                 value: Optional[str] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "in_values")
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[str]:
+        return pulumi.get(self, "match")
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[str]:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanService(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "inValues":
+            suggest = "in_values"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanService. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanService.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanService.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 in_values: Optional[Sequence[str]] = None,
+                 match: Optional[str] = None,
+                 value: Optional[str] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "in_values")
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[str]:
+        return pulumi.get(self, "match")
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[str]:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanSpanCount(dict):
+    def __init__(__self__, *,
+                 max: Optional[int] = None,
+                 min: Optional[int] = None):
+        if max is not None:
+            pulumi.set(__self__, "max", max)
+        if min is not None:
+            pulumi.set(__self__, "min", min)
+
+    @property
+    @pulumi.getter
+    def max(self) -> Optional[int]:
+        return pulumi.get(self, "max")
+
+    @property
+    @pulumi.getter
+    def min(self) -> Optional[int]:
+        return pulumi.get(self, "min")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTag(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "numericValue":
+            suggest = "numeric_value"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTag. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTag.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTag.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 key: Optional[str] = None,
+                 numeric_value: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagNumericValue'] = None,
+                 value: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValue'] = None):
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if numeric_value is not None:
+            pulumi.set(__self__, "numeric_value", numeric_value)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> Optional[str]:
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter(name="numericValue")
+    def numeric_value(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagNumericValue']:
+        return pulumi.get(self, "numeric_value")
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValue']:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagNumericValue(dict):
+    def __init__(__self__, *,
+                 comparison: str,
+                 value: float):
+        pulumi.set(__self__, "comparison", comparison)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def comparison(self) -> str:
+        return pulumi.get(self, "comparison")
+
+    @property
+    @pulumi.getter
+    def value(self) -> float:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValue(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "inValues":
+            suggest = "in_values"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValue. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValue.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValue.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 in_values: Optional[Sequence[str]] = None,
+                 match: Optional[str] = None,
+                 value: Optional[str] = None):
+        if in_values is not None:
+            pulumi.set(__self__, "in_values", in_values)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="inValues")
+    def in_values(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "in_values")
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[str]:
+        return pulumi.get(self, "match")
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[str]:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTrace(dict):
+    def __init__(__self__, *,
+                 duration: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceDuration'] = None,
+                 error: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceError'] = None):
+        if duration is not None:
+            pulumi.set(__self__, "duration", duration)
+        if error is not None:
+            pulumi.set(__self__, "error", error)
+
+    @property
+    @pulumi.getter
+    def duration(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceDuration']:
+        return pulumi.get(self, "duration")
+
+    @property
+    @pulumi.getter
+    def error(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceError']:
+        return pulumi.get(self, "error")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceDuration(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "maxSecs":
+            suggest = "max_secs"
+        elif key == "minSecs":
+            suggest = "min_secs"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceDuration. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceDuration.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceDuration.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 max_secs: Optional[float] = None,
+                 min_secs: Optional[float] = None):
+        if max_secs is not None:
+            pulumi.set(__self__, "max_secs", max_secs)
+        if min_secs is not None:
+            pulumi.set(__self__, "min_secs", min_secs)
+
+    @property
+    @pulumi.getter(name="maxSecs")
+    def max_secs(self) -> Optional[float]:
+        return pulumi.get(self, "max_secs")
+
+    @property
+    @pulumi.getter(name="minSecs")
+    def min_secs(self) -> Optional[float]:
+        return pulumi.get(self, "min_secs")
+
+
+@pulumi.output_type
+class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceError(dict):
+    def __init__(__self__, *,
+                 value: bool):
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> bool:
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type
@@ -3545,6 +7513,8 @@ class LogControlConfigRule(dict):
             suggest = "drop_field"
         elif key == "emitMetrics":
             suggest = "emit_metrics"
+        elif key == "parseField":
+            suggest = "parse_field"
         elif key == "replaceField":
             suggest = "replace_field"
 
@@ -3565,6 +7535,7 @@ class LogControlConfigRule(dict):
                  filter: Optional[str] = None,
                  mode: Optional[str] = None,
                  name: Optional[str] = None,
+                 parse_field: Optional['outputs.LogControlConfigRuleParseField'] = None,
                  replace_field: Optional['outputs.LogControlConfigRuleReplaceField'] = None,
                  sample: Optional['outputs.LogControlConfigRuleSample'] = None,
                  type: Optional[str] = None):
@@ -3578,6 +7549,8 @@ class LogControlConfigRule(dict):
             pulumi.set(__self__, "mode", mode)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if parse_field is not None:
+            pulumi.set(__self__, "parse_field", parse_field)
         if replace_field is not None:
             pulumi.set(__self__, "replace_field", replace_field)
         if sample is not None:
@@ -3609,6 +7582,11 @@ class LogControlConfigRule(dict):
     @pulumi.getter
     def name(self) -> Optional[str]:
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="parseField")
+    def parse_field(self) -> Optional['outputs.LogControlConfigRuleParseField']:
+        return pulumi.get(self, "parse_field")
 
     @property
     @pulumi.getter(name="replaceField")
@@ -3883,6 +7861,189 @@ class LogControlConfigRuleEmitMetricsLabel(dict):
 
 @pulumi.output_type
 class LogControlConfigRuleEmitMetricsLabelValue(dict):
+    def __init__(__self__, *,
+                 selector: Optional[str] = None):
+        if selector is not None:
+            pulumi.set(__self__, "selector", selector)
+
+    @property
+    @pulumi.getter
+    def selector(self) -> Optional[str]:
+        return pulumi.get(self, "selector")
+
+
+@pulumi.output_type
+class LogControlConfigRuleParseField(dict):
+    def __init__(__self__, *,
+                 parser: 'outputs.LogControlConfigRuleParseFieldParser',
+                 destination: Optional['outputs.LogControlConfigRuleParseFieldDestination'] = None,
+                 source: Optional['outputs.LogControlConfigRuleParseFieldSource'] = None):
+        pulumi.set(__self__, "parser", parser)
+        if destination is not None:
+            pulumi.set(__self__, "destination", destination)
+        if source is not None:
+            pulumi.set(__self__, "source", source)
+
+    @property
+    @pulumi.getter
+    def parser(self) -> 'outputs.LogControlConfigRuleParseFieldParser':
+        return pulumi.get(self, "parser")
+
+    @property
+    @pulumi.getter
+    def destination(self) -> Optional['outputs.LogControlConfigRuleParseFieldDestination']:
+        return pulumi.get(self, "destination")
+
+    @property
+    @pulumi.getter
+    def source(self) -> Optional['outputs.LogControlConfigRuleParseFieldSource']:
+        return pulumi.get(self, "source")
+
+
+@pulumi.output_type
+class LogControlConfigRuleParseFieldDestination(dict):
+    def __init__(__self__, *,
+                 selector: Optional[str] = None):
+        if selector is not None:
+            pulumi.set(__self__, "selector", selector)
+
+    @property
+    @pulumi.getter
+    def selector(self) -> Optional[str]:
+        return pulumi.get(self, "selector")
+
+
+@pulumi.output_type
+class LogControlConfigRuleParseFieldParser(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "parserType":
+            suggest = "parser_type"
+        elif key == "grokParser":
+            suggest = "grok_parser"
+        elif key == "keyValueParser":
+            suggest = "key_value_parser"
+        elif key == "regexParser":
+            suggest = "regex_parser"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in LogControlConfigRuleParseFieldParser. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        LogControlConfigRuleParseFieldParser.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        LogControlConfigRuleParseFieldParser.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 parser_type: str,
+                 grok_parser: Optional['outputs.LogControlConfigRuleParseFieldParserGrokParser'] = None,
+                 key_value_parser: Optional['outputs.LogControlConfigRuleParseFieldParserKeyValueParser'] = None,
+                 regex_parser: Optional['outputs.LogControlConfigRuleParseFieldParserRegexParser'] = None):
+        pulumi.set(__self__, "parser_type", parser_type)
+        if grok_parser is not None:
+            pulumi.set(__self__, "grok_parser", grok_parser)
+        if key_value_parser is not None:
+            pulumi.set(__self__, "key_value_parser", key_value_parser)
+        if regex_parser is not None:
+            pulumi.set(__self__, "regex_parser", regex_parser)
+
+    @property
+    @pulumi.getter(name="parserType")
+    def parser_type(self) -> str:
+        return pulumi.get(self, "parser_type")
+
+    @property
+    @pulumi.getter(name="grokParser")
+    def grok_parser(self) -> Optional['outputs.LogControlConfigRuleParseFieldParserGrokParser']:
+        return pulumi.get(self, "grok_parser")
+
+    @property
+    @pulumi.getter(name="keyValueParser")
+    def key_value_parser(self) -> Optional['outputs.LogControlConfigRuleParseFieldParserKeyValueParser']:
+        return pulumi.get(self, "key_value_parser")
+
+    @property
+    @pulumi.getter(name="regexParser")
+    def regex_parser(self) -> Optional['outputs.LogControlConfigRuleParseFieldParserRegexParser']:
+        return pulumi.get(self, "regex_parser")
+
+
+@pulumi.output_type
+class LogControlConfigRuleParseFieldParserGrokParser(dict):
+    def __init__(__self__, *,
+                 pattern: str):
+        pulumi.set(__self__, "pattern", pattern)
+
+    @property
+    @pulumi.getter
+    def pattern(self) -> str:
+        return pulumi.get(self, "pattern")
+
+
+@pulumi.output_type
+class LogControlConfigRuleParseFieldParserKeyValueParser(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "pairSeparator":
+            suggest = "pair_separator"
+        elif key == "trimSet":
+            suggest = "trim_set"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in LogControlConfigRuleParseFieldParserKeyValueParser. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        LogControlConfigRuleParseFieldParserKeyValueParser.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        LogControlConfigRuleParseFieldParserKeyValueParser.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 delimiter: str,
+                 pair_separator: str,
+                 trim_set: Optional[str] = None):
+        pulumi.set(__self__, "delimiter", delimiter)
+        pulumi.set(__self__, "pair_separator", pair_separator)
+        if trim_set is not None:
+            pulumi.set(__self__, "trim_set", trim_set)
+
+    @property
+    @pulumi.getter
+    def delimiter(self) -> str:
+        return pulumi.get(self, "delimiter")
+
+    @property
+    @pulumi.getter(name="pairSeparator")
+    def pair_separator(self) -> str:
+        return pulumi.get(self, "pair_separator")
+
+    @property
+    @pulumi.getter(name="trimSet")
+    def trim_set(self) -> Optional[str]:
+        return pulumi.get(self, "trim_set")
+
+
+@pulumi.output_type
+class LogControlConfigRuleParseFieldParserRegexParser(dict):
+    def __init__(__self__, *,
+                 regex: str):
+        pulumi.set(__self__, "regex", regex)
+
+    @property
+    @pulumi.getter
+    def regex(self) -> str:
+        return pulumi.get(self, "regex")
+
+
+@pulumi.output_type
+class LogControlConfigRuleParseFieldSource(dict):
     def __init__(__self__, *,
                  selector: Optional[str] = None):
         if selector is not None:
@@ -4522,6 +8683,8 @@ class LogIngestConfigFieldParserParser(dict):
         suggest = None
         if key == "parserType":
             suggest = "parser_type"
+        elif key == "grokParser":
+            suggest = "grok_parser"
         elif key == "keyValueParser":
             suggest = "key_value_parser"
         elif key == "regexParser":
@@ -4540,9 +8703,12 @@ class LogIngestConfigFieldParserParser(dict):
 
     def __init__(__self__, *,
                  parser_type: str,
+                 grok_parser: Optional['outputs.LogIngestConfigFieldParserParserGrokParser'] = None,
                  key_value_parser: Optional['outputs.LogIngestConfigFieldParserParserKeyValueParser'] = None,
                  regex_parser: Optional['outputs.LogIngestConfigFieldParserParserRegexParser'] = None):
         pulumi.set(__self__, "parser_type", parser_type)
+        if grok_parser is not None:
+            pulumi.set(__self__, "grok_parser", grok_parser)
         if key_value_parser is not None:
             pulumi.set(__self__, "key_value_parser", key_value_parser)
         if regex_parser is not None:
@@ -4554,6 +8720,11 @@ class LogIngestConfigFieldParserParser(dict):
         return pulumi.get(self, "parser_type")
 
     @property
+    @pulumi.getter(name="grokParser")
+    def grok_parser(self) -> Optional['outputs.LogIngestConfigFieldParserParserGrokParser']:
+        return pulumi.get(self, "grok_parser")
+
+    @property
     @pulumi.getter(name="keyValueParser")
     def key_value_parser(self) -> Optional['outputs.LogIngestConfigFieldParserParserKeyValueParser']:
         return pulumi.get(self, "key_value_parser")
@@ -4562,6 +8733,18 @@ class LogIngestConfigFieldParserParser(dict):
     @pulumi.getter(name="regexParser")
     def regex_parser(self) -> Optional['outputs.LogIngestConfigFieldParserParserRegexParser']:
         return pulumi.get(self, "regex_parser")
+
+
+@pulumi.output_type
+class LogIngestConfigFieldParserParserGrokParser(dict):
+    def __init__(__self__, *,
+                 pattern: str):
+        pulumi.set(__self__, "pattern", pattern)
+
+    @property
+    @pulumi.getter
+    def pattern(self) -> str:
+        return pulumi.get(self, "pattern")
 
 
 @pulumi.output_type
@@ -4693,6 +8876,8 @@ class LogIngestConfigPlaintextParserParser(dict):
         suggest = None
         if key == "parserType":
             suggest = "parser_type"
+        elif key == "grokParser":
+            suggest = "grok_parser"
         elif key == "keyValueParser":
             suggest = "key_value_parser"
         elif key == "regexParser":
@@ -4711,9 +8896,12 @@ class LogIngestConfigPlaintextParserParser(dict):
 
     def __init__(__self__, *,
                  parser_type: str,
+                 grok_parser: Optional['outputs.LogIngestConfigPlaintextParserParserGrokParser'] = None,
                  key_value_parser: Optional['outputs.LogIngestConfigPlaintextParserParserKeyValueParser'] = None,
                  regex_parser: Optional['outputs.LogIngestConfigPlaintextParserParserRegexParser'] = None):
         pulumi.set(__self__, "parser_type", parser_type)
+        if grok_parser is not None:
+            pulumi.set(__self__, "grok_parser", grok_parser)
         if key_value_parser is not None:
             pulumi.set(__self__, "key_value_parser", key_value_parser)
         if regex_parser is not None:
@@ -4725,6 +8913,11 @@ class LogIngestConfigPlaintextParserParser(dict):
         return pulumi.get(self, "parser_type")
 
     @property
+    @pulumi.getter(name="grokParser")
+    def grok_parser(self) -> Optional['outputs.LogIngestConfigPlaintextParserParserGrokParser']:
+        return pulumi.get(self, "grok_parser")
+
+    @property
     @pulumi.getter(name="keyValueParser")
     def key_value_parser(self) -> Optional['outputs.LogIngestConfigPlaintextParserParserKeyValueParser']:
         return pulumi.get(self, "key_value_parser")
@@ -4733,6 +8926,18 @@ class LogIngestConfigPlaintextParserParser(dict):
     @pulumi.getter(name="regexParser")
     def regex_parser(self) -> Optional['outputs.LogIngestConfigPlaintextParserParserRegexParser']:
         return pulumi.get(self, "regex_parser")
+
+
+@pulumi.output_type
+class LogIngestConfigPlaintextParserParserGrokParser(dict):
+    def __init__(__self__, *,
+                 pattern: str):
+        pulumi.set(__self__, "pattern", pattern)
+
+    @property
+    @pulumi.getter
+    def pattern(self) -> str:
+        return pulumi.get(self, "pattern")
 
 
 @pulumi.output_type
@@ -5251,6 +9456,27 @@ class MappingRuleStoragePolicy(dict):
 
 
 @pulumi.output_type
+class MonitorNotificationTemplate(dict):
+    def __init__(__self__, *,
+                 description: Optional[str] = None,
+                 title: Optional[str] = None):
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if title is not None:
+            pulumi.set(__self__, "title", title)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def title(self) -> Optional[str]:
+        return pulumi.get(self, "title")
+
+
+@pulumi.output_type
 class MonitorQuery(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -5732,10 +9958,13 @@ class NotificationPolicyOverrideRoute(dict):
 
     def __init__(__self__, *,
                  severity: str,
+                 destinations: Optional[Sequence['outputs.NotificationPolicyOverrideRouteDestination']] = None,
                  group_by: Optional['outputs.NotificationPolicyOverrideRouteGroupBy'] = None,
                  notifiers: Optional[Sequence[str]] = None,
                  repeat_interval: Optional[str] = None):
         pulumi.set(__self__, "severity", severity)
+        if destinations is not None:
+            pulumi.set(__self__, "destinations", destinations)
         if group_by is not None:
             pulumi.set(__self__, "group_by", group_by)
         if notifiers is not None:
@@ -5747,6 +9976,11 @@ class NotificationPolicyOverrideRoute(dict):
     @pulumi.getter
     def severity(self) -> str:
         return pulumi.get(self, "severity")
+
+    @property
+    @pulumi.getter
+    def destinations(self) -> Optional[Sequence['outputs.NotificationPolicyOverrideRouteDestination']]:
+        return pulumi.get(self, "destinations")
 
     @property
     @pulumi.getter(name="groupBy")
@@ -5762,6 +9996,292 @@ class NotificationPolicyOverrideRoute(dict):
     @pulumi.getter(name="repeatInterval")
     def repeat_interval(self) -> Optional[str]:
         return pulumi.get(self, "repeat_interval")
+
+
+@pulumi.output_type
+class NotificationPolicyOverrideRouteDestination(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "disableResolves":
+            suggest = "disable_resolves"
+        elif key == "opsGenie":
+            suggest = "ops_genie"
+        elif key == "victorOps":
+            suggest = "victor_ops"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in NotificationPolicyOverrideRouteDestination. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        NotificationPolicyOverrideRouteDestination.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        NotificationPolicyOverrideRouteDestination.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 disable_resolves: Optional[bool] = None,
+                 email: Optional['outputs.NotificationPolicyOverrideRouteDestinationEmail'] = None,
+                 ops_genie: Optional['outputs.NotificationPolicyOverrideRouteDestinationOpsGenie'] = None,
+                 pagerduty: Optional['outputs.NotificationPolicyOverrideRouteDestinationPagerduty'] = None,
+                 slack: Optional['outputs.NotificationPolicyOverrideRouteDestinationSlack'] = None,
+                 victor_ops: Optional['outputs.NotificationPolicyOverrideRouteDestinationVictorOps'] = None,
+                 webhook: Optional['outputs.NotificationPolicyOverrideRouteDestinationWebhook'] = None):
+        if disable_resolves is not None:
+            pulumi.set(__self__, "disable_resolves", disable_resolves)
+        if email is not None:
+            pulumi.set(__self__, "email", email)
+        if ops_genie is not None:
+            pulumi.set(__self__, "ops_genie", ops_genie)
+        if pagerduty is not None:
+            pulumi.set(__self__, "pagerduty", pagerduty)
+        if slack is not None:
+            pulumi.set(__self__, "slack", slack)
+        if victor_ops is not None:
+            pulumi.set(__self__, "victor_ops", victor_ops)
+        if webhook is not None:
+            pulumi.set(__self__, "webhook", webhook)
+
+    @property
+    @pulumi.getter(name="disableResolves")
+    def disable_resolves(self) -> Optional[bool]:
+        return pulumi.get(self, "disable_resolves")
+
+    @property
+    @pulumi.getter
+    def email(self) -> Optional['outputs.NotificationPolicyOverrideRouteDestinationEmail']:
+        return pulumi.get(self, "email")
+
+    @property
+    @pulumi.getter(name="opsGenie")
+    def ops_genie(self) -> Optional['outputs.NotificationPolicyOverrideRouteDestinationOpsGenie']:
+        return pulumi.get(self, "ops_genie")
+
+    @property
+    @pulumi.getter
+    def pagerduty(self) -> Optional['outputs.NotificationPolicyOverrideRouteDestinationPagerduty']:
+        return pulumi.get(self, "pagerduty")
+
+    @property
+    @pulumi.getter
+    def slack(self) -> Optional['outputs.NotificationPolicyOverrideRouteDestinationSlack']:
+        return pulumi.get(self, "slack")
+
+    @property
+    @pulumi.getter(name="victorOps")
+    def victor_ops(self) -> Optional['outputs.NotificationPolicyOverrideRouteDestinationVictorOps']:
+        return pulumi.get(self, "victor_ops")
+
+    @property
+    @pulumi.getter
+    def webhook(self) -> Optional['outputs.NotificationPolicyOverrideRouteDestinationWebhook']:
+        return pulumi.get(self, "webhook")
+
+
+@pulumi.output_type
+class NotificationPolicyOverrideRouteDestinationEmail(dict):
+    def __init__(__self__, *,
+                 addresses: Sequence[str]):
+        pulumi.set(__self__, "addresses", addresses)
+
+    @property
+    @pulumi.getter
+    def addresses(self) -> Sequence[str]:
+        return pulumi.get(self, "addresses")
+
+
+@pulumi.output_type
+class NotificationPolicyOverrideRouteDestinationOpsGenie(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "externalConnectionSlug":
+            suggest = "external_connection_slug"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in NotificationPolicyOverrideRouteDestinationOpsGenie. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        NotificationPolicyOverrideRouteDestinationOpsGenie.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        NotificationPolicyOverrideRouteDestinationOpsGenie.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 external_connection_slug: str):
+        pulumi.set(__self__, "external_connection_slug", external_connection_slug)
+
+    @property
+    @pulumi.getter(name="externalConnectionSlug")
+    def external_connection_slug(self) -> str:
+        return pulumi.get(self, "external_connection_slug")
+
+
+@pulumi.output_type
+class NotificationPolicyOverrideRouteDestinationPagerduty(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "externalConnectionSlug":
+            suggest = "external_connection_slug"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in NotificationPolicyOverrideRouteDestinationPagerduty. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        NotificationPolicyOverrideRouteDestinationPagerduty.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        NotificationPolicyOverrideRouteDestinationPagerduty.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 external_connection_slug: str):
+        pulumi.set(__self__, "external_connection_slug", external_connection_slug)
+
+    @property
+    @pulumi.getter(name="externalConnectionSlug")
+    def external_connection_slug(self) -> str:
+        return pulumi.get(self, "external_connection_slug")
+
+
+@pulumi.output_type
+class NotificationPolicyOverrideRouteDestinationSlack(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "externalConnectionSlug":
+            suggest = "external_connection_slug"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in NotificationPolicyOverrideRouteDestinationSlack. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        NotificationPolicyOverrideRouteDestinationSlack.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        NotificationPolicyOverrideRouteDestinationSlack.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 external_connection_slug: str,
+                 channels: Optional[Sequence[str]] = None):
+        pulumi.set(__self__, "external_connection_slug", external_connection_slug)
+        if channels is not None:
+            pulumi.set(__self__, "channels", channels)
+
+    @property
+    @pulumi.getter(name="externalConnectionSlug")
+    def external_connection_slug(self) -> str:
+        return pulumi.get(self, "external_connection_slug")
+
+    @property
+    @pulumi.getter
+    def channels(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "channels")
+
+
+@pulumi.output_type
+class NotificationPolicyOverrideRouteDestinationVictorOps(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "externalConnectionSlug":
+            suggest = "external_connection_slug"
+        elif key == "routingKey":
+            suggest = "routing_key"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in NotificationPolicyOverrideRouteDestinationVictorOps. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        NotificationPolicyOverrideRouteDestinationVictorOps.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        NotificationPolicyOverrideRouteDestinationVictorOps.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 external_connection_slug: str,
+                 routing_key: Optional[str] = None):
+        pulumi.set(__self__, "external_connection_slug", external_connection_slug)
+        if routing_key is not None:
+            pulumi.set(__self__, "routing_key", routing_key)
+
+    @property
+    @pulumi.getter(name="externalConnectionSlug")
+    def external_connection_slug(self) -> str:
+        return pulumi.get(self, "external_connection_slug")
+
+    @property
+    @pulumi.getter(name="routingKey")
+    def routing_key(self) -> Optional[str]:
+        return pulumi.get(self, "routing_key")
+
+
+@pulumi.output_type
+class NotificationPolicyOverrideRouteDestinationWebhook(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "externalConnectionSlug":
+            suggest = "external_connection_slug"
+        elif key == "queryParameters":
+            suggest = "query_parameters"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in NotificationPolicyOverrideRouteDestinationWebhook. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        NotificationPolicyOverrideRouteDestinationWebhook.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        NotificationPolicyOverrideRouteDestinationWebhook.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 external_connection_slug: str,
+                 query_parameters: Optional[Sequence['outputs.NotificationPolicyOverrideRouteDestinationWebhookQueryParameter']] = None):
+        pulumi.set(__self__, "external_connection_slug", external_connection_slug)
+        if query_parameters is not None:
+            pulumi.set(__self__, "query_parameters", query_parameters)
+
+    @property
+    @pulumi.getter(name="externalConnectionSlug")
+    def external_connection_slug(self) -> str:
+        return pulumi.get(self, "external_connection_slug")
+
+    @property
+    @pulumi.getter(name="queryParameters")
+    def query_parameters(self) -> Optional[Sequence['outputs.NotificationPolicyOverrideRouteDestinationWebhookQueryParameter']]:
+        return pulumi.get(self, "query_parameters")
+
+
+@pulumi.output_type
+class NotificationPolicyOverrideRouteDestinationWebhookQueryParameter(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type
@@ -5817,10 +10337,13 @@ class NotificationPolicyRoute(dict):
 
     def __init__(__self__, *,
                  severity: str,
+                 destinations: Optional[Sequence['outputs.NotificationPolicyRouteDestination']] = None,
                  group_by: Optional['outputs.NotificationPolicyRouteGroupBy'] = None,
                  notifiers: Optional[Sequence[str]] = None,
                  repeat_interval: Optional[str] = None):
         pulumi.set(__self__, "severity", severity)
+        if destinations is not None:
+            pulumi.set(__self__, "destinations", destinations)
         if group_by is not None:
             pulumi.set(__self__, "group_by", group_by)
         if notifiers is not None:
@@ -5832,6 +10355,11 @@ class NotificationPolicyRoute(dict):
     @pulumi.getter
     def severity(self) -> str:
         return pulumi.get(self, "severity")
+
+    @property
+    @pulumi.getter
+    def destinations(self) -> Optional[Sequence['outputs.NotificationPolicyRouteDestination']]:
+        return pulumi.get(self, "destinations")
 
     @property
     @pulumi.getter(name="groupBy")
@@ -5847,6 +10375,292 @@ class NotificationPolicyRoute(dict):
     @pulumi.getter(name="repeatInterval")
     def repeat_interval(self) -> Optional[str]:
         return pulumi.get(self, "repeat_interval")
+
+
+@pulumi.output_type
+class NotificationPolicyRouteDestination(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "disableResolves":
+            suggest = "disable_resolves"
+        elif key == "opsGenie":
+            suggest = "ops_genie"
+        elif key == "victorOps":
+            suggest = "victor_ops"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in NotificationPolicyRouteDestination. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        NotificationPolicyRouteDestination.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        NotificationPolicyRouteDestination.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 disable_resolves: Optional[bool] = None,
+                 email: Optional['outputs.NotificationPolicyRouteDestinationEmail'] = None,
+                 ops_genie: Optional['outputs.NotificationPolicyRouteDestinationOpsGenie'] = None,
+                 pagerduty: Optional['outputs.NotificationPolicyRouteDestinationPagerduty'] = None,
+                 slack: Optional['outputs.NotificationPolicyRouteDestinationSlack'] = None,
+                 victor_ops: Optional['outputs.NotificationPolicyRouteDestinationVictorOps'] = None,
+                 webhook: Optional['outputs.NotificationPolicyRouteDestinationWebhook'] = None):
+        if disable_resolves is not None:
+            pulumi.set(__self__, "disable_resolves", disable_resolves)
+        if email is not None:
+            pulumi.set(__self__, "email", email)
+        if ops_genie is not None:
+            pulumi.set(__self__, "ops_genie", ops_genie)
+        if pagerduty is not None:
+            pulumi.set(__self__, "pagerduty", pagerduty)
+        if slack is not None:
+            pulumi.set(__self__, "slack", slack)
+        if victor_ops is not None:
+            pulumi.set(__self__, "victor_ops", victor_ops)
+        if webhook is not None:
+            pulumi.set(__self__, "webhook", webhook)
+
+    @property
+    @pulumi.getter(name="disableResolves")
+    def disable_resolves(self) -> Optional[bool]:
+        return pulumi.get(self, "disable_resolves")
+
+    @property
+    @pulumi.getter
+    def email(self) -> Optional['outputs.NotificationPolicyRouteDestinationEmail']:
+        return pulumi.get(self, "email")
+
+    @property
+    @pulumi.getter(name="opsGenie")
+    def ops_genie(self) -> Optional['outputs.NotificationPolicyRouteDestinationOpsGenie']:
+        return pulumi.get(self, "ops_genie")
+
+    @property
+    @pulumi.getter
+    def pagerduty(self) -> Optional['outputs.NotificationPolicyRouteDestinationPagerduty']:
+        return pulumi.get(self, "pagerduty")
+
+    @property
+    @pulumi.getter
+    def slack(self) -> Optional['outputs.NotificationPolicyRouteDestinationSlack']:
+        return pulumi.get(self, "slack")
+
+    @property
+    @pulumi.getter(name="victorOps")
+    def victor_ops(self) -> Optional['outputs.NotificationPolicyRouteDestinationVictorOps']:
+        return pulumi.get(self, "victor_ops")
+
+    @property
+    @pulumi.getter
+    def webhook(self) -> Optional['outputs.NotificationPolicyRouteDestinationWebhook']:
+        return pulumi.get(self, "webhook")
+
+
+@pulumi.output_type
+class NotificationPolicyRouteDestinationEmail(dict):
+    def __init__(__self__, *,
+                 addresses: Sequence[str]):
+        pulumi.set(__self__, "addresses", addresses)
+
+    @property
+    @pulumi.getter
+    def addresses(self) -> Sequence[str]:
+        return pulumi.get(self, "addresses")
+
+
+@pulumi.output_type
+class NotificationPolicyRouteDestinationOpsGenie(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "externalConnectionSlug":
+            suggest = "external_connection_slug"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in NotificationPolicyRouteDestinationOpsGenie. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        NotificationPolicyRouteDestinationOpsGenie.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        NotificationPolicyRouteDestinationOpsGenie.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 external_connection_slug: str):
+        pulumi.set(__self__, "external_connection_slug", external_connection_slug)
+
+    @property
+    @pulumi.getter(name="externalConnectionSlug")
+    def external_connection_slug(self) -> str:
+        return pulumi.get(self, "external_connection_slug")
+
+
+@pulumi.output_type
+class NotificationPolicyRouteDestinationPagerduty(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "externalConnectionSlug":
+            suggest = "external_connection_slug"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in NotificationPolicyRouteDestinationPagerduty. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        NotificationPolicyRouteDestinationPagerduty.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        NotificationPolicyRouteDestinationPagerduty.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 external_connection_slug: str):
+        pulumi.set(__self__, "external_connection_slug", external_connection_slug)
+
+    @property
+    @pulumi.getter(name="externalConnectionSlug")
+    def external_connection_slug(self) -> str:
+        return pulumi.get(self, "external_connection_slug")
+
+
+@pulumi.output_type
+class NotificationPolicyRouteDestinationSlack(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "externalConnectionSlug":
+            suggest = "external_connection_slug"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in NotificationPolicyRouteDestinationSlack. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        NotificationPolicyRouteDestinationSlack.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        NotificationPolicyRouteDestinationSlack.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 external_connection_slug: str,
+                 channels: Optional[Sequence[str]] = None):
+        pulumi.set(__self__, "external_connection_slug", external_connection_slug)
+        if channels is not None:
+            pulumi.set(__self__, "channels", channels)
+
+    @property
+    @pulumi.getter(name="externalConnectionSlug")
+    def external_connection_slug(self) -> str:
+        return pulumi.get(self, "external_connection_slug")
+
+    @property
+    @pulumi.getter
+    def channels(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "channels")
+
+
+@pulumi.output_type
+class NotificationPolicyRouteDestinationVictorOps(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "externalConnectionSlug":
+            suggest = "external_connection_slug"
+        elif key == "routingKey":
+            suggest = "routing_key"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in NotificationPolicyRouteDestinationVictorOps. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        NotificationPolicyRouteDestinationVictorOps.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        NotificationPolicyRouteDestinationVictorOps.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 external_connection_slug: str,
+                 routing_key: Optional[str] = None):
+        pulumi.set(__self__, "external_connection_slug", external_connection_slug)
+        if routing_key is not None:
+            pulumi.set(__self__, "routing_key", routing_key)
+
+    @property
+    @pulumi.getter(name="externalConnectionSlug")
+    def external_connection_slug(self) -> str:
+        return pulumi.get(self, "external_connection_slug")
+
+    @property
+    @pulumi.getter(name="routingKey")
+    def routing_key(self) -> Optional[str]:
+        return pulumi.get(self, "routing_key")
+
+
+@pulumi.output_type
+class NotificationPolicyRouteDestinationWebhook(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "externalConnectionSlug":
+            suggest = "external_connection_slug"
+        elif key == "queryParameters":
+            suggest = "query_parameters"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in NotificationPolicyRouteDestinationWebhook. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        NotificationPolicyRouteDestinationWebhook.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        NotificationPolicyRouteDestinationWebhook.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 external_connection_slug: str,
+                 query_parameters: Optional[Sequence['outputs.NotificationPolicyRouteDestinationWebhookQueryParameter']] = None):
+        pulumi.set(__self__, "external_connection_slug", external_connection_slug)
+        if query_parameters is not None:
+            pulumi.set(__self__, "query_parameters", query_parameters)
+
+    @property
+    @pulumi.getter(name="externalConnectionSlug")
+    def external_connection_slug(self) -> str:
+        return pulumi.get(self, "external_connection_slug")
+
+    @property
+    @pulumi.getter(name="queryParameters")
+    def query_parameters(self) -> Optional[Sequence['outputs.NotificationPolicyRouteDestinationWebhookQueryParameter']]:
+        return pulumi.get(self, "query_parameters")
+
+
+@pulumi.output_type
+class NotificationPolicyRouteDestinationWebhookQueryParameter(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type

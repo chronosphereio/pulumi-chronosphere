@@ -5,6 +5,7 @@ package io.chronosphere.chronosphere.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import io.chronosphere.chronosphere.inputs.MonitorNotificationTemplateArgs;
 import io.chronosphere.chronosphere.inputs.MonitorQueryArgs;
 import io.chronosphere.chronosphere.inputs.MonitorScheduleArgs;
 import io.chronosphere.chronosphere.inputs.MonitorSeriesConditionsArgs;
@@ -69,6 +70,13 @@ public final class MonitorState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.notificationPolicyId);
     }
 
+    @Import(name="notificationTemplate")
+    private @Nullable Output<MonitorNotificationTemplateArgs> notificationTemplate;
+
+    public Optional<Output<MonitorNotificationTemplateArgs>> notificationTemplate() {
+        return Optional.ofNullable(this.notificationTemplate);
+    }
+
     @Import(name="query")
     private @Nullable Output<MonitorQueryArgs> query;
 
@@ -114,6 +122,7 @@ public final class MonitorState extends com.pulumi.resources.ResourceArgs {
         this.labels = $.labels;
         this.name = $.name;
         this.notificationPolicyId = $.notificationPolicyId;
+        this.notificationTemplate = $.notificationTemplate;
         this.query = $.query;
         this.schedule = $.schedule;
         this.seriesConditions = $.seriesConditions;
@@ -200,6 +209,15 @@ public final class MonitorState extends com.pulumi.resources.ResourceArgs {
 
         public Builder notificationPolicyId(String notificationPolicyId) {
             return notificationPolicyId(Output.of(notificationPolicyId));
+        }
+
+        public Builder notificationTemplate(@Nullable Output<MonitorNotificationTemplateArgs> notificationTemplate) {
+            $.notificationTemplate = notificationTemplate;
+            return this;
+        }
+
+        public Builder notificationTemplate(MonitorNotificationTemplateArgs notificationTemplate) {
+            return notificationTemplate(Output.of(notificationTemplate));
         }
 
         public Builder query(@Nullable Output<MonitorQueryArgs> query) {

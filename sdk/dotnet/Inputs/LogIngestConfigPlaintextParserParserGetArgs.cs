@@ -13,6 +13,9 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class LogIngestConfigPlaintextParserParserGetArgs : global::Pulumi.ResourceArgs
     {
+        [Input("grokParser")]
+        public Input<Inputs.LogIngestConfigPlaintextParserParserGrokParserGetArgs>? GrokParser { get; set; }
+
         [Input("keyValueParser")]
         public Input<Inputs.LogIngestConfigPlaintextParserParserKeyValueParserGetArgs>? KeyValueParser { get; set; }
 

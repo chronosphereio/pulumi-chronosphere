@@ -19,6 +19,7 @@ namespace Chronosphere.Pulumi.Outputs
         public readonly string? Filter;
         public readonly string? Mode;
         public readonly string? Name;
+        public readonly Outputs.LogControlConfigRuleParseField? ParseField;
         public readonly Outputs.LogControlConfigRuleReplaceField? ReplaceField;
         public readonly Outputs.LogControlConfigRuleSample? Sample;
         public readonly string? Type;
@@ -35,6 +36,8 @@ namespace Chronosphere.Pulumi.Outputs
 
             string? name,
 
+            Outputs.LogControlConfigRuleParseField? parseField,
+
             Outputs.LogControlConfigRuleReplaceField? replaceField,
 
             Outputs.LogControlConfigRuleSample? sample,
@@ -46,6 +49,7 @@ namespace Chronosphere.Pulumi.Outputs
             Filter = filter;
             Mode = mode;
             Name = name;
+            ParseField = parseField;
             ReplaceField = replaceField;
             Sample = sample;
             Type = type;

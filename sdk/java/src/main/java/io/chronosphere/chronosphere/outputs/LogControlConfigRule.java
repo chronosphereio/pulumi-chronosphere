@@ -6,6 +6,7 @@ package io.chronosphere.chronosphere.outputs;
 import com.pulumi.core.annotations.CustomType;
 import io.chronosphere.chronosphere.outputs.LogControlConfigRuleDropField;
 import io.chronosphere.chronosphere.outputs.LogControlConfigRuleEmitMetrics;
+import io.chronosphere.chronosphere.outputs.LogControlConfigRuleParseField;
 import io.chronosphere.chronosphere.outputs.LogControlConfigRuleReplaceField;
 import io.chronosphere.chronosphere.outputs.LogControlConfigRuleSample;
 import java.lang.String;
@@ -20,6 +21,7 @@ public final class LogControlConfigRule {
     private @Nullable String filter;
     private @Nullable String mode;
     private @Nullable String name;
+    private @Nullable LogControlConfigRuleParseField parseField;
     private @Nullable LogControlConfigRuleReplaceField replaceField;
     private @Nullable LogControlConfigRuleSample sample;
     private @Nullable String type;
@@ -39,6 +41,9 @@ public final class LogControlConfigRule {
     }
     public Optional<String> name() {
         return Optional.ofNullable(this.name);
+    }
+    public Optional<LogControlConfigRuleParseField> parseField() {
+        return Optional.ofNullable(this.parseField);
     }
     public Optional<LogControlConfigRuleReplaceField> replaceField() {
         return Optional.ofNullable(this.replaceField);
@@ -64,6 +69,7 @@ public final class LogControlConfigRule {
         private @Nullable String filter;
         private @Nullable String mode;
         private @Nullable String name;
+        private @Nullable LogControlConfigRuleParseField parseField;
         private @Nullable LogControlConfigRuleReplaceField replaceField;
         private @Nullable LogControlConfigRuleSample sample;
         private @Nullable String type;
@@ -75,6 +81,7 @@ public final class LogControlConfigRule {
     	      this.filter = defaults.filter;
     	      this.mode = defaults.mode;
     	      this.name = defaults.name;
+    	      this.parseField = defaults.parseField;
     	      this.replaceField = defaults.replaceField;
     	      this.sample = defaults.sample;
     	      this.type = defaults.type;
@@ -106,6 +113,11 @@ public final class LogControlConfigRule {
             return this;
         }
         @CustomType.Setter
+        public Builder parseField(@Nullable LogControlConfigRuleParseField parseField) {
+            this.parseField = parseField;
+            return this;
+        }
+        @CustomType.Setter
         public Builder replaceField(@Nullable LogControlConfigRuleReplaceField replaceField) {
             this.replaceField = replaceField;
             return this;
@@ -127,6 +139,7 @@ public final class LogControlConfigRule {
             o.filter = filter;
             o.mode = mode;
             o.name = name;
+            o.parseField = parseField;
             o.replaceField = replaceField;
             o.sample = sample;
             o.type = type;
