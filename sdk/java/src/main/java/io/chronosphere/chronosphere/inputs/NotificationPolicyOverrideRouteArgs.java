@@ -5,6 +5,7 @@ package io.chronosphere.chronosphere.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import io.chronosphere.chronosphere.inputs.NotificationPolicyOverrideRouteDestinationArgs;
 import io.chronosphere.chronosphere.inputs.NotificationPolicyOverrideRouteGroupByArgs;
 import java.lang.String;
 import java.util.List;
@@ -16,6 +17,13 @@ import javax.annotation.Nullable;
 public final class NotificationPolicyOverrideRouteArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final NotificationPolicyOverrideRouteArgs Empty = new NotificationPolicyOverrideRouteArgs();
+
+    @Import(name="destinations")
+    private @Nullable Output<List<NotificationPolicyOverrideRouteDestinationArgs>> destinations;
+
+    public Optional<Output<List<NotificationPolicyOverrideRouteDestinationArgs>>> destinations() {
+        return Optional.ofNullable(this.destinations);
+    }
 
     @Import(name="groupBy")
     private @Nullable Output<NotificationPolicyOverrideRouteGroupByArgs> groupBy;
@@ -48,6 +56,7 @@ public final class NotificationPolicyOverrideRouteArgs extends com.pulumi.resour
     private NotificationPolicyOverrideRouteArgs() {}
 
     private NotificationPolicyOverrideRouteArgs(NotificationPolicyOverrideRouteArgs $) {
+        this.destinations = $.destinations;
         this.groupBy = $.groupBy;
         this.notifiers = $.notifiers;
         this.repeatInterval = $.repeatInterval;
@@ -70,6 +79,19 @@ public final class NotificationPolicyOverrideRouteArgs extends com.pulumi.resour
 
         public Builder(NotificationPolicyOverrideRouteArgs defaults) {
             $ = new NotificationPolicyOverrideRouteArgs(Objects.requireNonNull(defaults));
+        }
+
+        public Builder destinations(@Nullable Output<List<NotificationPolicyOverrideRouteDestinationArgs>> destinations) {
+            $.destinations = destinations;
+            return this;
+        }
+
+        public Builder destinations(List<NotificationPolicyOverrideRouteDestinationArgs> destinations) {
+            return destinations(Output.of(destinations));
+        }
+
+        public Builder destinations(NotificationPolicyOverrideRouteDestinationArgs... destinations) {
+            return destinations(List.of(destinations));
         }
 
         public Builder groupBy(@Nullable Output<NotificationPolicyOverrideRouteGroupByArgs> groupBy) {

@@ -25,6 +25,7 @@ class MonitorArgs:
                  interval: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  notification_policy_id: Optional[pulumi.Input[str]] = None,
+                 notification_template: Optional[pulumi.Input['MonitorNotificationTemplateArgs']] = None,
                  schedule: Optional[pulumi.Input['MonitorScheduleArgs']] = None,
                  signal_grouping: Optional[pulumi.Input['MonitorSignalGroupingArgs']] = None,
                  slug: Optional[pulumi.Input[str]] = None):
@@ -46,6 +47,8 @@ class MonitorArgs:
             pulumi.set(__self__, "labels", labels)
         if notification_policy_id is not None:
             pulumi.set(__self__, "notification_policy_id", notification_policy_id)
+        if notification_template is not None:
+            pulumi.set(__self__, "notification_template", notification_template)
         if schedule is not None:
             pulumi.set(__self__, "schedule", schedule)
         if signal_grouping is not None:
@@ -135,6 +138,15 @@ class MonitorArgs:
         pulumi.set(self, "notification_policy_id", value)
 
     @property
+    @pulumi.getter(name="notificationTemplate")
+    def notification_template(self) -> Optional[pulumi.Input['MonitorNotificationTemplateArgs']]:
+        return pulumi.get(self, "notification_template")
+
+    @notification_template.setter
+    def notification_template(self, value: Optional[pulumi.Input['MonitorNotificationTemplateArgs']]):
+        pulumi.set(self, "notification_template", value)
+
+    @property
     @pulumi.getter
     def schedule(self) -> Optional[pulumi.Input['MonitorScheduleArgs']]:
         return pulumi.get(self, "schedule")
@@ -172,6 +184,7 @@ class _MonitorState:
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  notification_policy_id: Optional[pulumi.Input[str]] = None,
+                 notification_template: Optional[pulumi.Input['MonitorNotificationTemplateArgs']] = None,
                  query: Optional[pulumi.Input['MonitorQueryArgs']] = None,
                  schedule: Optional[pulumi.Input['MonitorScheduleArgs']] = None,
                  series_conditions: Optional[pulumi.Input['MonitorSeriesConditionsArgs']] = None,
@@ -194,6 +207,8 @@ class _MonitorState:
             pulumi.set(__self__, "name", name)
         if notification_policy_id is not None:
             pulumi.set(__self__, "notification_policy_id", notification_policy_id)
+        if notification_template is not None:
+            pulumi.set(__self__, "notification_template", notification_template)
         if query is not None:
             pulumi.set(__self__, "query", query)
         if schedule is not None:
@@ -269,6 +284,15 @@ class _MonitorState:
         pulumi.set(self, "notification_policy_id", value)
 
     @property
+    @pulumi.getter(name="notificationTemplate")
+    def notification_template(self) -> Optional[pulumi.Input['MonitorNotificationTemplateArgs']]:
+        return pulumi.get(self, "notification_template")
+
+    @notification_template.setter
+    def notification_template(self, value: Optional[pulumi.Input['MonitorNotificationTemplateArgs']]):
+        pulumi.set(self, "notification_template", value)
+
+    @property
     @pulumi.getter
     def query(self) -> Optional[pulumi.Input['MonitorQueryArgs']]:
         return pulumi.get(self, "query")
@@ -326,6 +350,7 @@ class Monitor(pulumi.CustomResource):
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  notification_policy_id: Optional[pulumi.Input[str]] = None,
+                 notification_template: Optional[pulumi.Input[pulumi.InputType['MonitorNotificationTemplateArgs']]] = None,
                  query: Optional[pulumi.Input[pulumi.InputType['MonitorQueryArgs']]] = None,
                  schedule: Optional[pulumi.Input[pulumi.InputType['MonitorScheduleArgs']]] = None,
                  series_conditions: Optional[pulumi.Input[pulumi.InputType['MonitorSeriesConditionsArgs']]] = None,
@@ -367,6 +392,7 @@ class Monitor(pulumi.CustomResource):
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  notification_policy_id: Optional[pulumi.Input[str]] = None,
+                 notification_template: Optional[pulumi.Input[pulumi.InputType['MonitorNotificationTemplateArgs']]] = None,
                  query: Optional[pulumi.Input[pulumi.InputType['MonitorQueryArgs']]] = None,
                  schedule: Optional[pulumi.Input[pulumi.InputType['MonitorScheduleArgs']]] = None,
                  series_conditions: Optional[pulumi.Input[pulumi.InputType['MonitorSeriesConditionsArgs']]] = None,
@@ -390,6 +416,7 @@ class Monitor(pulumi.CustomResource):
                 raise TypeError("Missing required property 'name'")
             __props__.__dict__["name"] = name
             __props__.__dict__["notification_policy_id"] = notification_policy_id
+            __props__.__dict__["notification_template"] = notification_template
             if query is None and not opts.urn:
                 raise TypeError("Missing required property 'query'")
             __props__.__dict__["query"] = query
@@ -416,6 +443,7 @@ class Monitor(pulumi.CustomResource):
             labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
             notification_policy_id: Optional[pulumi.Input[str]] = None,
+            notification_template: Optional[pulumi.Input[pulumi.InputType['MonitorNotificationTemplateArgs']]] = None,
             query: Optional[pulumi.Input[pulumi.InputType['MonitorQueryArgs']]] = None,
             schedule: Optional[pulumi.Input[pulumi.InputType['MonitorScheduleArgs']]] = None,
             series_conditions: Optional[pulumi.Input[pulumi.InputType['MonitorSeriesConditionsArgs']]] = None,
@@ -440,6 +468,7 @@ class Monitor(pulumi.CustomResource):
         __props__.__dict__["labels"] = labels
         __props__.__dict__["name"] = name
         __props__.__dict__["notification_policy_id"] = notification_policy_id
+        __props__.__dict__["notification_template"] = notification_template
         __props__.__dict__["query"] = query
         __props__.__dict__["schedule"] = schedule
         __props__.__dict__["series_conditions"] = series_conditions
@@ -481,6 +510,11 @@ class Monitor(pulumi.CustomResource):
     @pulumi.getter(name="notificationPolicyId")
     def notification_policy_id(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "notification_policy_id")
+
+    @property
+    @pulumi.getter(name="notificationTemplate")
+    def notification_template(self) -> pulumi.Output[Optional['outputs.MonitorNotificationTemplate']]:
+        return pulumi.get(self, "notification_template")
 
     @property
     @pulumi.getter

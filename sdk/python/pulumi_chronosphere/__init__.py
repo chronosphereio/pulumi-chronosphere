@@ -31,8 +31,10 @@ from .mapping_rule import *
 from .monitor import *
 from .notification_policy import *
 from .opsgenie_alert_notifier import *
+from .opsgenie_external_connection import *
 from .otel_metrics_ingestion import *
 from .pagerduty_alert_notifier import *
+from .pagerduty_external_connection import *
 from .provider import *
 from .recording_rule import *
 from .resource_pools_config import *
@@ -41,13 +43,16 @@ from .service_account import *
 from .service_attribute import *
 from .service_data_source import *
 from .slack_alert_notifier import *
+from .slack_external_connection import *
 from .slo import *
 from .team import *
 from .trace_jaeger_remote_sampling_strategy import *
 from .trace_metrics_rule import *
 from .trace_tail_sampling_rules import *
 from .victorops_alert_notifier import *
+from .victorops_external_connection import *
 from .webhook_alert_notifier import *
+from .webhook_external_connection import *
 from ._inputs import *
 from . import outputs
 
@@ -255,6 +260,14 @@ _utilities.register(
  },
  {
   "pkg": "chronosphere",
+  "mod": "index/opsgenieExternalConnection",
+  "fqn": "pulumi_chronosphere",
+  "classes": {
+   "chronosphere:index/opsgenieExternalConnection:OpsgenieExternalConnection": "OpsgenieExternalConnection"
+  }
+ },
+ {
+  "pkg": "chronosphere",
   "mod": "index/otelMetricsIngestion",
   "fqn": "pulumi_chronosphere",
   "classes": {
@@ -267,6 +280,14 @@ _utilities.register(
   "fqn": "pulumi_chronosphere",
   "classes": {
    "chronosphere:index/pagerdutyAlertNotifier:PagerdutyAlertNotifier": "PagerdutyAlertNotifier"
+  }
+ },
+ {
+  "pkg": "chronosphere",
+  "mod": "index/pagerdutyExternalConnection",
+  "fqn": "pulumi_chronosphere",
+  "classes": {
+   "chronosphere:index/pagerdutyExternalConnection:PagerdutyExternalConnection": "PagerdutyExternalConnection"
   }
  },
  {
@@ -327,6 +348,14 @@ _utilities.register(
  },
  {
   "pkg": "chronosphere",
+  "mod": "index/slackExternalConnection",
+  "fqn": "pulumi_chronosphere",
+  "classes": {
+   "chronosphere:index/slackExternalConnection:SlackExternalConnection": "SlackExternalConnection"
+  }
+ },
+ {
+  "pkg": "chronosphere",
   "mod": "index/team",
   "fqn": "pulumi_chronosphere",
   "classes": {
@@ -367,10 +396,26 @@ _utilities.register(
  },
  {
   "pkg": "chronosphere",
+  "mod": "index/victoropsExternalConnection",
+  "fqn": "pulumi_chronosphere",
+  "classes": {
+   "chronosphere:index/victoropsExternalConnection:VictoropsExternalConnection": "VictoropsExternalConnection"
+  }
+ },
+ {
+  "pkg": "chronosphere",
   "mod": "index/webhookAlertNotifier",
   "fqn": "pulumi_chronosphere",
   "classes": {
    "chronosphere:index/webhookAlertNotifier:WebhookAlertNotifier": "WebhookAlertNotifier"
+  }
+ },
+ {
+  "pkg": "chronosphere",
+  "mod": "index/webhookExternalConnection",
+  "fqn": "pulumi_chronosphere",
+  "classes": {
+   "chronosphere:index/webhookExternalConnection:WebhookExternalConnection": "WebhookExternalConnection"
   }
  }
 ]

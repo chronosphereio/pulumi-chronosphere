@@ -10,6 +10,7 @@ import com.pulumi.core.internal.Codegen;
 import io.chronosphere.chronosphere.MonitorArgs;
 import io.chronosphere.chronosphere.Utilities;
 import io.chronosphere.chronosphere.inputs.MonitorState;
+import io.chronosphere.chronosphere.outputs.MonitorNotificationTemplate;
 import io.chronosphere.chronosphere.outputs.MonitorQuery;
 import io.chronosphere.chronosphere.outputs.MonitorSchedule;
 import io.chronosphere.chronosphere.outputs.MonitorSeriesConditions;
@@ -62,6 +63,12 @@ public class Monitor extends com.pulumi.resources.CustomResource {
 
     public Output<Optional<String>> notificationPolicyId() {
         return Codegen.optional(this.notificationPolicyId);
+    }
+    @Export(name="notificationTemplate", refs={MonitorNotificationTemplate.class}, tree="[0]")
+    private Output</* @Nullable */ MonitorNotificationTemplate> notificationTemplate;
+
+    public Output<Optional<MonitorNotificationTemplate>> notificationTemplate() {
+        return Codegen.optional(this.notificationTemplate);
     }
     @Export(name="query", refs={MonitorQuery.class}, tree="[0]")
     private Output<MonitorQuery> query;

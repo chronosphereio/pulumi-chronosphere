@@ -34,6 +34,9 @@ namespace Chronosphere.Pulumi
         [Output("notificationPolicyId")]
         public Output<string?> NotificationPolicyId { get; private set; } = null!;
 
+        [Output("notificationTemplate")]
+        public Output<Outputs.MonitorNotificationTemplate?> NotificationTemplate { get; private set; } = null!;
+
         [Output("query")]
         public Output<Outputs.MonitorQuery> Query { get; private set; } = null!;
 
@@ -127,6 +130,9 @@ namespace Chronosphere.Pulumi
         [Input("notificationPolicyId")]
         public Input<string>? NotificationPolicyId { get; set; }
 
+        [Input("notificationTemplate")]
+        public Input<Inputs.MonitorNotificationTemplateArgs>? NotificationTemplate { get; set; }
+
         [Input("query", required: true)]
         public Input<Inputs.MonitorQueryArgs> Query { get; set; } = null!;
 
@@ -180,6 +186,9 @@ namespace Chronosphere.Pulumi
 
         [Input("notificationPolicyId")]
         public Input<string>? NotificationPolicyId { get; set; }
+
+        [Input("notificationTemplate")]
+        public Input<Inputs.MonitorNotificationTemplateGetArgs>? NotificationTemplate { get; set; }
 
         [Input("query")]
         public Input<Inputs.MonitorQueryGetArgs>? Query { get; set; }

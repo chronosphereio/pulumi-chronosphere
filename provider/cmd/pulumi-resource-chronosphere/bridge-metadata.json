@@ -25,8 +25,10 @@
             "chronosphere:index/monitor:Monitor": "chronosphere_monitor",
             "chronosphere:index/notificationPolicy:NotificationPolicy": "chronosphere_notification_policy",
             "chronosphere:index/opsgenieAlertNotifier:OpsgenieAlertNotifier": "chronosphere_opsgenie_alert_notifier",
+            "chronosphere:index/opsgenieExternalConnection:OpsgenieExternalConnection": "chronosphere_opsgenie_external_connection",
             "chronosphere:index/otelMetricsIngestion:OtelMetricsIngestion": "chronosphere_otel_metrics_ingestion",
             "chronosphere:index/pagerdutyAlertNotifier:PagerdutyAlertNotifier": "chronosphere_pagerduty_alert_notifier",
+            "chronosphere:index/pagerdutyExternalConnection:PagerdutyExternalConnection": "chronosphere_pagerduty_external_connection",
             "chronosphere:index/recordingRule:RecordingRule": "chronosphere_recording_rule",
             "chronosphere:index/resourcePoolsConfig:ResourcePoolsConfig": "chronosphere_resource_pools_config",
             "chronosphere:index/rollupRule:RollupRule": "chronosphere_rollup_rule",
@@ -34,12 +36,15 @@
             "chronosphere:index/serviceAccount:ServiceAccount": "chronosphere_service_account",
             "chronosphere:index/serviceAttribute:ServiceAttribute": "chronosphere_service_attribute",
             "chronosphere:index/slackAlertNotifier:SlackAlertNotifier": "chronosphere_slack_alert_notifier",
+            "chronosphere:index/slackExternalConnection:SlackExternalConnection": "chronosphere_slack_external_connection",
             "chronosphere:index/team:Team": "chronosphere_team",
             "chronosphere:index/traceJaegerRemoteSamplingStrategy:TraceJaegerRemoteSamplingStrategy": "chronosphere_trace_jaeger_remote_sampling_strategy",
             "chronosphere:index/traceMetricsRule:TraceMetricsRule": "chronosphere_trace_metrics_rule",
             "chronosphere:index/traceTailSamplingRules:TraceTailSamplingRules": "chronosphere_trace_tail_sampling_rules",
             "chronosphere:index/victoropsAlertNotifier:VictoropsAlertNotifier": "chronosphere_victorops_alert_notifier",
-            "chronosphere:index/webhookAlertNotifier:WebhookAlertNotifier": "chronosphere_webhook_alert_notifier"
+            "chronosphere:index/victoropsExternalConnection:VictoropsExternalConnection": "chronosphere_victorops_external_connection",
+            "chronosphere:index/webhookAlertNotifier:WebhookAlertNotifier": "chronosphere_webhook_alert_notifier",
+            "chronosphere:index/webhookExternalConnection:WebhookExternalConnection": "chronosphere_webhook_external_connection"
         },
         "functions": {
             "chronosphere:index/bucketDataSource:BucketDataSource": "chronosphere_bucket",
@@ -87,7 +92,49 @@
             },
             "chronosphere:index/ConsumptionConfigPartitionFilterCondition:ConsumptionConfigPartitionFilterCondition": {
                 "datasetId": "dataset_id",
-                "logFilter": "log_filter"
+                "logFilter": "log_filter",
+                "metricFilters": "metric_filter",
+                "traceFilter": "trace_filter"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionFilterConditionMetricFilter:ConsumptionConfigPartitionFilterConditionMetricFilter": {
+                "valueGlob": "value_glob"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionFilterConditionTraceFilter:ConsumptionConfigPartitionFilterConditionTraceFilter": {
+                "spans": "span"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionFilterConditionTraceFilterSpan:ConsumptionConfigPartitionFilterConditionTraceFilterSpan": {
+                "isRootSpan": "is_root_span",
+                "matchType": "match_type",
+                "parentOperation": "parent_operation",
+                "parentService": "parent_service",
+                "spanCount": "span_count",
+                "tags": "tag"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionFilterConditionTraceFilterSpanDuration:ConsumptionConfigPartitionFilterConditionTraceFilterSpanDuration": {
+                "maxSecs": "max_secs",
+                "minSecs": "min_secs"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionFilterConditionTraceFilterSpanOperation:ConsumptionConfigPartitionFilterConditionTraceFilterSpanOperation": {
+                "inValues": "in_values"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionFilterConditionTraceFilterSpanParentOperation:ConsumptionConfigPartitionFilterConditionTraceFilterSpanParentOperation": {
+                "inValues": "in_values"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionFilterConditionTraceFilterSpanParentService:ConsumptionConfigPartitionFilterConditionTraceFilterSpanParentService": {
+                "inValues": "in_values"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionFilterConditionTraceFilterSpanService:ConsumptionConfigPartitionFilterConditionTraceFilterSpanService": {
+                "inValues": "in_values"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionFilterConditionTraceFilterSpanTag:ConsumptionConfigPartitionFilterConditionTraceFilterSpanTag": {
+                "numericValue": "numeric_value"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionFilterConditionTraceFilterSpanTagValue:ConsumptionConfigPartitionFilterConditionTraceFilterSpanTagValue": {
+                "inValues": "in_values"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionFilterConditionTraceFilterTraceDuration:ConsumptionConfigPartitionFilterConditionTraceFilterTraceDuration": {
+                "maxSecs": "max_secs",
+                "minSecs": "min_secs"
             },
             "chronosphere:index/ConsumptionConfigPartitionPartition:ConsumptionConfigPartitionPartition": {
                 "filters": "filter",
@@ -98,7 +145,49 @@
             },
             "chronosphere:index/ConsumptionConfigPartitionPartitionFilterCondition:ConsumptionConfigPartitionPartitionFilterCondition": {
                 "datasetId": "dataset_id",
-                "logFilter": "log_filter"
+                "logFilter": "log_filter",
+                "metricFilters": "metric_filter",
+                "traceFilter": "trace_filter"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionPartitionFilterConditionMetricFilter:ConsumptionConfigPartitionPartitionFilterConditionMetricFilter": {
+                "valueGlob": "value_glob"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionPartitionFilterConditionTraceFilter:ConsumptionConfigPartitionPartitionFilterConditionTraceFilter": {
+                "spans": "span"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpan:ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpan": {
+                "isRootSpan": "is_root_span",
+                "matchType": "match_type",
+                "parentOperation": "parent_operation",
+                "parentService": "parent_service",
+                "spanCount": "span_count",
+                "tags": "tag"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanDuration:ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanDuration": {
+                "maxSecs": "max_secs",
+                "minSecs": "min_secs"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanOperation:ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanOperation": {
+                "inValues": "in_values"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanParentOperation:ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanParentOperation": {
+                "inValues": "in_values"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanParentService:ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanParentService": {
+                "inValues": "in_values"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanService:ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanService": {
+                "inValues": "in_values"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanTag:ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanTag": {
+                "numericValue": "numeric_value"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanTagValue:ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanTagValue": {
+                "inValues": "in_values"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionPartitionFilterConditionTraceFilterTraceDuration:ConsumptionConfigPartitionPartitionFilterConditionTraceFilterTraceDuration": {
+                "maxSecs": "max_secs",
+                "minSecs": "min_secs"
             },
             "chronosphere:index/ConsumptionConfigPartitionPartitionPartition:ConsumptionConfigPartitionPartitionPartition": {
                 "filters": "filter",
@@ -109,7 +198,49 @@
             },
             "chronosphere:index/ConsumptionConfigPartitionPartitionPartitionFilterCondition:ConsumptionConfigPartitionPartitionPartitionFilterCondition": {
                 "datasetId": "dataset_id",
-                "logFilter": "log_filter"
+                "logFilter": "log_filter",
+                "metricFilters": "metric_filter",
+                "traceFilter": "trace_filter"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionPartitionPartitionFilterConditionMetricFilter:ConsumptionConfigPartitionPartitionPartitionFilterConditionMetricFilter": {
+                "valueGlob": "value_glob"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilter:ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilter": {
+                "spans": "span"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpan:ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpan": {
+                "isRootSpan": "is_root_span",
+                "matchType": "match_type",
+                "parentOperation": "parent_operation",
+                "parentService": "parent_service",
+                "spanCount": "span_count",
+                "tags": "tag"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanDuration:ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanDuration": {
+                "maxSecs": "max_secs",
+                "minSecs": "min_secs"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanOperation:ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanOperation": {
+                "inValues": "in_values"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperation:ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperation": {
+                "inValues": "in_values"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanParentService:ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanParentService": {
+                "inValues": "in_values"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanService:ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanService": {
+                "inValues": "in_values"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanTag:ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanTag": {
+                "numericValue": "numeric_value"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValue:ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValue": {
+                "inValues": "in_values"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterTraceDuration:ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterTraceDuration": {
+                "maxSecs": "max_secs",
+                "minSecs": "min_secs"
             },
             "chronosphere:index/ConsumptionConfigPartitionPartitionPartitionPartition:ConsumptionConfigPartitionPartitionPartitionPartition": {
                 "filters": "filter",
@@ -120,7 +251,49 @@
             },
             "chronosphere:index/ConsumptionConfigPartitionPartitionPartitionPartitionFilterCondition:ConsumptionConfigPartitionPartitionPartitionPartitionFilterCondition": {
                 "datasetId": "dataset_id",
-                "logFilter": "log_filter"
+                "logFilter": "log_filter",
+                "metricFilters": "metric_filter",
+                "traceFilter": "trace_filter"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionMetricFilter:ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionMetricFilter": {
+                "valueGlob": "value_glob"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilter:ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilter": {
+                "spans": "span"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpan:ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpan": {
+                "isRootSpan": "is_root_span",
+                "matchType": "match_type",
+                "parentOperation": "parent_operation",
+                "parentService": "parent_service",
+                "spanCount": "span_count",
+                "tags": "tag"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanDuration:ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanDuration": {
+                "maxSecs": "max_secs",
+                "minSecs": "min_secs"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanOperation:ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanOperation": {
+                "inValues": "in_values"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperation:ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperation": {
+                "inValues": "in_values"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentService:ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentService": {
+                "inValues": "in_values"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanService:ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanService": {
+                "inValues": "in_values"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTag:ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTag": {
+                "numericValue": "numeric_value"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValue:ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValue": {
+                "inValues": "in_values"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceDuration:ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceDuration": {
+                "maxSecs": "max_secs",
+                "minSecs": "min_secs"
             },
             "chronosphere:index/ConsumptionConfigPartitionPartitionPartitionPartitionPartition:ConsumptionConfigPartitionPartitionPartitionPartitionPartition": {
                 "filters": "filter",
@@ -131,7 +304,49 @@
             },
             "chronosphere:index/ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterCondition:ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterCondition": {
                 "datasetId": "dataset_id",
-                "logFilter": "log_filter"
+                "logFilter": "log_filter",
+                "metricFilters": "metric_filter",
+                "traceFilter": "trace_filter"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionMetricFilter:ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionMetricFilter": {
+                "valueGlob": "value_glob"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilter:ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilter": {
+                "spans": "span"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpan:ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpan": {
+                "isRootSpan": "is_root_span",
+                "matchType": "match_type",
+                "parentOperation": "parent_operation",
+                "parentService": "parent_service",
+                "spanCount": "span_count",
+                "tags": "tag"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanDuration:ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanDuration": {
+                "maxSecs": "max_secs",
+                "minSecs": "min_secs"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanOperation:ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanOperation": {
+                "inValues": "in_values"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperation:ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperation": {
+                "inValues": "in_values"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentService:ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentService": {
+                "inValues": "in_values"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanService:ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanService": {
+                "inValues": "in_values"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTag:ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTag": {
+                "numericValue": "numeric_value"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValue:ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValue": {
+                "inValues": "in_values"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceDuration:ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceDuration": {
+                "maxSecs": "max_secs",
+                "minSecs": "min_secs"
             },
             "chronosphere:index/ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartition:ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartition": {
                 "filters": "filter"
@@ -141,7 +356,49 @@
             },
             "chronosphere:index/ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterCondition:ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterCondition": {
                 "datasetId": "dataset_id",
-                "logFilter": "log_filter"
+                "logFilter": "log_filter",
+                "metricFilters": "metric_filter",
+                "traceFilter": "trace_filter"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionMetricFilter:ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionMetricFilter": {
+                "valueGlob": "value_glob"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilter:ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilter": {
+                "spans": "span"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpan:ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpan": {
+                "isRootSpan": "is_root_span",
+                "matchType": "match_type",
+                "parentOperation": "parent_operation",
+                "parentService": "parent_service",
+                "spanCount": "span_count",
+                "tags": "tag"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanDuration:ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanDuration": {
+                "maxSecs": "max_secs",
+                "minSecs": "min_secs"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanOperation:ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanOperation": {
+                "inValues": "in_values"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperation:ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperation": {
+                "inValues": "in_values"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentService:ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentService": {
+                "inValues": "in_values"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanService:ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanService": {
+                "inValues": "in_values"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTag:ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTag": {
+                "numericValue": "numeric_value"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValue:ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValue": {
+                "inValues": "in_values"
+            },
+            "chronosphere:index/ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceDuration:ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceDuration": {
+                "maxSecs": "max_secs",
+                "minSecs": "min_secs"
             },
             "chronosphere:index/DatasetConfiguration:DatasetConfiguration": {
                 "logDataset": "log_dataset",
@@ -302,6 +559,7 @@
             "chronosphere:index/LogControlConfigRule:LogControlConfigRule": {
                 "dropField": "drop_field",
                 "emitMetrics": "emit_metrics",
+                "parseField": "parse_field",
                 "replaceField": "replace_field"
             },
             "chronosphere:index/LogControlConfigRuleDropField:LogControlConfigRuleDropField": {
@@ -313,6 +571,16 @@
             },
             "chronosphere:index/LogControlConfigRuleEmitMetricsGauge:LogControlConfigRuleEmitMetricsGauge": {
                 "aggregationType": "aggregation_type"
+            },
+            "chronosphere:index/LogControlConfigRuleParseFieldParser:LogControlConfigRuleParseFieldParser": {
+                "grokParser": "grok_parser",
+                "keyValueParser": "key_value_parser",
+                "parserType": "parser_type",
+                "regexParser": "regex_parser"
+            },
+            "chronosphere:index/LogControlConfigRuleParseFieldParserKeyValueParser:LogControlConfigRuleParseFieldParserKeyValueParser": {
+                "pairSeparator": "pair_separator",
+                "trimSet": "trim_set"
             },
             "chronosphere:index/LogControlConfigRuleReplaceField:LogControlConfigRuleReplaceField": {
                 "mappedValue": "mapped_value",
@@ -356,6 +624,7 @@
                 "sources": "source"
             },
             "chronosphere:index/LogIngestConfigFieldParserParser:LogIngestConfigFieldParserParser": {
+                "grokParser": "grok_parser",
                 "keyValueParser": "key_value_parser",
                 "parserType": "parser_type",
                 "regexParser": "regex_parser"
@@ -368,6 +637,7 @@
                 "keepOriginal": "keep_original"
             },
             "chronosphere:index/LogIngestConfigPlaintextParserParser:LogIngestConfigPlaintextParserParser": {
+                "grokParser": "grok_parser",
                 "keyValueParser": "key_value_parser",
                 "parserType": "parser_type",
                 "regexParser": "regex_parser"
@@ -447,15 +717,61 @@
                 "routes": "route"
             },
             "chronosphere:index/NotificationPolicyOverrideRoute:NotificationPolicyOverrideRoute": {
+                "destinations": "destination",
                 "groupBy": "group_by",
                 "repeatInterval": "repeat_interval"
+            },
+            "chronosphere:index/NotificationPolicyOverrideRouteDestination:NotificationPolicyOverrideRouteDestination": {
+                "disableResolves": "disable_resolves",
+                "opsGenie": "ops_genie",
+                "victorOps": "victor_ops"
+            },
+            "chronosphere:index/NotificationPolicyOverrideRouteDestinationOpsGenie:NotificationPolicyOverrideRouteDestinationOpsGenie": {
+                "externalConnectionSlug": "external_connection_slug"
+            },
+            "chronosphere:index/NotificationPolicyOverrideRouteDestinationPagerduty:NotificationPolicyOverrideRouteDestinationPagerduty": {
+                "externalConnectionSlug": "external_connection_slug"
+            },
+            "chronosphere:index/NotificationPolicyOverrideRouteDestinationSlack:NotificationPolicyOverrideRouteDestinationSlack": {
+                "externalConnectionSlug": "external_connection_slug"
+            },
+            "chronosphere:index/NotificationPolicyOverrideRouteDestinationVictorOps:NotificationPolicyOverrideRouteDestinationVictorOps": {
+                "externalConnectionSlug": "external_connection_slug",
+                "routingKey": "routing_key"
+            },
+            "chronosphere:index/NotificationPolicyOverrideRouteDestinationWebhook:NotificationPolicyOverrideRouteDestinationWebhook": {
+                "externalConnectionSlug": "external_connection_slug",
+                "queryParameters": "query_parameter"
             },
             "chronosphere:index/NotificationPolicyOverrideRouteGroupBy:NotificationPolicyOverrideRouteGroupBy": {
                 "labelNames": "label_names"
             },
             "chronosphere:index/NotificationPolicyRoute:NotificationPolicyRoute": {
+                "destinations": "destination",
                 "groupBy": "group_by",
                 "repeatInterval": "repeat_interval"
+            },
+            "chronosphere:index/NotificationPolicyRouteDestination:NotificationPolicyRouteDestination": {
+                "disableResolves": "disable_resolves",
+                "opsGenie": "ops_genie",
+                "victorOps": "victor_ops"
+            },
+            "chronosphere:index/NotificationPolicyRouteDestinationOpsGenie:NotificationPolicyRouteDestinationOpsGenie": {
+                "externalConnectionSlug": "external_connection_slug"
+            },
+            "chronosphere:index/NotificationPolicyRouteDestinationPagerduty:NotificationPolicyRouteDestinationPagerduty": {
+                "externalConnectionSlug": "external_connection_slug"
+            },
+            "chronosphere:index/NotificationPolicyRouteDestinationSlack:NotificationPolicyRouteDestinationSlack": {
+                "externalConnectionSlug": "external_connection_slug"
+            },
+            "chronosphere:index/NotificationPolicyRouteDestinationVictorOps:NotificationPolicyRouteDestinationVictorOps": {
+                "externalConnectionSlug": "external_connection_slug",
+                "routingKey": "routing_key"
+            },
+            "chronosphere:index/NotificationPolicyRouteDestinationWebhook:NotificationPolicyRouteDestinationWebhook": {
+                "externalConnectionSlug": "external_connection_slug",
+                "queryParameters": "query_parameter"
             },
             "chronosphere:index/NotificationPolicyRouteGroupBy:NotificationPolicyRouteGroupBy": {
                 "labelNames": "label_names"
@@ -887,6 +1203,7 @@
                 "bucketId": "bucket_id",
                 "collectionId": "collection_id",
                 "notificationPolicyId": "notification_policy_id",
+                "notificationTemplate": "notification_template",
                 "seriesConditions": "series_conditions",
                 "signalGrouping": "signal_grouping"
             },
@@ -908,6 +1225,14 @@
                 "sendResolved": "send_resolved",
                 "tlsInsecureSkipVerify": "tls_insecure_skip_verify"
             },
+            "chronosphere:index/opsgenieExternalConnection:OpsgenieExternalConnection": {
+                "apiKey": "api_key",
+                "apiUrl": "api_url",
+                "basicAuthPassword": "basic_auth_password",
+                "basicAuthUsername": "basic_auth_username",
+                "bearerToken": "bearer_token",
+                "tlsInsecureSkipVerify": "tls_insecure_skip_verify"
+            },
             "chronosphere:index/otelMetricsIngestion:OtelMetricsIngestion": {
                 "resourceAttributes": "resource_attributes"
             },
@@ -923,6 +1248,10 @@
                 "sendResolved": "send_resolved",
                 "serviceKey": "service_key",
                 "tlsInsecureSkipVerify": "tls_insecure_skip_verify"
+            },
+            "chronosphere:index/pagerdutyExternalConnection:PagerdutyExternalConnection": {
+                "pagerdutyApiKey": "pagerduty_api_key",
+                "pagerdutyEventsVersion": "pagerduty_events_version"
             },
             "chronosphere:index/recordingRule:RecordingRule": {
                 "bucketId": "bucket_id",
@@ -974,6 +1303,9 @@
                 "titleLink": "title_link",
                 "tlsInsecureSkipVerify": "tls_insecure_skip_verify"
             },
+            "chronosphere:index/slackExternalConnection:SlackExternalConnection": {
+                "apiUrl": "api_url"
+            },
             "chronosphere:index/team:Team": {
                 "userEmails": "user_emails"
             },
@@ -1008,12 +1340,22 @@
                 "stateMessage": "state_message",
                 "tlsInsecureSkipVerify": "tls_insecure_skip_verify"
             },
+            "chronosphere:index/victoropsExternalConnection:VictoropsExternalConnection": {
+                "apiKey": "api_key",
+                "apiUrl": "api_url"
+            },
             "chronosphere:index/webhookAlertNotifier:WebhookAlertNotifier": {
                 "basicAuthPassword": "basic_auth_password",
                 "basicAuthUsername": "basic_auth_username",
                 "bearerToken": "bearer_token",
                 "proxyUrl": "proxy_url",
                 "sendResolved": "send_resolved",
+                "tlsInsecureSkipVerify": "tls_insecure_skip_verify"
+            },
+            "chronosphere:index/webhookExternalConnection:WebhookExternalConnection": {
+                "basicAuthPassword": "basic_auth_password",
+                "basicAuthUsername": "basic_auth_username",
+                "bearerToken": "bearer_token",
                 "tlsInsecureSkipVerify": "tls_insecure_skip_verify"
             },
             "chronosphere:index:Provider": {

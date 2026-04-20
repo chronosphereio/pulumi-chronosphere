@@ -13,6 +13,14 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class NotificationPolicyOverrideRouteArgs : global::Pulumi.ResourceArgs
     {
+        [Input("destinations")]
+        private InputList<Inputs.NotificationPolicyOverrideRouteDestinationArgs>? _destinations;
+        public InputList<Inputs.NotificationPolicyOverrideRouteDestinationArgs> Destinations
+        {
+            get => _destinations ?? (_destinations = new InputList<Inputs.NotificationPolicyOverrideRouteDestinationArgs>());
+            set => _destinations = value;
+        }
+
         [Input("groupBy")]
         public Input<Inputs.NotificationPolicyOverrideRouteGroupByArgs>? GroupBy { get; set; }
 

@@ -42,8 +42,10 @@
         "monitor.ts",
         "notificationPolicy.ts",
         "opsgenieAlertNotifier.ts",
+        "opsgenieExternalConnection.ts",
         "otelMetricsIngestion.ts",
         "pagerdutyAlertNotifier.ts",
+        "pagerdutyExternalConnection.ts",
         "provider.ts",
         "recordingRule.ts",
         "resourcePoolsConfig.ts",
@@ -52,6 +54,7 @@
         "serviceAttribute.ts",
         "serviceDataSource.ts",
         "slackAlertNotifier.ts",
+        "slackExternalConnection.ts",
         "slo.ts",
         "team.ts",
         "traceJaegerRemoteSamplingStrategy.ts",
@@ -62,6 +65,8 @@
         "types/output.ts",
         "utilities.ts",
         "victoropsAlertNotifier.ts",
-        "webhookAlertNotifier.ts"
+        "victoropsExternalConnection.ts",
+        "webhookAlertNotifier.ts",
+        "webhookExternalConnection.ts"
     ]
 }

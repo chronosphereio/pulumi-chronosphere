@@ -15,18 +15,19 @@ import (
 type Monitor struct {
 	pulumi.CustomResourceState
 
-	Annotations          pulumi.StringMapOutput         `pulumi:"annotations"`
-	BucketId             pulumi.StringPtrOutput         `pulumi:"bucketId"`
-	CollectionId         pulumi.StringPtrOutput         `pulumi:"collectionId"`
-	Interval             pulumi.StringPtrOutput         `pulumi:"interval"`
-	Labels               pulumi.StringMapOutput         `pulumi:"labels"`
-	Name                 pulumi.StringOutput            `pulumi:"name"`
-	NotificationPolicyId pulumi.StringPtrOutput         `pulumi:"notificationPolicyId"`
-	Query                MonitorQueryOutput             `pulumi:"query"`
-	Schedule             MonitorSchedulePtrOutput       `pulumi:"schedule"`
-	SeriesConditions     MonitorSeriesConditionsOutput  `pulumi:"seriesConditions"`
-	SignalGrouping       MonitorSignalGroupingPtrOutput `pulumi:"signalGrouping"`
-	Slug                 pulumi.StringOutput            `pulumi:"slug"`
+	Annotations          pulumi.StringMapOutput               `pulumi:"annotations"`
+	BucketId             pulumi.StringPtrOutput               `pulumi:"bucketId"`
+	CollectionId         pulumi.StringPtrOutput               `pulumi:"collectionId"`
+	Interval             pulumi.StringPtrOutput               `pulumi:"interval"`
+	Labels               pulumi.StringMapOutput               `pulumi:"labels"`
+	Name                 pulumi.StringOutput                  `pulumi:"name"`
+	NotificationPolicyId pulumi.StringPtrOutput               `pulumi:"notificationPolicyId"`
+	NotificationTemplate MonitorNotificationTemplatePtrOutput `pulumi:"notificationTemplate"`
+	Query                MonitorQueryOutput                   `pulumi:"query"`
+	Schedule             MonitorSchedulePtrOutput             `pulumi:"schedule"`
+	SeriesConditions     MonitorSeriesConditionsOutput        `pulumi:"seriesConditions"`
+	SignalGrouping       MonitorSignalGroupingPtrOutput       `pulumi:"signalGrouping"`
+	Slug                 pulumi.StringOutput                  `pulumi:"slug"`
 }
 
 // NewMonitor registers a new resource with the given unique name, arguments, and options.
@@ -68,18 +69,19 @@ func GetMonitor(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Monitor resources.
 type monitorState struct {
-	Annotations          map[string]string        `pulumi:"annotations"`
-	BucketId             *string                  `pulumi:"bucketId"`
-	CollectionId         *string                  `pulumi:"collectionId"`
-	Interval             *string                  `pulumi:"interval"`
-	Labels               map[string]string        `pulumi:"labels"`
-	Name                 *string                  `pulumi:"name"`
-	NotificationPolicyId *string                  `pulumi:"notificationPolicyId"`
-	Query                *MonitorQuery            `pulumi:"query"`
-	Schedule             *MonitorSchedule         `pulumi:"schedule"`
-	SeriesConditions     *MonitorSeriesConditions `pulumi:"seriesConditions"`
-	SignalGrouping       *MonitorSignalGrouping   `pulumi:"signalGrouping"`
-	Slug                 *string                  `pulumi:"slug"`
+	Annotations          map[string]string            `pulumi:"annotations"`
+	BucketId             *string                      `pulumi:"bucketId"`
+	CollectionId         *string                      `pulumi:"collectionId"`
+	Interval             *string                      `pulumi:"interval"`
+	Labels               map[string]string            `pulumi:"labels"`
+	Name                 *string                      `pulumi:"name"`
+	NotificationPolicyId *string                      `pulumi:"notificationPolicyId"`
+	NotificationTemplate *MonitorNotificationTemplate `pulumi:"notificationTemplate"`
+	Query                *MonitorQuery                `pulumi:"query"`
+	Schedule             *MonitorSchedule             `pulumi:"schedule"`
+	SeriesConditions     *MonitorSeriesConditions     `pulumi:"seriesConditions"`
+	SignalGrouping       *MonitorSignalGrouping       `pulumi:"signalGrouping"`
+	Slug                 *string                      `pulumi:"slug"`
 }
 
 type MonitorState struct {
@@ -90,6 +92,7 @@ type MonitorState struct {
 	Labels               pulumi.StringMapInput
 	Name                 pulumi.StringPtrInput
 	NotificationPolicyId pulumi.StringPtrInput
+	NotificationTemplate MonitorNotificationTemplatePtrInput
 	Query                MonitorQueryPtrInput
 	Schedule             MonitorSchedulePtrInput
 	SeriesConditions     MonitorSeriesConditionsPtrInput
@@ -102,18 +105,19 @@ func (MonitorState) ElementType() reflect.Type {
 }
 
 type monitorArgs struct {
-	Annotations          map[string]string       `pulumi:"annotations"`
-	BucketId             *string                 `pulumi:"bucketId"`
-	CollectionId         *string                 `pulumi:"collectionId"`
-	Interval             *string                 `pulumi:"interval"`
-	Labels               map[string]string       `pulumi:"labels"`
-	Name                 string                  `pulumi:"name"`
-	NotificationPolicyId *string                 `pulumi:"notificationPolicyId"`
-	Query                MonitorQuery            `pulumi:"query"`
-	Schedule             *MonitorSchedule        `pulumi:"schedule"`
-	SeriesConditions     MonitorSeriesConditions `pulumi:"seriesConditions"`
-	SignalGrouping       *MonitorSignalGrouping  `pulumi:"signalGrouping"`
-	Slug                 *string                 `pulumi:"slug"`
+	Annotations          map[string]string            `pulumi:"annotations"`
+	BucketId             *string                      `pulumi:"bucketId"`
+	CollectionId         *string                      `pulumi:"collectionId"`
+	Interval             *string                      `pulumi:"interval"`
+	Labels               map[string]string            `pulumi:"labels"`
+	Name                 string                       `pulumi:"name"`
+	NotificationPolicyId *string                      `pulumi:"notificationPolicyId"`
+	NotificationTemplate *MonitorNotificationTemplate `pulumi:"notificationTemplate"`
+	Query                MonitorQuery                 `pulumi:"query"`
+	Schedule             *MonitorSchedule             `pulumi:"schedule"`
+	SeriesConditions     MonitorSeriesConditions      `pulumi:"seriesConditions"`
+	SignalGrouping       *MonitorSignalGrouping       `pulumi:"signalGrouping"`
+	Slug                 *string                      `pulumi:"slug"`
 }
 
 // The set of arguments for constructing a Monitor resource.
@@ -125,6 +129,7 @@ type MonitorArgs struct {
 	Labels               pulumi.StringMapInput
 	Name                 pulumi.StringInput
 	NotificationPolicyId pulumi.StringPtrInput
+	NotificationTemplate MonitorNotificationTemplatePtrInput
 	Query                MonitorQueryInput
 	Schedule             MonitorSchedulePtrInput
 	SeriesConditions     MonitorSeriesConditionsInput
@@ -245,6 +250,10 @@ func (o MonitorOutput) Name() pulumi.StringOutput {
 
 func (o MonitorOutput) NotificationPolicyId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Monitor) pulumi.StringPtrOutput { return v.NotificationPolicyId }).(pulumi.StringPtrOutput)
+}
+
+func (o MonitorOutput) NotificationTemplate() MonitorNotificationTemplatePtrOutput {
+	return o.ApplyT(func(v *Monitor) MonitorNotificationTemplatePtrOutput { return v.NotificationTemplate }).(MonitorNotificationTemplatePtrOutput)
 }
 
 func (o MonitorOutput) Query() MonitorQueryOutput {

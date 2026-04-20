@@ -16,15 +16,23 @@ namespace Chronosphere.Pulumi.Outputs
     {
         public readonly string? DatasetId;
         public readonly Outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter? LogFilter;
+        public readonly ImmutableArray<Outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionMetricFilter> MetricFilters;
+        public readonly Outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilter? TraceFilter;
 
         [OutputConstructor]
         private ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterCondition(
             string? datasetId,
 
-            Outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter? logFilter)
+            Outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter? logFilter,
+
+            ImmutableArray<Outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionMetricFilter> metricFilters,
+
+            Outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilter? traceFilter)
         {
             DatasetId = datasetId;
             LogFilter = logFilter;
+            MetricFilters = metricFilters;
+            TraceFilter = traceFilter;
         }
     }
 }

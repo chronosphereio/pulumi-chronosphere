@@ -5,7 +5,10 @@ package io.chronosphere.chronosphere.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import io.chronosphere.chronosphere.outputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilter;
+import io.chronosphere.chronosphere.outputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionMetricFilter;
+import io.chronosphere.chronosphere.outputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilter;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -14,6 +17,8 @@ import javax.annotation.Nullable;
 public final class ConsumptionConfigPartitionPartitionPartitionFilterCondition {
     private @Nullable String datasetId;
     private @Nullable ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilter logFilter;
+    private @Nullable List<ConsumptionConfigPartitionPartitionPartitionFilterConditionMetricFilter> metricFilters;
+    private @Nullable ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilter traceFilter;
 
     private ConsumptionConfigPartitionPartitionPartitionFilterCondition() {}
     public Optional<String> datasetId() {
@@ -21,6 +26,12 @@ public final class ConsumptionConfigPartitionPartitionPartitionFilterCondition {
     }
     public Optional<ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilter> logFilter() {
         return Optional.ofNullable(this.logFilter);
+    }
+    public List<ConsumptionConfigPartitionPartitionPartitionFilterConditionMetricFilter> metricFilters() {
+        return this.metricFilters == null ? List.of() : this.metricFilters;
+    }
+    public Optional<ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilter> traceFilter() {
+        return Optional.ofNullable(this.traceFilter);
     }
 
     public static Builder builder() {
@@ -34,11 +45,15 @@ public final class ConsumptionConfigPartitionPartitionPartitionFilterCondition {
     public static final class Builder {
         private @Nullable String datasetId;
         private @Nullable ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilter logFilter;
+        private @Nullable List<ConsumptionConfigPartitionPartitionPartitionFilterConditionMetricFilter> metricFilters;
+        private @Nullable ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilter traceFilter;
         public Builder() {}
         public Builder(ConsumptionConfigPartitionPartitionPartitionFilterCondition defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.datasetId = defaults.datasetId;
     	      this.logFilter = defaults.logFilter;
+    	      this.metricFilters = defaults.metricFilters;
+    	      this.traceFilter = defaults.traceFilter;
         }
 
         @CustomType.Setter
@@ -51,10 +66,25 @@ public final class ConsumptionConfigPartitionPartitionPartitionFilterCondition {
             this.logFilter = logFilter;
             return this;
         }
+        @CustomType.Setter
+        public Builder metricFilters(@Nullable List<ConsumptionConfigPartitionPartitionPartitionFilterConditionMetricFilter> metricFilters) {
+            this.metricFilters = metricFilters;
+            return this;
+        }
+        public Builder metricFilters(ConsumptionConfigPartitionPartitionPartitionFilterConditionMetricFilter... metricFilters) {
+            return metricFilters(List.of(metricFilters));
+        }
+        @CustomType.Setter
+        public Builder traceFilter(@Nullable ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilter traceFilter) {
+            this.traceFilter = traceFilter;
+            return this;
+        }
         public ConsumptionConfigPartitionPartitionPartitionFilterCondition build() {
             final var o = new ConsumptionConfigPartitionPartitionPartitionFilterCondition();
             o.datasetId = datasetId;
             o.logFilter = logFilter;
+            o.metricFilters = metricFilters;
+            o.traceFilter = traceFilter;
             return o;
         }
     }

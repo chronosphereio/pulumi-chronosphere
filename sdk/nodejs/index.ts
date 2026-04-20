@@ -135,6 +135,11 @@ export type OpsgenieAlertNotifier = import("./opsgenieAlertNotifier").OpsgenieAl
 export const OpsgenieAlertNotifier: typeof import("./opsgenieAlertNotifier").OpsgenieAlertNotifier = null as any;
 utilities.lazyLoad(exports, ["OpsgenieAlertNotifier"], () => require("./opsgenieAlertNotifier"));
 
+export { OpsgenieExternalConnectionArgs, OpsgenieExternalConnectionState } from "./opsgenieExternalConnection";
+export type OpsgenieExternalConnection = import("./opsgenieExternalConnection").OpsgenieExternalConnection;
+export const OpsgenieExternalConnection: typeof import("./opsgenieExternalConnection").OpsgenieExternalConnection = null as any;
+utilities.lazyLoad(exports, ["OpsgenieExternalConnection"], () => require("./opsgenieExternalConnection"));
+
 export { OtelMetricsIngestionArgs, OtelMetricsIngestionState } from "./otelMetricsIngestion";
 export type OtelMetricsIngestion = import("./otelMetricsIngestion").OtelMetricsIngestion;
 export const OtelMetricsIngestion: typeof import("./otelMetricsIngestion").OtelMetricsIngestion = null as any;
@@ -144,6 +149,11 @@ export { PagerdutyAlertNotifierArgs, PagerdutyAlertNotifierState } from "./pager
 export type PagerdutyAlertNotifier = import("./pagerdutyAlertNotifier").PagerdutyAlertNotifier;
 export const PagerdutyAlertNotifier: typeof import("./pagerdutyAlertNotifier").PagerdutyAlertNotifier = null as any;
 utilities.lazyLoad(exports, ["PagerdutyAlertNotifier"], () => require("./pagerdutyAlertNotifier"));
+
+export { PagerdutyExternalConnectionArgs, PagerdutyExternalConnectionState } from "./pagerdutyExternalConnection";
+export type PagerdutyExternalConnection = import("./pagerdutyExternalConnection").PagerdutyExternalConnection;
+export const PagerdutyExternalConnection: typeof import("./pagerdutyExternalConnection").PagerdutyExternalConnection = null as any;
+utilities.lazyLoad(exports, ["PagerdutyExternalConnection"], () => require("./pagerdutyExternalConnection"));
 
 export { ProviderArgs } from "./provider";
 export type Provider = import("./provider").Provider;
@@ -185,6 +195,11 @@ export type SlackAlertNotifier = import("./slackAlertNotifier").SlackAlertNotifi
 export const SlackAlertNotifier: typeof import("./slackAlertNotifier").SlackAlertNotifier = null as any;
 utilities.lazyLoad(exports, ["SlackAlertNotifier"], () => require("./slackAlertNotifier"));
 
+export { SlackExternalConnectionArgs, SlackExternalConnectionState } from "./slackExternalConnection";
+export type SlackExternalConnection = import("./slackExternalConnection").SlackExternalConnection;
+export const SlackExternalConnection: typeof import("./slackExternalConnection").SlackExternalConnection = null as any;
+utilities.lazyLoad(exports, ["SlackExternalConnection"], () => require("./slackExternalConnection"));
+
 export { SLOArgs, SLOState } from "./slo";
 export type SLO = import("./slo").SLO;
 export const SLO: typeof import("./slo").SLO = null as any;
@@ -215,10 +230,20 @@ export type VictoropsAlertNotifier = import("./victoropsAlertNotifier").Victorop
 export const VictoropsAlertNotifier: typeof import("./victoropsAlertNotifier").VictoropsAlertNotifier = null as any;
 utilities.lazyLoad(exports, ["VictoropsAlertNotifier"], () => require("./victoropsAlertNotifier"));
 
+export { VictoropsExternalConnectionArgs, VictoropsExternalConnectionState } from "./victoropsExternalConnection";
+export type VictoropsExternalConnection = import("./victoropsExternalConnection").VictoropsExternalConnection;
+export const VictoropsExternalConnection: typeof import("./victoropsExternalConnection").VictoropsExternalConnection = null as any;
+utilities.lazyLoad(exports, ["VictoropsExternalConnection"], () => require("./victoropsExternalConnection"));
+
 export { WebhookAlertNotifierArgs, WebhookAlertNotifierState } from "./webhookAlertNotifier";
 export type WebhookAlertNotifier = import("./webhookAlertNotifier").WebhookAlertNotifier;
 export const WebhookAlertNotifier: typeof import("./webhookAlertNotifier").WebhookAlertNotifier = null as any;
 utilities.lazyLoad(exports, ["WebhookAlertNotifier"], () => require("./webhookAlertNotifier"));
+
+export { WebhookExternalConnectionArgs, WebhookExternalConnectionState } from "./webhookExternalConnection";
+export type WebhookExternalConnection = import("./webhookExternalConnection").WebhookExternalConnection;
+export const WebhookExternalConnection: typeof import("./webhookExternalConnection").WebhookExternalConnection = null as any;
+utilities.lazyLoad(exports, ["WebhookExternalConnection"], () => require("./webhookExternalConnection"));
 
 
 // Export sub-modules:
@@ -282,10 +307,14 @@ const _module = {
                 return new NotificationPolicy(name, <any>undefined, { urn })
             case "chronosphere:index/opsgenieAlertNotifier:OpsgenieAlertNotifier":
                 return new OpsgenieAlertNotifier(name, <any>undefined, { urn })
+            case "chronosphere:index/opsgenieExternalConnection:OpsgenieExternalConnection":
+                return new OpsgenieExternalConnection(name, <any>undefined, { urn })
             case "chronosphere:index/otelMetricsIngestion:OtelMetricsIngestion":
                 return new OtelMetricsIngestion(name, <any>undefined, { urn })
             case "chronosphere:index/pagerdutyAlertNotifier:PagerdutyAlertNotifier":
                 return new PagerdutyAlertNotifier(name, <any>undefined, { urn })
+            case "chronosphere:index/pagerdutyExternalConnection:PagerdutyExternalConnection":
+                return new PagerdutyExternalConnection(name, <any>undefined, { urn })
             case "chronosphere:index/recordingRule:RecordingRule":
                 return new RecordingRule(name, <any>undefined, { urn })
             case "chronosphere:index/resourcePoolsConfig:ResourcePoolsConfig":
@@ -300,6 +329,8 @@ const _module = {
                 return new ServiceAttribute(name, <any>undefined, { urn })
             case "chronosphere:index/slackAlertNotifier:SlackAlertNotifier":
                 return new SlackAlertNotifier(name, <any>undefined, { urn })
+            case "chronosphere:index/slackExternalConnection:SlackExternalConnection":
+                return new SlackExternalConnection(name, <any>undefined, { urn })
             case "chronosphere:index/team:Team":
                 return new Team(name, <any>undefined, { urn })
             case "chronosphere:index/traceJaegerRemoteSamplingStrategy:TraceJaegerRemoteSamplingStrategy":
@@ -310,8 +341,12 @@ const _module = {
                 return new TraceTailSamplingRules(name, <any>undefined, { urn })
             case "chronosphere:index/victoropsAlertNotifier:VictoropsAlertNotifier":
                 return new VictoropsAlertNotifier(name, <any>undefined, { urn })
+            case "chronosphere:index/victoropsExternalConnection:VictoropsExternalConnection":
+                return new VictoropsExternalConnection(name, <any>undefined, { urn })
             case "chronosphere:index/webhookAlertNotifier:WebhookAlertNotifier":
                 return new WebhookAlertNotifier(name, <any>undefined, { urn })
+            case "chronosphere:index/webhookExternalConnection:WebhookExternalConnection":
+                return new WebhookExternalConnection(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
@@ -341,8 +376,10 @@ pulumi.runtime.registerResourceModule("chronosphere", "index/mappingRule", _modu
 pulumi.runtime.registerResourceModule("chronosphere", "index/monitor", _module)
 pulumi.runtime.registerResourceModule("chronosphere", "index/notificationPolicy", _module)
 pulumi.runtime.registerResourceModule("chronosphere", "index/opsgenieAlertNotifier", _module)
+pulumi.runtime.registerResourceModule("chronosphere", "index/opsgenieExternalConnection", _module)
 pulumi.runtime.registerResourceModule("chronosphere", "index/otelMetricsIngestion", _module)
 pulumi.runtime.registerResourceModule("chronosphere", "index/pagerdutyAlertNotifier", _module)
+pulumi.runtime.registerResourceModule("chronosphere", "index/pagerdutyExternalConnection", _module)
 pulumi.runtime.registerResourceModule("chronosphere", "index/recordingRule", _module)
 pulumi.runtime.registerResourceModule("chronosphere", "index/resourcePoolsConfig", _module)
 pulumi.runtime.registerResourceModule("chronosphere", "index/rollupRule", _module)
@@ -350,12 +387,15 @@ pulumi.runtime.registerResourceModule("chronosphere", "index/sLO", _module)
 pulumi.runtime.registerResourceModule("chronosphere", "index/serviceAccount", _module)
 pulumi.runtime.registerResourceModule("chronosphere", "index/serviceAttribute", _module)
 pulumi.runtime.registerResourceModule("chronosphere", "index/slackAlertNotifier", _module)
+pulumi.runtime.registerResourceModule("chronosphere", "index/slackExternalConnection", _module)
 pulumi.runtime.registerResourceModule("chronosphere", "index/team", _module)
 pulumi.runtime.registerResourceModule("chronosphere", "index/traceJaegerRemoteSamplingStrategy", _module)
 pulumi.runtime.registerResourceModule("chronosphere", "index/traceMetricsRule", _module)
 pulumi.runtime.registerResourceModule("chronosphere", "index/traceTailSamplingRules", _module)
 pulumi.runtime.registerResourceModule("chronosphere", "index/victoropsAlertNotifier", _module)
+pulumi.runtime.registerResourceModule("chronosphere", "index/victoropsExternalConnection", _module)
 pulumi.runtime.registerResourceModule("chronosphere", "index/webhookAlertNotifier", _module)
+pulumi.runtime.registerResourceModule("chronosphere", "index/webhookExternalConnection", _module)
 pulumi.runtime.registerResourcePackage("chronosphere", {
     version: utilities.getVersion(),
     constructProvider: (name: string, type: string, urn: string): pulumi.ProviderResource => {

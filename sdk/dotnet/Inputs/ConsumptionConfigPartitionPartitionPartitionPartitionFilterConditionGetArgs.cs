@@ -19,6 +19,17 @@ namespace Chronosphere.Pulumi.Inputs
         [Input("logFilter")]
         public Input<Inputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterGetArgs>? LogFilter { get; set; }
 
+        [Input("metricFilters")]
+        private InputList<Inputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionMetricFilterGetArgs>? _metricFilters;
+        public InputList<Inputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionMetricFilterGetArgs> MetricFilters
+        {
+            get => _metricFilters ?? (_metricFilters = new InputList<Inputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionMetricFilterGetArgs>());
+            set => _metricFilters = value;
+        }
+
+        [Input("traceFilter")]
+        public Input<Inputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterGetArgs>? TraceFilter { get; set; }
+
         public ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionGetArgs()
         {
         }

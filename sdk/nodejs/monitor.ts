@@ -41,6 +41,7 @@ export class Monitor extends pulumi.CustomResource {
     public readonly labels!: pulumi.Output<{[key: string]: string} | undefined>;
     public readonly name!: pulumi.Output<string>;
     public readonly notificationPolicyId!: pulumi.Output<string | undefined>;
+    public readonly notificationTemplate!: pulumi.Output<outputs.MonitorNotificationTemplate | undefined>;
     public readonly query!: pulumi.Output<outputs.MonitorQuery>;
     public readonly schedule!: pulumi.Output<outputs.MonitorSchedule | undefined>;
     public readonly seriesConditions!: pulumi.Output<outputs.MonitorSeriesConditions>;
@@ -67,6 +68,7 @@ export class Monitor extends pulumi.CustomResource {
             resourceInputs["labels"] = state ? state.labels : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["notificationPolicyId"] = state ? state.notificationPolicyId : undefined;
+            resourceInputs["notificationTemplate"] = state ? state.notificationTemplate : undefined;
             resourceInputs["query"] = state ? state.query : undefined;
             resourceInputs["schedule"] = state ? state.schedule : undefined;
             resourceInputs["seriesConditions"] = state ? state.seriesConditions : undefined;
@@ -90,6 +92,7 @@ export class Monitor extends pulumi.CustomResource {
             resourceInputs["labels"] = args ? args.labels : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["notificationPolicyId"] = args ? args.notificationPolicyId : undefined;
+            resourceInputs["notificationTemplate"] = args ? args.notificationTemplate : undefined;
             resourceInputs["query"] = args ? args.query : undefined;
             resourceInputs["schedule"] = args ? args.schedule : undefined;
             resourceInputs["seriesConditions"] = args ? args.seriesConditions : undefined;
@@ -112,6 +115,7 @@ export interface MonitorState {
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     name?: pulumi.Input<string>;
     notificationPolicyId?: pulumi.Input<string>;
+    notificationTemplate?: pulumi.Input<inputs.MonitorNotificationTemplate>;
     query?: pulumi.Input<inputs.MonitorQuery>;
     schedule?: pulumi.Input<inputs.MonitorSchedule>;
     seriesConditions?: pulumi.Input<inputs.MonitorSeriesConditions>;
@@ -130,6 +134,7 @@ export interface MonitorArgs {
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     name: pulumi.Input<string>;
     notificationPolicyId?: pulumi.Input<string>;
+    notificationTemplate?: pulumi.Input<inputs.MonitorNotificationTemplate>;
     query: pulumi.Input<inputs.MonitorQuery>;
     schedule?: pulumi.Input<inputs.MonitorSchedule>;
     seriesConditions: pulumi.Input<inputs.MonitorSeriesConditions>;

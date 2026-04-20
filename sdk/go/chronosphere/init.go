@@ -69,10 +69,14 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &NotificationPolicy{}
 	case "chronosphere:index/opsgenieAlertNotifier:OpsgenieAlertNotifier":
 		r = &OpsgenieAlertNotifier{}
+	case "chronosphere:index/opsgenieExternalConnection:OpsgenieExternalConnection":
+		r = &OpsgenieExternalConnection{}
 	case "chronosphere:index/otelMetricsIngestion:OtelMetricsIngestion":
 		r = &OtelMetricsIngestion{}
 	case "chronosphere:index/pagerdutyAlertNotifier:PagerdutyAlertNotifier":
 		r = &PagerdutyAlertNotifier{}
+	case "chronosphere:index/pagerdutyExternalConnection:PagerdutyExternalConnection":
+		r = &PagerdutyExternalConnection{}
 	case "chronosphere:index/recordingRule:RecordingRule":
 		r = &RecordingRule{}
 	case "chronosphere:index/resourcePoolsConfig:ResourcePoolsConfig":
@@ -87,6 +91,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &ServiceAttribute{}
 	case "chronosphere:index/slackAlertNotifier:SlackAlertNotifier":
 		r = &SlackAlertNotifier{}
+	case "chronosphere:index/slackExternalConnection:SlackExternalConnection":
+		r = &SlackExternalConnection{}
 	case "chronosphere:index/team:Team":
 		r = &Team{}
 	case "chronosphere:index/traceJaegerRemoteSamplingStrategy:TraceJaegerRemoteSamplingStrategy":
@@ -97,8 +103,12 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &TraceTailSamplingRules{}
 	case "chronosphere:index/victoropsAlertNotifier:VictoropsAlertNotifier":
 		r = &VictoropsAlertNotifier{}
+	case "chronosphere:index/victoropsExternalConnection:VictoropsExternalConnection":
+		r = &VictoropsExternalConnection{}
 	case "chronosphere:index/webhookAlertNotifier:WebhookAlertNotifier":
 		r = &WebhookAlertNotifier{}
+	case "chronosphere:index/webhookExternalConnection:WebhookExternalConnection":
+		r = &WebhookExternalConnection{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
@@ -252,12 +262,22 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"chronosphere",
+		"index/opsgenieExternalConnection",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"chronosphere",
 		"index/otelMetricsIngestion",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"chronosphere",
 		"index/pagerdutyAlertNotifier",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"chronosphere",
+		"index/pagerdutyExternalConnection",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -297,6 +317,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"chronosphere",
+		"index/slackExternalConnection",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"chronosphere",
 		"index/team",
 		&module{version},
 	)
@@ -322,7 +347,17 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"chronosphere",
+		"index/victoropsExternalConnection",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"chronosphere",
 		"index/webhookAlertNotifier",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"chronosphere",
+		"index/webhookExternalConnection",
 		&module{version},
 	)
 	pulumi.RegisterResourcePackage(

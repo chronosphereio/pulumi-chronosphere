@@ -5,6 +5,7 @@ package io.chronosphere.chronosphere.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import io.chronosphere.chronosphere.inputs.LogIngestConfigFieldParserParserGrokParserArgs;
 import io.chronosphere.chronosphere.inputs.LogIngestConfigFieldParserParserKeyValueParserArgs;
 import io.chronosphere.chronosphere.inputs.LogIngestConfigFieldParserParserRegexParserArgs;
 import java.lang.String;
@@ -16,6 +17,13 @@ import javax.annotation.Nullable;
 public final class LogIngestConfigFieldParserParserArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final LogIngestConfigFieldParserParserArgs Empty = new LogIngestConfigFieldParserParserArgs();
+
+    @Import(name="grokParser")
+    private @Nullable Output<LogIngestConfigFieldParserParserGrokParserArgs> grokParser;
+
+    public Optional<Output<LogIngestConfigFieldParserParserGrokParserArgs>> grokParser() {
+        return Optional.ofNullable(this.grokParser);
+    }
 
     @Import(name="keyValueParser")
     private @Nullable Output<LogIngestConfigFieldParserParserKeyValueParserArgs> keyValueParser;
@@ -41,6 +49,7 @@ public final class LogIngestConfigFieldParserParserArgs extends com.pulumi.resou
     private LogIngestConfigFieldParserParserArgs() {}
 
     private LogIngestConfigFieldParserParserArgs(LogIngestConfigFieldParserParserArgs $) {
+        this.grokParser = $.grokParser;
         this.keyValueParser = $.keyValueParser;
         this.parserType = $.parserType;
         this.regexParser = $.regexParser;
@@ -62,6 +71,15 @@ public final class LogIngestConfigFieldParserParserArgs extends com.pulumi.resou
 
         public Builder(LogIngestConfigFieldParserParserArgs defaults) {
             $ = new LogIngestConfigFieldParserParserArgs(Objects.requireNonNull(defaults));
+        }
+
+        public Builder grokParser(@Nullable Output<LogIngestConfigFieldParserParserGrokParserArgs> grokParser) {
+            $.grokParser = grokParser;
+            return this;
+        }
+
+        public Builder grokParser(LogIngestConfigFieldParserParserGrokParserArgs grokParser) {
+            return grokParser(Output.of(grokParser));
         }
 
         public Builder keyValueParser(@Nullable Output<LogIngestConfigFieldParserParserKeyValueParserArgs> keyValueParser) {

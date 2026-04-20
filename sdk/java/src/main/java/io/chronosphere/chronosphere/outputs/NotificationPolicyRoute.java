@@ -4,6 +4,7 @@
 package io.chronosphere.chronosphere.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import io.chronosphere.chronosphere.outputs.NotificationPolicyRouteDestination;
 import io.chronosphere.chronosphere.outputs.NotificationPolicyRouteGroupBy;
 import java.lang.String;
 import java.util.List;
@@ -13,12 +14,16 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class NotificationPolicyRoute {
+    private @Nullable List<NotificationPolicyRouteDestination> destinations;
     private @Nullable NotificationPolicyRouteGroupBy groupBy;
     private @Nullable List<String> notifiers;
     private @Nullable String repeatInterval;
     private String severity;
 
     private NotificationPolicyRoute() {}
+    public List<NotificationPolicyRouteDestination> destinations() {
+        return this.destinations == null ? List.of() : this.destinations;
+    }
     public Optional<NotificationPolicyRouteGroupBy> groupBy() {
         return Optional.ofNullable(this.groupBy);
     }
@@ -41,6 +46,7 @@ public final class NotificationPolicyRoute {
     }
     @CustomType.Builder
     public static final class Builder {
+        private @Nullable List<NotificationPolicyRouteDestination> destinations;
         private @Nullable NotificationPolicyRouteGroupBy groupBy;
         private @Nullable List<String> notifiers;
         private @Nullable String repeatInterval;
@@ -48,12 +54,21 @@ public final class NotificationPolicyRoute {
         public Builder() {}
         public Builder(NotificationPolicyRoute defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.destinations = defaults.destinations;
     	      this.groupBy = defaults.groupBy;
     	      this.notifiers = defaults.notifiers;
     	      this.repeatInterval = defaults.repeatInterval;
     	      this.severity = defaults.severity;
         }
 
+        @CustomType.Setter
+        public Builder destinations(@Nullable List<NotificationPolicyRouteDestination> destinations) {
+            this.destinations = destinations;
+            return this;
+        }
+        public Builder destinations(NotificationPolicyRouteDestination... destinations) {
+            return destinations(List.of(destinations));
+        }
         @CustomType.Setter
         public Builder groupBy(@Nullable NotificationPolicyRouteGroupBy groupBy) {
             this.groupBy = groupBy;
@@ -79,6 +94,7 @@ public final class NotificationPolicyRoute {
         }
         public NotificationPolicyRoute build() {
             final var o = new NotificationPolicyRoute();
+            o.destinations = destinations;
             o.groupBy = groupBy;
             o.notifiers = notifiers;
             o.repeatInterval = repeatInterval;
