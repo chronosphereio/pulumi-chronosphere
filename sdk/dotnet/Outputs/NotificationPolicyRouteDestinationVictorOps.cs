@@ -15,16 +15,16 @@ namespace Chronosphere.Pulumi.Outputs
     public sealed class NotificationPolicyRouteDestinationVictorOps
     {
         public readonly string ExternalConnectionSlug;
-        public readonly string? RoutingKey;
+        public readonly ImmutableArray<string> RoutingKeys;
 
         [OutputConstructor]
         private NotificationPolicyRouteDestinationVictorOps(
             string externalConnectionSlug,
 
-            string? routingKey)
+            ImmutableArray<string> routingKeys)
         {
             ExternalConnectionSlug = externalConnectionSlug;
-            RoutingKey = routingKey;
+            RoutingKeys = routingKeys;
         }
     }
 }

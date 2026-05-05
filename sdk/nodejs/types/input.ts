@@ -74,7 +74,6 @@ export interface ConsumptionConfigPartitionFilterCondition {
     datasetId?: pulumi.Input<string>;
     logFilter?: pulumi.Input<inputs.ConsumptionConfigPartitionFilterConditionLogFilter>;
     metricFilters?: pulumi.Input<pulumi.Input<inputs.ConsumptionConfigPartitionFilterConditionMetricFilter>[]>;
-    traceFilter?: pulumi.Input<inputs.ConsumptionConfigPartitionFilterConditionTraceFilter>;
 }
 
 export interface ConsumptionConfigPartitionFilterConditionLogFilter {
@@ -84,97 +83,6 @@ export interface ConsumptionConfigPartitionFilterConditionLogFilter {
 export interface ConsumptionConfigPartitionFilterConditionMetricFilter {
     name: pulumi.Input<string>;
     valueGlob: pulumi.Input<string>;
-}
-
-export interface ConsumptionConfigPartitionFilterConditionTraceFilter {
-    spans?: pulumi.Input<pulumi.Input<inputs.ConsumptionConfigPartitionFilterConditionTraceFilterSpan>[]>;
-    trace?: pulumi.Input<inputs.ConsumptionConfigPartitionFilterConditionTraceFilterTrace>;
-}
-
-export interface ConsumptionConfigPartitionFilterConditionTraceFilterSpan {
-    duration?: pulumi.Input<inputs.ConsumptionConfigPartitionFilterConditionTraceFilterSpanDuration>;
-    error?: pulumi.Input<inputs.ConsumptionConfigPartitionFilterConditionTraceFilterSpanError>;
-    isRootSpan?: pulumi.Input<inputs.ConsumptionConfigPartitionFilterConditionTraceFilterSpanIsRootSpan>;
-    matchType?: pulumi.Input<string>;
-    operation?: pulumi.Input<inputs.ConsumptionConfigPartitionFilterConditionTraceFilterSpanOperation>;
-    parentOperation?: pulumi.Input<inputs.ConsumptionConfigPartitionFilterConditionTraceFilterSpanParentOperation>;
-    parentService?: pulumi.Input<inputs.ConsumptionConfigPartitionFilterConditionTraceFilterSpanParentService>;
-    service?: pulumi.Input<inputs.ConsumptionConfigPartitionFilterConditionTraceFilterSpanService>;
-    spanCount?: pulumi.Input<inputs.ConsumptionConfigPartitionFilterConditionTraceFilterSpanSpanCount>;
-    tags?: pulumi.Input<pulumi.Input<inputs.ConsumptionConfigPartitionFilterConditionTraceFilterSpanTag>[]>;
-}
-
-export interface ConsumptionConfigPartitionFilterConditionTraceFilterSpanDuration {
-    maxSecs?: pulumi.Input<number>;
-    minSecs?: pulumi.Input<number>;
-}
-
-export interface ConsumptionConfigPartitionFilterConditionTraceFilterSpanError {
-    value: pulumi.Input<boolean>;
-}
-
-export interface ConsumptionConfigPartitionFilterConditionTraceFilterSpanIsRootSpan {
-    value: pulumi.Input<boolean>;
-}
-
-export interface ConsumptionConfigPartitionFilterConditionTraceFilterSpanOperation {
-    inValues?: pulumi.Input<pulumi.Input<string>[]>;
-    match?: pulumi.Input<string>;
-    value?: pulumi.Input<string>;
-}
-
-export interface ConsumptionConfigPartitionFilterConditionTraceFilterSpanParentOperation {
-    inValues?: pulumi.Input<pulumi.Input<string>[]>;
-    match?: pulumi.Input<string>;
-    value?: pulumi.Input<string>;
-}
-
-export interface ConsumptionConfigPartitionFilterConditionTraceFilterSpanParentService {
-    inValues?: pulumi.Input<pulumi.Input<string>[]>;
-    match?: pulumi.Input<string>;
-    value?: pulumi.Input<string>;
-}
-
-export interface ConsumptionConfigPartitionFilterConditionTraceFilterSpanService {
-    inValues?: pulumi.Input<pulumi.Input<string>[]>;
-    match?: pulumi.Input<string>;
-    value?: pulumi.Input<string>;
-}
-
-export interface ConsumptionConfigPartitionFilterConditionTraceFilterSpanSpanCount {
-    max?: pulumi.Input<number>;
-    min?: pulumi.Input<number>;
-}
-
-export interface ConsumptionConfigPartitionFilterConditionTraceFilterSpanTag {
-    key?: pulumi.Input<string>;
-    numericValue?: pulumi.Input<inputs.ConsumptionConfigPartitionFilterConditionTraceFilterSpanTagNumericValue>;
-    value?: pulumi.Input<inputs.ConsumptionConfigPartitionFilterConditionTraceFilterSpanTagValue>;
-}
-
-export interface ConsumptionConfigPartitionFilterConditionTraceFilterSpanTagNumericValue {
-    comparison: pulumi.Input<string>;
-    value: pulumi.Input<number>;
-}
-
-export interface ConsumptionConfigPartitionFilterConditionTraceFilterSpanTagValue {
-    inValues?: pulumi.Input<pulumi.Input<string>[]>;
-    match?: pulumi.Input<string>;
-    value?: pulumi.Input<string>;
-}
-
-export interface ConsumptionConfigPartitionFilterConditionTraceFilterTrace {
-    duration?: pulumi.Input<inputs.ConsumptionConfigPartitionFilterConditionTraceFilterTraceDuration>;
-    error?: pulumi.Input<inputs.ConsumptionConfigPartitionFilterConditionTraceFilterTraceError>;
-}
-
-export interface ConsumptionConfigPartitionFilterConditionTraceFilterTraceDuration {
-    maxSecs?: pulumi.Input<number>;
-    minSecs?: pulumi.Input<number>;
-}
-
-export interface ConsumptionConfigPartitionFilterConditionTraceFilterTraceError {
-    value: pulumi.Input<boolean>;
 }
 
 export interface ConsumptionConfigPartitionPartition {
@@ -193,7 +101,6 @@ export interface ConsumptionConfigPartitionPartitionFilterCondition {
     datasetId?: pulumi.Input<string>;
     logFilter?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionFilterConditionLogFilter>;
     metricFilters?: pulumi.Input<pulumi.Input<inputs.ConsumptionConfigPartitionPartitionFilterConditionMetricFilter>[]>;
-    traceFilter?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionFilterConditionTraceFilter>;
 }
 
 export interface ConsumptionConfigPartitionPartitionFilterConditionLogFilter {
@@ -203,97 +110,6 @@ export interface ConsumptionConfigPartitionPartitionFilterConditionLogFilter {
 export interface ConsumptionConfigPartitionPartitionFilterConditionMetricFilter {
     name: pulumi.Input<string>;
     valueGlob: pulumi.Input<string>;
-}
-
-export interface ConsumptionConfigPartitionPartitionFilterConditionTraceFilter {
-    spans?: pulumi.Input<pulumi.Input<inputs.ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpan>[]>;
-    trace?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionFilterConditionTraceFilterTrace>;
-}
-
-export interface ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpan {
-    duration?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanDuration>;
-    error?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanError>;
-    isRootSpan?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanIsRootSpan>;
-    matchType?: pulumi.Input<string>;
-    operation?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanOperation>;
-    parentOperation?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanParentOperation>;
-    parentService?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanParentService>;
-    service?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanService>;
-    spanCount?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanSpanCount>;
-    tags?: pulumi.Input<pulumi.Input<inputs.ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanTag>[]>;
-}
-
-export interface ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanDuration {
-    maxSecs?: pulumi.Input<number>;
-    minSecs?: pulumi.Input<number>;
-}
-
-export interface ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanError {
-    value: pulumi.Input<boolean>;
-}
-
-export interface ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanIsRootSpan {
-    value: pulumi.Input<boolean>;
-}
-
-export interface ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanOperation {
-    inValues?: pulumi.Input<pulumi.Input<string>[]>;
-    match?: pulumi.Input<string>;
-    value?: pulumi.Input<string>;
-}
-
-export interface ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanParentOperation {
-    inValues?: pulumi.Input<pulumi.Input<string>[]>;
-    match?: pulumi.Input<string>;
-    value?: pulumi.Input<string>;
-}
-
-export interface ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanParentService {
-    inValues?: pulumi.Input<pulumi.Input<string>[]>;
-    match?: pulumi.Input<string>;
-    value?: pulumi.Input<string>;
-}
-
-export interface ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanService {
-    inValues?: pulumi.Input<pulumi.Input<string>[]>;
-    match?: pulumi.Input<string>;
-    value?: pulumi.Input<string>;
-}
-
-export interface ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanSpanCount {
-    max?: pulumi.Input<number>;
-    min?: pulumi.Input<number>;
-}
-
-export interface ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanTag {
-    key?: pulumi.Input<string>;
-    numericValue?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanTagNumericValue>;
-    value?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanTagValue>;
-}
-
-export interface ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanTagNumericValue {
-    comparison: pulumi.Input<string>;
-    value: pulumi.Input<number>;
-}
-
-export interface ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanTagValue {
-    inValues?: pulumi.Input<pulumi.Input<string>[]>;
-    match?: pulumi.Input<string>;
-    value?: pulumi.Input<string>;
-}
-
-export interface ConsumptionConfigPartitionPartitionFilterConditionTraceFilterTrace {
-    duration?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionFilterConditionTraceFilterTraceDuration>;
-    error?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionFilterConditionTraceFilterTraceError>;
-}
-
-export interface ConsumptionConfigPartitionPartitionFilterConditionTraceFilterTraceDuration {
-    maxSecs?: pulumi.Input<number>;
-    minSecs?: pulumi.Input<number>;
-}
-
-export interface ConsumptionConfigPartitionPartitionFilterConditionTraceFilterTraceError {
-    value: pulumi.Input<boolean>;
 }
 
 export interface ConsumptionConfigPartitionPartitionPartition {
@@ -312,7 +128,6 @@ export interface ConsumptionConfigPartitionPartitionPartitionFilterCondition {
     datasetId?: pulumi.Input<string>;
     logFilter?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilter>;
     metricFilters?: pulumi.Input<pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionMetricFilter>[]>;
-    traceFilter?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilter>;
 }
 
 export interface ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilter {
@@ -322,97 +137,6 @@ export interface ConsumptionConfigPartitionPartitionPartitionFilterConditionLogF
 export interface ConsumptionConfigPartitionPartitionPartitionFilterConditionMetricFilter {
     name: pulumi.Input<string>;
     valueGlob: pulumi.Input<string>;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilter {
-    spans?: pulumi.Input<pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpan>[]>;
-    trace?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterTrace>;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpan {
-    duration?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanDuration>;
-    error?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanError>;
-    isRootSpan?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanIsRootSpan>;
-    matchType?: pulumi.Input<string>;
-    operation?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanOperation>;
-    parentOperation?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperation>;
-    parentService?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanParentService>;
-    service?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanService>;
-    spanCount?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanSpanCount>;
-    tags?: pulumi.Input<pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanTag>[]>;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanDuration {
-    maxSecs?: pulumi.Input<number>;
-    minSecs?: pulumi.Input<number>;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanError {
-    value: pulumi.Input<boolean>;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanIsRootSpan {
-    value: pulumi.Input<boolean>;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanOperation {
-    inValues?: pulumi.Input<pulumi.Input<string>[]>;
-    match?: pulumi.Input<string>;
-    value?: pulumi.Input<string>;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperation {
-    inValues?: pulumi.Input<pulumi.Input<string>[]>;
-    match?: pulumi.Input<string>;
-    value?: pulumi.Input<string>;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanParentService {
-    inValues?: pulumi.Input<pulumi.Input<string>[]>;
-    match?: pulumi.Input<string>;
-    value?: pulumi.Input<string>;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanService {
-    inValues?: pulumi.Input<pulumi.Input<string>[]>;
-    match?: pulumi.Input<string>;
-    value?: pulumi.Input<string>;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanSpanCount {
-    max?: pulumi.Input<number>;
-    min?: pulumi.Input<number>;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanTag {
-    key?: pulumi.Input<string>;
-    numericValue?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanTagNumericValue>;
-    value?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValue>;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanTagNumericValue {
-    comparison: pulumi.Input<string>;
-    value: pulumi.Input<number>;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValue {
-    inValues?: pulumi.Input<pulumi.Input<string>[]>;
-    match?: pulumi.Input<string>;
-    value?: pulumi.Input<string>;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterTrace {
-    duration?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterTraceDuration>;
-    error?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterTraceError>;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterTraceDuration {
-    maxSecs?: pulumi.Input<number>;
-    minSecs?: pulumi.Input<number>;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterTraceError {
-    value: pulumi.Input<boolean>;
 }
 
 export interface ConsumptionConfigPartitionPartitionPartitionPartition {
@@ -431,7 +155,6 @@ export interface ConsumptionConfigPartitionPartitionPartitionPartitionFilterCond
     datasetId?: pulumi.Input<string>;
     logFilter?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilter>;
     metricFilters?: pulumi.Input<pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionMetricFilter>[]>;
-    traceFilter?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilter>;
 }
 
 export interface ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilter {
@@ -441,97 +164,6 @@ export interface ConsumptionConfigPartitionPartitionPartitionPartitionFilterCond
 export interface ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionMetricFilter {
     name: pulumi.Input<string>;
     valueGlob: pulumi.Input<string>;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilter {
-    spans?: pulumi.Input<pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpan>[]>;
-    trace?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterTrace>;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpan {
-    duration?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanDuration>;
-    error?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanError>;
-    isRootSpan?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanIsRootSpan>;
-    matchType?: pulumi.Input<string>;
-    operation?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanOperation>;
-    parentOperation?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperation>;
-    parentService?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentService>;
-    service?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanService>;
-    spanCount?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanSpanCount>;
-    tags?: pulumi.Input<pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTag>[]>;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanDuration {
-    maxSecs?: pulumi.Input<number>;
-    minSecs?: pulumi.Input<number>;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanError {
-    value: pulumi.Input<boolean>;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanIsRootSpan {
-    value: pulumi.Input<boolean>;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanOperation {
-    inValues?: pulumi.Input<pulumi.Input<string>[]>;
-    match?: pulumi.Input<string>;
-    value?: pulumi.Input<string>;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperation {
-    inValues?: pulumi.Input<pulumi.Input<string>[]>;
-    match?: pulumi.Input<string>;
-    value?: pulumi.Input<string>;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentService {
-    inValues?: pulumi.Input<pulumi.Input<string>[]>;
-    match?: pulumi.Input<string>;
-    value?: pulumi.Input<string>;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanService {
-    inValues?: pulumi.Input<pulumi.Input<string>[]>;
-    match?: pulumi.Input<string>;
-    value?: pulumi.Input<string>;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanSpanCount {
-    max?: pulumi.Input<number>;
-    min?: pulumi.Input<number>;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTag {
-    key?: pulumi.Input<string>;
-    numericValue?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagNumericValue>;
-    value?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValue>;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagNumericValue {
-    comparison: pulumi.Input<string>;
-    value: pulumi.Input<number>;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValue {
-    inValues?: pulumi.Input<pulumi.Input<string>[]>;
-    match?: pulumi.Input<string>;
-    value?: pulumi.Input<string>;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterTrace {
-    duration?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceDuration>;
-    error?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceError>;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceDuration {
-    maxSecs?: pulumi.Input<number>;
-    minSecs?: pulumi.Input<number>;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceError {
-    value: pulumi.Input<boolean>;
 }
 
 export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartition {
@@ -550,7 +182,6 @@ export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionF
     datasetId?: pulumi.Input<string>;
     logFilter?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter>;
     metricFilters?: pulumi.Input<pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionMetricFilter>[]>;
-    traceFilter?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilter>;
 }
 
 export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter {
@@ -560,97 +191,6 @@ export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionF
 export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionMetricFilter {
     name: pulumi.Input<string>;
     valueGlob: pulumi.Input<string>;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilter {
-    spans?: pulumi.Input<pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpan>[]>;
-    trace?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTrace>;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpan {
-    duration?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanDuration>;
-    error?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanError>;
-    isRootSpan?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanIsRootSpan>;
-    matchType?: pulumi.Input<string>;
-    operation?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanOperation>;
-    parentOperation?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperation>;
-    parentService?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentService>;
-    service?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanService>;
-    spanCount?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanSpanCount>;
-    tags?: pulumi.Input<pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTag>[]>;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanDuration {
-    maxSecs?: pulumi.Input<number>;
-    minSecs?: pulumi.Input<number>;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanError {
-    value: pulumi.Input<boolean>;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanIsRootSpan {
-    value: pulumi.Input<boolean>;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanOperation {
-    inValues?: pulumi.Input<pulumi.Input<string>[]>;
-    match?: pulumi.Input<string>;
-    value?: pulumi.Input<string>;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperation {
-    inValues?: pulumi.Input<pulumi.Input<string>[]>;
-    match?: pulumi.Input<string>;
-    value?: pulumi.Input<string>;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentService {
-    inValues?: pulumi.Input<pulumi.Input<string>[]>;
-    match?: pulumi.Input<string>;
-    value?: pulumi.Input<string>;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanService {
-    inValues?: pulumi.Input<pulumi.Input<string>[]>;
-    match?: pulumi.Input<string>;
-    value?: pulumi.Input<string>;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanSpanCount {
-    max?: pulumi.Input<number>;
-    min?: pulumi.Input<number>;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTag {
-    key?: pulumi.Input<string>;
-    numericValue?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagNumericValue>;
-    value?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValue>;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagNumericValue {
-    comparison: pulumi.Input<string>;
-    value: pulumi.Input<number>;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValue {
-    inValues?: pulumi.Input<pulumi.Input<string>[]>;
-    match?: pulumi.Input<string>;
-    value?: pulumi.Input<string>;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTrace {
-    duration?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceDuration>;
-    error?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceError>;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceDuration {
-    maxSecs?: pulumi.Input<number>;
-    minSecs?: pulumi.Input<number>;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceError {
-    value: pulumi.Input<boolean>;
 }
 
 export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartition {
@@ -668,7 +208,6 @@ export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionP
     datasetId?: pulumi.Input<string>;
     logFilter?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter>;
     metricFilters?: pulumi.Input<pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionMetricFilter>[]>;
-    traceFilter?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilter>;
 }
 
 export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter {
@@ -678,97 +217,6 @@ export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionP
 export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionMetricFilter {
     name: pulumi.Input<string>;
     valueGlob: pulumi.Input<string>;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilter {
-    spans?: pulumi.Input<pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpan>[]>;
-    trace?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTrace>;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpan {
-    duration?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanDuration>;
-    error?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanError>;
-    isRootSpan?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanIsRootSpan>;
-    matchType?: pulumi.Input<string>;
-    operation?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanOperation>;
-    parentOperation?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperation>;
-    parentService?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentService>;
-    service?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanService>;
-    spanCount?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanSpanCount>;
-    tags?: pulumi.Input<pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTag>[]>;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanDuration {
-    maxSecs?: pulumi.Input<number>;
-    minSecs?: pulumi.Input<number>;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanError {
-    value: pulumi.Input<boolean>;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanIsRootSpan {
-    value: pulumi.Input<boolean>;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanOperation {
-    inValues?: pulumi.Input<pulumi.Input<string>[]>;
-    match?: pulumi.Input<string>;
-    value?: pulumi.Input<string>;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperation {
-    inValues?: pulumi.Input<pulumi.Input<string>[]>;
-    match?: pulumi.Input<string>;
-    value?: pulumi.Input<string>;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentService {
-    inValues?: pulumi.Input<pulumi.Input<string>[]>;
-    match?: pulumi.Input<string>;
-    value?: pulumi.Input<string>;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanService {
-    inValues?: pulumi.Input<pulumi.Input<string>[]>;
-    match?: pulumi.Input<string>;
-    value?: pulumi.Input<string>;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanSpanCount {
-    max?: pulumi.Input<number>;
-    min?: pulumi.Input<number>;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTag {
-    key?: pulumi.Input<string>;
-    numericValue?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagNumericValue>;
-    value?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValue>;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagNumericValue {
-    comparison: pulumi.Input<string>;
-    value: pulumi.Input<number>;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValue {
-    inValues?: pulumi.Input<pulumi.Input<string>[]>;
-    match?: pulumi.Input<string>;
-    value?: pulumi.Input<string>;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTrace {
-    duration?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceDuration>;
-    error?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceError>;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceDuration {
-    maxSecs?: pulumi.Input<number>;
-    minSecs?: pulumi.Input<number>;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceError {
-    value: pulumi.Input<boolean>;
 }
 
 export interface DatasetConfiguration {
@@ -1551,7 +999,7 @@ export interface NotificationPolicyOverrideRouteDestinationSlack {
 
 export interface NotificationPolicyOverrideRouteDestinationVictorOps {
     externalConnectionSlug: pulumi.Input<string>;
-    routingKey?: pulumi.Input<string>;
+    routingKeys: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 export interface NotificationPolicyOverrideRouteDestinationWebhook {
@@ -1605,7 +1053,7 @@ export interface NotificationPolicyRouteDestinationSlack {
 
 export interface NotificationPolicyRouteDestinationVictorOps {
     externalConnectionSlug: pulumi.Input<string>;
-    routingKey?: pulumi.Input<string>;
+    routingKeys: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 export interface NotificationPolicyRouteDestinationWebhook {

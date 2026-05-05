@@ -6,9 +6,8 @@ package io.chronosphere.chronosphere.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
-import javax.annotation.Nullable;
 
 
 public final class NotificationPolicyOverrideRouteDestinationVictorOpsArgs extends com.pulumi.resources.ResourceArgs {
@@ -22,18 +21,18 @@ public final class NotificationPolicyOverrideRouteDestinationVictorOpsArgs exten
         return this.externalConnectionSlug;
     }
 
-    @Import(name="routingKey")
-    private @Nullable Output<String> routingKey;
+    @Import(name="routingKeys", required=true)
+    private Output<List<String>> routingKeys;
 
-    public Optional<Output<String>> routingKey() {
-        return Optional.ofNullable(this.routingKey);
+    public Output<List<String>> routingKeys() {
+        return this.routingKeys;
     }
 
     private NotificationPolicyOverrideRouteDestinationVictorOpsArgs() {}
 
     private NotificationPolicyOverrideRouteDestinationVictorOpsArgs(NotificationPolicyOverrideRouteDestinationVictorOpsArgs $) {
         this.externalConnectionSlug = $.externalConnectionSlug;
-        this.routingKey = $.routingKey;
+        this.routingKeys = $.routingKeys;
     }
 
     public static Builder builder() {
@@ -63,17 +62,22 @@ public final class NotificationPolicyOverrideRouteDestinationVictorOpsArgs exten
             return externalConnectionSlug(Output.of(externalConnectionSlug));
         }
 
-        public Builder routingKey(@Nullable Output<String> routingKey) {
-            $.routingKey = routingKey;
+        public Builder routingKeys(Output<List<String>> routingKeys) {
+            $.routingKeys = routingKeys;
             return this;
         }
 
-        public Builder routingKey(String routingKey) {
-            return routingKey(Output.of(routingKey));
+        public Builder routingKeys(List<String> routingKeys) {
+            return routingKeys(Output.of(routingKeys));
+        }
+
+        public Builder routingKeys(String... routingKeys) {
+            return routingKeys(List.of(routingKeys));
         }
 
         public NotificationPolicyOverrideRouteDestinationVictorOpsArgs build() {
             $.externalConnectionSlug = Objects.requireNonNull($.externalConnectionSlug, "expected parameter 'externalConnectionSlug' to be non-null");
+            $.routingKeys = Objects.requireNonNull($.routingKeys, "expected parameter 'routingKeys' to be non-null");
             return $;
         }
     }

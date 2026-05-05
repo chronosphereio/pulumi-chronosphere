@@ -7,7 +7,6 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import io.chronosphere.chronosphere.inputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterArgs;
 import io.chronosphere.chronosphere.inputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionMetricFilterArgs;
-import io.chronosphere.chronosphere.inputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterArgs;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -40,20 +39,12 @@ public final class ConsumptionConfigPartitionPartitionPartitionFilterConditionAr
         return Optional.ofNullable(this.metricFilters);
     }
 
-    @Import(name="traceFilter")
-    private @Nullable Output<ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterArgs> traceFilter;
-
-    public Optional<Output<ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterArgs>> traceFilter() {
-        return Optional.ofNullable(this.traceFilter);
-    }
-
     private ConsumptionConfigPartitionPartitionPartitionFilterConditionArgs() {}
 
     private ConsumptionConfigPartitionPartitionPartitionFilterConditionArgs(ConsumptionConfigPartitionPartitionPartitionFilterConditionArgs $) {
         this.datasetId = $.datasetId;
         this.logFilter = $.logFilter;
         this.metricFilters = $.metricFilters;
-        this.traceFilter = $.traceFilter;
     }
 
     public static Builder builder() {
@@ -103,15 +94,6 @@ public final class ConsumptionConfigPartitionPartitionPartitionFilterConditionAr
 
         public Builder metricFilters(ConsumptionConfigPartitionPartitionPartitionFilterConditionMetricFilterArgs... metricFilters) {
             return metricFilters(List.of(metricFilters));
-        }
-
-        public Builder traceFilter(@Nullable Output<ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterArgs> traceFilter) {
-            $.traceFilter = traceFilter;
-            return this;
-        }
-
-        public Builder traceFilter(ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterArgs traceFilter) {
-            return traceFilter(Output.of(traceFilter));
         }
 
         public ConsumptionConfigPartitionPartitionPartitionFilterConditionArgs build() {

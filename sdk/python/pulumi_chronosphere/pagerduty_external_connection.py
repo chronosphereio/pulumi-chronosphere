@@ -17,6 +17,7 @@ class PagerdutyExternalConnectionArgs:
                  name: pulumi.Input[str],
                  pagerduty_api_key: Optional[pulumi.Input[str]] = None,
                  pagerduty_events_version: Optional[pulumi.Input[str]] = None,
+                 pagerduty_rest_api_key: Optional[pulumi.Input[str]] = None,
                  slug: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a PagerdutyExternalConnection resource.
@@ -26,6 +27,8 @@ class PagerdutyExternalConnectionArgs:
             pulumi.set(__self__, "pagerduty_api_key", pagerduty_api_key)
         if pagerduty_events_version is not None:
             pulumi.set(__self__, "pagerduty_events_version", pagerduty_events_version)
+        if pagerduty_rest_api_key is not None:
+            pulumi.set(__self__, "pagerduty_rest_api_key", pagerduty_rest_api_key)
         if slug is not None:
             pulumi.set(__self__, "slug", slug)
 
@@ -57,6 +60,15 @@ class PagerdutyExternalConnectionArgs:
         pulumi.set(self, "pagerduty_events_version", value)
 
     @property
+    @pulumi.getter(name="pagerdutyRestApiKey")
+    def pagerduty_rest_api_key(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "pagerduty_rest_api_key")
+
+    @pagerduty_rest_api_key.setter
+    def pagerduty_rest_api_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "pagerduty_rest_api_key", value)
+
+    @property
     @pulumi.getter
     def slug(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "slug")
@@ -72,6 +84,7 @@ class _PagerdutyExternalConnectionState:
                  name: Optional[pulumi.Input[str]] = None,
                  pagerduty_api_key: Optional[pulumi.Input[str]] = None,
                  pagerduty_events_version: Optional[pulumi.Input[str]] = None,
+                 pagerduty_rest_api_key: Optional[pulumi.Input[str]] = None,
                  slug: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering PagerdutyExternalConnection resources.
@@ -82,6 +95,8 @@ class _PagerdutyExternalConnectionState:
             pulumi.set(__self__, "pagerduty_api_key", pagerduty_api_key)
         if pagerduty_events_version is not None:
             pulumi.set(__self__, "pagerduty_events_version", pagerduty_events_version)
+        if pagerduty_rest_api_key is not None:
+            pulumi.set(__self__, "pagerduty_rest_api_key", pagerduty_rest_api_key)
         if slug is not None:
             pulumi.set(__self__, "slug", slug)
 
@@ -113,6 +128,15 @@ class _PagerdutyExternalConnectionState:
         pulumi.set(self, "pagerduty_events_version", value)
 
     @property
+    @pulumi.getter(name="pagerdutyRestApiKey")
+    def pagerduty_rest_api_key(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "pagerduty_rest_api_key")
+
+    @pagerduty_rest_api_key.setter
+    def pagerduty_rest_api_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "pagerduty_rest_api_key", value)
+
+    @property
     @pulumi.getter
     def slug(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "slug")
@@ -130,6 +154,7 @@ class PagerdutyExternalConnection(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  pagerduty_api_key: Optional[pulumi.Input[str]] = None,
                  pagerduty_events_version: Optional[pulumi.Input[str]] = None,
+                 pagerduty_rest_api_key: Optional[pulumi.Input[str]] = None,
                  slug: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -163,6 +188,7 @@ class PagerdutyExternalConnection(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  pagerduty_api_key: Optional[pulumi.Input[str]] = None,
                  pagerduty_events_version: Optional[pulumi.Input[str]] = None,
+                 pagerduty_rest_api_key: Optional[pulumi.Input[str]] = None,
                  slug: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -178,8 +204,9 @@ class PagerdutyExternalConnection(pulumi.CustomResource):
             __props__.__dict__["name"] = name
             __props__.__dict__["pagerduty_api_key"] = None if pagerduty_api_key is None else pulumi.Output.secret(pagerduty_api_key)
             __props__.__dict__["pagerduty_events_version"] = pagerduty_events_version
+            __props__.__dict__["pagerduty_rest_api_key"] = None if pagerduty_rest_api_key is None else pulumi.Output.secret(pagerduty_rest_api_key)
             __props__.__dict__["slug"] = slug
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["pagerdutyApiKey"])
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["pagerdutyApiKey", "pagerdutyRestApiKey"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(PagerdutyExternalConnection, __self__).__init__(
             'chronosphere:index/pagerdutyExternalConnection:PagerdutyExternalConnection',
@@ -194,6 +221,7 @@ class PagerdutyExternalConnection(pulumi.CustomResource):
             name: Optional[pulumi.Input[str]] = None,
             pagerduty_api_key: Optional[pulumi.Input[str]] = None,
             pagerduty_events_version: Optional[pulumi.Input[str]] = None,
+            pagerduty_rest_api_key: Optional[pulumi.Input[str]] = None,
             slug: Optional[pulumi.Input[str]] = None) -> 'PagerdutyExternalConnection':
         """
         Get an existing PagerdutyExternalConnection resource's state with the given name, id, and optional extra
@@ -210,6 +238,7 @@ class PagerdutyExternalConnection(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["pagerduty_api_key"] = pagerduty_api_key
         __props__.__dict__["pagerduty_events_version"] = pagerduty_events_version
+        __props__.__dict__["pagerduty_rest_api_key"] = pagerduty_rest_api_key
         __props__.__dict__["slug"] = slug
         return PagerdutyExternalConnection(resource_name, opts=opts, __props__=__props__)
 
@@ -227,6 +256,11 @@ class PagerdutyExternalConnection(pulumi.CustomResource):
     @pulumi.getter(name="pagerdutyEventsVersion")
     def pagerduty_events_version(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "pagerduty_events_version")
+
+    @property
+    @pulumi.getter(name="pagerdutyRestApiKey")
+    def pagerduty_rest_api_key(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "pagerduty_rest_api_key")
 
     @property
     @pulumi.getter

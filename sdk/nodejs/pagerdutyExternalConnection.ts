@@ -35,6 +35,7 @@ export class PagerdutyExternalConnection extends pulumi.CustomResource {
     public readonly name!: pulumi.Output<string>;
     public readonly pagerdutyApiKey!: pulumi.Output<string | undefined>;
     public readonly pagerdutyEventsVersion!: pulumi.Output<string | undefined>;
+    public readonly pagerdutyRestApiKey!: pulumi.Output<string | undefined>;
     public readonly slug!: pulumi.Output<string>;
 
     /**
@@ -53,6 +54,7 @@ export class PagerdutyExternalConnection extends pulumi.CustomResource {
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["pagerdutyApiKey"] = state ? state.pagerdutyApiKey : undefined;
             resourceInputs["pagerdutyEventsVersion"] = state ? state.pagerdutyEventsVersion : undefined;
+            resourceInputs["pagerdutyRestApiKey"] = state ? state.pagerdutyRestApiKey : undefined;
             resourceInputs["slug"] = state ? state.slug : undefined;
         } else {
             const args = argsOrState as PagerdutyExternalConnectionArgs | undefined;
@@ -62,10 +64,11 @@ export class PagerdutyExternalConnection extends pulumi.CustomResource {
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["pagerdutyApiKey"] = args?.pagerdutyApiKey ? pulumi.secret(args.pagerdutyApiKey) : undefined;
             resourceInputs["pagerdutyEventsVersion"] = args ? args.pagerdutyEventsVersion : undefined;
+            resourceInputs["pagerdutyRestApiKey"] = args?.pagerdutyRestApiKey ? pulumi.secret(args.pagerdutyRestApiKey) : undefined;
             resourceInputs["slug"] = args ? args.slug : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["pagerdutyApiKey"] };
+        const secretOpts = { additionalSecretOutputs: ["pagerdutyApiKey", "pagerdutyRestApiKey"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(PagerdutyExternalConnection.__pulumiType, name, resourceInputs, opts);
     }
@@ -78,6 +81,7 @@ export interface PagerdutyExternalConnectionState {
     name?: pulumi.Input<string>;
     pagerdutyApiKey?: pulumi.Input<string>;
     pagerdutyEventsVersion?: pulumi.Input<string>;
+    pagerdutyRestApiKey?: pulumi.Input<string>;
     slug?: pulumi.Input<string>;
 }
 
@@ -88,5 +92,6 @@ export interface PagerdutyExternalConnectionArgs {
     name: pulumi.Input<string>;
     pagerdutyApiKey?: pulumi.Input<string>;
     pagerdutyEventsVersion?: pulumi.Input<string>;
+    pagerdutyRestApiKey?: pulumi.Input<string>;
     slug?: pulumi.Input<string>;
 }

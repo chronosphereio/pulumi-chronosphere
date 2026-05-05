@@ -22,6 +22,9 @@ namespace Chronosphere.Pulumi
         [Output("pagerdutyEventsVersion")]
         public Output<string?> PagerdutyEventsVersion { get; private set; } = null!;
 
+        [Output("pagerdutyRestApiKey")]
+        public Output<string?> PagerdutyRestApiKey { get; private set; } = null!;
+
         [Output("slug")]
         public Output<string> Slug { get; private set; } = null!;
 
@@ -52,6 +55,7 @@ namespace Chronosphere.Pulumi
                 AdditionalSecretOutputs =
                 {
                     "pagerdutyApiKey",
+                    "pagerdutyRestApiKey",
                 },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
@@ -94,6 +98,18 @@ namespace Chronosphere.Pulumi
         [Input("pagerdutyEventsVersion")]
         public Input<string>? PagerdutyEventsVersion { get; set; }
 
+        [Input("pagerdutyRestApiKey")]
+        private Input<string>? _pagerdutyRestApiKey;
+        public Input<string>? PagerdutyRestApiKey
+        {
+            get => _pagerdutyRestApiKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _pagerdutyRestApiKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 
@@ -122,6 +138,18 @@ namespace Chronosphere.Pulumi
 
         [Input("pagerdutyEventsVersion")]
         public Input<string>? PagerdutyEventsVersion { get; set; }
+
+        [Input("pagerdutyRestApiKey")]
+        private Input<string>? _pagerdutyRestApiKey;
+        public Input<string>? PagerdutyRestApiKey
+        {
+            get => _pagerdutyRestApiKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _pagerdutyRestApiKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         [Input("slug")]
         public Input<string>? Slug { get; set; }

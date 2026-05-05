@@ -18,6 +18,7 @@ type PagerdutyExternalConnection struct {
 	Name                   pulumi.StringOutput    `pulumi:"name"`
 	PagerdutyApiKey        pulumi.StringPtrOutput `pulumi:"pagerdutyApiKey"`
 	PagerdutyEventsVersion pulumi.StringPtrOutput `pulumi:"pagerdutyEventsVersion"`
+	PagerdutyRestApiKey    pulumi.StringPtrOutput `pulumi:"pagerdutyRestApiKey"`
 	Slug                   pulumi.StringOutput    `pulumi:"slug"`
 }
 
@@ -34,8 +35,12 @@ func NewPagerdutyExternalConnection(ctx *pulumi.Context,
 	if args.PagerdutyApiKey != nil {
 		args.PagerdutyApiKey = pulumi.ToSecret(args.PagerdutyApiKey).(pulumi.StringPtrInput)
 	}
+	if args.PagerdutyRestApiKey != nil {
+		args.PagerdutyRestApiKey = pulumi.ToSecret(args.PagerdutyRestApiKey).(pulumi.StringPtrInput)
+	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"pagerdutyApiKey",
+		"pagerdutyRestApiKey",
 	})
 	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
@@ -64,6 +69,7 @@ type pagerdutyExternalConnectionState struct {
 	Name                   *string `pulumi:"name"`
 	PagerdutyApiKey        *string `pulumi:"pagerdutyApiKey"`
 	PagerdutyEventsVersion *string `pulumi:"pagerdutyEventsVersion"`
+	PagerdutyRestApiKey    *string `pulumi:"pagerdutyRestApiKey"`
 	Slug                   *string `pulumi:"slug"`
 }
 
@@ -71,6 +77,7 @@ type PagerdutyExternalConnectionState struct {
 	Name                   pulumi.StringPtrInput
 	PagerdutyApiKey        pulumi.StringPtrInput
 	PagerdutyEventsVersion pulumi.StringPtrInput
+	PagerdutyRestApiKey    pulumi.StringPtrInput
 	Slug                   pulumi.StringPtrInput
 }
 
@@ -82,6 +89,7 @@ type pagerdutyExternalConnectionArgs struct {
 	Name                   string  `pulumi:"name"`
 	PagerdutyApiKey        *string `pulumi:"pagerdutyApiKey"`
 	PagerdutyEventsVersion *string `pulumi:"pagerdutyEventsVersion"`
+	PagerdutyRestApiKey    *string `pulumi:"pagerdutyRestApiKey"`
 	Slug                   *string `pulumi:"slug"`
 }
 
@@ -90,6 +98,7 @@ type PagerdutyExternalConnectionArgs struct {
 	Name                   pulumi.StringInput
 	PagerdutyApiKey        pulumi.StringPtrInput
 	PagerdutyEventsVersion pulumi.StringPtrInput
+	PagerdutyRestApiKey    pulumi.StringPtrInput
 	Slug                   pulumi.StringPtrInput
 }
 
@@ -190,6 +199,10 @@ func (o PagerdutyExternalConnectionOutput) PagerdutyApiKey() pulumi.StringPtrOut
 
 func (o PagerdutyExternalConnectionOutput) PagerdutyEventsVersion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *PagerdutyExternalConnection) pulumi.StringPtrOutput { return v.PagerdutyEventsVersion }).(pulumi.StringPtrOutput)
+}
+
+func (o PagerdutyExternalConnectionOutput) PagerdutyRestApiKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PagerdutyExternalConnection) pulumi.StringPtrOutput { return v.PagerdutyRestApiKey }).(pulumi.StringPtrOutput)
 }
 
 func (o PagerdutyExternalConnectionOutput) Slug() pulumi.StringOutput {

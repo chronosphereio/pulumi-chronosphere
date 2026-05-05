@@ -17,7 +17,6 @@ namespace Chronosphere.Pulumi.Outputs
         public readonly string? DatasetId;
         public readonly Outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilter? LogFilter;
         public readonly ImmutableArray<Outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionMetricFilter> MetricFilters;
-        public readonly Outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilter? TraceFilter;
 
         [OutputConstructor]
         private ConsumptionConfigPartitionPartitionPartitionPartitionFilterCondition(
@@ -25,14 +24,11 @@ namespace Chronosphere.Pulumi.Outputs
 
             Outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilter? logFilter,
 
-            ImmutableArray<Outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionMetricFilter> metricFilters,
-
-            Outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilter? traceFilter)
+            ImmutableArray<Outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionMetricFilter> metricFilters)
         {
             DatasetId = datasetId;
             LogFilter = logFilter;
             MetricFilters = metricFilters;
-            TraceFilter = traceFilter;
         }
     }
 }

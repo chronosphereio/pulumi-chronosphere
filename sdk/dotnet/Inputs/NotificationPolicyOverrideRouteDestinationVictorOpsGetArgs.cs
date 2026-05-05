@@ -16,8 +16,13 @@ namespace Chronosphere.Pulumi.Inputs
         [Input("externalConnectionSlug", required: true)]
         public Input<string> ExternalConnectionSlug { get; set; } = null!;
 
-        [Input("routingKey")]
-        public Input<string>? RoutingKey { get; set; }
+        [Input("routingKeys", required: true)]
+        private InputList<string>? _routingKeys;
+        public InputList<string> RoutingKeys
+        {
+            get => _routingKeys ?? (_routingKeys = new InputList<string>());
+            set => _routingKeys = value;
+        }
 
         public NotificationPolicyOverrideRouteDestinationVictorOpsGetArgs()
         {

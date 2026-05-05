@@ -6,7 +6,6 @@ package io.chronosphere.chronosphere.outputs;
 import com.pulumi.core.annotations.CustomType;
 import io.chronosphere.chronosphere.outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter;
 import io.chronosphere.chronosphere.outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionMetricFilter;
-import io.chronosphere.chronosphere.outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilter;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -18,7 +17,6 @@ public final class ConsumptionConfigPartitionPartitionPartitionPartitionPartitio
     private @Nullable String datasetId;
     private @Nullable ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter logFilter;
     private @Nullable List<ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionMetricFilter> metricFilters;
-    private @Nullable ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilter traceFilter;
 
     private ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterCondition() {}
     public Optional<String> datasetId() {
@@ -29,9 +27,6 @@ public final class ConsumptionConfigPartitionPartitionPartitionPartitionPartitio
     }
     public List<ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionMetricFilter> metricFilters() {
         return this.metricFilters == null ? List.of() : this.metricFilters;
-    }
-    public Optional<ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilter> traceFilter() {
-        return Optional.ofNullable(this.traceFilter);
     }
 
     public static Builder builder() {
@@ -46,14 +41,12 @@ public final class ConsumptionConfigPartitionPartitionPartitionPartitionPartitio
         private @Nullable String datasetId;
         private @Nullable ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter logFilter;
         private @Nullable List<ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionMetricFilter> metricFilters;
-        private @Nullable ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilter traceFilter;
         public Builder() {}
         public Builder(ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterCondition defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.datasetId = defaults.datasetId;
     	      this.logFilter = defaults.logFilter;
     	      this.metricFilters = defaults.metricFilters;
-    	      this.traceFilter = defaults.traceFilter;
         }
 
         @CustomType.Setter
@@ -74,17 +67,11 @@ public final class ConsumptionConfigPartitionPartitionPartitionPartitionPartitio
         public Builder metricFilters(ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionMetricFilter... metricFilters) {
             return metricFilters(List.of(metricFilters));
         }
-        @CustomType.Setter
-        public Builder traceFilter(@Nullable ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilter traceFilter) {
-            this.traceFilter = traceFilter;
-            return this;
-        }
         public ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterCondition build() {
             final var o = new ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterCondition();
             o.datasetId = datasetId;
             o.logFilter = logFilter;
             o.metricFilters = metricFilters;
-            o.traceFilter = traceFilter;
             return o;
         }
     }

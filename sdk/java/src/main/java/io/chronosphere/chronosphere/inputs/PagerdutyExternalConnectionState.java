@@ -36,6 +36,13 @@ public final class PagerdutyExternalConnectionState extends com.pulumi.resources
         return Optional.ofNullable(this.pagerdutyEventsVersion);
     }
 
+    @Import(name="pagerdutyRestApiKey")
+    private @Nullable Output<String> pagerdutyRestApiKey;
+
+    public Optional<Output<String>> pagerdutyRestApiKey() {
+        return Optional.ofNullable(this.pagerdutyRestApiKey);
+    }
+
     @Import(name="slug")
     private @Nullable Output<String> slug;
 
@@ -49,6 +56,7 @@ public final class PagerdutyExternalConnectionState extends com.pulumi.resources
         this.name = $.name;
         this.pagerdutyApiKey = $.pagerdutyApiKey;
         this.pagerdutyEventsVersion = $.pagerdutyEventsVersion;
+        this.pagerdutyRestApiKey = $.pagerdutyRestApiKey;
         this.slug = $.slug;
     }
 
@@ -95,6 +103,15 @@ public final class PagerdutyExternalConnectionState extends com.pulumi.resources
 
         public Builder pagerdutyEventsVersion(String pagerdutyEventsVersion) {
             return pagerdutyEventsVersion(Output.of(pagerdutyEventsVersion));
+        }
+
+        public Builder pagerdutyRestApiKey(@Nullable Output<String> pagerdutyRestApiKey) {
+            $.pagerdutyRestApiKey = pagerdutyRestApiKey;
+            return this;
+        }
+
+        public Builder pagerdutyRestApiKey(String pagerdutyRestApiKey) {
+            return pagerdutyRestApiKey(Output.of(pagerdutyRestApiKey));
         }
 
         public Builder slug(@Nullable Output<String> slug) {
