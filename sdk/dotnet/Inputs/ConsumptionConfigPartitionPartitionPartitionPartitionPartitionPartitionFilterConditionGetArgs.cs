@@ -27,9 +27,6 @@ namespace Chronosphere.Pulumi.Inputs
             set => _metricFilters = value;
         }
 
-        [Input("traceFilter")]
-        public Input<Inputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterGetArgs>? TraceFilter { get; set; }
-
         public ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionGetArgs()
         {
         }

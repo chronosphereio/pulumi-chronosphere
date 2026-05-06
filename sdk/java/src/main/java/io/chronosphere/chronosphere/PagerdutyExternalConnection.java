@@ -35,6 +35,12 @@ public class PagerdutyExternalConnection extends com.pulumi.resources.CustomReso
     public Output<Optional<String>> pagerdutyEventsVersion() {
         return Codegen.optional(this.pagerdutyEventsVersion);
     }
+    @Export(name="pagerdutyRestApiKey", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> pagerdutyRestApiKey;
+
+    public Output<Optional<String>> pagerdutyRestApiKey() {
+        return Codegen.optional(this.pagerdutyRestApiKey);
+    }
     @Export(name="slug", refs={String.class}, tree="[0]")
     private Output<String> slug;
 
@@ -75,7 +81,8 @@ public class PagerdutyExternalConnection extends com.pulumi.resources.CustomReso
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .additionalSecretOutputs(List.of(
-                "pagerdutyApiKey"
+                "pagerdutyApiKey",
+                "pagerdutyRestApiKey"
             ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);

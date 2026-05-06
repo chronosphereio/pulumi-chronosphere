@@ -7,7 +7,6 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import io.chronosphere.chronosphere.inputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterArgs;
 import io.chronosphere.chronosphere.inputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionMetricFilterArgs;
-import io.chronosphere.chronosphere.inputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterArgs;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -40,20 +39,12 @@ public final class ConsumptionConfigPartitionPartitionPartitionPartitionPartitio
         return Optional.ofNullable(this.metricFilters);
     }
 
-    @Import(name="traceFilter")
-    private @Nullable Output<ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterArgs> traceFilter;
-
-    public Optional<Output<ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterArgs>> traceFilter() {
-        return Optional.ofNullable(this.traceFilter);
-    }
-
     private ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionArgs() {}
 
     private ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionArgs(ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionArgs $) {
         this.datasetId = $.datasetId;
         this.logFilter = $.logFilter;
         this.metricFilters = $.metricFilters;
-        this.traceFilter = $.traceFilter;
     }
 
     public static Builder builder() {
@@ -103,15 +94,6 @@ public final class ConsumptionConfigPartitionPartitionPartitionPartitionPartitio
 
         public Builder metricFilters(ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionMetricFilterArgs... metricFilters) {
             return metricFilters(List.of(metricFilters));
-        }
-
-        public Builder traceFilter(@Nullable Output<ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterArgs> traceFilter) {
-            $.traceFilter = traceFilter;
-            return this;
-        }
-
-        public Builder traceFilter(ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterArgs traceFilter) {
-            return traceFilter(Output.of(traceFilter));
         }
 
         public ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionArgs build() {

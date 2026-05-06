@@ -74,7 +74,6 @@ export interface ConsumptionConfigPartitionFilterCondition {
     datasetId?: string;
     logFilter?: outputs.ConsumptionConfigPartitionFilterConditionLogFilter;
     metricFilters?: outputs.ConsumptionConfigPartitionFilterConditionMetricFilter[];
-    traceFilter?: outputs.ConsumptionConfigPartitionFilterConditionTraceFilter;
 }
 
 export interface ConsumptionConfigPartitionFilterConditionLogFilter {
@@ -84,97 +83,6 @@ export interface ConsumptionConfigPartitionFilterConditionLogFilter {
 export interface ConsumptionConfigPartitionFilterConditionMetricFilter {
     name: string;
     valueGlob: string;
-}
-
-export interface ConsumptionConfigPartitionFilterConditionTraceFilter {
-    spans?: outputs.ConsumptionConfigPartitionFilterConditionTraceFilterSpan[];
-    trace?: outputs.ConsumptionConfigPartitionFilterConditionTraceFilterTrace;
-}
-
-export interface ConsumptionConfigPartitionFilterConditionTraceFilterSpan {
-    duration?: outputs.ConsumptionConfigPartitionFilterConditionTraceFilterSpanDuration;
-    error?: outputs.ConsumptionConfigPartitionFilterConditionTraceFilterSpanError;
-    isRootSpan?: outputs.ConsumptionConfigPartitionFilterConditionTraceFilterSpanIsRootSpan;
-    matchType?: string;
-    operation?: outputs.ConsumptionConfigPartitionFilterConditionTraceFilterSpanOperation;
-    parentOperation?: outputs.ConsumptionConfigPartitionFilterConditionTraceFilterSpanParentOperation;
-    parentService?: outputs.ConsumptionConfigPartitionFilterConditionTraceFilterSpanParentService;
-    service?: outputs.ConsumptionConfigPartitionFilterConditionTraceFilterSpanService;
-    spanCount?: outputs.ConsumptionConfigPartitionFilterConditionTraceFilterSpanSpanCount;
-    tags?: outputs.ConsumptionConfigPartitionFilterConditionTraceFilterSpanTag[];
-}
-
-export interface ConsumptionConfigPartitionFilterConditionTraceFilterSpanDuration {
-    maxSecs?: number;
-    minSecs?: number;
-}
-
-export interface ConsumptionConfigPartitionFilterConditionTraceFilterSpanError {
-    value: boolean;
-}
-
-export interface ConsumptionConfigPartitionFilterConditionTraceFilterSpanIsRootSpan {
-    value: boolean;
-}
-
-export interface ConsumptionConfigPartitionFilterConditionTraceFilterSpanOperation {
-    inValues?: string[];
-    match?: string;
-    value?: string;
-}
-
-export interface ConsumptionConfigPartitionFilterConditionTraceFilterSpanParentOperation {
-    inValues?: string[];
-    match?: string;
-    value?: string;
-}
-
-export interface ConsumptionConfigPartitionFilterConditionTraceFilterSpanParentService {
-    inValues?: string[];
-    match?: string;
-    value?: string;
-}
-
-export interface ConsumptionConfigPartitionFilterConditionTraceFilterSpanService {
-    inValues?: string[];
-    match?: string;
-    value?: string;
-}
-
-export interface ConsumptionConfigPartitionFilterConditionTraceFilterSpanSpanCount {
-    max?: number;
-    min?: number;
-}
-
-export interface ConsumptionConfigPartitionFilterConditionTraceFilterSpanTag {
-    key?: string;
-    numericValue?: outputs.ConsumptionConfigPartitionFilterConditionTraceFilterSpanTagNumericValue;
-    value?: outputs.ConsumptionConfigPartitionFilterConditionTraceFilterSpanTagValue;
-}
-
-export interface ConsumptionConfigPartitionFilterConditionTraceFilterSpanTagNumericValue {
-    comparison: string;
-    value: number;
-}
-
-export interface ConsumptionConfigPartitionFilterConditionTraceFilterSpanTagValue {
-    inValues?: string[];
-    match?: string;
-    value?: string;
-}
-
-export interface ConsumptionConfigPartitionFilterConditionTraceFilterTrace {
-    duration?: outputs.ConsumptionConfigPartitionFilterConditionTraceFilterTraceDuration;
-    error?: outputs.ConsumptionConfigPartitionFilterConditionTraceFilterTraceError;
-}
-
-export interface ConsumptionConfigPartitionFilterConditionTraceFilterTraceDuration {
-    maxSecs?: number;
-    minSecs?: number;
-}
-
-export interface ConsumptionConfigPartitionFilterConditionTraceFilterTraceError {
-    value: boolean;
 }
 
 export interface ConsumptionConfigPartitionPartition {
@@ -193,7 +101,6 @@ export interface ConsumptionConfigPartitionPartitionFilterCondition {
     datasetId?: string;
     logFilter?: outputs.ConsumptionConfigPartitionPartitionFilterConditionLogFilter;
     metricFilters?: outputs.ConsumptionConfigPartitionPartitionFilterConditionMetricFilter[];
-    traceFilter?: outputs.ConsumptionConfigPartitionPartitionFilterConditionTraceFilter;
 }
 
 export interface ConsumptionConfigPartitionPartitionFilterConditionLogFilter {
@@ -203,97 +110,6 @@ export interface ConsumptionConfigPartitionPartitionFilterConditionLogFilter {
 export interface ConsumptionConfigPartitionPartitionFilterConditionMetricFilter {
     name: string;
     valueGlob: string;
-}
-
-export interface ConsumptionConfigPartitionPartitionFilterConditionTraceFilter {
-    spans?: outputs.ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpan[];
-    trace?: outputs.ConsumptionConfigPartitionPartitionFilterConditionTraceFilterTrace;
-}
-
-export interface ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpan {
-    duration?: outputs.ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanDuration;
-    error?: outputs.ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanError;
-    isRootSpan?: outputs.ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanIsRootSpan;
-    matchType?: string;
-    operation?: outputs.ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanOperation;
-    parentOperation?: outputs.ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanParentOperation;
-    parentService?: outputs.ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanParentService;
-    service?: outputs.ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanService;
-    spanCount?: outputs.ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanSpanCount;
-    tags?: outputs.ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanTag[];
-}
-
-export interface ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanDuration {
-    maxSecs?: number;
-    minSecs?: number;
-}
-
-export interface ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanError {
-    value: boolean;
-}
-
-export interface ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanIsRootSpan {
-    value: boolean;
-}
-
-export interface ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanOperation {
-    inValues?: string[];
-    match?: string;
-    value?: string;
-}
-
-export interface ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanParentOperation {
-    inValues?: string[];
-    match?: string;
-    value?: string;
-}
-
-export interface ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanParentService {
-    inValues?: string[];
-    match?: string;
-    value?: string;
-}
-
-export interface ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanService {
-    inValues?: string[];
-    match?: string;
-    value?: string;
-}
-
-export interface ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanSpanCount {
-    max?: number;
-    min?: number;
-}
-
-export interface ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanTag {
-    key?: string;
-    numericValue?: outputs.ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanTagNumericValue;
-    value?: outputs.ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanTagValue;
-}
-
-export interface ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanTagNumericValue {
-    comparison: string;
-    value: number;
-}
-
-export interface ConsumptionConfigPartitionPartitionFilterConditionTraceFilterSpanTagValue {
-    inValues?: string[];
-    match?: string;
-    value?: string;
-}
-
-export interface ConsumptionConfigPartitionPartitionFilterConditionTraceFilterTrace {
-    duration?: outputs.ConsumptionConfigPartitionPartitionFilterConditionTraceFilterTraceDuration;
-    error?: outputs.ConsumptionConfigPartitionPartitionFilterConditionTraceFilterTraceError;
-}
-
-export interface ConsumptionConfigPartitionPartitionFilterConditionTraceFilterTraceDuration {
-    maxSecs?: number;
-    minSecs?: number;
-}
-
-export interface ConsumptionConfigPartitionPartitionFilterConditionTraceFilterTraceError {
-    value: boolean;
 }
 
 export interface ConsumptionConfigPartitionPartitionPartition {
@@ -312,7 +128,6 @@ export interface ConsumptionConfigPartitionPartitionPartitionFilterCondition {
     datasetId?: string;
     logFilter?: outputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilter;
     metricFilters?: outputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionMetricFilter[];
-    traceFilter?: outputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilter;
 }
 
 export interface ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilter {
@@ -322,97 +137,6 @@ export interface ConsumptionConfigPartitionPartitionPartitionFilterConditionLogF
 export interface ConsumptionConfigPartitionPartitionPartitionFilterConditionMetricFilter {
     name: string;
     valueGlob: string;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilter {
-    spans?: outputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpan[];
-    trace?: outputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterTrace;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpan {
-    duration?: outputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanDuration;
-    error?: outputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanError;
-    isRootSpan?: outputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanIsRootSpan;
-    matchType?: string;
-    operation?: outputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanOperation;
-    parentOperation?: outputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperation;
-    parentService?: outputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanParentService;
-    service?: outputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanService;
-    spanCount?: outputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanSpanCount;
-    tags?: outputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanTag[];
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanDuration {
-    maxSecs?: number;
-    minSecs?: number;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanError {
-    value: boolean;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanIsRootSpan {
-    value: boolean;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanOperation {
-    inValues?: string[];
-    match?: string;
-    value?: string;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperation {
-    inValues?: string[];
-    match?: string;
-    value?: string;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanParentService {
-    inValues?: string[];
-    match?: string;
-    value?: string;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanService {
-    inValues?: string[];
-    match?: string;
-    value?: string;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanSpanCount {
-    max?: number;
-    min?: number;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanTag {
-    key?: string;
-    numericValue?: outputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanTagNumericValue;
-    value?: outputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValue;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanTagNumericValue {
-    comparison: string;
-    value: number;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValue {
-    inValues?: string[];
-    match?: string;
-    value?: string;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterTrace {
-    duration?: outputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterTraceDuration;
-    error?: outputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterTraceError;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterTraceDuration {
-    maxSecs?: number;
-    minSecs?: number;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionFilterConditionTraceFilterTraceError {
-    value: boolean;
 }
 
 export interface ConsumptionConfigPartitionPartitionPartitionPartition {
@@ -431,7 +155,6 @@ export interface ConsumptionConfigPartitionPartitionPartitionPartitionFilterCond
     datasetId?: string;
     logFilter?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilter;
     metricFilters?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionMetricFilter[];
-    traceFilter?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilter;
 }
 
 export interface ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilter {
@@ -441,97 +164,6 @@ export interface ConsumptionConfigPartitionPartitionPartitionPartitionFilterCond
 export interface ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionMetricFilter {
     name: string;
     valueGlob: string;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilter {
-    spans?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpan[];
-    trace?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterTrace;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpan {
-    duration?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanDuration;
-    error?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanError;
-    isRootSpan?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanIsRootSpan;
-    matchType?: string;
-    operation?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanOperation;
-    parentOperation?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperation;
-    parentService?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentService;
-    service?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanService;
-    spanCount?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanSpanCount;
-    tags?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTag[];
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanDuration {
-    maxSecs?: number;
-    minSecs?: number;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanError {
-    value: boolean;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanIsRootSpan {
-    value: boolean;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanOperation {
-    inValues?: string[];
-    match?: string;
-    value?: string;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperation {
-    inValues?: string[];
-    match?: string;
-    value?: string;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentService {
-    inValues?: string[];
-    match?: string;
-    value?: string;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanService {
-    inValues?: string[];
-    match?: string;
-    value?: string;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanSpanCount {
-    max?: number;
-    min?: number;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTag {
-    key?: string;
-    numericValue?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagNumericValue;
-    value?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValue;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagNumericValue {
-    comparison: string;
-    value: number;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValue {
-    inValues?: string[];
-    match?: string;
-    value?: string;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterTrace {
-    duration?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceDuration;
-    error?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceError;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceDuration {
-    maxSecs?: number;
-    minSecs?: number;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceError {
-    value: boolean;
 }
 
 export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartition {
@@ -550,7 +182,6 @@ export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionF
     datasetId?: string;
     logFilter?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter;
     metricFilters?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionMetricFilter[];
-    traceFilter?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilter;
 }
 
 export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter {
@@ -560,97 +191,6 @@ export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionF
 export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionMetricFilter {
     name: string;
     valueGlob: string;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilter {
-    spans?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpan[];
-    trace?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTrace;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpan {
-    duration?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanDuration;
-    error?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanError;
-    isRootSpan?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanIsRootSpan;
-    matchType?: string;
-    operation?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanOperation;
-    parentOperation?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperation;
-    parentService?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentService;
-    service?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanService;
-    spanCount?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanSpanCount;
-    tags?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTag[];
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanDuration {
-    maxSecs?: number;
-    minSecs?: number;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanError {
-    value: boolean;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanIsRootSpan {
-    value: boolean;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanOperation {
-    inValues?: string[];
-    match?: string;
-    value?: string;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperation {
-    inValues?: string[];
-    match?: string;
-    value?: string;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentService {
-    inValues?: string[];
-    match?: string;
-    value?: string;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanService {
-    inValues?: string[];
-    match?: string;
-    value?: string;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanSpanCount {
-    max?: number;
-    min?: number;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTag {
-    key?: string;
-    numericValue?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagNumericValue;
-    value?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValue;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagNumericValue {
-    comparison: string;
-    value: number;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValue {
-    inValues?: string[];
-    match?: string;
-    value?: string;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTrace {
-    duration?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceDuration;
-    error?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceError;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceDuration {
-    maxSecs?: number;
-    minSecs?: number;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceError {
-    value: boolean;
 }
 
 export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartition {
@@ -668,7 +208,6 @@ export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionP
     datasetId?: string;
     logFilter?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter;
     metricFilters?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionMetricFilter[];
-    traceFilter?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilter;
 }
 
 export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter {
@@ -678,97 +217,6 @@ export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionP
 export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionMetricFilter {
     name: string;
     valueGlob: string;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilter {
-    spans?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpan[];
-    trace?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTrace;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpan {
-    duration?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanDuration;
-    error?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanError;
-    isRootSpan?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanIsRootSpan;
-    matchType?: string;
-    operation?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanOperation;
-    parentOperation?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperation;
-    parentService?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentService;
-    service?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanService;
-    spanCount?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanSpanCount;
-    tags?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTag[];
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanDuration {
-    maxSecs?: number;
-    minSecs?: number;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanError {
-    value: boolean;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanIsRootSpan {
-    value: boolean;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanOperation {
-    inValues?: string[];
-    match?: string;
-    value?: string;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentOperation {
-    inValues?: string[];
-    match?: string;
-    value?: string;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanParentService {
-    inValues?: string[];
-    match?: string;
-    value?: string;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanService {
-    inValues?: string[];
-    match?: string;
-    value?: string;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanSpanCount {
-    max?: number;
-    min?: number;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTag {
-    key?: string;
-    numericValue?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagNumericValue;
-    value?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValue;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagNumericValue {
-    comparison: string;
-    value: number;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterSpanTagValue {
-    inValues?: string[];
-    match?: string;
-    value?: string;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTrace {
-    duration?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceDuration;
-    error?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceError;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceDuration {
-    maxSecs?: number;
-    minSecs?: number;
-}
-
-export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionTraceFilterTraceError {
-    value: boolean;
 }
 
 export interface DatasetConfiguration {
@@ -1551,7 +999,7 @@ export interface NotificationPolicyOverrideRouteDestinationSlack {
 
 export interface NotificationPolicyOverrideRouteDestinationVictorOps {
     externalConnectionSlug: string;
-    routingKey?: string;
+    routingKeys: string[];
 }
 
 export interface NotificationPolicyOverrideRouteDestinationWebhook {
@@ -1605,7 +1053,7 @@ export interface NotificationPolicyRouteDestinationSlack {
 
 export interface NotificationPolicyRouteDestinationVictorOps {
     externalConnectionSlug: string;
-    routingKey?: string;
+    routingKeys: string[];
 }
 
 export interface NotificationPolicyRouteDestinationWebhook {

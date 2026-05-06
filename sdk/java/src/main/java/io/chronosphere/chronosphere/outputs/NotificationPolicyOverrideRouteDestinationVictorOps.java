@@ -5,21 +5,20 @@ package io.chronosphere.chronosphere.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
-import javax.annotation.Nullable;
 
 @CustomType
 public final class NotificationPolicyOverrideRouteDestinationVictorOps {
     private String externalConnectionSlug;
-    private @Nullable String routingKey;
+    private List<String> routingKeys;
 
     private NotificationPolicyOverrideRouteDestinationVictorOps() {}
     public String externalConnectionSlug() {
         return this.externalConnectionSlug;
     }
-    public Optional<String> routingKey() {
-        return Optional.ofNullable(this.routingKey);
+    public List<String> routingKeys() {
+        return this.routingKeys;
     }
 
     public static Builder builder() {
@@ -32,12 +31,12 @@ public final class NotificationPolicyOverrideRouteDestinationVictorOps {
     @CustomType.Builder
     public static final class Builder {
         private String externalConnectionSlug;
-        private @Nullable String routingKey;
+        private List<String> routingKeys;
         public Builder() {}
         public Builder(NotificationPolicyOverrideRouteDestinationVictorOps defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.externalConnectionSlug = defaults.externalConnectionSlug;
-    	      this.routingKey = defaults.routingKey;
+    	      this.routingKeys = defaults.routingKeys;
         }
 
         @CustomType.Setter
@@ -46,14 +45,17 @@ public final class NotificationPolicyOverrideRouteDestinationVictorOps {
             return this;
         }
         @CustomType.Setter
-        public Builder routingKey(@Nullable String routingKey) {
-            this.routingKey = routingKey;
+        public Builder routingKeys(List<String> routingKeys) {
+            this.routingKeys = Objects.requireNonNull(routingKeys);
             return this;
+        }
+        public Builder routingKeys(String... routingKeys) {
+            return routingKeys(List.of(routingKeys));
         }
         public NotificationPolicyOverrideRouteDestinationVictorOps build() {
             final var o = new NotificationPolicyOverrideRouteDestinationVictorOps();
             o.externalConnectionSlug = externalConnectionSlug;
-            o.routingKey = routingKey;
+            o.routingKeys = routingKeys;
             return o;
         }
     }
