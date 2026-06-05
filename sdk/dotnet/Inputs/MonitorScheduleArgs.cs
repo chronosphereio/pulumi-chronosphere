@@ -15,12 +15,19 @@ namespace Chronosphere.Pulumi.Inputs
     {
         [Input("ranges")]
         private InputList<Inputs.MonitorScheduleRangeArgs>? _ranges;
+
+        /// <summary>
+        /// Time-of-day ranges during which the monitor is active. The monitor is inactive outside these ranges.
+        /// </summary>
         public InputList<Inputs.MonitorScheduleRangeArgs> Ranges
         {
             get => _ranges ?? (_ranges = new InputList<Inputs.MonitorScheduleRangeArgs>());
             set => _ranges = value;
         }
 
+        /// <summary>
+        /// IANA timezone name (e.g. `America/New_York`) used to interpret `range` values.
+        /// </summary>
         [Input("timezone", required: true)]
         public Input<string> Timezone { get; set; } = null!;
 

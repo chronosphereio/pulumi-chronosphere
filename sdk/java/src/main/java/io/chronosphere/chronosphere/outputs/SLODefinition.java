@@ -15,21 +15,53 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class SLODefinition {
+    /**
+     * @return Custom burn-rate alert definitions. If omitted, the system default burn rates are used. Only takes effect when `enable_burn_rate_alerting` is true.
+     * 
+     */
     private @Nullable List<SLODefinitionBurnRateAlertingConfig> burnRateAlertingConfigs;
+    /**
+     * @return Whether burn-rate alerting is enabled for this SLO.
+     * 
+     */
     private @Nullable Boolean enableBurnRateAlerting;
+    /**
+     * @return Target SLO percentage representing the desired availability (e.g. `99.9`).
+     * 
+     */
     private Double objective;
+    /**
+     * @return Rolling time window over which the SLO objective is evaluated.
+     * 
+     */
     private @Nullable SLODefinitionTimeWindow timeWindow;
 
     private SLODefinition() {}
+    /**
+     * @return Custom burn-rate alert definitions. If omitted, the system default burn rates are used. Only takes effect when `enable_burn_rate_alerting` is true.
+     * 
+     */
     public List<SLODefinitionBurnRateAlertingConfig> burnRateAlertingConfigs() {
         return this.burnRateAlertingConfigs == null ? List.of() : this.burnRateAlertingConfigs;
     }
+    /**
+     * @return Whether burn-rate alerting is enabled for this SLO.
+     * 
+     */
     public Optional<Boolean> enableBurnRateAlerting() {
         return Optional.ofNullable(this.enableBurnRateAlerting);
     }
+    /**
+     * @return Target SLO percentage representing the desired availability (e.g. `99.9`).
+     * 
+     */
     public Double objective() {
         return this.objective;
     }
+    /**
+     * @return Rolling time window over which the SLO objective is evaluated.
+     * 
+     */
     public Optional<SLODefinitionTimeWindow> timeWindow() {
         return Optional.ofNullable(this.timeWindow);
     }

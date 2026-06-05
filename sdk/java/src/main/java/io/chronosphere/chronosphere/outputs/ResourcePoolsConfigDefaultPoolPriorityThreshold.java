@@ -14,21 +14,53 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class ResourcePoolsConfigDefaultPoolPriorityThreshold {
+    /**
+     * @return Threshold value, expressed as either a percent of the pool&#39;s allocation or as a fixed value in license units.
+     * 
+     */
     private @Nullable ResourcePoolsConfigDefaultPoolPriorityThresholdAllPriorities allPriorities;
+    /**
+     * @return Threshold value, expressed as either a percent of the pool&#39;s allocation or as a fixed value in license units.
+     * 
+     */
     private @Nullable ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriority defaultAndLowPriority;
+    /**
+     * @return License this fixed-value allocation applies to (e.g. `PERSISTED_WRITES`).
+     * 
+     */
     private String license;
+    /**
+     * @return Threshold value, expressed as either a percent of the pool&#39;s allocation or as a fixed value in license units.
+     * 
+     */
     private @Nullable ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriority lowPriority;
 
     private ResourcePoolsConfigDefaultPoolPriorityThreshold() {}
+    /**
+     * @return Threshold value, expressed as either a percent of the pool&#39;s allocation or as a fixed value in license units.
+     * 
+     */
     public Optional<ResourcePoolsConfigDefaultPoolPriorityThresholdAllPriorities> allPriorities() {
         return Optional.ofNullable(this.allPriorities);
     }
+    /**
+     * @return Threshold value, expressed as either a percent of the pool&#39;s allocation or as a fixed value in license units.
+     * 
+     */
     public Optional<ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriority> defaultAndLowPriority() {
         return Optional.ofNullable(this.defaultAndLowPriority);
     }
+    /**
+     * @return License this fixed-value allocation applies to (e.g. `PERSISTED_WRITES`).
+     * 
+     */
     public String license() {
         return this.license;
     }
+    /**
+     * @return Threshold value, expressed as either a percent of the pool&#39;s allocation or as a fixed value in license units.
+     * 
+     */
     public Optional<ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriority> lowPriority() {
         return Optional.ofNullable(this.lowPriority);
     }

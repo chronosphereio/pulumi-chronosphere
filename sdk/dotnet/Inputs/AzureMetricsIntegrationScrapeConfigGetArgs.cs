@@ -15,6 +15,10 @@ namespace Chronosphere.Pulumi.Inputs
     {
         [Input("locations")]
         private InputList<string>? _locations;
+
+        /// <summary>
+        /// Azure locations (regions) to ingest from, applied across all subscriptions. Leave empty for all locations.
+        /// </summary>
         public InputList<string> Locations
         {
             get => _locations ?? (_locations = new InputList<string>());
@@ -23,6 +27,10 @@ namespace Chronosphere.Pulumi.Inputs
 
         [Input("resourceTypes")]
         private InputList<Inputs.AzureMetricsIntegrationScrapeConfigResourceTypeGetArgs>? _resourceTypes;
+
+        /// <summary>
+        /// Azure resource types to scrape metrics from. Each entry can constrain the set of metric names to a subset.
+        /// </summary>
         public InputList<Inputs.AzureMetricsIntegrationScrapeConfigResourceTypeGetArgs> ResourceTypes
         {
             get => _resourceTypes ?? (_resourceTypes = new InputList<Inputs.AzureMetricsIntegrationScrapeConfigResourceTypeGetArgs>());
@@ -31,6 +39,10 @@ namespace Chronosphere.Pulumi.Inputs
 
         [Input("subscriptionIds")]
         private InputList<string>? _subscriptionIds;
+
+        /// <summary>
+        /// Azure subscription IDs to target. Leave empty to scrape from all subscriptions accessible to the principal.
+        /// </summary>
         public InputList<string> SubscriptionIds
         {
             get => _subscriptionIds ?? (_subscriptionIds = new InputList<string>());

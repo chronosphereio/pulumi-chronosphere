@@ -15,16 +15,32 @@ public final class TraceMetricsRuleGroupByKeyArgs extends com.pulumi.resources.R
 
     public static final TraceMetricsRuleGroupByKeyArgs Empty = new TraceMetricsRuleGroupByKeyArgs();
 
+    /**
+     * Name of the span tag when `type` requires one (for example `TAG`). Ignored for fixed-key types.
+     * 
+     */
     @Import(name="namedKey")
     private @Nullable Output<String> namedKey;
 
+    /**
+     * @return Name of the span tag when `type` requires one (for example `TAG`). Ignored for fixed-key types.
+     * 
+     */
     public Optional<Output<String>> namedKey() {
         return Optional.ofNullable(this.namedKey);
     }
 
+    /**
+     * Category of span attribute to group by (for example a well-known field such as `SERVICE` or `OPERATION`, or a generic span `TAG`).
+     * 
+     */
     @Import(name="type", required=true)
     private Output<String> type;
 
+    /**
+     * @return Category of span attribute to group by (for example a well-known field such as `SERVICE` or `OPERATION`, or a generic span `TAG`).
+     * 
+     */
     public Output<String> type() {
         return this.type;
     }
@@ -54,20 +70,44 @@ public final class TraceMetricsRuleGroupByKeyArgs extends com.pulumi.resources.R
             $ = new TraceMetricsRuleGroupByKeyArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param namedKey Name of the span tag when `type` requires one (for example `TAG`). Ignored for fixed-key types.
+         * 
+         * @return builder
+         * 
+         */
         public Builder namedKey(@Nullable Output<String> namedKey) {
             $.namedKey = namedKey;
             return this;
         }
 
+        /**
+         * @param namedKey Name of the span tag when `type` requires one (for example `TAG`). Ignored for fixed-key types.
+         * 
+         * @return builder
+         * 
+         */
         public Builder namedKey(String namedKey) {
             return namedKey(Output.of(namedKey));
         }
 
+        /**
+         * @param type Category of span attribute to group by (for example a well-known field such as `SERVICE` or `OPERATION`, or a generic span `TAG`).
+         * 
+         * @return builder
+         * 
+         */
         public Builder type(Output<String> type) {
             $.type = type;
             return this;
         }
 
+        /**
+         * @param type Category of span attribute to group by (for example a well-known field such as `SERVICE` or `OPERATION`, or a generic span `TAG`).
+         * 
+         * @return builder
+         * 
+         */
         public Builder type(String type) {
             return type(Output.of(type));
         }

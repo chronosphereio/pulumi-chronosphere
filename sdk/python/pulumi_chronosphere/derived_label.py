@@ -25,6 +25,13 @@ class DerivedLabelArgs:
                  span_tag: Optional[pulumi.Input['DerivedLabelSpanTagArgs']] = None):
         """
         The set of arguments for constructing a DerivedLabel resource.
+        :param pulumi.Input[str] label_name: Name of the label exposed on derived series. Must be unique across the system.
+        :param pulumi.Input[str] name: Name of the label to match.
+        :param pulumi.Input[str] description: Free-form description of the derived label.
+        :param pulumi.Input[str] existing_label_policy: Policy controlling behavior when the target label already exists on the source series (e.g. keep, replace).
+        :param pulumi.Input['DerivedLabelMetricLabelArgs'] metric_label: Derives a label for metrics, either by constructing a new value from filters or by mapping an existing label. Mutually exclusive with `span_tag`.
+        :param pulumi.Input[str] slug: Stable identifier for the derived label. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input['DerivedLabelSpanTagArgs'] span_tag: Derives a label for trace spans by mapping from an existing span tag. Mutually exclusive with `metric_label`.
         """
         pulumi.set(__self__, "label_name", label_name)
         pulumi.set(__self__, "name", name)
@@ -42,6 +49,9 @@ class DerivedLabelArgs:
     @property
     @pulumi.getter(name="labelName")
     def label_name(self) -> pulumi.Input[str]:
+        """
+        Name of the label exposed on derived series. Must be unique across the system.
+        """
         return pulumi.get(self, "label_name")
 
     @label_name.setter
@@ -51,6 +61,9 @@ class DerivedLabelArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        Name of the label to match.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -60,6 +73,9 @@ class DerivedLabelArgs:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Free-form description of the derived label.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -69,6 +85,9 @@ class DerivedLabelArgs:
     @property
     @pulumi.getter(name="existingLabelPolicy")
     def existing_label_policy(self) -> Optional[pulumi.Input[str]]:
+        """
+        Policy controlling behavior when the target label already exists on the source series (e.g. keep, replace).
+        """
         return pulumi.get(self, "existing_label_policy")
 
     @existing_label_policy.setter
@@ -78,6 +97,9 @@ class DerivedLabelArgs:
     @property
     @pulumi.getter(name="metricLabel")
     def metric_label(self) -> Optional[pulumi.Input['DerivedLabelMetricLabelArgs']]:
+        """
+        Derives a label for metrics, either by constructing a new value from filters or by mapping an existing label. Mutually exclusive with `span_tag`.
+        """
         return pulumi.get(self, "metric_label")
 
     @metric_label.setter
@@ -87,6 +109,9 @@ class DerivedLabelArgs:
     @property
     @pulumi.getter
     def slug(self) -> Optional[pulumi.Input[str]]:
+        """
+        Stable identifier for the derived label. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @slug.setter
@@ -96,6 +121,9 @@ class DerivedLabelArgs:
     @property
     @pulumi.getter(name="spanTag")
     def span_tag(self) -> Optional[pulumi.Input['DerivedLabelSpanTagArgs']]:
+        """
+        Derives a label for trace spans by mapping from an existing span tag. Mutually exclusive with `metric_label`.
+        """
         return pulumi.get(self, "span_tag")
 
     @span_tag.setter
@@ -115,6 +143,13 @@ class _DerivedLabelState:
                  span_tag: Optional[pulumi.Input['DerivedLabelSpanTagArgs']] = None):
         """
         Input properties used for looking up and filtering DerivedLabel resources.
+        :param pulumi.Input[str] description: Free-form description of the derived label.
+        :param pulumi.Input[str] existing_label_policy: Policy controlling behavior when the target label already exists on the source series (e.g. keep, replace).
+        :param pulumi.Input[str] label_name: Name of the label exposed on derived series. Must be unique across the system.
+        :param pulumi.Input['DerivedLabelMetricLabelArgs'] metric_label: Derives a label for metrics, either by constructing a new value from filters or by mapping an existing label. Mutually exclusive with `span_tag`.
+        :param pulumi.Input[str] name: Name of the label to match.
+        :param pulumi.Input[str] slug: Stable identifier for the derived label. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input['DerivedLabelSpanTagArgs'] span_tag: Derives a label for trace spans by mapping from an existing span tag. Mutually exclusive with `metric_label`.
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -134,6 +169,9 @@ class _DerivedLabelState:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Free-form description of the derived label.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -143,6 +181,9 @@ class _DerivedLabelState:
     @property
     @pulumi.getter(name="existingLabelPolicy")
     def existing_label_policy(self) -> Optional[pulumi.Input[str]]:
+        """
+        Policy controlling behavior when the target label already exists on the source series (e.g. keep, replace).
+        """
         return pulumi.get(self, "existing_label_policy")
 
     @existing_label_policy.setter
@@ -152,6 +193,9 @@ class _DerivedLabelState:
     @property
     @pulumi.getter(name="labelName")
     def label_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the label exposed on derived series. Must be unique across the system.
+        """
         return pulumi.get(self, "label_name")
 
     @label_name.setter
@@ -161,6 +205,9 @@ class _DerivedLabelState:
     @property
     @pulumi.getter(name="metricLabel")
     def metric_label(self) -> Optional[pulumi.Input['DerivedLabelMetricLabelArgs']]:
+        """
+        Derives a label for metrics, either by constructing a new value from filters or by mapping an existing label. Mutually exclusive with `span_tag`.
+        """
         return pulumi.get(self, "metric_label")
 
     @metric_label.setter
@@ -170,6 +217,9 @@ class _DerivedLabelState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the label to match.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -179,6 +229,9 @@ class _DerivedLabelState:
     @property
     @pulumi.getter
     def slug(self) -> Optional[pulumi.Input[str]]:
+        """
+        Stable identifier for the derived label. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @slug.setter
@@ -188,6 +241,9 @@ class _DerivedLabelState:
     @property
     @pulumi.getter(name="spanTag")
     def span_tag(self) -> Optional[pulumi.Input['DerivedLabelSpanTagArgs']]:
+        """
+        Derives a label for trace spans by mapping from an existing span tag. Mutually exclusive with `metric_label`.
+        """
         return pulumi.get(self, "span_tag")
 
     @span_tag.setter
@@ -209,9 +265,57 @@ class DerivedLabel(pulumi.CustomResource):
                  span_tag: Optional[pulumi.Input[pulumi.InputType['DerivedLabelSpanTagArgs']]] = None,
                  __props__=None):
         """
-        Create a DerivedLabel resource with the given unique name, props, and options.
+        Defines a synthetic label whose value is derived from existing metric labels or trace span tags via mapping or constructed-value rules. The derived label can then be referenced in queries as if it were a real label on the source series.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_chronosphere as chronosphere
+
+        tier = chronosphere.DerivedLabel("tier",
+            description="Derives a 'tier' label (read/write/admin) from the instance label",
+            label_name="tier",
+            metric_label=chronosphere.DerivedLabelMetricLabelArgs(
+                constructed_label=chronosphere.DerivedLabelMetricLabelConstructedLabelArgs(
+                    value_definitions=[
+                        chronosphere.DerivedLabelMetricLabelConstructedLabelValueDefinitionArgs(
+                            filters=[chronosphere.DerivedLabelMetricLabelConstructedLabelValueDefinitionFilterArgs(
+                                name="instance",
+                                value_glob="reader-*",
+                            )],
+                            value="read",
+                        ),
+                        chronosphere.DerivedLabelMetricLabelConstructedLabelValueDefinitionArgs(
+                            filters=[chronosphere.DerivedLabelMetricLabelConstructedLabelValueDefinitionFilterArgs(
+                                name="instance",
+                                value_glob="writer-*",
+                            )],
+                            value="write",
+                        ),
+                        chronosphere.DerivedLabelMetricLabelConstructedLabelValueDefinitionArgs(
+                            filters=[chronosphere.DerivedLabelMetricLabelConstructedLabelValueDefinitionFilterArgs(
+                                name="instance",
+                                value_glob="admin-*",
+                            )],
+                            value="admin",
+                        ),
+                    ],
+                ),
+            ),
+            name="Tier from instance name",
+            slug="tier-from-instance")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] description: Free-form description of the derived label.
+        :param pulumi.Input[str] existing_label_policy: Policy controlling behavior when the target label already exists on the source series (e.g. keep, replace).
+        :param pulumi.Input[str] label_name: Name of the label exposed on derived series. Must be unique across the system.
+        :param pulumi.Input[pulumi.InputType['DerivedLabelMetricLabelArgs']] metric_label: Derives a label for metrics, either by constructing a new value from filters or by mapping an existing label. Mutually exclusive with `span_tag`.
+        :param pulumi.Input[str] name: Name of the label to match.
+        :param pulumi.Input[str] slug: Stable identifier for the derived label. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[pulumi.InputType['DerivedLabelSpanTagArgs']] span_tag: Derives a label for trace spans by mapping from an existing span tag. Mutually exclusive with `metric_label`.
         """
         ...
     @overload
@@ -220,7 +324,48 @@ class DerivedLabel(pulumi.CustomResource):
                  args: DerivedLabelArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a DerivedLabel resource with the given unique name, props, and options.
+        Defines a synthetic label whose value is derived from existing metric labels or trace span tags via mapping or constructed-value rules. The derived label can then be referenced in queries as if it were a real label on the source series.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_chronosphere as chronosphere
+
+        tier = chronosphere.DerivedLabel("tier",
+            description="Derives a 'tier' label (read/write/admin) from the instance label",
+            label_name="tier",
+            metric_label=chronosphere.DerivedLabelMetricLabelArgs(
+                constructed_label=chronosphere.DerivedLabelMetricLabelConstructedLabelArgs(
+                    value_definitions=[
+                        chronosphere.DerivedLabelMetricLabelConstructedLabelValueDefinitionArgs(
+                            filters=[chronosphere.DerivedLabelMetricLabelConstructedLabelValueDefinitionFilterArgs(
+                                name="instance",
+                                value_glob="reader-*",
+                            )],
+                            value="read",
+                        ),
+                        chronosphere.DerivedLabelMetricLabelConstructedLabelValueDefinitionArgs(
+                            filters=[chronosphere.DerivedLabelMetricLabelConstructedLabelValueDefinitionFilterArgs(
+                                name="instance",
+                                value_glob="writer-*",
+                            )],
+                            value="write",
+                        ),
+                        chronosphere.DerivedLabelMetricLabelConstructedLabelValueDefinitionArgs(
+                            filters=[chronosphere.DerivedLabelMetricLabelConstructedLabelValueDefinitionFilterArgs(
+                                name="instance",
+                                value_glob="admin-*",
+                            )],
+                            value="admin",
+                        ),
+                    ],
+                ),
+            ),
+            name="Tier from instance name",
+            slug="tier-from-instance")
+        ```
+
         :param str resource_name: The name of the resource.
         :param DerivedLabelArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -287,6 +432,13 @@ class DerivedLabel(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] description: Free-form description of the derived label.
+        :param pulumi.Input[str] existing_label_policy: Policy controlling behavior when the target label already exists on the source series (e.g. keep, replace).
+        :param pulumi.Input[str] label_name: Name of the label exposed on derived series. Must be unique across the system.
+        :param pulumi.Input[pulumi.InputType['DerivedLabelMetricLabelArgs']] metric_label: Derives a label for metrics, either by constructing a new value from filters or by mapping an existing label. Mutually exclusive with `span_tag`.
+        :param pulumi.Input[str] name: Name of the label to match.
+        :param pulumi.Input[str] slug: Stable identifier for the derived label. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[pulumi.InputType['DerivedLabelSpanTagArgs']] span_tag: Derives a label for trace spans by mapping from an existing span tag. Mutually exclusive with `metric_label`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -304,35 +456,56 @@ class DerivedLabel(pulumi.CustomResource):
     @property
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
+        """
+        Free-form description of the derived label.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="existingLabelPolicy")
     def existing_label_policy(self) -> pulumi.Output[Optional[str]]:
+        """
+        Policy controlling behavior when the target label already exists on the source series (e.g. keep, replace).
+        """
         return pulumi.get(self, "existing_label_policy")
 
     @property
     @pulumi.getter(name="labelName")
     def label_name(self) -> pulumi.Output[str]:
+        """
+        Name of the label exposed on derived series. Must be unique across the system.
+        """
         return pulumi.get(self, "label_name")
 
     @property
     @pulumi.getter(name="metricLabel")
     def metric_label(self) -> pulumi.Output[Optional['outputs.DerivedLabelMetricLabel']]:
+        """
+        Derives a label for metrics, either by constructing a new value from filters or by mapping an existing label. Mutually exclusive with `span_tag`.
+        """
         return pulumi.get(self, "metric_label")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        Name of the label to match.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def slug(self) -> pulumi.Output[str]:
+        """
+        Stable identifier for the derived label. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @property
     @pulumi.getter(name="spanTag")
     def span_tag(self) -> pulumi.Output[Optional['outputs.DerivedLabelSpanTag']]:
+        """
+        Derives a label for trace spans by mapping from an existing span tag. Mutually exclusive with `metric_label`.
+        """
         return pulumi.get(self, "span_tag")
 

@@ -13,23 +13,47 @@ public final class MonitorScheduleRangeArgs extends com.pulumi.resources.Resourc
 
     public static final MonitorScheduleRangeArgs Empty = new MonitorScheduleRangeArgs();
 
+    /**
+     * Day of week, e.g. `monday`. Case-insensitive.
+     * 
+     */
     @Import(name="day", required=true)
     private Output<String> day;
 
+    /**
+     * @return Day of week, e.g. `monday`. Case-insensitive.
+     * 
+     */
     public Output<String> day() {
         return this.day;
     }
 
+    /**
+     * End time of day, 24-hour `HH:MM` format.
+     * 
+     */
     @Import(name="end", required=true)
     private Output<String> end;
 
+    /**
+     * @return End time of day, 24-hour `HH:MM` format.
+     * 
+     */
     public Output<String> end() {
         return this.end;
     }
 
+    /**
+     * Start time of day, 24-hour `HH:MM` format.
+     * 
+     */
     @Import(name="start", required=true)
     private Output<String> start;
 
+    /**
+     * @return Start time of day, 24-hour `HH:MM` format.
+     * 
+     */
     public Output<String> start() {
         return this.start;
     }
@@ -60,29 +84,65 @@ public final class MonitorScheduleRangeArgs extends com.pulumi.resources.Resourc
             $ = new MonitorScheduleRangeArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param day Day of week, e.g. `monday`. Case-insensitive.
+         * 
+         * @return builder
+         * 
+         */
         public Builder day(Output<String> day) {
             $.day = day;
             return this;
         }
 
+        /**
+         * @param day Day of week, e.g. `monday`. Case-insensitive.
+         * 
+         * @return builder
+         * 
+         */
         public Builder day(String day) {
             return day(Output.of(day));
         }
 
+        /**
+         * @param end End time of day, 24-hour `HH:MM` format.
+         * 
+         * @return builder
+         * 
+         */
         public Builder end(Output<String> end) {
             $.end = end;
             return this;
         }
 
+        /**
+         * @param end End time of day, 24-hour `HH:MM` format.
+         * 
+         * @return builder
+         * 
+         */
         public Builder end(String end) {
             return end(Output.of(end));
         }
 
+        /**
+         * @param start Start time of day, 24-hour `HH:MM` format.
+         * 
+         * @return builder
+         * 
+         */
         public Builder start(Output<String> start) {
             $.start = start;
             return this;
         }
 
+        /**
+         * @param start Start time of day, 24-hour `HH:MM` format.
+         * 
+         * @return builder
+         * 
+         */
         public Builder start(String start) {
             return start(Output.of(start));
         }

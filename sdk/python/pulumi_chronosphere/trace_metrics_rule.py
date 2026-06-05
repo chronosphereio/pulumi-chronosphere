@@ -26,6 +26,14 @@ class TraceMetricsRuleArgs:
                  slug: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a TraceMetricsRule resource.
+        :param pulumi.Input[str] metric_name: Base name of the generated Prometheus metrics emitted by this rule.
+        :param pulumi.Input[str] name: Display name of the trace metrics rule.
+        :param pulumi.Input['TraceMetricsRuleTraceFilterArgs'] trace_filter: Filter that selects traces and spans. A trace matches when its trace-level conditions hold and every `span` block is satisfied by at least one span in the trace.
+        :param pulumi.Input[Sequence[pulumi.Input['TraceMetricsRuleGroupByArgs']]] group_bies: Span attributes to project into metric labels. Each entry maps a key on the matched span to a label on the resulting metric series.
+        :param pulumi.Input[Sequence[pulumi.Input[float]]] histogram_buckets_seconds: Histogram bucket upper bounds in seconds for the generated span-duration histogram metric.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metric_labels: Static key/value labels added to every metric series emitted by the rule.
+        :param pulumi.Input['TraceMetricsRuleScopeFilterArgs'] scope_filter: Scope filter that further restricts which spans within a matched trace contribute to metrics or sampling. Only spans matching `span_scopes` are included in aggregation.
+        :param pulumi.Input[str] slug: Stable identifier for the trace metrics rule. Generated from `name` if omitted. Immutable after creation.
         """
         pulumi.set(__self__, "metric_name", metric_name)
         pulumi.set(__self__, "name", name)
@@ -44,6 +52,9 @@ class TraceMetricsRuleArgs:
     @property
     @pulumi.getter(name="metricName")
     def metric_name(self) -> pulumi.Input[str]:
+        """
+        Base name of the generated Prometheus metrics emitted by this rule.
+        """
         return pulumi.get(self, "metric_name")
 
     @metric_name.setter
@@ -53,6 +64,9 @@ class TraceMetricsRuleArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        Display name of the trace metrics rule.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -62,6 +76,9 @@ class TraceMetricsRuleArgs:
     @property
     @pulumi.getter(name="traceFilter")
     def trace_filter(self) -> pulumi.Input['TraceMetricsRuleTraceFilterArgs']:
+        """
+        Filter that selects traces and spans. A trace matches when its trace-level conditions hold and every `span` block is satisfied by at least one span in the trace.
+        """
         return pulumi.get(self, "trace_filter")
 
     @trace_filter.setter
@@ -71,6 +88,9 @@ class TraceMetricsRuleArgs:
     @property
     @pulumi.getter(name="groupBies")
     def group_bies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['TraceMetricsRuleGroupByArgs']]]]:
+        """
+        Span attributes to project into metric labels. Each entry maps a key on the matched span to a label on the resulting metric series.
+        """
         return pulumi.get(self, "group_bies")
 
     @group_bies.setter
@@ -80,6 +100,9 @@ class TraceMetricsRuleArgs:
     @property
     @pulumi.getter(name="histogramBucketsSeconds")
     def histogram_buckets_seconds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[float]]]]:
+        """
+        Histogram bucket upper bounds in seconds for the generated span-duration histogram metric.
+        """
         return pulumi.get(self, "histogram_buckets_seconds")
 
     @histogram_buckets_seconds.setter
@@ -89,6 +112,9 @@ class TraceMetricsRuleArgs:
     @property
     @pulumi.getter(name="metricLabels")
     def metric_labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Static key/value labels added to every metric series emitted by the rule.
+        """
         return pulumi.get(self, "metric_labels")
 
     @metric_labels.setter
@@ -98,6 +124,9 @@ class TraceMetricsRuleArgs:
     @property
     @pulumi.getter(name="scopeFilter")
     def scope_filter(self) -> Optional[pulumi.Input['TraceMetricsRuleScopeFilterArgs']]:
+        """
+        Scope filter that further restricts which spans within a matched trace contribute to metrics or sampling. Only spans matching `span_scopes` are included in aggregation.
+        """
         return pulumi.get(self, "scope_filter")
 
     @scope_filter.setter
@@ -107,6 +136,9 @@ class TraceMetricsRuleArgs:
     @property
     @pulumi.getter
     def slug(self) -> Optional[pulumi.Input[str]]:
+        """
+        Stable identifier for the trace metrics rule. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @slug.setter
@@ -127,6 +159,14 @@ class _TraceMetricsRuleState:
                  trace_filter: Optional[pulumi.Input['TraceMetricsRuleTraceFilterArgs']] = None):
         """
         Input properties used for looking up and filtering TraceMetricsRule resources.
+        :param pulumi.Input[Sequence[pulumi.Input['TraceMetricsRuleGroupByArgs']]] group_bies: Span attributes to project into metric labels. Each entry maps a key on the matched span to a label on the resulting metric series.
+        :param pulumi.Input[Sequence[pulumi.Input[float]]] histogram_buckets_seconds: Histogram bucket upper bounds in seconds for the generated span-duration histogram metric.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metric_labels: Static key/value labels added to every metric series emitted by the rule.
+        :param pulumi.Input[str] metric_name: Base name of the generated Prometheus metrics emitted by this rule.
+        :param pulumi.Input[str] name: Display name of the trace metrics rule.
+        :param pulumi.Input['TraceMetricsRuleScopeFilterArgs'] scope_filter: Scope filter that further restricts which spans within a matched trace contribute to metrics or sampling. Only spans matching `span_scopes` are included in aggregation.
+        :param pulumi.Input[str] slug: Stable identifier for the trace metrics rule. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input['TraceMetricsRuleTraceFilterArgs'] trace_filter: Filter that selects traces and spans. A trace matches when its trace-level conditions hold and every `span` block is satisfied by at least one span in the trace.
         """
         if group_bies is not None:
             pulumi.set(__self__, "group_bies", group_bies)
@@ -148,6 +188,9 @@ class _TraceMetricsRuleState:
     @property
     @pulumi.getter(name="groupBies")
     def group_bies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['TraceMetricsRuleGroupByArgs']]]]:
+        """
+        Span attributes to project into metric labels. Each entry maps a key on the matched span to a label on the resulting metric series.
+        """
         return pulumi.get(self, "group_bies")
 
     @group_bies.setter
@@ -157,6 +200,9 @@ class _TraceMetricsRuleState:
     @property
     @pulumi.getter(name="histogramBucketsSeconds")
     def histogram_buckets_seconds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[float]]]]:
+        """
+        Histogram bucket upper bounds in seconds for the generated span-duration histogram metric.
+        """
         return pulumi.get(self, "histogram_buckets_seconds")
 
     @histogram_buckets_seconds.setter
@@ -166,6 +212,9 @@ class _TraceMetricsRuleState:
     @property
     @pulumi.getter(name="metricLabels")
     def metric_labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Static key/value labels added to every metric series emitted by the rule.
+        """
         return pulumi.get(self, "metric_labels")
 
     @metric_labels.setter
@@ -175,6 +224,9 @@ class _TraceMetricsRuleState:
     @property
     @pulumi.getter(name="metricName")
     def metric_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Base name of the generated Prometheus metrics emitted by this rule.
+        """
         return pulumi.get(self, "metric_name")
 
     @metric_name.setter
@@ -184,6 +236,9 @@ class _TraceMetricsRuleState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Display name of the trace metrics rule.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -193,6 +248,9 @@ class _TraceMetricsRuleState:
     @property
     @pulumi.getter(name="scopeFilter")
     def scope_filter(self) -> Optional[pulumi.Input['TraceMetricsRuleScopeFilterArgs']]:
+        """
+        Scope filter that further restricts which spans within a matched trace contribute to metrics or sampling. Only spans matching `span_scopes` are included in aggregation.
+        """
         return pulumi.get(self, "scope_filter")
 
     @scope_filter.setter
@@ -202,6 +260,9 @@ class _TraceMetricsRuleState:
     @property
     @pulumi.getter
     def slug(self) -> Optional[pulumi.Input[str]]:
+        """
+        Stable identifier for the trace metrics rule. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @slug.setter
@@ -211,6 +272,9 @@ class _TraceMetricsRuleState:
     @property
     @pulumi.getter(name="traceFilter")
     def trace_filter(self) -> Optional[pulumi.Input['TraceMetricsRuleTraceFilterArgs']]:
+        """
+        Filter that selects traces and spans. A trace matches when its trace-level conditions hold and every `span` block is satisfied by at least one span in the trace.
+        """
         return pulumi.get(self, "trace_filter")
 
     @trace_filter.setter
@@ -233,9 +297,50 @@ class TraceMetricsRule(pulumi.CustomResource):
                  trace_filter: Optional[pulumi.Input[pulumi.InputType['TraceMetricsRuleTraceFilterArgs']]] = None,
                  __props__=None):
         """
-        Create a TraceMetricsRule resource with the given unique name, props, and options.
+        A rule that extracts a histogram metric from spans matching a trace filter, with configurable group-by keys and histogram buckets.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_chronosphere as chronosphere
+
+        payments_latency = chronosphere.TraceMetricsRule("paymentsLatency",
+            group_bies=["operation"],
+            histogram_buckets_seconds=[
+                0.1,
+                0.5,
+                1,
+                2,
+                5,
+            ],
+            metric_labels={
+                "service": "payments",
+            },
+            metric_name="payments_request_duration",
+            name="Payments service latency",
+            slug="payments-latency",
+            trace_filter=chronosphere.TraceMetricsRuleTraceFilterArgs(
+                spans=[chronosphere.TraceMetricsRuleTraceFilterSpanArgs(
+                    match_type="include",
+                    service=chronosphere.TraceMetricsRuleTraceFilterSpanServiceArgs(
+                        match="exact",
+                        value="payments",
+                    ),
+                )],
+            ))
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TraceMetricsRuleGroupByArgs']]]] group_bies: Span attributes to project into metric labels. Each entry maps a key on the matched span to a label on the resulting metric series.
+        :param pulumi.Input[Sequence[pulumi.Input[float]]] histogram_buckets_seconds: Histogram bucket upper bounds in seconds for the generated span-duration histogram metric.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metric_labels: Static key/value labels added to every metric series emitted by the rule.
+        :param pulumi.Input[str] metric_name: Base name of the generated Prometheus metrics emitted by this rule.
+        :param pulumi.Input[str] name: Display name of the trace metrics rule.
+        :param pulumi.Input[pulumi.InputType['TraceMetricsRuleScopeFilterArgs']] scope_filter: Scope filter that further restricts which spans within a matched trace contribute to metrics or sampling. Only spans matching `span_scopes` are included in aggregation.
+        :param pulumi.Input[str] slug: Stable identifier for the trace metrics rule. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[pulumi.InputType['TraceMetricsRuleTraceFilterArgs']] trace_filter: Filter that selects traces and spans. A trace matches when its trace-level conditions hold and every `span` block is satisfied by at least one span in the trace.
         """
         ...
     @overload
@@ -244,7 +349,40 @@ class TraceMetricsRule(pulumi.CustomResource):
                  args: TraceMetricsRuleArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a TraceMetricsRule resource with the given unique name, props, and options.
+        A rule that extracts a histogram metric from spans matching a trace filter, with configurable group-by keys and histogram buckets.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_chronosphere as chronosphere
+
+        payments_latency = chronosphere.TraceMetricsRule("paymentsLatency",
+            group_bies=["operation"],
+            histogram_buckets_seconds=[
+                0.1,
+                0.5,
+                1,
+                2,
+                5,
+            ],
+            metric_labels={
+                "service": "payments",
+            },
+            metric_name="payments_request_duration",
+            name="Payments service latency",
+            slug="payments-latency",
+            trace_filter=chronosphere.TraceMetricsRuleTraceFilterArgs(
+                spans=[chronosphere.TraceMetricsRuleTraceFilterSpanArgs(
+                    match_type="include",
+                    service=chronosphere.TraceMetricsRuleTraceFilterSpanServiceArgs(
+                        match="exact",
+                        value="payments",
+                    ),
+                )],
+            ))
+        ```
+
         :param str resource_name: The name of the resource.
         :param TraceMetricsRuleArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -316,6 +454,14 @@ class TraceMetricsRule(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TraceMetricsRuleGroupByArgs']]]] group_bies: Span attributes to project into metric labels. Each entry maps a key on the matched span to a label on the resulting metric series.
+        :param pulumi.Input[Sequence[pulumi.Input[float]]] histogram_buckets_seconds: Histogram bucket upper bounds in seconds for the generated span-duration histogram metric.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metric_labels: Static key/value labels added to every metric series emitted by the rule.
+        :param pulumi.Input[str] metric_name: Base name of the generated Prometheus metrics emitted by this rule.
+        :param pulumi.Input[str] name: Display name of the trace metrics rule.
+        :param pulumi.Input[pulumi.InputType['TraceMetricsRuleScopeFilterArgs']] scope_filter: Scope filter that further restricts which spans within a matched trace contribute to metrics or sampling. Only spans matching `span_scopes` are included in aggregation.
+        :param pulumi.Input[str] slug: Stable identifier for the trace metrics rule. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[pulumi.InputType['TraceMetricsRuleTraceFilterArgs']] trace_filter: Filter that selects traces and spans. A trace matches when its trace-level conditions hold and every `span` block is satisfied by at least one span in the trace.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -334,40 +480,64 @@ class TraceMetricsRule(pulumi.CustomResource):
     @property
     @pulumi.getter(name="groupBies")
     def group_bies(self) -> pulumi.Output[Optional[Sequence['outputs.TraceMetricsRuleGroupBy']]]:
+        """
+        Span attributes to project into metric labels. Each entry maps a key on the matched span to a label on the resulting metric series.
+        """
         return pulumi.get(self, "group_bies")
 
     @property
     @pulumi.getter(name="histogramBucketsSeconds")
     def histogram_buckets_seconds(self) -> pulumi.Output[Optional[Sequence[float]]]:
+        """
+        Histogram bucket upper bounds in seconds for the generated span-duration histogram metric.
+        """
         return pulumi.get(self, "histogram_buckets_seconds")
 
     @property
     @pulumi.getter(name="metricLabels")
     def metric_labels(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+        """
+        Static key/value labels added to every metric series emitted by the rule.
+        """
         return pulumi.get(self, "metric_labels")
 
     @property
     @pulumi.getter(name="metricName")
     def metric_name(self) -> pulumi.Output[str]:
+        """
+        Base name of the generated Prometheus metrics emitted by this rule.
+        """
         return pulumi.get(self, "metric_name")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        Display name of the trace metrics rule.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="scopeFilter")
     def scope_filter(self) -> pulumi.Output[Optional['outputs.TraceMetricsRuleScopeFilter']]:
+        """
+        Scope filter that further restricts which spans within a matched trace contribute to metrics or sampling. Only spans matching `span_scopes` are included in aggregation.
+        """
         return pulumi.get(self, "scope_filter")
 
     @property
     @pulumi.getter
     def slug(self) -> pulumi.Output[str]:
+        """
+        Stable identifier for the trace metrics rule. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @property
     @pulumi.getter(name="traceFilter")
     def trace_filter(self) -> pulumi.Output['outputs.TraceMetricsRuleTraceFilter']:
+        """
+        Filter that selects traces and spans. A trace matches when its trace-level conditions hold and every `span` block is satisfied by at least one span in the trace.
+        """
         return pulumi.get(self, "trace_filter")
 

@@ -13,9 +13,15 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class DatasetConfigurationTraceDatasetMatchCriteriaTraceArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, max_secs]` range.
+        /// </summary>
         [Input("duration")]
         public Input<Inputs.DatasetConfigurationTraceDatasetMatchCriteriaTraceDurationArgs>? Duration { get; set; }
 
+        /// <summary>
+        /// Matches traces or spans where the target boolean field equals `value`.
+        /// </summary>
         [Input("error")]
         public Input<Inputs.DatasetConfigurationTraceDatasetMatchCriteriaTraceErrorArgs>? Error { get; set; }
 

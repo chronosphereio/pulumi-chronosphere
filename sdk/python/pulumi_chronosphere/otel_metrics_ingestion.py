@@ -19,6 +19,7 @@ class OtelMetricsIngestionArgs:
                  resource_attributes: Optional[pulumi.Input['OtelMetricsIngestionResourceAttributesArgs']] = None):
         """
         The set of arguments for constructing a OtelMetricsIngestion resource.
+        :param pulumi.Input['OtelMetricsIngestionResourceAttributesArgs'] resource_attributes: Controls how OpenTelemetry resource attributes are mapped to Prometheus labels at ingest.
         """
         if resource_attributes is not None:
             pulumi.set(__self__, "resource_attributes", resource_attributes)
@@ -26,6 +27,9 @@ class OtelMetricsIngestionArgs:
     @property
     @pulumi.getter(name="resourceAttributes")
     def resource_attributes(self) -> Optional[pulumi.Input['OtelMetricsIngestionResourceAttributesArgs']]:
+        """
+        Controls how OpenTelemetry resource attributes are mapped to Prometheus labels at ingest.
+        """
         return pulumi.get(self, "resource_attributes")
 
     @resource_attributes.setter
@@ -39,6 +43,7 @@ class _OtelMetricsIngestionState:
                  resource_attributes: Optional[pulumi.Input['OtelMetricsIngestionResourceAttributesArgs']] = None):
         """
         Input properties used for looking up and filtering OtelMetricsIngestion resources.
+        :param pulumi.Input['OtelMetricsIngestionResourceAttributesArgs'] resource_attributes: Controls how OpenTelemetry resource attributes are mapped to Prometheus labels at ingest.
         """
         if resource_attributes is not None:
             pulumi.set(__self__, "resource_attributes", resource_attributes)
@@ -46,6 +51,9 @@ class _OtelMetricsIngestionState:
     @property
     @pulumi.getter(name="resourceAttributes")
     def resource_attributes(self) -> Optional[pulumi.Input['OtelMetricsIngestionResourceAttributesArgs']]:
+        """
+        Controls how OpenTelemetry resource attributes are mapped to Prometheus labels at ingest.
+        """
         return pulumi.get(self, "resource_attributes")
 
     @resource_attributes.setter
@@ -61,9 +69,28 @@ class OtelMetricsIngestion(pulumi.CustomResource):
                  resource_attributes: Optional[pulumi.Input[pulumi.InputType['OtelMetricsIngestionResourceAttributesArgs']]] = None,
                  __props__=None):
         """
-        Create a OtelMetricsIngestion resource with the given unique name, props, and options.
+        Configures how incoming OTLP metric payloads have their OpenTelemetry resource attributes flattened, filtered, and mapped onto Prometheus-style labels at ingestion.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_chronosphere as chronosphere
+
+        config = chronosphere.OtelMetricsIngestion("config", resource_attributes=chronosphere.OtelMetricsIngestionResourceAttributesArgs(
+            exclude_keys=[
+                "host.id",
+                "process.pid",
+            ],
+            filter_mode="APPEND_DEFAULT_EXCLUDE_KEYS",
+            flatten_mode="MERGE",
+            generate_target_info=False,
+        ))
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[pulumi.InputType['OtelMetricsIngestionResourceAttributesArgs']] resource_attributes: Controls how OpenTelemetry resource attributes are mapped to Prometheus labels at ingest.
         """
         ...
     @overload
@@ -72,7 +99,25 @@ class OtelMetricsIngestion(pulumi.CustomResource):
                  args: Optional[OtelMetricsIngestionArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a OtelMetricsIngestion resource with the given unique name, props, and options.
+        Configures how incoming OTLP metric payloads have their OpenTelemetry resource attributes flattened, filtered, and mapped onto Prometheus-style labels at ingestion.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_chronosphere as chronosphere
+
+        config = chronosphere.OtelMetricsIngestion("config", resource_attributes=chronosphere.OtelMetricsIngestionResourceAttributesArgs(
+            exclude_keys=[
+                "host.id",
+                "process.pid",
+            ],
+            filter_mode="APPEND_DEFAULT_EXCLUDE_KEYS",
+            flatten_mode="MERGE",
+            generate_target_info=False,
+        ))
+        ```
+
         :param str resource_name: The name of the resource.
         :param OtelMetricsIngestionArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -117,6 +162,7 @@ class OtelMetricsIngestion(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[pulumi.InputType['OtelMetricsIngestionResourceAttributesArgs']] resource_attributes: Controls how OpenTelemetry resource attributes are mapped to Prometheus labels at ingest.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -128,5 +174,8 @@ class OtelMetricsIngestion(pulumi.CustomResource):
     @property
     @pulumi.getter(name="resourceAttributes")
     def resource_attributes(self) -> pulumi.Output[Optional['outputs.OtelMetricsIngestionResourceAttributes']]:
+        """
+        Controls how OpenTelemetry resource attributes are mapped to Prometheus labels at ingest.
+        """
         return pulumi.get(self, "resource_attributes")
 

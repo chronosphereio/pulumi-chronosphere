@@ -13,12 +13,21 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class SLOSliAdditionalPromqlFilterGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Prometheus label name to match.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// Matcher type (e.g. `=`, `!=`, `=~`, `!~`).
+        /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
 
+        /// <summary>
+        /// Label value to match against using the chosen matcher `type`.
+        /// </summary>
         [Input("value", required: true)]
         public Input<string> Value { get; set; } = null!;
 

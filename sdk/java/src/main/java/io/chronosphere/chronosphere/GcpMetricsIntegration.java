@@ -17,29 +17,100 @@ import java.util.List;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
+/**
+ * Scrapes Google Cloud Monitoring metrics from the configured projects and metric prefixes using a GCP service-account credential, with optional filters and rollup rules.
+ * 
+ * ## Example Usage
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.chronosphere.GcpMetricsIntegration;
+ * import com.pulumi.chronosphere.GcpMetricsIntegrationArgs;
+ * import com.pulumi.chronosphere.inputs.GcpMetricsIntegrationServiceAccountArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var customer = new GcpMetricsIntegration(&#34;customer&#34;, GcpMetricsIntegrationArgs.builder()        
+ *             .name(&#34;GCP Metrics Integration&#34;)
+ *             .serviceAccount(GcpMetricsIntegrationServiceAccountArgs.builder()
+ *                 .clientEmail(&#34;chronosphere-collector@my-project.iam.gserviceaccount.com&#34;)
+ *                 .build())
+ *             .slug(&#34;gcp-metrics-integration&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ */
 @ResourceType(type="chronosphere:index/gcpMetricsIntegration:GcpMetricsIntegration")
 public class GcpMetricsIntegration extends com.pulumi.resources.CustomResource {
+    /**
+     * Groups of Google Cloud metrics to ingest. Each group targets a specific project and set of metric prefixes.
+     * 
+     */
     @Export(name="metricGroups", refs={List.class,GcpMetricsIntegrationMetricGroup.class}, tree="[0,1]")
     private Output</* @Nullable */ List<GcpMetricsIntegrationMetricGroup>> metricGroups;
 
+    /**
+     * @return Groups of Google Cloud metrics to ingest. Each group targets a specific project and set of metric prefixes.
+     * 
+     */
     public Output<Optional<List<GcpMetricsIntegrationMetricGroup>>> metricGroups() {
         return Codegen.optional(this.metricGroups);
     }
+    /**
+     * Label name to filter on.
+     * 
+     */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
+    /**
+     * @return Label name to filter on.
+     * 
+     */
     public Output<String> name() {
         return this.name;
     }
+    /**
+     * Google Cloud service account that Chronosphere impersonates to read metrics.
+     * 
+     */
     @Export(name="serviceAccount", refs={GcpMetricsIntegrationServiceAccount.class}, tree="[0]")
     private Output</* @Nullable */ GcpMetricsIntegrationServiceAccount> serviceAccount;
 
+    /**
+     * @return Google Cloud service account that Chronosphere impersonates to read metrics.
+     * 
+     */
     public Output<Optional<GcpMetricsIntegrationServiceAccount>> serviceAccount() {
         return Codegen.optional(this.serviceAccount);
     }
+    /**
+     * Stable identifier for the integration. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     @Export(name="slug", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> slug;
 
+    /**
+     * @return Stable identifier for the integration. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     public Output<Optional<String>> slug() {
         return Codegen.optional(this.slug);
     }

@@ -13,15 +13,27 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class LogIngestConfigPlaintextParserGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// If `true`, the original log is retained after parsing and stored under the `plaintext_log` key. Defaults to `false`.
+        /// </summary>
         [Input("keepOriginal")]
         public Input<bool>? KeepOriginal { get; set; }
 
+        /// <summary>
+        /// Mode that controls how the parser matches incoming plaintext logs.
+        /// </summary>
         [Input("mode")]
         public Input<string>? Mode { get; set; }
 
+        /// <summary>
+        /// Name of the parser. Must be unique within the configuration.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// Parser configuration. Exactly one of `regex_parser`, `key_value_parser`, or `grok_parser` must be set, matching `parser_type`.
+        /// </summary>
         [Input("parser", required: true)]
         public Input<Inputs.LogIngestConfigPlaintextParserParserGetArgs> Parser { get; set; } = null!;
 

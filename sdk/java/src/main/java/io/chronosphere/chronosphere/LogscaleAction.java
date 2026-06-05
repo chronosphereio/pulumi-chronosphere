@@ -23,77 +23,227 @@ import java.lang.String;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
+/**
+ * A CrowdStrike Falcon LogScale (formerly Humio) action target (email, Slack, webhook, PagerDuty, OpsGenie, VictorOps, or upload-file) invoked by a logscale_alert when it fires.
+ * 
+ * ## Example Usage
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.chronosphere.LogscaleAction;
+ * import com.pulumi.chronosphere.LogscaleActionArgs;
+ * import com.pulumi.chronosphere.inputs.LogscaleActionEmailActionArgs;
+ * import com.pulumi.chronosphere.inputs.LogscaleActionPagerDutyActionArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var email = new LogscaleAction(&#34;email&#34;, LogscaleActionArgs.builder()        
+ *             .emailAction(LogscaleActionEmailActionArgs.builder()
+ *                 .attachCsv(true)
+ *                 .bodyTemplate(&#34;{{query.results}}&#34;)
+ *                 .recipients(&#34;oncall@example.com&#34;)
+ *                 .subjectTemplate(&#34;Logscale alert: {{alert.name}}&#34;)
+ *                 .useProxy(false)
+ *                 .build())
+ *             .name(&#34;Email on-call&#34;)
+ *             .repository(&#34;default&#34;)
+ *             .build());
+ * 
+ *         var pagerduty = new LogscaleAction(&#34;pagerduty&#34;, LogscaleActionArgs.builder()        
+ *             .name(&#34;PagerDuty page&#34;)
+ *             .pagerDutyAction(LogscaleActionPagerDutyActionArgs.builder()
+ *                 .routingKey(&#34;XXXXX&#34;)
+ *                 .severity(&#34;ERROR&#34;)
+ *                 .useProxy(false)
+ *                 .build())
+ *             .repository(&#34;default&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ */
 @ResourceType(type="chronosphere:index/logscaleAction:LogscaleAction")
 public class LogscaleAction extends com.pulumi.resources.CustomResource {
+    /**
+     * Send email when the alert triggers. Exactly one action type must be set.
+     * 
+     */
     @Export(name="emailAction", refs={LogscaleActionEmailAction.class}, tree="[0]")
     private Output</* @Nullable */ LogscaleActionEmailAction> emailAction;
 
+    /**
+     * @return Send email when the alert triggers. Exactly one action type must be set.
+     * 
+     */
     public Output<Optional<LogscaleActionEmailAction>> emailAction() {
         return Codegen.optional(this.emailAction);
     }
+    /**
+     * Forward results to another LogScale (Humio) repository via its ingest token. Exactly one action type must be set.
+     * 
+     */
     @Export(name="humioAction", refs={LogscaleActionHumioAction.class}, tree="[0]")
     private Output</* @Nullable */ LogscaleActionHumioAction> humioAction;
 
+    /**
+     * @return Forward results to another LogScale (Humio) repository via its ingest token. Exactly one action type must be set.
+     * 
+     */
     public Output<Optional<LogscaleActionHumioAction>> humioAction() {
         return Codegen.optional(this.humioAction);
     }
+    /**
+     * Display name of the LogScale action.
+     * 
+     */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
+    /**
+     * @return Display name of the LogScale action.
+     * 
+     */
     public Output<String> name() {
         return this.name;
     }
+    /**
+     * Send an OpsGenie alert when the alert triggers. Exactly one action type must be set.
+     * 
+     */
     @Export(name="opsGenieAction", refs={LogscaleActionOpsGenieAction.class}, tree="[0]")
     private Output</* @Nullable */ LogscaleActionOpsGenieAction> opsGenieAction;
 
+    /**
+     * @return Send an OpsGenie alert when the alert triggers. Exactly one action type must be set.
+     * 
+     */
     public Output<Optional<LogscaleActionOpsGenieAction>> opsGenieAction() {
         return Codegen.optional(this.opsGenieAction);
     }
+    /**
+     * Send a PagerDuty event when the alert triggers. Exactly one action type must be set.
+     * 
+     */
     @Export(name="pagerDutyAction", refs={LogscaleActionPagerDutyAction.class}, tree="[0]")
     private Output</* @Nullable */ LogscaleActionPagerDutyAction> pagerDutyAction;
 
+    /**
+     * @return Send a PagerDuty event when the alert triggers. Exactly one action type must be set.
+     * 
+     */
     public Output<Optional<LogscaleActionPagerDutyAction>> pagerDutyAction() {
         return Codegen.optional(this.pagerDutyAction);
     }
+    /**
+     * Name of the LogScale repository the action belongs to. Immutable after creation.
+     * 
+     */
     @Export(name="repository", refs={String.class}, tree="[0]")
     private Output<String> repository;
 
+    /**
+     * @return Name of the LogScale repository the action belongs to. Immutable after creation.
+     * 
+     */
     public Output<String> repository() {
         return this.repository;
     }
+    /**
+     * Post a message to a Slack incoming webhook when the alert triggers. Exactly one action type must be set.
+     * 
+     */
     @Export(name="slackAction", refs={LogscaleActionSlackAction.class}, tree="[0]")
     private Output</* @Nullable */ LogscaleActionSlackAction> slackAction;
 
+    /**
+     * @return Post a message to a Slack incoming webhook when the alert triggers. Exactly one action type must be set.
+     * 
+     */
     public Output<Optional<LogscaleActionSlackAction>> slackAction() {
         return Codegen.optional(this.slackAction);
     }
+    /**
+     * Post a message to Slack channels using the Slack `chat.postMessage` API. Exactly one action type must be set.
+     * 
+     */
     @Export(name="slackPostMessageAction", refs={LogscaleActionSlackPostMessageAction.class}, tree="[0]")
     private Output</* @Nullable */ LogscaleActionSlackPostMessageAction> slackPostMessageAction;
 
+    /**
+     * @return Post a message to Slack channels using the Slack `chat.postMessage` API. Exactly one action type must be set.
+     * 
+     */
     public Output<Optional<LogscaleActionSlackPostMessageAction>> slackPostMessageAction() {
         return Codegen.optional(this.slackPostMessageAction);
     }
+    /**
+     * Stable identifier for the LogScale action. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     @Export(name="slug", refs={String.class}, tree="[0]")
     private Output<String> slug;
 
+    /**
+     * @return Stable identifier for the LogScale action. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     public Output<String> slug() {
         return this.slug;
     }
+    /**
+     * Upload the query result as a file in LogScale. Exactly one action type must be set.
+     * 
+     */
     @Export(name="uploadFileAction", refs={LogscaleActionUploadFileAction.class}, tree="[0]")
     private Output</* @Nullable */ LogscaleActionUploadFileAction> uploadFileAction;
 
+    /**
+     * @return Upload the query result as a file in LogScale. Exactly one action type must be set.
+     * 
+     */
     public Output<Optional<LogscaleActionUploadFileAction>> uploadFileAction() {
         return Codegen.optional(this.uploadFileAction);
     }
+    /**
+     * Send a VictorOps (Splunk On-Call) event when the alert triggers. Exactly one action type must be set.
+     * 
+     */
     @Export(name="victorOpsAction", refs={LogscaleActionVictorOpsAction.class}, tree="[0]")
     private Output</* @Nullable */ LogscaleActionVictorOpsAction> victorOpsAction;
 
+    /**
+     * @return Send a VictorOps (Splunk On-Call) event when the alert triggers. Exactly one action type must be set.
+     * 
+     */
     public Output<Optional<LogscaleActionVictorOpsAction>> victorOpsAction() {
         return Codegen.optional(this.victorOpsAction);
     }
+    /**
+     * Send an HTTP or HTTPS webhook when the alert triggers. Exactly one action type must be set.
+     * 
+     */
     @Export(name="webhookAction", refs={LogscaleActionWebhookAction.class}, tree="[0]")
     private Output</* @Nullable */ LogscaleActionWebhookAction> webhookAction;
 
+    /**
+     * @return Send an HTTP or HTTPS webhook when the alert triggers. Exactly one action type must be set.
+     * 
+     */
     public Output<Optional<LogscaleActionWebhookAction>> webhookAction() {
         return Codegen.optional(this.webhookAction);
     }

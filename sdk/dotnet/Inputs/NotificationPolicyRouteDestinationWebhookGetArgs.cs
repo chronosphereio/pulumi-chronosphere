@@ -13,11 +13,18 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class NotificationPolicyRouteDestinationWebhookGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Slug of the OpsGenie external connection holding the integration credentials.
+        /// </summary>
         [Input("externalConnectionSlug", required: true)]
         public Input<string> ExternalConnectionSlug { get; set; } = null!;
 
         [Input("queryParameters")]
         private InputList<Inputs.NotificationPolicyRouteDestinationWebhookQueryParameterGetArgs>? _queryParameters;
+
+        /// <summary>
+        /// Additional query parameters appended to the webhook URL when delivering this notification.
+        /// </summary>
         public InputList<Inputs.NotificationPolicyRouteDestinationWebhookQueryParameterGetArgs> QueryParameters
         {
             get => _queryParameters ?? (_queryParameters = new InputList<Inputs.NotificationPolicyRouteDestinationWebhookQueryParameterGetArgs>());

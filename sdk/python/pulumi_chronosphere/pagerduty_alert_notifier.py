@@ -39,6 +39,27 @@ class PagerdutyAlertNotifierArgs:
                  tls_insecure_skip_verify: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a PagerdutyAlertNotifier resource.
+        :param pulumi.Input[str] name: Display name of the notifier.
+        :param pulumi.Input[str] severity: Severity of the incident. One of `critical`, `error`, `warning`, or `info`.
+        :param pulumi.Input[str] url: PagerDuty API URL to send events to (e.g. `https://events.pagerduty.com/v2/enqueue`).
+        :param pulumi.Input[str] basic_auth_password: Password for HTTP basic auth when calling the PagerDuty API. Treat as a secret.
+        :param pulumi.Input[str] basic_auth_username: Username for HTTP basic auth when calling the PagerDuty API. Mutually exclusive with `bearer_token`.
+        :param pulumi.Input[str] bearer_token: Bearer token sent in the `Authorization` header when calling the PagerDuty API. Treat as a secret. Mutually exclusive with basic auth.
+        :param pulumi.Input[str] class_: Class of the event reported to PagerDuty (e.g. `cpu`, `database`). Supports Go templating.
+        :param pulumi.Input[str] client: Name of the monitoring client identified in the notification.
+        :param pulumi.Input[str] client_url: Backlink to the sender of the notification, shown in PagerDuty.
+        :param pulumi.Input[str] component: Part or component of the affected system that is broken. Supports Go templating.
+        :param pulumi.Input[str] description: Summary of the incident. Supports Go templating.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] details: Arbitrary key/value pairs attached to the incident as additional context. Values support Go templating.
+        :param pulumi.Input[str] group: Logical grouping of services the incident belongs to. Supports Go templating.
+        :param pulumi.Input[Sequence[pulumi.Input['PagerdutyAlertNotifierImageArgs']]] images: Images attached to the PagerDuty incident. See https://developer.pagerduty.com/docs/events-api-v2/trigger-events/.
+        :param pulumi.Input[Sequence[pulumi.Input['PagerdutyAlertNotifierLinkArgs']]] links: Hyperlinks attached to the PagerDuty incident. See https://developer.pagerduty.com/docs/events-api-v2/trigger-events/.
+        :param pulumi.Input[str] proxy_url: Deprecated and ignored. Custom proxy URLs are not supported.
+        :param pulumi.Input[str] routing_key: PagerDuty integration key when using the `Events API v2` integration type. Treat as a secret. Mutually exclusive with `service_key`.
+        :param pulumi.Input[bool] send_resolved: Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+        :param pulumi.Input[str] service_key: PagerDuty integration key when using the `Prometheus` integration type. Treat as a secret. Mutually exclusive with `routing_key`.
+        :param pulumi.Input[str] slug: Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[bool] tls_insecure_skip_verify: If true, skip TLS certificate verification when calling the PagerDuty API. Disable only in trusted environments.
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "severity", severity)
@@ -86,6 +107,9 @@ class PagerdutyAlertNotifierArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        Display name of the notifier.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -95,6 +119,9 @@ class PagerdutyAlertNotifierArgs:
     @property
     @pulumi.getter
     def severity(self) -> pulumi.Input[str]:
+        """
+        Severity of the incident. One of `critical`, `error`, `warning`, or `info`.
+        """
         return pulumi.get(self, "severity")
 
     @severity.setter
@@ -104,6 +131,9 @@ class PagerdutyAlertNotifierArgs:
     @property
     @pulumi.getter
     def url(self) -> pulumi.Input[str]:
+        """
+        PagerDuty API URL to send events to (e.g. `https://events.pagerduty.com/v2/enqueue`).
+        """
         return pulumi.get(self, "url")
 
     @url.setter
@@ -113,6 +143,9 @@ class PagerdutyAlertNotifierArgs:
     @property
     @pulumi.getter(name="basicAuthPassword")
     def basic_auth_password(self) -> Optional[pulumi.Input[str]]:
+        """
+        Password for HTTP basic auth when calling the PagerDuty API. Treat as a secret.
+        """
         return pulumi.get(self, "basic_auth_password")
 
     @basic_auth_password.setter
@@ -122,6 +155,9 @@ class PagerdutyAlertNotifierArgs:
     @property
     @pulumi.getter(name="basicAuthUsername")
     def basic_auth_username(self) -> Optional[pulumi.Input[str]]:
+        """
+        Username for HTTP basic auth when calling the PagerDuty API. Mutually exclusive with `bearer_token`.
+        """
         return pulumi.get(self, "basic_auth_username")
 
     @basic_auth_username.setter
@@ -131,6 +167,9 @@ class PagerdutyAlertNotifierArgs:
     @property
     @pulumi.getter(name="bearerToken")
     def bearer_token(self) -> Optional[pulumi.Input[str]]:
+        """
+        Bearer token sent in the `Authorization` header when calling the PagerDuty API. Treat as a secret. Mutually exclusive with basic auth.
+        """
         return pulumi.get(self, "bearer_token")
 
     @bearer_token.setter
@@ -140,6 +179,9 @@ class PagerdutyAlertNotifierArgs:
     @property
     @pulumi.getter(name="class")
     def class_(self) -> Optional[pulumi.Input[str]]:
+        """
+        Class of the event reported to PagerDuty (e.g. `cpu`, `database`). Supports Go templating.
+        """
         return pulumi.get(self, "class_")
 
     @class_.setter
@@ -149,6 +191,9 @@ class PagerdutyAlertNotifierArgs:
     @property
     @pulumi.getter
     def client(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the monitoring client identified in the notification.
+        """
         return pulumi.get(self, "client")
 
     @client.setter
@@ -158,6 +203,9 @@ class PagerdutyAlertNotifierArgs:
     @property
     @pulumi.getter(name="clientUrl")
     def client_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        Backlink to the sender of the notification, shown in PagerDuty.
+        """
         return pulumi.get(self, "client_url")
 
     @client_url.setter
@@ -167,6 +215,9 @@ class PagerdutyAlertNotifierArgs:
     @property
     @pulumi.getter
     def component(self) -> Optional[pulumi.Input[str]]:
+        """
+        Part or component of the affected system that is broken. Supports Go templating.
+        """
         return pulumi.get(self, "component")
 
     @component.setter
@@ -176,6 +227,9 @@ class PagerdutyAlertNotifierArgs:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Summary of the incident. Supports Go templating.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -185,6 +239,9 @@ class PagerdutyAlertNotifierArgs:
     @property
     @pulumi.getter
     def details(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Arbitrary key/value pairs attached to the incident as additional context. Values support Go templating.
+        """
         return pulumi.get(self, "details")
 
     @details.setter
@@ -194,6 +251,9 @@ class PagerdutyAlertNotifierArgs:
     @property
     @pulumi.getter
     def group(self) -> Optional[pulumi.Input[str]]:
+        """
+        Logical grouping of services the incident belongs to. Supports Go templating.
+        """
         return pulumi.get(self, "group")
 
     @group.setter
@@ -203,6 +263,9 @@ class PagerdutyAlertNotifierArgs:
     @property
     @pulumi.getter
     def images(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['PagerdutyAlertNotifierImageArgs']]]]:
+        """
+        Images attached to the PagerDuty incident. See https://developer.pagerduty.com/docs/events-api-v2/trigger-events/.
+        """
         return pulumi.get(self, "images")
 
     @images.setter
@@ -212,6 +275,9 @@ class PagerdutyAlertNotifierArgs:
     @property
     @pulumi.getter
     def links(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['PagerdutyAlertNotifierLinkArgs']]]]:
+        """
+        Hyperlinks attached to the PagerDuty incident. See https://developer.pagerduty.com/docs/events-api-v2/trigger-events/.
+        """
         return pulumi.get(self, "links")
 
     @links.setter
@@ -221,6 +287,9 @@ class PagerdutyAlertNotifierArgs:
     @property
     @pulumi.getter(name="proxyUrl")
     def proxy_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        Deprecated and ignored. Custom proxy URLs are not supported.
+        """
         warnings.warn("""custom proxy URLs are not supported""", DeprecationWarning)
         pulumi.log.warn("""proxy_url is deprecated: custom proxy URLs are not supported""")
 
@@ -233,6 +302,9 @@ class PagerdutyAlertNotifierArgs:
     @property
     @pulumi.getter(name="routingKey")
     def routing_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        PagerDuty integration key when using the `Events API v2` integration type. Treat as a secret. Mutually exclusive with `service_key`.
+        """
         return pulumi.get(self, "routing_key")
 
     @routing_key.setter
@@ -242,6 +314,9 @@ class PagerdutyAlertNotifierArgs:
     @property
     @pulumi.getter(name="sendResolved")
     def send_resolved(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+        """
         return pulumi.get(self, "send_resolved")
 
     @send_resolved.setter
@@ -251,6 +326,9 @@ class PagerdutyAlertNotifierArgs:
     @property
     @pulumi.getter(name="serviceKey")
     def service_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        PagerDuty integration key when using the `Prometheus` integration type. Treat as a secret. Mutually exclusive with `routing_key`.
+        """
         return pulumi.get(self, "service_key")
 
     @service_key.setter
@@ -260,6 +338,9 @@ class PagerdutyAlertNotifierArgs:
     @property
     @pulumi.getter
     def slug(self) -> Optional[pulumi.Input[str]]:
+        """
+        Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @slug.setter
@@ -269,6 +350,9 @@ class PagerdutyAlertNotifierArgs:
     @property
     @pulumi.getter(name="tlsInsecureSkipVerify")
     def tls_insecure_skip_verify(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If true, skip TLS certificate verification when calling the PagerDuty API. Disable only in trusted environments.
+        """
         return pulumi.get(self, "tls_insecure_skip_verify")
 
     @tls_insecure_skip_verify.setter
@@ -302,6 +386,27 @@ class _PagerdutyAlertNotifierState:
                  url: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering PagerdutyAlertNotifier resources.
+        :param pulumi.Input[str] basic_auth_password: Password for HTTP basic auth when calling the PagerDuty API. Treat as a secret.
+        :param pulumi.Input[str] basic_auth_username: Username for HTTP basic auth when calling the PagerDuty API. Mutually exclusive with `bearer_token`.
+        :param pulumi.Input[str] bearer_token: Bearer token sent in the `Authorization` header when calling the PagerDuty API. Treat as a secret. Mutually exclusive with basic auth.
+        :param pulumi.Input[str] class_: Class of the event reported to PagerDuty (e.g. `cpu`, `database`). Supports Go templating.
+        :param pulumi.Input[str] client: Name of the monitoring client identified in the notification.
+        :param pulumi.Input[str] client_url: Backlink to the sender of the notification, shown in PagerDuty.
+        :param pulumi.Input[str] component: Part or component of the affected system that is broken. Supports Go templating.
+        :param pulumi.Input[str] description: Summary of the incident. Supports Go templating.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] details: Arbitrary key/value pairs attached to the incident as additional context. Values support Go templating.
+        :param pulumi.Input[str] group: Logical grouping of services the incident belongs to. Supports Go templating.
+        :param pulumi.Input[Sequence[pulumi.Input['PagerdutyAlertNotifierImageArgs']]] images: Images attached to the PagerDuty incident. See https://developer.pagerduty.com/docs/events-api-v2/trigger-events/.
+        :param pulumi.Input[Sequence[pulumi.Input['PagerdutyAlertNotifierLinkArgs']]] links: Hyperlinks attached to the PagerDuty incident. See https://developer.pagerduty.com/docs/events-api-v2/trigger-events/.
+        :param pulumi.Input[str] name: Display name of the notifier.
+        :param pulumi.Input[str] proxy_url: Deprecated and ignored. Custom proxy URLs are not supported.
+        :param pulumi.Input[str] routing_key: PagerDuty integration key when using the `Events API v2` integration type. Treat as a secret. Mutually exclusive with `service_key`.
+        :param pulumi.Input[bool] send_resolved: Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+        :param pulumi.Input[str] service_key: PagerDuty integration key when using the `Prometheus` integration type. Treat as a secret. Mutually exclusive with `routing_key`.
+        :param pulumi.Input[str] severity: Severity of the incident. One of `critical`, `error`, `warning`, or `info`.
+        :param pulumi.Input[str] slug: Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[bool] tls_insecure_skip_verify: If true, skip TLS certificate verification when calling the PagerDuty API. Disable only in trusted environments.
+        :param pulumi.Input[str] url: PagerDuty API URL to send events to (e.g. `https://events.pagerduty.com/v2/enqueue`).
         """
         if basic_auth_password is not None:
             pulumi.set(__self__, "basic_auth_password", basic_auth_password)
@@ -352,6 +457,9 @@ class _PagerdutyAlertNotifierState:
     @property
     @pulumi.getter(name="basicAuthPassword")
     def basic_auth_password(self) -> Optional[pulumi.Input[str]]:
+        """
+        Password for HTTP basic auth when calling the PagerDuty API. Treat as a secret.
+        """
         return pulumi.get(self, "basic_auth_password")
 
     @basic_auth_password.setter
@@ -361,6 +469,9 @@ class _PagerdutyAlertNotifierState:
     @property
     @pulumi.getter(name="basicAuthUsername")
     def basic_auth_username(self) -> Optional[pulumi.Input[str]]:
+        """
+        Username for HTTP basic auth when calling the PagerDuty API. Mutually exclusive with `bearer_token`.
+        """
         return pulumi.get(self, "basic_auth_username")
 
     @basic_auth_username.setter
@@ -370,6 +481,9 @@ class _PagerdutyAlertNotifierState:
     @property
     @pulumi.getter(name="bearerToken")
     def bearer_token(self) -> Optional[pulumi.Input[str]]:
+        """
+        Bearer token sent in the `Authorization` header when calling the PagerDuty API. Treat as a secret. Mutually exclusive with basic auth.
+        """
         return pulumi.get(self, "bearer_token")
 
     @bearer_token.setter
@@ -379,6 +493,9 @@ class _PagerdutyAlertNotifierState:
     @property
     @pulumi.getter(name="class")
     def class_(self) -> Optional[pulumi.Input[str]]:
+        """
+        Class of the event reported to PagerDuty (e.g. `cpu`, `database`). Supports Go templating.
+        """
         return pulumi.get(self, "class_")
 
     @class_.setter
@@ -388,6 +505,9 @@ class _PagerdutyAlertNotifierState:
     @property
     @pulumi.getter
     def client(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the monitoring client identified in the notification.
+        """
         return pulumi.get(self, "client")
 
     @client.setter
@@ -397,6 +517,9 @@ class _PagerdutyAlertNotifierState:
     @property
     @pulumi.getter(name="clientUrl")
     def client_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        Backlink to the sender of the notification, shown in PagerDuty.
+        """
         return pulumi.get(self, "client_url")
 
     @client_url.setter
@@ -406,6 +529,9 @@ class _PagerdutyAlertNotifierState:
     @property
     @pulumi.getter
     def component(self) -> Optional[pulumi.Input[str]]:
+        """
+        Part or component of the affected system that is broken. Supports Go templating.
+        """
         return pulumi.get(self, "component")
 
     @component.setter
@@ -415,6 +541,9 @@ class _PagerdutyAlertNotifierState:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Summary of the incident. Supports Go templating.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -424,6 +553,9 @@ class _PagerdutyAlertNotifierState:
     @property
     @pulumi.getter
     def details(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Arbitrary key/value pairs attached to the incident as additional context. Values support Go templating.
+        """
         return pulumi.get(self, "details")
 
     @details.setter
@@ -433,6 +565,9 @@ class _PagerdutyAlertNotifierState:
     @property
     @pulumi.getter
     def group(self) -> Optional[pulumi.Input[str]]:
+        """
+        Logical grouping of services the incident belongs to. Supports Go templating.
+        """
         return pulumi.get(self, "group")
 
     @group.setter
@@ -442,6 +577,9 @@ class _PagerdutyAlertNotifierState:
     @property
     @pulumi.getter
     def images(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['PagerdutyAlertNotifierImageArgs']]]]:
+        """
+        Images attached to the PagerDuty incident. See https://developer.pagerduty.com/docs/events-api-v2/trigger-events/.
+        """
         return pulumi.get(self, "images")
 
     @images.setter
@@ -451,6 +589,9 @@ class _PagerdutyAlertNotifierState:
     @property
     @pulumi.getter
     def links(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['PagerdutyAlertNotifierLinkArgs']]]]:
+        """
+        Hyperlinks attached to the PagerDuty incident. See https://developer.pagerduty.com/docs/events-api-v2/trigger-events/.
+        """
         return pulumi.get(self, "links")
 
     @links.setter
@@ -460,6 +601,9 @@ class _PagerdutyAlertNotifierState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Display name of the notifier.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -469,6 +613,9 @@ class _PagerdutyAlertNotifierState:
     @property
     @pulumi.getter(name="proxyUrl")
     def proxy_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        Deprecated and ignored. Custom proxy URLs are not supported.
+        """
         warnings.warn("""custom proxy URLs are not supported""", DeprecationWarning)
         pulumi.log.warn("""proxy_url is deprecated: custom proxy URLs are not supported""")
 
@@ -481,6 +628,9 @@ class _PagerdutyAlertNotifierState:
     @property
     @pulumi.getter(name="routingKey")
     def routing_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        PagerDuty integration key when using the `Events API v2` integration type. Treat as a secret. Mutually exclusive with `service_key`.
+        """
         return pulumi.get(self, "routing_key")
 
     @routing_key.setter
@@ -490,6 +640,9 @@ class _PagerdutyAlertNotifierState:
     @property
     @pulumi.getter(name="sendResolved")
     def send_resolved(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+        """
         return pulumi.get(self, "send_resolved")
 
     @send_resolved.setter
@@ -499,6 +652,9 @@ class _PagerdutyAlertNotifierState:
     @property
     @pulumi.getter(name="serviceKey")
     def service_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        PagerDuty integration key when using the `Prometheus` integration type. Treat as a secret. Mutually exclusive with `routing_key`.
+        """
         return pulumi.get(self, "service_key")
 
     @service_key.setter
@@ -508,6 +664,9 @@ class _PagerdutyAlertNotifierState:
     @property
     @pulumi.getter
     def severity(self) -> Optional[pulumi.Input[str]]:
+        """
+        Severity of the incident. One of `critical`, `error`, `warning`, or `info`.
+        """
         return pulumi.get(self, "severity")
 
     @severity.setter
@@ -517,6 +676,9 @@ class _PagerdutyAlertNotifierState:
     @property
     @pulumi.getter
     def slug(self) -> Optional[pulumi.Input[str]]:
+        """
+        Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @slug.setter
@@ -526,6 +688,9 @@ class _PagerdutyAlertNotifierState:
     @property
     @pulumi.getter(name="tlsInsecureSkipVerify")
     def tls_insecure_skip_verify(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If true, skip TLS certificate verification when calling the PagerDuty API. Disable only in trusted environments.
+        """
         return pulumi.get(self, "tls_insecure_skip_verify")
 
     @tls_insecure_skip_verify.setter
@@ -535,6 +700,9 @@ class _PagerdutyAlertNotifierState:
     @property
     @pulumi.getter
     def url(self) -> Optional[pulumi.Input[str]]:
+        """
+        PagerDuty API URL to send events to (e.g. `https://events.pagerduty.com/v2/enqueue`).
+        """
         return pulumi.get(self, "url")
 
     @url.setter
@@ -570,9 +738,48 @@ class PagerdutyAlertNotifier(pulumi.CustomResource):
                  url: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a PagerdutyAlertNotifier resource with the given unique name, props, and options.
+        PagerDuty notifier that delivers monitor signals to PagerDuty as incidents via the Events API. Referenced from notification policies.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_chronosphere as chronosphere
+
+        pagerduty = chronosphere.PagerdutyAlertNotifier("pagerduty",
+            details={
+                "runbook": "http://runbook",
+            },
+            name="PagerDuty Notifier",
+            routing_key="XXXXX",
+            send_resolved=True,
+            severity="info",
+            url="https://events.pagerduty.com/v2/enqueue")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] basic_auth_password: Password for HTTP basic auth when calling the PagerDuty API. Treat as a secret.
+        :param pulumi.Input[str] basic_auth_username: Username for HTTP basic auth when calling the PagerDuty API. Mutually exclusive with `bearer_token`.
+        :param pulumi.Input[str] bearer_token: Bearer token sent in the `Authorization` header when calling the PagerDuty API. Treat as a secret. Mutually exclusive with basic auth.
+        :param pulumi.Input[str] class_: Class of the event reported to PagerDuty (e.g. `cpu`, `database`). Supports Go templating.
+        :param pulumi.Input[str] client: Name of the monitoring client identified in the notification.
+        :param pulumi.Input[str] client_url: Backlink to the sender of the notification, shown in PagerDuty.
+        :param pulumi.Input[str] component: Part or component of the affected system that is broken. Supports Go templating.
+        :param pulumi.Input[str] description: Summary of the incident. Supports Go templating.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] details: Arbitrary key/value pairs attached to the incident as additional context. Values support Go templating.
+        :param pulumi.Input[str] group: Logical grouping of services the incident belongs to. Supports Go templating.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PagerdutyAlertNotifierImageArgs']]]] images: Images attached to the PagerDuty incident. See https://developer.pagerduty.com/docs/events-api-v2/trigger-events/.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PagerdutyAlertNotifierLinkArgs']]]] links: Hyperlinks attached to the PagerDuty incident. See https://developer.pagerduty.com/docs/events-api-v2/trigger-events/.
+        :param pulumi.Input[str] name: Display name of the notifier.
+        :param pulumi.Input[str] proxy_url: Deprecated and ignored. Custom proxy URLs are not supported.
+        :param pulumi.Input[str] routing_key: PagerDuty integration key when using the `Events API v2` integration type. Treat as a secret. Mutually exclusive with `service_key`.
+        :param pulumi.Input[bool] send_resolved: Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+        :param pulumi.Input[str] service_key: PagerDuty integration key when using the `Prometheus` integration type. Treat as a secret. Mutually exclusive with `routing_key`.
+        :param pulumi.Input[str] severity: Severity of the incident. One of `critical`, `error`, `warning`, or `info`.
+        :param pulumi.Input[str] slug: Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[bool] tls_insecure_skip_verify: If true, skip TLS certificate verification when calling the PagerDuty API. Disable only in trusted environments.
+        :param pulumi.Input[str] url: PagerDuty API URL to send events to (e.g. `https://events.pagerduty.com/v2/enqueue`).
         """
         ...
     @overload
@@ -581,7 +788,25 @@ class PagerdutyAlertNotifier(pulumi.CustomResource):
                  args: PagerdutyAlertNotifierArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a PagerdutyAlertNotifier resource with the given unique name, props, and options.
+        PagerDuty notifier that delivers monitor signals to PagerDuty as incidents via the Events API. Referenced from notification policies.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_chronosphere as chronosphere
+
+        pagerduty = chronosphere.PagerdutyAlertNotifier("pagerduty",
+            details={
+                "runbook": "http://runbook",
+            },
+            name="PagerDuty Notifier",
+            routing_key="XXXXX",
+            send_resolved=True,
+            severity="info",
+            url="https://events.pagerduty.com/v2/enqueue")
+        ```
+
         :param str resource_name: The name of the resource.
         :param PagerdutyAlertNotifierArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -694,6 +919,27 @@ class PagerdutyAlertNotifier(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] basic_auth_password: Password for HTTP basic auth when calling the PagerDuty API. Treat as a secret.
+        :param pulumi.Input[str] basic_auth_username: Username for HTTP basic auth when calling the PagerDuty API. Mutually exclusive with `bearer_token`.
+        :param pulumi.Input[str] bearer_token: Bearer token sent in the `Authorization` header when calling the PagerDuty API. Treat as a secret. Mutually exclusive with basic auth.
+        :param pulumi.Input[str] class_: Class of the event reported to PagerDuty (e.g. `cpu`, `database`). Supports Go templating.
+        :param pulumi.Input[str] client: Name of the monitoring client identified in the notification.
+        :param pulumi.Input[str] client_url: Backlink to the sender of the notification, shown in PagerDuty.
+        :param pulumi.Input[str] component: Part or component of the affected system that is broken. Supports Go templating.
+        :param pulumi.Input[str] description: Summary of the incident. Supports Go templating.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] details: Arbitrary key/value pairs attached to the incident as additional context. Values support Go templating.
+        :param pulumi.Input[str] group: Logical grouping of services the incident belongs to. Supports Go templating.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PagerdutyAlertNotifierImageArgs']]]] images: Images attached to the PagerDuty incident. See https://developer.pagerduty.com/docs/events-api-v2/trigger-events/.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PagerdutyAlertNotifierLinkArgs']]]] links: Hyperlinks attached to the PagerDuty incident. See https://developer.pagerduty.com/docs/events-api-v2/trigger-events/.
+        :param pulumi.Input[str] name: Display name of the notifier.
+        :param pulumi.Input[str] proxy_url: Deprecated and ignored. Custom proxy URLs are not supported.
+        :param pulumi.Input[str] routing_key: PagerDuty integration key when using the `Events API v2` integration type. Treat as a secret. Mutually exclusive with `service_key`.
+        :param pulumi.Input[bool] send_resolved: Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+        :param pulumi.Input[str] service_key: PagerDuty integration key when using the `Prometheus` integration type. Treat as a secret. Mutually exclusive with `routing_key`.
+        :param pulumi.Input[str] severity: Severity of the incident. One of `critical`, `error`, `warning`, or `info`.
+        :param pulumi.Input[str] slug: Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[bool] tls_insecure_skip_verify: If true, skip TLS certificate verification when calling the PagerDuty API. Disable only in trusted environments.
+        :param pulumi.Input[str] url: PagerDuty API URL to send events to (e.g. `https://events.pagerduty.com/v2/enqueue`).
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -725,71 +971,113 @@ class PagerdutyAlertNotifier(pulumi.CustomResource):
     @property
     @pulumi.getter(name="basicAuthPassword")
     def basic_auth_password(self) -> pulumi.Output[Optional[str]]:
+        """
+        Password for HTTP basic auth when calling the PagerDuty API. Treat as a secret.
+        """
         return pulumi.get(self, "basic_auth_password")
 
     @property
     @pulumi.getter(name="basicAuthUsername")
     def basic_auth_username(self) -> pulumi.Output[Optional[str]]:
+        """
+        Username for HTTP basic auth when calling the PagerDuty API. Mutually exclusive with `bearer_token`.
+        """
         return pulumi.get(self, "basic_auth_username")
 
     @property
     @pulumi.getter(name="bearerToken")
     def bearer_token(self) -> pulumi.Output[Optional[str]]:
+        """
+        Bearer token sent in the `Authorization` header when calling the PagerDuty API. Treat as a secret. Mutually exclusive with basic auth.
+        """
         return pulumi.get(self, "bearer_token")
 
     @property
     @pulumi.getter(name="class")
     def class_(self) -> pulumi.Output[Optional[str]]:
+        """
+        Class of the event reported to PagerDuty (e.g. `cpu`, `database`). Supports Go templating.
+        """
         return pulumi.get(self, "class_")
 
     @property
     @pulumi.getter
     def client(self) -> pulumi.Output[Optional[str]]:
+        """
+        Name of the monitoring client identified in the notification.
+        """
         return pulumi.get(self, "client")
 
     @property
     @pulumi.getter(name="clientUrl")
     def client_url(self) -> pulumi.Output[Optional[str]]:
+        """
+        Backlink to the sender of the notification, shown in PagerDuty.
+        """
         return pulumi.get(self, "client_url")
 
     @property
     @pulumi.getter
     def component(self) -> pulumi.Output[Optional[str]]:
+        """
+        Part or component of the affected system that is broken. Supports Go templating.
+        """
         return pulumi.get(self, "component")
 
     @property
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
+        """
+        Summary of the incident. Supports Go templating.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
     def details(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+        """
+        Arbitrary key/value pairs attached to the incident as additional context. Values support Go templating.
+        """
         return pulumi.get(self, "details")
 
     @property
     @pulumi.getter
     def group(self) -> pulumi.Output[Optional[str]]:
+        """
+        Logical grouping of services the incident belongs to. Supports Go templating.
+        """
         return pulumi.get(self, "group")
 
     @property
     @pulumi.getter
     def images(self) -> pulumi.Output[Optional[Sequence['outputs.PagerdutyAlertNotifierImage']]]:
+        """
+        Images attached to the PagerDuty incident. See https://developer.pagerduty.com/docs/events-api-v2/trigger-events/.
+        """
         return pulumi.get(self, "images")
 
     @property
     @pulumi.getter
     def links(self) -> pulumi.Output[Optional[Sequence['outputs.PagerdutyAlertNotifierLink']]]:
+        """
+        Hyperlinks attached to the PagerDuty incident. See https://developer.pagerduty.com/docs/events-api-v2/trigger-events/.
+        """
         return pulumi.get(self, "links")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        Display name of the notifier.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="proxyUrl")
     def proxy_url(self) -> pulumi.Output[Optional[str]]:
+        """
+        Deprecated and ignored. Custom proxy URLs are not supported.
+        """
         warnings.warn("""custom proxy URLs are not supported""", DeprecationWarning)
         pulumi.log.warn("""proxy_url is deprecated: custom proxy URLs are not supported""")
 
@@ -798,35 +1086,56 @@ class PagerdutyAlertNotifier(pulumi.CustomResource):
     @property
     @pulumi.getter(name="routingKey")
     def routing_key(self) -> pulumi.Output[Optional[str]]:
+        """
+        PagerDuty integration key when using the `Events API v2` integration type. Treat as a secret. Mutually exclusive with `service_key`.
+        """
         return pulumi.get(self, "routing_key")
 
     @property
     @pulumi.getter(name="sendResolved")
     def send_resolved(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+        """
         return pulumi.get(self, "send_resolved")
 
     @property
     @pulumi.getter(name="serviceKey")
     def service_key(self) -> pulumi.Output[Optional[str]]:
+        """
+        PagerDuty integration key when using the `Prometheus` integration type. Treat as a secret. Mutually exclusive with `routing_key`.
+        """
         return pulumi.get(self, "service_key")
 
     @property
     @pulumi.getter
     def severity(self) -> pulumi.Output[str]:
+        """
+        Severity of the incident. One of `critical`, `error`, `warning`, or `info`.
+        """
         return pulumi.get(self, "severity")
 
     @property
     @pulumi.getter
     def slug(self) -> pulumi.Output[str]:
+        """
+        Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @property
     @pulumi.getter(name="tlsInsecureSkipVerify")
     def tls_insecure_skip_verify(self) -> pulumi.Output[Optional[bool]]:
+        """
+        If true, skip TLS certificate verification when calling the PagerDuty API. Disable only in trusted environments.
+        """
         return pulumi.get(self, "tls_insecure_skip_verify")
 
     @property
     @pulumi.getter
     def url(self) -> pulumi.Output[str]:
+        """
+        PagerDuty API URL to send events to (e.g. `https://events.pagerduty.com/v2/enqueue`).
+        """
         return pulumi.get(self, "url")
 

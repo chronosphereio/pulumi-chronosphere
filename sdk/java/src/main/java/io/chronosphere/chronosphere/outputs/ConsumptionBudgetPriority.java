@@ -13,13 +13,29 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class ConsumptionBudgetPriority {
+    /**
+     * @return Filters identifying which data matches this priority. Filters are AND-ed together: a request must match every filter to be assigned this priority.
+     * 
+     */
     private @Nullable List<ConsumptionBudgetPriorityFilter> filters;
+    /**
+     * @return Priority order used when dropping data. Priority `10` is dropped first; priority `1` is dropped last.
+     * 
+     */
     private @Nullable Integer priority;
 
     private ConsumptionBudgetPriority() {}
+    /**
+     * @return Filters identifying which data matches this priority. Filters are AND-ed together: a request must match every filter to be assigned this priority.
+     * 
+     */
     public List<ConsumptionBudgetPriorityFilter> filters() {
         return this.filters == null ? List.of() : this.filters;
     }
+    /**
+     * @return Priority order used when dropping data. Priority `10` is dropped first; priority `1` is dropped last.
+     * 
+     */
     public Optional<Integer> priority() {
         return Optional.ofNullable(this.priority);
     }

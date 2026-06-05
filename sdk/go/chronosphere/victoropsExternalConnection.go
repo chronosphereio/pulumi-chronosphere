@@ -12,13 +12,46 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Workspace-scoped VictorOps (Splunk On-Call) credentials that downstream notifiers and LogScale actions can reference. Centralizes the REST integration API key so it isn't duplicated across notifiers; modern equivalent of the per-notifier credentials.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/chronosphereio/pulumi-chronosphere/sdk/go/chronosphere"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := chronosphere.NewVictoropsExternalConnection(ctx, "victorops", &chronosphere.VictoropsExternalConnectionArgs{
+//				ApiKey: pulumi.String("00000000-0000-0000-0000-000000000000"),
+//				ApiUrl: pulumi.String("https://alert.victorops.com/integrations/generic/00000000/alert/"),
+//				Name:   pulumi.String("VictorOps"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type VictoropsExternalConnection struct {
 	pulumi.CustomResourceState
 
+	// VictorOps (Splunk On-Call) REST integration API key used to authenticate alert delivery. Treat as a secret.
 	ApiKey pulumi.StringPtrOutput `pulumi:"apiKey"`
+	// VictorOps REST endpoint URL that receives alert payloads. Override to target a custom endpoint.
 	ApiUrl pulumi.StringPtrOutput `pulumi:"apiUrl"`
-	Name   pulumi.StringOutput    `pulumi:"name"`
-	Slug   pulumi.StringOutput    `pulumi:"slug"`
+	// Display name of the external connection.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringOutput `pulumi:"slug"`
 }
 
 // NewVictoropsExternalConnection registers a new resource with the given unique name, arguments, and options.
@@ -61,17 +94,25 @@ func GetVictoropsExternalConnection(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering VictoropsExternalConnection resources.
 type victoropsExternalConnectionState struct {
+	// VictorOps (Splunk On-Call) REST integration API key used to authenticate alert delivery. Treat as a secret.
 	ApiKey *string `pulumi:"apiKey"`
+	// VictorOps REST endpoint URL that receives alert payloads. Override to target a custom endpoint.
 	ApiUrl *string `pulumi:"apiUrl"`
-	Name   *string `pulumi:"name"`
-	Slug   *string `pulumi:"slug"`
+	// Display name of the external connection.
+	Name *string `pulumi:"name"`
+	// Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+	Slug *string `pulumi:"slug"`
 }
 
 type VictoropsExternalConnectionState struct {
+	// VictorOps (Splunk On-Call) REST integration API key used to authenticate alert delivery. Treat as a secret.
 	ApiKey pulumi.StringPtrInput
+	// VictorOps REST endpoint URL that receives alert payloads. Override to target a custom endpoint.
 	ApiUrl pulumi.StringPtrInput
-	Name   pulumi.StringPtrInput
-	Slug   pulumi.StringPtrInput
+	// Display name of the external connection.
+	Name pulumi.StringPtrInput
+	// Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringPtrInput
 }
 
 func (VictoropsExternalConnectionState) ElementType() reflect.Type {
@@ -79,18 +120,26 @@ func (VictoropsExternalConnectionState) ElementType() reflect.Type {
 }
 
 type victoropsExternalConnectionArgs struct {
+	// VictorOps (Splunk On-Call) REST integration API key used to authenticate alert delivery. Treat as a secret.
 	ApiKey *string `pulumi:"apiKey"`
+	// VictorOps REST endpoint URL that receives alert payloads. Override to target a custom endpoint.
 	ApiUrl *string `pulumi:"apiUrl"`
-	Name   string  `pulumi:"name"`
-	Slug   *string `pulumi:"slug"`
+	// Display name of the external connection.
+	Name string `pulumi:"name"`
+	// Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+	Slug *string `pulumi:"slug"`
 }
 
 // The set of arguments for constructing a VictoropsExternalConnection resource.
 type VictoropsExternalConnectionArgs struct {
+	// VictorOps (Splunk On-Call) REST integration API key used to authenticate alert delivery. Treat as a secret.
 	ApiKey pulumi.StringPtrInput
+	// VictorOps REST endpoint URL that receives alert payloads. Override to target a custom endpoint.
 	ApiUrl pulumi.StringPtrInput
-	Name   pulumi.StringInput
-	Slug   pulumi.StringPtrInput
+	// Display name of the external connection.
+	Name pulumi.StringInput
+	// Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringPtrInput
 }
 
 func (VictoropsExternalConnectionArgs) ElementType() reflect.Type {
@@ -180,18 +229,22 @@ func (o VictoropsExternalConnectionOutput) ToVictoropsExternalConnectionOutputWi
 	return o
 }
 
+// VictorOps (Splunk On-Call) REST integration API key used to authenticate alert delivery. Treat as a secret.
 func (o VictoropsExternalConnectionOutput) ApiKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *VictoropsExternalConnection) pulumi.StringPtrOutput { return v.ApiKey }).(pulumi.StringPtrOutput)
 }
 
+// VictorOps REST endpoint URL that receives alert payloads. Override to target a custom endpoint.
 func (o VictoropsExternalConnectionOutput) ApiUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *VictoropsExternalConnection) pulumi.StringPtrOutput { return v.ApiUrl }).(pulumi.StringPtrOutput)
 }
 
+// Display name of the external connection.
 func (o VictoropsExternalConnectionOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *VictoropsExternalConnection) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
 func (o VictoropsExternalConnectionOutput) Slug() pulumi.StringOutput {
 	return o.ApplyT(func(v *VictoropsExternalConnection) pulumi.StringOutput { return v.Slug }).(pulumi.StringOutput)
 }

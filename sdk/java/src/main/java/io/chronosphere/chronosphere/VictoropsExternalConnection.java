@@ -15,29 +15,97 @@ import java.util.List;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
+/**
+ * Workspace-scoped VictorOps (Splunk On-Call) credentials that downstream notifiers and LogScale actions can reference. Centralizes the REST integration API key so it isn&#39;t duplicated across notifiers; modern equivalent of the per-notifier credentials.
+ * 
+ * ## Example Usage
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.chronosphere.VictoropsExternalConnection;
+ * import com.pulumi.chronosphere.VictoropsExternalConnectionArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var victorops = new VictoropsExternalConnection(&#34;victorops&#34;, VictoropsExternalConnectionArgs.builder()        
+ *             .apiKey(&#34;00000000-0000-0000-0000-000000000000&#34;)
+ *             .apiUrl(&#34;https://alert.victorops.com/integrations/generic/00000000/alert/&#34;)
+ *             .name(&#34;VictorOps&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ */
 @ResourceType(type="chronosphere:index/victoropsExternalConnection:VictoropsExternalConnection")
 public class VictoropsExternalConnection extends com.pulumi.resources.CustomResource {
+    /**
+     * VictorOps (Splunk On-Call) REST integration API key used to authenticate alert delivery. Treat as a secret.
+     * 
+     */
     @Export(name="apiKey", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> apiKey;
 
+    /**
+     * @return VictorOps (Splunk On-Call) REST integration API key used to authenticate alert delivery. Treat as a secret.
+     * 
+     */
     public Output<Optional<String>> apiKey() {
         return Codegen.optional(this.apiKey);
     }
+    /**
+     * VictorOps REST endpoint URL that receives alert payloads. Override to target a custom endpoint.
+     * 
+     */
     @Export(name="apiUrl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> apiUrl;
 
+    /**
+     * @return VictorOps REST endpoint URL that receives alert payloads. Override to target a custom endpoint.
+     * 
+     */
     public Output<Optional<String>> apiUrl() {
         return Codegen.optional(this.apiUrl);
     }
+    /**
+     * Display name of the external connection.
+     * 
+     */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
+    /**
+     * @return Display name of the external connection.
+     * 
+     */
     public Output<String> name() {
         return this.name;
     }
+    /**
+     * Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     @Export(name="slug", refs={String.class}, tree="[0]")
     private Output<String> slug;
 
+    /**
+     * @return Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     public Output<String> slug() {
         return this.slug;
     }

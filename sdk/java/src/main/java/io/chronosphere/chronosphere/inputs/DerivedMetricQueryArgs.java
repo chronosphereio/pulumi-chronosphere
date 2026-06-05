@@ -16,16 +16,32 @@ public final class DerivedMetricQueryArgs extends com.pulumi.resources.ResourceA
 
     public static final DerivedMetricQueryArgs Empty = new DerivedMetricQueryArgs();
 
+    /**
+     * PromQL query executed when this selector matches.
+     * 
+     */
     @Import(name="query", required=true)
     private Output<DerivedMetricQueryQueryArgs> query;
 
+    /**
+     * @return PromQL query executed when this selector matches.
+     * 
+     */
     public Output<DerivedMetricQueryQueryArgs> query() {
         return this.query;
     }
 
+    /**
+     * Label matchers that must be present on the derived metric usage for this query to be selected. If omitted, the query matches any usage.
+     * 
+     */
     @Import(name="selector")
     private @Nullable Output<DerivedMetricQuerySelectorArgs> selector;
 
+    /**
+     * @return Label matchers that must be present on the derived metric usage for this query to be selected. If omitted, the query matches any usage.
+     * 
+     */
     public Optional<Output<DerivedMetricQuerySelectorArgs>> selector() {
         return Optional.ofNullable(this.selector);
     }
@@ -55,20 +71,44 @@ public final class DerivedMetricQueryArgs extends com.pulumi.resources.ResourceA
             $ = new DerivedMetricQueryArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param query PromQL query executed when this selector matches.
+         * 
+         * @return builder
+         * 
+         */
         public Builder query(Output<DerivedMetricQueryQueryArgs> query) {
             $.query = query;
             return this;
         }
 
+        /**
+         * @param query PromQL query executed when this selector matches.
+         * 
+         * @return builder
+         * 
+         */
         public Builder query(DerivedMetricQueryQueryArgs query) {
             return query(Output.of(query));
         }
 
+        /**
+         * @param selector Label matchers that must be present on the derived metric usage for this query to be selected. If omitted, the query matches any usage.
+         * 
+         * @return builder
+         * 
+         */
         public Builder selector(@Nullable Output<DerivedMetricQuerySelectorArgs> selector) {
             $.selector = selector;
             return this;
         }
 
+        /**
+         * @param selector Label matchers that must be present on the derived metric usage for this query to be selected. If omitted, the query matches any usage.
+         * 
+         * @return builder
+         * 
+         */
         public Builder selector(DerivedMetricQuerySelectorArgs selector) {
             return selector(Output.of(selector));
         }

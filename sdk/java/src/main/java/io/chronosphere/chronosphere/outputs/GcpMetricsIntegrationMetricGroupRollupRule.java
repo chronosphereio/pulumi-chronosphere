@@ -12,17 +12,41 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GcpMetricsIntegrationMetricGroupRollupRule {
+    /**
+     * @return Aggregation function applied across the dropped labels (e.g. sum, max).
+     * 
+     */
     private @Nullable String aggregation;
+    /**
+     * @return Specifies which labels to preserve during aggregation. Labels not listed are dropped.
+     * 
+     */
     private @Nullable GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicy labelPolicy;
+    /**
+     * @return Fully-qualified Google Cloud metric name the rollup rule targets (e.g. `cloudsql.googleapis.com/database/uptime`).
+     * 
+     */
     private @Nullable String metricName;
 
     private GcpMetricsIntegrationMetricGroupRollupRule() {}
+    /**
+     * @return Aggregation function applied across the dropped labels (e.g. sum, max).
+     * 
+     */
     public Optional<String> aggregation() {
         return Optional.ofNullable(this.aggregation);
     }
+    /**
+     * @return Specifies which labels to preserve during aggregation. Labels not listed are dropped.
+     * 
+     */
     public Optional<GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicy> labelPolicy() {
         return Optional.ofNullable(this.labelPolicy);
     }
+    /**
+     * @return Fully-qualified Google Cloud metric name the rollup rule targets (e.g. `cloudsql.googleapis.com/database/uptime`).
+     * 
+     */
     public Optional<String> metricName() {
         return Optional.ofNullable(this.metricName);
     }

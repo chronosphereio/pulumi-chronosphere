@@ -16,16 +16,32 @@ public final class TraceMetricsRuleTraceFilterTraceArgs extends com.pulumi.resou
 
     public static final TraceMetricsRuleTraceFilterTraceArgs Empty = new TraceMetricsRuleTraceFilterTraceArgs();
 
+    /**
+     * Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, max_secs]` range.
+     * 
+     */
     @Import(name="duration")
     private @Nullable Output<TraceMetricsRuleTraceFilterTraceDurationArgs> duration;
 
+    /**
+     * @return Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, max_secs]` range.
+     * 
+     */
     public Optional<Output<TraceMetricsRuleTraceFilterTraceDurationArgs>> duration() {
         return Optional.ofNullable(this.duration);
     }
 
+    /**
+     * Matches traces or spans where the target boolean field equals `value`.
+     * 
+     */
     @Import(name="error")
     private @Nullable Output<TraceMetricsRuleTraceFilterTraceErrorArgs> error;
 
+    /**
+     * @return Matches traces or spans where the target boolean field equals `value`.
+     * 
+     */
     public Optional<Output<TraceMetricsRuleTraceFilterTraceErrorArgs>> error() {
         return Optional.ofNullable(this.error);
     }
@@ -55,20 +71,44 @@ public final class TraceMetricsRuleTraceFilterTraceArgs extends com.pulumi.resou
             $ = new TraceMetricsRuleTraceFilterTraceArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param duration Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, max_secs]` range.
+         * 
+         * @return builder
+         * 
+         */
         public Builder duration(@Nullable Output<TraceMetricsRuleTraceFilterTraceDurationArgs> duration) {
             $.duration = duration;
             return this;
         }
 
+        /**
+         * @param duration Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, max_secs]` range.
+         * 
+         * @return builder
+         * 
+         */
         public Builder duration(TraceMetricsRuleTraceFilterTraceDurationArgs duration) {
             return duration(Output.of(duration));
         }
 
+        /**
+         * @param error Matches traces or spans where the target boolean field equals `value`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder error(@Nullable Output<TraceMetricsRuleTraceFilterTraceErrorArgs> error) {
             $.error = error;
             return this;
         }
 
+        /**
+         * @param error Matches traces or spans where the target boolean field equals `value`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder error(TraceMetricsRuleTraceFilterTraceErrorArgs error) {
             return error(Output.of(error));
         }

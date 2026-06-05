@@ -11,13 +11,29 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class ServiceAccountRestriction {
+    /**
+     * @return Optional label matchers further scoping the restriction to metrics whose labels match these key/value pairs.
+     * 
+     */
     private @Nullable Map<String,String> labels;
+    /**
+     * @return Permission level granted by this restriction (e.g. metric read/write).
+     * 
+     */
     private String permission;
 
     private ServiceAccountRestriction() {}
+    /**
+     * @return Optional label matchers further scoping the restriction to metrics whose labels match these key/value pairs.
+     * 
+     */
     public Map<String,String> labels() {
         return this.labels == null ? Map.of() : this.labels;
     }
+    /**
+     * @return Permission level granted by this restriction (e.g. metric read/write).
+     * 
+     */
     public String permission() {
         return this.permission;
     }

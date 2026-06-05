@@ -14,8 +14,17 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class TraceMetricsRuleScopeFilterSpanScopeTag
     {
+        /// <summary>
+        /// Span attribute to group by.
+        /// </summary>
         public readonly string? Key;
+        /// <summary>
+        /// Matches traces or spans where the target numeric field satisfies the comparison against `value`.
+        /// </summary>
         public readonly Outputs.TraceMetricsRuleScopeFilterSpanScopeTagNumericValue? NumericValue;
+        /// <summary>
+        /// Boolean value the target field is compared against.
+        /// </summary>
         public readonly Outputs.TraceMetricsRuleScopeFilterSpanScopeTagValue? Value;
 
         [OutputConstructor]

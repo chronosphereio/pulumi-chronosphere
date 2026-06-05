@@ -13,35 +13,66 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class TraceMetricsRuleTraceFilterScopeFilterSpanScopeArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, max_secs]` range.
+        /// </summary>
         [Input("duration")]
         public Input<Inputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationArgs>? Duration { get; set; }
 
+        /// <summary>
+        /// Matches traces or spans where the target boolean field equals `value`.
+        /// </summary>
         [Input("error")]
         public Input<Inputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorArgs>? Error { get; set; }
 
+        /// <summary>
+        /// Matches traces or spans where the target boolean field equals `value`.
+        /// </summary>
         [Input("isRootSpan")]
         public Input<Inputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanArgs>? IsRootSpan { get; set; }
 
+        /// <summary>
+        /// Whether matching spans are included (`INCLUDE`) or excluded (`EXCLUDE`) from the scope. Defaults to `INCLUDE`.
+        /// </summary>
         [Input("matchType")]
         public Input<string>? MatchType { get; set; }
 
+        /// <summary>
+        /// Matches traces or spans where the target string field satisfies the match condition.
+        /// </summary>
         [Input("operation")]
         public Input<Inputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationArgs>? Operation { get; set; }
 
+        /// <summary>
+        /// Matches traces or spans where the target string field satisfies the match condition.
+        /// </summary>
         [Input("parentOperation")]
         public Input<Inputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationArgs>? ParentOperation { get; set; }
 
+        /// <summary>
+        /// Matches traces or spans where the target string field satisfies the match condition.
+        /// </summary>
         [Input("parentService")]
         public Input<Inputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServiceArgs>? ParentService { get; set; }
 
+        /// <summary>
+        /// Matches traces or spans where the target string field satisfies the match condition.
+        /// </summary>
         [Input("service")]
         public Input<Inputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeServiceArgs>? Service { get; set; }
 
+        /// <summary>
+        /// Matches traces where the number of spans satisfying the surrounding span conditions falls within the inclusive `[min, max]` range.
+        /// </summary>
         [Input("spanCount")]
         public Input<Inputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountArgs>? SpanCount { get; set; }
 
         [Input("tags")]
         private InputList<Inputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagArgs>? _tags;
+
+        /// <summary>
+        /// Matches spans whose tag (span attribute) with the given `key` has a value satisfying the nested string or numeric filter.
+        /// </summary>
         public InputList<Inputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagArgs> Tags
         {
             get => _tags ?? (_tags = new InputList<Inputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagArgs>());

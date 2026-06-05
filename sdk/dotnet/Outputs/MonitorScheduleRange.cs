@@ -14,8 +14,17 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class MonitorScheduleRange
     {
+        /// <summary>
+        /// Day of week, e.g. `monday`. Case-insensitive.
+        /// </summary>
         public readonly string Day;
+        /// <summary>
+        /// End time of day, 24-hour `HH:MM` format.
+        /// </summary>
         public readonly string End;
+        /// <summary>
+        /// Start time of day, 24-hour `HH:MM` format.
+        /// </summary>
         public readonly string Start;
 
         [OutputConstructor]

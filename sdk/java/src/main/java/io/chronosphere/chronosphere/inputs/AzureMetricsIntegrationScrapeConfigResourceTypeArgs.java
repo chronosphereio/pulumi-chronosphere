@@ -16,16 +16,32 @@ public final class AzureMetricsIntegrationScrapeConfigResourceTypeArgs extends c
 
     public static final AzureMetricsIntegrationScrapeConfigResourceTypeArgs Empty = new AzureMetricsIntegrationScrapeConfigResourceTypeArgs();
 
+    /**
+     * Metric names to ingest for this resource type. Leave empty for all metrics.
+     * 
+     */
     @Import(name="metricNames")
     private @Nullable Output<List<String>> metricNames;
 
+    /**
+     * @return Metric names to ingest for this resource type. Leave empty for all metrics.
+     * 
+     */
     public Optional<Output<List<String>>> metricNames() {
         return Optional.ofNullable(this.metricNames);
     }
 
+    /**
+     * Azure resource type identifier (e.g. `Microsoft.Compute/virtualMachines`).
+     * 
+     */
     @Import(name="name")
     private @Nullable Output<String> name;
 
+    /**
+     * @return Azure resource type identifier (e.g. `Microsoft.Compute/virtualMachines`).
+     * 
+     */
     public Optional<Output<String>> name() {
         return Optional.ofNullable(this.name);
     }
@@ -55,24 +71,54 @@ public final class AzureMetricsIntegrationScrapeConfigResourceTypeArgs extends c
             $ = new AzureMetricsIntegrationScrapeConfigResourceTypeArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param metricNames Metric names to ingest for this resource type. Leave empty for all metrics.
+         * 
+         * @return builder
+         * 
+         */
         public Builder metricNames(@Nullable Output<List<String>> metricNames) {
             $.metricNames = metricNames;
             return this;
         }
 
+        /**
+         * @param metricNames Metric names to ingest for this resource type. Leave empty for all metrics.
+         * 
+         * @return builder
+         * 
+         */
         public Builder metricNames(List<String> metricNames) {
             return metricNames(Output.of(metricNames));
         }
 
+        /**
+         * @param metricNames Metric names to ingest for this resource type. Leave empty for all metrics.
+         * 
+         * @return builder
+         * 
+         */
         public Builder metricNames(String... metricNames) {
             return metricNames(List.of(metricNames));
         }
 
+        /**
+         * @param name Azure resource type identifier (e.g. `Microsoft.Compute/virtualMachines`).
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(@Nullable Output<String> name) {
             $.name = name;
             return this;
         }
 
+        /**
+         * @param name Azure resource type identifier (e.g. `Microsoft.Compute/virtualMachines`).
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(String name) {
             return name(Output.of(name));
         }

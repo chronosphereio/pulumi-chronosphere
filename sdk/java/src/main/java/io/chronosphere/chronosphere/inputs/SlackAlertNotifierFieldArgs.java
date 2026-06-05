@@ -16,23 +16,47 @@ public final class SlackAlertNotifierFieldArgs extends com.pulumi.resources.Reso
 
     public static final SlackAlertNotifierFieldArgs Empty = new SlackAlertNotifierFieldArgs();
 
+    /**
+     * If true, the field is short enough to be shown side-by-side with the next field.
+     * 
+     */
     @Import(name="short")
     private @Nullable Output<Boolean> short_;
 
+    /**
+     * @return If true, the field is short enough to be shown side-by-side with the next field.
+     * 
+     */
     public Optional<Output<Boolean>> short_() {
         return Optional.ofNullable(this.short_);
     }
 
+    /**
+     * Bold heading shown above the value.
+     * 
+     */
     @Import(name="title")
     private @Nullable Output<String> title;
 
+    /**
+     * @return Bold heading shown above the value.
+     * 
+     */
     public Optional<Output<String>> title() {
         return Optional.ofNullable(this.title);
     }
 
+    /**
+     * Value text. Supports Go templating.
+     * 
+     */
     @Import(name="value")
     private @Nullable Output<String> value;
 
+    /**
+     * @return Value text. Supports Go templating.
+     * 
+     */
     public Optional<Output<String>> value() {
         return Optional.ofNullable(this.value);
     }
@@ -63,29 +87,65 @@ public final class SlackAlertNotifierFieldArgs extends com.pulumi.resources.Reso
             $ = new SlackAlertNotifierFieldArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param short_ If true, the field is short enough to be shown side-by-side with the next field.
+         * 
+         * @return builder
+         * 
+         */
         public Builder short_(@Nullable Output<Boolean> short_) {
             $.short_ = short_;
             return this;
         }
 
+        /**
+         * @param short_ If true, the field is short enough to be shown side-by-side with the next field.
+         * 
+         * @return builder
+         * 
+         */
         public Builder short_(Boolean short_) {
             return short_(Output.of(short_));
         }
 
+        /**
+         * @param title Bold heading shown above the value.
+         * 
+         * @return builder
+         * 
+         */
         public Builder title(@Nullable Output<String> title) {
             $.title = title;
             return this;
         }
 
+        /**
+         * @param title Bold heading shown above the value.
+         * 
+         * @return builder
+         * 
+         */
         public Builder title(String title) {
             return title(Output.of(title));
         }
 
+        /**
+         * @param value Value text. Supports Go templating.
+         * 
+         * @return builder
+         * 
+         */
         public Builder value(@Nullable Output<String> value) {
             $.value = value;
             return this;
         }
 
+        /**
+         * @param value Value text. Supports Go templating.
+         * 
+         * @return builder
+         * 
+         */
         public Builder value(String value) {
             return value(Output.of(value));
         }

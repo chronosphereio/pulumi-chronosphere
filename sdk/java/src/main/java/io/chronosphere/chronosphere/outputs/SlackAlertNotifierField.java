@@ -12,17 +12,41 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class SlackAlertNotifierField {
+    /**
+     * @return If true, the field is short enough to be shown side-by-side with the next field.
+     * 
+     */
     private @Nullable Boolean short_;
+    /**
+     * @return Bold heading shown above the value.
+     * 
+     */
     private @Nullable String title;
+    /**
+     * @return Value text. Supports Go templating.
+     * 
+     */
     private @Nullable String value;
 
     private SlackAlertNotifierField() {}
+    /**
+     * @return If true, the field is short enough to be shown side-by-side with the next field.
+     * 
+     */
     public Optional<Boolean> short_() {
         return Optional.ofNullable(this.short_);
     }
+    /**
+     * @return Bold heading shown above the value.
+     * 
+     */
     public Optional<String> title() {
         return Optional.ofNullable(this.title);
     }
+    /**
+     * @return Value text. Supports Go templating.
+     * 
+     */
     public Optional<String> value() {
         return Optional.ofNullable(this.value);
     }

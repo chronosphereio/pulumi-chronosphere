@@ -10,21 +10,60 @@ using Pulumi;
 
 namespace Chronosphere.Pulumi
 {
+    /// <summary>
+    /// A retention policy dictating how long logs matching a given filter are kept before being deleted.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Pulumi = Chronosphere.Pulumi;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var productionErrors = new Pulumi.LogRetentionConfig("productionErrors", new()
+    ///     {
+    ///         Filter = "severity = 'error' AND env = 'production'",
+    ///         Mode = "ENABLED",
+    ///         Name = "Production Error Logs Long-term Retention",
+    ///         RetentionDays = 365,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// </summary>
     [PulumiResourceType("chronosphere:index/logRetentionConfig:LogRetentionConfig")]
     public partial class LogRetentionConfig : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Log query filter. The retention policy applies only to logs that match.
+        /// </summary>
         [Output("filter")]
         public Output<string> Filter { get; private set; } = null!;
 
+        /// <summary>
+        /// Mode that determines how matching logs are retained in long-term (Iceberg) storage.
+        /// </summary>
         [Output("mode")]
         public Output<string> Mode { get; private set; } = null!;
 
+        /// <summary>
+        /// Display name of the log retention config.
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// Number of days to retain matching logs in long-term (Iceberg) storage after they are exported. When multiple configs overlap, the longest retention wins.
+        /// </summary>
         [Output("retentionDays")]
         public Output<int> RetentionDays { get; private set; } = null!;
 
+        /// <summary>
+        /// Stable identifier for the log retention config. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Output("slug")]
         public Output<string> Slug { get; private set; } = null!;
 
@@ -75,18 +114,33 @@ namespace Chronosphere.Pulumi
 
     public sealed class LogRetentionConfigArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Log query filter. The retention policy applies only to logs that match.
+        /// </summary>
         [Input("filter", required: true)]
         public Input<string> Filter { get; set; } = null!;
 
+        /// <summary>
+        /// Mode that determines how matching logs are retained in long-term (Iceberg) storage.
+        /// </summary>
         [Input("mode", required: true)]
         public Input<string> Mode { get; set; } = null!;
 
+        /// <summary>
+        /// Display name of the log retention config.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// Number of days to retain matching logs in long-term (Iceberg) storage after they are exported. When multiple configs overlap, the longest retention wins.
+        /// </summary>
         [Input("retentionDays", required: true)]
         public Input<int> RetentionDays { get; set; } = null!;
 
+        /// <summary>
+        /// Stable identifier for the log retention config. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 
@@ -98,18 +152,33 @@ namespace Chronosphere.Pulumi
 
     public sealed class LogRetentionConfigState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Log query filter. The retention policy applies only to logs that match.
+        /// </summary>
         [Input("filter")]
         public Input<string>? Filter { get; set; }
 
+        /// <summary>
+        /// Mode that determines how matching logs are retained in long-term (Iceberg) storage.
+        /// </summary>
         [Input("mode")]
         public Input<string>? Mode { get; set; }
 
+        /// <summary>
+        /// Display name of the log retention config.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// Number of days to retain matching logs in long-term (Iceberg) storage after they are exported. When multiple configs overlap, the longest retention wins.
+        /// </summary>
         [Input("retentionDays")]
         public Input<int>? RetentionDays { get; set; }
 
+        /// <summary>
+        /// Stable identifier for the log retention config. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 

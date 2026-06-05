@@ -15,6 +15,10 @@ namespace Chronosphere.Pulumi.Inputs
     {
         [Input("sources")]
         private InputList<Inputs.LogIngestConfigFieldNormalizationTimestampSourceArgs>? _sources;
+
+        /// <summary>
+        /// Ordered list of field paths to check for values. The first non-empty value found is used.
+        /// </summary>
         public InputList<Inputs.LogIngestConfigFieldNormalizationTimestampSourceArgs> Sources
         {
             get => _sources ?? (_sources = new InputList<Inputs.LogIngestConfigFieldNormalizationTimestampSourceArgs>());

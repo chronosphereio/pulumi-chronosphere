@@ -18,37 +18,77 @@ public final class NotificationPolicyOverrideRouteArgs extends com.pulumi.resour
 
     public static final NotificationPolicyOverrideRouteArgs Empty = new NotificationPolicyOverrideRouteArgs();
 
+    /**
+     * Inline notification destinations defined directly on the route. Each block sets at most one of `slack`, `pagerduty`, `webhook`, `ops_genie`, `victor_ops`, or `email`. Cannot be combined with `notifiers`.
+     * 
+     */
     @Import(name="destinations")
     private @Nullable Output<List<NotificationPolicyOverrideRouteDestinationArgs>> destinations;
 
+    /**
+     * @return Inline notification destinations defined directly on the route. Each block sets at most one of `slack`, `pagerduty`, `webhook`, `ops_genie`, `victor_ops`, or `email`. Cannot be combined with `notifiers`.
+     * 
+     */
     public Optional<Output<List<NotificationPolicyOverrideRouteDestinationArgs>>> destinations() {
         return Optional.ofNullable(this.destinations);
     }
 
+    /**
+     * Optional grouping configuration controlling how alerts are batched before delivery.
+     * 
+     */
     @Import(name="groupBy")
     private @Nullable Output<NotificationPolicyOverrideRouteGroupByArgs> groupBy;
 
+    /**
+     * @return Optional grouping configuration controlling how alerts are batched before delivery.
+     * 
+     */
     public Optional<Output<NotificationPolicyOverrideRouteGroupByArgs>> groupBy() {
         return Optional.ofNullable(this.groupBy);
     }
 
+    /**
+     * Slugs of notifier resources that receive alerts at this severity. Cannot be combined with `destination`.
+     * 
+     */
     @Import(name="notifiers")
     private @Nullable Output<List<String>> notifiers;
 
+    /**
+     * @return Slugs of notifier resources that receive alerts at this severity. Cannot be combined with `destination`.
+     * 
+     */
     public Optional<Output<List<String>>> notifiers() {
         return Optional.ofNullable(this.notifiers);
     }
 
+    /**
+     * How often to resend unresolved alerts at this severity (e.g. `4h`).
+     * 
+     */
     @Import(name="repeatInterval")
     private @Nullable Output<String> repeatInterval;
 
+    /**
+     * @return How often to resend unresolved alerts at this severity (e.g. `4h`).
+     * 
+     */
     public Optional<Output<String>> repeatInterval() {
         return Optional.ofNullable(this.repeatInterval);
     }
 
+    /**
+     * Severity this route applies to (e.g. `warn`, `critical`). Case-sensitive.
+     * 
+     */
     @Import(name="severity", required=true)
     private Output<String> severity;
 
+    /**
+     * @return Severity this route applies to (e.g. `warn`, `critical`). Case-sensitive.
+     * 
+     */
     public Output<String> severity() {
         return this.severity;
     }
@@ -81,55 +121,127 @@ public final class NotificationPolicyOverrideRouteArgs extends com.pulumi.resour
             $ = new NotificationPolicyOverrideRouteArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param destinations Inline notification destinations defined directly on the route. Each block sets at most one of `slack`, `pagerduty`, `webhook`, `ops_genie`, `victor_ops`, or `email`. Cannot be combined with `notifiers`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder destinations(@Nullable Output<List<NotificationPolicyOverrideRouteDestinationArgs>> destinations) {
             $.destinations = destinations;
             return this;
         }
 
+        /**
+         * @param destinations Inline notification destinations defined directly on the route. Each block sets at most one of `slack`, `pagerduty`, `webhook`, `ops_genie`, `victor_ops`, or `email`. Cannot be combined with `notifiers`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder destinations(List<NotificationPolicyOverrideRouteDestinationArgs> destinations) {
             return destinations(Output.of(destinations));
         }
 
+        /**
+         * @param destinations Inline notification destinations defined directly on the route. Each block sets at most one of `slack`, `pagerduty`, `webhook`, `ops_genie`, `victor_ops`, or `email`. Cannot be combined with `notifiers`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder destinations(NotificationPolicyOverrideRouteDestinationArgs... destinations) {
             return destinations(List.of(destinations));
         }
 
+        /**
+         * @param groupBy Optional grouping configuration controlling how alerts are batched before delivery.
+         * 
+         * @return builder
+         * 
+         */
         public Builder groupBy(@Nullable Output<NotificationPolicyOverrideRouteGroupByArgs> groupBy) {
             $.groupBy = groupBy;
             return this;
         }
 
+        /**
+         * @param groupBy Optional grouping configuration controlling how alerts are batched before delivery.
+         * 
+         * @return builder
+         * 
+         */
         public Builder groupBy(NotificationPolicyOverrideRouteGroupByArgs groupBy) {
             return groupBy(Output.of(groupBy));
         }
 
+        /**
+         * @param notifiers Slugs of notifier resources that receive alerts at this severity. Cannot be combined with `destination`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder notifiers(@Nullable Output<List<String>> notifiers) {
             $.notifiers = notifiers;
             return this;
         }
 
+        /**
+         * @param notifiers Slugs of notifier resources that receive alerts at this severity. Cannot be combined with `destination`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder notifiers(List<String> notifiers) {
             return notifiers(Output.of(notifiers));
         }
 
+        /**
+         * @param notifiers Slugs of notifier resources that receive alerts at this severity. Cannot be combined with `destination`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder notifiers(String... notifiers) {
             return notifiers(List.of(notifiers));
         }
 
+        /**
+         * @param repeatInterval How often to resend unresolved alerts at this severity (e.g. `4h`).
+         * 
+         * @return builder
+         * 
+         */
         public Builder repeatInterval(@Nullable Output<String> repeatInterval) {
             $.repeatInterval = repeatInterval;
             return this;
         }
 
+        /**
+         * @param repeatInterval How often to resend unresolved alerts at this severity (e.g. `4h`).
+         * 
+         * @return builder
+         * 
+         */
         public Builder repeatInterval(String repeatInterval) {
             return repeatInterval(Output.of(repeatInterval));
         }
 
+        /**
+         * @param severity Severity this route applies to (e.g. `warn`, `critical`). Case-sensitive.
+         * 
+         * @return builder
+         * 
+         */
         public Builder severity(Output<String> severity) {
             $.severity = severity;
             return this;
         }
 
+        /**
+         * @param severity Severity this route applies to (e.g. `warn`, `critical`). Case-sensitive.
+         * 
+         * @return builder
+         * 
+         */
         public Builder severity(String severity) {
             return severity(Output.of(severity));
         }

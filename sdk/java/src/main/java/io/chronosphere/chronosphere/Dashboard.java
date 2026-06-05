@@ -15,35 +15,136 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
+/**
+ * A Chronosphere dashboard composed of panels, layouts, and variables defined by `dashboard_json`. For Grafana-compatible dashboards, use `chronosphere.ClassicDashboard` instead.
+ * 
+ * ## Example Usage
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.chronosphere.Collection;
+ * import com.pulumi.chronosphere.CollectionArgs;
+ * import com.pulumi.chronosphere.Dashboard;
+ * import com.pulumi.chronosphere.DashboardArgs;
+ * import static com.pulumi.codegen.internal.Serialization.*;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var collection = new Collection(&#34;collection&#34;, CollectionArgs.builder()        
+ *             .name(&#34;Platform&#34;)
+ *             .build());
+ * 
+ *         var platform = new Dashboard(&#34;platform&#34;, DashboardArgs.builder()        
+ *             .name(&#34;Platform Overview&#34;)
+ *             .slug(&#34;platform-overview&#34;)
+ *             .collectionId(collection.id())
+ *             .labels(Map.of(&#34;team&#34;, &#34;platform&#34;))
+ *             .dashboardJson(serializeJson(
+ *                 jsonObject(
+ *                     jsonProperty(&#34;kind&#34;, &#34;Dashboard&#34;),
+ *                     jsonProperty(&#34;spec&#34;, jsonObject(
+ *                         jsonProperty(&#34;events&#34;, jsonArray(
+ *                         )),
+ *                         jsonProperty(&#34;panels&#34;, jsonObject(
+ * 
+ *                         )),
+ *                         jsonProperty(&#34;layouts&#34;, jsonArray(
+ *                         )),
+ *                         jsonProperty(&#34;variables&#34;, jsonArray(
+ *                         )),
+ *                         jsonProperty(&#34;duration&#34;, &#34;30m&#34;)
+ *                     )),
+ *                     jsonProperty(&#34;spec_version&#34;, &#34;1&#34;)
+ *                 )))
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ */
 @ResourceType(type="chronosphere:index/dashboard:Dashboard")
 public class Dashboard extends com.pulumi.resources.CustomResource {
+    /**
+     * ID of the collection that owns this dashboard.
+     * 
+     */
     @Export(name="collectionId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> collectionId;
 
+    /**
+     * @return ID of the collection that owns this dashboard.
+     * 
+     */
     public Output<Optional<String>> collectionId() {
         return Codegen.optional(this.collectionId);
     }
+    /**
+     * JSON payload describing the dashboard&#39;s panels, layouts, variables, and other content. Wrap with `jsonencode({...})` in HCL. The provider sanitizes the JSON before diffing, so cosmetic differences (key ordering, whitespace) do not cause spurious plans.
+     * 
+     */
     @Export(name="dashboardJson", refs={String.class}, tree="[0]")
     private Output<String> dashboardJson;
 
+    /**
+     * @return JSON payload describing the dashboard&#39;s panels, layouts, variables, and other content. Wrap with `jsonencode({...})` in HCL. The provider sanitizes the JSON before diffing, so cosmetic differences (key ordering, whitespace) do not cause spurious plans.
+     * 
+     */
     public Output<String> dashboardJson() {
         return this.dashboardJson;
     }
+    /**
+     * Key/value labels attached to the dashboard for organization and filtering.
+     * 
+     */
     @Export(name="labels", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> labels;
 
+    /**
+     * @return Key/value labels attached to the dashboard for organization and filtering.
+     * 
+     */
     public Output<Optional<Map<String,String>>> labels() {
         return Codegen.optional(this.labels);
     }
+    /**
+     * Display name of the dashboard. Can be changed after creation.
+     * 
+     */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> name;
 
+    /**
+     * @return Display name of the dashboard. Can be changed after creation.
+     * 
+     */
     public Output<Optional<String>> name() {
         return Codegen.optional(this.name);
     }
+    /**
+     * Stable identifier for the dashboard. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     @Export(name="slug", refs={String.class}, tree="[0]")
     private Output<String> slug;
 
+    /**
+     * @return Stable identifier for the dashboard. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     public Output<String> slug() {
         return this.slug;
     }

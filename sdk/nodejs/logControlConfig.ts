@@ -6,6 +6,63 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * Singleton org-wide pipeline of rules that sample, drop, replace, parse, or emit metrics from logs at ingest.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as chronosphere from "@pulumi-chronosphere/pulumi-chronosphere";
+ *
+ * const config = new chronosphere.LogControlConfig("config", {rules: [
+ *     {
+ *         filter: "service = 'sample-service' AND severity = 'debug'",
+ *         mode: "ENABLED",
+ *         name: "sample-debug",
+ *         sample: {
+ *             rate: 0.01,
+ *         },
+ *         type: "SAMPLE",
+ *     },
+ *     {
+ *         filter: "service = 'deprecated-service'",
+ *         mode: "ENABLED",
+ *         name: "drop-deprecated",
+ *         type: "DROP",
+ *     },
+ *     {
+ *         dropField: {
+ *             fieldRegex: "password|secret|api_key",
+ *             parentPath: {
+ *                 selector: "kubernetes['labels']",
+ *             },
+ *         },
+ *         filter: "service = 'api-gateway'",
+ *         mode: "ENABLED",
+ *         name: "drop-sensitive-fields",
+ *         type: "DROP_FIELD",
+ *     },
+ *     {
+ *         filter: "service = 'api-gateway'",
+ *         mode: "ENABLED",
+ *         name: "shorten-trace-ids",
+ *         replaceField: {
+ *             field: {
+ *                 selector: "trace_id",
+ *             },
+ *             replaceAll: false,
+ *             replaceMode: "STATIC_VALUE",
+ *             replaceRegex: "[0-9a-f]{32}",
+ *             staticValue: {
+ *                 value: "[trace-id]",
+ *             },
+ *         },
+ *         type: "REPLACE_FIELD",
+ *     },
+ * ]});
+ * ```
+ */
 export class LogControlConfig extends pulumi.CustomResource {
     /**
      * Get an existing LogControlConfig resource's state with the given name, ID, and optional extra
@@ -34,6 +91,9 @@ export class LogControlConfig extends pulumi.CustomResource {
         return obj['__pulumiType'] === LogControlConfig.__pulumiType;
     }
 
+    /**
+     * Ordered list of log control rules applied to the log ingest pipeline. Rules are evaluated in order.
+     */
     public readonly rules!: pulumi.Output<outputs.LogControlConfigRule[] | undefined>;
 
     /**
@@ -63,6 +123,9 @@ export class LogControlConfig extends pulumi.CustomResource {
  * Input properties used for looking up and filtering LogControlConfig resources.
  */
 export interface LogControlConfigState {
+    /**
+     * Ordered list of log control rules applied to the log ingest pipeline. Rules are evaluated in order.
+     */
     rules?: pulumi.Input<pulumi.Input<inputs.LogControlConfigRule>[]>;
 }
 
@@ -70,5 +133,8 @@ export interface LogControlConfigState {
  * The set of arguments for constructing a LogControlConfig resource.
  */
 export interface LogControlConfigArgs {
+    /**
+     * Ordered list of log control rules applied to the log ingest pipeline. Rules are evaluated in order.
+     */
     rules?: pulumi.Input<pulumi.Input<inputs.LogControlConfigRule>[]>;
 }

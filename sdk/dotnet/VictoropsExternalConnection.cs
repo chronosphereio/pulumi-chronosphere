@@ -10,18 +10,53 @@ using Pulumi;
 
 namespace Chronosphere.Pulumi
 {
+    /// <summary>
+    /// Workspace-scoped VictorOps (Splunk On-Call) credentials that downstream notifiers and LogScale actions can reference. Centralizes the REST integration API key so it isn't duplicated across notifiers; modern equivalent of the per-notifier credentials.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Pulumi = Chronosphere.Pulumi;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var victorops = new Pulumi.VictoropsExternalConnection("victorops", new()
+    ///     {
+    ///         ApiKey = "00000000-0000-0000-0000-000000000000",
+    ///         ApiUrl = "https://alert.victorops.com/integrations/generic/00000000/alert/",
+    ///         Name = "VictorOps",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// </summary>
     [PulumiResourceType("chronosphere:index/victoropsExternalConnection:VictoropsExternalConnection")]
     public partial class VictoropsExternalConnection : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// VictorOps (Splunk On-Call) REST integration API key used to authenticate alert delivery. Treat as a secret.
+        /// </summary>
         [Output("apiKey")]
         public Output<string?> ApiKey { get; private set; } = null!;
 
+        /// <summary>
+        /// VictorOps REST endpoint URL that receives alert payloads. Override to target a custom endpoint.
+        /// </summary>
         [Output("apiUrl")]
         public Output<string?> ApiUrl { get; private set; } = null!;
 
+        /// <summary>
+        /// Display name of the external connection.
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Output("slug")]
         public Output<string> Slug { get; private set; } = null!;
 
@@ -78,6 +113,10 @@ namespace Chronosphere.Pulumi
     {
         [Input("apiKey")]
         private Input<string>? _apiKey;
+
+        /// <summary>
+        /// VictorOps (Splunk On-Call) REST integration API key used to authenticate alert delivery. Treat as a secret.
+        /// </summary>
         public Input<string>? ApiKey
         {
             get => _apiKey;
@@ -88,12 +127,21 @@ namespace Chronosphere.Pulumi
             }
         }
 
+        /// <summary>
+        /// VictorOps REST endpoint URL that receives alert payloads. Override to target a custom endpoint.
+        /// </summary>
         [Input("apiUrl")]
         public Input<string>? ApiUrl { get; set; }
 
+        /// <summary>
+        /// Display name of the external connection.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 
@@ -107,6 +155,10 @@ namespace Chronosphere.Pulumi
     {
         [Input("apiKey")]
         private Input<string>? _apiKey;
+
+        /// <summary>
+        /// VictorOps (Splunk On-Call) REST integration API key used to authenticate alert delivery. Treat as a secret.
+        /// </summary>
         public Input<string>? ApiKey
         {
             get => _apiKey;
@@ -117,12 +169,21 @@ namespace Chronosphere.Pulumi
             }
         }
 
+        /// <summary>
+        /// VictorOps REST endpoint URL that receives alert payloads. Override to target a custom endpoint.
+        /// </summary>
         [Input("apiUrl")]
         public Input<string>? ApiUrl { get; set; }
 
+        /// <summary>
+        /// Display name of the external connection.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 

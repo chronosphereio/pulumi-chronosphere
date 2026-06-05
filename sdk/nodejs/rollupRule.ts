@@ -6,6 +6,36 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * Aggregates matching input metrics into a lower-cardinality output series at ingest time, reducing storage cost and query load. Selects input series by filter, applies an aggregation function (e.g. `sum`, `max`), and emits a new metric grouped by the specified labels.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as chronosphere from "@pulumi-chronosphere/pulumi-chronosphere";
+ *
+ * const bucket = new chronosphere.Bucket("bucket", {name: "Platform"});
+ * const rollupRule = new chronosphere.RollupRule("rollupRule", {
+ *     name: "RollupRule",
+ *     slug: "rollup-rule",
+ *     bucketId: bucket.id,
+ *     filter: "__name__:metric_name",
+ *     aggregation: "SUM",
+ *     dropRaw: true,
+ *     groupBies: ["service"],
+ *     metricType: "COUNTER",
+ *     metricTypeTag: false,
+ *     newMetric: "new_metric_name",
+ *     permissive: true,
+ *     storagePolicies: {
+ *         resolution: "30s",
+ *         retention: "120h",
+ *     },
+ *     mode: "PREVIEW",
+ * });
+ * ```
+ */
 export class RollupRule extends pulumi.CustomResource {
     /**
      * Get an existing RollupRule resource's state with the given name, ID, and optional extra
@@ -34,26 +64,75 @@ export class RollupRule extends pulumi.CustomResource {
         return obj['__pulumiType'] === RollupRule.__pulumiType;
     }
 
+    /**
+     * Aggregation function applied across grouped series (e.g. `sum`, `min`, `max`, `last`).
+     */
     public readonly aggregation!: pulumi.Output<string | undefined>;
+    /**
+     * ID of the bucket the rollup rule belongs to.
+     */
     public readonly bucketId!: pulumi.Output<string | undefined>;
+    /**
+     * If `true`, automatically generates a drop rule that removes the raw input metrics matching this rollup. Defaults to `false`.
+     */
     public readonly dropRaw!: pulumi.Output<boolean | undefined>;
+    /**
+     * Labels to drop when aggregating; all other labels are preserved. Mutually exclusive with `groupBy`.
+     */
     public readonly excludeBies!: pulumi.Output<string[] | undefined>;
+    /**
+     * Space-delimited list of `label:value_glob` matchers that select the input series. Supports glob patterns and special filters like `__name__`, `__metric_type__`, and `__metric_source__`.
+     */
     public readonly filter!: pulumi.Output<string>;
+    /**
+     * Graphite-specific label policy applied to positional labels (`__gX__`) on the output metric.
+     */
     public readonly graphiteLabelPolicy!: pulumi.Output<outputs.RollupRuleGraphiteLabelPolicy | undefined>;
+    /**
+     * Labels to preserve when aggregating; all other labels are dropped. Mutually exclusive with `excludeBy`.
+     */
     public readonly groupBies!: pulumi.Output<string[] | undefined>;
+    /**
+     * Interval between aggregated data points produced by the rollup. Defaults to a server-side value when unset. Conflicts with `storagePolicies`.
+     */
     public readonly interval!: pulumi.Output<string>;
+    /**
+     * Type of the source metric being rolled up (e.g. `gauge`, `counter`, `histogram`).
+     */
     public readonly metricType!: pulumi.Output<string>;
+    /**
+     * Whether to add a `__rollup_type__` label to the output metric identifying the rollup type. Defaults to `false`.
+     */
     public readonly metricTypeTag!: pulumi.Output<boolean | undefined>;
+    /**
+     * Rollup mode controlling whether the rule is active or in a preview state.
+     */
     public readonly mode!: pulumi.Output<string | undefined>;
+    /**
+     * Positional Graphite label to replace (e.g. `__g1__`).
+     */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * Name of the output metric produced by the rollup. Supports the `{{.MetricName}}` template variable to reference the source metric name. Optional for Graphite rollup rules.
+     */
     public readonly newMetric!: pulumi.Output<string | undefined>;
     /**
+     * Deprecated: no longer supported.
+     *
      * @deprecated permissive is no longer supported
      */
     public readonly permissive!: pulumi.Output<boolean | undefined>;
+    /**
+     * If `true`, this rule is skipped when another rollup rule already produces a metric with the same output name. Defaults to `false`.
+     */
     public readonly skipOnConflict!: pulumi.Output<boolean | undefined>;
+    /**
+     * Stable identifier for the rollup rule. Immutable after creation. Unlike most resources, the slug is required and is not auto-generated from `name`.
+     */
     public readonly slug!: pulumi.Output<string>;
     /**
+     * Storage policy controlling resolution and retention of rolled-up metrics. Deprecated: use `interval` instead.
+     *
      * @deprecated use `interval` instead
      */
     public readonly storagePolicies!: pulumi.Output<outputs.RollupRuleStoragePolicies | undefined>;
@@ -129,26 +208,75 @@ export class RollupRule extends pulumi.CustomResource {
  * Input properties used for looking up and filtering RollupRule resources.
  */
 export interface RollupRuleState {
+    /**
+     * Aggregation function applied across grouped series (e.g. `sum`, `min`, `max`, `last`).
+     */
     aggregation?: pulumi.Input<string>;
+    /**
+     * ID of the bucket the rollup rule belongs to.
+     */
     bucketId?: pulumi.Input<string>;
+    /**
+     * If `true`, automatically generates a drop rule that removes the raw input metrics matching this rollup. Defaults to `false`.
+     */
     dropRaw?: pulumi.Input<boolean>;
+    /**
+     * Labels to drop when aggregating; all other labels are preserved. Mutually exclusive with `groupBy`.
+     */
     excludeBies?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Space-delimited list of `label:value_glob` matchers that select the input series. Supports glob patterns and special filters like `__name__`, `__metric_type__`, and `__metric_source__`.
+     */
     filter?: pulumi.Input<string>;
+    /**
+     * Graphite-specific label policy applied to positional labels (`__gX__`) on the output metric.
+     */
     graphiteLabelPolicy?: pulumi.Input<inputs.RollupRuleGraphiteLabelPolicy>;
+    /**
+     * Labels to preserve when aggregating; all other labels are dropped. Mutually exclusive with `excludeBy`.
+     */
     groupBies?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Interval between aggregated data points produced by the rollup. Defaults to a server-side value when unset. Conflicts with `storagePolicies`.
+     */
     interval?: pulumi.Input<string>;
+    /**
+     * Type of the source metric being rolled up (e.g. `gauge`, `counter`, `histogram`).
+     */
     metricType?: pulumi.Input<string>;
+    /**
+     * Whether to add a `__rollup_type__` label to the output metric identifying the rollup type. Defaults to `false`.
+     */
     metricTypeTag?: pulumi.Input<boolean>;
+    /**
+     * Rollup mode controlling whether the rule is active or in a preview state.
+     */
     mode?: pulumi.Input<string>;
+    /**
+     * Positional Graphite label to replace (e.g. `__g1__`).
+     */
     name?: pulumi.Input<string>;
+    /**
+     * Name of the output metric produced by the rollup. Supports the `{{.MetricName}}` template variable to reference the source metric name. Optional for Graphite rollup rules.
+     */
     newMetric?: pulumi.Input<string>;
     /**
+     * Deprecated: no longer supported.
+     *
      * @deprecated permissive is no longer supported
      */
     permissive?: pulumi.Input<boolean>;
+    /**
+     * If `true`, this rule is skipped when another rollup rule already produces a metric with the same output name. Defaults to `false`.
+     */
     skipOnConflict?: pulumi.Input<boolean>;
+    /**
+     * Stable identifier for the rollup rule. Immutable after creation. Unlike most resources, the slug is required and is not auto-generated from `name`.
+     */
     slug?: pulumi.Input<string>;
     /**
+     * Storage policy controlling resolution and retention of rolled-up metrics. Deprecated: use `interval` instead.
+     *
      * @deprecated use `interval` instead
      */
     storagePolicies?: pulumi.Input<inputs.RollupRuleStoragePolicies>;
@@ -158,26 +286,75 @@ export interface RollupRuleState {
  * The set of arguments for constructing a RollupRule resource.
  */
 export interface RollupRuleArgs {
+    /**
+     * Aggregation function applied across grouped series (e.g. `sum`, `min`, `max`, `last`).
+     */
     aggregation?: pulumi.Input<string>;
+    /**
+     * ID of the bucket the rollup rule belongs to.
+     */
     bucketId?: pulumi.Input<string>;
+    /**
+     * If `true`, automatically generates a drop rule that removes the raw input metrics matching this rollup. Defaults to `false`.
+     */
     dropRaw?: pulumi.Input<boolean>;
+    /**
+     * Labels to drop when aggregating; all other labels are preserved. Mutually exclusive with `groupBy`.
+     */
     excludeBies?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Space-delimited list of `label:value_glob` matchers that select the input series. Supports glob patterns and special filters like `__name__`, `__metric_type__`, and `__metric_source__`.
+     */
     filter: pulumi.Input<string>;
+    /**
+     * Graphite-specific label policy applied to positional labels (`__gX__`) on the output metric.
+     */
     graphiteLabelPolicy?: pulumi.Input<inputs.RollupRuleGraphiteLabelPolicy>;
+    /**
+     * Labels to preserve when aggregating; all other labels are dropped. Mutually exclusive with `excludeBy`.
+     */
     groupBies?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Interval between aggregated data points produced by the rollup. Defaults to a server-side value when unset. Conflicts with `storagePolicies`.
+     */
     interval?: pulumi.Input<string>;
+    /**
+     * Type of the source metric being rolled up (e.g. `gauge`, `counter`, `histogram`).
+     */
     metricType: pulumi.Input<string>;
+    /**
+     * Whether to add a `__rollup_type__` label to the output metric identifying the rollup type. Defaults to `false`.
+     */
     metricTypeTag?: pulumi.Input<boolean>;
+    /**
+     * Rollup mode controlling whether the rule is active or in a preview state.
+     */
     mode?: pulumi.Input<string>;
+    /**
+     * Positional Graphite label to replace (e.g. `__g1__`).
+     */
     name: pulumi.Input<string>;
+    /**
+     * Name of the output metric produced by the rollup. Supports the `{{.MetricName}}` template variable to reference the source metric name. Optional for Graphite rollup rules.
+     */
     newMetric?: pulumi.Input<string>;
     /**
+     * Deprecated: no longer supported.
+     *
      * @deprecated permissive is no longer supported
      */
     permissive?: pulumi.Input<boolean>;
+    /**
+     * If `true`, this rule is skipped when another rollup rule already produces a metric with the same output name. Defaults to `false`.
+     */
     skipOnConflict?: pulumi.Input<boolean>;
+    /**
+     * Stable identifier for the rollup rule. Immutable after creation. Unlike most resources, the slug is required and is not auto-generated from `name`.
+     */
     slug: pulumi.Input<string>;
     /**
+     * Storage policy controlling resolution and retention of rolled-up metrics. Deprecated: use `interval` instead.
+     *
      * @deprecated use `interval` instead
      */
     storagePolicies?: pulumi.Input<inputs.RollupRuleStoragePolicies>;

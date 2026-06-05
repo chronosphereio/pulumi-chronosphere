@@ -13,17 +13,41 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartition {
+    /**
+     * @return Filters identifying which data belongs to this partition. Filters are AND-ed together: a request must match every filter to be assigned to the partition. At most one `IN` filter and one `NOT_IN` filter can be specified.
+     * 
+     */
     private @Nullable List<ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilter> filters;
+    /**
+     * @return Display name of the partition. Must be unique within its parent partition. Can be changed after creation.
+     * 
+     */
     private @Nullable String name;
+    /**
+     * @return Stable identifier of the partition. Must be unique within its parent partition. Immutable after creation.
+     * 
+     */
     private @Nullable String slug;
 
     private ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartition() {}
+    /**
+     * @return Filters identifying which data belongs to this partition. Filters are AND-ed together: a request must match every filter to be assigned to the partition. At most one `IN` filter and one `NOT_IN` filter can be specified.
+     * 
+     */
     public List<ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilter> filters() {
         return this.filters == null ? List.of() : this.filters;
     }
+    /**
+     * @return Display name of the partition. Must be unique within its parent partition. Can be changed after creation.
+     * 
+     */
     public Optional<String> name() {
         return Optional.ofNullable(this.name);
     }
+    /**
+     * @return Stable identifier of the partition. Must be unique within its parent partition. Immutable after creation.
+     * 
+     */
     public Optional<String> slug() {
         return Optional.ofNullable(this.slug);
     }

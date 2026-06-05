@@ -12,13 +12,29 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class LogAllocationConfigDefaultDataset {
+    /**
+     * @return Resource allocation for the dataset, expressed as a share of the overall log license.
+     * 
+     */
     private LogAllocationConfigDefaultDatasetAllocation allocation;
+    /**
+     * @return Defines high and low priority match criteria. Low priority logs are dropped first when the allocation is exhausted, then default priority, with high priority dropped last.
+     * 
+     */
     private @Nullable LogAllocationConfigDefaultDatasetPriorities priorities;
 
     private LogAllocationConfigDefaultDataset() {}
+    /**
+     * @return Resource allocation for the dataset, expressed as a share of the overall log license.
+     * 
+     */
     public LogAllocationConfigDefaultDatasetAllocation allocation() {
         return this.allocation;
     }
+    /**
+     * @return Defines high and low priority match criteria. Low priority logs are dropped first when the allocation is exhausted, then default priority, with high priority dropped last.
+     * 
+     */
     public Optional<LogAllocationConfigDefaultDatasetPriorities> priorities() {
         return Optional.ofNullable(this.priorities);
     }

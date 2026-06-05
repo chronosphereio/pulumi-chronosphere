@@ -19,14 +19,24 @@ public final class DropRuleArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final DropRuleArgs Empty = new DropRuleArgs();
 
+    /**
+     * Once a conditional drop activates, how long it stays activated before re-checking against `rate_limit_threshold`.
+     * 
+     */
     @Import(name="activatedDropDuration")
     private @Nullable Output<String> activatedDropDuration;
 
+    /**
+     * @return Once a conditional drop activates, how long it stays activated before re-checking against `rate_limit_threshold`.
+     * 
+     */
     public Optional<Output<String>> activatedDropDuration() {
         return Optional.ofNullable(this.activatedDropDuration);
     }
 
     /**
+     * Whether the drop rule is active. Deprecated: use `mode` instead.
+     * 
      * @deprecated
      * use `mode` instead
      * 
@@ -36,6 +46,8 @@ public final class DropRuleArgs extends com.pulumi.resources.ResourceArgs {
     private @Nullable Output<Boolean> active;
 
     /**
+     * @return Whether the drop rule is active. Deprecated: use `mode` instead.
+     * 
      * @deprecated
      * use `mode` instead
      * 
@@ -45,58 +57,122 @@ public final class DropRuleArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.active);
     }
 
+    /**
+     * If `true`, the drop only activates when the configured `rate_limit_threshold` is exceeded.
+     * 
+     */
     @Import(name="conditionalDrop")
     private @Nullable Output<Boolean> conditionalDrop;
 
+    /**
+     * @return If `true`, the drop only activates when the configured `rate_limit_threshold` is exceeded.
+     * 
+     */
     public Optional<Output<Boolean>> conditionalDrop() {
         return Optional.ofNullable(this.conditionalDrop);
     }
 
+    /**
+     * If `true`, drops data points whose value is NaN, including any associated staleness markers.
+     * 
+     */
     @Import(name="dropNanValue")
     private @Nullable Output<Boolean> dropNanValue;
 
+    /**
+     * @return If `true`, drops data points whose value is NaN, including any associated staleness markers.
+     * 
+     */
     public Optional<Output<Boolean>> dropNanValue() {
         return Optional.ofNullable(this.dropNanValue);
     }
 
+    /**
+     * Drop rule mode controlling whether it is enabled, disabled, or in a preview state. Defaults to `ENABLED`.
+     * 
+     */
     @Import(name="mode")
     private @Nullable Output<String> mode;
 
+    /**
+     * @return Drop rule mode controlling whether it is enabled, disabled, or in a preview state. Defaults to `ENABLED`.
+     * 
+     */
     public Optional<Output<String>> mode() {
         return Optional.ofNullable(this.mode);
     }
 
+    /**
+     * Display name of the drop rule. Can be changed after creation.
+     * 
+     */
     @Import(name="name", required=true)
     private Output<String> name;
 
+    /**
+     * @return Display name of the drop rule. Can be changed after creation.
+     * 
+     */
     public Output<String> name() {
         return this.name;
     }
 
+    /**
+     * List of label filter queries that select which metrics to drop. A metric is dropped if it matches all filters in any one query.
+     * 
+     */
     @Import(name="queries", required=true)
     private Output<List<String>> queries;
 
+    /**
+     * @return List of label filter queries that select which metrics to drop. A metric is dropped if it matches all filters in any one query.
+     * 
+     */
     public Output<List<String>> queries() {
         return this.queries;
     }
 
+    /**
+     * Percentage of the licensed metrics limit (0-100) at which a conditional drop activates.
+     * 
+     */
     @Import(name="rateLimitThreshold")
     private @Nullable Output<Double> rateLimitThreshold;
 
+    /**
+     * @return Percentage of the licensed metrics limit (0-100) at which a conditional drop activates.
+     * 
+     */
     public Optional<Output<Double>> rateLimitThreshold() {
         return Optional.ofNullable(this.rateLimitThreshold);
     }
 
+    /**
+     * Stable identifier for the drop rule. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     @Import(name="slug")
     private @Nullable Output<String> slug;
 
+    /**
+     * @return Stable identifier for the drop rule. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     public Optional<Output<String>> slug() {
         return Optional.ofNullable(this.slug);
     }
 
+    /**
+     * Configuration for dropping data points whose value matches a target.
+     * 
+     */
     @Import(name="valueBasedDrop")
     private @Nullable Output<DropRuleValueBasedDropArgs> valueBasedDrop;
 
+    /**
+     * @return Configuration for dropping data points whose value matches a target.
+     * 
+     */
     public Optional<Output<DropRuleValueBasedDropArgs>> valueBasedDrop() {
         return Optional.ofNullable(this.valueBasedDrop);
     }
@@ -134,16 +210,30 @@ public final class DropRuleArgs extends com.pulumi.resources.ResourceArgs {
             $ = new DropRuleArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param activatedDropDuration Once a conditional drop activates, how long it stays activated before re-checking against `rate_limit_threshold`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder activatedDropDuration(@Nullable Output<String> activatedDropDuration) {
             $.activatedDropDuration = activatedDropDuration;
             return this;
         }
 
+        /**
+         * @param activatedDropDuration Once a conditional drop activates, how long it stays activated before re-checking against `rate_limit_threshold`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder activatedDropDuration(String activatedDropDuration) {
             return activatedDropDuration(Output.of(activatedDropDuration));
         }
 
         /**
+         * @param active Whether the drop rule is active. Deprecated: use `mode` instead.
+         * 
          * @return builder
          * 
          * @deprecated
@@ -157,6 +247,8 @@ public final class DropRuleArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
+         * @param active Whether the drop rule is active. Deprecated: use `mode` instead.
+         * 
          * @return builder
          * 
          * @deprecated
@@ -168,78 +260,180 @@ public final class DropRuleArgs extends com.pulumi.resources.ResourceArgs {
             return active(Output.of(active));
         }
 
+        /**
+         * @param conditionalDrop If `true`, the drop only activates when the configured `rate_limit_threshold` is exceeded.
+         * 
+         * @return builder
+         * 
+         */
         public Builder conditionalDrop(@Nullable Output<Boolean> conditionalDrop) {
             $.conditionalDrop = conditionalDrop;
             return this;
         }
 
+        /**
+         * @param conditionalDrop If `true`, the drop only activates when the configured `rate_limit_threshold` is exceeded.
+         * 
+         * @return builder
+         * 
+         */
         public Builder conditionalDrop(Boolean conditionalDrop) {
             return conditionalDrop(Output.of(conditionalDrop));
         }
 
+        /**
+         * @param dropNanValue If `true`, drops data points whose value is NaN, including any associated staleness markers.
+         * 
+         * @return builder
+         * 
+         */
         public Builder dropNanValue(@Nullable Output<Boolean> dropNanValue) {
             $.dropNanValue = dropNanValue;
             return this;
         }
 
+        /**
+         * @param dropNanValue If `true`, drops data points whose value is NaN, including any associated staleness markers.
+         * 
+         * @return builder
+         * 
+         */
         public Builder dropNanValue(Boolean dropNanValue) {
             return dropNanValue(Output.of(dropNanValue));
         }
 
+        /**
+         * @param mode Drop rule mode controlling whether it is enabled, disabled, or in a preview state. Defaults to `ENABLED`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder mode(@Nullable Output<String> mode) {
             $.mode = mode;
             return this;
         }
 
+        /**
+         * @param mode Drop rule mode controlling whether it is enabled, disabled, or in a preview state. Defaults to `ENABLED`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder mode(String mode) {
             return mode(Output.of(mode));
         }
 
+        /**
+         * @param name Display name of the drop rule. Can be changed after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(Output<String> name) {
             $.name = name;
             return this;
         }
 
+        /**
+         * @param name Display name of the drop rule. Can be changed after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(String name) {
             return name(Output.of(name));
         }
 
+        /**
+         * @param queries List of label filter queries that select which metrics to drop. A metric is dropped if it matches all filters in any one query.
+         * 
+         * @return builder
+         * 
+         */
         public Builder queries(Output<List<String>> queries) {
             $.queries = queries;
             return this;
         }
 
+        /**
+         * @param queries List of label filter queries that select which metrics to drop. A metric is dropped if it matches all filters in any one query.
+         * 
+         * @return builder
+         * 
+         */
         public Builder queries(List<String> queries) {
             return queries(Output.of(queries));
         }
 
+        /**
+         * @param queries List of label filter queries that select which metrics to drop. A metric is dropped if it matches all filters in any one query.
+         * 
+         * @return builder
+         * 
+         */
         public Builder queries(String... queries) {
             return queries(List.of(queries));
         }
 
+        /**
+         * @param rateLimitThreshold Percentage of the licensed metrics limit (0-100) at which a conditional drop activates.
+         * 
+         * @return builder
+         * 
+         */
         public Builder rateLimitThreshold(@Nullable Output<Double> rateLimitThreshold) {
             $.rateLimitThreshold = rateLimitThreshold;
             return this;
         }
 
+        /**
+         * @param rateLimitThreshold Percentage of the licensed metrics limit (0-100) at which a conditional drop activates.
+         * 
+         * @return builder
+         * 
+         */
         public Builder rateLimitThreshold(Double rateLimitThreshold) {
             return rateLimitThreshold(Output.of(rateLimitThreshold));
         }
 
+        /**
+         * @param slug Stable identifier for the drop rule. Generated from `name` if omitted. Immutable after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slug(@Nullable Output<String> slug) {
             $.slug = slug;
             return this;
         }
 
+        /**
+         * @param slug Stable identifier for the drop rule. Generated from `name` if omitted. Immutable after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slug(String slug) {
             return slug(Output.of(slug));
         }
 
+        /**
+         * @param valueBasedDrop Configuration for dropping data points whose value matches a target.
+         * 
+         * @return builder
+         * 
+         */
         public Builder valueBasedDrop(@Nullable Output<DropRuleValueBasedDropArgs> valueBasedDrop) {
             $.valueBasedDrop = valueBasedDrop;
             return this;
         }
 
+        /**
+         * @param valueBasedDrop Configuration for dropping data points whose value matches a target.
+         * 
+         * @return builder
+         * 
+         */
         public Builder valueBasedDrop(DropRuleValueBasedDropArgs valueBasedDrop) {
             return valueBasedDrop(Output.of(valueBasedDrop));
         }

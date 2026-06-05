@@ -6,6 +6,9 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * Singleton tree of consumption partitions that classify metric and log data into hierarchical groups so that consumptionBudget resources can enforce quotas against them.
+ */
 export class ConsumptionConfig extends pulumi.CustomResource {
     /**
      * Get an existing ConsumptionConfig resource's state with the given name, ID, and optional extra
@@ -34,6 +37,9 @@ export class ConsumptionConfig extends pulumi.CustomResource {
         return obj['__pulumiType'] === ConsumptionConfig.__pulumiType;
     }
 
+    /**
+     * Child partitions of this partition. Evaluated in order; requests not matching any child fall into an implicit `default` child partition.
+     */
     public readonly partitions!: pulumi.Output<outputs.ConsumptionConfigPartition[] | undefined>;
 
     /**
@@ -63,6 +69,9 @@ export class ConsumptionConfig extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ConsumptionConfig resources.
  */
 export interface ConsumptionConfigState {
+    /**
+     * Child partitions of this partition. Evaluated in order; requests not matching any child fall into an implicit `default` child partition.
+     */
     partitions?: pulumi.Input<pulumi.Input<inputs.ConsumptionConfigPartition>[]>;
 }
 
@@ -70,5 +79,8 @@ export interface ConsumptionConfigState {
  * The set of arguments for constructing a ConsumptionConfig resource.
  */
 export interface ConsumptionConfigArgs {
+    /**
+     * Child partitions of this partition. Evaluated in order; requests not matching any child fall into an implicit `default` child partition.
+     */
     partitions?: pulumi.Input<pulumi.Input<inputs.ConsumptionConfigPartition>[]>;
 }

@@ -24,86 +24,182 @@ public final class LogscaleActionState extends com.pulumi.resources.ResourceArgs
 
     public static final LogscaleActionState Empty = new LogscaleActionState();
 
+    /**
+     * Send email when the alert triggers. Exactly one action type must be set.
+     * 
+     */
     @Import(name="emailAction")
     private @Nullable Output<LogscaleActionEmailActionArgs> emailAction;
 
+    /**
+     * @return Send email when the alert triggers. Exactly one action type must be set.
+     * 
+     */
     public Optional<Output<LogscaleActionEmailActionArgs>> emailAction() {
         return Optional.ofNullable(this.emailAction);
     }
 
+    /**
+     * Forward results to another LogScale (Humio) repository via its ingest token. Exactly one action type must be set.
+     * 
+     */
     @Import(name="humioAction")
     private @Nullable Output<LogscaleActionHumioActionArgs> humioAction;
 
+    /**
+     * @return Forward results to another LogScale (Humio) repository via its ingest token. Exactly one action type must be set.
+     * 
+     */
     public Optional<Output<LogscaleActionHumioActionArgs>> humioAction() {
         return Optional.ofNullable(this.humioAction);
     }
 
+    /**
+     * Display name of the LogScale action.
+     * 
+     */
     @Import(name="name")
     private @Nullable Output<String> name;
 
+    /**
+     * @return Display name of the LogScale action.
+     * 
+     */
     public Optional<Output<String>> name() {
         return Optional.ofNullable(this.name);
     }
 
+    /**
+     * Send an OpsGenie alert when the alert triggers. Exactly one action type must be set.
+     * 
+     */
     @Import(name="opsGenieAction")
     private @Nullable Output<LogscaleActionOpsGenieActionArgs> opsGenieAction;
 
+    /**
+     * @return Send an OpsGenie alert when the alert triggers. Exactly one action type must be set.
+     * 
+     */
     public Optional<Output<LogscaleActionOpsGenieActionArgs>> opsGenieAction() {
         return Optional.ofNullable(this.opsGenieAction);
     }
 
+    /**
+     * Send a PagerDuty event when the alert triggers. Exactly one action type must be set.
+     * 
+     */
     @Import(name="pagerDutyAction")
     private @Nullable Output<LogscaleActionPagerDutyActionArgs> pagerDutyAction;
 
+    /**
+     * @return Send a PagerDuty event when the alert triggers. Exactly one action type must be set.
+     * 
+     */
     public Optional<Output<LogscaleActionPagerDutyActionArgs>> pagerDutyAction() {
         return Optional.ofNullable(this.pagerDutyAction);
     }
 
+    /**
+     * Name of the LogScale repository the action belongs to. Immutable after creation.
+     * 
+     */
     @Import(name="repository")
     private @Nullable Output<String> repository;
 
+    /**
+     * @return Name of the LogScale repository the action belongs to. Immutable after creation.
+     * 
+     */
     public Optional<Output<String>> repository() {
         return Optional.ofNullable(this.repository);
     }
 
+    /**
+     * Post a message to a Slack incoming webhook when the alert triggers. Exactly one action type must be set.
+     * 
+     */
     @Import(name="slackAction")
     private @Nullable Output<LogscaleActionSlackActionArgs> slackAction;
 
+    /**
+     * @return Post a message to a Slack incoming webhook when the alert triggers. Exactly one action type must be set.
+     * 
+     */
     public Optional<Output<LogscaleActionSlackActionArgs>> slackAction() {
         return Optional.ofNullable(this.slackAction);
     }
 
+    /**
+     * Post a message to Slack channels using the Slack `chat.postMessage` API. Exactly one action type must be set.
+     * 
+     */
     @Import(name="slackPostMessageAction")
     private @Nullable Output<LogscaleActionSlackPostMessageActionArgs> slackPostMessageAction;
 
+    /**
+     * @return Post a message to Slack channels using the Slack `chat.postMessage` API. Exactly one action type must be set.
+     * 
+     */
     public Optional<Output<LogscaleActionSlackPostMessageActionArgs>> slackPostMessageAction() {
         return Optional.ofNullable(this.slackPostMessageAction);
     }
 
+    /**
+     * Stable identifier for the LogScale action. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     @Import(name="slug")
     private @Nullable Output<String> slug;
 
+    /**
+     * @return Stable identifier for the LogScale action. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     public Optional<Output<String>> slug() {
         return Optional.ofNullable(this.slug);
     }
 
+    /**
+     * Upload the query result as a file in LogScale. Exactly one action type must be set.
+     * 
+     */
     @Import(name="uploadFileAction")
     private @Nullable Output<LogscaleActionUploadFileActionArgs> uploadFileAction;
 
+    /**
+     * @return Upload the query result as a file in LogScale. Exactly one action type must be set.
+     * 
+     */
     public Optional<Output<LogscaleActionUploadFileActionArgs>> uploadFileAction() {
         return Optional.ofNullable(this.uploadFileAction);
     }
 
+    /**
+     * Send a VictorOps (Splunk On-Call) event when the alert triggers. Exactly one action type must be set.
+     * 
+     */
     @Import(name="victorOpsAction")
     private @Nullable Output<LogscaleActionVictorOpsActionArgs> victorOpsAction;
 
+    /**
+     * @return Send a VictorOps (Splunk On-Call) event when the alert triggers. Exactly one action type must be set.
+     * 
+     */
     public Optional<Output<LogscaleActionVictorOpsActionArgs>> victorOpsAction() {
         return Optional.ofNullable(this.victorOpsAction);
     }
 
+    /**
+     * Send an HTTP or HTTPS webhook when the alert triggers. Exactly one action type must be set.
+     * 
+     */
     @Import(name="webhookAction")
     private @Nullable Output<LogscaleActionWebhookActionArgs> webhookAction;
 
+    /**
+     * @return Send an HTTP or HTTPS webhook when the alert triggers. Exactly one action type must be set.
+     * 
+     */
     public Optional<Output<LogscaleActionWebhookActionArgs>> webhookAction() {
         return Optional.ofNullable(this.webhookAction);
     }
@@ -143,110 +239,254 @@ public final class LogscaleActionState extends com.pulumi.resources.ResourceArgs
             $ = new LogscaleActionState(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param emailAction Send email when the alert triggers. Exactly one action type must be set.
+         * 
+         * @return builder
+         * 
+         */
         public Builder emailAction(@Nullable Output<LogscaleActionEmailActionArgs> emailAction) {
             $.emailAction = emailAction;
             return this;
         }
 
+        /**
+         * @param emailAction Send email when the alert triggers. Exactly one action type must be set.
+         * 
+         * @return builder
+         * 
+         */
         public Builder emailAction(LogscaleActionEmailActionArgs emailAction) {
             return emailAction(Output.of(emailAction));
         }
 
+        /**
+         * @param humioAction Forward results to another LogScale (Humio) repository via its ingest token. Exactly one action type must be set.
+         * 
+         * @return builder
+         * 
+         */
         public Builder humioAction(@Nullable Output<LogscaleActionHumioActionArgs> humioAction) {
             $.humioAction = humioAction;
             return this;
         }
 
+        /**
+         * @param humioAction Forward results to another LogScale (Humio) repository via its ingest token. Exactly one action type must be set.
+         * 
+         * @return builder
+         * 
+         */
         public Builder humioAction(LogscaleActionHumioActionArgs humioAction) {
             return humioAction(Output.of(humioAction));
         }
 
+        /**
+         * @param name Display name of the LogScale action.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(@Nullable Output<String> name) {
             $.name = name;
             return this;
         }
 
+        /**
+         * @param name Display name of the LogScale action.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(String name) {
             return name(Output.of(name));
         }
 
+        /**
+         * @param opsGenieAction Send an OpsGenie alert when the alert triggers. Exactly one action type must be set.
+         * 
+         * @return builder
+         * 
+         */
         public Builder opsGenieAction(@Nullable Output<LogscaleActionOpsGenieActionArgs> opsGenieAction) {
             $.opsGenieAction = opsGenieAction;
             return this;
         }
 
+        /**
+         * @param opsGenieAction Send an OpsGenie alert when the alert triggers. Exactly one action type must be set.
+         * 
+         * @return builder
+         * 
+         */
         public Builder opsGenieAction(LogscaleActionOpsGenieActionArgs opsGenieAction) {
             return opsGenieAction(Output.of(opsGenieAction));
         }
 
+        /**
+         * @param pagerDutyAction Send a PagerDuty event when the alert triggers. Exactly one action type must be set.
+         * 
+         * @return builder
+         * 
+         */
         public Builder pagerDutyAction(@Nullable Output<LogscaleActionPagerDutyActionArgs> pagerDutyAction) {
             $.pagerDutyAction = pagerDutyAction;
             return this;
         }
 
+        /**
+         * @param pagerDutyAction Send a PagerDuty event when the alert triggers. Exactly one action type must be set.
+         * 
+         * @return builder
+         * 
+         */
         public Builder pagerDutyAction(LogscaleActionPagerDutyActionArgs pagerDutyAction) {
             return pagerDutyAction(Output.of(pagerDutyAction));
         }
 
+        /**
+         * @param repository Name of the LogScale repository the action belongs to. Immutable after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder repository(@Nullable Output<String> repository) {
             $.repository = repository;
             return this;
         }
 
+        /**
+         * @param repository Name of the LogScale repository the action belongs to. Immutable after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder repository(String repository) {
             return repository(Output.of(repository));
         }
 
+        /**
+         * @param slackAction Post a message to a Slack incoming webhook when the alert triggers. Exactly one action type must be set.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slackAction(@Nullable Output<LogscaleActionSlackActionArgs> slackAction) {
             $.slackAction = slackAction;
             return this;
         }
 
+        /**
+         * @param slackAction Post a message to a Slack incoming webhook when the alert triggers. Exactly one action type must be set.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slackAction(LogscaleActionSlackActionArgs slackAction) {
             return slackAction(Output.of(slackAction));
         }
 
+        /**
+         * @param slackPostMessageAction Post a message to Slack channels using the Slack `chat.postMessage` API. Exactly one action type must be set.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slackPostMessageAction(@Nullable Output<LogscaleActionSlackPostMessageActionArgs> slackPostMessageAction) {
             $.slackPostMessageAction = slackPostMessageAction;
             return this;
         }
 
+        /**
+         * @param slackPostMessageAction Post a message to Slack channels using the Slack `chat.postMessage` API. Exactly one action type must be set.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slackPostMessageAction(LogscaleActionSlackPostMessageActionArgs slackPostMessageAction) {
             return slackPostMessageAction(Output.of(slackPostMessageAction));
         }
 
+        /**
+         * @param slug Stable identifier for the LogScale action. Generated from `name` if omitted. Immutable after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slug(@Nullable Output<String> slug) {
             $.slug = slug;
             return this;
         }
 
+        /**
+         * @param slug Stable identifier for the LogScale action. Generated from `name` if omitted. Immutable after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slug(String slug) {
             return slug(Output.of(slug));
         }
 
+        /**
+         * @param uploadFileAction Upload the query result as a file in LogScale. Exactly one action type must be set.
+         * 
+         * @return builder
+         * 
+         */
         public Builder uploadFileAction(@Nullable Output<LogscaleActionUploadFileActionArgs> uploadFileAction) {
             $.uploadFileAction = uploadFileAction;
             return this;
         }
 
+        /**
+         * @param uploadFileAction Upload the query result as a file in LogScale. Exactly one action type must be set.
+         * 
+         * @return builder
+         * 
+         */
         public Builder uploadFileAction(LogscaleActionUploadFileActionArgs uploadFileAction) {
             return uploadFileAction(Output.of(uploadFileAction));
         }
 
+        /**
+         * @param victorOpsAction Send a VictorOps (Splunk On-Call) event when the alert triggers. Exactly one action type must be set.
+         * 
+         * @return builder
+         * 
+         */
         public Builder victorOpsAction(@Nullable Output<LogscaleActionVictorOpsActionArgs> victorOpsAction) {
             $.victorOpsAction = victorOpsAction;
             return this;
         }
 
+        /**
+         * @param victorOpsAction Send a VictorOps (Splunk On-Call) event when the alert triggers. Exactly one action type must be set.
+         * 
+         * @return builder
+         * 
+         */
         public Builder victorOpsAction(LogscaleActionVictorOpsActionArgs victorOpsAction) {
             return victorOpsAction(Output.of(victorOpsAction));
         }
 
+        /**
+         * @param webhookAction Send an HTTP or HTTPS webhook when the alert triggers. Exactly one action type must be set.
+         * 
+         * @return builder
+         * 
+         */
         public Builder webhookAction(@Nullable Output<LogscaleActionWebhookActionArgs> webhookAction) {
             $.webhookAction = webhookAction;
             return this;
         }
 
+        /**
+         * @param webhookAction Send an HTTP or HTTPS webhook when the alert triggers. Exactly one action type must be set.
+         * 
+         * @return builder
+         * 
+         */
         public Builder webhookAction(LogscaleActionWebhookActionArgs webhookAction) {
             return webhookAction(Output.of(webhookAction));
         }

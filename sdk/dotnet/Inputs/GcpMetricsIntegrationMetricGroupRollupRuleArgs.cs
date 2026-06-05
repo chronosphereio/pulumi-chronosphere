@@ -13,12 +13,21 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class GcpMetricsIntegrationMetricGroupRollupRuleArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Aggregation function applied across the dropped labels (e.g. sum, max).
+        /// </summary>
         [Input("aggregation")]
         public Input<string>? Aggregation { get; set; }
 
+        /// <summary>
+        /// Specifies which labels to preserve during aggregation. Labels not listed are dropped.
+        /// </summary>
         [Input("labelPolicy")]
         public Input<Inputs.GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyArgs>? LabelPolicy { get; set; }
 
+        /// <summary>
+        /// Fully-qualified Google Cloud metric name the rollup rule targets (e.g. `cloudsql.googleapis.com/database/uptime`).
+        /// </summary>
         [Input("metricName")]
         public Input<string>? MetricName { get; set; }
 

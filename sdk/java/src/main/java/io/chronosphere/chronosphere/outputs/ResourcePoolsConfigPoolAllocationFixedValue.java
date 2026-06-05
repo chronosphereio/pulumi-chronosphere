@@ -10,13 +10,29 @@ import java.util.Objects;
 
 @CustomType
 public final class ResourcePoolsConfigPoolAllocationFixedValue {
+    /**
+     * @return License this fixed-value allocation applies to (e.g. `PERSISTED_WRITES`).
+     * 
+     */
     private String license;
+    /**
+     * @return Fixed amount of the license to allocate, in the license&#39;s native unit.
+     * 
+     */
     private Integer value;
 
     private ResourcePoolsConfigPoolAllocationFixedValue() {}
+    /**
+     * @return License this fixed-value allocation applies to (e.g. `PERSISTED_WRITES`).
+     * 
+     */
     public String license() {
         return this.license;
     }
+    /**
+     * @return Fixed amount of the license to allocate, in the license&#39;s native unit.
+     * 
+     */
     public Integer value() {
         return this.value;
     }

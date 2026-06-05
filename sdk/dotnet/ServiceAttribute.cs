@@ -10,6 +10,29 @@ using Pulumi;
 
 namespace Chronosphere.Pulumi
 {
+    /// <summary>
+    /// Associates metadata with an existing service, such as a human-readable name, description, owning team, and default notification policy. The service itself must already exist; this resource only attaches attributes to it.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Pulumi = Chronosphere.Pulumi;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var gateway = new Pulumi.ServiceAttribute("gateway", new()
+    ///     {
+    ///         Description = "Edge API gateway",
+    ///         Name = "Gateway",
+    ///         ServiceSlug = "gateway",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// </summary>
     [PulumiResourceType("chronosphere:index/serviceAttribute:ServiceAttribute")]
     public partial class ServiceAttribute : global::Pulumi.CustomResource
     {

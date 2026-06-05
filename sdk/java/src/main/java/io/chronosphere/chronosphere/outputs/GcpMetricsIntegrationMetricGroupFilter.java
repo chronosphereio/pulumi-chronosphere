@@ -11,17 +11,41 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GcpMetricsIntegrationMetricGroupFilter {
+    /**
+     * @return Label context, e.g. resource vs. metric label. See the Chronosphere GCP integration documentation for accepted values.
+     * 
+     */
     private @Nullable String context;
+    /**
+     * @return Label name to filter on.
+     * 
+     */
     private @Nullable String name;
+    /**
+     * @return Value pattern using glob syntax (e.g. `prod-*`). An exact match is applied when no glob characters are present.
+     * 
+     */
     private @Nullable String valueGlob;
 
     private GcpMetricsIntegrationMetricGroupFilter() {}
+    /**
+     * @return Label context, e.g. resource vs. metric label. See the Chronosphere GCP integration documentation for accepted values.
+     * 
+     */
     public Optional<String> context() {
         return Optional.ofNullable(this.context);
     }
+    /**
+     * @return Label name to filter on.
+     * 
+     */
     public Optional<String> name() {
         return Optional.ofNullable(this.name);
     }
+    /**
+     * @return Value pattern using glob syntax (e.g. `prod-*`). An exact match is applied when no glob characters are present.
+     * 
+     */
     public Optional<String> valueGlob() {
         return Optional.ofNullable(this.valueGlob);
     }

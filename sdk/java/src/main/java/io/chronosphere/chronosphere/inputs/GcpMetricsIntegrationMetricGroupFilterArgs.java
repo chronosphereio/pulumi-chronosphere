@@ -15,23 +15,47 @@ public final class GcpMetricsIntegrationMetricGroupFilterArgs extends com.pulumi
 
     public static final GcpMetricsIntegrationMetricGroupFilterArgs Empty = new GcpMetricsIntegrationMetricGroupFilterArgs();
 
+    /**
+     * Label context, e.g. resource vs. metric label. See the Chronosphere GCP integration documentation for accepted values.
+     * 
+     */
     @Import(name="context")
     private @Nullable Output<String> context;
 
+    /**
+     * @return Label context, e.g. resource vs. metric label. See the Chronosphere GCP integration documentation for accepted values.
+     * 
+     */
     public Optional<Output<String>> context() {
         return Optional.ofNullable(this.context);
     }
 
+    /**
+     * Label name to filter on.
+     * 
+     */
     @Import(name="name")
     private @Nullable Output<String> name;
 
+    /**
+     * @return Label name to filter on.
+     * 
+     */
     public Optional<Output<String>> name() {
         return Optional.ofNullable(this.name);
     }
 
+    /**
+     * Value pattern using glob syntax (e.g. `prod-*`). An exact match is applied when no glob characters are present.
+     * 
+     */
     @Import(name="valueGlob")
     private @Nullable Output<String> valueGlob;
 
+    /**
+     * @return Value pattern using glob syntax (e.g. `prod-*`). An exact match is applied when no glob characters are present.
+     * 
+     */
     public Optional<Output<String>> valueGlob() {
         return Optional.ofNullable(this.valueGlob);
     }
@@ -62,29 +86,65 @@ public final class GcpMetricsIntegrationMetricGroupFilterArgs extends com.pulumi
             $ = new GcpMetricsIntegrationMetricGroupFilterArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param context Label context, e.g. resource vs. metric label. See the Chronosphere GCP integration documentation for accepted values.
+         * 
+         * @return builder
+         * 
+         */
         public Builder context(@Nullable Output<String> context) {
             $.context = context;
             return this;
         }
 
+        /**
+         * @param context Label context, e.g. resource vs. metric label. See the Chronosphere GCP integration documentation for accepted values.
+         * 
+         * @return builder
+         * 
+         */
         public Builder context(String context) {
             return context(Output.of(context));
         }
 
+        /**
+         * @param name Label name to filter on.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(@Nullable Output<String> name) {
             $.name = name;
             return this;
         }
 
+        /**
+         * @param name Label name to filter on.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(String name) {
             return name(Output.of(name));
         }
 
+        /**
+         * @param valueGlob Value pattern using glob syntax (e.g. `prod-*`). An exact match is applied when no glob characters are present.
+         * 
+         * @return builder
+         * 
+         */
         public Builder valueGlob(@Nullable Output<String> valueGlob) {
             $.valueGlob = valueGlob;
             return this;
         }
 
+        /**
+         * @param valueGlob Value pattern using glob syntax (e.g. `prod-*`). An exact match is applied when no glob characters are present.
+         * 
+         * @return builder
+         * 
+         */
         public Builder valueGlob(String valueGlob) {
             return valueGlob(Output.of(valueGlob));
         }

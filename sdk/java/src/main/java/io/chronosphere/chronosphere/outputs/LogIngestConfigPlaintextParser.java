@@ -13,21 +13,53 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class LogIngestConfigPlaintextParser {
+    /**
+     * @return If `true`, the original log is retained after parsing and stored under the `plaintext_log` key. Defaults to `false`.
+     * 
+     */
     private @Nullable Boolean keepOriginal;
+    /**
+     * @return Mode that controls how the parser matches incoming plaintext logs.
+     * 
+     */
     private @Nullable String mode;
+    /**
+     * @return Name of the parser. Must be unique within the configuration.
+     * 
+     */
     private String name;
+    /**
+     * @return Parser configuration. Exactly one of `regex_parser`, `key_value_parser`, or `grok_parser` must be set, matching `parser_type`.
+     * 
+     */
     private LogIngestConfigPlaintextParserParser parser;
 
     private LogIngestConfigPlaintextParser() {}
+    /**
+     * @return If `true`, the original log is retained after parsing and stored under the `plaintext_log` key. Defaults to `false`.
+     * 
+     */
     public Optional<Boolean> keepOriginal() {
         return Optional.ofNullable(this.keepOriginal);
     }
+    /**
+     * @return Mode that controls how the parser matches incoming plaintext logs.
+     * 
+     */
     public Optional<String> mode() {
         return Optional.ofNullable(this.mode);
     }
+    /**
+     * @return Name of the parser. Must be unique within the configuration.
+     * 
+     */
     public String name() {
         return this.name;
     }
+    /**
+     * @return Parser configuration. Exactly one of `regex_parser`, `key_value_parser`, or `grok_parser` must be set, matching `parser_type`.
+     * 
+     */
     public LogIngestConfigPlaintextParserParser parser() {
         return this.parser;
     }

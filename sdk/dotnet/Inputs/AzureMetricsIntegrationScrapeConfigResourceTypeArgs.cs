@@ -15,12 +15,19 @@ namespace Chronosphere.Pulumi.Inputs
     {
         [Input("metricNames")]
         private InputList<string>? _metricNames;
+
+        /// <summary>
+        /// Metric names to ingest for this resource type. Leave empty for all metrics.
+        /// </summary>
         public InputList<string> MetricNames
         {
             get => _metricNames ?? (_metricNames = new InputList<string>());
             set => _metricNames = value;
         }
 
+        /// <summary>
+        /// Azure resource type identifier (e.g. `Microsoft.Compute/virtualMachines`).
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 

@@ -21,51 +21,107 @@ public final class NotificationPolicyOverrideRouteDestinationArgs extends com.pu
 
     public static final NotificationPolicyOverrideRouteDestinationArgs Empty = new NotificationPolicyOverrideRouteDestinationArgs();
 
+    /**
+     * If true, do not send notifications when alerts resolve. Defaults to false.
+     * 
+     */
     @Import(name="disableResolves")
     private @Nullable Output<Boolean> disableResolves;
 
+    /**
+     * @return If true, do not send notifications when alerts resolve. Defaults to false.
+     * 
+     */
     public Optional<Output<Boolean>> disableResolves() {
         return Optional.ofNullable(this.disableResolves);
     }
 
+    /**
+     * Email delivery configuration for this destination.
+     * 
+     */
     @Import(name="email")
     private @Nullable Output<NotificationPolicyOverrideRouteDestinationEmailArgs> email;
 
+    /**
+     * @return Email delivery configuration for this destination.
+     * 
+     */
     public Optional<Output<NotificationPolicyOverrideRouteDestinationEmailArgs>> email() {
         return Optional.ofNullable(this.email);
     }
 
+    /**
+     * OpsGenie delivery configuration for this destination.
+     * 
+     */
     @Import(name="opsGenie")
     private @Nullable Output<NotificationPolicyOverrideRouteDestinationOpsGenieArgs> opsGenie;
 
+    /**
+     * @return OpsGenie delivery configuration for this destination.
+     * 
+     */
     public Optional<Output<NotificationPolicyOverrideRouteDestinationOpsGenieArgs>> opsGenie() {
         return Optional.ofNullable(this.opsGenie);
     }
 
+    /**
+     * PagerDuty delivery configuration for this destination.
+     * 
+     */
     @Import(name="pagerduty")
     private @Nullable Output<NotificationPolicyOverrideRouteDestinationPagerdutyArgs> pagerduty;
 
+    /**
+     * @return PagerDuty delivery configuration for this destination.
+     * 
+     */
     public Optional<Output<NotificationPolicyOverrideRouteDestinationPagerdutyArgs>> pagerduty() {
         return Optional.ofNullable(this.pagerduty);
     }
 
+    /**
+     * Slack delivery configuration for this destination.
+     * 
+     */
     @Import(name="slack")
     private @Nullable Output<NotificationPolicyOverrideRouteDestinationSlackArgs> slack;
 
+    /**
+     * @return Slack delivery configuration for this destination.
+     * 
+     */
     public Optional<Output<NotificationPolicyOverrideRouteDestinationSlackArgs>> slack() {
         return Optional.ofNullable(this.slack);
     }
 
+    /**
+     * VictorOps (Splunk On-Call) delivery configuration for this destination.
+     * 
+     */
     @Import(name="victorOps")
     private @Nullable Output<NotificationPolicyOverrideRouteDestinationVictorOpsArgs> victorOps;
 
+    /**
+     * @return VictorOps (Splunk On-Call) delivery configuration for this destination.
+     * 
+     */
     public Optional<Output<NotificationPolicyOverrideRouteDestinationVictorOpsArgs>> victorOps() {
         return Optional.ofNullable(this.victorOps);
     }
 
+    /**
+     * Generic webhook delivery configuration for this destination.
+     * 
+     */
     @Import(name="webhook")
     private @Nullable Output<NotificationPolicyOverrideRouteDestinationWebhookArgs> webhook;
 
+    /**
+     * @return Generic webhook delivery configuration for this destination.
+     * 
+     */
     public Optional<Output<NotificationPolicyOverrideRouteDestinationWebhookArgs>> webhook() {
         return Optional.ofNullable(this.webhook);
     }
@@ -100,65 +156,149 @@ public final class NotificationPolicyOverrideRouteDestinationArgs extends com.pu
             $ = new NotificationPolicyOverrideRouteDestinationArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param disableResolves If true, do not send notifications when alerts resolve. Defaults to false.
+         * 
+         * @return builder
+         * 
+         */
         public Builder disableResolves(@Nullable Output<Boolean> disableResolves) {
             $.disableResolves = disableResolves;
             return this;
         }
 
+        /**
+         * @param disableResolves If true, do not send notifications when alerts resolve. Defaults to false.
+         * 
+         * @return builder
+         * 
+         */
         public Builder disableResolves(Boolean disableResolves) {
             return disableResolves(Output.of(disableResolves));
         }
 
+        /**
+         * @param email Email delivery configuration for this destination.
+         * 
+         * @return builder
+         * 
+         */
         public Builder email(@Nullable Output<NotificationPolicyOverrideRouteDestinationEmailArgs> email) {
             $.email = email;
             return this;
         }
 
+        /**
+         * @param email Email delivery configuration for this destination.
+         * 
+         * @return builder
+         * 
+         */
         public Builder email(NotificationPolicyOverrideRouteDestinationEmailArgs email) {
             return email(Output.of(email));
         }
 
+        /**
+         * @param opsGenie OpsGenie delivery configuration for this destination.
+         * 
+         * @return builder
+         * 
+         */
         public Builder opsGenie(@Nullable Output<NotificationPolicyOverrideRouteDestinationOpsGenieArgs> opsGenie) {
             $.opsGenie = opsGenie;
             return this;
         }
 
+        /**
+         * @param opsGenie OpsGenie delivery configuration for this destination.
+         * 
+         * @return builder
+         * 
+         */
         public Builder opsGenie(NotificationPolicyOverrideRouteDestinationOpsGenieArgs opsGenie) {
             return opsGenie(Output.of(opsGenie));
         }
 
+        /**
+         * @param pagerduty PagerDuty delivery configuration for this destination.
+         * 
+         * @return builder
+         * 
+         */
         public Builder pagerduty(@Nullable Output<NotificationPolicyOverrideRouteDestinationPagerdutyArgs> pagerduty) {
             $.pagerduty = pagerduty;
             return this;
         }
 
+        /**
+         * @param pagerduty PagerDuty delivery configuration for this destination.
+         * 
+         * @return builder
+         * 
+         */
         public Builder pagerduty(NotificationPolicyOverrideRouteDestinationPagerdutyArgs pagerduty) {
             return pagerduty(Output.of(pagerduty));
         }
 
+        /**
+         * @param slack Slack delivery configuration for this destination.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slack(@Nullable Output<NotificationPolicyOverrideRouteDestinationSlackArgs> slack) {
             $.slack = slack;
             return this;
         }
 
+        /**
+         * @param slack Slack delivery configuration for this destination.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slack(NotificationPolicyOverrideRouteDestinationSlackArgs slack) {
             return slack(Output.of(slack));
         }
 
+        /**
+         * @param victorOps VictorOps (Splunk On-Call) delivery configuration for this destination.
+         * 
+         * @return builder
+         * 
+         */
         public Builder victorOps(@Nullable Output<NotificationPolicyOverrideRouteDestinationVictorOpsArgs> victorOps) {
             $.victorOps = victorOps;
             return this;
         }
 
+        /**
+         * @param victorOps VictorOps (Splunk On-Call) delivery configuration for this destination.
+         * 
+         * @return builder
+         * 
+         */
         public Builder victorOps(NotificationPolicyOverrideRouteDestinationVictorOpsArgs victorOps) {
             return victorOps(Output.of(victorOps));
         }
 
+        /**
+         * @param webhook Generic webhook delivery configuration for this destination.
+         * 
+         * @return builder
+         * 
+         */
         public Builder webhook(@Nullable Output<NotificationPolicyOverrideRouteDestinationWebhookArgs> webhook) {
             $.webhook = webhook;
             return this;
         }
 
+        /**
+         * @param webhook Generic webhook delivery configuration for this destination.
+         * 
+         * @return builder
+         * 
+         */
         public Builder webhook(NotificationPolicyOverrideRouteDestinationWebhookArgs webhook) {
             return webhook(Output.of(webhook));
         }

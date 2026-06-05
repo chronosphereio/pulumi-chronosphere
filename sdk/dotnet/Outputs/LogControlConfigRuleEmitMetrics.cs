@@ -14,12 +14,33 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class LogControlConfigRuleEmitMetrics
     {
+        /// <summary>
+        /// Emit a counter metric. Exactly one of `counter`, `gauge`, or `histogram` must be set.
+        /// </summary>
         public readonly Outputs.LogControlConfigRuleEmitMetricsCounter? Counter;
+        /// <summary>
+        /// If `true`, drops the entire log after emitting the metric.
+        /// </summary>
         public readonly bool? DropLog;
+        /// <summary>
+        /// Emit a gauge metric. Exactly one of `counter`, `gauge`, or `histogram` must be set.
+        /// </summary>
         public readonly Outputs.LogControlConfigRuleEmitMetricsGauge? Gauge;
+        /// <summary>
+        /// Emit a histogram metric. Exactly one of `counter`, `gauge`, or `histogram` must be set.
+        /// </summary>
         public readonly Outputs.LogControlConfigRuleEmitMetricsHistogram? Histogram;
+        /// <summary>
+        /// Labels to attach to the generated metric, specified as key/value pairs mapping a Prometheus label name to a log field path.
+        /// </summary>
         public readonly ImmutableArray<Outputs.LogControlConfigRuleEmitMetricsLabel> Labels;
+        /// <summary>
+        /// Metric emission mode that controls how the metric is generated from matching logs.
+        /// </summary>
         public readonly string? Mode;
+        /// <summary>
+        /// Name of the generated metric. Must conform to Prometheus naming conventions and be unique within the tenant.
+        /// </summary>
         public readonly string? Name;
 
         [OutputConstructor]

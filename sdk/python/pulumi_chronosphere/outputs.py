@@ -355,6 +355,10 @@ class AzureMetricsIntegrationPrincipal(dict):
     def __init__(__self__, *,
                  client_id: Optional[str] = None,
                  tenant_id: Optional[str] = None):
+        """
+        :param str client_id: OAuth2 client ID of the managed identity principal.
+        :param str tenant_id: ID of the Azure tenant that hosts the managed identity principal.
+        """
         if client_id is not None:
             pulumi.set(__self__, "client_id", client_id)
         if tenant_id is not None:
@@ -363,11 +367,17 @@ class AzureMetricsIntegrationPrincipal(dict):
     @property
     @pulumi.getter(name="clientId")
     def client_id(self) -> Optional[str]:
+        """
+        OAuth2 client ID of the managed identity principal.
+        """
         return pulumi.get(self, "client_id")
 
     @property
     @pulumi.getter(name="tenantId")
     def tenant_id(self) -> Optional[str]:
+        """
+        ID of the Azure tenant that hosts the managed identity principal.
+        """
         return pulumi.get(self, "tenant_id")
 
 
@@ -396,6 +406,11 @@ class AzureMetricsIntegrationScrapeConfig(dict):
                  locations: Optional[Sequence[str]] = None,
                  resource_types: Optional[Sequence['outputs.AzureMetricsIntegrationScrapeConfigResourceType']] = None,
                  subscription_ids: Optional[Sequence[str]] = None):
+        """
+        :param Sequence[str] locations: Azure locations (regions) to ingest from, applied across all subscriptions. Leave empty for all locations.
+        :param Sequence['AzureMetricsIntegrationScrapeConfigResourceTypeArgs'] resource_types: Azure resource types to scrape metrics from. Each entry can constrain the set of metric names to a subset.
+        :param Sequence[str] subscription_ids: Azure subscription IDs to target. Leave empty to scrape from all subscriptions accessible to the principal.
+        """
         if locations is not None:
             pulumi.set(__self__, "locations", locations)
         if resource_types is not None:
@@ -406,16 +421,25 @@ class AzureMetricsIntegrationScrapeConfig(dict):
     @property
     @pulumi.getter
     def locations(self) -> Optional[Sequence[str]]:
+        """
+        Azure locations (regions) to ingest from, applied across all subscriptions. Leave empty for all locations.
+        """
         return pulumi.get(self, "locations")
 
     @property
     @pulumi.getter(name="resourceTypes")
     def resource_types(self) -> Optional[Sequence['outputs.AzureMetricsIntegrationScrapeConfigResourceType']]:
+        """
+        Azure resource types to scrape metrics from. Each entry can constrain the set of metric names to a subset.
+        """
         return pulumi.get(self, "resource_types")
 
     @property
     @pulumi.getter(name="subscriptionIds")
     def subscription_ids(self) -> Optional[Sequence[str]]:
+        """
+        Azure subscription IDs to target. Leave empty to scrape from all subscriptions accessible to the principal.
+        """
         return pulumi.get(self, "subscription_ids")
 
 
@@ -441,6 +465,10 @@ class AzureMetricsIntegrationScrapeConfigResourceType(dict):
     def __init__(__self__, *,
                  metric_names: Optional[Sequence[str]] = None,
                  name: Optional[str] = None):
+        """
+        :param Sequence[str] metric_names: Metric names to ingest for this resource type. Leave empty for all metrics.
+        :param str name: Azure resource type identifier (e.g. `Microsoft.Compute/virtualMachines`).
+        """
         if metric_names is not None:
             pulumi.set(__self__, "metric_names", metric_names)
         if name is not None:
@@ -449,11 +477,17 @@ class AzureMetricsIntegrationScrapeConfigResourceType(dict):
     @property
     @pulumi.getter(name="metricNames")
     def metric_names(self) -> Optional[Sequence[str]]:
+        """
+        Metric names to ingest for this resource type. Leave empty for all metrics.
+        """
         return pulumi.get(self, "metric_names")
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
+        """
+        Azure resource type identifier (e.g. `Microsoft.Compute/virtualMachines`).
+        """
         return pulumi.get(self, "name")
 
 
@@ -480,6 +514,11 @@ class ConsumptionBudgetAlertActionConfig(dict):
                  annotations: Optional[Mapping[str, str]] = None,
                  instant_rate_sustain_secs: Optional[int] = None,
                  labels: Optional[Mapping[str, str]] = None):
+        """
+        :param Mapping[str, str] annotations: Additional annotations to set on the generated monitor. Overrides the default `description`, `dashboard`, `resource`, `consumption_budget_slug`, `threshold_type`, and `partition` annotations when keys collide.
+        :param int instant_rate_sustain_secs: How long instant-rate consumption must remain above the threshold before an alert fires, in seconds. Defaults to 0 (alert immediately on any breach).
+        :param Mapping[str, str] labels: Additional labels to set on the generated monitor, usable for notification routing. The `resource`, `partition`, and `threshold_type` labels are reserved and cannot be overridden.
+        """
         if annotations is not None:
             pulumi.set(__self__, "annotations", annotations)
         if instant_rate_sustain_secs is not None:
@@ -490,16 +529,25 @@ class ConsumptionBudgetAlertActionConfig(dict):
     @property
     @pulumi.getter
     def annotations(self) -> Optional[Mapping[str, str]]:
+        """
+        Additional annotations to set on the generated monitor. Overrides the default `description`, `dashboard`, `resource`, `consumption_budget_slug`, `threshold_type`, and `partition` annotations when keys collide.
+        """
         return pulumi.get(self, "annotations")
 
     @property
     @pulumi.getter(name="instantRateSustainSecs")
     def instant_rate_sustain_secs(self) -> Optional[int]:
+        """
+        How long instant-rate consumption must remain above the threshold before an alert fires, in seconds. Defaults to 0 (alert immediately on any breach).
+        """
         return pulumi.get(self, "instant_rate_sustain_secs")
 
     @property
     @pulumi.getter
     def labels(self) -> Optional[Mapping[str, str]]:
+        """
+        Additional labels to set on the generated monitor, usable for notification routing. The `resource`, `partition`, and `threshold_type` labels are reserved and cannot be overridden.
+        """
         return pulumi.get(self, "labels")
 
 
@@ -508,6 +556,10 @@ class ConsumptionBudgetPriority(dict):
     def __init__(__self__, *,
                  filters: Optional[Sequence['outputs.ConsumptionBudgetPriorityFilter']] = None,
                  priority: Optional[int] = None):
+        """
+        :param Sequence['ConsumptionBudgetPriorityFilterArgs'] filters: Filters identifying which data matches this priority. Filters are AND-ed together: a request must match every filter to be assigned this priority.
+        :param int priority: Priority order used when dropping data. Priority `10` is dropped first; priority `1` is dropped last.
+        """
         if filters is not None:
             pulumi.set(__self__, "filters", filters)
         if priority is not None:
@@ -516,11 +568,17 @@ class ConsumptionBudgetPriority(dict):
     @property
     @pulumi.getter
     def filters(self) -> Optional[Sequence['outputs.ConsumptionBudgetPriorityFilter']]:
+        """
+        Filters identifying which data matches this priority. Filters are AND-ed together: a request must match every filter to be assigned this priority.
+        """
         return pulumi.get(self, "filters")
 
     @property
     @pulumi.getter
     def priority(self) -> Optional[int]:
+        """
+        Priority order used when dropping data. Priority `10` is dropped first; priority `1` is dropped last.
+        """
         return pulumi.get(self, "priority")
 
 
@@ -548,6 +606,10 @@ class ConsumptionBudgetPriorityFilter(dict):
     def __init__(__self__, *,
                  dataset_id: Optional[str] = None,
                  log_filter: Optional['outputs.ConsumptionBudgetPriorityFilterLogFilter'] = None):
+        """
+        :param str dataset_id: Deprecated: use `log_filter` instead. Slug of the dataset to match against.
+        :param 'ConsumptionBudgetPriorityFilterLogFilterArgs' log_filter: Log search filter that matches log data for this priority.
+        """
         if dataset_id is not None:
             pulumi.set(__self__, "dataset_id", dataset_id)
         if log_filter is not None:
@@ -556,11 +618,17 @@ class ConsumptionBudgetPriorityFilter(dict):
     @property
     @pulumi.getter(name="datasetId")
     def dataset_id(self) -> Optional[str]:
+        """
+        Deprecated: use `log_filter` instead. Slug of the dataset to match against.
+        """
         return pulumi.get(self, "dataset_id")
 
     @property
     @pulumi.getter(name="logFilter")
     def log_filter(self) -> Optional['outputs.ConsumptionBudgetPriorityFilterLogFilter']:
+        """
+        Log search filter that matches log data for this priority.
+        """
         return pulumi.get(self, "log_filter")
 
 
@@ -568,11 +636,17 @@ class ConsumptionBudgetPriorityFilter(dict):
 class ConsumptionBudgetPriorityFilterLogFilter(dict):
     def __init__(__self__, *,
                  query: str):
+        """
+        :param str query: Log search query that selects matching logs. Supports only top-level operations; nested clauses are not allowed and only one type of `AND` or `OR` operator can be used.
+        """
         pulumi.set(__self__, "query", query)
 
     @property
     @pulumi.getter
     def query(self) -> str:
+        """
+        Log search query that selects matching logs. Supports only top-level operations; nested clauses are not allowed and only one type of `AND` or `OR` operator can be used.
+        """
         return pulumi.get(self, "query")
 
 
@@ -583,6 +657,8 @@ class ConsumptionBudgetThreshold(dict):
         suggest = None
         if key == "instantRate":
             suggest = "instant_rate"
+        elif key == "resourceGroup":
+            suggest = "resource_group"
         elif key == "skuGroup":
             suggest = "sku_group"
 
@@ -600,14 +676,26 @@ class ConsumptionBudgetThreshold(dict):
     def __init__(__self__, *,
                  action: Optional[str] = None,
                  instant_rate: Optional['outputs.ConsumptionBudgetThresholdInstantRate'] = None,
+                 resource_group: Optional[str] = None,
                  sku_group: Optional[str] = None,
                  type: Optional[str] = None,
                  unit: Optional[str] = None,
                  volume: Optional['outputs.ConsumptionBudgetThresholdVolume'] = None):
+        """
+        :param str action: Action to take when this threshold is exceeded (e.g. drop traffic, fire warning/critical alert).
+        :param 'ConsumptionBudgetThresholdInstantRateArgs' instant_rate: Configures an instant-rate threshold value. Set when `type` is an instant-rate type.
+        :param str resource_group: Resource group the threshold applies to (e.g. metrics, logs, traces). Replaces the deprecated top-level `resource` field.
+        :param str sku_group: SKU group the threshold applies to (e.g. metrics, logs, traces). Replaces the deprecated top-level `resource` field.
+        :param str type: Measurement window over which the threshold is evaluated (e.g. instant rate vs. rolling volume).
+        :param str unit: Unit in which the threshold value is denominated (e.g. bytes, datapoints).
+        :param 'ConsumptionBudgetThresholdVolumeArgs' volume: Configures a volume threshold value. Set when `type` is a volume type.
+        """
         if action is not None:
             pulumi.set(__self__, "action", action)
         if instant_rate is not None:
             pulumi.set(__self__, "instant_rate", instant_rate)
+        if resource_group is not None:
+            pulumi.set(__self__, "resource_group", resource_group)
         if sku_group is not None:
             pulumi.set(__self__, "sku_group", sku_group)
         if type is not None:
@@ -620,31 +708,60 @@ class ConsumptionBudgetThreshold(dict):
     @property
     @pulumi.getter
     def action(self) -> Optional[str]:
+        """
+        Action to take when this threshold is exceeded (e.g. drop traffic, fire warning/critical alert).
+        """
         return pulumi.get(self, "action")
 
     @property
     @pulumi.getter(name="instantRate")
     def instant_rate(self) -> Optional['outputs.ConsumptionBudgetThresholdInstantRate']:
+        """
+        Configures an instant-rate threshold value. Set when `type` is an instant-rate type.
+        """
         return pulumi.get(self, "instant_rate")
+
+    @property
+    @pulumi.getter(name="resourceGroup")
+    def resource_group(self) -> Optional[str]:
+        """
+        Resource group the threshold applies to (e.g. metrics, logs, traces). Replaces the deprecated top-level `resource` field.
+        """
+        return pulumi.get(self, "resource_group")
 
     @property
     @pulumi.getter(name="skuGroup")
     def sku_group(self) -> Optional[str]:
+        """
+        SKU group the threshold applies to (e.g. metrics, logs, traces). Replaces the deprecated top-level `resource` field.
+        """
+        warnings.warn("""use resource_group instead""", DeprecationWarning)
+        pulumi.log.warn("""sku_group is deprecated: use resource_group instead""")
+
         return pulumi.get(self, "sku_group")
 
     @property
     @pulumi.getter
     def type(self) -> Optional[str]:
+        """
+        Measurement window over which the threshold is evaluated (e.g. instant rate vs. rolling volume).
+        """
         return pulumi.get(self, "type")
 
     @property
     @pulumi.getter
     def unit(self) -> Optional[str]:
+        """
+        Unit in which the threshold value is denominated (e.g. bytes, datapoints).
+        """
         return pulumi.get(self, "unit")
 
     @property
     @pulumi.getter
     def volume(self) -> Optional['outputs.ConsumptionBudgetThresholdVolume']:
+        """
+        Configures a volume threshold value. Set when `type` is a volume type.
+        """
         return pulumi.get(self, "volume")
 
 
@@ -669,12 +786,18 @@ class ConsumptionBudgetThresholdInstantRate(dict):
 
     def __init__(__self__, *,
                  fixed_value_per_sec: Optional[int] = None):
+        """
+        :param int fixed_value_per_sec: Fixed per-second rate threshold value, expressed in the threshold's `unit`.
+        """
         if fixed_value_per_sec is not None:
             pulumi.set(__self__, "fixed_value_per_sec", fixed_value_per_sec)
 
     @property
     @pulumi.getter(name="fixedValuePerSec")
     def fixed_value_per_sec(self) -> Optional[int]:
+        """
+        Fixed per-second rate threshold value, expressed in the threshold's `unit`.
+        """
         return pulumi.get(self, "fixed_value_per_sec")
 
 
@@ -699,12 +822,18 @@ class ConsumptionBudgetThresholdVolume(dict):
 
     def __init__(__self__, *,
                  fixed_value: Optional[int] = None):
+        """
+        :param int fixed_value: Fixed volume threshold value, expressed in the threshold's `unit`.
+        """
         if fixed_value is not None:
             pulumi.set(__self__, "fixed_value", fixed_value)
 
     @property
     @pulumi.getter(name="fixedValue")
     def fixed_value(self) -> Optional[int]:
+        """
+        Fixed volume threshold value, expressed in the threshold's `unit`.
+        """
         return pulumi.get(self, "fixed_value")
 
 
@@ -715,6 +844,12 @@ class ConsumptionConfigPartition(dict):
                  name: Optional[str] = None,
                  partitions: Optional[Sequence['outputs.ConsumptionConfigPartitionPartition']] = None,
                  slug: Optional[str] = None):
+        """
+        :param Sequence['ConsumptionConfigPartitionFilterArgs'] filters: Filters identifying which data belongs to this partition. Filters are AND-ed together: a request must match every filter to be assigned to the partition. At most one `IN` filter and one `NOT_IN` filter can be specified.
+        :param str name: Display name of the partition. Must be unique within its parent partition. Can be changed after creation.
+        :param Sequence['ConsumptionConfigPartitionPartitionArgs'] partitions: Child partitions of this partition. Evaluated in order; requests not matching any child fall into an implicit `default` child partition.
+        :param str slug: Stable identifier of the partition. Must be unique within its parent partition. Immutable after creation.
+        """
         if filters is not None:
             pulumi.set(__self__, "filters", filters)
         if name is not None:
@@ -727,21 +862,33 @@ class ConsumptionConfigPartition(dict):
     @property
     @pulumi.getter
     def filters(self) -> Optional[Sequence['outputs.ConsumptionConfigPartitionFilter']]:
+        """
+        Filters identifying which data belongs to this partition. Filters are AND-ed together: a request must match every filter to be assigned to the partition. At most one `IN` filter and one `NOT_IN` filter can be specified.
+        """
         return pulumi.get(self, "filters")
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
+        """
+        Display name of the partition. Must be unique within its parent partition. Can be changed after creation.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def partitions(self) -> Optional[Sequence['outputs.ConsumptionConfigPartitionPartition']]:
+        """
+        Child partitions of this partition. Evaluated in order; requests not matching any child fall into an implicit `default` child partition.
+        """
         return pulumi.get(self, "partitions")
 
     @property
     @pulumi.getter
     def slug(self) -> Optional[str]:
+        """
+        Stable identifier of the partition. Must be unique within its parent partition. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
 
@@ -750,6 +897,10 @@ class ConsumptionConfigPartitionFilter(dict):
     def __init__(__self__, *,
                  conditions: Optional[Sequence['outputs.ConsumptionConfigPartitionFilterCondition']] = None,
                  operator: Optional[str] = None):
+        """
+        :param Sequence['ConsumptionConfigPartitionFilterConditionArgs'] conditions: Conditions evaluated by the filter. Each condition matches by dataset, logs, metrics, or trace data; exactly one of `log_filter`, `metric_filter`, or `dataset_id` must be set per condition.
+        :param str operator: Match operator (e.g. `IN`, `NOT_IN`) applied to the filter conditions.
+        """
         if conditions is not None:
             pulumi.set(__self__, "conditions", conditions)
         if operator is not None:
@@ -758,11 +909,17 @@ class ConsumptionConfigPartitionFilter(dict):
     @property
     @pulumi.getter
     def conditions(self) -> Optional[Sequence['outputs.ConsumptionConfigPartitionFilterCondition']]:
+        """
+        Conditions evaluated by the filter. Each condition matches by dataset, logs, metrics, or trace data; exactly one of `log_filter`, `metric_filter`, or `dataset_id` must be set per condition.
+        """
         return pulumi.get(self, "conditions")
 
     @property
     @pulumi.getter
     def operator(self) -> Optional[str]:
+        """
+        Match operator (e.g. `IN`, `NOT_IN`) applied to the filter conditions.
+        """
         return pulumi.get(self, "operator")
 
 
@@ -793,6 +950,11 @@ class ConsumptionConfigPartitionFilterCondition(dict):
                  dataset_id: Optional[str] = None,
                  log_filter: Optional['outputs.ConsumptionConfigPartitionFilterConditionLogFilter'] = None,
                  metric_filters: Optional[Sequence['outputs.ConsumptionConfigPartitionFilterConditionMetricFilter']] = None):
+        """
+        :param str dataset_id: Deprecated: use `log_filter`, `metric_filter`, or trace filters instead. Slug of the dataset to match.
+        :param 'ConsumptionConfigPartitionFilterConditionLogFilterArgs' log_filter: Log search filter matching log data for this condition.
+        :param Sequence['ConsumptionConfigPartitionFilterConditionMetricFilterArgs'] metric_filters: Metric label filters matched against incoming metric data. Multiple filters are AND-ed together; values support glob patterns including `service:{svc1,svc2}` style alternations.
+        """
         if dataset_id is not None:
             pulumi.set(__self__, "dataset_id", dataset_id)
         if log_filter is not None:
@@ -803,16 +965,25 @@ class ConsumptionConfigPartitionFilterCondition(dict):
     @property
     @pulumi.getter(name="datasetId")
     def dataset_id(self) -> Optional[str]:
+        """
+        Deprecated: use `log_filter`, `metric_filter`, or trace filters instead. Slug of the dataset to match.
+        """
         return pulumi.get(self, "dataset_id")
 
     @property
     @pulumi.getter(name="logFilter")
     def log_filter(self) -> Optional['outputs.ConsumptionConfigPartitionFilterConditionLogFilter']:
+        """
+        Log search filter matching log data for this condition.
+        """
         return pulumi.get(self, "log_filter")
 
     @property
     @pulumi.getter(name="metricFilters")
     def metric_filters(self) -> Optional[Sequence['outputs.ConsumptionConfigPartitionFilterConditionMetricFilter']]:
+        """
+        Metric label filters matched against incoming metric data. Multiple filters are AND-ed together; values support glob patterns including `service:{svc1,svc2}` style alternations.
+        """
         return pulumi.get(self, "metric_filters")
 
 
@@ -820,11 +991,17 @@ class ConsumptionConfigPartitionFilterCondition(dict):
 class ConsumptionConfigPartitionFilterConditionLogFilter(dict):
     def __init__(__self__, *,
                  query: str):
+        """
+        :param str query: Log search query that selects matching logs. Supports only top-level operations; nested clauses are not allowed and only one type of `AND` or `OR` operator can be used.
+        """
         pulumi.set(__self__, "query", query)
 
     @property
     @pulumi.getter
     def query(self) -> str:
+        """
+        Log search query that selects matching logs. Supports only top-level operations; nested clauses are not allowed and only one type of `AND` or `OR` operator can be used.
+        """
         return pulumi.get(self, "query")
 
 
@@ -850,17 +1027,27 @@ class ConsumptionConfigPartitionFilterConditionMetricFilter(dict):
     def __init__(__self__, *,
                  name: str,
                  value_glob: str):
+        """
+        :param str name: Label name to match.
+        :param str value_glob: Glob pattern matched against the label's value.
+        """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "value_glob", value_glob)
 
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        Label name to match.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="valueGlob")
     def value_glob(self) -> str:
+        """
+        Glob pattern matched against the label's value.
+        """
         return pulumi.get(self, "value_glob")
 
 
@@ -871,6 +1058,12 @@ class ConsumptionConfigPartitionPartition(dict):
                  name: Optional[str] = None,
                  partitions: Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartition']] = None,
                  slug: Optional[str] = None):
+        """
+        :param Sequence['ConsumptionConfigPartitionPartitionFilterArgs'] filters: Filters identifying which data belongs to this partition. Filters are AND-ed together: a request must match every filter to be assigned to the partition. At most one `IN` filter and one `NOT_IN` filter can be specified.
+        :param str name: Display name of the partition. Must be unique within its parent partition. Can be changed after creation.
+        :param Sequence['ConsumptionConfigPartitionPartitionPartitionArgs'] partitions: Child partitions of this partition. Evaluated in order; requests not matching any child fall into an implicit `default` child partition.
+        :param str slug: Stable identifier of the partition. Must be unique within its parent partition. Immutable after creation.
+        """
         if filters is not None:
             pulumi.set(__self__, "filters", filters)
         if name is not None:
@@ -883,21 +1076,33 @@ class ConsumptionConfigPartitionPartition(dict):
     @property
     @pulumi.getter
     def filters(self) -> Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionFilter']]:
+        """
+        Filters identifying which data belongs to this partition. Filters are AND-ed together: a request must match every filter to be assigned to the partition. At most one `IN` filter and one `NOT_IN` filter can be specified.
+        """
         return pulumi.get(self, "filters")
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
+        """
+        Display name of the partition. Must be unique within its parent partition. Can be changed after creation.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def partitions(self) -> Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartition']]:
+        """
+        Child partitions of this partition. Evaluated in order; requests not matching any child fall into an implicit `default` child partition.
+        """
         return pulumi.get(self, "partitions")
 
     @property
     @pulumi.getter
     def slug(self) -> Optional[str]:
+        """
+        Stable identifier of the partition. Must be unique within its parent partition. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
 
@@ -906,6 +1111,10 @@ class ConsumptionConfigPartitionPartitionFilter(dict):
     def __init__(__self__, *,
                  conditions: Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionFilterCondition']] = None,
                  operator: Optional[str] = None):
+        """
+        :param Sequence['ConsumptionConfigPartitionPartitionFilterConditionArgs'] conditions: Conditions evaluated by the filter. Each condition matches by dataset, logs, metrics, or trace data; exactly one of `log_filter`, `metric_filter`, or `dataset_id` must be set per condition.
+        :param str operator: Match operator (e.g. `IN`, `NOT_IN`) applied to the filter conditions.
+        """
         if conditions is not None:
             pulumi.set(__self__, "conditions", conditions)
         if operator is not None:
@@ -914,11 +1123,17 @@ class ConsumptionConfigPartitionPartitionFilter(dict):
     @property
     @pulumi.getter
     def conditions(self) -> Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionFilterCondition']]:
+        """
+        Conditions evaluated by the filter. Each condition matches by dataset, logs, metrics, or trace data; exactly one of `log_filter`, `metric_filter`, or `dataset_id` must be set per condition.
+        """
         return pulumi.get(self, "conditions")
 
     @property
     @pulumi.getter
     def operator(self) -> Optional[str]:
+        """
+        Match operator (e.g. `IN`, `NOT_IN`) applied to the filter conditions.
+        """
         return pulumi.get(self, "operator")
 
 
@@ -949,6 +1164,11 @@ class ConsumptionConfigPartitionPartitionFilterCondition(dict):
                  dataset_id: Optional[str] = None,
                  log_filter: Optional['outputs.ConsumptionConfigPartitionPartitionFilterConditionLogFilter'] = None,
                  metric_filters: Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionFilterConditionMetricFilter']] = None):
+        """
+        :param str dataset_id: Deprecated: use `log_filter`, `metric_filter`, or trace filters instead. Slug of the dataset to match.
+        :param 'ConsumptionConfigPartitionPartitionFilterConditionLogFilterArgs' log_filter: Log search filter matching log data for this condition.
+        :param Sequence['ConsumptionConfigPartitionPartitionFilterConditionMetricFilterArgs'] metric_filters: Metric label filters matched against incoming metric data. Multiple filters are AND-ed together; values support glob patterns including `service:{svc1,svc2}` style alternations.
+        """
         if dataset_id is not None:
             pulumi.set(__self__, "dataset_id", dataset_id)
         if log_filter is not None:
@@ -959,16 +1179,25 @@ class ConsumptionConfigPartitionPartitionFilterCondition(dict):
     @property
     @pulumi.getter(name="datasetId")
     def dataset_id(self) -> Optional[str]:
+        """
+        Deprecated: use `log_filter`, `metric_filter`, or trace filters instead. Slug of the dataset to match.
+        """
         return pulumi.get(self, "dataset_id")
 
     @property
     @pulumi.getter(name="logFilter")
     def log_filter(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionFilterConditionLogFilter']:
+        """
+        Log search filter matching log data for this condition.
+        """
         return pulumi.get(self, "log_filter")
 
     @property
     @pulumi.getter(name="metricFilters")
     def metric_filters(self) -> Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionFilterConditionMetricFilter']]:
+        """
+        Metric label filters matched against incoming metric data. Multiple filters are AND-ed together; values support glob patterns including `service:{svc1,svc2}` style alternations.
+        """
         return pulumi.get(self, "metric_filters")
 
 
@@ -976,11 +1205,17 @@ class ConsumptionConfigPartitionPartitionFilterCondition(dict):
 class ConsumptionConfigPartitionPartitionFilterConditionLogFilter(dict):
     def __init__(__self__, *,
                  query: str):
+        """
+        :param str query: Log search query that selects matching logs. Supports only top-level operations; nested clauses are not allowed and only one type of `AND` or `OR` operator can be used.
+        """
         pulumi.set(__self__, "query", query)
 
     @property
     @pulumi.getter
     def query(self) -> str:
+        """
+        Log search query that selects matching logs. Supports only top-level operations; nested clauses are not allowed and only one type of `AND` or `OR` operator can be used.
+        """
         return pulumi.get(self, "query")
 
 
@@ -1006,17 +1241,27 @@ class ConsumptionConfigPartitionPartitionFilterConditionMetricFilter(dict):
     def __init__(__self__, *,
                  name: str,
                  value_glob: str):
+        """
+        :param str name: Label name to match.
+        :param str value_glob: Glob pattern matched against the label's value.
+        """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "value_glob", value_glob)
 
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        Label name to match.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="valueGlob")
     def value_glob(self) -> str:
+        """
+        Glob pattern matched against the label's value.
+        """
         return pulumi.get(self, "value_glob")
 
 
@@ -1027,6 +1272,12 @@ class ConsumptionConfigPartitionPartitionPartition(dict):
                  name: Optional[str] = None,
                  partitions: Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionPartition']] = None,
                  slug: Optional[str] = None):
+        """
+        :param Sequence['ConsumptionConfigPartitionPartitionPartitionFilterArgs'] filters: Filters identifying which data belongs to this partition. Filters are AND-ed together: a request must match every filter to be assigned to the partition. At most one `IN` filter and one `NOT_IN` filter can be specified.
+        :param str name: Display name of the partition. Must be unique within its parent partition. Can be changed after creation.
+        :param Sequence['ConsumptionConfigPartitionPartitionPartitionPartitionArgs'] partitions: Child partitions of this partition. Evaluated in order; requests not matching any child fall into an implicit `default` child partition.
+        :param str slug: Stable identifier of the partition. Must be unique within its parent partition. Immutable after creation.
+        """
         if filters is not None:
             pulumi.set(__self__, "filters", filters)
         if name is not None:
@@ -1039,21 +1290,33 @@ class ConsumptionConfigPartitionPartitionPartition(dict):
     @property
     @pulumi.getter
     def filters(self) -> Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionFilter']]:
+        """
+        Filters identifying which data belongs to this partition. Filters are AND-ed together: a request must match every filter to be assigned to the partition. At most one `IN` filter and one `NOT_IN` filter can be specified.
+        """
         return pulumi.get(self, "filters")
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
+        """
+        Display name of the partition. Must be unique within its parent partition. Can be changed after creation.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def partitions(self) -> Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionPartition']]:
+        """
+        Child partitions of this partition. Evaluated in order; requests not matching any child fall into an implicit `default` child partition.
+        """
         return pulumi.get(self, "partitions")
 
     @property
     @pulumi.getter
     def slug(self) -> Optional[str]:
+        """
+        Stable identifier of the partition. Must be unique within its parent partition. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
 
@@ -1062,6 +1325,10 @@ class ConsumptionConfigPartitionPartitionPartitionFilter(dict):
     def __init__(__self__, *,
                  conditions: Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionFilterCondition']] = None,
                  operator: Optional[str] = None):
+        """
+        :param Sequence['ConsumptionConfigPartitionPartitionPartitionFilterConditionArgs'] conditions: Conditions evaluated by the filter. Each condition matches by dataset, logs, metrics, or trace data; exactly one of `log_filter`, `metric_filter`, or `dataset_id` must be set per condition.
+        :param str operator: Match operator (e.g. `IN`, `NOT_IN`) applied to the filter conditions.
+        """
         if conditions is not None:
             pulumi.set(__self__, "conditions", conditions)
         if operator is not None:
@@ -1070,11 +1337,17 @@ class ConsumptionConfigPartitionPartitionPartitionFilter(dict):
     @property
     @pulumi.getter
     def conditions(self) -> Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionFilterCondition']]:
+        """
+        Conditions evaluated by the filter. Each condition matches by dataset, logs, metrics, or trace data; exactly one of `log_filter`, `metric_filter`, or `dataset_id` must be set per condition.
+        """
         return pulumi.get(self, "conditions")
 
     @property
     @pulumi.getter
     def operator(self) -> Optional[str]:
+        """
+        Match operator (e.g. `IN`, `NOT_IN`) applied to the filter conditions.
+        """
         return pulumi.get(self, "operator")
 
 
@@ -1105,6 +1378,11 @@ class ConsumptionConfigPartitionPartitionPartitionFilterCondition(dict):
                  dataset_id: Optional[str] = None,
                  log_filter: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilter'] = None,
                  metric_filters: Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionMetricFilter']] = None):
+        """
+        :param str dataset_id: Deprecated: use `log_filter`, `metric_filter`, or trace filters instead. Slug of the dataset to match.
+        :param 'ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilterArgs' log_filter: Log search filter matching log data for this condition.
+        :param Sequence['ConsumptionConfigPartitionPartitionPartitionFilterConditionMetricFilterArgs'] metric_filters: Metric label filters matched against incoming metric data. Multiple filters are AND-ed together; values support glob patterns including `service:{svc1,svc2}` style alternations.
+        """
         if dataset_id is not None:
             pulumi.set(__self__, "dataset_id", dataset_id)
         if log_filter is not None:
@@ -1115,16 +1393,25 @@ class ConsumptionConfigPartitionPartitionPartitionFilterCondition(dict):
     @property
     @pulumi.getter(name="datasetId")
     def dataset_id(self) -> Optional[str]:
+        """
+        Deprecated: use `log_filter`, `metric_filter`, or trace filters instead. Slug of the dataset to match.
+        """
         return pulumi.get(self, "dataset_id")
 
     @property
     @pulumi.getter(name="logFilter")
     def log_filter(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilter']:
+        """
+        Log search filter matching log data for this condition.
+        """
         return pulumi.get(self, "log_filter")
 
     @property
     @pulumi.getter(name="metricFilters")
     def metric_filters(self) -> Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionMetricFilter']]:
+        """
+        Metric label filters matched against incoming metric data. Multiple filters are AND-ed together; values support glob patterns including `service:{svc1,svc2}` style alternations.
+        """
         return pulumi.get(self, "metric_filters")
 
 
@@ -1132,11 +1419,17 @@ class ConsumptionConfigPartitionPartitionPartitionFilterCondition(dict):
 class ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilter(dict):
     def __init__(__self__, *,
                  query: str):
+        """
+        :param str query: Log search query that selects matching logs. Supports only top-level operations; nested clauses are not allowed and only one type of `AND` or `OR` operator can be used.
+        """
         pulumi.set(__self__, "query", query)
 
     @property
     @pulumi.getter
     def query(self) -> str:
+        """
+        Log search query that selects matching logs. Supports only top-level operations; nested clauses are not allowed and only one type of `AND` or `OR` operator can be used.
+        """
         return pulumi.get(self, "query")
 
 
@@ -1162,17 +1455,27 @@ class ConsumptionConfigPartitionPartitionPartitionFilterConditionMetricFilter(di
     def __init__(__self__, *,
                  name: str,
                  value_glob: str):
+        """
+        :param str name: Label name to match.
+        :param str value_glob: Glob pattern matched against the label's value.
+        """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "value_glob", value_glob)
 
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        Label name to match.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="valueGlob")
     def value_glob(self) -> str:
+        """
+        Glob pattern matched against the label's value.
+        """
         return pulumi.get(self, "value_glob")
 
 
@@ -1183,6 +1486,12 @@ class ConsumptionConfigPartitionPartitionPartitionPartition(dict):
                  name: Optional[str] = None,
                  partitions: Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartition']] = None,
                  slug: Optional[str] = None):
+        """
+        :param Sequence['ConsumptionConfigPartitionPartitionPartitionPartitionFilterArgs'] filters: Filters identifying which data belongs to this partition. Filters are AND-ed together: a request must match every filter to be assigned to the partition. At most one `IN` filter and one `NOT_IN` filter can be specified.
+        :param str name: Display name of the partition. Must be unique within its parent partition. Can be changed after creation.
+        :param Sequence['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionArgs'] partitions: Child partitions of this partition. Evaluated in order; requests not matching any child fall into an implicit `default` child partition.
+        :param str slug: Stable identifier of the partition. Must be unique within its parent partition. Immutable after creation.
+        """
         if filters is not None:
             pulumi.set(__self__, "filters", filters)
         if name is not None:
@@ -1195,21 +1504,33 @@ class ConsumptionConfigPartitionPartitionPartitionPartition(dict):
     @property
     @pulumi.getter
     def filters(self) -> Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilter']]:
+        """
+        Filters identifying which data belongs to this partition. Filters are AND-ed together: a request must match every filter to be assigned to the partition. At most one `IN` filter and one `NOT_IN` filter can be specified.
+        """
         return pulumi.get(self, "filters")
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
+        """
+        Display name of the partition. Must be unique within its parent partition. Can be changed after creation.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def partitions(self) -> Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartition']]:
+        """
+        Child partitions of this partition. Evaluated in order; requests not matching any child fall into an implicit `default` child partition.
+        """
         return pulumi.get(self, "partitions")
 
     @property
     @pulumi.getter
     def slug(self) -> Optional[str]:
+        """
+        Stable identifier of the partition. Must be unique within its parent partition. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
 
@@ -1218,6 +1539,10 @@ class ConsumptionConfigPartitionPartitionPartitionPartitionFilter(dict):
     def __init__(__self__, *,
                  conditions: Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterCondition']] = None,
                  operator: Optional[str] = None):
+        """
+        :param Sequence['ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionArgs'] conditions: Conditions evaluated by the filter. Each condition matches by dataset, logs, metrics, or trace data; exactly one of `log_filter`, `metric_filter`, or `dataset_id` must be set per condition.
+        :param str operator: Match operator (e.g. `IN`, `NOT_IN`) applied to the filter conditions.
+        """
         if conditions is not None:
             pulumi.set(__self__, "conditions", conditions)
         if operator is not None:
@@ -1226,11 +1551,17 @@ class ConsumptionConfigPartitionPartitionPartitionPartitionFilter(dict):
     @property
     @pulumi.getter
     def conditions(self) -> Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterCondition']]:
+        """
+        Conditions evaluated by the filter. Each condition matches by dataset, logs, metrics, or trace data; exactly one of `log_filter`, `metric_filter`, or `dataset_id` must be set per condition.
+        """
         return pulumi.get(self, "conditions")
 
     @property
     @pulumi.getter
     def operator(self) -> Optional[str]:
+        """
+        Match operator (e.g. `IN`, `NOT_IN`) applied to the filter conditions.
+        """
         return pulumi.get(self, "operator")
 
 
@@ -1261,6 +1592,11 @@ class ConsumptionConfigPartitionPartitionPartitionPartitionFilterCondition(dict)
                  dataset_id: Optional[str] = None,
                  log_filter: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilter'] = None,
                  metric_filters: Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionMetricFilter']] = None):
+        """
+        :param str dataset_id: Deprecated: use `log_filter`, `metric_filter`, or trace filters instead. Slug of the dataset to match.
+        :param 'ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilterArgs' log_filter: Log search filter matching log data for this condition.
+        :param Sequence['ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionMetricFilterArgs'] metric_filters: Metric label filters matched against incoming metric data. Multiple filters are AND-ed together; values support glob patterns including `service:{svc1,svc2}` style alternations.
+        """
         if dataset_id is not None:
             pulumi.set(__self__, "dataset_id", dataset_id)
         if log_filter is not None:
@@ -1271,16 +1607,25 @@ class ConsumptionConfigPartitionPartitionPartitionPartitionFilterCondition(dict)
     @property
     @pulumi.getter(name="datasetId")
     def dataset_id(self) -> Optional[str]:
+        """
+        Deprecated: use `log_filter`, `metric_filter`, or trace filters instead. Slug of the dataset to match.
+        """
         return pulumi.get(self, "dataset_id")
 
     @property
     @pulumi.getter(name="logFilter")
     def log_filter(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilter']:
+        """
+        Log search filter matching log data for this condition.
+        """
         return pulumi.get(self, "log_filter")
 
     @property
     @pulumi.getter(name="metricFilters")
     def metric_filters(self) -> Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionMetricFilter']]:
+        """
+        Metric label filters matched against incoming metric data. Multiple filters are AND-ed together; values support glob patterns including `service:{svc1,svc2}` style alternations.
+        """
         return pulumi.get(self, "metric_filters")
 
 
@@ -1288,11 +1633,17 @@ class ConsumptionConfigPartitionPartitionPartitionPartitionFilterCondition(dict)
 class ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilter(dict):
     def __init__(__self__, *,
                  query: str):
+        """
+        :param str query: Log search query that selects matching logs. Supports only top-level operations; nested clauses are not allowed and only one type of `AND` or `OR` operator can be used.
+        """
         pulumi.set(__self__, "query", query)
 
     @property
     @pulumi.getter
     def query(self) -> str:
+        """
+        Log search query that selects matching logs. Supports only top-level operations; nested clauses are not allowed and only one type of `AND` or `OR` operator can be used.
+        """
         return pulumi.get(self, "query")
 
 
@@ -1318,17 +1669,27 @@ class ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionMetric
     def __init__(__self__, *,
                  name: str,
                  value_glob: str):
+        """
+        :param str name: Label name to match.
+        :param str value_glob: Glob pattern matched against the label's value.
+        """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "value_glob", value_glob)
 
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        Label name to match.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="valueGlob")
     def value_glob(self) -> str:
+        """
+        Glob pattern matched against the label's value.
+        """
         return pulumi.get(self, "value_glob")
 
 
@@ -1339,6 +1700,12 @@ class ConsumptionConfigPartitionPartitionPartitionPartitionPartition(dict):
                  name: Optional[str] = None,
                  partitions: Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartition']] = None,
                  slug: Optional[str] = None):
+        """
+        :param Sequence['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterArgs'] filters: Filters identifying which data belongs to this partition. Filters are AND-ed together: a request must match every filter to be assigned to the partition. At most one `IN` filter and one `NOT_IN` filter can be specified.
+        :param str name: Display name of the partition. Must be unique within its parent partition. Can be changed after creation.
+        :param Sequence['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionArgs'] partitions: Child partitions of this partition. Evaluated in order; requests not matching any child fall into an implicit `default` child partition.
+        :param str slug: Stable identifier of the partition. Must be unique within its parent partition. Immutable after creation.
+        """
         if filters is not None:
             pulumi.set(__self__, "filters", filters)
         if name is not None:
@@ -1351,21 +1718,33 @@ class ConsumptionConfigPartitionPartitionPartitionPartitionPartition(dict):
     @property
     @pulumi.getter
     def filters(self) -> Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilter']]:
+        """
+        Filters identifying which data belongs to this partition. Filters are AND-ed together: a request must match every filter to be assigned to the partition. At most one `IN` filter and one `NOT_IN` filter can be specified.
+        """
         return pulumi.get(self, "filters")
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
+        """
+        Display name of the partition. Must be unique within its parent partition. Can be changed after creation.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def partitions(self) -> Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartition']]:
+        """
+        Child partitions of this partition. Evaluated in order; requests not matching any child fall into an implicit `default` child partition.
+        """
         return pulumi.get(self, "partitions")
 
     @property
     @pulumi.getter
     def slug(self) -> Optional[str]:
+        """
+        Stable identifier of the partition. Must be unique within its parent partition. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
 
@@ -1374,6 +1753,10 @@ class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilter(dict)
     def __init__(__self__, *,
                  conditions: Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterCondition']] = None,
                  operator: Optional[str] = None):
+        """
+        :param Sequence['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionArgs'] conditions: Conditions evaluated by the filter. Each condition matches by dataset, logs, metrics, or trace data; exactly one of `log_filter`, `metric_filter`, or `dataset_id` must be set per condition.
+        :param str operator: Match operator (e.g. `IN`, `NOT_IN`) applied to the filter conditions.
+        """
         if conditions is not None:
             pulumi.set(__self__, "conditions", conditions)
         if operator is not None:
@@ -1382,11 +1765,17 @@ class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilter(dict)
     @property
     @pulumi.getter
     def conditions(self) -> Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterCondition']]:
+        """
+        Conditions evaluated by the filter. Each condition matches by dataset, logs, metrics, or trace data; exactly one of `log_filter`, `metric_filter`, or `dataset_id` must be set per condition.
+        """
         return pulumi.get(self, "conditions")
 
     @property
     @pulumi.getter
     def operator(self) -> Optional[str]:
+        """
+        Match operator (e.g. `IN`, `NOT_IN`) applied to the filter conditions.
+        """
         return pulumi.get(self, "operator")
 
 
@@ -1417,6 +1806,11 @@ class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterCondit
                  dataset_id: Optional[str] = None,
                  log_filter: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter'] = None,
                  metric_filters: Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionMetricFilter']] = None):
+        """
+        :param str dataset_id: Deprecated: use `log_filter`, `metric_filter`, or trace filters instead. Slug of the dataset to match.
+        :param 'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterArgs' log_filter: Log search filter matching log data for this condition.
+        :param Sequence['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionMetricFilterArgs'] metric_filters: Metric label filters matched against incoming metric data. Multiple filters are AND-ed together; values support glob patterns including `service:{svc1,svc2}` style alternations.
+        """
         if dataset_id is not None:
             pulumi.set(__self__, "dataset_id", dataset_id)
         if log_filter is not None:
@@ -1427,16 +1821,25 @@ class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterCondit
     @property
     @pulumi.getter(name="datasetId")
     def dataset_id(self) -> Optional[str]:
+        """
+        Deprecated: use `log_filter`, `metric_filter`, or trace filters instead. Slug of the dataset to match.
+        """
         return pulumi.get(self, "dataset_id")
 
     @property
     @pulumi.getter(name="logFilter")
     def log_filter(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter']:
+        """
+        Log search filter matching log data for this condition.
+        """
         return pulumi.get(self, "log_filter")
 
     @property
     @pulumi.getter(name="metricFilters")
     def metric_filters(self) -> Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionMetricFilter']]:
+        """
+        Metric label filters matched against incoming metric data. Multiple filters are AND-ed together; values support glob patterns including `service:{svc1,svc2}` style alternations.
+        """
         return pulumi.get(self, "metric_filters")
 
 
@@ -1444,11 +1847,17 @@ class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterCondit
 class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter(dict):
     def __init__(__self__, *,
                  query: str):
+        """
+        :param str query: Log search query that selects matching logs. Supports only top-level operations; nested clauses are not allowed and only one type of `AND` or `OR` operator can be used.
+        """
         pulumi.set(__self__, "query", query)
 
     @property
     @pulumi.getter
     def query(self) -> str:
+        """
+        Log search query that selects matching logs. Supports only top-level operations; nested clauses are not allowed and only one type of `AND` or `OR` operator can be used.
+        """
         return pulumi.get(self, "query")
 
 
@@ -1474,17 +1883,27 @@ class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterCondit
     def __init__(__self__, *,
                  name: str,
                  value_glob: str):
+        """
+        :param str name: Label name to match.
+        :param str value_glob: Glob pattern matched against the label's value.
+        """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "value_glob", value_glob)
 
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        Label name to match.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="valueGlob")
     def value_glob(self) -> str:
+        """
+        Glob pattern matched against the label's value.
+        """
         return pulumi.get(self, "value_glob")
 
 
@@ -1494,6 +1913,11 @@ class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartition(di
                  filters: Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilter']] = None,
                  name: Optional[str] = None,
                  slug: Optional[str] = None):
+        """
+        :param Sequence['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterArgs'] filters: Filters identifying which data belongs to this partition. Filters are AND-ed together: a request must match every filter to be assigned to the partition. At most one `IN` filter and one `NOT_IN` filter can be specified.
+        :param str name: Display name of the partition. Must be unique within its parent partition. Can be changed after creation.
+        :param str slug: Stable identifier of the partition. Must be unique within its parent partition. Immutable after creation.
+        """
         if filters is not None:
             pulumi.set(__self__, "filters", filters)
         if name is not None:
@@ -1504,16 +1928,25 @@ class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartition(di
     @property
     @pulumi.getter
     def filters(self) -> Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilter']]:
+        """
+        Filters identifying which data belongs to this partition. Filters are AND-ed together: a request must match every filter to be assigned to the partition. At most one `IN` filter and one `NOT_IN` filter can be specified.
+        """
         return pulumi.get(self, "filters")
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
+        """
+        Display name of the partition. Must be unique within its parent partition. Can be changed after creation.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def slug(self) -> Optional[str]:
+        """
+        Stable identifier of the partition. Must be unique within its parent partition. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
 
@@ -1522,6 +1955,10 @@ class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFil
     def __init__(__self__, *,
                  conditions: Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterCondition']] = None,
                  operator: Optional[str] = None):
+        """
+        :param Sequence['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionArgs'] conditions: Conditions evaluated by the filter. Each condition matches by dataset, logs, metrics, or trace data; exactly one of `log_filter`, `metric_filter`, or `dataset_id` must be set per condition.
+        :param str operator: Match operator (e.g. `IN`, `NOT_IN`) applied to the filter conditions.
+        """
         if conditions is not None:
             pulumi.set(__self__, "conditions", conditions)
         if operator is not None:
@@ -1530,11 +1967,17 @@ class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFil
     @property
     @pulumi.getter
     def conditions(self) -> Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterCondition']]:
+        """
+        Conditions evaluated by the filter. Each condition matches by dataset, logs, metrics, or trace data; exactly one of `log_filter`, `metric_filter`, or `dataset_id` must be set per condition.
+        """
         return pulumi.get(self, "conditions")
 
     @property
     @pulumi.getter
     def operator(self) -> Optional[str]:
+        """
+        Match operator (e.g. `IN`, `NOT_IN`) applied to the filter conditions.
+        """
         return pulumi.get(self, "operator")
 
 
@@ -1565,6 +2008,11 @@ class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFil
                  dataset_id: Optional[str] = None,
                  log_filter: Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter'] = None,
                  metric_filters: Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionMetricFilter']] = None):
+        """
+        :param str dataset_id: Deprecated: use `log_filter`, `metric_filter`, or trace filters instead. Slug of the dataset to match.
+        :param 'ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterArgs' log_filter: Log search filter matching log data for this condition.
+        :param Sequence['ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionMetricFilterArgs'] metric_filters: Metric label filters matched against incoming metric data. Multiple filters are AND-ed together; values support glob patterns including `service:{svc1,svc2}` style alternations.
+        """
         if dataset_id is not None:
             pulumi.set(__self__, "dataset_id", dataset_id)
         if log_filter is not None:
@@ -1575,16 +2023,25 @@ class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFil
     @property
     @pulumi.getter(name="datasetId")
     def dataset_id(self) -> Optional[str]:
+        """
+        Deprecated: use `log_filter`, `metric_filter`, or trace filters instead. Slug of the dataset to match.
+        """
         return pulumi.get(self, "dataset_id")
 
     @property
     @pulumi.getter(name="logFilter")
     def log_filter(self) -> Optional['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter']:
+        """
+        Log search filter matching log data for this condition.
+        """
         return pulumi.get(self, "log_filter")
 
     @property
     @pulumi.getter(name="metricFilters")
     def metric_filters(self) -> Optional[Sequence['outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionMetricFilter']]:
+        """
+        Metric label filters matched against incoming metric data. Multiple filters are AND-ed together; values support glob patterns including `service:{svc1,svc2}` style alternations.
+        """
         return pulumi.get(self, "metric_filters")
 
 
@@ -1592,11 +2049,17 @@ class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFil
 class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter(dict):
     def __init__(__self__, *,
                  query: str):
+        """
+        :param str query: Log search query that selects matching logs. Supports only top-level operations; nested clauses are not allowed and only one type of `AND` or `OR` operator can be used.
+        """
         pulumi.set(__self__, "query", query)
 
     @property
     @pulumi.getter
     def query(self) -> str:
+        """
+        Log search query that selects matching logs. Supports only top-level operations; nested clauses are not allowed and only one type of `AND` or `OR` operator can be used.
+        """
         return pulumi.get(self, "query")
 
 
@@ -1622,17 +2085,27 @@ class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFil
     def __init__(__self__, *,
                  name: str,
                  value_glob: str):
+        """
+        :param str name: Label name to match.
+        :param str value_glob: Glob pattern matched against the label's value.
+        """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "value_glob", value_glob)
 
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        Label name to match.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="valueGlob")
     def value_glob(self) -> str:
+        """
+        Glob pattern matched against the label's value.
+        """
         return pulumi.get(self, "value_glob")
 
 
@@ -1661,6 +2134,11 @@ class DatasetConfiguration(dict):
                  type: str,
                  log_dataset: Optional['outputs.DatasetConfigurationLogDataset'] = None,
                  trace_dataset: Optional['outputs.DatasetConfigurationTraceDataset'] = None):
+        """
+        :param str type: Dataset type. Determines which of `trace_dataset` or `log_dataset` must be set.
+        :param 'DatasetConfigurationLogDatasetArgs' log_dataset: Log-specific dataset configuration. Set only when `type` is a log type.
+        :param 'DatasetConfigurationTraceDatasetArgs' trace_dataset: Trace-specific dataset configuration. Set only when `type` is a trace type.
+        """
         pulumi.set(__self__, "type", type)
         if log_dataset is not None:
             pulumi.set(__self__, "log_dataset", log_dataset)
@@ -1670,16 +2148,25 @@ class DatasetConfiguration(dict):
     @property
     @pulumi.getter
     def type(self) -> str:
+        """
+        Dataset type. Determines which of `trace_dataset` or `log_dataset` must be set.
+        """
         return pulumi.get(self, "type")
 
     @property
     @pulumi.getter(name="logDataset")
     def log_dataset(self) -> Optional['outputs.DatasetConfigurationLogDataset']:
+        """
+        Log-specific dataset configuration. Set only when `type` is a log type.
+        """
         return pulumi.get(self, "log_dataset")
 
     @property
     @pulumi.getter(name="traceDataset")
     def trace_dataset(self) -> Optional['outputs.DatasetConfigurationTraceDataset']:
+        """
+        Trace-specific dataset configuration. Set only when `type` is a trace type.
+        """
         return pulumi.get(self, "trace_dataset")
 
 
@@ -1704,12 +2191,18 @@ class DatasetConfigurationLogDataset(dict):
 
     def __init__(__self__, *,
                  match_criteria: Optional['outputs.DatasetConfigurationLogDatasetMatchCriteria'] = None):
+        """
+        :param 'DatasetConfigurationLogDatasetMatchCriteriaArgs' match_criteria: Log search filter that defines which logs are included in this dataset.
+        """
         if match_criteria is not None:
             pulumi.set(__self__, "match_criteria", match_criteria)
 
     @property
     @pulumi.getter(name="matchCriteria")
     def match_criteria(self) -> Optional['outputs.DatasetConfigurationLogDatasetMatchCriteria']:
+        """
+        Log search filter that defines which logs are included in this dataset.
+        """
         return pulumi.get(self, "match_criteria")
 
 
@@ -1717,11 +2210,17 @@ class DatasetConfigurationLogDataset(dict):
 class DatasetConfigurationLogDatasetMatchCriteria(dict):
     def __init__(__self__, *,
                  query: str):
+        """
+        :param str query: Log search query that selects matching logs. Supports only top-level operations; nested clauses are not allowed and only one type of `AND` or `OR` operator can be used.
+        """
         pulumi.set(__self__, "query", query)
 
     @property
     @pulumi.getter
     def query(self) -> str:
+        """
+        Log search query that selects matching logs. Supports only top-level operations; nested clauses are not allowed and only one type of `AND` or `OR` operator can be used.
+        """
         return pulumi.get(self, "query")
 
 
@@ -1746,11 +2245,17 @@ class DatasetConfigurationTraceDataset(dict):
 
     def __init__(__self__, *,
                  match_criteria: 'outputs.DatasetConfigurationTraceDatasetMatchCriteria'):
+        """
+        :param 'DatasetConfigurationTraceDatasetMatchCriteriaArgs' match_criteria: Log search filter that defines which logs are included in this dataset.
+        """
         pulumi.set(__self__, "match_criteria", match_criteria)
 
     @property
     @pulumi.getter(name="matchCriteria")
     def match_criteria(self) -> 'outputs.DatasetConfigurationTraceDatasetMatchCriteria':
+        """
+        Log search filter that defines which logs are included in this dataset.
+        """
         return pulumi.get(self, "match_criteria")
 
 
@@ -1777,6 +2282,11 @@ class DatasetConfigurationTraceDatasetMatchCriteria(dict):
                  scope_filter: Optional['outputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilter'] = None,
                  spans: Optional[Sequence['outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpan']] = None,
                  trace: Optional['outputs.DatasetConfigurationTraceDatasetMatchCriteriaTrace'] = None):
+        """
+        :param 'DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterArgs' scope_filter: Scope filter that further restricts which spans within a matched trace contribute to metrics or sampling. Only spans matching `span_scopes` are included in aggregation.
+        :param Sequence['DatasetConfigurationTraceDatasetMatchCriteriaSpanArgs'] spans: Span-level conditions. Each block defines a set of conditions that must all be satisfied by a single span in the trace for the trace to match.
+        :param 'DatasetConfigurationTraceDatasetMatchCriteriaTraceArgs' trace: Trace-level conditions evaluated against the whole trace (aggregated duration and error status).
+        """
         if scope_filter is not None:
             pulumi.set(__self__, "scope_filter", scope_filter)
         if spans is not None:
@@ -1787,16 +2297,25 @@ class DatasetConfigurationTraceDatasetMatchCriteria(dict):
     @property
     @pulumi.getter(name="scopeFilter")
     def scope_filter(self) -> Optional['outputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilter']:
+        """
+        Scope filter that further restricts which spans within a matched trace contribute to metrics or sampling. Only spans matching `span_scopes` are included in aggregation.
+        """
         return pulumi.get(self, "scope_filter")
 
     @property
     @pulumi.getter
     def spans(self) -> Optional[Sequence['outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpan']]:
+        """
+        Span-level conditions. Each block defines a set of conditions that must all be satisfied by a single span in the trace for the trace to match.
+        """
         return pulumi.get(self, "spans")
 
     @property
     @pulumi.getter
     def trace(self) -> Optional['outputs.DatasetConfigurationTraceDatasetMatchCriteriaTrace']:
+        """
+        Trace-level conditions evaluated against the whole trace (aggregated duration and error status).
+        """
         return pulumi.get(self, "trace")
 
 
@@ -1821,12 +2340,18 @@ class DatasetConfigurationTraceDatasetMatchCriteriaScopeFilter(dict):
 
     def __init__(__self__, *,
                  span_scopes: Optional[Sequence['outputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScope']] = None):
+        """
+        :param Sequence['DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeArgs'] span_scopes: Span conditions that select which spans are aggregated. Spans must match at least one block to be included.
+        """
         if span_scopes is not None:
             pulumi.set(__self__, "span_scopes", span_scopes)
 
     @property
     @pulumi.getter(name="spanScopes")
     def span_scopes(self) -> Optional[Sequence['outputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScope']]:
+        """
+        Span conditions that select which spans are aggregated. Spans must match at least one block to be included.
+        """
         return pulumi.get(self, "span_scopes")
 
 
@@ -1868,6 +2393,18 @@ class DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScope(dict):
                  service: Optional['outputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeService'] = None,
                  span_count: Optional['outputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCount'] = None,
                  tags: Optional[Sequence['outputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTag']] = None):
+        """
+        :param 'DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationArgs' duration: Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, max_secs]` range.
+        :param 'DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorArgs' error: Matches traces or spans where the target boolean field equals `value`.
+        :param 'DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanArgs' is_root_span: Matches traces or spans where the target boolean field equals `value`.
+        :param str match_type: Whether matching spans are included (`INCLUDE`) or excluded (`EXCLUDE`) from the scope. Defaults to `INCLUDE`.
+        :param 'DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationArgs' operation: Matches traces or spans where the target string field satisfies the match condition.
+        :param 'DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationArgs' parent_operation: Matches traces or spans where the target string field satisfies the match condition.
+        :param 'DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServiceArgs' parent_service: Matches traces or spans where the target string field satisfies the match condition.
+        :param 'DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServiceArgs' service: Matches traces or spans where the target string field satisfies the match condition.
+        :param 'DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountArgs' span_count: Matches traces where the number of spans satisfying the surrounding span conditions falls within the inclusive `[min, max]` range.
+        :param Sequence['DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagArgs'] tags: Matches spans whose tag (span attribute) with the given `key` has a value satisfying the nested string or numeric filter.
+        """
         if duration is not None:
             pulumi.set(__self__, "duration", duration)
         if error is not None:
@@ -1892,51 +2429,81 @@ class DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScope(dict):
     @property
     @pulumi.getter
     def duration(self) -> Optional['outputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDuration']:
+        """
+        Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, max_secs]` range.
+        """
         return pulumi.get(self, "duration")
 
     @property
     @pulumi.getter
     def error(self) -> Optional['outputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeError']:
+        """
+        Matches traces or spans where the target boolean field equals `value`.
+        """
         return pulumi.get(self, "error")
 
     @property
     @pulumi.getter(name="isRootSpan")
     def is_root_span(self) -> Optional['outputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpan']:
+        """
+        Matches traces or spans where the target boolean field equals `value`.
+        """
         return pulumi.get(self, "is_root_span")
 
     @property
     @pulumi.getter(name="matchType")
     def match_type(self) -> Optional[str]:
+        """
+        Whether matching spans are included (`INCLUDE`) or excluded (`EXCLUDE`) from the scope. Defaults to `INCLUDE`.
+        """
         return pulumi.get(self, "match_type")
 
     @property
     @pulumi.getter
     def operation(self) -> Optional['outputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperation']:
+        """
+        Matches traces or spans where the target string field satisfies the match condition.
+        """
         return pulumi.get(self, "operation")
 
     @property
     @pulumi.getter(name="parentOperation")
     def parent_operation(self) -> Optional['outputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperation']:
+        """
+        Matches traces or spans where the target string field satisfies the match condition.
+        """
         return pulumi.get(self, "parent_operation")
 
     @property
     @pulumi.getter(name="parentService")
     def parent_service(self) -> Optional['outputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentService']:
+        """
+        Matches traces or spans where the target string field satisfies the match condition.
+        """
         return pulumi.get(self, "parent_service")
 
     @property
     @pulumi.getter
     def service(self) -> Optional['outputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeService']:
+        """
+        Matches traces or spans where the target string field satisfies the match condition.
+        """
         return pulumi.get(self, "service")
 
     @property
     @pulumi.getter(name="spanCount")
     def span_count(self) -> Optional['outputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCount']:
+        """
+        Matches traces where the number of spans satisfying the surrounding span conditions falls within the inclusive `[min, max]` range.
+        """
         return pulumi.get(self, "span_count")
 
     @property
     @pulumi.getter
     def tags(self) -> Optional[Sequence['outputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTag']]:
+        """
+        Matches spans whose tag (span attribute) with the given `key` has a value satisfying the nested string or numeric filter.
+        """
         return pulumi.get(self, "tags")
 
 
@@ -1964,6 +2531,10 @@ class DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDuration(
     def __init__(__self__, *,
                  max_secs: Optional[float] = None,
                  min_secs: Optional[float] = None):
+        """
+        :param float max_secs: Maximum duration in seconds, inclusive. Omit for no upper bound.
+        :param float min_secs: Minimum duration in seconds, inclusive. Defaults to `0`.
+        """
         if max_secs is not None:
             pulumi.set(__self__, "max_secs", max_secs)
         if min_secs is not None:
@@ -1972,11 +2543,17 @@ class DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDuration(
     @property
     @pulumi.getter(name="maxSecs")
     def max_secs(self) -> Optional[float]:
+        """
+        Maximum duration in seconds, inclusive. Omit for no upper bound.
+        """
         return pulumi.get(self, "max_secs")
 
     @property
     @pulumi.getter(name="minSecs")
     def min_secs(self) -> Optional[float]:
+        """
+        Minimum duration in seconds, inclusive. Defaults to `0`.
+        """
         return pulumi.get(self, "min_secs")
 
 
@@ -1984,11 +2561,17 @@ class DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDuration(
 class DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeError(dict):
     def __init__(__self__, *,
                  value: bool):
+        """
+        :param bool value: Boolean value the target field is compared against.
+        """
         pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
     def value(self) -> bool:
+        """
+        Boolean value the target field is compared against.
+        """
         return pulumi.get(self, "value")
 
 
@@ -1996,11 +2579,17 @@ class DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeError(dic
 class DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpan(dict):
     def __init__(__self__, *,
                  value: bool):
+        """
+        :param bool value: Boolean value the target field is compared against.
+        """
         pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
     def value(self) -> bool:
+        """
+        Boolean value the target field is compared against.
+        """
         return pulumi.get(self, "value")
 
 
@@ -2027,6 +2616,11 @@ class DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperation
                  in_values: Optional[Sequence[str]] = None,
                  match: Optional[str] = None,
                  value: Optional[str] = None):
+        """
+        :param Sequence[str] in_values: Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        :param str match: Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        :param str value: Boolean value the target field is compared against.
+        """
         if in_values is not None:
             pulumi.set(__self__, "in_values", in_values)
         if match is not None:
@@ -2037,16 +2631,25 @@ class DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperation
     @property
     @pulumi.getter(name="inValues")
     def in_values(self) -> Optional[Sequence[str]]:
+        """
+        Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        """
         return pulumi.get(self, "in_values")
 
     @property
     @pulumi.getter
     def match(self) -> Optional[str]:
+        """
+        Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        """
         return pulumi.get(self, "match")
 
     @property
     @pulumi.getter
     def value(self) -> Optional[str]:
+        """
+        Boolean value the target field is compared against.
+        """
         return pulumi.get(self, "value")
 
 
@@ -2073,6 +2676,11 @@ class DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOpe
                  in_values: Optional[Sequence[str]] = None,
                  match: Optional[str] = None,
                  value: Optional[str] = None):
+        """
+        :param Sequence[str] in_values: Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        :param str match: Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        :param str value: Boolean value the target field is compared against.
+        """
         if in_values is not None:
             pulumi.set(__self__, "in_values", in_values)
         if match is not None:
@@ -2083,16 +2691,25 @@ class DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOpe
     @property
     @pulumi.getter(name="inValues")
     def in_values(self) -> Optional[Sequence[str]]:
+        """
+        Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        """
         return pulumi.get(self, "in_values")
 
     @property
     @pulumi.getter
     def match(self) -> Optional[str]:
+        """
+        Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        """
         return pulumi.get(self, "match")
 
     @property
     @pulumi.getter
     def value(self) -> Optional[str]:
+        """
+        Boolean value the target field is compared against.
+        """
         return pulumi.get(self, "value")
 
 
@@ -2119,6 +2736,11 @@ class DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentSer
                  in_values: Optional[Sequence[str]] = None,
                  match: Optional[str] = None,
                  value: Optional[str] = None):
+        """
+        :param Sequence[str] in_values: Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        :param str match: Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        :param str value: Boolean value the target field is compared against.
+        """
         if in_values is not None:
             pulumi.set(__self__, "in_values", in_values)
         if match is not None:
@@ -2129,16 +2751,25 @@ class DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentSer
     @property
     @pulumi.getter(name="inValues")
     def in_values(self) -> Optional[Sequence[str]]:
+        """
+        Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        """
         return pulumi.get(self, "in_values")
 
     @property
     @pulumi.getter
     def match(self) -> Optional[str]:
+        """
+        Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        """
         return pulumi.get(self, "match")
 
     @property
     @pulumi.getter
     def value(self) -> Optional[str]:
+        """
+        Boolean value the target field is compared against.
+        """
         return pulumi.get(self, "value")
 
 
@@ -2165,6 +2796,11 @@ class DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeService(d
                  in_values: Optional[Sequence[str]] = None,
                  match: Optional[str] = None,
                  value: Optional[str] = None):
+        """
+        :param Sequence[str] in_values: Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        :param str match: Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        :param str value: Boolean value the target field is compared against.
+        """
         if in_values is not None:
             pulumi.set(__self__, "in_values", in_values)
         if match is not None:
@@ -2175,16 +2811,25 @@ class DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeService(d
     @property
     @pulumi.getter(name="inValues")
     def in_values(self) -> Optional[Sequence[str]]:
+        """
+        Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        """
         return pulumi.get(self, "in_values")
 
     @property
     @pulumi.getter
     def match(self) -> Optional[str]:
+        """
+        Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        """
         return pulumi.get(self, "match")
 
     @property
     @pulumi.getter
     def value(self) -> Optional[str]:
+        """
+        Boolean value the target field is compared against.
+        """
         return pulumi.get(self, "value")
 
 
@@ -2193,6 +2838,10 @@ class DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCount
     def __init__(__self__, *,
                  max: Optional[int] = None,
                  min: Optional[int] = None):
+        """
+        :param int max: Maximum number of matching spans, inclusive. `0` means no upper bound.
+        :param int min: Minimum number of matching spans, inclusive. Defaults to `0`.
+        """
         if max is not None:
             pulumi.set(__self__, "max", max)
         if min is not None:
@@ -2201,11 +2850,17 @@ class DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCount
     @property
     @pulumi.getter
     def max(self) -> Optional[int]:
+        """
+        Maximum number of matching spans, inclusive. `0` means no upper bound.
+        """
         return pulumi.get(self, "max")
 
     @property
     @pulumi.getter
     def min(self) -> Optional[int]:
+        """
+        Minimum number of matching spans, inclusive. Defaults to `0`.
+        """
         return pulumi.get(self, "min")
 
 
@@ -2232,6 +2887,11 @@ class DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTag(dict)
                  key: Optional[str] = None,
                  numeric_value: Optional['outputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValue'] = None,
                  value: Optional['outputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValue'] = None):
+        """
+        :param str key: Name of the span tag (span attribute) inspected by this filter.
+        :param 'DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValueArgs' numeric_value: Matches traces or spans where the target numeric field satisfies the comparison against `value`.
+        :param 'DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValueArgs' value: Boolean value the target field is compared against.
+        """
         if key is not None:
             pulumi.set(__self__, "key", key)
         if numeric_value is not None:
@@ -2242,16 +2902,25 @@ class DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTag(dict)
     @property
     @pulumi.getter
     def key(self) -> Optional[str]:
+        """
+        Name of the span tag (span attribute) inspected by this filter.
+        """
         return pulumi.get(self, "key")
 
     @property
     @pulumi.getter(name="numericValue")
     def numeric_value(self) -> Optional['outputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValue']:
+        """
+        Matches traces or spans where the target numeric field satisfies the comparison against `value`.
+        """
         return pulumi.get(self, "numeric_value")
 
     @property
     @pulumi.getter
     def value(self) -> Optional['outputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValue']:
+        """
+        Boolean value the target field is compared against.
+        """
         return pulumi.get(self, "value")
 
 
@@ -2260,17 +2929,27 @@ class DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumeri
     def __init__(__self__, *,
                  comparison: str,
                  value: float):
+        """
+        :param str comparison: Numeric comparison operator (for example `EQUALS`, `GREATER_THAN`, `LESS_THAN_OR_EQUAL`).
+        :param float value: Boolean value the target field is compared against.
+        """
         pulumi.set(__self__, "comparison", comparison)
         pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
     def comparison(self) -> str:
+        """
+        Numeric comparison operator (for example `EQUALS`, `GREATER_THAN`, `LESS_THAN_OR_EQUAL`).
+        """
         return pulumi.get(self, "comparison")
 
     @property
     @pulumi.getter
     def value(self) -> float:
+        """
+        Boolean value the target field is compared against.
+        """
         return pulumi.get(self, "value")
 
 
@@ -2297,6 +2976,11 @@ class DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValue(
                  in_values: Optional[Sequence[str]] = None,
                  match: Optional[str] = None,
                  value: Optional[str] = None):
+        """
+        :param Sequence[str] in_values: Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        :param str match: Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        :param str value: Boolean value the target field is compared against.
+        """
         if in_values is not None:
             pulumi.set(__self__, "in_values", in_values)
         if match is not None:
@@ -2307,16 +2991,25 @@ class DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValue(
     @property
     @pulumi.getter(name="inValues")
     def in_values(self) -> Optional[Sequence[str]]:
+        """
+        Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        """
         return pulumi.get(self, "in_values")
 
     @property
     @pulumi.getter
     def match(self) -> Optional[str]:
+        """
+        Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        """
         return pulumi.get(self, "match")
 
     @property
     @pulumi.getter
     def value(self) -> Optional[str]:
+        """
+        Boolean value the target field is compared against.
+        """
         return pulumi.get(self, "value")
 
 
@@ -2358,6 +3051,18 @@ class DatasetConfigurationTraceDatasetMatchCriteriaSpan(dict):
                  service: Optional['outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanService'] = None,
                  span_count: Optional['outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanSpanCount'] = None,
                  tags: Optional[Sequence['outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanTag']] = None):
+        """
+        :param 'DatasetConfigurationTraceDatasetMatchCriteriaSpanDurationArgs' duration: Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, max_secs]` range.
+        :param 'DatasetConfigurationTraceDatasetMatchCriteriaSpanErrorArgs' error: Matches traces or spans where the target boolean field equals `value`.
+        :param 'DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpanArgs' is_root_span: Matches traces or spans where the target boolean field equals `value`.
+        :param str match_type: Whether matching spans are included (`INCLUDE`) or excluded (`EXCLUDE`) from the scope. Defaults to `INCLUDE`.
+        :param 'DatasetConfigurationTraceDatasetMatchCriteriaSpanOperationArgs' operation: Matches traces or spans where the target string field satisfies the match condition.
+        :param 'DatasetConfigurationTraceDatasetMatchCriteriaSpanParentOperationArgs' parent_operation: Matches traces or spans where the target string field satisfies the match condition.
+        :param 'DatasetConfigurationTraceDatasetMatchCriteriaSpanParentServiceArgs' parent_service: Matches traces or spans where the target string field satisfies the match condition.
+        :param 'DatasetConfigurationTraceDatasetMatchCriteriaSpanServiceArgs' service: Matches traces or spans where the target string field satisfies the match condition.
+        :param 'DatasetConfigurationTraceDatasetMatchCriteriaSpanSpanCountArgs' span_count: Matches traces where the number of spans satisfying the surrounding span conditions falls within the inclusive `[min, max]` range.
+        :param Sequence['DatasetConfigurationTraceDatasetMatchCriteriaSpanTagArgs'] tags: Matches spans whose tag (span attribute) with the given `key` has a value satisfying the nested string or numeric filter.
+        """
         if duration is not None:
             pulumi.set(__self__, "duration", duration)
         if error is not None:
@@ -2382,51 +3087,81 @@ class DatasetConfigurationTraceDatasetMatchCriteriaSpan(dict):
     @property
     @pulumi.getter
     def duration(self) -> Optional['outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanDuration']:
+        """
+        Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, max_secs]` range.
+        """
         return pulumi.get(self, "duration")
 
     @property
     @pulumi.getter
     def error(self) -> Optional['outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanError']:
+        """
+        Matches traces or spans where the target boolean field equals `value`.
+        """
         return pulumi.get(self, "error")
 
     @property
     @pulumi.getter(name="isRootSpan")
     def is_root_span(self) -> Optional['outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpan']:
+        """
+        Matches traces or spans where the target boolean field equals `value`.
+        """
         return pulumi.get(self, "is_root_span")
 
     @property
     @pulumi.getter(name="matchType")
     def match_type(self) -> Optional[str]:
+        """
+        Whether matching spans are included (`INCLUDE`) or excluded (`EXCLUDE`) from the scope. Defaults to `INCLUDE`.
+        """
         return pulumi.get(self, "match_type")
 
     @property
     @pulumi.getter
     def operation(self) -> Optional['outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanOperation']:
+        """
+        Matches traces or spans where the target string field satisfies the match condition.
+        """
         return pulumi.get(self, "operation")
 
     @property
     @pulumi.getter(name="parentOperation")
     def parent_operation(self) -> Optional['outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanParentOperation']:
+        """
+        Matches traces or spans where the target string field satisfies the match condition.
+        """
         return pulumi.get(self, "parent_operation")
 
     @property
     @pulumi.getter(name="parentService")
     def parent_service(self) -> Optional['outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanParentService']:
+        """
+        Matches traces or spans where the target string field satisfies the match condition.
+        """
         return pulumi.get(self, "parent_service")
 
     @property
     @pulumi.getter
     def service(self) -> Optional['outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanService']:
+        """
+        Matches traces or spans where the target string field satisfies the match condition.
+        """
         return pulumi.get(self, "service")
 
     @property
     @pulumi.getter(name="spanCount")
     def span_count(self) -> Optional['outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanSpanCount']:
+        """
+        Matches traces where the number of spans satisfying the surrounding span conditions falls within the inclusive `[min, max]` range.
+        """
         return pulumi.get(self, "span_count")
 
     @property
     @pulumi.getter
     def tags(self) -> Optional[Sequence['outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanTag']]:
+        """
+        Matches spans whose tag (span attribute) with the given `key` has a value satisfying the nested string or numeric filter.
+        """
         return pulumi.get(self, "tags")
 
 
@@ -2454,6 +3189,10 @@ class DatasetConfigurationTraceDatasetMatchCriteriaSpanDuration(dict):
     def __init__(__self__, *,
                  max_secs: Optional[float] = None,
                  min_secs: Optional[float] = None):
+        """
+        :param float max_secs: Maximum duration in seconds, inclusive. Omit for no upper bound.
+        :param float min_secs: Minimum duration in seconds, inclusive. Defaults to `0`.
+        """
         if max_secs is not None:
             pulumi.set(__self__, "max_secs", max_secs)
         if min_secs is not None:
@@ -2462,11 +3201,17 @@ class DatasetConfigurationTraceDatasetMatchCriteriaSpanDuration(dict):
     @property
     @pulumi.getter(name="maxSecs")
     def max_secs(self) -> Optional[float]:
+        """
+        Maximum duration in seconds, inclusive. Omit for no upper bound.
+        """
         return pulumi.get(self, "max_secs")
 
     @property
     @pulumi.getter(name="minSecs")
     def min_secs(self) -> Optional[float]:
+        """
+        Minimum duration in seconds, inclusive. Defaults to `0`.
+        """
         return pulumi.get(self, "min_secs")
 
 
@@ -2474,11 +3219,17 @@ class DatasetConfigurationTraceDatasetMatchCriteriaSpanDuration(dict):
 class DatasetConfigurationTraceDatasetMatchCriteriaSpanError(dict):
     def __init__(__self__, *,
                  value: bool):
+        """
+        :param bool value: Boolean value the target field is compared against.
+        """
         pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
     def value(self) -> bool:
+        """
+        Boolean value the target field is compared against.
+        """
         return pulumi.get(self, "value")
 
 
@@ -2486,11 +3237,17 @@ class DatasetConfigurationTraceDatasetMatchCriteriaSpanError(dict):
 class DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpan(dict):
     def __init__(__self__, *,
                  value: bool):
+        """
+        :param bool value: Boolean value the target field is compared against.
+        """
         pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
     def value(self) -> bool:
+        """
+        Boolean value the target field is compared against.
+        """
         return pulumi.get(self, "value")
 
 
@@ -2517,6 +3274,11 @@ class DatasetConfigurationTraceDatasetMatchCriteriaSpanOperation(dict):
                  in_values: Optional[Sequence[str]] = None,
                  match: Optional[str] = None,
                  value: Optional[str] = None):
+        """
+        :param Sequence[str] in_values: Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        :param str match: Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        :param str value: Boolean value the target field is compared against.
+        """
         if in_values is not None:
             pulumi.set(__self__, "in_values", in_values)
         if match is not None:
@@ -2527,16 +3289,25 @@ class DatasetConfigurationTraceDatasetMatchCriteriaSpanOperation(dict):
     @property
     @pulumi.getter(name="inValues")
     def in_values(self) -> Optional[Sequence[str]]:
+        """
+        Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        """
         return pulumi.get(self, "in_values")
 
     @property
     @pulumi.getter
     def match(self) -> Optional[str]:
+        """
+        Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        """
         return pulumi.get(self, "match")
 
     @property
     @pulumi.getter
     def value(self) -> Optional[str]:
+        """
+        Boolean value the target field is compared against.
+        """
         return pulumi.get(self, "value")
 
 
@@ -2563,6 +3334,11 @@ class DatasetConfigurationTraceDatasetMatchCriteriaSpanParentOperation(dict):
                  in_values: Optional[Sequence[str]] = None,
                  match: Optional[str] = None,
                  value: Optional[str] = None):
+        """
+        :param Sequence[str] in_values: Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        :param str match: Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        :param str value: Boolean value the target field is compared against.
+        """
         if in_values is not None:
             pulumi.set(__self__, "in_values", in_values)
         if match is not None:
@@ -2573,16 +3349,25 @@ class DatasetConfigurationTraceDatasetMatchCriteriaSpanParentOperation(dict):
     @property
     @pulumi.getter(name="inValues")
     def in_values(self) -> Optional[Sequence[str]]:
+        """
+        Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        """
         return pulumi.get(self, "in_values")
 
     @property
     @pulumi.getter
     def match(self) -> Optional[str]:
+        """
+        Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        """
         return pulumi.get(self, "match")
 
     @property
     @pulumi.getter
     def value(self) -> Optional[str]:
+        """
+        Boolean value the target field is compared against.
+        """
         return pulumi.get(self, "value")
 
 
@@ -2609,6 +3394,11 @@ class DatasetConfigurationTraceDatasetMatchCriteriaSpanParentService(dict):
                  in_values: Optional[Sequence[str]] = None,
                  match: Optional[str] = None,
                  value: Optional[str] = None):
+        """
+        :param Sequence[str] in_values: Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        :param str match: Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        :param str value: Boolean value the target field is compared against.
+        """
         if in_values is not None:
             pulumi.set(__self__, "in_values", in_values)
         if match is not None:
@@ -2619,16 +3409,25 @@ class DatasetConfigurationTraceDatasetMatchCriteriaSpanParentService(dict):
     @property
     @pulumi.getter(name="inValues")
     def in_values(self) -> Optional[Sequence[str]]:
+        """
+        Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        """
         return pulumi.get(self, "in_values")
 
     @property
     @pulumi.getter
     def match(self) -> Optional[str]:
+        """
+        Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        """
         return pulumi.get(self, "match")
 
     @property
     @pulumi.getter
     def value(self) -> Optional[str]:
+        """
+        Boolean value the target field is compared against.
+        """
         return pulumi.get(self, "value")
 
 
@@ -2655,6 +3454,11 @@ class DatasetConfigurationTraceDatasetMatchCriteriaSpanService(dict):
                  in_values: Optional[Sequence[str]] = None,
                  match: Optional[str] = None,
                  value: Optional[str] = None):
+        """
+        :param Sequence[str] in_values: Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        :param str match: Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        :param str value: Boolean value the target field is compared against.
+        """
         if in_values is not None:
             pulumi.set(__self__, "in_values", in_values)
         if match is not None:
@@ -2665,16 +3469,25 @@ class DatasetConfigurationTraceDatasetMatchCriteriaSpanService(dict):
     @property
     @pulumi.getter(name="inValues")
     def in_values(self) -> Optional[Sequence[str]]:
+        """
+        Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        """
         return pulumi.get(self, "in_values")
 
     @property
     @pulumi.getter
     def match(self) -> Optional[str]:
+        """
+        Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        """
         return pulumi.get(self, "match")
 
     @property
     @pulumi.getter
     def value(self) -> Optional[str]:
+        """
+        Boolean value the target field is compared against.
+        """
         return pulumi.get(self, "value")
 
 
@@ -2683,6 +3496,10 @@ class DatasetConfigurationTraceDatasetMatchCriteriaSpanSpanCount(dict):
     def __init__(__self__, *,
                  max: Optional[int] = None,
                  min: Optional[int] = None):
+        """
+        :param int max: Maximum number of matching spans, inclusive. `0` means no upper bound.
+        :param int min: Minimum number of matching spans, inclusive. Defaults to `0`.
+        """
         if max is not None:
             pulumi.set(__self__, "max", max)
         if min is not None:
@@ -2691,11 +3508,17 @@ class DatasetConfigurationTraceDatasetMatchCriteriaSpanSpanCount(dict):
     @property
     @pulumi.getter
     def max(self) -> Optional[int]:
+        """
+        Maximum number of matching spans, inclusive. `0` means no upper bound.
+        """
         return pulumi.get(self, "max")
 
     @property
     @pulumi.getter
     def min(self) -> Optional[int]:
+        """
+        Minimum number of matching spans, inclusive. Defaults to `0`.
+        """
         return pulumi.get(self, "min")
 
 
@@ -2722,6 +3545,11 @@ class DatasetConfigurationTraceDatasetMatchCriteriaSpanTag(dict):
                  key: Optional[str] = None,
                  numeric_value: Optional['outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanTagNumericValue'] = None,
                  value: Optional['outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanTagValue'] = None):
+        """
+        :param str key: Name of the span tag (span attribute) inspected by this filter.
+        :param 'DatasetConfigurationTraceDatasetMatchCriteriaSpanTagNumericValueArgs' numeric_value: Matches traces or spans where the target numeric field satisfies the comparison against `value`.
+        :param 'DatasetConfigurationTraceDatasetMatchCriteriaSpanTagValueArgs' value: Boolean value the target field is compared against.
+        """
         if key is not None:
             pulumi.set(__self__, "key", key)
         if numeric_value is not None:
@@ -2732,16 +3560,25 @@ class DatasetConfigurationTraceDatasetMatchCriteriaSpanTag(dict):
     @property
     @pulumi.getter
     def key(self) -> Optional[str]:
+        """
+        Name of the span tag (span attribute) inspected by this filter.
+        """
         return pulumi.get(self, "key")
 
     @property
     @pulumi.getter(name="numericValue")
     def numeric_value(self) -> Optional['outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanTagNumericValue']:
+        """
+        Matches traces or spans where the target numeric field satisfies the comparison against `value`.
+        """
         return pulumi.get(self, "numeric_value")
 
     @property
     @pulumi.getter
     def value(self) -> Optional['outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanTagValue']:
+        """
+        Boolean value the target field is compared against.
+        """
         return pulumi.get(self, "value")
 
 
@@ -2750,17 +3587,27 @@ class DatasetConfigurationTraceDatasetMatchCriteriaSpanTagNumericValue(dict):
     def __init__(__self__, *,
                  comparison: str,
                  value: float):
+        """
+        :param str comparison: Numeric comparison operator (for example `EQUALS`, `GREATER_THAN`, `LESS_THAN_OR_EQUAL`).
+        :param float value: Boolean value the target field is compared against.
+        """
         pulumi.set(__self__, "comparison", comparison)
         pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
     def comparison(self) -> str:
+        """
+        Numeric comparison operator (for example `EQUALS`, `GREATER_THAN`, `LESS_THAN_OR_EQUAL`).
+        """
         return pulumi.get(self, "comparison")
 
     @property
     @pulumi.getter
     def value(self) -> float:
+        """
+        Boolean value the target field is compared against.
+        """
         return pulumi.get(self, "value")
 
 
@@ -2787,6 +3634,11 @@ class DatasetConfigurationTraceDatasetMatchCriteriaSpanTagValue(dict):
                  in_values: Optional[Sequence[str]] = None,
                  match: Optional[str] = None,
                  value: Optional[str] = None):
+        """
+        :param Sequence[str] in_values: Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        :param str match: Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        :param str value: Boolean value the target field is compared against.
+        """
         if in_values is not None:
             pulumi.set(__self__, "in_values", in_values)
         if match is not None:
@@ -2797,16 +3649,25 @@ class DatasetConfigurationTraceDatasetMatchCriteriaSpanTagValue(dict):
     @property
     @pulumi.getter(name="inValues")
     def in_values(self) -> Optional[Sequence[str]]:
+        """
+        Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        """
         return pulumi.get(self, "in_values")
 
     @property
     @pulumi.getter
     def match(self) -> Optional[str]:
+        """
+        Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        """
         return pulumi.get(self, "match")
 
     @property
     @pulumi.getter
     def value(self) -> Optional[str]:
+        """
+        Boolean value the target field is compared against.
+        """
         return pulumi.get(self, "value")
 
 
@@ -2815,6 +3676,10 @@ class DatasetConfigurationTraceDatasetMatchCriteriaTrace(dict):
     def __init__(__self__, *,
                  duration: Optional['outputs.DatasetConfigurationTraceDatasetMatchCriteriaTraceDuration'] = None,
                  error: Optional['outputs.DatasetConfigurationTraceDatasetMatchCriteriaTraceError'] = None):
+        """
+        :param 'DatasetConfigurationTraceDatasetMatchCriteriaTraceDurationArgs' duration: Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, max_secs]` range.
+        :param 'DatasetConfigurationTraceDatasetMatchCriteriaTraceErrorArgs' error: Matches traces or spans where the target boolean field equals `value`.
+        """
         if duration is not None:
             pulumi.set(__self__, "duration", duration)
         if error is not None:
@@ -2823,11 +3688,17 @@ class DatasetConfigurationTraceDatasetMatchCriteriaTrace(dict):
     @property
     @pulumi.getter
     def duration(self) -> Optional['outputs.DatasetConfigurationTraceDatasetMatchCriteriaTraceDuration']:
+        """
+        Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, max_secs]` range.
+        """
         return pulumi.get(self, "duration")
 
     @property
     @pulumi.getter
     def error(self) -> Optional['outputs.DatasetConfigurationTraceDatasetMatchCriteriaTraceError']:
+        """
+        Matches traces or spans where the target boolean field equals `value`.
+        """
         return pulumi.get(self, "error")
 
 
@@ -2855,6 +3726,10 @@ class DatasetConfigurationTraceDatasetMatchCriteriaTraceDuration(dict):
     def __init__(__self__, *,
                  max_secs: Optional[float] = None,
                  min_secs: Optional[float] = None):
+        """
+        :param float max_secs: Maximum duration in seconds, inclusive. Omit for no upper bound.
+        :param float min_secs: Minimum duration in seconds, inclusive. Defaults to `0`.
+        """
         if max_secs is not None:
             pulumi.set(__self__, "max_secs", max_secs)
         if min_secs is not None:
@@ -2863,11 +3738,17 @@ class DatasetConfigurationTraceDatasetMatchCriteriaTraceDuration(dict):
     @property
     @pulumi.getter(name="maxSecs")
     def max_secs(self) -> Optional[float]:
+        """
+        Maximum duration in seconds, inclusive. Omit for no upper bound.
+        """
         return pulumi.get(self, "max_secs")
 
     @property
     @pulumi.getter(name="minSecs")
     def min_secs(self) -> Optional[float]:
+        """
+        Minimum duration in seconds, inclusive. Defaults to `0`.
+        """
         return pulumi.get(self, "min_secs")
 
 
@@ -2875,11 +3756,17 @@ class DatasetConfigurationTraceDatasetMatchCriteriaTraceDuration(dict):
 class DatasetConfigurationTraceDatasetMatchCriteriaTraceError(dict):
     def __init__(__self__, *,
                  value: bool):
+        """
+        :param bool value: Boolean value the target field is compared against.
+        """
         pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
     def value(self) -> bool:
+        """
+        Boolean value the target field is compared against.
+        """
         return pulumi.get(self, "value")
 
 
@@ -2907,6 +3794,10 @@ class DerivedLabelMetricLabel(dict):
     def __init__(__self__, *,
                  constructed_label: Optional['outputs.DerivedLabelMetricLabelConstructedLabel'] = None,
                  mapping_label: Optional['outputs.DerivedLabelMetricLabelMappingLabel'] = None):
+        """
+        :param 'DerivedLabelMetricLabelConstructedLabelArgs' constructed_label: Constructs the derived label value from a list of value definitions, each gated by a filter on existing labels.
+        :param 'DerivedLabelMetricLabelMappingLabelArgs' mapping_label: Derives the label value by mapping from an existing source label, optionally translating its values.
+        """
         if constructed_label is not None:
             pulumi.set(__self__, "constructed_label", constructed_label)
         if mapping_label is not None:
@@ -2915,11 +3806,17 @@ class DerivedLabelMetricLabel(dict):
     @property
     @pulumi.getter(name="constructedLabel")
     def constructed_label(self) -> Optional['outputs.DerivedLabelMetricLabelConstructedLabel']:
+        """
+        Constructs the derived label value from a list of value definitions, each gated by a filter on existing labels.
+        """
         return pulumi.get(self, "constructed_label")
 
     @property
     @pulumi.getter(name="mappingLabel")
     def mapping_label(self) -> Optional['outputs.DerivedLabelMetricLabelMappingLabel']:
+        """
+        Derives the label value by mapping from an existing source label, optionally translating its values.
+        """
         return pulumi.get(self, "mapping_label")
 
 
@@ -2944,11 +3841,17 @@ class DerivedLabelMetricLabelConstructedLabel(dict):
 
     def __init__(__self__, *,
                  value_definitions: Sequence['outputs.DerivedLabelMetricLabelConstructedLabelValueDefinition']):
+        """
+        :param Sequence['DerivedLabelMetricLabelConstructedLabelValueDefinitionArgs'] value_definitions: Ordered list of value definitions. The first definition whose filters match produces the derived label value.
+        """
         pulumi.set(__self__, "value_definitions", value_definitions)
 
     @property
     @pulumi.getter(name="valueDefinitions")
     def value_definitions(self) -> Sequence['outputs.DerivedLabelMetricLabelConstructedLabelValueDefinition']:
+        """
+        Ordered list of value definitions. The first definition whose filters match produces the derived label value.
+        """
         return pulumi.get(self, "value_definitions")
 
 
@@ -2957,17 +3860,27 @@ class DerivedLabelMetricLabelConstructedLabelValueDefinition(dict):
     def __init__(__self__, *,
                  filters: Sequence['outputs.DerivedLabelMetricLabelConstructedLabelValueDefinitionFilter'],
                  value: str):
+        """
+        :param Sequence['DerivedLabelMetricLabelConstructedLabelValueDefinitionFilterArgs'] filters: Label filters that must all match for this value definition to apply.
+        :param str value: Value assigned to the derived label when this definition's filters match.
+        """
         pulumi.set(__self__, "filters", filters)
         pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
     def filters(self) -> Sequence['outputs.DerivedLabelMetricLabelConstructedLabelValueDefinitionFilter']:
+        """
+        Label filters that must all match for this value definition to apply.
+        """
         return pulumi.get(self, "filters")
 
     @property
     @pulumi.getter
     def value(self) -> str:
+        """
+        Value assigned to the derived label when this definition's filters match.
+        """
         return pulumi.get(self, "value")
 
 
@@ -2993,17 +3906,27 @@ class DerivedLabelMetricLabelConstructedLabelValueDefinitionFilter(dict):
     def __init__(__self__, *,
                  name: str,
                  value_glob: str):
+        """
+        :param str name: Name of the label to match.
+        :param str value_glob: Glob pattern matched against the label value.
+        """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "value_glob", value_glob)
 
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        Name of the label to match.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="valueGlob")
     def value_glob(self) -> str:
+        """
+        Glob pattern matched against the label value.
+        """
         return pulumi.get(self, "value_glob")
 
 
@@ -3031,6 +3954,10 @@ class DerivedLabelMetricLabelMappingLabel(dict):
     def __init__(__self__, *,
                  name_mappings: Optional[Sequence['outputs.DerivedLabelMetricLabelMappingLabelNameMapping']] = None,
                  value_mappings: Optional[Sequence['outputs.DerivedLabelMetricLabelMappingLabelValueMapping']] = None):
+        """
+        :param Sequence['DerivedLabelMetricLabelMappingLabelNameMappingArgs'] name_mappings: Ordered list of name mappings. The first mapping whose filters match supplies the derived label from its `source_label`.
+        :param Sequence['DerivedLabelMetricLabelMappingLabelValueMappingArgs'] value_mappings: Translations from source label values to a normalized target value. Each entry maps a set of source globs to a single target.
+        """
         if name_mappings is not None:
             pulumi.set(__self__, "name_mappings", name_mappings)
         if value_mappings is not None:
@@ -3039,11 +3966,17 @@ class DerivedLabelMetricLabelMappingLabel(dict):
     @property
     @pulumi.getter(name="nameMappings")
     def name_mappings(self) -> Optional[Sequence['outputs.DerivedLabelMetricLabelMappingLabelNameMapping']]:
+        """
+        Ordered list of name mappings. The first mapping whose filters match supplies the derived label from its `source_label`.
+        """
         return pulumi.get(self, "name_mappings")
 
     @property
     @pulumi.getter(name="valueMappings")
     def value_mappings(self) -> Optional[Sequence['outputs.DerivedLabelMetricLabelMappingLabelValueMapping']]:
+        """
+        Translations from source label values to a normalized target value. Each entry maps a set of source globs to a single target.
+        """
         return pulumi.get(self, "value_mappings")
 
 
@@ -3072,6 +4005,11 @@ class DerivedLabelMetricLabelMappingLabelNameMapping(dict):
                  filters: Sequence['outputs.DerivedLabelMetricLabelMappingLabelNameMappingFilter'],
                  source_label: str,
                  value_mappings: Optional[Sequence['outputs.DerivedLabelMetricLabelMappingLabelNameMappingValueMapping']] = None):
+        """
+        :param Sequence['DerivedLabelMetricLabelMappingLabelNameMappingFilterArgs'] filters: Label filters that must all match for this value definition to apply.
+        :param str source_label: Source label on the ingested time series to copy into the derived label.
+        :param Sequence['DerivedLabelMetricLabelMappingLabelNameMappingValueMappingArgs'] value_mappings: Translations from source label values to a normalized target value. Each entry maps a set of source globs to a single target.
+        """
         pulumi.set(__self__, "filters", filters)
         pulumi.set(__self__, "source_label", source_label)
         if value_mappings is not None:
@@ -3080,16 +4018,25 @@ class DerivedLabelMetricLabelMappingLabelNameMapping(dict):
     @property
     @pulumi.getter
     def filters(self) -> Sequence['outputs.DerivedLabelMetricLabelMappingLabelNameMappingFilter']:
+        """
+        Label filters that must all match for this value definition to apply.
+        """
         return pulumi.get(self, "filters")
 
     @property
     @pulumi.getter(name="sourceLabel")
     def source_label(self) -> str:
+        """
+        Source label on the ingested time series to copy into the derived label.
+        """
         return pulumi.get(self, "source_label")
 
     @property
     @pulumi.getter(name="valueMappings")
     def value_mappings(self) -> Optional[Sequence['outputs.DerivedLabelMetricLabelMappingLabelNameMappingValueMapping']]:
+        """
+        Translations from source label values to a normalized target value. Each entry maps a set of source globs to a single target.
+        """
         return pulumi.get(self, "value_mappings")
 
 
@@ -3115,17 +4062,27 @@ class DerivedLabelMetricLabelMappingLabelNameMappingFilter(dict):
     def __init__(__self__, *,
                  name: str,
                  value_glob: str):
+        """
+        :param str name: Name of the label to match.
+        :param str value_glob: Glob pattern matched against the label value.
+        """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "value_glob", value_glob)
 
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        Name of the label to match.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="valueGlob")
     def value_glob(self) -> str:
+        """
+        Glob pattern matched against the label value.
+        """
         return pulumi.get(self, "value_glob")
 
 
@@ -3153,17 +4110,27 @@ class DerivedLabelMetricLabelMappingLabelNameMappingValueMapping(dict):
     def __init__(__self__, *,
                  source_value_globs: Sequence[str],
                  target_value: str):
+        """
+        :param Sequence[str] source_value_globs: Glob patterns matched against the source label value. A match maps the value to `target_value`.
+        :param str target_value: Value to assign on the derived label when any `source_value_globs` matches.
+        """
         pulumi.set(__self__, "source_value_globs", source_value_globs)
         pulumi.set(__self__, "target_value", target_value)
 
     @property
     @pulumi.getter(name="sourceValueGlobs")
     def source_value_globs(self) -> Sequence[str]:
+        """
+        Glob patterns matched against the source label value. A match maps the value to `target_value`.
+        """
         return pulumi.get(self, "source_value_globs")
 
     @property
     @pulumi.getter(name="targetValue")
     def target_value(self) -> str:
+        """
+        Value to assign on the derived label when any `source_value_globs` matches.
+        """
         return pulumi.get(self, "target_value")
 
 
@@ -3191,17 +4158,27 @@ class DerivedLabelMetricLabelMappingLabelValueMapping(dict):
     def __init__(__self__, *,
                  source_value_globs: Sequence[str],
                  target_value: str):
+        """
+        :param Sequence[str] source_value_globs: Glob patterns matched against the source label value. A match maps the value to `target_value`.
+        :param str target_value: Value to assign on the derived label when any `source_value_globs` matches.
+        """
         pulumi.set(__self__, "source_value_globs", source_value_globs)
         pulumi.set(__self__, "target_value", target_value)
 
     @property
     @pulumi.getter(name="sourceValueGlobs")
     def source_value_globs(self) -> Sequence[str]:
+        """
+        Glob patterns matched against the source label value. A match maps the value to `target_value`.
+        """
         return pulumi.get(self, "source_value_globs")
 
     @property
     @pulumi.getter(name="targetValue")
     def target_value(self) -> str:
+        """
+        Value to assign on the derived label when any `source_value_globs` matches.
+        """
         return pulumi.get(self, "target_value")
 
 
@@ -3226,12 +4203,18 @@ class DerivedLabelSpanTag(dict):
 
     def __init__(__self__, *,
                  name_mappings: Optional[Sequence['outputs.DerivedLabelSpanTagNameMapping']] = None):
+        """
+        :param Sequence['DerivedLabelSpanTagNameMappingArgs'] name_mappings: Ordered list of name mappings. The first mapping that matches supplies the derived label from its `source_tag`.
+        """
         if name_mappings is not None:
             pulumi.set(__self__, "name_mappings", name_mappings)
 
     @property
     @pulumi.getter(name="nameMappings")
     def name_mappings(self) -> Optional[Sequence['outputs.DerivedLabelSpanTagNameMapping']]:
+        """
+        Ordered list of name mappings. The first mapping that matches supplies the derived label from its `source_tag`.
+        """
         return pulumi.get(self, "name_mappings")
 
 
@@ -3256,11 +4239,17 @@ class DerivedLabelSpanTagNameMapping(dict):
 
     def __init__(__self__, *,
                  source_tag: str):
+        """
+        :param str source_tag: Source span tag name to copy into the derived label.
+        """
         pulumi.set(__self__, "source_tag", source_tag)
 
     @property
     @pulumi.getter(name="sourceTag")
     def source_tag(self) -> str:
+        """
+        Source span tag name to copy into the derived label.
+        """
         return pulumi.get(self, "source_tag")
 
 
@@ -3269,6 +4258,10 @@ class DerivedMetricQuery(dict):
     def __init__(__self__, *,
                  query: 'outputs.DerivedMetricQueryQuery',
                  selector: Optional['outputs.DerivedMetricQuerySelector'] = None):
+        """
+        :param 'DerivedMetricQueryQueryArgs' query: PromQL query executed when this selector matches.
+        :param 'DerivedMetricQuerySelectorArgs' selector: Label matchers that must be present on the derived metric usage for this query to be selected. If omitted, the query matches any usage.
+        """
         pulumi.set(__self__, "query", query)
         if selector is not None:
             pulumi.set(__self__, "selector", selector)
@@ -3276,11 +4269,17 @@ class DerivedMetricQuery(dict):
     @property
     @pulumi.getter
     def query(self) -> 'outputs.DerivedMetricQueryQuery':
+        """
+        PromQL query executed when this selector matches.
+        """
         return pulumi.get(self, "query")
 
     @property
     @pulumi.getter
     def selector(self) -> Optional['outputs.DerivedMetricQuerySelector']:
+        """
+        Label matchers that must be present on the derived metric usage for this query to be selected. If omitted, the query matches any usage.
+        """
         return pulumi.get(self, "selector")
 
 
@@ -3289,6 +4288,10 @@ class DerivedMetricQueryQuery(dict):
     def __init__(__self__, *,
                  expr: str,
                  variables: Optional[Sequence['outputs.DerivedMetricQueryQueryVariable']] = None):
+        """
+        :param str expr: PromQL expression for the derived metric. References declared variables using `$name` syntax (e.g. `cpu_usage{$service}`).
+        :param Sequence['DerivedMetricQueryQueryVariableArgs'] variables: Variables that can be substituted into `expr` at query time as label selectors.
+        """
         pulumi.set(__self__, "expr", expr)
         if variables is not None:
             pulumi.set(__self__, "variables", variables)
@@ -3296,11 +4299,17 @@ class DerivedMetricQueryQuery(dict):
     @property
     @pulumi.getter
     def expr(self) -> str:
+        """
+        PromQL expression for the derived metric. References declared variables using `$name` syntax (e.g. `cpu_usage{$service}`).
+        """
         return pulumi.get(self, "expr")
 
     @property
     @pulumi.getter
     def variables(self) -> Optional[Sequence['outputs.DerivedMetricQueryQueryVariable']]:
+        """
+        Variables that can be substituted into `expr` at query time as label selectors.
+        """
         return pulumi.get(self, "variables")
 
 
@@ -3326,17 +4335,27 @@ class DerivedMetricQueryQueryVariable(dict):
     def __init__(__self__, *,
                  default_selector: str,
                  name: str):
+        """
+        :param str default_selector: PromQL label selector used when no override is supplied by the derived metric usage.
+        :param str name: Variable name as referenced in `expr` (e.g. `service` for `$service`).
+        """
         pulumi.set(__self__, "default_selector", default_selector)
         pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter(name="defaultSelector")
     def default_selector(self) -> str:
+        """
+        PromQL label selector used when no override is supplied by the derived metric usage.
+        """
         return pulumi.get(self, "default_selector")
 
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        Variable name as referenced in `expr` (e.g. `service` for `$service`).
+        """
         return pulumi.get(self, "name")
 
 
@@ -3344,12 +4363,18 @@ class DerivedMetricQueryQueryVariable(dict):
 class DerivedMetricQuerySelector(dict):
     def __init__(__self__, *,
                  labels: Optional[Mapping[str, str]] = None):
+        """
+        :param Mapping[str, str] labels: Labels that must match (key/value) on the derived metric usage for the selector to apply.
+        """
         if labels is not None:
             pulumi.set(__self__, "labels", labels)
 
     @property
     @pulumi.getter
     def labels(self) -> Optional[Mapping[str, str]]:
+        """
+        Labels that must match (key/value) on the derived metric usage for the selector to apply.
+        """
         return pulumi.get(self, "labels")
 
 
@@ -3374,11 +4399,17 @@ class DropRuleValueBasedDrop(dict):
 
     def __init__(__self__, *,
                  target_drop_value: float):
+        """
+        :param float target_drop_value: Data point value at which matching points are dropped.
+        """
         pulumi.set(__self__, "target_drop_value", target_drop_value)
 
     @property
     @pulumi.getter(name="targetDropValue")
     def target_drop_value(self) -> float:
+        """
+        Data point value at which matching points are dropped.
+        """
         return pulumi.get(self, "target_drop_value")
 
 
@@ -3408,6 +4439,12 @@ class GcpMetricsIntegrationMetricGroup(dict):
                  filters: Optional[Sequence['outputs.GcpMetricsIntegrationMetricGroupFilter']] = None,
                  prefixes: Optional[Sequence[str]] = None,
                  rollup_rules: Optional[Sequence['outputs.GcpMetricsIntegrationMetricGroupRollupRule']] = None):
+        """
+        :param str project_id: Google Cloud project ID to read metrics from. The configured service account must have access.
+        :param Sequence['GcpMetricsIntegrationMetricGroupFilterArgs'] filters: Label filters applied to metrics in this group. All filters must match for a metric to be ingested.
+        :param Sequence[str] prefixes: List of Google Cloud metric prefixes to ingest (e.g. `compute.googleapis.com/`).
+        :param Sequence['GcpMetricsIntegrationMetricGroupRollupRuleArgs'] rollup_rules: Server-side aggregation rules applied to metrics in this group before they are stored.
+        """
         pulumi.set(__self__, "project_id", project_id)
         if filters is not None:
             pulumi.set(__self__, "filters", filters)
@@ -3419,21 +4456,33 @@ class GcpMetricsIntegrationMetricGroup(dict):
     @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> str:
+        """
+        Google Cloud project ID to read metrics from. The configured service account must have access.
+        """
         return pulumi.get(self, "project_id")
 
     @property
     @pulumi.getter
     def filters(self) -> Optional[Sequence['outputs.GcpMetricsIntegrationMetricGroupFilter']]:
+        """
+        Label filters applied to metrics in this group. All filters must match for a metric to be ingested.
+        """
         return pulumi.get(self, "filters")
 
     @property
     @pulumi.getter
     def prefixes(self) -> Optional[Sequence[str]]:
+        """
+        List of Google Cloud metric prefixes to ingest (e.g. `compute.googleapis.com/`).
+        """
         return pulumi.get(self, "prefixes")
 
     @property
     @pulumi.getter(name="rollupRules")
     def rollup_rules(self) -> Optional[Sequence['outputs.GcpMetricsIntegrationMetricGroupRollupRule']]:
+        """
+        Server-side aggregation rules applied to metrics in this group before they are stored.
+        """
         return pulumi.get(self, "rollup_rules")
 
 
@@ -3460,6 +4509,11 @@ class GcpMetricsIntegrationMetricGroupFilter(dict):
                  context: Optional[str] = None,
                  name: Optional[str] = None,
                  value_glob: Optional[str] = None):
+        """
+        :param str context: Label context, e.g. resource vs. metric label. See the Chronosphere GCP integration documentation for accepted values.
+        :param str name: Label name to filter on.
+        :param str value_glob: Value pattern using glob syntax (e.g. `prod-*`). An exact match is applied when no glob characters are present.
+        """
         if context is not None:
             pulumi.set(__self__, "context", context)
         if name is not None:
@@ -3470,16 +4524,25 @@ class GcpMetricsIntegrationMetricGroupFilter(dict):
     @property
     @pulumi.getter
     def context(self) -> Optional[str]:
+        """
+        Label context, e.g. resource vs. metric label. See the Chronosphere GCP integration documentation for accepted values.
+        """
         return pulumi.get(self, "context")
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
+        """
+        Label name to filter on.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="valueGlob")
     def value_glob(self) -> Optional[str]:
+        """
+        Value pattern using glob syntax (e.g. `prod-*`). An exact match is applied when no glob characters are present.
+        """
         return pulumi.get(self, "value_glob")
 
 
@@ -3508,6 +4571,11 @@ class GcpMetricsIntegrationMetricGroupRollupRule(dict):
                  aggregation: Optional[str] = None,
                  label_policy: Optional['outputs.GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicy'] = None,
                  metric_name: Optional[str] = None):
+        """
+        :param str aggregation: Aggregation function applied across the dropped labels (e.g. sum, max).
+        :param 'GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyArgs' label_policy: Specifies which labels to preserve during aggregation. Labels not listed are dropped.
+        :param str metric_name: Fully-qualified Google Cloud metric name the rollup rule targets (e.g. `cloudsql.googleapis.com/database/uptime`).
+        """
         if aggregation is not None:
             pulumi.set(__self__, "aggregation", aggregation)
         if label_policy is not None:
@@ -3518,16 +4586,25 @@ class GcpMetricsIntegrationMetricGroupRollupRule(dict):
     @property
     @pulumi.getter
     def aggregation(self) -> Optional[str]:
+        """
+        Aggregation function applied across the dropped labels (e.g. sum, max).
+        """
         return pulumi.get(self, "aggregation")
 
     @property
     @pulumi.getter(name="labelPolicy")
     def label_policy(self) -> Optional['outputs.GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicy']:
+        """
+        Specifies which labels to preserve during aggregation. Labels not listed are dropped.
+        """
         return pulumi.get(self, "label_policy")
 
     @property
     @pulumi.getter(name="metricName")
     def metric_name(self) -> Optional[str]:
+        """
+        Fully-qualified Google Cloud metric name the rollup rule targets (e.g. `cloudsql.googleapis.com/database/uptime`).
+        """
         return pulumi.get(self, "metric_name")
 
 
@@ -3535,12 +4612,18 @@ class GcpMetricsIntegrationMetricGroupRollupRule(dict):
 class GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicy(dict):
     def __init__(__self__, *,
                  keeps: Optional[Sequence['outputs.GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeep']] = None):
+        """
+        :param Sequence['GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepArgs'] keeps: Labels to retain after aggregation.
+        """
         if keeps is not None:
             pulumi.set(__self__, "keeps", keeps)
 
     @property
     @pulumi.getter
     def keeps(self) -> Optional[Sequence['outputs.GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeep']]:
+        """
+        Labels to retain after aggregation.
+        """
         return pulumi.get(self, "keeps")
 
 
@@ -3549,6 +4632,10 @@ class GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeep(dict):
     def __init__(__self__, *,
                  context: Optional[str] = None,
                  name: Optional[str] = None):
+        """
+        :param str context: Label context, e.g. resource vs. metric label. See the Chronosphere GCP integration documentation for accepted values.
+        :param str name: Label name to filter on.
+        """
         if context is not None:
             pulumi.set(__self__, "context", context)
         if name is not None:
@@ -3557,11 +4644,17 @@ class GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeep(dict):
     @property
     @pulumi.getter
     def context(self) -> Optional[str]:
+        """
+        Label context, e.g. resource vs. metric label. See the Chronosphere GCP integration documentation for accepted values.
+        """
         return pulumi.get(self, "context")
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
+        """
+        Label name to filter on.
+        """
         return pulumi.get(self, "name")
 
 
@@ -3586,11 +4679,17 @@ class GcpMetricsIntegrationServiceAccount(dict):
 
     def __init__(__self__, *,
                  client_email: str):
+        """
+        :param str client_email: Email address of the Google Cloud service account to impersonate for authentication.
+        """
         pulumi.set(__self__, "client_email", client_email)
 
     @property
     @pulumi.getter(name="clientEmail")
     def client_email(self) -> str:
+        """
+        Email address of the Google Cloud service account to impersonate for authentication.
+        """
         return pulumi.get(self, "client_email")
 
 
@@ -3617,6 +4716,11 @@ class LogAllocationConfigDatasetAllocation(dict):
                  allocation: 'outputs.LogAllocationConfigDatasetAllocationAllocation',
                  dataset_id: str,
                  priorities: Optional['outputs.LogAllocationConfigDatasetAllocationPriorities'] = None):
+        """
+        :param 'LogAllocationConfigDatasetAllocationAllocationArgs' allocation: Resource allocation for the dataset, expressed as a share of the overall log license.
+        :param str dataset_id: Slug of the dataset this allocation applies to.
+        :param 'LogAllocationConfigDatasetAllocationPrioritiesArgs' priorities: Defines high and low priority match criteria. Low priority logs are dropped first when the allocation is exhausted, then default priority, with high priority dropped last.
+        """
         pulumi.set(__self__, "allocation", allocation)
         pulumi.set(__self__, "dataset_id", dataset_id)
         if priorities is not None:
@@ -3625,16 +4729,25 @@ class LogAllocationConfigDatasetAllocation(dict):
     @property
     @pulumi.getter
     def allocation(self) -> 'outputs.LogAllocationConfigDatasetAllocationAllocation':
+        """
+        Resource allocation for the dataset, expressed as a share of the overall log license.
+        """
         return pulumi.get(self, "allocation")
 
     @property
     @pulumi.getter(name="datasetId")
     def dataset_id(self) -> str:
+        """
+        Slug of the dataset this allocation applies to.
+        """
         return pulumi.get(self, "dataset_id")
 
     @property
     @pulumi.getter
     def priorities(self) -> Optional['outputs.LogAllocationConfigDatasetAllocationPriorities']:
+        """
+        Defines high and low priority match criteria. Low priority logs are dropped first when the allocation is exhausted, then default priority, with high priority dropped last.
+        """
         return pulumi.get(self, "priorities")
 
 
@@ -3659,11 +4772,17 @@ class LogAllocationConfigDatasetAllocationAllocation(dict):
 
     def __init__(__self__, *,
                  percent_of_license: float):
+        """
+        :param float percent_of_license: Percentage of the tenant's log license to allocate to this dataset, expressed as a number between 0 and 100.
+        """
         pulumi.set(__self__, "percent_of_license", percent_of_license)
 
     @property
     @pulumi.getter(name="percentOfLicense")
     def percent_of_license(self) -> float:
+        """
+        Percentage of the tenant's log license to allocate to this dataset, expressed as a number between 0 and 100.
+        """
         return pulumi.get(self, "percent_of_license")
 
 
@@ -3691,6 +4810,10 @@ class LogAllocationConfigDatasetAllocationPriorities(dict):
     def __init__(__self__, *,
                  high_priority_filters: Optional[Sequence['outputs.LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilter']] = None,
                  low_priority_filters: Optional[Sequence['outputs.LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilter']] = None):
+        """
+        :param Sequence['LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilterArgs'] high_priority_filters: List of log search filters. Filters are combined as OR statements so only one filter needs to match.
+        :param Sequence['LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilterArgs'] low_priority_filters: List of log search filters. Filters are combined as OR statements so only one filter needs to match.
+        """
         if high_priority_filters is not None:
             pulumi.set(__self__, "high_priority_filters", high_priority_filters)
         if low_priority_filters is not None:
@@ -3699,11 +4822,17 @@ class LogAllocationConfigDatasetAllocationPriorities(dict):
     @property
     @pulumi.getter(name="highPriorityFilters")
     def high_priority_filters(self) -> Optional[Sequence['outputs.LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilter']]:
+        """
+        List of log search filters. Filters are combined as OR statements so only one filter needs to match.
+        """
         return pulumi.get(self, "high_priority_filters")
 
     @property
     @pulumi.getter(name="lowPriorityFilters")
     def low_priority_filters(self) -> Optional[Sequence['outputs.LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilter']]:
+        """
+        List of log search filters. Filters are combined as OR statements so only one filter needs to match.
+        """
         return pulumi.get(self, "low_priority_filters")
 
 
@@ -3711,11 +4840,17 @@ class LogAllocationConfigDatasetAllocationPriorities(dict):
 class LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilter(dict):
     def __init__(__self__, *,
                  query: str):
+        """
+        :param str query: Log search query that selects matching logs. Supports only top-level operations; nested clauses are not allowed and only one type of `AND` or `OR` operator can be used.
+        """
         pulumi.set(__self__, "query", query)
 
     @property
     @pulumi.getter
     def query(self) -> str:
+        """
+        Log search query that selects matching logs. Supports only top-level operations; nested clauses are not allowed and only one type of `AND` or `OR` operator can be used.
+        """
         return pulumi.get(self, "query")
 
 
@@ -3723,11 +4858,17 @@ class LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilter(dict):
 class LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilter(dict):
     def __init__(__self__, *,
                  query: str):
+        """
+        :param str query: Log search query that selects matching logs. Supports only top-level operations; nested clauses are not allowed and only one type of `AND` or `OR` operator can be used.
+        """
         pulumi.set(__self__, "query", query)
 
     @property
     @pulumi.getter
     def query(self) -> str:
+        """
+        Log search query that selects matching logs. Supports only top-level operations; nested clauses are not allowed and only one type of `AND` or `OR` operator can be used.
+        """
         return pulumi.get(self, "query")
 
 
@@ -3736,6 +4877,10 @@ class LogAllocationConfigDefaultDataset(dict):
     def __init__(__self__, *,
                  allocation: 'outputs.LogAllocationConfigDefaultDatasetAllocation',
                  priorities: Optional['outputs.LogAllocationConfigDefaultDatasetPriorities'] = None):
+        """
+        :param 'LogAllocationConfigDefaultDatasetAllocationArgs' allocation: Resource allocation for the dataset, expressed as a share of the overall log license.
+        :param 'LogAllocationConfigDefaultDatasetPrioritiesArgs' priorities: Defines high and low priority match criteria. Low priority logs are dropped first when the allocation is exhausted, then default priority, with high priority dropped last.
+        """
         pulumi.set(__self__, "allocation", allocation)
         if priorities is not None:
             pulumi.set(__self__, "priorities", priorities)
@@ -3743,11 +4888,17 @@ class LogAllocationConfigDefaultDataset(dict):
     @property
     @pulumi.getter
     def allocation(self) -> 'outputs.LogAllocationConfigDefaultDatasetAllocation':
+        """
+        Resource allocation for the dataset, expressed as a share of the overall log license.
+        """
         return pulumi.get(self, "allocation")
 
     @property
     @pulumi.getter
     def priorities(self) -> Optional['outputs.LogAllocationConfigDefaultDatasetPriorities']:
+        """
+        Defines high and low priority match criteria. Low priority logs are dropped first when the allocation is exhausted, then default priority, with high priority dropped last.
+        """
         return pulumi.get(self, "priorities")
 
 
@@ -3772,11 +4923,17 @@ class LogAllocationConfigDefaultDatasetAllocation(dict):
 
     def __init__(__self__, *,
                  percent_of_license: float):
+        """
+        :param float percent_of_license: Percentage of the tenant's log license to allocate to this dataset, expressed as a number between 0 and 100.
+        """
         pulumi.set(__self__, "percent_of_license", percent_of_license)
 
     @property
     @pulumi.getter(name="percentOfLicense")
     def percent_of_license(self) -> float:
+        """
+        Percentage of the tenant's log license to allocate to this dataset, expressed as a number between 0 and 100.
+        """
         return pulumi.get(self, "percent_of_license")
 
 
@@ -3804,6 +4961,10 @@ class LogAllocationConfigDefaultDatasetPriorities(dict):
     def __init__(__self__, *,
                  high_priority_filters: Optional[Sequence['outputs.LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilter']] = None,
                  low_priority_filters: Optional[Sequence['outputs.LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilter']] = None):
+        """
+        :param Sequence['LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterArgs'] high_priority_filters: List of log search filters. Filters are combined as OR statements so only one filter needs to match.
+        :param Sequence['LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterArgs'] low_priority_filters: List of log search filters. Filters are combined as OR statements so only one filter needs to match.
+        """
         if high_priority_filters is not None:
             pulumi.set(__self__, "high_priority_filters", high_priority_filters)
         if low_priority_filters is not None:
@@ -3812,11 +4973,17 @@ class LogAllocationConfigDefaultDatasetPriorities(dict):
     @property
     @pulumi.getter(name="highPriorityFilters")
     def high_priority_filters(self) -> Optional[Sequence['outputs.LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilter']]:
+        """
+        List of log search filters. Filters are combined as OR statements so only one filter needs to match.
+        """
         return pulumi.get(self, "high_priority_filters")
 
     @property
     @pulumi.getter(name="lowPriorityFilters")
     def low_priority_filters(self) -> Optional[Sequence['outputs.LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilter']]:
+        """
+        List of log search filters. Filters are combined as OR statements so only one filter needs to match.
+        """
         return pulumi.get(self, "low_priority_filters")
 
 
@@ -3824,11 +4991,17 @@ class LogAllocationConfigDefaultDatasetPriorities(dict):
 class LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilter(dict):
     def __init__(__self__, *,
                  query: str):
+        """
+        :param str query: Log search query that selects matching logs. Supports only top-level operations; nested clauses are not allowed and only one type of `AND` or `OR` operator can be used.
+        """
         pulumi.set(__self__, "query", query)
 
     @property
     @pulumi.getter
     def query(self) -> str:
+        """
+        Log search query that selects matching logs. Supports only top-level operations; nested clauses are not allowed and only one type of `AND` or `OR` operator can be used.
+        """
         return pulumi.get(self, "query")
 
 
@@ -3836,11 +5009,17 @@ class LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilter(dict):
 class LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilter(dict):
     def __init__(__self__, *,
                  query: str):
+        """
+        :param str query: Log search query that selects matching logs. Supports only top-level operations; nested clauses are not allowed and only one type of `AND` or `OR` operator can be used.
+        """
         pulumi.set(__self__, "query", query)
 
     @property
     @pulumi.getter
     def query(self) -> str:
+        """
+        Log search query that selects matching logs. Supports only top-level operations; nested clauses are not allowed and only one type of `AND` or `OR` operator can be used.
+        """
         return pulumi.get(self, "query")
 
 
@@ -3879,6 +5058,17 @@ class LogControlConfigRule(dict):
                  replace_field: Optional['outputs.LogControlConfigRuleReplaceField'] = None,
                  sample: Optional['outputs.LogControlConfigRuleSample'] = None,
                  type: Optional[str] = None):
+        """
+        :param 'LogControlConfigRuleDropFieldArgs' drop_field: Configuration for the `DROP_FIELD` action, which removes fields from matching logs.
+        :param 'LogControlConfigRuleEmitMetricsArgs' emit_metrics: Configuration for the `EMIT_METRICS` action, which derives Prometheus metrics from matching logs.
+        :param str filter: Log query filter that selects matching logs. The control action applies only to logs that match.
+        :param str mode: Execution mode for the rule (for example, `ENABLED` or `DISABLED`).
+        :param str name: User-defined name for the control rule.
+        :param 'LogControlConfigRuleParseFieldArgs' parse_field: Configuration for the `PARSE_FIELD` action, which parses a field with a regex, key/value, or grok parser and writes the result to another field.
+        :param 'LogControlConfigRuleReplaceFieldArgs' replace_field: Configuration for the `REPLACE_FIELD` action, which rewrites field values in matching logs.
+        :param 'LogControlConfigRuleSampleArgs' sample: Configuration for the `SAMPLE_LOGS` action, which keeps a fraction of matching logs.
+        :param str type: Type of control action this rule performs. Exactly one of the matching action blocks (`sample`, `drop_field`, `emit_metrics`, `replace_field`, `parse_field`) must be configured.
+        """
         if drop_field is not None:
             pulumi.set(__self__, "drop_field", drop_field)
         if emit_metrics is not None:
@@ -3901,46 +5091,73 @@ class LogControlConfigRule(dict):
     @property
     @pulumi.getter(name="dropField")
     def drop_field(self) -> Optional['outputs.LogControlConfigRuleDropField']:
+        """
+        Configuration for the `DROP_FIELD` action, which removes fields from matching logs.
+        """
         return pulumi.get(self, "drop_field")
 
     @property
     @pulumi.getter(name="emitMetrics")
     def emit_metrics(self) -> Optional['outputs.LogControlConfigRuleEmitMetrics']:
+        """
+        Configuration for the `EMIT_METRICS` action, which derives Prometheus metrics from matching logs.
+        """
         return pulumi.get(self, "emit_metrics")
 
     @property
     @pulumi.getter
     def filter(self) -> Optional[str]:
+        """
+        Log query filter that selects matching logs. The control action applies only to logs that match.
+        """
         return pulumi.get(self, "filter")
 
     @property
     @pulumi.getter
     def mode(self) -> Optional[str]:
+        """
+        Execution mode for the rule (for example, `ENABLED` or `DISABLED`).
+        """
         return pulumi.get(self, "mode")
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
+        """
+        User-defined name for the control rule.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="parseField")
     def parse_field(self) -> Optional['outputs.LogControlConfigRuleParseField']:
+        """
+        Configuration for the `PARSE_FIELD` action, which parses a field with a regex, key/value, or grok parser and writes the result to another field.
+        """
         return pulumi.get(self, "parse_field")
 
     @property
     @pulumi.getter(name="replaceField")
     def replace_field(self) -> Optional['outputs.LogControlConfigRuleReplaceField']:
+        """
+        Configuration for the `REPLACE_FIELD` action, which rewrites field values in matching logs.
+        """
         return pulumi.get(self, "replace_field")
 
     @property
     @pulumi.getter
     def sample(self) -> Optional['outputs.LogControlConfigRuleSample']:
+        """
+        Configuration for the `SAMPLE_LOGS` action, which keeps a fraction of matching logs.
+        """
         return pulumi.get(self, "sample")
 
     @property
     @pulumi.getter
     def type(self) -> Optional[str]:
+        """
+        Type of control action this rule performs. Exactly one of the matching action blocks (`sample`, `drop_field`, `emit_metrics`, `replace_field`, `parse_field`) must be configured.
+        """
         return pulumi.get(self, "type")
 
 
@@ -3968,6 +5185,10 @@ class LogControlConfigRuleDropField(dict):
     def __init__(__self__, *,
                  field_regex: Optional[str] = None,
                  parent_path: Optional['outputs.LogControlConfigRuleDropFieldParentPath'] = None):
+        """
+        :param str field_regex: Regular expression that selects which fields to drop.
+        :param 'LogControlConfigRuleDropFieldParentPathArgs' parent_path: Path to a field within a log record.
+        """
         if field_regex is not None:
             pulumi.set(__self__, "field_regex", field_regex)
         if parent_path is not None:
@@ -3976,11 +5197,17 @@ class LogControlConfigRuleDropField(dict):
     @property
     @pulumi.getter(name="fieldRegex")
     def field_regex(self) -> Optional[str]:
+        """
+        Regular expression that selects which fields to drop.
+        """
         return pulumi.get(self, "field_regex")
 
     @property
     @pulumi.getter(name="parentPath")
     def parent_path(self) -> Optional['outputs.LogControlConfigRuleDropFieldParentPath']:
+        """
+        Path to a field within a log record.
+        """
         return pulumi.get(self, "parent_path")
 
 
@@ -3988,12 +5215,18 @@ class LogControlConfigRuleDropField(dict):
 class LogControlConfigRuleDropFieldParentPath(dict):
     def __init__(__self__, *,
                  selector: Optional[str] = None):
+        """
+        :param str selector: Field path selector. Use `parent[child]` syntax to indicate nesting.
+        """
         if selector is not None:
             pulumi.set(__self__, "selector", selector)
 
     @property
     @pulumi.getter
     def selector(self) -> Optional[str]:
+        """
+        Field path selector. Use `parent[child]` syntax to indicate nesting.
+        """
         return pulumi.get(self, "selector")
 
 
@@ -4024,6 +5257,15 @@ class LogControlConfigRuleEmitMetrics(dict):
                  labels: Optional[Sequence['outputs.LogControlConfigRuleEmitMetricsLabel']] = None,
                  mode: Optional[str] = None,
                  name: Optional[str] = None):
+        """
+        :param 'LogControlConfigRuleEmitMetricsCounterArgs' counter: Emit a counter metric. Exactly one of `counter`, `gauge`, or `histogram` must be set.
+        :param bool drop_log: If `true`, drops the entire log after emitting the metric.
+        :param 'LogControlConfigRuleEmitMetricsGaugeArgs' gauge: Emit a gauge metric. Exactly one of `counter`, `gauge`, or `histogram` must be set.
+        :param 'LogControlConfigRuleEmitMetricsHistogramArgs' histogram: Emit a histogram metric. Exactly one of `counter`, `gauge`, or `histogram` must be set.
+        :param Sequence['LogControlConfigRuleEmitMetricsLabelArgs'] labels: Labels to attach to the generated metric, specified as key/value pairs mapping a Prometheus label name to a log field path.
+        :param str mode: Metric emission mode that controls how the metric is generated from matching logs.
+        :param str name: Name of the generated metric. Must conform to Prometheus naming conventions and be unique within the tenant.
+        """
         if counter is not None:
             pulumi.set(__self__, "counter", counter)
         if drop_log is not None:
@@ -4042,36 +5284,57 @@ class LogControlConfigRuleEmitMetrics(dict):
     @property
     @pulumi.getter
     def counter(self) -> Optional['outputs.LogControlConfigRuleEmitMetricsCounter']:
+        """
+        Emit a counter metric. Exactly one of `counter`, `gauge`, or `histogram` must be set.
+        """
         return pulumi.get(self, "counter")
 
     @property
     @pulumi.getter(name="dropLog")
     def drop_log(self) -> Optional[bool]:
+        """
+        If `true`, drops the entire log after emitting the metric.
+        """
         return pulumi.get(self, "drop_log")
 
     @property
     @pulumi.getter
     def gauge(self) -> Optional['outputs.LogControlConfigRuleEmitMetricsGauge']:
+        """
+        Emit a gauge metric. Exactly one of `counter`, `gauge`, or `histogram` must be set.
+        """
         return pulumi.get(self, "gauge")
 
     @property
     @pulumi.getter
     def histogram(self) -> Optional['outputs.LogControlConfigRuleEmitMetricsHistogram']:
+        """
+        Emit a histogram metric. Exactly one of `counter`, `gauge`, or `histogram` must be set.
+        """
         return pulumi.get(self, "histogram")
 
     @property
     @pulumi.getter
     def labels(self) -> Optional[Sequence['outputs.LogControlConfigRuleEmitMetricsLabel']]:
+        """
+        Labels to attach to the generated metric, specified as key/value pairs mapping a Prometheus label name to a log field path.
+        """
         return pulumi.get(self, "labels")
 
     @property
     @pulumi.getter
     def mode(self) -> Optional[str]:
+        """
+        Metric emission mode that controls how the metric is generated from matching logs.
+        """
         return pulumi.get(self, "mode")
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
+        """
+        Name of the generated metric. Must conform to Prometheus naming conventions and be unique within the tenant.
+        """
         return pulumi.get(self, "name")
 
 
@@ -4079,12 +5342,18 @@ class LogControlConfigRuleEmitMetrics(dict):
 class LogControlConfigRuleEmitMetricsCounter(dict):
     def __init__(__self__, *,
                  value: Optional['outputs.LogControlConfigRuleEmitMetricsCounterValue'] = None):
+        """
+        :param 'LogControlConfigRuleEmitMetricsCounterValueArgs' value: Path to a field within a log record.
+        """
         if value is not None:
             pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
     def value(self) -> Optional['outputs.LogControlConfigRuleEmitMetricsCounterValue']:
+        """
+        Path to a field within a log record.
+        """
         return pulumi.get(self, "value")
 
 
@@ -4092,12 +5361,18 @@ class LogControlConfigRuleEmitMetricsCounter(dict):
 class LogControlConfigRuleEmitMetricsCounterValue(dict):
     def __init__(__self__, *,
                  selector: Optional[str] = None):
+        """
+        :param str selector: Field path selector. Use `parent[child]` syntax to indicate nesting.
+        """
         if selector is not None:
             pulumi.set(__self__, "selector", selector)
 
     @property
     @pulumi.getter
     def selector(self) -> Optional[str]:
+        """
+        Field path selector. Use `parent[child]` syntax to indicate nesting.
+        """
         return pulumi.get(self, "selector")
 
 
@@ -4123,6 +5398,10 @@ class LogControlConfigRuleEmitMetricsGauge(dict):
     def __init__(__self__, *,
                  aggregation_type: Optional[str] = None,
                  value: Optional['outputs.LogControlConfigRuleEmitMetricsGaugeValue'] = None):
+        """
+        :param str aggregation_type: How multiple values are aggregated into the emitted gauge (for example, `LAST`, `MIN`, `MAX`).
+        :param 'LogControlConfigRuleEmitMetricsGaugeValueArgs' value: Path to a field within a log record.
+        """
         if aggregation_type is not None:
             pulumi.set(__self__, "aggregation_type", aggregation_type)
         if value is not None:
@@ -4131,11 +5410,17 @@ class LogControlConfigRuleEmitMetricsGauge(dict):
     @property
     @pulumi.getter(name="aggregationType")
     def aggregation_type(self) -> Optional[str]:
+        """
+        How multiple values are aggregated into the emitted gauge (for example, `LAST`, `MIN`, `MAX`).
+        """
         return pulumi.get(self, "aggregation_type")
 
     @property
     @pulumi.getter
     def value(self) -> Optional['outputs.LogControlConfigRuleEmitMetricsGaugeValue']:
+        """
+        Path to a field within a log record.
+        """
         return pulumi.get(self, "value")
 
 
@@ -4143,12 +5428,18 @@ class LogControlConfigRuleEmitMetricsGauge(dict):
 class LogControlConfigRuleEmitMetricsGaugeValue(dict):
     def __init__(__self__, *,
                  selector: Optional[str] = None):
+        """
+        :param str selector: Field path selector. Use `parent[child]` syntax to indicate nesting.
+        """
         if selector is not None:
             pulumi.set(__self__, "selector", selector)
 
     @property
     @pulumi.getter
     def selector(self) -> Optional[str]:
+        """
+        Field path selector. Use `parent[child]` syntax to indicate nesting.
+        """
         return pulumi.get(self, "selector")
 
 
@@ -4156,12 +5447,18 @@ class LogControlConfigRuleEmitMetricsGaugeValue(dict):
 class LogControlConfigRuleEmitMetricsHistogram(dict):
     def __init__(__self__, *,
                  value: Optional['outputs.LogControlConfigRuleEmitMetricsHistogramValue'] = None):
+        """
+        :param 'LogControlConfigRuleEmitMetricsHistogramValueArgs' value: Path to a field within a log record.
+        """
         if value is not None:
             pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
     def value(self) -> Optional['outputs.LogControlConfigRuleEmitMetricsHistogramValue']:
+        """
+        Path to a field within a log record.
+        """
         return pulumi.get(self, "value")
 
 
@@ -4169,12 +5466,18 @@ class LogControlConfigRuleEmitMetricsHistogram(dict):
 class LogControlConfigRuleEmitMetricsHistogramValue(dict):
     def __init__(__self__, *,
                  selector: Optional[str] = None):
+        """
+        :param str selector: Field path selector. Use `parent[child]` syntax to indicate nesting.
+        """
         if selector is not None:
             pulumi.set(__self__, "selector", selector)
 
     @property
     @pulumi.getter
     def selector(self) -> Optional[str]:
+        """
+        Field path selector. Use `parent[child]` syntax to indicate nesting.
+        """
         return pulumi.get(self, "selector")
 
 
@@ -4183,6 +5486,10 @@ class LogControlConfigRuleEmitMetricsLabel(dict):
     def __init__(__self__, *,
                  key: Optional[str] = None,
                  value: Optional['outputs.LogControlConfigRuleEmitMetricsLabelValue'] = None):
+        """
+        :param str key: Prometheus label name to set on the emitted metric.
+        :param 'LogControlConfigRuleEmitMetricsLabelValueArgs' value: Path to a field within a log record.
+        """
         if key is not None:
             pulumi.set(__self__, "key", key)
         if value is not None:
@@ -4191,11 +5498,17 @@ class LogControlConfigRuleEmitMetricsLabel(dict):
     @property
     @pulumi.getter
     def key(self) -> Optional[str]:
+        """
+        Prometheus label name to set on the emitted metric.
+        """
         return pulumi.get(self, "key")
 
     @property
     @pulumi.getter
     def value(self) -> Optional['outputs.LogControlConfigRuleEmitMetricsLabelValue']:
+        """
+        Path to a field within a log record.
+        """
         return pulumi.get(self, "value")
 
 
@@ -4203,12 +5516,18 @@ class LogControlConfigRuleEmitMetricsLabel(dict):
 class LogControlConfigRuleEmitMetricsLabelValue(dict):
     def __init__(__self__, *,
                  selector: Optional[str] = None):
+        """
+        :param str selector: Field path selector. Use `parent[child]` syntax to indicate nesting.
+        """
         if selector is not None:
             pulumi.set(__self__, "selector", selector)
 
     @property
     @pulumi.getter
     def selector(self) -> Optional[str]:
+        """
+        Field path selector. Use `parent[child]` syntax to indicate nesting.
+        """
         return pulumi.get(self, "selector")
 
 
@@ -4218,6 +5537,11 @@ class LogControlConfigRuleParseField(dict):
                  parser: 'outputs.LogControlConfigRuleParseFieldParser',
                  destination: Optional['outputs.LogControlConfigRuleParseFieldDestination'] = None,
                  source: Optional['outputs.LogControlConfigRuleParseFieldSource'] = None):
+        """
+        :param 'LogControlConfigRuleParseFieldParserArgs' parser: Parser configuration. Exactly one of `regex_parser`, `key_value_parser`, or `grok_parser` must be set, matching `parser_type`.
+        :param 'LogControlConfigRuleParseFieldDestinationArgs' destination: Path to a field within a log record.
+        :param 'LogControlConfigRuleParseFieldSourceArgs' source: Path to a field within a log record.
+        """
         pulumi.set(__self__, "parser", parser)
         if destination is not None:
             pulumi.set(__self__, "destination", destination)
@@ -4227,16 +5551,25 @@ class LogControlConfigRuleParseField(dict):
     @property
     @pulumi.getter
     def parser(self) -> 'outputs.LogControlConfigRuleParseFieldParser':
+        """
+        Parser configuration. Exactly one of `regex_parser`, `key_value_parser`, or `grok_parser` must be set, matching `parser_type`.
+        """
         return pulumi.get(self, "parser")
 
     @property
     @pulumi.getter
     def destination(self) -> Optional['outputs.LogControlConfigRuleParseFieldDestination']:
+        """
+        Path to a field within a log record.
+        """
         return pulumi.get(self, "destination")
 
     @property
     @pulumi.getter
     def source(self) -> Optional['outputs.LogControlConfigRuleParseFieldSource']:
+        """
+        Path to a field within a log record.
+        """
         return pulumi.get(self, "source")
 
 
@@ -4244,12 +5577,18 @@ class LogControlConfigRuleParseField(dict):
 class LogControlConfigRuleParseFieldDestination(dict):
     def __init__(__self__, *,
                  selector: Optional[str] = None):
+        """
+        :param str selector: Field path selector. Use `parent[child]` syntax to indicate nesting.
+        """
         if selector is not None:
             pulumi.set(__self__, "selector", selector)
 
     @property
     @pulumi.getter
     def selector(self) -> Optional[str]:
+        """
+        Field path selector. Use `parent[child]` syntax to indicate nesting.
+        """
         return pulumi.get(self, "selector")
 
 
@@ -4283,6 +5622,12 @@ class LogControlConfigRuleParseFieldParser(dict):
                  grok_parser: Optional['outputs.LogControlConfigRuleParseFieldParserGrokParser'] = None,
                  key_value_parser: Optional['outputs.LogControlConfigRuleParseFieldParserKeyValueParser'] = None,
                  regex_parser: Optional['outputs.LogControlConfigRuleParseFieldParserRegexParser'] = None):
+        """
+        :param str parser_type: Type of parser to apply. Determines which of `regex_parser`, `key_value_parser`, or `grok_parser` must be set.
+        :param 'LogControlConfigRuleParseFieldParserGrokParserArgs' grok_parser: Grok parser configuration. Only set when `parser_type` is `GROK`.
+        :param 'LogControlConfigRuleParseFieldParserKeyValueParserArgs' key_value_parser: Key/value parser configuration. Only set when `parser_type` is `KEY_VALUE`. Duplicate keys keep the first occurrence.
+        :param 'LogControlConfigRuleParseFieldParserRegexParserArgs' regex_parser: Regex parser configuration. Only set when `parser_type` is `REGEX`.
+        """
         pulumi.set(__self__, "parser_type", parser_type)
         if grok_parser is not None:
             pulumi.set(__self__, "grok_parser", grok_parser)
@@ -4294,21 +5639,33 @@ class LogControlConfigRuleParseFieldParser(dict):
     @property
     @pulumi.getter(name="parserType")
     def parser_type(self) -> str:
+        """
+        Type of parser to apply. Determines which of `regex_parser`, `key_value_parser`, or `grok_parser` must be set.
+        """
         return pulumi.get(self, "parser_type")
 
     @property
     @pulumi.getter(name="grokParser")
     def grok_parser(self) -> Optional['outputs.LogControlConfigRuleParseFieldParserGrokParser']:
+        """
+        Grok parser configuration. Only set when `parser_type` is `GROK`.
+        """
         return pulumi.get(self, "grok_parser")
 
     @property
     @pulumi.getter(name="keyValueParser")
     def key_value_parser(self) -> Optional['outputs.LogControlConfigRuleParseFieldParserKeyValueParser']:
+        """
+        Key/value parser configuration. Only set when `parser_type` is `KEY_VALUE`. Duplicate keys keep the first occurrence.
+        """
         return pulumi.get(self, "key_value_parser")
 
     @property
     @pulumi.getter(name="regexParser")
     def regex_parser(self) -> Optional['outputs.LogControlConfigRuleParseFieldParserRegexParser']:
+        """
+        Regex parser configuration. Only set when `parser_type` is `REGEX`.
+        """
         return pulumi.get(self, "regex_parser")
 
 
@@ -4316,11 +5673,17 @@ class LogControlConfigRuleParseFieldParser(dict):
 class LogControlConfigRuleParseFieldParserGrokParser(dict):
     def __init__(__self__, *,
                  pattern: str):
+        """
+        :param str pattern: Grok pattern to apply. Named capture groups become named fields in the extracted log.
+        """
         pulumi.set(__self__, "pattern", pattern)
 
     @property
     @pulumi.getter
     def pattern(self) -> str:
+        """
+        Grok pattern to apply. Named capture groups become named fields in the extracted log.
+        """
         return pulumi.get(self, "pattern")
 
 
@@ -4349,6 +5712,11 @@ class LogControlConfigRuleParseFieldParserKeyValueParser(dict):
                  delimiter: str,
                  pair_separator: str,
                  trim_set: Optional[str] = None):
+        """
+        :param str delimiter: String used to split the input into individual key/value pairs.
+        :param str pair_separator: String used to split each pair into a key and value.
+        :param str trim_set: Unicode code points to trim from the beginning and end of each key and value.
+        """
         pulumi.set(__self__, "delimiter", delimiter)
         pulumi.set(__self__, "pair_separator", pair_separator)
         if trim_set is not None:
@@ -4357,16 +5725,25 @@ class LogControlConfigRuleParseFieldParserKeyValueParser(dict):
     @property
     @pulumi.getter
     def delimiter(self) -> str:
+        """
+        String used to split the input into individual key/value pairs.
+        """
         return pulumi.get(self, "delimiter")
 
     @property
     @pulumi.getter(name="pairSeparator")
     def pair_separator(self) -> str:
+        """
+        String used to split each pair into a key and value.
+        """
         return pulumi.get(self, "pair_separator")
 
     @property
     @pulumi.getter(name="trimSet")
     def trim_set(self) -> Optional[str]:
+        """
+        Unicode code points to trim from the beginning and end of each key and value.
+        """
         return pulumi.get(self, "trim_set")
 
 
@@ -4374,11 +5751,17 @@ class LogControlConfigRuleParseFieldParserKeyValueParser(dict):
 class LogControlConfigRuleParseFieldParserRegexParser(dict):
     def __init__(__self__, *,
                  regex: str):
+        """
+        :param str regex: RE2 regular expression pattern. Named capturing groups become named fields in the extracted log.
+        """
         pulumi.set(__self__, "regex", regex)
 
     @property
     @pulumi.getter
     def regex(self) -> str:
+        """
+        RE2 regular expression pattern. Named capturing groups become named fields in the extracted log.
+        """
         return pulumi.get(self, "regex")
 
 
@@ -4386,12 +5769,18 @@ class LogControlConfigRuleParseFieldParserRegexParser(dict):
 class LogControlConfigRuleParseFieldSource(dict):
     def __init__(__self__, *,
                  selector: Optional[str] = None):
+        """
+        :param str selector: Field path selector. Use `parent[child]` syntax to indicate nesting.
+        """
         if selector is not None:
             pulumi.set(__self__, "selector", selector)
 
     @property
     @pulumi.getter
     def selector(self) -> Optional[str]:
+        """
+        Field path selector. Use `parent[child]` syntax to indicate nesting.
+        """
         return pulumi.get(self, "selector")
 
 
@@ -4429,6 +5818,14 @@ class LogControlConfigRuleReplaceField(dict):
                  replace_mode: Optional[str] = None,
                  replace_regex: Optional[str] = None,
                  static_value: Optional['outputs.LogControlConfigRuleReplaceFieldStaticValue'] = None):
+        """
+        :param 'LogControlConfigRuleReplaceFieldFieldArgs' field: Path to a field within a log record.
+        :param 'LogControlConfigRuleReplaceFieldMappedValueArgs' mapped_value: Replace field values using a key/value lookup table. Exactly one of `mapped_value` or `static_value` must be set.
+        :param bool replace_all: If `true`, replaces all matches. If `false`, replaces only the first match.
+        :param str replace_mode: Mode that controls how the replacement is applied to matched content.
+        :param str replace_regex: Regular expression that selects which part of the field value to replace.
+        :param 'LogControlConfigRuleReplaceFieldStaticValueArgs' static_value: Replace matched content with a static string. Exactly one of `mapped_value` or `static_value` must be set.
+        """
         if field is not None:
             pulumi.set(__self__, "field", field)
         if mapped_value is not None:
@@ -4445,31 +5842,49 @@ class LogControlConfigRuleReplaceField(dict):
     @property
     @pulumi.getter
     def field(self) -> Optional['outputs.LogControlConfigRuleReplaceFieldField']:
+        """
+        Path to a field within a log record.
+        """
         return pulumi.get(self, "field")
 
     @property
     @pulumi.getter(name="mappedValue")
     def mapped_value(self) -> Optional['outputs.LogControlConfigRuleReplaceFieldMappedValue']:
+        """
+        Replace field values using a key/value lookup table. Exactly one of `mapped_value` or `static_value` must be set.
+        """
         return pulumi.get(self, "mapped_value")
 
     @property
     @pulumi.getter(name="replaceAll")
     def replace_all(self) -> Optional[bool]:
+        """
+        If `true`, replaces all matches. If `false`, replaces only the first match.
+        """
         return pulumi.get(self, "replace_all")
 
     @property
     @pulumi.getter(name="replaceMode")
     def replace_mode(self) -> Optional[str]:
+        """
+        Mode that controls how the replacement is applied to matched content.
+        """
         return pulumi.get(self, "replace_mode")
 
     @property
     @pulumi.getter(name="replaceRegex")
     def replace_regex(self) -> Optional[str]:
+        """
+        Regular expression that selects which part of the field value to replace.
+        """
         return pulumi.get(self, "replace_regex")
 
     @property
     @pulumi.getter(name="staticValue")
     def static_value(self) -> Optional['outputs.LogControlConfigRuleReplaceFieldStaticValue']:
+        """
+        Replace matched content with a static string. Exactly one of `mapped_value` or `static_value` must be set.
+        """
         return pulumi.get(self, "static_value")
 
 
@@ -4477,12 +5892,18 @@ class LogControlConfigRuleReplaceField(dict):
 class LogControlConfigRuleReplaceFieldField(dict):
     def __init__(__self__, *,
                  selector: Optional[str] = None):
+        """
+        :param str selector: Field path selector. Use `parent[child]` syntax to indicate nesting.
+        """
         if selector is not None:
             pulumi.set(__self__, "selector", selector)
 
     @property
     @pulumi.getter
     def selector(self) -> Optional[str]:
+        """
+        Field path selector. Use `parent[child]` syntax to indicate nesting.
+        """
         return pulumi.get(self, "selector")
 
 
@@ -4511,6 +5932,11 @@ class LogControlConfigRuleReplaceFieldMappedValue(dict):
                  default_value: Optional[str] = None,
                  pairs: Optional[Sequence['outputs.LogControlConfigRuleReplaceFieldMappedValuePair']] = None,
                  use_default: Optional[bool] = None):
+        """
+        :param str default_value: Value to substitute when no matching key is found, when `use_default` is `true`.
+        :param Sequence['LogControlConfigRuleReplaceFieldMappedValuePairArgs'] pairs: List of key/value pairs that map matched content to replacement values.
+        :param bool use_default: If `true`, falls back to `default_value` when no key matches. If `false`, leaves the value unchanged on a miss.
+        """
         if default_value is not None:
             pulumi.set(__self__, "default_value", default_value)
         if pairs is not None:
@@ -4521,16 +5947,25 @@ class LogControlConfigRuleReplaceFieldMappedValue(dict):
     @property
     @pulumi.getter(name="defaultValue")
     def default_value(self) -> Optional[str]:
+        """
+        Value to substitute when no matching key is found, when `use_default` is `true`.
+        """
         return pulumi.get(self, "default_value")
 
     @property
     @pulumi.getter
     def pairs(self) -> Optional[Sequence['outputs.LogControlConfigRuleReplaceFieldMappedValuePair']]:
+        """
+        List of key/value pairs that map matched content to replacement values.
+        """
         return pulumi.get(self, "pairs")
 
     @property
     @pulumi.getter(name="useDefault")
     def use_default(self) -> Optional[bool]:
+        """
+        If `true`, falls back to `default_value` when no key matches. If `false`, leaves the value unchanged on a miss.
+        """
         return pulumi.get(self, "use_default")
 
 
@@ -4539,6 +5974,10 @@ class LogControlConfigRuleReplaceFieldMappedValuePair(dict):
     def __init__(__self__, *,
                  key: Optional[str] = None,
                  value: Optional[str] = None):
+        """
+        :param str key: Prometheus label name to set on the emitted metric.
+        :param str value: Path to a field within a log record.
+        """
         if key is not None:
             pulumi.set(__self__, "key", key)
         if value is not None:
@@ -4547,11 +5986,17 @@ class LogControlConfigRuleReplaceFieldMappedValuePair(dict):
     @property
     @pulumi.getter
     def key(self) -> Optional[str]:
+        """
+        Prometheus label name to set on the emitted metric.
+        """
         return pulumi.get(self, "key")
 
     @property
     @pulumi.getter
     def value(self) -> Optional[str]:
+        """
+        Path to a field within a log record.
+        """
         return pulumi.get(self, "value")
 
 
@@ -4559,12 +6004,18 @@ class LogControlConfigRuleReplaceFieldMappedValuePair(dict):
 class LogControlConfigRuleReplaceFieldStaticValue(dict):
     def __init__(__self__, *,
                  value: Optional[str] = None):
+        """
+        :param str value: Path to a field within a log record.
+        """
         if value is not None:
             pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
     def value(self) -> Optional[str]:
+        """
+        Path to a field within a log record.
+        """
         return pulumi.get(self, "value")
 
 
@@ -4572,12 +6023,18 @@ class LogControlConfigRuleReplaceFieldStaticValue(dict):
 class LogControlConfigRuleSample(dict):
     def __init__(__self__, *,
                  rate: Optional[float] = None):
+        """
+        :param float rate: Fraction of matching logs to keep, in the range `[0, 1]` (for example, `0.25` keeps 25%).
+        """
         if rate is not None:
             pulumi.set(__self__, "rate", rate)
 
     @property
     @pulumi.getter
     def rate(self) -> Optional[float]:
+        """
+        Fraction of matching logs to keep, in the range `[0, 1]` (for example, `0.25` keeps 25%).
+        """
         return pulumi.get(self, "rate")
 
 
@@ -4606,6 +6063,13 @@ class LogIngestConfigFieldNormalization(dict):
                  service: Optional['outputs.LogIngestConfigFieldNormalizationService'] = None,
                  severity: Optional['outputs.LogIngestConfigFieldNormalizationSeverity'] = None,
                  timestamp: Optional['outputs.LogIngestConfigFieldNormalizationTimestamp'] = None):
+        """
+        :param Sequence['LogIngestConfigFieldNormalizationCustomFieldNormalizationArgs'] custom_field_normalizations: Normalization rules for additional custom fields. These fields are not indexed; use them for things like environment, region, or user ID.
+        :param 'LogIngestConfigFieldNormalizationMessageArgs' message: Rule that extracts and transforms a string value from a log field, with optional regex sanitization, default value, and value mapping.
+        :param 'LogIngestConfigFieldNormalizationServiceArgs' service: Rule that extracts and transforms a string value from a log field, with optional regex sanitization, default value, and value mapping.
+        :param 'LogIngestConfigFieldNormalizationSeverityArgs' severity: Rule that extracts and transforms a string value from a log field, with optional regex sanitization, default value, and value mapping.
+        :param 'LogIngestConfigFieldNormalizationTimestampArgs' timestamp: Normalization rule for the well-known `timestamp` field.
+        """
         if custom_field_normalizations is not None:
             pulumi.set(__self__, "custom_field_normalizations", custom_field_normalizations)
         if message is not None:
@@ -4620,26 +6084,41 @@ class LogIngestConfigFieldNormalization(dict):
     @property
     @pulumi.getter(name="customFieldNormalizations")
     def custom_field_normalizations(self) -> Optional[Sequence['outputs.LogIngestConfigFieldNormalizationCustomFieldNormalization']]:
+        """
+        Normalization rules for additional custom fields. These fields are not indexed; use them for things like environment, region, or user ID.
+        """
         return pulumi.get(self, "custom_field_normalizations")
 
     @property
     @pulumi.getter
     def message(self) -> Optional['outputs.LogIngestConfigFieldNormalizationMessage']:
+        """
+        Rule that extracts and transforms a string value from a log field, with optional regex sanitization, default value, and value mapping.
+        """
         return pulumi.get(self, "message")
 
     @property
     @pulumi.getter
     def service(self) -> Optional['outputs.LogIngestConfigFieldNormalizationService']:
+        """
+        Rule that extracts and transforms a string value from a log field, with optional regex sanitization, default value, and value mapping.
+        """
         return pulumi.get(self, "service")
 
     @property
     @pulumi.getter
     def severity(self) -> Optional['outputs.LogIngestConfigFieldNormalizationSeverity']:
+        """
+        Rule that extracts and transforms a string value from a log field, with optional regex sanitization, default value, and value mapping.
+        """
         return pulumi.get(self, "severity")
 
     @property
     @pulumi.getter
     def timestamp(self) -> Optional['outputs.LogIngestConfigFieldNormalizationTimestamp']:
+        """
+        Normalization rule for the well-known `timestamp` field.
+        """
         return pulumi.get(self, "timestamp")
 
 
@@ -4648,6 +6127,10 @@ class LogIngestConfigFieldNormalizationCustomFieldNormalization(dict):
     def __init__(__self__, *,
                  normalization: Optional['outputs.LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalization'] = None,
                  target: Optional[str] = None):
+        """
+        :param 'LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationArgs' normalization: Rule that extracts and transforms a string value from a log field, with optional regex sanitization, default value, and value mapping.
+        :param str target: Name of the target field where the normalized value is stored.
+        """
         if normalization is not None:
             pulumi.set(__self__, "normalization", normalization)
         if target is not None:
@@ -4656,11 +6139,17 @@ class LogIngestConfigFieldNormalizationCustomFieldNormalization(dict):
     @property
     @pulumi.getter
     def normalization(self) -> Optional['outputs.LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalization']:
+        """
+        Rule that extracts and transforms a string value from a log field, with optional regex sanitization, default value, and value mapping.
+        """
         return pulumi.get(self, "normalization")
 
     @property
     @pulumi.getter
     def target(self) -> Optional[str]:
+        """
+        Name of the target field where the normalized value is stored.
+        """
         return pulumi.get(self, "target")
 
 
@@ -4692,6 +6181,12 @@ class LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalization(dic
                  sanitize_patterns: Optional[Sequence[str]] = None,
                  sources: Optional[Sequence['outputs.LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSource']] = None,
                  value_map: Optional[Mapping[str, str]] = None):
+        """
+        :param str default_value: Value to use when no source field contains a value.
+        :param Sequence[str] sanitize_patterns: Regex patterns used to extract and sanitize the value. Each pattern must have exactly one capturing group, whose contents are used as the result.
+        :param Sequence['LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceArgs'] sources: Ordered list of field paths to check for values. The first non-empty value found is used.
+        :param Mapping[str, str] value_map: Optional mapping that normalizes raw values to canonical ones (for example, `warn` to `WARNING`).
+        """
         if default_value is not None:
             pulumi.set(__self__, "default_value", default_value)
         if sanitize_patterns is not None:
@@ -4704,21 +6199,33 @@ class LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalization(dic
     @property
     @pulumi.getter(name="defaultValue")
     def default_value(self) -> Optional[str]:
+        """
+        Value to use when no source field contains a value.
+        """
         return pulumi.get(self, "default_value")
 
     @property
     @pulumi.getter(name="sanitizePatterns")
     def sanitize_patterns(self) -> Optional[Sequence[str]]:
+        """
+        Regex patterns used to extract and sanitize the value. Each pattern must have exactly one capturing group, whose contents are used as the result.
+        """
         return pulumi.get(self, "sanitize_patterns")
 
     @property
     @pulumi.getter
     def sources(self) -> Optional[Sequence['outputs.LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSource']]:
+        """
+        Ordered list of field paths to check for values. The first non-empty value found is used.
+        """
         return pulumi.get(self, "sources")
 
     @property
     @pulumi.getter(name="valueMap")
     def value_map(self) -> Optional[Mapping[str, str]]:
+        """
+        Optional mapping that normalizes raw values to canonical ones (for example, `warn` to `WARNING`).
+        """
         return pulumi.get(self, "value_map")
 
 
@@ -4726,11 +6233,17 @@ class LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalization(dic
 class LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSource(dict):
     def __init__(__self__, *,
                  selector: str):
+        """
+        :param str selector: Field path selector. Use `parent[child]` syntax to indicate nesting.
+        """
         pulumi.set(__self__, "selector", selector)
 
     @property
     @pulumi.getter
     def selector(self) -> str:
+        """
+        Field path selector. Use `parent[child]` syntax to indicate nesting.
+        """
         return pulumi.get(self, "selector")
 
 
@@ -4762,6 +6275,12 @@ class LogIngestConfigFieldNormalizationMessage(dict):
                  sanitize_patterns: Optional[Sequence[str]] = None,
                  sources: Optional[Sequence['outputs.LogIngestConfigFieldNormalizationMessageSource']] = None,
                  value_map: Optional[Mapping[str, str]] = None):
+        """
+        :param str default_value: Value to use when no source field contains a value.
+        :param Sequence[str] sanitize_patterns: Regex patterns used to extract and sanitize the value. Each pattern must have exactly one capturing group, whose contents are used as the result.
+        :param Sequence['LogIngestConfigFieldNormalizationMessageSourceArgs'] sources: Ordered list of field paths to check for values. The first non-empty value found is used.
+        :param Mapping[str, str] value_map: Optional mapping that normalizes raw values to canonical ones (for example, `warn` to `WARNING`).
+        """
         if default_value is not None:
             pulumi.set(__self__, "default_value", default_value)
         if sanitize_patterns is not None:
@@ -4774,21 +6293,33 @@ class LogIngestConfigFieldNormalizationMessage(dict):
     @property
     @pulumi.getter(name="defaultValue")
     def default_value(self) -> Optional[str]:
+        """
+        Value to use when no source field contains a value.
+        """
         return pulumi.get(self, "default_value")
 
     @property
     @pulumi.getter(name="sanitizePatterns")
     def sanitize_patterns(self) -> Optional[Sequence[str]]:
+        """
+        Regex patterns used to extract and sanitize the value. Each pattern must have exactly one capturing group, whose contents are used as the result.
+        """
         return pulumi.get(self, "sanitize_patterns")
 
     @property
     @pulumi.getter
     def sources(self) -> Optional[Sequence['outputs.LogIngestConfigFieldNormalizationMessageSource']]:
+        """
+        Ordered list of field paths to check for values. The first non-empty value found is used.
+        """
         return pulumi.get(self, "sources")
 
     @property
     @pulumi.getter(name="valueMap")
     def value_map(self) -> Optional[Mapping[str, str]]:
+        """
+        Optional mapping that normalizes raw values to canonical ones (for example, `warn` to `WARNING`).
+        """
         return pulumi.get(self, "value_map")
 
 
@@ -4796,11 +6327,17 @@ class LogIngestConfigFieldNormalizationMessage(dict):
 class LogIngestConfigFieldNormalizationMessageSource(dict):
     def __init__(__self__, *,
                  selector: str):
+        """
+        :param str selector: Field path selector. Use `parent[child]` syntax to indicate nesting.
+        """
         pulumi.set(__self__, "selector", selector)
 
     @property
     @pulumi.getter
     def selector(self) -> str:
+        """
+        Field path selector. Use `parent[child]` syntax to indicate nesting.
+        """
         return pulumi.get(self, "selector")
 
 
@@ -4832,6 +6369,12 @@ class LogIngestConfigFieldNormalizationService(dict):
                  sanitize_patterns: Optional[Sequence[str]] = None,
                  sources: Optional[Sequence['outputs.LogIngestConfigFieldNormalizationServiceSource']] = None,
                  value_map: Optional[Mapping[str, str]] = None):
+        """
+        :param str default_value: Value to use when no source field contains a value.
+        :param Sequence[str] sanitize_patterns: Regex patterns used to extract and sanitize the value. Each pattern must have exactly one capturing group, whose contents are used as the result.
+        :param Sequence['LogIngestConfigFieldNormalizationServiceSourceArgs'] sources: Ordered list of field paths to check for values. The first non-empty value found is used.
+        :param Mapping[str, str] value_map: Optional mapping that normalizes raw values to canonical ones (for example, `warn` to `WARNING`).
+        """
         if default_value is not None:
             pulumi.set(__self__, "default_value", default_value)
         if sanitize_patterns is not None:
@@ -4844,21 +6387,33 @@ class LogIngestConfigFieldNormalizationService(dict):
     @property
     @pulumi.getter(name="defaultValue")
     def default_value(self) -> Optional[str]:
+        """
+        Value to use when no source field contains a value.
+        """
         return pulumi.get(self, "default_value")
 
     @property
     @pulumi.getter(name="sanitizePatterns")
     def sanitize_patterns(self) -> Optional[Sequence[str]]:
+        """
+        Regex patterns used to extract and sanitize the value. Each pattern must have exactly one capturing group, whose contents are used as the result.
+        """
         return pulumi.get(self, "sanitize_patterns")
 
     @property
     @pulumi.getter
     def sources(self) -> Optional[Sequence['outputs.LogIngestConfigFieldNormalizationServiceSource']]:
+        """
+        Ordered list of field paths to check for values. The first non-empty value found is used.
+        """
         return pulumi.get(self, "sources")
 
     @property
     @pulumi.getter(name="valueMap")
     def value_map(self) -> Optional[Mapping[str, str]]:
+        """
+        Optional mapping that normalizes raw values to canonical ones (for example, `warn` to `WARNING`).
+        """
         return pulumi.get(self, "value_map")
 
 
@@ -4866,11 +6421,17 @@ class LogIngestConfigFieldNormalizationService(dict):
 class LogIngestConfigFieldNormalizationServiceSource(dict):
     def __init__(__self__, *,
                  selector: str):
+        """
+        :param str selector: Field path selector. Use `parent[child]` syntax to indicate nesting.
+        """
         pulumi.set(__self__, "selector", selector)
 
     @property
     @pulumi.getter
     def selector(self) -> str:
+        """
+        Field path selector. Use `parent[child]` syntax to indicate nesting.
+        """
         return pulumi.get(self, "selector")
 
 
@@ -4902,6 +6463,12 @@ class LogIngestConfigFieldNormalizationSeverity(dict):
                  sanitize_patterns: Optional[Sequence[str]] = None,
                  sources: Optional[Sequence['outputs.LogIngestConfigFieldNormalizationSeveritySource']] = None,
                  value_map: Optional[Mapping[str, str]] = None):
+        """
+        :param str default_value: Value to use when no source field contains a value.
+        :param Sequence[str] sanitize_patterns: Regex patterns used to extract and sanitize the value. Each pattern must have exactly one capturing group, whose contents are used as the result.
+        :param Sequence['LogIngestConfigFieldNormalizationSeveritySourceArgs'] sources: Ordered list of field paths to check for values. The first non-empty value found is used.
+        :param Mapping[str, str] value_map: Optional mapping that normalizes raw values to canonical ones (for example, `warn` to `WARNING`).
+        """
         if default_value is not None:
             pulumi.set(__self__, "default_value", default_value)
         if sanitize_patterns is not None:
@@ -4914,21 +6481,33 @@ class LogIngestConfigFieldNormalizationSeverity(dict):
     @property
     @pulumi.getter(name="defaultValue")
     def default_value(self) -> Optional[str]:
+        """
+        Value to use when no source field contains a value.
+        """
         return pulumi.get(self, "default_value")
 
     @property
     @pulumi.getter(name="sanitizePatterns")
     def sanitize_patterns(self) -> Optional[Sequence[str]]:
+        """
+        Regex patterns used to extract and sanitize the value. Each pattern must have exactly one capturing group, whose contents are used as the result.
+        """
         return pulumi.get(self, "sanitize_patterns")
 
     @property
     @pulumi.getter
     def sources(self) -> Optional[Sequence['outputs.LogIngestConfigFieldNormalizationSeveritySource']]:
+        """
+        Ordered list of field paths to check for values. The first non-empty value found is used.
+        """
         return pulumi.get(self, "sources")
 
     @property
     @pulumi.getter(name="valueMap")
     def value_map(self) -> Optional[Mapping[str, str]]:
+        """
+        Optional mapping that normalizes raw values to canonical ones (for example, `warn` to `WARNING`).
+        """
         return pulumi.get(self, "value_map")
 
 
@@ -4936,11 +6515,17 @@ class LogIngestConfigFieldNormalizationSeverity(dict):
 class LogIngestConfigFieldNormalizationSeveritySource(dict):
     def __init__(__self__, *,
                  selector: str):
+        """
+        :param str selector: Field path selector. Use `parent[child]` syntax to indicate nesting.
+        """
         pulumi.set(__self__, "selector", selector)
 
     @property
     @pulumi.getter
     def selector(self) -> str:
+        """
+        Field path selector. Use `parent[child]` syntax to indicate nesting.
+        """
         return pulumi.get(self, "selector")
 
 
@@ -4948,12 +6533,18 @@ class LogIngestConfigFieldNormalizationSeveritySource(dict):
 class LogIngestConfigFieldNormalizationTimestamp(dict):
     def __init__(__self__, *,
                  sources: Optional[Sequence['outputs.LogIngestConfigFieldNormalizationTimestampSource']] = None):
+        """
+        :param Sequence['LogIngestConfigFieldNormalizationTimestampSourceArgs'] sources: Ordered list of field paths to check for values. The first non-empty value found is used.
+        """
         if sources is not None:
             pulumi.set(__self__, "sources", sources)
 
     @property
     @pulumi.getter
     def sources(self) -> Optional[Sequence['outputs.LogIngestConfigFieldNormalizationTimestampSource']]:
+        """
+        Ordered list of field paths to check for values. The first non-empty value found is used.
+        """
         return pulumi.get(self, "sources")
 
 
@@ -4961,11 +6552,17 @@ class LogIngestConfigFieldNormalizationTimestamp(dict):
 class LogIngestConfigFieldNormalizationTimestampSource(dict):
     def __init__(__self__, *,
                  selector: str):
+        """
+        :param str selector: Field path selector. Use `parent[child]` syntax to indicate nesting.
+        """
         pulumi.set(__self__, "selector", selector)
 
     @property
     @pulumi.getter
     def selector(self) -> str:
+        """
+        Field path selector. Use `parent[child]` syntax to indicate nesting.
+        """
         return pulumi.get(self, "selector")
 
 
@@ -4976,6 +6573,12 @@ class LogIngestConfigFieldParser(dict):
                  source: 'outputs.LogIngestConfigFieldParserSource',
                  destination: Optional['outputs.LogIngestConfigFieldParserDestination'] = None,
                  mode: Optional[str] = None):
+        """
+        :param 'LogIngestConfigFieldParserParserArgs' parser: Parser configuration. Exactly one of `regex_parser`, `key_value_parser`, or `grok_parser` must be set, matching `parser_type`.
+        :param 'LogIngestConfigFieldParserSourceArgs' source: Path of the field to parse.
+        :param 'LogIngestConfigFieldParserDestinationArgs' destination: Path to write the parsed output to. If omitted, parsed fields are written at the root.
+        :param str mode: Mode that controls when the field parser runs on incoming logs.
+        """
         pulumi.set(__self__, "parser", parser)
         pulumi.set(__self__, "source", source)
         if destination is not None:
@@ -4986,21 +6589,33 @@ class LogIngestConfigFieldParser(dict):
     @property
     @pulumi.getter
     def parser(self) -> 'outputs.LogIngestConfigFieldParserParser':
+        """
+        Parser configuration. Exactly one of `regex_parser`, `key_value_parser`, or `grok_parser` must be set, matching `parser_type`.
+        """
         return pulumi.get(self, "parser")
 
     @property
     @pulumi.getter
     def source(self) -> 'outputs.LogIngestConfigFieldParserSource':
+        """
+        Path of the field to parse.
+        """
         return pulumi.get(self, "source")
 
     @property
     @pulumi.getter
     def destination(self) -> Optional['outputs.LogIngestConfigFieldParserDestination']:
+        """
+        Path to write the parsed output to. If omitted, parsed fields are written at the root.
+        """
         return pulumi.get(self, "destination")
 
     @property
     @pulumi.getter
     def mode(self) -> Optional[str]:
+        """
+        Mode that controls when the field parser runs on incoming logs.
+        """
         return pulumi.get(self, "mode")
 
 
@@ -5008,11 +6623,17 @@ class LogIngestConfigFieldParser(dict):
 class LogIngestConfigFieldParserDestination(dict):
     def __init__(__self__, *,
                  selector: str):
+        """
+        :param str selector: Field path selector. Use `parent[child]` syntax to indicate nesting.
+        """
         pulumi.set(__self__, "selector", selector)
 
     @property
     @pulumi.getter
     def selector(self) -> str:
+        """
+        Field path selector. Use `parent[child]` syntax to indicate nesting.
+        """
         return pulumi.get(self, "selector")
 
 
@@ -5046,6 +6667,12 @@ class LogIngestConfigFieldParserParser(dict):
                  grok_parser: Optional['outputs.LogIngestConfigFieldParserParserGrokParser'] = None,
                  key_value_parser: Optional['outputs.LogIngestConfigFieldParserParserKeyValueParser'] = None,
                  regex_parser: Optional['outputs.LogIngestConfigFieldParserParserRegexParser'] = None):
+        """
+        :param str parser_type: Type of parser to apply. Determines which of `regex_parser`, `key_value_parser`, or `grok_parser` must be set.
+        :param 'LogIngestConfigFieldParserParserGrokParserArgs' grok_parser: Grok parser configuration. Only set when `parser_type` is `GROK`.
+        :param 'LogIngestConfigFieldParserParserKeyValueParserArgs' key_value_parser: Key/value parser configuration. Only set when `parser_type` is `KEY_VALUE`. Duplicate keys keep the first occurrence.
+        :param 'LogIngestConfigFieldParserParserRegexParserArgs' regex_parser: Regex parser configuration. Only set when `parser_type` is `REGEX`.
+        """
         pulumi.set(__self__, "parser_type", parser_type)
         if grok_parser is not None:
             pulumi.set(__self__, "grok_parser", grok_parser)
@@ -5057,21 +6684,33 @@ class LogIngestConfigFieldParserParser(dict):
     @property
     @pulumi.getter(name="parserType")
     def parser_type(self) -> str:
+        """
+        Type of parser to apply. Determines which of `regex_parser`, `key_value_parser`, or `grok_parser` must be set.
+        """
         return pulumi.get(self, "parser_type")
 
     @property
     @pulumi.getter(name="grokParser")
     def grok_parser(self) -> Optional['outputs.LogIngestConfigFieldParserParserGrokParser']:
+        """
+        Grok parser configuration. Only set when `parser_type` is `GROK`.
+        """
         return pulumi.get(self, "grok_parser")
 
     @property
     @pulumi.getter(name="keyValueParser")
     def key_value_parser(self) -> Optional['outputs.LogIngestConfigFieldParserParserKeyValueParser']:
+        """
+        Key/value parser configuration. Only set when `parser_type` is `KEY_VALUE`. Duplicate keys keep the first occurrence.
+        """
         return pulumi.get(self, "key_value_parser")
 
     @property
     @pulumi.getter(name="regexParser")
     def regex_parser(self) -> Optional['outputs.LogIngestConfigFieldParserParserRegexParser']:
+        """
+        Regex parser configuration. Only set when `parser_type` is `REGEX`.
+        """
         return pulumi.get(self, "regex_parser")
 
 
@@ -5079,11 +6718,17 @@ class LogIngestConfigFieldParserParser(dict):
 class LogIngestConfigFieldParserParserGrokParser(dict):
     def __init__(__self__, *,
                  pattern: str):
+        """
+        :param str pattern: Grok pattern to apply. Named capture groups become named fields in the extracted log.
+        """
         pulumi.set(__self__, "pattern", pattern)
 
     @property
     @pulumi.getter
     def pattern(self) -> str:
+        """
+        Grok pattern to apply. Named capture groups become named fields in the extracted log.
+        """
         return pulumi.get(self, "pattern")
 
 
@@ -5112,6 +6757,11 @@ class LogIngestConfigFieldParserParserKeyValueParser(dict):
                  delimiter: str,
                  pair_separator: str,
                  trim_set: Optional[str] = None):
+        """
+        :param str delimiter: String used to split the input into individual key/value pairs.
+        :param str pair_separator: String used to split each pair into a key and value.
+        :param str trim_set: Unicode code points to trim from the beginning and end of each key and value.
+        """
         pulumi.set(__self__, "delimiter", delimiter)
         pulumi.set(__self__, "pair_separator", pair_separator)
         if trim_set is not None:
@@ -5120,16 +6770,25 @@ class LogIngestConfigFieldParserParserKeyValueParser(dict):
     @property
     @pulumi.getter
     def delimiter(self) -> str:
+        """
+        String used to split the input into individual key/value pairs.
+        """
         return pulumi.get(self, "delimiter")
 
     @property
     @pulumi.getter(name="pairSeparator")
     def pair_separator(self) -> str:
+        """
+        String used to split each pair into a key and value.
+        """
         return pulumi.get(self, "pair_separator")
 
     @property
     @pulumi.getter(name="trimSet")
     def trim_set(self) -> Optional[str]:
+        """
+        Unicode code points to trim from the beginning and end of each key and value.
+        """
         return pulumi.get(self, "trim_set")
 
 
@@ -5137,11 +6796,17 @@ class LogIngestConfigFieldParserParserKeyValueParser(dict):
 class LogIngestConfigFieldParserParserRegexParser(dict):
     def __init__(__self__, *,
                  regex: str):
+        """
+        :param str regex: RE2 regular expression pattern. Named capturing groups become named fields in the extracted log.
+        """
         pulumi.set(__self__, "regex", regex)
 
     @property
     @pulumi.getter
     def regex(self) -> str:
+        """
+        RE2 regular expression pattern. Named capturing groups become named fields in the extracted log.
+        """
         return pulumi.get(self, "regex")
 
 
@@ -5149,11 +6814,17 @@ class LogIngestConfigFieldParserParserRegexParser(dict):
 class LogIngestConfigFieldParserSource(dict):
     def __init__(__self__, *,
                  selector: str):
+        """
+        :param str selector: Field path selector. Use `parent[child]` syntax to indicate nesting.
+        """
         pulumi.set(__self__, "selector", selector)
 
     @property
     @pulumi.getter
     def selector(self) -> str:
+        """
+        Field path selector. Use `parent[child]` syntax to indicate nesting.
+        """
         return pulumi.get(self, "selector")
 
 
@@ -5181,6 +6852,12 @@ class LogIngestConfigPlaintextParser(dict):
                  parser: 'outputs.LogIngestConfigPlaintextParserParser',
                  keep_original: Optional[bool] = None,
                  mode: Optional[str] = None):
+        """
+        :param str name: Name of the parser. Must be unique within the configuration.
+        :param 'LogIngestConfigPlaintextParserParserArgs' parser: Parser configuration. Exactly one of `regex_parser`, `key_value_parser`, or `grok_parser` must be set, matching `parser_type`.
+        :param bool keep_original: If `true`, the original log is retained after parsing and stored under the `plaintext_log` key. Defaults to `false`.
+        :param str mode: Mode that controls how the parser matches incoming plaintext logs.
+        """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "parser", parser)
         if keep_original is not None:
@@ -5191,21 +6868,33 @@ class LogIngestConfigPlaintextParser(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        Name of the parser. Must be unique within the configuration.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def parser(self) -> 'outputs.LogIngestConfigPlaintextParserParser':
+        """
+        Parser configuration. Exactly one of `regex_parser`, `key_value_parser`, or `grok_parser` must be set, matching `parser_type`.
+        """
         return pulumi.get(self, "parser")
 
     @property
     @pulumi.getter(name="keepOriginal")
     def keep_original(self) -> Optional[bool]:
+        """
+        If `true`, the original log is retained after parsing and stored under the `plaintext_log` key. Defaults to `false`.
+        """
         return pulumi.get(self, "keep_original")
 
     @property
     @pulumi.getter
     def mode(self) -> Optional[str]:
+        """
+        Mode that controls how the parser matches incoming plaintext logs.
+        """
         return pulumi.get(self, "mode")
 
 
@@ -5239,6 +6928,12 @@ class LogIngestConfigPlaintextParserParser(dict):
                  grok_parser: Optional['outputs.LogIngestConfigPlaintextParserParserGrokParser'] = None,
                  key_value_parser: Optional['outputs.LogIngestConfigPlaintextParserParserKeyValueParser'] = None,
                  regex_parser: Optional['outputs.LogIngestConfigPlaintextParserParserRegexParser'] = None):
+        """
+        :param str parser_type: Type of parser to apply. Determines which of `regex_parser`, `key_value_parser`, or `grok_parser` must be set.
+        :param 'LogIngestConfigPlaintextParserParserGrokParserArgs' grok_parser: Grok parser configuration. Only set when `parser_type` is `GROK`.
+        :param 'LogIngestConfigPlaintextParserParserKeyValueParserArgs' key_value_parser: Key/value parser configuration. Only set when `parser_type` is `KEY_VALUE`. Duplicate keys keep the first occurrence.
+        :param 'LogIngestConfigPlaintextParserParserRegexParserArgs' regex_parser: Regex parser configuration. Only set when `parser_type` is `REGEX`.
+        """
         pulumi.set(__self__, "parser_type", parser_type)
         if grok_parser is not None:
             pulumi.set(__self__, "grok_parser", grok_parser)
@@ -5250,21 +6945,33 @@ class LogIngestConfigPlaintextParserParser(dict):
     @property
     @pulumi.getter(name="parserType")
     def parser_type(self) -> str:
+        """
+        Type of parser to apply. Determines which of `regex_parser`, `key_value_parser`, or `grok_parser` must be set.
+        """
         return pulumi.get(self, "parser_type")
 
     @property
     @pulumi.getter(name="grokParser")
     def grok_parser(self) -> Optional['outputs.LogIngestConfigPlaintextParserParserGrokParser']:
+        """
+        Grok parser configuration. Only set when `parser_type` is `GROK`.
+        """
         return pulumi.get(self, "grok_parser")
 
     @property
     @pulumi.getter(name="keyValueParser")
     def key_value_parser(self) -> Optional['outputs.LogIngestConfigPlaintextParserParserKeyValueParser']:
+        """
+        Key/value parser configuration. Only set when `parser_type` is `KEY_VALUE`. Duplicate keys keep the first occurrence.
+        """
         return pulumi.get(self, "key_value_parser")
 
     @property
     @pulumi.getter(name="regexParser")
     def regex_parser(self) -> Optional['outputs.LogIngestConfigPlaintextParserParserRegexParser']:
+        """
+        Regex parser configuration. Only set when `parser_type` is `REGEX`.
+        """
         return pulumi.get(self, "regex_parser")
 
 
@@ -5272,11 +6979,17 @@ class LogIngestConfigPlaintextParserParser(dict):
 class LogIngestConfigPlaintextParserParserGrokParser(dict):
     def __init__(__self__, *,
                  pattern: str):
+        """
+        :param str pattern: Grok pattern to apply. Named capture groups become named fields in the extracted log.
+        """
         pulumi.set(__self__, "pattern", pattern)
 
     @property
     @pulumi.getter
     def pattern(self) -> str:
+        """
+        Grok pattern to apply. Named capture groups become named fields in the extracted log.
+        """
         return pulumi.get(self, "pattern")
 
 
@@ -5305,6 +7018,11 @@ class LogIngestConfigPlaintextParserParserKeyValueParser(dict):
                  delimiter: str,
                  pair_separator: str,
                  trim_set: Optional[str] = None):
+        """
+        :param str delimiter: String used to split the input into individual key/value pairs.
+        :param str pair_separator: String used to split each pair into a key and value.
+        :param str trim_set: Unicode code points to trim from the beginning and end of each key and value.
+        """
         pulumi.set(__self__, "delimiter", delimiter)
         pulumi.set(__self__, "pair_separator", pair_separator)
         if trim_set is not None:
@@ -5313,16 +7031,25 @@ class LogIngestConfigPlaintextParserParserKeyValueParser(dict):
     @property
     @pulumi.getter
     def delimiter(self) -> str:
+        """
+        String used to split the input into individual key/value pairs.
+        """
         return pulumi.get(self, "delimiter")
 
     @property
     @pulumi.getter(name="pairSeparator")
     def pair_separator(self) -> str:
+        """
+        String used to split each pair into a key and value.
+        """
         return pulumi.get(self, "pair_separator")
 
     @property
     @pulumi.getter(name="trimSet")
     def trim_set(self) -> Optional[str]:
+        """
+        Unicode code points to trim from the beginning and end of each key and value.
+        """
         return pulumi.get(self, "trim_set")
 
 
@@ -5330,11 +7057,17 @@ class LogIngestConfigPlaintextParserParserKeyValueParser(dict):
 class LogIngestConfigPlaintextParserParserRegexParser(dict):
     def __init__(__self__, *,
                  regex: str):
+        """
+        :param str regex: RE2 regular expression pattern. Named capturing groups become named fields in the extracted log.
+        """
         pulumi.set(__self__, "regex", regex)
 
     @property
     @pulumi.getter
     def regex(self) -> str:
+        """
+        RE2 regular expression pattern. Named capturing groups become named fields in the extracted log.
+        """
         return pulumi.get(self, "regex")
 
 
@@ -5369,6 +7102,13 @@ class LogscaleActionEmailAction(dict):
                  body_template: Optional[str] = None,
                  subject_template: Optional[str] = None,
                  use_proxy: Optional[bool] = None):
+        """
+        :param Sequence[str] recipients: List of email addresses to send the message to.
+        :param bool attach_csv: If `true`, attaches the query result set as a CSV file.
+        :param str body_template: Body of the email. Supports Go template syntax with values from the query result.
+        :param str subject_template: Subject of the email. Supports Go template syntax with values from the query result.
+        :param bool use_proxy: If `true`, sends the request through the configured outbound proxy.
+        """
         pulumi.set(__self__, "recipients", recipients)
         if attach_csv is not None:
             pulumi.set(__self__, "attach_csv", attach_csv)
@@ -5382,26 +7122,41 @@ class LogscaleActionEmailAction(dict):
     @property
     @pulumi.getter
     def recipients(self) -> Sequence[str]:
+        """
+        List of email addresses to send the message to.
+        """
         return pulumi.get(self, "recipients")
 
     @property
     @pulumi.getter(name="attachCsv")
     def attach_csv(self) -> Optional[bool]:
+        """
+        If `true`, attaches the query result set as a CSV file.
+        """
         return pulumi.get(self, "attach_csv")
 
     @property
     @pulumi.getter(name="bodyTemplate")
     def body_template(self) -> Optional[str]:
+        """
+        Body of the email. Supports Go template syntax with values from the query result.
+        """
         return pulumi.get(self, "body_template")
 
     @property
     @pulumi.getter(name="subjectTemplate")
     def subject_template(self) -> Optional[str]:
+        """
+        Subject of the email. Supports Go template syntax with values from the query result.
+        """
         return pulumi.get(self, "subject_template")
 
     @property
     @pulumi.getter(name="useProxy")
     def use_proxy(self) -> Optional[bool]:
+        """
+        If `true`, sends the request through the configured outbound proxy.
+        """
         return pulumi.get(self, "use_proxy")
 
 
@@ -5426,11 +7181,17 @@ class LogscaleActionHumioAction(dict):
 
     def __init__(__self__, *,
                  ingest_token: str):
+        """
+        :param str ingest_token: Ingest token for the target repository.
+        """
         pulumi.set(__self__, "ingest_token", ingest_token)
 
     @property
     @pulumi.getter(name="ingestToken")
     def ingest_token(self) -> str:
+        """
+        Ingest token for the target repository.
+        """
         return pulumi.get(self, "ingest_token")
 
 
@@ -5461,6 +7222,11 @@ class LogscaleActionOpsGenieAction(dict):
                  api_url: str,
                  ops_genie_key: str,
                  use_proxy: Optional[bool] = None):
+        """
+        :param str api_url: OpsGenie webhook URL to send the request to.
+        :param str ops_genie_key: Key used to authenticate with OpsGenie.
+        :param bool use_proxy: If `true`, sends the request through the configured outbound proxy.
+        """
         pulumi.set(__self__, "api_url", api_url)
         pulumi.set(__self__, "ops_genie_key", ops_genie_key)
         if use_proxy is not None:
@@ -5469,16 +7235,25 @@ class LogscaleActionOpsGenieAction(dict):
     @property
     @pulumi.getter(name="apiUrl")
     def api_url(self) -> str:
+        """
+        OpsGenie webhook URL to send the request to.
+        """
         return pulumi.get(self, "api_url")
 
     @property
     @pulumi.getter(name="opsGenieKey")
     def ops_genie_key(self) -> str:
+        """
+        Key used to authenticate with OpsGenie.
+        """
         return pulumi.get(self, "ops_genie_key")
 
     @property
     @pulumi.getter(name="useProxy")
     def use_proxy(self) -> Optional[bool]:
+        """
+        If `true`, sends the request through the configured outbound proxy.
+        """
         return pulumi.get(self, "use_proxy")
 
 
@@ -5507,6 +7282,11 @@ class LogscaleActionPagerDutyAction(dict):
                  routing_key: str,
                  severity: str,
                  use_proxy: Optional[bool] = None):
+        """
+        :param str routing_key: Routing key used to authenticate with PagerDuty.
+        :param str severity: Severity attached to the PagerDuty event.
+        :param bool use_proxy: If `true`, sends the request through the configured outbound proxy.
+        """
         pulumi.set(__self__, "routing_key", routing_key)
         pulumi.set(__self__, "severity", severity)
         if use_proxy is not None:
@@ -5515,16 +7295,25 @@ class LogscaleActionPagerDutyAction(dict):
     @property
     @pulumi.getter(name="routingKey")
     def routing_key(self) -> str:
+        """
+        Routing key used to authenticate with PagerDuty.
+        """
         return pulumi.get(self, "routing_key")
 
     @property
     @pulumi.getter
     def severity(self) -> str:
+        """
+        Severity attached to the PagerDuty event.
+        """
         return pulumi.get(self, "severity")
 
     @property
     @pulumi.getter(name="useProxy")
     def use_proxy(self) -> Optional[bool]:
+        """
+        If `true`, sends the request through the configured outbound proxy.
+        """
         return pulumi.get(self, "use_proxy")
 
 
@@ -5551,6 +7340,11 @@ class LogscaleActionSlackAction(dict):
                  url: str,
                  fields: Optional[Mapping[str, str]] = None,
                  use_proxy: Optional[bool] = None):
+        """
+        :param str url: Slack incoming webhook URL to send the request to.
+        :param Mapping[str, str] fields: Fields to include in the Slack message. Values support Go template syntax with the query result.
+        :param bool use_proxy: If `true`, sends the request through the configured outbound proxy.
+        """
         pulumi.set(__self__, "url", url)
         if fields is not None:
             pulumi.set(__self__, "fields", fields)
@@ -5560,16 +7354,25 @@ class LogscaleActionSlackAction(dict):
     @property
     @pulumi.getter
     def url(self) -> str:
+        """
+        Slack incoming webhook URL to send the request to.
+        """
         return pulumi.get(self, "url")
 
     @property
     @pulumi.getter
     def fields(self) -> Optional[Mapping[str, str]]:
+        """
+        Fields to include in the Slack message. Values support Go template syntax with the query result.
+        """
         return pulumi.get(self, "fields")
 
     @property
     @pulumi.getter(name="useProxy")
     def use_proxy(self) -> Optional[bool]:
+        """
+        If `true`, sends the request through the configured outbound proxy.
+        """
         return pulumi.get(self, "use_proxy")
 
 
@@ -5599,6 +7402,12 @@ class LogscaleActionSlackPostMessageAction(dict):
                  channels: Sequence[str],
                  fields: Optional[Mapping[str, str]] = None,
                  use_proxy: Optional[bool] = None):
+        """
+        :param str api_token: Slack API token used to authenticate the request.
+        :param Sequence[str] channels: List of Slack channels to post the message to.
+        :param Mapping[str, str] fields: Fields to include in the Slack message. Values support Go template syntax with the query result.
+        :param bool use_proxy: If `true`, sends the request through the configured outbound proxy.
+        """
         pulumi.set(__self__, "api_token", api_token)
         pulumi.set(__self__, "channels", channels)
         if fields is not None:
@@ -5609,21 +7418,33 @@ class LogscaleActionSlackPostMessageAction(dict):
     @property
     @pulumi.getter(name="apiToken")
     def api_token(self) -> str:
+        """
+        Slack API token used to authenticate the request.
+        """
         return pulumi.get(self, "api_token")
 
     @property
     @pulumi.getter
     def channels(self) -> Sequence[str]:
+        """
+        List of Slack channels to post the message to.
+        """
         return pulumi.get(self, "channels")
 
     @property
     @pulumi.getter
     def fields(self) -> Optional[Mapping[str, str]]:
+        """
+        Fields to include in the Slack message. Values support Go template syntax with the query result.
+        """
         return pulumi.get(self, "fields")
 
     @property
     @pulumi.getter(name="useProxy")
     def use_proxy(self) -> Optional[bool]:
+        """
+        If `true`, sends the request through the configured outbound proxy.
+        """
         return pulumi.get(self, "use_proxy")
 
 
@@ -5648,11 +7469,17 @@ class LogscaleActionUploadFileAction(dict):
 
     def __init__(__self__, *,
                  file_name: str):
+        """
+        :param str file_name: Name to use for the uploaded file.
+        """
         pulumi.set(__self__, "file_name", file_name)
 
     @property
     @pulumi.getter(name="fileName")
     def file_name(self) -> str:
+        """
+        Name to use for the uploaded file.
+        """
         return pulumi.get(self, "file_name")
 
 
@@ -5683,6 +7510,11 @@ class LogscaleActionVictorOpsAction(dict):
                  message_type: str,
                  notify_url: str,
                  use_proxy: Optional[bool] = None):
+        """
+        :param str message_type: Type of the VictorOps message to send (for example, `CRITICAL`, `WARNING`, `INFO`).
+        :param str notify_url: VictorOps webhook URL to send the request to.
+        :param bool use_proxy: If `true`, sends the request through the configured outbound proxy.
+        """
         pulumi.set(__self__, "message_type", message_type)
         pulumi.set(__self__, "notify_url", notify_url)
         if use_proxy is not None:
@@ -5691,16 +7523,25 @@ class LogscaleActionVictorOpsAction(dict):
     @property
     @pulumi.getter(name="messageType")
     def message_type(self) -> str:
+        """
+        Type of the VictorOps message to send (for example, `CRITICAL`, `WARNING`, `INFO`).
+        """
         return pulumi.get(self, "message_type")
 
     @property
     @pulumi.getter(name="notifyUrl")
     def notify_url(self) -> str:
+        """
+        VictorOps webhook URL to send the request to.
+        """
         return pulumi.get(self, "notify_url")
 
     @property
     @pulumi.getter(name="useProxy")
     def use_proxy(self) -> Optional[bool]:
+        """
+        If `true`, sends the request through the configured outbound proxy.
+        """
         return pulumi.get(self, "use_proxy")
 
 
@@ -5734,6 +7575,14 @@ class LogscaleActionWebhookAction(dict):
                  headers: Optional[Mapping[str, str]] = None,
                  ignore_ssl: Optional[bool] = None,
                  use_proxy: Optional[bool] = None):
+        """
+        :param str method: HTTP method used for the webhook request.
+        :param str url: URL to send the HTTP or HTTPS request to.
+        :param str body_template: Body of the request. Supports Go template syntax with values from the query result.
+        :param Mapping[str, str] headers: Headers to include on the HTTP or HTTPS request.
+        :param bool ignore_ssl: If `true`, skips SSL certificate verification for the request.
+        :param bool use_proxy: If `true`, sends the request through the configured outbound proxy.
+        """
         pulumi.set(__self__, "method", method)
         pulumi.set(__self__, "url", url)
         if body_template is not None:
@@ -5748,31 +7597,49 @@ class LogscaleActionWebhookAction(dict):
     @property
     @pulumi.getter
     def method(self) -> str:
+        """
+        HTTP method used for the webhook request.
+        """
         return pulumi.get(self, "method")
 
     @property
     @pulumi.getter
     def url(self) -> str:
+        """
+        URL to send the HTTP or HTTPS request to.
+        """
         return pulumi.get(self, "url")
 
     @property
     @pulumi.getter(name="bodyTemplate")
     def body_template(self) -> Optional[str]:
+        """
+        Body of the request. Supports Go template syntax with values from the query result.
+        """
         return pulumi.get(self, "body_template")
 
     @property
     @pulumi.getter
     def headers(self) -> Optional[Mapping[str, str]]:
+        """
+        Headers to include on the HTTP or HTTPS request.
+        """
         return pulumi.get(self, "headers")
 
     @property
     @pulumi.getter(name="ignoreSsl")
     def ignore_ssl(self) -> Optional[bool]:
+        """
+        If `true`, skips SSL certificate verification for the request.
+        """
         return pulumi.get(self, "ignore_ssl")
 
     @property
     @pulumi.getter(name="useProxy")
     def use_proxy(self) -> Optional[bool]:
+        """
+        If `true`, sends the request through the configured outbound proxy.
+        """
         return pulumi.get(self, "use_proxy")
 
 
@@ -5781,17 +7648,27 @@ class MappingRuleStoragePolicy(dict):
     def __init__(__self__, *,
                  resolution: str,
                  retention: str):
+        """
+        :param str resolution: Resolution at which mapped data points are stored.
+        :param str retention: Retention duration for mapped data points.
+        """
         pulumi.set(__self__, "resolution", resolution)
         pulumi.set(__self__, "retention", retention)
 
     @property
     @pulumi.getter
     def resolution(self) -> str:
+        """
+        Resolution at which mapped data points are stored.
+        """
         return pulumi.get(self, "resolution")
 
     @property
     @pulumi.getter
     def retention(self) -> str:
+        """
+        Retention duration for mapped data points.
+        """
         return pulumi.get(self, "retention")
 
 
@@ -5800,6 +7677,10 @@ class MonitorNotificationTemplate(dict):
     def __init__(__self__, *,
                  description: Optional[str] = None,
                  title: Optional[str] = None):
+        """
+        :param str description: Body/description template for the notification.
+        :param str title: Title template for the notification.
+        """
         if description is not None:
             pulumi.set(__self__, "description", description)
         if title is not None:
@@ -5808,11 +7689,17 @@ class MonitorNotificationTemplate(dict):
     @property
     @pulumi.getter
     def description(self) -> Optional[str]:
+        """
+        Body/description template for the notification.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
     def title(self) -> Optional[str]:
+        """
+        Title template for the notification.
+        """
         return pulumi.get(self, "title")
 
 
@@ -5843,6 +7730,11 @@ class MonitorQuery(dict):
                  graphite_expr: Optional[str] = None,
                  logging_expr: Optional[str] = None,
                  prometheus_expr: Optional[str] = None):
+        """
+        :param str graphite_expr: Graphite expression evaluated by the monitor.
+        :param str logging_expr: Log query expression evaluated by the monitor.
+        :param str prometheus_expr: PromQL expression evaluated by the monitor.
+        """
         if graphite_expr is not None:
             pulumi.set(__self__, "graphite_expr", graphite_expr)
         if logging_expr is not None:
@@ -5853,16 +7745,25 @@ class MonitorQuery(dict):
     @property
     @pulumi.getter(name="graphiteExpr")
     def graphite_expr(self) -> Optional[str]:
+        """
+        Graphite expression evaluated by the monitor.
+        """
         return pulumi.get(self, "graphite_expr")
 
     @property
     @pulumi.getter(name="loggingExpr")
     def logging_expr(self) -> Optional[str]:
+        """
+        Log query expression evaluated by the monitor.
+        """
         return pulumi.get(self, "logging_expr")
 
     @property
     @pulumi.getter(name="prometheusExpr")
     def prometheus_expr(self) -> Optional[str]:
+        """
+        PromQL expression evaluated by the monitor.
+        """
         return pulumi.get(self, "prometheus_expr")
 
 
@@ -5871,6 +7772,10 @@ class MonitorSchedule(dict):
     def __init__(__self__, *,
                  timezone: str,
                  ranges: Optional[Sequence['outputs.MonitorScheduleRange']] = None):
+        """
+        :param str timezone: IANA timezone name (e.g. `America/New_York`) used to interpret `range` values.
+        :param Sequence['MonitorScheduleRangeArgs'] ranges: Time-of-day ranges during which the monitor is active. The monitor is inactive outside these ranges.
+        """
         pulumi.set(__self__, "timezone", timezone)
         if ranges is not None:
             pulumi.set(__self__, "ranges", ranges)
@@ -5878,11 +7783,17 @@ class MonitorSchedule(dict):
     @property
     @pulumi.getter
     def timezone(self) -> str:
+        """
+        IANA timezone name (e.g. `America/New_York`) used to interpret `range` values.
+        """
         return pulumi.get(self, "timezone")
 
     @property
     @pulumi.getter
     def ranges(self) -> Optional[Sequence['outputs.MonitorScheduleRange']]:
+        """
+        Time-of-day ranges during which the monitor is active. The monitor is inactive outside these ranges.
+        """
         return pulumi.get(self, "ranges")
 
 
@@ -5892,6 +7803,11 @@ class MonitorScheduleRange(dict):
                  day: str,
                  end: str,
                  start: str):
+        """
+        :param str day: Day of week, e.g. `monday`. Case-insensitive.
+        :param str end: End time of day, 24-hour `HH:MM` format.
+        :param str start: Start time of day, 24-hour `HH:MM` format.
+        """
         pulumi.set(__self__, "day", day)
         pulumi.set(__self__, "end", end)
         pulumi.set(__self__, "start", start)
@@ -5899,16 +7815,25 @@ class MonitorScheduleRange(dict):
     @property
     @pulumi.getter
     def day(self) -> str:
+        """
+        Day of week, e.g. `monday`. Case-insensitive.
+        """
         return pulumi.get(self, "day")
 
     @property
     @pulumi.getter
     def end(self) -> str:
+        """
+        End time of day, 24-hour `HH:MM` format.
+        """
         return pulumi.get(self, "end")
 
     @property
     @pulumi.getter
     def start(self) -> str:
+        """
+        Start time of day, 24-hour `HH:MM` format.
+        """
         return pulumi.get(self, "start")
 
 
@@ -5917,6 +7842,10 @@ class MonitorSeriesConditions(dict):
     def __init__(__self__, *,
                  conditions: Sequence['outputs.MonitorSeriesConditionsCondition'],
                  overrides: Optional[Sequence['outputs.MonitorSeriesConditionsOverride']] = None):
+        """
+        :param Sequence['MonitorSeriesConditionsConditionArgs'] conditions: One or more severity/threshold conditions. Multiple conditions enable multi-severity monitors (e.g. warn at one threshold, page at a higher one).
+        :param Sequence['MonitorSeriesConditionsOverrideArgs'] overrides: Per-series overrides that apply different conditions to series matching a set of label matchers.
+        """
         pulumi.set(__self__, "conditions", conditions)
         if overrides is not None:
             pulumi.set(__self__, "overrides", overrides)
@@ -5924,11 +7853,17 @@ class MonitorSeriesConditions(dict):
     @property
     @pulumi.getter
     def conditions(self) -> Sequence['outputs.MonitorSeriesConditionsCondition']:
+        """
+        One or more severity/threshold conditions. Multiple conditions enable multi-severity monitors (e.g. warn at one threshold, page at a higher one).
+        """
         return pulumi.get(self, "conditions")
 
     @property
     @pulumi.getter
     def overrides(self) -> Optional[Sequence['outputs.MonitorSeriesConditionsOverride']]:
+        """
+        Per-series overrides that apply different conditions to series matching a set of label matchers.
+        """
         return pulumi.get(self, "overrides")
 
 
@@ -5960,6 +7895,14 @@ class MonitorSeriesConditionsCondition(dict):
                  resolve_value: Optional['outputs.MonitorSeriesConditionsConditionResolveValue'] = None,
                  sustain: Optional[str] = None,
                  value: Optional[float] = None):
+        """
+        :param str op: Comparison operator between the query value and `value` (e.g. `gt`, `lt`, `eq`).
+        :param str severity: Severity assigned when this condition matches (e.g. `warn`, `critical`). Case-sensitive.
+        :param str resolve_sustain: Duration the condition must remain false continuously before an active signal resolves.
+        :param 'MonitorSeriesConditionsConditionResolveValueArgs' resolve_value: Optional separate threshold used for resolution, enabling hysteresis (e.g. fire at >90, resolve at \\n\\n).
+        :param str sustain: Duration the condition must hold continuously before a signal fires.
+        :param float value: Resolution threshold value.
+        """
         pulumi.set(__self__, "op", op)
         pulumi.set(__self__, "severity", severity)
         if resolve_sustain is not None:
@@ -5974,31 +7917,49 @@ class MonitorSeriesConditionsCondition(dict):
     @property
     @pulumi.getter
     def op(self) -> str:
+        """
+        Comparison operator between the query value and `value` (e.g. `gt`, `lt`, `eq`).
+        """
         return pulumi.get(self, "op")
 
     @property
     @pulumi.getter
     def severity(self) -> str:
+        """
+        Severity assigned when this condition matches (e.g. `warn`, `critical`). Case-sensitive.
+        """
         return pulumi.get(self, "severity")
 
     @property
     @pulumi.getter(name="resolveSustain")
     def resolve_sustain(self) -> Optional[str]:
+        """
+        Duration the condition must remain false continuously before an active signal resolves.
+        """
         return pulumi.get(self, "resolve_sustain")
 
     @property
     @pulumi.getter(name="resolveValue")
     def resolve_value(self) -> Optional['outputs.MonitorSeriesConditionsConditionResolveValue']:
+        """
+        Optional separate threshold used for resolution, enabling hysteresis (e.g. fire at >90, resolve at \\n\\n).
+        """
         return pulumi.get(self, "resolve_value")
 
     @property
     @pulumi.getter
     def sustain(self) -> Optional[str]:
+        """
+        Duration the condition must hold continuously before a signal fires.
+        """
         return pulumi.get(self, "sustain")
 
     @property
     @pulumi.getter
     def value(self) -> Optional[float]:
+        """
+        Resolution threshold value.
+        """
         return pulumi.get(self, "value")
 
 
@@ -6007,17 +7968,27 @@ class MonitorSeriesConditionsConditionResolveValue(dict):
     def __init__(__self__, *,
                  enabled: bool,
                  value: float):
+        """
+        :param bool enabled: Whether the resolve-value threshold is active.
+        :param float value: Resolution threshold value.
+        """
         pulumi.set(__self__, "enabled", enabled)
         pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
     def enabled(self) -> bool:
+        """
+        Whether the resolve-value threshold is active.
+        """
         return pulumi.get(self, "enabled")
 
     @property
     @pulumi.getter
     def value(self) -> float:
+        """
+        Resolution threshold value.
+        """
         return pulumi.get(self, "value")
 
 
@@ -6043,17 +8014,27 @@ class MonitorSeriesConditionsOverride(dict):
     def __init__(__self__, *,
                  conditions: Sequence['outputs.MonitorSeriesConditionsOverrideCondition'],
                  label_matchers: Sequence['outputs.MonitorSeriesConditionsOverrideLabelMatcher']):
+        """
+        :param Sequence['MonitorSeriesConditionsOverrideConditionArgs'] conditions: One or more severity/threshold conditions. Multiple conditions enable multi-severity monitors (e.g. warn at one threshold, page at a higher one).
+        :param Sequence['MonitorSeriesConditionsOverrideLabelMatcherArgs'] label_matchers: List of label matchers used to select a subset of series.
+        """
         pulumi.set(__self__, "conditions", conditions)
         pulumi.set(__self__, "label_matchers", label_matchers)
 
     @property
     @pulumi.getter
     def conditions(self) -> Sequence['outputs.MonitorSeriesConditionsOverrideCondition']:
+        """
+        One or more severity/threshold conditions. Multiple conditions enable multi-severity monitors (e.g. warn at one threshold, page at a higher one).
+        """
         return pulumi.get(self, "conditions")
 
     @property
     @pulumi.getter(name="labelMatchers")
     def label_matchers(self) -> Sequence['outputs.MonitorSeriesConditionsOverrideLabelMatcher']:
+        """
+        List of label matchers used to select a subset of series.
+        """
         return pulumi.get(self, "label_matchers")
 
 
@@ -6085,6 +8066,14 @@ class MonitorSeriesConditionsOverrideCondition(dict):
                  resolve_value: Optional['outputs.MonitorSeriesConditionsOverrideConditionResolveValue'] = None,
                  sustain: Optional[str] = None,
                  value: Optional[float] = None):
+        """
+        :param str op: Comparison operator between the query value and `value` (e.g. `gt`, `lt`, `eq`).
+        :param str severity: Severity assigned when this condition matches (e.g. `warn`, `critical`). Case-sensitive.
+        :param str resolve_sustain: Duration the condition must remain false continuously before an active signal resolves.
+        :param 'MonitorSeriesConditionsOverrideConditionResolveValueArgs' resolve_value: Optional separate threshold used for resolution, enabling hysteresis (e.g. fire at >90, resolve at \\n\\n).
+        :param str sustain: Duration the condition must hold continuously before a signal fires.
+        :param float value: Resolution threshold value.
+        """
         pulumi.set(__self__, "op", op)
         pulumi.set(__self__, "severity", severity)
         if resolve_sustain is not None:
@@ -6099,31 +8088,49 @@ class MonitorSeriesConditionsOverrideCondition(dict):
     @property
     @pulumi.getter
     def op(self) -> str:
+        """
+        Comparison operator between the query value and `value` (e.g. `gt`, `lt`, `eq`).
+        """
         return pulumi.get(self, "op")
 
     @property
     @pulumi.getter
     def severity(self) -> str:
+        """
+        Severity assigned when this condition matches (e.g. `warn`, `critical`). Case-sensitive.
+        """
         return pulumi.get(self, "severity")
 
     @property
     @pulumi.getter(name="resolveSustain")
     def resolve_sustain(self) -> Optional[str]:
+        """
+        Duration the condition must remain false continuously before an active signal resolves.
+        """
         return pulumi.get(self, "resolve_sustain")
 
     @property
     @pulumi.getter(name="resolveValue")
     def resolve_value(self) -> Optional['outputs.MonitorSeriesConditionsOverrideConditionResolveValue']:
+        """
+        Optional separate threshold used for resolution, enabling hysteresis (e.g. fire at >90, resolve at \\n\\n).
+        """
         return pulumi.get(self, "resolve_value")
 
     @property
     @pulumi.getter
     def sustain(self) -> Optional[str]:
+        """
+        Duration the condition must hold continuously before a signal fires.
+        """
         return pulumi.get(self, "sustain")
 
     @property
     @pulumi.getter
     def value(self) -> Optional[float]:
+        """
+        Resolution threshold value.
+        """
         return pulumi.get(self, "value")
 
 
@@ -6132,17 +8139,27 @@ class MonitorSeriesConditionsOverrideConditionResolveValue(dict):
     def __init__(__self__, *,
                  enabled: bool,
                  value: float):
+        """
+        :param bool enabled: Whether the resolve-value threshold is active.
+        :param float value: Resolution threshold value.
+        """
         pulumi.set(__self__, "enabled", enabled)
         pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
     def enabled(self) -> bool:
+        """
+        Whether the resolve-value threshold is active.
+        """
         return pulumi.get(self, "enabled")
 
     @property
     @pulumi.getter
     def value(self) -> float:
+        """
+        Resolution threshold value.
+        """
         return pulumi.get(self, "value")
 
 
@@ -6152,6 +8169,11 @@ class MonitorSeriesConditionsOverrideLabelMatcher(dict):
                  name: str,
                  type: str,
                  value: str):
+        """
+        :param str name: Label name to match.
+        :param str type: Match operator: one of `=`, `!=`, `=~` (regex), `!~` (regex negation).
+        :param str value: Resolution threshold value.
+        """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "type", type)
         pulumi.set(__self__, "value", value)
@@ -6159,16 +8181,25 @@ class MonitorSeriesConditionsOverrideLabelMatcher(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        Label name to match.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def type(self) -> str:
+        """
+        Match operator: one of `=`, `!=`, `=~` (regex), `!~` (regex negation).
+        """
         return pulumi.get(self, "type")
 
     @property
     @pulumi.getter
     def value(self) -> str:
+        """
+        Resolution threshold value.
+        """
         return pulumi.get(self, "value")
 
 
@@ -6196,6 +8227,10 @@ class MonitorSignalGrouping(dict):
     def __init__(__self__, *,
                  label_names: Optional[Sequence[str]] = None,
                  signal_per_series: Optional[bool] = None):
+        """
+        :param Sequence[str] label_names: Labels to group by. Series sharing the same values for these labels produce one signal. Defaults to no grouping (one signal per series).
+        :param bool signal_per_series: If true, treat each individual series as its own signal. Mutually exclusive with `label_names`.
+        """
         if label_names is not None:
             pulumi.set(__self__, "label_names", label_names)
         if signal_per_series is not None:
@@ -6204,11 +8239,17 @@ class MonitorSignalGrouping(dict):
     @property
     @pulumi.getter(name="labelNames")
     def label_names(self) -> Optional[Sequence[str]]:
+        """
+        Labels to group by. Series sharing the same values for these labels produce one signal. Defaults to no grouping (one signal per series).
+        """
         return pulumi.get(self, "label_names")
 
     @property
     @pulumi.getter(name="signalPerSeries")
     def signal_per_series(self) -> Optional[bool]:
+        """
+        If true, treat each individual series as its own signal. Mutually exclusive with `label_names`.
+        """
         return pulumi.get(self, "signal_per_series")
 
 
@@ -6234,6 +8275,10 @@ class NotificationPolicyOverride(dict):
     def __init__(__self__, *,
                  alert_label_matchers: Sequence['outputs.NotificationPolicyOverrideAlertLabelMatcher'],
                  routes: Optional[Sequence['outputs.NotificationPolicyOverrideRoute']] = None):
+        """
+        :param Sequence['NotificationPolicyOverrideAlertLabelMatcherArgs'] alert_label_matchers: List of label matchers used to select a subset of series.
+        :param Sequence['NotificationPolicyOverrideRouteArgs'] routes: Per-severity routing rules. Each entry maps a severity (e.g. `warn`, `critical`) to a set of notifiers, destinations, grouping, and repeat behavior.
+        """
         pulumi.set(__self__, "alert_label_matchers", alert_label_matchers)
         if routes is not None:
             pulumi.set(__self__, "routes", routes)
@@ -6241,11 +8286,17 @@ class NotificationPolicyOverride(dict):
     @property
     @pulumi.getter(name="alertLabelMatchers")
     def alert_label_matchers(self) -> Sequence['outputs.NotificationPolicyOverrideAlertLabelMatcher']:
+        """
+        List of label matchers used to select a subset of series.
+        """
         return pulumi.get(self, "alert_label_matchers")
 
     @property
     @pulumi.getter
     def routes(self) -> Optional[Sequence['outputs.NotificationPolicyOverrideRoute']]:
+        """
+        Per-severity routing rules. Each entry maps a severity (e.g. `warn`, `critical`) to a set of notifiers, destinations, grouping, and repeat behavior.
+        """
         return pulumi.get(self, "routes")
 
 
@@ -6255,6 +8306,11 @@ class NotificationPolicyOverrideAlertLabelMatcher(dict):
                  name: str,
                  type: str,
                  value: str):
+        """
+        :param str name: Label name to match.
+        :param str type: Match operator: one of `=`, `!=`, `=~` (regex), `!~` (regex negation).
+        :param str value: Label value (or regex pattern, for regex matchers) to match against.
+        """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "type", type)
         pulumi.set(__self__, "value", value)
@@ -6262,16 +8318,25 @@ class NotificationPolicyOverrideAlertLabelMatcher(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        Label name to match.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def type(self) -> str:
+        """
+        Match operator: one of `=`, `!=`, `=~` (regex), `!~` (regex negation).
+        """
         return pulumi.get(self, "type")
 
     @property
     @pulumi.getter
     def value(self) -> str:
+        """
+        Label value (or regex pattern, for regex matchers) to match against.
+        """
         return pulumi.get(self, "value")
 
 
@@ -6302,6 +8367,13 @@ class NotificationPolicyOverrideRoute(dict):
                  group_by: Optional['outputs.NotificationPolicyOverrideRouteGroupBy'] = None,
                  notifiers: Optional[Sequence[str]] = None,
                  repeat_interval: Optional[str] = None):
+        """
+        :param str severity: Severity this route applies to (e.g. `warn`, `critical`). Case-sensitive.
+        :param Sequence['NotificationPolicyOverrideRouteDestinationArgs'] destinations: Inline notification destinations defined directly on the route. Each block sets at most one of `slack`, `pagerduty`, `webhook`, `ops_genie`, `victor_ops`, or `email`. Cannot be combined with `notifiers`.
+        :param 'NotificationPolicyOverrideRouteGroupByArgs' group_by: Optional grouping configuration controlling how alerts are batched before delivery.
+        :param Sequence[str] notifiers: Slugs of notifier resources that receive alerts at this severity. Cannot be combined with `destination`.
+        :param str repeat_interval: How often to resend unresolved alerts at this severity (e.g. `4h`).
+        """
         pulumi.set(__self__, "severity", severity)
         if destinations is not None:
             pulumi.set(__self__, "destinations", destinations)
@@ -6315,26 +8387,41 @@ class NotificationPolicyOverrideRoute(dict):
     @property
     @pulumi.getter
     def severity(self) -> str:
+        """
+        Severity this route applies to (e.g. `warn`, `critical`). Case-sensitive.
+        """
         return pulumi.get(self, "severity")
 
     @property
     @pulumi.getter
     def destinations(self) -> Optional[Sequence['outputs.NotificationPolicyOverrideRouteDestination']]:
+        """
+        Inline notification destinations defined directly on the route. Each block sets at most one of `slack`, `pagerduty`, `webhook`, `ops_genie`, `victor_ops`, or `email`. Cannot be combined with `notifiers`.
+        """
         return pulumi.get(self, "destinations")
 
     @property
     @pulumi.getter(name="groupBy")
     def group_by(self) -> Optional['outputs.NotificationPolicyOverrideRouteGroupBy']:
+        """
+        Optional grouping configuration controlling how alerts are batched before delivery.
+        """
         return pulumi.get(self, "group_by")
 
     @property
     @pulumi.getter
     def notifiers(self) -> Optional[Sequence[str]]:
+        """
+        Slugs of notifier resources that receive alerts at this severity. Cannot be combined with `destination`.
+        """
         return pulumi.get(self, "notifiers")
 
     @property
     @pulumi.getter(name="repeatInterval")
     def repeat_interval(self) -> Optional[str]:
+        """
+        How often to resend unresolved alerts at this severity (e.g. `4h`).
+        """
         return pulumi.get(self, "repeat_interval")
 
 
@@ -6369,6 +8456,15 @@ class NotificationPolicyOverrideRouteDestination(dict):
                  slack: Optional['outputs.NotificationPolicyOverrideRouteDestinationSlack'] = None,
                  victor_ops: Optional['outputs.NotificationPolicyOverrideRouteDestinationVictorOps'] = None,
                  webhook: Optional['outputs.NotificationPolicyOverrideRouteDestinationWebhook'] = None):
+        """
+        :param bool disable_resolves: If true, do not send notifications when alerts resolve. Defaults to false.
+        :param 'NotificationPolicyOverrideRouteDestinationEmailArgs' email: Email delivery configuration for this destination.
+        :param 'NotificationPolicyOverrideRouteDestinationOpsGenieArgs' ops_genie: OpsGenie delivery configuration for this destination.
+        :param 'NotificationPolicyOverrideRouteDestinationPagerdutyArgs' pagerduty: PagerDuty delivery configuration for this destination.
+        :param 'NotificationPolicyOverrideRouteDestinationSlackArgs' slack: Slack delivery configuration for this destination.
+        :param 'NotificationPolicyOverrideRouteDestinationVictorOpsArgs' victor_ops: VictorOps (Splunk On-Call) delivery configuration for this destination.
+        :param 'NotificationPolicyOverrideRouteDestinationWebhookArgs' webhook: Generic webhook delivery configuration for this destination.
+        """
         if disable_resolves is not None:
             pulumi.set(__self__, "disable_resolves", disable_resolves)
         if email is not None:
@@ -6387,36 +8483,57 @@ class NotificationPolicyOverrideRouteDestination(dict):
     @property
     @pulumi.getter(name="disableResolves")
     def disable_resolves(self) -> Optional[bool]:
+        """
+        If true, do not send notifications when alerts resolve. Defaults to false.
+        """
         return pulumi.get(self, "disable_resolves")
 
     @property
     @pulumi.getter
     def email(self) -> Optional['outputs.NotificationPolicyOverrideRouteDestinationEmail']:
+        """
+        Email delivery configuration for this destination.
+        """
         return pulumi.get(self, "email")
 
     @property
     @pulumi.getter(name="opsGenie")
     def ops_genie(self) -> Optional['outputs.NotificationPolicyOverrideRouteDestinationOpsGenie']:
+        """
+        OpsGenie delivery configuration for this destination.
+        """
         return pulumi.get(self, "ops_genie")
 
     @property
     @pulumi.getter
     def pagerduty(self) -> Optional['outputs.NotificationPolicyOverrideRouteDestinationPagerduty']:
+        """
+        PagerDuty delivery configuration for this destination.
+        """
         return pulumi.get(self, "pagerduty")
 
     @property
     @pulumi.getter
     def slack(self) -> Optional['outputs.NotificationPolicyOverrideRouteDestinationSlack']:
+        """
+        Slack delivery configuration for this destination.
+        """
         return pulumi.get(self, "slack")
 
     @property
     @pulumi.getter(name="victorOps")
     def victor_ops(self) -> Optional['outputs.NotificationPolicyOverrideRouteDestinationVictorOps']:
+        """
+        VictorOps (Splunk On-Call) delivery configuration for this destination.
+        """
         return pulumi.get(self, "victor_ops")
 
     @property
     @pulumi.getter
     def webhook(self) -> Optional['outputs.NotificationPolicyOverrideRouteDestinationWebhook']:
+        """
+        Generic webhook delivery configuration for this destination.
+        """
         return pulumi.get(self, "webhook")
 
 
@@ -6424,11 +8541,17 @@ class NotificationPolicyOverrideRouteDestination(dict):
 class NotificationPolicyOverrideRouteDestinationEmail(dict):
     def __init__(__self__, *,
                  addresses: Sequence[str]):
+        """
+        :param Sequence[str] addresses: Email addresses to deliver notifications to.
+        """
         pulumi.set(__self__, "addresses", addresses)
 
     @property
     @pulumi.getter
     def addresses(self) -> Sequence[str]:
+        """
+        Email addresses to deliver notifications to.
+        """
         return pulumi.get(self, "addresses")
 
 
@@ -6453,11 +8576,17 @@ class NotificationPolicyOverrideRouteDestinationOpsGenie(dict):
 
     def __init__(__self__, *,
                  external_connection_slug: str):
+        """
+        :param str external_connection_slug: Slug of the OpsGenie external connection holding the integration credentials.
+        """
         pulumi.set(__self__, "external_connection_slug", external_connection_slug)
 
     @property
     @pulumi.getter(name="externalConnectionSlug")
     def external_connection_slug(self) -> str:
+        """
+        Slug of the OpsGenie external connection holding the integration credentials.
+        """
         return pulumi.get(self, "external_connection_slug")
 
 
@@ -6482,11 +8611,17 @@ class NotificationPolicyOverrideRouteDestinationPagerduty(dict):
 
     def __init__(__self__, *,
                  external_connection_slug: str):
+        """
+        :param str external_connection_slug: Slug of the OpsGenie external connection holding the integration credentials.
+        """
         pulumi.set(__self__, "external_connection_slug", external_connection_slug)
 
     @property
     @pulumi.getter(name="externalConnectionSlug")
     def external_connection_slug(self) -> str:
+        """
+        Slug of the OpsGenie external connection holding the integration credentials.
+        """
         return pulumi.get(self, "external_connection_slug")
 
 
@@ -6512,6 +8647,10 @@ class NotificationPolicyOverrideRouteDestinationSlack(dict):
     def __init__(__self__, *,
                  external_connection_slug: str,
                  channels: Optional[Sequence[str]] = None):
+        """
+        :param str external_connection_slug: Slug of the OpsGenie external connection holding the integration credentials.
+        :param Sequence[str] channels: Slack channels to send notifications to.
+        """
         pulumi.set(__self__, "external_connection_slug", external_connection_slug)
         if channels is not None:
             pulumi.set(__self__, "channels", channels)
@@ -6519,11 +8658,17 @@ class NotificationPolicyOverrideRouteDestinationSlack(dict):
     @property
     @pulumi.getter(name="externalConnectionSlug")
     def external_connection_slug(self) -> str:
+        """
+        Slug of the OpsGenie external connection holding the integration credentials.
+        """
         return pulumi.get(self, "external_connection_slug")
 
     @property
     @pulumi.getter
     def channels(self) -> Optional[Sequence[str]]:
+        """
+        Slack channels to send notifications to.
+        """
         return pulumi.get(self, "channels")
 
 
@@ -6551,17 +8696,27 @@ class NotificationPolicyOverrideRouteDestinationVictorOps(dict):
     def __init__(__self__, *,
                  external_connection_slug: str,
                  routing_keys: Sequence[str]):
+        """
+        :param str external_connection_slug: Slug of the OpsGenie external connection holding the integration credentials.
+        :param Sequence[str] routing_keys: VictorOps routing keys identifying the destination escalation policies.
+        """
         pulumi.set(__self__, "external_connection_slug", external_connection_slug)
         pulumi.set(__self__, "routing_keys", routing_keys)
 
     @property
     @pulumi.getter(name="externalConnectionSlug")
     def external_connection_slug(self) -> str:
+        """
+        Slug of the OpsGenie external connection holding the integration credentials.
+        """
         return pulumi.get(self, "external_connection_slug")
 
     @property
     @pulumi.getter(name="routingKeys")
     def routing_keys(self) -> Sequence[str]:
+        """
+        VictorOps routing keys identifying the destination escalation policies.
+        """
         return pulumi.get(self, "routing_keys")
 
 
@@ -6589,6 +8744,10 @@ class NotificationPolicyOverrideRouteDestinationWebhook(dict):
     def __init__(__self__, *,
                  external_connection_slug: str,
                  query_parameters: Optional[Sequence['outputs.NotificationPolicyOverrideRouteDestinationWebhookQueryParameter']] = None):
+        """
+        :param str external_connection_slug: Slug of the OpsGenie external connection holding the integration credentials.
+        :param Sequence['NotificationPolicyOverrideRouteDestinationWebhookQueryParameterArgs'] query_parameters: Additional query parameters appended to the webhook URL when delivering this notification.
+        """
         pulumi.set(__self__, "external_connection_slug", external_connection_slug)
         if query_parameters is not None:
             pulumi.set(__self__, "query_parameters", query_parameters)
@@ -6596,11 +8755,17 @@ class NotificationPolicyOverrideRouteDestinationWebhook(dict):
     @property
     @pulumi.getter(name="externalConnectionSlug")
     def external_connection_slug(self) -> str:
+        """
+        Slug of the OpsGenie external connection holding the integration credentials.
+        """
         return pulumi.get(self, "external_connection_slug")
 
     @property
     @pulumi.getter(name="queryParameters")
     def query_parameters(self) -> Optional[Sequence['outputs.NotificationPolicyOverrideRouteDestinationWebhookQueryParameter']]:
+        """
+        Additional query parameters appended to the webhook URL when delivering this notification.
+        """
         return pulumi.get(self, "query_parameters")
 
 
@@ -6609,17 +8774,27 @@ class NotificationPolicyOverrideRouteDestinationWebhookQueryParameter(dict):
     def __init__(__self__, *,
                  key: str,
                  value: str):
+        """
+        :param str key: Query parameter name.
+        :param str value: Label value (or regex pattern, for regex matchers) to match against.
+        """
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
     def key(self) -> str:
+        """
+        Query parameter name.
+        """
         return pulumi.get(self, "key")
 
     @property
     @pulumi.getter
     def value(self) -> str:
+        """
+        Label value (or regex pattern, for regex matchers) to match against.
+        """
         return pulumi.get(self, "value")
 
 
@@ -6644,12 +8819,18 @@ class NotificationPolicyOverrideRouteGroupBy(dict):
 
     def __init__(__self__, *,
                  label_names: Optional[Sequence[str]] = None):
+        """
+        :param Sequence[str] label_names: Label names to group alerts by. Alerts with identical values for these labels are bundled into a single notification.
+        """
         if label_names is not None:
             pulumi.set(__self__, "label_names", label_names)
 
     @property
     @pulumi.getter(name="labelNames")
     def label_names(self) -> Optional[Sequence[str]]:
+        """
+        Label names to group alerts by. Alerts with identical values for these labels are bundled into a single notification.
+        """
         return pulumi.get(self, "label_names")
 
 
@@ -6680,6 +8861,13 @@ class NotificationPolicyRoute(dict):
                  group_by: Optional['outputs.NotificationPolicyRouteGroupBy'] = None,
                  notifiers: Optional[Sequence[str]] = None,
                  repeat_interval: Optional[str] = None):
+        """
+        :param str severity: Severity this route applies to (e.g. `warn`, `critical`). Case-sensitive.
+        :param Sequence['NotificationPolicyRouteDestinationArgs'] destinations: Inline notification destinations defined directly on the route. Each block sets at most one of `slack`, `pagerduty`, `webhook`, `ops_genie`, `victor_ops`, or `email`. Cannot be combined with `notifiers`.
+        :param 'NotificationPolicyRouteGroupByArgs' group_by: Optional grouping configuration controlling how alerts are batched before delivery.
+        :param Sequence[str] notifiers: Slugs of notifier resources that receive alerts at this severity. Cannot be combined with `destination`.
+        :param str repeat_interval: How often to resend unresolved alerts at this severity (e.g. `4h`).
+        """
         pulumi.set(__self__, "severity", severity)
         if destinations is not None:
             pulumi.set(__self__, "destinations", destinations)
@@ -6693,26 +8881,41 @@ class NotificationPolicyRoute(dict):
     @property
     @pulumi.getter
     def severity(self) -> str:
+        """
+        Severity this route applies to (e.g. `warn`, `critical`). Case-sensitive.
+        """
         return pulumi.get(self, "severity")
 
     @property
     @pulumi.getter
     def destinations(self) -> Optional[Sequence['outputs.NotificationPolicyRouteDestination']]:
+        """
+        Inline notification destinations defined directly on the route. Each block sets at most one of `slack`, `pagerduty`, `webhook`, `ops_genie`, `victor_ops`, or `email`. Cannot be combined with `notifiers`.
+        """
         return pulumi.get(self, "destinations")
 
     @property
     @pulumi.getter(name="groupBy")
     def group_by(self) -> Optional['outputs.NotificationPolicyRouteGroupBy']:
+        """
+        Optional grouping configuration controlling how alerts are batched before delivery.
+        """
         return pulumi.get(self, "group_by")
 
     @property
     @pulumi.getter
     def notifiers(self) -> Optional[Sequence[str]]:
+        """
+        Slugs of notifier resources that receive alerts at this severity. Cannot be combined with `destination`.
+        """
         return pulumi.get(self, "notifiers")
 
     @property
     @pulumi.getter(name="repeatInterval")
     def repeat_interval(self) -> Optional[str]:
+        """
+        How often to resend unresolved alerts at this severity (e.g. `4h`).
+        """
         return pulumi.get(self, "repeat_interval")
 
 
@@ -6747,6 +8950,15 @@ class NotificationPolicyRouteDestination(dict):
                  slack: Optional['outputs.NotificationPolicyRouteDestinationSlack'] = None,
                  victor_ops: Optional['outputs.NotificationPolicyRouteDestinationVictorOps'] = None,
                  webhook: Optional['outputs.NotificationPolicyRouteDestinationWebhook'] = None):
+        """
+        :param bool disable_resolves: If true, do not send notifications when alerts resolve. Defaults to false.
+        :param 'NotificationPolicyRouteDestinationEmailArgs' email: Email delivery configuration for this destination.
+        :param 'NotificationPolicyRouteDestinationOpsGenieArgs' ops_genie: OpsGenie delivery configuration for this destination.
+        :param 'NotificationPolicyRouteDestinationPagerdutyArgs' pagerduty: PagerDuty delivery configuration for this destination.
+        :param 'NotificationPolicyRouteDestinationSlackArgs' slack: Slack delivery configuration for this destination.
+        :param 'NotificationPolicyRouteDestinationVictorOpsArgs' victor_ops: VictorOps (Splunk On-Call) delivery configuration for this destination.
+        :param 'NotificationPolicyRouteDestinationWebhookArgs' webhook: Generic webhook delivery configuration for this destination.
+        """
         if disable_resolves is not None:
             pulumi.set(__self__, "disable_resolves", disable_resolves)
         if email is not None:
@@ -6765,36 +8977,57 @@ class NotificationPolicyRouteDestination(dict):
     @property
     @pulumi.getter(name="disableResolves")
     def disable_resolves(self) -> Optional[bool]:
+        """
+        If true, do not send notifications when alerts resolve. Defaults to false.
+        """
         return pulumi.get(self, "disable_resolves")
 
     @property
     @pulumi.getter
     def email(self) -> Optional['outputs.NotificationPolicyRouteDestinationEmail']:
+        """
+        Email delivery configuration for this destination.
+        """
         return pulumi.get(self, "email")
 
     @property
     @pulumi.getter(name="opsGenie")
     def ops_genie(self) -> Optional['outputs.NotificationPolicyRouteDestinationOpsGenie']:
+        """
+        OpsGenie delivery configuration for this destination.
+        """
         return pulumi.get(self, "ops_genie")
 
     @property
     @pulumi.getter
     def pagerduty(self) -> Optional['outputs.NotificationPolicyRouteDestinationPagerduty']:
+        """
+        PagerDuty delivery configuration for this destination.
+        """
         return pulumi.get(self, "pagerduty")
 
     @property
     @pulumi.getter
     def slack(self) -> Optional['outputs.NotificationPolicyRouteDestinationSlack']:
+        """
+        Slack delivery configuration for this destination.
+        """
         return pulumi.get(self, "slack")
 
     @property
     @pulumi.getter(name="victorOps")
     def victor_ops(self) -> Optional['outputs.NotificationPolicyRouteDestinationVictorOps']:
+        """
+        VictorOps (Splunk On-Call) delivery configuration for this destination.
+        """
         return pulumi.get(self, "victor_ops")
 
     @property
     @pulumi.getter
     def webhook(self) -> Optional['outputs.NotificationPolicyRouteDestinationWebhook']:
+        """
+        Generic webhook delivery configuration for this destination.
+        """
         return pulumi.get(self, "webhook")
 
 
@@ -6802,11 +9035,17 @@ class NotificationPolicyRouteDestination(dict):
 class NotificationPolicyRouteDestinationEmail(dict):
     def __init__(__self__, *,
                  addresses: Sequence[str]):
+        """
+        :param Sequence[str] addresses: Email addresses to deliver notifications to.
+        """
         pulumi.set(__self__, "addresses", addresses)
 
     @property
     @pulumi.getter
     def addresses(self) -> Sequence[str]:
+        """
+        Email addresses to deliver notifications to.
+        """
         return pulumi.get(self, "addresses")
 
 
@@ -6831,11 +9070,17 @@ class NotificationPolicyRouteDestinationOpsGenie(dict):
 
     def __init__(__self__, *,
                  external_connection_slug: str):
+        """
+        :param str external_connection_slug: Slug of the OpsGenie external connection holding the integration credentials.
+        """
         pulumi.set(__self__, "external_connection_slug", external_connection_slug)
 
     @property
     @pulumi.getter(name="externalConnectionSlug")
     def external_connection_slug(self) -> str:
+        """
+        Slug of the OpsGenie external connection holding the integration credentials.
+        """
         return pulumi.get(self, "external_connection_slug")
 
 
@@ -6860,11 +9105,17 @@ class NotificationPolicyRouteDestinationPagerduty(dict):
 
     def __init__(__self__, *,
                  external_connection_slug: str):
+        """
+        :param str external_connection_slug: Slug of the OpsGenie external connection holding the integration credentials.
+        """
         pulumi.set(__self__, "external_connection_slug", external_connection_slug)
 
     @property
     @pulumi.getter(name="externalConnectionSlug")
     def external_connection_slug(self) -> str:
+        """
+        Slug of the OpsGenie external connection holding the integration credentials.
+        """
         return pulumi.get(self, "external_connection_slug")
 
 
@@ -6890,6 +9141,10 @@ class NotificationPolicyRouteDestinationSlack(dict):
     def __init__(__self__, *,
                  external_connection_slug: str,
                  channels: Optional[Sequence[str]] = None):
+        """
+        :param str external_connection_slug: Slug of the OpsGenie external connection holding the integration credentials.
+        :param Sequence[str] channels: Slack channels to send notifications to.
+        """
         pulumi.set(__self__, "external_connection_slug", external_connection_slug)
         if channels is not None:
             pulumi.set(__self__, "channels", channels)
@@ -6897,11 +9152,17 @@ class NotificationPolicyRouteDestinationSlack(dict):
     @property
     @pulumi.getter(name="externalConnectionSlug")
     def external_connection_slug(self) -> str:
+        """
+        Slug of the OpsGenie external connection holding the integration credentials.
+        """
         return pulumi.get(self, "external_connection_slug")
 
     @property
     @pulumi.getter
     def channels(self) -> Optional[Sequence[str]]:
+        """
+        Slack channels to send notifications to.
+        """
         return pulumi.get(self, "channels")
 
 
@@ -6929,17 +9190,27 @@ class NotificationPolicyRouteDestinationVictorOps(dict):
     def __init__(__self__, *,
                  external_connection_slug: str,
                  routing_keys: Sequence[str]):
+        """
+        :param str external_connection_slug: Slug of the OpsGenie external connection holding the integration credentials.
+        :param Sequence[str] routing_keys: VictorOps routing keys identifying the destination escalation policies.
+        """
         pulumi.set(__self__, "external_connection_slug", external_connection_slug)
         pulumi.set(__self__, "routing_keys", routing_keys)
 
     @property
     @pulumi.getter(name="externalConnectionSlug")
     def external_connection_slug(self) -> str:
+        """
+        Slug of the OpsGenie external connection holding the integration credentials.
+        """
         return pulumi.get(self, "external_connection_slug")
 
     @property
     @pulumi.getter(name="routingKeys")
     def routing_keys(self) -> Sequence[str]:
+        """
+        VictorOps routing keys identifying the destination escalation policies.
+        """
         return pulumi.get(self, "routing_keys")
 
 
@@ -6967,6 +9238,10 @@ class NotificationPolicyRouteDestinationWebhook(dict):
     def __init__(__self__, *,
                  external_connection_slug: str,
                  query_parameters: Optional[Sequence['outputs.NotificationPolicyRouteDestinationWebhookQueryParameter']] = None):
+        """
+        :param str external_connection_slug: Slug of the OpsGenie external connection holding the integration credentials.
+        :param Sequence['NotificationPolicyRouteDestinationWebhookQueryParameterArgs'] query_parameters: Additional query parameters appended to the webhook URL when delivering this notification.
+        """
         pulumi.set(__self__, "external_connection_slug", external_connection_slug)
         if query_parameters is not None:
             pulumi.set(__self__, "query_parameters", query_parameters)
@@ -6974,11 +9249,17 @@ class NotificationPolicyRouteDestinationWebhook(dict):
     @property
     @pulumi.getter(name="externalConnectionSlug")
     def external_connection_slug(self) -> str:
+        """
+        Slug of the OpsGenie external connection holding the integration credentials.
+        """
         return pulumi.get(self, "external_connection_slug")
 
     @property
     @pulumi.getter(name="queryParameters")
     def query_parameters(self) -> Optional[Sequence['outputs.NotificationPolicyRouteDestinationWebhookQueryParameter']]:
+        """
+        Additional query parameters appended to the webhook URL when delivering this notification.
+        """
         return pulumi.get(self, "query_parameters")
 
 
@@ -6987,17 +9268,27 @@ class NotificationPolicyRouteDestinationWebhookQueryParameter(dict):
     def __init__(__self__, *,
                  key: str,
                  value: str):
+        """
+        :param str key: Query parameter name.
+        :param str value: Label value (or regex pattern, for regex matchers) to match against.
+        """
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
     def key(self) -> str:
+        """
+        Query parameter name.
+        """
         return pulumi.get(self, "key")
 
     @property
     @pulumi.getter
     def value(self) -> str:
+        """
+        Label value (or regex pattern, for regex matchers) to match against.
+        """
         return pulumi.get(self, "value")
 
 
@@ -7022,12 +9313,18 @@ class NotificationPolicyRouteGroupBy(dict):
 
     def __init__(__self__, *,
                  label_names: Optional[Sequence[str]] = None):
+        """
+        :param Sequence[str] label_names: Label names to group alerts by. Alerts with identical values for these labels are bundled into a single notification.
+        """
         if label_names is not None:
             pulumi.set(__self__, "label_names", label_names)
 
     @property
     @pulumi.getter(name="labelNames")
     def label_names(self) -> Optional[Sequence[str]]:
+        """
+        Label names to group alerts by. Alerts with identical values for these labels are bundled into a single notification.
+        """
         return pulumi.get(self, "label_names")
 
 
@@ -7038,6 +9335,12 @@ class OpsgenieAlertNotifierResponder(dict):
                  id: Optional[str] = None,
                  name: Optional[str] = None,
                  username: Optional[str] = None):
+        """
+        :param str type: Responder type. One of `team`, `user`, `escalation`, or `schedule`.
+        :param str id: Opsgenie identifier of the responder. Use instead of `name` or `username`.
+        :param str name: Name of the responder team, schedule, or escalation policy.
+        :param str username: Username of a user responder.
+        """
         pulumi.set(__self__, "type", type)
         if id is not None:
             pulumi.set(__self__, "id", id)
@@ -7049,21 +9352,33 @@ class OpsgenieAlertNotifierResponder(dict):
     @property
     @pulumi.getter
     def type(self) -> str:
+        """
+        Responder type. One of `team`, `user`, `escalation`, or `schedule`.
+        """
         return pulumi.get(self, "type")
 
     @property
     @pulumi.getter
     def id(self) -> Optional[str]:
+        """
+        Opsgenie identifier of the responder. Use instead of `name` or `username`.
+        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
+        """
+        Name of the responder team, schedule, or escalation policy.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def username(self) -> Optional[str]:
+        """
+        Username of a user responder.
+        """
         return pulumi.get(self, "username")
 
 
@@ -7097,6 +9412,12 @@ class OtelMetricsIngestionResourceAttributes(dict):
                  filter_mode: Optional[str] = None,
                  flatten_mode: Optional[str] = None,
                  generate_target_info: Optional[bool] = None):
+        """
+        :param Sequence[str] exclude_keys: Resource attribute keys to exclude from the flatten operation, interpreted according to `filter_mode`.
+        :param str filter_mode: Controls how `exclude_keys` is interpreted (e.g. allow-list vs. block-list semantics).
+        :param str flatten_mode: Controls how OTel resource attributes are flattened onto each metric's labels.
+        :param bool generate_target_info: If true, generates a `target_info` time series with labels derived from resource attributes. `filter_mode` and `exclude_keys` apply identically to this series. Defaults to false.
+        """
         if exclude_keys is not None:
             pulumi.set(__self__, "exclude_keys", exclude_keys)
         if filter_mode is not None:
@@ -7109,21 +9430,33 @@ class OtelMetricsIngestionResourceAttributes(dict):
     @property
     @pulumi.getter(name="excludeKeys")
     def exclude_keys(self) -> Optional[Sequence[str]]:
+        """
+        Resource attribute keys to exclude from the flatten operation, interpreted according to `filter_mode`.
+        """
         return pulumi.get(self, "exclude_keys")
 
     @property
     @pulumi.getter(name="filterMode")
     def filter_mode(self) -> Optional[str]:
+        """
+        Controls how `exclude_keys` is interpreted (e.g. allow-list vs. block-list semantics).
+        """
         return pulumi.get(self, "filter_mode")
 
     @property
     @pulumi.getter(name="flattenMode")
     def flatten_mode(self) -> Optional[str]:
+        """
+        Controls how OTel resource attributes are flattened onto each metric's labels.
+        """
         return pulumi.get(self, "flatten_mode")
 
     @property
     @pulumi.getter(name="generateTargetInfo")
     def generate_target_info(self) -> Optional[bool]:
+        """
+        If true, generates a `target_info` time series with labels derived from resource attributes. `filter_mode` and `exclude_keys` apply identically to this series. Defaults to false.
+        """
         return pulumi.get(self, "generate_target_info")
 
 
@@ -7133,6 +9466,11 @@ class PagerdutyAlertNotifierImage(dict):
                  src: str,
                  alt: Optional[str] = None,
                  href: Optional[str] = None):
+        """
+        :param str src: URL of the image to attach.
+        :param str alt: Alternate text shown when the image cannot be rendered.
+        :param str href: Optional URL the image links to when clicked.
+        """
         pulumi.set(__self__, "src", src)
         if alt is not None:
             pulumi.set(__self__, "alt", alt)
@@ -7142,16 +9480,25 @@ class PagerdutyAlertNotifierImage(dict):
     @property
     @pulumi.getter
     def src(self) -> str:
+        """
+        URL of the image to attach.
+        """
         return pulumi.get(self, "src")
 
     @property
     @pulumi.getter
     def alt(self) -> Optional[str]:
+        """
+        Alternate text shown when the image cannot be rendered.
+        """
         return pulumi.get(self, "alt")
 
     @property
     @pulumi.getter
     def href(self) -> Optional[str]:
+        """
+        Optional URL the image links to when clicked.
+        """
         return pulumi.get(self, "href")
 
 
@@ -7160,6 +9507,10 @@ class PagerdutyAlertNotifierLink(dict):
     def __init__(__self__, *,
                  href: str,
                  text: Optional[str] = None):
+        """
+        :param str href: URL the link points to.
+        :param str text: Display text for the link.
+        """
         pulumi.set(__self__, "href", href)
         if text is not None:
             pulumi.set(__self__, "text", text)
@@ -7167,11 +9518,17 @@ class PagerdutyAlertNotifierLink(dict):
     @property
     @pulumi.getter
     def href(self) -> str:
+        """
+        URL the link points to.
+        """
         return pulumi.get(self, "href")
 
     @property
     @pulumi.getter
     def text(self) -> Optional[str]:
+        """
+        Display text for the link.
+        """
         return pulumi.get(self, "text")
 
 
@@ -7198,6 +9555,11 @@ class ResourcePoolsConfigDefaultPool(dict):
                  allocation: Optional['outputs.ResourcePoolsConfigDefaultPoolAllocation'] = None,
                  priorities: Optional['outputs.ResourcePoolsConfigDefaultPoolPriorities'] = None,
                  priority_thresholds: Optional[Sequence['outputs.ResourcePoolsConfigDefaultPoolPriorityThreshold']] = None):
+        """
+        :param 'ResourcePoolsConfigDefaultPoolAllocationArgs' allocation: License allocation for the pool. Can be expressed as a percentage of the license (`percent_of_license`) or as per-license fixed values (`fixed_value`).
+        :param 'ResourcePoolsConfigDefaultPoolPrioritiesArgs' priorities: Optional high/low priority sub-classifications within the pool. Low-priority metrics are dropped first; high-priority metrics are dropped last when limits are hit.
+        :param Sequence['ResourcePoolsConfigDefaultPoolPriorityThresholdArgs'] priority_thresholds: Per-license drop thresholds for `PERSISTED_CARDINALITY_STANDARD` and `PERSISTED_CARDINALITY_HISTOGRAM` only. Defines strict upper bounds beyond which new consumption is dropped, optionally segmented by priority class.
+        """
         if allocation is not None:
             pulumi.set(__self__, "allocation", allocation)
         if priorities is not None:
@@ -7208,16 +9570,25 @@ class ResourcePoolsConfigDefaultPool(dict):
     @property
     @pulumi.getter
     def allocation(self) -> Optional['outputs.ResourcePoolsConfigDefaultPoolAllocation']:
+        """
+        License allocation for the pool. Can be expressed as a percentage of the license (`percent_of_license`) or as per-license fixed values (`fixed_value`).
+        """
         return pulumi.get(self, "allocation")
 
     @property
     @pulumi.getter
     def priorities(self) -> Optional['outputs.ResourcePoolsConfigDefaultPoolPriorities']:
+        """
+        Optional high/low priority sub-classifications within the pool. Low-priority metrics are dropped first; high-priority metrics are dropped last when limits are hit.
+        """
         return pulumi.get(self, "priorities")
 
     @property
     @pulumi.getter(name="priorityThresholds")
     def priority_thresholds(self) -> Optional[Sequence['outputs.ResourcePoolsConfigDefaultPoolPriorityThreshold']]:
+        """
+        Per-license drop thresholds for `PERSISTED_CARDINALITY_STANDARD` and `PERSISTED_CARDINALITY_HISTOGRAM` only. Defines strict upper bounds beyond which new consumption is dropped, optionally segmented by priority class.
+        """
         return pulumi.get(self, "priority_thresholds")
 
 
@@ -7248,6 +9619,11 @@ class ResourcePoolsConfigDefaultPoolAllocation(dict):
                  fixed_values: Optional[Sequence['outputs.ResourcePoolsConfigDefaultPoolAllocationFixedValue']] = None,
                  percent_of_license: Optional[float] = None,
                  priority_thresholds: Optional[Sequence['outputs.ResourcePoolsConfigDefaultPoolAllocationPriorityThreshold']] = None):
+        """
+        :param Sequence['ResourcePoolsConfigDefaultPoolAllocationFixedValueArgs'] fixed_values: Per-license fixed allocations that override `percent_of_license` for the named licenses. When any pool sets a fixed value for a license, every pool must also set one for that license.
+        :param float percent_of_license: Percent of each license to allocate to this pool, between 0 and 100. Across non-default pools, the sum must not exceed 100; the default pool receives the remainder.
+        :param Sequence['ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdArgs'] priority_thresholds: Per-license drop thresholds for `PERSISTED_CARDINALITY_STANDARD` and `PERSISTED_CARDINALITY_HISTOGRAM` only. Defines strict upper bounds beyond which new consumption is dropped, optionally segmented by priority class.
+        """
         if fixed_values is not None:
             pulumi.set(__self__, "fixed_values", fixed_values)
         if percent_of_license is not None:
@@ -7258,16 +9634,25 @@ class ResourcePoolsConfigDefaultPoolAllocation(dict):
     @property
     @pulumi.getter(name="fixedValues")
     def fixed_values(self) -> Optional[Sequence['outputs.ResourcePoolsConfigDefaultPoolAllocationFixedValue']]:
+        """
+        Per-license fixed allocations that override `percent_of_license` for the named licenses. When any pool sets a fixed value for a license, every pool must also set one for that license.
+        """
         return pulumi.get(self, "fixed_values")
 
     @property
     @pulumi.getter(name="percentOfLicense")
     def percent_of_license(self) -> Optional[float]:
+        """
+        Percent of each license to allocate to this pool, between 0 and 100. Across non-default pools, the sum must not exceed 100; the default pool receives the remainder.
+        """
         return pulumi.get(self, "percent_of_license")
 
     @property
     @pulumi.getter(name="priorityThresholds")
     def priority_thresholds(self) -> Optional[Sequence['outputs.ResourcePoolsConfigDefaultPoolAllocationPriorityThreshold']]:
+        """
+        Per-license drop thresholds for `PERSISTED_CARDINALITY_STANDARD` and `PERSISTED_CARDINALITY_HISTOGRAM` only. Defines strict upper bounds beyond which new consumption is dropped, optionally segmented by priority class.
+        """
         return pulumi.get(self, "priority_thresholds")
 
 
@@ -7276,17 +9661,27 @@ class ResourcePoolsConfigDefaultPoolAllocationFixedValue(dict):
     def __init__(__self__, *,
                  license: str,
                  value: int):
+        """
+        :param str license: License this fixed-value allocation applies to (e.g. `PERSISTED_WRITES`).
+        :param int value: Fixed amount of the license to allocate, in the license's native unit.
+        """
         pulumi.set(__self__, "license", license)
         pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
     def license(self) -> str:
+        """
+        License this fixed-value allocation applies to (e.g. `PERSISTED_WRITES`).
+        """
         return pulumi.get(self, "license")
 
     @property
     @pulumi.getter
     def value(self) -> int:
+        """
+        Fixed amount of the license to allocate, in the license's native unit.
+        """
         return pulumi.get(self, "value")
 
 
@@ -7318,6 +9713,12 @@ class ResourcePoolsConfigDefaultPoolAllocationPriorityThreshold(dict):
                  all_priorities: Optional['outputs.ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPriorities'] = None,
                  default_and_low_priority: Optional['outputs.ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriority'] = None,
                  low_priority: Optional['outputs.ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriority'] = None):
+        """
+        :param str license: License this fixed-value allocation applies to (e.g. `PERSISTED_WRITES`).
+        :param 'ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPrioritiesArgs' all_priorities: Threshold value, expressed as either a percent of the pool's allocation or as a fixed value in license units.
+        :param 'ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriorityArgs' default_and_low_priority: Threshold value, expressed as either a percent of the pool's allocation or as a fixed value in license units.
+        :param 'ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriorityArgs' low_priority: Threshold value, expressed as either a percent of the pool's allocation or as a fixed value in license units.
+        """
         pulumi.set(__self__, "license", license)
         if all_priorities is not None:
             pulumi.set(__self__, "all_priorities", all_priorities)
@@ -7329,21 +9730,33 @@ class ResourcePoolsConfigDefaultPoolAllocationPriorityThreshold(dict):
     @property
     @pulumi.getter
     def license(self) -> str:
+        """
+        License this fixed-value allocation applies to (e.g. `PERSISTED_WRITES`).
+        """
         return pulumi.get(self, "license")
 
     @property
     @pulumi.getter(name="allPriorities")
     def all_priorities(self) -> Optional['outputs.ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPriorities']:
+        """
+        Threshold value, expressed as either a percent of the pool's allocation or as a fixed value in license units.
+        """
         return pulumi.get(self, "all_priorities")
 
     @property
     @pulumi.getter(name="defaultAndLowPriority")
     def default_and_low_priority(self) -> Optional['outputs.ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriority']:
+        """
+        Threshold value, expressed as either a percent of the pool's allocation or as a fixed value in license units.
+        """
         return pulumi.get(self, "default_and_low_priority")
 
     @property
     @pulumi.getter(name="lowPriority")
     def low_priority(self) -> Optional['outputs.ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriority']:
+        """
+        Threshold value, expressed as either a percent of the pool's allocation or as a fixed value in license units.
+        """
         return pulumi.get(self, "low_priority")
 
 
@@ -7371,6 +9784,10 @@ class ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPriorities(dic
     def __init__(__self__, *,
                  fixed_value: Optional[int] = None,
                  percent_of_pool_allocation: Optional[float] = None):
+        """
+        :param int fixed_value: Per-license fixed allocations that override `percent_of_license` for the named licenses. When any pool sets a fixed value for a license, every pool must also set one for that license.
+        :param float percent_of_pool_allocation: Threshold as a percent of the pool's allocation. `100` equals the full allocation; values above 100 allow the pool to exceed its baseline allocation.
+        """
         if fixed_value is not None:
             pulumi.set(__self__, "fixed_value", fixed_value)
         if percent_of_pool_allocation is not None:
@@ -7379,11 +9796,17 @@ class ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPriorities(dic
     @property
     @pulumi.getter(name="fixedValue")
     def fixed_value(self) -> Optional[int]:
+        """
+        Per-license fixed allocations that override `percent_of_license` for the named licenses. When any pool sets a fixed value for a license, every pool must also set one for that license.
+        """
         return pulumi.get(self, "fixed_value")
 
     @property
     @pulumi.getter(name="percentOfPoolAllocation")
     def percent_of_pool_allocation(self) -> Optional[float]:
+        """
+        Threshold as a percent of the pool's allocation. `100` equals the full allocation; values above 100 allow the pool to exceed its baseline allocation.
+        """
         return pulumi.get(self, "percent_of_pool_allocation")
 
 
@@ -7411,6 +9834,10 @@ class ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPrio
     def __init__(__self__, *,
                  fixed_value: Optional[int] = None,
                  percent_of_pool_allocation: Optional[float] = None):
+        """
+        :param int fixed_value: Per-license fixed allocations that override `percent_of_license` for the named licenses. When any pool sets a fixed value for a license, every pool must also set one for that license.
+        :param float percent_of_pool_allocation: Threshold as a percent of the pool's allocation. `100` equals the full allocation; values above 100 allow the pool to exceed its baseline allocation.
+        """
         if fixed_value is not None:
             pulumi.set(__self__, "fixed_value", fixed_value)
         if percent_of_pool_allocation is not None:
@@ -7419,11 +9846,17 @@ class ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPrio
     @property
     @pulumi.getter(name="fixedValue")
     def fixed_value(self) -> Optional[int]:
+        """
+        Per-license fixed allocations that override `percent_of_license` for the named licenses. When any pool sets a fixed value for a license, every pool must also set one for that license.
+        """
         return pulumi.get(self, "fixed_value")
 
     @property
     @pulumi.getter(name="percentOfPoolAllocation")
     def percent_of_pool_allocation(self) -> Optional[float]:
+        """
+        Threshold as a percent of the pool's allocation. `100` equals the full allocation; values above 100 allow the pool to exceed its baseline allocation.
+        """
         return pulumi.get(self, "percent_of_pool_allocation")
 
 
@@ -7451,6 +9884,10 @@ class ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriority(dict)
     def __init__(__self__, *,
                  fixed_value: Optional[int] = None,
                  percent_of_pool_allocation: Optional[float] = None):
+        """
+        :param int fixed_value: Per-license fixed allocations that override `percent_of_license` for the named licenses. When any pool sets a fixed value for a license, every pool must also set one for that license.
+        :param float percent_of_pool_allocation: Threshold as a percent of the pool's allocation. `100` equals the full allocation; values above 100 allow the pool to exceed its baseline allocation.
+        """
         if fixed_value is not None:
             pulumi.set(__self__, "fixed_value", fixed_value)
         if percent_of_pool_allocation is not None:
@@ -7459,11 +9896,17 @@ class ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriority(dict)
     @property
     @pulumi.getter(name="fixedValue")
     def fixed_value(self) -> Optional[int]:
+        """
+        Per-license fixed allocations that override `percent_of_license` for the named licenses. When any pool sets a fixed value for a license, every pool must also set one for that license.
+        """
         return pulumi.get(self, "fixed_value")
 
     @property
     @pulumi.getter(name="percentOfPoolAllocation")
     def percent_of_pool_allocation(self) -> Optional[float]:
+        """
+        Threshold as a percent of the pool's allocation. `100` equals the full allocation; values above 100 allow the pool to exceed its baseline allocation.
+        """
         return pulumi.get(self, "percent_of_pool_allocation")
 
 
@@ -7491,6 +9934,10 @@ class ResourcePoolsConfigDefaultPoolPriorities(dict):
     def __init__(__self__, *,
                  high_priority_match_rules: Optional[Sequence[str]] = None,
                  low_priority_match_rules: Optional[Sequence[str]] = None):
+        """
+        :param Sequence[str] high_priority_match_rules: Matchers selecting metrics within the pool that are treated as high priority and dropped last.
+        :param Sequence[str] low_priority_match_rules: Matchers selecting metrics within the pool that are treated as low priority and dropped first.
+        """
         if high_priority_match_rules is not None:
             pulumi.set(__self__, "high_priority_match_rules", high_priority_match_rules)
         if low_priority_match_rules is not None:
@@ -7499,11 +9946,17 @@ class ResourcePoolsConfigDefaultPoolPriorities(dict):
     @property
     @pulumi.getter(name="highPriorityMatchRules")
     def high_priority_match_rules(self) -> Optional[Sequence[str]]:
+        """
+        Matchers selecting metrics within the pool that are treated as high priority and dropped last.
+        """
         return pulumi.get(self, "high_priority_match_rules")
 
     @property
     @pulumi.getter(name="lowPriorityMatchRules")
     def low_priority_match_rules(self) -> Optional[Sequence[str]]:
+        """
+        Matchers selecting metrics within the pool that are treated as low priority and dropped first.
+        """
         return pulumi.get(self, "low_priority_match_rules")
 
 
@@ -7535,6 +9988,12 @@ class ResourcePoolsConfigDefaultPoolPriorityThreshold(dict):
                  all_priorities: Optional['outputs.ResourcePoolsConfigDefaultPoolPriorityThresholdAllPriorities'] = None,
                  default_and_low_priority: Optional['outputs.ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriority'] = None,
                  low_priority: Optional['outputs.ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriority'] = None):
+        """
+        :param str license: License this fixed-value allocation applies to (e.g. `PERSISTED_WRITES`).
+        :param 'ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesArgs' all_priorities: Threshold value, expressed as either a percent of the pool's allocation or as a fixed value in license units.
+        :param 'ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityArgs' default_and_low_priority: Threshold value, expressed as either a percent of the pool's allocation or as a fixed value in license units.
+        :param 'ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityArgs' low_priority: Threshold value, expressed as either a percent of the pool's allocation or as a fixed value in license units.
+        """
         pulumi.set(__self__, "license", license)
         if all_priorities is not None:
             pulumi.set(__self__, "all_priorities", all_priorities)
@@ -7546,21 +10005,33 @@ class ResourcePoolsConfigDefaultPoolPriorityThreshold(dict):
     @property
     @pulumi.getter
     def license(self) -> str:
+        """
+        License this fixed-value allocation applies to (e.g. `PERSISTED_WRITES`).
+        """
         return pulumi.get(self, "license")
 
     @property
     @pulumi.getter(name="allPriorities")
     def all_priorities(self) -> Optional['outputs.ResourcePoolsConfigDefaultPoolPriorityThresholdAllPriorities']:
+        """
+        Threshold value, expressed as either a percent of the pool's allocation or as a fixed value in license units.
+        """
         return pulumi.get(self, "all_priorities")
 
     @property
     @pulumi.getter(name="defaultAndLowPriority")
     def default_and_low_priority(self) -> Optional['outputs.ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriority']:
+        """
+        Threshold value, expressed as either a percent of the pool's allocation or as a fixed value in license units.
+        """
         return pulumi.get(self, "default_and_low_priority")
 
     @property
     @pulumi.getter(name="lowPriority")
     def low_priority(self) -> Optional['outputs.ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriority']:
+        """
+        Threshold value, expressed as either a percent of the pool's allocation or as a fixed value in license units.
+        """
         return pulumi.get(self, "low_priority")
 
 
@@ -7588,6 +10059,10 @@ class ResourcePoolsConfigDefaultPoolPriorityThresholdAllPriorities(dict):
     def __init__(__self__, *,
                  fixed_value: Optional[int] = None,
                  percent_of_pool_allocation: Optional[float] = None):
+        """
+        :param int fixed_value: Per-license fixed allocations that override `percent_of_license` for the named licenses. When any pool sets a fixed value for a license, every pool must also set one for that license.
+        :param float percent_of_pool_allocation: Threshold as a percent of the pool's allocation. `100` equals the full allocation; values above 100 allow the pool to exceed its baseline allocation.
+        """
         if fixed_value is not None:
             pulumi.set(__self__, "fixed_value", fixed_value)
         if percent_of_pool_allocation is not None:
@@ -7596,11 +10071,17 @@ class ResourcePoolsConfigDefaultPoolPriorityThresholdAllPriorities(dict):
     @property
     @pulumi.getter(name="fixedValue")
     def fixed_value(self) -> Optional[int]:
+        """
+        Per-license fixed allocations that override `percent_of_license` for the named licenses. When any pool sets a fixed value for a license, every pool must also set one for that license.
+        """
         return pulumi.get(self, "fixed_value")
 
     @property
     @pulumi.getter(name="percentOfPoolAllocation")
     def percent_of_pool_allocation(self) -> Optional[float]:
+        """
+        Threshold as a percent of the pool's allocation. `100` equals the full allocation; values above 100 allow the pool to exceed its baseline allocation.
+        """
         return pulumi.get(self, "percent_of_pool_allocation")
 
 
@@ -7628,6 +10109,10 @@ class ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriority(dict)
     def __init__(__self__, *,
                  fixed_value: Optional[int] = None,
                  percent_of_pool_allocation: Optional[float] = None):
+        """
+        :param int fixed_value: Per-license fixed allocations that override `percent_of_license` for the named licenses. When any pool sets a fixed value for a license, every pool must also set one for that license.
+        :param float percent_of_pool_allocation: Threshold as a percent of the pool's allocation. `100` equals the full allocation; values above 100 allow the pool to exceed its baseline allocation.
+        """
         if fixed_value is not None:
             pulumi.set(__self__, "fixed_value", fixed_value)
         if percent_of_pool_allocation is not None:
@@ -7636,11 +10121,17 @@ class ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriority(dict)
     @property
     @pulumi.getter(name="fixedValue")
     def fixed_value(self) -> Optional[int]:
+        """
+        Per-license fixed allocations that override `percent_of_license` for the named licenses. When any pool sets a fixed value for a license, every pool must also set one for that license.
+        """
         return pulumi.get(self, "fixed_value")
 
     @property
     @pulumi.getter(name="percentOfPoolAllocation")
     def percent_of_pool_allocation(self) -> Optional[float]:
+        """
+        Threshold as a percent of the pool's allocation. `100` equals the full allocation; values above 100 allow the pool to exceed its baseline allocation.
+        """
         return pulumi.get(self, "percent_of_pool_allocation")
 
 
@@ -7668,6 +10159,10 @@ class ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriority(dict):
     def __init__(__self__, *,
                  fixed_value: Optional[int] = None,
                  percent_of_pool_allocation: Optional[float] = None):
+        """
+        :param int fixed_value: Per-license fixed allocations that override `percent_of_license` for the named licenses. When any pool sets a fixed value for a license, every pool must also set one for that license.
+        :param float percent_of_pool_allocation: Threshold as a percent of the pool's allocation. `100` equals the full allocation; values above 100 allow the pool to exceed its baseline allocation.
+        """
         if fixed_value is not None:
             pulumi.set(__self__, "fixed_value", fixed_value)
         if percent_of_pool_allocation is not None:
@@ -7676,11 +10171,17 @@ class ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriority(dict):
     @property
     @pulumi.getter(name="fixedValue")
     def fixed_value(self) -> Optional[int]:
+        """
+        Per-license fixed allocations that override `percent_of_license` for the named licenses. When any pool sets a fixed value for a license, every pool must also set one for that license.
+        """
         return pulumi.get(self, "fixed_value")
 
     @property
     @pulumi.getter(name="percentOfPoolAllocation")
     def percent_of_pool_allocation(self) -> Optional[float]:
+        """
+        Threshold as a percent of the pool's allocation. `100` equals the full allocation; values above 100 allow the pool to exceed its baseline allocation.
+        """
         return pulumi.get(self, "percent_of_pool_allocation")
 
 
@@ -7711,6 +10212,13 @@ class ResourcePoolsConfigPool(dict):
                  match_rule: Optional[str] = None,
                  match_rules: Optional[Sequence[str]] = None,
                  priorities: Optional['outputs.ResourcePoolsConfigPoolPriorities'] = None):
+        """
+        :param str name: Unique name of the pool.
+        :param 'ResourcePoolsConfigPoolAllocationArgs' allocation: License allocation for the pool. Can be expressed as a percentage of the license (`percent_of_license`) or as per-license fixed values (`fixed_value`).
+        :param str match_rule: Deprecated: use `match_rules` instead. Single matcher selecting metrics that belong to this pool.
+        :param Sequence[str] match_rules: Matchers selecting metrics that map to this pool. A metric matching any rule is assigned to the pool.
+        :param 'ResourcePoolsConfigPoolPrioritiesArgs' priorities: Optional high/low priority sub-classifications within the pool. Low-priority metrics are dropped first; high-priority metrics are dropped last when limits are hit.
+        """
         pulumi.set(__self__, "name", name)
         if allocation is not None:
             pulumi.set(__self__, "allocation", allocation)
@@ -7724,16 +10232,25 @@ class ResourcePoolsConfigPool(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        Unique name of the pool.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def allocation(self) -> Optional['outputs.ResourcePoolsConfigPoolAllocation']:
+        """
+        License allocation for the pool. Can be expressed as a percentage of the license (`percent_of_license`) or as per-license fixed values (`fixed_value`).
+        """
         return pulumi.get(self, "allocation")
 
     @property
     @pulumi.getter(name="matchRule")
     def match_rule(self) -> Optional[str]:
+        """
+        Deprecated: use `match_rules` instead. Single matcher selecting metrics that belong to this pool.
+        """
         warnings.warn("""use match_rules""", DeprecationWarning)
         pulumi.log.warn("""match_rule is deprecated: use match_rules""")
 
@@ -7742,11 +10259,17 @@ class ResourcePoolsConfigPool(dict):
     @property
     @pulumi.getter(name="matchRules")
     def match_rules(self) -> Optional[Sequence[str]]:
+        """
+        Matchers selecting metrics that map to this pool. A metric matching any rule is assigned to the pool.
+        """
         return pulumi.get(self, "match_rules")
 
     @property
     @pulumi.getter
     def priorities(self) -> Optional['outputs.ResourcePoolsConfigPoolPriorities']:
+        """
+        Optional high/low priority sub-classifications within the pool. Low-priority metrics are dropped first; high-priority metrics are dropped last when limits are hit.
+        """
         return pulumi.get(self, "priorities")
 
 
@@ -7777,6 +10300,11 @@ class ResourcePoolsConfigPoolAllocation(dict):
                  fixed_values: Optional[Sequence['outputs.ResourcePoolsConfigPoolAllocationFixedValue']] = None,
                  percent_of_license: Optional[float] = None,
                  priority_thresholds: Optional[Sequence['outputs.ResourcePoolsConfigPoolAllocationPriorityThreshold']] = None):
+        """
+        :param Sequence['ResourcePoolsConfigPoolAllocationFixedValueArgs'] fixed_values: Per-license fixed allocations that override `percent_of_license` for the named licenses. When any pool sets a fixed value for a license, every pool must also set one for that license.
+        :param float percent_of_license: Percent of each license to allocate to this pool, between 0 and 100. Across non-default pools, the sum must not exceed 100; the default pool receives the remainder.
+        :param Sequence['ResourcePoolsConfigPoolAllocationPriorityThresholdArgs'] priority_thresholds: Per-license drop thresholds for `PERSISTED_CARDINALITY_STANDARD` and `PERSISTED_CARDINALITY_HISTOGRAM` only. Defines strict upper bounds beyond which new consumption is dropped, optionally segmented by priority class.
+        """
         if fixed_values is not None:
             pulumi.set(__self__, "fixed_values", fixed_values)
         if percent_of_license is not None:
@@ -7787,16 +10315,25 @@ class ResourcePoolsConfigPoolAllocation(dict):
     @property
     @pulumi.getter(name="fixedValues")
     def fixed_values(self) -> Optional[Sequence['outputs.ResourcePoolsConfigPoolAllocationFixedValue']]:
+        """
+        Per-license fixed allocations that override `percent_of_license` for the named licenses. When any pool sets a fixed value for a license, every pool must also set one for that license.
+        """
         return pulumi.get(self, "fixed_values")
 
     @property
     @pulumi.getter(name="percentOfLicense")
     def percent_of_license(self) -> Optional[float]:
+        """
+        Percent of each license to allocate to this pool, between 0 and 100. Across non-default pools, the sum must not exceed 100; the default pool receives the remainder.
+        """
         return pulumi.get(self, "percent_of_license")
 
     @property
     @pulumi.getter(name="priorityThresholds")
     def priority_thresholds(self) -> Optional[Sequence['outputs.ResourcePoolsConfigPoolAllocationPriorityThreshold']]:
+        """
+        Per-license drop thresholds for `PERSISTED_CARDINALITY_STANDARD` and `PERSISTED_CARDINALITY_HISTOGRAM` only. Defines strict upper bounds beyond which new consumption is dropped, optionally segmented by priority class.
+        """
         return pulumi.get(self, "priority_thresholds")
 
 
@@ -7805,17 +10342,27 @@ class ResourcePoolsConfigPoolAllocationFixedValue(dict):
     def __init__(__self__, *,
                  license: str,
                  value: int):
+        """
+        :param str license: License this fixed-value allocation applies to (e.g. `PERSISTED_WRITES`).
+        :param int value: Fixed amount of the license to allocate, in the license's native unit.
+        """
         pulumi.set(__self__, "license", license)
         pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
     def license(self) -> str:
+        """
+        License this fixed-value allocation applies to (e.g. `PERSISTED_WRITES`).
+        """
         return pulumi.get(self, "license")
 
     @property
     @pulumi.getter
     def value(self) -> int:
+        """
+        Fixed amount of the license to allocate, in the license's native unit.
+        """
         return pulumi.get(self, "value")
 
 
@@ -7847,6 +10394,12 @@ class ResourcePoolsConfigPoolAllocationPriorityThreshold(dict):
                  all_priorities: Optional['outputs.ResourcePoolsConfigPoolAllocationPriorityThresholdAllPriorities'] = None,
                  default_and_low_priority: Optional['outputs.ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriority'] = None,
                  low_priority: Optional['outputs.ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriority'] = None):
+        """
+        :param str license: License this fixed-value allocation applies to (e.g. `PERSISTED_WRITES`).
+        :param 'ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesArgs' all_priorities: Threshold value, expressed as either a percent of the pool's allocation or as a fixed value in license units.
+        :param 'ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityArgs' default_and_low_priority: Threshold value, expressed as either a percent of the pool's allocation or as a fixed value in license units.
+        :param 'ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriorityArgs' low_priority: Threshold value, expressed as either a percent of the pool's allocation or as a fixed value in license units.
+        """
         pulumi.set(__self__, "license", license)
         if all_priorities is not None:
             pulumi.set(__self__, "all_priorities", all_priorities)
@@ -7858,21 +10411,33 @@ class ResourcePoolsConfigPoolAllocationPriorityThreshold(dict):
     @property
     @pulumi.getter
     def license(self) -> str:
+        """
+        License this fixed-value allocation applies to (e.g. `PERSISTED_WRITES`).
+        """
         return pulumi.get(self, "license")
 
     @property
     @pulumi.getter(name="allPriorities")
     def all_priorities(self) -> Optional['outputs.ResourcePoolsConfigPoolAllocationPriorityThresholdAllPriorities']:
+        """
+        Threshold value, expressed as either a percent of the pool's allocation or as a fixed value in license units.
+        """
         return pulumi.get(self, "all_priorities")
 
     @property
     @pulumi.getter(name="defaultAndLowPriority")
     def default_and_low_priority(self) -> Optional['outputs.ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriority']:
+        """
+        Threshold value, expressed as either a percent of the pool's allocation or as a fixed value in license units.
+        """
         return pulumi.get(self, "default_and_low_priority")
 
     @property
     @pulumi.getter(name="lowPriority")
     def low_priority(self) -> Optional['outputs.ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriority']:
+        """
+        Threshold value, expressed as either a percent of the pool's allocation or as a fixed value in license units.
+        """
         return pulumi.get(self, "low_priority")
 
 
@@ -7900,6 +10465,10 @@ class ResourcePoolsConfigPoolAllocationPriorityThresholdAllPriorities(dict):
     def __init__(__self__, *,
                  fixed_value: Optional[int] = None,
                  percent_of_pool_allocation: Optional[float] = None):
+        """
+        :param int fixed_value: Per-license fixed allocations that override `percent_of_license` for the named licenses. When any pool sets a fixed value for a license, every pool must also set one for that license.
+        :param float percent_of_pool_allocation: Threshold as a percent of the pool's allocation. `100` equals the full allocation; values above 100 allow the pool to exceed its baseline allocation.
+        """
         if fixed_value is not None:
             pulumi.set(__self__, "fixed_value", fixed_value)
         if percent_of_pool_allocation is not None:
@@ -7908,11 +10477,17 @@ class ResourcePoolsConfigPoolAllocationPriorityThresholdAllPriorities(dict):
     @property
     @pulumi.getter(name="fixedValue")
     def fixed_value(self) -> Optional[int]:
+        """
+        Per-license fixed allocations that override `percent_of_license` for the named licenses. When any pool sets a fixed value for a license, every pool must also set one for that license.
+        """
         return pulumi.get(self, "fixed_value")
 
     @property
     @pulumi.getter(name="percentOfPoolAllocation")
     def percent_of_pool_allocation(self) -> Optional[float]:
+        """
+        Threshold as a percent of the pool's allocation. `100` equals the full allocation; values above 100 allow the pool to exceed its baseline allocation.
+        """
         return pulumi.get(self, "percent_of_pool_allocation")
 
 
@@ -7940,6 +10515,10 @@ class ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriority(di
     def __init__(__self__, *,
                  fixed_value: Optional[int] = None,
                  percent_of_pool_allocation: Optional[float] = None):
+        """
+        :param int fixed_value: Per-license fixed allocations that override `percent_of_license` for the named licenses. When any pool sets a fixed value for a license, every pool must also set one for that license.
+        :param float percent_of_pool_allocation: Threshold as a percent of the pool's allocation. `100` equals the full allocation; values above 100 allow the pool to exceed its baseline allocation.
+        """
         if fixed_value is not None:
             pulumi.set(__self__, "fixed_value", fixed_value)
         if percent_of_pool_allocation is not None:
@@ -7948,11 +10527,17 @@ class ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriority(di
     @property
     @pulumi.getter(name="fixedValue")
     def fixed_value(self) -> Optional[int]:
+        """
+        Per-license fixed allocations that override `percent_of_license` for the named licenses. When any pool sets a fixed value for a license, every pool must also set one for that license.
+        """
         return pulumi.get(self, "fixed_value")
 
     @property
     @pulumi.getter(name="percentOfPoolAllocation")
     def percent_of_pool_allocation(self) -> Optional[float]:
+        """
+        Threshold as a percent of the pool's allocation. `100` equals the full allocation; values above 100 allow the pool to exceed its baseline allocation.
+        """
         return pulumi.get(self, "percent_of_pool_allocation")
 
 
@@ -7980,6 +10565,10 @@ class ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriority(dict):
     def __init__(__self__, *,
                  fixed_value: Optional[int] = None,
                  percent_of_pool_allocation: Optional[float] = None):
+        """
+        :param int fixed_value: Per-license fixed allocations that override `percent_of_license` for the named licenses. When any pool sets a fixed value for a license, every pool must also set one for that license.
+        :param float percent_of_pool_allocation: Threshold as a percent of the pool's allocation. `100` equals the full allocation; values above 100 allow the pool to exceed its baseline allocation.
+        """
         if fixed_value is not None:
             pulumi.set(__self__, "fixed_value", fixed_value)
         if percent_of_pool_allocation is not None:
@@ -7988,11 +10577,17 @@ class ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriority(dict):
     @property
     @pulumi.getter(name="fixedValue")
     def fixed_value(self) -> Optional[int]:
+        """
+        Per-license fixed allocations that override `percent_of_license` for the named licenses. When any pool sets a fixed value for a license, every pool must also set one for that license.
+        """
         return pulumi.get(self, "fixed_value")
 
     @property
     @pulumi.getter(name="percentOfPoolAllocation")
     def percent_of_pool_allocation(self) -> Optional[float]:
+        """
+        Threshold as a percent of the pool's allocation. `100` equals the full allocation; values above 100 allow the pool to exceed its baseline allocation.
+        """
         return pulumi.get(self, "percent_of_pool_allocation")
 
 
@@ -8020,6 +10615,10 @@ class ResourcePoolsConfigPoolPriorities(dict):
     def __init__(__self__, *,
                  high_priority_match_rules: Optional[Sequence[str]] = None,
                  low_priority_match_rules: Optional[Sequence[str]] = None):
+        """
+        :param Sequence[str] high_priority_match_rules: Matchers selecting metrics within the pool that are treated as high priority and dropped last.
+        :param Sequence[str] low_priority_match_rules: Matchers selecting metrics within the pool that are treated as low priority and dropped first.
+        """
         if high_priority_match_rules is not None:
             pulumi.set(__self__, "high_priority_match_rules", high_priority_match_rules)
         if low_priority_match_rules is not None:
@@ -8028,11 +10627,17 @@ class ResourcePoolsConfigPoolPriorities(dict):
     @property
     @pulumi.getter(name="highPriorityMatchRules")
     def high_priority_match_rules(self) -> Optional[Sequence[str]]:
+        """
+        Matchers selecting metrics within the pool that are treated as high priority and dropped last.
+        """
         return pulumi.get(self, "high_priority_match_rules")
 
     @property
     @pulumi.getter(name="lowPriorityMatchRules")
     def low_priority_match_rules(self) -> Optional[Sequence[str]]:
+        """
+        Matchers selecting metrics within the pool that are treated as low priority and dropped first.
+        """
         return pulumi.get(self, "low_priority_match_rules")
 
 
@@ -8040,12 +10645,18 @@ class ResourcePoolsConfigPoolPriorities(dict):
 class RollupRuleGraphiteLabelPolicy(dict):
     def __init__(__self__, *,
                  replaces: Optional[Sequence['outputs.RollupRuleGraphiteLabelPolicyReplace']] = None):
+        """
+        :param Sequence['RollupRuleGraphiteLabelPolicyReplaceArgs'] replaces: List of positional Graphite label replacements applied to the output metric.
+        """
         if replaces is not None:
             pulumi.set(__self__, "replaces", replaces)
 
     @property
     @pulumi.getter
     def replaces(self) -> Optional[Sequence['outputs.RollupRuleGraphiteLabelPolicyReplace']]:
+        """
+        List of positional Graphite label replacements applied to the output metric.
+        """
         return pulumi.get(self, "replaces")
 
 
@@ -8071,17 +10682,27 @@ class RollupRuleGraphiteLabelPolicyReplace(dict):
     def __init__(__self__, *,
                  name: str,
                  new_value: str):
+        """
+        :param str name: Positional Graphite label to replace (e.g. `__g1__`).
+        :param str new_value: Replacement value for the named positional label.
+        """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "new_value", new_value)
 
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        Positional Graphite label to replace (e.g. `__g1__`).
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="newValue")
     def new_value(self) -> str:
+        """
+        Replacement value for the named positional label.
+        """
         return pulumi.get(self, "new_value")
 
 
@@ -8090,17 +10711,27 @@ class RollupRuleStoragePolicies(dict):
     def __init__(__self__, *,
                  resolution: str,
                  retention: str):
+        """
+        :param str resolution: Resolution at which rolled-up data points are stored.
+        :param str retention: Retention duration for rolled-up data points.
+        """
         pulumi.set(__self__, "resolution", resolution)
         pulumi.set(__self__, "retention", retention)
 
     @property
     @pulumi.getter
     def resolution(self) -> str:
+        """
+        Resolution at which rolled-up data points are stored.
+        """
         return pulumi.get(self, "resolution")
 
     @property
     @pulumi.getter
     def retention(self) -> str:
+        """
+        Retention duration for rolled-up data points.
+        """
         return pulumi.get(self, "retention")
 
 
@@ -8132,6 +10763,12 @@ class SLODefinition(dict):
                  burn_rate_alerting_configs: Optional[Sequence['outputs.SLODefinitionBurnRateAlertingConfig']] = None,
                  enable_burn_rate_alerting: Optional[bool] = None,
                  time_window: Optional['outputs.SLODefinitionTimeWindow'] = None):
+        """
+        :param float objective: Target SLO percentage representing the desired availability (e.g. `99.9`).
+        :param Sequence['SLODefinitionBurnRateAlertingConfigArgs'] burn_rate_alerting_configs: Custom burn-rate alert definitions. If omitted, the system default burn rates are used. Only takes effect when `enable_burn_rate_alerting` is true.
+        :param bool enable_burn_rate_alerting: Whether burn-rate alerting is enabled for this SLO.
+        :param 'SLODefinitionTimeWindowArgs' time_window: Rolling time window over which the SLO objective is evaluated.
+        """
         pulumi.set(__self__, "objective", objective)
         if burn_rate_alerting_configs is not None:
             pulumi.set(__self__, "burn_rate_alerting_configs", burn_rate_alerting_configs)
@@ -8143,21 +10780,33 @@ class SLODefinition(dict):
     @property
     @pulumi.getter
     def objective(self) -> float:
+        """
+        Target SLO percentage representing the desired availability (e.g. `99.9`).
+        """
         return pulumi.get(self, "objective")
 
     @property
     @pulumi.getter(name="burnRateAlertingConfigs")
     def burn_rate_alerting_configs(self) -> Optional[Sequence['outputs.SLODefinitionBurnRateAlertingConfig']]:
+        """
+        Custom burn-rate alert definitions. If omitted, the system default burn rates are used. Only takes effect when `enable_burn_rate_alerting` is true.
+        """
         return pulumi.get(self, "burn_rate_alerting_configs")
 
     @property
     @pulumi.getter(name="enableBurnRateAlerting")
     def enable_burn_rate_alerting(self) -> Optional[bool]:
+        """
+        Whether burn-rate alerting is enabled for this SLO.
+        """
         return pulumi.get(self, "enable_burn_rate_alerting")
 
     @property
     @pulumi.getter(name="timeWindow")
     def time_window(self) -> Optional['outputs.SLODefinitionTimeWindow']:
+        """
+        Rolling time window over which the SLO objective is evaluated.
+        """
         return pulumi.get(self, "time_window")
 
 
@@ -8168,6 +10817,12 @@ class SLODefinitionBurnRateAlertingConfig(dict):
                  severity: str,
                  window: str,
                  labels: Optional[Mapping[str, str]] = None):
+        """
+        :param float budget: Percentage of the error budget that can be consumed during `window` before the alert fires. Must be between 0.0 and 100.0 exclusive.
+        :param str severity: Severity assigned when the burn rate fires. Must be `critical` or `warn`.
+        :param str window: Time window for the burn-rate calculation (e.g. `1h`, `6h`).
+        :param Mapping[str, str] labels: Additional labels attached when this burn-rate alert fires. Can be used by notification policies to route different burn rates to different destinations.
+        """
         pulumi.set(__self__, "budget", budget)
         pulumi.set(__self__, "severity", severity)
         pulumi.set(__self__, "window", window)
@@ -8177,21 +10832,33 @@ class SLODefinitionBurnRateAlertingConfig(dict):
     @property
     @pulumi.getter
     def budget(self) -> float:
+        """
+        Percentage of the error budget that can be consumed during `window` before the alert fires. Must be between 0.0 and 100.0 exclusive.
+        """
         return pulumi.get(self, "budget")
 
     @property
     @pulumi.getter
     def severity(self) -> str:
+        """
+        Severity assigned when the burn rate fires. Must be `critical` or `warn`.
+        """
         return pulumi.get(self, "severity")
 
     @property
     @pulumi.getter
     def window(self) -> str:
+        """
+        Time window for the burn-rate calculation (e.g. `1h`, `6h`).
+        """
         return pulumi.get(self, "window")
 
     @property
     @pulumi.getter
     def labels(self) -> Optional[Mapping[str, str]]:
+        """
+        Additional labels attached when this burn-rate alert fires. Can be used by notification policies to route different burn rates to different destinations.
+        """
         return pulumi.get(self, "labels")
 
 
@@ -8199,11 +10866,17 @@ class SLODefinitionBurnRateAlertingConfig(dict):
 class SLODefinitionTimeWindow(dict):
     def __init__(__self__, *,
                  duration: str):
+        """
+        :param str duration: Length of the evaluation window (e.g. `28d`, `24h`).
+        """
         pulumi.set(__self__, "duration", duration)
 
     @property
     @pulumi.getter
     def duration(self) -> str:
+        """
+        Length of the evaluation window (e.g. `28d`, `24h`).
+        """
         return pulumi.get(self, "duration")
 
 
@@ -8231,6 +10904,10 @@ class SLOSignalGrouping(dict):
     def __init__(__self__, *,
                  label_names: Optional[Sequence[str]] = None,
                  signal_per_series: Optional[bool] = None):
+        """
+        :param Sequence[str] label_names: Labels to group by. Series sharing the same values for these labels produce one signal. Defaults to no grouping (one signal per series).
+        :param bool signal_per_series: If true, treat each individual series as its own signal. Mutually exclusive with `label_names`.
+        """
         if label_names is not None:
             pulumi.set(__self__, "label_names", label_names)
         if signal_per_series is not None:
@@ -8239,11 +10916,17 @@ class SLOSignalGrouping(dict):
     @property
     @pulumi.getter(name="labelNames")
     def label_names(self) -> Optional[Sequence[str]]:
+        """
+        Labels to group by. Series sharing the same values for these labels produce one signal. Defaults to no grouping (one signal per series).
+        """
         return pulumi.get(self, "label_names")
 
     @property
     @pulumi.getter(name="signalPerSeries")
     def signal_per_series(self) -> Optional[bool]:
+        """
+        If true, treat each individual series as its own signal. Mutually exclusive with `label_names`.
+        """
         return pulumi.get(self, "signal_per_series")
 
 
@@ -8277,6 +10960,12 @@ class SLOSli(dict):
                  custom_dimension_labels: Optional[Sequence[str]] = None,
                  custom_indicator: Optional['outputs.SLOSliCustomIndicator'] = None,
                  custom_timeslice_indicator: Optional['outputs.SLOSliCustomTimesliceIndicator'] = None):
+        """
+        :param Sequence['SLOSliAdditionalPromqlFilterArgs'] additional_promql_filters: Additional PromQL label matchers applied to SLI queries via the `{{.AdditionalFilters}}` template variable. Used to narrow the metrics scope.
+        :param Sequence[str] custom_dimension_labels: Additional labels exported from the underlying queries to group the error budget by. Available in PromQL templates via `{{.GroupBy}}`.
+        :param 'SLOSliCustomIndicatorArgs' custom_indicator: Error-ratio SLI defined by good/bad/total PromQL query templates. Mutually exclusive with `custom_timeslice_indicator`.
+        :param 'SLOSliCustomTimesliceIndicatorArgs' custom_timeslice_indicator: Time-slice SLI that evaluates a PromQL query over fixed time slices against a threshold condition. Mutually exclusive with `custom_indicator`.
+        """
         if additional_promql_filters is not None:
             pulumi.set(__self__, "additional_promql_filters", additional_promql_filters)
         if custom_dimension_labels is not None:
@@ -8289,21 +10978,33 @@ class SLOSli(dict):
     @property
     @pulumi.getter(name="additionalPromqlFilters")
     def additional_promql_filters(self) -> Optional[Sequence['outputs.SLOSliAdditionalPromqlFilter']]:
+        """
+        Additional PromQL label matchers applied to SLI queries via the `{{.AdditionalFilters}}` template variable. Used to narrow the metrics scope.
+        """
         return pulumi.get(self, "additional_promql_filters")
 
     @property
     @pulumi.getter(name="customDimensionLabels")
     def custom_dimension_labels(self) -> Optional[Sequence[str]]:
+        """
+        Additional labels exported from the underlying queries to group the error budget by. Available in PromQL templates via `{{.GroupBy}}`.
+        """
         return pulumi.get(self, "custom_dimension_labels")
 
     @property
     @pulumi.getter(name="customIndicator")
     def custom_indicator(self) -> Optional['outputs.SLOSliCustomIndicator']:
+        """
+        Error-ratio SLI defined by good/bad/total PromQL query templates. Mutually exclusive with `custom_timeslice_indicator`.
+        """
         return pulumi.get(self, "custom_indicator")
 
     @property
     @pulumi.getter(name="customTimesliceIndicator")
     def custom_timeslice_indicator(self) -> Optional['outputs.SLOSliCustomTimesliceIndicator']:
+        """
+        Time-slice SLI that evaluates a PromQL query over fixed time slices against a threshold condition. Mutually exclusive with `custom_indicator`.
+        """
         return pulumi.get(self, "custom_timeslice_indicator")
 
 
@@ -8313,6 +11014,11 @@ class SLOSliAdditionalPromqlFilter(dict):
                  name: str,
                  type: str,
                  value: str):
+        """
+        :param str name: Prometheus label name to match.
+        :param str type: Matcher type (e.g. `=`, `!=`, `=~`, `!~`).
+        :param str value: Label value to match against using the chosen matcher `type`.
+        """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "type", type)
         pulumi.set(__self__, "value", value)
@@ -8320,16 +11026,25 @@ class SLOSliAdditionalPromqlFilter(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        Prometheus label name to match.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def type(self) -> str:
+        """
+        Matcher type (e.g. `=`, `!=`, `=~`, `!~`).
+        """
         return pulumi.get(self, "type")
 
     @property
     @pulumi.getter
     def value(self) -> str:
+        """
+        Label value to match against using the chosen matcher `type`.
+        """
         return pulumi.get(self, "value")
 
 
@@ -8360,6 +11075,11 @@ class SLOSliCustomIndicator(dict):
                  total_query_template: str,
                  bad_query_template: Optional[str] = None,
                  good_query_template: Optional[str] = None):
+        """
+        :param str total_query_template: PromQL query template measuring the total count of events. Required for error-ratio SLOs.
+        :param str bad_query_template: PromQL query template measuring the count of bad events. Mutually exclusive with `good_query_template`.
+        :param str good_query_template: PromQL query template measuring the count of good events. Mutually exclusive with `bad_query_template`.
+        """
         pulumi.set(__self__, "total_query_template", total_query_template)
         if bad_query_template is not None:
             pulumi.set(__self__, "bad_query_template", bad_query_template)
@@ -8369,16 +11089,25 @@ class SLOSliCustomIndicator(dict):
     @property
     @pulumi.getter(name="totalQueryTemplate")
     def total_query_template(self) -> str:
+        """
+        PromQL query template measuring the total count of events. Required for error-ratio SLOs.
+        """
         return pulumi.get(self, "total_query_template")
 
     @property
     @pulumi.getter(name="badQueryTemplate")
     def bad_query_template(self) -> Optional[str]:
+        """
+        PromQL query template measuring the count of bad events. Mutually exclusive with `good_query_template`.
+        """
         return pulumi.get(self, "bad_query_template")
 
     @property
     @pulumi.getter(name="goodQueryTemplate")
     def good_query_template(self) -> Optional[str]:
+        """
+        PromQL query template measuring the count of good events. Mutually exclusive with `bad_query_template`.
+        """
         return pulumi.get(self, "good_query_template")
 
 
@@ -8407,6 +11136,11 @@ class SLOSliCustomTimesliceIndicator(dict):
                  condition: 'outputs.SLOSliCustomTimesliceIndicatorCondition',
                  query_template: str,
                  timeslice_size: str):
+        """
+        :param 'SLOSliCustomTimesliceIndicatorConditionArgs' condition: Condition used to classify each time slice as good or bad based on the query result.
+        :param str query_template: PromQL query template evaluated against each time slice.
+        :param str timeslice_size: Size of each time slice evaluated by the query (e.g. `1m`, `5m`).
+        """
         pulumi.set(__self__, "condition", condition)
         pulumi.set(__self__, "query_template", query_template)
         pulumi.set(__self__, "timeslice_size", timeslice_size)
@@ -8414,16 +11148,25 @@ class SLOSliCustomTimesliceIndicator(dict):
     @property
     @pulumi.getter
     def condition(self) -> 'outputs.SLOSliCustomTimesliceIndicatorCondition':
+        """
+        Condition used to classify each time slice as good or bad based on the query result.
+        """
         return pulumi.get(self, "condition")
 
     @property
     @pulumi.getter(name="queryTemplate")
     def query_template(self) -> str:
+        """
+        PromQL query template evaluated against each time slice.
+        """
         return pulumi.get(self, "query_template")
 
     @property
     @pulumi.getter(name="timesliceSize")
     def timeslice_size(self) -> str:
+        """
+        Size of each time slice evaluated by the query (e.g. `1m`, `5m`).
+        """
         return pulumi.get(self, "timeslice_size")
 
 
@@ -8432,17 +11175,27 @@ class SLOSliCustomTimesliceIndicatorCondition(dict):
     def __init__(__self__, *,
                  op: str,
                  value: float):
+        """
+        :param str op: Comparison operator between the query value and `value` (e.g. `gt`, `lt`, `eq`).
+        :param float value: Label value to match against using the chosen matcher `type`.
+        """
         pulumi.set(__self__, "op", op)
         pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
     def op(self) -> str:
+        """
+        Comparison operator between the query value and `value` (e.g. `gt`, `lt`, `eq`).
+        """
         return pulumi.get(self, "op")
 
     @property
     @pulumi.getter
     def value(self) -> float:
+        """
+        Label value to match against using the chosen matcher `type`.
+        """
         return pulumi.get(self, "value")
 
 
@@ -8451,6 +11204,10 @@ class ServiceAccountRestriction(dict):
     def __init__(__self__, *,
                  permission: str,
                  labels: Optional[Mapping[str, str]] = None):
+        """
+        :param str permission: Permission level granted by this restriction (e.g. metric read/write).
+        :param Mapping[str, str] labels: Optional label matchers further scoping the restriction to metrics whose labels match these key/value pairs.
+        """
         pulumi.set(__self__, "permission", permission)
         if labels is not None:
             pulumi.set(__self__, "labels", labels)
@@ -8458,11 +11215,17 @@ class ServiceAccountRestriction(dict):
     @property
     @pulumi.getter
     def permission(self) -> str:
+        """
+        Permission level granted by this restriction (e.g. metric read/write).
+        """
         return pulumi.get(self, "permission")
 
     @property
     @pulumi.getter
     def labels(self) -> Optional[Mapping[str, str]]:
+        """
+        Optional label matchers further scoping the restriction to metrics whose labels match these key/value pairs.
+        """
         return pulumi.get(self, "labels")
 
 
@@ -8502,6 +11265,18 @@ class SlackAlertNotifierAction(dict):
                  type: Optional[str] = None,
                  url: Optional[str] = None,
                  value: Optional[str] = None):
+        """
+        :param str action_confirm_dismiss_text: Label for the cancel button in the confirmation dialog.
+        :param str action_confirm_ok_text: Label for the confirm button in the confirmation dialog.
+        :param str action_confirm_text: Body text of the confirmation dialog shown before the action runs.
+        :param str action_confirm_tile: Title of the confirmation dialog shown before the action runs.
+        :param str name: Identifier sent back to Slack when the button is clicked.
+        :param str style: Visual style of the button: `default`, `primary`, or `danger`.
+        :param str text: Label shown on the button.
+        :param str type: Action type. Typically `button`.
+        :param str url: Link the button navigates to when clicked.
+        :param str value: Opaque value sent back to Slack alongside `name` when the button is clicked.
+        """
         if action_confirm_dismiss_text is not None:
             pulumi.set(__self__, "action_confirm_dismiss_text", action_confirm_dismiss_text)
         if action_confirm_ok_text is not None:
@@ -8526,51 +11301,81 @@ class SlackAlertNotifierAction(dict):
     @property
     @pulumi.getter(name="actionConfirmDismissText")
     def action_confirm_dismiss_text(self) -> Optional[str]:
+        """
+        Label for the cancel button in the confirmation dialog.
+        """
         return pulumi.get(self, "action_confirm_dismiss_text")
 
     @property
     @pulumi.getter(name="actionConfirmOkText")
     def action_confirm_ok_text(self) -> Optional[str]:
+        """
+        Label for the confirm button in the confirmation dialog.
+        """
         return pulumi.get(self, "action_confirm_ok_text")
 
     @property
     @pulumi.getter(name="actionConfirmText")
     def action_confirm_text(self) -> Optional[str]:
+        """
+        Body text of the confirmation dialog shown before the action runs.
+        """
         return pulumi.get(self, "action_confirm_text")
 
     @property
     @pulumi.getter(name="actionConfirmTile")
     def action_confirm_tile(self) -> Optional[str]:
+        """
+        Title of the confirmation dialog shown before the action runs.
+        """
         return pulumi.get(self, "action_confirm_tile")
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
+        """
+        Identifier sent back to Slack when the button is clicked.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def style(self) -> Optional[str]:
+        """
+        Visual style of the button: `default`, `primary`, or `danger`.
+        """
         return pulumi.get(self, "style")
 
     @property
     @pulumi.getter
     def text(self) -> Optional[str]:
+        """
+        Label shown on the button.
+        """
         return pulumi.get(self, "text")
 
     @property
     @pulumi.getter
     def type(self) -> Optional[str]:
+        """
+        Action type. Typically `button`.
+        """
         return pulumi.get(self, "type")
 
     @property
     @pulumi.getter
     def url(self) -> Optional[str]:
+        """
+        Link the button navigates to when clicked.
+        """
         return pulumi.get(self, "url")
 
     @property
     @pulumi.getter
     def value(self) -> Optional[str]:
+        """
+        Opaque value sent back to Slack alongside `name` when the button is clicked.
+        """
         return pulumi.get(self, "value")
 
 
@@ -8580,6 +11385,11 @@ class SlackAlertNotifierField(dict):
                  short: Optional[bool] = None,
                  title: Optional[str] = None,
                  value: Optional[str] = None):
+        """
+        :param bool short: If true, the field is short enough to be shown side-by-side with the next field.
+        :param str title: Bold heading shown above the value.
+        :param str value: Value text. Supports Go templating.
+        """
         if short is not None:
             pulumi.set(__self__, "short", short)
         if title is not None:
@@ -8590,16 +11400,25 @@ class SlackAlertNotifierField(dict):
     @property
     @pulumi.getter
     def short(self) -> Optional[bool]:
+        """
+        If true, the field is short enough to be shown side-by-side with the next field.
+        """
         return pulumi.get(self, "short")
 
     @property
     @pulumi.getter
     def title(self) -> Optional[str]:
+        """
+        Bold heading shown above the value.
+        """
         return pulumi.get(self, "title")
 
     @property
     @pulumi.getter
     def value(self) -> Optional[str]:
+        """
+        Value text. Supports Go templating.
+        """
         return pulumi.get(self, "value")
 
 
@@ -8630,6 +11449,11 @@ class TraceJaegerRemoteSamplingStrategyAppliedStrategy(dict):
                  per_operation_strategies: Optional['outputs.TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationStrategies'] = None,
                  probabilistic_strategy: Optional['outputs.TraceJaegerRemoteSamplingStrategyAppliedStrategyProbabilisticStrategy'] = None,
                  rate_limiting_strategy: Optional['outputs.TraceJaegerRemoteSamplingStrategyAppliedStrategyRateLimitingStrategy'] = None):
+        """
+        :param 'TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationStrategiesArgs' per_operation_strategies: Per-operation sampling configuration with a service-wide default and optional per-operation overrides.
+        :param 'TraceJaegerRemoteSamplingStrategyAppliedStrategyProbabilisticStrategyArgs' probabilistic_strategy: Probabilistic sampling: each trace is sampled with a fixed probability.
+        :param 'TraceJaegerRemoteSamplingStrategyAppliedStrategyRateLimitingStrategyArgs' rate_limiting_strategy: Rate-limiting sampling: cap the number of sampled traces per second using a leaky bucket.
+        """
         if per_operation_strategies is not None:
             pulumi.set(__self__, "per_operation_strategies", per_operation_strategies)
         if probabilistic_strategy is not None:
@@ -8640,16 +11464,25 @@ class TraceJaegerRemoteSamplingStrategyAppliedStrategy(dict):
     @property
     @pulumi.getter(name="perOperationStrategies")
     def per_operation_strategies(self) -> Optional['outputs.TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationStrategies']:
+        """
+        Per-operation sampling configuration with a service-wide default and optional per-operation overrides.
+        """
         return pulumi.get(self, "per_operation_strategies")
 
     @property
     @pulumi.getter(name="probabilisticStrategy")
     def probabilistic_strategy(self) -> Optional['outputs.TraceJaegerRemoteSamplingStrategyAppliedStrategyProbabilisticStrategy']:
+        """
+        Probabilistic sampling: each trace is sampled with a fixed probability.
+        """
         return pulumi.get(self, "probabilistic_strategy")
 
     @property
     @pulumi.getter(name="rateLimitingStrategy")
     def rate_limiting_strategy(self) -> Optional['outputs.TraceJaegerRemoteSamplingStrategyAppliedStrategyRateLimitingStrategy']:
+        """
+        Rate-limiting sampling: cap the number of sampled traces per second using a leaky bucket.
+        """
         return pulumi.get(self, "rate_limiting_strategy")
 
 
@@ -8683,6 +11516,12 @@ class TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationStrategies(dic
                  default_lower_bound_traces_per_second: Optional[float] = None,
                  default_upper_bound_traces_per_second: Optional[float] = None,
                  per_operation_strategies: Optional[Sequence['outputs.TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationStrategiesPerOperationStrategy']] = None):
+        """
+        :param float default_sampling_rate: Service-wide sampling probability in the range `[0.0, 1.0]` applied when no per-operation override matches.
+        :param float default_lower_bound_traces_per_second: Minimum number of traces per second sampled for any operation in the service, even when the probabilistic rate would yield fewer.
+        :param float default_upper_bound_traces_per_second: Maximum number of traces per second sampled for any operation in the service, regardless of matching per-operation strategy.
+        :param Sequence['TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationStrategiesPerOperationStrategyArgs'] per_operation_strategies: Per-operation sampling configuration with a service-wide default and optional per-operation overrides.
+        """
         pulumi.set(__self__, "default_sampling_rate", default_sampling_rate)
         if default_lower_bound_traces_per_second is not None:
             pulumi.set(__self__, "default_lower_bound_traces_per_second", default_lower_bound_traces_per_second)
@@ -8694,21 +11533,33 @@ class TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationStrategies(dic
     @property
     @pulumi.getter(name="defaultSamplingRate")
     def default_sampling_rate(self) -> float:
+        """
+        Service-wide sampling probability in the range `[0.0, 1.0]` applied when no per-operation override matches.
+        """
         return pulumi.get(self, "default_sampling_rate")
 
     @property
     @pulumi.getter(name="defaultLowerBoundTracesPerSecond")
     def default_lower_bound_traces_per_second(self) -> Optional[float]:
+        """
+        Minimum number of traces per second sampled for any operation in the service, even when the probabilistic rate would yield fewer.
+        """
         return pulumi.get(self, "default_lower_bound_traces_per_second")
 
     @property
     @pulumi.getter(name="defaultUpperBoundTracesPerSecond")
     def default_upper_bound_traces_per_second(self) -> Optional[float]:
+        """
+        Maximum number of traces per second sampled for any operation in the service, regardless of matching per-operation strategy.
+        """
         return pulumi.get(self, "default_upper_bound_traces_per_second")
 
     @property
     @pulumi.getter(name="perOperationStrategies")
     def per_operation_strategies(self) -> Optional[Sequence['outputs.TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationStrategiesPerOperationStrategy']]:
+        """
+        Per-operation sampling configuration with a service-wide default and optional per-operation overrides.
+        """
         return pulumi.get(self, "per_operation_strategies")
 
 
@@ -8734,17 +11585,27 @@ class TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationStrategiesPerO
     def __init__(__self__, *,
                  operation: str,
                  probabilistic_strategy: 'outputs.TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationStrategiesPerOperationStrategyProbabilisticStrategy'):
+        """
+        :param str operation: Span operation (span name) this override applies to.
+        :param 'TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationStrategiesPerOperationStrategyProbabilisticStrategyArgs' probabilistic_strategy: Probabilistic sampling configuration applied to spans whose operation matches.
+        """
         pulumi.set(__self__, "operation", operation)
         pulumi.set(__self__, "probabilistic_strategy", probabilistic_strategy)
 
     @property
     @pulumi.getter
     def operation(self) -> str:
+        """
+        Span operation (span name) this override applies to.
+        """
         return pulumi.get(self, "operation")
 
     @property
     @pulumi.getter(name="probabilisticStrategy")
     def probabilistic_strategy(self) -> 'outputs.TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationStrategiesPerOperationStrategyProbabilisticStrategy':
+        """
+        Probabilistic sampling configuration applied to spans whose operation matches.
+        """
         return pulumi.get(self, "probabilistic_strategy")
 
 
@@ -8769,11 +11630,17 @@ class TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationStrategiesPerO
 
     def __init__(__self__, *,
                  sampling_rate: float):
+        """
+        :param float sampling_rate: Probability in the range `[0.0, 1.0]` that any given trace is sampled. `0` samples no traces, `1` samples every trace.
+        """
         pulumi.set(__self__, "sampling_rate", sampling_rate)
 
     @property
     @pulumi.getter(name="samplingRate")
     def sampling_rate(self) -> float:
+        """
+        Probability in the range `[0.0, 1.0]` that any given trace is sampled. `0` samples no traces, `1` samples every trace.
+        """
         return pulumi.get(self, "sampling_rate")
 
 
@@ -8798,11 +11665,17 @@ class TraceJaegerRemoteSamplingStrategyAppliedStrategyProbabilisticStrategy(dict
 
     def __init__(__self__, *,
                  sampling_rate: float):
+        """
+        :param float sampling_rate: Probability in the range `[0.0, 1.0]` that any given trace is sampled. `0` samples no traces, `1` samples every trace.
+        """
         pulumi.set(__self__, "sampling_rate", sampling_rate)
 
     @property
     @pulumi.getter(name="samplingRate")
     def sampling_rate(self) -> float:
+        """
+        Probability in the range `[0.0, 1.0]` that any given trace is sampled. `0` samples no traces, `1` samples every trace.
+        """
         return pulumi.get(self, "sampling_rate")
 
 
@@ -8827,11 +11700,17 @@ class TraceJaegerRemoteSamplingStrategyAppliedStrategyRateLimitingStrategy(dict)
 
     def __init__(__self__, *,
                  max_traces_per_second: int):
+        """
+        :param int max_traces_per_second: Maximum number of traces to sample per second for the service.
+        """
         pulumi.set(__self__, "max_traces_per_second", max_traces_per_second)
 
     @property
     @pulumi.getter(name="maxTracesPerSecond")
     def max_traces_per_second(self) -> int:
+        """
+        Maximum number of traces to sample per second for the service.
+        """
         return pulumi.get(self, "max_traces_per_second")
 
 
@@ -8840,17 +11719,27 @@ class TraceMetricsRuleGroupBy(dict):
     def __init__(__self__, *,
                  key: 'outputs.TraceMetricsRuleGroupByKey',
                  label: str):
+        """
+        :param 'TraceMetricsRuleGroupByKeyArgs' key: Span attribute to group by.
+        :param str label: Name of the resulting metric label.
+        """
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "label", label)
 
     @property
     @pulumi.getter
     def key(self) -> 'outputs.TraceMetricsRuleGroupByKey':
+        """
+        Span attribute to group by.
+        """
         return pulumi.get(self, "key")
 
     @property
     @pulumi.getter
     def label(self) -> str:
+        """
+        Name of the resulting metric label.
+        """
         return pulumi.get(self, "label")
 
 
@@ -8876,6 +11765,10 @@ class TraceMetricsRuleGroupByKey(dict):
     def __init__(__self__, *,
                  type: str,
                  named_key: Optional[str] = None):
+        """
+        :param str type: Category of span attribute to group by (for example a well-known field such as `SERVICE` or `OPERATION`, or a generic span `TAG`).
+        :param str named_key: Name of the span tag when `type` requires one (for example `TAG`). Ignored for fixed-key types.
+        """
         pulumi.set(__self__, "type", type)
         if named_key is not None:
             pulumi.set(__self__, "named_key", named_key)
@@ -8883,11 +11776,17 @@ class TraceMetricsRuleGroupByKey(dict):
     @property
     @pulumi.getter
     def type(self) -> str:
+        """
+        Category of span attribute to group by (for example a well-known field such as `SERVICE` or `OPERATION`, or a generic span `TAG`).
+        """
         return pulumi.get(self, "type")
 
     @property
     @pulumi.getter(name="namedKey")
     def named_key(self) -> Optional[str]:
+        """
+        Name of the span tag when `type` requires one (for example `TAG`). Ignored for fixed-key types.
+        """
         return pulumi.get(self, "named_key")
 
 
@@ -8912,12 +11811,18 @@ class TraceMetricsRuleScopeFilter(dict):
 
     def __init__(__self__, *,
                  span_scopes: Optional[Sequence['outputs.TraceMetricsRuleScopeFilterSpanScope']] = None):
+        """
+        :param Sequence['TraceMetricsRuleScopeFilterSpanScopeArgs'] span_scopes: Span conditions that select which spans are aggregated. Spans must match at least one block to be included.
+        """
         if span_scopes is not None:
             pulumi.set(__self__, "span_scopes", span_scopes)
 
     @property
     @pulumi.getter(name="spanScopes")
     def span_scopes(self) -> Optional[Sequence['outputs.TraceMetricsRuleScopeFilterSpanScope']]:
+        """
+        Span conditions that select which spans are aggregated. Spans must match at least one block to be included.
+        """
         return pulumi.get(self, "span_scopes")
 
 
@@ -8959,6 +11864,18 @@ class TraceMetricsRuleScopeFilterSpanScope(dict):
                  service: Optional['outputs.TraceMetricsRuleScopeFilterSpanScopeService'] = None,
                  span_count: Optional['outputs.TraceMetricsRuleScopeFilterSpanScopeSpanCount'] = None,
                  tags: Optional[Sequence['outputs.TraceMetricsRuleScopeFilterSpanScopeTag']] = None):
+        """
+        :param 'TraceMetricsRuleScopeFilterSpanScopeDurationArgs' duration: Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, max_secs]` range.
+        :param 'TraceMetricsRuleScopeFilterSpanScopeErrorArgs' error: Matches traces or spans where the target boolean field equals `value`.
+        :param 'TraceMetricsRuleScopeFilterSpanScopeIsRootSpanArgs' is_root_span: Matches traces or spans where the target boolean field equals `value`.
+        :param str match_type: Whether matching spans are included (`INCLUDE`) or excluded (`EXCLUDE`) from the scope. Defaults to `INCLUDE`.
+        :param 'TraceMetricsRuleScopeFilterSpanScopeOperationArgs' operation: Matches traces or spans where the target string field satisfies the match condition.
+        :param 'TraceMetricsRuleScopeFilterSpanScopeParentOperationArgs' parent_operation: Matches traces or spans where the target string field satisfies the match condition.
+        :param 'TraceMetricsRuleScopeFilterSpanScopeParentServiceArgs' parent_service: Matches traces or spans where the target string field satisfies the match condition.
+        :param 'TraceMetricsRuleScopeFilterSpanScopeServiceArgs' service: Matches traces or spans where the target string field satisfies the match condition.
+        :param 'TraceMetricsRuleScopeFilterSpanScopeSpanCountArgs' span_count: Matches traces where the number of spans satisfying the surrounding span conditions falls within the inclusive `[min, max]` range.
+        :param Sequence['TraceMetricsRuleScopeFilterSpanScopeTagArgs'] tags: Matches spans whose tag (span attribute) with the given `key` has a value satisfying the nested string or numeric filter.
+        """
         if duration is not None:
             pulumi.set(__self__, "duration", duration)
         if error is not None:
@@ -8983,51 +11900,81 @@ class TraceMetricsRuleScopeFilterSpanScope(dict):
     @property
     @pulumi.getter
     def duration(self) -> Optional['outputs.TraceMetricsRuleScopeFilterSpanScopeDuration']:
+        """
+        Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, max_secs]` range.
+        """
         return pulumi.get(self, "duration")
 
     @property
     @pulumi.getter
     def error(self) -> Optional['outputs.TraceMetricsRuleScopeFilterSpanScopeError']:
+        """
+        Matches traces or spans where the target boolean field equals `value`.
+        """
         return pulumi.get(self, "error")
 
     @property
     @pulumi.getter(name="isRootSpan")
     def is_root_span(self) -> Optional['outputs.TraceMetricsRuleScopeFilterSpanScopeIsRootSpan']:
+        """
+        Matches traces or spans where the target boolean field equals `value`.
+        """
         return pulumi.get(self, "is_root_span")
 
     @property
     @pulumi.getter(name="matchType")
     def match_type(self) -> Optional[str]:
+        """
+        Whether matching spans are included (`INCLUDE`) or excluded (`EXCLUDE`) from the scope. Defaults to `INCLUDE`.
+        """
         return pulumi.get(self, "match_type")
 
     @property
     @pulumi.getter
     def operation(self) -> Optional['outputs.TraceMetricsRuleScopeFilterSpanScopeOperation']:
+        """
+        Matches traces or spans where the target string field satisfies the match condition.
+        """
         return pulumi.get(self, "operation")
 
     @property
     @pulumi.getter(name="parentOperation")
     def parent_operation(self) -> Optional['outputs.TraceMetricsRuleScopeFilterSpanScopeParentOperation']:
+        """
+        Matches traces or spans where the target string field satisfies the match condition.
+        """
         return pulumi.get(self, "parent_operation")
 
     @property
     @pulumi.getter(name="parentService")
     def parent_service(self) -> Optional['outputs.TraceMetricsRuleScopeFilterSpanScopeParentService']:
+        """
+        Matches traces or spans where the target string field satisfies the match condition.
+        """
         return pulumi.get(self, "parent_service")
 
     @property
     @pulumi.getter
     def service(self) -> Optional['outputs.TraceMetricsRuleScopeFilterSpanScopeService']:
+        """
+        Matches traces or spans where the target string field satisfies the match condition.
+        """
         return pulumi.get(self, "service")
 
     @property
     @pulumi.getter(name="spanCount")
     def span_count(self) -> Optional['outputs.TraceMetricsRuleScopeFilterSpanScopeSpanCount']:
+        """
+        Matches traces where the number of spans satisfying the surrounding span conditions falls within the inclusive `[min, max]` range.
+        """
         return pulumi.get(self, "span_count")
 
     @property
     @pulumi.getter
     def tags(self) -> Optional[Sequence['outputs.TraceMetricsRuleScopeFilterSpanScopeTag']]:
+        """
+        Matches spans whose tag (span attribute) with the given `key` has a value satisfying the nested string or numeric filter.
+        """
         return pulumi.get(self, "tags")
 
 
@@ -9055,6 +12002,10 @@ class TraceMetricsRuleScopeFilterSpanScopeDuration(dict):
     def __init__(__self__, *,
                  max_secs: Optional[float] = None,
                  min_secs: Optional[float] = None):
+        """
+        :param float max_secs: Maximum duration in seconds, inclusive. Omit for no upper bound.
+        :param float min_secs: Minimum duration in seconds, inclusive. Defaults to `0`.
+        """
         if max_secs is not None:
             pulumi.set(__self__, "max_secs", max_secs)
         if min_secs is not None:
@@ -9063,11 +12014,17 @@ class TraceMetricsRuleScopeFilterSpanScopeDuration(dict):
     @property
     @pulumi.getter(name="maxSecs")
     def max_secs(self) -> Optional[float]:
+        """
+        Maximum duration in seconds, inclusive. Omit for no upper bound.
+        """
         return pulumi.get(self, "max_secs")
 
     @property
     @pulumi.getter(name="minSecs")
     def min_secs(self) -> Optional[float]:
+        """
+        Minimum duration in seconds, inclusive. Defaults to `0`.
+        """
         return pulumi.get(self, "min_secs")
 
 
@@ -9075,11 +12032,17 @@ class TraceMetricsRuleScopeFilterSpanScopeDuration(dict):
 class TraceMetricsRuleScopeFilterSpanScopeError(dict):
     def __init__(__self__, *,
                  value: bool):
+        """
+        :param bool value: Boolean value the target field is compared against.
+        """
         pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
     def value(self) -> bool:
+        """
+        Boolean value the target field is compared against.
+        """
         return pulumi.get(self, "value")
 
 
@@ -9087,11 +12050,17 @@ class TraceMetricsRuleScopeFilterSpanScopeError(dict):
 class TraceMetricsRuleScopeFilterSpanScopeIsRootSpan(dict):
     def __init__(__self__, *,
                  value: bool):
+        """
+        :param bool value: Boolean value the target field is compared against.
+        """
         pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
     def value(self) -> bool:
+        """
+        Boolean value the target field is compared against.
+        """
         return pulumi.get(self, "value")
 
 
@@ -9118,6 +12087,11 @@ class TraceMetricsRuleScopeFilterSpanScopeOperation(dict):
                  in_values: Optional[Sequence[str]] = None,
                  match: Optional[str] = None,
                  value: Optional[str] = None):
+        """
+        :param Sequence[str] in_values: Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        :param str match: Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        :param str value: Boolean value the target field is compared against.
+        """
         if in_values is not None:
             pulumi.set(__self__, "in_values", in_values)
         if match is not None:
@@ -9128,16 +12102,25 @@ class TraceMetricsRuleScopeFilterSpanScopeOperation(dict):
     @property
     @pulumi.getter(name="inValues")
     def in_values(self) -> Optional[Sequence[str]]:
+        """
+        Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        """
         return pulumi.get(self, "in_values")
 
     @property
     @pulumi.getter
     def match(self) -> Optional[str]:
+        """
+        Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        """
         return pulumi.get(self, "match")
 
     @property
     @pulumi.getter
     def value(self) -> Optional[str]:
+        """
+        Boolean value the target field is compared against.
+        """
         return pulumi.get(self, "value")
 
 
@@ -9164,6 +12147,11 @@ class TraceMetricsRuleScopeFilterSpanScopeParentOperation(dict):
                  in_values: Optional[Sequence[str]] = None,
                  match: Optional[str] = None,
                  value: Optional[str] = None):
+        """
+        :param Sequence[str] in_values: Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        :param str match: Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        :param str value: Boolean value the target field is compared against.
+        """
         if in_values is not None:
             pulumi.set(__self__, "in_values", in_values)
         if match is not None:
@@ -9174,16 +12162,25 @@ class TraceMetricsRuleScopeFilterSpanScopeParentOperation(dict):
     @property
     @pulumi.getter(name="inValues")
     def in_values(self) -> Optional[Sequence[str]]:
+        """
+        Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        """
         return pulumi.get(self, "in_values")
 
     @property
     @pulumi.getter
     def match(self) -> Optional[str]:
+        """
+        Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        """
         return pulumi.get(self, "match")
 
     @property
     @pulumi.getter
     def value(self) -> Optional[str]:
+        """
+        Boolean value the target field is compared against.
+        """
         return pulumi.get(self, "value")
 
 
@@ -9210,6 +12207,11 @@ class TraceMetricsRuleScopeFilterSpanScopeParentService(dict):
                  in_values: Optional[Sequence[str]] = None,
                  match: Optional[str] = None,
                  value: Optional[str] = None):
+        """
+        :param Sequence[str] in_values: Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        :param str match: Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        :param str value: Boolean value the target field is compared against.
+        """
         if in_values is not None:
             pulumi.set(__self__, "in_values", in_values)
         if match is not None:
@@ -9220,16 +12222,25 @@ class TraceMetricsRuleScopeFilterSpanScopeParentService(dict):
     @property
     @pulumi.getter(name="inValues")
     def in_values(self) -> Optional[Sequence[str]]:
+        """
+        Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        """
         return pulumi.get(self, "in_values")
 
     @property
     @pulumi.getter
     def match(self) -> Optional[str]:
+        """
+        Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        """
         return pulumi.get(self, "match")
 
     @property
     @pulumi.getter
     def value(self) -> Optional[str]:
+        """
+        Boolean value the target field is compared against.
+        """
         return pulumi.get(self, "value")
 
 
@@ -9256,6 +12267,11 @@ class TraceMetricsRuleScopeFilterSpanScopeService(dict):
                  in_values: Optional[Sequence[str]] = None,
                  match: Optional[str] = None,
                  value: Optional[str] = None):
+        """
+        :param Sequence[str] in_values: Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        :param str match: Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        :param str value: Boolean value the target field is compared against.
+        """
         if in_values is not None:
             pulumi.set(__self__, "in_values", in_values)
         if match is not None:
@@ -9266,16 +12282,25 @@ class TraceMetricsRuleScopeFilterSpanScopeService(dict):
     @property
     @pulumi.getter(name="inValues")
     def in_values(self) -> Optional[Sequence[str]]:
+        """
+        Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        """
         return pulumi.get(self, "in_values")
 
     @property
     @pulumi.getter
     def match(self) -> Optional[str]:
+        """
+        Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        """
         return pulumi.get(self, "match")
 
     @property
     @pulumi.getter
     def value(self) -> Optional[str]:
+        """
+        Boolean value the target field is compared against.
+        """
         return pulumi.get(self, "value")
 
 
@@ -9284,6 +12309,10 @@ class TraceMetricsRuleScopeFilterSpanScopeSpanCount(dict):
     def __init__(__self__, *,
                  max: Optional[int] = None,
                  min: Optional[int] = None):
+        """
+        :param int max: Maximum number of matching spans, inclusive. `0` means no upper bound.
+        :param int min: Minimum number of matching spans, inclusive. Defaults to `0`.
+        """
         if max is not None:
             pulumi.set(__self__, "max", max)
         if min is not None:
@@ -9292,11 +12321,17 @@ class TraceMetricsRuleScopeFilterSpanScopeSpanCount(dict):
     @property
     @pulumi.getter
     def max(self) -> Optional[int]:
+        """
+        Maximum number of matching spans, inclusive. `0` means no upper bound.
+        """
         return pulumi.get(self, "max")
 
     @property
     @pulumi.getter
     def min(self) -> Optional[int]:
+        """
+        Minimum number of matching spans, inclusive. Defaults to `0`.
+        """
         return pulumi.get(self, "min")
 
 
@@ -9323,6 +12358,11 @@ class TraceMetricsRuleScopeFilterSpanScopeTag(dict):
                  key: Optional[str] = None,
                  numeric_value: Optional['outputs.TraceMetricsRuleScopeFilterSpanScopeTagNumericValue'] = None,
                  value: Optional['outputs.TraceMetricsRuleScopeFilterSpanScopeTagValue'] = None):
+        """
+        :param str key: Span attribute to group by.
+        :param 'TraceMetricsRuleScopeFilterSpanScopeTagNumericValueArgs' numeric_value: Matches traces or spans where the target numeric field satisfies the comparison against `value`.
+        :param 'TraceMetricsRuleScopeFilterSpanScopeTagValueArgs' value: Boolean value the target field is compared against.
+        """
         if key is not None:
             pulumi.set(__self__, "key", key)
         if numeric_value is not None:
@@ -9333,16 +12373,25 @@ class TraceMetricsRuleScopeFilterSpanScopeTag(dict):
     @property
     @pulumi.getter
     def key(self) -> Optional[str]:
+        """
+        Span attribute to group by.
+        """
         return pulumi.get(self, "key")
 
     @property
     @pulumi.getter(name="numericValue")
     def numeric_value(self) -> Optional['outputs.TraceMetricsRuleScopeFilterSpanScopeTagNumericValue']:
+        """
+        Matches traces or spans where the target numeric field satisfies the comparison against `value`.
+        """
         return pulumi.get(self, "numeric_value")
 
     @property
     @pulumi.getter
     def value(self) -> Optional['outputs.TraceMetricsRuleScopeFilterSpanScopeTagValue']:
+        """
+        Boolean value the target field is compared against.
+        """
         return pulumi.get(self, "value")
 
 
@@ -9351,17 +12400,27 @@ class TraceMetricsRuleScopeFilterSpanScopeTagNumericValue(dict):
     def __init__(__self__, *,
                  comparison: str,
                  value: float):
+        """
+        :param str comparison: Numeric comparison operator (for example `EQUALS`, `GREATER_THAN`, `LESS_THAN_OR_EQUAL`).
+        :param float value: Boolean value the target field is compared against.
+        """
         pulumi.set(__self__, "comparison", comparison)
         pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
     def comparison(self) -> str:
+        """
+        Numeric comparison operator (for example `EQUALS`, `GREATER_THAN`, `LESS_THAN_OR_EQUAL`).
+        """
         return pulumi.get(self, "comparison")
 
     @property
     @pulumi.getter
     def value(self) -> float:
+        """
+        Boolean value the target field is compared against.
+        """
         return pulumi.get(self, "value")
 
 
@@ -9388,6 +12447,11 @@ class TraceMetricsRuleScopeFilterSpanScopeTagValue(dict):
                  in_values: Optional[Sequence[str]] = None,
                  match: Optional[str] = None,
                  value: Optional[str] = None):
+        """
+        :param Sequence[str] in_values: Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        :param str match: Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        :param str value: Boolean value the target field is compared against.
+        """
         if in_values is not None:
             pulumi.set(__self__, "in_values", in_values)
         if match is not None:
@@ -9398,16 +12462,25 @@ class TraceMetricsRuleScopeFilterSpanScopeTagValue(dict):
     @property
     @pulumi.getter(name="inValues")
     def in_values(self) -> Optional[Sequence[str]]:
+        """
+        Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        """
         return pulumi.get(self, "in_values")
 
     @property
     @pulumi.getter
     def match(self) -> Optional[str]:
+        """
+        Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        """
         return pulumi.get(self, "match")
 
     @property
     @pulumi.getter
     def value(self) -> Optional[str]:
+        """
+        Boolean value the target field is compared against.
+        """
         return pulumi.get(self, "value")
 
 
@@ -9434,6 +12507,11 @@ class TraceMetricsRuleTraceFilter(dict):
                  scope_filter: Optional['outputs.TraceMetricsRuleTraceFilterScopeFilter'] = None,
                  spans: Optional[Sequence['outputs.TraceMetricsRuleTraceFilterSpan']] = None,
                  trace: Optional['outputs.TraceMetricsRuleTraceFilterTrace'] = None):
+        """
+        :param 'TraceMetricsRuleTraceFilterScopeFilterArgs' scope_filter: Scope filter that further restricts which spans within a matched trace contribute to metrics or sampling. Only spans matching `span_scopes` are included in aggregation.
+        :param Sequence['TraceMetricsRuleTraceFilterSpanArgs'] spans: Span-level conditions. Each block defines a set of conditions that must all be satisfied by a single span in the trace for the trace to match.
+        :param 'TraceMetricsRuleTraceFilterTraceArgs' trace: Trace-level conditions evaluated against the whole trace (aggregated duration and error status).
+        """
         if scope_filter is not None:
             pulumi.set(__self__, "scope_filter", scope_filter)
         if spans is not None:
@@ -9444,16 +12522,25 @@ class TraceMetricsRuleTraceFilter(dict):
     @property
     @pulumi.getter(name="scopeFilter")
     def scope_filter(self) -> Optional['outputs.TraceMetricsRuleTraceFilterScopeFilter']:
+        """
+        Scope filter that further restricts which spans within a matched trace contribute to metrics or sampling. Only spans matching `span_scopes` are included in aggregation.
+        """
         return pulumi.get(self, "scope_filter")
 
     @property
     @pulumi.getter
     def spans(self) -> Optional[Sequence['outputs.TraceMetricsRuleTraceFilterSpan']]:
+        """
+        Span-level conditions. Each block defines a set of conditions that must all be satisfied by a single span in the trace for the trace to match.
+        """
         return pulumi.get(self, "spans")
 
     @property
     @pulumi.getter
     def trace(self) -> Optional['outputs.TraceMetricsRuleTraceFilterTrace']:
+        """
+        Trace-level conditions evaluated against the whole trace (aggregated duration and error status).
+        """
         return pulumi.get(self, "trace")
 
 
@@ -9478,12 +12565,18 @@ class TraceMetricsRuleTraceFilterScopeFilter(dict):
 
     def __init__(__self__, *,
                  span_scopes: Optional[Sequence['outputs.TraceMetricsRuleTraceFilterScopeFilterSpanScope']] = None):
+        """
+        :param Sequence['TraceMetricsRuleTraceFilterScopeFilterSpanScopeArgs'] span_scopes: Span conditions that select which spans are aggregated. Spans must match at least one block to be included.
+        """
         if span_scopes is not None:
             pulumi.set(__self__, "span_scopes", span_scopes)
 
     @property
     @pulumi.getter(name="spanScopes")
     def span_scopes(self) -> Optional[Sequence['outputs.TraceMetricsRuleTraceFilterScopeFilterSpanScope']]:
+        """
+        Span conditions that select which spans are aggregated. Spans must match at least one block to be included.
+        """
         return pulumi.get(self, "span_scopes")
 
 
@@ -9525,6 +12618,18 @@ class TraceMetricsRuleTraceFilterScopeFilterSpanScope(dict):
                  service: Optional['outputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeService'] = None,
                  span_count: Optional['outputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCount'] = None,
                  tags: Optional[Sequence['outputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeTag']] = None):
+        """
+        :param 'TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationArgs' duration: Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, max_secs]` range.
+        :param 'TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorArgs' error: Matches traces or spans where the target boolean field equals `value`.
+        :param 'TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpanArgs' is_root_span: Matches traces or spans where the target boolean field equals `value`.
+        :param str match_type: Whether matching spans are included (`INCLUDE`) or excluded (`EXCLUDE`) from the scope. Defaults to `INCLUDE`.
+        :param 'TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperationArgs' operation: Matches traces or spans where the target string field satisfies the match condition.
+        :param 'TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperationArgs' parent_operation: Matches traces or spans where the target string field satisfies the match condition.
+        :param 'TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentServiceArgs' parent_service: Matches traces or spans where the target string field satisfies the match condition.
+        :param 'TraceMetricsRuleTraceFilterScopeFilterSpanScopeServiceArgs' service: Matches traces or spans where the target string field satisfies the match condition.
+        :param 'TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCountArgs' span_count: Matches traces where the number of spans satisfying the surrounding span conditions falls within the inclusive `[min, max]` range.
+        :param Sequence['TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagArgs'] tags: Matches spans whose tag (span attribute) with the given `key` has a value satisfying the nested string or numeric filter.
+        """
         if duration is not None:
             pulumi.set(__self__, "duration", duration)
         if error is not None:
@@ -9549,51 +12654,81 @@ class TraceMetricsRuleTraceFilterScopeFilterSpanScope(dict):
     @property
     @pulumi.getter
     def duration(self) -> Optional['outputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeDuration']:
+        """
+        Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, max_secs]` range.
+        """
         return pulumi.get(self, "duration")
 
     @property
     @pulumi.getter
     def error(self) -> Optional['outputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeError']:
+        """
+        Matches traces or spans where the target boolean field equals `value`.
+        """
         return pulumi.get(self, "error")
 
     @property
     @pulumi.getter(name="isRootSpan")
     def is_root_span(self) -> Optional['outputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpan']:
+        """
+        Matches traces or spans where the target boolean field equals `value`.
+        """
         return pulumi.get(self, "is_root_span")
 
     @property
     @pulumi.getter(name="matchType")
     def match_type(self) -> Optional[str]:
+        """
+        Whether matching spans are included (`INCLUDE`) or excluded (`EXCLUDE`) from the scope. Defaults to `INCLUDE`.
+        """
         return pulumi.get(self, "match_type")
 
     @property
     @pulumi.getter
     def operation(self) -> Optional['outputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperation']:
+        """
+        Matches traces or spans where the target string field satisfies the match condition.
+        """
         return pulumi.get(self, "operation")
 
     @property
     @pulumi.getter(name="parentOperation")
     def parent_operation(self) -> Optional['outputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperation']:
+        """
+        Matches traces or spans where the target string field satisfies the match condition.
+        """
         return pulumi.get(self, "parent_operation")
 
     @property
     @pulumi.getter(name="parentService")
     def parent_service(self) -> Optional['outputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentService']:
+        """
+        Matches traces or spans where the target string field satisfies the match condition.
+        """
         return pulumi.get(self, "parent_service")
 
     @property
     @pulumi.getter
     def service(self) -> Optional['outputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeService']:
+        """
+        Matches traces or spans where the target string field satisfies the match condition.
+        """
         return pulumi.get(self, "service")
 
     @property
     @pulumi.getter(name="spanCount")
     def span_count(self) -> Optional['outputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCount']:
+        """
+        Matches traces where the number of spans satisfying the surrounding span conditions falls within the inclusive `[min, max]` range.
+        """
         return pulumi.get(self, "span_count")
 
     @property
     @pulumi.getter
     def tags(self) -> Optional[Sequence['outputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeTag']]:
+        """
+        Matches spans whose tag (span attribute) with the given `key` has a value satisfying the nested string or numeric filter.
+        """
         return pulumi.get(self, "tags")
 
 
@@ -9621,6 +12756,10 @@ class TraceMetricsRuleTraceFilterScopeFilterSpanScopeDuration(dict):
     def __init__(__self__, *,
                  max_secs: Optional[float] = None,
                  min_secs: Optional[float] = None):
+        """
+        :param float max_secs: Maximum duration in seconds, inclusive. Omit for no upper bound.
+        :param float min_secs: Minimum duration in seconds, inclusive. Defaults to `0`.
+        """
         if max_secs is not None:
             pulumi.set(__self__, "max_secs", max_secs)
         if min_secs is not None:
@@ -9629,11 +12768,17 @@ class TraceMetricsRuleTraceFilterScopeFilterSpanScopeDuration(dict):
     @property
     @pulumi.getter(name="maxSecs")
     def max_secs(self) -> Optional[float]:
+        """
+        Maximum duration in seconds, inclusive. Omit for no upper bound.
+        """
         return pulumi.get(self, "max_secs")
 
     @property
     @pulumi.getter(name="minSecs")
     def min_secs(self) -> Optional[float]:
+        """
+        Minimum duration in seconds, inclusive. Defaults to `0`.
+        """
         return pulumi.get(self, "min_secs")
 
 
@@ -9641,11 +12786,17 @@ class TraceMetricsRuleTraceFilterScopeFilterSpanScopeDuration(dict):
 class TraceMetricsRuleTraceFilterScopeFilterSpanScopeError(dict):
     def __init__(__self__, *,
                  value: bool):
+        """
+        :param bool value: Boolean value the target field is compared against.
+        """
         pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
     def value(self) -> bool:
+        """
+        Boolean value the target field is compared against.
+        """
         return pulumi.get(self, "value")
 
 
@@ -9653,11 +12804,17 @@ class TraceMetricsRuleTraceFilterScopeFilterSpanScopeError(dict):
 class TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpan(dict):
     def __init__(__self__, *,
                  value: bool):
+        """
+        :param bool value: Boolean value the target field is compared against.
+        """
         pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
     def value(self) -> bool:
+        """
+        Boolean value the target field is compared against.
+        """
         return pulumi.get(self, "value")
 
 
@@ -9684,6 +12841,11 @@ class TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperation(dict):
                  in_values: Optional[Sequence[str]] = None,
                  match: Optional[str] = None,
                  value: Optional[str] = None):
+        """
+        :param Sequence[str] in_values: Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        :param str match: Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        :param str value: Boolean value the target field is compared against.
+        """
         if in_values is not None:
             pulumi.set(__self__, "in_values", in_values)
         if match is not None:
@@ -9694,16 +12856,25 @@ class TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperation(dict):
     @property
     @pulumi.getter(name="inValues")
     def in_values(self) -> Optional[Sequence[str]]:
+        """
+        Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        """
         return pulumi.get(self, "in_values")
 
     @property
     @pulumi.getter
     def match(self) -> Optional[str]:
+        """
+        Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        """
         return pulumi.get(self, "match")
 
     @property
     @pulumi.getter
     def value(self) -> Optional[str]:
+        """
+        Boolean value the target field is compared against.
+        """
         return pulumi.get(self, "value")
 
 
@@ -9730,6 +12901,11 @@ class TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperation(dict):
                  in_values: Optional[Sequence[str]] = None,
                  match: Optional[str] = None,
                  value: Optional[str] = None):
+        """
+        :param Sequence[str] in_values: Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        :param str match: Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        :param str value: Boolean value the target field is compared against.
+        """
         if in_values is not None:
             pulumi.set(__self__, "in_values", in_values)
         if match is not None:
@@ -9740,16 +12916,25 @@ class TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperation(dict):
     @property
     @pulumi.getter(name="inValues")
     def in_values(self) -> Optional[Sequence[str]]:
+        """
+        Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        """
         return pulumi.get(self, "in_values")
 
     @property
     @pulumi.getter
     def match(self) -> Optional[str]:
+        """
+        Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        """
         return pulumi.get(self, "match")
 
     @property
     @pulumi.getter
     def value(self) -> Optional[str]:
+        """
+        Boolean value the target field is compared against.
+        """
         return pulumi.get(self, "value")
 
 
@@ -9776,6 +12961,11 @@ class TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentService(dict):
                  in_values: Optional[Sequence[str]] = None,
                  match: Optional[str] = None,
                  value: Optional[str] = None):
+        """
+        :param Sequence[str] in_values: Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        :param str match: Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        :param str value: Boolean value the target field is compared against.
+        """
         if in_values is not None:
             pulumi.set(__self__, "in_values", in_values)
         if match is not None:
@@ -9786,16 +12976,25 @@ class TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentService(dict):
     @property
     @pulumi.getter(name="inValues")
     def in_values(self) -> Optional[Sequence[str]]:
+        """
+        Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        """
         return pulumi.get(self, "in_values")
 
     @property
     @pulumi.getter
     def match(self) -> Optional[str]:
+        """
+        Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        """
         return pulumi.get(self, "match")
 
     @property
     @pulumi.getter
     def value(self) -> Optional[str]:
+        """
+        Boolean value the target field is compared against.
+        """
         return pulumi.get(self, "value")
 
 
@@ -9822,6 +13021,11 @@ class TraceMetricsRuleTraceFilterScopeFilterSpanScopeService(dict):
                  in_values: Optional[Sequence[str]] = None,
                  match: Optional[str] = None,
                  value: Optional[str] = None):
+        """
+        :param Sequence[str] in_values: Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        :param str match: Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        :param str value: Boolean value the target field is compared against.
+        """
         if in_values is not None:
             pulumi.set(__self__, "in_values", in_values)
         if match is not None:
@@ -9832,16 +13036,25 @@ class TraceMetricsRuleTraceFilterScopeFilterSpanScopeService(dict):
     @property
     @pulumi.getter(name="inValues")
     def in_values(self) -> Optional[Sequence[str]]:
+        """
+        Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        """
         return pulumi.get(self, "in_values")
 
     @property
     @pulumi.getter
     def match(self) -> Optional[str]:
+        """
+        Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        """
         return pulumi.get(self, "match")
 
     @property
     @pulumi.getter
     def value(self) -> Optional[str]:
+        """
+        Boolean value the target field is compared against.
+        """
         return pulumi.get(self, "value")
 
 
@@ -9850,6 +13063,10 @@ class TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCount(dict):
     def __init__(__self__, *,
                  max: Optional[int] = None,
                  min: Optional[int] = None):
+        """
+        :param int max: Maximum number of matching spans, inclusive. `0` means no upper bound.
+        :param int min: Minimum number of matching spans, inclusive. Defaults to `0`.
+        """
         if max is not None:
             pulumi.set(__self__, "max", max)
         if min is not None:
@@ -9858,11 +13075,17 @@ class TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCount(dict):
     @property
     @pulumi.getter
     def max(self) -> Optional[int]:
+        """
+        Maximum number of matching spans, inclusive. `0` means no upper bound.
+        """
         return pulumi.get(self, "max")
 
     @property
     @pulumi.getter
     def min(self) -> Optional[int]:
+        """
+        Minimum number of matching spans, inclusive. Defaults to `0`.
+        """
         return pulumi.get(self, "min")
 
 
@@ -9889,6 +13112,11 @@ class TraceMetricsRuleTraceFilterScopeFilterSpanScopeTag(dict):
                  key: Optional[str] = None,
                  numeric_value: Optional['outputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValue'] = None,
                  value: Optional['outputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValue'] = None):
+        """
+        :param str key: Span attribute to group by.
+        :param 'TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValueArgs' numeric_value: Matches traces or spans where the target numeric field satisfies the comparison against `value`.
+        :param 'TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValueArgs' value: Boolean value the target field is compared against.
+        """
         if key is not None:
             pulumi.set(__self__, "key", key)
         if numeric_value is not None:
@@ -9899,16 +13127,25 @@ class TraceMetricsRuleTraceFilterScopeFilterSpanScopeTag(dict):
     @property
     @pulumi.getter
     def key(self) -> Optional[str]:
+        """
+        Span attribute to group by.
+        """
         return pulumi.get(self, "key")
 
     @property
     @pulumi.getter(name="numericValue")
     def numeric_value(self) -> Optional['outputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValue']:
+        """
+        Matches traces or spans where the target numeric field satisfies the comparison against `value`.
+        """
         return pulumi.get(self, "numeric_value")
 
     @property
     @pulumi.getter
     def value(self) -> Optional['outputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValue']:
+        """
+        Boolean value the target field is compared against.
+        """
         return pulumi.get(self, "value")
 
 
@@ -9917,17 +13154,27 @@ class TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValue(dict):
     def __init__(__self__, *,
                  comparison: str,
                  value: float):
+        """
+        :param str comparison: Numeric comparison operator (for example `EQUALS`, `GREATER_THAN`, `LESS_THAN_OR_EQUAL`).
+        :param float value: Boolean value the target field is compared against.
+        """
         pulumi.set(__self__, "comparison", comparison)
         pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
     def comparison(self) -> str:
+        """
+        Numeric comparison operator (for example `EQUALS`, `GREATER_THAN`, `LESS_THAN_OR_EQUAL`).
+        """
         return pulumi.get(self, "comparison")
 
     @property
     @pulumi.getter
     def value(self) -> float:
+        """
+        Boolean value the target field is compared against.
+        """
         return pulumi.get(self, "value")
 
 
@@ -9954,6 +13201,11 @@ class TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValue(dict):
                  in_values: Optional[Sequence[str]] = None,
                  match: Optional[str] = None,
                  value: Optional[str] = None):
+        """
+        :param Sequence[str] in_values: Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        :param str match: Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        :param str value: Boolean value the target field is compared against.
+        """
         if in_values is not None:
             pulumi.set(__self__, "in_values", in_values)
         if match is not None:
@@ -9964,16 +13216,25 @@ class TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValue(dict):
     @property
     @pulumi.getter(name="inValues")
     def in_values(self) -> Optional[Sequence[str]]:
+        """
+        Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        """
         return pulumi.get(self, "in_values")
 
     @property
     @pulumi.getter
     def match(self) -> Optional[str]:
+        """
+        Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        """
         return pulumi.get(self, "match")
 
     @property
     @pulumi.getter
     def value(self) -> Optional[str]:
+        """
+        Boolean value the target field is compared against.
+        """
         return pulumi.get(self, "value")
 
 
@@ -10015,6 +13276,18 @@ class TraceMetricsRuleTraceFilterSpan(dict):
                  service: Optional['outputs.TraceMetricsRuleTraceFilterSpanService'] = None,
                  span_count: Optional['outputs.TraceMetricsRuleTraceFilterSpanSpanCount'] = None,
                  tags: Optional[Sequence['outputs.TraceMetricsRuleTraceFilterSpanTag']] = None):
+        """
+        :param 'TraceMetricsRuleTraceFilterSpanDurationArgs' duration: Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, max_secs]` range.
+        :param 'TraceMetricsRuleTraceFilterSpanErrorArgs' error: Matches traces or spans where the target boolean field equals `value`.
+        :param 'TraceMetricsRuleTraceFilterSpanIsRootSpanArgs' is_root_span: Matches traces or spans where the target boolean field equals `value`.
+        :param str match_type: Whether matching spans are included (`INCLUDE`) or excluded (`EXCLUDE`) from the scope. Defaults to `INCLUDE`.
+        :param 'TraceMetricsRuleTraceFilterSpanOperationArgs' operation: Matches traces or spans where the target string field satisfies the match condition.
+        :param 'TraceMetricsRuleTraceFilterSpanParentOperationArgs' parent_operation: Matches traces or spans where the target string field satisfies the match condition.
+        :param 'TraceMetricsRuleTraceFilterSpanParentServiceArgs' parent_service: Matches traces or spans where the target string field satisfies the match condition.
+        :param 'TraceMetricsRuleTraceFilterSpanServiceArgs' service: Matches traces or spans where the target string field satisfies the match condition.
+        :param 'TraceMetricsRuleTraceFilterSpanSpanCountArgs' span_count: Matches traces where the number of spans satisfying the surrounding span conditions falls within the inclusive `[min, max]` range.
+        :param Sequence['TraceMetricsRuleTraceFilterSpanTagArgs'] tags: Matches spans whose tag (span attribute) with the given `key` has a value satisfying the nested string or numeric filter.
+        """
         if duration is not None:
             pulumi.set(__self__, "duration", duration)
         if error is not None:
@@ -10039,51 +13312,81 @@ class TraceMetricsRuleTraceFilterSpan(dict):
     @property
     @pulumi.getter
     def duration(self) -> Optional['outputs.TraceMetricsRuleTraceFilterSpanDuration']:
+        """
+        Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, max_secs]` range.
+        """
         return pulumi.get(self, "duration")
 
     @property
     @pulumi.getter
     def error(self) -> Optional['outputs.TraceMetricsRuleTraceFilterSpanError']:
+        """
+        Matches traces or spans where the target boolean field equals `value`.
+        """
         return pulumi.get(self, "error")
 
     @property
     @pulumi.getter(name="isRootSpan")
     def is_root_span(self) -> Optional['outputs.TraceMetricsRuleTraceFilterSpanIsRootSpan']:
+        """
+        Matches traces or spans where the target boolean field equals `value`.
+        """
         return pulumi.get(self, "is_root_span")
 
     @property
     @pulumi.getter(name="matchType")
     def match_type(self) -> Optional[str]:
+        """
+        Whether matching spans are included (`INCLUDE`) or excluded (`EXCLUDE`) from the scope. Defaults to `INCLUDE`.
+        """
         return pulumi.get(self, "match_type")
 
     @property
     @pulumi.getter
     def operation(self) -> Optional['outputs.TraceMetricsRuleTraceFilterSpanOperation']:
+        """
+        Matches traces or spans where the target string field satisfies the match condition.
+        """
         return pulumi.get(self, "operation")
 
     @property
     @pulumi.getter(name="parentOperation")
     def parent_operation(self) -> Optional['outputs.TraceMetricsRuleTraceFilterSpanParentOperation']:
+        """
+        Matches traces or spans where the target string field satisfies the match condition.
+        """
         return pulumi.get(self, "parent_operation")
 
     @property
     @pulumi.getter(name="parentService")
     def parent_service(self) -> Optional['outputs.TraceMetricsRuleTraceFilterSpanParentService']:
+        """
+        Matches traces or spans where the target string field satisfies the match condition.
+        """
         return pulumi.get(self, "parent_service")
 
     @property
     @pulumi.getter
     def service(self) -> Optional['outputs.TraceMetricsRuleTraceFilterSpanService']:
+        """
+        Matches traces or spans where the target string field satisfies the match condition.
+        """
         return pulumi.get(self, "service")
 
     @property
     @pulumi.getter(name="spanCount")
     def span_count(self) -> Optional['outputs.TraceMetricsRuleTraceFilterSpanSpanCount']:
+        """
+        Matches traces where the number of spans satisfying the surrounding span conditions falls within the inclusive `[min, max]` range.
+        """
         return pulumi.get(self, "span_count")
 
     @property
     @pulumi.getter
     def tags(self) -> Optional[Sequence['outputs.TraceMetricsRuleTraceFilterSpanTag']]:
+        """
+        Matches spans whose tag (span attribute) with the given `key` has a value satisfying the nested string or numeric filter.
+        """
         return pulumi.get(self, "tags")
 
 
@@ -10111,6 +13414,10 @@ class TraceMetricsRuleTraceFilterSpanDuration(dict):
     def __init__(__self__, *,
                  max_secs: Optional[float] = None,
                  min_secs: Optional[float] = None):
+        """
+        :param float max_secs: Maximum duration in seconds, inclusive. Omit for no upper bound.
+        :param float min_secs: Minimum duration in seconds, inclusive. Defaults to `0`.
+        """
         if max_secs is not None:
             pulumi.set(__self__, "max_secs", max_secs)
         if min_secs is not None:
@@ -10119,11 +13426,17 @@ class TraceMetricsRuleTraceFilterSpanDuration(dict):
     @property
     @pulumi.getter(name="maxSecs")
     def max_secs(self) -> Optional[float]:
+        """
+        Maximum duration in seconds, inclusive. Omit for no upper bound.
+        """
         return pulumi.get(self, "max_secs")
 
     @property
     @pulumi.getter(name="minSecs")
     def min_secs(self) -> Optional[float]:
+        """
+        Minimum duration in seconds, inclusive. Defaults to `0`.
+        """
         return pulumi.get(self, "min_secs")
 
 
@@ -10131,11 +13444,17 @@ class TraceMetricsRuleTraceFilterSpanDuration(dict):
 class TraceMetricsRuleTraceFilterSpanError(dict):
     def __init__(__self__, *,
                  value: bool):
+        """
+        :param bool value: Boolean value the target field is compared against.
+        """
         pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
     def value(self) -> bool:
+        """
+        Boolean value the target field is compared against.
+        """
         return pulumi.get(self, "value")
 
 
@@ -10143,11 +13462,17 @@ class TraceMetricsRuleTraceFilterSpanError(dict):
 class TraceMetricsRuleTraceFilterSpanIsRootSpan(dict):
     def __init__(__self__, *,
                  value: bool):
+        """
+        :param bool value: Boolean value the target field is compared against.
+        """
         pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
     def value(self) -> bool:
+        """
+        Boolean value the target field is compared against.
+        """
         return pulumi.get(self, "value")
 
 
@@ -10174,6 +13499,11 @@ class TraceMetricsRuleTraceFilterSpanOperation(dict):
                  in_values: Optional[Sequence[str]] = None,
                  match: Optional[str] = None,
                  value: Optional[str] = None):
+        """
+        :param Sequence[str] in_values: Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        :param str match: Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        :param str value: Boolean value the target field is compared against.
+        """
         if in_values is not None:
             pulumi.set(__self__, "in_values", in_values)
         if match is not None:
@@ -10184,16 +13514,25 @@ class TraceMetricsRuleTraceFilterSpanOperation(dict):
     @property
     @pulumi.getter(name="inValues")
     def in_values(self) -> Optional[Sequence[str]]:
+        """
+        Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        """
         return pulumi.get(self, "in_values")
 
     @property
     @pulumi.getter
     def match(self) -> Optional[str]:
+        """
+        Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        """
         return pulumi.get(self, "match")
 
     @property
     @pulumi.getter
     def value(self) -> Optional[str]:
+        """
+        Boolean value the target field is compared against.
+        """
         return pulumi.get(self, "value")
 
 
@@ -10220,6 +13559,11 @@ class TraceMetricsRuleTraceFilterSpanParentOperation(dict):
                  in_values: Optional[Sequence[str]] = None,
                  match: Optional[str] = None,
                  value: Optional[str] = None):
+        """
+        :param Sequence[str] in_values: Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        :param str match: Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        :param str value: Boolean value the target field is compared against.
+        """
         if in_values is not None:
             pulumi.set(__self__, "in_values", in_values)
         if match is not None:
@@ -10230,16 +13574,25 @@ class TraceMetricsRuleTraceFilterSpanParentOperation(dict):
     @property
     @pulumi.getter(name="inValues")
     def in_values(self) -> Optional[Sequence[str]]:
+        """
+        Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        """
         return pulumi.get(self, "in_values")
 
     @property
     @pulumi.getter
     def match(self) -> Optional[str]:
+        """
+        Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        """
         return pulumi.get(self, "match")
 
     @property
     @pulumi.getter
     def value(self) -> Optional[str]:
+        """
+        Boolean value the target field is compared against.
+        """
         return pulumi.get(self, "value")
 
 
@@ -10266,6 +13619,11 @@ class TraceMetricsRuleTraceFilterSpanParentService(dict):
                  in_values: Optional[Sequence[str]] = None,
                  match: Optional[str] = None,
                  value: Optional[str] = None):
+        """
+        :param Sequence[str] in_values: Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        :param str match: Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        :param str value: Boolean value the target field is compared against.
+        """
         if in_values is not None:
             pulumi.set(__self__, "in_values", in_values)
         if match is not None:
@@ -10276,16 +13634,25 @@ class TraceMetricsRuleTraceFilterSpanParentService(dict):
     @property
     @pulumi.getter(name="inValues")
     def in_values(self) -> Optional[Sequence[str]]:
+        """
+        Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        """
         return pulumi.get(self, "in_values")
 
     @property
     @pulumi.getter
     def match(self) -> Optional[str]:
+        """
+        Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        """
         return pulumi.get(self, "match")
 
     @property
     @pulumi.getter
     def value(self) -> Optional[str]:
+        """
+        Boolean value the target field is compared against.
+        """
         return pulumi.get(self, "value")
 
 
@@ -10312,6 +13679,11 @@ class TraceMetricsRuleTraceFilterSpanService(dict):
                  in_values: Optional[Sequence[str]] = None,
                  match: Optional[str] = None,
                  value: Optional[str] = None):
+        """
+        :param Sequence[str] in_values: Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        :param str match: Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        :param str value: Boolean value the target field is compared against.
+        """
         if in_values is not None:
             pulumi.set(__self__, "in_values", in_values)
         if match is not None:
@@ -10322,16 +13694,25 @@ class TraceMetricsRuleTraceFilterSpanService(dict):
     @property
     @pulumi.getter(name="inValues")
     def in_values(self) -> Optional[Sequence[str]]:
+        """
+        Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        """
         return pulumi.get(self, "in_values")
 
     @property
     @pulumi.getter
     def match(self) -> Optional[str]:
+        """
+        Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        """
         return pulumi.get(self, "match")
 
     @property
     @pulumi.getter
     def value(self) -> Optional[str]:
+        """
+        Boolean value the target field is compared against.
+        """
         return pulumi.get(self, "value")
 
 
@@ -10340,6 +13721,10 @@ class TraceMetricsRuleTraceFilterSpanSpanCount(dict):
     def __init__(__self__, *,
                  max: Optional[int] = None,
                  min: Optional[int] = None):
+        """
+        :param int max: Maximum number of matching spans, inclusive. `0` means no upper bound.
+        :param int min: Minimum number of matching spans, inclusive. Defaults to `0`.
+        """
         if max is not None:
             pulumi.set(__self__, "max", max)
         if min is not None:
@@ -10348,11 +13733,17 @@ class TraceMetricsRuleTraceFilterSpanSpanCount(dict):
     @property
     @pulumi.getter
     def max(self) -> Optional[int]:
+        """
+        Maximum number of matching spans, inclusive. `0` means no upper bound.
+        """
         return pulumi.get(self, "max")
 
     @property
     @pulumi.getter
     def min(self) -> Optional[int]:
+        """
+        Minimum number of matching spans, inclusive. Defaults to `0`.
+        """
         return pulumi.get(self, "min")
 
 
@@ -10379,6 +13770,11 @@ class TraceMetricsRuleTraceFilterSpanTag(dict):
                  key: Optional[str] = None,
                  numeric_value: Optional['outputs.TraceMetricsRuleTraceFilterSpanTagNumericValue'] = None,
                  value: Optional['outputs.TraceMetricsRuleTraceFilterSpanTagValue'] = None):
+        """
+        :param str key: Span attribute to group by.
+        :param 'TraceMetricsRuleTraceFilterSpanTagNumericValueArgs' numeric_value: Matches traces or spans where the target numeric field satisfies the comparison against `value`.
+        :param 'TraceMetricsRuleTraceFilterSpanTagValueArgs' value: Boolean value the target field is compared against.
+        """
         if key is not None:
             pulumi.set(__self__, "key", key)
         if numeric_value is not None:
@@ -10389,16 +13785,25 @@ class TraceMetricsRuleTraceFilterSpanTag(dict):
     @property
     @pulumi.getter
     def key(self) -> Optional[str]:
+        """
+        Span attribute to group by.
+        """
         return pulumi.get(self, "key")
 
     @property
     @pulumi.getter(name="numericValue")
     def numeric_value(self) -> Optional['outputs.TraceMetricsRuleTraceFilterSpanTagNumericValue']:
+        """
+        Matches traces or spans where the target numeric field satisfies the comparison against `value`.
+        """
         return pulumi.get(self, "numeric_value")
 
     @property
     @pulumi.getter
     def value(self) -> Optional['outputs.TraceMetricsRuleTraceFilterSpanTagValue']:
+        """
+        Boolean value the target field is compared against.
+        """
         return pulumi.get(self, "value")
 
 
@@ -10407,17 +13812,27 @@ class TraceMetricsRuleTraceFilterSpanTagNumericValue(dict):
     def __init__(__self__, *,
                  comparison: str,
                  value: float):
+        """
+        :param str comparison: Numeric comparison operator (for example `EQUALS`, `GREATER_THAN`, `LESS_THAN_OR_EQUAL`).
+        :param float value: Boolean value the target field is compared against.
+        """
         pulumi.set(__self__, "comparison", comparison)
         pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
     def comparison(self) -> str:
+        """
+        Numeric comparison operator (for example `EQUALS`, `GREATER_THAN`, `LESS_THAN_OR_EQUAL`).
+        """
         return pulumi.get(self, "comparison")
 
     @property
     @pulumi.getter
     def value(self) -> float:
+        """
+        Boolean value the target field is compared against.
+        """
         return pulumi.get(self, "value")
 
 
@@ -10444,6 +13859,11 @@ class TraceMetricsRuleTraceFilterSpanTagValue(dict):
                  in_values: Optional[Sequence[str]] = None,
                  match: Optional[str] = None,
                  value: Optional[str] = None):
+        """
+        :param Sequence[str] in_values: Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        :param str match: Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        :param str value: Boolean value the target field is compared against.
+        """
         if in_values is not None:
             pulumi.set(__self__, "in_values", in_values)
         if match is not None:
@@ -10454,16 +13874,25 @@ class TraceMetricsRuleTraceFilterSpanTagValue(dict):
     @property
     @pulumi.getter(name="inValues")
     def in_values(self) -> Optional[Sequence[str]]:
+        """
+        Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        """
         return pulumi.get(self, "in_values")
 
     @property
     @pulumi.getter
     def match(self) -> Optional[str]:
+        """
+        Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        """
         return pulumi.get(self, "match")
 
     @property
     @pulumi.getter
     def value(self) -> Optional[str]:
+        """
+        Boolean value the target field is compared against.
+        """
         return pulumi.get(self, "value")
 
 
@@ -10472,6 +13901,10 @@ class TraceMetricsRuleTraceFilterTrace(dict):
     def __init__(__self__, *,
                  duration: Optional['outputs.TraceMetricsRuleTraceFilterTraceDuration'] = None,
                  error: Optional['outputs.TraceMetricsRuleTraceFilterTraceError'] = None):
+        """
+        :param 'TraceMetricsRuleTraceFilterTraceDurationArgs' duration: Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, max_secs]` range.
+        :param 'TraceMetricsRuleTraceFilterTraceErrorArgs' error: Matches traces or spans where the target boolean field equals `value`.
+        """
         if duration is not None:
             pulumi.set(__self__, "duration", duration)
         if error is not None:
@@ -10480,11 +13913,17 @@ class TraceMetricsRuleTraceFilterTrace(dict):
     @property
     @pulumi.getter
     def duration(self) -> Optional['outputs.TraceMetricsRuleTraceFilterTraceDuration']:
+        """
+        Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, max_secs]` range.
+        """
         return pulumi.get(self, "duration")
 
     @property
     @pulumi.getter
     def error(self) -> Optional['outputs.TraceMetricsRuleTraceFilterTraceError']:
+        """
+        Matches traces or spans where the target boolean field equals `value`.
+        """
         return pulumi.get(self, "error")
 
 
@@ -10512,6 +13951,10 @@ class TraceMetricsRuleTraceFilterTraceDuration(dict):
     def __init__(__self__, *,
                  max_secs: Optional[float] = None,
                  min_secs: Optional[float] = None):
+        """
+        :param float max_secs: Maximum duration in seconds, inclusive. Omit for no upper bound.
+        :param float min_secs: Minimum duration in seconds, inclusive. Defaults to `0`.
+        """
         if max_secs is not None:
             pulumi.set(__self__, "max_secs", max_secs)
         if min_secs is not None:
@@ -10520,11 +13963,17 @@ class TraceMetricsRuleTraceFilterTraceDuration(dict):
     @property
     @pulumi.getter(name="maxSecs")
     def max_secs(self) -> Optional[float]:
+        """
+        Maximum duration in seconds, inclusive. Omit for no upper bound.
+        """
         return pulumi.get(self, "max_secs")
 
     @property
     @pulumi.getter(name="minSecs")
     def min_secs(self) -> Optional[float]:
+        """
+        Minimum duration in seconds, inclusive. Defaults to `0`.
+        """
         return pulumi.get(self, "min_secs")
 
 
@@ -10532,11 +13981,17 @@ class TraceMetricsRuleTraceFilterTraceDuration(dict):
 class TraceMetricsRuleTraceFilterTraceError(dict):
     def __init__(__self__, *,
                  value: bool):
+        """
+        :param bool value: Boolean value the target field is compared against.
+        """
         pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
     def value(self) -> bool:
+        """
+        Boolean value the target field is compared against.
+        """
         return pulumi.get(self, "value")
 
 
@@ -10562,6 +14017,10 @@ class TraceTailSamplingRulesDefaultSampleRate(dict):
     def __init__(__self__, *,
                  sample_rate: float,
                  enabled: Optional[bool] = None):
+        """
+        :param float sample_rate: Fraction of matching traces to keep, in the range `[0.0, 1.0]`. `0` drops all matches, `1` keeps every match.
+        :param bool enabled: Whether to override the platform default sample rate with `sample_rate`.
+        """
         pulumi.set(__self__, "sample_rate", sample_rate)
         if enabled is not None:
             pulumi.set(__self__, "enabled", enabled)
@@ -10569,11 +14028,17 @@ class TraceTailSamplingRulesDefaultSampleRate(dict):
     @property
     @pulumi.getter(name="sampleRate")
     def sample_rate(self) -> float:
+        """
+        Fraction of matching traces to keep, in the range `[0.0, 1.0]`. `0` drops all matches, `1` keeps every match.
+        """
         return pulumi.get(self, "sample_rate")
 
     @property
     @pulumi.getter
     def enabled(self) -> Optional[bool]:
+        """
+        Whether to override the platform default sample rate with `sample_rate`.
+        """
         return pulumi.get(self, "enabled")
 
 
@@ -10603,6 +14068,12 @@ class TraceTailSamplingRulesRule(dict):
                  sample_rate: float,
                  name: Optional[str] = None,
                  system_name: Optional[str] = None):
+        """
+        :param 'TraceTailSamplingRulesRuleFilterArgs' filter: Filter that selects traces and spans. A trace matches when its trace-level conditions hold and every `span` block is satisfied by at least one span in the trace.
+        :param float sample_rate: Fraction of matching traces to keep, in the range `[0.0, 1.0]`. `0` drops all matches, `1` keeps every match.
+        :param str name: Human-readable name of the rule.
+        :param str system_name: Stable identifier used as the metric label value on metrics emitted by this rule.
+        """
         pulumi.set(__self__, "filter", filter)
         pulumi.set(__self__, "sample_rate", sample_rate)
         if name is not None:
@@ -10613,21 +14084,33 @@ class TraceTailSamplingRulesRule(dict):
     @property
     @pulumi.getter
     def filter(self) -> 'outputs.TraceTailSamplingRulesRuleFilter':
+        """
+        Filter that selects traces and spans. A trace matches when its trace-level conditions hold and every `span` block is satisfied by at least one span in the trace.
+        """
         return pulumi.get(self, "filter")
 
     @property
     @pulumi.getter(name="sampleRate")
     def sample_rate(self) -> float:
+        """
+        Fraction of matching traces to keep, in the range `[0.0, 1.0]`. `0` drops all matches, `1` keeps every match.
+        """
         return pulumi.get(self, "sample_rate")
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
+        """
+        Human-readable name of the rule.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="systemName")
     def system_name(self) -> Optional[str]:
+        """
+        Stable identifier used as the metric label value on metrics emitted by this rule.
+        """
         return pulumi.get(self, "system_name")
 
 
@@ -10654,6 +14137,11 @@ class TraceTailSamplingRulesRuleFilter(dict):
                  scope_filter: Optional['outputs.TraceTailSamplingRulesRuleFilterScopeFilter'] = None,
                  spans: Optional[Sequence['outputs.TraceTailSamplingRulesRuleFilterSpan']] = None,
                  trace: Optional['outputs.TraceTailSamplingRulesRuleFilterTrace'] = None):
+        """
+        :param 'TraceTailSamplingRulesRuleFilterScopeFilterArgs' scope_filter: Scope filter that further restricts which spans within a matched trace contribute to metrics or sampling. Only spans matching `span_scopes` are included in aggregation.
+        :param Sequence['TraceTailSamplingRulesRuleFilterSpanArgs'] spans: Span-level conditions. Each block defines a set of conditions that must all be satisfied by a single span in the trace for the trace to match.
+        :param 'TraceTailSamplingRulesRuleFilterTraceArgs' trace: Trace-level conditions evaluated against the whole trace (aggregated duration and error status).
+        """
         if scope_filter is not None:
             pulumi.set(__self__, "scope_filter", scope_filter)
         if spans is not None:
@@ -10664,16 +14152,25 @@ class TraceTailSamplingRulesRuleFilter(dict):
     @property
     @pulumi.getter(name="scopeFilter")
     def scope_filter(self) -> Optional['outputs.TraceTailSamplingRulesRuleFilterScopeFilter']:
+        """
+        Scope filter that further restricts which spans within a matched trace contribute to metrics or sampling. Only spans matching `span_scopes` are included in aggregation.
+        """
         return pulumi.get(self, "scope_filter")
 
     @property
     @pulumi.getter
     def spans(self) -> Optional[Sequence['outputs.TraceTailSamplingRulesRuleFilterSpan']]:
+        """
+        Span-level conditions. Each block defines a set of conditions that must all be satisfied by a single span in the trace for the trace to match.
+        """
         return pulumi.get(self, "spans")
 
     @property
     @pulumi.getter
     def trace(self) -> Optional['outputs.TraceTailSamplingRulesRuleFilterTrace']:
+        """
+        Trace-level conditions evaluated against the whole trace (aggregated duration and error status).
+        """
         return pulumi.get(self, "trace")
 
 
@@ -10698,12 +14195,18 @@ class TraceTailSamplingRulesRuleFilterScopeFilter(dict):
 
     def __init__(__self__, *,
                  span_scopes: Optional[Sequence['outputs.TraceTailSamplingRulesRuleFilterScopeFilterSpanScope']] = None):
+        """
+        :param Sequence['TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeArgs'] span_scopes: Span conditions that select which spans are aggregated. Spans must match at least one block to be included.
+        """
         if span_scopes is not None:
             pulumi.set(__self__, "span_scopes", span_scopes)
 
     @property
     @pulumi.getter(name="spanScopes")
     def span_scopes(self) -> Optional[Sequence['outputs.TraceTailSamplingRulesRuleFilterScopeFilterSpanScope']]:
+        """
+        Span conditions that select which spans are aggregated. Spans must match at least one block to be included.
+        """
         return pulumi.get(self, "span_scopes")
 
 
@@ -10745,6 +14248,18 @@ class TraceTailSamplingRulesRuleFilterScopeFilterSpanScope(dict):
                  service: Optional['outputs.TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeService'] = None,
                  span_count: Optional['outputs.TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCount'] = None,
                  tags: Optional[Sequence['outputs.TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTag']] = None):
+        """
+        :param 'TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationArgs' duration: Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, max_secs]` range.
+        :param 'TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorArgs' error: Matches traces or spans where the target boolean field equals `value`.
+        :param 'TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanArgs' is_root_span: Matches traces or spans where the target boolean field equals `value`.
+        :param str match_type: Whether matching spans are included (`INCLUDE`) or excluded (`EXCLUDE`) from the scope. Defaults to `INCLUDE`.
+        :param 'TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationArgs' operation: Matches traces or spans where the target string field satisfies the match condition.
+        :param 'TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationArgs' parent_operation: Matches traces or spans where the target string field satisfies the match condition.
+        :param 'TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServiceArgs' parent_service: Matches traces or spans where the target string field satisfies the match condition.
+        :param 'TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServiceArgs' service: Matches traces or spans where the target string field satisfies the match condition.
+        :param 'TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountArgs' span_count: Matches traces where the number of spans satisfying the surrounding span conditions falls within the inclusive `[min, max]` range.
+        :param Sequence['TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagArgs'] tags: Matches spans whose tag (span attribute) with the given `key` has a value satisfying the nested string or numeric filter.
+        """
         if duration is not None:
             pulumi.set(__self__, "duration", duration)
         if error is not None:
@@ -10769,51 +14284,81 @@ class TraceTailSamplingRulesRuleFilterScopeFilterSpanScope(dict):
     @property
     @pulumi.getter
     def duration(self) -> Optional['outputs.TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDuration']:
+        """
+        Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, max_secs]` range.
+        """
         return pulumi.get(self, "duration")
 
     @property
     @pulumi.getter
     def error(self) -> Optional['outputs.TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeError']:
+        """
+        Matches traces or spans where the target boolean field equals `value`.
+        """
         return pulumi.get(self, "error")
 
     @property
     @pulumi.getter(name="isRootSpan")
     def is_root_span(self) -> Optional['outputs.TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpan']:
+        """
+        Matches traces or spans where the target boolean field equals `value`.
+        """
         return pulumi.get(self, "is_root_span")
 
     @property
     @pulumi.getter(name="matchType")
     def match_type(self) -> Optional[str]:
+        """
+        Whether matching spans are included (`INCLUDE`) or excluded (`EXCLUDE`) from the scope. Defaults to `INCLUDE`.
+        """
         return pulumi.get(self, "match_type")
 
     @property
     @pulumi.getter
     def operation(self) -> Optional['outputs.TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperation']:
+        """
+        Matches traces or spans where the target string field satisfies the match condition.
+        """
         return pulumi.get(self, "operation")
 
     @property
     @pulumi.getter(name="parentOperation")
     def parent_operation(self) -> Optional['outputs.TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperation']:
+        """
+        Matches traces or spans where the target string field satisfies the match condition.
+        """
         return pulumi.get(self, "parent_operation")
 
     @property
     @pulumi.getter(name="parentService")
     def parent_service(self) -> Optional['outputs.TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentService']:
+        """
+        Matches traces or spans where the target string field satisfies the match condition.
+        """
         return pulumi.get(self, "parent_service")
 
     @property
     @pulumi.getter
     def service(self) -> Optional['outputs.TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeService']:
+        """
+        Matches traces or spans where the target string field satisfies the match condition.
+        """
         return pulumi.get(self, "service")
 
     @property
     @pulumi.getter(name="spanCount")
     def span_count(self) -> Optional['outputs.TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCount']:
+        """
+        Matches traces where the number of spans satisfying the surrounding span conditions falls within the inclusive `[min, max]` range.
+        """
         return pulumi.get(self, "span_count")
 
     @property
     @pulumi.getter
     def tags(self) -> Optional[Sequence['outputs.TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTag']]:
+        """
+        Matches spans whose tag (span attribute) with the given `key` has a value satisfying the nested string or numeric filter.
+        """
         return pulumi.get(self, "tags")
 
 
@@ -10841,6 +14386,10 @@ class TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDuration(dict):
     def __init__(__self__, *,
                  max_secs: Optional[float] = None,
                  min_secs: Optional[float] = None):
+        """
+        :param float max_secs: Maximum duration in seconds, inclusive. Omit for no upper bound.
+        :param float min_secs: Minimum duration in seconds, inclusive. Defaults to `0`.
+        """
         if max_secs is not None:
             pulumi.set(__self__, "max_secs", max_secs)
         if min_secs is not None:
@@ -10849,11 +14398,17 @@ class TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDuration(dict):
     @property
     @pulumi.getter(name="maxSecs")
     def max_secs(self) -> Optional[float]:
+        """
+        Maximum duration in seconds, inclusive. Omit for no upper bound.
+        """
         return pulumi.get(self, "max_secs")
 
     @property
     @pulumi.getter(name="minSecs")
     def min_secs(self) -> Optional[float]:
+        """
+        Minimum duration in seconds, inclusive. Defaults to `0`.
+        """
         return pulumi.get(self, "min_secs")
 
 
@@ -10861,11 +14416,17 @@ class TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDuration(dict):
 class TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeError(dict):
     def __init__(__self__, *,
                  value: bool):
+        """
+        :param bool value: Boolean value the target field is compared against.
+        """
         pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
     def value(self) -> bool:
+        """
+        Boolean value the target field is compared against.
+        """
         return pulumi.get(self, "value")
 
 
@@ -10873,11 +14434,17 @@ class TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeError(dict):
 class TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpan(dict):
     def __init__(__self__, *,
                  value: bool):
+        """
+        :param bool value: Boolean value the target field is compared against.
+        """
         pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
     def value(self) -> bool:
+        """
+        Boolean value the target field is compared against.
+        """
         return pulumi.get(self, "value")
 
 
@@ -10904,6 +14471,11 @@ class TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperation(dict):
                  in_values: Optional[Sequence[str]] = None,
                  match: Optional[str] = None,
                  value: Optional[str] = None):
+        """
+        :param Sequence[str] in_values: Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        :param str match: Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        :param str value: Boolean value the target field is compared against.
+        """
         if in_values is not None:
             pulumi.set(__self__, "in_values", in_values)
         if match is not None:
@@ -10914,16 +14486,25 @@ class TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperation(dict):
     @property
     @pulumi.getter(name="inValues")
     def in_values(self) -> Optional[Sequence[str]]:
+        """
+        Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        """
         return pulumi.get(self, "in_values")
 
     @property
     @pulumi.getter
     def match(self) -> Optional[str]:
+        """
+        Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        """
         return pulumi.get(self, "match")
 
     @property
     @pulumi.getter
     def value(self) -> Optional[str]:
+        """
+        Boolean value the target field is compared against.
+        """
         return pulumi.get(self, "value")
 
 
@@ -10950,6 +14531,11 @@ class TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperation(dict):
                  in_values: Optional[Sequence[str]] = None,
                  match: Optional[str] = None,
                  value: Optional[str] = None):
+        """
+        :param Sequence[str] in_values: Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        :param str match: Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        :param str value: Boolean value the target field is compared against.
+        """
         if in_values is not None:
             pulumi.set(__self__, "in_values", in_values)
         if match is not None:
@@ -10960,16 +14546,25 @@ class TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperation(dict):
     @property
     @pulumi.getter(name="inValues")
     def in_values(self) -> Optional[Sequence[str]]:
+        """
+        Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        """
         return pulumi.get(self, "in_values")
 
     @property
     @pulumi.getter
     def match(self) -> Optional[str]:
+        """
+        Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        """
         return pulumi.get(self, "match")
 
     @property
     @pulumi.getter
     def value(self) -> Optional[str]:
+        """
+        Boolean value the target field is compared against.
+        """
         return pulumi.get(self, "value")
 
 
@@ -10996,6 +14591,11 @@ class TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentService(dict):
                  in_values: Optional[Sequence[str]] = None,
                  match: Optional[str] = None,
                  value: Optional[str] = None):
+        """
+        :param Sequence[str] in_values: Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        :param str match: Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        :param str value: Boolean value the target field is compared against.
+        """
         if in_values is not None:
             pulumi.set(__self__, "in_values", in_values)
         if match is not None:
@@ -11006,16 +14606,25 @@ class TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentService(dict):
     @property
     @pulumi.getter(name="inValues")
     def in_values(self) -> Optional[Sequence[str]]:
+        """
+        Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        """
         return pulumi.get(self, "in_values")
 
     @property
     @pulumi.getter
     def match(self) -> Optional[str]:
+        """
+        Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        """
         return pulumi.get(self, "match")
 
     @property
     @pulumi.getter
     def value(self) -> Optional[str]:
+        """
+        Boolean value the target field is compared against.
+        """
         return pulumi.get(self, "value")
 
 
@@ -11042,6 +14651,11 @@ class TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeService(dict):
                  in_values: Optional[Sequence[str]] = None,
                  match: Optional[str] = None,
                  value: Optional[str] = None):
+        """
+        :param Sequence[str] in_values: Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        :param str match: Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        :param str value: Boolean value the target field is compared against.
+        """
         if in_values is not None:
             pulumi.set(__self__, "in_values", in_values)
         if match is not None:
@@ -11052,16 +14666,25 @@ class TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeService(dict):
     @property
     @pulumi.getter(name="inValues")
     def in_values(self) -> Optional[Sequence[str]]:
+        """
+        Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        """
         return pulumi.get(self, "in_values")
 
     @property
     @pulumi.getter
     def match(self) -> Optional[str]:
+        """
+        Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        """
         return pulumi.get(self, "match")
 
     @property
     @pulumi.getter
     def value(self) -> Optional[str]:
+        """
+        Boolean value the target field is compared against.
+        """
         return pulumi.get(self, "value")
 
 
@@ -11070,6 +14693,10 @@ class TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCount(dict):
     def __init__(__self__, *,
                  max: Optional[int] = None,
                  min: Optional[int] = None):
+        """
+        :param int max: Maximum number of matching spans, inclusive. `0` means no upper bound.
+        :param int min: Minimum number of matching spans, inclusive. Defaults to `0`.
+        """
         if max is not None:
             pulumi.set(__self__, "max", max)
         if min is not None:
@@ -11078,11 +14705,17 @@ class TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCount(dict):
     @property
     @pulumi.getter
     def max(self) -> Optional[int]:
+        """
+        Maximum number of matching spans, inclusive. `0` means no upper bound.
+        """
         return pulumi.get(self, "max")
 
     @property
     @pulumi.getter
     def min(self) -> Optional[int]:
+        """
+        Minimum number of matching spans, inclusive. Defaults to `0`.
+        """
         return pulumi.get(self, "min")
 
 
@@ -11109,6 +14742,11 @@ class TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTag(dict):
                  key: Optional[str] = None,
                  numeric_value: Optional['outputs.TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValue'] = None,
                  value: Optional['outputs.TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValue'] = None):
+        """
+        :param str key: Name of the span tag (span attribute) inspected by this filter.
+        :param 'TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValueArgs' numeric_value: Matches traces or spans where the target numeric field satisfies the comparison against `value`.
+        :param 'TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValueArgs' value: Boolean value the target field is compared against.
+        """
         if key is not None:
             pulumi.set(__self__, "key", key)
         if numeric_value is not None:
@@ -11119,16 +14757,25 @@ class TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTag(dict):
     @property
     @pulumi.getter
     def key(self) -> Optional[str]:
+        """
+        Name of the span tag (span attribute) inspected by this filter.
+        """
         return pulumi.get(self, "key")
 
     @property
     @pulumi.getter(name="numericValue")
     def numeric_value(self) -> Optional['outputs.TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValue']:
+        """
+        Matches traces or spans where the target numeric field satisfies the comparison against `value`.
+        """
         return pulumi.get(self, "numeric_value")
 
     @property
     @pulumi.getter
     def value(self) -> Optional['outputs.TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValue']:
+        """
+        Boolean value the target field is compared against.
+        """
         return pulumi.get(self, "value")
 
 
@@ -11137,17 +14784,27 @@ class TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValue(dict):
     def __init__(__self__, *,
                  comparison: str,
                  value: float):
+        """
+        :param str comparison: Numeric comparison operator (for example `EQUALS`, `GREATER_THAN`, `LESS_THAN_OR_EQUAL`).
+        :param float value: Boolean value the target field is compared against.
+        """
         pulumi.set(__self__, "comparison", comparison)
         pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
     def comparison(self) -> str:
+        """
+        Numeric comparison operator (for example `EQUALS`, `GREATER_THAN`, `LESS_THAN_OR_EQUAL`).
+        """
         return pulumi.get(self, "comparison")
 
     @property
     @pulumi.getter
     def value(self) -> float:
+        """
+        Boolean value the target field is compared against.
+        """
         return pulumi.get(self, "value")
 
 
@@ -11174,6 +14831,11 @@ class TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValue(dict):
                  in_values: Optional[Sequence[str]] = None,
                  match: Optional[str] = None,
                  value: Optional[str] = None):
+        """
+        :param Sequence[str] in_values: Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        :param str match: Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        :param str value: Boolean value the target field is compared against.
+        """
         if in_values is not None:
             pulumi.set(__self__, "in_values", in_values)
         if match is not None:
@@ -11184,16 +14846,25 @@ class TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValue(dict):
     @property
     @pulumi.getter(name="inValues")
     def in_values(self) -> Optional[Sequence[str]]:
+        """
+        Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        """
         return pulumi.get(self, "in_values")
 
     @property
     @pulumi.getter
     def match(self) -> Optional[str]:
+        """
+        Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        """
         return pulumi.get(self, "match")
 
     @property
     @pulumi.getter
     def value(self) -> Optional[str]:
+        """
+        Boolean value the target field is compared against.
+        """
         return pulumi.get(self, "value")
 
 
@@ -11235,6 +14906,18 @@ class TraceTailSamplingRulesRuleFilterSpan(dict):
                  service: Optional['outputs.TraceTailSamplingRulesRuleFilterSpanService'] = None,
                  span_count: Optional['outputs.TraceTailSamplingRulesRuleFilterSpanSpanCount'] = None,
                  tags: Optional[Sequence['outputs.TraceTailSamplingRulesRuleFilterSpanTag']] = None):
+        """
+        :param 'TraceTailSamplingRulesRuleFilterSpanDurationArgs' duration: Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, max_secs]` range.
+        :param 'TraceTailSamplingRulesRuleFilterSpanErrorArgs' error: Matches traces or spans where the target boolean field equals `value`.
+        :param 'TraceTailSamplingRulesRuleFilterSpanIsRootSpanArgs' is_root_span: Matches traces or spans where the target boolean field equals `value`.
+        :param str match_type: Whether matching spans are included (`INCLUDE`) or excluded (`EXCLUDE`) from the scope. Defaults to `INCLUDE`.
+        :param 'TraceTailSamplingRulesRuleFilterSpanOperationArgs' operation: Matches traces or spans where the target string field satisfies the match condition.
+        :param 'TraceTailSamplingRulesRuleFilterSpanParentOperationArgs' parent_operation: Matches traces or spans where the target string field satisfies the match condition.
+        :param 'TraceTailSamplingRulesRuleFilterSpanParentServiceArgs' parent_service: Matches traces or spans where the target string field satisfies the match condition.
+        :param 'TraceTailSamplingRulesRuleFilterSpanServiceArgs' service: Matches traces or spans where the target string field satisfies the match condition.
+        :param 'TraceTailSamplingRulesRuleFilterSpanSpanCountArgs' span_count: Matches traces where the number of spans satisfying the surrounding span conditions falls within the inclusive `[min, max]` range.
+        :param Sequence['TraceTailSamplingRulesRuleFilterSpanTagArgs'] tags: Matches spans whose tag (span attribute) with the given `key` has a value satisfying the nested string or numeric filter.
+        """
         if duration is not None:
             pulumi.set(__self__, "duration", duration)
         if error is not None:
@@ -11259,51 +14942,81 @@ class TraceTailSamplingRulesRuleFilterSpan(dict):
     @property
     @pulumi.getter
     def duration(self) -> Optional['outputs.TraceTailSamplingRulesRuleFilterSpanDuration']:
+        """
+        Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, max_secs]` range.
+        """
         return pulumi.get(self, "duration")
 
     @property
     @pulumi.getter
     def error(self) -> Optional['outputs.TraceTailSamplingRulesRuleFilterSpanError']:
+        """
+        Matches traces or spans where the target boolean field equals `value`.
+        """
         return pulumi.get(self, "error")
 
     @property
     @pulumi.getter(name="isRootSpan")
     def is_root_span(self) -> Optional['outputs.TraceTailSamplingRulesRuleFilterSpanIsRootSpan']:
+        """
+        Matches traces or spans where the target boolean field equals `value`.
+        """
         return pulumi.get(self, "is_root_span")
 
     @property
     @pulumi.getter(name="matchType")
     def match_type(self) -> Optional[str]:
+        """
+        Whether matching spans are included (`INCLUDE`) or excluded (`EXCLUDE`) from the scope. Defaults to `INCLUDE`.
+        """
         return pulumi.get(self, "match_type")
 
     @property
     @pulumi.getter
     def operation(self) -> Optional['outputs.TraceTailSamplingRulesRuleFilterSpanOperation']:
+        """
+        Matches traces or spans where the target string field satisfies the match condition.
+        """
         return pulumi.get(self, "operation")
 
     @property
     @pulumi.getter(name="parentOperation")
     def parent_operation(self) -> Optional['outputs.TraceTailSamplingRulesRuleFilterSpanParentOperation']:
+        """
+        Matches traces or spans where the target string field satisfies the match condition.
+        """
         return pulumi.get(self, "parent_operation")
 
     @property
     @pulumi.getter(name="parentService")
     def parent_service(self) -> Optional['outputs.TraceTailSamplingRulesRuleFilterSpanParentService']:
+        """
+        Matches traces or spans where the target string field satisfies the match condition.
+        """
         return pulumi.get(self, "parent_service")
 
     @property
     @pulumi.getter
     def service(self) -> Optional['outputs.TraceTailSamplingRulesRuleFilterSpanService']:
+        """
+        Matches traces or spans where the target string field satisfies the match condition.
+        """
         return pulumi.get(self, "service")
 
     @property
     @pulumi.getter(name="spanCount")
     def span_count(self) -> Optional['outputs.TraceTailSamplingRulesRuleFilterSpanSpanCount']:
+        """
+        Matches traces where the number of spans satisfying the surrounding span conditions falls within the inclusive `[min, max]` range.
+        """
         return pulumi.get(self, "span_count")
 
     @property
     @pulumi.getter
     def tags(self) -> Optional[Sequence['outputs.TraceTailSamplingRulesRuleFilterSpanTag']]:
+        """
+        Matches spans whose tag (span attribute) with the given `key` has a value satisfying the nested string or numeric filter.
+        """
         return pulumi.get(self, "tags")
 
 
@@ -11331,6 +15044,10 @@ class TraceTailSamplingRulesRuleFilterSpanDuration(dict):
     def __init__(__self__, *,
                  max_secs: Optional[float] = None,
                  min_secs: Optional[float] = None):
+        """
+        :param float max_secs: Maximum duration in seconds, inclusive. Omit for no upper bound.
+        :param float min_secs: Minimum duration in seconds, inclusive. Defaults to `0`.
+        """
         if max_secs is not None:
             pulumi.set(__self__, "max_secs", max_secs)
         if min_secs is not None:
@@ -11339,11 +15056,17 @@ class TraceTailSamplingRulesRuleFilterSpanDuration(dict):
     @property
     @pulumi.getter(name="maxSecs")
     def max_secs(self) -> Optional[float]:
+        """
+        Maximum duration in seconds, inclusive. Omit for no upper bound.
+        """
         return pulumi.get(self, "max_secs")
 
     @property
     @pulumi.getter(name="minSecs")
     def min_secs(self) -> Optional[float]:
+        """
+        Minimum duration in seconds, inclusive. Defaults to `0`.
+        """
         return pulumi.get(self, "min_secs")
 
 
@@ -11351,11 +15074,17 @@ class TraceTailSamplingRulesRuleFilterSpanDuration(dict):
 class TraceTailSamplingRulesRuleFilterSpanError(dict):
     def __init__(__self__, *,
                  value: bool):
+        """
+        :param bool value: Boolean value the target field is compared against.
+        """
         pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
     def value(self) -> bool:
+        """
+        Boolean value the target field is compared against.
+        """
         return pulumi.get(self, "value")
 
 
@@ -11363,11 +15092,17 @@ class TraceTailSamplingRulesRuleFilterSpanError(dict):
 class TraceTailSamplingRulesRuleFilterSpanIsRootSpan(dict):
     def __init__(__self__, *,
                  value: bool):
+        """
+        :param bool value: Boolean value the target field is compared against.
+        """
         pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
     def value(self) -> bool:
+        """
+        Boolean value the target field is compared against.
+        """
         return pulumi.get(self, "value")
 
 
@@ -11394,6 +15129,11 @@ class TraceTailSamplingRulesRuleFilterSpanOperation(dict):
                  in_values: Optional[Sequence[str]] = None,
                  match: Optional[str] = None,
                  value: Optional[str] = None):
+        """
+        :param Sequence[str] in_values: Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        :param str match: Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        :param str value: Boolean value the target field is compared against.
+        """
         if in_values is not None:
             pulumi.set(__self__, "in_values", in_values)
         if match is not None:
@@ -11404,16 +15144,25 @@ class TraceTailSamplingRulesRuleFilterSpanOperation(dict):
     @property
     @pulumi.getter(name="inValues")
     def in_values(self) -> Optional[Sequence[str]]:
+        """
+        Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        """
         return pulumi.get(self, "in_values")
 
     @property
     @pulumi.getter
     def match(self) -> Optional[str]:
+        """
+        Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        """
         return pulumi.get(self, "match")
 
     @property
     @pulumi.getter
     def value(self) -> Optional[str]:
+        """
+        Boolean value the target field is compared against.
+        """
         return pulumi.get(self, "value")
 
 
@@ -11440,6 +15189,11 @@ class TraceTailSamplingRulesRuleFilterSpanParentOperation(dict):
                  in_values: Optional[Sequence[str]] = None,
                  match: Optional[str] = None,
                  value: Optional[str] = None):
+        """
+        :param Sequence[str] in_values: Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        :param str match: Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        :param str value: Boolean value the target field is compared against.
+        """
         if in_values is not None:
             pulumi.set(__self__, "in_values", in_values)
         if match is not None:
@@ -11450,16 +15204,25 @@ class TraceTailSamplingRulesRuleFilterSpanParentOperation(dict):
     @property
     @pulumi.getter(name="inValues")
     def in_values(self) -> Optional[Sequence[str]]:
+        """
+        Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        """
         return pulumi.get(self, "in_values")
 
     @property
     @pulumi.getter
     def match(self) -> Optional[str]:
+        """
+        Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        """
         return pulumi.get(self, "match")
 
     @property
     @pulumi.getter
     def value(self) -> Optional[str]:
+        """
+        Boolean value the target field is compared against.
+        """
         return pulumi.get(self, "value")
 
 
@@ -11486,6 +15249,11 @@ class TraceTailSamplingRulesRuleFilterSpanParentService(dict):
                  in_values: Optional[Sequence[str]] = None,
                  match: Optional[str] = None,
                  value: Optional[str] = None):
+        """
+        :param Sequence[str] in_values: Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        :param str match: Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        :param str value: Boolean value the target field is compared against.
+        """
         if in_values is not None:
             pulumi.set(__self__, "in_values", in_values)
         if match is not None:
@@ -11496,16 +15264,25 @@ class TraceTailSamplingRulesRuleFilterSpanParentService(dict):
     @property
     @pulumi.getter(name="inValues")
     def in_values(self) -> Optional[Sequence[str]]:
+        """
+        Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        """
         return pulumi.get(self, "in_values")
 
     @property
     @pulumi.getter
     def match(self) -> Optional[str]:
+        """
+        Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        """
         return pulumi.get(self, "match")
 
     @property
     @pulumi.getter
     def value(self) -> Optional[str]:
+        """
+        Boolean value the target field is compared against.
+        """
         return pulumi.get(self, "value")
 
 
@@ -11532,6 +15309,11 @@ class TraceTailSamplingRulesRuleFilterSpanService(dict):
                  in_values: Optional[Sequence[str]] = None,
                  match: Optional[str] = None,
                  value: Optional[str] = None):
+        """
+        :param Sequence[str] in_values: Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        :param str match: Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        :param str value: Boolean value the target field is compared against.
+        """
         if in_values is not None:
             pulumi.set(__self__, "in_values", in_values)
         if match is not None:
@@ -11542,16 +15324,25 @@ class TraceTailSamplingRulesRuleFilterSpanService(dict):
     @property
     @pulumi.getter(name="inValues")
     def in_values(self) -> Optional[Sequence[str]]:
+        """
+        Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        """
         return pulumi.get(self, "in_values")
 
     @property
     @pulumi.getter
     def match(self) -> Optional[str]:
+        """
+        Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        """
         return pulumi.get(self, "match")
 
     @property
     @pulumi.getter
     def value(self) -> Optional[str]:
+        """
+        Boolean value the target field is compared against.
+        """
         return pulumi.get(self, "value")
 
 
@@ -11560,6 +15351,10 @@ class TraceTailSamplingRulesRuleFilterSpanSpanCount(dict):
     def __init__(__self__, *,
                  max: Optional[int] = None,
                  min: Optional[int] = None):
+        """
+        :param int max: Maximum number of matching spans, inclusive. `0` means no upper bound.
+        :param int min: Minimum number of matching spans, inclusive. Defaults to `0`.
+        """
         if max is not None:
             pulumi.set(__self__, "max", max)
         if min is not None:
@@ -11568,11 +15363,17 @@ class TraceTailSamplingRulesRuleFilterSpanSpanCount(dict):
     @property
     @pulumi.getter
     def max(self) -> Optional[int]:
+        """
+        Maximum number of matching spans, inclusive. `0` means no upper bound.
+        """
         return pulumi.get(self, "max")
 
     @property
     @pulumi.getter
     def min(self) -> Optional[int]:
+        """
+        Minimum number of matching spans, inclusive. Defaults to `0`.
+        """
         return pulumi.get(self, "min")
 
 
@@ -11599,6 +15400,11 @@ class TraceTailSamplingRulesRuleFilterSpanTag(dict):
                  key: Optional[str] = None,
                  numeric_value: Optional['outputs.TraceTailSamplingRulesRuleFilterSpanTagNumericValue'] = None,
                  value: Optional['outputs.TraceTailSamplingRulesRuleFilterSpanTagValue'] = None):
+        """
+        :param str key: Name of the span tag (span attribute) inspected by this filter.
+        :param 'TraceTailSamplingRulesRuleFilterSpanTagNumericValueArgs' numeric_value: Matches traces or spans where the target numeric field satisfies the comparison against `value`.
+        :param 'TraceTailSamplingRulesRuleFilterSpanTagValueArgs' value: Boolean value the target field is compared against.
+        """
         if key is not None:
             pulumi.set(__self__, "key", key)
         if numeric_value is not None:
@@ -11609,16 +15415,25 @@ class TraceTailSamplingRulesRuleFilterSpanTag(dict):
     @property
     @pulumi.getter
     def key(self) -> Optional[str]:
+        """
+        Name of the span tag (span attribute) inspected by this filter.
+        """
         return pulumi.get(self, "key")
 
     @property
     @pulumi.getter(name="numericValue")
     def numeric_value(self) -> Optional['outputs.TraceTailSamplingRulesRuleFilterSpanTagNumericValue']:
+        """
+        Matches traces or spans where the target numeric field satisfies the comparison against `value`.
+        """
         return pulumi.get(self, "numeric_value")
 
     @property
     @pulumi.getter
     def value(self) -> Optional['outputs.TraceTailSamplingRulesRuleFilterSpanTagValue']:
+        """
+        Boolean value the target field is compared against.
+        """
         return pulumi.get(self, "value")
 
 
@@ -11627,17 +15442,27 @@ class TraceTailSamplingRulesRuleFilterSpanTagNumericValue(dict):
     def __init__(__self__, *,
                  comparison: str,
                  value: float):
+        """
+        :param str comparison: Numeric comparison operator (for example `EQUALS`, `GREATER_THAN`, `LESS_THAN_OR_EQUAL`).
+        :param float value: Boolean value the target field is compared against.
+        """
         pulumi.set(__self__, "comparison", comparison)
         pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
     def comparison(self) -> str:
+        """
+        Numeric comparison operator (for example `EQUALS`, `GREATER_THAN`, `LESS_THAN_OR_EQUAL`).
+        """
         return pulumi.get(self, "comparison")
 
     @property
     @pulumi.getter
     def value(self) -> float:
+        """
+        Boolean value the target field is compared against.
+        """
         return pulumi.get(self, "value")
 
 
@@ -11664,6 +15489,11 @@ class TraceTailSamplingRulesRuleFilterSpanTagValue(dict):
                  in_values: Optional[Sequence[str]] = None,
                  match: Optional[str] = None,
                  value: Optional[str] = None):
+        """
+        :param Sequence[str] in_values: Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        :param str match: Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        :param str value: Boolean value the target field is compared against.
+        """
         if in_values is not None:
             pulumi.set(__self__, "in_values", in_values)
         if match is not None:
@@ -11674,16 +15504,25 @@ class TraceTailSamplingRulesRuleFilterSpanTagValue(dict):
     @property
     @pulumi.getter(name="inValues")
     def in_values(self) -> Optional[Sequence[str]]:
+        """
+        Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        """
         return pulumi.get(self, "in_values")
 
     @property
     @pulumi.getter
     def match(self) -> Optional[str]:
+        """
+        Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        """
         return pulumi.get(self, "match")
 
     @property
     @pulumi.getter
     def value(self) -> Optional[str]:
+        """
+        Boolean value the target field is compared against.
+        """
         return pulumi.get(self, "value")
 
 
@@ -11692,6 +15531,10 @@ class TraceTailSamplingRulesRuleFilterTrace(dict):
     def __init__(__self__, *,
                  duration: Optional['outputs.TraceTailSamplingRulesRuleFilterTraceDuration'] = None,
                  error: Optional['outputs.TraceTailSamplingRulesRuleFilterTraceError'] = None):
+        """
+        :param 'TraceTailSamplingRulesRuleFilterTraceDurationArgs' duration: Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, max_secs]` range.
+        :param 'TraceTailSamplingRulesRuleFilterTraceErrorArgs' error: Matches traces or spans where the target boolean field equals `value`.
+        """
         if duration is not None:
             pulumi.set(__self__, "duration", duration)
         if error is not None:
@@ -11700,11 +15543,17 @@ class TraceTailSamplingRulesRuleFilterTrace(dict):
     @property
     @pulumi.getter
     def duration(self) -> Optional['outputs.TraceTailSamplingRulesRuleFilterTraceDuration']:
+        """
+        Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, max_secs]` range.
+        """
         return pulumi.get(self, "duration")
 
     @property
     @pulumi.getter
     def error(self) -> Optional['outputs.TraceTailSamplingRulesRuleFilterTraceError']:
+        """
+        Matches traces or spans where the target boolean field equals `value`.
+        """
         return pulumi.get(self, "error")
 
 
@@ -11732,6 +15581,10 @@ class TraceTailSamplingRulesRuleFilterTraceDuration(dict):
     def __init__(__self__, *,
                  max_secs: Optional[float] = None,
                  min_secs: Optional[float] = None):
+        """
+        :param float max_secs: Maximum duration in seconds, inclusive. Omit for no upper bound.
+        :param float min_secs: Minimum duration in seconds, inclusive. Defaults to `0`.
+        """
         if max_secs is not None:
             pulumi.set(__self__, "max_secs", max_secs)
         if min_secs is not None:
@@ -11740,11 +15593,17 @@ class TraceTailSamplingRulesRuleFilterTraceDuration(dict):
     @property
     @pulumi.getter(name="maxSecs")
     def max_secs(self) -> Optional[float]:
+        """
+        Maximum duration in seconds, inclusive. Omit for no upper bound.
+        """
         return pulumi.get(self, "max_secs")
 
     @property
     @pulumi.getter(name="minSecs")
     def min_secs(self) -> Optional[float]:
+        """
+        Minimum duration in seconds, inclusive. Defaults to `0`.
+        """
         return pulumi.get(self, "min_secs")
 
 
@@ -11752,11 +15611,17 @@ class TraceTailSamplingRulesRuleFilterTraceDuration(dict):
 class TraceTailSamplingRulesRuleFilterTraceError(dict):
     def __init__(__self__, *,
                  value: bool):
+        """
+        :param bool value: Boolean value the target field is compared against.
+        """
         pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
     def value(self) -> bool:
+        """
+        Boolean value the target field is compared against.
+        """
         return pulumi.get(self, "value")
 
 

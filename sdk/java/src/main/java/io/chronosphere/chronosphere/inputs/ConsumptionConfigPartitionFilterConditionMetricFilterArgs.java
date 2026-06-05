@@ -13,16 +13,32 @@ public final class ConsumptionConfigPartitionFilterConditionMetricFilterArgs ext
 
     public static final ConsumptionConfigPartitionFilterConditionMetricFilterArgs Empty = new ConsumptionConfigPartitionFilterConditionMetricFilterArgs();
 
+    /**
+     * Label name to match.
+     * 
+     */
     @Import(name="name", required=true)
     private Output<String> name;
 
+    /**
+     * @return Label name to match.
+     * 
+     */
     public Output<String> name() {
         return this.name;
     }
 
+    /**
+     * Glob pattern matched against the label&#39;s value.
+     * 
+     */
     @Import(name="valueGlob", required=true)
     private Output<String> valueGlob;
 
+    /**
+     * @return Glob pattern matched against the label&#39;s value.
+     * 
+     */
     public Output<String> valueGlob() {
         return this.valueGlob;
     }
@@ -52,20 +68,44 @@ public final class ConsumptionConfigPartitionFilterConditionMetricFilterArgs ext
             $ = new ConsumptionConfigPartitionFilterConditionMetricFilterArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param name Label name to match.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(Output<String> name) {
             $.name = name;
             return this;
         }
 
+        /**
+         * @param name Label name to match.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(String name) {
             return name(Output.of(name));
         }
 
+        /**
+         * @param valueGlob Glob pattern matched against the label&#39;s value.
+         * 
+         * @return builder
+         * 
+         */
         public Builder valueGlob(Output<String> valueGlob) {
             $.valueGlob = valueGlob;
             return this;
         }
 
+        /**
+         * @param valueGlob Glob pattern matched against the label&#39;s value.
+         * 
+         * @return builder
+         * 
+         */
         public Builder valueGlob(String valueGlob) {
             return valueGlob(Output.of(valueGlob));
         }

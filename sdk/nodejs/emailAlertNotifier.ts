@@ -4,6 +4,21 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Email notifier that delivers monitor signals to a recipient address with templated HTML and/or plain-text bodies. Referenced from notification policies.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as chronosphere from "@pulumi-chronosphere/pulumi-chronosphere";
+ *
+ * const email = new chronosphere.EmailAlertNotifier("email", {
+ *     name: "Email Blackhole",
+ *     to: "blackhole@chronosphere.io",
+ * });
+ * ```
+ */
 export class EmailAlertNotifier extends pulumi.CustomResource {
     /**
      * Get an existing EmailAlertNotifier resource's state with the given name, ID, and optional extra
@@ -32,11 +47,29 @@ export class EmailAlertNotifier extends pulumi.CustomResource {
         return obj['__pulumiType'] === EmailAlertNotifier.__pulumiType;
     }
 
+    /**
+     * Body of the email in HTML format. Supports Go templating.
+     */
     public readonly html!: pulumi.Output<string | undefined>;
+    /**
+     * Display name of the notifier.
+     */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+     */
     public readonly sendResolved!: pulumi.Output<boolean | undefined>;
+    /**
+     * Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+     */
     public readonly slug!: pulumi.Output<string>;
+    /**
+     * Body of the email in plain text format. Supports Go templating.
+     */
     public readonly text!: pulumi.Output<string | undefined>;
+    /**
+     * Email address to send notifications to.
+     */
     public readonly to!: pulumi.Output<string>;
 
     /**
@@ -82,11 +115,29 @@ export class EmailAlertNotifier extends pulumi.CustomResource {
  * Input properties used for looking up and filtering EmailAlertNotifier resources.
  */
 export interface EmailAlertNotifierState {
+    /**
+     * Body of the email in HTML format. Supports Go templating.
+     */
     html?: pulumi.Input<string>;
+    /**
+     * Display name of the notifier.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+     */
     sendResolved?: pulumi.Input<boolean>;
+    /**
+     * Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+     */
     slug?: pulumi.Input<string>;
+    /**
+     * Body of the email in plain text format. Supports Go templating.
+     */
     text?: pulumi.Input<string>;
+    /**
+     * Email address to send notifications to.
+     */
     to?: pulumi.Input<string>;
 }
 
@@ -94,10 +145,28 @@ export interface EmailAlertNotifierState {
  * The set of arguments for constructing a EmailAlertNotifier resource.
  */
 export interface EmailAlertNotifierArgs {
+    /**
+     * Body of the email in HTML format. Supports Go templating.
+     */
     html?: pulumi.Input<string>;
+    /**
+     * Display name of the notifier.
+     */
     name: pulumi.Input<string>;
+    /**
+     * Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+     */
     sendResolved?: pulumi.Input<boolean>;
+    /**
+     * Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+     */
     slug?: pulumi.Input<string>;
+    /**
+     * Body of the email in plain text format. Supports Go templating.
+     */
     text?: pulumi.Input<string>;
+    /**
+     * Email address to send notifications to.
+     */
     to: pulumi.Input<string>;
 }

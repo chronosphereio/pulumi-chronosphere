@@ -21,58 +21,122 @@ public final class TraceMetricsRuleArgs extends com.pulumi.resources.ResourceArg
 
     public static final TraceMetricsRuleArgs Empty = new TraceMetricsRuleArgs();
 
+    /**
+     * Span attributes to project into metric labels. Each entry maps a key on the matched span to a label on the resulting metric series.
+     * 
+     */
     @Import(name="groupBies")
     private @Nullable Output<List<TraceMetricsRuleGroupByArgs>> groupBies;
 
+    /**
+     * @return Span attributes to project into metric labels. Each entry maps a key on the matched span to a label on the resulting metric series.
+     * 
+     */
     public Optional<Output<List<TraceMetricsRuleGroupByArgs>>> groupBies() {
         return Optional.ofNullable(this.groupBies);
     }
 
+    /**
+     * Histogram bucket upper bounds in seconds for the generated span-duration histogram metric.
+     * 
+     */
     @Import(name="histogramBucketsSeconds")
     private @Nullable Output<List<Double>> histogramBucketsSeconds;
 
+    /**
+     * @return Histogram bucket upper bounds in seconds for the generated span-duration histogram metric.
+     * 
+     */
     public Optional<Output<List<Double>>> histogramBucketsSeconds() {
         return Optional.ofNullable(this.histogramBucketsSeconds);
     }
 
+    /**
+     * Static key/value labels added to every metric series emitted by the rule.
+     * 
+     */
     @Import(name="metricLabels")
     private @Nullable Output<Map<String,String>> metricLabels;
 
+    /**
+     * @return Static key/value labels added to every metric series emitted by the rule.
+     * 
+     */
     public Optional<Output<Map<String,String>>> metricLabels() {
         return Optional.ofNullable(this.metricLabels);
     }
 
+    /**
+     * Base name of the generated Prometheus metrics emitted by this rule.
+     * 
+     */
     @Import(name="metricName", required=true)
     private Output<String> metricName;
 
+    /**
+     * @return Base name of the generated Prometheus metrics emitted by this rule.
+     * 
+     */
     public Output<String> metricName() {
         return this.metricName;
     }
 
+    /**
+     * Display name of the trace metrics rule.
+     * 
+     */
     @Import(name="name", required=true)
     private Output<String> name;
 
+    /**
+     * @return Display name of the trace metrics rule.
+     * 
+     */
     public Output<String> name() {
         return this.name;
     }
 
+    /**
+     * Scope filter that further restricts which spans within a matched trace contribute to metrics or sampling. Only spans matching `span_scopes` are included in aggregation.
+     * 
+     */
     @Import(name="scopeFilter")
     private @Nullable Output<TraceMetricsRuleScopeFilterArgs> scopeFilter;
 
+    /**
+     * @return Scope filter that further restricts which spans within a matched trace contribute to metrics or sampling. Only spans matching `span_scopes` are included in aggregation.
+     * 
+     */
     public Optional<Output<TraceMetricsRuleScopeFilterArgs>> scopeFilter() {
         return Optional.ofNullable(this.scopeFilter);
     }
 
+    /**
+     * Stable identifier for the trace metrics rule. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     @Import(name="slug")
     private @Nullable Output<String> slug;
 
+    /**
+     * @return Stable identifier for the trace metrics rule. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     public Optional<Output<String>> slug() {
         return Optional.ofNullable(this.slug);
     }
 
+    /**
+     * Filter that selects traces and spans. A trace matches when its trace-level conditions hold and every `span` block is satisfied by at least one span in the trace.
+     * 
+     */
     @Import(name="traceFilter", required=true)
     private Output<TraceMetricsRuleTraceFilterArgs> traceFilter;
 
+    /**
+     * @return Filter that selects traces and spans. A trace matches when its trace-level conditions hold and every `span` block is satisfied by at least one span in the trace.
+     * 
+     */
     public Output<TraceMetricsRuleTraceFilterArgs> traceFilter() {
         return this.traceFilter;
     }
@@ -108,82 +172,190 @@ public final class TraceMetricsRuleArgs extends com.pulumi.resources.ResourceArg
             $ = new TraceMetricsRuleArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param groupBies Span attributes to project into metric labels. Each entry maps a key on the matched span to a label on the resulting metric series.
+         * 
+         * @return builder
+         * 
+         */
         public Builder groupBies(@Nullable Output<List<TraceMetricsRuleGroupByArgs>> groupBies) {
             $.groupBies = groupBies;
             return this;
         }
 
+        /**
+         * @param groupBies Span attributes to project into metric labels. Each entry maps a key on the matched span to a label on the resulting metric series.
+         * 
+         * @return builder
+         * 
+         */
         public Builder groupBies(List<TraceMetricsRuleGroupByArgs> groupBies) {
             return groupBies(Output.of(groupBies));
         }
 
+        /**
+         * @param groupBies Span attributes to project into metric labels. Each entry maps a key on the matched span to a label on the resulting metric series.
+         * 
+         * @return builder
+         * 
+         */
         public Builder groupBies(TraceMetricsRuleGroupByArgs... groupBies) {
             return groupBies(List.of(groupBies));
         }
 
+        /**
+         * @param histogramBucketsSeconds Histogram bucket upper bounds in seconds for the generated span-duration histogram metric.
+         * 
+         * @return builder
+         * 
+         */
         public Builder histogramBucketsSeconds(@Nullable Output<List<Double>> histogramBucketsSeconds) {
             $.histogramBucketsSeconds = histogramBucketsSeconds;
             return this;
         }
 
+        /**
+         * @param histogramBucketsSeconds Histogram bucket upper bounds in seconds for the generated span-duration histogram metric.
+         * 
+         * @return builder
+         * 
+         */
         public Builder histogramBucketsSeconds(List<Double> histogramBucketsSeconds) {
             return histogramBucketsSeconds(Output.of(histogramBucketsSeconds));
         }
 
+        /**
+         * @param histogramBucketsSeconds Histogram bucket upper bounds in seconds for the generated span-duration histogram metric.
+         * 
+         * @return builder
+         * 
+         */
         public Builder histogramBucketsSeconds(Double... histogramBucketsSeconds) {
             return histogramBucketsSeconds(List.of(histogramBucketsSeconds));
         }
 
+        /**
+         * @param metricLabels Static key/value labels added to every metric series emitted by the rule.
+         * 
+         * @return builder
+         * 
+         */
         public Builder metricLabels(@Nullable Output<Map<String,String>> metricLabels) {
             $.metricLabels = metricLabels;
             return this;
         }
 
+        /**
+         * @param metricLabels Static key/value labels added to every metric series emitted by the rule.
+         * 
+         * @return builder
+         * 
+         */
         public Builder metricLabels(Map<String,String> metricLabels) {
             return metricLabels(Output.of(metricLabels));
         }
 
+        /**
+         * @param metricName Base name of the generated Prometheus metrics emitted by this rule.
+         * 
+         * @return builder
+         * 
+         */
         public Builder metricName(Output<String> metricName) {
             $.metricName = metricName;
             return this;
         }
 
+        /**
+         * @param metricName Base name of the generated Prometheus metrics emitted by this rule.
+         * 
+         * @return builder
+         * 
+         */
         public Builder metricName(String metricName) {
             return metricName(Output.of(metricName));
         }
 
+        /**
+         * @param name Display name of the trace metrics rule.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(Output<String> name) {
             $.name = name;
             return this;
         }
 
+        /**
+         * @param name Display name of the trace metrics rule.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(String name) {
             return name(Output.of(name));
         }
 
+        /**
+         * @param scopeFilter Scope filter that further restricts which spans within a matched trace contribute to metrics or sampling. Only spans matching `span_scopes` are included in aggregation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder scopeFilter(@Nullable Output<TraceMetricsRuleScopeFilterArgs> scopeFilter) {
             $.scopeFilter = scopeFilter;
             return this;
         }
 
+        /**
+         * @param scopeFilter Scope filter that further restricts which spans within a matched trace contribute to metrics or sampling. Only spans matching `span_scopes` are included in aggregation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder scopeFilter(TraceMetricsRuleScopeFilterArgs scopeFilter) {
             return scopeFilter(Output.of(scopeFilter));
         }
 
+        /**
+         * @param slug Stable identifier for the trace metrics rule. Generated from `name` if omitted. Immutable after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slug(@Nullable Output<String> slug) {
             $.slug = slug;
             return this;
         }
 
+        /**
+         * @param slug Stable identifier for the trace metrics rule. Generated from `name` if omitted. Immutable after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slug(String slug) {
             return slug(Output.of(slug));
         }
 
+        /**
+         * @param traceFilter Filter that selects traces and spans. A trace matches when its trace-level conditions hold and every `span` block is satisfied by at least one span in the trace.
+         * 
+         * @return builder
+         * 
+         */
         public Builder traceFilter(Output<TraceMetricsRuleTraceFilterArgs> traceFilter) {
             $.traceFilter = traceFilter;
             return this;
         }
 
+        /**
+         * @param traceFilter Filter that selects traces and spans. A trace matches when its trace-level conditions hold and every `span` block is satisfied by at least one span in the trace.
+         * 
+         * @return builder
+         * 
+         */
         public Builder traceFilter(TraceMetricsRuleTraceFilterArgs traceFilter) {
             return traceFilter(Output.of(traceFilter));
         }

@@ -15,23 +15,47 @@ public final class SLOSliCustomIndicatorArgs extends com.pulumi.resources.Resour
 
     public static final SLOSliCustomIndicatorArgs Empty = new SLOSliCustomIndicatorArgs();
 
+    /**
+     * PromQL query template measuring the count of bad events. Mutually exclusive with `good_query_template`.
+     * 
+     */
     @Import(name="badQueryTemplate")
     private @Nullable Output<String> badQueryTemplate;
 
+    /**
+     * @return PromQL query template measuring the count of bad events. Mutually exclusive with `good_query_template`.
+     * 
+     */
     public Optional<Output<String>> badQueryTemplate() {
         return Optional.ofNullable(this.badQueryTemplate);
     }
 
+    /**
+     * PromQL query template measuring the count of good events. Mutually exclusive with `bad_query_template`.
+     * 
+     */
     @Import(name="goodQueryTemplate")
     private @Nullable Output<String> goodQueryTemplate;
 
+    /**
+     * @return PromQL query template measuring the count of good events. Mutually exclusive with `bad_query_template`.
+     * 
+     */
     public Optional<Output<String>> goodQueryTemplate() {
         return Optional.ofNullable(this.goodQueryTemplate);
     }
 
+    /**
+     * PromQL query template measuring the total count of events. Required for error-ratio SLOs.
+     * 
+     */
     @Import(name="totalQueryTemplate", required=true)
     private Output<String> totalQueryTemplate;
 
+    /**
+     * @return PromQL query template measuring the total count of events. Required for error-ratio SLOs.
+     * 
+     */
     public Output<String> totalQueryTemplate() {
         return this.totalQueryTemplate;
     }
@@ -62,29 +86,65 @@ public final class SLOSliCustomIndicatorArgs extends com.pulumi.resources.Resour
             $ = new SLOSliCustomIndicatorArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param badQueryTemplate PromQL query template measuring the count of bad events. Mutually exclusive with `good_query_template`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder badQueryTemplate(@Nullable Output<String> badQueryTemplate) {
             $.badQueryTemplate = badQueryTemplate;
             return this;
         }
 
+        /**
+         * @param badQueryTemplate PromQL query template measuring the count of bad events. Mutually exclusive with `good_query_template`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder badQueryTemplate(String badQueryTemplate) {
             return badQueryTemplate(Output.of(badQueryTemplate));
         }
 
+        /**
+         * @param goodQueryTemplate PromQL query template measuring the count of good events. Mutually exclusive with `bad_query_template`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder goodQueryTemplate(@Nullable Output<String> goodQueryTemplate) {
             $.goodQueryTemplate = goodQueryTemplate;
             return this;
         }
 
+        /**
+         * @param goodQueryTemplate PromQL query template measuring the count of good events. Mutually exclusive with `bad_query_template`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder goodQueryTemplate(String goodQueryTemplate) {
             return goodQueryTemplate(Output.of(goodQueryTemplate));
         }
 
+        /**
+         * @param totalQueryTemplate PromQL query template measuring the total count of events. Required for error-ratio SLOs.
+         * 
+         * @return builder
+         * 
+         */
         public Builder totalQueryTemplate(Output<String> totalQueryTemplate) {
             $.totalQueryTemplate = totalQueryTemplate;
             return this;
         }
 
+        /**
+         * @param totalQueryTemplate PromQL query template measuring the total count of events. Required for error-ratio SLOs.
+         * 
+         * @return builder
+         * 
+         */
         public Builder totalQueryTemplate(String totalQueryTemplate) {
             return totalQueryTemplate(Output.of(totalQueryTemplate));
         }

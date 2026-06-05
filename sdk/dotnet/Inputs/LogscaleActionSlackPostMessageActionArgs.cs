@@ -13,11 +13,18 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class LogscaleActionSlackPostMessageActionArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Slack API token used to authenticate the request.
+        /// </summary>
         [Input("apiToken", required: true)]
         public Input<string> ApiToken { get; set; } = null!;
 
         [Input("channels", required: true)]
         private InputList<string>? _channels;
+
+        /// <summary>
+        /// List of Slack channels to post the message to.
+        /// </summary>
         public InputList<string> Channels
         {
             get => _channels ?? (_channels = new InputList<string>());
@@ -26,12 +33,19 @@ namespace Chronosphere.Pulumi.Inputs
 
         [Input("fields")]
         private InputMap<string>? _fields;
+
+        /// <summary>
+        /// Fields to include in the Slack message. Values support Go template syntax with the query result.
+        /// </summary>
         public InputMap<string> Fields
         {
             get => _fields ?? (_fields = new InputMap<string>());
             set => _fields = value;
         }
 
+        /// <summary>
+        /// If `true`, sends the request through the configured outbound proxy.
+        /// </summary>
         [Input("useProxy")]
         public Input<bool>? UseProxy { get; set; }
 

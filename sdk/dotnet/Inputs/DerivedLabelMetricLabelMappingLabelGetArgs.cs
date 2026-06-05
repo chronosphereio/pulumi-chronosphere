@@ -15,6 +15,10 @@ namespace Chronosphere.Pulumi.Inputs
     {
         [Input("nameMappings")]
         private InputList<Inputs.DerivedLabelMetricLabelMappingLabelNameMappingGetArgs>? _nameMappings;
+
+        /// <summary>
+        /// Ordered list of name mappings. The first mapping whose filters match supplies the derived label from its `source_label`.
+        /// </summary>
         public InputList<Inputs.DerivedLabelMetricLabelMappingLabelNameMappingGetArgs> NameMappings
         {
             get => _nameMappings ?? (_nameMappings = new InputList<Inputs.DerivedLabelMetricLabelMappingLabelNameMappingGetArgs>());
@@ -23,6 +27,10 @@ namespace Chronosphere.Pulumi.Inputs
 
         [Input("valueMappings")]
         private InputList<Inputs.DerivedLabelMetricLabelMappingLabelValueMappingGetArgs>? _valueMappings;
+
+        /// <summary>
+        /// Translations from source label values to a normalized target value. Each entry maps a set of source globs to a single target.
+        /// </summary>
         public InputList<Inputs.DerivedLabelMetricLabelMappingLabelValueMappingGetArgs> ValueMappings
         {
             get => _valueMappings ?? (_valueMappings = new InputList<Inputs.DerivedLabelMetricLabelMappingLabelValueMappingGetArgs>());

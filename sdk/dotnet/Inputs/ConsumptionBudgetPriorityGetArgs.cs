@@ -15,12 +15,19 @@ namespace Chronosphere.Pulumi.Inputs
     {
         [Input("filters")]
         private InputList<Inputs.ConsumptionBudgetPriorityFilterGetArgs>? _filters;
+
+        /// <summary>
+        /// Filters identifying which data matches this priority. Filters are AND-ed together: a request must match every filter to be assigned this priority.
+        /// </summary>
         public InputList<Inputs.ConsumptionBudgetPriorityFilterGetArgs> Filters
         {
             get => _filters ?? (_filters = new InputList<Inputs.ConsumptionBudgetPriorityFilterGetArgs>());
             set => _filters = value;
         }
 
+        /// <summary>
+        /// Priority order used when dropping data. Priority `10` is dropped first; priority `1` is dropped last.
+        /// </summary>
         [Input("priority")]
         public Input<int>? Priority { get; set; }
 

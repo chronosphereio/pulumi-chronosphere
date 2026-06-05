@@ -10,18 +10,52 @@ using Pulumi;
 
 namespace Chronosphere.Pulumi
 {
+    /// <summary>
+    /// Workspace-scoped Slack credentials that downstream notifiers and LogScale actions can reference. Centralizes webhook URLs and bot tokens so they aren't duplicated across notifiers; modern equivalent of the per-notifier credentials.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Pulumi = Chronosphere.Pulumi;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var slack = new Pulumi.SlackExternalConnection("slack", new()
+    ///     {
+    ///         ApiUrl = "https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX",
+    ///         Name = "Slack",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// </summary>
     [PulumiResourceType("chronosphere:index/slackExternalConnection:SlackExternalConnection")]
     public partial class SlackExternalConnection : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Slack incoming webhook URL used to deliver messages. Treat as a secret.
+        /// </summary>
         [Output("apiUrl")]
         public Output<string?> ApiUrl { get; private set; } = null!;
 
+        /// <summary>
+        /// Display name of the external connection.
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Output("slug")]
         public Output<string> Slug { get; private set; } = null!;
 
+        /// <summary>
+        /// Slack bot or app token used to authenticate API calls when posting messages. Treat as a secret.
+        /// </summary>
         [Output("token")]
         public Output<string?> Token { get; private set; } = null!;
 
@@ -76,17 +110,30 @@ namespace Chronosphere.Pulumi
 
     public sealed class SlackExternalConnectionArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Slack incoming webhook URL used to deliver messages. Treat as a secret.
+        /// </summary>
         [Input("apiUrl")]
         public Input<string>? ApiUrl { get; set; }
 
+        /// <summary>
+        /// Display name of the external connection.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 
         [Input("token")]
         private Input<string>? _token;
+
+        /// <summary>
+        /// Slack bot or app token used to authenticate API calls when posting messages. Treat as a secret.
+        /// </summary>
         public Input<string>? Token
         {
             get => _token;
@@ -105,17 +152,30 @@ namespace Chronosphere.Pulumi
 
     public sealed class SlackExternalConnectionState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Slack incoming webhook URL used to deliver messages. Treat as a secret.
+        /// </summary>
         [Input("apiUrl")]
         public Input<string>? ApiUrl { get; set; }
 
+        /// <summary>
+        /// Display name of the external connection.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 
         [Input("token")]
         private Input<string>? _token;
+
+        /// <summary>
+        /// Slack bot or app token used to authenticate API calls when posting messages. Treat as a secret.
+        /// </summary>
         public Input<string>? Token
         {
             get => _token;

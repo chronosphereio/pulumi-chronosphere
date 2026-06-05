@@ -9,13 +9,29 @@ import java.util.Objects;
 
 @CustomType
 public final class RollupRuleStoragePolicies {
+    /**
+     * @return Resolution at which rolled-up data points are stored.
+     * 
+     */
     private String resolution;
+    /**
+     * @return Retention duration for rolled-up data points.
+     * 
+     */
     private String retention;
 
     private RollupRuleStoragePolicies() {}
+    /**
+     * @return Resolution at which rolled-up data points are stored.
+     * 
+     */
     public String resolution() {
         return this.resolution;
     }
+    /**
+     * @return Retention duration for rolled-up data points.
+     * 
+     */
     public String retention() {
         return this.retention;
     }

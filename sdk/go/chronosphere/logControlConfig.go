@@ -11,9 +11,82 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Singleton org-wide pipeline of rules that sample, drop, replace, parse, or emit metrics from logs at ingest.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/chronosphereio/pulumi-chronosphere/sdk/go/chronosphere"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := chronosphere.NewLogControlConfig(ctx, "config", &chronosphere.LogControlConfigArgs{
+//				Rules: chronosphere.LogControlConfigRuleArray{
+//					&chronosphere.LogControlConfigRuleArgs{
+//						Filter: pulumi.String("service = 'sample-service' AND severity = 'debug'"),
+//						Mode:   pulumi.String("ENABLED"),
+//						Name:   pulumi.String("sample-debug"),
+//						Sample: &chronosphere.LogControlConfigRuleSampleArgs{
+//							Rate: pulumi.Float64(0.01),
+//						},
+//						Type: pulumi.String("SAMPLE"),
+//					},
+//					&chronosphere.LogControlConfigRuleArgs{
+//						Filter: pulumi.String("service = 'deprecated-service'"),
+//						Mode:   pulumi.String("ENABLED"),
+//						Name:   pulumi.String("drop-deprecated"),
+//						Type:   pulumi.String("DROP"),
+//					},
+//					&chronosphere.LogControlConfigRuleArgs{
+//						DropField: &chronosphere.LogControlConfigRuleDropFieldArgs{
+//							FieldRegex: pulumi.String("password|secret|api_key"),
+//							ParentPath: &chronosphere.LogControlConfigRuleDropFieldParentPathArgs{
+//								Selector: pulumi.String("kubernetes['labels']"),
+//							},
+//						},
+//						Filter: pulumi.String("service = 'api-gateway'"),
+//						Mode:   pulumi.String("ENABLED"),
+//						Name:   pulumi.String("drop-sensitive-fields"),
+//						Type:   pulumi.String("DROP_FIELD"),
+//					},
+//					&chronosphere.LogControlConfigRuleArgs{
+//						Filter: pulumi.String("service = 'api-gateway'"),
+//						Mode:   pulumi.String("ENABLED"),
+//						Name:   pulumi.String("shorten-trace-ids"),
+//						ReplaceField: &chronosphere.LogControlConfigRuleReplaceFieldArgs{
+//							Field: &chronosphere.LogControlConfigRuleReplaceFieldFieldArgs{
+//								Selector: pulumi.String("trace_id"),
+//							},
+//							ReplaceAll:   pulumi.Bool(false),
+//							ReplaceMode:  pulumi.String("STATIC_VALUE"),
+//							ReplaceRegex: pulumi.String("[0-9a-f]{32}"),
+//							StaticValue: &chronosphere.LogControlConfigRuleReplaceFieldStaticValueArgs{
+//								Value: pulumi.String("[trace-id]"),
+//							},
+//						},
+//						Type: pulumi.String("REPLACE_FIELD"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type LogControlConfig struct {
 	pulumi.CustomResourceState
 
+	// Ordered list of log control rules applied to the log ingest pipeline. Rules are evaluated in order.
 	Rules LogControlConfigRuleArrayOutput `pulumi:"rules"`
 }
 
@@ -47,10 +120,12 @@ func GetLogControlConfig(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering LogControlConfig resources.
 type logControlConfigState struct {
+	// Ordered list of log control rules applied to the log ingest pipeline. Rules are evaluated in order.
 	Rules []LogControlConfigRule `pulumi:"rules"`
 }
 
 type LogControlConfigState struct {
+	// Ordered list of log control rules applied to the log ingest pipeline. Rules are evaluated in order.
 	Rules LogControlConfigRuleArrayInput
 }
 
@@ -59,11 +134,13 @@ func (LogControlConfigState) ElementType() reflect.Type {
 }
 
 type logControlConfigArgs struct {
+	// Ordered list of log control rules applied to the log ingest pipeline. Rules are evaluated in order.
 	Rules []LogControlConfigRule `pulumi:"rules"`
 }
 
 // The set of arguments for constructing a LogControlConfig resource.
 type LogControlConfigArgs struct {
+	// Ordered list of log control rules applied to the log ingest pipeline. Rules are evaluated in order.
 	Rules LogControlConfigRuleArrayInput
 }
 
@@ -154,6 +231,7 @@ func (o LogControlConfigOutput) ToLogControlConfigOutputWithContext(ctx context.
 	return o
 }
 
+// Ordered list of log control rules applied to the log ingest pipeline. Rules are evaluated in order.
 func (o LogControlConfigOutput) Rules() LogControlConfigRuleArrayOutput {
 	return o.ApplyT(func(v *LogControlConfig) LogControlConfigRuleArrayOutput { return v.Rules }).(LogControlConfigRuleArrayOutput)
 }

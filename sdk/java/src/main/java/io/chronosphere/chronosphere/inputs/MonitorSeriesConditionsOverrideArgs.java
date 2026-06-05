@@ -15,16 +15,32 @@ public final class MonitorSeriesConditionsOverrideArgs extends com.pulumi.resour
 
     public static final MonitorSeriesConditionsOverrideArgs Empty = new MonitorSeriesConditionsOverrideArgs();
 
+    /**
+     * One or more severity/threshold conditions. Multiple conditions enable multi-severity monitors (e.g. warn at one threshold, page at a higher one).
+     * 
+     */
     @Import(name="conditions", required=true)
     private Output<List<MonitorSeriesConditionsOverrideConditionArgs>> conditions;
 
+    /**
+     * @return One or more severity/threshold conditions. Multiple conditions enable multi-severity monitors (e.g. warn at one threshold, page at a higher one).
+     * 
+     */
     public Output<List<MonitorSeriesConditionsOverrideConditionArgs>> conditions() {
         return this.conditions;
     }
 
+    /**
+     * List of label matchers used to select a subset of series.
+     * 
+     */
     @Import(name="labelMatchers", required=true)
     private Output<List<MonitorSeriesConditionsOverrideLabelMatcherArgs>> labelMatchers;
 
+    /**
+     * @return List of label matchers used to select a subset of series.
+     * 
+     */
     public Output<List<MonitorSeriesConditionsOverrideLabelMatcherArgs>> labelMatchers() {
         return this.labelMatchers;
     }
@@ -54,28 +70,64 @@ public final class MonitorSeriesConditionsOverrideArgs extends com.pulumi.resour
             $ = new MonitorSeriesConditionsOverrideArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param conditions One or more severity/threshold conditions. Multiple conditions enable multi-severity monitors (e.g. warn at one threshold, page at a higher one).
+         * 
+         * @return builder
+         * 
+         */
         public Builder conditions(Output<List<MonitorSeriesConditionsOverrideConditionArgs>> conditions) {
             $.conditions = conditions;
             return this;
         }
 
+        /**
+         * @param conditions One or more severity/threshold conditions. Multiple conditions enable multi-severity monitors (e.g. warn at one threshold, page at a higher one).
+         * 
+         * @return builder
+         * 
+         */
         public Builder conditions(List<MonitorSeriesConditionsOverrideConditionArgs> conditions) {
             return conditions(Output.of(conditions));
         }
 
+        /**
+         * @param conditions One or more severity/threshold conditions. Multiple conditions enable multi-severity monitors (e.g. warn at one threshold, page at a higher one).
+         * 
+         * @return builder
+         * 
+         */
         public Builder conditions(MonitorSeriesConditionsOverrideConditionArgs... conditions) {
             return conditions(List.of(conditions));
         }
 
+        /**
+         * @param labelMatchers List of label matchers used to select a subset of series.
+         * 
+         * @return builder
+         * 
+         */
         public Builder labelMatchers(Output<List<MonitorSeriesConditionsOverrideLabelMatcherArgs>> labelMatchers) {
             $.labelMatchers = labelMatchers;
             return this;
         }
 
+        /**
+         * @param labelMatchers List of label matchers used to select a subset of series.
+         * 
+         * @return builder
+         * 
+         */
         public Builder labelMatchers(List<MonitorSeriesConditionsOverrideLabelMatcherArgs> labelMatchers) {
             return labelMatchers(Output.of(labelMatchers));
         }
 
+        /**
+         * @param labelMatchers List of label matchers used to select a subset of series.
+         * 
+         * @return builder
+         * 
+         */
         public Builder labelMatchers(MonitorSeriesConditionsOverrideLabelMatcherArgs... labelMatchers) {
             return labelMatchers(List.of(labelMatchers));
         }

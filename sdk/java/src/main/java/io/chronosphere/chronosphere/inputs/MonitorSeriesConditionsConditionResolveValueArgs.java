@@ -14,16 +14,32 @@ public final class MonitorSeriesConditionsConditionResolveValueArgs extends com.
 
     public static final MonitorSeriesConditionsConditionResolveValueArgs Empty = new MonitorSeriesConditionsConditionResolveValueArgs();
 
+    /**
+     * Whether the resolve-value threshold is active.
+     * 
+     */
     @Import(name="enabled", required=true)
     private Output<Boolean> enabled;
 
+    /**
+     * @return Whether the resolve-value threshold is active.
+     * 
+     */
     public Output<Boolean> enabled() {
         return this.enabled;
     }
 
+    /**
+     * Resolution threshold value.
+     * 
+     */
     @Import(name="value", required=true)
     private Output<Double> value;
 
+    /**
+     * @return Resolution threshold value.
+     * 
+     */
     public Output<Double> value() {
         return this.value;
     }
@@ -53,20 +69,44 @@ public final class MonitorSeriesConditionsConditionResolveValueArgs extends com.
             $ = new MonitorSeriesConditionsConditionResolveValueArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param enabled Whether the resolve-value threshold is active.
+         * 
+         * @return builder
+         * 
+         */
         public Builder enabled(Output<Boolean> enabled) {
             $.enabled = enabled;
             return this;
         }
 
+        /**
+         * @param enabled Whether the resolve-value threshold is active.
+         * 
+         * @return builder
+         * 
+         */
         public Builder enabled(Boolean enabled) {
             return enabled(Output.of(enabled));
         }
 
+        /**
+         * @param value Resolution threshold value.
+         * 
+         * @return builder
+         * 
+         */
         public Builder value(Output<Double> value) {
             $.value = value;
             return this;
         }
 
+        /**
+         * @param value Resolution threshold value.
+         * 
+         * @return builder
+         * 
+         */
         public Builder value(Double value) {
             return value(Output.of(value));
         }

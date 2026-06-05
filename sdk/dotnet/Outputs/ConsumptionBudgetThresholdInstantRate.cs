@@ -14,6 +14,9 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class ConsumptionBudgetThresholdInstantRate
     {
+        /// <summary>
+        /// Fixed per-second rate threshold value, expressed in the threshold's `unit`.
+        /// </summary>
         public readonly int? FixedValuePerSec;
 
         [OutputConstructor]

@@ -16,47 +16,168 @@ import java.lang.String;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
+/**
+ * Defines a synthetic label whose value is derived from existing metric labels or trace span tags via mapping or constructed-value rules. The derived label can then be referenced in queries as if it were a real label on the source series.
+ * 
+ * ## Example Usage
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.chronosphere.DerivedLabel;
+ * import com.pulumi.chronosphere.DerivedLabelArgs;
+ * import com.pulumi.chronosphere.inputs.DerivedLabelMetricLabelArgs;
+ * import com.pulumi.chronosphere.inputs.DerivedLabelMetricLabelConstructedLabelArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var tier = new DerivedLabel(&#34;tier&#34;, DerivedLabelArgs.builder()        
+ *             .description(&#34;Derives a &#39;tier&#39; label (read/write/admin) from the instance label&#34;)
+ *             .labelName(&#34;tier&#34;)
+ *             .metricLabel(DerivedLabelMetricLabelArgs.builder()
+ *                 .constructedLabel(DerivedLabelMetricLabelConstructedLabelArgs.builder()
+ *                     .valueDefinitions(                    
+ *                         DerivedLabelMetricLabelConstructedLabelValueDefinitionArgs.builder()
+ *                             .filters(DerivedLabelMetricLabelConstructedLabelValueDefinitionFilterArgs.builder()
+ *                                 .name(&#34;instance&#34;)
+ *                                 .valueGlob(&#34;reader-*&#34;)
+ *                                 .build())
+ *                             .value(&#34;read&#34;)
+ *                             .build(),
+ *                         DerivedLabelMetricLabelConstructedLabelValueDefinitionArgs.builder()
+ *                             .filters(DerivedLabelMetricLabelConstructedLabelValueDefinitionFilterArgs.builder()
+ *                                 .name(&#34;instance&#34;)
+ *                                 .valueGlob(&#34;writer-*&#34;)
+ *                                 .build())
+ *                             .value(&#34;write&#34;)
+ *                             .build(),
+ *                         DerivedLabelMetricLabelConstructedLabelValueDefinitionArgs.builder()
+ *                             .filters(DerivedLabelMetricLabelConstructedLabelValueDefinitionFilterArgs.builder()
+ *                                 .name(&#34;instance&#34;)
+ *                                 .valueGlob(&#34;admin-*&#34;)
+ *                                 .build())
+ *                             .value(&#34;admin&#34;)
+ *                             .build())
+ *                     .build())
+ *                 .build())
+ *             .name(&#34;Tier from instance name&#34;)
+ *             .slug(&#34;tier-from-instance&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ */
 @ResourceType(type="chronosphere:index/derivedLabel:DerivedLabel")
 public class DerivedLabel extends com.pulumi.resources.CustomResource {
+    /**
+     * Free-form description of the derived label.
+     * 
+     */
     @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
+    /**
+     * @return Free-form description of the derived label.
+     * 
+     */
     public Output<Optional<String>> description() {
         return Codegen.optional(this.description);
     }
+    /**
+     * Policy controlling behavior when the target label already exists on the source series (e.g. keep, replace).
+     * 
+     */
     @Export(name="existingLabelPolicy", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> existingLabelPolicy;
 
+    /**
+     * @return Policy controlling behavior when the target label already exists on the source series (e.g. keep, replace).
+     * 
+     */
     public Output<Optional<String>> existingLabelPolicy() {
         return Codegen.optional(this.existingLabelPolicy);
     }
+    /**
+     * Name of the label exposed on derived series. Must be unique across the system.
+     * 
+     */
     @Export(name="labelName", refs={String.class}, tree="[0]")
     private Output<String> labelName;
 
+    /**
+     * @return Name of the label exposed on derived series. Must be unique across the system.
+     * 
+     */
     public Output<String> labelName() {
         return this.labelName;
     }
+    /**
+     * Derives a label for metrics, either by constructing a new value from filters or by mapping an existing label. Mutually exclusive with `span_tag`.
+     * 
+     */
     @Export(name="metricLabel", refs={DerivedLabelMetricLabel.class}, tree="[0]")
     private Output</* @Nullable */ DerivedLabelMetricLabel> metricLabel;
 
+    /**
+     * @return Derives a label for metrics, either by constructing a new value from filters or by mapping an existing label. Mutually exclusive with `span_tag`.
+     * 
+     */
     public Output<Optional<DerivedLabelMetricLabel>> metricLabel() {
         return Codegen.optional(this.metricLabel);
     }
+    /**
+     * Name of the label to match.
+     * 
+     */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
+    /**
+     * @return Name of the label to match.
+     * 
+     */
     public Output<String> name() {
         return this.name;
     }
+    /**
+     * Stable identifier for the derived label. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     @Export(name="slug", refs={String.class}, tree="[0]")
     private Output<String> slug;
 
+    /**
+     * @return Stable identifier for the derived label. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     public Output<String> slug() {
         return this.slug;
     }
+    /**
+     * Derives a label for trace spans by mapping from an existing span tag. Mutually exclusive with `metric_label`.
+     * 
+     */
     @Export(name="spanTag", refs={DerivedLabelSpanTag.class}, tree="[0]")
     private Output</* @Nullable */ DerivedLabelSpanTag> spanTag;
 
+    /**
+     * @return Derives a label for trace spans by mapping from an existing span tag. Mutually exclusive with `metric_label`.
+     * 
+     */
     public Output<Optional<DerivedLabelSpanTag>> spanTag() {
         return Codegen.optional(this.spanTag);
     }

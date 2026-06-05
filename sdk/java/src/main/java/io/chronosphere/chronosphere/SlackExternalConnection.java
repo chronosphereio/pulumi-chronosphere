@@ -15,29 +15,96 @@ import java.util.List;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
+/**
+ * Workspace-scoped Slack credentials that downstream notifiers and LogScale actions can reference. Centralizes webhook URLs and bot tokens so they aren&#39;t duplicated across notifiers; modern equivalent of the per-notifier credentials.
+ * 
+ * ## Example Usage
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.chronosphere.SlackExternalConnection;
+ * import com.pulumi.chronosphere.SlackExternalConnectionArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var slack = new SlackExternalConnection(&#34;slack&#34;, SlackExternalConnectionArgs.builder()        
+ *             .apiUrl(&#34;https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX&#34;)
+ *             .name(&#34;Slack&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ */
 @ResourceType(type="chronosphere:index/slackExternalConnection:SlackExternalConnection")
 public class SlackExternalConnection extends com.pulumi.resources.CustomResource {
+    /**
+     * Slack incoming webhook URL used to deliver messages. Treat as a secret.
+     * 
+     */
     @Export(name="apiUrl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> apiUrl;
 
+    /**
+     * @return Slack incoming webhook URL used to deliver messages. Treat as a secret.
+     * 
+     */
     public Output<Optional<String>> apiUrl() {
         return Codegen.optional(this.apiUrl);
     }
+    /**
+     * Display name of the external connection.
+     * 
+     */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
+    /**
+     * @return Display name of the external connection.
+     * 
+     */
     public Output<String> name() {
         return this.name;
     }
+    /**
+     * Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     @Export(name="slug", refs={String.class}, tree="[0]")
     private Output<String> slug;
 
+    /**
+     * @return Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     public Output<String> slug() {
         return this.slug;
     }
+    /**
+     * Slack bot or app token used to authenticate API calls when posting messages. Treat as a secret.
+     * 
+     */
     @Export(name="token", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> token;
 
+    /**
+     * @return Slack bot or app token used to authenticate API calls when posting messages. Treat as a secret.
+     * 
+     */
     public Output<Optional<String>> token() {
         return Codegen.optional(this.token);
     }

@@ -13,12 +13,21 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class LogscaleActionVictorOpsActionArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Type of the VictorOps message to send (for example, `CRITICAL`, `WARNING`, `INFO`).
+        /// </summary>
         [Input("messageType", required: true)]
         public Input<string> MessageType { get; set; } = null!;
 
+        /// <summary>
+        /// VictorOps webhook URL to send the request to.
+        /// </summary>
         [Input("notifyUrl", required: true)]
         public Input<string> NotifyUrl { get; set; } = null!;
 
+        /// <summary>
+        /// If `true`, sends the request through the configured outbound proxy.
+        /// </summary>
         [Input("useProxy")]
         public Input<bool>? UseProxy { get; set; }
 

@@ -23,6 +23,13 @@ class BucketArgs:
                  team_id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Bucket resource.
+        :param pulumi.Input[str] name: Display name of the bucket. Can be changed after creation.
+        :param pulumi.Input[str] description: Free-form description of the bucket.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Key/value labels attached to the bucket for organization and filtering.
+        :param pulumi.Input[str] notification_policy_data: Inline notification policy serialized as JSON. Conflicts with `notification_policy_id`. For reusability, reference a named policy instead.
+        :param pulumi.Input[str] notification_policy_id: ID of the default notification policy applied to monitors in this bucket that do not explicitly reference one. Conflicts with `notification_policy_data`.
+        :param pulumi.Input[str] slug: Stable identifier for the bucket. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[str] team_id: ID of the team that owns this bucket.
         """
         pulumi.set(__self__, "name", name)
         if description is not None:
@@ -41,6 +48,9 @@ class BucketArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        Display name of the bucket. Can be changed after creation.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -50,6 +60,9 @@ class BucketArgs:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Free-form description of the bucket.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -59,6 +72,9 @@ class BucketArgs:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Key/value labels attached to the bucket for organization and filtering.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -68,6 +84,9 @@ class BucketArgs:
     @property
     @pulumi.getter(name="notificationPolicyData")
     def notification_policy_data(self) -> Optional[pulumi.Input[str]]:
+        """
+        Inline notification policy serialized as JSON. Conflicts with `notification_policy_id`. For reusability, reference a named policy instead.
+        """
         return pulumi.get(self, "notification_policy_data")
 
     @notification_policy_data.setter
@@ -77,6 +96,9 @@ class BucketArgs:
     @property
     @pulumi.getter(name="notificationPolicyId")
     def notification_policy_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the default notification policy applied to monitors in this bucket that do not explicitly reference one. Conflicts with `notification_policy_data`.
+        """
         return pulumi.get(self, "notification_policy_id")
 
     @notification_policy_id.setter
@@ -86,6 +108,9 @@ class BucketArgs:
     @property
     @pulumi.getter
     def slug(self) -> Optional[pulumi.Input[str]]:
+        """
+        Stable identifier for the bucket. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @slug.setter
@@ -95,6 +120,9 @@ class BucketArgs:
     @property
     @pulumi.getter(name="teamId")
     def team_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the team that owns this bucket.
+        """
         return pulumi.get(self, "team_id")
 
     @team_id.setter
@@ -115,6 +143,14 @@ class _BucketState:
                  team_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Bucket resources.
+        :param pulumi.Input[str] description: Free-form description of the bucket.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Key/value labels attached to the bucket for organization and filtering.
+        :param pulumi.Input[str] name: Display name of the bucket. Can be changed after creation.
+        :param pulumi.Input[str] notification_policy_data: Inline notification policy serialized as JSON. Conflicts with `notification_policy_id`. For reusability, reference a named policy instead.
+        :param pulumi.Input[str] notification_policy_id: ID of the default notification policy applied to monitors in this bucket that do not explicitly reference one. Conflicts with `notification_policy_data`.
+        :param pulumi.Input[str] notification_policy_slug: Internal field tracking the slug of an inline notification policy defined via `notification_policy_data`. Use `notification_policy_id` to reference a named policy.
+        :param pulumi.Input[str] slug: Stable identifier for the bucket. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[str] team_id: ID of the team that owns this bucket.
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -136,6 +172,9 @@ class _BucketState:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Free-form description of the bucket.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -145,6 +184,9 @@ class _BucketState:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Key/value labels attached to the bucket for organization and filtering.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -154,6 +196,9 @@ class _BucketState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Display name of the bucket. Can be changed after creation.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -163,6 +208,9 @@ class _BucketState:
     @property
     @pulumi.getter(name="notificationPolicyData")
     def notification_policy_data(self) -> Optional[pulumi.Input[str]]:
+        """
+        Inline notification policy serialized as JSON. Conflicts with `notification_policy_id`. For reusability, reference a named policy instead.
+        """
         return pulumi.get(self, "notification_policy_data")
 
     @notification_policy_data.setter
@@ -172,6 +220,9 @@ class _BucketState:
     @property
     @pulumi.getter(name="notificationPolicyId")
     def notification_policy_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the default notification policy applied to monitors in this bucket that do not explicitly reference one. Conflicts with `notification_policy_data`.
+        """
         return pulumi.get(self, "notification_policy_id")
 
     @notification_policy_id.setter
@@ -181,6 +232,9 @@ class _BucketState:
     @property
     @pulumi.getter(name="notificationPolicySlug")
     def notification_policy_slug(self) -> Optional[pulumi.Input[str]]:
+        """
+        Internal field tracking the slug of an inline notification policy defined via `notification_policy_data`. Use `notification_policy_id` to reference a named policy.
+        """
         return pulumi.get(self, "notification_policy_slug")
 
     @notification_policy_slug.setter
@@ -190,6 +244,9 @@ class _BucketState:
     @property
     @pulumi.getter
     def slug(self) -> Optional[pulumi.Input[str]]:
+        """
+        Stable identifier for the bucket. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @slug.setter
@@ -199,6 +256,9 @@ class _BucketState:
     @property
     @pulumi.getter(name="teamId")
     def team_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the team that owns this bucket.
+        """
         return pulumi.get(self, "team_id")
 
     @team_id.setter
@@ -220,9 +280,31 @@ class Bucket(pulumi.CustomResource):
                  team_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a Bucket resource with the given unique name, props, and options.
+        A legacy container for monitors, dashboards, and other resources, predating collections. Buckets can also own an inline notification policy via `notification_policy_data`. New configurations should generally use `Collection`.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_chronosphere as chronosphere
+
+        bucket = chronosphere.Bucket("bucket",
+            name="Bucket",
+            description="bucket created by terraform examples",
+            labels={
+                "foo": "bar",
+            })
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] description: Free-form description of the bucket.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Key/value labels attached to the bucket for organization and filtering.
+        :param pulumi.Input[str] name: Display name of the bucket. Can be changed after creation.
+        :param pulumi.Input[str] notification_policy_data: Inline notification policy serialized as JSON. Conflicts with `notification_policy_id`. For reusability, reference a named policy instead.
+        :param pulumi.Input[str] notification_policy_id: ID of the default notification policy applied to monitors in this bucket that do not explicitly reference one. Conflicts with `notification_policy_data`.
+        :param pulumi.Input[str] slug: Stable identifier for the bucket. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[str] team_id: ID of the team that owns this bucket.
         """
         ...
     @overload
@@ -231,7 +313,22 @@ class Bucket(pulumi.CustomResource):
                  args: BucketArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a Bucket resource with the given unique name, props, and options.
+        A legacy container for monitors, dashboards, and other resources, predating collections. Buckets can also own an inline notification policy via `notification_policy_data`. New configurations should generally use `Collection`.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_chronosphere as chronosphere
+
+        bucket = chronosphere.Bucket("bucket",
+            name="Bucket",
+            description="bucket created by terraform examples",
+            labels={
+                "foo": "bar",
+            })
+        ```
+
         :param str resource_name: The name of the resource.
         :param BucketArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -298,6 +395,14 @@ class Bucket(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] description: Free-form description of the bucket.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Key/value labels attached to the bucket for organization and filtering.
+        :param pulumi.Input[str] name: Display name of the bucket. Can be changed after creation.
+        :param pulumi.Input[str] notification_policy_data: Inline notification policy serialized as JSON. Conflicts with `notification_policy_id`. For reusability, reference a named policy instead.
+        :param pulumi.Input[str] notification_policy_id: ID of the default notification policy applied to monitors in this bucket that do not explicitly reference one. Conflicts with `notification_policy_data`.
+        :param pulumi.Input[str] notification_policy_slug: Internal field tracking the slug of an inline notification policy defined via `notification_policy_data`. Use `notification_policy_id` to reference a named policy.
+        :param pulumi.Input[str] slug: Stable identifier for the bucket. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[str] team_id: ID of the team that owns this bucket.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -316,40 +421,64 @@ class Bucket(pulumi.CustomResource):
     @property
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
+        """
+        Free-form description of the bucket.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
     def labels(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+        """
+        Key/value labels attached to the bucket for organization and filtering.
+        """
         return pulumi.get(self, "labels")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        Display name of the bucket. Can be changed after creation.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="notificationPolicyData")
     def notification_policy_data(self) -> pulumi.Output[Optional[str]]:
+        """
+        Inline notification policy serialized as JSON. Conflicts with `notification_policy_id`. For reusability, reference a named policy instead.
+        """
         return pulumi.get(self, "notification_policy_data")
 
     @property
     @pulumi.getter(name="notificationPolicyId")
     def notification_policy_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        ID of the default notification policy applied to monitors in this bucket that do not explicitly reference one. Conflicts with `notification_policy_data`.
+        """
         return pulumi.get(self, "notification_policy_id")
 
     @property
     @pulumi.getter(name="notificationPolicySlug")
     def notification_policy_slug(self) -> pulumi.Output[str]:
+        """
+        Internal field tracking the slug of an inline notification policy defined via `notification_policy_data`. Use `notification_policy_id` to reference a named policy.
+        """
         return pulumi.get(self, "notification_policy_slug")
 
     @property
     @pulumi.getter
     def slug(self) -> pulumi.Output[str]:
+        """
+        Stable identifier for the bucket. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @property
     @pulumi.getter(name="teamId")
     def team_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        ID of the team that owns this bucket.
+        """
         return pulumi.get(self, "team_id")
 

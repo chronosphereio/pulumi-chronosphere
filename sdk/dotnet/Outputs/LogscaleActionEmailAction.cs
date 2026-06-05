@@ -14,10 +14,25 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class LogscaleActionEmailAction
     {
+        /// <summary>
+        /// If `true`, attaches the query result set as a CSV file.
+        /// </summary>
         public readonly bool? AttachCsv;
+        /// <summary>
+        /// Body of the email. Supports Go template syntax with values from the query result.
+        /// </summary>
         public readonly string? BodyTemplate;
+        /// <summary>
+        /// List of email addresses to send the message to.
+        /// </summary>
         public readonly ImmutableArray<string> Recipients;
+        /// <summary>
+        /// Subject of the email. Supports Go template syntax with values from the query result.
+        /// </summary>
         public readonly string? SubjectTemplate;
+        /// <summary>
+        /// If `true`, sends the request through the configured outbound proxy.
+        /// </summary>
         public readonly bool? UseProxy;
 
         [OutputConstructor]

@@ -15,17 +15,28 @@ namespace Chronosphere.Pulumi.Inputs
     {
         [Input("fixedValues")]
         private InputList<Inputs.ResourcePoolsConfigPoolAllocationFixedValueGetArgs>? _fixedValues;
+
+        /// <summary>
+        /// Per-license fixed allocations that override `percent_of_license` for the named licenses. When any pool sets a fixed value for a license, every pool must also set one for that license.
+        /// </summary>
         public InputList<Inputs.ResourcePoolsConfigPoolAllocationFixedValueGetArgs> FixedValues
         {
             get => _fixedValues ?? (_fixedValues = new InputList<Inputs.ResourcePoolsConfigPoolAllocationFixedValueGetArgs>());
             set => _fixedValues = value;
         }
 
+        /// <summary>
+        /// Percent of each license to allocate to this pool, between 0 and 100. Across non-default pools, the sum must not exceed 100; the default pool receives the remainder.
+        /// </summary>
         [Input("percentOfLicense")]
         public Input<double>? PercentOfLicense { get; set; }
 
         [Input("priorityThresholds")]
         private InputList<Inputs.ResourcePoolsConfigPoolAllocationPriorityThresholdGetArgs>? _priorityThresholds;
+
+        /// <summary>
+        /// Per-license drop thresholds for `PERSISTED_CARDINALITY_STANDARD` and `PERSISTED_CARDINALITY_HISTOGRAM` only. Defines strict upper bounds beyond which new consumption is dropped, optionally segmented by priority class.
+        /// </summary>
         public InputList<Inputs.ResourcePoolsConfigPoolAllocationPriorityThresholdGetArgs> PriorityThresholds
         {
             get => _priorityThresholds ?? (_priorityThresholds = new InputList<Inputs.ResourcePoolsConfigPoolAllocationPriorityThresholdGetArgs>());

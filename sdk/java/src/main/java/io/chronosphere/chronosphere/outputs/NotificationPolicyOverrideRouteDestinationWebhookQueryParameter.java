@@ -9,13 +9,29 @@ import java.util.Objects;
 
 @CustomType
 public final class NotificationPolicyOverrideRouteDestinationWebhookQueryParameter {
+    /**
+     * @return Query parameter name.
+     * 
+     */
     private String key;
+    /**
+     * @return Label value (or regex pattern, for regex matchers) to match against.
+     * 
+     */
     private String value;
 
     private NotificationPolicyOverrideRouteDestinationWebhookQueryParameter() {}
+    /**
+     * @return Query parameter name.
+     * 
+     */
     public String key() {
         return this.key;
     }
+    /**
+     * @return Label value (or regex pattern, for regex matchers) to match against.
+     * 
+     */
     public String value() {
         return this.value;
     }

@@ -12,21 +12,82 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// A CrowdStrike Falcon LogScale (formerly Humio) action target (email, Slack, webhook, PagerDuty, OpsGenie, VictorOps, or upload-file) invoked by a logscaleAlert when it fires.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/chronosphereio/pulumi-chronosphere/sdk/go/chronosphere"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := chronosphere.NewLogscaleAction(ctx, "email", &chronosphere.LogscaleActionArgs{
+//				EmailAction: &chronosphere.LogscaleActionEmailActionArgs{
+//					AttachCsv:    pulumi.Bool(true),
+//					BodyTemplate: pulumi.String("{{query.results}}"),
+//					Recipients: pulumi.StringArray{
+//						pulumi.String("oncall@example.com"),
+//					},
+//					SubjectTemplate: pulumi.String("Logscale alert: {{alert.name}}"),
+//					UseProxy:        pulumi.Bool(false),
+//				},
+//				Name:       pulumi.String("Email on-call"),
+//				Repository: pulumi.String("default"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = chronosphere.NewLogscaleAction(ctx, "pagerduty", &chronosphere.LogscaleActionArgs{
+//				Name: pulumi.String("PagerDuty page"),
+//				PagerDutyAction: &chronosphere.LogscaleActionPagerDutyActionArgs{
+//					RoutingKey: pulumi.String("XXXXX"),
+//					Severity:   pulumi.String("ERROR"),
+//					UseProxy:   pulumi.Bool(false),
+//				},
+//				Repository: pulumi.String("default"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type LogscaleAction struct {
 	pulumi.CustomResourceState
 
-	EmailAction            LogscaleActionEmailActionPtrOutput            `pulumi:"emailAction"`
-	HumioAction            LogscaleActionHumioActionPtrOutput            `pulumi:"humioAction"`
-	Name                   pulumi.StringOutput                           `pulumi:"name"`
-	OpsGenieAction         LogscaleActionOpsGenieActionPtrOutput         `pulumi:"opsGenieAction"`
-	PagerDutyAction        LogscaleActionPagerDutyActionPtrOutput        `pulumi:"pagerDutyAction"`
-	Repository             pulumi.StringOutput                           `pulumi:"repository"`
-	SlackAction            LogscaleActionSlackActionPtrOutput            `pulumi:"slackAction"`
+	// Send email when the alert triggers. Exactly one action type must be set.
+	EmailAction LogscaleActionEmailActionPtrOutput `pulumi:"emailAction"`
+	// Forward results to another LogScale (Humio) repository via its ingest token. Exactly one action type must be set.
+	HumioAction LogscaleActionHumioActionPtrOutput `pulumi:"humioAction"`
+	// Display name of the LogScale action.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// Send an OpsGenie alert when the alert triggers. Exactly one action type must be set.
+	OpsGenieAction LogscaleActionOpsGenieActionPtrOutput `pulumi:"opsGenieAction"`
+	// Send a PagerDuty event when the alert triggers. Exactly one action type must be set.
+	PagerDutyAction LogscaleActionPagerDutyActionPtrOutput `pulumi:"pagerDutyAction"`
+	// Name of the LogScale repository the action belongs to. Immutable after creation.
+	Repository pulumi.StringOutput `pulumi:"repository"`
+	// Post a message to a Slack incoming webhook when the alert triggers. Exactly one action type must be set.
+	SlackAction LogscaleActionSlackActionPtrOutput `pulumi:"slackAction"`
+	// Post a message to Slack channels using the Slack `chat.postMessage` API. Exactly one action type must be set.
 	SlackPostMessageAction LogscaleActionSlackPostMessageActionPtrOutput `pulumi:"slackPostMessageAction"`
-	Slug                   pulumi.StringOutput                           `pulumi:"slug"`
-	UploadFileAction       LogscaleActionUploadFileActionPtrOutput       `pulumi:"uploadFileAction"`
-	VictorOpsAction        LogscaleActionVictorOpsActionPtrOutput        `pulumi:"victorOpsAction"`
-	WebhookAction          LogscaleActionWebhookActionPtrOutput          `pulumi:"webhookAction"`
+	// Stable identifier for the LogScale action. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringOutput `pulumi:"slug"`
+	// Upload the query result as a file in LogScale. Exactly one action type must be set.
+	UploadFileAction LogscaleActionUploadFileActionPtrOutput `pulumi:"uploadFileAction"`
+	// Send a VictorOps (Splunk On-Call) event when the alert triggers. Exactly one action type must be set.
+	VictorOpsAction LogscaleActionVictorOpsActionPtrOutput `pulumi:"victorOpsAction"`
+	// Send an HTTP or HTTPS webhook when the alert triggers. Exactly one action type must be set.
+	WebhookAction LogscaleActionWebhookActionPtrOutput `pulumi:"webhookAction"`
 }
 
 // NewLogscaleAction registers a new resource with the given unique name, arguments, and options.
@@ -65,33 +126,57 @@ func GetLogscaleAction(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering LogscaleAction resources.
 type logscaleActionState struct {
-	EmailAction            *LogscaleActionEmailAction            `pulumi:"emailAction"`
-	HumioAction            *LogscaleActionHumioAction            `pulumi:"humioAction"`
-	Name                   *string                               `pulumi:"name"`
-	OpsGenieAction         *LogscaleActionOpsGenieAction         `pulumi:"opsGenieAction"`
-	PagerDutyAction        *LogscaleActionPagerDutyAction        `pulumi:"pagerDutyAction"`
-	Repository             *string                               `pulumi:"repository"`
-	SlackAction            *LogscaleActionSlackAction            `pulumi:"slackAction"`
+	// Send email when the alert triggers. Exactly one action type must be set.
+	EmailAction *LogscaleActionEmailAction `pulumi:"emailAction"`
+	// Forward results to another LogScale (Humio) repository via its ingest token. Exactly one action type must be set.
+	HumioAction *LogscaleActionHumioAction `pulumi:"humioAction"`
+	// Display name of the LogScale action.
+	Name *string `pulumi:"name"`
+	// Send an OpsGenie alert when the alert triggers. Exactly one action type must be set.
+	OpsGenieAction *LogscaleActionOpsGenieAction `pulumi:"opsGenieAction"`
+	// Send a PagerDuty event when the alert triggers. Exactly one action type must be set.
+	PagerDutyAction *LogscaleActionPagerDutyAction `pulumi:"pagerDutyAction"`
+	// Name of the LogScale repository the action belongs to. Immutable after creation.
+	Repository *string `pulumi:"repository"`
+	// Post a message to a Slack incoming webhook when the alert triggers. Exactly one action type must be set.
+	SlackAction *LogscaleActionSlackAction `pulumi:"slackAction"`
+	// Post a message to Slack channels using the Slack `chat.postMessage` API. Exactly one action type must be set.
 	SlackPostMessageAction *LogscaleActionSlackPostMessageAction `pulumi:"slackPostMessageAction"`
-	Slug                   *string                               `pulumi:"slug"`
-	UploadFileAction       *LogscaleActionUploadFileAction       `pulumi:"uploadFileAction"`
-	VictorOpsAction        *LogscaleActionVictorOpsAction        `pulumi:"victorOpsAction"`
-	WebhookAction          *LogscaleActionWebhookAction          `pulumi:"webhookAction"`
+	// Stable identifier for the LogScale action. Generated from `name` if omitted. Immutable after creation.
+	Slug *string `pulumi:"slug"`
+	// Upload the query result as a file in LogScale. Exactly one action type must be set.
+	UploadFileAction *LogscaleActionUploadFileAction `pulumi:"uploadFileAction"`
+	// Send a VictorOps (Splunk On-Call) event when the alert triggers. Exactly one action type must be set.
+	VictorOpsAction *LogscaleActionVictorOpsAction `pulumi:"victorOpsAction"`
+	// Send an HTTP or HTTPS webhook when the alert triggers. Exactly one action type must be set.
+	WebhookAction *LogscaleActionWebhookAction `pulumi:"webhookAction"`
 }
 
 type LogscaleActionState struct {
-	EmailAction            LogscaleActionEmailActionPtrInput
-	HumioAction            LogscaleActionHumioActionPtrInput
-	Name                   pulumi.StringPtrInput
-	OpsGenieAction         LogscaleActionOpsGenieActionPtrInput
-	PagerDutyAction        LogscaleActionPagerDutyActionPtrInput
-	Repository             pulumi.StringPtrInput
-	SlackAction            LogscaleActionSlackActionPtrInput
+	// Send email when the alert triggers. Exactly one action type must be set.
+	EmailAction LogscaleActionEmailActionPtrInput
+	// Forward results to another LogScale (Humio) repository via its ingest token. Exactly one action type must be set.
+	HumioAction LogscaleActionHumioActionPtrInput
+	// Display name of the LogScale action.
+	Name pulumi.StringPtrInput
+	// Send an OpsGenie alert when the alert triggers. Exactly one action type must be set.
+	OpsGenieAction LogscaleActionOpsGenieActionPtrInput
+	// Send a PagerDuty event when the alert triggers. Exactly one action type must be set.
+	PagerDutyAction LogscaleActionPagerDutyActionPtrInput
+	// Name of the LogScale repository the action belongs to. Immutable after creation.
+	Repository pulumi.StringPtrInput
+	// Post a message to a Slack incoming webhook when the alert triggers. Exactly one action type must be set.
+	SlackAction LogscaleActionSlackActionPtrInput
+	// Post a message to Slack channels using the Slack `chat.postMessage` API. Exactly one action type must be set.
 	SlackPostMessageAction LogscaleActionSlackPostMessageActionPtrInput
-	Slug                   pulumi.StringPtrInput
-	UploadFileAction       LogscaleActionUploadFileActionPtrInput
-	VictorOpsAction        LogscaleActionVictorOpsActionPtrInput
-	WebhookAction          LogscaleActionWebhookActionPtrInput
+	// Stable identifier for the LogScale action. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringPtrInput
+	// Upload the query result as a file in LogScale. Exactly one action type must be set.
+	UploadFileAction LogscaleActionUploadFileActionPtrInput
+	// Send a VictorOps (Splunk On-Call) event when the alert triggers. Exactly one action type must be set.
+	VictorOpsAction LogscaleActionVictorOpsActionPtrInput
+	// Send an HTTP or HTTPS webhook when the alert triggers. Exactly one action type must be set.
+	WebhookAction LogscaleActionWebhookActionPtrInput
 }
 
 func (LogscaleActionState) ElementType() reflect.Type {
@@ -99,34 +184,58 @@ func (LogscaleActionState) ElementType() reflect.Type {
 }
 
 type logscaleActionArgs struct {
-	EmailAction            *LogscaleActionEmailAction            `pulumi:"emailAction"`
-	HumioAction            *LogscaleActionHumioAction            `pulumi:"humioAction"`
-	Name                   string                                `pulumi:"name"`
-	OpsGenieAction         *LogscaleActionOpsGenieAction         `pulumi:"opsGenieAction"`
-	PagerDutyAction        *LogscaleActionPagerDutyAction        `pulumi:"pagerDutyAction"`
-	Repository             string                                `pulumi:"repository"`
-	SlackAction            *LogscaleActionSlackAction            `pulumi:"slackAction"`
+	// Send email when the alert triggers. Exactly one action type must be set.
+	EmailAction *LogscaleActionEmailAction `pulumi:"emailAction"`
+	// Forward results to another LogScale (Humio) repository via its ingest token. Exactly one action type must be set.
+	HumioAction *LogscaleActionHumioAction `pulumi:"humioAction"`
+	// Display name of the LogScale action.
+	Name string `pulumi:"name"`
+	// Send an OpsGenie alert when the alert triggers. Exactly one action type must be set.
+	OpsGenieAction *LogscaleActionOpsGenieAction `pulumi:"opsGenieAction"`
+	// Send a PagerDuty event when the alert triggers. Exactly one action type must be set.
+	PagerDutyAction *LogscaleActionPagerDutyAction `pulumi:"pagerDutyAction"`
+	// Name of the LogScale repository the action belongs to. Immutable after creation.
+	Repository string `pulumi:"repository"`
+	// Post a message to a Slack incoming webhook when the alert triggers. Exactly one action type must be set.
+	SlackAction *LogscaleActionSlackAction `pulumi:"slackAction"`
+	// Post a message to Slack channels using the Slack `chat.postMessage` API. Exactly one action type must be set.
 	SlackPostMessageAction *LogscaleActionSlackPostMessageAction `pulumi:"slackPostMessageAction"`
-	Slug                   *string                               `pulumi:"slug"`
-	UploadFileAction       *LogscaleActionUploadFileAction       `pulumi:"uploadFileAction"`
-	VictorOpsAction        *LogscaleActionVictorOpsAction        `pulumi:"victorOpsAction"`
-	WebhookAction          *LogscaleActionWebhookAction          `pulumi:"webhookAction"`
+	// Stable identifier for the LogScale action. Generated from `name` if omitted. Immutable after creation.
+	Slug *string `pulumi:"slug"`
+	// Upload the query result as a file in LogScale. Exactly one action type must be set.
+	UploadFileAction *LogscaleActionUploadFileAction `pulumi:"uploadFileAction"`
+	// Send a VictorOps (Splunk On-Call) event when the alert triggers. Exactly one action type must be set.
+	VictorOpsAction *LogscaleActionVictorOpsAction `pulumi:"victorOpsAction"`
+	// Send an HTTP or HTTPS webhook when the alert triggers. Exactly one action type must be set.
+	WebhookAction *LogscaleActionWebhookAction `pulumi:"webhookAction"`
 }
 
 // The set of arguments for constructing a LogscaleAction resource.
 type LogscaleActionArgs struct {
-	EmailAction            LogscaleActionEmailActionPtrInput
-	HumioAction            LogscaleActionHumioActionPtrInput
-	Name                   pulumi.StringInput
-	OpsGenieAction         LogscaleActionOpsGenieActionPtrInput
-	PagerDutyAction        LogscaleActionPagerDutyActionPtrInput
-	Repository             pulumi.StringInput
-	SlackAction            LogscaleActionSlackActionPtrInput
+	// Send email when the alert triggers. Exactly one action type must be set.
+	EmailAction LogscaleActionEmailActionPtrInput
+	// Forward results to another LogScale (Humio) repository via its ingest token. Exactly one action type must be set.
+	HumioAction LogscaleActionHumioActionPtrInput
+	// Display name of the LogScale action.
+	Name pulumi.StringInput
+	// Send an OpsGenie alert when the alert triggers. Exactly one action type must be set.
+	OpsGenieAction LogscaleActionOpsGenieActionPtrInput
+	// Send a PagerDuty event when the alert triggers. Exactly one action type must be set.
+	PagerDutyAction LogscaleActionPagerDutyActionPtrInput
+	// Name of the LogScale repository the action belongs to. Immutable after creation.
+	Repository pulumi.StringInput
+	// Post a message to a Slack incoming webhook when the alert triggers. Exactly one action type must be set.
+	SlackAction LogscaleActionSlackActionPtrInput
+	// Post a message to Slack channels using the Slack `chat.postMessage` API. Exactly one action type must be set.
 	SlackPostMessageAction LogscaleActionSlackPostMessageActionPtrInput
-	Slug                   pulumi.StringPtrInput
-	UploadFileAction       LogscaleActionUploadFileActionPtrInput
-	VictorOpsAction        LogscaleActionVictorOpsActionPtrInput
-	WebhookAction          LogscaleActionWebhookActionPtrInput
+	// Stable identifier for the LogScale action. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringPtrInput
+	// Upload the query result as a file in LogScale. Exactly one action type must be set.
+	UploadFileAction LogscaleActionUploadFileActionPtrInput
+	// Send a VictorOps (Splunk On-Call) event when the alert triggers. Exactly one action type must be set.
+	VictorOpsAction LogscaleActionVictorOpsActionPtrInput
+	// Send an HTTP or HTTPS webhook when the alert triggers. Exactly one action type must be set.
+	WebhookAction LogscaleActionWebhookActionPtrInput
 }
 
 func (LogscaleActionArgs) ElementType() reflect.Type {
@@ -216,50 +325,62 @@ func (o LogscaleActionOutput) ToLogscaleActionOutputWithContext(ctx context.Cont
 	return o
 }
 
+// Send email when the alert triggers. Exactly one action type must be set.
 func (o LogscaleActionOutput) EmailAction() LogscaleActionEmailActionPtrOutput {
 	return o.ApplyT(func(v *LogscaleAction) LogscaleActionEmailActionPtrOutput { return v.EmailAction }).(LogscaleActionEmailActionPtrOutput)
 }
 
+// Forward results to another LogScale (Humio) repository via its ingest token. Exactly one action type must be set.
 func (o LogscaleActionOutput) HumioAction() LogscaleActionHumioActionPtrOutput {
 	return o.ApplyT(func(v *LogscaleAction) LogscaleActionHumioActionPtrOutput { return v.HumioAction }).(LogscaleActionHumioActionPtrOutput)
 }
 
+// Display name of the LogScale action.
 func (o LogscaleActionOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *LogscaleAction) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// Send an OpsGenie alert when the alert triggers. Exactly one action type must be set.
 func (o LogscaleActionOutput) OpsGenieAction() LogscaleActionOpsGenieActionPtrOutput {
 	return o.ApplyT(func(v *LogscaleAction) LogscaleActionOpsGenieActionPtrOutput { return v.OpsGenieAction }).(LogscaleActionOpsGenieActionPtrOutput)
 }
 
+// Send a PagerDuty event when the alert triggers. Exactly one action type must be set.
 func (o LogscaleActionOutput) PagerDutyAction() LogscaleActionPagerDutyActionPtrOutput {
 	return o.ApplyT(func(v *LogscaleAction) LogscaleActionPagerDutyActionPtrOutput { return v.PagerDutyAction }).(LogscaleActionPagerDutyActionPtrOutput)
 }
 
+// Name of the LogScale repository the action belongs to. Immutable after creation.
 func (o LogscaleActionOutput) Repository() pulumi.StringOutput {
 	return o.ApplyT(func(v *LogscaleAction) pulumi.StringOutput { return v.Repository }).(pulumi.StringOutput)
 }
 
+// Post a message to a Slack incoming webhook when the alert triggers. Exactly one action type must be set.
 func (o LogscaleActionOutput) SlackAction() LogscaleActionSlackActionPtrOutput {
 	return o.ApplyT(func(v *LogscaleAction) LogscaleActionSlackActionPtrOutput { return v.SlackAction }).(LogscaleActionSlackActionPtrOutput)
 }
 
+// Post a message to Slack channels using the Slack `chat.postMessage` API. Exactly one action type must be set.
 func (o LogscaleActionOutput) SlackPostMessageAction() LogscaleActionSlackPostMessageActionPtrOutput {
 	return o.ApplyT(func(v *LogscaleAction) LogscaleActionSlackPostMessageActionPtrOutput { return v.SlackPostMessageAction }).(LogscaleActionSlackPostMessageActionPtrOutput)
 }
 
+// Stable identifier for the LogScale action. Generated from `name` if omitted. Immutable after creation.
 func (o LogscaleActionOutput) Slug() pulumi.StringOutput {
 	return o.ApplyT(func(v *LogscaleAction) pulumi.StringOutput { return v.Slug }).(pulumi.StringOutput)
 }
 
+// Upload the query result as a file in LogScale. Exactly one action type must be set.
 func (o LogscaleActionOutput) UploadFileAction() LogscaleActionUploadFileActionPtrOutput {
 	return o.ApplyT(func(v *LogscaleAction) LogscaleActionUploadFileActionPtrOutput { return v.UploadFileAction }).(LogscaleActionUploadFileActionPtrOutput)
 }
 
+// Send a VictorOps (Splunk On-Call) event when the alert triggers. Exactly one action type must be set.
 func (o LogscaleActionOutput) VictorOpsAction() LogscaleActionVictorOpsActionPtrOutput {
 	return o.ApplyT(func(v *LogscaleAction) LogscaleActionVictorOpsActionPtrOutput { return v.VictorOpsAction }).(LogscaleActionVictorOpsActionPtrOutput)
 }
 
+// Send an HTTP or HTTPS webhook when the alert triggers. Exactly one action type must be set.
 func (o LogscaleActionOutput) WebhookAction() LogscaleActionWebhookActionPtrOutput {
 	return o.ApplyT(func(v *LogscaleAction) LogscaleActionWebhookActionPtrOutput { return v.WebhookAction }).(LogscaleActionWebhookActionPtrOutput)
 }

@@ -17,16 +17,32 @@ public final class TraceTailSamplingRulesState extends com.pulumi.resources.Reso
 
     public static final TraceTailSamplingRulesState Empty = new TraceTailSamplingRulesState();
 
+    /**
+     * Default sampling decision applied after the full trace is observed when no rule in `rules` matches.
+     * 
+     */
     @Import(name="defaultSampleRate")
     private @Nullable Output<TraceTailSamplingRulesDefaultSampleRateArgs> defaultSampleRate;
 
+    /**
+     * @return Default sampling decision applied after the full trace is observed when no rule in `rules` matches.
+     * 
+     */
     public Optional<Output<TraceTailSamplingRulesDefaultSampleRateArgs>> defaultSampleRate() {
         return Optional.ofNullable(this.defaultSampleRate);
     }
 
+    /**
+     * Ordered list of tail-sampling rules evaluated after the full trace is observed. The first rule whose `filter` matches determines the sample rate; if none match, `default_sample_rate` is applied.
+     * 
+     */
     @Import(name="rules")
     private @Nullable Output<List<TraceTailSamplingRulesRuleArgs>> rules;
 
+    /**
+     * @return Ordered list of tail-sampling rules evaluated after the full trace is observed. The first rule whose `filter` matches determines the sample rate; if none match, `default_sample_rate` is applied.
+     * 
+     */
     public Optional<Output<List<TraceTailSamplingRulesRuleArgs>>> rules() {
         return Optional.ofNullable(this.rules);
     }
@@ -56,24 +72,54 @@ public final class TraceTailSamplingRulesState extends com.pulumi.resources.Reso
             $ = new TraceTailSamplingRulesState(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param defaultSampleRate Default sampling decision applied after the full trace is observed when no rule in `rules` matches.
+         * 
+         * @return builder
+         * 
+         */
         public Builder defaultSampleRate(@Nullable Output<TraceTailSamplingRulesDefaultSampleRateArgs> defaultSampleRate) {
             $.defaultSampleRate = defaultSampleRate;
             return this;
         }
 
+        /**
+         * @param defaultSampleRate Default sampling decision applied after the full trace is observed when no rule in `rules` matches.
+         * 
+         * @return builder
+         * 
+         */
         public Builder defaultSampleRate(TraceTailSamplingRulesDefaultSampleRateArgs defaultSampleRate) {
             return defaultSampleRate(Output.of(defaultSampleRate));
         }
 
+        /**
+         * @param rules Ordered list of tail-sampling rules evaluated after the full trace is observed. The first rule whose `filter` matches determines the sample rate; if none match, `default_sample_rate` is applied.
+         * 
+         * @return builder
+         * 
+         */
         public Builder rules(@Nullable Output<List<TraceTailSamplingRulesRuleArgs>> rules) {
             $.rules = rules;
             return this;
         }
 
+        /**
+         * @param rules Ordered list of tail-sampling rules evaluated after the full trace is observed. The first rule whose `filter` matches determines the sample rate; if none match, `default_sample_rate` is applied.
+         * 
+         * @return builder
+         * 
+         */
         public Builder rules(List<TraceTailSamplingRulesRuleArgs> rules) {
             return rules(Output.of(rules));
         }
 
+        /**
+         * @param rules Ordered list of tail-sampling rules evaluated after the full trace is observed. The first rule whose `filter` matches determines the sample rate; if none match, `default_sample_rate` is applied.
+         * 
+         * @return builder
+         * 
+         */
         public Builder rules(TraceTailSamplingRulesRuleArgs... rules) {
             return rules(List.of(rules));
         }

@@ -15,16 +15,32 @@ public final class BlackholeAlertNotifierArgs extends com.pulumi.resources.Resou
 
     public static final BlackholeAlertNotifierArgs Empty = new BlackholeAlertNotifierArgs();
 
+    /**
+     * Display name of the notifier.
+     * 
+     */
     @Import(name="name", required=true)
     private Output<String> name;
 
+    /**
+     * @return Display name of the notifier.
+     * 
+     */
     public Output<String> name() {
         return this.name;
     }
 
+    /**
+     * Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     @Import(name="slug")
     private @Nullable Output<String> slug;
 
+    /**
+     * @return Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     public Optional<Output<String>> slug() {
         return Optional.ofNullable(this.slug);
     }
@@ -54,20 +70,44 @@ public final class BlackholeAlertNotifierArgs extends com.pulumi.resources.Resou
             $ = new BlackholeAlertNotifierArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param name Display name of the notifier.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(Output<String> name) {
             $.name = name;
             return this;
         }
 
+        /**
+         * @param name Display name of the notifier.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(String name) {
             return name(Output.of(name));
         }
 
+        /**
+         * @param slug Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slug(@Nullable Output<String> slug) {
             $.slug = slug;
             return this;
         }
 
+        /**
+         * @param slug Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slug(String slug) {
             return slug(Output.of(slug));
         }

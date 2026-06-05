@@ -10,9 +10,15 @@ using Pulumi;
 
 namespace Chronosphere.Pulumi
 {
+    /// <summary>
+    /// Singleton tree of consumption partitions that classify metric and log data into hierarchical groups so that consumption_budget resources can enforce quotas against them.
+    /// </summary>
     [PulumiResourceType("chronosphere:index/consumptionConfig:ConsumptionConfig")]
     public partial class ConsumptionConfig : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Child partitions of this partition. Evaluated in order; requests not matching any child fall into an implicit `default` child partition.
+        /// </summary>
         [Output("partitions")]
         public Output<ImmutableArray<Outputs.ConsumptionConfigPartition>> Partitions { get; private set; } = null!;
 
@@ -65,6 +71,10 @@ namespace Chronosphere.Pulumi
     {
         [Input("partitions")]
         private InputList<Inputs.ConsumptionConfigPartitionArgs>? _partitions;
+
+        /// <summary>
+        /// Child partitions of this partition. Evaluated in order; requests not matching any child fall into an implicit `default` child partition.
+        /// </summary>
         public InputList<Inputs.ConsumptionConfigPartitionArgs> Partitions
         {
             get => _partitions ?? (_partitions = new InputList<Inputs.ConsumptionConfigPartitionArgs>());
@@ -81,6 +91,10 @@ namespace Chronosphere.Pulumi
     {
         [Input("partitions")]
         private InputList<Inputs.ConsumptionConfigPartitionGetArgs>? _partitions;
+
+        /// <summary>
+        /// Child partitions of this partition. Evaluated in order; requests not matching any child fall into an implicit `default` child partition.
+        /// </summary>
         public InputList<Inputs.ConsumptionConfigPartitionGetArgs> Partitions
         {
             get => _partitions ?? (_partitions = new InputList<Inputs.ConsumptionConfigPartitionGetArgs>());

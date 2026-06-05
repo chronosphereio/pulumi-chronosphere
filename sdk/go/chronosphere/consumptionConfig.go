@@ -11,9 +11,11 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Singleton tree of consumption partitions that classify metric and log data into hierarchical groups so that consumptionBudget resources can enforce quotas against them.
 type ConsumptionConfig struct {
 	pulumi.CustomResourceState
 
+	// Child partitions of this partition. Evaluated in order; requests not matching any child fall into an implicit `default` child partition.
 	Partitions ConsumptionConfigPartitionArrayOutput `pulumi:"partitions"`
 }
 
@@ -47,10 +49,12 @@ func GetConsumptionConfig(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ConsumptionConfig resources.
 type consumptionConfigState struct {
+	// Child partitions of this partition. Evaluated in order; requests not matching any child fall into an implicit `default` child partition.
 	Partitions []ConsumptionConfigPartition `pulumi:"partitions"`
 }
 
 type ConsumptionConfigState struct {
+	// Child partitions of this partition. Evaluated in order; requests not matching any child fall into an implicit `default` child partition.
 	Partitions ConsumptionConfigPartitionArrayInput
 }
 
@@ -59,11 +63,13 @@ func (ConsumptionConfigState) ElementType() reflect.Type {
 }
 
 type consumptionConfigArgs struct {
+	// Child partitions of this partition. Evaluated in order; requests not matching any child fall into an implicit `default` child partition.
 	Partitions []ConsumptionConfigPartition `pulumi:"partitions"`
 }
 
 // The set of arguments for constructing a ConsumptionConfig resource.
 type ConsumptionConfigArgs struct {
+	// Child partitions of this partition. Evaluated in order; requests not matching any child fall into an implicit `default` child partition.
 	Partitions ConsumptionConfigPartitionArrayInput
 }
 
@@ -154,6 +160,7 @@ func (o ConsumptionConfigOutput) ToConsumptionConfigOutputWithContext(ctx contex
 	return o
 }
 
+// Child partitions of this partition. Evaluated in order; requests not matching any child fall into an implicit `default` child partition.
 func (o ConsumptionConfigOutput) Partitions() ConsumptionConfigPartitionArrayOutput {
 	return o.ApplyT(func(v *ConsumptionConfig) ConsumptionConfigPartitionArrayOutput { return v.Partitions }).(ConsumptionConfigPartitionArrayOutput)
 }

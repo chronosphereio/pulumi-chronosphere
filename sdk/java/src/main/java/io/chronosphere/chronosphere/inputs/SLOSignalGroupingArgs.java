@@ -17,16 +17,32 @@ public final class SLOSignalGroupingArgs extends com.pulumi.resources.ResourceAr
 
     public static final SLOSignalGroupingArgs Empty = new SLOSignalGroupingArgs();
 
+    /**
+     * Labels to group by. Series sharing the same values for these labels produce one signal. Defaults to no grouping (one signal per series).
+     * 
+     */
     @Import(name="labelNames")
     private @Nullable Output<List<String>> labelNames;
 
+    /**
+     * @return Labels to group by. Series sharing the same values for these labels produce one signal. Defaults to no grouping (one signal per series).
+     * 
+     */
     public Optional<Output<List<String>>> labelNames() {
         return Optional.ofNullable(this.labelNames);
     }
 
+    /**
+     * If true, treat each individual series as its own signal. Mutually exclusive with `label_names`.
+     * 
+     */
     @Import(name="signalPerSeries")
     private @Nullable Output<Boolean> signalPerSeries;
 
+    /**
+     * @return If true, treat each individual series as its own signal. Mutually exclusive with `label_names`.
+     * 
+     */
     public Optional<Output<Boolean>> signalPerSeries() {
         return Optional.ofNullable(this.signalPerSeries);
     }
@@ -56,24 +72,54 @@ public final class SLOSignalGroupingArgs extends com.pulumi.resources.ResourceAr
             $ = new SLOSignalGroupingArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param labelNames Labels to group by. Series sharing the same values for these labels produce one signal. Defaults to no grouping (one signal per series).
+         * 
+         * @return builder
+         * 
+         */
         public Builder labelNames(@Nullable Output<List<String>> labelNames) {
             $.labelNames = labelNames;
             return this;
         }
 
+        /**
+         * @param labelNames Labels to group by. Series sharing the same values for these labels produce one signal. Defaults to no grouping (one signal per series).
+         * 
+         * @return builder
+         * 
+         */
         public Builder labelNames(List<String> labelNames) {
             return labelNames(Output.of(labelNames));
         }
 
+        /**
+         * @param labelNames Labels to group by. Series sharing the same values for these labels produce one signal. Defaults to no grouping (one signal per series).
+         * 
+         * @return builder
+         * 
+         */
         public Builder labelNames(String... labelNames) {
             return labelNames(List.of(labelNames));
         }
 
+        /**
+         * @param signalPerSeries If true, treat each individual series as its own signal. Mutually exclusive with `label_names`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder signalPerSeries(@Nullable Output<Boolean> signalPerSeries) {
             $.signalPerSeries = signalPerSeries;
             return this;
         }
 
+        /**
+         * @param signalPerSeries If true, treat each individual series as its own signal. Mutually exclusive with `label_names`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder signalPerSeries(Boolean signalPerSeries) {
             return signalPerSeries(Output.of(signalPerSeries));
         }

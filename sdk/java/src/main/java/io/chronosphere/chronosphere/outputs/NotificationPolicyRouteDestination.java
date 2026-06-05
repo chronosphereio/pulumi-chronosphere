@@ -17,33 +17,89 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class NotificationPolicyRouteDestination {
+    /**
+     * @return If true, do not send notifications when alerts resolve. Defaults to false.
+     * 
+     */
     private @Nullable Boolean disableResolves;
+    /**
+     * @return Email delivery configuration for this destination.
+     * 
+     */
     private @Nullable NotificationPolicyRouteDestinationEmail email;
+    /**
+     * @return OpsGenie delivery configuration for this destination.
+     * 
+     */
     private @Nullable NotificationPolicyRouteDestinationOpsGenie opsGenie;
+    /**
+     * @return PagerDuty delivery configuration for this destination.
+     * 
+     */
     private @Nullable NotificationPolicyRouteDestinationPagerduty pagerduty;
+    /**
+     * @return Slack delivery configuration for this destination.
+     * 
+     */
     private @Nullable NotificationPolicyRouteDestinationSlack slack;
+    /**
+     * @return VictorOps (Splunk On-Call) delivery configuration for this destination.
+     * 
+     */
     private @Nullable NotificationPolicyRouteDestinationVictorOps victorOps;
+    /**
+     * @return Generic webhook delivery configuration for this destination.
+     * 
+     */
     private @Nullable NotificationPolicyRouteDestinationWebhook webhook;
 
     private NotificationPolicyRouteDestination() {}
+    /**
+     * @return If true, do not send notifications when alerts resolve. Defaults to false.
+     * 
+     */
     public Optional<Boolean> disableResolves() {
         return Optional.ofNullable(this.disableResolves);
     }
+    /**
+     * @return Email delivery configuration for this destination.
+     * 
+     */
     public Optional<NotificationPolicyRouteDestinationEmail> email() {
         return Optional.ofNullable(this.email);
     }
+    /**
+     * @return OpsGenie delivery configuration for this destination.
+     * 
+     */
     public Optional<NotificationPolicyRouteDestinationOpsGenie> opsGenie() {
         return Optional.ofNullable(this.opsGenie);
     }
+    /**
+     * @return PagerDuty delivery configuration for this destination.
+     * 
+     */
     public Optional<NotificationPolicyRouteDestinationPagerduty> pagerduty() {
         return Optional.ofNullable(this.pagerduty);
     }
+    /**
+     * @return Slack delivery configuration for this destination.
+     * 
+     */
     public Optional<NotificationPolicyRouteDestinationSlack> slack() {
         return Optional.ofNullable(this.slack);
     }
+    /**
+     * @return VictorOps (Splunk On-Call) delivery configuration for this destination.
+     * 
+     */
     public Optional<NotificationPolicyRouteDestinationVictorOps> victorOps() {
         return Optional.ofNullable(this.victorOps);
     }
+    /**
+     * @return Generic webhook delivery configuration for this destination.
+     * 
+     */
     public Optional<NotificationPolicyRouteDestinationWebhook> webhook() {
         return Optional.ofNullable(this.webhook);
     }

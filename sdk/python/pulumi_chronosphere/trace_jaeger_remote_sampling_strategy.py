@@ -22,6 +22,10 @@ class TraceJaegerRemoteSamplingStrategyArgs:
                  slug: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a TraceJaegerRemoteSamplingStrategy resource.
+        :param pulumi.Input['TraceJaegerRemoteSamplingStrategyAppliedStrategyArgs'] applied_strategy: Sampling strategy returned to the Jaeger client. Exactly one of `probabilistic_strategy`, `rate_limiting_strategy`, or `per_operation_strategies` must be set.
+        :param pulumi.Input[str] name: Display name of the Jaeger remote sampling strategy.
+        :param pulumi.Input[str] service_name: Value of `service.name` the strategy applies to. Jaeger SDK clients reporting under this service receive this sampling configuration.
+        :param pulumi.Input[str] slug: Stable identifier for the Jaeger remote sampling strategy. Generated from `name` if omitted. Immutable after creation.
         """
         pulumi.set(__self__, "applied_strategy", applied_strategy)
         pulumi.set(__self__, "name", name)
@@ -32,6 +36,9 @@ class TraceJaegerRemoteSamplingStrategyArgs:
     @property
     @pulumi.getter(name="appliedStrategy")
     def applied_strategy(self) -> pulumi.Input['TraceJaegerRemoteSamplingStrategyAppliedStrategyArgs']:
+        """
+        Sampling strategy returned to the Jaeger client. Exactly one of `probabilistic_strategy`, `rate_limiting_strategy`, or `per_operation_strategies` must be set.
+        """
         return pulumi.get(self, "applied_strategy")
 
     @applied_strategy.setter
@@ -41,6 +48,9 @@ class TraceJaegerRemoteSamplingStrategyArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        Display name of the Jaeger remote sampling strategy.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -50,6 +60,9 @@ class TraceJaegerRemoteSamplingStrategyArgs:
     @property
     @pulumi.getter(name="serviceName")
     def service_name(self) -> pulumi.Input[str]:
+        """
+        Value of `service.name` the strategy applies to. Jaeger SDK clients reporting under this service receive this sampling configuration.
+        """
         return pulumi.get(self, "service_name")
 
     @service_name.setter
@@ -59,6 +72,9 @@ class TraceJaegerRemoteSamplingStrategyArgs:
     @property
     @pulumi.getter
     def slug(self) -> Optional[pulumi.Input[str]]:
+        """
+        Stable identifier for the Jaeger remote sampling strategy. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @slug.setter
@@ -75,6 +91,10 @@ class _TraceJaegerRemoteSamplingStrategyState:
                  slug: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering TraceJaegerRemoteSamplingStrategy resources.
+        :param pulumi.Input['TraceJaegerRemoteSamplingStrategyAppliedStrategyArgs'] applied_strategy: Sampling strategy returned to the Jaeger client. Exactly one of `probabilistic_strategy`, `rate_limiting_strategy`, or `per_operation_strategies` must be set.
+        :param pulumi.Input[str] name: Display name of the Jaeger remote sampling strategy.
+        :param pulumi.Input[str] service_name: Value of `service.name` the strategy applies to. Jaeger SDK clients reporting under this service receive this sampling configuration.
+        :param pulumi.Input[str] slug: Stable identifier for the Jaeger remote sampling strategy. Generated from `name` if omitted. Immutable after creation.
         """
         if applied_strategy is not None:
             pulumi.set(__self__, "applied_strategy", applied_strategy)
@@ -88,6 +108,9 @@ class _TraceJaegerRemoteSamplingStrategyState:
     @property
     @pulumi.getter(name="appliedStrategy")
     def applied_strategy(self) -> Optional[pulumi.Input['TraceJaegerRemoteSamplingStrategyAppliedStrategyArgs']]:
+        """
+        Sampling strategy returned to the Jaeger client. Exactly one of `probabilistic_strategy`, `rate_limiting_strategy`, or `per_operation_strategies` must be set.
+        """
         return pulumi.get(self, "applied_strategy")
 
     @applied_strategy.setter
@@ -97,6 +120,9 @@ class _TraceJaegerRemoteSamplingStrategyState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Display name of the Jaeger remote sampling strategy.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -106,6 +132,9 @@ class _TraceJaegerRemoteSamplingStrategyState:
     @property
     @pulumi.getter(name="serviceName")
     def service_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Value of `service.name` the strategy applies to. Jaeger SDK clients reporting under this service receive this sampling configuration.
+        """
         return pulumi.get(self, "service_name")
 
     @service_name.setter
@@ -115,6 +144,9 @@ class _TraceJaegerRemoteSamplingStrategyState:
     @property
     @pulumi.getter
     def slug(self) -> Optional[pulumi.Input[str]]:
+        """
+        Stable identifier for the Jaeger remote sampling strategy. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @slug.setter
@@ -133,9 +165,38 @@ class TraceJaegerRemoteSamplingStrategy(pulumi.CustomResource):
                  slug: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a TraceJaegerRemoteSamplingStrategy resource with the given unique name, props, and options.
+        Per-service Jaeger remote sampling strategy (probabilistic, rate-limiting, or per-operation) served to instrumented applications so they can sample traces at the configured rate.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_chronosphere as chronosphere
+
+        probabilistic = chronosphere.TraceJaegerRemoteSamplingStrategy("probabilistic",
+            applied_strategy=chronosphere.TraceJaegerRemoteSamplingStrategyAppliedStrategyArgs(
+                probabilistic_strategy=chronosphere.TraceJaegerRemoteSamplingStrategyAppliedStrategyProbabilisticStrategyArgs(
+                    sampling_rate=0.01,
+                ),
+            ),
+            name="Probabilistic sampling for service A",
+            service_name="service-a")
+        rate_limited = chronosphere.TraceJaegerRemoteSamplingStrategy("rateLimited",
+            applied_strategy=chronosphere.TraceJaegerRemoteSamplingStrategyAppliedStrategyArgs(
+                rate_limiting_strategy=chronosphere.TraceJaegerRemoteSamplingStrategyAppliedStrategyRateLimitingStrategyArgs(
+                    max_traces_per_second=2,
+                ),
+            ),
+            name="Rate-limited sampling for service B",
+            service_name="service-b")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[pulumi.InputType['TraceJaegerRemoteSamplingStrategyAppliedStrategyArgs']] applied_strategy: Sampling strategy returned to the Jaeger client. Exactly one of `probabilistic_strategy`, `rate_limiting_strategy`, or `per_operation_strategies` must be set.
+        :param pulumi.Input[str] name: Display name of the Jaeger remote sampling strategy.
+        :param pulumi.Input[str] service_name: Value of `service.name` the strategy applies to. Jaeger SDK clients reporting under this service receive this sampling configuration.
+        :param pulumi.Input[str] slug: Stable identifier for the Jaeger remote sampling strategy. Generated from `name` if omitted. Immutable after creation.
         """
         ...
     @overload
@@ -144,7 +205,32 @@ class TraceJaegerRemoteSamplingStrategy(pulumi.CustomResource):
                  args: TraceJaegerRemoteSamplingStrategyArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a TraceJaegerRemoteSamplingStrategy resource with the given unique name, props, and options.
+        Per-service Jaeger remote sampling strategy (probabilistic, rate-limiting, or per-operation) served to instrumented applications so they can sample traces at the configured rate.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_chronosphere as chronosphere
+
+        probabilistic = chronosphere.TraceJaegerRemoteSamplingStrategy("probabilistic",
+            applied_strategy=chronosphere.TraceJaegerRemoteSamplingStrategyAppliedStrategyArgs(
+                probabilistic_strategy=chronosphere.TraceJaegerRemoteSamplingStrategyAppliedStrategyProbabilisticStrategyArgs(
+                    sampling_rate=0.01,
+                ),
+            ),
+            name="Probabilistic sampling for service A",
+            service_name="service-a")
+        rate_limited = chronosphere.TraceJaegerRemoteSamplingStrategy("rateLimited",
+            applied_strategy=chronosphere.TraceJaegerRemoteSamplingStrategyAppliedStrategyArgs(
+                rate_limiting_strategy=chronosphere.TraceJaegerRemoteSamplingStrategyAppliedStrategyRateLimitingStrategyArgs(
+                    max_traces_per_second=2,
+                ),
+            ),
+            name="Rate-limited sampling for service B",
+            service_name="service-b")
+        ```
+
         :param str resource_name: The name of the resource.
         :param TraceJaegerRemoteSamplingStrategyArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -204,6 +290,10 @@ class TraceJaegerRemoteSamplingStrategy(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[pulumi.InputType['TraceJaegerRemoteSamplingStrategyAppliedStrategyArgs']] applied_strategy: Sampling strategy returned to the Jaeger client. Exactly one of `probabilistic_strategy`, `rate_limiting_strategy`, or `per_operation_strategies` must be set.
+        :param pulumi.Input[str] name: Display name of the Jaeger remote sampling strategy.
+        :param pulumi.Input[str] service_name: Value of `service.name` the strategy applies to. Jaeger SDK clients reporting under this service receive this sampling configuration.
+        :param pulumi.Input[str] slug: Stable identifier for the Jaeger remote sampling strategy. Generated from `name` if omitted. Immutable after creation.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -218,20 +308,32 @@ class TraceJaegerRemoteSamplingStrategy(pulumi.CustomResource):
     @property
     @pulumi.getter(name="appliedStrategy")
     def applied_strategy(self) -> pulumi.Output['outputs.TraceJaegerRemoteSamplingStrategyAppliedStrategy']:
+        """
+        Sampling strategy returned to the Jaeger client. Exactly one of `probabilistic_strategy`, `rate_limiting_strategy`, or `per_operation_strategies` must be set.
+        """
         return pulumi.get(self, "applied_strategy")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        Display name of the Jaeger remote sampling strategy.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="serviceName")
     def service_name(self) -> pulumi.Output[str]:
+        """
+        Value of `service.name` the strategy applies to. Jaeger SDK clients reporting under this service receive this sampling configuration.
+        """
         return pulumi.get(self, "service_name")
 
     @property
     @pulumi.getter
     def slug(self) -> pulumi.Output[str]:
+        """
+        Stable identifier for the Jaeger remote sampling strategy. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 

@@ -10,27 +10,101 @@ using Pulumi;
 
 namespace Chronosphere.Pulumi
 {
+    /// <summary>
+    /// A LogScale alert that runs a saved LogScale query on a schedule and fires the configured logscale_action targets when the query returns results.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Pulumi = Chronosphere.Pulumi;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var email = new Pulumi.LogscaleAction("email", new()
+    ///     {
+    ///         Repository = "default",
+    ///         Name = "Email on-call",
+    ///         EmailAction = new Pulumi.Inputs.LogscaleActionEmailActionArgs
+    ///         {
+    ///             Recipients = new[]
+    ///             {
+    ///                 "oncall@example.com",
+    ///             },
+    ///             SubjectTemplate = "Logscale alert: {{alert.name}}",
+    ///             BodyTemplate = "{{query.results}}",
+    ///         },
+    ///     });
+    /// 
+    ///     var highErrorRate = new Pulumi.LogscaleAlert("highErrorRate", new()
+    ///     {
+    ///         Repository = "default",
+    ///         Name = "High error rate",
+    ///         Description = "More than 500 errors in a 60s window",
+    ///         AlertType = "STANDARD",
+    ///         Query = "level = ERROR | count(as=numErrors) | numErrors &gt; 500",
+    ///         TimeWindow = "60s",
+    ///         ThrottleDuration = "60s",
+    ///         ThrottleField = "service",
+    ///         Tags = new[]
+    ///         {
+    ///             "errors",
+    ///             "platform",
+    ///         },
+    ///         Disabled = false,
+    ///         ActionIds = new[]
+    ///         {
+    ///             email.Id,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// </summary>
     [PulumiResourceType("chronosphere:index/logscaleAlert:LogscaleAlert")]
     public partial class LogscaleAlert : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Slugs of LogScale actions to invoke when the alert triggers. The alert does not fire if this list is empty.
+        /// </summary>
         [Output("actionIds")]
         public Output<ImmutableArray<string>> ActionIds { get; private set; } = null!;
 
+        /// <summary>
+        /// Type of LogScale alert. `STANDARD` runs the query on a schedule over a time window; `FILTER` evaluates the query against each incoming event.
+        /// </summary>
         [Output("alertType")]
         public Output<string> AlertType { get; private set; } = null!;
 
+        /// <summary>
+        /// Human-readable description of the alert.
+        /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
+        /// <summary>
+        /// If `true`, the alert will not evaluate or trigger actions.
+        /// </summary>
         [Output("disabled")]
         public Output<bool?> Disabled { get; private set; } = null!;
 
+        /// <summary>
+        /// Display name of the LogScale alert.
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// LogScale query that the alert evaluates. Example: `level = ERROR | severity &gt; 3 | count(as=numErrors) | numErrors &gt; 500`.
+        /// </summary>
         [Output("query")]
         public Output<string?> Query { get; private set; } = null!;
 
+        /// <summary>
+        /// Name of the LogScale repository the alert belongs to. Immutable after creation.
+        /// </summary>
         [Output("repository")]
         public Output<string> Repository { get; private set; } = null!;
 
@@ -40,23 +114,32 @@ namespace Chronosphere.Pulumi
         [Output("runAsUser")]
         public Output<string> RunAsUser { get; private set; } = null!;
 
+        /// <summary>
+        /// Stable identifier for the LogScale alert. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Output("slug")]
         public Output<string> Slug { get; private set; } = null!;
 
+        /// <summary>
+        /// Tags attached to the alert for organization and filtering.
+        /// </summary>
         [Output("tags")]
         public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
 
         /// <summary>
-        /// Required for STANDARD type alerts, optional for FILTER type alerts
+        /// Minimum interval between consecutive triggers of the alert. Required for `STANDARD` alerts, optional for `FILTER` alerts.
         /// </summary>
         [Output("throttleDuration")]
         public Output<string?> ThrottleDuration { get; private set; } = null!;
 
+        /// <summary>
+        /// Optional field whose value is used to scope throttling, so the alert is throttled per distinct value of this field rather than globally.
+        /// </summary>
         [Output("throttleField")]
         public Output<string?> ThrottleField { get; private set; } = null!;
 
         /// <summary>
-        /// Required for STANDARD type alerts, ignored for FILTER type alerts
+        /// Lookback window for the alert query. Required for `STANDARD` alerts, ignored for `FILTER` alerts.
         /// </summary>
         [Output("timeWindow")]
         public Output<string?> TimeWindow { get; private set; } = null!;
@@ -110,27 +193,49 @@ namespace Chronosphere.Pulumi
     {
         [Input("actionIds")]
         private InputList<string>? _actionIds;
+
+        /// <summary>
+        /// Slugs of LogScale actions to invoke when the alert triggers. The alert does not fire if this list is empty.
+        /// </summary>
         public InputList<string> ActionIds
         {
             get => _actionIds ?? (_actionIds = new InputList<string>());
             set => _actionIds = value;
         }
 
+        /// <summary>
+        /// Type of LogScale alert. `STANDARD` runs the query on a schedule over a time window; `FILTER` evaluates the query against each incoming event.
+        /// </summary>
         [Input("alertType", required: true)]
         public Input<string> AlertType { get; set; } = null!;
 
+        /// <summary>
+        /// Human-readable description of the alert.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// If `true`, the alert will not evaluate or trigger actions.
+        /// </summary>
         [Input("disabled")]
         public Input<bool>? Disabled { get; set; }
 
+        /// <summary>
+        /// Display name of the LogScale alert.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// LogScale query that the alert evaluates. Example: `level = ERROR | severity &gt; 3 | count(as=numErrors) | numErrors &gt; 500`.
+        /// </summary>
         [Input("query")]
         public Input<string>? Query { get; set; }
 
+        /// <summary>
+        /// Name of the LogScale repository the alert belongs to. Immutable after creation.
+        /// </summary>
         [Input("repository", required: true)]
         public Input<string> Repository { get; set; } = null!;
 
@@ -140,11 +245,18 @@ namespace Chronosphere.Pulumi
         [Input("runAsUser", required: true)]
         public Input<string> RunAsUser { get; set; } = null!;
 
+        /// <summary>
+        /// Stable identifier for the LogScale alert. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 
         [Input("tags")]
         private InputList<string>? _tags;
+
+        /// <summary>
+        /// Tags attached to the alert for organization and filtering.
+        /// </summary>
         public InputList<string> Tags
         {
             get => _tags ?? (_tags = new InputList<string>());
@@ -152,16 +264,19 @@ namespace Chronosphere.Pulumi
         }
 
         /// <summary>
-        /// Required for STANDARD type alerts, optional for FILTER type alerts
+        /// Minimum interval between consecutive triggers of the alert. Required for `STANDARD` alerts, optional for `FILTER` alerts.
         /// </summary>
         [Input("throttleDuration")]
         public Input<string>? ThrottleDuration { get; set; }
 
+        /// <summary>
+        /// Optional field whose value is used to scope throttling, so the alert is throttled per distinct value of this field rather than globally.
+        /// </summary>
         [Input("throttleField")]
         public Input<string>? ThrottleField { get; set; }
 
         /// <summary>
-        /// Required for STANDARD type alerts, ignored for FILTER type alerts
+        /// Lookback window for the alert query. Required for `STANDARD` alerts, ignored for `FILTER` alerts.
         /// </summary>
         [Input("timeWindow")]
         public Input<string>? TimeWindow { get; set; }
@@ -176,27 +291,49 @@ namespace Chronosphere.Pulumi
     {
         [Input("actionIds")]
         private InputList<string>? _actionIds;
+
+        /// <summary>
+        /// Slugs of LogScale actions to invoke when the alert triggers. The alert does not fire if this list is empty.
+        /// </summary>
         public InputList<string> ActionIds
         {
             get => _actionIds ?? (_actionIds = new InputList<string>());
             set => _actionIds = value;
         }
 
+        /// <summary>
+        /// Type of LogScale alert. `STANDARD` runs the query on a schedule over a time window; `FILTER` evaluates the query against each incoming event.
+        /// </summary>
         [Input("alertType")]
         public Input<string>? AlertType { get; set; }
 
+        /// <summary>
+        /// Human-readable description of the alert.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// If `true`, the alert will not evaluate or trigger actions.
+        /// </summary>
         [Input("disabled")]
         public Input<bool>? Disabled { get; set; }
 
+        /// <summary>
+        /// Display name of the LogScale alert.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// LogScale query that the alert evaluates. Example: `level = ERROR | severity &gt; 3 | count(as=numErrors) | numErrors &gt; 500`.
+        /// </summary>
         [Input("query")]
         public Input<string>? Query { get; set; }
 
+        /// <summary>
+        /// Name of the LogScale repository the alert belongs to. Immutable after creation.
+        /// </summary>
         [Input("repository")]
         public Input<string>? Repository { get; set; }
 
@@ -206,11 +343,18 @@ namespace Chronosphere.Pulumi
         [Input("runAsUser")]
         public Input<string>? RunAsUser { get; set; }
 
+        /// <summary>
+        /// Stable identifier for the LogScale alert. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 
         [Input("tags")]
         private InputList<string>? _tags;
+
+        /// <summary>
+        /// Tags attached to the alert for organization and filtering.
+        /// </summary>
         public InputList<string> Tags
         {
             get => _tags ?? (_tags = new InputList<string>());
@@ -218,16 +362,19 @@ namespace Chronosphere.Pulumi
         }
 
         /// <summary>
-        /// Required for STANDARD type alerts, optional for FILTER type alerts
+        /// Minimum interval between consecutive triggers of the alert. Required for `STANDARD` alerts, optional for `FILTER` alerts.
         /// </summary>
         [Input("throttleDuration")]
         public Input<string>? ThrottleDuration { get; set; }
 
+        /// <summary>
+        /// Optional field whose value is used to scope throttling, so the alert is throttled per distinct value of this field rather than globally.
+        /// </summary>
         [Input("throttleField")]
         public Input<string>? ThrottleField { get; set; }
 
         /// <summary>
-        /// Required for STANDARD type alerts, ignored for FILTER type alerts
+        /// Lookback window for the alert query. Required for `STANDARD` alerts, ignored for `FILTER` alerts.
         /// </summary>
         [Input("timeWindow")]
         public Input<string>? TimeWindow { get; set; }

@@ -18,30 +18,62 @@ public final class ConsumptionConfigPartitionPartitionPartitionPartitionArgs ext
 
     public static final ConsumptionConfigPartitionPartitionPartitionPartitionArgs Empty = new ConsumptionConfigPartitionPartitionPartitionPartitionArgs();
 
+    /**
+     * Filters identifying which data belongs to this partition. Filters are AND-ed together: a request must match every filter to be assigned to the partition. At most one `IN` filter and one `NOT_IN` filter can be specified.
+     * 
+     */
     @Import(name="filters")
     private @Nullable Output<List<ConsumptionConfigPartitionPartitionPartitionPartitionFilterArgs>> filters;
 
+    /**
+     * @return Filters identifying which data belongs to this partition. Filters are AND-ed together: a request must match every filter to be assigned to the partition. At most one `IN` filter and one `NOT_IN` filter can be specified.
+     * 
+     */
     public Optional<Output<List<ConsumptionConfigPartitionPartitionPartitionPartitionFilterArgs>>> filters() {
         return Optional.ofNullable(this.filters);
     }
 
+    /**
+     * Display name of the partition. Must be unique within its parent partition. Can be changed after creation.
+     * 
+     */
     @Import(name="name")
     private @Nullable Output<String> name;
 
+    /**
+     * @return Display name of the partition. Must be unique within its parent partition. Can be changed after creation.
+     * 
+     */
     public Optional<Output<String>> name() {
         return Optional.ofNullable(this.name);
     }
 
+    /**
+     * Child partitions of this partition. Evaluated in order; requests not matching any child fall into an implicit `default` child partition.
+     * 
+     */
     @Import(name="partitions")
     private @Nullable Output<List<ConsumptionConfigPartitionPartitionPartitionPartitionPartitionArgs>> partitions;
 
+    /**
+     * @return Child partitions of this partition. Evaluated in order; requests not matching any child fall into an implicit `default` child partition.
+     * 
+     */
     public Optional<Output<List<ConsumptionConfigPartitionPartitionPartitionPartitionPartitionArgs>>> partitions() {
         return Optional.ofNullable(this.partitions);
     }
 
+    /**
+     * Stable identifier of the partition. Must be unique within its parent partition. Immutable after creation.
+     * 
+     */
     @Import(name="slug")
     private @Nullable Output<String> slug;
 
+    /**
+     * @return Stable identifier of the partition. Must be unique within its parent partition. Immutable after creation.
+     * 
+     */
     public Optional<Output<String>> slug() {
         return Optional.ofNullable(this.slug);
     }
@@ -73,46 +105,106 @@ public final class ConsumptionConfigPartitionPartitionPartitionPartitionArgs ext
             $ = new ConsumptionConfigPartitionPartitionPartitionPartitionArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param filters Filters identifying which data belongs to this partition. Filters are AND-ed together: a request must match every filter to be assigned to the partition. At most one `IN` filter and one `NOT_IN` filter can be specified.
+         * 
+         * @return builder
+         * 
+         */
         public Builder filters(@Nullable Output<List<ConsumptionConfigPartitionPartitionPartitionPartitionFilterArgs>> filters) {
             $.filters = filters;
             return this;
         }
 
+        /**
+         * @param filters Filters identifying which data belongs to this partition. Filters are AND-ed together: a request must match every filter to be assigned to the partition. At most one `IN` filter and one `NOT_IN` filter can be specified.
+         * 
+         * @return builder
+         * 
+         */
         public Builder filters(List<ConsumptionConfigPartitionPartitionPartitionPartitionFilterArgs> filters) {
             return filters(Output.of(filters));
         }
 
+        /**
+         * @param filters Filters identifying which data belongs to this partition. Filters are AND-ed together: a request must match every filter to be assigned to the partition. At most one `IN` filter and one `NOT_IN` filter can be specified.
+         * 
+         * @return builder
+         * 
+         */
         public Builder filters(ConsumptionConfigPartitionPartitionPartitionPartitionFilterArgs... filters) {
             return filters(List.of(filters));
         }
 
+        /**
+         * @param name Display name of the partition. Must be unique within its parent partition. Can be changed after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(@Nullable Output<String> name) {
             $.name = name;
             return this;
         }
 
+        /**
+         * @param name Display name of the partition. Must be unique within its parent partition. Can be changed after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(String name) {
             return name(Output.of(name));
         }
 
+        /**
+         * @param partitions Child partitions of this partition. Evaluated in order; requests not matching any child fall into an implicit `default` child partition.
+         * 
+         * @return builder
+         * 
+         */
         public Builder partitions(@Nullable Output<List<ConsumptionConfigPartitionPartitionPartitionPartitionPartitionArgs>> partitions) {
             $.partitions = partitions;
             return this;
         }
 
+        /**
+         * @param partitions Child partitions of this partition. Evaluated in order; requests not matching any child fall into an implicit `default` child partition.
+         * 
+         * @return builder
+         * 
+         */
         public Builder partitions(List<ConsumptionConfigPartitionPartitionPartitionPartitionPartitionArgs> partitions) {
             return partitions(Output.of(partitions));
         }
 
+        /**
+         * @param partitions Child partitions of this partition. Evaluated in order; requests not matching any child fall into an implicit `default` child partition.
+         * 
+         * @return builder
+         * 
+         */
         public Builder partitions(ConsumptionConfigPartitionPartitionPartitionPartitionPartitionArgs... partitions) {
             return partitions(List.of(partitions));
         }
 
+        /**
+         * @param slug Stable identifier of the partition. Must be unique within its parent partition. Immutable after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slug(@Nullable Output<String> slug) {
             $.slug = slug;
             return this;
         }
 
+        /**
+         * @param slug Stable identifier of the partition. Must be unique within its parent partition. Immutable after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slug(String slug) {
             return slug(Output.of(slug));
         }

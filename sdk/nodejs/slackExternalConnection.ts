@@ -4,6 +4,21 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Workspace-scoped Slack credentials that downstream notifiers and LogScale actions can reference. Centralizes webhook URLs and bot tokens so they aren't duplicated across notifiers; modern equivalent of the per-notifier credentials.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as chronosphere from "@pulumi-chronosphere/pulumi-chronosphere";
+ *
+ * const slack = new chronosphere.SlackExternalConnection("slack", {
+ *     apiUrl: "https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX",
+ *     name: "Slack",
+ * });
+ * ```
+ */
 export class SlackExternalConnection extends pulumi.CustomResource {
     /**
      * Get an existing SlackExternalConnection resource's state with the given name, ID, and optional extra
@@ -32,9 +47,21 @@ export class SlackExternalConnection extends pulumi.CustomResource {
         return obj['__pulumiType'] === SlackExternalConnection.__pulumiType;
     }
 
+    /**
+     * Slack incoming webhook URL used to deliver messages. Treat as a secret.
+     */
     public readonly apiUrl!: pulumi.Output<string | undefined>;
+    /**
+     * Display name of the external connection.
+     */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+     */
     public readonly slug!: pulumi.Output<string>;
+    /**
+     * Slack bot or app token used to authenticate API calls when posting messages. Treat as a secret.
+     */
     public readonly token!: pulumi.Output<string | undefined>;
 
     /**
@@ -75,9 +102,21 @@ export class SlackExternalConnection extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SlackExternalConnection resources.
  */
 export interface SlackExternalConnectionState {
+    /**
+     * Slack incoming webhook URL used to deliver messages. Treat as a secret.
+     */
     apiUrl?: pulumi.Input<string>;
+    /**
+     * Display name of the external connection.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+     */
     slug?: pulumi.Input<string>;
+    /**
+     * Slack bot or app token used to authenticate API calls when posting messages. Treat as a secret.
+     */
     token?: pulumi.Input<string>;
 }
 
@@ -85,8 +124,20 @@ export interface SlackExternalConnectionState {
  * The set of arguments for constructing a SlackExternalConnection resource.
  */
 export interface SlackExternalConnectionArgs {
+    /**
+     * Slack incoming webhook URL used to deliver messages. Treat as a secret.
+     */
     apiUrl?: pulumi.Input<string>;
+    /**
+     * Display name of the external connection.
+     */
     name: pulumi.Input<string>;
+    /**
+     * Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+     */
     slug?: pulumi.Input<string>;
+    /**
+     * Slack bot or app token used to authenticate API calls when posting messages. Treat as a secret.
+     */
     token?: pulumi.Input<string>;
 }

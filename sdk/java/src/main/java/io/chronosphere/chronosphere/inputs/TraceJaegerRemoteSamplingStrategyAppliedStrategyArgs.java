@@ -17,23 +17,47 @@ public final class TraceJaegerRemoteSamplingStrategyAppliedStrategyArgs extends 
 
     public static final TraceJaegerRemoteSamplingStrategyAppliedStrategyArgs Empty = new TraceJaegerRemoteSamplingStrategyAppliedStrategyArgs();
 
+    /**
+     * Per-operation sampling configuration with a service-wide default and optional per-operation overrides.
+     * 
+     */
     @Import(name="perOperationStrategies")
     private @Nullable Output<TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationStrategiesArgs> perOperationStrategies;
 
+    /**
+     * @return Per-operation sampling configuration with a service-wide default and optional per-operation overrides.
+     * 
+     */
     public Optional<Output<TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationStrategiesArgs>> perOperationStrategies() {
         return Optional.ofNullable(this.perOperationStrategies);
     }
 
+    /**
+     * Probabilistic sampling: each trace is sampled with a fixed probability.
+     * 
+     */
     @Import(name="probabilisticStrategy")
     private @Nullable Output<TraceJaegerRemoteSamplingStrategyAppliedStrategyProbabilisticStrategyArgs> probabilisticStrategy;
 
+    /**
+     * @return Probabilistic sampling: each trace is sampled with a fixed probability.
+     * 
+     */
     public Optional<Output<TraceJaegerRemoteSamplingStrategyAppliedStrategyProbabilisticStrategyArgs>> probabilisticStrategy() {
         return Optional.ofNullable(this.probabilisticStrategy);
     }
 
+    /**
+     * Rate-limiting sampling: cap the number of sampled traces per second using a leaky bucket.
+     * 
+     */
     @Import(name="rateLimitingStrategy")
     private @Nullable Output<TraceJaegerRemoteSamplingStrategyAppliedStrategyRateLimitingStrategyArgs> rateLimitingStrategy;
 
+    /**
+     * @return Rate-limiting sampling: cap the number of sampled traces per second using a leaky bucket.
+     * 
+     */
     public Optional<Output<TraceJaegerRemoteSamplingStrategyAppliedStrategyRateLimitingStrategyArgs>> rateLimitingStrategy() {
         return Optional.ofNullable(this.rateLimitingStrategy);
     }
@@ -64,29 +88,65 @@ public final class TraceJaegerRemoteSamplingStrategyAppliedStrategyArgs extends 
             $ = new TraceJaegerRemoteSamplingStrategyAppliedStrategyArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param perOperationStrategies Per-operation sampling configuration with a service-wide default and optional per-operation overrides.
+         * 
+         * @return builder
+         * 
+         */
         public Builder perOperationStrategies(@Nullable Output<TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationStrategiesArgs> perOperationStrategies) {
             $.perOperationStrategies = perOperationStrategies;
             return this;
         }
 
+        /**
+         * @param perOperationStrategies Per-operation sampling configuration with a service-wide default and optional per-operation overrides.
+         * 
+         * @return builder
+         * 
+         */
         public Builder perOperationStrategies(TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationStrategiesArgs perOperationStrategies) {
             return perOperationStrategies(Output.of(perOperationStrategies));
         }
 
+        /**
+         * @param probabilisticStrategy Probabilistic sampling: each trace is sampled with a fixed probability.
+         * 
+         * @return builder
+         * 
+         */
         public Builder probabilisticStrategy(@Nullable Output<TraceJaegerRemoteSamplingStrategyAppliedStrategyProbabilisticStrategyArgs> probabilisticStrategy) {
             $.probabilisticStrategy = probabilisticStrategy;
             return this;
         }
 
+        /**
+         * @param probabilisticStrategy Probabilistic sampling: each trace is sampled with a fixed probability.
+         * 
+         * @return builder
+         * 
+         */
         public Builder probabilisticStrategy(TraceJaegerRemoteSamplingStrategyAppliedStrategyProbabilisticStrategyArgs probabilisticStrategy) {
             return probabilisticStrategy(Output.of(probabilisticStrategy));
         }
 
+        /**
+         * @param rateLimitingStrategy Rate-limiting sampling: cap the number of sampled traces per second using a leaky bucket.
+         * 
+         * @return builder
+         * 
+         */
         public Builder rateLimitingStrategy(@Nullable Output<TraceJaegerRemoteSamplingStrategyAppliedStrategyRateLimitingStrategyArgs> rateLimitingStrategy) {
             $.rateLimitingStrategy = rateLimitingStrategy;
             return this;
         }
 
+        /**
+         * @param rateLimitingStrategy Rate-limiting sampling: cap the number of sampled traces per second using a leaky bucket.
+         * 
+         * @return builder
+         * 
+         */
         public Builder rateLimitingStrategy(TraceJaegerRemoteSamplingStrategyAppliedStrategyRateLimitingStrategyArgs rateLimitingStrategy) {
             return rateLimitingStrategy(Output.of(rateLimitingStrategy));
         }

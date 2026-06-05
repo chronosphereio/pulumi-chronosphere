@@ -13,16 +13,32 @@ public final class RollupRuleStoragePoliciesArgs extends com.pulumi.resources.Re
 
     public static final RollupRuleStoragePoliciesArgs Empty = new RollupRuleStoragePoliciesArgs();
 
+    /**
+     * Resolution at which rolled-up data points are stored.
+     * 
+     */
     @Import(name="resolution", required=true)
     private Output<String> resolution;
 
+    /**
+     * @return Resolution at which rolled-up data points are stored.
+     * 
+     */
     public Output<String> resolution() {
         return this.resolution;
     }
 
+    /**
+     * Retention duration for rolled-up data points.
+     * 
+     */
     @Import(name="retention", required=true)
     private Output<String> retention;
 
+    /**
+     * @return Retention duration for rolled-up data points.
+     * 
+     */
     public Output<String> retention() {
         return this.retention;
     }
@@ -52,20 +68,44 @@ public final class RollupRuleStoragePoliciesArgs extends com.pulumi.resources.Re
             $ = new RollupRuleStoragePoliciesArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param resolution Resolution at which rolled-up data points are stored.
+         * 
+         * @return builder
+         * 
+         */
         public Builder resolution(Output<String> resolution) {
             $.resolution = resolution;
             return this;
         }
 
+        /**
+         * @param resolution Resolution at which rolled-up data points are stored.
+         * 
+         * @return builder
+         * 
+         */
         public Builder resolution(String resolution) {
             return resolution(Output.of(resolution));
         }
 
+        /**
+         * @param retention Retention duration for rolled-up data points.
+         * 
+         * @return builder
+         * 
+         */
         public Builder retention(Output<String> retention) {
             $.retention = retention;
             return this;
         }
 
+        /**
+         * @param retention Retention duration for rolled-up data points.
+         * 
+         * @return builder
+         * 
+         */
         public Builder retention(String retention) {
             return retention(Output.of(retention));
         }

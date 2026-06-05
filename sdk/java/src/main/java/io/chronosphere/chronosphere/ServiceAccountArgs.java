@@ -17,30 +17,62 @@ public final class ServiceAccountArgs extends com.pulumi.resources.ResourceArgs 
 
     public static final ServiceAccountArgs Empty = new ServiceAccountArgs();
 
+    /**
+     * Display name of the service account. Immutable after creation.
+     * 
+     */
     @Import(name="name", required=true)
     private Output<String> name;
 
+    /**
+     * @return Display name of the service account. Immutable after creation.
+     * 
+     */
     public Output<String> name() {
         return this.name;
     }
 
+    /**
+     * Restricts the service account to a specific permission and optional metric label scope. Exactly one of `unrestricted` or `restriction` must be set.
+     * 
+     */
     @Import(name="restriction")
     private @Nullable Output<ServiceAccountRestrictionArgs> restriction;
 
+    /**
+     * @return Restricts the service account to a specific permission and optional metric label scope. Exactly one of `unrestricted` or `restriction` must be set.
+     * 
+     */
     public Optional<Output<ServiceAccountRestrictionArgs>> restriction() {
         return Optional.ofNullable(this.restriction);
     }
 
+    /**
+     * Stable identifier for the service account. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     @Import(name="slug")
     private @Nullable Output<String> slug;
 
+    /**
+     * @return Stable identifier for the service account. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     public Optional<Output<String>> slug() {
         return Optional.ofNullable(this.slug);
     }
 
+    /**
+     * If true, grants the service account access to all Chronosphere APIs within the access controls defined by team membership. Exactly one of `unrestricted` or `restriction` must be set.
+     * 
+     */
     @Import(name="unrestricted")
     private @Nullable Output<Boolean> unrestricted;
 
+    /**
+     * @return If true, grants the service account access to all Chronosphere APIs within the access controls defined by team membership. Exactly one of `unrestricted` or `restriction` must be set.
+     * 
+     */
     public Optional<Output<Boolean>> unrestricted() {
         return Optional.ofNullable(this.unrestricted);
     }
@@ -72,38 +104,86 @@ public final class ServiceAccountArgs extends com.pulumi.resources.ResourceArgs 
             $ = new ServiceAccountArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param name Display name of the service account. Immutable after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(Output<String> name) {
             $.name = name;
             return this;
         }
 
+        /**
+         * @param name Display name of the service account. Immutable after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(String name) {
             return name(Output.of(name));
         }
 
+        /**
+         * @param restriction Restricts the service account to a specific permission and optional metric label scope. Exactly one of `unrestricted` or `restriction` must be set.
+         * 
+         * @return builder
+         * 
+         */
         public Builder restriction(@Nullable Output<ServiceAccountRestrictionArgs> restriction) {
             $.restriction = restriction;
             return this;
         }
 
+        /**
+         * @param restriction Restricts the service account to a specific permission and optional metric label scope. Exactly one of `unrestricted` or `restriction` must be set.
+         * 
+         * @return builder
+         * 
+         */
         public Builder restriction(ServiceAccountRestrictionArgs restriction) {
             return restriction(Output.of(restriction));
         }
 
+        /**
+         * @param slug Stable identifier for the service account. Generated from `name` if omitted. Immutable after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slug(@Nullable Output<String> slug) {
             $.slug = slug;
             return this;
         }
 
+        /**
+         * @param slug Stable identifier for the service account. Generated from `name` if omitted. Immutable after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slug(String slug) {
             return slug(Output.of(slug));
         }
 
+        /**
+         * @param unrestricted If true, grants the service account access to all Chronosphere APIs within the access controls defined by team membership. Exactly one of `unrestricted` or `restriction` must be set.
+         * 
+         * @return builder
+         * 
+         */
         public Builder unrestricted(@Nullable Output<Boolean> unrestricted) {
             $.unrestricted = unrestricted;
             return this;
         }
 
+        /**
+         * @param unrestricted If true, grants the service account access to all Chronosphere APIs within the access controls defined by team membership. Exactly one of `unrestricted` or `restriction` must be set.
+         * 
+         * @return builder
+         * 
+         */
         public Builder unrestricted(Boolean unrestricted) {
             return unrestricted(Output.of(unrestricted));
         }

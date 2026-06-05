@@ -17,37 +17,77 @@ public final class DerivedMetricState extends com.pulumi.resources.ResourceArgs 
 
     public static final DerivedMetricState Empty = new DerivedMetricState();
 
+    /**
+     * Free-form description of the derived metric.
+     * 
+     */
     @Import(name="description")
     private @Nullable Output<String> description;
 
+    /**
+     * @return Free-form description of the derived metric.
+     * 
+     */
     public Optional<Output<String>> description() {
         return Optional.ofNullable(this.description);
     }
 
+    /**
+     * Name of the derived metric as referenced in queries. Must be unique across the system.
+     * 
+     */
     @Import(name="metricName")
     private @Nullable Output<String> metricName;
 
+    /**
+     * @return Name of the derived metric as referenced in queries. Must be unique across the system.
+     * 
+     */
     public Optional<Output<String>> metricName() {
         return Optional.ofNullable(this.metricName);
     }
 
+    /**
+     * Variable name as referenced in `expr` (e.g. `service` for `$service`).
+     * 
+     */
     @Import(name="name")
     private @Nullable Output<String> name;
 
+    /**
+     * @return Variable name as referenced in `expr` (e.g. `service` for `$service`).
+     * 
+     */
     public Optional<Output<String>> name() {
         return Optional.ofNullable(this.name);
     }
 
+    /**
+     * Ordered list of selector/query pairs. When the derived metric is used, the first entry whose `selector` matches the usage&#39;s labels supplies the PromQL `query`.
+     * 
+     */
     @Import(name="queries")
     private @Nullable Output<List<DerivedMetricQueryArgs>> queries;
 
+    /**
+     * @return Ordered list of selector/query pairs. When the derived metric is used, the first entry whose `selector` matches the usage&#39;s labels supplies the PromQL `query`.
+     * 
+     */
     public Optional<Output<List<DerivedMetricQueryArgs>>> queries() {
         return Optional.ofNullable(this.queries);
     }
 
+    /**
+     * Stable identifier for the derived metric. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     @Import(name="slug")
     private @Nullable Output<String> slug;
 
+    /**
+     * @return Stable identifier for the derived metric. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     public Optional<Output<String>> slug() {
         return Optional.ofNullable(this.slug);
     }
@@ -80,51 +120,117 @@ public final class DerivedMetricState extends com.pulumi.resources.ResourceArgs 
             $ = new DerivedMetricState(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param description Free-form description of the derived metric.
+         * 
+         * @return builder
+         * 
+         */
         public Builder description(@Nullable Output<String> description) {
             $.description = description;
             return this;
         }
 
+        /**
+         * @param description Free-form description of the derived metric.
+         * 
+         * @return builder
+         * 
+         */
         public Builder description(String description) {
             return description(Output.of(description));
         }
 
+        /**
+         * @param metricName Name of the derived metric as referenced in queries. Must be unique across the system.
+         * 
+         * @return builder
+         * 
+         */
         public Builder metricName(@Nullable Output<String> metricName) {
             $.metricName = metricName;
             return this;
         }
 
+        /**
+         * @param metricName Name of the derived metric as referenced in queries. Must be unique across the system.
+         * 
+         * @return builder
+         * 
+         */
         public Builder metricName(String metricName) {
             return metricName(Output.of(metricName));
         }
 
+        /**
+         * @param name Variable name as referenced in `expr` (e.g. `service` for `$service`).
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(@Nullable Output<String> name) {
             $.name = name;
             return this;
         }
 
+        /**
+         * @param name Variable name as referenced in `expr` (e.g. `service` for `$service`).
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(String name) {
             return name(Output.of(name));
         }
 
+        /**
+         * @param queries Ordered list of selector/query pairs. When the derived metric is used, the first entry whose `selector` matches the usage&#39;s labels supplies the PromQL `query`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder queries(@Nullable Output<List<DerivedMetricQueryArgs>> queries) {
             $.queries = queries;
             return this;
         }
 
+        /**
+         * @param queries Ordered list of selector/query pairs. When the derived metric is used, the first entry whose `selector` matches the usage&#39;s labels supplies the PromQL `query`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder queries(List<DerivedMetricQueryArgs> queries) {
             return queries(Output.of(queries));
         }
 
+        /**
+         * @param queries Ordered list of selector/query pairs. When the derived metric is used, the first entry whose `selector` matches the usage&#39;s labels supplies the PromQL `query`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder queries(DerivedMetricQueryArgs... queries) {
             return queries(List.of(queries));
         }
 
+        /**
+         * @param slug Stable identifier for the derived metric. Generated from `name` if omitted. Immutable after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slug(@Nullable Output<String> slug) {
             $.slug = slug;
             return this;
         }
 
+        /**
+         * @param slug Stable identifier for the derived metric. Generated from `name` if omitted. Immutable after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slug(String slug) {
             return slug(Output.of(slug));
         }

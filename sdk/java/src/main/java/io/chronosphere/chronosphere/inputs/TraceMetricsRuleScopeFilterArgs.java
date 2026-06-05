@@ -16,9 +16,17 @@ public final class TraceMetricsRuleScopeFilterArgs extends com.pulumi.resources.
 
     public static final TraceMetricsRuleScopeFilterArgs Empty = new TraceMetricsRuleScopeFilterArgs();
 
+    /**
+     * Span conditions that select which spans are aggregated. Spans must match at least one block to be included.
+     * 
+     */
     @Import(name="spanScopes")
     private @Nullable Output<List<TraceMetricsRuleScopeFilterSpanScopeArgs>> spanScopes;
 
+    /**
+     * @return Span conditions that select which spans are aggregated. Spans must match at least one block to be included.
+     * 
+     */
     public Optional<Output<List<TraceMetricsRuleScopeFilterSpanScopeArgs>>> spanScopes() {
         return Optional.ofNullable(this.spanScopes);
     }
@@ -47,15 +55,33 @@ public final class TraceMetricsRuleScopeFilterArgs extends com.pulumi.resources.
             $ = new TraceMetricsRuleScopeFilterArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param spanScopes Span conditions that select which spans are aggregated. Spans must match at least one block to be included.
+         * 
+         * @return builder
+         * 
+         */
         public Builder spanScopes(@Nullable Output<List<TraceMetricsRuleScopeFilterSpanScopeArgs>> spanScopes) {
             $.spanScopes = spanScopes;
             return this;
         }
 
+        /**
+         * @param spanScopes Span conditions that select which spans are aggregated. Spans must match at least one block to be included.
+         * 
+         * @return builder
+         * 
+         */
         public Builder spanScopes(List<TraceMetricsRuleScopeFilterSpanScopeArgs> spanScopes) {
             return spanScopes(Output.of(spanScopes));
         }
 
+        /**
+         * @param spanScopes Span conditions that select which spans are aggregated. Spans must match at least one block to be included.
+         * 
+         * @return builder
+         * 
+         */
         public Builder spanScopes(TraceMetricsRuleScopeFilterSpanScopeArgs... spanScopes) {
             return spanScopes(List.of(spanScopes));
         }

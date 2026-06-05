@@ -14,8 +14,17 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartition
     {
+        /// <summary>
+        /// Filters identifying which data belongs to this partition. Filters are AND-ed together: a request must match every filter to be assigned to the partition. At most one `IN` filter and one `NOT_IN` filter can be specified.
+        /// </summary>
         public readonly ImmutableArray<Outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilter> Filters;
+        /// <summary>
+        /// Display name of the partition. Must be unique within its parent partition. Can be changed after creation.
+        /// </summary>
         public readonly string? Name;
+        /// <summary>
+        /// Stable identifier of the partition. Must be unique within its parent partition. Immutable after creation.
+        /// </summary>
         public readonly string? Slug;
 
         [OutputConstructor]

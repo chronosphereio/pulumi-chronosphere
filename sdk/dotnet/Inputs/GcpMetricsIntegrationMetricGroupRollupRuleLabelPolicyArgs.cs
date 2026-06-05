@@ -15,6 +15,10 @@ namespace Chronosphere.Pulumi.Inputs
     {
         [Input("keeps")]
         private InputList<Inputs.GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepArgs>? _keeps;
+
+        /// <summary>
+        /// Labels to retain after aggregation.
+        /// </summary>
         public InputList<Inputs.GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepArgs> Keeps
         {
             get => _keeps ?? (_keeps = new InputList<Inputs.GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepArgs>());

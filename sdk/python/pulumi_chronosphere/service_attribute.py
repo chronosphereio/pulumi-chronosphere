@@ -198,7 +198,20 @@ class ServiceAttribute(pulumi.CustomResource):
                  team_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a ServiceAttribute resource with the given unique name, props, and options.
+        Associates metadata with an existing service, such as a human-readable name, description, owning team, and default notification policy. The service itself must already exist; this resource only attaches attributes to it.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_chronosphere as chronosphere
+
+        gateway = chronosphere.ServiceAttribute("gateway",
+            description="Edge API gateway",
+            name="Gateway",
+            service_slug="gateway")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: Human-readable description of the service
@@ -214,7 +227,20 @@ class ServiceAttribute(pulumi.CustomResource):
                  args: ServiceAttributeArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a ServiceAttribute resource with the given unique name, props, and options.
+        Associates metadata with an existing service, such as a human-readable name, description, owning team, and default notification policy. The service itself must already exist; this resource only attaches attributes to it.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_chronosphere as chronosphere
+
+        gateway = chronosphere.ServiceAttribute("gateway",
+            description="Edge API gateway",
+            name="Gateway",
+            service_slug="gateway")
+        ```
+
         :param str resource_name: The name of the resource.
         :param ServiceAttributeArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

@@ -12,11 +12,14 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Singleton config that allocates a portion of the org's log ingest quota to each dataset by priority, controlling which logs are kept when the quota is exceeded.
 type LogAllocationConfig struct {
 	pulumi.CustomResourceState
 
+	// Per-dataset allocation and priority overrides. Datasets are evaluated in order; the first match wins.
 	DatasetAllocations LogAllocationConfigDatasetAllocationArrayOutput `pulumi:"datasetAllocations"`
-	DefaultDataset     LogAllocationConfigDefaultDatasetOutput         `pulumi:"defaultDataset"`
+	// Allocation and priority configuration for the default dataset, which receives any logs not matched by a `datasetAllocation` entry.
+	DefaultDataset LogAllocationConfigDefaultDatasetOutput `pulumi:"defaultDataset"`
 }
 
 // NewLogAllocationConfig registers a new resource with the given unique name, arguments, and options.
@@ -52,13 +55,17 @@ func GetLogAllocationConfig(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering LogAllocationConfig resources.
 type logAllocationConfigState struct {
+	// Per-dataset allocation and priority overrides. Datasets are evaluated in order; the first match wins.
 	DatasetAllocations []LogAllocationConfigDatasetAllocation `pulumi:"datasetAllocations"`
-	DefaultDataset     *LogAllocationConfigDefaultDataset     `pulumi:"defaultDataset"`
+	// Allocation and priority configuration for the default dataset, which receives any logs not matched by a `datasetAllocation` entry.
+	DefaultDataset *LogAllocationConfigDefaultDataset `pulumi:"defaultDataset"`
 }
 
 type LogAllocationConfigState struct {
+	// Per-dataset allocation and priority overrides. Datasets are evaluated in order; the first match wins.
 	DatasetAllocations LogAllocationConfigDatasetAllocationArrayInput
-	DefaultDataset     LogAllocationConfigDefaultDatasetPtrInput
+	// Allocation and priority configuration for the default dataset, which receives any logs not matched by a `datasetAllocation` entry.
+	DefaultDataset LogAllocationConfigDefaultDatasetPtrInput
 }
 
 func (LogAllocationConfigState) ElementType() reflect.Type {
@@ -66,14 +73,18 @@ func (LogAllocationConfigState) ElementType() reflect.Type {
 }
 
 type logAllocationConfigArgs struct {
+	// Per-dataset allocation and priority overrides. Datasets are evaluated in order; the first match wins.
 	DatasetAllocations []LogAllocationConfigDatasetAllocation `pulumi:"datasetAllocations"`
-	DefaultDataset     LogAllocationConfigDefaultDataset      `pulumi:"defaultDataset"`
+	// Allocation and priority configuration for the default dataset, which receives any logs not matched by a `datasetAllocation` entry.
+	DefaultDataset LogAllocationConfigDefaultDataset `pulumi:"defaultDataset"`
 }
 
 // The set of arguments for constructing a LogAllocationConfig resource.
 type LogAllocationConfigArgs struct {
+	// Per-dataset allocation and priority overrides. Datasets are evaluated in order; the first match wins.
 	DatasetAllocations LogAllocationConfigDatasetAllocationArrayInput
-	DefaultDataset     LogAllocationConfigDefaultDatasetInput
+	// Allocation and priority configuration for the default dataset, which receives any logs not matched by a `datasetAllocation` entry.
+	DefaultDataset LogAllocationConfigDefaultDatasetInput
 }
 
 func (LogAllocationConfigArgs) ElementType() reflect.Type {
@@ -163,12 +174,14 @@ func (o LogAllocationConfigOutput) ToLogAllocationConfigOutputWithContext(ctx co
 	return o
 }
 
+// Per-dataset allocation and priority overrides. Datasets are evaluated in order; the first match wins.
 func (o LogAllocationConfigOutput) DatasetAllocations() LogAllocationConfigDatasetAllocationArrayOutput {
 	return o.ApplyT(func(v *LogAllocationConfig) LogAllocationConfigDatasetAllocationArrayOutput {
 		return v.DatasetAllocations
 	}).(LogAllocationConfigDatasetAllocationArrayOutput)
 }
 
+// Allocation and priority configuration for the default dataset, which receives any logs not matched by a `datasetAllocation` entry.
 func (o LogAllocationConfigOutput) DefaultDataset() LogAllocationConfigDefaultDatasetOutput {
 	return o.ApplyT(func(v *LogAllocationConfig) LogAllocationConfigDefaultDatasetOutput { return v.DefaultDataset }).(LogAllocationConfigDefaultDatasetOutput)
 }

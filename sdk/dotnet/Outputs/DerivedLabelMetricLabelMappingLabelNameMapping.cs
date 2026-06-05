@@ -14,8 +14,17 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class DerivedLabelMetricLabelMappingLabelNameMapping
     {
+        /// <summary>
+        /// Label filters that must all match for this value definition to apply.
+        /// </summary>
         public readonly ImmutableArray<Outputs.DerivedLabelMetricLabelMappingLabelNameMappingFilter> Filters;
+        /// <summary>
+        /// Source label on the ingested time series to copy into the derived label.
+        /// </summary>
         public readonly string SourceLabel;
+        /// <summary>
+        /// Translations from source label values to a normalized target value. Each entry maps a set of source globs to a single target.
+        /// </summary>
         public readonly ImmutableArray<Outputs.DerivedLabelMetricLabelMappingLabelNameMappingValueMapping> ValueMappings;
 
         [OutputConstructor]

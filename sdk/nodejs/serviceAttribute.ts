@@ -4,6 +4,22 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Associates metadata with an existing service, such as a human-readable name, description, owning team, and default notification policy. The service itself must already exist; this resource only attaches attributes to it.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as chronosphere from "@pulumi-chronosphere/pulumi-chronosphere";
+ *
+ * const gateway = new chronosphere.ServiceAttribute("gateway", {
+ *     description: "Edge API gateway",
+ *     name: "Gateway",
+ *     serviceSlug: "gateway",
+ * });
+ * ```
+ */
 export class ServiceAttribute extends pulumi.CustomResource {
     /**
      * Get an existing ServiceAttribute resource's state with the given name, ID, and optional extra

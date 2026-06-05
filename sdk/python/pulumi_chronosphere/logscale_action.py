@@ -30,6 +30,18 @@ class LogscaleActionArgs:
                  webhook_action: Optional[pulumi.Input['LogscaleActionWebhookActionArgs']] = None):
         """
         The set of arguments for constructing a LogscaleAction resource.
+        :param pulumi.Input[str] name: Display name of the LogScale action.
+        :param pulumi.Input[str] repository: Name of the LogScale repository the action belongs to. Immutable after creation.
+        :param pulumi.Input['LogscaleActionEmailActionArgs'] email_action: Send email when the alert triggers. Exactly one action type must be set.
+        :param pulumi.Input['LogscaleActionHumioActionArgs'] humio_action: Forward results to another LogScale (Humio) repository via its ingest token. Exactly one action type must be set.
+        :param pulumi.Input['LogscaleActionOpsGenieActionArgs'] ops_genie_action: Send an OpsGenie alert when the alert triggers. Exactly one action type must be set.
+        :param pulumi.Input['LogscaleActionPagerDutyActionArgs'] pager_duty_action: Send a PagerDuty event when the alert triggers. Exactly one action type must be set.
+        :param pulumi.Input['LogscaleActionSlackActionArgs'] slack_action: Post a message to a Slack incoming webhook when the alert triggers. Exactly one action type must be set.
+        :param pulumi.Input['LogscaleActionSlackPostMessageActionArgs'] slack_post_message_action: Post a message to Slack channels using the Slack `chat.postMessage` API. Exactly one action type must be set.
+        :param pulumi.Input[str] slug: Stable identifier for the LogScale action. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input['LogscaleActionUploadFileActionArgs'] upload_file_action: Upload the query result as a file in LogScale. Exactly one action type must be set.
+        :param pulumi.Input['LogscaleActionVictorOpsActionArgs'] victor_ops_action: Send a VictorOps (Splunk On-Call) event when the alert triggers. Exactly one action type must be set.
+        :param pulumi.Input['LogscaleActionWebhookActionArgs'] webhook_action: Send an HTTP or HTTPS webhook when the alert triggers. Exactly one action type must be set.
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "repository", repository)
@@ -57,6 +69,9 @@ class LogscaleActionArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        Display name of the LogScale action.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -66,6 +81,9 @@ class LogscaleActionArgs:
     @property
     @pulumi.getter
     def repository(self) -> pulumi.Input[str]:
+        """
+        Name of the LogScale repository the action belongs to. Immutable after creation.
+        """
         return pulumi.get(self, "repository")
 
     @repository.setter
@@ -75,6 +93,9 @@ class LogscaleActionArgs:
     @property
     @pulumi.getter(name="emailAction")
     def email_action(self) -> Optional[pulumi.Input['LogscaleActionEmailActionArgs']]:
+        """
+        Send email when the alert triggers. Exactly one action type must be set.
+        """
         return pulumi.get(self, "email_action")
 
     @email_action.setter
@@ -84,6 +105,9 @@ class LogscaleActionArgs:
     @property
     @pulumi.getter(name="humioAction")
     def humio_action(self) -> Optional[pulumi.Input['LogscaleActionHumioActionArgs']]:
+        """
+        Forward results to another LogScale (Humio) repository via its ingest token. Exactly one action type must be set.
+        """
         return pulumi.get(self, "humio_action")
 
     @humio_action.setter
@@ -93,6 +117,9 @@ class LogscaleActionArgs:
     @property
     @pulumi.getter(name="opsGenieAction")
     def ops_genie_action(self) -> Optional[pulumi.Input['LogscaleActionOpsGenieActionArgs']]:
+        """
+        Send an OpsGenie alert when the alert triggers. Exactly one action type must be set.
+        """
         return pulumi.get(self, "ops_genie_action")
 
     @ops_genie_action.setter
@@ -102,6 +129,9 @@ class LogscaleActionArgs:
     @property
     @pulumi.getter(name="pagerDutyAction")
     def pager_duty_action(self) -> Optional[pulumi.Input['LogscaleActionPagerDutyActionArgs']]:
+        """
+        Send a PagerDuty event when the alert triggers. Exactly one action type must be set.
+        """
         return pulumi.get(self, "pager_duty_action")
 
     @pager_duty_action.setter
@@ -111,6 +141,9 @@ class LogscaleActionArgs:
     @property
     @pulumi.getter(name="slackAction")
     def slack_action(self) -> Optional[pulumi.Input['LogscaleActionSlackActionArgs']]:
+        """
+        Post a message to a Slack incoming webhook when the alert triggers. Exactly one action type must be set.
+        """
         return pulumi.get(self, "slack_action")
 
     @slack_action.setter
@@ -120,6 +153,9 @@ class LogscaleActionArgs:
     @property
     @pulumi.getter(name="slackPostMessageAction")
     def slack_post_message_action(self) -> Optional[pulumi.Input['LogscaleActionSlackPostMessageActionArgs']]:
+        """
+        Post a message to Slack channels using the Slack `chat.postMessage` API. Exactly one action type must be set.
+        """
         return pulumi.get(self, "slack_post_message_action")
 
     @slack_post_message_action.setter
@@ -129,6 +165,9 @@ class LogscaleActionArgs:
     @property
     @pulumi.getter
     def slug(self) -> Optional[pulumi.Input[str]]:
+        """
+        Stable identifier for the LogScale action. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @slug.setter
@@ -138,6 +177,9 @@ class LogscaleActionArgs:
     @property
     @pulumi.getter(name="uploadFileAction")
     def upload_file_action(self) -> Optional[pulumi.Input['LogscaleActionUploadFileActionArgs']]:
+        """
+        Upload the query result as a file in LogScale. Exactly one action type must be set.
+        """
         return pulumi.get(self, "upload_file_action")
 
     @upload_file_action.setter
@@ -147,6 +189,9 @@ class LogscaleActionArgs:
     @property
     @pulumi.getter(name="victorOpsAction")
     def victor_ops_action(self) -> Optional[pulumi.Input['LogscaleActionVictorOpsActionArgs']]:
+        """
+        Send a VictorOps (Splunk On-Call) event when the alert triggers. Exactly one action type must be set.
+        """
         return pulumi.get(self, "victor_ops_action")
 
     @victor_ops_action.setter
@@ -156,6 +201,9 @@ class LogscaleActionArgs:
     @property
     @pulumi.getter(name="webhookAction")
     def webhook_action(self) -> Optional[pulumi.Input['LogscaleActionWebhookActionArgs']]:
+        """
+        Send an HTTP or HTTPS webhook when the alert triggers. Exactly one action type must be set.
+        """
         return pulumi.get(self, "webhook_action")
 
     @webhook_action.setter
@@ -180,6 +228,18 @@ class _LogscaleActionState:
                  webhook_action: Optional[pulumi.Input['LogscaleActionWebhookActionArgs']] = None):
         """
         Input properties used for looking up and filtering LogscaleAction resources.
+        :param pulumi.Input['LogscaleActionEmailActionArgs'] email_action: Send email when the alert triggers. Exactly one action type must be set.
+        :param pulumi.Input['LogscaleActionHumioActionArgs'] humio_action: Forward results to another LogScale (Humio) repository via its ingest token. Exactly one action type must be set.
+        :param pulumi.Input[str] name: Display name of the LogScale action.
+        :param pulumi.Input['LogscaleActionOpsGenieActionArgs'] ops_genie_action: Send an OpsGenie alert when the alert triggers. Exactly one action type must be set.
+        :param pulumi.Input['LogscaleActionPagerDutyActionArgs'] pager_duty_action: Send a PagerDuty event when the alert triggers. Exactly one action type must be set.
+        :param pulumi.Input[str] repository: Name of the LogScale repository the action belongs to. Immutable after creation.
+        :param pulumi.Input['LogscaleActionSlackActionArgs'] slack_action: Post a message to a Slack incoming webhook when the alert triggers. Exactly one action type must be set.
+        :param pulumi.Input['LogscaleActionSlackPostMessageActionArgs'] slack_post_message_action: Post a message to Slack channels using the Slack `chat.postMessage` API. Exactly one action type must be set.
+        :param pulumi.Input[str] slug: Stable identifier for the LogScale action. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input['LogscaleActionUploadFileActionArgs'] upload_file_action: Upload the query result as a file in LogScale. Exactly one action type must be set.
+        :param pulumi.Input['LogscaleActionVictorOpsActionArgs'] victor_ops_action: Send a VictorOps (Splunk On-Call) event when the alert triggers. Exactly one action type must be set.
+        :param pulumi.Input['LogscaleActionWebhookActionArgs'] webhook_action: Send an HTTP or HTTPS webhook when the alert triggers. Exactly one action type must be set.
         """
         if email_action is not None:
             pulumi.set(__self__, "email_action", email_action)
@@ -209,6 +269,9 @@ class _LogscaleActionState:
     @property
     @pulumi.getter(name="emailAction")
     def email_action(self) -> Optional[pulumi.Input['LogscaleActionEmailActionArgs']]:
+        """
+        Send email when the alert triggers. Exactly one action type must be set.
+        """
         return pulumi.get(self, "email_action")
 
     @email_action.setter
@@ -218,6 +281,9 @@ class _LogscaleActionState:
     @property
     @pulumi.getter(name="humioAction")
     def humio_action(self) -> Optional[pulumi.Input['LogscaleActionHumioActionArgs']]:
+        """
+        Forward results to another LogScale (Humio) repository via its ingest token. Exactly one action type must be set.
+        """
         return pulumi.get(self, "humio_action")
 
     @humio_action.setter
@@ -227,6 +293,9 @@ class _LogscaleActionState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Display name of the LogScale action.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -236,6 +305,9 @@ class _LogscaleActionState:
     @property
     @pulumi.getter(name="opsGenieAction")
     def ops_genie_action(self) -> Optional[pulumi.Input['LogscaleActionOpsGenieActionArgs']]:
+        """
+        Send an OpsGenie alert when the alert triggers. Exactly one action type must be set.
+        """
         return pulumi.get(self, "ops_genie_action")
 
     @ops_genie_action.setter
@@ -245,6 +317,9 @@ class _LogscaleActionState:
     @property
     @pulumi.getter(name="pagerDutyAction")
     def pager_duty_action(self) -> Optional[pulumi.Input['LogscaleActionPagerDutyActionArgs']]:
+        """
+        Send a PagerDuty event when the alert triggers. Exactly one action type must be set.
+        """
         return pulumi.get(self, "pager_duty_action")
 
     @pager_duty_action.setter
@@ -254,6 +329,9 @@ class _LogscaleActionState:
     @property
     @pulumi.getter
     def repository(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the LogScale repository the action belongs to. Immutable after creation.
+        """
         return pulumi.get(self, "repository")
 
     @repository.setter
@@ -263,6 +341,9 @@ class _LogscaleActionState:
     @property
     @pulumi.getter(name="slackAction")
     def slack_action(self) -> Optional[pulumi.Input['LogscaleActionSlackActionArgs']]:
+        """
+        Post a message to a Slack incoming webhook when the alert triggers. Exactly one action type must be set.
+        """
         return pulumi.get(self, "slack_action")
 
     @slack_action.setter
@@ -272,6 +353,9 @@ class _LogscaleActionState:
     @property
     @pulumi.getter(name="slackPostMessageAction")
     def slack_post_message_action(self) -> Optional[pulumi.Input['LogscaleActionSlackPostMessageActionArgs']]:
+        """
+        Post a message to Slack channels using the Slack `chat.postMessage` API. Exactly one action type must be set.
+        """
         return pulumi.get(self, "slack_post_message_action")
 
     @slack_post_message_action.setter
@@ -281,6 +365,9 @@ class _LogscaleActionState:
     @property
     @pulumi.getter
     def slug(self) -> Optional[pulumi.Input[str]]:
+        """
+        Stable identifier for the LogScale action. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @slug.setter
@@ -290,6 +377,9 @@ class _LogscaleActionState:
     @property
     @pulumi.getter(name="uploadFileAction")
     def upload_file_action(self) -> Optional[pulumi.Input['LogscaleActionUploadFileActionArgs']]:
+        """
+        Upload the query result as a file in LogScale. Exactly one action type must be set.
+        """
         return pulumi.get(self, "upload_file_action")
 
     @upload_file_action.setter
@@ -299,6 +389,9 @@ class _LogscaleActionState:
     @property
     @pulumi.getter(name="victorOpsAction")
     def victor_ops_action(self) -> Optional[pulumi.Input['LogscaleActionVictorOpsActionArgs']]:
+        """
+        Send a VictorOps (Splunk On-Call) event when the alert triggers. Exactly one action type must be set.
+        """
         return pulumi.get(self, "victor_ops_action")
 
     @victor_ops_action.setter
@@ -308,6 +401,9 @@ class _LogscaleActionState:
     @property
     @pulumi.getter(name="webhookAction")
     def webhook_action(self) -> Optional[pulumi.Input['LogscaleActionWebhookActionArgs']]:
+        """
+        Send an HTTP or HTTPS webhook when the alert triggers. Exactly one action type must be set.
+        """
         return pulumi.get(self, "webhook_action")
 
     @webhook_action.setter
@@ -334,9 +430,48 @@ class LogscaleAction(pulumi.CustomResource):
                  webhook_action: Optional[pulumi.Input[pulumi.InputType['LogscaleActionWebhookActionArgs']]] = None,
                  __props__=None):
         """
-        Create a LogscaleAction resource with the given unique name, props, and options.
+        A CrowdStrike Falcon LogScale (formerly Humio) action target (email, Slack, webhook, PagerDuty, OpsGenie, VictorOps, or upload-file) invoked by a logscale_alert when it fires.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_chronosphere as chronosphere
+
+        email = chronosphere.LogscaleAction("email",
+            email_action=chronosphere.LogscaleActionEmailActionArgs(
+                attach_csv=True,
+                body_template="{{query.results}}",
+                recipients=["oncall@example.com"],
+                subject_template="Logscale alert: {{alert.name}}",
+                use_proxy=False,
+            ),
+            name="Email on-call",
+            repository="default")
+        pagerduty = chronosphere.LogscaleAction("pagerduty",
+            name="PagerDuty page",
+            pager_duty_action=chronosphere.LogscaleActionPagerDutyActionArgs(
+                routing_key="XXXXX",
+                severity="ERROR",
+                use_proxy=False,
+            ),
+            repository="default")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[pulumi.InputType['LogscaleActionEmailActionArgs']] email_action: Send email when the alert triggers. Exactly one action type must be set.
+        :param pulumi.Input[pulumi.InputType['LogscaleActionHumioActionArgs']] humio_action: Forward results to another LogScale (Humio) repository via its ingest token. Exactly one action type must be set.
+        :param pulumi.Input[str] name: Display name of the LogScale action.
+        :param pulumi.Input[pulumi.InputType['LogscaleActionOpsGenieActionArgs']] ops_genie_action: Send an OpsGenie alert when the alert triggers. Exactly one action type must be set.
+        :param pulumi.Input[pulumi.InputType['LogscaleActionPagerDutyActionArgs']] pager_duty_action: Send a PagerDuty event when the alert triggers. Exactly one action type must be set.
+        :param pulumi.Input[str] repository: Name of the LogScale repository the action belongs to. Immutable after creation.
+        :param pulumi.Input[pulumi.InputType['LogscaleActionSlackActionArgs']] slack_action: Post a message to a Slack incoming webhook when the alert triggers. Exactly one action type must be set.
+        :param pulumi.Input[pulumi.InputType['LogscaleActionSlackPostMessageActionArgs']] slack_post_message_action: Post a message to Slack channels using the Slack `chat.postMessage` API. Exactly one action type must be set.
+        :param pulumi.Input[str] slug: Stable identifier for the LogScale action. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[pulumi.InputType['LogscaleActionUploadFileActionArgs']] upload_file_action: Upload the query result as a file in LogScale. Exactly one action type must be set.
+        :param pulumi.Input[pulumi.InputType['LogscaleActionVictorOpsActionArgs']] victor_ops_action: Send a VictorOps (Splunk On-Call) event when the alert triggers. Exactly one action type must be set.
+        :param pulumi.Input[pulumi.InputType['LogscaleActionWebhookActionArgs']] webhook_action: Send an HTTP or HTTPS webhook when the alert triggers. Exactly one action type must be set.
         """
         ...
     @overload
@@ -345,7 +480,34 @@ class LogscaleAction(pulumi.CustomResource):
                  args: LogscaleActionArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a LogscaleAction resource with the given unique name, props, and options.
+        A CrowdStrike Falcon LogScale (formerly Humio) action target (email, Slack, webhook, PagerDuty, OpsGenie, VictorOps, or upload-file) invoked by a logscale_alert when it fires.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_chronosphere as chronosphere
+
+        email = chronosphere.LogscaleAction("email",
+            email_action=chronosphere.LogscaleActionEmailActionArgs(
+                attach_csv=True,
+                body_template="{{query.results}}",
+                recipients=["oncall@example.com"],
+                subject_template="Logscale alert: {{alert.name}}",
+                use_proxy=False,
+            ),
+            name="Email on-call",
+            repository="default")
+        pagerduty = chronosphere.LogscaleAction("pagerduty",
+            name="PagerDuty page",
+            pager_duty_action=chronosphere.LogscaleActionPagerDutyActionArgs(
+                routing_key="XXXXX",
+                severity="ERROR",
+                use_proxy=False,
+            ),
+            repository="default")
+        ```
+
         :param str resource_name: The name of the resource.
         :param LogscaleActionArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -427,6 +589,18 @@ class LogscaleAction(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[pulumi.InputType['LogscaleActionEmailActionArgs']] email_action: Send email when the alert triggers. Exactly one action type must be set.
+        :param pulumi.Input[pulumi.InputType['LogscaleActionHumioActionArgs']] humio_action: Forward results to another LogScale (Humio) repository via its ingest token. Exactly one action type must be set.
+        :param pulumi.Input[str] name: Display name of the LogScale action.
+        :param pulumi.Input[pulumi.InputType['LogscaleActionOpsGenieActionArgs']] ops_genie_action: Send an OpsGenie alert when the alert triggers. Exactly one action type must be set.
+        :param pulumi.Input[pulumi.InputType['LogscaleActionPagerDutyActionArgs']] pager_duty_action: Send a PagerDuty event when the alert triggers. Exactly one action type must be set.
+        :param pulumi.Input[str] repository: Name of the LogScale repository the action belongs to. Immutable after creation.
+        :param pulumi.Input[pulumi.InputType['LogscaleActionSlackActionArgs']] slack_action: Post a message to a Slack incoming webhook when the alert triggers. Exactly one action type must be set.
+        :param pulumi.Input[pulumi.InputType['LogscaleActionSlackPostMessageActionArgs']] slack_post_message_action: Post a message to Slack channels using the Slack `chat.postMessage` API. Exactly one action type must be set.
+        :param pulumi.Input[str] slug: Stable identifier for the LogScale action. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[pulumi.InputType['LogscaleActionUploadFileActionArgs']] upload_file_action: Upload the query result as a file in LogScale. Exactly one action type must be set.
+        :param pulumi.Input[pulumi.InputType['LogscaleActionVictorOpsActionArgs']] victor_ops_action: Send a VictorOps (Splunk On-Call) event when the alert triggers. Exactly one action type must be set.
+        :param pulumi.Input[pulumi.InputType['LogscaleActionWebhookActionArgs']] webhook_action: Send an HTTP or HTTPS webhook when the alert triggers. Exactly one action type must be set.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -449,60 +623,96 @@ class LogscaleAction(pulumi.CustomResource):
     @property
     @pulumi.getter(name="emailAction")
     def email_action(self) -> pulumi.Output[Optional['outputs.LogscaleActionEmailAction']]:
+        """
+        Send email when the alert triggers. Exactly one action type must be set.
+        """
         return pulumi.get(self, "email_action")
 
     @property
     @pulumi.getter(name="humioAction")
     def humio_action(self) -> pulumi.Output[Optional['outputs.LogscaleActionHumioAction']]:
+        """
+        Forward results to another LogScale (Humio) repository via its ingest token. Exactly one action type must be set.
+        """
         return pulumi.get(self, "humio_action")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        Display name of the LogScale action.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="opsGenieAction")
     def ops_genie_action(self) -> pulumi.Output[Optional['outputs.LogscaleActionOpsGenieAction']]:
+        """
+        Send an OpsGenie alert when the alert triggers. Exactly one action type must be set.
+        """
         return pulumi.get(self, "ops_genie_action")
 
     @property
     @pulumi.getter(name="pagerDutyAction")
     def pager_duty_action(self) -> pulumi.Output[Optional['outputs.LogscaleActionPagerDutyAction']]:
+        """
+        Send a PagerDuty event when the alert triggers. Exactly one action type must be set.
+        """
         return pulumi.get(self, "pager_duty_action")
 
     @property
     @pulumi.getter
     def repository(self) -> pulumi.Output[str]:
+        """
+        Name of the LogScale repository the action belongs to. Immutable after creation.
+        """
         return pulumi.get(self, "repository")
 
     @property
     @pulumi.getter(name="slackAction")
     def slack_action(self) -> pulumi.Output[Optional['outputs.LogscaleActionSlackAction']]:
+        """
+        Post a message to a Slack incoming webhook when the alert triggers. Exactly one action type must be set.
+        """
         return pulumi.get(self, "slack_action")
 
     @property
     @pulumi.getter(name="slackPostMessageAction")
     def slack_post_message_action(self) -> pulumi.Output[Optional['outputs.LogscaleActionSlackPostMessageAction']]:
+        """
+        Post a message to Slack channels using the Slack `chat.postMessage` API. Exactly one action type must be set.
+        """
         return pulumi.get(self, "slack_post_message_action")
 
     @property
     @pulumi.getter
     def slug(self) -> pulumi.Output[str]:
+        """
+        Stable identifier for the LogScale action. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @property
     @pulumi.getter(name="uploadFileAction")
     def upload_file_action(self) -> pulumi.Output[Optional['outputs.LogscaleActionUploadFileAction']]:
+        """
+        Upload the query result as a file in LogScale. Exactly one action type must be set.
+        """
         return pulumi.get(self, "upload_file_action")
 
     @property
     @pulumi.getter(name="victorOpsAction")
     def victor_ops_action(self) -> pulumi.Output[Optional['outputs.LogscaleActionVictorOpsAction']]:
+        """
+        Send a VictorOps (Splunk On-Call) event when the alert triggers. Exactly one action type must be set.
+        """
         return pulumi.get(self, "victor_ops_action")
 
     @property
     @pulumi.getter(name="webhookAction")
     def webhook_action(self) -> pulumi.Output[Optional['outputs.LogscaleActionWebhookAction']]:
+        """
+        Send an HTTP or HTTPS webhook when the alert triggers. Exactly one action type must be set.
+        """
         return pulumi.get(self, "webhook_action")
 

@@ -13,9 +13,15 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class TraceMetricsRuleGroupByGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Span attribute to group by.
+        /// </summary>
         [Input("key", required: true)]
         public Input<Inputs.TraceMetricsRuleGroupByKeyGetArgs> Key { get; set; } = null!;
 
+        /// <summary>
+        /// Name of the resulting metric label.
+        /// </summary>
         [Input("label", required: true)]
         public Input<string> Label { get; set; } = null!;
 

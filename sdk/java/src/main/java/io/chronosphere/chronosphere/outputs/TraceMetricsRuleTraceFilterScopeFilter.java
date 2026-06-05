@@ -11,9 +11,17 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class TraceMetricsRuleTraceFilterScopeFilter {
+    /**
+     * @return Span conditions that select which spans are aggregated. Spans must match at least one block to be included.
+     * 
+     */
     private @Nullable List<TraceMetricsRuleTraceFilterScopeFilterSpanScope> spanScopes;
 
     private TraceMetricsRuleTraceFilterScopeFilter() {}
+    /**
+     * @return Span conditions that select which spans are aggregated. Spans must match at least one block to be included.
+     * 
+     */
     public List<TraceMetricsRuleTraceFilterScopeFilterSpanScope> spanScopes() {
         return this.spanScopes == null ? List.of() : this.spanScopes;
     }

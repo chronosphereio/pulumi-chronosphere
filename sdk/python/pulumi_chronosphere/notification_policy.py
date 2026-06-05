@@ -24,6 +24,12 @@ class NotificationPolicyArgs:
                  team_id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a NotificationPolicy resource.
+        :param pulumi.Input[str] name: Label name to match.
+        :param pulumi.Input[str] notification_policy_data: Computed/optional JSON serialization of the policy. Primarily used to attach inline policy data to other resources (e.g. buckets).
+        :param pulumi.Input[Sequence[pulumi.Input['NotificationPolicyOverrideArgs']]] overrides: Ordered overrides that route alerts matching specific label matchers to different destinations. The first matching override is applied; non-matching alerts fall through to the default `route`.
+        :param pulumi.Input[Sequence[pulumi.Input['NotificationPolicyRouteArgs']]] routes: Per-severity routing rules. Each entry maps a severity (e.g. `warn`, `critical`) to a set of notifiers, destinations, grouping, and repeat behavior.
+        :param pulumi.Input[str] slug: Stable identifier for the notification policy. Can only be set when `name` is set. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[str] team_id: ID of the team that owns this notification policy. Required when `name` is set (anonymous policies cannot be owned).
         """
         if name is not None:
             pulumi.set(__self__, "name", name)
@@ -41,6 +47,9 @@ class NotificationPolicyArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Label name to match.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -50,6 +59,9 @@ class NotificationPolicyArgs:
     @property
     @pulumi.getter(name="notificationPolicyData")
     def notification_policy_data(self) -> Optional[pulumi.Input[str]]:
+        """
+        Computed/optional JSON serialization of the policy. Primarily used to attach inline policy data to other resources (e.g. buckets).
+        """
         return pulumi.get(self, "notification_policy_data")
 
     @notification_policy_data.setter
@@ -59,6 +71,9 @@ class NotificationPolicyArgs:
     @property
     @pulumi.getter
     def overrides(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NotificationPolicyOverrideArgs']]]]:
+        """
+        Ordered overrides that route alerts matching specific label matchers to different destinations. The first matching override is applied; non-matching alerts fall through to the default `route`.
+        """
         return pulumi.get(self, "overrides")
 
     @overrides.setter
@@ -68,6 +83,9 @@ class NotificationPolicyArgs:
     @property
     @pulumi.getter
     def routes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NotificationPolicyRouteArgs']]]]:
+        """
+        Per-severity routing rules. Each entry maps a severity (e.g. `warn`, `critical`) to a set of notifiers, destinations, grouping, and repeat behavior.
+        """
         return pulumi.get(self, "routes")
 
     @routes.setter
@@ -77,6 +95,9 @@ class NotificationPolicyArgs:
     @property
     @pulumi.getter
     def slug(self) -> Optional[pulumi.Input[str]]:
+        """
+        Stable identifier for the notification policy. Can only be set when `name` is set. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @slug.setter
@@ -86,6 +107,9 @@ class NotificationPolicyArgs:
     @property
     @pulumi.getter(name="teamId")
     def team_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the team that owns this notification policy. Required when `name` is set (anonymous policies cannot be owned).
+        """
         return pulumi.get(self, "team_id")
 
     @team_id.setter
@@ -105,6 +129,13 @@ class _NotificationPolicyState:
                  team_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering NotificationPolicy resources.
+        :param pulumi.Input[bool] is_independent: Read-only internal marker tracking whether the policy is independent (named) or inline. Used to force replacement when transitioning between the two.
+        :param pulumi.Input[str] name: Label name to match.
+        :param pulumi.Input[str] notification_policy_data: Computed/optional JSON serialization of the policy. Primarily used to attach inline policy data to other resources (e.g. buckets).
+        :param pulumi.Input[Sequence[pulumi.Input['NotificationPolicyOverrideArgs']]] overrides: Ordered overrides that route alerts matching specific label matchers to different destinations. The first matching override is applied; non-matching alerts fall through to the default `route`.
+        :param pulumi.Input[Sequence[pulumi.Input['NotificationPolicyRouteArgs']]] routes: Per-severity routing rules. Each entry maps a severity (e.g. `warn`, `critical`) to a set of notifiers, destinations, grouping, and repeat behavior.
+        :param pulumi.Input[str] slug: Stable identifier for the notification policy. Can only be set when `name` is set. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[str] team_id: ID of the team that owns this notification policy. Required when `name` is set (anonymous policies cannot be owned).
         """
         if is_independent is not None:
             pulumi.set(__self__, "is_independent", is_independent)
@@ -124,6 +155,9 @@ class _NotificationPolicyState:
     @property
     @pulumi.getter(name="isIndependent")
     def is_independent(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Read-only internal marker tracking whether the policy is independent (named) or inline. Used to force replacement when transitioning between the two.
+        """
         return pulumi.get(self, "is_independent")
 
     @is_independent.setter
@@ -133,6 +167,9 @@ class _NotificationPolicyState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Label name to match.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -142,6 +179,9 @@ class _NotificationPolicyState:
     @property
     @pulumi.getter(name="notificationPolicyData")
     def notification_policy_data(self) -> Optional[pulumi.Input[str]]:
+        """
+        Computed/optional JSON serialization of the policy. Primarily used to attach inline policy data to other resources (e.g. buckets).
+        """
         return pulumi.get(self, "notification_policy_data")
 
     @notification_policy_data.setter
@@ -151,6 +191,9 @@ class _NotificationPolicyState:
     @property
     @pulumi.getter
     def overrides(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NotificationPolicyOverrideArgs']]]]:
+        """
+        Ordered overrides that route alerts matching specific label matchers to different destinations. The first matching override is applied; non-matching alerts fall through to the default `route`.
+        """
         return pulumi.get(self, "overrides")
 
     @overrides.setter
@@ -160,6 +203,9 @@ class _NotificationPolicyState:
     @property
     @pulumi.getter
     def routes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NotificationPolicyRouteArgs']]]]:
+        """
+        Per-severity routing rules. Each entry maps a severity (e.g. `warn`, `critical`) to a set of notifiers, destinations, grouping, and repeat behavior.
+        """
         return pulumi.get(self, "routes")
 
     @routes.setter
@@ -169,6 +215,9 @@ class _NotificationPolicyState:
     @property
     @pulumi.getter
     def slug(self) -> Optional[pulumi.Input[str]]:
+        """
+        Stable identifier for the notification policy. Can only be set when `name` is set. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @slug.setter
@@ -178,6 +227,9 @@ class _NotificationPolicyState:
     @property
     @pulumi.getter(name="teamId")
     def team_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the team that owns this notification policy. Required when `name` is set (anonymous policies cannot be owned).
+        """
         return pulumi.get(self, "team_id")
 
     @team_id.setter
@@ -198,9 +250,38 @@ class NotificationPolicy(pulumi.CustomResource):
                  team_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a NotificationPolicy resource with the given unique name, props, and options.
+        Routes alert signals from monitors and SLOs to notifiers, with per-severity routing and label-matcher-based overrides. If `name` is set the policy is independent (referenceable by ID); if `name` is omitted the policy is inline and can only be embedded in another resource (e.g. a bucket).
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_chronosphere as chronosphere
+
+        platform_team = chronosphere.Team("platformTeam", name="Platform")
+        email = chronosphere.EmailAlertNotifier("email",
+            name="Platform Email",
+            to="platform@example.com")
+        platform_notification_policy = chronosphere.NotificationPolicy("platformNotificationPolicy",
+            name="Platform Policy",
+            team_id=platform_team.id,
+            routes=[chronosphere.NotificationPolicyRouteArgs(
+                severity="warn",
+                notifiers=[email.id],
+                group_by=chronosphere.NotificationPolicyRouteGroupByArgs(
+                    label_names=["service"],
+                ),
+            )])
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] name: Label name to match.
+        :param pulumi.Input[str] notification_policy_data: Computed/optional JSON serialization of the policy. Primarily used to attach inline policy data to other resources (e.g. buckets).
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NotificationPolicyOverrideArgs']]]] overrides: Ordered overrides that route alerts matching specific label matchers to different destinations. The first matching override is applied; non-matching alerts fall through to the default `route`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NotificationPolicyRouteArgs']]]] routes: Per-severity routing rules. Each entry maps a severity (e.g. `warn`, `critical`) to a set of notifiers, destinations, grouping, and repeat behavior.
+        :param pulumi.Input[str] slug: Stable identifier for the notification policy. Can only be set when `name` is set. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[str] team_id: ID of the team that owns this notification policy. Required when `name` is set (anonymous policies cannot be owned).
         """
         ...
     @overload
@@ -209,7 +290,30 @@ class NotificationPolicy(pulumi.CustomResource):
                  args: Optional[NotificationPolicyArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a NotificationPolicy resource with the given unique name, props, and options.
+        Routes alert signals from monitors and SLOs to notifiers, with per-severity routing and label-matcher-based overrides. If `name` is set the policy is independent (referenceable by ID); if `name` is omitted the policy is inline and can only be embedded in another resource (e.g. a bucket).
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_chronosphere as chronosphere
+
+        platform_team = chronosphere.Team("platformTeam", name="Platform")
+        email = chronosphere.EmailAlertNotifier("email",
+            name="Platform Email",
+            to="platform@example.com")
+        platform_notification_policy = chronosphere.NotificationPolicy("platformNotificationPolicy",
+            name="Platform Policy",
+            team_id=platform_team.id,
+            routes=[chronosphere.NotificationPolicyRouteArgs(
+                severity="warn",
+                notifiers=[email.id],
+                group_by=chronosphere.NotificationPolicyRouteGroupByArgs(
+                    label_names=["service"],
+                ),
+            )])
+        ```
+
         :param str resource_name: The name of the resource.
         :param NotificationPolicyArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -271,6 +375,13 @@ class NotificationPolicy(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[bool] is_independent: Read-only internal marker tracking whether the policy is independent (named) or inline. Used to force replacement when transitioning between the two.
+        :param pulumi.Input[str] name: Label name to match.
+        :param pulumi.Input[str] notification_policy_data: Computed/optional JSON serialization of the policy. Primarily used to attach inline policy data to other resources (e.g. buckets).
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NotificationPolicyOverrideArgs']]]] overrides: Ordered overrides that route alerts matching specific label matchers to different destinations. The first matching override is applied; non-matching alerts fall through to the default `route`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NotificationPolicyRouteArgs']]]] routes: Per-severity routing rules. Each entry maps a severity (e.g. `warn`, `critical`) to a set of notifiers, destinations, grouping, and repeat behavior.
+        :param pulumi.Input[str] slug: Stable identifier for the notification policy. Can only be set when `name` is set. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[str] team_id: ID of the team that owns this notification policy. Required when `name` is set (anonymous policies cannot be owned).
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -288,35 +399,56 @@ class NotificationPolicy(pulumi.CustomResource):
     @property
     @pulumi.getter(name="isIndependent")
     def is_independent(self) -> pulumi.Output[bool]:
+        """
+        Read-only internal marker tracking whether the policy is independent (named) or inline. Used to force replacement when transitioning between the two.
+        """
         return pulumi.get(self, "is_independent")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[Optional[str]]:
+        """
+        Label name to match.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="notificationPolicyData")
     def notification_policy_data(self) -> pulumi.Output[str]:
+        """
+        Computed/optional JSON serialization of the policy. Primarily used to attach inline policy data to other resources (e.g. buckets).
+        """
         return pulumi.get(self, "notification_policy_data")
 
     @property
     @pulumi.getter
     def overrides(self) -> pulumi.Output[Optional[Sequence['outputs.NotificationPolicyOverride']]]:
+        """
+        Ordered overrides that route alerts matching specific label matchers to different destinations. The first matching override is applied; non-matching alerts fall through to the default `route`.
+        """
         return pulumi.get(self, "overrides")
 
     @property
     @pulumi.getter
     def routes(self) -> pulumi.Output[Optional[Sequence['outputs.NotificationPolicyRoute']]]:
+        """
+        Per-severity routing rules. Each entry maps a severity (e.g. `warn`, `critical`) to a set of notifiers, destinations, grouping, and repeat behavior.
+        """
         return pulumi.get(self, "routes")
 
     @property
     @pulumi.getter
     def slug(self) -> pulumi.Output[str]:
+        """
+        Stable identifier for the notification policy. Can only be set when `name` is set. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @property
     @pulumi.getter(name="teamId")
     def team_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        ID of the team that owns this notification policy. Required when `name` is set (anonymous policies cannot be owned).
+        """
         return pulumi.get(self, "team_id")
 

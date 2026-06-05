@@ -14,8 +14,17 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class TraceTailSamplingRulesRuleFilter
     {
+        /// <summary>
+        /// Scope filter that further restricts which spans within a matched trace contribute to metrics or sampling. Only spans matching `span_scopes` are included in aggregation.
+        /// </summary>
         public readonly Outputs.TraceTailSamplingRulesRuleFilterScopeFilter? ScopeFilter;
+        /// <summary>
+        /// Span-level conditions. Each block defines a set of conditions that must all be satisfied by a single span in the trace for the trace to match.
+        /// </summary>
         public readonly ImmutableArray<Outputs.TraceTailSamplingRulesRuleFilterSpan> Spans;
+        /// <summary>
+        /// Trace-level conditions evaluated against the whole trace (aggregated duration and error status).
+        /// </summary>
         public readonly Outputs.TraceTailSamplingRulesRuleFilterTrace? Trace;
 
         [OutputConstructor]

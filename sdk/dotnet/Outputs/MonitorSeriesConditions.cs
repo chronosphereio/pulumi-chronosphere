@@ -14,7 +14,13 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class MonitorSeriesConditions
     {
+        /// <summary>
+        /// One or more severity/threshold conditions. Multiple conditions enable multi-severity monitors (e.g. warn at one threshold, page at a higher one).
+        /// </summary>
         public readonly ImmutableArray<Outputs.MonitorSeriesConditionsCondition> Conditions;
+        /// <summary>
+        /// Per-series overrides that apply different conditions to series matching a set of label matchers.
+        /// </summary>
         public readonly ImmutableArray<Outputs.MonitorSeriesConditionsOverride> Overrides;
 
         [OutputConstructor]

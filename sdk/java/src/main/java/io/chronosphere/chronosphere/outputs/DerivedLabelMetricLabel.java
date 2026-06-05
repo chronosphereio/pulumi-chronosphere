@@ -12,13 +12,29 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class DerivedLabelMetricLabel {
+    /**
+     * @return Constructs the derived label value from a list of value definitions, each gated by a filter on existing labels.
+     * 
+     */
     private @Nullable DerivedLabelMetricLabelConstructedLabel constructedLabel;
+    /**
+     * @return Derives the label value by mapping from an existing source label, optionally translating its values.
+     * 
+     */
     private @Nullable DerivedLabelMetricLabelMappingLabel mappingLabel;
 
     private DerivedLabelMetricLabel() {}
+    /**
+     * @return Constructs the derived label value from a list of value definitions, each gated by a filter on existing labels.
+     * 
+     */
     public Optional<DerivedLabelMetricLabelConstructedLabel> constructedLabel() {
         return Optional.ofNullable(this.constructedLabel);
     }
+    /**
+     * @return Derives the label value by mapping from an existing source label, optionally translating its values.
+     * 
+     */
     public Optional<DerivedLabelMetricLabelMappingLabel> mappingLabel() {
         return Optional.ofNullable(this.mappingLabel);
     }

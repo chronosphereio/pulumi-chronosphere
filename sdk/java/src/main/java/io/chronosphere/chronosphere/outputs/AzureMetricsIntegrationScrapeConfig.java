@@ -12,17 +12,41 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class AzureMetricsIntegrationScrapeConfig {
+    /**
+     * @return Azure locations (regions) to ingest from, applied across all subscriptions. Leave empty for all locations.
+     * 
+     */
     private @Nullable List<String> locations;
+    /**
+     * @return Azure resource types to scrape metrics from. Each entry can constrain the set of metric names to a subset.
+     * 
+     */
     private @Nullable List<AzureMetricsIntegrationScrapeConfigResourceType> resourceTypes;
+    /**
+     * @return Azure subscription IDs to target. Leave empty to scrape from all subscriptions accessible to the principal.
+     * 
+     */
     private @Nullable List<String> subscriptionIds;
 
     private AzureMetricsIntegrationScrapeConfig() {}
+    /**
+     * @return Azure locations (regions) to ingest from, applied across all subscriptions. Leave empty for all locations.
+     * 
+     */
     public List<String> locations() {
         return this.locations == null ? List.of() : this.locations;
     }
+    /**
+     * @return Azure resource types to scrape metrics from. Each entry can constrain the set of metric names to a subset.
+     * 
+     */
     public List<AzureMetricsIntegrationScrapeConfigResourceType> resourceTypes() {
         return this.resourceTypes == null ? List.of() : this.resourceTypes;
     }
+    /**
+     * @return Azure subscription IDs to target. Leave empty to scrape from all subscriptions accessible to the principal.
+     * 
+     */
     public List<String> subscriptionIds() {
         return this.subscriptionIds == null ? List.of() : this.subscriptionIds;
     }

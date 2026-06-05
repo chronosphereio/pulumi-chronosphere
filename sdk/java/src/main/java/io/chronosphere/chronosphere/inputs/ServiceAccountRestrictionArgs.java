@@ -16,16 +16,32 @@ public final class ServiceAccountRestrictionArgs extends com.pulumi.resources.Re
 
     public static final ServiceAccountRestrictionArgs Empty = new ServiceAccountRestrictionArgs();
 
+    /**
+     * Optional label matchers further scoping the restriction to metrics whose labels match these key/value pairs.
+     * 
+     */
     @Import(name="labels")
     private @Nullable Output<Map<String,String>> labels;
 
+    /**
+     * @return Optional label matchers further scoping the restriction to metrics whose labels match these key/value pairs.
+     * 
+     */
     public Optional<Output<Map<String,String>>> labels() {
         return Optional.ofNullable(this.labels);
     }
 
+    /**
+     * Permission level granted by this restriction (e.g. metric read/write).
+     * 
+     */
     @Import(name="permission", required=true)
     private Output<String> permission;
 
+    /**
+     * @return Permission level granted by this restriction (e.g. metric read/write).
+     * 
+     */
     public Output<String> permission() {
         return this.permission;
     }
@@ -55,20 +71,44 @@ public final class ServiceAccountRestrictionArgs extends com.pulumi.resources.Re
             $ = new ServiceAccountRestrictionArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param labels Optional label matchers further scoping the restriction to metrics whose labels match these key/value pairs.
+         * 
+         * @return builder
+         * 
+         */
         public Builder labels(@Nullable Output<Map<String,String>> labels) {
             $.labels = labels;
             return this;
         }
 
+        /**
+         * @param labels Optional label matchers further scoping the restriction to metrics whose labels match these key/value pairs.
+         * 
+         * @return builder
+         * 
+         */
         public Builder labels(Map<String,String> labels) {
             return labels(Output.of(labels));
         }
 
+        /**
+         * @param permission Permission level granted by this restriction (e.g. metric read/write).
+         * 
+         * @return builder
+         * 
+         */
         public Builder permission(Output<String> permission) {
             $.permission = permission;
             return this;
         }
 
+        /**
+         * @param permission Permission level granted by this restriction (e.g. metric read/write).
+         * 
+         * @return builder
+         * 
+         */
         public Builder permission(String permission) {
             return permission(Output.of(permission));
         }

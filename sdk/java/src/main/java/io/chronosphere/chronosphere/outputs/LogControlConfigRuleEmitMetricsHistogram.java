@@ -11,9 +11,17 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class LogControlConfigRuleEmitMetricsHistogram {
+    /**
+     * @return Path to a field within a log record.
+     * 
+     */
     private @Nullable LogControlConfigRuleEmitMetricsHistogramValue value;
 
     private LogControlConfigRuleEmitMetricsHistogram() {}
+    /**
+     * @return Path to a field within a log record.
+     * 
+     */
     public Optional<LogControlConfigRuleEmitMetricsHistogramValue> value() {
         return Optional.ofNullable(this.value);
     }

@@ -18,23 +18,47 @@ public final class DerivedLabelMetricLabelMappingLabelNameMappingArgs extends co
 
     public static final DerivedLabelMetricLabelMappingLabelNameMappingArgs Empty = new DerivedLabelMetricLabelMappingLabelNameMappingArgs();
 
+    /**
+     * Label filters that must all match for this value definition to apply.
+     * 
+     */
     @Import(name="filters", required=true)
     private Output<List<DerivedLabelMetricLabelMappingLabelNameMappingFilterArgs>> filters;
 
+    /**
+     * @return Label filters that must all match for this value definition to apply.
+     * 
+     */
     public Output<List<DerivedLabelMetricLabelMappingLabelNameMappingFilterArgs>> filters() {
         return this.filters;
     }
 
+    /**
+     * Source label on the ingested time series to copy into the derived label.
+     * 
+     */
     @Import(name="sourceLabel", required=true)
     private Output<String> sourceLabel;
 
+    /**
+     * @return Source label on the ingested time series to copy into the derived label.
+     * 
+     */
     public Output<String> sourceLabel() {
         return this.sourceLabel;
     }
 
+    /**
+     * Translations from source label values to a normalized target value. Each entry maps a set of source globs to a single target.
+     * 
+     */
     @Import(name="valueMappings")
     private @Nullable Output<List<DerivedLabelMetricLabelMappingLabelNameMappingValueMappingArgs>> valueMappings;
 
+    /**
+     * @return Translations from source label values to a normalized target value. Each entry maps a set of source globs to a single target.
+     * 
+     */
     public Optional<Output<List<DerivedLabelMetricLabelMappingLabelNameMappingValueMappingArgs>>> valueMappings() {
         return Optional.ofNullable(this.valueMappings);
     }
@@ -65,37 +89,85 @@ public final class DerivedLabelMetricLabelMappingLabelNameMappingArgs extends co
             $ = new DerivedLabelMetricLabelMappingLabelNameMappingArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param filters Label filters that must all match for this value definition to apply.
+         * 
+         * @return builder
+         * 
+         */
         public Builder filters(Output<List<DerivedLabelMetricLabelMappingLabelNameMappingFilterArgs>> filters) {
             $.filters = filters;
             return this;
         }
 
+        /**
+         * @param filters Label filters that must all match for this value definition to apply.
+         * 
+         * @return builder
+         * 
+         */
         public Builder filters(List<DerivedLabelMetricLabelMappingLabelNameMappingFilterArgs> filters) {
             return filters(Output.of(filters));
         }
 
+        /**
+         * @param filters Label filters that must all match for this value definition to apply.
+         * 
+         * @return builder
+         * 
+         */
         public Builder filters(DerivedLabelMetricLabelMappingLabelNameMappingFilterArgs... filters) {
             return filters(List.of(filters));
         }
 
+        /**
+         * @param sourceLabel Source label on the ingested time series to copy into the derived label.
+         * 
+         * @return builder
+         * 
+         */
         public Builder sourceLabel(Output<String> sourceLabel) {
             $.sourceLabel = sourceLabel;
             return this;
         }
 
+        /**
+         * @param sourceLabel Source label on the ingested time series to copy into the derived label.
+         * 
+         * @return builder
+         * 
+         */
         public Builder sourceLabel(String sourceLabel) {
             return sourceLabel(Output.of(sourceLabel));
         }
 
+        /**
+         * @param valueMappings Translations from source label values to a normalized target value. Each entry maps a set of source globs to a single target.
+         * 
+         * @return builder
+         * 
+         */
         public Builder valueMappings(@Nullable Output<List<DerivedLabelMetricLabelMappingLabelNameMappingValueMappingArgs>> valueMappings) {
             $.valueMappings = valueMappings;
             return this;
         }
 
+        /**
+         * @param valueMappings Translations from source label values to a normalized target value. Each entry maps a set of source globs to a single target.
+         * 
+         * @return builder
+         * 
+         */
         public Builder valueMappings(List<DerivedLabelMetricLabelMappingLabelNameMappingValueMappingArgs> valueMappings) {
             return valueMappings(Output.of(valueMappings));
         }
 
+        /**
+         * @param valueMappings Translations from source label values to a normalized target value. Each entry maps a set of source globs to a single target.
+         * 
+         * @return builder
+         * 
+         */
         public Builder valueMappings(DerivedLabelMetricLabelMappingLabelNameMappingValueMappingArgs... valueMappings) {
             return valueMappings(List.of(valueMappings));
         }

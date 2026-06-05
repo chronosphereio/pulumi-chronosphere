@@ -18,23 +18,47 @@ public final class LogControlConfigRuleReplaceFieldMappedValueArgs extends com.p
 
     public static final LogControlConfigRuleReplaceFieldMappedValueArgs Empty = new LogControlConfigRuleReplaceFieldMappedValueArgs();
 
+    /**
+     * Value to substitute when no matching key is found, when `use_default` is `true`.
+     * 
+     */
     @Import(name="defaultValue")
     private @Nullable Output<String> defaultValue;
 
+    /**
+     * @return Value to substitute when no matching key is found, when `use_default` is `true`.
+     * 
+     */
     public Optional<Output<String>> defaultValue() {
         return Optional.ofNullable(this.defaultValue);
     }
 
+    /**
+     * List of key/value pairs that map matched content to replacement values.
+     * 
+     */
     @Import(name="pairs")
     private @Nullable Output<List<LogControlConfigRuleReplaceFieldMappedValuePairArgs>> pairs;
 
+    /**
+     * @return List of key/value pairs that map matched content to replacement values.
+     * 
+     */
     public Optional<Output<List<LogControlConfigRuleReplaceFieldMappedValuePairArgs>>> pairs() {
         return Optional.ofNullable(this.pairs);
     }
 
+    /**
+     * If `true`, falls back to `default_value` when no key matches. If `false`, leaves the value unchanged on a miss.
+     * 
+     */
     @Import(name="useDefault")
     private @Nullable Output<Boolean> useDefault;
 
+    /**
+     * @return If `true`, falls back to `default_value` when no key matches. If `false`, leaves the value unchanged on a miss.
+     * 
+     */
     public Optional<Output<Boolean>> useDefault() {
         return Optional.ofNullable(this.useDefault);
     }
@@ -65,33 +89,75 @@ public final class LogControlConfigRuleReplaceFieldMappedValueArgs extends com.p
             $ = new LogControlConfigRuleReplaceFieldMappedValueArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param defaultValue Value to substitute when no matching key is found, when `use_default` is `true`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder defaultValue(@Nullable Output<String> defaultValue) {
             $.defaultValue = defaultValue;
             return this;
         }
 
+        /**
+         * @param defaultValue Value to substitute when no matching key is found, when `use_default` is `true`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder defaultValue(String defaultValue) {
             return defaultValue(Output.of(defaultValue));
         }
 
+        /**
+         * @param pairs List of key/value pairs that map matched content to replacement values.
+         * 
+         * @return builder
+         * 
+         */
         public Builder pairs(@Nullable Output<List<LogControlConfigRuleReplaceFieldMappedValuePairArgs>> pairs) {
             $.pairs = pairs;
             return this;
         }
 
+        /**
+         * @param pairs List of key/value pairs that map matched content to replacement values.
+         * 
+         * @return builder
+         * 
+         */
         public Builder pairs(List<LogControlConfigRuleReplaceFieldMappedValuePairArgs> pairs) {
             return pairs(Output.of(pairs));
         }
 
+        /**
+         * @param pairs List of key/value pairs that map matched content to replacement values.
+         * 
+         * @return builder
+         * 
+         */
         public Builder pairs(LogControlConfigRuleReplaceFieldMappedValuePairArgs... pairs) {
             return pairs(List.of(pairs));
         }
 
+        /**
+         * @param useDefault If `true`, falls back to `default_value` when no key matches. If `false`, leaves the value unchanged on a miss.
+         * 
+         * @return builder
+         * 
+         */
         public Builder useDefault(@Nullable Output<Boolean> useDefault) {
             $.useDefault = useDefault;
             return this;
         }
 
+        /**
+         * @param useDefault If `true`, falls back to `default_value` when no key matches. If `false`, leaves the value unchanged on a miss.
+         * 
+         * @return builder
+         * 
+         */
         public Builder useDefault(Boolean useDefault) {
             return useDefault(Output.of(useDefault));
         }

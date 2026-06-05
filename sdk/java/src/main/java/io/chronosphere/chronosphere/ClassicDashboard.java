@@ -14,23 +14,106 @@ import java.lang.String;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
+/**
+ * A Grafana-compatible dashboard rendered by Chronosphere. The dashboard&#39;s `name` and `slug` are derived from the `title` and `uid` fields inside `dashboard_json`. For native Chronosphere dashboards, use `chronosphere.Dashboard` instead.
+ * 
+ * ## Example Usage
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.chronosphere.Collection;
+ * import com.pulumi.chronosphere.CollectionArgs;
+ * import com.pulumi.chronosphere.ClassicDashboard;
+ * import com.pulumi.chronosphere.ClassicDashboardArgs;
+ * import static com.pulumi.codegen.internal.Serialization.*;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var collection = new Collection(&#34;collection&#34;, CollectionArgs.builder()        
+ *             .name(&#34;Platform&#34;)
+ *             .build());
+ * 
+ *         var platform = new ClassicDashboard(&#34;platform&#34;, ClassicDashboardArgs.builder()        
+ *             .collectionId(collection.id())
+ *             .dashboardJson(serializeJson(
+ *                 jsonObject(
+ *                     jsonProperty(&#34;title&#34;, &#34;Dashboard&#34;),
+ *                     jsonProperty(&#34;panels&#34;, jsonArray(jsonObject(
+ *                         jsonProperty(&#34;gridPos&#34;, jsonObject(
+ *                             jsonProperty(&#34;h&#34;, 12),
+ *                             jsonProperty(&#34;w&#34;, 24),
+ *                             jsonProperty(&#34;x&#34;, 0),
+ *                             jsonProperty(&#34;y&#34;, 0)
+ *                         )),
+ *                         jsonProperty(&#34;id&#34;, 2),
+ *                         jsonProperty(&#34;targets&#34;, jsonArray(jsonObject(
+ *                             jsonProperty(&#34;expr&#34;, &#34;up&#34;)
+ *                         ))),
+ *                         jsonProperty(&#34;title&#34;, &#34;Up by instance&#34;),
+ *                         jsonProperty(&#34;type&#34;, &#34;graph&#34;)
+ *                     )))
+ *                 )))
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ */
 @ResourceType(type="chronosphere:index/classicDashboard:ClassicDashboard")
 public class ClassicDashboard extends com.pulumi.resources.CustomResource {
+    /**
+     * ID of the bucket the dashboard belongs to. Exactly one of `bucket_id` or `collection_id` must be set.
+     * 
+     */
     @Export(name="bucketId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> bucketId;
 
+    /**
+     * @return ID of the bucket the dashboard belongs to. Exactly one of `bucket_id` or `collection_id` must be set.
+     * 
+     */
     public Output<Optional<String>> bucketId() {
         return Codegen.optional(this.bucketId);
     }
+    /**
+     * ID of the collection the dashboard belongs to. Exactly one of `bucket_id` or `collection_id` must be set.
+     * 
+     */
     @Export(name="collectionId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> collectionId;
 
+    /**
+     * @return ID of the collection the dashboard belongs to. Exactly one of `bucket_id` or `collection_id` must be set.
+     * 
+     */
     public Output<Optional<String>> collectionId() {
         return Codegen.optional(this.collectionId);
     }
+    /**
+     * Grafana-compatible dashboard definition serialized as JSON. The `id` and `version` fields are stripped before diffing.
+     * 
+     */
     @Export(name="dashboardJson", refs={String.class}, tree="[0]")
     private Output<String> dashboardJson;
 
+    /**
+     * @return Grafana-compatible dashboard definition serialized as JSON. The `id` and `version` fields are stripped before diffing.
+     * 
+     */
     public Output<String> dashboardJson() {
         return this.dashboardJson;
     }

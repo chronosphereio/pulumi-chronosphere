@@ -13,17 +13,41 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class TraceMetricsRuleTraceFilterScopeFilterSpanScopeTag {
+    /**
+     * @return Span attribute to group by.
+     * 
+     */
     private @Nullable String key;
+    /**
+     * @return Matches traces or spans where the target numeric field satisfies the comparison against `value`.
+     * 
+     */
     private @Nullable TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValue numericValue;
+    /**
+     * @return Boolean value the target field is compared against.
+     * 
+     */
     private @Nullable TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValue value;
 
     private TraceMetricsRuleTraceFilterScopeFilterSpanScopeTag() {}
+    /**
+     * @return Span attribute to group by.
+     * 
+     */
     public Optional<String> key() {
         return Optional.ofNullable(this.key);
     }
+    /**
+     * @return Matches traces or spans where the target numeric field satisfies the comparison against `value`.
+     * 
+     */
     public Optional<TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValue> numericValue() {
         return Optional.ofNullable(this.numericValue);
     }
+    /**
+     * @return Boolean value the target field is compared against.
+     * 
+     */
     public Optional<TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValue> value() {
         return Optional.ofNullable(this.value);
     }

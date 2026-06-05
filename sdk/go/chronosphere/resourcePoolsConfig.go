@@ -11,11 +11,16 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Singleton allocation of metric license capacity into named pools that match metrics by label filter, each with priority-based dropping when the pool's allocation is exceeded.
 type ResourcePoolsConfig struct {
 	pulumi.CustomResourceState
 
+	// Catch-all pool that receives metrics not matched by any other pool. Also receives any license allocation left unassigned by the other pools.
 	DefaultPool ResourcePoolsConfigDefaultPoolPtrOutput `pulumi:"defaultPool"`
-	Pool        ResourcePoolsConfigPoolArrayOutput      `pulumi:"pool"`
+	// Named pools that partition each license across teams or workloads. Pools are matched in declaration order via their `matchRules`.
+	Pool ResourcePoolsConfigPoolArrayOutput `pulumi:"pool"`
+	// Deprecated: use `pool` instead. Set of named pools that partition the license.
+	//
 	// Deprecated: Use pool instead of pools
 	Pools ResourcePoolsConfigPoolArrayOutput `pulumi:"pools"`
 }
@@ -50,15 +55,23 @@ func GetResourcePoolsConfig(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ResourcePoolsConfig resources.
 type resourcePoolsConfigState struct {
+	// Catch-all pool that receives metrics not matched by any other pool. Also receives any license allocation left unassigned by the other pools.
 	DefaultPool *ResourcePoolsConfigDefaultPool `pulumi:"defaultPool"`
-	Pool        []ResourcePoolsConfigPool       `pulumi:"pool"`
+	// Named pools that partition each license across teams or workloads. Pools are matched in declaration order via their `matchRules`.
+	Pool []ResourcePoolsConfigPool `pulumi:"pool"`
+	// Deprecated: use `pool` instead. Set of named pools that partition the license.
+	//
 	// Deprecated: Use pool instead of pools
 	Pools []ResourcePoolsConfigPool `pulumi:"pools"`
 }
 
 type ResourcePoolsConfigState struct {
+	// Catch-all pool that receives metrics not matched by any other pool. Also receives any license allocation left unassigned by the other pools.
 	DefaultPool ResourcePoolsConfigDefaultPoolPtrInput
-	Pool        ResourcePoolsConfigPoolArrayInput
+	// Named pools that partition each license across teams or workloads. Pools are matched in declaration order via their `matchRules`.
+	Pool ResourcePoolsConfigPoolArrayInput
+	// Deprecated: use `pool` instead. Set of named pools that partition the license.
+	//
 	// Deprecated: Use pool instead of pools
 	Pools ResourcePoolsConfigPoolArrayInput
 }
@@ -68,16 +81,24 @@ func (ResourcePoolsConfigState) ElementType() reflect.Type {
 }
 
 type resourcePoolsConfigArgs struct {
+	// Catch-all pool that receives metrics not matched by any other pool. Also receives any license allocation left unassigned by the other pools.
 	DefaultPool *ResourcePoolsConfigDefaultPool `pulumi:"defaultPool"`
-	Pool        []ResourcePoolsConfigPool       `pulumi:"pool"`
+	// Named pools that partition each license across teams or workloads. Pools are matched in declaration order via their `matchRules`.
+	Pool []ResourcePoolsConfigPool `pulumi:"pool"`
+	// Deprecated: use `pool` instead. Set of named pools that partition the license.
+	//
 	// Deprecated: Use pool instead of pools
 	Pools []ResourcePoolsConfigPool `pulumi:"pools"`
 }
 
 // The set of arguments for constructing a ResourcePoolsConfig resource.
 type ResourcePoolsConfigArgs struct {
+	// Catch-all pool that receives metrics not matched by any other pool. Also receives any license allocation left unassigned by the other pools.
 	DefaultPool ResourcePoolsConfigDefaultPoolPtrInput
-	Pool        ResourcePoolsConfigPoolArrayInput
+	// Named pools that partition each license across teams or workloads. Pools are matched in declaration order via their `matchRules`.
+	Pool ResourcePoolsConfigPoolArrayInput
+	// Deprecated: use `pool` instead. Set of named pools that partition the license.
+	//
 	// Deprecated: Use pool instead of pools
 	Pools ResourcePoolsConfigPoolArrayInput
 }
@@ -169,14 +190,18 @@ func (o ResourcePoolsConfigOutput) ToResourcePoolsConfigOutputWithContext(ctx co
 	return o
 }
 
+// Catch-all pool that receives metrics not matched by any other pool. Also receives any license allocation left unassigned by the other pools.
 func (o ResourcePoolsConfigOutput) DefaultPool() ResourcePoolsConfigDefaultPoolPtrOutput {
 	return o.ApplyT(func(v *ResourcePoolsConfig) ResourcePoolsConfigDefaultPoolPtrOutput { return v.DefaultPool }).(ResourcePoolsConfigDefaultPoolPtrOutput)
 }
 
+// Named pools that partition each license across teams or workloads. Pools are matched in declaration order via their `matchRules`.
 func (o ResourcePoolsConfigOutput) Pool() ResourcePoolsConfigPoolArrayOutput {
 	return o.ApplyT(func(v *ResourcePoolsConfig) ResourcePoolsConfigPoolArrayOutput { return v.Pool }).(ResourcePoolsConfigPoolArrayOutput)
 }
 
+// Deprecated: use `pool` instead. Set of named pools that partition the license.
+//
 // Deprecated: Use pool instead of pools
 func (o ResourcePoolsConfigOutput) Pools() ResourcePoolsConfigPoolArrayOutput {
 	return o.ApplyT(func(v *ResourcePoolsConfig) ResourcePoolsConfigPoolArrayOutput { return v.Pools }).(ResourcePoolsConfigPoolArrayOutput)

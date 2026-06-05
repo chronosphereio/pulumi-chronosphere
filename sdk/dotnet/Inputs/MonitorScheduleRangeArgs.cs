@@ -13,12 +13,21 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class MonitorScheduleRangeArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Day of week, e.g. `monday`. Case-insensitive.
+        /// </summary>
         [Input("day", required: true)]
         public Input<string> Day { get; set; } = null!;
 
+        /// <summary>
+        /// End time of day, 24-hour `HH:MM` format.
+        /// </summary>
         [Input("end", required: true)]
         public Input<string> End { get; set; } = null!;
 
+        /// <summary>
+        /// Start time of day, 24-hour `HH:MM` format.
+        /// </summary>
         [Input("start", required: true)]
         public Input<string> Start { get; set; } = null!;
 

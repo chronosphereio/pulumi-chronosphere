@@ -11,13 +11,29 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class AzureMetricsIntegrationPrincipal {
+    /**
+     * @return OAuth2 client ID of the managed identity principal.
+     * 
+     */
     private @Nullable String clientId;
+    /**
+     * @return ID of the Azure tenant that hosts the managed identity principal.
+     * 
+     */
     private @Nullable String tenantId;
 
     private AzureMetricsIntegrationPrincipal() {}
+    /**
+     * @return OAuth2 client ID of the managed identity principal.
+     * 
+     */
     public Optional<String> clientId() {
         return Optional.ofNullable(this.clientId);
     }
+    /**
+     * @return ID of the Azure tenant that hosts the managed identity principal.
+     * 
+     */
     public Optional<String> tenantId() {
         return Optional.ofNullable(this.tenantId);
     }

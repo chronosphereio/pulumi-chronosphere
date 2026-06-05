@@ -15,11 +15,23 @@ import java.util.List;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
+/**
+ * Singleton tree of consumption partitions that classify metric and log data into hierarchical groups so that consumption_budget resources can enforce quotas against them.
+ * 
+ */
 @ResourceType(type="chronosphere:index/consumptionConfig:ConsumptionConfig")
 public class ConsumptionConfig extends com.pulumi.resources.CustomResource {
+    /**
+     * Child partitions of this partition. Evaluated in order; requests not matching any child fall into an implicit `default` child partition.
+     * 
+     */
     @Export(name="partitions", refs={List.class,ConsumptionConfigPartition.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ConsumptionConfigPartition>> partitions;
 
+    /**
+     * @return Child partitions of this partition. Evaluated in order; requests not matching any child fall into an implicit `default` child partition.
+     * 
+     */
     public Output<Optional<List<ConsumptionConfigPartition>>> partitions() {
         return Codegen.optional(this.partitions);
     }

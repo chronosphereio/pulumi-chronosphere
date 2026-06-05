@@ -14,6 +14,9 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class TraceJaegerRemoteSamplingStrategyAppliedStrategyProbabilisticStrategy
     {
+        /// <summary>
+        /// Probability in the range `[0.0, 1.0]` that any given trace is sampled. `0` samples no traces, `1` samples every trace.
+        /// </summary>
         public readonly double SamplingRate;
 
         [OutputConstructor]

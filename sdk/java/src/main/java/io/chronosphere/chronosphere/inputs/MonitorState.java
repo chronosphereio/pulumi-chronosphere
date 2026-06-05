@@ -21,93 +21,197 @@ public final class MonitorState extends com.pulumi.resources.ResourceArgs {
 
     public static final MonitorState Empty = new MonitorState();
 
+    /**
+     * Free-form key/value pairs attached to every signal, intended for human consumption such as runbook URLs and descriptions.
+     * 
+     */
     @Import(name="annotations")
     private @Nullable Output<Map<String,String>> annotations;
 
+    /**
+     * @return Free-form key/value pairs attached to every signal, intended for human consumption such as runbook URLs and descriptions.
+     * 
+     */
     public Optional<Output<Map<String,String>>> annotations() {
         return Optional.ofNullable(this.annotations);
     }
 
+    /**
+     * ID of the bucket the monitor belongs to. Exactly one of `bucket_id` or `collection_id` must be set.
+     * 
+     */
     @Import(name="bucketId")
     private @Nullable Output<String> bucketId;
 
+    /**
+     * @return ID of the bucket the monitor belongs to. Exactly one of `bucket_id` or `collection_id` must be set.
+     * 
+     */
     public Optional<Output<String>> bucketId() {
         return Optional.ofNullable(this.bucketId);
     }
 
+    /**
+     * ID of the collection the monitor belongs to. Exactly one of `bucket_id` or `collection_id` must be set.
+     * 
+     */
     @Import(name="collectionId")
     private @Nullable Output<String> collectionId;
 
+    /**
+     * @return ID of the collection the monitor belongs to. Exactly one of `bucket_id` or `collection_id` must be set.
+     * 
+     */
     public Optional<Output<String>> collectionId() {
         return Optional.ofNullable(this.collectionId);
     }
 
+    /**
+     * Evaluation interval (e.g. `30s`, `1m`). Defaults to the system default if unset.
+     * 
+     */
     @Import(name="interval")
     private @Nullable Output<String> interval;
 
+    /**
+     * @return Evaluation interval (e.g. `30s`, `1m`). Defaults to the system default if unset.
+     * 
+     */
     public Optional<Output<String>> interval() {
         return Optional.ofNullable(this.interval);
     }
 
+    /**
+     * Key/value labels attached to every signal emitted by the monitor. Used for routing and filtering.
+     * 
+     */
     @Import(name="labels")
     private @Nullable Output<Map<String,String>> labels;
 
+    /**
+     * @return Key/value labels attached to every signal emitted by the monitor. Used for routing and filtering.
+     * 
+     */
     public Optional<Output<Map<String,String>>> labels() {
         return Optional.ofNullable(this.labels);
     }
 
+    /**
+     * Label name to match.
+     * 
+     */
     @Import(name="name")
     private @Nullable Output<String> name;
 
+    /**
+     * @return Label name to match.
+     * 
+     */
     public Optional<Output<String>> name() {
         return Optional.ofNullable(this.name);
     }
 
+    /**
+     * ID of the notification policy that routes signals from this monitor. If omitted, the parent collection&#39;s default policy applies. Must reference a named policy (anonymous policies are rejected).
+     * 
+     */
     @Import(name="notificationPolicyId")
     private @Nullable Output<String> notificationPolicyId;
 
+    /**
+     * @return ID of the notification policy that routes signals from this monitor. If omitted, the parent collection&#39;s default policy applies. Must reference a named policy (anonymous policies are rejected).
+     * 
+     */
     public Optional<Output<String>> notificationPolicyId() {
         return Optional.ofNullable(this.notificationPolicyId);
     }
 
+    /**
+     * Templated title/description rendered into outbound notifications. Supports Go templating with access to signal labels and annotations.
+     * 
+     */
     @Import(name="notificationTemplate")
     private @Nullable Output<MonitorNotificationTemplateArgs> notificationTemplate;
 
+    /**
+     * @return Templated title/description rendered into outbound notifications. Supports Go templating with access to signal labels and annotations.
+     * 
+     */
     public Optional<Output<MonitorNotificationTemplateArgs>> notificationTemplate() {
         return Optional.ofNullable(this.notificationTemplate);
     }
 
+    /**
+     * Query that produces the time series evaluated by the monitor. Exactly one of `prometheus_expr`, `graphite_expr`, or `logging_expr` must be set.
+     * 
+     */
     @Import(name="query")
     private @Nullable Output<MonitorQueryArgs> query;
 
+    /**
+     * @return Query that produces the time series evaluated by the monitor. Exactly one of `prometheus_expr`, `graphite_expr`, or `logging_expr` must be set.
+     * 
+     */
     public Optional<Output<MonitorQueryArgs>> query() {
         return Optional.ofNullable(this.query);
     }
 
+    /**
+     * Optional schedule restricting when the monitor evaluates and fires.
+     * 
+     */
     @Import(name="schedule")
     private @Nullable Output<MonitorScheduleArgs> schedule;
 
+    /**
+     * @return Optional schedule restricting when the monitor evaluates and fires.
+     * 
+     */
     public Optional<Output<MonitorScheduleArgs>> schedule() {
         return Optional.ofNullable(this.schedule);
     }
 
+    /**
+     * Conditions that determine when a series fires a signal.
+     * 
+     */
     @Import(name="seriesConditions")
     private @Nullable Output<MonitorSeriesConditionsArgs> seriesConditions;
 
+    /**
+     * @return Conditions that determine when a series fires a signal.
+     * 
+     */
     public Optional<Output<MonitorSeriesConditionsArgs>> seriesConditions() {
         return Optional.ofNullable(this.seriesConditions);
     }
 
+    /**
+     * Controls how individual time series are grouped into signals for alerting purposes.
+     * 
+     */
     @Import(name="signalGrouping")
     private @Nullable Output<MonitorSignalGroupingArgs> signalGrouping;
 
+    /**
+     * @return Controls how individual time series are grouped into signals for alerting purposes.
+     * 
+     */
     public Optional<Output<MonitorSignalGroupingArgs>> signalGrouping() {
         return Optional.ofNullable(this.signalGrouping);
     }
 
+    /**
+     * Stable identifier for the monitor. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     @Import(name="slug")
     private @Nullable Output<String> slug;
 
+    /**
+     * @return Stable identifier for the monitor. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     public Optional<Output<String>> slug() {
         return Optional.ofNullable(this.slug);
     }
@@ -148,119 +252,275 @@ public final class MonitorState extends com.pulumi.resources.ResourceArgs {
             $ = new MonitorState(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param annotations Free-form key/value pairs attached to every signal, intended for human consumption such as runbook URLs and descriptions.
+         * 
+         * @return builder
+         * 
+         */
         public Builder annotations(@Nullable Output<Map<String,String>> annotations) {
             $.annotations = annotations;
             return this;
         }
 
+        /**
+         * @param annotations Free-form key/value pairs attached to every signal, intended for human consumption such as runbook URLs and descriptions.
+         * 
+         * @return builder
+         * 
+         */
         public Builder annotations(Map<String,String> annotations) {
             return annotations(Output.of(annotations));
         }
 
+        /**
+         * @param bucketId ID of the bucket the monitor belongs to. Exactly one of `bucket_id` or `collection_id` must be set.
+         * 
+         * @return builder
+         * 
+         */
         public Builder bucketId(@Nullable Output<String> bucketId) {
             $.bucketId = bucketId;
             return this;
         }
 
+        /**
+         * @param bucketId ID of the bucket the monitor belongs to. Exactly one of `bucket_id` or `collection_id` must be set.
+         * 
+         * @return builder
+         * 
+         */
         public Builder bucketId(String bucketId) {
             return bucketId(Output.of(bucketId));
         }
 
+        /**
+         * @param collectionId ID of the collection the monitor belongs to. Exactly one of `bucket_id` or `collection_id` must be set.
+         * 
+         * @return builder
+         * 
+         */
         public Builder collectionId(@Nullable Output<String> collectionId) {
             $.collectionId = collectionId;
             return this;
         }
 
+        /**
+         * @param collectionId ID of the collection the monitor belongs to. Exactly one of `bucket_id` or `collection_id` must be set.
+         * 
+         * @return builder
+         * 
+         */
         public Builder collectionId(String collectionId) {
             return collectionId(Output.of(collectionId));
         }
 
+        /**
+         * @param interval Evaluation interval (e.g. `30s`, `1m`). Defaults to the system default if unset.
+         * 
+         * @return builder
+         * 
+         */
         public Builder interval(@Nullable Output<String> interval) {
             $.interval = interval;
             return this;
         }
 
+        /**
+         * @param interval Evaluation interval (e.g. `30s`, `1m`). Defaults to the system default if unset.
+         * 
+         * @return builder
+         * 
+         */
         public Builder interval(String interval) {
             return interval(Output.of(interval));
         }
 
+        /**
+         * @param labels Key/value labels attached to every signal emitted by the monitor. Used for routing and filtering.
+         * 
+         * @return builder
+         * 
+         */
         public Builder labels(@Nullable Output<Map<String,String>> labels) {
             $.labels = labels;
             return this;
         }
 
+        /**
+         * @param labels Key/value labels attached to every signal emitted by the monitor. Used for routing and filtering.
+         * 
+         * @return builder
+         * 
+         */
         public Builder labels(Map<String,String> labels) {
             return labels(Output.of(labels));
         }
 
+        /**
+         * @param name Label name to match.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(@Nullable Output<String> name) {
             $.name = name;
             return this;
         }
 
+        /**
+         * @param name Label name to match.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(String name) {
             return name(Output.of(name));
         }
 
+        /**
+         * @param notificationPolicyId ID of the notification policy that routes signals from this monitor. If omitted, the parent collection&#39;s default policy applies. Must reference a named policy (anonymous policies are rejected).
+         * 
+         * @return builder
+         * 
+         */
         public Builder notificationPolicyId(@Nullable Output<String> notificationPolicyId) {
             $.notificationPolicyId = notificationPolicyId;
             return this;
         }
 
+        /**
+         * @param notificationPolicyId ID of the notification policy that routes signals from this monitor. If omitted, the parent collection&#39;s default policy applies. Must reference a named policy (anonymous policies are rejected).
+         * 
+         * @return builder
+         * 
+         */
         public Builder notificationPolicyId(String notificationPolicyId) {
             return notificationPolicyId(Output.of(notificationPolicyId));
         }
 
+        /**
+         * @param notificationTemplate Templated title/description rendered into outbound notifications. Supports Go templating with access to signal labels and annotations.
+         * 
+         * @return builder
+         * 
+         */
         public Builder notificationTemplate(@Nullable Output<MonitorNotificationTemplateArgs> notificationTemplate) {
             $.notificationTemplate = notificationTemplate;
             return this;
         }
 
+        /**
+         * @param notificationTemplate Templated title/description rendered into outbound notifications. Supports Go templating with access to signal labels and annotations.
+         * 
+         * @return builder
+         * 
+         */
         public Builder notificationTemplate(MonitorNotificationTemplateArgs notificationTemplate) {
             return notificationTemplate(Output.of(notificationTemplate));
         }
 
+        /**
+         * @param query Query that produces the time series evaluated by the monitor. Exactly one of `prometheus_expr`, `graphite_expr`, or `logging_expr` must be set.
+         * 
+         * @return builder
+         * 
+         */
         public Builder query(@Nullable Output<MonitorQueryArgs> query) {
             $.query = query;
             return this;
         }
 
+        /**
+         * @param query Query that produces the time series evaluated by the monitor. Exactly one of `prometheus_expr`, `graphite_expr`, or `logging_expr` must be set.
+         * 
+         * @return builder
+         * 
+         */
         public Builder query(MonitorQueryArgs query) {
             return query(Output.of(query));
         }
 
+        /**
+         * @param schedule Optional schedule restricting when the monitor evaluates and fires.
+         * 
+         * @return builder
+         * 
+         */
         public Builder schedule(@Nullable Output<MonitorScheduleArgs> schedule) {
             $.schedule = schedule;
             return this;
         }
 
+        /**
+         * @param schedule Optional schedule restricting when the monitor evaluates and fires.
+         * 
+         * @return builder
+         * 
+         */
         public Builder schedule(MonitorScheduleArgs schedule) {
             return schedule(Output.of(schedule));
         }
 
+        /**
+         * @param seriesConditions Conditions that determine when a series fires a signal.
+         * 
+         * @return builder
+         * 
+         */
         public Builder seriesConditions(@Nullable Output<MonitorSeriesConditionsArgs> seriesConditions) {
             $.seriesConditions = seriesConditions;
             return this;
         }
 
+        /**
+         * @param seriesConditions Conditions that determine when a series fires a signal.
+         * 
+         * @return builder
+         * 
+         */
         public Builder seriesConditions(MonitorSeriesConditionsArgs seriesConditions) {
             return seriesConditions(Output.of(seriesConditions));
         }
 
+        /**
+         * @param signalGrouping Controls how individual time series are grouped into signals for alerting purposes.
+         * 
+         * @return builder
+         * 
+         */
         public Builder signalGrouping(@Nullable Output<MonitorSignalGroupingArgs> signalGrouping) {
             $.signalGrouping = signalGrouping;
             return this;
         }
 
+        /**
+         * @param signalGrouping Controls how individual time series are grouped into signals for alerting purposes.
+         * 
+         * @return builder
+         * 
+         */
         public Builder signalGrouping(MonitorSignalGroupingArgs signalGrouping) {
             return signalGrouping(Output.of(signalGrouping));
         }
 
+        /**
+         * @param slug Stable identifier for the monitor. Generated from `name` if omitted. Immutable after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slug(@Nullable Output<String> slug) {
             $.slug = slug;
             return this;
         }
 
+        /**
+         * @param slug Stable identifier for the monitor. Generated from `name` if omitted. Immutable after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slug(String slug) {
             return slug(Output.of(slug));
         }

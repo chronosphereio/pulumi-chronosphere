@@ -13,12 +13,21 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class LogControlConfigRuleParseFieldParserKeyValueParserArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// String used to split the input into individual key/value pairs.
+        /// </summary>
         [Input("delimiter", required: true)]
         public Input<string> Delimiter { get; set; } = null!;
 
+        /// <summary>
+        /// String used to split each pair into a key and value.
+        /// </summary>
         [Input("pairSeparator", required: true)]
         public Input<string> PairSeparator { get; set; } = null!;
 
+        /// <summary>
+        /// Unicode code points to trim from the beginning and end of each key and value.
+        /// </summary>
         [Input("trimSet")]
         public Input<string>? TrimSet { get; set; }
 

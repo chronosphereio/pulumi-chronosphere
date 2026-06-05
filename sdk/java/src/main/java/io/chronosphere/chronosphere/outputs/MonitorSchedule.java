@@ -12,13 +12,29 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class MonitorSchedule {
+    /**
+     * @return Time-of-day ranges during which the monitor is active. The monitor is inactive outside these ranges.
+     * 
+     */
     private @Nullable List<MonitorScheduleRange> ranges;
+    /**
+     * @return IANA timezone name (e.g. `America/New_York`) used to interpret `range` values.
+     * 
+     */
     private String timezone;
 
     private MonitorSchedule() {}
+    /**
+     * @return Time-of-day ranges during which the monitor is active. The monitor is inactive outside these ranges.
+     * 
+     */
     public List<MonitorScheduleRange> ranges() {
         return this.ranges == null ? List.of() : this.ranges;
     }
+    /**
+     * @return IANA timezone name (e.g. `America/New_York`) used to interpret `range` values.
+     * 
+     */
     public String timezone() {
         return this.timezone;
     }

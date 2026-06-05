@@ -12,9 +12,65 @@ namespace Chronosphere.Pulumi
 {
     public static class BucketDataSource
     {
+        /// <summary>
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Pulumi = Pulumi.Pulumi;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var @default = Pulumi.BucketDataSource.Invoke(new()
+        ///     {
+        ///         Slug = "default",
+        ///     });
+        /// 
+        ///     var byName = Pulumi.BucketDataSource.Invoke(new()
+        ///     {
+        ///         Name = "Default",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Task<BucketDataSourceResult> InvokeAsync(BucketDataSourceArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<BucketDataSourceResult>("chronosphere:index/bucketDataSource:BucketDataSource", args ?? new BucketDataSourceArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Pulumi = Pulumi.Pulumi;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var @default = Pulumi.BucketDataSource.Invoke(new()
+        ///     {
+        ///         Slug = "default",
+        ///     });
+        /// 
+        ///     var byName = Pulumi.BucketDataSource.Invoke(new()
+        ///     {
+        ///         Name = "Default",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Output<BucketDataSourceResult> Invoke(BucketDataSourceInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<BucketDataSourceResult>("chronosphere:index/bucketDataSource:BucketDataSource", args ?? new BucketDataSourceInvokeArgs(), options.WithDefaults());
     }
@@ -24,15 +80,25 @@ namespace Chronosphere.Pulumi
     {
         [Input("labels")]
         private Dictionary<string, string>? _labels;
+
+        /// <summary>
+        /// Read-only: key/value labels attached to the bucket.
+        /// </summary>
         public Dictionary<string, string> Labels
         {
             get => _labels ?? (_labels = new Dictionary<string, string>());
             set => _labels = value;
         }
 
+        /// <summary>
+        /// Name of the bucket to look up. Exactly one of `slug` or `name` must be set.
+        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
+        /// <summary>
+        /// Slug of the bucket to look up. Exactly one of `slug` or `name` must be set.
+        /// </summary>
         [Input("slug")]
         public string? Slug { get; set; }
 
@@ -46,15 +112,25 @@ namespace Chronosphere.Pulumi
     {
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// Read-only: key/value labels attached to the bucket.
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 
+        /// <summary>
+        /// Name of the bucket to look up. Exactly one of `slug` or `name` must be set.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// Slug of the bucket to look up. Exactly one of `slug` or `name` must be set.
+        /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 
@@ -68,13 +144,25 @@ namespace Chronosphere.Pulumi
     [OutputType]
     public sealed class BucketDataSourceResult
     {
+        /// <summary>
+        /// Read-only: free-form description of the bucket.
+        /// </summary>
         public readonly string Description;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// Read-only: key/value labels attached to the bucket.
+        /// </summary>
         public readonly ImmutableDictionary<string, string>? Labels;
+        /// <summary>
+        /// Name of the bucket to look up. Exactly one of `slug` or `name` must be set.
+        /// </summary>
         public readonly string? Name;
+        /// <summary>
+        /// Slug of the bucket to look up. Exactly one of `slug` or `name` must be set.
+        /// </summary>
         public readonly string? Slug;
 
         [OutputConstructor]

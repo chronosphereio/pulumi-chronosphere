@@ -13,9 +13,17 @@ public final class ConsumptionConfigPartitionPartitionPartitionPartitionPartitio
 
     public static final ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterArgs Empty = new ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterArgs();
 
+    /**
+     * Log search query that selects matching logs. Supports only top-level operations; nested clauses are not allowed and only one type of `AND` or `OR` operator can be used.
+     * 
+     */
     @Import(name="query", required=true)
     private Output<String> query;
 
+    /**
+     * @return Log search query that selects matching logs. Supports only top-level operations; nested clauses are not allowed and only one type of `AND` or `OR` operator can be used.
+     * 
+     */
     public Output<String> query() {
         return this.query;
     }
@@ -44,11 +52,23 @@ public final class ConsumptionConfigPartitionPartitionPartitionPartitionPartitio
             $ = new ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param query Log search query that selects matching logs. Supports only top-level operations; nested clauses are not allowed and only one type of `AND` or `OR` operator can be used.
+         * 
+         * @return builder
+         * 
+         */
         public Builder query(Output<String> query) {
             $.query = query;
             return this;
         }
 
+        /**
+         * @param query Log search query that selects matching logs. Supports only top-level operations; nested clauses are not allowed and only one type of `AND` or `OR` operator can be used.
+         * 
+         * @return builder
+         * 
+         */
         public Builder query(String query) {
             return query(Output.of(query));
         }

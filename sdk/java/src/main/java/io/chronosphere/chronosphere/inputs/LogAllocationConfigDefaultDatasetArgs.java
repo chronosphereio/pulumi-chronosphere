@@ -16,16 +16,32 @@ public final class LogAllocationConfigDefaultDatasetArgs extends com.pulumi.reso
 
     public static final LogAllocationConfigDefaultDatasetArgs Empty = new LogAllocationConfigDefaultDatasetArgs();
 
+    /**
+     * Resource allocation for the dataset, expressed as a share of the overall log license.
+     * 
+     */
     @Import(name="allocation", required=true)
     private Output<LogAllocationConfigDefaultDatasetAllocationArgs> allocation;
 
+    /**
+     * @return Resource allocation for the dataset, expressed as a share of the overall log license.
+     * 
+     */
     public Output<LogAllocationConfigDefaultDatasetAllocationArgs> allocation() {
         return this.allocation;
     }
 
+    /**
+     * Defines high and low priority match criteria. Low priority logs are dropped first when the allocation is exhausted, then default priority, with high priority dropped last.
+     * 
+     */
     @Import(name="priorities")
     private @Nullable Output<LogAllocationConfigDefaultDatasetPrioritiesArgs> priorities;
 
+    /**
+     * @return Defines high and low priority match criteria. Low priority logs are dropped first when the allocation is exhausted, then default priority, with high priority dropped last.
+     * 
+     */
     public Optional<Output<LogAllocationConfigDefaultDatasetPrioritiesArgs>> priorities() {
         return Optional.ofNullable(this.priorities);
     }
@@ -55,20 +71,44 @@ public final class LogAllocationConfigDefaultDatasetArgs extends com.pulumi.reso
             $ = new LogAllocationConfigDefaultDatasetArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param allocation Resource allocation for the dataset, expressed as a share of the overall log license.
+         * 
+         * @return builder
+         * 
+         */
         public Builder allocation(Output<LogAllocationConfigDefaultDatasetAllocationArgs> allocation) {
             $.allocation = allocation;
             return this;
         }
 
+        /**
+         * @param allocation Resource allocation for the dataset, expressed as a share of the overall log license.
+         * 
+         * @return builder
+         * 
+         */
         public Builder allocation(LogAllocationConfigDefaultDatasetAllocationArgs allocation) {
             return allocation(Output.of(allocation));
         }
 
+        /**
+         * @param priorities Defines high and low priority match criteria. Low priority logs are dropped first when the allocation is exhausted, then default priority, with high priority dropped last.
+         * 
+         * @return builder
+         * 
+         */
         public Builder priorities(@Nullable Output<LogAllocationConfigDefaultDatasetPrioritiesArgs> priorities) {
             $.priorities = priorities;
             return this;
         }
 
+        /**
+         * @param priorities Defines high and low priority match criteria. Low priority logs are dropped first when the allocation is exhausted, then default priority, with high priority dropped last.
+         * 
+         * @return builder
+         * 
+         */
         public Builder priorities(LogAllocationConfigDefaultDatasetPrioritiesArgs priorities) {
             return priorities(Output.of(priorities));
         }

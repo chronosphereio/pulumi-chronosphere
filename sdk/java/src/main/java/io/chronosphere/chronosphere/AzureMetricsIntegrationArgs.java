@@ -18,51 +18,107 @@ public final class AzureMetricsIntegrationArgs extends com.pulumi.resources.Reso
 
     public static final AzureMetricsIntegrationArgs Empty = new AzureMetricsIntegrationArgs();
 
+    /**
+     * If true, enables Azure count metrics for the configured resources.
+     * 
+     */
     @Import(name="countMetricsEnabled")
     private @Nullable Output<Boolean> countMetricsEnabled;
 
+    /**
+     * @return If true, enables Azure count metrics for the configured resources.
+     * 
+     */
     public Optional<Output<Boolean>> countMetricsEnabled() {
         return Optional.ofNullable(this.countMetricsEnabled);
     }
 
+    /**
+     * Azure resource type identifier (e.g. `Microsoft.Compute/virtualMachines`).
+     * 
+     */
     @Import(name="name", required=true)
     private Output<String> name;
 
+    /**
+     * @return Azure resource type identifier (e.g. `Microsoft.Compute/virtualMachines`).
+     * 
+     */
     public Output<String> name() {
         return this.name;
     }
 
+    /**
+     * Azure managed identity principal used to authenticate with Azure Monitor.
+     * 
+     */
     @Import(name="principal")
     private @Nullable Output<AzureMetricsIntegrationPrincipalArgs> principal;
 
+    /**
+     * @return Azure managed identity principal used to authenticate with Azure Monitor.
+     * 
+     */
     public Optional<Output<AzureMetricsIntegrationPrincipalArgs>> principal() {
         return Optional.ofNullable(this.principal);
     }
 
+    /**
+     * If true, propagates Azure resource, group, and subscription tags as metric labels.
+     * 
+     */
     @Import(name="propagateTags")
     private @Nullable Output<Boolean> propagateTags;
 
+    /**
+     * @return If true, propagates Azure resource, group, and subscription tags as metric labels.
+     * 
+     */
     public Optional<Output<Boolean>> propagateTags() {
         return Optional.ofNullable(this.propagateTags);
     }
 
+    /**
+     * Scope of Azure subscriptions, locations, and resource types from which to ingest metrics.
+     * 
+     */
     @Import(name="scrapeConfig")
     private @Nullable Output<AzureMetricsIntegrationScrapeConfigArgs> scrapeConfig;
 
+    /**
+     * @return Scope of Azure subscriptions, locations, and resource types from which to ingest metrics.
+     * 
+     */
     public Optional<Output<AzureMetricsIntegrationScrapeConfigArgs>> scrapeConfig() {
         return Optional.ofNullable(this.scrapeConfig);
     }
 
+    /**
+     * Stable identifier for the integration. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     @Import(name="slug")
     private @Nullable Output<String> slug;
 
+    /**
+     * @return Stable identifier for the integration. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     public Optional<Output<String>> slug() {
         return Optional.ofNullable(this.slug);
     }
 
+    /**
+     * If true, enables collection of Azure usage metrics under this principal (Microsoft.Compute, Microsoft.Network, Microsoft.Storage).
+     * 
+     */
     @Import(name="usageMetricsEnabled")
     private @Nullable Output<Boolean> usageMetricsEnabled;
 
+    /**
+     * @return If true, enables collection of Azure usage metrics under this principal (Microsoft.Compute, Microsoft.Network, Microsoft.Storage).
+     * 
+     */
     public Optional<Output<Boolean>> usageMetricsEnabled() {
         return Optional.ofNullable(this.usageMetricsEnabled);
     }
@@ -97,65 +153,149 @@ public final class AzureMetricsIntegrationArgs extends com.pulumi.resources.Reso
             $ = new AzureMetricsIntegrationArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param countMetricsEnabled If true, enables Azure count metrics for the configured resources.
+         * 
+         * @return builder
+         * 
+         */
         public Builder countMetricsEnabled(@Nullable Output<Boolean> countMetricsEnabled) {
             $.countMetricsEnabled = countMetricsEnabled;
             return this;
         }
 
+        /**
+         * @param countMetricsEnabled If true, enables Azure count metrics for the configured resources.
+         * 
+         * @return builder
+         * 
+         */
         public Builder countMetricsEnabled(Boolean countMetricsEnabled) {
             return countMetricsEnabled(Output.of(countMetricsEnabled));
         }
 
+        /**
+         * @param name Azure resource type identifier (e.g. `Microsoft.Compute/virtualMachines`).
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(Output<String> name) {
             $.name = name;
             return this;
         }
 
+        /**
+         * @param name Azure resource type identifier (e.g. `Microsoft.Compute/virtualMachines`).
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(String name) {
             return name(Output.of(name));
         }
 
+        /**
+         * @param principal Azure managed identity principal used to authenticate with Azure Monitor.
+         * 
+         * @return builder
+         * 
+         */
         public Builder principal(@Nullable Output<AzureMetricsIntegrationPrincipalArgs> principal) {
             $.principal = principal;
             return this;
         }
 
+        /**
+         * @param principal Azure managed identity principal used to authenticate with Azure Monitor.
+         * 
+         * @return builder
+         * 
+         */
         public Builder principal(AzureMetricsIntegrationPrincipalArgs principal) {
             return principal(Output.of(principal));
         }
 
+        /**
+         * @param propagateTags If true, propagates Azure resource, group, and subscription tags as metric labels.
+         * 
+         * @return builder
+         * 
+         */
         public Builder propagateTags(@Nullable Output<Boolean> propagateTags) {
             $.propagateTags = propagateTags;
             return this;
         }
 
+        /**
+         * @param propagateTags If true, propagates Azure resource, group, and subscription tags as metric labels.
+         * 
+         * @return builder
+         * 
+         */
         public Builder propagateTags(Boolean propagateTags) {
             return propagateTags(Output.of(propagateTags));
         }
 
+        /**
+         * @param scrapeConfig Scope of Azure subscriptions, locations, and resource types from which to ingest metrics.
+         * 
+         * @return builder
+         * 
+         */
         public Builder scrapeConfig(@Nullable Output<AzureMetricsIntegrationScrapeConfigArgs> scrapeConfig) {
             $.scrapeConfig = scrapeConfig;
             return this;
         }
 
+        /**
+         * @param scrapeConfig Scope of Azure subscriptions, locations, and resource types from which to ingest metrics.
+         * 
+         * @return builder
+         * 
+         */
         public Builder scrapeConfig(AzureMetricsIntegrationScrapeConfigArgs scrapeConfig) {
             return scrapeConfig(Output.of(scrapeConfig));
         }
 
+        /**
+         * @param slug Stable identifier for the integration. Generated from `name` if omitted. Immutable after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slug(@Nullable Output<String> slug) {
             $.slug = slug;
             return this;
         }
 
+        /**
+         * @param slug Stable identifier for the integration. Generated from `name` if omitted. Immutable after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slug(String slug) {
             return slug(Output.of(slug));
         }
 
+        /**
+         * @param usageMetricsEnabled If true, enables collection of Azure usage metrics under this principal (Microsoft.Compute, Microsoft.Network, Microsoft.Storage).
+         * 
+         * @return builder
+         * 
+         */
         public Builder usageMetricsEnabled(@Nullable Output<Boolean> usageMetricsEnabled) {
             $.usageMetricsEnabled = usageMetricsEnabled;
             return this;
         }
 
+        /**
+         * @param usageMetricsEnabled If true, enables collection of Azure usage metrics under this principal (Microsoft.Compute, Microsoft.Network, Microsoft.Storage).
+         * 
+         * @return builder
+         * 
+         */
         public Builder usageMetricsEnabled(Boolean usageMetricsEnabled) {
             return usageMetricsEnabled(Output.of(usageMetricsEnabled));
         }

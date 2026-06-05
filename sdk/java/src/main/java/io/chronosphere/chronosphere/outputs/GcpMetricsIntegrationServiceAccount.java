@@ -9,9 +9,17 @@ import java.util.Objects;
 
 @CustomType
 public final class GcpMetricsIntegrationServiceAccount {
+    /**
+     * @return Email address of the Google Cloud service account to impersonate for authentication.
+     * 
+     */
     private String clientEmail;
 
     private GcpMetricsIntegrationServiceAccount() {}
+    /**
+     * @return Email address of the Google Cloud service account to impersonate for authentication.
+     * 
+     */
     public String clientEmail() {
         return this.clientEmail;
     }

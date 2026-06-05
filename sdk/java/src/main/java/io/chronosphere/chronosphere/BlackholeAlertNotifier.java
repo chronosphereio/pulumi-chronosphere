@@ -13,17 +13,67 @@ import io.chronosphere.chronosphere.inputs.BlackholeAlertNotifierState;
 import java.lang.String;
 import javax.annotation.Nullable;
 
+/**
+ * Blackhole notifier that discards every signal routed to it. Reference from a notification policy route to silence alerts without delivering them anywhere.
+ * 
+ * ## Example Usage
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.chronosphere.BlackholeAlertNotifier;
+ * import com.pulumi.chronosphere.BlackholeAlertNotifierArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var blackhole = new BlackholeAlertNotifier(&#34;blackhole&#34;, BlackholeAlertNotifierArgs.builder()        
+ *             .name(&#34;Blackhole&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ */
 @ResourceType(type="chronosphere:index/blackholeAlertNotifier:BlackholeAlertNotifier")
 public class BlackholeAlertNotifier extends com.pulumi.resources.CustomResource {
+    /**
+     * Display name of the notifier.
+     * 
+     */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
+    /**
+     * @return Display name of the notifier.
+     * 
+     */
     public Output<String> name() {
         return this.name;
     }
+    /**
+     * Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     @Export(name="slug", refs={String.class}, tree="[0]")
     private Output<String> slug;
 
+    /**
+     * @return Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     public Output<String> slug() {
         return this.slug;
     }

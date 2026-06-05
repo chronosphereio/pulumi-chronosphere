@@ -13,6 +13,9 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationStrategiesPerOperationStrategyProbabilisticStrategyGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Probability in the range `[0.0, 1.0]` that any given trace is sampled. `0` samples no traces, `1` samples every trace.
+        /// </summary>
         [Input("samplingRate", required: true)]
         public Input<double> SamplingRate { get; set; } = null!;
 

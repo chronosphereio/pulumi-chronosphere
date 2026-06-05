@@ -14,7 +14,13 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class LogAllocationConfigDatasetAllocationPriorities
     {
+        /// <summary>
+        /// List of log search filters. Filters are combined as OR statements so only one filter needs to match.
+        /// </summary>
         public readonly ImmutableArray<Outputs.LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilter> HighPriorityFilters;
+        /// <summary>
+        /// List of log search filters. Filters are combined as OR statements so only one filter needs to match.
+        /// </summary>
         public readonly ImmutableArray<Outputs.LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilter> LowPriorityFilters;
 
         [OutputConstructor]

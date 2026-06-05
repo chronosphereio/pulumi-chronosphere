@@ -15,16 +15,32 @@ public final class TraceMetricsRuleScopeFilterSpanScopeSpanCountArgs extends com
 
     public static final TraceMetricsRuleScopeFilterSpanScopeSpanCountArgs Empty = new TraceMetricsRuleScopeFilterSpanScopeSpanCountArgs();
 
+    /**
+     * Maximum number of matching spans, inclusive. `0` means no upper bound.
+     * 
+     */
     @Import(name="max")
     private @Nullable Output<Integer> max;
 
+    /**
+     * @return Maximum number of matching spans, inclusive. `0` means no upper bound.
+     * 
+     */
     public Optional<Output<Integer>> max() {
         return Optional.ofNullable(this.max);
     }
 
+    /**
+     * Minimum number of matching spans, inclusive. Defaults to `0`.
+     * 
+     */
     @Import(name="min")
     private @Nullable Output<Integer> min;
 
+    /**
+     * @return Minimum number of matching spans, inclusive. Defaults to `0`.
+     * 
+     */
     public Optional<Output<Integer>> min() {
         return Optional.ofNullable(this.min);
     }
@@ -54,20 +70,44 @@ public final class TraceMetricsRuleScopeFilterSpanScopeSpanCountArgs extends com
             $ = new TraceMetricsRuleScopeFilterSpanScopeSpanCountArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param max Maximum number of matching spans, inclusive. `0` means no upper bound.
+         * 
+         * @return builder
+         * 
+         */
         public Builder max(@Nullable Output<Integer> max) {
             $.max = max;
             return this;
         }
 
+        /**
+         * @param max Maximum number of matching spans, inclusive. `0` means no upper bound.
+         * 
+         * @return builder
+         * 
+         */
         public Builder max(Integer max) {
             return max(Output.of(max));
         }
 
+        /**
+         * @param min Minimum number of matching spans, inclusive. Defaults to `0`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder min(@Nullable Output<Integer> min) {
             $.min = min;
             return this;
         }
 
+        /**
+         * @param min Minimum number of matching spans, inclusive. Defaults to `0`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder min(Integer min) {
             return min(Output.of(min));
         }

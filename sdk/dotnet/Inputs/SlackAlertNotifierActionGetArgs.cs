@@ -13,33 +13,63 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class SlackAlertNotifierActionGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Label for the cancel button in the confirmation dialog.
+        /// </summary>
         [Input("actionConfirmDismissText")]
         public Input<string>? ActionConfirmDismissText { get; set; }
 
+        /// <summary>
+        /// Label for the confirm button in the confirmation dialog.
+        /// </summary>
         [Input("actionConfirmOkText")]
         public Input<string>? ActionConfirmOkText { get; set; }
 
+        /// <summary>
+        /// Body text of the confirmation dialog shown before the action runs.
+        /// </summary>
         [Input("actionConfirmText")]
         public Input<string>? ActionConfirmText { get; set; }
 
+        /// <summary>
+        /// Title of the confirmation dialog shown before the action runs.
+        /// </summary>
         [Input("actionConfirmTile")]
         public Input<string>? ActionConfirmTile { get; set; }
 
+        /// <summary>
+        /// Identifier sent back to Slack when the button is clicked.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// Visual style of the button: `default`, `primary`, or `danger`.
+        /// </summary>
         [Input("style")]
         public Input<string>? Style { get; set; }
 
+        /// <summary>
+        /// Label shown on the button.
+        /// </summary>
         [Input("text")]
         public Input<string>? Text { get; set; }
 
+        /// <summary>
+        /// Action type. Typically `button`.
+        /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
 
+        /// <summary>
+        /// Link the button navigates to when clicked.
+        /// </summary>
         [Input("url")]
         public Input<string>? Url { get; set; }
 
+        /// <summary>
+        /// Opaque value sent back to Slack alongside `name` when the button is clicked.
+        /// </summary>
         [Input("value")]
         public Input<string>? Value { get; set; }
 

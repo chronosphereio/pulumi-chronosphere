@@ -12,17 +12,41 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperation {
+    /**
+     * @return Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     * 
+     */
     private @Nullable List<String> inValues;
+    /**
+     * @return Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     * 
+     */
     private @Nullable String match;
+    /**
+     * @return Boolean value the target field is compared against.
+     * 
+     */
     private @Nullable String value;
 
     private TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperation() {}
+    /**
+     * @return Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     * 
+     */
     public List<String> inValues() {
         return this.inValues == null ? List.of() : this.inValues;
     }
+    /**
+     * @return Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     * 
+     */
     public Optional<String> match() {
         return Optional.ofNullable(this.match);
     }
+    /**
+     * @return Boolean value the target field is compared against.
+     * 
+     */
     public Optional<String> value() {
         return Optional.ofNullable(this.value);
     }

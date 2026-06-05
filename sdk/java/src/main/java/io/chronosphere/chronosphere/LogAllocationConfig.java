@@ -16,17 +16,79 @@ import java.util.List;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
+/**
+ * Singleton config that allocates a portion of the org&#39;s log ingest quota to each dataset by priority, controlling which logs are kept when the quota is exceeded.
+ * 
+ * ## Example Usage
+ * 
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.chronosphere.LogAllocationConfig;
+ * import com.pulumi.chronosphere.LogAllocationConfigArgs;
+ * import com.pulumi.chronosphere.inputs.LogAllocationConfigDefaultDatasetArgs;
+ * import com.pulumi.chronosphere.inputs.LogAllocationConfigDefaultDatasetAllocationArgs;
+ * import com.pulumi.chronosphere.inputs.LogAllocationConfigDefaultDatasetPrioritiesArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var config = new LogAllocationConfig(&#34;config&#34;, LogAllocationConfigArgs.builder()        
+ *             .defaultDataset(LogAllocationConfigDefaultDatasetArgs.builder()
+ *                 .allocation(LogAllocationConfigDefaultDatasetAllocationArgs.builder()
+ *                     .percentOfLicense(100)
+ *                     .build())
+ *                 .priorities(LogAllocationConfigDefaultDatasetPrioritiesArgs.builder()
+ *                     .highPriorityFilter(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+ *                     .lowPriorityFilter(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+ *                     .build())
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ */
 @ResourceType(type="chronosphere:index/logAllocationConfig:LogAllocationConfig")
 public class LogAllocationConfig extends com.pulumi.resources.CustomResource {
+    /**
+     * Per-dataset allocation and priority overrides. Datasets are evaluated in order; the first match wins.
+     * 
+     */
     @Export(name="datasetAllocations", refs={List.class,LogAllocationConfigDatasetAllocation.class}, tree="[0,1]")
     private Output</* @Nullable */ List<LogAllocationConfigDatasetAllocation>> datasetAllocations;
 
+    /**
+     * @return Per-dataset allocation and priority overrides. Datasets are evaluated in order; the first match wins.
+     * 
+     */
     public Output<Optional<List<LogAllocationConfigDatasetAllocation>>> datasetAllocations() {
         return Codegen.optional(this.datasetAllocations);
     }
+    /**
+     * Allocation and priority configuration for the default dataset, which receives any logs not matched by a `dataset_allocation` entry.
+     * 
+     */
     @Export(name="defaultDataset", refs={LogAllocationConfigDefaultDataset.class}, tree="[0]")
     private Output<LogAllocationConfigDefaultDataset> defaultDataset;
 
+    /**
+     * @return Allocation and priority configuration for the default dataset, which receives any logs not matched by a `dataset_allocation` entry.
+     * 
+     */
     public Output<LogAllocationConfigDefaultDataset> defaultDataset() {
         return this.defaultDataset;
     }

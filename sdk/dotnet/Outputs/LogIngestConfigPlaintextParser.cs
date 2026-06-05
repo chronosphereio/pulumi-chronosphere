@@ -14,9 +14,21 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class LogIngestConfigPlaintextParser
     {
+        /// <summary>
+        /// If `true`, the original log is retained after parsing and stored under the `plaintext_log` key. Defaults to `false`.
+        /// </summary>
         public readonly bool? KeepOriginal;
+        /// <summary>
+        /// Mode that controls how the parser matches incoming plaintext logs.
+        /// </summary>
         public readonly string? Mode;
+        /// <summary>
+        /// Name of the parser. Must be unique within the configuration.
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// Parser configuration. Exactly one of `regex_parser`, `key_value_parser`, or `grok_parser` must be set, matching `parser_type`.
+        /// </summary>
         public readonly Outputs.LogIngestConfigPlaintextParserParser Parser;
 
         [OutputConstructor]

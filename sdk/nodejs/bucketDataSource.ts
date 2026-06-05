@@ -4,6 +4,21 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as chronosphere from "@pulumi/chronosphere";
+ *
+ * const default = chronosphere.BucketDataSource({
+ *     slug: "default",
+ * });
+ * const byName = chronosphere.BucketDataSource({
+ *     name: "Default",
+ * });
+ * ```
+ */
 export function bucketDataSource(args?: BucketDataSourceArgs, opts?: pulumi.InvokeOptions): Promise<BucketDataSourceResult> {
     args = args || {};
 
@@ -19,8 +34,17 @@ export function bucketDataSource(args?: BucketDataSourceArgs, opts?: pulumi.Invo
  * A collection of arguments for invoking BucketDataSource.
  */
 export interface BucketDataSourceArgs {
+    /**
+     * Read-only: key/value labels attached to the bucket.
+     */
     labels?: {[key: string]: string};
+    /**
+     * Name of the bucket to look up. Exactly one of `slug` or `name` must be set.
+     */
     name?: string;
+    /**
+     * Slug of the bucket to look up. Exactly one of `slug` or `name` must be set.
+     */
     slug?: string;
 }
 
@@ -28,15 +52,42 @@ export interface BucketDataSourceArgs {
  * A collection of values returned by BucketDataSource.
  */
 export interface BucketDataSourceResult {
+    /**
+     * Read-only: free-form description of the bucket.
+     */
     readonly description: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * Read-only: key/value labels attached to the bucket.
+     */
     readonly labels?: {[key: string]: string};
+    /**
+     * Name of the bucket to look up. Exactly one of `slug` or `name` must be set.
+     */
     readonly name?: string;
+    /**
+     * Slug of the bucket to look up. Exactly one of `slug` or `name` must be set.
+     */
     readonly slug?: string;
 }
+/**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as chronosphere from "@pulumi/chronosphere";
+ *
+ * const default = chronosphere.BucketDataSource({
+ *     slug: "default",
+ * });
+ * const byName = chronosphere.BucketDataSource({
+ *     name: "Default",
+ * });
+ * ```
+ */
 export function bucketDataSourceOutput(args?: BucketDataSourceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<BucketDataSourceResult> {
     return pulumi.output(args).apply((a: any) => bucketDataSource(a, opts))
 }
@@ -45,7 +96,16 @@ export function bucketDataSourceOutput(args?: BucketDataSourceOutputArgs, opts?:
  * A collection of arguments for invoking BucketDataSource.
  */
 export interface BucketDataSourceOutputArgs {
+    /**
+     * Read-only: key/value labels attached to the bucket.
+     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Name of the bucket to look up. Exactly one of `slug` or `name` must be set.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * Slug of the bucket to look up. Exactly one of `slug` or `name` must be set.
+     */
     slug?: pulumi.Input<string>;
 }

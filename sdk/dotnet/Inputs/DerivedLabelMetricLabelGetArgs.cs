@@ -13,9 +13,15 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class DerivedLabelMetricLabelGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Constructs the derived label value from a list of value definitions, each gated by a filter on existing labels.
+        /// </summary>
         [Input("constructedLabel")]
         public Input<Inputs.DerivedLabelMetricLabelConstructedLabelGetArgs>? ConstructedLabel { get; set; }
 
+        /// <summary>
+        /// Derives the label value by mapping from an existing source label, optionally translating its values.
+        /// </summary>
         [Input("mappingLabel")]
         public Input<Inputs.DerivedLabelMetricLabelMappingLabelGetArgs>? MappingLabel { get; set; }
 

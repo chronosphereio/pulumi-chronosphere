@@ -14,6 +14,9 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class NotificationPolicyOverrideRouteGroupBy
     {
+        /// <summary>
+        /// Label names to group alerts by. Alerts with identical values for these labels are bundled into a single notification.
+        /// </summary>
         public readonly ImmutableArray<string> LabelNames;
 
         [OutputConstructor]

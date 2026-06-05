@@ -14,17 +14,41 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class ResourcePoolsConfigDefaultPool {
+    /**
+     * @return License allocation for the pool. Can be expressed as a percentage of the license (`percent_of_license`) or as per-license fixed values (`fixed_value`).
+     * 
+     */
     private @Nullable ResourcePoolsConfigDefaultPoolAllocation allocation;
+    /**
+     * @return Optional high/low priority sub-classifications within the pool. Low-priority metrics are dropped first; high-priority metrics are dropped last when limits are hit.
+     * 
+     */
     private @Nullable ResourcePoolsConfigDefaultPoolPriorities priorities;
+    /**
+     * @return Per-license drop thresholds for `PERSISTED_CARDINALITY_STANDARD` and `PERSISTED_CARDINALITY_HISTOGRAM` only. Defines strict upper bounds beyond which new consumption is dropped, optionally segmented by priority class.
+     * 
+     */
     private @Nullable List<ResourcePoolsConfigDefaultPoolPriorityThreshold> priorityThresholds;
 
     private ResourcePoolsConfigDefaultPool() {}
+    /**
+     * @return License allocation for the pool. Can be expressed as a percentage of the license (`percent_of_license`) or as per-license fixed values (`fixed_value`).
+     * 
+     */
     public Optional<ResourcePoolsConfigDefaultPoolAllocation> allocation() {
         return Optional.ofNullable(this.allocation);
     }
+    /**
+     * @return Optional high/low priority sub-classifications within the pool. Low-priority metrics are dropped first; high-priority metrics are dropped last when limits are hit.
+     * 
+     */
     public Optional<ResourcePoolsConfigDefaultPoolPriorities> priorities() {
         return Optional.ofNullable(this.priorities);
     }
+    /**
+     * @return Per-license drop thresholds for `PERSISTED_CARDINALITY_STANDARD` and `PERSISTED_CARDINALITY_HISTOGRAM` only. Defines strict upper bounds beyond which new consumption is dropped, optionally segmented by priority class.
+     * 
+     */
     public List<ResourcePoolsConfigDefaultPoolPriorityThreshold> priorityThresholds() {
         return this.priorityThresholds == null ? List.of() : this.priorityThresholds;
     }

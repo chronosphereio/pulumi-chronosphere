@@ -22,6 +22,12 @@ class EmailAlertNotifierArgs:
                  text: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a EmailAlertNotifier resource.
+        :param pulumi.Input[str] name: Display name of the notifier.
+        :param pulumi.Input[str] to: Email address to send notifications to.
+        :param pulumi.Input[str] html: Body of the email in HTML format. Supports Go templating.
+        :param pulumi.Input[bool] send_resolved: Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+        :param pulumi.Input[str] slug: Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[str] text: Body of the email in plain text format. Supports Go templating.
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "to", to)
@@ -37,6 +43,9 @@ class EmailAlertNotifierArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        Display name of the notifier.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -46,6 +55,9 @@ class EmailAlertNotifierArgs:
     @property
     @pulumi.getter
     def to(self) -> pulumi.Input[str]:
+        """
+        Email address to send notifications to.
+        """
         return pulumi.get(self, "to")
 
     @to.setter
@@ -55,6 +67,9 @@ class EmailAlertNotifierArgs:
     @property
     @pulumi.getter
     def html(self) -> Optional[pulumi.Input[str]]:
+        """
+        Body of the email in HTML format. Supports Go templating.
+        """
         return pulumi.get(self, "html")
 
     @html.setter
@@ -64,6 +79,9 @@ class EmailAlertNotifierArgs:
     @property
     @pulumi.getter(name="sendResolved")
     def send_resolved(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+        """
         return pulumi.get(self, "send_resolved")
 
     @send_resolved.setter
@@ -73,6 +91,9 @@ class EmailAlertNotifierArgs:
     @property
     @pulumi.getter
     def slug(self) -> Optional[pulumi.Input[str]]:
+        """
+        Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @slug.setter
@@ -82,6 +103,9 @@ class EmailAlertNotifierArgs:
     @property
     @pulumi.getter
     def text(self) -> Optional[pulumi.Input[str]]:
+        """
+        Body of the email in plain text format. Supports Go templating.
+        """
         return pulumi.get(self, "text")
 
     @text.setter
@@ -100,6 +124,12 @@ class _EmailAlertNotifierState:
                  to: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering EmailAlertNotifier resources.
+        :param pulumi.Input[str] html: Body of the email in HTML format. Supports Go templating.
+        :param pulumi.Input[str] name: Display name of the notifier.
+        :param pulumi.Input[bool] send_resolved: Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+        :param pulumi.Input[str] slug: Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[str] text: Body of the email in plain text format. Supports Go templating.
+        :param pulumi.Input[str] to: Email address to send notifications to.
         """
         if html is not None:
             pulumi.set(__self__, "html", html)
@@ -117,6 +147,9 @@ class _EmailAlertNotifierState:
     @property
     @pulumi.getter
     def html(self) -> Optional[pulumi.Input[str]]:
+        """
+        Body of the email in HTML format. Supports Go templating.
+        """
         return pulumi.get(self, "html")
 
     @html.setter
@@ -126,6 +159,9 @@ class _EmailAlertNotifierState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Display name of the notifier.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -135,6 +171,9 @@ class _EmailAlertNotifierState:
     @property
     @pulumi.getter(name="sendResolved")
     def send_resolved(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+        """
         return pulumi.get(self, "send_resolved")
 
     @send_resolved.setter
@@ -144,6 +183,9 @@ class _EmailAlertNotifierState:
     @property
     @pulumi.getter
     def slug(self) -> Optional[pulumi.Input[str]]:
+        """
+        Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @slug.setter
@@ -153,6 +195,9 @@ class _EmailAlertNotifierState:
     @property
     @pulumi.getter
     def text(self) -> Optional[pulumi.Input[str]]:
+        """
+        Body of the email in plain text format. Supports Go templating.
+        """
         return pulumi.get(self, "text")
 
     @text.setter
@@ -162,6 +207,9 @@ class _EmailAlertNotifierState:
     @property
     @pulumi.getter
     def to(self) -> Optional[pulumi.Input[str]]:
+        """
+        Email address to send notifications to.
+        """
         return pulumi.get(self, "to")
 
     @to.setter
@@ -182,9 +230,27 @@ class EmailAlertNotifier(pulumi.CustomResource):
                  to: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a EmailAlertNotifier resource with the given unique name, props, and options.
+        Email notifier that delivers monitor signals to a recipient address with templated HTML and/or plain-text bodies. Referenced from notification policies.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_chronosphere as chronosphere
+
+        email = chronosphere.EmailAlertNotifier("email",
+            name="Email Blackhole",
+            to="blackhole@chronosphere.io")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] html: Body of the email in HTML format. Supports Go templating.
+        :param pulumi.Input[str] name: Display name of the notifier.
+        :param pulumi.Input[bool] send_resolved: Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+        :param pulumi.Input[str] slug: Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[str] text: Body of the email in plain text format. Supports Go templating.
+        :param pulumi.Input[str] to: Email address to send notifications to.
         """
         ...
     @overload
@@ -193,7 +259,19 @@ class EmailAlertNotifier(pulumi.CustomResource):
                  args: EmailAlertNotifierArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a EmailAlertNotifier resource with the given unique name, props, and options.
+        Email notifier that delivers monitor signals to a recipient address with templated HTML and/or plain-text bodies. Referenced from notification policies.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_chronosphere as chronosphere
+
+        email = chronosphere.EmailAlertNotifier("email",
+            name="Email Blackhole",
+            to="blackhole@chronosphere.io")
+        ```
+
         :param str resource_name: The name of the resource.
         :param EmailAlertNotifierArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -257,6 +335,12 @@ class EmailAlertNotifier(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] html: Body of the email in HTML format. Supports Go templating.
+        :param pulumi.Input[str] name: Display name of the notifier.
+        :param pulumi.Input[bool] send_resolved: Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+        :param pulumi.Input[str] slug: Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[str] text: Body of the email in plain text format. Supports Go templating.
+        :param pulumi.Input[str] to: Email address to send notifications to.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -273,30 +357,48 @@ class EmailAlertNotifier(pulumi.CustomResource):
     @property
     @pulumi.getter
     def html(self) -> pulumi.Output[Optional[str]]:
+        """
+        Body of the email in HTML format. Supports Go templating.
+        """
         return pulumi.get(self, "html")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        Display name of the notifier.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="sendResolved")
     def send_resolved(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+        """
         return pulumi.get(self, "send_resolved")
 
     @property
     @pulumi.getter
     def slug(self) -> pulumi.Output[str]:
+        """
+        Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @property
     @pulumi.getter
     def text(self) -> pulumi.Output[Optional[str]]:
+        """
+        Body of the email in plain text format. Supports Go templating.
+        """
         return pulumi.get(self, "text")
 
     @property
     @pulumi.getter
     def to(self) -> pulumi.Output[str]:
+        """
+        Email address to send notifications to.
+        """
         return pulumi.get(self, "to")
 

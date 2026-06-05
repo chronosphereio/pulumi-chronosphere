@@ -18,23 +18,47 @@ public final class ResourcePoolsConfigDefaultPoolArgs extends com.pulumi.resourc
 
     public static final ResourcePoolsConfigDefaultPoolArgs Empty = new ResourcePoolsConfigDefaultPoolArgs();
 
+    /**
+     * License allocation for the pool. Can be expressed as a percentage of the license (`percent_of_license`) or as per-license fixed values (`fixed_value`).
+     * 
+     */
     @Import(name="allocation")
     private @Nullable Output<ResourcePoolsConfigDefaultPoolAllocationArgs> allocation;
 
+    /**
+     * @return License allocation for the pool. Can be expressed as a percentage of the license (`percent_of_license`) or as per-license fixed values (`fixed_value`).
+     * 
+     */
     public Optional<Output<ResourcePoolsConfigDefaultPoolAllocationArgs>> allocation() {
         return Optional.ofNullable(this.allocation);
     }
 
+    /**
+     * Optional high/low priority sub-classifications within the pool. Low-priority metrics are dropped first; high-priority metrics are dropped last when limits are hit.
+     * 
+     */
     @Import(name="priorities")
     private @Nullable Output<ResourcePoolsConfigDefaultPoolPrioritiesArgs> priorities;
 
+    /**
+     * @return Optional high/low priority sub-classifications within the pool. Low-priority metrics are dropped first; high-priority metrics are dropped last when limits are hit.
+     * 
+     */
     public Optional<Output<ResourcePoolsConfigDefaultPoolPrioritiesArgs>> priorities() {
         return Optional.ofNullable(this.priorities);
     }
 
+    /**
+     * Per-license drop thresholds for `PERSISTED_CARDINALITY_STANDARD` and `PERSISTED_CARDINALITY_HISTOGRAM` only. Defines strict upper bounds beyond which new consumption is dropped, optionally segmented by priority class.
+     * 
+     */
     @Import(name="priorityThresholds")
     private @Nullable Output<List<ResourcePoolsConfigDefaultPoolPriorityThresholdArgs>> priorityThresholds;
 
+    /**
+     * @return Per-license drop thresholds for `PERSISTED_CARDINALITY_STANDARD` and `PERSISTED_CARDINALITY_HISTOGRAM` only. Defines strict upper bounds beyond which new consumption is dropped, optionally segmented by priority class.
+     * 
+     */
     public Optional<Output<List<ResourcePoolsConfigDefaultPoolPriorityThresholdArgs>>> priorityThresholds() {
         return Optional.ofNullable(this.priorityThresholds);
     }
@@ -65,33 +89,75 @@ public final class ResourcePoolsConfigDefaultPoolArgs extends com.pulumi.resourc
             $ = new ResourcePoolsConfigDefaultPoolArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param allocation License allocation for the pool. Can be expressed as a percentage of the license (`percent_of_license`) or as per-license fixed values (`fixed_value`).
+         * 
+         * @return builder
+         * 
+         */
         public Builder allocation(@Nullable Output<ResourcePoolsConfigDefaultPoolAllocationArgs> allocation) {
             $.allocation = allocation;
             return this;
         }
 
+        /**
+         * @param allocation License allocation for the pool. Can be expressed as a percentage of the license (`percent_of_license`) or as per-license fixed values (`fixed_value`).
+         * 
+         * @return builder
+         * 
+         */
         public Builder allocation(ResourcePoolsConfigDefaultPoolAllocationArgs allocation) {
             return allocation(Output.of(allocation));
         }
 
+        /**
+         * @param priorities Optional high/low priority sub-classifications within the pool. Low-priority metrics are dropped first; high-priority metrics are dropped last when limits are hit.
+         * 
+         * @return builder
+         * 
+         */
         public Builder priorities(@Nullable Output<ResourcePoolsConfigDefaultPoolPrioritiesArgs> priorities) {
             $.priorities = priorities;
             return this;
         }
 
+        /**
+         * @param priorities Optional high/low priority sub-classifications within the pool. Low-priority metrics are dropped first; high-priority metrics are dropped last when limits are hit.
+         * 
+         * @return builder
+         * 
+         */
         public Builder priorities(ResourcePoolsConfigDefaultPoolPrioritiesArgs priorities) {
             return priorities(Output.of(priorities));
         }
 
+        /**
+         * @param priorityThresholds Per-license drop thresholds for `PERSISTED_CARDINALITY_STANDARD` and `PERSISTED_CARDINALITY_HISTOGRAM` only. Defines strict upper bounds beyond which new consumption is dropped, optionally segmented by priority class.
+         * 
+         * @return builder
+         * 
+         */
         public Builder priorityThresholds(@Nullable Output<List<ResourcePoolsConfigDefaultPoolPriorityThresholdArgs>> priorityThresholds) {
             $.priorityThresholds = priorityThresholds;
             return this;
         }
 
+        /**
+         * @param priorityThresholds Per-license drop thresholds for `PERSISTED_CARDINALITY_STANDARD` and `PERSISTED_CARDINALITY_HISTOGRAM` only. Defines strict upper bounds beyond which new consumption is dropped, optionally segmented by priority class.
+         * 
+         * @return builder
+         * 
+         */
         public Builder priorityThresholds(List<ResourcePoolsConfigDefaultPoolPriorityThresholdArgs> priorityThresholds) {
             return priorityThresholds(Output.of(priorityThresholds));
         }
 
+        /**
+         * @param priorityThresholds Per-license drop thresholds for `PERSISTED_CARDINALITY_STANDARD` and `PERSISTED_CARDINALITY_HISTOGRAM` only. Defines strict upper bounds beyond which new consumption is dropped, optionally segmented by priority class.
+         * 
+         * @return builder
+         * 
+         */
         public Builder priorityThresholds(ResourcePoolsConfigDefaultPoolPriorityThresholdArgs... priorityThresholds) {
             return priorityThresholds(List.of(priorityThresholds));
         }

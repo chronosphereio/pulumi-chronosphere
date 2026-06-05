@@ -13,9 +13,15 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class MappingRuleStoragePolicyArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Resolution at which mapped data points are stored.
+        /// </summary>
         [Input("resolution", required: true)]
         public Input<string> Resolution { get; set; } = null!;
 
+        /// <summary>
+        /// Retention duration for mapped data points.
+        /// </summary>
         [Input("retention", required: true)]
         public Input<string> Retention { get; set; } = null!;
 

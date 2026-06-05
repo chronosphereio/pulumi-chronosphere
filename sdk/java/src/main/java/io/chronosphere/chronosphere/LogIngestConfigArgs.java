@@ -18,23 +18,47 @@ public final class LogIngestConfigArgs extends com.pulumi.resources.ResourceArgs
 
     public static final LogIngestConfigArgs Empty = new LogIngestConfigArgs();
 
+    /**
+     * Field normalization rules that map and standardize well-known fields (timestamp, severity, message, service) across log formats. Runs after parsing.
+     * 
+     */
     @Import(name="fieldNormalization")
     private @Nullable Output<LogIngestConfigFieldNormalizationArgs> fieldNormalization;
 
+    /**
+     * @return Field normalization rules that map and standardize well-known fields (timestamp, severity, message, service) across log formats. Runs after parsing.
+     * 
+     */
     public Optional<Output<LogIngestConfigFieldNormalizationArgs>> fieldNormalization() {
         return Optional.ofNullable(this.fieldNormalization);
     }
 
+    /**
+     * Parsers applied to specific fields within structured logs (or to fields produced by a plaintext parser).
+     * 
+     */
     @Import(name="fieldParsers")
     private @Nullable Output<List<LogIngestConfigFieldParserArgs>> fieldParsers;
 
+    /**
+     * @return Parsers applied to specific fields within structured logs (or to fields produced by a plaintext parser).
+     * 
+     */
     public Optional<Output<List<LogIngestConfigFieldParserArgs>>> fieldParsers() {
         return Optional.ofNullable(this.fieldParsers);
     }
 
+    /**
+     * Parsers applied to plaintext logs as they enter the ingest pipeline. The first parser that matches a log is used.
+     * 
+     */
     @Import(name="plaintextParsers")
     private @Nullable Output<List<LogIngestConfigPlaintextParserArgs>> plaintextParsers;
 
+    /**
+     * @return Parsers applied to plaintext logs as they enter the ingest pipeline. The first parser that matches a log is used.
+     * 
+     */
     public Optional<Output<List<LogIngestConfigPlaintextParserArgs>>> plaintextParsers() {
         return Optional.ofNullable(this.plaintextParsers);
     }
@@ -65,37 +89,85 @@ public final class LogIngestConfigArgs extends com.pulumi.resources.ResourceArgs
             $ = new LogIngestConfigArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param fieldNormalization Field normalization rules that map and standardize well-known fields (timestamp, severity, message, service) across log formats. Runs after parsing.
+         * 
+         * @return builder
+         * 
+         */
         public Builder fieldNormalization(@Nullable Output<LogIngestConfigFieldNormalizationArgs> fieldNormalization) {
             $.fieldNormalization = fieldNormalization;
             return this;
         }
 
+        /**
+         * @param fieldNormalization Field normalization rules that map and standardize well-known fields (timestamp, severity, message, service) across log formats. Runs after parsing.
+         * 
+         * @return builder
+         * 
+         */
         public Builder fieldNormalization(LogIngestConfigFieldNormalizationArgs fieldNormalization) {
             return fieldNormalization(Output.of(fieldNormalization));
         }
 
+        /**
+         * @param fieldParsers Parsers applied to specific fields within structured logs (or to fields produced by a plaintext parser).
+         * 
+         * @return builder
+         * 
+         */
         public Builder fieldParsers(@Nullable Output<List<LogIngestConfigFieldParserArgs>> fieldParsers) {
             $.fieldParsers = fieldParsers;
             return this;
         }
 
+        /**
+         * @param fieldParsers Parsers applied to specific fields within structured logs (or to fields produced by a plaintext parser).
+         * 
+         * @return builder
+         * 
+         */
         public Builder fieldParsers(List<LogIngestConfigFieldParserArgs> fieldParsers) {
             return fieldParsers(Output.of(fieldParsers));
         }
 
+        /**
+         * @param fieldParsers Parsers applied to specific fields within structured logs (or to fields produced by a plaintext parser).
+         * 
+         * @return builder
+         * 
+         */
         public Builder fieldParsers(LogIngestConfigFieldParserArgs... fieldParsers) {
             return fieldParsers(List.of(fieldParsers));
         }
 
+        /**
+         * @param plaintextParsers Parsers applied to plaintext logs as they enter the ingest pipeline. The first parser that matches a log is used.
+         * 
+         * @return builder
+         * 
+         */
         public Builder plaintextParsers(@Nullable Output<List<LogIngestConfigPlaintextParserArgs>> plaintextParsers) {
             $.plaintextParsers = plaintextParsers;
             return this;
         }
 
+        /**
+         * @param plaintextParsers Parsers applied to plaintext logs as they enter the ingest pipeline. The first parser that matches a log is used.
+         * 
+         * @return builder
+         * 
+         */
         public Builder plaintextParsers(List<LogIngestConfigPlaintextParserArgs> plaintextParsers) {
             return plaintextParsers(Output.of(plaintextParsers));
         }
 
+        /**
+         * @param plaintextParsers Parsers applied to plaintext logs as they enter the ingest pipeline. The first parser that matches a log is used.
+         * 
+         * @return builder
+         * 
+         */
         public Builder plaintextParsers(LogIngestConfigPlaintextParserArgs... plaintextParsers) {
             return plaintextParsers(List.of(plaintextParsers));
         }

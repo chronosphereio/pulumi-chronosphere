@@ -10,12 +10,33 @@ from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 apiToken: Optional[str]
+"""
+API token used to authenticate against the Chronosphere API. Treat as a secret. Falls back to the
+`CHRONOSPHERE_API_TOKEN` environment variable.
+"""
 
 disableDryrun: Optional[bool]
+"""
+Disable the dry-run validation step that runs before every apply. Falls back to the
+`CHRONOSPHERE_DRY_RUN_VALIDATION_DISABLED` environment variable (set to `1` to disable).
+"""
 
 entityNamespace: Optional[str]
+"""
+Optional namespace prefix applied to entity slugs managed by this provider instance, so multiple Terraform
+configurations can coexist in one Chronosphere org. Falls back to the `CHRONOSPHERE_ENTITY_NAMESPACE` environment
+variable.
+"""
 
 org: Optional[str]
+"""
+Chronosphere organization name (the subdomain of `<org>.chronosphere.io`). Falls back to the `CHRONOSPHERE_ORG` or
+`CHRONOSPHERE_ORG_NAME` environment variables.
+"""
 
 unstable: Optional[bool]
+"""
+Opt into resources and behaviors backed by Chronosphere's unstable config API. Subject to breaking change without
+notice. Falls back to the `CHRONOSPHERE_UNSTABLE` environment variable (set to `1` to enable).
+"""
 

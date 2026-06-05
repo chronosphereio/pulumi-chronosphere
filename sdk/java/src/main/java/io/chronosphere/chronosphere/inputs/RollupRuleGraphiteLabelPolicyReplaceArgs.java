@@ -13,16 +13,32 @@ public final class RollupRuleGraphiteLabelPolicyReplaceArgs extends com.pulumi.r
 
     public static final RollupRuleGraphiteLabelPolicyReplaceArgs Empty = new RollupRuleGraphiteLabelPolicyReplaceArgs();
 
+    /**
+     * Positional Graphite label to replace (e.g. `__g1__`).
+     * 
+     */
     @Import(name="name", required=true)
     private Output<String> name;
 
+    /**
+     * @return Positional Graphite label to replace (e.g. `__g1__`).
+     * 
+     */
     public Output<String> name() {
         return this.name;
     }
 
+    /**
+     * Replacement value for the named positional label.
+     * 
+     */
     @Import(name="newValue", required=true)
     private Output<String> newValue;
 
+    /**
+     * @return Replacement value for the named positional label.
+     * 
+     */
     public Output<String> newValue() {
         return this.newValue;
     }
@@ -52,20 +68,44 @@ public final class RollupRuleGraphiteLabelPolicyReplaceArgs extends com.pulumi.r
             $ = new RollupRuleGraphiteLabelPolicyReplaceArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param name Positional Graphite label to replace (e.g. `__g1__`).
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(Output<String> name) {
             $.name = name;
             return this;
         }
 
+        /**
+         * @param name Positional Graphite label to replace (e.g. `__g1__`).
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(String name) {
             return name(Output.of(name));
         }
 
+        /**
+         * @param newValue Replacement value for the named positional label.
+         * 
+         * @return builder
+         * 
+         */
         public Builder newValue(Output<String> newValue) {
             $.newValue = newValue;
             return this;
         }
 
+        /**
+         * @param newValue Replacement value for the named positional label.
+         * 
+         * @return builder
+         * 
+         */
         public Builder newValue(String newValue) {
             return newValue(Output.of(newValue));
         }

@@ -10,30 +10,108 @@ using Pulumi;
 
 namespace Chronosphere.Pulumi
 {
+    /// <summary>
+    /// A rule that extracts a histogram metric from spans matching a trace filter, with configurable group-by keys and histogram buckets.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Pulumi = Chronosphere.Pulumi;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var paymentsLatency = new Pulumi.TraceMetricsRule("paymentsLatency", new()
+    ///     {
+    ///         GroupBies = new[]
+    ///         {
+    ///             "operation",
+    ///         },
+    ///         HistogramBucketsSeconds = new[]
+    ///         {
+    ///             0.1,
+    ///             0.5,
+    ///             1,
+    ///             2,
+    ///             5,
+    ///         },
+    ///         MetricLabels = 
+    ///         {
+    ///             { "service", "payments" },
+    ///         },
+    ///         MetricName = "payments_request_duration",
+    ///         Name = "Payments service latency",
+    ///         Slug = "payments-latency",
+    ///         TraceFilter = new Pulumi.Inputs.TraceMetricsRuleTraceFilterArgs
+    ///         {
+    ///             Spans = new[]
+    ///             {
+    ///                 new Pulumi.Inputs.TraceMetricsRuleTraceFilterSpanArgs
+    ///                 {
+    ///                     MatchType = "include",
+    ///                     Service = new Pulumi.Inputs.TraceMetricsRuleTraceFilterSpanServiceArgs
+    ///                     {
+    ///                         Match = "exact",
+    ///                         Value = "payments",
+    ///                     },
+    ///                 },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// </summary>
     [PulumiResourceType("chronosphere:index/traceMetricsRule:TraceMetricsRule")]
     public partial class TraceMetricsRule : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Span attributes to project into metric labels. Each entry maps a key on the matched span to a label on the resulting metric series.
+        /// </summary>
         [Output("groupBies")]
         public Output<ImmutableArray<Outputs.TraceMetricsRuleGroupBy>> GroupBies { get; private set; } = null!;
 
+        /// <summary>
+        /// Histogram bucket upper bounds in seconds for the generated span-duration histogram metric.
+        /// </summary>
         [Output("histogramBucketsSeconds")]
         public Output<ImmutableArray<double>> HistogramBucketsSeconds { get; private set; } = null!;
 
+        /// <summary>
+        /// Static key/value labels added to every metric series emitted by the rule.
+        /// </summary>
         [Output("metricLabels")]
         public Output<ImmutableDictionary<string, string>?> MetricLabels { get; private set; } = null!;
 
+        /// <summary>
+        /// Base name of the generated Prometheus metrics emitted by this rule.
+        /// </summary>
         [Output("metricName")]
         public Output<string> MetricName { get; private set; } = null!;
 
+        /// <summary>
+        /// Display name of the trace metrics rule.
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// Scope filter that further restricts which spans within a matched trace contribute to metrics or sampling. Only spans matching `span_scopes` are included in aggregation.
+        /// </summary>
         [Output("scopeFilter")]
         public Output<Outputs.TraceMetricsRuleScopeFilter?> ScopeFilter { get; private set; } = null!;
 
+        /// <summary>
+        /// Stable identifier for the trace metrics rule. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Output("slug")]
         public Output<string> Slug { get; private set; } = null!;
 
+        /// <summary>
+        /// Filter that selects traces and spans. A trace matches when its trace-level conditions hold and every `span` block is satisfied by at least one span in the trace.
+        /// </summary>
         [Output("traceFilter")]
         public Output<Outputs.TraceMetricsRuleTraceFilter> TraceFilter { get; private set; } = null!;
 
@@ -86,6 +164,10 @@ namespace Chronosphere.Pulumi
     {
         [Input("groupBies")]
         private InputList<Inputs.TraceMetricsRuleGroupByArgs>? _groupBies;
+
+        /// <summary>
+        /// Span attributes to project into metric labels. Each entry maps a key on the matched span to a label on the resulting metric series.
+        /// </summary>
         public InputList<Inputs.TraceMetricsRuleGroupByArgs> GroupBies
         {
             get => _groupBies ?? (_groupBies = new InputList<Inputs.TraceMetricsRuleGroupByArgs>());
@@ -94,6 +176,10 @@ namespace Chronosphere.Pulumi
 
         [Input("histogramBucketsSeconds")]
         private InputList<double>? _histogramBucketsSeconds;
+
+        /// <summary>
+        /// Histogram bucket upper bounds in seconds for the generated span-duration histogram metric.
+        /// </summary>
         public InputList<double> HistogramBucketsSeconds
         {
             get => _histogramBucketsSeconds ?? (_histogramBucketsSeconds = new InputList<double>());
@@ -102,24 +188,43 @@ namespace Chronosphere.Pulumi
 
         [Input("metricLabels")]
         private InputMap<string>? _metricLabels;
+
+        /// <summary>
+        /// Static key/value labels added to every metric series emitted by the rule.
+        /// </summary>
         public InputMap<string> MetricLabels
         {
             get => _metricLabels ?? (_metricLabels = new InputMap<string>());
             set => _metricLabels = value;
         }
 
+        /// <summary>
+        /// Base name of the generated Prometheus metrics emitted by this rule.
+        /// </summary>
         [Input("metricName", required: true)]
         public Input<string> MetricName { get; set; } = null!;
 
+        /// <summary>
+        /// Display name of the trace metrics rule.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// Scope filter that further restricts which spans within a matched trace contribute to metrics or sampling. Only spans matching `span_scopes` are included in aggregation.
+        /// </summary>
         [Input("scopeFilter")]
         public Input<Inputs.TraceMetricsRuleScopeFilterArgs>? ScopeFilter { get; set; }
 
+        /// <summary>
+        /// Stable identifier for the trace metrics rule. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 
+        /// <summary>
+        /// Filter that selects traces and spans. A trace matches when its trace-level conditions hold and every `span` block is satisfied by at least one span in the trace.
+        /// </summary>
         [Input("traceFilter", required: true)]
         public Input<Inputs.TraceMetricsRuleTraceFilterArgs> TraceFilter { get; set; } = null!;
 
@@ -133,6 +238,10 @@ namespace Chronosphere.Pulumi
     {
         [Input("groupBies")]
         private InputList<Inputs.TraceMetricsRuleGroupByGetArgs>? _groupBies;
+
+        /// <summary>
+        /// Span attributes to project into metric labels. Each entry maps a key on the matched span to a label on the resulting metric series.
+        /// </summary>
         public InputList<Inputs.TraceMetricsRuleGroupByGetArgs> GroupBies
         {
             get => _groupBies ?? (_groupBies = new InputList<Inputs.TraceMetricsRuleGroupByGetArgs>());
@@ -141,6 +250,10 @@ namespace Chronosphere.Pulumi
 
         [Input("histogramBucketsSeconds")]
         private InputList<double>? _histogramBucketsSeconds;
+
+        /// <summary>
+        /// Histogram bucket upper bounds in seconds for the generated span-duration histogram metric.
+        /// </summary>
         public InputList<double> HistogramBucketsSeconds
         {
             get => _histogramBucketsSeconds ?? (_histogramBucketsSeconds = new InputList<double>());
@@ -149,24 +262,43 @@ namespace Chronosphere.Pulumi
 
         [Input("metricLabels")]
         private InputMap<string>? _metricLabels;
+
+        /// <summary>
+        /// Static key/value labels added to every metric series emitted by the rule.
+        /// </summary>
         public InputMap<string> MetricLabels
         {
             get => _metricLabels ?? (_metricLabels = new InputMap<string>());
             set => _metricLabels = value;
         }
 
+        /// <summary>
+        /// Base name of the generated Prometheus metrics emitted by this rule.
+        /// </summary>
         [Input("metricName")]
         public Input<string>? MetricName { get; set; }
 
+        /// <summary>
+        /// Display name of the trace metrics rule.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// Scope filter that further restricts which spans within a matched trace contribute to metrics or sampling. Only spans matching `span_scopes` are included in aggregation.
+        /// </summary>
         [Input("scopeFilter")]
         public Input<Inputs.TraceMetricsRuleScopeFilterGetArgs>? ScopeFilter { get; set; }
 
+        /// <summary>
+        /// Stable identifier for the trace metrics rule. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 
+        /// <summary>
+        /// Filter that selects traces and spans. A trace matches when its trace-level conditions hold and every `span` block is satisfied by at least one span in the trace.
+        /// </summary>
         [Input("traceFilter")]
         public Input<Inputs.TraceMetricsRuleTraceFilterGetArgs>? TraceFilter { get; set; }
 

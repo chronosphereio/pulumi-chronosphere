@@ -13,9 +13,15 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Maximum number of matching spans, inclusive. `0` means no upper bound.
+        /// </summary>
         [Input("max")]
         public Input<int>? Max { get; set; }
 
+        /// <summary>
+        /// Minimum number of matching spans, inclusive. Defaults to `0`.
+        /// </summary>
         [Input("min")]
         public Input<int>? Min { get; set; }
 

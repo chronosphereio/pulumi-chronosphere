@@ -14,23 +14,47 @@ public final class SLOSliCustomTimesliceIndicatorArgs extends com.pulumi.resourc
 
     public static final SLOSliCustomTimesliceIndicatorArgs Empty = new SLOSliCustomTimesliceIndicatorArgs();
 
+    /**
+     * Condition used to classify each time slice as good or bad based on the query result.
+     * 
+     */
     @Import(name="condition", required=true)
     private Output<SLOSliCustomTimesliceIndicatorConditionArgs> condition;
 
+    /**
+     * @return Condition used to classify each time slice as good or bad based on the query result.
+     * 
+     */
     public Output<SLOSliCustomTimesliceIndicatorConditionArgs> condition() {
         return this.condition;
     }
 
+    /**
+     * PromQL query template evaluated against each time slice.
+     * 
+     */
     @Import(name="queryTemplate", required=true)
     private Output<String> queryTemplate;
 
+    /**
+     * @return PromQL query template evaluated against each time slice.
+     * 
+     */
     public Output<String> queryTemplate() {
         return this.queryTemplate;
     }
 
+    /**
+     * Size of each time slice evaluated by the query (e.g. `1m`, `5m`).
+     * 
+     */
     @Import(name="timesliceSize", required=true)
     private Output<String> timesliceSize;
 
+    /**
+     * @return Size of each time slice evaluated by the query (e.g. `1m`, `5m`).
+     * 
+     */
     public Output<String> timesliceSize() {
         return this.timesliceSize;
     }
@@ -61,29 +85,65 @@ public final class SLOSliCustomTimesliceIndicatorArgs extends com.pulumi.resourc
             $ = new SLOSliCustomTimesliceIndicatorArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param condition Condition used to classify each time slice as good or bad based on the query result.
+         * 
+         * @return builder
+         * 
+         */
         public Builder condition(Output<SLOSliCustomTimesliceIndicatorConditionArgs> condition) {
             $.condition = condition;
             return this;
         }
 
+        /**
+         * @param condition Condition used to classify each time slice as good or bad based on the query result.
+         * 
+         * @return builder
+         * 
+         */
         public Builder condition(SLOSliCustomTimesliceIndicatorConditionArgs condition) {
             return condition(Output.of(condition));
         }
 
+        /**
+         * @param queryTemplate PromQL query template evaluated against each time slice.
+         * 
+         * @return builder
+         * 
+         */
         public Builder queryTemplate(Output<String> queryTemplate) {
             $.queryTemplate = queryTemplate;
             return this;
         }
 
+        /**
+         * @param queryTemplate PromQL query template evaluated against each time slice.
+         * 
+         * @return builder
+         * 
+         */
         public Builder queryTemplate(String queryTemplate) {
             return queryTemplate(Output.of(queryTemplate));
         }
 
+        /**
+         * @param timesliceSize Size of each time slice evaluated by the query (e.g. `1m`, `5m`).
+         * 
+         * @return builder
+         * 
+         */
         public Builder timesliceSize(Output<String> timesliceSize) {
             $.timesliceSize = timesliceSize;
             return this;
         }
 
+        /**
+         * @param timesliceSize Size of each time slice evaluated by the query (e.g. `1m`, `5m`).
+         * 
+         * @return builder
+         * 
+         */
         public Builder timesliceSize(String timesliceSize) {
             return timesliceSize(Output.of(timesliceSize));
         }

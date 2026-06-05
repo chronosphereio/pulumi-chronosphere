@@ -4,6 +4,24 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * A legacy container for monitors, dashboards, and other resources, predating collections. Buckets can also own an inline notification policy via `notificationPolicyData`. New configurations should generally use `chronosphere.Collection`.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as chronosphere from "@pulumi-chronosphere/pulumi-chronosphere";
+ *
+ * const bucket = new chronosphere.Bucket("bucket", {
+ *     name: "Bucket",
+ *     description: "bucket created by terraform examples",
+ *     labels: {
+ *         foo: "bar",
+ *     },
+ * });
+ * ```
+ */
 export class Bucket extends pulumi.CustomResource {
     /**
      * Get an existing Bucket resource's state with the given name, ID, and optional extra
@@ -32,13 +50,37 @@ export class Bucket extends pulumi.CustomResource {
         return obj['__pulumiType'] === Bucket.__pulumiType;
     }
 
+    /**
+     * Free-form description of the bucket.
+     */
     public readonly description!: pulumi.Output<string | undefined>;
+    /**
+     * Key/value labels attached to the bucket for organization and filtering.
+     */
     public readonly labels!: pulumi.Output<{[key: string]: string} | undefined>;
+    /**
+     * Display name of the bucket. Can be changed after creation.
+     */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * Inline notification policy serialized as JSON. Conflicts with `notificationPolicyId`. For reusability, reference a named policy instead.
+     */
     public readonly notificationPolicyData!: pulumi.Output<string | undefined>;
+    /**
+     * ID of the default notification policy applied to monitors in this bucket that do not explicitly reference one. Conflicts with `notificationPolicyData`.
+     */
     public readonly notificationPolicyId!: pulumi.Output<string | undefined>;
+    /**
+     * Internal field tracking the slug of an inline notification policy defined via `notificationPolicyData`. Use `notificationPolicyId` to reference a named policy.
+     */
     public /*out*/ readonly notificationPolicySlug!: pulumi.Output<string>;
+    /**
+     * Stable identifier for the bucket. Generated from `name` if omitted. Immutable after creation.
+     */
     public readonly slug!: pulumi.Output<string>;
+    /**
+     * ID of the team that owns this bucket.
+     */
     public readonly teamId!: pulumi.Output<string | undefined>;
 
     /**
@@ -85,13 +127,37 @@ export class Bucket extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Bucket resources.
  */
 export interface BucketState {
+    /**
+     * Free-form description of the bucket.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * Key/value labels attached to the bucket for organization and filtering.
+     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Display name of the bucket. Can be changed after creation.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * Inline notification policy serialized as JSON. Conflicts with `notificationPolicyId`. For reusability, reference a named policy instead.
+     */
     notificationPolicyData?: pulumi.Input<string>;
+    /**
+     * ID of the default notification policy applied to monitors in this bucket that do not explicitly reference one. Conflicts with `notificationPolicyData`.
+     */
     notificationPolicyId?: pulumi.Input<string>;
+    /**
+     * Internal field tracking the slug of an inline notification policy defined via `notificationPolicyData`. Use `notificationPolicyId` to reference a named policy.
+     */
     notificationPolicySlug?: pulumi.Input<string>;
+    /**
+     * Stable identifier for the bucket. Generated from `name` if omitted. Immutable after creation.
+     */
     slug?: pulumi.Input<string>;
+    /**
+     * ID of the team that owns this bucket.
+     */
     teamId?: pulumi.Input<string>;
 }
 
@@ -99,11 +165,32 @@ export interface BucketState {
  * The set of arguments for constructing a Bucket resource.
  */
 export interface BucketArgs {
+    /**
+     * Free-form description of the bucket.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * Key/value labels attached to the bucket for organization and filtering.
+     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Display name of the bucket. Can be changed after creation.
+     */
     name: pulumi.Input<string>;
+    /**
+     * Inline notification policy serialized as JSON. Conflicts with `notificationPolicyId`. For reusability, reference a named policy instead.
+     */
     notificationPolicyData?: pulumi.Input<string>;
+    /**
+     * ID of the default notification policy applied to monitors in this bucket that do not explicitly reference one. Conflicts with `notificationPolicyData`.
+     */
     notificationPolicyId?: pulumi.Input<string>;
+    /**
+     * Stable identifier for the bucket. Generated from `name` if omitted. Immutable after creation.
+     */
     slug?: pulumi.Input<string>;
+    /**
+     * ID of the team that owns this bucket.
+     */
     teamId?: pulumi.Input<string>;
 }

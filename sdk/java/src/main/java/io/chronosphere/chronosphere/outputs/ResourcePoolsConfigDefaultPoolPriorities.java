@@ -11,13 +11,29 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class ResourcePoolsConfigDefaultPoolPriorities {
+    /**
+     * @return Matchers selecting metrics within the pool that are treated as high priority and dropped last.
+     * 
+     */
     private @Nullable List<String> highPriorityMatchRules;
+    /**
+     * @return Matchers selecting metrics within the pool that are treated as low priority and dropped first.
+     * 
+     */
     private @Nullable List<String> lowPriorityMatchRules;
 
     private ResourcePoolsConfigDefaultPoolPriorities() {}
+    /**
+     * @return Matchers selecting metrics within the pool that are treated as high priority and dropped last.
+     * 
+     */
     public List<String> highPriorityMatchRules() {
         return this.highPriorityMatchRules == null ? List.of() : this.highPriorityMatchRules;
     }
+    /**
+     * @return Matchers selecting metrics within the pool that are treated as low priority and dropped first.
+     * 
+     */
     public List<String> lowPriorityMatchRules() {
         return this.lowPriorityMatchRules == null ? List.of() : this.lowPriorityMatchRules;
     }

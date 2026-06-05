@@ -15,6 +15,10 @@ namespace Chronosphere.Pulumi.Inputs
     {
         [Input("labelNames")]
         private InputList<string>? _labelNames;
+
+        /// <summary>
+        /// Label names to group alerts by. Alerts with identical values for these labels are bundled into a single notification.
+        /// </summary>
         public InputList<string> LabelNames
         {
             get => _labelNames ?? (_labelNames = new InputList<string>());

@@ -17,23 +17,47 @@ public final class ConsumptionBudgetAlertActionConfigArgs extends com.pulumi.res
 
     public static final ConsumptionBudgetAlertActionConfigArgs Empty = new ConsumptionBudgetAlertActionConfigArgs();
 
+    /**
+     * Additional annotations to set on the generated monitor. Overrides the default `description`, `dashboard`, `resource`, `consumption_budget_slug`, `threshold_type`, and `partition` annotations when keys collide.
+     * 
+     */
     @Import(name="annotations")
     private @Nullable Output<Map<String,String>> annotations;
 
+    /**
+     * @return Additional annotations to set on the generated monitor. Overrides the default `description`, `dashboard`, `resource`, `consumption_budget_slug`, `threshold_type`, and `partition` annotations when keys collide.
+     * 
+     */
     public Optional<Output<Map<String,String>>> annotations() {
         return Optional.ofNullable(this.annotations);
     }
 
+    /**
+     * How long instant-rate consumption must remain above the threshold before an alert fires, in seconds. Defaults to 0 (alert immediately on any breach).
+     * 
+     */
     @Import(name="instantRateSustainSecs")
     private @Nullable Output<Integer> instantRateSustainSecs;
 
+    /**
+     * @return How long instant-rate consumption must remain above the threshold before an alert fires, in seconds. Defaults to 0 (alert immediately on any breach).
+     * 
+     */
     public Optional<Output<Integer>> instantRateSustainSecs() {
         return Optional.ofNullable(this.instantRateSustainSecs);
     }
 
+    /**
+     * Additional labels to set on the generated monitor, usable for notification routing. The `resource`, `partition`, and `threshold_type` labels are reserved and cannot be overridden.
+     * 
+     */
     @Import(name="labels")
     private @Nullable Output<Map<String,String>> labels;
 
+    /**
+     * @return Additional labels to set on the generated monitor, usable for notification routing. The `resource`, `partition`, and `threshold_type` labels are reserved and cannot be overridden.
+     * 
+     */
     public Optional<Output<Map<String,String>>> labels() {
         return Optional.ofNullable(this.labels);
     }
@@ -64,29 +88,65 @@ public final class ConsumptionBudgetAlertActionConfigArgs extends com.pulumi.res
             $ = new ConsumptionBudgetAlertActionConfigArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param annotations Additional annotations to set on the generated monitor. Overrides the default `description`, `dashboard`, `resource`, `consumption_budget_slug`, `threshold_type`, and `partition` annotations when keys collide.
+         * 
+         * @return builder
+         * 
+         */
         public Builder annotations(@Nullable Output<Map<String,String>> annotations) {
             $.annotations = annotations;
             return this;
         }
 
+        /**
+         * @param annotations Additional annotations to set on the generated monitor. Overrides the default `description`, `dashboard`, `resource`, `consumption_budget_slug`, `threshold_type`, and `partition` annotations when keys collide.
+         * 
+         * @return builder
+         * 
+         */
         public Builder annotations(Map<String,String> annotations) {
             return annotations(Output.of(annotations));
         }
 
+        /**
+         * @param instantRateSustainSecs How long instant-rate consumption must remain above the threshold before an alert fires, in seconds. Defaults to 0 (alert immediately on any breach).
+         * 
+         * @return builder
+         * 
+         */
         public Builder instantRateSustainSecs(@Nullable Output<Integer> instantRateSustainSecs) {
             $.instantRateSustainSecs = instantRateSustainSecs;
             return this;
         }
 
+        /**
+         * @param instantRateSustainSecs How long instant-rate consumption must remain above the threshold before an alert fires, in seconds. Defaults to 0 (alert immediately on any breach).
+         * 
+         * @return builder
+         * 
+         */
         public Builder instantRateSustainSecs(Integer instantRateSustainSecs) {
             return instantRateSustainSecs(Output.of(instantRateSustainSecs));
         }
 
+        /**
+         * @param labels Additional labels to set on the generated monitor, usable for notification routing. The `resource`, `partition`, and `threshold_type` labels are reserved and cannot be overridden.
+         * 
+         * @return builder
+         * 
+         */
         public Builder labels(@Nullable Output<Map<String,String>> labels) {
             $.labels = labels;
             return this;
         }
 
+        /**
+         * @param labels Additional labels to set on the generated monitor, usable for notification routing. The `resource`, `partition`, and `threshold_type` labels are reserved and cannot be overridden.
+         * 
+         * @return builder
+         * 
+         */
         public Builder labels(Map<String,String> labels) {
             return labels(Output.of(labels));
         }

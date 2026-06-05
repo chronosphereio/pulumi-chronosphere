@@ -9,17 +9,41 @@ import java.util.Objects;
 
 @CustomType
 public final class MonitorSeriesConditionsOverrideLabelMatcher {
+    /**
+     * @return Label name to match.
+     * 
+     */
     private String name;
+    /**
+     * @return Match operator: one of `=`, `!=`, `=~` (regex), `!~` (regex negation).
+     * 
+     */
     private String type;
+    /**
+     * @return Resolution threshold value.
+     * 
+     */
     private String value;
 
     private MonitorSeriesConditionsOverrideLabelMatcher() {}
+    /**
+     * @return Label name to match.
+     * 
+     */
     public String name() {
         return this.name;
     }
+    /**
+     * @return Match operator: one of `=`, `!=`, `=~` (regex), `!~` (regex negation).
+     * 
+     */
     public String type() {
         return this.type;
     }
+    /**
+     * @return Resolution threshold value.
+     * 
+     */
     public String value() {
         return this.value;
     }

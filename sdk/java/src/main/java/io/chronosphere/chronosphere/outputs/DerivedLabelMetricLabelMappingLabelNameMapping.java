@@ -13,17 +13,41 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class DerivedLabelMetricLabelMappingLabelNameMapping {
+    /**
+     * @return Label filters that must all match for this value definition to apply.
+     * 
+     */
     private List<DerivedLabelMetricLabelMappingLabelNameMappingFilter> filters;
+    /**
+     * @return Source label on the ingested time series to copy into the derived label.
+     * 
+     */
     private String sourceLabel;
+    /**
+     * @return Translations from source label values to a normalized target value. Each entry maps a set of source globs to a single target.
+     * 
+     */
     private @Nullable List<DerivedLabelMetricLabelMappingLabelNameMappingValueMapping> valueMappings;
 
     private DerivedLabelMetricLabelMappingLabelNameMapping() {}
+    /**
+     * @return Label filters that must all match for this value definition to apply.
+     * 
+     */
     public List<DerivedLabelMetricLabelMappingLabelNameMappingFilter> filters() {
         return this.filters;
     }
+    /**
+     * @return Source label on the ingested time series to copy into the derived label.
+     * 
+     */
     public String sourceLabel() {
         return this.sourceLabel;
     }
+    /**
+     * @return Translations from source label values to a normalized target value. Each entry maps a set of source globs to a single target.
+     * 
+     */
     public List<DerivedLabelMetricLabelMappingLabelNameMappingValueMapping> valueMappings() {
         return this.valueMappings == null ? List.of() : this.valueMappings;
     }

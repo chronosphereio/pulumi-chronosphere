@@ -13,6 +13,9 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class LogControlConfigRuleSampleArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Fraction of matching logs to keep, in the range `[0, 1]` (for example, `0.25` keeps 25%).
+        /// </summary>
         [Input("rate")]
         public Input<double>? Rate { get; set; }
 

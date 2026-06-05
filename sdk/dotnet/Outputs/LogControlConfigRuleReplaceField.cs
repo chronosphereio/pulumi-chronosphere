@@ -14,11 +14,29 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class LogControlConfigRuleReplaceField
     {
+        /// <summary>
+        /// Path to a field within a log record.
+        /// </summary>
         public readonly Outputs.LogControlConfigRuleReplaceFieldField? Field;
+        /// <summary>
+        /// Replace field values using a key/value lookup table. Exactly one of `mapped_value` or `static_value` must be set.
+        /// </summary>
         public readonly Outputs.LogControlConfigRuleReplaceFieldMappedValue? MappedValue;
+        /// <summary>
+        /// If `true`, replaces all matches. If `false`, replaces only the first match.
+        /// </summary>
         public readonly bool? ReplaceAll;
+        /// <summary>
+        /// Mode that controls how the replacement is applied to matched content.
+        /// </summary>
         public readonly string? ReplaceMode;
+        /// <summary>
+        /// Regular expression that selects which part of the field value to replace.
+        /// </summary>
         public readonly string? ReplaceRegex;
+        /// <summary>
+        /// Replace matched content with a static string. Exactly one of `mapped_value` or `static_value` must be set.
+        /// </summary>
         public readonly Outputs.LogControlConfigRuleReplaceFieldStaticValue? StaticValue;
 
         [OutputConstructor]

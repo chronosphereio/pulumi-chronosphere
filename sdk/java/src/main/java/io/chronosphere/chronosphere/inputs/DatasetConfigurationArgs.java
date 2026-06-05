@@ -17,23 +17,47 @@ public final class DatasetConfigurationArgs extends com.pulumi.resources.Resourc
 
     public static final DatasetConfigurationArgs Empty = new DatasetConfigurationArgs();
 
+    /**
+     * Log-specific dataset configuration. Set only when `type` is a log type.
+     * 
+     */
     @Import(name="logDataset")
     private @Nullable Output<DatasetConfigurationLogDatasetArgs> logDataset;
 
+    /**
+     * @return Log-specific dataset configuration. Set only when `type` is a log type.
+     * 
+     */
     public Optional<Output<DatasetConfigurationLogDatasetArgs>> logDataset() {
         return Optional.ofNullable(this.logDataset);
     }
 
+    /**
+     * Trace-specific dataset configuration. Set only when `type` is a trace type.
+     * 
+     */
     @Import(name="traceDataset")
     private @Nullable Output<DatasetConfigurationTraceDatasetArgs> traceDataset;
 
+    /**
+     * @return Trace-specific dataset configuration. Set only when `type` is a trace type.
+     * 
+     */
     public Optional<Output<DatasetConfigurationTraceDatasetArgs>> traceDataset() {
         return Optional.ofNullable(this.traceDataset);
     }
 
+    /**
+     * Dataset type. Determines which of `trace_dataset` or `log_dataset` must be set.
+     * 
+     */
     @Import(name="type", required=true)
     private Output<String> type;
 
+    /**
+     * @return Dataset type. Determines which of `trace_dataset` or `log_dataset` must be set.
+     * 
+     */
     public Output<String> type() {
         return this.type;
     }
@@ -64,29 +88,65 @@ public final class DatasetConfigurationArgs extends com.pulumi.resources.Resourc
             $ = new DatasetConfigurationArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param logDataset Log-specific dataset configuration. Set only when `type` is a log type.
+         * 
+         * @return builder
+         * 
+         */
         public Builder logDataset(@Nullable Output<DatasetConfigurationLogDatasetArgs> logDataset) {
             $.logDataset = logDataset;
             return this;
         }
 
+        /**
+         * @param logDataset Log-specific dataset configuration. Set only when `type` is a log type.
+         * 
+         * @return builder
+         * 
+         */
         public Builder logDataset(DatasetConfigurationLogDatasetArgs logDataset) {
             return logDataset(Output.of(logDataset));
         }
 
+        /**
+         * @param traceDataset Trace-specific dataset configuration. Set only when `type` is a trace type.
+         * 
+         * @return builder
+         * 
+         */
         public Builder traceDataset(@Nullable Output<DatasetConfigurationTraceDatasetArgs> traceDataset) {
             $.traceDataset = traceDataset;
             return this;
         }
 
+        /**
+         * @param traceDataset Trace-specific dataset configuration. Set only when `type` is a trace type.
+         * 
+         * @return builder
+         * 
+         */
         public Builder traceDataset(DatasetConfigurationTraceDatasetArgs traceDataset) {
             return traceDataset(Output.of(traceDataset));
         }
 
+        /**
+         * @param type Dataset type. Determines which of `trace_dataset` or `log_dataset` must be set.
+         * 
+         * @return builder
+         * 
+         */
         public Builder type(Output<String> type) {
             $.type = type;
             return this;
         }
 
+        /**
+         * @param type Dataset type. Determines which of `trace_dataset` or `log_dataset` must be set.
+         * 
+         * @return builder
+         * 
+         */
         public Builder type(String type) {
             return type(Output.of(type));
         }

@@ -16,9 +16,17 @@ public final class LogIngestConfigFieldNormalizationTimestampArgs extends com.pu
 
     public static final LogIngestConfigFieldNormalizationTimestampArgs Empty = new LogIngestConfigFieldNormalizationTimestampArgs();
 
+    /**
+     * Ordered list of field paths to check for values. The first non-empty value found is used.
+     * 
+     */
     @Import(name="sources")
     private @Nullable Output<List<LogIngestConfigFieldNormalizationTimestampSourceArgs>> sources;
 
+    /**
+     * @return Ordered list of field paths to check for values. The first non-empty value found is used.
+     * 
+     */
     public Optional<Output<List<LogIngestConfigFieldNormalizationTimestampSourceArgs>>> sources() {
         return Optional.ofNullable(this.sources);
     }
@@ -47,15 +55,33 @@ public final class LogIngestConfigFieldNormalizationTimestampArgs extends com.pu
             $ = new LogIngestConfigFieldNormalizationTimestampArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param sources Ordered list of field paths to check for values. The first non-empty value found is used.
+         * 
+         * @return builder
+         * 
+         */
         public Builder sources(@Nullable Output<List<LogIngestConfigFieldNormalizationTimestampSourceArgs>> sources) {
             $.sources = sources;
             return this;
         }
 
+        /**
+         * @param sources Ordered list of field paths to check for values. The first non-empty value found is used.
+         * 
+         * @return builder
+         * 
+         */
         public Builder sources(List<LogIngestConfigFieldNormalizationTimestampSourceArgs> sources) {
             return sources(Output.of(sources));
         }
 
+        /**
+         * @param sources Ordered list of field paths to check for values. The first non-empty value found is used.
+         * 
+         * @return builder
+         * 
+         */
         public Builder sources(LogIngestConfigFieldNormalizationTimestampSourceArgs... sources) {
             return sources(List.of(sources));
         }

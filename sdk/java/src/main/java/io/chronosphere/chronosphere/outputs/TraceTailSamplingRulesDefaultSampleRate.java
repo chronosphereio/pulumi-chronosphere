@@ -12,13 +12,29 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class TraceTailSamplingRulesDefaultSampleRate {
+    /**
+     * @return Whether to override the platform default sample rate with `sample_rate`.
+     * 
+     */
     private @Nullable Boolean enabled;
+    /**
+     * @return Fraction of matching traces to keep, in the range `[0.0, 1.0]`. `0` drops all matches, `1` keeps every match.
+     * 
+     */
     private Double sampleRate;
 
     private TraceTailSamplingRulesDefaultSampleRate() {}
+    /**
+     * @return Whether to override the platform default sample rate with `sample_rate`.
+     * 
+     */
     public Optional<Boolean> enabled() {
         return Optional.ofNullable(this.enabled);
     }
+    /**
+     * @return Fraction of matching traces to keep, in the range `[0.0, 1.0]`. `0` drops all matches, `1` keeps every match.
+     * 
+     */
     public Double sampleRate() {
         return this.sampleRate;
     }

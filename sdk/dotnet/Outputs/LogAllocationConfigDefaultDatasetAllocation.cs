@@ -14,6 +14,9 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class LogAllocationConfigDefaultDatasetAllocation
     {
+        /// <summary>
+        /// Percentage of the tenant's log license to allocate to this dataset, expressed as a number between 0 and 100.
+        /// </summary>
         public readonly double PercentOfLicense;
 
         [OutputConstructor]

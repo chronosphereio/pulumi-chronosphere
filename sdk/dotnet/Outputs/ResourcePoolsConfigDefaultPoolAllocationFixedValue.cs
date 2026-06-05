@@ -14,7 +14,13 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class ResourcePoolsConfigDefaultPoolAllocationFixedValue
     {
+        /// <summary>
+        /// License this fixed-value allocation applies to (e.g. `PERSISTED_WRITES`).
+        /// </summary>
         public readonly string License;
+        /// <summary>
+        /// Fixed amount of the license to allocate, in the license's native unit.
+        /// </summary>
         public readonly int Value;
 
         [OutputConstructor]

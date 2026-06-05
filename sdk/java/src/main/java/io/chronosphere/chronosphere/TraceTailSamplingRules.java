@@ -16,17 +16,87 @@ import java.util.List;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
+/**
+ * Tail-sampling rules that match completed traces against filters and apply per-rule sample rates (with a default rate fallback) to decide which traces are retained after the full trace has been observed.
+ * 
+ * ## Example Usage
+ * 
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.chronosphere.TraceTailSamplingRules;
+ * import com.pulumi.chronosphere.TraceTailSamplingRulesArgs;
+ * import com.pulumi.chronosphere.inputs.TraceTailSamplingRulesDefaultSampleRateArgs;
+ * import com.pulumi.chronosphere.inputs.TraceTailSamplingRulesRuleArgs;
+ * import com.pulumi.chronosphere.inputs.TraceTailSamplingRulesRuleFilterArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var rules = new TraceTailSamplingRules(&#34;rules&#34;, TraceTailSamplingRulesArgs.builder()        
+ *             .defaultSampleRate(TraceTailSamplingRulesDefaultSampleRateArgs.builder()
+ *                 .enabled(true)
+ *                 .sampleRate(0.5)
+ *                 .build())
+ *             .rules(            
+ *                 TraceTailSamplingRulesRuleArgs.builder()
+ *                     .filter(TraceTailSamplingRulesRuleFilterArgs.builder()
+ *                         .span(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+ *                         .build())
+ *                     .sampleRate(1)
+ *                     .build(),
+ *                 TraceTailSamplingRulesRuleArgs.builder()
+ *                     .filter(TraceTailSamplingRulesRuleFilterArgs.builder()
+ *                         .span(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+ *                         .build())
+ *                     .sampleRate(1)
+ *                     .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ */
 @ResourceType(type="chronosphere:index/traceTailSamplingRules:TraceTailSamplingRules")
 public class TraceTailSamplingRules extends com.pulumi.resources.CustomResource {
+    /**
+     * Default sampling decision applied after the full trace is observed when no rule in `rules` matches.
+     * 
+     */
     @Export(name="defaultSampleRate", refs={TraceTailSamplingRulesDefaultSampleRate.class}, tree="[0]")
     private Output</* @Nullable */ TraceTailSamplingRulesDefaultSampleRate> defaultSampleRate;
 
+    /**
+     * @return Default sampling decision applied after the full trace is observed when no rule in `rules` matches.
+     * 
+     */
     public Output<Optional<TraceTailSamplingRulesDefaultSampleRate>> defaultSampleRate() {
         return Codegen.optional(this.defaultSampleRate);
     }
+    /**
+     * Ordered list of tail-sampling rules evaluated after the full trace is observed. The first rule whose `filter` matches determines the sample rate; if none match, `default_sample_rate` is applied.
+     * 
+     */
     @Export(name="rules", refs={List.class,TraceTailSamplingRulesRule.class}, tree="[0,1]")
     private Output</* @Nullable */ List<TraceTailSamplingRulesRule>> rules;
 
+    /**
+     * @return Ordered list of tail-sampling rules evaluated after the full trace is observed. The first rule whose `filter` matches determines the sample rate; if none match, `default_sample_rate` is applied.
+     * 
+     */
     public Output<Optional<List<TraceTailSamplingRulesRule>>> rules() {
         return Codegen.optional(this.rules);
     }

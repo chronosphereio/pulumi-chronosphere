@@ -6,6 +6,9 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * Singleton config that allocates a portion of the org's log ingest quota to each dataset by priority, controlling which logs are kept when the quota is exceeded.
+ */
 export class LogAllocationConfig extends pulumi.CustomResource {
     /**
      * Get an existing LogAllocationConfig resource's state with the given name, ID, and optional extra
@@ -34,7 +37,13 @@ export class LogAllocationConfig extends pulumi.CustomResource {
         return obj['__pulumiType'] === LogAllocationConfig.__pulumiType;
     }
 
+    /**
+     * Per-dataset allocation and priority overrides. Datasets are evaluated in order; the first match wins.
+     */
     public readonly datasetAllocations!: pulumi.Output<outputs.LogAllocationConfigDatasetAllocation[] | undefined>;
+    /**
+     * Allocation and priority configuration for the default dataset, which receives any logs not matched by a `datasetAllocation` entry.
+     */
     public readonly defaultDataset!: pulumi.Output<outputs.LogAllocationConfigDefaultDataset>;
 
     /**
@@ -69,7 +78,13 @@ export class LogAllocationConfig extends pulumi.CustomResource {
  * Input properties used for looking up and filtering LogAllocationConfig resources.
  */
 export interface LogAllocationConfigState {
+    /**
+     * Per-dataset allocation and priority overrides. Datasets are evaluated in order; the first match wins.
+     */
     datasetAllocations?: pulumi.Input<pulumi.Input<inputs.LogAllocationConfigDatasetAllocation>[]>;
+    /**
+     * Allocation and priority configuration for the default dataset, which receives any logs not matched by a `datasetAllocation` entry.
+     */
     defaultDataset?: pulumi.Input<inputs.LogAllocationConfigDefaultDataset>;
 }
 
@@ -77,6 +92,12 @@ export interface LogAllocationConfigState {
  * The set of arguments for constructing a LogAllocationConfig resource.
  */
 export interface LogAllocationConfigArgs {
+    /**
+     * Per-dataset allocation and priority overrides. Datasets are evaluated in order; the first match wins.
+     */
     datasetAllocations?: pulumi.Input<pulumi.Input<inputs.LogAllocationConfigDatasetAllocation>[]>;
+    /**
+     * Allocation and priority configuration for the default dataset, which receives any logs not matched by a `datasetAllocation` entry.
+     */
     defaultDataset: pulumi.Input<inputs.LogAllocationConfigDefaultDataset>;
 }

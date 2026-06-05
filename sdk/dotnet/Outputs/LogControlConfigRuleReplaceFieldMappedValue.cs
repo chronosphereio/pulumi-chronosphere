@@ -14,8 +14,17 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class LogControlConfigRuleReplaceFieldMappedValue
     {
+        /// <summary>
+        /// Value to substitute when no matching key is found, when `use_default` is `true`.
+        /// </summary>
         public readonly string? DefaultValue;
+        /// <summary>
+        /// List of key/value pairs that map matched content to replacement values.
+        /// </summary>
         public readonly ImmutableArray<Outputs.LogControlConfigRuleReplaceFieldMappedValuePair> Pairs;
+        /// <summary>
+        /// If `true`, falls back to `default_value` when no key matches. If `false`, leaves the value unchanged on a miss.
+        /// </summary>
         public readonly bool? UseDefault;
 
         [OutputConstructor]

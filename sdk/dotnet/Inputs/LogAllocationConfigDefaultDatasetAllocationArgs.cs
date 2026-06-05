@@ -13,6 +13,9 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class LogAllocationConfigDefaultDatasetAllocationArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Percentage of the tenant's log license to allocate to this dataset, expressed as a number between 0 and 100.
+        /// </summary>
         [Input("percentOfLicense", required: true)]
         public Input<double> PercentOfLicense { get; set; } = null!;
 

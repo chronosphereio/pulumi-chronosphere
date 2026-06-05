@@ -10,13 +10,29 @@ import java.util.Objects;
 
 @CustomType
 public final class TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationStrategiesPerOperationStrategy {
+    /**
+     * @return Span operation (span name) this override applies to.
+     * 
+     */
     private String operation;
+    /**
+     * @return Probabilistic sampling configuration applied to spans whose operation matches.
+     * 
+     */
     private TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationStrategiesPerOperationStrategyProbabilisticStrategy probabilisticStrategy;
 
     private TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationStrategiesPerOperationStrategy() {}
+    /**
+     * @return Span operation (span name) this override applies to.
+     * 
+     */
     public String operation() {
         return this.operation;
     }
+    /**
+     * @return Probabilistic sampling configuration applied to spans whose operation matches.
+     * 
+     */
     public TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationStrategiesPerOperationStrategyProbabilisticStrategy probabilisticStrategy() {
         return this.probabilisticStrategy;
     }

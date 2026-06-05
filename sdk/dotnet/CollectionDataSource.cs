@@ -12,9 +12,55 @@ namespace Chronosphere.Pulumi
 {
     public static class CollectionDataSource
     {
+        /// <summary>
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Pulumi = Pulumi.Pulumi;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var @default = Pulumi.CollectionDataSource.Invoke(new()
+        ///     {
+        ///         Slug = "default",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Task<CollectionDataSourceResult> InvokeAsync(CollectionDataSourceArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<CollectionDataSourceResult>("chronosphere:index/collectionDataSource:CollectionDataSource", args ?? new CollectionDataSourceArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Pulumi = Pulumi.Pulumi;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var @default = Pulumi.CollectionDataSource.Invoke(new()
+        ///     {
+        ///         Slug = "default",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Output<CollectionDataSourceResult> Invoke(CollectionDataSourceInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<CollectionDataSourceResult>("chronosphere:index/collectionDataSource:CollectionDataSource", args ?? new CollectionDataSourceInvokeArgs(), options.WithDefaults());
     }
@@ -22,6 +68,9 @@ namespace Chronosphere.Pulumi
 
     public sealed class CollectionDataSourceArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Slug of the collection to look up.
+        /// </summary>
         [Input("slug")]
         public string? Slug { get; set; }
 
@@ -33,6 +82,9 @@ namespace Chronosphere.Pulumi
 
     public sealed class CollectionDataSourceInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Slug of the collection to look up.
+        /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 
@@ -46,12 +98,21 @@ namespace Chronosphere.Pulumi
     [OutputType]
     public sealed class CollectionDataSourceResult
     {
+        /// <summary>
+        /// Read-only: free-form description of the collection.
+        /// </summary>
         public readonly string Description;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// Read-only: display name of the collection.
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// Slug of the collection to look up.
+        /// </summary>
         public readonly string? Slug;
 
         [OutputConstructor]

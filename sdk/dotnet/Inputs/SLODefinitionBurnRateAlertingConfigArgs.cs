@@ -13,20 +13,33 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class SLODefinitionBurnRateAlertingConfigArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Percentage of the error budget that can be consumed during `window` before the alert fires. Must be between 0.0 and 100.0 exclusive.
+        /// </summary>
         [Input("budget", required: true)]
         public Input<double> Budget { get; set; } = null!;
 
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// Additional labels attached when this burn-rate alert fires. Can be used by notification policies to route different burn rates to different destinations.
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 
+        /// <summary>
+        /// Severity assigned when the burn rate fires. Must be `critical` or `warn`.
+        /// </summary>
         [Input("severity", required: true)]
         public Input<string> Severity { get; set; } = null!;
 
+        /// <summary>
+        /// Time window for the burn-rate calculation (e.g. `1h`, `6h`).
+        /// </summary>
         [Input("window", required: true)]
         public Input<string> Window { get; set; } = null!;
 

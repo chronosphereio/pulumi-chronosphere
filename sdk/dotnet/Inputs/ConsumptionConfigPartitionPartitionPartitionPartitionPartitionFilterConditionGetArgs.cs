@@ -13,14 +13,24 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Deprecated: use `log_filter`, `metric_filter`, or trace filters instead. Slug of the dataset to match.
+        /// </summary>
         [Input("datasetId")]
         public Input<string>? DatasetId { get; set; }
 
+        /// <summary>
+        /// Log search filter matching log data for this condition.
+        /// </summary>
         [Input("logFilter")]
         public Input<Inputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilterGetArgs>? LogFilter { get; set; }
 
         [Input("metricFilters")]
         private InputList<Inputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionMetricFilterGetArgs>? _metricFilters;
+
+        /// <summary>
+        /// Metric label filters matched against incoming metric data. Multiple filters are AND-ed together; values support glob patterns including `service:{svc1,svc2}` style alternations.
+        /// </summary>
         public InputList<Inputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionMetricFilterGetArgs> MetricFilters
         {
             get => _metricFilters ?? (_metricFilters = new InputList<Inputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionMetricFilterGetArgs>());

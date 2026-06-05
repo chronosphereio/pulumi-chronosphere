@@ -14,17 +14,41 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class ConsumptionConfigPartitionFilterCondition {
+    /**
+     * @return Deprecated: use `log_filter`, `metric_filter`, or trace filters instead. Slug of the dataset to match.
+     * 
+     */
     private @Nullable String datasetId;
+    /**
+     * @return Log search filter matching log data for this condition.
+     * 
+     */
     private @Nullable ConsumptionConfigPartitionFilterConditionLogFilter logFilter;
+    /**
+     * @return Metric label filters matched against incoming metric data. Multiple filters are AND-ed together; values support glob patterns including `service:{svc1,svc2}` style alternations.
+     * 
+     */
     private @Nullable List<ConsumptionConfigPartitionFilterConditionMetricFilter> metricFilters;
 
     private ConsumptionConfigPartitionFilterCondition() {}
+    /**
+     * @return Deprecated: use `log_filter`, `metric_filter`, or trace filters instead. Slug of the dataset to match.
+     * 
+     */
     public Optional<String> datasetId() {
         return Optional.ofNullable(this.datasetId);
     }
+    /**
+     * @return Log search filter matching log data for this condition.
+     * 
+     */
     public Optional<ConsumptionConfigPartitionFilterConditionLogFilter> logFilter() {
         return Optional.ofNullable(this.logFilter);
     }
+    /**
+     * @return Metric label filters matched against incoming metric data. Multiple filters are AND-ed together; values support glob patterns including `service:{svc1,svc2}` style alternations.
+     * 
+     */
     public List<ConsumptionConfigPartitionFilterConditionMetricFilter> metricFilters() {
         return this.metricFilters == null ? List.of() : this.metricFilters;
     }

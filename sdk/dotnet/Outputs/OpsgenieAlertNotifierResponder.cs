@@ -14,9 +14,21 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class OpsgenieAlertNotifierResponder
     {
+        /// <summary>
+        /// Opsgenie identifier of the responder. Use instead of `name` or `username`.
+        /// </summary>
         public readonly string? Id;
+        /// <summary>
+        /// Name of the responder team, schedule, or escalation policy.
+        /// </summary>
         public readonly string? Name;
+        /// <summary>
+        /// Responder type. One of `team`, `user`, `escalation`, or `schedule`.
+        /// </summary>
         public readonly string Type;
+        /// <summary>
+        /// Username of a user responder.
+        /// </summary>
         public readonly string? Username;
 
         [OutputConstructor]

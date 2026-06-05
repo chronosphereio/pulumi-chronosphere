@@ -17,30 +17,62 @@ public final class OtelMetricsIngestionResourceAttributesArgs extends com.pulumi
 
     public static final OtelMetricsIngestionResourceAttributesArgs Empty = new OtelMetricsIngestionResourceAttributesArgs();
 
+    /**
+     * Resource attribute keys to exclude from the flatten operation, interpreted according to `filter_mode`.
+     * 
+     */
     @Import(name="excludeKeys")
     private @Nullable Output<List<String>> excludeKeys;
 
+    /**
+     * @return Resource attribute keys to exclude from the flatten operation, interpreted according to `filter_mode`.
+     * 
+     */
     public Optional<Output<List<String>>> excludeKeys() {
         return Optional.ofNullable(this.excludeKeys);
     }
 
+    /**
+     * Controls how `exclude_keys` is interpreted (e.g. allow-list vs. block-list semantics).
+     * 
+     */
     @Import(name="filterMode")
     private @Nullable Output<String> filterMode;
 
+    /**
+     * @return Controls how `exclude_keys` is interpreted (e.g. allow-list vs. block-list semantics).
+     * 
+     */
     public Optional<Output<String>> filterMode() {
         return Optional.ofNullable(this.filterMode);
     }
 
+    /**
+     * Controls how OTel resource attributes are flattened onto each metric&#39;s labels.
+     * 
+     */
     @Import(name="flattenMode")
     private @Nullable Output<String> flattenMode;
 
+    /**
+     * @return Controls how OTel resource attributes are flattened onto each metric&#39;s labels.
+     * 
+     */
     public Optional<Output<String>> flattenMode() {
         return Optional.ofNullable(this.flattenMode);
     }
 
+    /**
+     * If true, generates a `target_info` time series with labels derived from resource attributes. `filter_mode` and `exclude_keys` apply identically to this series. Defaults to false.
+     * 
+     */
     @Import(name="generateTargetInfo")
     private @Nullable Output<Boolean> generateTargetInfo;
 
+    /**
+     * @return If true, generates a `target_info` time series with labels derived from resource attributes. `filter_mode` and `exclude_keys` apply identically to this series. Defaults to false.
+     * 
+     */
     public Optional<Output<Boolean>> generateTargetInfo() {
         return Optional.ofNullable(this.generateTargetInfo);
     }
@@ -72,42 +104,96 @@ public final class OtelMetricsIngestionResourceAttributesArgs extends com.pulumi
             $ = new OtelMetricsIngestionResourceAttributesArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param excludeKeys Resource attribute keys to exclude from the flatten operation, interpreted according to `filter_mode`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder excludeKeys(@Nullable Output<List<String>> excludeKeys) {
             $.excludeKeys = excludeKeys;
             return this;
         }
 
+        /**
+         * @param excludeKeys Resource attribute keys to exclude from the flatten operation, interpreted according to `filter_mode`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder excludeKeys(List<String> excludeKeys) {
             return excludeKeys(Output.of(excludeKeys));
         }
 
+        /**
+         * @param excludeKeys Resource attribute keys to exclude from the flatten operation, interpreted according to `filter_mode`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder excludeKeys(String... excludeKeys) {
             return excludeKeys(List.of(excludeKeys));
         }
 
+        /**
+         * @param filterMode Controls how `exclude_keys` is interpreted (e.g. allow-list vs. block-list semantics).
+         * 
+         * @return builder
+         * 
+         */
         public Builder filterMode(@Nullable Output<String> filterMode) {
             $.filterMode = filterMode;
             return this;
         }
 
+        /**
+         * @param filterMode Controls how `exclude_keys` is interpreted (e.g. allow-list vs. block-list semantics).
+         * 
+         * @return builder
+         * 
+         */
         public Builder filterMode(String filterMode) {
             return filterMode(Output.of(filterMode));
         }
 
+        /**
+         * @param flattenMode Controls how OTel resource attributes are flattened onto each metric&#39;s labels.
+         * 
+         * @return builder
+         * 
+         */
         public Builder flattenMode(@Nullable Output<String> flattenMode) {
             $.flattenMode = flattenMode;
             return this;
         }
 
+        /**
+         * @param flattenMode Controls how OTel resource attributes are flattened onto each metric&#39;s labels.
+         * 
+         * @return builder
+         * 
+         */
         public Builder flattenMode(String flattenMode) {
             return flattenMode(Output.of(flattenMode));
         }
 
+        /**
+         * @param generateTargetInfo If true, generates a `target_info` time series with labels derived from resource attributes. `filter_mode` and `exclude_keys` apply identically to this series. Defaults to false.
+         * 
+         * @return builder
+         * 
+         */
         public Builder generateTargetInfo(@Nullable Output<Boolean> generateTargetInfo) {
             $.generateTargetInfo = generateTargetInfo;
             return this;
         }
 
+        /**
+         * @param generateTargetInfo If true, generates a `target_info` time series with labels derived from resource attributes. `filter_mode` and `exclude_keys` apply identically to this series. Defaults to false.
+         * 
+         * @return builder
+         * 
+         */
         public Builder generateTargetInfo(Boolean generateTargetInfo) {
             return generateTargetInfo(Output.of(generateTargetInfo));
         }

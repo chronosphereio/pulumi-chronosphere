@@ -14,6 +14,9 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class GcpMetricsIntegrationServiceAccount
     {
+        /// <summary>
+        /// Email address of the Google Cloud service account to impersonate for authentication.
+        /// </summary>
         public readonly string ClientEmail;
 
         [OutputConstructor]

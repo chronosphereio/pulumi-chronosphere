@@ -16,25 +16,65 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class LogIngestConfigFieldNormalization {
+    /**
+     * @return Normalization rules for additional custom fields. These fields are not indexed; use them for things like environment, region, or user ID.
+     * 
+     */
     private @Nullable List<LogIngestConfigFieldNormalizationCustomFieldNormalization> customFieldNormalizations;
+    /**
+     * @return Rule that extracts and transforms a string value from a log field, with optional regex sanitization, default value, and value mapping.
+     * 
+     */
     private @Nullable LogIngestConfigFieldNormalizationMessage message;
+    /**
+     * @return Rule that extracts and transforms a string value from a log field, with optional regex sanitization, default value, and value mapping.
+     * 
+     */
     private @Nullable LogIngestConfigFieldNormalizationService service;
+    /**
+     * @return Rule that extracts and transforms a string value from a log field, with optional regex sanitization, default value, and value mapping.
+     * 
+     */
     private @Nullable LogIngestConfigFieldNormalizationSeverity severity;
+    /**
+     * @return Normalization rule for the well-known `timestamp` field.
+     * 
+     */
     private @Nullable LogIngestConfigFieldNormalizationTimestamp timestamp;
 
     private LogIngestConfigFieldNormalization() {}
+    /**
+     * @return Normalization rules for additional custom fields. These fields are not indexed; use them for things like environment, region, or user ID.
+     * 
+     */
     public List<LogIngestConfigFieldNormalizationCustomFieldNormalization> customFieldNormalizations() {
         return this.customFieldNormalizations == null ? List.of() : this.customFieldNormalizations;
     }
+    /**
+     * @return Rule that extracts and transforms a string value from a log field, with optional regex sanitization, default value, and value mapping.
+     * 
+     */
     public Optional<LogIngestConfigFieldNormalizationMessage> message() {
         return Optional.ofNullable(this.message);
     }
+    /**
+     * @return Rule that extracts and transforms a string value from a log field, with optional regex sanitization, default value, and value mapping.
+     * 
+     */
     public Optional<LogIngestConfigFieldNormalizationService> service() {
         return Optional.ofNullable(this.service);
     }
+    /**
+     * @return Rule that extracts and transforms a string value from a log field, with optional regex sanitization, default value, and value mapping.
+     * 
+     */
     public Optional<LogIngestConfigFieldNormalizationSeverity> severity() {
         return Optional.ofNullable(this.severity);
     }
+    /**
+     * @return Normalization rule for the well-known `timestamp` field.
+     * 
+     */
     public Optional<LogIngestConfigFieldNormalizationTimestamp> timestamp() {
         return Optional.ofNullable(this.timestamp);
     }

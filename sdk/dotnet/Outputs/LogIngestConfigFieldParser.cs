@@ -14,9 +14,21 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class LogIngestConfigFieldParser
     {
+        /// <summary>
+        /// Path to write the parsed output to. If omitted, parsed fields are written at the root.
+        /// </summary>
         public readonly Outputs.LogIngestConfigFieldParserDestination? Destination;
+        /// <summary>
+        /// Mode that controls when the field parser runs on incoming logs.
+        /// </summary>
         public readonly string? Mode;
+        /// <summary>
+        /// Parser configuration. Exactly one of `regex_parser`, `key_value_parser`, or `grok_parser` must be set, matching `parser_type`.
+        /// </summary>
         public readonly Outputs.LogIngestConfigFieldParserParser Parser;
+        /// <summary>
+        /// Path of the field to parse.
+        /// </summary>
         public readonly Outputs.LogIngestConfigFieldParserSource Source;
 
         [OutputConstructor]

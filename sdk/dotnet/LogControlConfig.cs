@@ -10,9 +10,89 @@ using Pulumi;
 
 namespace Chronosphere.Pulumi
 {
+    /// <summary>
+    /// Singleton org-wide pipeline of rules that sample, drop, replace, parse, or emit metrics from logs at ingest.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Pulumi = Chronosphere.Pulumi;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var config = new Pulumi.LogControlConfig("config", new()
+    ///     {
+    ///         Rules = new[]
+    ///         {
+    ///             new Pulumi.Inputs.LogControlConfigRuleArgs
+    ///             {
+    ///                 Filter = "service = 'sample-service' AND severity = 'debug'",
+    ///                 Mode = "ENABLED",
+    ///                 Name = "sample-debug",
+    ///                 Sample = new Pulumi.Inputs.LogControlConfigRuleSampleArgs
+    ///                 {
+    ///                     Rate = 0.01,
+    ///                 },
+    ///                 Type = "SAMPLE",
+    ///             },
+    ///             new Pulumi.Inputs.LogControlConfigRuleArgs
+    ///             {
+    ///                 Filter = "service = 'deprecated-service'",
+    ///                 Mode = "ENABLED",
+    ///                 Name = "drop-deprecated",
+    ///                 Type = "DROP",
+    ///             },
+    ///             new Pulumi.Inputs.LogControlConfigRuleArgs
+    ///             {
+    ///                 DropField = new Pulumi.Inputs.LogControlConfigRuleDropFieldArgs
+    ///                 {
+    ///                     FieldRegex = "password|secret|api_key",
+    ///                     ParentPath = new Pulumi.Inputs.LogControlConfigRuleDropFieldParentPathArgs
+    ///                     {
+    ///                         Selector = "kubernetes['labels']",
+    ///                     },
+    ///                 },
+    ///                 Filter = "service = 'api-gateway'",
+    ///                 Mode = "ENABLED",
+    ///                 Name = "drop-sensitive-fields",
+    ///                 Type = "DROP_FIELD",
+    ///             },
+    ///             new Pulumi.Inputs.LogControlConfigRuleArgs
+    ///             {
+    ///                 Filter = "service = 'api-gateway'",
+    ///                 Mode = "ENABLED",
+    ///                 Name = "shorten-trace-ids",
+    ///                 ReplaceField = new Pulumi.Inputs.LogControlConfigRuleReplaceFieldArgs
+    ///                 {
+    ///                     Field = new Pulumi.Inputs.LogControlConfigRuleReplaceFieldFieldArgs
+    ///                     {
+    ///                         Selector = "trace_id",
+    ///                     },
+    ///                     ReplaceAll = false,
+    ///                     ReplaceMode = "STATIC_VALUE",
+    ///                     ReplaceRegex = "[0-9a-f]{32}",
+    ///                     StaticValue = new Pulumi.Inputs.LogControlConfigRuleReplaceFieldStaticValueArgs
+    ///                     {
+    ///                         Value = "[trace-id]",
+    ///                     },
+    ///                 },
+    ///                 Type = "REPLACE_FIELD",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// </summary>
     [PulumiResourceType("chronosphere:index/logControlConfig:LogControlConfig")]
     public partial class LogControlConfig : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Ordered list of log control rules applied to the log ingest pipeline. Rules are evaluated in order.
+        /// </summary>
         [Output("rules")]
         public Output<ImmutableArray<Outputs.LogControlConfigRule>> Rules { get; private set; } = null!;
 
@@ -65,6 +145,10 @@ namespace Chronosphere.Pulumi
     {
         [Input("rules")]
         private InputList<Inputs.LogControlConfigRuleArgs>? _rules;
+
+        /// <summary>
+        /// Ordered list of log control rules applied to the log ingest pipeline. Rules are evaluated in order.
+        /// </summary>
         public InputList<Inputs.LogControlConfigRuleArgs> Rules
         {
             get => _rules ?? (_rules = new InputList<Inputs.LogControlConfigRuleArgs>());
@@ -81,6 +165,10 @@ namespace Chronosphere.Pulumi
     {
         [Input("rules")]
         private InputList<Inputs.LogControlConfigRuleGetArgs>? _rules;
+
+        /// <summary>
+        /// Ordered list of log control rules applied to the log ingest pipeline. Rules are evaluated in order.
+        /// </summary>
         public InputList<Inputs.LogControlConfigRuleGetArgs> Rules
         {
             get => _rules ?? (_rules = new InputList<Inputs.LogControlConfigRuleGetArgs>());

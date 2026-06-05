@@ -16,16 +16,32 @@ public final class LogIngestConfigFieldNormalizationCustomFieldNormalizationArgs
 
     public static final LogIngestConfigFieldNormalizationCustomFieldNormalizationArgs Empty = new LogIngestConfigFieldNormalizationCustomFieldNormalizationArgs();
 
+    /**
+     * Rule that extracts and transforms a string value from a log field, with optional regex sanitization, default value, and value mapping.
+     * 
+     */
     @Import(name="normalization")
     private @Nullable Output<LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationArgs> normalization;
 
+    /**
+     * @return Rule that extracts and transforms a string value from a log field, with optional regex sanitization, default value, and value mapping.
+     * 
+     */
     public Optional<Output<LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationArgs>> normalization() {
         return Optional.ofNullable(this.normalization);
     }
 
+    /**
+     * Name of the target field where the normalized value is stored.
+     * 
+     */
     @Import(name="target")
     private @Nullable Output<String> target;
 
+    /**
+     * @return Name of the target field where the normalized value is stored.
+     * 
+     */
     public Optional<Output<String>> target() {
         return Optional.ofNullable(this.target);
     }
@@ -55,20 +71,44 @@ public final class LogIngestConfigFieldNormalizationCustomFieldNormalizationArgs
             $ = new LogIngestConfigFieldNormalizationCustomFieldNormalizationArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param normalization Rule that extracts and transforms a string value from a log field, with optional regex sanitization, default value, and value mapping.
+         * 
+         * @return builder
+         * 
+         */
         public Builder normalization(@Nullable Output<LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationArgs> normalization) {
             $.normalization = normalization;
             return this;
         }
 
+        /**
+         * @param normalization Rule that extracts and transforms a string value from a log field, with optional regex sanitization, default value, and value mapping.
+         * 
+         * @return builder
+         * 
+         */
         public Builder normalization(LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationArgs normalization) {
             return normalization(Output.of(normalization));
         }
 
+        /**
+         * @param target Name of the target field where the normalized value is stored.
+         * 
+         * @return builder
+         * 
+         */
         public Builder target(@Nullable Output<String> target) {
             $.target = target;
             return this;
         }
 
+        /**
+         * @param target Name of the target field where the normalized value is stored.
+         * 
+         * @return builder
+         * 
+         */
         public Builder target(String target) {
             return target(Output.of(target));
         }

@@ -20,98 +20,204 @@ public final class PagerdutyAlertNotifierArgs extends com.pulumi.resources.Resou
 
     public static final PagerdutyAlertNotifierArgs Empty = new PagerdutyAlertNotifierArgs();
 
+    /**
+     * Password for HTTP basic auth when calling the PagerDuty API. Treat as a secret.
+     * 
+     */
     @Import(name="basicAuthPassword")
     private @Nullable Output<String> basicAuthPassword;
 
+    /**
+     * @return Password for HTTP basic auth when calling the PagerDuty API. Treat as a secret.
+     * 
+     */
     public Optional<Output<String>> basicAuthPassword() {
         return Optional.ofNullable(this.basicAuthPassword);
     }
 
+    /**
+     * Username for HTTP basic auth when calling the PagerDuty API. Mutually exclusive with `bearer_token`.
+     * 
+     */
     @Import(name="basicAuthUsername")
     private @Nullable Output<String> basicAuthUsername;
 
+    /**
+     * @return Username for HTTP basic auth when calling the PagerDuty API. Mutually exclusive with `bearer_token`.
+     * 
+     */
     public Optional<Output<String>> basicAuthUsername() {
         return Optional.ofNullable(this.basicAuthUsername);
     }
 
+    /**
+     * Bearer token sent in the `Authorization` header when calling the PagerDuty API. Treat as a secret. Mutually exclusive with basic auth.
+     * 
+     */
     @Import(name="bearerToken")
     private @Nullable Output<String> bearerToken;
 
+    /**
+     * @return Bearer token sent in the `Authorization` header when calling the PagerDuty API. Treat as a secret. Mutually exclusive with basic auth.
+     * 
+     */
     public Optional<Output<String>> bearerToken() {
         return Optional.ofNullable(this.bearerToken);
     }
 
+    /**
+     * Class of the event reported to PagerDuty (e.g. `cpu`, `database`). Supports Go templating.
+     * 
+     */
     @Import(name="class")
     private @Nullable Output<String> class_;
 
+    /**
+     * @return Class of the event reported to PagerDuty (e.g. `cpu`, `database`). Supports Go templating.
+     * 
+     */
     public Optional<Output<String>> class_() {
         return Optional.ofNullable(this.class_);
     }
 
+    /**
+     * Name of the monitoring client identified in the notification.
+     * 
+     */
     @Import(name="client")
     private @Nullable Output<String> client;
 
+    /**
+     * @return Name of the monitoring client identified in the notification.
+     * 
+     */
     public Optional<Output<String>> client() {
         return Optional.ofNullable(this.client);
     }
 
+    /**
+     * Backlink to the sender of the notification, shown in PagerDuty.
+     * 
+     */
     @Import(name="clientUrl")
     private @Nullable Output<String> clientUrl;
 
+    /**
+     * @return Backlink to the sender of the notification, shown in PagerDuty.
+     * 
+     */
     public Optional<Output<String>> clientUrl() {
         return Optional.ofNullable(this.clientUrl);
     }
 
+    /**
+     * Part or component of the affected system that is broken. Supports Go templating.
+     * 
+     */
     @Import(name="component")
     private @Nullable Output<String> component;
 
+    /**
+     * @return Part or component of the affected system that is broken. Supports Go templating.
+     * 
+     */
     public Optional<Output<String>> component() {
         return Optional.ofNullable(this.component);
     }
 
+    /**
+     * Summary of the incident. Supports Go templating.
+     * 
+     */
     @Import(name="description")
     private @Nullable Output<String> description;
 
+    /**
+     * @return Summary of the incident. Supports Go templating.
+     * 
+     */
     public Optional<Output<String>> description() {
         return Optional.ofNullable(this.description);
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the incident as additional context. Values support Go templating.
+     * 
+     */
     @Import(name="details")
     private @Nullable Output<Map<String,String>> details;
 
+    /**
+     * @return Arbitrary key/value pairs attached to the incident as additional context. Values support Go templating.
+     * 
+     */
     public Optional<Output<Map<String,String>>> details() {
         return Optional.ofNullable(this.details);
     }
 
+    /**
+     * Logical grouping of services the incident belongs to. Supports Go templating.
+     * 
+     */
     @Import(name="group")
     private @Nullable Output<String> group;
 
+    /**
+     * @return Logical grouping of services the incident belongs to. Supports Go templating.
+     * 
+     */
     public Optional<Output<String>> group() {
         return Optional.ofNullable(this.group);
     }
 
+    /**
+     * Images attached to the PagerDuty incident. See https://developer.pagerduty.com/docs/events-api-v2/trigger-events/.
+     * 
+     */
     @Import(name="images")
     private @Nullable Output<List<PagerdutyAlertNotifierImageArgs>> images;
 
+    /**
+     * @return Images attached to the PagerDuty incident. See https://developer.pagerduty.com/docs/events-api-v2/trigger-events/.
+     * 
+     */
     public Optional<Output<List<PagerdutyAlertNotifierImageArgs>>> images() {
         return Optional.ofNullable(this.images);
     }
 
+    /**
+     * Hyperlinks attached to the PagerDuty incident. See https://developer.pagerduty.com/docs/events-api-v2/trigger-events/.
+     * 
+     */
     @Import(name="links")
     private @Nullable Output<List<PagerdutyAlertNotifierLinkArgs>> links;
 
+    /**
+     * @return Hyperlinks attached to the PagerDuty incident. See https://developer.pagerduty.com/docs/events-api-v2/trigger-events/.
+     * 
+     */
     public Optional<Output<List<PagerdutyAlertNotifierLinkArgs>>> links() {
         return Optional.ofNullable(this.links);
     }
 
+    /**
+     * Display name of the notifier.
+     * 
+     */
     @Import(name="name", required=true)
     private Output<String> name;
 
+    /**
+     * @return Display name of the notifier.
+     * 
+     */
     public Output<String> name() {
         return this.name;
     }
 
     /**
+     * Deprecated and ignored. Custom proxy URLs are not supported.
+     * 
      * @deprecated
      * custom proxy URLs are not supported
      * 
@@ -121,6 +227,8 @@ public final class PagerdutyAlertNotifierArgs extends com.pulumi.resources.Resou
     private @Nullable Output<String> proxyUrl;
 
     /**
+     * @return Deprecated and ignored. Custom proxy URLs are not supported.
+     * 
      * @deprecated
      * custom proxy URLs are not supported
      * 
@@ -130,51 +238,107 @@ public final class PagerdutyAlertNotifierArgs extends com.pulumi.resources.Resou
         return Optional.ofNullable(this.proxyUrl);
     }
 
+    /**
+     * PagerDuty integration key when using the `Events API v2` integration type. Treat as a secret. Mutually exclusive with `service_key`.
+     * 
+     */
     @Import(name="routingKey")
     private @Nullable Output<String> routingKey;
 
+    /**
+     * @return PagerDuty integration key when using the `Events API v2` integration type. Treat as a secret. Mutually exclusive with `service_key`.
+     * 
+     */
     public Optional<Output<String>> routingKey() {
         return Optional.ofNullable(this.routingKey);
     }
 
+    /**
+     * Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+     * 
+     */
     @Import(name="sendResolved")
     private @Nullable Output<Boolean> sendResolved;
 
+    /**
+     * @return Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+     * 
+     */
     public Optional<Output<Boolean>> sendResolved() {
         return Optional.ofNullable(this.sendResolved);
     }
 
+    /**
+     * PagerDuty integration key when using the `Prometheus` integration type. Treat as a secret. Mutually exclusive with `routing_key`.
+     * 
+     */
     @Import(name="serviceKey")
     private @Nullable Output<String> serviceKey;
 
+    /**
+     * @return PagerDuty integration key when using the `Prometheus` integration type. Treat as a secret. Mutually exclusive with `routing_key`.
+     * 
+     */
     public Optional<Output<String>> serviceKey() {
         return Optional.ofNullable(this.serviceKey);
     }
 
+    /**
+     * Severity of the incident. One of `critical`, `error`, `warning`, or `info`.
+     * 
+     */
     @Import(name="severity", required=true)
     private Output<String> severity;
 
+    /**
+     * @return Severity of the incident. One of `critical`, `error`, `warning`, or `info`.
+     * 
+     */
     public Output<String> severity() {
         return this.severity;
     }
 
+    /**
+     * Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     @Import(name="slug")
     private @Nullable Output<String> slug;
 
+    /**
+     * @return Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     public Optional<Output<String>> slug() {
         return Optional.ofNullable(this.slug);
     }
 
+    /**
+     * If true, skip TLS certificate verification when calling the PagerDuty API. Disable only in trusted environments.
+     * 
+     */
     @Import(name="tlsInsecureSkipVerify")
     private @Nullable Output<Boolean> tlsInsecureSkipVerify;
 
+    /**
+     * @return If true, skip TLS certificate verification when calling the PagerDuty API. Disable only in trusted environments.
+     * 
+     */
     public Optional<Output<Boolean>> tlsInsecureSkipVerify() {
         return Optional.ofNullable(this.tlsInsecureSkipVerify);
     }
 
+    /**
+     * PagerDuty API URL to send events to (e.g. `https://events.pagerduty.com/v2/enqueue`).
+     * 
+     */
     @Import(name="url", required=true)
     private Output<String> url;
 
+    /**
+     * @return PagerDuty API URL to send events to (e.g. `https://events.pagerduty.com/v2/enqueue`).
+     * 
+     */
     public Output<String> url() {
         return this.url;
     }
@@ -223,132 +387,302 @@ public final class PagerdutyAlertNotifierArgs extends com.pulumi.resources.Resou
             $ = new PagerdutyAlertNotifierArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param basicAuthPassword Password for HTTP basic auth when calling the PagerDuty API. Treat as a secret.
+         * 
+         * @return builder
+         * 
+         */
         public Builder basicAuthPassword(@Nullable Output<String> basicAuthPassword) {
             $.basicAuthPassword = basicAuthPassword;
             return this;
         }
 
+        /**
+         * @param basicAuthPassword Password for HTTP basic auth when calling the PagerDuty API. Treat as a secret.
+         * 
+         * @return builder
+         * 
+         */
         public Builder basicAuthPassword(String basicAuthPassword) {
             return basicAuthPassword(Output.of(basicAuthPassword));
         }
 
+        /**
+         * @param basicAuthUsername Username for HTTP basic auth when calling the PagerDuty API. Mutually exclusive with `bearer_token`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder basicAuthUsername(@Nullable Output<String> basicAuthUsername) {
             $.basicAuthUsername = basicAuthUsername;
             return this;
         }
 
+        /**
+         * @param basicAuthUsername Username for HTTP basic auth when calling the PagerDuty API. Mutually exclusive with `bearer_token`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder basicAuthUsername(String basicAuthUsername) {
             return basicAuthUsername(Output.of(basicAuthUsername));
         }
 
+        /**
+         * @param bearerToken Bearer token sent in the `Authorization` header when calling the PagerDuty API. Treat as a secret. Mutually exclusive with basic auth.
+         * 
+         * @return builder
+         * 
+         */
         public Builder bearerToken(@Nullable Output<String> bearerToken) {
             $.bearerToken = bearerToken;
             return this;
         }
 
+        /**
+         * @param bearerToken Bearer token sent in the `Authorization` header when calling the PagerDuty API. Treat as a secret. Mutually exclusive with basic auth.
+         * 
+         * @return builder
+         * 
+         */
         public Builder bearerToken(String bearerToken) {
             return bearerToken(Output.of(bearerToken));
         }
 
+        /**
+         * @param class_ Class of the event reported to PagerDuty (e.g. `cpu`, `database`). Supports Go templating.
+         * 
+         * @return builder
+         * 
+         */
         public Builder class_(@Nullable Output<String> class_) {
             $.class_ = class_;
             return this;
         }
 
+        /**
+         * @param class_ Class of the event reported to PagerDuty (e.g. `cpu`, `database`). Supports Go templating.
+         * 
+         * @return builder
+         * 
+         */
         public Builder class_(String class_) {
             return class_(Output.of(class_));
         }
 
+        /**
+         * @param client Name of the monitoring client identified in the notification.
+         * 
+         * @return builder
+         * 
+         */
         public Builder client(@Nullable Output<String> client) {
             $.client = client;
             return this;
         }
 
+        /**
+         * @param client Name of the monitoring client identified in the notification.
+         * 
+         * @return builder
+         * 
+         */
         public Builder client(String client) {
             return client(Output.of(client));
         }
 
+        /**
+         * @param clientUrl Backlink to the sender of the notification, shown in PagerDuty.
+         * 
+         * @return builder
+         * 
+         */
         public Builder clientUrl(@Nullable Output<String> clientUrl) {
             $.clientUrl = clientUrl;
             return this;
         }
 
+        /**
+         * @param clientUrl Backlink to the sender of the notification, shown in PagerDuty.
+         * 
+         * @return builder
+         * 
+         */
         public Builder clientUrl(String clientUrl) {
             return clientUrl(Output.of(clientUrl));
         }
 
+        /**
+         * @param component Part or component of the affected system that is broken. Supports Go templating.
+         * 
+         * @return builder
+         * 
+         */
         public Builder component(@Nullable Output<String> component) {
             $.component = component;
             return this;
         }
 
+        /**
+         * @param component Part or component of the affected system that is broken. Supports Go templating.
+         * 
+         * @return builder
+         * 
+         */
         public Builder component(String component) {
             return component(Output.of(component));
         }
 
+        /**
+         * @param description Summary of the incident. Supports Go templating.
+         * 
+         * @return builder
+         * 
+         */
         public Builder description(@Nullable Output<String> description) {
             $.description = description;
             return this;
         }
 
+        /**
+         * @param description Summary of the incident. Supports Go templating.
+         * 
+         * @return builder
+         * 
+         */
         public Builder description(String description) {
             return description(Output.of(description));
         }
 
+        /**
+         * @param details Arbitrary key/value pairs attached to the incident as additional context. Values support Go templating.
+         * 
+         * @return builder
+         * 
+         */
         public Builder details(@Nullable Output<Map<String,String>> details) {
             $.details = details;
             return this;
         }
 
+        /**
+         * @param details Arbitrary key/value pairs attached to the incident as additional context. Values support Go templating.
+         * 
+         * @return builder
+         * 
+         */
         public Builder details(Map<String,String> details) {
             return details(Output.of(details));
         }
 
+        /**
+         * @param group Logical grouping of services the incident belongs to. Supports Go templating.
+         * 
+         * @return builder
+         * 
+         */
         public Builder group(@Nullable Output<String> group) {
             $.group = group;
             return this;
         }
 
+        /**
+         * @param group Logical grouping of services the incident belongs to. Supports Go templating.
+         * 
+         * @return builder
+         * 
+         */
         public Builder group(String group) {
             return group(Output.of(group));
         }
 
+        /**
+         * @param images Images attached to the PagerDuty incident. See https://developer.pagerduty.com/docs/events-api-v2/trigger-events/.
+         * 
+         * @return builder
+         * 
+         */
         public Builder images(@Nullable Output<List<PagerdutyAlertNotifierImageArgs>> images) {
             $.images = images;
             return this;
         }
 
+        /**
+         * @param images Images attached to the PagerDuty incident. See https://developer.pagerduty.com/docs/events-api-v2/trigger-events/.
+         * 
+         * @return builder
+         * 
+         */
         public Builder images(List<PagerdutyAlertNotifierImageArgs> images) {
             return images(Output.of(images));
         }
 
+        /**
+         * @param images Images attached to the PagerDuty incident. See https://developer.pagerduty.com/docs/events-api-v2/trigger-events/.
+         * 
+         * @return builder
+         * 
+         */
         public Builder images(PagerdutyAlertNotifierImageArgs... images) {
             return images(List.of(images));
         }
 
+        /**
+         * @param links Hyperlinks attached to the PagerDuty incident. See https://developer.pagerduty.com/docs/events-api-v2/trigger-events/.
+         * 
+         * @return builder
+         * 
+         */
         public Builder links(@Nullable Output<List<PagerdutyAlertNotifierLinkArgs>> links) {
             $.links = links;
             return this;
         }
 
+        /**
+         * @param links Hyperlinks attached to the PagerDuty incident. See https://developer.pagerduty.com/docs/events-api-v2/trigger-events/.
+         * 
+         * @return builder
+         * 
+         */
         public Builder links(List<PagerdutyAlertNotifierLinkArgs> links) {
             return links(Output.of(links));
         }
 
+        /**
+         * @param links Hyperlinks attached to the PagerDuty incident. See https://developer.pagerduty.com/docs/events-api-v2/trigger-events/.
+         * 
+         * @return builder
+         * 
+         */
         public Builder links(PagerdutyAlertNotifierLinkArgs... links) {
             return links(List.of(links));
         }
 
+        /**
+         * @param name Display name of the notifier.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(Output<String> name) {
             $.name = name;
             return this;
         }
 
+        /**
+         * @param name Display name of the notifier.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(String name) {
             return name(Output.of(name));
         }
 
         /**
+         * @param proxyUrl Deprecated and ignored. Custom proxy URLs are not supported.
+         * 
          * @return builder
          * 
          * @deprecated
@@ -362,6 +696,8 @@ public final class PagerdutyAlertNotifierArgs extends com.pulumi.resources.Resou
         }
 
         /**
+         * @param proxyUrl Deprecated and ignored. Custom proxy URLs are not supported.
+         * 
          * @return builder
          * 
          * @deprecated
@@ -373,65 +709,149 @@ public final class PagerdutyAlertNotifierArgs extends com.pulumi.resources.Resou
             return proxyUrl(Output.of(proxyUrl));
         }
 
+        /**
+         * @param routingKey PagerDuty integration key when using the `Events API v2` integration type. Treat as a secret. Mutually exclusive with `service_key`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder routingKey(@Nullable Output<String> routingKey) {
             $.routingKey = routingKey;
             return this;
         }
 
+        /**
+         * @param routingKey PagerDuty integration key when using the `Events API v2` integration type. Treat as a secret. Mutually exclusive with `service_key`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder routingKey(String routingKey) {
             return routingKey(Output.of(routingKey));
         }
 
+        /**
+         * @param sendResolved Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+         * 
+         * @return builder
+         * 
+         */
         public Builder sendResolved(@Nullable Output<Boolean> sendResolved) {
             $.sendResolved = sendResolved;
             return this;
         }
 
+        /**
+         * @param sendResolved Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+         * 
+         * @return builder
+         * 
+         */
         public Builder sendResolved(Boolean sendResolved) {
             return sendResolved(Output.of(sendResolved));
         }
 
+        /**
+         * @param serviceKey PagerDuty integration key when using the `Prometheus` integration type. Treat as a secret. Mutually exclusive with `routing_key`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder serviceKey(@Nullable Output<String> serviceKey) {
             $.serviceKey = serviceKey;
             return this;
         }
 
+        /**
+         * @param serviceKey PagerDuty integration key when using the `Prometheus` integration type. Treat as a secret. Mutually exclusive with `routing_key`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder serviceKey(String serviceKey) {
             return serviceKey(Output.of(serviceKey));
         }
 
+        /**
+         * @param severity Severity of the incident. One of `critical`, `error`, `warning`, or `info`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder severity(Output<String> severity) {
             $.severity = severity;
             return this;
         }
 
+        /**
+         * @param severity Severity of the incident. One of `critical`, `error`, `warning`, or `info`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder severity(String severity) {
             return severity(Output.of(severity));
         }
 
+        /**
+         * @param slug Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slug(@Nullable Output<String> slug) {
             $.slug = slug;
             return this;
         }
 
+        /**
+         * @param slug Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slug(String slug) {
             return slug(Output.of(slug));
         }
 
+        /**
+         * @param tlsInsecureSkipVerify If true, skip TLS certificate verification when calling the PagerDuty API. Disable only in trusted environments.
+         * 
+         * @return builder
+         * 
+         */
         public Builder tlsInsecureSkipVerify(@Nullable Output<Boolean> tlsInsecureSkipVerify) {
             $.tlsInsecureSkipVerify = tlsInsecureSkipVerify;
             return this;
         }
 
+        /**
+         * @param tlsInsecureSkipVerify If true, skip TLS certificate verification when calling the PagerDuty API. Disable only in trusted environments.
+         * 
+         * @return builder
+         * 
+         */
         public Builder tlsInsecureSkipVerify(Boolean tlsInsecureSkipVerify) {
             return tlsInsecureSkipVerify(Output.of(tlsInsecureSkipVerify));
         }
 
+        /**
+         * @param url PagerDuty API URL to send events to (e.g. `https://events.pagerduty.com/v2/enqueue`).
+         * 
+         * @return builder
+         * 
+         */
         public Builder url(Output<String> url) {
             $.url = url;
             return this;
         }
 
+        /**
+         * @param url PagerDuty API URL to send events to (e.g. `https://events.pagerduty.com/v2/enqueue`).
+         * 
+         * @return builder
+         * 
+         */
         public Builder url(String url) {
             return url(Output.of(url));
         }

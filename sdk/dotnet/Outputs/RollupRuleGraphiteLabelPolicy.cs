@@ -14,6 +14,9 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class RollupRuleGraphiteLabelPolicy
     {
+        /// <summary>
+        /// List of positional Graphite label replacements applied to the output metric.
+        /// </summary>
         public readonly ImmutableArray<Outputs.RollupRuleGraphiteLabelPolicyReplace> Replaces;
 
         [OutputConstructor]

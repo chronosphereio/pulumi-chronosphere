@@ -14,29 +14,114 @@ import io.chronosphere.chronosphere.outputs.TraceJaegerRemoteSamplingStrategyApp
 import java.lang.String;
 import javax.annotation.Nullable;
 
+/**
+ * Per-service Jaeger remote sampling strategy (probabilistic, rate-limiting, or per-operation) served to instrumented applications so they can sample traces at the configured rate.
+ * 
+ * ## Example Usage
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.chronosphere.TraceJaegerRemoteSamplingStrategy;
+ * import com.pulumi.chronosphere.TraceJaegerRemoteSamplingStrategyArgs;
+ * import com.pulumi.chronosphere.inputs.TraceJaegerRemoteSamplingStrategyAppliedStrategyArgs;
+ * import com.pulumi.chronosphere.inputs.TraceJaegerRemoteSamplingStrategyAppliedStrategyProbabilisticStrategyArgs;
+ * import com.pulumi.chronosphere.inputs.TraceJaegerRemoteSamplingStrategyAppliedStrategyRateLimitingStrategyArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var probabilistic = new TraceJaegerRemoteSamplingStrategy(&#34;probabilistic&#34;, TraceJaegerRemoteSamplingStrategyArgs.builder()        
+ *             .appliedStrategy(TraceJaegerRemoteSamplingStrategyAppliedStrategyArgs.builder()
+ *                 .probabilisticStrategy(TraceJaegerRemoteSamplingStrategyAppliedStrategyProbabilisticStrategyArgs.builder()
+ *                     .samplingRate(0.01)
+ *                     .build())
+ *                 .build())
+ *             .name(&#34;Probabilistic sampling for service A&#34;)
+ *             .serviceName(&#34;service-a&#34;)
+ *             .build());
+ * 
+ *         var rateLimited = new TraceJaegerRemoteSamplingStrategy(&#34;rateLimited&#34;, TraceJaegerRemoteSamplingStrategyArgs.builder()        
+ *             .appliedStrategy(TraceJaegerRemoteSamplingStrategyAppliedStrategyArgs.builder()
+ *                 .rateLimitingStrategy(TraceJaegerRemoteSamplingStrategyAppliedStrategyRateLimitingStrategyArgs.builder()
+ *                     .maxTracesPerSecond(2)
+ *                     .build())
+ *                 .build())
+ *             .name(&#34;Rate-limited sampling for service B&#34;)
+ *             .serviceName(&#34;service-b&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ */
 @ResourceType(type="chronosphere:index/traceJaegerRemoteSamplingStrategy:TraceJaegerRemoteSamplingStrategy")
 public class TraceJaegerRemoteSamplingStrategy extends com.pulumi.resources.CustomResource {
+    /**
+     * Sampling strategy returned to the Jaeger client. Exactly one of `probabilistic_strategy`, `rate_limiting_strategy`, or `per_operation_strategies` must be set.
+     * 
+     */
     @Export(name="appliedStrategy", refs={TraceJaegerRemoteSamplingStrategyAppliedStrategy.class}, tree="[0]")
     private Output<TraceJaegerRemoteSamplingStrategyAppliedStrategy> appliedStrategy;
 
+    /**
+     * @return Sampling strategy returned to the Jaeger client. Exactly one of `probabilistic_strategy`, `rate_limiting_strategy`, or `per_operation_strategies` must be set.
+     * 
+     */
     public Output<TraceJaegerRemoteSamplingStrategyAppliedStrategy> appliedStrategy() {
         return this.appliedStrategy;
     }
+    /**
+     * Display name of the Jaeger remote sampling strategy.
+     * 
+     */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
+    /**
+     * @return Display name of the Jaeger remote sampling strategy.
+     * 
+     */
     public Output<String> name() {
         return this.name;
     }
+    /**
+     * Value of `service.name` the strategy applies to. Jaeger SDK clients reporting under this service receive this sampling configuration.
+     * 
+     */
     @Export(name="serviceName", refs={String.class}, tree="[0]")
     private Output<String> serviceName;
 
+    /**
+     * @return Value of `service.name` the strategy applies to. Jaeger SDK clients reporting under this service receive this sampling configuration.
+     * 
+     */
     public Output<String> serviceName() {
         return this.serviceName;
     }
+    /**
+     * Stable identifier for the Jaeger remote sampling strategy. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     @Export(name="slug", refs={String.class}, tree="[0]")
     private Output<String> slug;
 
+    /**
+     * @return Stable identifier for the Jaeger remote sampling strategy. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     public Output<String> slug() {
         return this.slug;
     }

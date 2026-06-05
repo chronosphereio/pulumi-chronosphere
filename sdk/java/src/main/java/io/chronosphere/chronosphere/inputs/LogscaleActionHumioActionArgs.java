@@ -13,9 +13,17 @@ public final class LogscaleActionHumioActionArgs extends com.pulumi.resources.Re
 
     public static final LogscaleActionHumioActionArgs Empty = new LogscaleActionHumioActionArgs();
 
+    /**
+     * Ingest token for the target repository.
+     * 
+     */
     @Import(name="ingestToken", required=true)
     private Output<String> ingestToken;
 
+    /**
+     * @return Ingest token for the target repository.
+     * 
+     */
     public Output<String> ingestToken() {
         return this.ingestToken;
     }
@@ -44,11 +52,23 @@ public final class LogscaleActionHumioActionArgs extends com.pulumi.resources.Re
             $ = new LogscaleActionHumioActionArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param ingestToken Ingest token for the target repository.
+         * 
+         * @return builder
+         * 
+         */
         public Builder ingestToken(Output<String> ingestToken) {
             $.ingestToken = ingestToken;
             return this;
         }
 
+        /**
+         * @param ingestToken Ingest token for the target repository.
+         * 
+         * @return builder
+         * 
+         */
         public Builder ingestToken(String ingestToken) {
             return ingestToken(Output.of(ingestToken));
         }

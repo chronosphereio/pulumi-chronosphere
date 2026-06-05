@@ -23,6 +23,11 @@ class DerivedMetricArgs:
                  slug: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a DerivedMetric resource.
+        :param pulumi.Input[str] metric_name: Name of the derived metric as referenced in queries. Must be unique across the system.
+        :param pulumi.Input[str] name: Variable name as referenced in `expr` (e.g. `service` for `$service`).
+        :param pulumi.Input[Sequence[pulumi.Input['DerivedMetricQueryArgs']]] queries: Ordered list of selector/query pairs. When the derived metric is used, the first entry whose `selector` matches the usage's labels supplies the PromQL `query`.
+        :param pulumi.Input[str] description: Free-form description of the derived metric.
+        :param pulumi.Input[str] slug: Stable identifier for the derived metric. Generated from `name` if omitted. Immutable after creation.
         """
         pulumi.set(__self__, "metric_name", metric_name)
         pulumi.set(__self__, "name", name)
@@ -35,6 +40,9 @@ class DerivedMetricArgs:
     @property
     @pulumi.getter(name="metricName")
     def metric_name(self) -> pulumi.Input[str]:
+        """
+        Name of the derived metric as referenced in queries. Must be unique across the system.
+        """
         return pulumi.get(self, "metric_name")
 
     @metric_name.setter
@@ -44,6 +52,9 @@ class DerivedMetricArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        Variable name as referenced in `expr` (e.g. `service` for `$service`).
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -53,6 +64,9 @@ class DerivedMetricArgs:
     @property
     @pulumi.getter
     def queries(self) -> pulumi.Input[Sequence[pulumi.Input['DerivedMetricQueryArgs']]]:
+        """
+        Ordered list of selector/query pairs. When the derived metric is used, the first entry whose `selector` matches the usage's labels supplies the PromQL `query`.
+        """
         return pulumi.get(self, "queries")
 
     @queries.setter
@@ -62,6 +76,9 @@ class DerivedMetricArgs:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Free-form description of the derived metric.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -71,6 +88,9 @@ class DerivedMetricArgs:
     @property
     @pulumi.getter
     def slug(self) -> Optional[pulumi.Input[str]]:
+        """
+        Stable identifier for the derived metric. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @slug.setter
@@ -88,6 +108,11 @@ class _DerivedMetricState:
                  slug: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering DerivedMetric resources.
+        :param pulumi.Input[str] description: Free-form description of the derived metric.
+        :param pulumi.Input[str] metric_name: Name of the derived metric as referenced in queries. Must be unique across the system.
+        :param pulumi.Input[str] name: Variable name as referenced in `expr` (e.g. `service` for `$service`).
+        :param pulumi.Input[Sequence[pulumi.Input['DerivedMetricQueryArgs']]] queries: Ordered list of selector/query pairs. When the derived metric is used, the first entry whose `selector` matches the usage's labels supplies the PromQL `query`.
+        :param pulumi.Input[str] slug: Stable identifier for the derived metric. Generated from `name` if omitted. Immutable after creation.
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -103,6 +128,9 @@ class _DerivedMetricState:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Free-form description of the derived metric.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -112,6 +140,9 @@ class _DerivedMetricState:
     @property
     @pulumi.getter(name="metricName")
     def metric_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the derived metric as referenced in queries. Must be unique across the system.
+        """
         return pulumi.get(self, "metric_name")
 
     @metric_name.setter
@@ -121,6 +152,9 @@ class _DerivedMetricState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Variable name as referenced in `expr` (e.g. `service` for `$service`).
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -130,6 +164,9 @@ class _DerivedMetricState:
     @property
     @pulumi.getter
     def queries(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DerivedMetricQueryArgs']]]]:
+        """
+        Ordered list of selector/query pairs. When the derived metric is used, the first entry whose `selector` matches the usage's labels supplies the PromQL `query`.
+        """
         return pulumi.get(self, "queries")
 
     @queries.setter
@@ -139,6 +176,9 @@ class _DerivedMetricState:
     @property
     @pulumi.getter
     def slug(self) -> Optional[pulumi.Input[str]]:
+        """
+        Stable identifier for the derived metric. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @slug.setter
@@ -158,9 +198,49 @@ class DerivedMetric(pulumi.CustomResource):
                  slug: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a DerivedMetric resource with the given unique name, props, and options.
+        A virtual metric whose value is computed on demand from one of several underlying PromQL queries. The query selected at evaluation time is determined by matching the usage's labels against the configured selectors.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_chronosphere as chronosphere
+
+        request_rate = chronosphere.DerivedMetric("requestRate",
+            description="Per-service request rate, with selector-aware variants",
+            metric_name="request_rate",
+            name="request_rate",
+            queries=[
+                chronosphere.DerivedMetricQueryArgs(
+                    query=chronosphere.DerivedMetricQueryQueryArgs(
+                        expr="sum by (service) (rate(http_requests_total{label1=\\"value1\\"}[5m]))",
+                        variables=[chronosphere.DerivedMetricQueryQueryVariableArgs(
+                            default_selector="service=default",
+                            name="service",
+                        )],
+                    ),
+                    selector=chronosphere.DerivedMetricQuerySelectorArgs(
+                        labels={
+                            "label1": "value1",
+                        },
+                    ),
+                ),
+                chronosphere.DerivedMetricQueryArgs(
+                    query=chronosphere.DerivedMetricQueryQueryArgs(
+                        expr="sum by (service) (rate(http_requests_total[5m]))",
+                    ),
+                ),
+            ],
+            slug="request-rate")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] description: Free-form description of the derived metric.
+        :param pulumi.Input[str] metric_name: Name of the derived metric as referenced in queries. Must be unique across the system.
+        :param pulumi.Input[str] name: Variable name as referenced in `expr` (e.g. `service` for `$service`).
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DerivedMetricQueryArgs']]]] queries: Ordered list of selector/query pairs. When the derived metric is used, the first entry whose `selector` matches the usage's labels supplies the PromQL `query`.
+        :param pulumi.Input[str] slug: Stable identifier for the derived metric. Generated from `name` if omitted. Immutable after creation.
         """
         ...
     @overload
@@ -169,7 +249,42 @@ class DerivedMetric(pulumi.CustomResource):
                  args: DerivedMetricArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a DerivedMetric resource with the given unique name, props, and options.
+        A virtual metric whose value is computed on demand from one of several underlying PromQL queries. The query selected at evaluation time is determined by matching the usage's labels against the configured selectors.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_chronosphere as chronosphere
+
+        request_rate = chronosphere.DerivedMetric("requestRate",
+            description="Per-service request rate, with selector-aware variants",
+            metric_name="request_rate",
+            name="request_rate",
+            queries=[
+                chronosphere.DerivedMetricQueryArgs(
+                    query=chronosphere.DerivedMetricQueryQueryArgs(
+                        expr="sum by (service) (rate(http_requests_total{label1=\\"value1\\"}[5m]))",
+                        variables=[chronosphere.DerivedMetricQueryQueryVariableArgs(
+                            default_selector="service=default",
+                            name="service",
+                        )],
+                    ),
+                    selector=chronosphere.DerivedMetricQuerySelectorArgs(
+                        labels={
+                            "label1": "value1",
+                        },
+                    ),
+                ),
+                chronosphere.DerivedMetricQueryArgs(
+                    query=chronosphere.DerivedMetricQueryQueryArgs(
+                        expr="sum by (service) (rate(http_requests_total[5m]))",
+                    ),
+                ),
+            ],
+            slug="request-rate")
+        ```
+
         :param str resource_name: The name of the resource.
         :param DerivedMetricArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -232,6 +347,11 @@ class DerivedMetric(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] description: Free-form description of the derived metric.
+        :param pulumi.Input[str] metric_name: Name of the derived metric as referenced in queries. Must be unique across the system.
+        :param pulumi.Input[str] name: Variable name as referenced in `expr` (e.g. `service` for `$service`).
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DerivedMetricQueryArgs']]]] queries: Ordered list of selector/query pairs. When the derived metric is used, the first entry whose `selector` matches the usage's labels supplies the PromQL `query`.
+        :param pulumi.Input[str] slug: Stable identifier for the derived metric. Generated from `name` if omitted. Immutable after creation.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -247,25 +367,40 @@ class DerivedMetric(pulumi.CustomResource):
     @property
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
+        """
+        Free-form description of the derived metric.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="metricName")
     def metric_name(self) -> pulumi.Output[str]:
+        """
+        Name of the derived metric as referenced in queries. Must be unique across the system.
+        """
         return pulumi.get(self, "metric_name")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        Variable name as referenced in `expr` (e.g. `service` for `$service`).
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def queries(self) -> pulumi.Output[Sequence['outputs.DerivedMetricQuery']]:
+        """
+        Ordered list of selector/query pairs. When the derived metric is used, the first entry whose `selector` matches the usage's labels supplies the PromQL `query`.
+        """
         return pulumi.get(self, "queries")
 
     @property
     @pulumi.getter
     def slug(self) -> pulumi.Output[str]:
+        """
+        Stable identifier for the derived metric. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 

@@ -13,9 +13,15 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class PagerdutyAlertNotifierLinkGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// URL the link points to.
+        /// </summary>
         [Input("href", required: true)]
         public Input<string> Href { get; set; } = null!;
 
+        /// <summary>
+        /// Display text for the link.
+        /// </summary>
         [Input("text")]
         public Input<string>? Text { get; set; }
 

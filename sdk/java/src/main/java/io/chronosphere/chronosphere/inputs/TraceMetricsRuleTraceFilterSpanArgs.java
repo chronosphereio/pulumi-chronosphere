@@ -25,72 +25,152 @@ public final class TraceMetricsRuleTraceFilterSpanArgs extends com.pulumi.resour
 
     public static final TraceMetricsRuleTraceFilterSpanArgs Empty = new TraceMetricsRuleTraceFilterSpanArgs();
 
+    /**
+     * Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, max_secs]` range.
+     * 
+     */
     @Import(name="duration")
     private @Nullable Output<TraceMetricsRuleTraceFilterSpanDurationArgs> duration;
 
+    /**
+     * @return Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, max_secs]` range.
+     * 
+     */
     public Optional<Output<TraceMetricsRuleTraceFilterSpanDurationArgs>> duration() {
         return Optional.ofNullable(this.duration);
     }
 
+    /**
+     * Matches traces or spans where the target boolean field equals `value`.
+     * 
+     */
     @Import(name="error")
     private @Nullable Output<TraceMetricsRuleTraceFilterSpanErrorArgs> error;
 
+    /**
+     * @return Matches traces or spans where the target boolean field equals `value`.
+     * 
+     */
     public Optional<Output<TraceMetricsRuleTraceFilterSpanErrorArgs>> error() {
         return Optional.ofNullable(this.error);
     }
 
+    /**
+     * Matches traces or spans where the target boolean field equals `value`.
+     * 
+     */
     @Import(name="isRootSpan")
     private @Nullable Output<TraceMetricsRuleTraceFilterSpanIsRootSpanArgs> isRootSpan;
 
+    /**
+     * @return Matches traces or spans where the target boolean field equals `value`.
+     * 
+     */
     public Optional<Output<TraceMetricsRuleTraceFilterSpanIsRootSpanArgs>> isRootSpan() {
         return Optional.ofNullable(this.isRootSpan);
     }
 
+    /**
+     * Whether matching spans are included (`INCLUDE`) or excluded (`EXCLUDE`) from the scope. Defaults to `INCLUDE`.
+     * 
+     */
     @Import(name="matchType")
     private @Nullable Output<String> matchType;
 
+    /**
+     * @return Whether matching spans are included (`INCLUDE`) or excluded (`EXCLUDE`) from the scope. Defaults to `INCLUDE`.
+     * 
+     */
     public Optional<Output<String>> matchType() {
         return Optional.ofNullable(this.matchType);
     }
 
+    /**
+     * Matches traces or spans where the target string field satisfies the match condition.
+     * 
+     */
     @Import(name="operation")
     private @Nullable Output<TraceMetricsRuleTraceFilterSpanOperationArgs> operation;
 
+    /**
+     * @return Matches traces or spans where the target string field satisfies the match condition.
+     * 
+     */
     public Optional<Output<TraceMetricsRuleTraceFilterSpanOperationArgs>> operation() {
         return Optional.ofNullable(this.operation);
     }
 
+    /**
+     * Matches traces or spans where the target string field satisfies the match condition.
+     * 
+     */
     @Import(name="parentOperation")
     private @Nullable Output<TraceMetricsRuleTraceFilterSpanParentOperationArgs> parentOperation;
 
+    /**
+     * @return Matches traces or spans where the target string field satisfies the match condition.
+     * 
+     */
     public Optional<Output<TraceMetricsRuleTraceFilterSpanParentOperationArgs>> parentOperation() {
         return Optional.ofNullable(this.parentOperation);
     }
 
+    /**
+     * Matches traces or spans where the target string field satisfies the match condition.
+     * 
+     */
     @Import(name="parentService")
     private @Nullable Output<TraceMetricsRuleTraceFilterSpanParentServiceArgs> parentService;
 
+    /**
+     * @return Matches traces or spans where the target string field satisfies the match condition.
+     * 
+     */
     public Optional<Output<TraceMetricsRuleTraceFilterSpanParentServiceArgs>> parentService() {
         return Optional.ofNullable(this.parentService);
     }
 
+    /**
+     * Matches traces or spans where the target string field satisfies the match condition.
+     * 
+     */
     @Import(name="service")
     private @Nullable Output<TraceMetricsRuleTraceFilterSpanServiceArgs> service;
 
+    /**
+     * @return Matches traces or spans where the target string field satisfies the match condition.
+     * 
+     */
     public Optional<Output<TraceMetricsRuleTraceFilterSpanServiceArgs>> service() {
         return Optional.ofNullable(this.service);
     }
 
+    /**
+     * Matches traces where the number of spans satisfying the surrounding span conditions falls within the inclusive `[min, max]` range.
+     * 
+     */
     @Import(name="spanCount")
     private @Nullable Output<TraceMetricsRuleTraceFilterSpanSpanCountArgs> spanCount;
 
+    /**
+     * @return Matches traces where the number of spans satisfying the surrounding span conditions falls within the inclusive `[min, max]` range.
+     * 
+     */
     public Optional<Output<TraceMetricsRuleTraceFilterSpanSpanCountArgs>> spanCount() {
         return Optional.ofNullable(this.spanCount);
     }
 
+    /**
+     * Matches spans whose tag (span attribute) with the given `key` has a value satisfying the nested string or numeric filter.
+     * 
+     */
     @Import(name="tags")
     private @Nullable Output<List<TraceMetricsRuleTraceFilterSpanTagArgs>> tags;
 
+    /**
+     * @return Matches spans whose tag (span attribute) with the given `key` has a value satisfying the nested string or numeric filter.
+     * 
+     */
     public Optional<Output<List<TraceMetricsRuleTraceFilterSpanTagArgs>>> tags() {
         return Optional.ofNullable(this.tags);
     }
@@ -128,96 +208,222 @@ public final class TraceMetricsRuleTraceFilterSpanArgs extends com.pulumi.resour
             $ = new TraceMetricsRuleTraceFilterSpanArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param duration Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, max_secs]` range.
+         * 
+         * @return builder
+         * 
+         */
         public Builder duration(@Nullable Output<TraceMetricsRuleTraceFilterSpanDurationArgs> duration) {
             $.duration = duration;
             return this;
         }
 
+        /**
+         * @param duration Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, max_secs]` range.
+         * 
+         * @return builder
+         * 
+         */
         public Builder duration(TraceMetricsRuleTraceFilterSpanDurationArgs duration) {
             return duration(Output.of(duration));
         }
 
+        /**
+         * @param error Matches traces or spans where the target boolean field equals `value`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder error(@Nullable Output<TraceMetricsRuleTraceFilterSpanErrorArgs> error) {
             $.error = error;
             return this;
         }
 
+        /**
+         * @param error Matches traces or spans where the target boolean field equals `value`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder error(TraceMetricsRuleTraceFilterSpanErrorArgs error) {
             return error(Output.of(error));
         }
 
+        /**
+         * @param isRootSpan Matches traces or spans where the target boolean field equals `value`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder isRootSpan(@Nullable Output<TraceMetricsRuleTraceFilterSpanIsRootSpanArgs> isRootSpan) {
             $.isRootSpan = isRootSpan;
             return this;
         }
 
+        /**
+         * @param isRootSpan Matches traces or spans where the target boolean field equals `value`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder isRootSpan(TraceMetricsRuleTraceFilterSpanIsRootSpanArgs isRootSpan) {
             return isRootSpan(Output.of(isRootSpan));
         }
 
+        /**
+         * @param matchType Whether matching spans are included (`INCLUDE`) or excluded (`EXCLUDE`) from the scope. Defaults to `INCLUDE`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder matchType(@Nullable Output<String> matchType) {
             $.matchType = matchType;
             return this;
         }
 
+        /**
+         * @param matchType Whether matching spans are included (`INCLUDE`) or excluded (`EXCLUDE`) from the scope. Defaults to `INCLUDE`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder matchType(String matchType) {
             return matchType(Output.of(matchType));
         }
 
+        /**
+         * @param operation Matches traces or spans where the target string field satisfies the match condition.
+         * 
+         * @return builder
+         * 
+         */
         public Builder operation(@Nullable Output<TraceMetricsRuleTraceFilterSpanOperationArgs> operation) {
             $.operation = operation;
             return this;
         }
 
+        /**
+         * @param operation Matches traces or spans where the target string field satisfies the match condition.
+         * 
+         * @return builder
+         * 
+         */
         public Builder operation(TraceMetricsRuleTraceFilterSpanOperationArgs operation) {
             return operation(Output.of(operation));
         }
 
+        /**
+         * @param parentOperation Matches traces or spans where the target string field satisfies the match condition.
+         * 
+         * @return builder
+         * 
+         */
         public Builder parentOperation(@Nullable Output<TraceMetricsRuleTraceFilterSpanParentOperationArgs> parentOperation) {
             $.parentOperation = parentOperation;
             return this;
         }
 
+        /**
+         * @param parentOperation Matches traces or spans where the target string field satisfies the match condition.
+         * 
+         * @return builder
+         * 
+         */
         public Builder parentOperation(TraceMetricsRuleTraceFilterSpanParentOperationArgs parentOperation) {
             return parentOperation(Output.of(parentOperation));
         }
 
+        /**
+         * @param parentService Matches traces or spans where the target string field satisfies the match condition.
+         * 
+         * @return builder
+         * 
+         */
         public Builder parentService(@Nullable Output<TraceMetricsRuleTraceFilterSpanParentServiceArgs> parentService) {
             $.parentService = parentService;
             return this;
         }
 
+        /**
+         * @param parentService Matches traces or spans where the target string field satisfies the match condition.
+         * 
+         * @return builder
+         * 
+         */
         public Builder parentService(TraceMetricsRuleTraceFilterSpanParentServiceArgs parentService) {
             return parentService(Output.of(parentService));
         }
 
+        /**
+         * @param service Matches traces or spans where the target string field satisfies the match condition.
+         * 
+         * @return builder
+         * 
+         */
         public Builder service(@Nullable Output<TraceMetricsRuleTraceFilterSpanServiceArgs> service) {
             $.service = service;
             return this;
         }
 
+        /**
+         * @param service Matches traces or spans where the target string field satisfies the match condition.
+         * 
+         * @return builder
+         * 
+         */
         public Builder service(TraceMetricsRuleTraceFilterSpanServiceArgs service) {
             return service(Output.of(service));
         }
 
+        /**
+         * @param spanCount Matches traces where the number of spans satisfying the surrounding span conditions falls within the inclusive `[min, max]` range.
+         * 
+         * @return builder
+         * 
+         */
         public Builder spanCount(@Nullable Output<TraceMetricsRuleTraceFilterSpanSpanCountArgs> spanCount) {
             $.spanCount = spanCount;
             return this;
         }
 
+        /**
+         * @param spanCount Matches traces where the number of spans satisfying the surrounding span conditions falls within the inclusive `[min, max]` range.
+         * 
+         * @return builder
+         * 
+         */
         public Builder spanCount(TraceMetricsRuleTraceFilterSpanSpanCountArgs spanCount) {
             return spanCount(Output.of(spanCount));
         }
 
+        /**
+         * @param tags Matches spans whose tag (span attribute) with the given `key` has a value satisfying the nested string or numeric filter.
+         * 
+         * @return builder
+         * 
+         */
         public Builder tags(@Nullable Output<List<TraceMetricsRuleTraceFilterSpanTagArgs>> tags) {
             $.tags = tags;
             return this;
         }
 
+        /**
+         * @param tags Matches spans whose tag (span attribute) with the given `key` has a value satisfying the nested string or numeric filter.
+         * 
+         * @return builder
+         * 
+         */
         public Builder tags(List<TraceMetricsRuleTraceFilterSpanTagArgs> tags) {
             return tags(Output.of(tags));
         }
 
+        /**
+         * @param tags Matches spans whose tag (span attribute) with the given `key` has a value satisfying the nested string or numeric filter.
+         * 
+         * @return builder
+         * 
+         */
         public Builder tags(TraceMetricsRuleTraceFilterSpanTagArgs... tags) {
             return tags(List.of(tags));
         }

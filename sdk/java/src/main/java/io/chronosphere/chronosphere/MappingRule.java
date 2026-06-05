@@ -16,27 +16,103 @@ import java.lang.String;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
+/**
+ * Selects metrics by label filter and either drops them or applies an aggregation policy controlling their storage interval and aggregation function. Use `chronosphere.DropRule` for drop-only rules and `chronosphere.RollupRule` for label-reducing aggregations.
+ * 
+ * ## Example Usage
+ * 
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.chronosphere.Bucket;
+ * import com.pulumi.chronosphere.BucketArgs;
+ * import com.pulumi.chronosphere.MappingRule;
+ * import com.pulumi.chronosphere.MappingRuleArgs;
+ * import com.pulumi.chronosphere.inputs.MappingRuleStoragePolicyArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var bucket = new Bucket(&#34;bucket&#34;, BucketArgs.builder()        
+ *             .name(&#34;Platform&#34;)
+ *             .build());
+ * 
+ *         var httpRequestDuration = new MappingRule(&#34;httpRequestDuration&#34;, MappingRuleArgs.builder()        
+ *             .name(&#34;http request duration&#34;)
+ *             .bucketId(bucket.id())
+ *             .filter(&#34;__name__:http_request_duration k8s_pod:*&#34;)
+ *             .aggregations(&#34;LAST&#34;)
+ *             .storagePolicy(MappingRuleStoragePolicyArgs.builder()
+ *                 .resolution(&#34;30s&#34;)
+ *                 .retention(&#34;120h&#34;)
+ *                 .build())
+ *             .mode(&#34;PREVIEW&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ */
 @ResourceType(type="chronosphere:index/mappingRule:MappingRule")
 public class MappingRule extends com.pulumi.resources.CustomResource {
+    /**
+     * Aggregation type applied to matching metrics. Cannot be set if `drop` is `true`.
+     * 
+     */
     @Export(name="aggregations", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> aggregations;
 
+    /**
+     * @return Aggregation type applied to matching metrics. Cannot be set if `drop` is `true`.
+     * 
+     */
     public Output<Optional<String>> aggregations() {
         return Codegen.optional(this.aggregations);
     }
+    /**
+     * ID of the bucket the mapping rule belongs to.
+     * 
+     */
     @Export(name="bucketId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> bucketId;
 
+    /**
+     * @return ID of the bucket the mapping rule belongs to.
+     * 
+     */
     public Output<Optional<String>> bucketId() {
         return Codegen.optional(this.bucketId);
     }
+    /**
+     * If `true`, drops the matching metrics instead of aggregating them. Cannot be set together with `aggregations`. Defaults to `false`.
+     * 
+     */
     @Export(name="drop", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> drop;
 
+    /**
+     * @return If `true`, drops the matching metrics instead of aggregating them. Cannot be set together with `aggregations`. Defaults to `false`.
+     * 
+     */
     public Output<Optional<Boolean>> drop() {
         return Codegen.optional(this.drop);
     }
     /**
+     * Deprecated: no longer supported.
+     * 
      * @deprecated
      * drop timestamp is no longer supported
      * 
@@ -45,40 +121,86 @@ public class MappingRule extends com.pulumi.resources.CustomResource {
     @Export(name="dropTimestamp", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> dropTimestamp;
 
+    /**
+     * @return Deprecated: no longer supported.
+     * 
+     */
     public Output<Optional<Boolean>> dropTimestamp() {
         return Codegen.optional(this.dropTimestamp);
     }
+    /**
+     * Space-delimited list of `label=value_glob` matchers that select the metrics this rule applies to. A metric must match every filter to be considered.
+     * 
+     */
     @Export(name="filter", refs={String.class}, tree="[0]")
     private Output<String> filter;
 
+    /**
+     * @return Space-delimited list of `label=value_glob` matchers that select the metrics this rule applies to. A metric must match every filter to be considered.
+     * 
+     */
     public Output<String> filter() {
         return this.filter;
     }
+    /**
+     * Interval between aggregated data points produced by this mapping rule. Defaults to a server-side value when unset. Conflicts with `storage_policy`.
+     * 
+     */
     @Export(name="interval", refs={String.class}, tree="[0]")
     private Output<String> interval;
 
+    /**
+     * @return Interval between aggregated data points produced by this mapping rule. Defaults to a server-side value when unset. Conflicts with `storage_policy`.
+     * 
+     */
     public Output<String> interval() {
         return this.interval;
     }
+    /**
+     * Mapping rule mode controlling whether it is active or in a preview state.
+     * 
+     */
     @Export(name="mode", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> mode;
 
+    /**
+     * @return Mapping rule mode controlling whether it is active or in a preview state.
+     * 
+     */
     public Output<Optional<String>> mode() {
         return Codegen.optional(this.mode);
     }
+    /**
+     * Display name of the mapping rule. Can be changed after creation.
+     * 
+     */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
+    /**
+     * @return Display name of the mapping rule. Can be changed after creation.
+     * 
+     */
     public Output<String> name() {
         return this.name;
     }
+    /**
+     * Stable identifier for the mapping rule. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     @Export(name="slug", refs={String.class}, tree="[0]")
     private Output<String> slug;
 
+    /**
+     * @return Stable identifier for the mapping rule. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     public Output<String> slug() {
         return this.slug;
     }
     /**
+     * Storage policy controlling resolution and retention of mapped metrics. Deprecated: use `interval` instead.
+     * 
      * @deprecated
      * use `interval` instead
      * 
@@ -87,6 +209,10 @@ public class MappingRule extends com.pulumi.resources.CustomResource {
     @Export(name="storagePolicy", refs={MappingRuleStoragePolicy.class}, tree="[0]")
     private Output</* @Nullable */ MappingRuleStoragePolicy> storagePolicy;
 
+    /**
+     * @return Storage policy controlling resolution and retention of mapped metrics. Deprecated: use `interval` instead.
+     * 
+     */
     public Output<Optional<MappingRuleStoragePolicy>> storagePolicy() {
         return Codegen.optional(this.storagePolicy);
     }

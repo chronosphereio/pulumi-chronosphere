@@ -11,13 +11,29 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class MonitorNotificationTemplate {
+    /**
+     * @return Body/description template for the notification.
+     * 
+     */
     private @Nullable String description;
+    /**
+     * @return Title template for the notification.
+     * 
+     */
     private @Nullable String title;
 
     private MonitorNotificationTemplate() {}
+    /**
+     * @return Body/description template for the notification.
+     * 
+     */
     public Optional<String> description() {
         return Optional.ofNullable(this.description);
     }
+    /**
+     * @return Title template for the notification.
+     * 
+     */
     public Optional<String> title() {
         return Optional.ofNullable(this.title);
     }

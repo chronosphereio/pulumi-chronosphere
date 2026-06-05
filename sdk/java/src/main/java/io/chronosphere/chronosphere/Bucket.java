@@ -15,53 +15,153 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
+/**
+ * A legacy container for monitors, dashboards, and other resources, predating collections. Buckets can also own an inline notification policy via `notification_policy_data`. New configurations should generally use `chronosphere.Collection`.
+ * 
+ * ## Example Usage
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.chronosphere.Bucket;
+ * import com.pulumi.chronosphere.BucketArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var bucket = new Bucket(&#34;bucket&#34;, BucketArgs.builder()        
+ *             .name(&#34;Bucket&#34;)
+ *             .description(&#34;bucket created by terraform examples&#34;)
+ *             .labels(Map.of(&#34;foo&#34;, &#34;bar&#34;))
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ */
 @ResourceType(type="chronosphere:index/bucket:Bucket")
 public class Bucket extends com.pulumi.resources.CustomResource {
+    /**
+     * Free-form description of the bucket.
+     * 
+     */
     @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
+    /**
+     * @return Free-form description of the bucket.
+     * 
+     */
     public Output<Optional<String>> description() {
         return Codegen.optional(this.description);
     }
+    /**
+     * Key/value labels attached to the bucket for organization and filtering.
+     * 
+     */
     @Export(name="labels", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> labels;
 
+    /**
+     * @return Key/value labels attached to the bucket for organization and filtering.
+     * 
+     */
     public Output<Optional<Map<String,String>>> labels() {
         return Codegen.optional(this.labels);
     }
+    /**
+     * Display name of the bucket. Can be changed after creation.
+     * 
+     */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
+    /**
+     * @return Display name of the bucket. Can be changed after creation.
+     * 
+     */
     public Output<String> name() {
         return this.name;
     }
+    /**
+     * Inline notification policy serialized as JSON. Conflicts with `notification_policy_id`. For reusability, reference a named policy instead.
+     * 
+     */
     @Export(name="notificationPolicyData", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> notificationPolicyData;
 
+    /**
+     * @return Inline notification policy serialized as JSON. Conflicts with `notification_policy_id`. For reusability, reference a named policy instead.
+     * 
+     */
     public Output<Optional<String>> notificationPolicyData() {
         return Codegen.optional(this.notificationPolicyData);
     }
+    /**
+     * ID of the default notification policy applied to monitors in this bucket that do not explicitly reference one. Conflicts with `notification_policy_data`.
+     * 
+     */
     @Export(name="notificationPolicyId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> notificationPolicyId;
 
+    /**
+     * @return ID of the default notification policy applied to monitors in this bucket that do not explicitly reference one. Conflicts with `notification_policy_data`.
+     * 
+     */
     public Output<Optional<String>> notificationPolicyId() {
         return Codegen.optional(this.notificationPolicyId);
     }
+    /**
+     * Internal field tracking the slug of an inline notification policy defined via `notification_policy_data`. Use `notification_policy_id` to reference a named policy.
+     * 
+     */
     @Export(name="notificationPolicySlug", refs={String.class}, tree="[0]")
     private Output<String> notificationPolicySlug;
 
+    /**
+     * @return Internal field tracking the slug of an inline notification policy defined via `notification_policy_data`. Use `notification_policy_id` to reference a named policy.
+     * 
+     */
     public Output<String> notificationPolicySlug() {
         return this.notificationPolicySlug;
     }
+    /**
+     * Stable identifier for the bucket. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     @Export(name="slug", refs={String.class}, tree="[0]")
     private Output<String> slug;
 
+    /**
+     * @return Stable identifier for the bucket. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     public Output<String> slug() {
         return this.slug;
     }
+    /**
+     * ID of the team that owns this bucket.
+     * 
+     */
     @Export(name="teamId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> teamId;
 
+    /**
+     * @return ID of the team that owns this bucket.
+     * 
+     */
     public Output<Optional<String>> teamId() {
         return Codegen.optional(this.teamId);
     }

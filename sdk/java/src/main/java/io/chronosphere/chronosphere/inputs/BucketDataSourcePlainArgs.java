@@ -15,23 +15,47 @@ public final class BucketDataSourcePlainArgs extends com.pulumi.resources.Invoke
 
     public static final BucketDataSourcePlainArgs Empty = new BucketDataSourcePlainArgs();
 
+    /**
+     * Read-only: key/value labels attached to the bucket.
+     * 
+     */
     @Import(name="labels")
     private @Nullable Map<String,String> labels;
 
+    /**
+     * @return Read-only: key/value labels attached to the bucket.
+     * 
+     */
     public Optional<Map<String,String>> labels() {
         return Optional.ofNullable(this.labels);
     }
 
+    /**
+     * Name of the bucket to look up. Exactly one of `slug` or `name` must be set.
+     * 
+     */
     @Import(name="name")
     private @Nullable String name;
 
+    /**
+     * @return Name of the bucket to look up. Exactly one of `slug` or `name` must be set.
+     * 
+     */
     public Optional<String> name() {
         return Optional.ofNullable(this.name);
     }
 
+    /**
+     * Slug of the bucket to look up. Exactly one of `slug` or `name` must be set.
+     * 
+     */
     @Import(name="slug")
     private @Nullable String slug;
 
+    /**
+     * @return Slug of the bucket to look up. Exactly one of `slug` or `name` must be set.
+     * 
+     */
     public Optional<String> slug() {
         return Optional.ofNullable(this.slug);
     }
@@ -62,16 +86,34 @@ public final class BucketDataSourcePlainArgs extends com.pulumi.resources.Invoke
             $ = new BucketDataSourcePlainArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param labels Read-only: key/value labels attached to the bucket.
+         * 
+         * @return builder
+         * 
+         */
         public Builder labels(@Nullable Map<String,String> labels) {
             $.labels = labels;
             return this;
         }
 
+        /**
+         * @param name Name of the bucket to look up. Exactly one of `slug` or `name` must be set.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(@Nullable String name) {
             $.name = name;
             return this;
         }
 
+        /**
+         * @param slug Slug of the bucket to look up. Exactly one of `slug` or `name` must be set.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slug(@Nullable String slug) {
             $.slug = slug;
             return this;

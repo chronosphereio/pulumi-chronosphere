@@ -16,30 +16,62 @@ public final class TeamState extends com.pulumi.resources.ResourceArgs {
 
     public static final TeamState Empty = new TeamState();
 
+    /**
+     * Free-form description of the team.
+     * 
+     */
     @Import(name="description")
     private @Nullable Output<String> description;
 
+    /**
+     * @return Free-form description of the team.
+     * 
+     */
     public Optional<Output<String>> description() {
         return Optional.ofNullable(this.description);
     }
 
+    /**
+     * Display name of the team. Can be changed after creation.
+     * 
+     */
     @Import(name="name")
     private @Nullable Output<String> name;
 
+    /**
+     * @return Display name of the team. Can be changed after creation.
+     * 
+     */
     public Optional<Output<String>> name() {
         return Optional.ofNullable(this.name);
     }
 
+    /**
+     * Stable identifier for the team. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     @Import(name="slug")
     private @Nullable Output<String> slug;
 
+    /**
+     * @return Stable identifier for the team. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     public Optional<Output<String>> slug() {
         return Optional.ofNullable(this.slug);
     }
 
+    /**
+     * Unordered set of email addresses identifying the users who are members of this team.
+     * 
+     */
     @Import(name="userEmails")
     private @Nullable Output<List<String>> userEmails;
 
+    /**
+     * @return Unordered set of email addresses identifying the users who are members of this team.
+     * 
+     */
     public Optional<Output<List<String>>> userEmails() {
         return Optional.ofNullable(this.userEmails);
     }
@@ -71,42 +103,96 @@ public final class TeamState extends com.pulumi.resources.ResourceArgs {
             $ = new TeamState(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param description Free-form description of the team.
+         * 
+         * @return builder
+         * 
+         */
         public Builder description(@Nullable Output<String> description) {
             $.description = description;
             return this;
         }
 
+        /**
+         * @param description Free-form description of the team.
+         * 
+         * @return builder
+         * 
+         */
         public Builder description(String description) {
             return description(Output.of(description));
         }
 
+        /**
+         * @param name Display name of the team. Can be changed after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(@Nullable Output<String> name) {
             $.name = name;
             return this;
         }
 
+        /**
+         * @param name Display name of the team. Can be changed after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(String name) {
             return name(Output.of(name));
         }
 
+        /**
+         * @param slug Stable identifier for the team. Generated from `name` if omitted. Immutable after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slug(@Nullable Output<String> slug) {
             $.slug = slug;
             return this;
         }
 
+        /**
+         * @param slug Stable identifier for the team. Generated from `name` if omitted. Immutable after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slug(String slug) {
             return slug(Output.of(slug));
         }
 
+        /**
+         * @param userEmails Unordered set of email addresses identifying the users who are members of this team.
+         * 
+         * @return builder
+         * 
+         */
         public Builder userEmails(@Nullable Output<List<String>> userEmails) {
             $.userEmails = userEmails;
             return this;
         }
 
+        /**
+         * @param userEmails Unordered set of email addresses identifying the users who are members of this team.
+         * 
+         * @return builder
+         * 
+         */
         public Builder userEmails(List<String> userEmails) {
             return userEmails(Output.of(userEmails));
         }
 
+        /**
+         * @param userEmails Unordered set of email addresses identifying the users who are members of this team.
+         * 
+         * @return builder
+         * 
+         */
         public Builder userEmails(String... userEmails) {
             return userEmails(List.of(userEmails));
         }

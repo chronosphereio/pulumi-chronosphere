@@ -12,14 +12,47 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// A logical grouping of monitors, dashboards, SLOs, and other resources, typically aligned with a team or system. Provides a default notification policy for contained monitors and SLOs that do not explicitly reference one.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/chronosphereio/pulumi-chronosphere/sdk/go/chronosphere"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := chronosphere.NewCollection(ctx, "infra", &chronosphere.CollectionArgs{
+//				Description: pulumi.String("Collection of resources related to infrastructure services."),
+//				Name:        pulumi.String("Infrastructure Collection"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type Collection struct {
 	pulumi.CustomResourceState
 
-	Description          pulumi.StringPtrOutput `pulumi:"description"`
-	Name                 pulumi.StringOutput    `pulumi:"name"`
+	// Free-form description of the collection.
+	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// Display name of the collection. Can be changed after creation.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// ID of the default notification policy applied to monitors in this collection that do not explicitly reference one. Monitors that set their own `notificationPolicyId` are not overridden.
 	NotificationPolicyId pulumi.StringPtrOutput `pulumi:"notificationPolicyId"`
-	Slug                 pulumi.StringOutput    `pulumi:"slug"`
-	TeamId               pulumi.StringPtrOutput `pulumi:"teamId"`
+	// Stable identifier for the collection. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringOutput `pulumi:"slug"`
+	// ID of the team that owns this collection.
+	TeamId pulumi.StringPtrOutput `pulumi:"teamId"`
 }
 
 // NewCollection registers a new resource with the given unique name, arguments, and options.
@@ -55,19 +88,29 @@ func GetCollection(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Collection resources.
 type collectionState struct {
-	Description          *string `pulumi:"description"`
-	Name                 *string `pulumi:"name"`
+	// Free-form description of the collection.
+	Description *string `pulumi:"description"`
+	// Display name of the collection. Can be changed after creation.
+	Name *string `pulumi:"name"`
+	// ID of the default notification policy applied to monitors in this collection that do not explicitly reference one. Monitors that set their own `notificationPolicyId` are not overridden.
 	NotificationPolicyId *string `pulumi:"notificationPolicyId"`
-	Slug                 *string `pulumi:"slug"`
-	TeamId               *string `pulumi:"teamId"`
+	// Stable identifier for the collection. Generated from `name` if omitted. Immutable after creation.
+	Slug *string `pulumi:"slug"`
+	// ID of the team that owns this collection.
+	TeamId *string `pulumi:"teamId"`
 }
 
 type CollectionState struct {
-	Description          pulumi.StringPtrInput
-	Name                 pulumi.StringPtrInput
+	// Free-form description of the collection.
+	Description pulumi.StringPtrInput
+	// Display name of the collection. Can be changed after creation.
+	Name pulumi.StringPtrInput
+	// ID of the default notification policy applied to monitors in this collection that do not explicitly reference one. Monitors that set their own `notificationPolicyId` are not overridden.
 	NotificationPolicyId pulumi.StringPtrInput
-	Slug                 pulumi.StringPtrInput
-	TeamId               pulumi.StringPtrInput
+	// Stable identifier for the collection. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringPtrInput
+	// ID of the team that owns this collection.
+	TeamId pulumi.StringPtrInput
 }
 
 func (CollectionState) ElementType() reflect.Type {
@@ -75,20 +118,30 @@ func (CollectionState) ElementType() reflect.Type {
 }
 
 type collectionArgs struct {
-	Description          *string `pulumi:"description"`
-	Name                 string  `pulumi:"name"`
+	// Free-form description of the collection.
+	Description *string `pulumi:"description"`
+	// Display name of the collection. Can be changed after creation.
+	Name string `pulumi:"name"`
+	// ID of the default notification policy applied to monitors in this collection that do not explicitly reference one. Monitors that set their own `notificationPolicyId` are not overridden.
 	NotificationPolicyId *string `pulumi:"notificationPolicyId"`
-	Slug                 *string `pulumi:"slug"`
-	TeamId               *string `pulumi:"teamId"`
+	// Stable identifier for the collection. Generated from `name` if omitted. Immutable after creation.
+	Slug *string `pulumi:"slug"`
+	// ID of the team that owns this collection.
+	TeamId *string `pulumi:"teamId"`
 }
 
 // The set of arguments for constructing a Collection resource.
 type CollectionArgs struct {
-	Description          pulumi.StringPtrInput
-	Name                 pulumi.StringInput
+	// Free-form description of the collection.
+	Description pulumi.StringPtrInput
+	// Display name of the collection. Can be changed after creation.
+	Name pulumi.StringInput
+	// ID of the default notification policy applied to monitors in this collection that do not explicitly reference one. Monitors that set their own `notificationPolicyId` are not overridden.
 	NotificationPolicyId pulumi.StringPtrInput
-	Slug                 pulumi.StringPtrInput
-	TeamId               pulumi.StringPtrInput
+	// Stable identifier for the collection. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringPtrInput
+	// ID of the team that owns this collection.
+	TeamId pulumi.StringPtrInput
 }
 
 func (CollectionArgs) ElementType() reflect.Type {
@@ -178,22 +231,27 @@ func (o CollectionOutput) ToCollectionOutputWithContext(ctx context.Context) Col
 	return o
 }
 
+// Free-form description of the collection.
 func (o CollectionOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Collection) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// Display name of the collection. Can be changed after creation.
 func (o CollectionOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Collection) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// ID of the default notification policy applied to monitors in this collection that do not explicitly reference one. Monitors that set their own `notificationPolicyId` are not overridden.
 func (o CollectionOutput) NotificationPolicyId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Collection) pulumi.StringPtrOutput { return v.NotificationPolicyId }).(pulumi.StringPtrOutput)
 }
 
+// Stable identifier for the collection. Generated from `name` if omitted. Immutable after creation.
 func (o CollectionOutput) Slug() pulumi.StringOutput {
 	return o.ApplyT(func(v *Collection) pulumi.StringOutput { return v.Slug }).(pulumi.StringOutput)
 }
 
+// ID of the team that owns this collection.
 func (o CollectionOutput) TeamId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Collection) pulumi.StringPtrOutput { return v.TeamId }).(pulumi.StringPtrOutput)
 }

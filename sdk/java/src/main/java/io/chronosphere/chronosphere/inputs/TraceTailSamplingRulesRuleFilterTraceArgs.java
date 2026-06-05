@@ -16,16 +16,32 @@ public final class TraceTailSamplingRulesRuleFilterTraceArgs extends com.pulumi.
 
     public static final TraceTailSamplingRulesRuleFilterTraceArgs Empty = new TraceTailSamplingRulesRuleFilterTraceArgs();
 
+    /**
+     * Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, max_secs]` range.
+     * 
+     */
     @Import(name="duration")
     private @Nullable Output<TraceTailSamplingRulesRuleFilterTraceDurationArgs> duration;
 
+    /**
+     * @return Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, max_secs]` range.
+     * 
+     */
     public Optional<Output<TraceTailSamplingRulesRuleFilterTraceDurationArgs>> duration() {
         return Optional.ofNullable(this.duration);
     }
 
+    /**
+     * Matches traces or spans where the target boolean field equals `value`.
+     * 
+     */
     @Import(name="error")
     private @Nullable Output<TraceTailSamplingRulesRuleFilterTraceErrorArgs> error;
 
+    /**
+     * @return Matches traces or spans where the target boolean field equals `value`.
+     * 
+     */
     public Optional<Output<TraceTailSamplingRulesRuleFilterTraceErrorArgs>> error() {
         return Optional.ofNullable(this.error);
     }
@@ -55,20 +71,44 @@ public final class TraceTailSamplingRulesRuleFilterTraceArgs extends com.pulumi.
             $ = new TraceTailSamplingRulesRuleFilterTraceArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param duration Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, max_secs]` range.
+         * 
+         * @return builder
+         * 
+         */
         public Builder duration(@Nullable Output<TraceTailSamplingRulesRuleFilterTraceDurationArgs> duration) {
             $.duration = duration;
             return this;
         }
 
+        /**
+         * @param duration Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, max_secs]` range.
+         * 
+         * @return builder
+         * 
+         */
         public Builder duration(TraceTailSamplingRulesRuleFilterTraceDurationArgs duration) {
             return duration(Output.of(duration));
         }
 
+        /**
+         * @param error Matches traces or spans where the target boolean field equals `value`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder error(@Nullable Output<TraceTailSamplingRulesRuleFilterTraceErrorArgs> error) {
             $.error = error;
             return this;
         }
 
+        /**
+         * @param error Matches traces or spans where the target boolean field equals `value`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder error(TraceTailSamplingRulesRuleFilterTraceErrorArgs error) {
             return error(Output.of(error));
         }

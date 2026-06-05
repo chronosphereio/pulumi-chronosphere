@@ -14,7 +14,13 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class ConsumptionBudgetPriority
     {
+        /// <summary>
+        /// Filters identifying which data matches this priority. Filters are AND-ed together: a request must match every filter to be assigned this priority.
+        /// </summary>
         public readonly ImmutableArray<Outputs.ConsumptionBudgetPriorityFilter> Filters;
+        /// <summary>
+        /// Priority order used when dropping data. Priority `10` is dropped first; priority `1` is dropped last.
+        /// </summary>
         public readonly int? Priority;
 
         [OutputConstructor]

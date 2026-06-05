@@ -16,37 +16,77 @@ public final class LogRetentionConfigState extends com.pulumi.resources.Resource
 
     public static final LogRetentionConfigState Empty = new LogRetentionConfigState();
 
+    /**
+     * Log query filter. The retention policy applies only to logs that match.
+     * 
+     */
     @Import(name="filter")
     private @Nullable Output<String> filter;
 
+    /**
+     * @return Log query filter. The retention policy applies only to logs that match.
+     * 
+     */
     public Optional<Output<String>> filter() {
         return Optional.ofNullable(this.filter);
     }
 
+    /**
+     * Mode that determines how matching logs are retained in long-term (Iceberg) storage.
+     * 
+     */
     @Import(name="mode")
     private @Nullable Output<String> mode;
 
+    /**
+     * @return Mode that determines how matching logs are retained in long-term (Iceberg) storage.
+     * 
+     */
     public Optional<Output<String>> mode() {
         return Optional.ofNullable(this.mode);
     }
 
+    /**
+     * Display name of the log retention config.
+     * 
+     */
     @Import(name="name")
     private @Nullable Output<String> name;
 
+    /**
+     * @return Display name of the log retention config.
+     * 
+     */
     public Optional<Output<String>> name() {
         return Optional.ofNullable(this.name);
     }
 
+    /**
+     * Number of days to retain matching logs in long-term (Iceberg) storage after they are exported. When multiple configs overlap, the longest retention wins.
+     * 
+     */
     @Import(name="retentionDays")
     private @Nullable Output<Integer> retentionDays;
 
+    /**
+     * @return Number of days to retain matching logs in long-term (Iceberg) storage after they are exported. When multiple configs overlap, the longest retention wins.
+     * 
+     */
     public Optional<Output<Integer>> retentionDays() {
         return Optional.ofNullable(this.retentionDays);
     }
 
+    /**
+     * Stable identifier for the log retention config. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     @Import(name="slug")
     private @Nullable Output<String> slug;
 
+    /**
+     * @return Stable identifier for the log retention config. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     public Optional<Output<String>> slug() {
         return Optional.ofNullable(this.slug);
     }
@@ -79,47 +119,107 @@ public final class LogRetentionConfigState extends com.pulumi.resources.Resource
             $ = new LogRetentionConfigState(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param filter Log query filter. The retention policy applies only to logs that match.
+         * 
+         * @return builder
+         * 
+         */
         public Builder filter(@Nullable Output<String> filter) {
             $.filter = filter;
             return this;
         }
 
+        /**
+         * @param filter Log query filter. The retention policy applies only to logs that match.
+         * 
+         * @return builder
+         * 
+         */
         public Builder filter(String filter) {
             return filter(Output.of(filter));
         }
 
+        /**
+         * @param mode Mode that determines how matching logs are retained in long-term (Iceberg) storage.
+         * 
+         * @return builder
+         * 
+         */
         public Builder mode(@Nullable Output<String> mode) {
             $.mode = mode;
             return this;
         }
 
+        /**
+         * @param mode Mode that determines how matching logs are retained in long-term (Iceberg) storage.
+         * 
+         * @return builder
+         * 
+         */
         public Builder mode(String mode) {
             return mode(Output.of(mode));
         }
 
+        /**
+         * @param name Display name of the log retention config.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(@Nullable Output<String> name) {
             $.name = name;
             return this;
         }
 
+        /**
+         * @param name Display name of the log retention config.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(String name) {
             return name(Output.of(name));
         }
 
+        /**
+         * @param retentionDays Number of days to retain matching logs in long-term (Iceberg) storage after they are exported. When multiple configs overlap, the longest retention wins.
+         * 
+         * @return builder
+         * 
+         */
         public Builder retentionDays(@Nullable Output<Integer> retentionDays) {
             $.retentionDays = retentionDays;
             return this;
         }
 
+        /**
+         * @param retentionDays Number of days to retain matching logs in long-term (Iceberg) storage after they are exported. When multiple configs overlap, the longest retention wins.
+         * 
+         * @return builder
+         * 
+         */
         public Builder retentionDays(Integer retentionDays) {
             return retentionDays(Output.of(retentionDays));
         }
 
+        /**
+         * @param slug Stable identifier for the log retention config. Generated from `name` if omitted. Immutable after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slug(@Nullable Output<String> slug) {
             $.slug = slug;
             return this;
         }
 
+        /**
+         * @param slug Stable identifier for the log retention config. Generated from `name` if omitted. Immutable after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slug(String slug) {
             return slug(Output.of(slug));
         }

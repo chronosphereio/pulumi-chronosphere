@@ -13,21 +13,53 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GcpMetricsIntegrationMetricGroup {
+    /**
+     * @return Label filters applied to metrics in this group. All filters must match for a metric to be ingested.
+     * 
+     */
     private @Nullable List<GcpMetricsIntegrationMetricGroupFilter> filters;
+    /**
+     * @return List of Google Cloud metric prefixes to ingest (e.g. `compute.googleapis.com/`).
+     * 
+     */
     private @Nullable List<String> prefixes;
+    /**
+     * @return Google Cloud project ID to read metrics from. The configured service account must have access.
+     * 
+     */
     private String projectId;
+    /**
+     * @return Server-side aggregation rules applied to metrics in this group before they are stored.
+     * 
+     */
     private @Nullable List<GcpMetricsIntegrationMetricGroupRollupRule> rollupRules;
 
     private GcpMetricsIntegrationMetricGroup() {}
+    /**
+     * @return Label filters applied to metrics in this group. All filters must match for a metric to be ingested.
+     * 
+     */
     public List<GcpMetricsIntegrationMetricGroupFilter> filters() {
         return this.filters == null ? List.of() : this.filters;
     }
+    /**
+     * @return List of Google Cloud metric prefixes to ingest (e.g. `compute.googleapis.com/`).
+     * 
+     */
     public List<String> prefixes() {
         return this.prefixes == null ? List.of() : this.prefixes;
     }
+    /**
+     * @return Google Cloud project ID to read metrics from. The configured service account must have access.
+     * 
+     */
     public String projectId() {
         return this.projectId;
     }
+    /**
+     * @return Server-side aggregation rules applied to metrics in this group before they are stored.
+     * 
+     */
     public List<GcpMetricsIntegrationMetricGroupRollupRule> rollupRules() {
         return this.rollupRules == null ? List.of() : this.rollupRules;
     }

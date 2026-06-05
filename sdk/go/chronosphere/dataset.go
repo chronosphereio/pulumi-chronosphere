@@ -12,13 +12,18 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// A saved selection of telemetry data, defined by match criteria over traces or logs, that can be referenced by other Chronosphere features such as dashboards and alerts.
 type Dataset struct {
 	pulumi.CustomResourceState
 
+	// Configuration block selecting the dataset type and its match criteria.
 	Configuration DatasetConfigurationOutput `pulumi:"configuration"`
-	Description   pulumi.StringPtrOutput     `pulumi:"description"`
-	Name          pulumi.StringOutput        `pulumi:"name"`
-	Slug          pulumi.StringOutput        `pulumi:"slug"`
+	// Free-form description of the dataset.
+	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// Display name of the dataset. Can be changed after creation.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// Stable identifier for the dataset. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringOutput `pulumi:"slug"`
 }
 
 // NewDataset registers a new resource with the given unique name, arguments, and options.
@@ -57,17 +62,25 @@ func GetDataset(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Dataset resources.
 type datasetState struct {
+	// Configuration block selecting the dataset type and its match criteria.
 	Configuration *DatasetConfiguration `pulumi:"configuration"`
-	Description   *string               `pulumi:"description"`
-	Name          *string               `pulumi:"name"`
-	Slug          *string               `pulumi:"slug"`
+	// Free-form description of the dataset.
+	Description *string `pulumi:"description"`
+	// Display name of the dataset. Can be changed after creation.
+	Name *string `pulumi:"name"`
+	// Stable identifier for the dataset. Generated from `name` if omitted. Immutable after creation.
+	Slug *string `pulumi:"slug"`
 }
 
 type DatasetState struct {
+	// Configuration block selecting the dataset type and its match criteria.
 	Configuration DatasetConfigurationPtrInput
-	Description   pulumi.StringPtrInput
-	Name          pulumi.StringPtrInput
-	Slug          pulumi.StringPtrInput
+	// Free-form description of the dataset.
+	Description pulumi.StringPtrInput
+	// Display name of the dataset. Can be changed after creation.
+	Name pulumi.StringPtrInput
+	// Stable identifier for the dataset. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringPtrInput
 }
 
 func (DatasetState) ElementType() reflect.Type {
@@ -75,18 +88,26 @@ func (DatasetState) ElementType() reflect.Type {
 }
 
 type datasetArgs struct {
+	// Configuration block selecting the dataset type and its match criteria.
 	Configuration DatasetConfiguration `pulumi:"configuration"`
-	Description   *string              `pulumi:"description"`
-	Name          string               `pulumi:"name"`
-	Slug          *string              `pulumi:"slug"`
+	// Free-form description of the dataset.
+	Description *string `pulumi:"description"`
+	// Display name of the dataset. Can be changed after creation.
+	Name string `pulumi:"name"`
+	// Stable identifier for the dataset. Generated from `name` if omitted. Immutable after creation.
+	Slug *string `pulumi:"slug"`
 }
 
 // The set of arguments for constructing a Dataset resource.
 type DatasetArgs struct {
+	// Configuration block selecting the dataset type and its match criteria.
 	Configuration DatasetConfigurationInput
-	Description   pulumi.StringPtrInput
-	Name          pulumi.StringInput
-	Slug          pulumi.StringPtrInput
+	// Free-form description of the dataset.
+	Description pulumi.StringPtrInput
+	// Display name of the dataset. Can be changed after creation.
+	Name pulumi.StringInput
+	// Stable identifier for the dataset. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringPtrInput
 }
 
 func (DatasetArgs) ElementType() reflect.Type {
@@ -176,18 +197,22 @@ func (o DatasetOutput) ToDatasetOutputWithContext(ctx context.Context) DatasetOu
 	return o
 }
 
+// Configuration block selecting the dataset type and its match criteria.
 func (o DatasetOutput) Configuration() DatasetConfigurationOutput {
 	return o.ApplyT(func(v *Dataset) DatasetConfigurationOutput { return v.Configuration }).(DatasetConfigurationOutput)
 }
 
+// Free-form description of the dataset.
 func (o DatasetOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Dataset) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// Display name of the dataset. Can be changed after creation.
 func (o DatasetOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Dataset) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// Stable identifier for the dataset. Generated from `name` if omitted. Immutable after creation.
 func (o DatasetOutput) Slug() pulumi.StringOutput {
 	return o.ApplyT(func(v *Dataset) pulumi.StringOutput { return v.Slug }).(pulumi.StringOutput)
 }

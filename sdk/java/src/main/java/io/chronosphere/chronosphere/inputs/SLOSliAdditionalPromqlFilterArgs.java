@@ -13,23 +13,47 @@ public final class SLOSliAdditionalPromqlFilterArgs extends com.pulumi.resources
 
     public static final SLOSliAdditionalPromqlFilterArgs Empty = new SLOSliAdditionalPromqlFilterArgs();
 
+    /**
+     * Prometheus label name to match.
+     * 
+     */
     @Import(name="name", required=true)
     private Output<String> name;
 
+    /**
+     * @return Prometheus label name to match.
+     * 
+     */
     public Output<String> name() {
         return this.name;
     }
 
+    /**
+     * Matcher type (e.g. `=`, `!=`, `=~`, `!~`).
+     * 
+     */
     @Import(name="type", required=true)
     private Output<String> type;
 
+    /**
+     * @return Matcher type (e.g. `=`, `!=`, `=~`, `!~`).
+     * 
+     */
     public Output<String> type() {
         return this.type;
     }
 
+    /**
+     * Label value to match against using the chosen matcher `type`.
+     * 
+     */
     @Import(name="value", required=true)
     private Output<String> value;
 
+    /**
+     * @return Label value to match against using the chosen matcher `type`.
+     * 
+     */
     public Output<String> value() {
         return this.value;
     }
@@ -60,29 +84,65 @@ public final class SLOSliAdditionalPromqlFilterArgs extends com.pulumi.resources
             $ = new SLOSliAdditionalPromqlFilterArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param name Prometheus label name to match.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(Output<String> name) {
             $.name = name;
             return this;
         }
 
+        /**
+         * @param name Prometheus label name to match.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(String name) {
             return name(Output.of(name));
         }
 
+        /**
+         * @param type Matcher type (e.g. `=`, `!=`, `=~`, `!~`).
+         * 
+         * @return builder
+         * 
+         */
         public Builder type(Output<String> type) {
             $.type = type;
             return this;
         }
 
+        /**
+         * @param type Matcher type (e.g. `=`, `!=`, `=~`, `!~`).
+         * 
+         * @return builder
+         * 
+         */
         public Builder type(String type) {
             return type(Output.of(type));
         }
 
+        /**
+         * @param value Label value to match against using the chosen matcher `type`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder value(Output<String> value) {
             $.value = value;
             return this;
         }
 
+        /**
+         * @param value Label value to match against using the chosen matcher `type`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder value(String value) {
             return value(Output.of(value));
         }

@@ -12,13 +12,29 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class ConsumptionBudgetPriorityFilter {
+    /**
+     * @return Deprecated: use `log_filter` instead. Slug of the dataset to match against.
+     * 
+     */
     private @Nullable String datasetId;
+    /**
+     * @return Log search filter that matches log data for this priority.
+     * 
+     */
     private @Nullable ConsumptionBudgetPriorityFilterLogFilter logFilter;
 
     private ConsumptionBudgetPriorityFilter() {}
+    /**
+     * @return Deprecated: use `log_filter` instead. Slug of the dataset to match against.
+     * 
+     */
     public Optional<String> datasetId() {
         return Optional.ofNullable(this.datasetId);
     }
+    /**
+     * @return Log search filter that matches log data for this priority.
+     * 
+     */
     public Optional<ConsumptionBudgetPriorityFilterLogFilter> logFilter() {
         return Optional.ofNullable(this.logFilter);
     }

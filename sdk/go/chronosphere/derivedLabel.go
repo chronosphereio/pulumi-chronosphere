@@ -12,16 +12,86 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Defines a synthetic label whose value is derived from existing metric labels or trace span tags via mapping or constructed-value rules. The derived label can then be referenced in queries as if it were a real label on the source series.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/chronosphereio/pulumi-chronosphere/sdk/go/chronosphere"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := chronosphere.NewDerivedLabel(ctx, "tier", &chronosphere.DerivedLabelArgs{
+//				Description: pulumi.String("Derives a 'tier' label (read/write/admin) from the instance label"),
+//				LabelName:   pulumi.String("tier"),
+//				MetricLabel: &chronosphere.DerivedLabelMetricLabelArgs{
+//					ConstructedLabel: &chronosphere.DerivedLabelMetricLabelConstructedLabelArgs{
+//						ValueDefinitions: chronosphere.DerivedLabelMetricLabelConstructedLabelValueDefinitionArray{
+//							&chronosphere.DerivedLabelMetricLabelConstructedLabelValueDefinitionArgs{
+//								Filters: chronosphere.DerivedLabelMetricLabelConstructedLabelValueDefinitionFilterArray{
+//									&chronosphere.DerivedLabelMetricLabelConstructedLabelValueDefinitionFilterArgs{
+//										Name:      pulumi.String("instance"),
+//										ValueGlob: pulumi.String("reader-*"),
+//									},
+//								},
+//								Value: pulumi.String("read"),
+//							},
+//							&chronosphere.DerivedLabelMetricLabelConstructedLabelValueDefinitionArgs{
+//								Filters: chronosphere.DerivedLabelMetricLabelConstructedLabelValueDefinitionFilterArray{
+//									&chronosphere.DerivedLabelMetricLabelConstructedLabelValueDefinitionFilterArgs{
+//										Name:      pulumi.String("instance"),
+//										ValueGlob: pulumi.String("writer-*"),
+//									},
+//								},
+//								Value: pulumi.String("write"),
+//							},
+//							&chronosphere.DerivedLabelMetricLabelConstructedLabelValueDefinitionArgs{
+//								Filters: chronosphere.DerivedLabelMetricLabelConstructedLabelValueDefinitionFilterArray{
+//									&chronosphere.DerivedLabelMetricLabelConstructedLabelValueDefinitionFilterArgs{
+//										Name:      pulumi.String("instance"),
+//										ValueGlob: pulumi.String("admin-*"),
+//									},
+//								},
+//								Value: pulumi.String("admin"),
+//							},
+//						},
+//					},
+//				},
+//				Name: pulumi.String("Tier from instance name"),
+//				Slug: pulumi.String("tier-from-instance"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type DerivedLabel struct {
 	pulumi.CustomResourceState
 
-	Description         pulumi.StringPtrOutput           `pulumi:"description"`
-	ExistingLabelPolicy pulumi.StringPtrOutput           `pulumi:"existingLabelPolicy"`
-	LabelName           pulumi.StringOutput              `pulumi:"labelName"`
-	MetricLabel         DerivedLabelMetricLabelPtrOutput `pulumi:"metricLabel"`
-	Name                pulumi.StringOutput              `pulumi:"name"`
-	Slug                pulumi.StringOutput              `pulumi:"slug"`
-	SpanTag             DerivedLabelSpanTagPtrOutput     `pulumi:"spanTag"`
+	// Free-form description of the derived label.
+	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// Policy controlling behavior when the target label already exists on the source series (e.g. keep, replace).
+	ExistingLabelPolicy pulumi.StringPtrOutput `pulumi:"existingLabelPolicy"`
+	// Name of the label exposed on derived series. Must be unique across the system.
+	LabelName pulumi.StringOutput `pulumi:"labelName"`
+	// Derives a label for metrics, either by constructing a new value from filters or by mapping an existing label. Mutually exclusive with `spanTag`.
+	MetricLabel DerivedLabelMetricLabelPtrOutput `pulumi:"metricLabel"`
+	// Name of the label to match.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// Stable identifier for the derived label. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringOutput `pulumi:"slug"`
+	// Derives a label for trace spans by mapping from an existing span tag. Mutually exclusive with `metricLabel`.
+	SpanTag DerivedLabelSpanTagPtrOutput `pulumi:"spanTag"`
 }
 
 // NewDerivedLabel registers a new resource with the given unique name, arguments, and options.
@@ -60,23 +130,37 @@ func GetDerivedLabel(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering DerivedLabel resources.
 type derivedLabelState struct {
-	Description         *string                  `pulumi:"description"`
-	ExistingLabelPolicy *string                  `pulumi:"existingLabelPolicy"`
-	LabelName           *string                  `pulumi:"labelName"`
-	MetricLabel         *DerivedLabelMetricLabel `pulumi:"metricLabel"`
-	Name                *string                  `pulumi:"name"`
-	Slug                *string                  `pulumi:"slug"`
-	SpanTag             *DerivedLabelSpanTag     `pulumi:"spanTag"`
+	// Free-form description of the derived label.
+	Description *string `pulumi:"description"`
+	// Policy controlling behavior when the target label already exists on the source series (e.g. keep, replace).
+	ExistingLabelPolicy *string `pulumi:"existingLabelPolicy"`
+	// Name of the label exposed on derived series. Must be unique across the system.
+	LabelName *string `pulumi:"labelName"`
+	// Derives a label for metrics, either by constructing a new value from filters or by mapping an existing label. Mutually exclusive with `spanTag`.
+	MetricLabel *DerivedLabelMetricLabel `pulumi:"metricLabel"`
+	// Name of the label to match.
+	Name *string `pulumi:"name"`
+	// Stable identifier for the derived label. Generated from `name` if omitted. Immutable after creation.
+	Slug *string `pulumi:"slug"`
+	// Derives a label for trace spans by mapping from an existing span tag. Mutually exclusive with `metricLabel`.
+	SpanTag *DerivedLabelSpanTag `pulumi:"spanTag"`
 }
 
 type DerivedLabelState struct {
-	Description         pulumi.StringPtrInput
+	// Free-form description of the derived label.
+	Description pulumi.StringPtrInput
+	// Policy controlling behavior when the target label already exists on the source series (e.g. keep, replace).
 	ExistingLabelPolicy pulumi.StringPtrInput
-	LabelName           pulumi.StringPtrInput
-	MetricLabel         DerivedLabelMetricLabelPtrInput
-	Name                pulumi.StringPtrInput
-	Slug                pulumi.StringPtrInput
-	SpanTag             DerivedLabelSpanTagPtrInput
+	// Name of the label exposed on derived series. Must be unique across the system.
+	LabelName pulumi.StringPtrInput
+	// Derives a label for metrics, either by constructing a new value from filters or by mapping an existing label. Mutually exclusive with `spanTag`.
+	MetricLabel DerivedLabelMetricLabelPtrInput
+	// Name of the label to match.
+	Name pulumi.StringPtrInput
+	// Stable identifier for the derived label. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringPtrInput
+	// Derives a label for trace spans by mapping from an existing span tag. Mutually exclusive with `metricLabel`.
+	SpanTag DerivedLabelSpanTagPtrInput
 }
 
 func (DerivedLabelState) ElementType() reflect.Type {
@@ -84,24 +168,38 @@ func (DerivedLabelState) ElementType() reflect.Type {
 }
 
 type derivedLabelArgs struct {
-	Description         *string                  `pulumi:"description"`
-	ExistingLabelPolicy *string                  `pulumi:"existingLabelPolicy"`
-	LabelName           string                   `pulumi:"labelName"`
-	MetricLabel         *DerivedLabelMetricLabel `pulumi:"metricLabel"`
-	Name                string                   `pulumi:"name"`
-	Slug                *string                  `pulumi:"slug"`
-	SpanTag             *DerivedLabelSpanTag     `pulumi:"spanTag"`
+	// Free-form description of the derived label.
+	Description *string `pulumi:"description"`
+	// Policy controlling behavior when the target label already exists on the source series (e.g. keep, replace).
+	ExistingLabelPolicy *string `pulumi:"existingLabelPolicy"`
+	// Name of the label exposed on derived series. Must be unique across the system.
+	LabelName string `pulumi:"labelName"`
+	// Derives a label for metrics, either by constructing a new value from filters or by mapping an existing label. Mutually exclusive with `spanTag`.
+	MetricLabel *DerivedLabelMetricLabel `pulumi:"metricLabel"`
+	// Name of the label to match.
+	Name string `pulumi:"name"`
+	// Stable identifier for the derived label. Generated from `name` if omitted. Immutable after creation.
+	Slug *string `pulumi:"slug"`
+	// Derives a label for trace spans by mapping from an existing span tag. Mutually exclusive with `metricLabel`.
+	SpanTag *DerivedLabelSpanTag `pulumi:"spanTag"`
 }
 
 // The set of arguments for constructing a DerivedLabel resource.
 type DerivedLabelArgs struct {
-	Description         pulumi.StringPtrInput
+	// Free-form description of the derived label.
+	Description pulumi.StringPtrInput
+	// Policy controlling behavior when the target label already exists on the source series (e.g. keep, replace).
 	ExistingLabelPolicy pulumi.StringPtrInput
-	LabelName           pulumi.StringInput
-	MetricLabel         DerivedLabelMetricLabelPtrInput
-	Name                pulumi.StringInput
-	Slug                pulumi.StringPtrInput
-	SpanTag             DerivedLabelSpanTagPtrInput
+	// Name of the label exposed on derived series. Must be unique across the system.
+	LabelName pulumi.StringInput
+	// Derives a label for metrics, either by constructing a new value from filters or by mapping an existing label. Mutually exclusive with `spanTag`.
+	MetricLabel DerivedLabelMetricLabelPtrInput
+	// Name of the label to match.
+	Name pulumi.StringInput
+	// Stable identifier for the derived label. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringPtrInput
+	// Derives a label for trace spans by mapping from an existing span tag. Mutually exclusive with `metricLabel`.
+	SpanTag DerivedLabelSpanTagPtrInput
 }
 
 func (DerivedLabelArgs) ElementType() reflect.Type {
@@ -191,30 +289,37 @@ func (o DerivedLabelOutput) ToDerivedLabelOutputWithContext(ctx context.Context)
 	return o
 }
 
+// Free-form description of the derived label.
 func (o DerivedLabelOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DerivedLabel) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// Policy controlling behavior when the target label already exists on the source series (e.g. keep, replace).
 func (o DerivedLabelOutput) ExistingLabelPolicy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DerivedLabel) pulumi.StringPtrOutput { return v.ExistingLabelPolicy }).(pulumi.StringPtrOutput)
 }
 
+// Name of the label exposed on derived series. Must be unique across the system.
 func (o DerivedLabelOutput) LabelName() pulumi.StringOutput {
 	return o.ApplyT(func(v *DerivedLabel) pulumi.StringOutput { return v.LabelName }).(pulumi.StringOutput)
 }
 
+// Derives a label for metrics, either by constructing a new value from filters or by mapping an existing label. Mutually exclusive with `spanTag`.
 func (o DerivedLabelOutput) MetricLabel() DerivedLabelMetricLabelPtrOutput {
 	return o.ApplyT(func(v *DerivedLabel) DerivedLabelMetricLabelPtrOutput { return v.MetricLabel }).(DerivedLabelMetricLabelPtrOutput)
 }
 
+// Name of the label to match.
 func (o DerivedLabelOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *DerivedLabel) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// Stable identifier for the derived label. Generated from `name` if omitted. Immutable after creation.
 func (o DerivedLabelOutput) Slug() pulumi.StringOutput {
 	return o.ApplyT(func(v *DerivedLabel) pulumi.StringOutput { return v.Slug }).(pulumi.StringOutput)
 }
 
+// Derives a label for trace spans by mapping from an existing span tag. Mutually exclusive with `metricLabel`.
 func (o DerivedLabelOutput) SpanTag() DerivedLabelSpanTagPtrOutput {
 	return o.ApplyT(func(v *DerivedLabel) DerivedLabelSpanTagPtrOutput { return v.SpanTag }).(DerivedLabelSpanTagPtrOutput)
 }

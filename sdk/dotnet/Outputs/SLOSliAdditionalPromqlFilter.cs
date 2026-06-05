@@ -14,8 +14,17 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class SLOSliAdditionalPromqlFilter
     {
+        /// <summary>
+        /// Prometheus label name to match.
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// Matcher type (e.g. `=`, `!=`, `=~`, `!~`).
+        /// </summary>
         public readonly string Type;
+        /// <summary>
+        /// Label value to match against using the chosen matcher `type`.
+        /// </summary>
         public readonly string Value;
 
         [OutputConstructor]

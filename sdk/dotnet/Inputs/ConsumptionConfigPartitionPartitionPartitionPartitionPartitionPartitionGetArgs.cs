@@ -15,15 +15,25 @@ namespace Chronosphere.Pulumi.Inputs
     {
         [Input("filters")]
         private InputList<Inputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterGetArgs>? _filters;
+
+        /// <summary>
+        /// Filters identifying which data belongs to this partition. Filters are AND-ed together: a request must match every filter to be assigned to the partition. At most one `IN` filter and one `NOT_IN` filter can be specified.
+        /// </summary>
         public InputList<Inputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterGetArgs> Filters
         {
             get => _filters ?? (_filters = new InputList<Inputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterGetArgs>());
             set => _filters = value;
         }
 
+        /// <summary>
+        /// Display name of the partition. Must be unique within its parent partition. Can be changed after creation.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// Stable identifier of the partition. Must be unique within its parent partition. Immutable after creation.
+        /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 

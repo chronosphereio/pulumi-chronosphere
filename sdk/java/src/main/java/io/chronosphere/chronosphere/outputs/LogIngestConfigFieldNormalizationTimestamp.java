@@ -11,9 +11,17 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class LogIngestConfigFieldNormalizationTimestamp {
+    /**
+     * @return Ordered list of field paths to check for values. The first non-empty value found is used.
+     * 
+     */
     private @Nullable List<LogIngestConfigFieldNormalizationTimestampSource> sources;
 
     private LogIngestConfigFieldNormalizationTimestamp() {}
+    /**
+     * @return Ordered list of field paths to check for values. The first non-empty value found is used.
+     * 
+     */
     public List<LogIngestConfigFieldNormalizationTimestampSource> sources() {
         return this.sources == null ? List.of() : this.sources;
     }

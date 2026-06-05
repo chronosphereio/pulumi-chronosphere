@@ -14,11 +14,33 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class ConsumptionBudgetThreshold
     {
+        /// <summary>
+        /// Action to take when this threshold is exceeded (e.g. drop traffic, fire warning/critical alert).
+        /// </summary>
         public readonly string? Action;
+        /// <summary>
+        /// Configures an instant-rate threshold value. Set when `type` is an instant-rate type.
+        /// </summary>
         public readonly Outputs.ConsumptionBudgetThresholdInstantRate? InstantRate;
+        /// <summary>
+        /// Resource group the threshold applies to (e.g. metrics, logs, traces). Replaces the deprecated top-level `resource` field.
+        /// </summary>
+        public readonly string? ResourceGroup;
+        /// <summary>
+        /// SKU group the threshold applies to (e.g. metrics, logs, traces). Replaces the deprecated top-level `resource` field.
+        /// </summary>
         public readonly string? SkuGroup;
+        /// <summary>
+        /// Measurement window over which the threshold is evaluated (e.g. instant rate vs. rolling volume).
+        /// </summary>
         public readonly string? Type;
+        /// <summary>
+        /// Unit in which the threshold value is denominated (e.g. bytes, datapoints).
+        /// </summary>
         public readonly string? Unit;
+        /// <summary>
+        /// Configures a volume threshold value. Set when `type` is a volume type.
+        /// </summary>
         public readonly Outputs.ConsumptionBudgetThresholdVolume? Volume;
 
         [OutputConstructor]
@@ -26,6 +48,8 @@ namespace Chronosphere.Pulumi.Outputs
             string? action,
 
             Outputs.ConsumptionBudgetThresholdInstantRate? instantRate,
+
+            string? resourceGroup,
 
             string? skuGroup,
 
@@ -37,6 +61,7 @@ namespace Chronosphere.Pulumi.Outputs
         {
             Action = action;
             InstantRate = instantRate;
+            ResourceGroup = resourceGroup;
             SkuGroup = skuGroup;
             Type = type;
             Unit = unit;

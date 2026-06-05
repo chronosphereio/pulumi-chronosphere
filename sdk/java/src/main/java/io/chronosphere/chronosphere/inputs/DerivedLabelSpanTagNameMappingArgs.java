@@ -13,9 +13,17 @@ public final class DerivedLabelSpanTagNameMappingArgs extends com.pulumi.resourc
 
     public static final DerivedLabelSpanTagNameMappingArgs Empty = new DerivedLabelSpanTagNameMappingArgs();
 
+    /**
+     * Source span tag name to copy into the derived label.
+     * 
+     */
     @Import(name="sourceTag", required=true)
     private Output<String> sourceTag;
 
+    /**
+     * @return Source span tag name to copy into the derived label.
+     * 
+     */
     public Output<String> sourceTag() {
         return this.sourceTag;
     }
@@ -44,11 +52,23 @@ public final class DerivedLabelSpanTagNameMappingArgs extends com.pulumi.resourc
             $ = new DerivedLabelSpanTagNameMappingArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param sourceTag Source span tag name to copy into the derived label.
+         * 
+         * @return builder
+         * 
+         */
         public Builder sourceTag(Output<String> sourceTag) {
             $.sourceTag = sourceTag;
             return this;
         }
 
+        /**
+         * @param sourceTag Source span tag name to copy into the derived label.
+         * 
+         * @return builder
+         * 
+         */
         public Builder sourceTag(String sourceTag) {
             return sourceTag(Output.of(sourceTag));
         }

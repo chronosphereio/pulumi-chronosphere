@@ -14,16 +14,32 @@ public final class DerivedLabelMetricLabelMappingLabelNameMappingValueMappingArg
 
     public static final DerivedLabelMetricLabelMappingLabelNameMappingValueMappingArgs Empty = new DerivedLabelMetricLabelMappingLabelNameMappingValueMappingArgs();
 
+    /**
+     * Glob patterns matched against the source label value. A match maps the value to `target_value`.
+     * 
+     */
     @Import(name="sourceValueGlobs", required=true)
     private Output<List<String>> sourceValueGlobs;
 
+    /**
+     * @return Glob patterns matched against the source label value. A match maps the value to `target_value`.
+     * 
+     */
     public Output<List<String>> sourceValueGlobs() {
         return this.sourceValueGlobs;
     }
 
+    /**
+     * Value to assign on the derived label when any `source_value_globs` matches.
+     * 
+     */
     @Import(name="targetValue", required=true)
     private Output<String> targetValue;
 
+    /**
+     * @return Value to assign on the derived label when any `source_value_globs` matches.
+     * 
+     */
     public Output<String> targetValue() {
         return this.targetValue;
     }
@@ -53,24 +69,54 @@ public final class DerivedLabelMetricLabelMappingLabelNameMappingValueMappingArg
             $ = new DerivedLabelMetricLabelMappingLabelNameMappingValueMappingArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param sourceValueGlobs Glob patterns matched against the source label value. A match maps the value to `target_value`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder sourceValueGlobs(Output<List<String>> sourceValueGlobs) {
             $.sourceValueGlobs = sourceValueGlobs;
             return this;
         }
 
+        /**
+         * @param sourceValueGlobs Glob patterns matched against the source label value. A match maps the value to `target_value`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder sourceValueGlobs(List<String> sourceValueGlobs) {
             return sourceValueGlobs(Output.of(sourceValueGlobs));
         }
 
+        /**
+         * @param sourceValueGlobs Glob patterns matched against the source label value. A match maps the value to `target_value`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder sourceValueGlobs(String... sourceValueGlobs) {
             return sourceValueGlobs(List.of(sourceValueGlobs));
         }
 
+        /**
+         * @param targetValue Value to assign on the derived label when any `source_value_globs` matches.
+         * 
+         * @return builder
+         * 
+         */
         public Builder targetValue(Output<String> targetValue) {
             $.targetValue = targetValue;
             return this;
         }
 
+        /**
+         * @param targetValue Value to assign on the derived label when any `source_value_globs` matches.
+         * 
+         * @return builder
+         * 
+         */
         public Builder targetValue(String targetValue) {
             return targetValue(Output.of(targetValue));
         }

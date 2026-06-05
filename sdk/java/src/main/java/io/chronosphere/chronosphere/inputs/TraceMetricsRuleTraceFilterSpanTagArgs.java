@@ -17,23 +17,47 @@ public final class TraceMetricsRuleTraceFilterSpanTagArgs extends com.pulumi.res
 
     public static final TraceMetricsRuleTraceFilterSpanTagArgs Empty = new TraceMetricsRuleTraceFilterSpanTagArgs();
 
+    /**
+     * Span attribute to group by.
+     * 
+     */
     @Import(name="key")
     private @Nullable Output<String> key;
 
+    /**
+     * @return Span attribute to group by.
+     * 
+     */
     public Optional<Output<String>> key() {
         return Optional.ofNullable(this.key);
     }
 
+    /**
+     * Matches traces or spans where the target numeric field satisfies the comparison against `value`.
+     * 
+     */
     @Import(name="numericValue")
     private @Nullable Output<TraceMetricsRuleTraceFilterSpanTagNumericValueArgs> numericValue;
 
+    /**
+     * @return Matches traces or spans where the target numeric field satisfies the comparison against `value`.
+     * 
+     */
     public Optional<Output<TraceMetricsRuleTraceFilterSpanTagNumericValueArgs>> numericValue() {
         return Optional.ofNullable(this.numericValue);
     }
 
+    /**
+     * Boolean value the target field is compared against.
+     * 
+     */
     @Import(name="value")
     private @Nullable Output<TraceMetricsRuleTraceFilterSpanTagValueArgs> value;
 
+    /**
+     * @return Boolean value the target field is compared against.
+     * 
+     */
     public Optional<Output<TraceMetricsRuleTraceFilterSpanTagValueArgs>> value() {
         return Optional.ofNullable(this.value);
     }
@@ -64,29 +88,65 @@ public final class TraceMetricsRuleTraceFilterSpanTagArgs extends com.pulumi.res
             $ = new TraceMetricsRuleTraceFilterSpanTagArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param key Span attribute to group by.
+         * 
+         * @return builder
+         * 
+         */
         public Builder key(@Nullable Output<String> key) {
             $.key = key;
             return this;
         }
 
+        /**
+         * @param key Span attribute to group by.
+         * 
+         * @return builder
+         * 
+         */
         public Builder key(String key) {
             return key(Output.of(key));
         }
 
+        /**
+         * @param numericValue Matches traces or spans where the target numeric field satisfies the comparison against `value`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder numericValue(@Nullable Output<TraceMetricsRuleTraceFilterSpanTagNumericValueArgs> numericValue) {
             $.numericValue = numericValue;
             return this;
         }
 
+        /**
+         * @param numericValue Matches traces or spans where the target numeric field satisfies the comparison against `value`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder numericValue(TraceMetricsRuleTraceFilterSpanTagNumericValueArgs numericValue) {
             return numericValue(Output.of(numericValue));
         }
 
+        /**
+         * @param value Boolean value the target field is compared against.
+         * 
+         * @return builder
+         * 
+         */
         public Builder value(@Nullable Output<TraceMetricsRuleTraceFilterSpanTagValueArgs> value) {
             $.value = value;
             return this;
         }
 
+        /**
+         * @param value Boolean value the target field is compared against.
+         * 
+         * @return builder
+         * 
+         */
         public Builder value(TraceMetricsRuleTraceFilterSpanTagValueArgs value) {
             return value(Output.of(value));
         }

@@ -19,30 +19,62 @@ public final class SLODefinitionArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final SLODefinitionArgs Empty = new SLODefinitionArgs();
 
+    /**
+     * Custom burn-rate alert definitions. If omitted, the system default burn rates are used. Only takes effect when `enable_burn_rate_alerting` is true.
+     * 
+     */
     @Import(name="burnRateAlertingConfigs")
     private @Nullable Output<List<SLODefinitionBurnRateAlertingConfigArgs>> burnRateAlertingConfigs;
 
+    /**
+     * @return Custom burn-rate alert definitions. If omitted, the system default burn rates are used. Only takes effect when `enable_burn_rate_alerting` is true.
+     * 
+     */
     public Optional<Output<List<SLODefinitionBurnRateAlertingConfigArgs>>> burnRateAlertingConfigs() {
         return Optional.ofNullable(this.burnRateAlertingConfigs);
     }
 
+    /**
+     * Whether burn-rate alerting is enabled for this SLO.
+     * 
+     */
     @Import(name="enableBurnRateAlerting")
     private @Nullable Output<Boolean> enableBurnRateAlerting;
 
+    /**
+     * @return Whether burn-rate alerting is enabled for this SLO.
+     * 
+     */
     public Optional<Output<Boolean>> enableBurnRateAlerting() {
         return Optional.ofNullable(this.enableBurnRateAlerting);
     }
 
+    /**
+     * Target SLO percentage representing the desired availability (e.g. `99.9`).
+     * 
+     */
     @Import(name="objective", required=true)
     private Output<Double> objective;
 
+    /**
+     * @return Target SLO percentage representing the desired availability (e.g. `99.9`).
+     * 
+     */
     public Output<Double> objective() {
         return this.objective;
     }
 
+    /**
+     * Rolling time window over which the SLO objective is evaluated.
+     * 
+     */
     @Import(name="timeWindow")
     private @Nullable Output<SLODefinitionTimeWindowArgs> timeWindow;
 
+    /**
+     * @return Rolling time window over which the SLO objective is evaluated.
+     * 
+     */
     public Optional<Output<SLODefinitionTimeWindowArgs>> timeWindow() {
         return Optional.ofNullable(this.timeWindow);
     }
@@ -74,42 +106,96 @@ public final class SLODefinitionArgs extends com.pulumi.resources.ResourceArgs {
             $ = new SLODefinitionArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param burnRateAlertingConfigs Custom burn-rate alert definitions. If omitted, the system default burn rates are used. Only takes effect when `enable_burn_rate_alerting` is true.
+         * 
+         * @return builder
+         * 
+         */
         public Builder burnRateAlertingConfigs(@Nullable Output<List<SLODefinitionBurnRateAlertingConfigArgs>> burnRateAlertingConfigs) {
             $.burnRateAlertingConfigs = burnRateAlertingConfigs;
             return this;
         }
 
+        /**
+         * @param burnRateAlertingConfigs Custom burn-rate alert definitions. If omitted, the system default burn rates are used. Only takes effect when `enable_burn_rate_alerting` is true.
+         * 
+         * @return builder
+         * 
+         */
         public Builder burnRateAlertingConfigs(List<SLODefinitionBurnRateAlertingConfigArgs> burnRateAlertingConfigs) {
             return burnRateAlertingConfigs(Output.of(burnRateAlertingConfigs));
         }
 
+        /**
+         * @param burnRateAlertingConfigs Custom burn-rate alert definitions. If omitted, the system default burn rates are used. Only takes effect when `enable_burn_rate_alerting` is true.
+         * 
+         * @return builder
+         * 
+         */
         public Builder burnRateAlertingConfigs(SLODefinitionBurnRateAlertingConfigArgs... burnRateAlertingConfigs) {
             return burnRateAlertingConfigs(List.of(burnRateAlertingConfigs));
         }
 
+        /**
+         * @param enableBurnRateAlerting Whether burn-rate alerting is enabled for this SLO.
+         * 
+         * @return builder
+         * 
+         */
         public Builder enableBurnRateAlerting(@Nullable Output<Boolean> enableBurnRateAlerting) {
             $.enableBurnRateAlerting = enableBurnRateAlerting;
             return this;
         }
 
+        /**
+         * @param enableBurnRateAlerting Whether burn-rate alerting is enabled for this SLO.
+         * 
+         * @return builder
+         * 
+         */
         public Builder enableBurnRateAlerting(Boolean enableBurnRateAlerting) {
             return enableBurnRateAlerting(Output.of(enableBurnRateAlerting));
         }
 
+        /**
+         * @param objective Target SLO percentage representing the desired availability (e.g. `99.9`).
+         * 
+         * @return builder
+         * 
+         */
         public Builder objective(Output<Double> objective) {
             $.objective = objective;
             return this;
         }
 
+        /**
+         * @param objective Target SLO percentage representing the desired availability (e.g. `99.9`).
+         * 
+         * @return builder
+         * 
+         */
         public Builder objective(Double objective) {
             return objective(Output.of(objective));
         }
 
+        /**
+         * @param timeWindow Rolling time window over which the SLO objective is evaluated.
+         * 
+         * @return builder
+         * 
+         */
         public Builder timeWindow(@Nullable Output<SLODefinitionTimeWindowArgs> timeWindow) {
             $.timeWindow = timeWindow;
             return this;
         }
 
+        /**
+         * @param timeWindow Rolling time window over which the SLO objective is evaluated.
+         * 
+         * @return builder
+         * 
+         */
         public Builder timeWindow(SLODefinitionTimeWindowArgs timeWindow) {
             return timeWindow(Output.of(timeWindow));
         }

@@ -16,30 +16,62 @@ public final class TraceJaegerRemoteSamplingStrategyState extends com.pulumi.res
 
     public static final TraceJaegerRemoteSamplingStrategyState Empty = new TraceJaegerRemoteSamplingStrategyState();
 
+    /**
+     * Sampling strategy returned to the Jaeger client. Exactly one of `probabilistic_strategy`, `rate_limiting_strategy`, or `per_operation_strategies` must be set.
+     * 
+     */
     @Import(name="appliedStrategy")
     private @Nullable Output<TraceJaegerRemoteSamplingStrategyAppliedStrategyArgs> appliedStrategy;
 
+    /**
+     * @return Sampling strategy returned to the Jaeger client. Exactly one of `probabilistic_strategy`, `rate_limiting_strategy`, or `per_operation_strategies` must be set.
+     * 
+     */
     public Optional<Output<TraceJaegerRemoteSamplingStrategyAppliedStrategyArgs>> appliedStrategy() {
         return Optional.ofNullable(this.appliedStrategy);
     }
 
+    /**
+     * Display name of the Jaeger remote sampling strategy.
+     * 
+     */
     @Import(name="name")
     private @Nullable Output<String> name;
 
+    /**
+     * @return Display name of the Jaeger remote sampling strategy.
+     * 
+     */
     public Optional<Output<String>> name() {
         return Optional.ofNullable(this.name);
     }
 
+    /**
+     * Value of `service.name` the strategy applies to. Jaeger SDK clients reporting under this service receive this sampling configuration.
+     * 
+     */
     @Import(name="serviceName")
     private @Nullable Output<String> serviceName;
 
+    /**
+     * @return Value of `service.name` the strategy applies to. Jaeger SDK clients reporting under this service receive this sampling configuration.
+     * 
+     */
     public Optional<Output<String>> serviceName() {
         return Optional.ofNullable(this.serviceName);
     }
 
+    /**
+     * Stable identifier for the Jaeger remote sampling strategy. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     @Import(name="slug")
     private @Nullable Output<String> slug;
 
+    /**
+     * @return Stable identifier for the Jaeger remote sampling strategy. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     public Optional<Output<String>> slug() {
         return Optional.ofNullable(this.slug);
     }
@@ -71,38 +103,86 @@ public final class TraceJaegerRemoteSamplingStrategyState extends com.pulumi.res
             $ = new TraceJaegerRemoteSamplingStrategyState(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param appliedStrategy Sampling strategy returned to the Jaeger client. Exactly one of `probabilistic_strategy`, `rate_limiting_strategy`, or `per_operation_strategies` must be set.
+         * 
+         * @return builder
+         * 
+         */
         public Builder appliedStrategy(@Nullable Output<TraceJaegerRemoteSamplingStrategyAppliedStrategyArgs> appliedStrategy) {
             $.appliedStrategy = appliedStrategy;
             return this;
         }
 
+        /**
+         * @param appliedStrategy Sampling strategy returned to the Jaeger client. Exactly one of `probabilistic_strategy`, `rate_limiting_strategy`, or `per_operation_strategies` must be set.
+         * 
+         * @return builder
+         * 
+         */
         public Builder appliedStrategy(TraceJaegerRemoteSamplingStrategyAppliedStrategyArgs appliedStrategy) {
             return appliedStrategy(Output.of(appliedStrategy));
         }
 
+        /**
+         * @param name Display name of the Jaeger remote sampling strategy.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(@Nullable Output<String> name) {
             $.name = name;
             return this;
         }
 
+        /**
+         * @param name Display name of the Jaeger remote sampling strategy.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(String name) {
             return name(Output.of(name));
         }
 
+        /**
+         * @param serviceName Value of `service.name` the strategy applies to. Jaeger SDK clients reporting under this service receive this sampling configuration.
+         * 
+         * @return builder
+         * 
+         */
         public Builder serviceName(@Nullable Output<String> serviceName) {
             $.serviceName = serviceName;
             return this;
         }
 
+        /**
+         * @param serviceName Value of `service.name` the strategy applies to. Jaeger SDK clients reporting under this service receive this sampling configuration.
+         * 
+         * @return builder
+         * 
+         */
         public Builder serviceName(String serviceName) {
             return serviceName(Output.of(serviceName));
         }
 
+        /**
+         * @param slug Stable identifier for the Jaeger remote sampling strategy. Generated from `name` if omitted. Immutable after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slug(@Nullable Output<String> slug) {
             $.slug = slug;
             return this;
         }
 
+        /**
+         * @param slug Stable identifier for the Jaeger remote sampling strategy. Generated from `name` if omitted. Immutable after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slug(String slug) {
             return slug(Output.of(slug));
         }

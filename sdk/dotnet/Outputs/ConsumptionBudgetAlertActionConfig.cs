@@ -14,8 +14,17 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class ConsumptionBudgetAlertActionConfig
     {
+        /// <summary>
+        /// Additional annotations to set on the generated monitor. Overrides the default `description`, `dashboard`, `resource`, `consumption_budget_slug`, `threshold_type`, and `partition` annotations when keys collide.
+        /// </summary>
         public readonly ImmutableDictionary<string, string>? Annotations;
+        /// <summary>
+        /// How long instant-rate consumption must remain above the threshold before an alert fires, in seconds. Defaults to 0 (alert immediately on any breach).
+        /// </summary>
         public readonly int? InstantRateSustainSecs;
+        /// <summary>
+        /// Additional labels to set on the generated monitor, usable for notification routing. The `resource`, `partition`, and `threshold_type` labels are reserved and cannot be overridden.
+        /// </summary>
         public readonly ImmutableDictionary<string, string>? Labels;
 
         [OutputConstructor]

@@ -14,9 +14,21 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class TraceTailSamplingRulesRule
     {
+        /// <summary>
+        /// Filter that selects traces and spans. A trace matches when its trace-level conditions hold and every `span` block is satisfied by at least one span in the trace.
+        /// </summary>
         public readonly Outputs.TraceTailSamplingRulesRuleFilter Filter;
+        /// <summary>
+        /// Human-readable name of the rule.
+        /// </summary>
         public readonly string? Name;
+        /// <summary>
+        /// Fraction of matching traces to keep, in the range `[0.0, 1.0]`. `0` drops all matches, `1` keeps every match.
+        /// </summary>
         public readonly double SampleRate;
+        /// <summary>
+        /// Stable identifier used as the metric label value on metrics emitted by this rule.
+        /// </summary>
         public readonly string? SystemName;
 
         [OutputConstructor]

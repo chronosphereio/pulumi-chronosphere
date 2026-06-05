@@ -12,13 +12,45 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// A named group of users that can own collections, buckets, and other resources. Teams scope access control and serve as the ownership unit for resources across the platform.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/chronosphereio/pulumi-chronosphere/sdk/go/chronosphere"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := chronosphere.NewTeam(ctx, "platform", &chronosphere.TeamArgs{
+//				Description: pulumi.String("Platform engineering team"),
+//				Name:        pulumi.String("Platform"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type Team struct {
 	pulumi.CustomResourceState
 
-	Description pulumi.StringPtrOutput   `pulumi:"description"`
-	Name        pulumi.StringOutput      `pulumi:"name"`
-	Slug        pulumi.StringOutput      `pulumi:"slug"`
-	UserEmails  pulumi.StringArrayOutput `pulumi:"userEmails"`
+	// Free-form description of the team.
+	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// Display name of the team. Can be changed after creation.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// Stable identifier for the team. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringOutput `pulumi:"slug"`
+	// Unordered set of email addresses identifying the users who are members of this team.
+	UserEmails pulumi.StringArrayOutput `pulumi:"userEmails"`
 }
 
 // NewTeam registers a new resource with the given unique name, arguments, and options.
@@ -54,17 +86,25 @@ func GetTeam(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Team resources.
 type teamState struct {
-	Description *string  `pulumi:"description"`
-	Name        *string  `pulumi:"name"`
-	Slug        *string  `pulumi:"slug"`
-	UserEmails  []string `pulumi:"userEmails"`
+	// Free-form description of the team.
+	Description *string `pulumi:"description"`
+	// Display name of the team. Can be changed after creation.
+	Name *string `pulumi:"name"`
+	// Stable identifier for the team. Generated from `name` if omitted. Immutable after creation.
+	Slug *string `pulumi:"slug"`
+	// Unordered set of email addresses identifying the users who are members of this team.
+	UserEmails []string `pulumi:"userEmails"`
 }
 
 type TeamState struct {
+	// Free-form description of the team.
 	Description pulumi.StringPtrInput
-	Name        pulumi.StringPtrInput
-	Slug        pulumi.StringPtrInput
-	UserEmails  pulumi.StringArrayInput
+	// Display name of the team. Can be changed after creation.
+	Name pulumi.StringPtrInput
+	// Stable identifier for the team. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringPtrInput
+	// Unordered set of email addresses identifying the users who are members of this team.
+	UserEmails pulumi.StringArrayInput
 }
 
 func (TeamState) ElementType() reflect.Type {
@@ -72,18 +112,26 @@ func (TeamState) ElementType() reflect.Type {
 }
 
 type teamArgs struct {
-	Description *string  `pulumi:"description"`
-	Name        string   `pulumi:"name"`
-	Slug        *string  `pulumi:"slug"`
-	UserEmails  []string `pulumi:"userEmails"`
+	// Free-form description of the team.
+	Description *string `pulumi:"description"`
+	// Display name of the team. Can be changed after creation.
+	Name string `pulumi:"name"`
+	// Stable identifier for the team. Generated from `name` if omitted. Immutable after creation.
+	Slug *string `pulumi:"slug"`
+	// Unordered set of email addresses identifying the users who are members of this team.
+	UserEmails []string `pulumi:"userEmails"`
 }
 
 // The set of arguments for constructing a Team resource.
 type TeamArgs struct {
+	// Free-form description of the team.
 	Description pulumi.StringPtrInput
-	Name        pulumi.StringInput
-	Slug        pulumi.StringPtrInput
-	UserEmails  pulumi.StringArrayInput
+	// Display name of the team. Can be changed after creation.
+	Name pulumi.StringInput
+	// Stable identifier for the team. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringPtrInput
+	// Unordered set of email addresses identifying the users who are members of this team.
+	UserEmails pulumi.StringArrayInput
 }
 
 func (TeamArgs) ElementType() reflect.Type {
@@ -173,18 +221,22 @@ func (o TeamOutput) ToTeamOutputWithContext(ctx context.Context) TeamOutput {
 	return o
 }
 
+// Free-form description of the team.
 func (o TeamOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Team) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// Display name of the team. Can be changed after creation.
 func (o TeamOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Team) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// Stable identifier for the team. Generated from `name` if omitted. Immutable after creation.
 func (o TeamOutput) Slug() pulumi.StringOutput {
 	return o.ApplyT(func(v *Team) pulumi.StringOutput { return v.Slug }).(pulumi.StringOutput)
 }
 
+// Unordered set of email addresses identifying the users who are members of this team.
 func (o TeamOutput) UserEmails() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Team) pulumi.StringArrayOutput { return v.UserEmails }).(pulumi.StringArrayOutput)
 }

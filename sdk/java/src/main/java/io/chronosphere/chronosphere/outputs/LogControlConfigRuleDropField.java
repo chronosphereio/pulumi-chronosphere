@@ -12,13 +12,29 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class LogControlConfigRuleDropField {
+    /**
+     * @return Regular expression that selects which fields to drop.
+     * 
+     */
     private @Nullable String fieldRegex;
+    /**
+     * @return Path to a field within a log record.
+     * 
+     */
     private @Nullable LogControlConfigRuleDropFieldParentPath parentPath;
 
     private LogControlConfigRuleDropField() {}
+    /**
+     * @return Regular expression that selects which fields to drop.
+     * 
+     */
     public Optional<String> fieldRegex() {
         return Optional.ofNullable(this.fieldRegex);
     }
+    /**
+     * @return Path to a field within a log record.
+     * 
+     */
     public Optional<LogControlConfigRuleDropFieldParentPath> parentPath() {
         return Optional.ofNullable(this.parentPath);
     }

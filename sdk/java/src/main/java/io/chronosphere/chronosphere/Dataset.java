@@ -15,29 +15,108 @@ import java.lang.String;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
+/**
+ * A saved selection of telemetry data, defined by match criteria over traces or logs, that can be referenced by other Chronosphere features such as dashboards and alerts.
+ * 
+ * ## Example Usage
+ * 
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.chronosphere.Dataset;
+ * import com.pulumi.chronosphere.DatasetArgs;
+ * import com.pulumi.chronosphere.inputs.DatasetConfigurationArgs;
+ * import com.pulumi.chronosphere.inputs.DatasetConfigurationTraceDatasetArgs;
+ * import com.pulumi.chronosphere.inputs.DatasetConfigurationTraceDatasetMatchCriteriaArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var paymentsTraces = new Dataset(&#34;paymentsTraces&#34;, DatasetArgs.builder()        
+ *             .configuration(DatasetConfigurationArgs.builder()
+ *                 .traceDataset(DatasetConfigurationTraceDatasetArgs.builder()
+ *                     .matchCriteria(DatasetConfigurationTraceDatasetMatchCriteriaArgs.builder()
+ *                         .span(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+ *                         .build())
+ *                     .build())
+ *                 .type(&#34;TRACES&#34;)
+ *                 .build())
+ *             .description(&#34;Traces passing through the payments service in production&#34;)
+ *             .name(&#34;Production payments traces&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ */
 @ResourceType(type="chronosphere:index/dataset:Dataset")
 public class Dataset extends com.pulumi.resources.CustomResource {
+    /**
+     * Configuration block selecting the dataset type and its match criteria.
+     * 
+     */
     @Export(name="configuration", refs={DatasetConfiguration.class}, tree="[0]")
     private Output<DatasetConfiguration> configuration;
 
+    /**
+     * @return Configuration block selecting the dataset type and its match criteria.
+     * 
+     */
     public Output<DatasetConfiguration> configuration() {
         return this.configuration;
     }
+    /**
+     * Free-form description of the dataset.
+     * 
+     */
     @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
+    /**
+     * @return Free-form description of the dataset.
+     * 
+     */
     public Output<Optional<String>> description() {
         return Codegen.optional(this.description);
     }
+    /**
+     * Display name of the dataset. Can be changed after creation.
+     * 
+     */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
+    /**
+     * @return Display name of the dataset. Can be changed after creation.
+     * 
+     */
     public Output<String> name() {
         return this.name;
     }
+    /**
+     * Stable identifier for the dataset. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     @Export(name="slug", refs={String.class}, tree="[0]")
     private Output<String> slug;
 
+    /**
+     * @return Stable identifier for the dataset. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     public Output<String> slug() {
         return this.slug;
     }

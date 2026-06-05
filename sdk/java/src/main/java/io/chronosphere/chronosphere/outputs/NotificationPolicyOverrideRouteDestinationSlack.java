@@ -11,13 +11,29 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class NotificationPolicyOverrideRouteDestinationSlack {
+    /**
+     * @return Slack channels to send notifications to.
+     * 
+     */
     private @Nullable List<String> channels;
+    /**
+     * @return Slug of the OpsGenie external connection holding the integration credentials.
+     * 
+     */
     private String externalConnectionSlug;
 
     private NotificationPolicyOverrideRouteDestinationSlack() {}
+    /**
+     * @return Slack channels to send notifications to.
+     * 
+     */
     public List<String> channels() {
         return this.channels == null ? List.of() : this.channels;
     }
+    /**
+     * @return Slug of the OpsGenie external connection holding the integration credentials.
+     * 
+     */
     public String externalConnectionSlug() {
         return this.externalConnectionSlug;
     }

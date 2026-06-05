@@ -11,13 +11,29 @@ import java.util.Objects;
 
 @CustomType
 public final class DerivedLabelMetricLabelConstructedLabelValueDefinition {
+    /**
+     * @return Label filters that must all match for this value definition to apply.
+     * 
+     */
     private List<DerivedLabelMetricLabelConstructedLabelValueDefinitionFilter> filters;
+    /**
+     * @return Value assigned to the derived label when this definition&#39;s filters match.
+     * 
+     */
     private String value;
 
     private DerivedLabelMetricLabelConstructedLabelValueDefinition() {}
+    /**
+     * @return Label filters that must all match for this value definition to apply.
+     * 
+     */
     public List<DerivedLabelMetricLabelConstructedLabelValueDefinitionFilter> filters() {
         return this.filters;
     }
+    /**
+     * @return Value assigned to the derived label when this definition&#39;s filters match.
+     * 
+     */
     public String value() {
         return this.value;
     }

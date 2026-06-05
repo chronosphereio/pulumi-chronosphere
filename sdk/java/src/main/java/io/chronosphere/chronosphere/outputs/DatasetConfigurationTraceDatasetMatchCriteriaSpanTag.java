@@ -13,17 +13,41 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class DatasetConfigurationTraceDatasetMatchCriteriaSpanTag {
+    /**
+     * @return Name of the span tag (span attribute) inspected by this filter.
+     * 
+     */
     private @Nullable String key;
+    /**
+     * @return Matches traces or spans where the target numeric field satisfies the comparison against `value`.
+     * 
+     */
     private @Nullable DatasetConfigurationTraceDatasetMatchCriteriaSpanTagNumericValue numericValue;
+    /**
+     * @return Boolean value the target field is compared against.
+     * 
+     */
     private @Nullable DatasetConfigurationTraceDatasetMatchCriteriaSpanTagValue value;
 
     private DatasetConfigurationTraceDatasetMatchCriteriaSpanTag() {}
+    /**
+     * @return Name of the span tag (span attribute) inspected by this filter.
+     * 
+     */
     public Optional<String> key() {
         return Optional.ofNullable(this.key);
     }
+    /**
+     * @return Matches traces or spans where the target numeric field satisfies the comparison against `value`.
+     * 
+     */
     public Optional<DatasetConfigurationTraceDatasetMatchCriteriaSpanTagNumericValue> numericValue() {
         return Optional.ofNullable(this.numericValue);
     }
+    /**
+     * @return Boolean value the target field is compared against.
+     * 
+     */
     public Optional<DatasetConfigurationTraceDatasetMatchCriteriaSpanTagValue> value() {
         return Optional.ofNullable(this.value);
     }

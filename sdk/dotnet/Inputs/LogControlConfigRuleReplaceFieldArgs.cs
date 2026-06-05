@@ -13,21 +13,39 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class LogControlConfigRuleReplaceFieldArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Path to a field within a log record.
+        /// </summary>
         [Input("field")]
         public Input<Inputs.LogControlConfigRuleReplaceFieldFieldArgs>? Field { get; set; }
 
+        /// <summary>
+        /// Replace field values using a key/value lookup table. Exactly one of `mapped_value` or `static_value` must be set.
+        /// </summary>
         [Input("mappedValue")]
         public Input<Inputs.LogControlConfigRuleReplaceFieldMappedValueArgs>? MappedValue { get; set; }
 
+        /// <summary>
+        /// If `true`, replaces all matches. If `false`, replaces only the first match.
+        /// </summary>
         [Input("replaceAll")]
         public Input<bool>? ReplaceAll { get; set; }
 
+        /// <summary>
+        /// Mode that controls how the replacement is applied to matched content.
+        /// </summary>
         [Input("replaceMode")]
         public Input<string>? ReplaceMode { get; set; }
 
+        /// <summary>
+        /// Regular expression that selects which part of the field value to replace.
+        /// </summary>
         [Input("replaceRegex")]
         public Input<string>? ReplaceRegex { get; set; }
 
+        /// <summary>
+        /// Replace matched content with a static string. Exactly one of `mapped_value` or `static_value` must be set.
+        /// </summary>
         [Input("staticValue")]
         public Input<Inputs.LogControlConfigRuleReplaceFieldStaticValueArgs>? StaticValue { get; set; }
 

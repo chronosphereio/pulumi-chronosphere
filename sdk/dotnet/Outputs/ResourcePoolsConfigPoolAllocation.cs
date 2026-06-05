@@ -14,8 +14,17 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class ResourcePoolsConfigPoolAllocation
     {
+        /// <summary>
+        /// Per-license fixed allocations that override `percent_of_license` for the named licenses. When any pool sets a fixed value for a license, every pool must also set one for that license.
+        /// </summary>
         public readonly ImmutableArray<Outputs.ResourcePoolsConfigPoolAllocationFixedValue> FixedValues;
+        /// <summary>
+        /// Percent of each license to allocate to this pool, between 0 and 100. Across non-default pools, the sum must not exceed 100; the default pool receives the remainder.
+        /// </summary>
         public readonly double? PercentOfLicense;
+        /// <summary>
+        /// Per-license drop thresholds for `PERSISTED_CARDINALITY_STANDARD` and `PERSISTED_CARDINALITY_HISTOGRAM` only. Defines strict upper bounds beyond which new consumption is dropped, optionally segmented by priority class.
+        /// </summary>
         public readonly ImmutableArray<Outputs.ResourcePoolsConfigPoolAllocationPriorityThreshold> PriorityThresholds;
 
         [OutputConstructor]

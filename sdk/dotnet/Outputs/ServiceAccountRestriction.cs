@@ -14,7 +14,13 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class ServiceAccountRestriction
     {
+        /// <summary>
+        /// Optional label matchers further scoping the restriction to metrics whose labels match these key/value pairs.
+        /// </summary>
         public readonly ImmutableDictionary<string, string>? Labels;
+        /// <summary>
+        /// Permission level granted by this restriction (e.g. metric read/write).
+        /// </summary>
         public readonly string Permission;
 
         [OutputConstructor]

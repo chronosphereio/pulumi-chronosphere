@@ -14,7 +14,13 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeep
     {
+        /// <summary>
+        /// Label context, e.g. resource vs. metric label. See the Chronosphere GCP integration documentation for accepted values.
+        /// </summary>
         public readonly string? Context;
+        /// <summary>
+        /// Label name to filter on.
+        /// </summary>
         public readonly string? Name;
 
         [OutputConstructor]

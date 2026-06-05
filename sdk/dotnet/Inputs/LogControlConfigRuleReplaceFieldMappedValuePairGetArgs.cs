@@ -13,9 +13,15 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class LogControlConfigRuleReplaceFieldMappedValuePairGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Prometheus label name to set on the emitted metric.
+        /// </summary>
         [Input("key")]
         public Input<string>? Key { get; set; }
 
+        /// <summary>
+        /// Path to a field within a log record.
+        /// </summary>
         [Input("value")]
         public Input<string>? Value { get; set; }
 

@@ -14,7 +14,13 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionMetricFilter
     {
+        /// <summary>
+        /// Label name to match.
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// Glob pattern matched against the label's value.
+        /// </summary>
         public readonly string ValueGlob;
 
         [OutputConstructor]

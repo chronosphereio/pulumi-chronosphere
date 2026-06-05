@@ -10,27 +10,117 @@ using Pulumi;
 
 namespace Chronosphere.Pulumi
 {
+    /// <summary>
+    /// Defines a synthetic label whose value is derived from existing metric labels or trace span tags via mapping or constructed-value rules. The derived label can then be referenced in queries as if it were a real label on the source series.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Pulumi = Chronosphere.Pulumi;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var tier = new Pulumi.DerivedLabel("tier", new()
+    ///     {
+    ///         Description = "Derives a 'tier' label (read/write/admin) from the instance label",
+    ///         LabelName = "tier",
+    ///         MetricLabel = new Pulumi.Inputs.DerivedLabelMetricLabelArgs
+    ///         {
+    ///             ConstructedLabel = new Pulumi.Inputs.DerivedLabelMetricLabelConstructedLabelArgs
+    ///             {
+    ///                 ValueDefinitions = new[]
+    ///                 {
+    ///                     new Pulumi.Inputs.DerivedLabelMetricLabelConstructedLabelValueDefinitionArgs
+    ///                     {
+    ///                         Filters = new[]
+    ///                         {
+    ///                             new Pulumi.Inputs.DerivedLabelMetricLabelConstructedLabelValueDefinitionFilterArgs
+    ///                             {
+    ///                                 Name = "instance",
+    ///                                 ValueGlob = "reader-*",
+    ///                             },
+    ///                         },
+    ///                         Value = "read",
+    ///                     },
+    ///                     new Pulumi.Inputs.DerivedLabelMetricLabelConstructedLabelValueDefinitionArgs
+    ///                     {
+    ///                         Filters = new[]
+    ///                         {
+    ///                             new Pulumi.Inputs.DerivedLabelMetricLabelConstructedLabelValueDefinitionFilterArgs
+    ///                             {
+    ///                                 Name = "instance",
+    ///                                 ValueGlob = "writer-*",
+    ///                             },
+    ///                         },
+    ///                         Value = "write",
+    ///                     },
+    ///                     new Pulumi.Inputs.DerivedLabelMetricLabelConstructedLabelValueDefinitionArgs
+    ///                     {
+    ///                         Filters = new[]
+    ///                         {
+    ///                             new Pulumi.Inputs.DerivedLabelMetricLabelConstructedLabelValueDefinitionFilterArgs
+    ///                             {
+    ///                                 Name = "instance",
+    ///                                 ValueGlob = "admin-*",
+    ///                             },
+    ///                         },
+    ///                         Value = "admin",
+    ///                     },
+    ///                 },
+    ///             },
+    ///         },
+    ///         Name = "Tier from instance name",
+    ///         Slug = "tier-from-instance",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// </summary>
     [PulumiResourceType("chronosphere:index/derivedLabel:DerivedLabel")]
     public partial class DerivedLabel : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Free-form description of the derived label.
+        /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
+        /// <summary>
+        /// Policy controlling behavior when the target label already exists on the source series (e.g. keep, replace).
+        /// </summary>
         [Output("existingLabelPolicy")]
         public Output<string?> ExistingLabelPolicy { get; private set; } = null!;
 
+        /// <summary>
+        /// Name of the label exposed on derived series. Must be unique across the system.
+        /// </summary>
         [Output("labelName")]
         public Output<string> LabelName { get; private set; } = null!;
 
+        /// <summary>
+        /// Derives a label for metrics, either by constructing a new value from filters or by mapping an existing label. Mutually exclusive with `span_tag`.
+        /// </summary>
         [Output("metricLabel")]
         public Output<Outputs.DerivedLabelMetricLabel?> MetricLabel { get; private set; } = null!;
 
+        /// <summary>
+        /// Name of the label to match.
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// Stable identifier for the derived label. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Output("slug")]
         public Output<string> Slug { get; private set; } = null!;
 
+        /// <summary>
+        /// Derives a label for trace spans by mapping from an existing span tag. Mutually exclusive with `metric_label`.
+        /// </summary>
         [Output("spanTag")]
         public Output<Outputs.DerivedLabelSpanTag?> SpanTag { get; private set; } = null!;
 
@@ -81,24 +171,45 @@ namespace Chronosphere.Pulumi
 
     public sealed class DerivedLabelArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Free-form description of the derived label.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// Policy controlling behavior when the target label already exists on the source series (e.g. keep, replace).
+        /// </summary>
         [Input("existingLabelPolicy")]
         public Input<string>? ExistingLabelPolicy { get; set; }
 
+        /// <summary>
+        /// Name of the label exposed on derived series. Must be unique across the system.
+        /// </summary>
         [Input("labelName", required: true)]
         public Input<string> LabelName { get; set; } = null!;
 
+        /// <summary>
+        /// Derives a label for metrics, either by constructing a new value from filters or by mapping an existing label. Mutually exclusive with `span_tag`.
+        /// </summary>
         [Input("metricLabel")]
         public Input<Inputs.DerivedLabelMetricLabelArgs>? MetricLabel { get; set; }
 
+        /// <summary>
+        /// Name of the label to match.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// Stable identifier for the derived label. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 
+        /// <summary>
+        /// Derives a label for trace spans by mapping from an existing span tag. Mutually exclusive with `metric_label`.
+        /// </summary>
         [Input("spanTag")]
         public Input<Inputs.DerivedLabelSpanTagArgs>? SpanTag { get; set; }
 
@@ -110,24 +221,45 @@ namespace Chronosphere.Pulumi
 
     public sealed class DerivedLabelState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Free-form description of the derived label.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// Policy controlling behavior when the target label already exists on the source series (e.g. keep, replace).
+        /// </summary>
         [Input("existingLabelPolicy")]
         public Input<string>? ExistingLabelPolicy { get; set; }
 
+        /// <summary>
+        /// Name of the label exposed on derived series. Must be unique across the system.
+        /// </summary>
         [Input("labelName")]
         public Input<string>? LabelName { get; set; }
 
+        /// <summary>
+        /// Derives a label for metrics, either by constructing a new value from filters or by mapping an existing label. Mutually exclusive with `span_tag`.
+        /// </summary>
         [Input("metricLabel")]
         public Input<Inputs.DerivedLabelMetricLabelGetArgs>? MetricLabel { get; set; }
 
+        /// <summary>
+        /// Name of the label to match.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// Stable identifier for the derived label. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 
+        /// <summary>
+        /// Derives a label for trace spans by mapping from an existing span tag. Mutually exclusive with `metric_label`.
+        /// </summary>
         [Input("spanTag")]
         public Input<Inputs.DerivedLabelSpanTagGetArgs>? SpanTag { get; set; }
 

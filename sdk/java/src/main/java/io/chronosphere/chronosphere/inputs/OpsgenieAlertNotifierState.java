@@ -19,84 +19,174 @@ public final class OpsgenieAlertNotifierState extends com.pulumi.resources.Resou
 
     public static final OpsgenieAlertNotifierState Empty = new OpsgenieAlertNotifierState();
 
+    /**
+     * Opsgenie API key used to authenticate requests. Treat as a secret.
+     * 
+     */
     @Import(name="apiKey")
     private @Nullable Output<String> apiKey;
 
+    /**
+     * @return Opsgenie API key used to authenticate requests. Treat as a secret.
+     * 
+     */
     public Optional<Output<String>> apiKey() {
         return Optional.ofNullable(this.apiKey);
     }
 
+    /**
+     * Opsgenie API URL to send requests to (e.g. `https://api.opsgenie.com/`).
+     * 
+     */
     @Import(name="apiUrl")
     private @Nullable Output<String> apiUrl;
 
+    /**
+     * @return Opsgenie API URL to send requests to (e.g. `https://api.opsgenie.com/`).
+     * 
+     */
     public Optional<Output<String>> apiUrl() {
         return Optional.ofNullable(this.apiUrl);
     }
 
+    /**
+     * Password for HTTP basic auth when calling the Opsgenie API. Treat as a secret.
+     * 
+     */
     @Import(name="basicAuthPassword")
     private @Nullable Output<String> basicAuthPassword;
 
+    /**
+     * @return Password for HTTP basic auth when calling the Opsgenie API. Treat as a secret.
+     * 
+     */
     public Optional<Output<String>> basicAuthPassword() {
         return Optional.ofNullable(this.basicAuthPassword);
     }
 
+    /**
+     * Username for HTTP basic auth when calling the Opsgenie API. Mutually exclusive with `bearer_token`.
+     * 
+     */
     @Import(name="basicAuthUsername")
     private @Nullable Output<String> basicAuthUsername;
 
+    /**
+     * @return Username for HTTP basic auth when calling the Opsgenie API. Mutually exclusive with `bearer_token`.
+     * 
+     */
     public Optional<Output<String>> basicAuthUsername() {
         return Optional.ofNullable(this.basicAuthUsername);
     }
 
+    /**
+     * Bearer token sent in the `Authorization` header when calling the Opsgenie API. Treat as a secret. Mutually exclusive with basic auth.
+     * 
+     */
     @Import(name="bearerToken")
     private @Nullable Output<String> bearerToken;
 
+    /**
+     * @return Bearer token sent in the `Authorization` header when calling the Opsgenie API. Treat as a secret. Mutually exclusive with basic auth.
+     * 
+     */
     public Optional<Output<String>> bearerToken() {
         return Optional.ofNullable(this.bearerToken);
     }
 
+    /**
+     * Detailed description of the alert. Supports Go templating.
+     * 
+     */
     @Import(name="description")
     private @Nullable Output<String> description;
 
+    /**
+     * @return Detailed description of the alert. Supports Go templating.
+     * 
+     */
     public Optional<Output<String>> description() {
         return Optional.ofNullable(this.description);
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the alert as additional context. Values support Go templating.
+     * 
+     */
     @Import(name="details")
     private @Nullable Output<Map<String,String>> details;
 
+    /**
+     * @return Arbitrary key/value pairs attached to the alert as additional context. Values support Go templating.
+     * 
+     */
     public Optional<Output<Map<String,String>>> details() {
         return Optional.ofNullable(this.details);
     }
 
+    /**
+     * Alert text shown in Opsgenie. Supports Go templating.
+     * 
+     */
     @Import(name="message")
     private @Nullable Output<String> message;
 
+    /**
+     * @return Alert text shown in Opsgenie. Supports Go templating.
+     * 
+     */
     public Optional<Output<String>> message() {
         return Optional.ofNullable(this.message);
     }
 
+    /**
+     * Name of the responder team, schedule, or escalation policy.
+     * 
+     */
     @Import(name="name")
     private @Nullable Output<String> name;
 
+    /**
+     * @return Name of the responder team, schedule, or escalation policy.
+     * 
+     */
     public Optional<Output<String>> name() {
         return Optional.ofNullable(this.name);
     }
 
+    /**
+     * Additional note appended to the alert. Supports Go templating.
+     * 
+     */
     @Import(name="note")
     private @Nullable Output<String> note;
 
+    /**
+     * @return Additional note appended to the alert. Supports Go templating.
+     * 
+     */
     public Optional<Output<String>> note() {
         return Optional.ofNullable(this.note);
     }
 
+    /**
+     * Priority level of the alert. One of `P1`, `P2`, `P3`, `P4`, or `P5`.
+     * 
+     */
     @Import(name="priority")
     private @Nullable Output<String> priority;
 
+    /**
+     * @return Priority level of the alert. One of `P1`, `P2`, `P3`, `P4`, or `P5`.
+     * 
+     */
     public Optional<Output<String>> priority() {
         return Optional.ofNullable(this.priority);
     }
 
     /**
+     * Deprecated and ignored. Custom proxy URLs are not supported.
+     * 
      * @deprecated
      * custom proxy URLs are not supported
      * 
@@ -106,6 +196,8 @@ public final class OpsgenieAlertNotifierState extends com.pulumi.resources.Resou
     private @Nullable Output<String> proxyUrl;
 
     /**
+     * @return Deprecated and ignored. Custom proxy URLs are not supported.
+     * 
      * @deprecated
      * custom proxy URLs are not supported
      * 
@@ -115,44 +207,92 @@ public final class OpsgenieAlertNotifierState extends com.pulumi.resources.Resou
         return Optional.ofNullable(this.proxyUrl);
     }
 
+    /**
+     * Responders that Opsgenie will notify for the alert. See https://docs.opsgenie.com/docs/alert-api for accepted shapes.
+     * 
+     */
     @Import(name="responders")
     private @Nullable Output<List<OpsgenieAlertNotifierResponderArgs>> responders;
 
+    /**
+     * @return Responders that Opsgenie will notify for the alert. See https://docs.opsgenie.com/docs/alert-api for accepted shapes.
+     * 
+     */
     public Optional<Output<List<OpsgenieAlertNotifierResponderArgs>>> responders() {
         return Optional.ofNullable(this.responders);
     }
 
+    /**
+     * Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+     * 
+     */
     @Import(name="sendResolved")
     private @Nullable Output<Boolean> sendResolved;
 
+    /**
+     * @return Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+     * 
+     */
     public Optional<Output<Boolean>> sendResolved() {
         return Optional.ofNullable(this.sendResolved);
     }
 
+    /**
+     * Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     @Import(name="slug")
     private @Nullable Output<String> slug;
 
+    /**
+     * @return Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     public Optional<Output<String>> slug() {
         return Optional.ofNullable(this.slug);
     }
 
+    /**
+     * Backlink to the sender of the notification. Supports Go templating.
+     * 
+     */
     @Import(name="source")
     private @Nullable Output<String> source;
 
+    /**
+     * @return Backlink to the sender of the notification. Supports Go templating.
+     * 
+     */
     public Optional<Output<String>> source() {
         return Optional.ofNullable(this.source);
     }
 
+    /**
+     * Tags attached to the Opsgenie alert.
+     * 
+     */
     @Import(name="tags")
     private @Nullable Output<List<String>> tags;
 
+    /**
+     * @return Tags attached to the Opsgenie alert.
+     * 
+     */
     public Optional<Output<List<String>>> tags() {
         return Optional.ofNullable(this.tags);
     }
 
+    /**
+     * If true, skip TLS certificate verification when calling the Opsgenie API. Disable only in trusted environments.
+     * 
+     */
     @Import(name="tlsInsecureSkipVerify")
     private @Nullable Output<Boolean> tlsInsecureSkipVerify;
 
+    /**
+     * @return If true, skip TLS certificate verification when calling the Opsgenie API. Disable only in trusted environments.
+     * 
+     */
     public Optional<Output<Boolean>> tlsInsecureSkipVerify() {
         return Optional.ofNullable(this.tlsInsecureSkipVerify);
     }
@@ -198,106 +338,240 @@ public final class OpsgenieAlertNotifierState extends com.pulumi.resources.Resou
             $ = new OpsgenieAlertNotifierState(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param apiKey Opsgenie API key used to authenticate requests. Treat as a secret.
+         * 
+         * @return builder
+         * 
+         */
         public Builder apiKey(@Nullable Output<String> apiKey) {
             $.apiKey = apiKey;
             return this;
         }
 
+        /**
+         * @param apiKey Opsgenie API key used to authenticate requests. Treat as a secret.
+         * 
+         * @return builder
+         * 
+         */
         public Builder apiKey(String apiKey) {
             return apiKey(Output.of(apiKey));
         }
 
+        /**
+         * @param apiUrl Opsgenie API URL to send requests to (e.g. `https://api.opsgenie.com/`).
+         * 
+         * @return builder
+         * 
+         */
         public Builder apiUrl(@Nullable Output<String> apiUrl) {
             $.apiUrl = apiUrl;
             return this;
         }
 
+        /**
+         * @param apiUrl Opsgenie API URL to send requests to (e.g. `https://api.opsgenie.com/`).
+         * 
+         * @return builder
+         * 
+         */
         public Builder apiUrl(String apiUrl) {
             return apiUrl(Output.of(apiUrl));
         }
 
+        /**
+         * @param basicAuthPassword Password for HTTP basic auth when calling the Opsgenie API. Treat as a secret.
+         * 
+         * @return builder
+         * 
+         */
         public Builder basicAuthPassword(@Nullable Output<String> basicAuthPassword) {
             $.basicAuthPassword = basicAuthPassword;
             return this;
         }
 
+        /**
+         * @param basicAuthPassword Password for HTTP basic auth when calling the Opsgenie API. Treat as a secret.
+         * 
+         * @return builder
+         * 
+         */
         public Builder basicAuthPassword(String basicAuthPassword) {
             return basicAuthPassword(Output.of(basicAuthPassword));
         }
 
+        /**
+         * @param basicAuthUsername Username for HTTP basic auth when calling the Opsgenie API. Mutually exclusive with `bearer_token`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder basicAuthUsername(@Nullable Output<String> basicAuthUsername) {
             $.basicAuthUsername = basicAuthUsername;
             return this;
         }
 
+        /**
+         * @param basicAuthUsername Username for HTTP basic auth when calling the Opsgenie API. Mutually exclusive with `bearer_token`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder basicAuthUsername(String basicAuthUsername) {
             return basicAuthUsername(Output.of(basicAuthUsername));
         }
 
+        /**
+         * @param bearerToken Bearer token sent in the `Authorization` header when calling the Opsgenie API. Treat as a secret. Mutually exclusive with basic auth.
+         * 
+         * @return builder
+         * 
+         */
         public Builder bearerToken(@Nullable Output<String> bearerToken) {
             $.bearerToken = bearerToken;
             return this;
         }
 
+        /**
+         * @param bearerToken Bearer token sent in the `Authorization` header when calling the Opsgenie API. Treat as a secret. Mutually exclusive with basic auth.
+         * 
+         * @return builder
+         * 
+         */
         public Builder bearerToken(String bearerToken) {
             return bearerToken(Output.of(bearerToken));
         }
 
+        /**
+         * @param description Detailed description of the alert. Supports Go templating.
+         * 
+         * @return builder
+         * 
+         */
         public Builder description(@Nullable Output<String> description) {
             $.description = description;
             return this;
         }
 
+        /**
+         * @param description Detailed description of the alert. Supports Go templating.
+         * 
+         * @return builder
+         * 
+         */
         public Builder description(String description) {
             return description(Output.of(description));
         }
 
+        /**
+         * @param details Arbitrary key/value pairs attached to the alert as additional context. Values support Go templating.
+         * 
+         * @return builder
+         * 
+         */
         public Builder details(@Nullable Output<Map<String,String>> details) {
             $.details = details;
             return this;
         }
 
+        /**
+         * @param details Arbitrary key/value pairs attached to the alert as additional context. Values support Go templating.
+         * 
+         * @return builder
+         * 
+         */
         public Builder details(Map<String,String> details) {
             return details(Output.of(details));
         }
 
+        /**
+         * @param message Alert text shown in Opsgenie. Supports Go templating.
+         * 
+         * @return builder
+         * 
+         */
         public Builder message(@Nullable Output<String> message) {
             $.message = message;
             return this;
         }
 
+        /**
+         * @param message Alert text shown in Opsgenie. Supports Go templating.
+         * 
+         * @return builder
+         * 
+         */
         public Builder message(String message) {
             return message(Output.of(message));
         }
 
+        /**
+         * @param name Name of the responder team, schedule, or escalation policy.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(@Nullable Output<String> name) {
             $.name = name;
             return this;
         }
 
+        /**
+         * @param name Name of the responder team, schedule, or escalation policy.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(String name) {
             return name(Output.of(name));
         }
 
+        /**
+         * @param note Additional note appended to the alert. Supports Go templating.
+         * 
+         * @return builder
+         * 
+         */
         public Builder note(@Nullable Output<String> note) {
             $.note = note;
             return this;
         }
 
+        /**
+         * @param note Additional note appended to the alert. Supports Go templating.
+         * 
+         * @return builder
+         * 
+         */
         public Builder note(String note) {
             return note(Output.of(note));
         }
 
+        /**
+         * @param priority Priority level of the alert. One of `P1`, `P2`, `P3`, `P4`, or `P5`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder priority(@Nullable Output<String> priority) {
             $.priority = priority;
             return this;
         }
 
+        /**
+         * @param priority Priority level of the alert. One of `P1`, `P2`, `P3`, `P4`, or `P5`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder priority(String priority) {
             return priority(Output.of(priority));
         }
 
         /**
+         * @param proxyUrl Deprecated and ignored. Custom proxy URLs are not supported.
+         * 
          * @return builder
          * 
          * @deprecated
@@ -311,6 +585,8 @@ public final class OpsgenieAlertNotifierState extends com.pulumi.resources.Resou
         }
 
         /**
+         * @param proxyUrl Deprecated and ignored. Custom proxy URLs are not supported.
+         * 
          * @return builder
          * 
          * @deprecated
@@ -322,64 +598,148 @@ public final class OpsgenieAlertNotifierState extends com.pulumi.resources.Resou
             return proxyUrl(Output.of(proxyUrl));
         }
 
+        /**
+         * @param responders Responders that Opsgenie will notify for the alert. See https://docs.opsgenie.com/docs/alert-api for accepted shapes.
+         * 
+         * @return builder
+         * 
+         */
         public Builder responders(@Nullable Output<List<OpsgenieAlertNotifierResponderArgs>> responders) {
             $.responders = responders;
             return this;
         }
 
+        /**
+         * @param responders Responders that Opsgenie will notify for the alert. See https://docs.opsgenie.com/docs/alert-api for accepted shapes.
+         * 
+         * @return builder
+         * 
+         */
         public Builder responders(List<OpsgenieAlertNotifierResponderArgs> responders) {
             return responders(Output.of(responders));
         }
 
+        /**
+         * @param responders Responders that Opsgenie will notify for the alert. See https://docs.opsgenie.com/docs/alert-api for accepted shapes.
+         * 
+         * @return builder
+         * 
+         */
         public Builder responders(OpsgenieAlertNotifierResponderArgs... responders) {
             return responders(List.of(responders));
         }
 
+        /**
+         * @param sendResolved Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+         * 
+         * @return builder
+         * 
+         */
         public Builder sendResolved(@Nullable Output<Boolean> sendResolved) {
             $.sendResolved = sendResolved;
             return this;
         }
 
+        /**
+         * @param sendResolved Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+         * 
+         * @return builder
+         * 
+         */
         public Builder sendResolved(Boolean sendResolved) {
             return sendResolved(Output.of(sendResolved));
         }
 
+        /**
+         * @param slug Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slug(@Nullable Output<String> slug) {
             $.slug = slug;
             return this;
         }
 
+        /**
+         * @param slug Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slug(String slug) {
             return slug(Output.of(slug));
         }
 
+        /**
+         * @param source Backlink to the sender of the notification. Supports Go templating.
+         * 
+         * @return builder
+         * 
+         */
         public Builder source(@Nullable Output<String> source) {
             $.source = source;
             return this;
         }
 
+        /**
+         * @param source Backlink to the sender of the notification. Supports Go templating.
+         * 
+         * @return builder
+         * 
+         */
         public Builder source(String source) {
             return source(Output.of(source));
         }
 
+        /**
+         * @param tags Tags attached to the Opsgenie alert.
+         * 
+         * @return builder
+         * 
+         */
         public Builder tags(@Nullable Output<List<String>> tags) {
             $.tags = tags;
             return this;
         }
 
+        /**
+         * @param tags Tags attached to the Opsgenie alert.
+         * 
+         * @return builder
+         * 
+         */
         public Builder tags(List<String> tags) {
             return tags(Output.of(tags));
         }
 
+        /**
+         * @param tags Tags attached to the Opsgenie alert.
+         * 
+         * @return builder
+         * 
+         */
         public Builder tags(String... tags) {
             return tags(List.of(tags));
         }
 
+        /**
+         * @param tlsInsecureSkipVerify If true, skip TLS certificate verification when calling the Opsgenie API. Disable only in trusted environments.
+         * 
+         * @return builder
+         * 
+         */
         public Builder tlsInsecureSkipVerify(@Nullable Output<Boolean> tlsInsecureSkipVerify) {
             $.tlsInsecureSkipVerify = tlsInsecureSkipVerify;
             return this;
         }
 
+        /**
+         * @param tlsInsecureSkipVerify If true, skip TLS certificate verification when calling the Opsgenie API. Disable only in trusted environments.
+         * 
+         * @return builder
+         * 
+         */
         public Builder tlsInsecureSkipVerify(Boolean tlsInsecureSkipVerify) {
             return tlsInsecureSkipVerify(Output.of(tlsInsecureSkipVerify));
         }

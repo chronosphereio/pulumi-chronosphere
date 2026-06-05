@@ -18,30 +18,62 @@ public final class ResourcePoolsConfigDefaultPoolPriorityThresholdArgs extends c
 
     public static final ResourcePoolsConfigDefaultPoolPriorityThresholdArgs Empty = new ResourcePoolsConfigDefaultPoolPriorityThresholdArgs();
 
+    /**
+     * Threshold value, expressed as either a percent of the pool&#39;s allocation or as a fixed value in license units.
+     * 
+     */
     @Import(name="allPriorities")
     private @Nullable Output<ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesArgs> allPriorities;
 
+    /**
+     * @return Threshold value, expressed as either a percent of the pool&#39;s allocation or as a fixed value in license units.
+     * 
+     */
     public Optional<Output<ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesArgs>> allPriorities() {
         return Optional.ofNullable(this.allPriorities);
     }
 
+    /**
+     * Threshold value, expressed as either a percent of the pool&#39;s allocation or as a fixed value in license units.
+     * 
+     */
     @Import(name="defaultAndLowPriority")
     private @Nullable Output<ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityArgs> defaultAndLowPriority;
 
+    /**
+     * @return Threshold value, expressed as either a percent of the pool&#39;s allocation or as a fixed value in license units.
+     * 
+     */
     public Optional<Output<ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityArgs>> defaultAndLowPriority() {
         return Optional.ofNullable(this.defaultAndLowPriority);
     }
 
+    /**
+     * License this fixed-value allocation applies to (e.g. `PERSISTED_WRITES`).
+     * 
+     */
     @Import(name="license", required=true)
     private Output<String> license;
 
+    /**
+     * @return License this fixed-value allocation applies to (e.g. `PERSISTED_WRITES`).
+     * 
+     */
     public Output<String> license() {
         return this.license;
     }
 
+    /**
+     * Threshold value, expressed as either a percent of the pool&#39;s allocation or as a fixed value in license units.
+     * 
+     */
     @Import(name="lowPriority")
     private @Nullable Output<ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityArgs> lowPriority;
 
+    /**
+     * @return Threshold value, expressed as either a percent of the pool&#39;s allocation or as a fixed value in license units.
+     * 
+     */
     public Optional<Output<ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityArgs>> lowPriority() {
         return Optional.ofNullable(this.lowPriority);
     }
@@ -73,38 +105,86 @@ public final class ResourcePoolsConfigDefaultPoolPriorityThresholdArgs extends c
             $ = new ResourcePoolsConfigDefaultPoolPriorityThresholdArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param allPriorities Threshold value, expressed as either a percent of the pool&#39;s allocation or as a fixed value in license units.
+         * 
+         * @return builder
+         * 
+         */
         public Builder allPriorities(@Nullable Output<ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesArgs> allPriorities) {
             $.allPriorities = allPriorities;
             return this;
         }
 
+        /**
+         * @param allPriorities Threshold value, expressed as either a percent of the pool&#39;s allocation or as a fixed value in license units.
+         * 
+         * @return builder
+         * 
+         */
         public Builder allPriorities(ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesArgs allPriorities) {
             return allPriorities(Output.of(allPriorities));
         }
 
+        /**
+         * @param defaultAndLowPriority Threshold value, expressed as either a percent of the pool&#39;s allocation or as a fixed value in license units.
+         * 
+         * @return builder
+         * 
+         */
         public Builder defaultAndLowPriority(@Nullable Output<ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityArgs> defaultAndLowPriority) {
             $.defaultAndLowPriority = defaultAndLowPriority;
             return this;
         }
 
+        /**
+         * @param defaultAndLowPriority Threshold value, expressed as either a percent of the pool&#39;s allocation or as a fixed value in license units.
+         * 
+         * @return builder
+         * 
+         */
         public Builder defaultAndLowPriority(ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityArgs defaultAndLowPriority) {
             return defaultAndLowPriority(Output.of(defaultAndLowPriority));
         }
 
+        /**
+         * @param license License this fixed-value allocation applies to (e.g. `PERSISTED_WRITES`).
+         * 
+         * @return builder
+         * 
+         */
         public Builder license(Output<String> license) {
             $.license = license;
             return this;
         }
 
+        /**
+         * @param license License this fixed-value allocation applies to (e.g. `PERSISTED_WRITES`).
+         * 
+         * @return builder
+         * 
+         */
         public Builder license(String license) {
             return license(Output.of(license));
         }
 
+        /**
+         * @param lowPriority Threshold value, expressed as either a percent of the pool&#39;s allocation or as a fixed value in license units.
+         * 
+         * @return builder
+         * 
+         */
         public Builder lowPriority(@Nullable Output<ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityArgs> lowPriority) {
             $.lowPriority = lowPriority;
             return this;
         }
 
+        /**
+         * @param lowPriority Threshold value, expressed as either a percent of the pool&#39;s allocation or as a fixed value in license units.
+         * 
+         * @return builder
+         * 
+         */
         public Builder lowPriority(ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityArgs lowPriority) {
             return lowPriority(Output.of(lowPriority));
         }

@@ -13,9 +13,17 @@ public final class NotificationPolicyOverrideRouteDestinationOpsGenieArgs extend
 
     public static final NotificationPolicyOverrideRouteDestinationOpsGenieArgs Empty = new NotificationPolicyOverrideRouteDestinationOpsGenieArgs();
 
+    /**
+     * Slug of the OpsGenie external connection holding the integration credentials.
+     * 
+     */
     @Import(name="externalConnectionSlug", required=true)
     private Output<String> externalConnectionSlug;
 
+    /**
+     * @return Slug of the OpsGenie external connection holding the integration credentials.
+     * 
+     */
     public Output<String> externalConnectionSlug() {
         return this.externalConnectionSlug;
     }
@@ -44,11 +52,23 @@ public final class NotificationPolicyOverrideRouteDestinationOpsGenieArgs extend
             $ = new NotificationPolicyOverrideRouteDestinationOpsGenieArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param externalConnectionSlug Slug of the OpsGenie external connection holding the integration credentials.
+         * 
+         * @return builder
+         * 
+         */
         public Builder externalConnectionSlug(Output<String> externalConnectionSlug) {
             $.externalConnectionSlug = externalConnectionSlug;
             return this;
         }
 
+        /**
+         * @param externalConnectionSlug Slug of the OpsGenie external connection holding the integration credentials.
+         * 
+         * @return builder
+         * 
+         */
         public Builder externalConnectionSlug(String externalConnectionSlug) {
             return externalConnectionSlug(Output.of(externalConnectionSlug));
         }

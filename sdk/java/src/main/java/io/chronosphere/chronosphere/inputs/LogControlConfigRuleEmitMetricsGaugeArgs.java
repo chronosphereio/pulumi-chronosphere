@@ -16,16 +16,32 @@ public final class LogControlConfigRuleEmitMetricsGaugeArgs extends com.pulumi.r
 
     public static final LogControlConfigRuleEmitMetricsGaugeArgs Empty = new LogControlConfigRuleEmitMetricsGaugeArgs();
 
+    /**
+     * How multiple values are aggregated into the emitted gauge (for example, `LAST`, `MIN`, `MAX`).
+     * 
+     */
     @Import(name="aggregationType")
     private @Nullable Output<String> aggregationType;
 
+    /**
+     * @return How multiple values are aggregated into the emitted gauge (for example, `LAST`, `MIN`, `MAX`).
+     * 
+     */
     public Optional<Output<String>> aggregationType() {
         return Optional.ofNullable(this.aggregationType);
     }
 
+    /**
+     * Path to a field within a log record.
+     * 
+     */
     @Import(name="value")
     private @Nullable Output<LogControlConfigRuleEmitMetricsGaugeValueArgs> value;
 
+    /**
+     * @return Path to a field within a log record.
+     * 
+     */
     public Optional<Output<LogControlConfigRuleEmitMetricsGaugeValueArgs>> value() {
         return Optional.ofNullable(this.value);
     }
@@ -55,20 +71,44 @@ public final class LogControlConfigRuleEmitMetricsGaugeArgs extends com.pulumi.r
             $ = new LogControlConfigRuleEmitMetricsGaugeArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param aggregationType How multiple values are aggregated into the emitted gauge (for example, `LAST`, `MIN`, `MAX`).
+         * 
+         * @return builder
+         * 
+         */
         public Builder aggregationType(@Nullable Output<String> aggregationType) {
             $.aggregationType = aggregationType;
             return this;
         }
 
+        /**
+         * @param aggregationType How multiple values are aggregated into the emitted gauge (for example, `LAST`, `MIN`, `MAX`).
+         * 
+         * @return builder
+         * 
+         */
         public Builder aggregationType(String aggregationType) {
             return aggregationType(Output.of(aggregationType));
         }
 
+        /**
+         * @param value Path to a field within a log record.
+         * 
+         * @return builder
+         * 
+         */
         public Builder value(@Nullable Output<LogControlConfigRuleEmitMetricsGaugeValueArgs> value) {
             $.value = value;
             return this;
         }
 
+        /**
+         * @param value Path to a field within a log record.
+         * 
+         * @return builder
+         * 
+         */
         public Builder value(LogControlConfigRuleEmitMetricsGaugeValueArgs value) {
             return value(Output.of(value));
         }

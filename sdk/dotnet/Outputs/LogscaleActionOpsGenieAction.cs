@@ -14,8 +14,17 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class LogscaleActionOpsGenieAction
     {
+        /// <summary>
+        /// OpsGenie webhook URL to send the request to.
+        /// </summary>
         public readonly string ApiUrl;
+        /// <summary>
+        /// Key used to authenticate with OpsGenie.
+        /// </summary>
         public readonly string OpsGenieKey;
+        /// <summary>
+        /// If `true`, sends the request through the configured outbound proxy.
+        /// </summary>
         public readonly bool? UseProxy;
 
         [OutputConstructor]

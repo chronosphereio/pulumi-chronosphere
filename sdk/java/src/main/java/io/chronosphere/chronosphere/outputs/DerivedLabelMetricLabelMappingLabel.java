@@ -12,13 +12,29 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class DerivedLabelMetricLabelMappingLabel {
+    /**
+     * @return Ordered list of name mappings. The first mapping whose filters match supplies the derived label from its `source_label`.
+     * 
+     */
     private @Nullable List<DerivedLabelMetricLabelMappingLabelNameMapping> nameMappings;
+    /**
+     * @return Translations from source label values to a normalized target value. Each entry maps a set of source globs to a single target.
+     * 
+     */
     private @Nullable List<DerivedLabelMetricLabelMappingLabelValueMapping> valueMappings;
 
     private DerivedLabelMetricLabelMappingLabel() {}
+    /**
+     * @return Ordered list of name mappings. The first mapping whose filters match supplies the derived label from its `source_label`.
+     * 
+     */
     public List<DerivedLabelMetricLabelMappingLabelNameMapping> nameMappings() {
         return this.nameMappings == null ? List.of() : this.nameMappings;
     }
+    /**
+     * @return Translations from source label values to a normalized target value. Each entry maps a set of source globs to a single target.
+     * 
+     */
     public List<DerivedLabelMetricLabelMappingLabelValueMapping> valueMappings() {
         return this.valueMappings == null ? List.of() : this.valueMappings;
     }

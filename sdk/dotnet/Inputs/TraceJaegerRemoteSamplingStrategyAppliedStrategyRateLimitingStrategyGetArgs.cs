@@ -13,6 +13,9 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class TraceJaegerRemoteSamplingStrategyAppliedStrategyRateLimitingStrategyGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Maximum number of traces to sample per second for the service.
+        /// </summary>
         [Input("maxTracesPerSecond", required: true)]
         public Input<int> MaxTracesPerSecond { get; set; } = null!;
 

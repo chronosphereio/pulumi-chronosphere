@@ -17,23 +17,131 @@ import java.util.List;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
+/**
+ * Singleton per-tenant parser configuration controlling how raw log payloads are parsed into structured fields and how timestamps, severities, services, and other fields are normalized.
+ * 
+ * ## Example Usage
+ * 
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.chronosphere.LogIngestConfig;
+ * import com.pulumi.chronosphere.LogIngestConfigArgs;
+ * import com.pulumi.chronosphere.inputs.LogIngestConfigFieldNormalizationArgs;
+ * import com.pulumi.chronosphere.inputs.LogIngestConfigFieldNormalizationMessageArgs;
+ * import com.pulumi.chronosphere.inputs.LogIngestConfigFieldNormalizationServiceArgs;
+ * import com.pulumi.chronosphere.inputs.LogIngestConfigFieldNormalizationSeverityArgs;
+ * import com.pulumi.chronosphere.inputs.LogIngestConfigFieldNormalizationTimestampArgs;
+ * import com.pulumi.chronosphere.inputs.LogIngestConfigFieldParserArgs;
+ * import com.pulumi.chronosphere.inputs.LogIngestConfigFieldParserParserArgs;
+ * import com.pulumi.chronosphere.inputs.LogIngestConfigFieldParserSourceArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var config = new LogIngestConfig(&#34;config&#34;, LogIngestConfigArgs.builder()        
+ *             .fieldNormalization(LogIngestConfigFieldNormalizationArgs.builder()
+ *                 .message(LogIngestConfigFieldNormalizationMessageArgs.builder()
+ *                     .defaultValue(&#34;no message&#34;)
+ *                     .source(                    
+ *                         %!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference),
+ *                         %!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+ *                     .build())
+ *                 .service(LogIngestConfigFieldNormalizationServiceArgs.builder()
+ *                     .defaultValue(&#34;UNKNOWN&#34;)
+ *                     .source(                    
+ *                         %!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference),
+ *                         %!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+ *                     .build())
+ *                 .severity(LogIngestConfigFieldNormalizationSeverityArgs.builder()
+ *                     .defaultValue(&#34;INFO&#34;)
+ *                     .source(                    
+ *                         %!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference),
+ *                         %!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+ *                     .valueMap(Map.ofEntries(
+ *                         Map.entry(&#34;debug&#34;, &#34;DEBUG&#34;),
+ *                         Map.entry(&#34;error&#34;, &#34;ERROR&#34;),
+ *                         Map.entry(&#34;fatal&#34;, &#34;CRITICAL&#34;),
+ *                         Map.entry(&#34;info&#34;, &#34;INFO&#34;),
+ *                         Map.entry(&#34;warn&#34;, &#34;WARNING&#34;)
+ *                     ))
+ *                     .build())
+ *                 .timestamp(LogIngestConfigFieldNormalizationTimestampArgs.builder()
+ *                     .source(                    
+ *                         %!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference),
+ *                         %!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference),
+ *                         %!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+ *                     .build())
+ *                 .build())
+ *             .fieldParsers(LogIngestConfigFieldParserArgs.builder()
+ *                 .mode(&#34;ENABLED&#34;)
+ *                 .parser(LogIngestConfigFieldParserParserArgs.builder()
+ *                     .parserType(&#34;JSON&#34;)
+ *                     .build())
+ *                 .source(LogIngestConfigFieldParserSourceArgs.builder()
+ *                     .selector(&#34;raw_message&#34;)
+ *                     .build())
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ */
 @ResourceType(type="chronosphere:index/logIngestConfig:LogIngestConfig")
 public class LogIngestConfig extends com.pulumi.resources.CustomResource {
+    /**
+     * Field normalization rules that map and standardize well-known fields (timestamp, severity, message, service) across log formats. Runs after parsing.
+     * 
+     */
     @Export(name="fieldNormalization", refs={LogIngestConfigFieldNormalization.class}, tree="[0]")
     private Output</* @Nullable */ LogIngestConfigFieldNormalization> fieldNormalization;
 
+    /**
+     * @return Field normalization rules that map and standardize well-known fields (timestamp, severity, message, service) across log formats. Runs after parsing.
+     * 
+     */
     public Output<Optional<LogIngestConfigFieldNormalization>> fieldNormalization() {
         return Codegen.optional(this.fieldNormalization);
     }
+    /**
+     * Parsers applied to specific fields within structured logs (or to fields produced by a plaintext parser).
+     * 
+     */
     @Export(name="fieldParsers", refs={List.class,LogIngestConfigFieldParser.class}, tree="[0,1]")
     private Output</* @Nullable */ List<LogIngestConfigFieldParser>> fieldParsers;
 
+    /**
+     * @return Parsers applied to specific fields within structured logs (or to fields produced by a plaintext parser).
+     * 
+     */
     public Output<Optional<List<LogIngestConfigFieldParser>>> fieldParsers() {
         return Codegen.optional(this.fieldParsers);
     }
+    /**
+     * Parsers applied to plaintext logs as they enter the ingest pipeline. The first parser that matches a log is used.
+     * 
+     */
     @Export(name="plaintextParsers", refs={List.class,LogIngestConfigPlaintextParser.class}, tree="[0,1]")
     private Output</* @Nullable */ List<LogIngestConfigPlaintextParser>> plaintextParsers;
 
+    /**
+     * @return Parsers applied to plaintext logs as they enter the ingest pipeline. The first parser that matches a log is used.
+     * 
+     */
     public Output<Optional<List<LogIngestConfigPlaintextParser>>> plaintextParsers() {
         return Codegen.optional(this.plaintextParsers);
     }

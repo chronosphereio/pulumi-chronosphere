@@ -16,23 +16,47 @@ public final class LogscaleActionVictorOpsActionArgs extends com.pulumi.resource
 
     public static final LogscaleActionVictorOpsActionArgs Empty = new LogscaleActionVictorOpsActionArgs();
 
+    /**
+     * Type of the VictorOps message to send (for example, `CRITICAL`, `WARNING`, `INFO`).
+     * 
+     */
     @Import(name="messageType", required=true)
     private Output<String> messageType;
 
+    /**
+     * @return Type of the VictorOps message to send (for example, `CRITICAL`, `WARNING`, `INFO`).
+     * 
+     */
     public Output<String> messageType() {
         return this.messageType;
     }
 
+    /**
+     * VictorOps webhook URL to send the request to.
+     * 
+     */
     @Import(name="notifyUrl", required=true)
     private Output<String> notifyUrl;
 
+    /**
+     * @return VictorOps webhook URL to send the request to.
+     * 
+     */
     public Output<String> notifyUrl() {
         return this.notifyUrl;
     }
 
+    /**
+     * If `true`, sends the request through the configured outbound proxy.
+     * 
+     */
     @Import(name="useProxy")
     private @Nullable Output<Boolean> useProxy;
 
+    /**
+     * @return If `true`, sends the request through the configured outbound proxy.
+     * 
+     */
     public Optional<Output<Boolean>> useProxy() {
         return Optional.ofNullable(this.useProxy);
     }
@@ -63,29 +87,65 @@ public final class LogscaleActionVictorOpsActionArgs extends com.pulumi.resource
             $ = new LogscaleActionVictorOpsActionArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param messageType Type of the VictorOps message to send (for example, `CRITICAL`, `WARNING`, `INFO`).
+         * 
+         * @return builder
+         * 
+         */
         public Builder messageType(Output<String> messageType) {
             $.messageType = messageType;
             return this;
         }
 
+        /**
+         * @param messageType Type of the VictorOps message to send (for example, `CRITICAL`, `WARNING`, `INFO`).
+         * 
+         * @return builder
+         * 
+         */
         public Builder messageType(String messageType) {
             return messageType(Output.of(messageType));
         }
 
+        /**
+         * @param notifyUrl VictorOps webhook URL to send the request to.
+         * 
+         * @return builder
+         * 
+         */
         public Builder notifyUrl(Output<String> notifyUrl) {
             $.notifyUrl = notifyUrl;
             return this;
         }
 
+        /**
+         * @param notifyUrl VictorOps webhook URL to send the request to.
+         * 
+         * @return builder
+         * 
+         */
         public Builder notifyUrl(String notifyUrl) {
             return notifyUrl(Output.of(notifyUrl));
         }
 
+        /**
+         * @param useProxy If `true`, sends the request through the configured outbound proxy.
+         * 
+         * @return builder
+         * 
+         */
         public Builder useProxy(@Nullable Output<Boolean> useProxy) {
             $.useProxy = useProxy;
             return this;
         }
 
+        /**
+         * @param useProxy If `true`, sends the request through the configured outbound proxy.
+         * 
+         * @return builder
+         * 
+         */
         public Builder useProxy(Boolean useProxy) {
             return useProxy(Output.of(useProxy));
         }

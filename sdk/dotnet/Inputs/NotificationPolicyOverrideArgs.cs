@@ -15,6 +15,10 @@ namespace Chronosphere.Pulumi.Inputs
     {
         [Input("alertLabelMatchers", required: true)]
         private InputList<Inputs.NotificationPolicyOverrideAlertLabelMatcherArgs>? _alertLabelMatchers;
+
+        /// <summary>
+        /// List of label matchers used to select a subset of series.
+        /// </summary>
         public InputList<Inputs.NotificationPolicyOverrideAlertLabelMatcherArgs> AlertLabelMatchers
         {
             get => _alertLabelMatchers ?? (_alertLabelMatchers = new InputList<Inputs.NotificationPolicyOverrideAlertLabelMatcherArgs>());
@@ -23,6 +27,10 @@ namespace Chronosphere.Pulumi.Inputs
 
         [Input("routes")]
         private InputList<Inputs.NotificationPolicyOverrideRouteArgs>? _routes;
+
+        /// <summary>
+        /// Per-severity routing rules. Each entry maps a severity (e.g. `warn`, `critical`) to a set of notifiers, destinations, grouping, and repeat behavior.
+        /// </summary>
         public InputList<Inputs.NotificationPolicyOverrideRouteArgs> Routes
         {
             get => _routes ?? (_routes = new InputList<Inputs.NotificationPolicyOverrideRouteArgs>());

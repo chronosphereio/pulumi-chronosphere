@@ -12,26 +12,73 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// VictorOps (Splunk On-Call) notifier that delivers monitor signals to a VictorOps routing key via its REST integration. Referenced from notification policies.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/chronosphereio/pulumi-chronosphere/sdk/go/chronosphere"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := chronosphere.NewVictoropsAlertNotifier(ctx, "victorops", &chronosphere.VictoropsAlertNotifierArgs{
+//				ApiKey:     pulumi.String("00000000-0000-0000-0000-000000000000"),
+//				ApiUrl:     pulumi.String("https://alert.victorops.com/integrations/generic/00000000/alert/"),
+//				Name:       pulumi.String("test-victorops"),
+//				RoutingKey: pulumi.String("test"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type VictoropsAlertNotifier struct {
 	pulumi.CustomResourceState
 
-	ApiKey            pulumi.StringOutput    `pulumi:"apiKey"`
-	ApiUrl            pulumi.StringPtrOutput `pulumi:"apiUrl"`
+	// VictorOps (Splunk On-Call) API key used to authenticate requests. Treat as a secret.
+	ApiKey pulumi.StringOutput `pulumi:"apiKey"`
+	// VictorOps REST endpoint URL to send events to.
+	ApiUrl pulumi.StringPtrOutput `pulumi:"apiUrl"`
+	// Password for HTTP basic auth when calling the VictorOps API. Treat as a secret.
 	BasicAuthPassword pulumi.StringPtrOutput `pulumi:"basicAuthPassword"`
+	// Username for HTTP basic auth when calling the VictorOps API. Mutually exclusive with `bearerToken`.
 	BasicAuthUsername pulumi.StringPtrOutput `pulumi:"basicAuthUsername"`
-	BearerToken       pulumi.StringPtrOutput `pulumi:"bearerToken"`
-	CustomFields      pulumi.StringMapOutput `pulumi:"customFields"`
+	// Bearer token sent in the `Authorization` header when calling the VictorOps API. Treat as a secret. Mutually exclusive with basic auth.
+	BearerToken pulumi.StringPtrOutput `pulumi:"bearerToken"`
+	// Arbitrary key/value pairs forwarded to VictorOps as custom incident fields. Values support Go templating.
+	CustomFields pulumi.StringMapOutput `pulumi:"customFields"`
+	// Short summary of the alerted problem shown in VictorOps. Supports Go templating.
 	EntityDisplayName pulumi.StringPtrOutput `pulumi:"entityDisplayName"`
-	MessageType       pulumi.StringPtrOutput `pulumi:"messageType"`
-	MonitoringTool    pulumi.StringPtrOutput `pulumi:"monitoringTool"`
-	Name              pulumi.StringOutput    `pulumi:"name"`
+	// Behavior of the alert in VictorOps. One of `CRITICAL`, `WARNING`, or `INFO`.
+	MessageType pulumi.StringPtrOutput `pulumi:"messageType"`
+	// Name of the monitoring tool the state message originated from.
+	MonitoringTool pulumi.StringPtrOutput `pulumi:"monitoringTool"`
+	// Display name of the notifier.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// Deprecated and ignored. Custom proxy URLs are not supported.
+	//
 	// Deprecated: custom proxy URLs are not supported
-	ProxyUrl              pulumi.StringPtrOutput `pulumi:"proxyUrl"`
-	RoutingKey            pulumi.StringOutput    `pulumi:"routingKey"`
-	SendResolved          pulumi.BoolPtrOutput   `pulumi:"sendResolved"`
-	Slug                  pulumi.StringOutput    `pulumi:"slug"`
-	StateMessage          pulumi.StringPtrOutput `pulumi:"stateMessage"`
-	TlsInsecureSkipVerify pulumi.BoolPtrOutput   `pulumi:"tlsInsecureSkipVerify"`
+	ProxyUrl pulumi.StringPtrOutput `pulumi:"proxyUrl"`
+	// VictorOps routing key that determines which team or escalation policy receives the alert.
+	RoutingKey pulumi.StringOutput `pulumi:"routingKey"`
+	// Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+	SendResolved pulumi.BoolPtrOutput `pulumi:"sendResolved"`
+	// Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringOutput `pulumi:"slug"`
+	// Detailed explanation of the alerted problem. Supports Go templating.
+	StateMessage pulumi.StringPtrOutput `pulumi:"stateMessage"`
+	// If true, skip TLS certificate verification when calling the VictorOps API. Disable only in trusted environments.
+	TlsInsecureSkipVerify pulumi.BoolPtrOutput `pulumi:"tlsInsecureSkipVerify"`
 }
 
 // NewVictoropsAlertNotifier registers a new resource with the given unique name, arguments, and options.
@@ -84,42 +131,76 @@ func GetVictoropsAlertNotifier(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering VictoropsAlertNotifier resources.
 type victoropsAlertNotifierState struct {
-	ApiKey            *string           `pulumi:"apiKey"`
-	ApiUrl            *string           `pulumi:"apiUrl"`
-	BasicAuthPassword *string           `pulumi:"basicAuthPassword"`
-	BasicAuthUsername *string           `pulumi:"basicAuthUsername"`
-	BearerToken       *string           `pulumi:"bearerToken"`
-	CustomFields      map[string]string `pulumi:"customFields"`
-	EntityDisplayName *string           `pulumi:"entityDisplayName"`
-	MessageType       *string           `pulumi:"messageType"`
-	MonitoringTool    *string           `pulumi:"monitoringTool"`
-	Name              *string           `pulumi:"name"`
+	// VictorOps (Splunk On-Call) API key used to authenticate requests. Treat as a secret.
+	ApiKey *string `pulumi:"apiKey"`
+	// VictorOps REST endpoint URL to send events to.
+	ApiUrl *string `pulumi:"apiUrl"`
+	// Password for HTTP basic auth when calling the VictorOps API. Treat as a secret.
+	BasicAuthPassword *string `pulumi:"basicAuthPassword"`
+	// Username for HTTP basic auth when calling the VictorOps API. Mutually exclusive with `bearerToken`.
+	BasicAuthUsername *string `pulumi:"basicAuthUsername"`
+	// Bearer token sent in the `Authorization` header when calling the VictorOps API. Treat as a secret. Mutually exclusive with basic auth.
+	BearerToken *string `pulumi:"bearerToken"`
+	// Arbitrary key/value pairs forwarded to VictorOps as custom incident fields. Values support Go templating.
+	CustomFields map[string]string `pulumi:"customFields"`
+	// Short summary of the alerted problem shown in VictorOps. Supports Go templating.
+	EntityDisplayName *string `pulumi:"entityDisplayName"`
+	// Behavior of the alert in VictorOps. One of `CRITICAL`, `WARNING`, or `INFO`.
+	MessageType *string `pulumi:"messageType"`
+	// Name of the monitoring tool the state message originated from.
+	MonitoringTool *string `pulumi:"monitoringTool"`
+	// Display name of the notifier.
+	Name *string `pulumi:"name"`
+	// Deprecated and ignored. Custom proxy URLs are not supported.
+	//
 	// Deprecated: custom proxy URLs are not supported
-	ProxyUrl              *string `pulumi:"proxyUrl"`
-	RoutingKey            *string `pulumi:"routingKey"`
-	SendResolved          *bool   `pulumi:"sendResolved"`
-	Slug                  *string `pulumi:"slug"`
-	StateMessage          *string `pulumi:"stateMessage"`
-	TlsInsecureSkipVerify *bool   `pulumi:"tlsInsecureSkipVerify"`
+	ProxyUrl *string `pulumi:"proxyUrl"`
+	// VictorOps routing key that determines which team or escalation policy receives the alert.
+	RoutingKey *string `pulumi:"routingKey"`
+	// Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+	SendResolved *bool `pulumi:"sendResolved"`
+	// Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+	Slug *string `pulumi:"slug"`
+	// Detailed explanation of the alerted problem. Supports Go templating.
+	StateMessage *string `pulumi:"stateMessage"`
+	// If true, skip TLS certificate verification when calling the VictorOps API. Disable only in trusted environments.
+	TlsInsecureSkipVerify *bool `pulumi:"tlsInsecureSkipVerify"`
 }
 
 type VictoropsAlertNotifierState struct {
-	ApiKey            pulumi.StringPtrInput
-	ApiUrl            pulumi.StringPtrInput
+	// VictorOps (Splunk On-Call) API key used to authenticate requests. Treat as a secret.
+	ApiKey pulumi.StringPtrInput
+	// VictorOps REST endpoint URL to send events to.
+	ApiUrl pulumi.StringPtrInput
+	// Password for HTTP basic auth when calling the VictorOps API. Treat as a secret.
 	BasicAuthPassword pulumi.StringPtrInput
+	// Username for HTTP basic auth when calling the VictorOps API. Mutually exclusive with `bearerToken`.
 	BasicAuthUsername pulumi.StringPtrInput
-	BearerToken       pulumi.StringPtrInput
-	CustomFields      pulumi.StringMapInput
+	// Bearer token sent in the `Authorization` header when calling the VictorOps API. Treat as a secret. Mutually exclusive with basic auth.
+	BearerToken pulumi.StringPtrInput
+	// Arbitrary key/value pairs forwarded to VictorOps as custom incident fields. Values support Go templating.
+	CustomFields pulumi.StringMapInput
+	// Short summary of the alerted problem shown in VictorOps. Supports Go templating.
 	EntityDisplayName pulumi.StringPtrInput
-	MessageType       pulumi.StringPtrInput
-	MonitoringTool    pulumi.StringPtrInput
-	Name              pulumi.StringPtrInput
+	// Behavior of the alert in VictorOps. One of `CRITICAL`, `WARNING`, or `INFO`.
+	MessageType pulumi.StringPtrInput
+	// Name of the monitoring tool the state message originated from.
+	MonitoringTool pulumi.StringPtrInput
+	// Display name of the notifier.
+	Name pulumi.StringPtrInput
+	// Deprecated and ignored. Custom proxy URLs are not supported.
+	//
 	// Deprecated: custom proxy URLs are not supported
-	ProxyUrl              pulumi.StringPtrInput
-	RoutingKey            pulumi.StringPtrInput
-	SendResolved          pulumi.BoolPtrInput
-	Slug                  pulumi.StringPtrInput
-	StateMessage          pulumi.StringPtrInput
+	ProxyUrl pulumi.StringPtrInput
+	// VictorOps routing key that determines which team or escalation policy receives the alert.
+	RoutingKey pulumi.StringPtrInput
+	// Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+	SendResolved pulumi.BoolPtrInput
+	// Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringPtrInput
+	// Detailed explanation of the alerted problem. Supports Go templating.
+	StateMessage pulumi.StringPtrInput
+	// If true, skip TLS certificate verification when calling the VictorOps API. Disable only in trusted environments.
 	TlsInsecureSkipVerify pulumi.BoolPtrInput
 }
 
@@ -128,43 +209,77 @@ func (VictoropsAlertNotifierState) ElementType() reflect.Type {
 }
 
 type victoropsAlertNotifierArgs struct {
-	ApiKey            string            `pulumi:"apiKey"`
-	ApiUrl            *string           `pulumi:"apiUrl"`
-	BasicAuthPassword *string           `pulumi:"basicAuthPassword"`
-	BasicAuthUsername *string           `pulumi:"basicAuthUsername"`
-	BearerToken       *string           `pulumi:"bearerToken"`
-	CustomFields      map[string]string `pulumi:"customFields"`
-	EntityDisplayName *string           `pulumi:"entityDisplayName"`
-	MessageType       *string           `pulumi:"messageType"`
-	MonitoringTool    *string           `pulumi:"monitoringTool"`
-	Name              string            `pulumi:"name"`
+	// VictorOps (Splunk On-Call) API key used to authenticate requests. Treat as a secret.
+	ApiKey string `pulumi:"apiKey"`
+	// VictorOps REST endpoint URL to send events to.
+	ApiUrl *string `pulumi:"apiUrl"`
+	// Password for HTTP basic auth when calling the VictorOps API. Treat as a secret.
+	BasicAuthPassword *string `pulumi:"basicAuthPassword"`
+	// Username for HTTP basic auth when calling the VictorOps API. Mutually exclusive with `bearerToken`.
+	BasicAuthUsername *string `pulumi:"basicAuthUsername"`
+	// Bearer token sent in the `Authorization` header when calling the VictorOps API. Treat as a secret. Mutually exclusive with basic auth.
+	BearerToken *string `pulumi:"bearerToken"`
+	// Arbitrary key/value pairs forwarded to VictorOps as custom incident fields. Values support Go templating.
+	CustomFields map[string]string `pulumi:"customFields"`
+	// Short summary of the alerted problem shown in VictorOps. Supports Go templating.
+	EntityDisplayName *string `pulumi:"entityDisplayName"`
+	// Behavior of the alert in VictorOps. One of `CRITICAL`, `WARNING`, or `INFO`.
+	MessageType *string `pulumi:"messageType"`
+	// Name of the monitoring tool the state message originated from.
+	MonitoringTool *string `pulumi:"monitoringTool"`
+	// Display name of the notifier.
+	Name string `pulumi:"name"`
+	// Deprecated and ignored. Custom proxy URLs are not supported.
+	//
 	// Deprecated: custom proxy URLs are not supported
-	ProxyUrl              *string `pulumi:"proxyUrl"`
-	RoutingKey            string  `pulumi:"routingKey"`
-	SendResolved          *bool   `pulumi:"sendResolved"`
-	Slug                  *string `pulumi:"slug"`
-	StateMessage          *string `pulumi:"stateMessage"`
-	TlsInsecureSkipVerify *bool   `pulumi:"tlsInsecureSkipVerify"`
+	ProxyUrl *string `pulumi:"proxyUrl"`
+	// VictorOps routing key that determines which team or escalation policy receives the alert.
+	RoutingKey string `pulumi:"routingKey"`
+	// Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+	SendResolved *bool `pulumi:"sendResolved"`
+	// Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+	Slug *string `pulumi:"slug"`
+	// Detailed explanation of the alerted problem. Supports Go templating.
+	StateMessage *string `pulumi:"stateMessage"`
+	// If true, skip TLS certificate verification when calling the VictorOps API. Disable only in trusted environments.
+	TlsInsecureSkipVerify *bool `pulumi:"tlsInsecureSkipVerify"`
 }
 
 // The set of arguments for constructing a VictoropsAlertNotifier resource.
 type VictoropsAlertNotifierArgs struct {
-	ApiKey            pulumi.StringInput
-	ApiUrl            pulumi.StringPtrInput
+	// VictorOps (Splunk On-Call) API key used to authenticate requests. Treat as a secret.
+	ApiKey pulumi.StringInput
+	// VictorOps REST endpoint URL to send events to.
+	ApiUrl pulumi.StringPtrInput
+	// Password for HTTP basic auth when calling the VictorOps API. Treat as a secret.
 	BasicAuthPassword pulumi.StringPtrInput
+	// Username for HTTP basic auth when calling the VictorOps API. Mutually exclusive with `bearerToken`.
 	BasicAuthUsername pulumi.StringPtrInput
-	BearerToken       pulumi.StringPtrInput
-	CustomFields      pulumi.StringMapInput
+	// Bearer token sent in the `Authorization` header when calling the VictorOps API. Treat as a secret. Mutually exclusive with basic auth.
+	BearerToken pulumi.StringPtrInput
+	// Arbitrary key/value pairs forwarded to VictorOps as custom incident fields. Values support Go templating.
+	CustomFields pulumi.StringMapInput
+	// Short summary of the alerted problem shown in VictorOps. Supports Go templating.
 	EntityDisplayName pulumi.StringPtrInput
-	MessageType       pulumi.StringPtrInput
-	MonitoringTool    pulumi.StringPtrInput
-	Name              pulumi.StringInput
+	// Behavior of the alert in VictorOps. One of `CRITICAL`, `WARNING`, or `INFO`.
+	MessageType pulumi.StringPtrInput
+	// Name of the monitoring tool the state message originated from.
+	MonitoringTool pulumi.StringPtrInput
+	// Display name of the notifier.
+	Name pulumi.StringInput
+	// Deprecated and ignored. Custom proxy URLs are not supported.
+	//
 	// Deprecated: custom proxy URLs are not supported
-	ProxyUrl              pulumi.StringPtrInput
-	RoutingKey            pulumi.StringInput
-	SendResolved          pulumi.BoolPtrInput
-	Slug                  pulumi.StringPtrInput
-	StateMessage          pulumi.StringPtrInput
+	ProxyUrl pulumi.StringPtrInput
+	// VictorOps routing key that determines which team or escalation policy receives the alert.
+	RoutingKey pulumi.StringInput
+	// Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+	SendResolved pulumi.BoolPtrInput
+	// Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringPtrInput
+	// Detailed explanation of the alerted problem. Supports Go templating.
+	StateMessage pulumi.StringPtrInput
+	// If true, skip TLS certificate verification when calling the VictorOps API. Disable only in trusted environments.
 	TlsInsecureSkipVerify pulumi.BoolPtrInput
 }
 
@@ -255,67 +370,84 @@ func (o VictoropsAlertNotifierOutput) ToVictoropsAlertNotifierOutputWithContext(
 	return o
 }
 
+// VictorOps (Splunk On-Call) API key used to authenticate requests. Treat as a secret.
 func (o VictoropsAlertNotifierOutput) ApiKey() pulumi.StringOutput {
 	return o.ApplyT(func(v *VictoropsAlertNotifier) pulumi.StringOutput { return v.ApiKey }).(pulumi.StringOutput)
 }
 
+// VictorOps REST endpoint URL to send events to.
 func (o VictoropsAlertNotifierOutput) ApiUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *VictoropsAlertNotifier) pulumi.StringPtrOutput { return v.ApiUrl }).(pulumi.StringPtrOutput)
 }
 
+// Password for HTTP basic auth when calling the VictorOps API. Treat as a secret.
 func (o VictoropsAlertNotifierOutput) BasicAuthPassword() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *VictoropsAlertNotifier) pulumi.StringPtrOutput { return v.BasicAuthPassword }).(pulumi.StringPtrOutput)
 }
 
+// Username for HTTP basic auth when calling the VictorOps API. Mutually exclusive with `bearerToken`.
 func (o VictoropsAlertNotifierOutput) BasicAuthUsername() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *VictoropsAlertNotifier) pulumi.StringPtrOutput { return v.BasicAuthUsername }).(pulumi.StringPtrOutput)
 }
 
+// Bearer token sent in the `Authorization` header when calling the VictorOps API. Treat as a secret. Mutually exclusive with basic auth.
 func (o VictoropsAlertNotifierOutput) BearerToken() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *VictoropsAlertNotifier) pulumi.StringPtrOutput { return v.BearerToken }).(pulumi.StringPtrOutput)
 }
 
+// Arbitrary key/value pairs forwarded to VictorOps as custom incident fields. Values support Go templating.
 func (o VictoropsAlertNotifierOutput) CustomFields() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *VictoropsAlertNotifier) pulumi.StringMapOutput { return v.CustomFields }).(pulumi.StringMapOutput)
 }
 
+// Short summary of the alerted problem shown in VictorOps. Supports Go templating.
 func (o VictoropsAlertNotifierOutput) EntityDisplayName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *VictoropsAlertNotifier) pulumi.StringPtrOutput { return v.EntityDisplayName }).(pulumi.StringPtrOutput)
 }
 
+// Behavior of the alert in VictorOps. One of `CRITICAL`, `WARNING`, or `INFO`.
 func (o VictoropsAlertNotifierOutput) MessageType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *VictoropsAlertNotifier) pulumi.StringPtrOutput { return v.MessageType }).(pulumi.StringPtrOutput)
 }
 
+// Name of the monitoring tool the state message originated from.
 func (o VictoropsAlertNotifierOutput) MonitoringTool() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *VictoropsAlertNotifier) pulumi.StringPtrOutput { return v.MonitoringTool }).(pulumi.StringPtrOutput)
 }
 
+// Display name of the notifier.
 func (o VictoropsAlertNotifierOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *VictoropsAlertNotifier) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// Deprecated and ignored. Custom proxy URLs are not supported.
+//
 // Deprecated: custom proxy URLs are not supported
 func (o VictoropsAlertNotifierOutput) ProxyUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *VictoropsAlertNotifier) pulumi.StringPtrOutput { return v.ProxyUrl }).(pulumi.StringPtrOutput)
 }
 
+// VictorOps routing key that determines which team or escalation policy receives the alert.
 func (o VictoropsAlertNotifierOutput) RoutingKey() pulumi.StringOutput {
 	return o.ApplyT(func(v *VictoropsAlertNotifier) pulumi.StringOutput { return v.RoutingKey }).(pulumi.StringOutput)
 }
 
+// Whether to send a follow-up notification when an alert is resolved. Defaults to true.
 func (o VictoropsAlertNotifierOutput) SendResolved() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *VictoropsAlertNotifier) pulumi.BoolPtrOutput { return v.SendResolved }).(pulumi.BoolPtrOutput)
 }
 
+// Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
 func (o VictoropsAlertNotifierOutput) Slug() pulumi.StringOutput {
 	return o.ApplyT(func(v *VictoropsAlertNotifier) pulumi.StringOutput { return v.Slug }).(pulumi.StringOutput)
 }
 
+// Detailed explanation of the alerted problem. Supports Go templating.
 func (o VictoropsAlertNotifierOutput) StateMessage() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *VictoropsAlertNotifier) pulumi.StringPtrOutput { return v.StateMessage }).(pulumi.StringPtrOutput)
 }
 
+// If true, skip TLS certificate verification when calling the VictorOps API. Disable only in trusted environments.
 func (o VictoropsAlertNotifierOutput) TlsInsecureSkipVerify() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *VictoropsAlertNotifier) pulumi.BoolPtrOutput { return v.TlsInsecureSkipVerify }).(pulumi.BoolPtrOutput)
 }

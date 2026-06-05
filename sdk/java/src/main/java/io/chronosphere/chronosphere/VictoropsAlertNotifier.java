@@ -17,69 +17,188 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
+/**
+ * VictorOps (Splunk On-Call) notifier that delivers monitor signals to a VictorOps routing key via its REST integration. Referenced from notification policies.
+ * 
+ * ## Example Usage
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.chronosphere.VictoropsAlertNotifier;
+ * import com.pulumi.chronosphere.VictoropsAlertNotifierArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var victorops = new VictoropsAlertNotifier(&#34;victorops&#34;, VictoropsAlertNotifierArgs.builder()        
+ *             .apiKey(&#34;00000000-0000-0000-0000-000000000000&#34;)
+ *             .apiUrl(&#34;https://alert.victorops.com/integrations/generic/00000000/alert/&#34;)
+ *             .name(&#34;test-victorops&#34;)
+ *             .routingKey(&#34;test&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ */
 @ResourceType(type="chronosphere:index/victoropsAlertNotifier:VictoropsAlertNotifier")
 public class VictoropsAlertNotifier extends com.pulumi.resources.CustomResource {
+    /**
+     * VictorOps (Splunk On-Call) API key used to authenticate requests. Treat as a secret.
+     * 
+     */
     @Export(name="apiKey", refs={String.class}, tree="[0]")
     private Output<String> apiKey;
 
+    /**
+     * @return VictorOps (Splunk On-Call) API key used to authenticate requests. Treat as a secret.
+     * 
+     */
     public Output<String> apiKey() {
         return this.apiKey;
     }
+    /**
+     * VictorOps REST endpoint URL to send events to.
+     * 
+     */
     @Export(name="apiUrl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> apiUrl;
 
+    /**
+     * @return VictorOps REST endpoint URL to send events to.
+     * 
+     */
     public Output<Optional<String>> apiUrl() {
         return Codegen.optional(this.apiUrl);
     }
+    /**
+     * Password for HTTP basic auth when calling the VictorOps API. Treat as a secret.
+     * 
+     */
     @Export(name="basicAuthPassword", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> basicAuthPassword;
 
+    /**
+     * @return Password for HTTP basic auth when calling the VictorOps API. Treat as a secret.
+     * 
+     */
     public Output<Optional<String>> basicAuthPassword() {
         return Codegen.optional(this.basicAuthPassword);
     }
+    /**
+     * Username for HTTP basic auth when calling the VictorOps API. Mutually exclusive with `bearer_token`.
+     * 
+     */
     @Export(name="basicAuthUsername", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> basicAuthUsername;
 
+    /**
+     * @return Username for HTTP basic auth when calling the VictorOps API. Mutually exclusive with `bearer_token`.
+     * 
+     */
     public Output<Optional<String>> basicAuthUsername() {
         return Codegen.optional(this.basicAuthUsername);
     }
+    /**
+     * Bearer token sent in the `Authorization` header when calling the VictorOps API. Treat as a secret. Mutually exclusive with basic auth.
+     * 
+     */
     @Export(name="bearerToken", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> bearerToken;
 
+    /**
+     * @return Bearer token sent in the `Authorization` header when calling the VictorOps API. Treat as a secret. Mutually exclusive with basic auth.
+     * 
+     */
     public Output<Optional<String>> bearerToken() {
         return Codegen.optional(this.bearerToken);
     }
+    /**
+     * Arbitrary key/value pairs forwarded to VictorOps as custom incident fields. Values support Go templating.
+     * 
+     */
     @Export(name="customFields", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> customFields;
 
+    /**
+     * @return Arbitrary key/value pairs forwarded to VictorOps as custom incident fields. Values support Go templating.
+     * 
+     */
     public Output<Optional<Map<String,String>>> customFields() {
         return Codegen.optional(this.customFields);
     }
+    /**
+     * Short summary of the alerted problem shown in VictorOps. Supports Go templating.
+     * 
+     */
     @Export(name="entityDisplayName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> entityDisplayName;
 
+    /**
+     * @return Short summary of the alerted problem shown in VictorOps. Supports Go templating.
+     * 
+     */
     public Output<Optional<String>> entityDisplayName() {
         return Codegen.optional(this.entityDisplayName);
     }
+    /**
+     * Behavior of the alert in VictorOps. One of `CRITICAL`, `WARNING`, or `INFO`.
+     * 
+     */
     @Export(name="messageType", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> messageType;
 
+    /**
+     * @return Behavior of the alert in VictorOps. One of `CRITICAL`, `WARNING`, or `INFO`.
+     * 
+     */
     public Output<Optional<String>> messageType() {
         return Codegen.optional(this.messageType);
     }
+    /**
+     * Name of the monitoring tool the state message originated from.
+     * 
+     */
     @Export(name="monitoringTool", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> monitoringTool;
 
+    /**
+     * @return Name of the monitoring tool the state message originated from.
+     * 
+     */
     public Output<Optional<String>> monitoringTool() {
         return Codegen.optional(this.monitoringTool);
     }
+    /**
+     * Display name of the notifier.
+     * 
+     */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
+    /**
+     * @return Display name of the notifier.
+     * 
+     */
     public Output<String> name() {
         return this.name;
     }
     /**
+     * Deprecated and ignored. Custom proxy URLs are not supported.
+     * 
      * @deprecated
      * custom proxy URLs are not supported
      * 
@@ -88,36 +207,80 @@ public class VictoropsAlertNotifier extends com.pulumi.resources.CustomResource 
     @Export(name="proxyUrl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> proxyUrl;
 
+    /**
+     * @return Deprecated and ignored. Custom proxy URLs are not supported.
+     * 
+     */
     public Output<Optional<String>> proxyUrl() {
         return Codegen.optional(this.proxyUrl);
     }
+    /**
+     * VictorOps routing key that determines which team or escalation policy receives the alert.
+     * 
+     */
     @Export(name="routingKey", refs={String.class}, tree="[0]")
     private Output<String> routingKey;
 
+    /**
+     * @return VictorOps routing key that determines which team or escalation policy receives the alert.
+     * 
+     */
     public Output<String> routingKey() {
         return this.routingKey;
     }
+    /**
+     * Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+     * 
+     */
     @Export(name="sendResolved", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> sendResolved;
 
+    /**
+     * @return Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+     * 
+     */
     public Output<Optional<Boolean>> sendResolved() {
         return Codegen.optional(this.sendResolved);
     }
+    /**
+     * Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     @Export(name="slug", refs={String.class}, tree="[0]")
     private Output<String> slug;
 
+    /**
+     * @return Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     public Output<String> slug() {
         return this.slug;
     }
+    /**
+     * Detailed explanation of the alerted problem. Supports Go templating.
+     * 
+     */
     @Export(name="stateMessage", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> stateMessage;
 
+    /**
+     * @return Detailed explanation of the alerted problem. Supports Go templating.
+     * 
+     */
     public Output<Optional<String>> stateMessage() {
         return Codegen.optional(this.stateMessage);
     }
+    /**
+     * If true, skip TLS certificate verification when calling the VictorOps API. Disable only in trusted environments.
+     * 
+     */
     @Export(name="tlsInsecureSkipVerify", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> tlsInsecureSkipVerify;
 
+    /**
+     * @return If true, skip TLS certificate verification when calling the VictorOps API. Disable only in trusted environments.
+     * 
+     */
     public Output<Optional<Boolean>> tlsInsecureSkipVerify() {
         return Codegen.optional(this.tlsInsecureSkipVerify);
     }

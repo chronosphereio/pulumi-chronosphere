@@ -15,17 +15,28 @@ namespace Chronosphere.Pulumi.Inputs
     {
         [Input("filters", required: true)]
         private InputList<Inputs.DerivedLabelMetricLabelMappingLabelNameMappingFilterGetArgs>? _filters;
+
+        /// <summary>
+        /// Label filters that must all match for this value definition to apply.
+        /// </summary>
         public InputList<Inputs.DerivedLabelMetricLabelMappingLabelNameMappingFilterGetArgs> Filters
         {
             get => _filters ?? (_filters = new InputList<Inputs.DerivedLabelMetricLabelMappingLabelNameMappingFilterGetArgs>());
             set => _filters = value;
         }
 
+        /// <summary>
+        /// Source label on the ingested time series to copy into the derived label.
+        /// </summary>
         [Input("sourceLabel", required: true)]
         public Input<string> SourceLabel { get; set; } = null!;
 
         [Input("valueMappings")]
         private InputList<Inputs.DerivedLabelMetricLabelMappingLabelNameMappingValueMappingGetArgs>? _valueMappings;
+
+        /// <summary>
+        /// Translations from source label values to a normalized target value. Each entry maps a set of source globs to a single target.
+        /// </summary>
         public InputList<Inputs.DerivedLabelMetricLabelMappingLabelNameMappingValueMappingGetArgs> ValueMappings
         {
             get => _valueMappings ?? (_valueMappings = new InputList<Inputs.DerivedLabelMetricLabelMappingLabelNameMappingValueMappingGetArgs>());

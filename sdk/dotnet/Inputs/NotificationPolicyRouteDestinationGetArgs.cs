@@ -13,24 +13,45 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class NotificationPolicyRouteDestinationGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// If true, do not send notifications when alerts resolve. Defaults to false.
+        /// </summary>
         [Input("disableResolves")]
         public Input<bool>? DisableResolves { get; set; }
 
+        /// <summary>
+        /// Email delivery configuration for this destination.
+        /// </summary>
         [Input("email")]
         public Input<Inputs.NotificationPolicyRouteDestinationEmailGetArgs>? Email { get; set; }
 
+        /// <summary>
+        /// OpsGenie delivery configuration for this destination.
+        /// </summary>
         [Input("opsGenie")]
         public Input<Inputs.NotificationPolicyRouteDestinationOpsGenieGetArgs>? OpsGenie { get; set; }
 
+        /// <summary>
+        /// PagerDuty delivery configuration for this destination.
+        /// </summary>
         [Input("pagerduty")]
         public Input<Inputs.NotificationPolicyRouteDestinationPagerdutyGetArgs>? Pagerduty { get; set; }
 
+        /// <summary>
+        /// Slack delivery configuration for this destination.
+        /// </summary>
         [Input("slack")]
         public Input<Inputs.NotificationPolicyRouteDestinationSlackGetArgs>? Slack { get; set; }
 
+        /// <summary>
+        /// VictorOps (Splunk On-Call) delivery configuration for this destination.
+        /// </summary>
         [Input("victorOps")]
         public Input<Inputs.NotificationPolicyRouteDestinationVictorOpsGetArgs>? VictorOps { get; set; }
 
+        /// <summary>
+        /// Generic webhook delivery configuration for this destination.
+        /// </summary>
         [Input("webhook")]
         public Input<Inputs.NotificationPolicyRouteDestinationWebhookGetArgs>? Webhook { get; set; }
 

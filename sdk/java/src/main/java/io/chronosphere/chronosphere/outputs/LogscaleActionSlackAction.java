@@ -13,17 +13,41 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class LogscaleActionSlackAction {
+    /**
+     * @return Fields to include in the Slack message. Values support Go template syntax with the query result.
+     * 
+     */
     private @Nullable Map<String,String> fields;
+    /**
+     * @return Slack incoming webhook URL to send the request to.
+     * 
+     */
     private String url;
+    /**
+     * @return If `true`, sends the request through the configured outbound proxy.
+     * 
+     */
     private @Nullable Boolean useProxy;
 
     private LogscaleActionSlackAction() {}
+    /**
+     * @return Fields to include in the Slack message. Values support Go template syntax with the query result.
+     * 
+     */
     public Map<String,String> fields() {
         return this.fields == null ? Map.of() : this.fields;
     }
+    /**
+     * @return Slack incoming webhook URL to send the request to.
+     * 
+     */
     public String url() {
         return this.url;
     }
+    /**
+     * @return If `true`, sends the request through the configured outbound proxy.
+     * 
+     */
     public Optional<Boolean> useProxy() {
         return Optional.ofNullable(this.useProxy);
     }

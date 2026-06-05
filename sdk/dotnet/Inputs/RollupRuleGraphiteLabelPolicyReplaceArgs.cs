@@ -13,9 +13,15 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class RollupRuleGraphiteLabelPolicyReplaceArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Positional Graphite label to replace (e.g. `__g1__`).
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// Replacement value for the named positional label.
+        /// </summary>
         [Input("newValue", required: true)]
         public Input<string> NewValue { get; set; } = null!;
 

@@ -6,6 +6,30 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * A non-human identity used to authenticate API requests against Chronosphere. An API token is generated at creation and returned only once; store it securely, as a lost token requires recreating the service account.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as chronosphere from "@pulumi-chronosphere/pulumi-chronosphere";
+ *
+ * const unrestricted = new chronosphere.ServiceAccount("unrestricted", {
+ *     name: "ci-deployer",
+ *     unrestricted: true,
+ * });
+ * const restrictedReadOnly = new chronosphere.ServiceAccount("restrictedReadOnly", {
+ *     name: "metrics-reader",
+ *     restriction: {
+ *         labels: {
+ *             team: "platform",
+ *         },
+ *         permission: "READ_ONLY",
+ *     },
+ * });
+ * ```
+ */
 export class ServiceAccount extends pulumi.CustomResource {
     /**
      * Get an existing ServiceAccount resource's state with the given name, ID, and optional extra
@@ -34,11 +58,29 @@ export class ServiceAccount extends pulumi.CustomResource {
         return obj['__pulumiType'] === ServiceAccount.__pulumiType;
     }
 
+    /**
+     * Read-only: synthetic email address assigned to the service account by the server.
+     */
     public /*out*/ readonly email!: pulumi.Output<string>;
+    /**
+     * Display name of the service account. Immutable after creation.
+     */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * Restricts the service account to a specific permission and optional metric label scope. Exactly one of `unrestricted` or `restriction` must be set.
+     */
     public readonly restriction!: pulumi.Output<outputs.ServiceAccountRestriction | undefined>;
+    /**
+     * Stable identifier for the service account. Generated from `name` if omitted. Immutable after creation.
+     */
     public readonly slug!: pulumi.Output<string>;
+    /**
+     * Read-only: API token generated for the service account. Returned only at creation time; store it securely. If lost, the service account must be recreated.
+     */
     public /*out*/ readonly token!: pulumi.Output<string>;
+    /**
+     * If true, grants the service account access to all Chronosphere APIs within the access controls defined by team membership. Exactly one of `unrestricted` or `restriction` must be set.
+     */
     public readonly unrestricted!: pulumi.Output<boolean | undefined>;
 
     /**
@@ -83,11 +125,29 @@ export class ServiceAccount extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ServiceAccount resources.
  */
 export interface ServiceAccountState {
+    /**
+     * Read-only: synthetic email address assigned to the service account by the server.
+     */
     email?: pulumi.Input<string>;
+    /**
+     * Display name of the service account. Immutable after creation.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * Restricts the service account to a specific permission and optional metric label scope. Exactly one of `unrestricted` or `restriction` must be set.
+     */
     restriction?: pulumi.Input<inputs.ServiceAccountRestriction>;
+    /**
+     * Stable identifier for the service account. Generated from `name` if omitted. Immutable after creation.
+     */
     slug?: pulumi.Input<string>;
+    /**
+     * Read-only: API token generated for the service account. Returned only at creation time; store it securely. If lost, the service account must be recreated.
+     */
     token?: pulumi.Input<string>;
+    /**
+     * If true, grants the service account access to all Chronosphere APIs within the access controls defined by team membership. Exactly one of `unrestricted` or `restriction` must be set.
+     */
     unrestricted?: pulumi.Input<boolean>;
 }
 
@@ -95,8 +155,20 @@ export interface ServiceAccountState {
  * The set of arguments for constructing a ServiceAccount resource.
  */
 export interface ServiceAccountArgs {
+    /**
+     * Display name of the service account. Immutable after creation.
+     */
     name: pulumi.Input<string>;
+    /**
+     * Restricts the service account to a specific permission and optional metric label scope. Exactly one of `unrestricted` or `restriction` must be set.
+     */
     restriction?: pulumi.Input<inputs.ServiceAccountRestriction>;
+    /**
+     * Stable identifier for the service account. Generated from `name` if omitted. Immutable after creation.
+     */
     slug?: pulumi.Input<string>;
+    /**
+     * If true, grants the service account access to all Chronosphere APIs within the access controls defined by team membership. Exactly one of `unrestricted` or `restriction` must be set.
+     */
     unrestricted?: pulumi.Input<boolean>;
 }

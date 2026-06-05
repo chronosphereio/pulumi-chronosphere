@@ -21,6 +21,11 @@ class LogRetentionConfigArgs:
                  slug: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a LogRetentionConfig resource.
+        :param pulumi.Input[str] filter: Log query filter. The retention policy applies only to logs that match.
+        :param pulumi.Input[str] mode: Mode that determines how matching logs are retained in long-term (Iceberg) storage.
+        :param pulumi.Input[str] name: Display name of the log retention config.
+        :param pulumi.Input[int] retention_days: Number of days to retain matching logs in long-term (Iceberg) storage after they are exported. When multiple configs overlap, the longest retention wins.
+        :param pulumi.Input[str] slug: Stable identifier for the log retention config. Generated from `name` if omitted. Immutable after creation.
         """
         pulumi.set(__self__, "filter", filter)
         pulumi.set(__self__, "mode", mode)
@@ -32,6 +37,9 @@ class LogRetentionConfigArgs:
     @property
     @pulumi.getter
     def filter(self) -> pulumi.Input[str]:
+        """
+        Log query filter. The retention policy applies only to logs that match.
+        """
         return pulumi.get(self, "filter")
 
     @filter.setter
@@ -41,6 +49,9 @@ class LogRetentionConfigArgs:
     @property
     @pulumi.getter
     def mode(self) -> pulumi.Input[str]:
+        """
+        Mode that determines how matching logs are retained in long-term (Iceberg) storage.
+        """
         return pulumi.get(self, "mode")
 
     @mode.setter
@@ -50,6 +61,9 @@ class LogRetentionConfigArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        Display name of the log retention config.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -59,6 +73,9 @@ class LogRetentionConfigArgs:
     @property
     @pulumi.getter(name="retentionDays")
     def retention_days(self) -> pulumi.Input[int]:
+        """
+        Number of days to retain matching logs in long-term (Iceberg) storage after they are exported. When multiple configs overlap, the longest retention wins.
+        """
         return pulumi.get(self, "retention_days")
 
     @retention_days.setter
@@ -68,6 +85,9 @@ class LogRetentionConfigArgs:
     @property
     @pulumi.getter
     def slug(self) -> Optional[pulumi.Input[str]]:
+        """
+        Stable identifier for the log retention config. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @slug.setter
@@ -85,6 +105,11 @@ class _LogRetentionConfigState:
                  slug: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering LogRetentionConfig resources.
+        :param pulumi.Input[str] filter: Log query filter. The retention policy applies only to logs that match.
+        :param pulumi.Input[str] mode: Mode that determines how matching logs are retained in long-term (Iceberg) storage.
+        :param pulumi.Input[str] name: Display name of the log retention config.
+        :param pulumi.Input[int] retention_days: Number of days to retain matching logs in long-term (Iceberg) storage after they are exported. When multiple configs overlap, the longest retention wins.
+        :param pulumi.Input[str] slug: Stable identifier for the log retention config. Generated from `name` if omitted. Immutable after creation.
         """
         if filter is not None:
             pulumi.set(__self__, "filter", filter)
@@ -100,6 +125,9 @@ class _LogRetentionConfigState:
     @property
     @pulumi.getter
     def filter(self) -> Optional[pulumi.Input[str]]:
+        """
+        Log query filter. The retention policy applies only to logs that match.
+        """
         return pulumi.get(self, "filter")
 
     @filter.setter
@@ -109,6 +137,9 @@ class _LogRetentionConfigState:
     @property
     @pulumi.getter
     def mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Mode that determines how matching logs are retained in long-term (Iceberg) storage.
+        """
         return pulumi.get(self, "mode")
 
     @mode.setter
@@ -118,6 +149,9 @@ class _LogRetentionConfigState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Display name of the log retention config.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -127,6 +161,9 @@ class _LogRetentionConfigState:
     @property
     @pulumi.getter(name="retentionDays")
     def retention_days(self) -> Optional[pulumi.Input[int]]:
+        """
+        Number of days to retain matching logs in long-term (Iceberg) storage after they are exported. When multiple configs overlap, the longest retention wins.
+        """
         return pulumi.get(self, "retention_days")
 
     @retention_days.setter
@@ -136,6 +173,9 @@ class _LogRetentionConfigState:
     @property
     @pulumi.getter
     def slug(self) -> Optional[pulumi.Input[str]]:
+        """
+        Stable identifier for the log retention config. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @slug.setter
@@ -155,9 +195,28 @@ class LogRetentionConfig(pulumi.CustomResource):
                  slug: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a LogRetentionConfig resource with the given unique name, props, and options.
+        A retention policy dictating how long logs matching a given filter are kept before being deleted.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_chronosphere as chronosphere
+
+        production_errors = chronosphere.LogRetentionConfig("productionErrors",
+            filter="severity = 'error' AND env = 'production'",
+            mode="ENABLED",
+            name="Production Error Logs Long-term Retention",
+            retention_days=365)
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] filter: Log query filter. The retention policy applies only to logs that match.
+        :param pulumi.Input[str] mode: Mode that determines how matching logs are retained in long-term (Iceberg) storage.
+        :param pulumi.Input[str] name: Display name of the log retention config.
+        :param pulumi.Input[int] retention_days: Number of days to retain matching logs in long-term (Iceberg) storage after they are exported. When multiple configs overlap, the longest retention wins.
+        :param pulumi.Input[str] slug: Stable identifier for the log retention config. Generated from `name` if omitted. Immutable after creation.
         """
         ...
     @overload
@@ -166,7 +225,21 @@ class LogRetentionConfig(pulumi.CustomResource):
                  args: LogRetentionConfigArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a LogRetentionConfig resource with the given unique name, props, and options.
+        A retention policy dictating how long logs matching a given filter are kept before being deleted.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_chronosphere as chronosphere
+
+        production_errors = chronosphere.LogRetentionConfig("productionErrors",
+            filter="severity = 'error' AND env = 'production'",
+            mode="ENABLED",
+            name="Production Error Logs Long-term Retention",
+            retention_days=365)
+        ```
+
         :param str resource_name: The name of the resource.
         :param LogRetentionConfigArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -231,6 +304,11 @@ class LogRetentionConfig(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] filter: Log query filter. The retention policy applies only to logs that match.
+        :param pulumi.Input[str] mode: Mode that determines how matching logs are retained in long-term (Iceberg) storage.
+        :param pulumi.Input[str] name: Display name of the log retention config.
+        :param pulumi.Input[int] retention_days: Number of days to retain matching logs in long-term (Iceberg) storage after they are exported. When multiple configs overlap, the longest retention wins.
+        :param pulumi.Input[str] slug: Stable identifier for the log retention config. Generated from `name` if omitted. Immutable after creation.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -246,25 +324,40 @@ class LogRetentionConfig(pulumi.CustomResource):
     @property
     @pulumi.getter
     def filter(self) -> pulumi.Output[str]:
+        """
+        Log query filter. The retention policy applies only to logs that match.
+        """
         return pulumi.get(self, "filter")
 
     @property
     @pulumi.getter
     def mode(self) -> pulumi.Output[str]:
+        """
+        Mode that determines how matching logs are retained in long-term (Iceberg) storage.
+        """
         return pulumi.get(self, "mode")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        Display name of the log retention config.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="retentionDays")
     def retention_days(self) -> pulumi.Output[int]:
+        """
+        Number of days to retain matching logs in long-term (Iceberg) storage after they are exported. When multiple configs overlap, the longest retention wins.
+        """
         return pulumi.get(self, "retention_days")
 
     @property
     @pulumi.getter
     def slug(self) -> pulumi.Output[str]:
+        """
+        Stable identifier for the log retention config. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 

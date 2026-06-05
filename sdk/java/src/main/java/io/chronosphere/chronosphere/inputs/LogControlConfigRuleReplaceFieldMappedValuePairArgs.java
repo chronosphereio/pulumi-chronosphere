@@ -15,16 +15,32 @@ public final class LogControlConfigRuleReplaceFieldMappedValuePairArgs extends c
 
     public static final LogControlConfigRuleReplaceFieldMappedValuePairArgs Empty = new LogControlConfigRuleReplaceFieldMappedValuePairArgs();
 
+    /**
+     * Prometheus label name to set on the emitted metric.
+     * 
+     */
     @Import(name="key")
     private @Nullable Output<String> key;
 
+    /**
+     * @return Prometheus label name to set on the emitted metric.
+     * 
+     */
     public Optional<Output<String>> key() {
         return Optional.ofNullable(this.key);
     }
 
+    /**
+     * Path to a field within a log record.
+     * 
+     */
     @Import(name="value")
     private @Nullable Output<String> value;
 
+    /**
+     * @return Path to a field within a log record.
+     * 
+     */
     public Optional<Output<String>> value() {
         return Optional.ofNullable(this.value);
     }
@@ -54,20 +70,44 @@ public final class LogControlConfigRuleReplaceFieldMappedValuePairArgs extends c
             $ = new LogControlConfigRuleReplaceFieldMappedValuePairArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param key Prometheus label name to set on the emitted metric.
+         * 
+         * @return builder
+         * 
+         */
         public Builder key(@Nullable Output<String> key) {
             $.key = key;
             return this;
         }
 
+        /**
+         * @param key Prometheus label name to set on the emitted metric.
+         * 
+         * @return builder
+         * 
+         */
         public Builder key(String key) {
             return key(Output.of(key));
         }
 
+        /**
+         * @param value Path to a field within a log record.
+         * 
+         * @return builder
+         * 
+         */
         public Builder value(@Nullable Output<String> value) {
             $.value = value;
             return this;
         }
 
+        /**
+         * @param value Path to a field within a log record.
+         * 
+         * @return builder
+         * 
+         */
         public Builder value(String value) {
             return value(Output.of(value));
         }

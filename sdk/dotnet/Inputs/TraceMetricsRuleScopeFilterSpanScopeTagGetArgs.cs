@@ -13,12 +13,21 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class TraceMetricsRuleScopeFilterSpanScopeTagGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Span attribute to group by.
+        /// </summary>
         [Input("key")]
         public Input<string>? Key { get; set; }
 
+        /// <summary>
+        /// Matches traces or spans where the target numeric field satisfies the comparison against `value`.
+        /// </summary>
         [Input("numericValue")]
         public Input<Inputs.TraceMetricsRuleScopeFilterSpanScopeTagNumericValueGetArgs>? NumericValue { get; set; }
 
+        /// <summary>
+        /// Boolean value the target field is compared against.
+        /// </summary>
         [Input("value")]
         public Input<Inputs.TraceMetricsRuleScopeFilterSpanScopeTagValueGetArgs>? Value { get; set; }
 

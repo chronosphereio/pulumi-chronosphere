@@ -10,27 +10,99 @@ using Pulumi;
 
 namespace Chronosphere.Pulumi
 {
+    /// <summary>
+    /// Routes alert signals from monitors and SLOs to notifiers, with per-severity routing and label-matcher-based overrides. If `name` is set the policy is independent (referenceable by ID); if `name` is omitted the policy is inline and can only be embedded in another resource (e.g. a bucket).
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Pulumi = Chronosphere.Pulumi;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var platformTeam = new Pulumi.Team("platformTeam", new()
+    ///     {
+    ///         Name = "Platform",
+    ///     });
+    /// 
+    ///     var email = new Pulumi.EmailAlertNotifier("email", new()
+    ///     {
+    ///         Name = "Platform Email",
+    ///         To = "platform@example.com",
+    ///     });
+    /// 
+    ///     var platformNotificationPolicy = new Pulumi.NotificationPolicy("platformNotificationPolicy", new()
+    ///     {
+    ///         Name = "Platform Policy",
+    ///         TeamId = platformTeam.Id,
+    ///         Routes = new[]
+    ///         {
+    ///             new Pulumi.Inputs.NotificationPolicyRouteArgs
+    ///             {
+    ///                 Severity = "warn",
+    ///                 Notifiers = new[]
+    ///                 {
+    ///                     email.Id,
+    ///                 },
+    ///                 GroupBy = new Pulumi.Inputs.NotificationPolicyRouteGroupByArgs
+    ///                 {
+    ///                     LabelNames = new[]
+    ///                     {
+    ///                         "service",
+    ///                     },
+    ///                 },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// </summary>
     [PulumiResourceType("chronosphere:index/notificationPolicy:NotificationPolicy")]
     public partial class NotificationPolicy : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Read-only internal marker tracking whether the policy is independent (named) or inline. Used to force replacement when transitioning between the two.
+        /// </summary>
         [Output("isIndependent")]
         public Output<bool> IsIndependent { get; private set; } = null!;
 
+        /// <summary>
+        /// Label name to match.
+        /// </summary>
         [Output("name")]
         public Output<string?> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// Computed/optional JSON serialization of the policy. Primarily used to attach inline policy data to other resources (e.g. buckets).
+        /// </summary>
         [Output("notificationPolicyData")]
         public Output<string> NotificationPolicyData { get; private set; } = null!;
 
+        /// <summary>
+        /// Ordered overrides that route alerts matching specific label matchers to different destinations. The first matching override is applied; non-matching alerts fall through to the default `route`.
+        /// </summary>
         [Output("overrides")]
         public Output<ImmutableArray<Outputs.NotificationPolicyOverride>> Overrides { get; private set; } = null!;
 
+        /// <summary>
+        /// Per-severity routing rules. Each entry maps a severity (e.g. `warn`, `critical`) to a set of notifiers, destinations, grouping, and repeat behavior.
+        /// </summary>
         [Output("routes")]
         public Output<ImmutableArray<Outputs.NotificationPolicyRoute>> Routes { get; private set; } = null!;
 
+        /// <summary>
+        /// Stable identifier for the notification policy. Can only be set when `name` is set. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Output("slug")]
         public Output<string> Slug { get; private set; } = null!;
 
+        /// <summary>
+        /// ID of the team that owns this notification policy. Required when `name` is set (anonymous policies cannot be owned).
+        /// </summary>
         [Output("teamId")]
         public Output<string?> TeamId { get; private set; } = null!;
 
@@ -81,14 +153,24 @@ namespace Chronosphere.Pulumi
 
     public sealed class NotificationPolicyArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Label name to match.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// Computed/optional JSON serialization of the policy. Primarily used to attach inline policy data to other resources (e.g. buckets).
+        /// </summary>
         [Input("notificationPolicyData")]
         public Input<string>? NotificationPolicyData { get; set; }
 
         [Input("overrides")]
         private InputList<Inputs.NotificationPolicyOverrideArgs>? _overrides;
+
+        /// <summary>
+        /// Ordered overrides that route alerts matching specific label matchers to different destinations. The first matching override is applied; non-matching alerts fall through to the default `route`.
+        /// </summary>
         public InputList<Inputs.NotificationPolicyOverrideArgs> Overrides
         {
             get => _overrides ?? (_overrides = new InputList<Inputs.NotificationPolicyOverrideArgs>());
@@ -97,15 +179,25 @@ namespace Chronosphere.Pulumi
 
         [Input("routes")]
         private InputList<Inputs.NotificationPolicyRouteArgs>? _routes;
+
+        /// <summary>
+        /// Per-severity routing rules. Each entry maps a severity (e.g. `warn`, `critical`) to a set of notifiers, destinations, grouping, and repeat behavior.
+        /// </summary>
         public InputList<Inputs.NotificationPolicyRouteArgs> Routes
         {
             get => _routes ?? (_routes = new InputList<Inputs.NotificationPolicyRouteArgs>());
             set => _routes = value;
         }
 
+        /// <summary>
+        /// Stable identifier for the notification policy. Can only be set when `name` is set. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 
+        /// <summary>
+        /// ID of the team that owns this notification policy. Required when `name` is set (anonymous policies cannot be owned).
+        /// </summary>
         [Input("teamId")]
         public Input<string>? TeamId { get; set; }
 
@@ -117,17 +209,30 @@ namespace Chronosphere.Pulumi
 
     public sealed class NotificationPolicyState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Read-only internal marker tracking whether the policy is independent (named) or inline. Used to force replacement when transitioning between the two.
+        /// </summary>
         [Input("isIndependent")]
         public Input<bool>? IsIndependent { get; set; }
 
+        /// <summary>
+        /// Label name to match.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// Computed/optional JSON serialization of the policy. Primarily used to attach inline policy data to other resources (e.g. buckets).
+        /// </summary>
         [Input("notificationPolicyData")]
         public Input<string>? NotificationPolicyData { get; set; }
 
         [Input("overrides")]
         private InputList<Inputs.NotificationPolicyOverrideGetArgs>? _overrides;
+
+        /// <summary>
+        /// Ordered overrides that route alerts matching specific label matchers to different destinations. The first matching override is applied; non-matching alerts fall through to the default `route`.
+        /// </summary>
         public InputList<Inputs.NotificationPolicyOverrideGetArgs> Overrides
         {
             get => _overrides ?? (_overrides = new InputList<Inputs.NotificationPolicyOverrideGetArgs>());
@@ -136,15 +241,25 @@ namespace Chronosphere.Pulumi
 
         [Input("routes")]
         private InputList<Inputs.NotificationPolicyRouteGetArgs>? _routes;
+
+        /// <summary>
+        /// Per-severity routing rules. Each entry maps a severity (e.g. `warn`, `critical`) to a set of notifiers, destinations, grouping, and repeat behavior.
+        /// </summary>
         public InputList<Inputs.NotificationPolicyRouteGetArgs> Routes
         {
             get => _routes ?? (_routes = new InputList<Inputs.NotificationPolicyRouteGetArgs>());
             set => _routes = value;
         }
 
+        /// <summary>
+        /// Stable identifier for the notification policy. Can only be set when `name` is set. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 
+        /// <summary>
+        /// ID of the team that owns this notification policy. Required when `name` is set (anonymous policies cannot be owned).
+        /// </summary>
         [Input("teamId")]
         public Input<string>? TeamId { get; set; }
 

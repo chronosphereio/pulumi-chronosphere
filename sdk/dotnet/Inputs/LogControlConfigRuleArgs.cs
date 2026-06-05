@@ -13,30 +13,57 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class LogControlConfigRuleArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Configuration for the `DROP_FIELD` action, which removes fields from matching logs.
+        /// </summary>
         [Input("dropField")]
         public Input<Inputs.LogControlConfigRuleDropFieldArgs>? DropField { get; set; }
 
+        /// <summary>
+        /// Configuration for the `EMIT_METRICS` action, which derives Prometheus metrics from matching logs.
+        /// </summary>
         [Input("emitMetrics")]
         public Input<Inputs.LogControlConfigRuleEmitMetricsArgs>? EmitMetrics { get; set; }
 
+        /// <summary>
+        /// Log query filter that selects matching logs. The control action applies only to logs that match.
+        /// </summary>
         [Input("filter")]
         public Input<string>? Filter { get; set; }
 
+        /// <summary>
+        /// Execution mode for the rule (for example, `ENABLED` or `DISABLED`).
+        /// </summary>
         [Input("mode")]
         public Input<string>? Mode { get; set; }
 
+        /// <summary>
+        /// User-defined name for the control rule.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// Configuration for the `PARSE_FIELD` action, which parses a field with a regex, key/value, or grok parser and writes the result to another field.
+        /// </summary>
         [Input("parseField")]
         public Input<Inputs.LogControlConfigRuleParseFieldArgs>? ParseField { get; set; }
 
+        /// <summary>
+        /// Configuration for the `REPLACE_FIELD` action, which rewrites field values in matching logs.
+        /// </summary>
         [Input("replaceField")]
         public Input<Inputs.LogControlConfigRuleReplaceFieldArgs>? ReplaceField { get; set; }
 
+        /// <summary>
+        /// Configuration for the `SAMPLE_LOGS` action, which keeps a fraction of matching logs.
+        /// </summary>
         [Input("sample")]
         public Input<Inputs.LogControlConfigRuleSampleArgs>? Sample { get; set; }
 
+        /// <summary>
+        /// Type of control action this rule performs. Exactly one of the matching action blocks (`sample`, `drop_field`, `emit_metrics`, `replace_field`, `parse_field`) must be configured.
+        /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
 

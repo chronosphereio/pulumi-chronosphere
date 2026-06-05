@@ -14,7 +14,13 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class MonitorSchedule
     {
+        /// <summary>
+        /// Time-of-day ranges during which the monitor is active. The monitor is inactive outside these ranges.
+        /// </summary>
         public readonly ImmutableArray<Outputs.MonitorScheduleRange> Ranges;
+        /// <summary>
+        /// IANA timezone name (e.g. `America/New_York`) used to interpret `range` values.
+        /// </summary>
         public readonly string Timezone;
 
         [OutputConstructor]

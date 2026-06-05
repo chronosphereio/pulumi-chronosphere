@@ -11,17 +11,41 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class LogIngestConfigFieldParserParserKeyValueParser {
+    /**
+     * @return String used to split the input into individual key/value pairs.
+     * 
+     */
     private String delimiter;
+    /**
+     * @return String used to split each pair into a key and value.
+     * 
+     */
     private String pairSeparator;
+    /**
+     * @return Unicode code points to trim from the beginning and end of each key and value.
+     * 
+     */
     private @Nullable String trimSet;
 
     private LogIngestConfigFieldParserParserKeyValueParser() {}
+    /**
+     * @return String used to split the input into individual key/value pairs.
+     * 
+     */
     public String delimiter() {
         return this.delimiter;
     }
+    /**
+     * @return String used to split each pair into a key and value.
+     * 
+     */
     public String pairSeparator() {
         return this.pairSeparator;
     }
+    /**
+     * @return Unicode code points to trim from the beginning and end of each key and value.
+     * 
+     */
     public Optional<String> trimSet() {
         return Optional.ofNullable(this.trimSet);
     }

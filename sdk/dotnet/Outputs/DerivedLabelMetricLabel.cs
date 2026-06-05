@@ -14,7 +14,13 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class DerivedLabelMetricLabel
     {
+        /// <summary>
+        /// Constructs the derived label value from a list of value definitions, each gated by a filter on existing labels.
+        /// </summary>
         public readonly Outputs.DerivedLabelMetricLabelConstructedLabel? ConstructedLabel;
+        /// <summary>
+        /// Derives the label value by mapping from an existing source label, optionally translating its values.
+        /// </summary>
         public readonly Outputs.DerivedLabelMetricLabelMappingLabel? MappingLabel;
 
         [OutputConstructor]

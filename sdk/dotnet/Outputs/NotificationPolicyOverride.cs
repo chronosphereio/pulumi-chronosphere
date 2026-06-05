@@ -14,7 +14,13 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class NotificationPolicyOverride
     {
+        /// <summary>
+        /// List of label matchers used to select a subset of series.
+        /// </summary>
         public readonly ImmutableArray<Outputs.NotificationPolicyOverrideAlertLabelMatcher> AlertLabelMatchers;
+        /// <summary>
+        /// Per-severity routing rules. Each entry maps a severity (e.g. `warn`, `critical`) to a set of notifiers, destinations, grouping, and repeat behavior.
+        /// </summary>
         public readonly ImmutableArray<Outputs.NotificationPolicyOverrideRoute> Routes;
 
         [OutputConstructor]

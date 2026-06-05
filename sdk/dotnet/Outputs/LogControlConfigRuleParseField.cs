@@ -14,8 +14,17 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class LogControlConfigRuleParseField
     {
+        /// <summary>
+        /// Path to a field within a log record.
+        /// </summary>
         public readonly Outputs.LogControlConfigRuleParseFieldDestination? Destination;
+        /// <summary>
+        /// Parser configuration. Exactly one of `regex_parser`, `key_value_parser`, or `grok_parser` must be set, matching `parser_type`.
+        /// </summary>
         public readonly Outputs.LogControlConfigRuleParseFieldParser Parser;
+        /// <summary>
+        /// Path to a field within a log record.
+        /// </summary>
         public readonly Outputs.LogControlConfigRuleParseFieldSource? Source;
 
         [OutputConstructor]

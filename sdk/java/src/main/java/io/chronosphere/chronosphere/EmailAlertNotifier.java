@@ -15,41 +15,124 @@ import java.lang.String;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
+/**
+ * Email notifier that delivers monitor signals to a recipient address with templated HTML and/or plain-text bodies. Referenced from notification policies.
+ * 
+ * ## Example Usage
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.chronosphere.EmailAlertNotifier;
+ * import com.pulumi.chronosphere.EmailAlertNotifierArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var email = new EmailAlertNotifier(&#34;email&#34;, EmailAlertNotifierArgs.builder()        
+ *             .name(&#34;Email Blackhole&#34;)
+ *             .to(&#34;blackhole@chronosphere.io&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ */
 @ResourceType(type="chronosphere:index/emailAlertNotifier:EmailAlertNotifier")
 public class EmailAlertNotifier extends com.pulumi.resources.CustomResource {
+    /**
+     * Body of the email in HTML format. Supports Go templating.
+     * 
+     */
     @Export(name="html", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> html;
 
+    /**
+     * @return Body of the email in HTML format. Supports Go templating.
+     * 
+     */
     public Output<Optional<String>> html() {
         return Codegen.optional(this.html);
     }
+    /**
+     * Display name of the notifier.
+     * 
+     */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
+    /**
+     * @return Display name of the notifier.
+     * 
+     */
     public Output<String> name() {
         return this.name;
     }
+    /**
+     * Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+     * 
+     */
     @Export(name="sendResolved", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> sendResolved;
 
+    /**
+     * @return Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+     * 
+     */
     public Output<Optional<Boolean>> sendResolved() {
         return Codegen.optional(this.sendResolved);
     }
+    /**
+     * Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     @Export(name="slug", refs={String.class}, tree="[0]")
     private Output<String> slug;
 
+    /**
+     * @return Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     public Output<String> slug() {
         return this.slug;
     }
+    /**
+     * Body of the email in plain text format. Supports Go templating.
+     * 
+     */
     @Export(name="text", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> text;
 
+    /**
+     * @return Body of the email in plain text format. Supports Go templating.
+     * 
+     */
     public Output<Optional<String>> text() {
         return Codegen.optional(this.text);
     }
+    /**
+     * Email address to send notifications to.
+     * 
+     */
     @Export(name="to", refs={String.class}, tree="[0]")
     private Output<String> to;
 
+    /**
+     * @return Email address to send notifications to.
+     * 
+     */
     public Output<String> to() {
         return this.to;
     }

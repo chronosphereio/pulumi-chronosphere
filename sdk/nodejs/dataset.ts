@@ -6,6 +6,9 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * A saved selection of telemetry data, defined by match criteria over traces or logs, that can be referenced by other Chronosphere features such as dashboards and alerts.
+ */
 export class Dataset extends pulumi.CustomResource {
     /**
      * Get an existing Dataset resource's state with the given name, ID, and optional extra
@@ -34,9 +37,21 @@ export class Dataset extends pulumi.CustomResource {
         return obj['__pulumiType'] === Dataset.__pulumiType;
     }
 
+    /**
+     * Configuration block selecting the dataset type and its match criteria.
+     */
     public readonly configuration!: pulumi.Output<outputs.DatasetConfiguration>;
+    /**
+     * Free-form description of the dataset.
+     */
     public readonly description!: pulumi.Output<string | undefined>;
+    /**
+     * Display name of the dataset. Can be changed after creation.
+     */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * Stable identifier for the dataset. Generated from `name` if omitted. Immutable after creation.
+     */
     public readonly slug!: pulumi.Output<string>;
 
     /**
@@ -78,9 +93,21 @@ export class Dataset extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Dataset resources.
  */
 export interface DatasetState {
+    /**
+     * Configuration block selecting the dataset type and its match criteria.
+     */
     configuration?: pulumi.Input<inputs.DatasetConfiguration>;
+    /**
+     * Free-form description of the dataset.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * Display name of the dataset. Can be changed after creation.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * Stable identifier for the dataset. Generated from `name` if omitted. Immutable after creation.
+     */
     slug?: pulumi.Input<string>;
 }
 
@@ -88,8 +115,20 @@ export interface DatasetState {
  * The set of arguments for constructing a Dataset resource.
  */
 export interface DatasetArgs {
+    /**
+     * Configuration block selecting the dataset type and its match criteria.
+     */
     configuration: pulumi.Input<inputs.DatasetConfiguration>;
+    /**
+     * Free-form description of the dataset.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * Display name of the dataset. Can be changed after creation.
+     */
     name: pulumi.Input<string>;
+    /**
+     * Stable identifier for the dataset. Generated from `name` if omitted. Immutable after creation.
+     */
     slug?: pulumi.Input<string>;
 }

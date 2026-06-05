@@ -11,9 +11,17 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class DerivedMetricQuerySelector {
+    /**
+     * @return Labels that must match (key/value) on the derived metric usage for the selector to apply.
+     * 
+     */
     private @Nullable Map<String,String> labels;
 
     private DerivedMetricQuerySelector() {}
+    /**
+     * @return Labels that must match (key/value) on the derived metric usage for the selector to apply.
+     * 
+     */
     public Map<String,String> labels() {
         return this.labels == null ? Map.of() : this.labels;
     }

@@ -14,8 +14,17 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterCondition
     {
+        /// <summary>
+        /// Deprecated: use `log_filter`, `metric_filter`, or trace filters instead. Slug of the dataset to match.
+        /// </summary>
         public readonly string? DatasetId;
+        /// <summary>
+        /// Log search filter matching log data for this condition.
+        /// </summary>
         public readonly Outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter? LogFilter;
+        /// <summary>
+        /// Metric label filters matched against incoming metric data. Multiple filters are AND-ed together; values support glob patterns including `service:{svc1,svc2}` style alternations.
+        /// </summary>
         public readonly ImmutableArray<Outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionMetricFilter> MetricFilters;
 
         [OutputConstructor]

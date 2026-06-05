@@ -4,6 +4,18 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Blackhole notifier that discards every signal routed to it. Reference from a notification policy route to silence alerts without delivering them anywhere.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as chronosphere from "@pulumi-chronosphere/pulumi-chronosphere";
+ *
+ * const blackhole = new chronosphere.BlackholeAlertNotifier("blackhole", {name: "Blackhole"});
+ * ```
+ */
 export class BlackholeAlertNotifier extends pulumi.CustomResource {
     /**
      * Get an existing BlackholeAlertNotifier resource's state with the given name, ID, and optional extra
@@ -32,7 +44,13 @@ export class BlackholeAlertNotifier extends pulumi.CustomResource {
         return obj['__pulumiType'] === BlackholeAlertNotifier.__pulumiType;
     }
 
+    /**
+     * Display name of the notifier.
+     */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+     */
     public readonly slug!: pulumi.Output<string>;
 
     /**
@@ -67,7 +85,13 @@ export class BlackholeAlertNotifier extends pulumi.CustomResource {
  * Input properties used for looking up and filtering BlackholeAlertNotifier resources.
  */
 export interface BlackholeAlertNotifierState {
+    /**
+     * Display name of the notifier.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+     */
     slug?: pulumi.Input<string>;
 }
 
@@ -75,6 +99,12 @@ export interface BlackholeAlertNotifierState {
  * The set of arguments for constructing a BlackholeAlertNotifier resource.
  */
 export interface BlackholeAlertNotifierArgs {
+    /**
+     * Display name of the notifier.
+     */
     name: pulumi.Input<string>;
+    /**
+     * Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+     */
     slug?: pulumi.Input<string>;
 }

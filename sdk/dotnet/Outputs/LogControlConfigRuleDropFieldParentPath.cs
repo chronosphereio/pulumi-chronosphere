@@ -14,6 +14,9 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class LogControlConfigRuleDropFieldParentPath
     {
+        /// <summary>
+        /// Field path selector. Use `parent[child]` syntax to indicate nesting.
+        /// </summary>
         public readonly string? Selector;
 
         [OutputConstructor]

@@ -17,16 +17,32 @@ public final class DerivedMetricQueryQueryArgs extends com.pulumi.resources.Reso
 
     public static final DerivedMetricQueryQueryArgs Empty = new DerivedMetricQueryQueryArgs();
 
+    /**
+     * PromQL expression for the derived metric. References declared variables using `$name` syntax (e.g. `cpu_usage{$service}`).
+     * 
+     */
     @Import(name="expr", required=true)
     private Output<String> expr;
 
+    /**
+     * @return PromQL expression for the derived metric. References declared variables using `$name` syntax (e.g. `cpu_usage{$service}`).
+     * 
+     */
     public Output<String> expr() {
         return this.expr;
     }
 
+    /**
+     * Variables that can be substituted into `expr` at query time as label selectors.
+     * 
+     */
     @Import(name="variables")
     private @Nullable Output<List<DerivedMetricQueryQueryVariableArgs>> variables;
 
+    /**
+     * @return Variables that can be substituted into `expr` at query time as label selectors.
+     * 
+     */
     public Optional<Output<List<DerivedMetricQueryQueryVariableArgs>>> variables() {
         return Optional.ofNullable(this.variables);
     }
@@ -56,24 +72,54 @@ public final class DerivedMetricQueryQueryArgs extends com.pulumi.resources.Reso
             $ = new DerivedMetricQueryQueryArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param expr PromQL expression for the derived metric. References declared variables using `$name` syntax (e.g. `cpu_usage{$service}`).
+         * 
+         * @return builder
+         * 
+         */
         public Builder expr(Output<String> expr) {
             $.expr = expr;
             return this;
         }
 
+        /**
+         * @param expr PromQL expression for the derived metric. References declared variables using `$name` syntax (e.g. `cpu_usage{$service}`).
+         * 
+         * @return builder
+         * 
+         */
         public Builder expr(String expr) {
             return expr(Output.of(expr));
         }
 
+        /**
+         * @param variables Variables that can be substituted into `expr` at query time as label selectors.
+         * 
+         * @return builder
+         * 
+         */
         public Builder variables(@Nullable Output<List<DerivedMetricQueryQueryVariableArgs>> variables) {
             $.variables = variables;
             return this;
         }
 
+        /**
+         * @param variables Variables that can be substituted into `expr` at query time as label selectors.
+         * 
+         * @return builder
+         * 
+         */
         public Builder variables(List<DerivedMetricQueryQueryVariableArgs> variables) {
             return variables(Output.of(variables));
         }
 
+        /**
+         * @param variables Variables that can be substituted into `expr` at query time as label selectors.
+         * 
+         * @return builder
+         * 
+         */
         public Builder variables(DerivedMetricQueryQueryVariableArgs... variables) {
             return variables(List.of(variables));
         }

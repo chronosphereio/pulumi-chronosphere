@@ -18,14 +18,24 @@ public final class ResourcePoolsConfigPoolArgs extends com.pulumi.resources.Reso
 
     public static final ResourcePoolsConfigPoolArgs Empty = new ResourcePoolsConfigPoolArgs();
 
+    /**
+     * License allocation for the pool. Can be expressed as a percentage of the license (`percent_of_license`) or as per-license fixed values (`fixed_value`).
+     * 
+     */
     @Import(name="allocation")
     private @Nullable Output<ResourcePoolsConfigPoolAllocationArgs> allocation;
 
+    /**
+     * @return License allocation for the pool. Can be expressed as a percentage of the license (`percent_of_license`) or as per-license fixed values (`fixed_value`).
+     * 
+     */
     public Optional<Output<ResourcePoolsConfigPoolAllocationArgs>> allocation() {
         return Optional.ofNullable(this.allocation);
     }
 
     /**
+     * Deprecated: use `match_rules` instead. Single matcher selecting metrics that belong to this pool.
+     * 
      * @deprecated
      * use match_rules
      * 
@@ -35,6 +45,8 @@ public final class ResourcePoolsConfigPoolArgs extends com.pulumi.resources.Reso
     private @Nullable Output<String> matchRule;
 
     /**
+     * @return Deprecated: use `match_rules` instead. Single matcher selecting metrics that belong to this pool.
+     * 
      * @deprecated
      * use match_rules
      * 
@@ -44,23 +56,47 @@ public final class ResourcePoolsConfigPoolArgs extends com.pulumi.resources.Reso
         return Optional.ofNullable(this.matchRule);
     }
 
+    /**
+     * Matchers selecting metrics that map to this pool. A metric matching any rule is assigned to the pool.
+     * 
+     */
     @Import(name="matchRules")
     private @Nullable Output<List<String>> matchRules;
 
+    /**
+     * @return Matchers selecting metrics that map to this pool. A metric matching any rule is assigned to the pool.
+     * 
+     */
     public Optional<Output<List<String>>> matchRules() {
         return Optional.ofNullable(this.matchRules);
     }
 
+    /**
+     * Unique name of the pool.
+     * 
+     */
     @Import(name="name", required=true)
     private Output<String> name;
 
+    /**
+     * @return Unique name of the pool.
+     * 
+     */
     public Output<String> name() {
         return this.name;
     }
 
+    /**
+     * Optional high/low priority sub-classifications within the pool. Low-priority metrics are dropped first; high-priority metrics are dropped last when limits are hit.
+     * 
+     */
     @Import(name="priorities")
     private @Nullable Output<ResourcePoolsConfigPoolPrioritiesArgs> priorities;
 
+    /**
+     * @return Optional high/low priority sub-classifications within the pool. Low-priority metrics are dropped first; high-priority metrics are dropped last when limits are hit.
+     * 
+     */
     public Optional<Output<ResourcePoolsConfigPoolPrioritiesArgs>> priorities() {
         return Optional.ofNullable(this.priorities);
     }
@@ -93,16 +129,30 @@ public final class ResourcePoolsConfigPoolArgs extends com.pulumi.resources.Reso
             $ = new ResourcePoolsConfigPoolArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param allocation License allocation for the pool. Can be expressed as a percentage of the license (`percent_of_license`) or as per-license fixed values (`fixed_value`).
+         * 
+         * @return builder
+         * 
+         */
         public Builder allocation(@Nullable Output<ResourcePoolsConfigPoolAllocationArgs> allocation) {
             $.allocation = allocation;
             return this;
         }
 
+        /**
+         * @param allocation License allocation for the pool. Can be expressed as a percentage of the license (`percent_of_license`) or as per-license fixed values (`fixed_value`).
+         * 
+         * @return builder
+         * 
+         */
         public Builder allocation(ResourcePoolsConfigPoolAllocationArgs allocation) {
             return allocation(Output.of(allocation));
         }
 
         /**
+         * @param matchRule Deprecated: use `match_rules` instead. Single matcher selecting metrics that belong to this pool.
+         * 
          * @return builder
          * 
          * @deprecated
@@ -116,6 +166,8 @@ public final class ResourcePoolsConfigPoolArgs extends com.pulumi.resources.Reso
         }
 
         /**
+         * @param matchRule Deprecated: use `match_rules` instead. Single matcher selecting metrics that belong to this pool.
+         * 
          * @return builder
          * 
          * @deprecated
@@ -127,33 +179,75 @@ public final class ResourcePoolsConfigPoolArgs extends com.pulumi.resources.Reso
             return matchRule(Output.of(matchRule));
         }
 
+        /**
+         * @param matchRules Matchers selecting metrics that map to this pool. A metric matching any rule is assigned to the pool.
+         * 
+         * @return builder
+         * 
+         */
         public Builder matchRules(@Nullable Output<List<String>> matchRules) {
             $.matchRules = matchRules;
             return this;
         }
 
+        /**
+         * @param matchRules Matchers selecting metrics that map to this pool. A metric matching any rule is assigned to the pool.
+         * 
+         * @return builder
+         * 
+         */
         public Builder matchRules(List<String> matchRules) {
             return matchRules(Output.of(matchRules));
         }
 
+        /**
+         * @param matchRules Matchers selecting metrics that map to this pool. A metric matching any rule is assigned to the pool.
+         * 
+         * @return builder
+         * 
+         */
         public Builder matchRules(String... matchRules) {
             return matchRules(List.of(matchRules));
         }
 
+        /**
+         * @param name Unique name of the pool.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(Output<String> name) {
             $.name = name;
             return this;
         }
 
+        /**
+         * @param name Unique name of the pool.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(String name) {
             return name(Output.of(name));
         }
 
+        /**
+         * @param priorities Optional high/low priority sub-classifications within the pool. Low-priority metrics are dropped first; high-priority metrics are dropped last when limits are hit.
+         * 
+         * @return builder
+         * 
+         */
         public Builder priorities(@Nullable Output<ResourcePoolsConfigPoolPrioritiesArgs> priorities) {
             $.priorities = priorities;
             return this;
         }
 
+        /**
+         * @param priorities Optional high/low priority sub-classifications within the pool. Low-priority metrics are dropped first; high-priority metrics are dropped last when limits are hit.
+         * 
+         * @return builder
+         * 
+         */
         public Builder priorities(ResourcePoolsConfigPoolPrioritiesArgs priorities) {
             return priorities(Output.of(priorities));
         }

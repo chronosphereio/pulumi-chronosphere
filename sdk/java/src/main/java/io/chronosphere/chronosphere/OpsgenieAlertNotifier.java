@@ -18,75 +18,208 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
+/**
+ * OpsGenie notifier that delivers monitor signals to OpsGenie as alerts via its API integration. Referenced from notification policies.
+ * 
+ * ## Example Usage
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.chronosphere.OpsgenieAlertNotifier;
+ * import com.pulumi.chronosphere.OpsgenieAlertNotifierArgs;
+ * import com.pulumi.chronosphere.inputs.OpsgenieAlertNotifierResponderArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var opsgenie = new OpsgenieAlertNotifier(&#34;opsgenie&#34;, OpsgenieAlertNotifierArgs.builder()        
+ *             .apiKey(&#34;XXXXX&#34;)
+ *             .apiUrl(&#34;https://api.opsgenie.com/&#34;)
+ *             .name(&#34;infra_compute_opsgenie&#34;)
+ *             .priority(&#34;P1&#34;)
+ *             .responders(OpsgenieAlertNotifierResponderArgs.builder()
+ *                 .name(&#34;Productivity Platform - Compute&#34;)
+ *                 .type(&#34;TEAM&#34;)
+ *                 .build())
+ *             .sendResolved(true)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ */
 @ResourceType(type="chronosphere:index/opsgenieAlertNotifier:OpsgenieAlertNotifier")
 public class OpsgenieAlertNotifier extends com.pulumi.resources.CustomResource {
+    /**
+     * Opsgenie API key used to authenticate requests. Treat as a secret.
+     * 
+     */
     @Export(name="apiKey", refs={String.class}, tree="[0]")
     private Output<String> apiKey;
 
+    /**
+     * @return Opsgenie API key used to authenticate requests. Treat as a secret.
+     * 
+     */
     public Output<String> apiKey() {
         return this.apiKey;
     }
+    /**
+     * Opsgenie API URL to send requests to (e.g. `https://api.opsgenie.com/`).
+     * 
+     */
     @Export(name="apiUrl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> apiUrl;
 
+    /**
+     * @return Opsgenie API URL to send requests to (e.g. `https://api.opsgenie.com/`).
+     * 
+     */
     public Output<Optional<String>> apiUrl() {
         return Codegen.optional(this.apiUrl);
     }
+    /**
+     * Password for HTTP basic auth when calling the Opsgenie API. Treat as a secret.
+     * 
+     */
     @Export(name="basicAuthPassword", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> basicAuthPassword;
 
+    /**
+     * @return Password for HTTP basic auth when calling the Opsgenie API. Treat as a secret.
+     * 
+     */
     public Output<Optional<String>> basicAuthPassword() {
         return Codegen.optional(this.basicAuthPassword);
     }
+    /**
+     * Username for HTTP basic auth when calling the Opsgenie API. Mutually exclusive with `bearer_token`.
+     * 
+     */
     @Export(name="basicAuthUsername", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> basicAuthUsername;
 
+    /**
+     * @return Username for HTTP basic auth when calling the Opsgenie API. Mutually exclusive with `bearer_token`.
+     * 
+     */
     public Output<Optional<String>> basicAuthUsername() {
         return Codegen.optional(this.basicAuthUsername);
     }
+    /**
+     * Bearer token sent in the `Authorization` header when calling the Opsgenie API. Treat as a secret. Mutually exclusive with basic auth.
+     * 
+     */
     @Export(name="bearerToken", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> bearerToken;
 
+    /**
+     * @return Bearer token sent in the `Authorization` header when calling the Opsgenie API. Treat as a secret. Mutually exclusive with basic auth.
+     * 
+     */
     public Output<Optional<String>> bearerToken() {
         return Codegen.optional(this.bearerToken);
     }
+    /**
+     * Detailed description of the alert. Supports Go templating.
+     * 
+     */
     @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
+    /**
+     * @return Detailed description of the alert. Supports Go templating.
+     * 
+     */
     public Output<Optional<String>> description() {
         return Codegen.optional(this.description);
     }
+    /**
+     * Arbitrary key/value pairs attached to the alert as additional context. Values support Go templating.
+     * 
+     */
     @Export(name="details", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> details;
 
+    /**
+     * @return Arbitrary key/value pairs attached to the alert as additional context. Values support Go templating.
+     * 
+     */
     public Output<Optional<Map<String,String>>> details() {
         return Codegen.optional(this.details);
     }
+    /**
+     * Alert text shown in Opsgenie. Supports Go templating.
+     * 
+     */
     @Export(name="message", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> message;
 
+    /**
+     * @return Alert text shown in Opsgenie. Supports Go templating.
+     * 
+     */
     public Output<Optional<String>> message() {
         return Codegen.optional(this.message);
     }
+    /**
+     * Name of the responder team, schedule, or escalation policy.
+     * 
+     */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
+    /**
+     * @return Name of the responder team, schedule, or escalation policy.
+     * 
+     */
     public Output<String> name() {
         return this.name;
     }
+    /**
+     * Additional note appended to the alert. Supports Go templating.
+     * 
+     */
     @Export(name="note", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> note;
 
+    /**
+     * @return Additional note appended to the alert. Supports Go templating.
+     * 
+     */
     public Output<Optional<String>> note() {
         return Codegen.optional(this.note);
     }
+    /**
+     * Priority level of the alert. One of `P1`, `P2`, `P3`, `P4`, or `P5`.
+     * 
+     */
     @Export(name="priority", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> priority;
 
+    /**
+     * @return Priority level of the alert. One of `P1`, `P2`, `P3`, `P4`, or `P5`.
+     * 
+     */
     public Output<Optional<String>> priority() {
         return Codegen.optional(this.priority);
     }
     /**
+     * Deprecated and ignored. Custom proxy URLs are not supported.
+     * 
      * @deprecated
      * custom proxy URLs are not supported
      * 
@@ -95,42 +228,94 @@ public class OpsgenieAlertNotifier extends com.pulumi.resources.CustomResource {
     @Export(name="proxyUrl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> proxyUrl;
 
+    /**
+     * @return Deprecated and ignored. Custom proxy URLs are not supported.
+     * 
+     */
     public Output<Optional<String>> proxyUrl() {
         return Codegen.optional(this.proxyUrl);
     }
+    /**
+     * Responders that Opsgenie will notify for the alert. See https://docs.opsgenie.com/docs/alert-api for accepted shapes.
+     * 
+     */
     @Export(name="responders", refs={List.class,OpsgenieAlertNotifierResponder.class}, tree="[0,1]")
     private Output</* @Nullable */ List<OpsgenieAlertNotifierResponder>> responders;
 
+    /**
+     * @return Responders that Opsgenie will notify for the alert. See https://docs.opsgenie.com/docs/alert-api for accepted shapes.
+     * 
+     */
     public Output<Optional<List<OpsgenieAlertNotifierResponder>>> responders() {
         return Codegen.optional(this.responders);
     }
+    /**
+     * Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+     * 
+     */
     @Export(name="sendResolved", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> sendResolved;
 
+    /**
+     * @return Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+     * 
+     */
     public Output<Optional<Boolean>> sendResolved() {
         return Codegen.optional(this.sendResolved);
     }
+    /**
+     * Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     @Export(name="slug", refs={String.class}, tree="[0]")
     private Output<String> slug;
 
+    /**
+     * @return Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     public Output<String> slug() {
         return this.slug;
     }
+    /**
+     * Backlink to the sender of the notification. Supports Go templating.
+     * 
+     */
     @Export(name="source", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> source;
 
+    /**
+     * @return Backlink to the sender of the notification. Supports Go templating.
+     * 
+     */
     public Output<Optional<String>> source() {
         return Codegen.optional(this.source);
     }
+    /**
+     * Tags attached to the Opsgenie alert.
+     * 
+     */
     @Export(name="tags", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> tags;
 
+    /**
+     * @return Tags attached to the Opsgenie alert.
+     * 
+     */
     public Output<Optional<List<String>>> tags() {
         return Codegen.optional(this.tags);
     }
+    /**
+     * If true, skip TLS certificate verification when calling the Opsgenie API. Disable only in trusted environments.
+     * 
+     */
     @Export(name="tlsInsecureSkipVerify", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> tlsInsecureSkipVerify;
 
+    /**
+     * @return If true, skip TLS certificate verification when calling the Opsgenie API. Disable only in trusted environments.
+     * 
+     */
     public Output<Optional<Boolean>> tlsInsecureSkipVerify() {
         return Codegen.optional(this.tlsInsecureSkipVerify);
     }

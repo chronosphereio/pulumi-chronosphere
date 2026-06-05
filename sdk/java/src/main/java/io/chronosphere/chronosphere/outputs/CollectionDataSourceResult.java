@@ -11,16 +11,32 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class CollectionDataSourceResult {
+    /**
+     * @return Read-only: free-form description of the collection.
+     * 
+     */
     private String description;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
      */
     private String id;
+    /**
+     * @return Read-only: display name of the collection.
+     * 
+     */
     private String name;
+    /**
+     * @return Slug of the collection to look up.
+     * 
+     */
     private @Nullable String slug;
 
     private CollectionDataSourceResult() {}
+    /**
+     * @return Read-only: free-form description of the collection.
+     * 
+     */
     public String description() {
         return this.description;
     }
@@ -31,9 +47,17 @@ public final class CollectionDataSourceResult {
     public String id() {
         return this.id;
     }
+    /**
+     * @return Read-only: display name of the collection.
+     * 
+     */
     public String name() {
         return this.name;
     }
+    /**
+     * @return Slug of the collection to look up.
+     * 
+     */
     public Optional<String> slug() {
         return Optional.ofNullable(this.slug);
     }

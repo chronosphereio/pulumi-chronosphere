@@ -13,6 +13,9 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class ConsumptionBudgetPriorityFilterLogFilterArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Log search query that selects matching logs. Supports only top-level operations; nested clauses are not allowed and only one type of `AND` or `OR` operator can be used.
+        /// </summary>
         [Input("query", required: true)]
         public Input<string> Query { get; set; } = null!;
 

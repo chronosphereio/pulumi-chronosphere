@@ -13,11 +13,18 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class LogIngestConfigFieldNormalizationServiceArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Value to use when no source field contains a value.
+        /// </summary>
         [Input("defaultValue")]
         public Input<string>? DefaultValue { get; set; }
 
         [Input("sanitizePatterns")]
         private InputList<string>? _sanitizePatterns;
+
+        /// <summary>
+        /// Regex patterns used to extract and sanitize the value. Each pattern must have exactly one capturing group, whose contents are used as the result.
+        /// </summary>
         public InputList<string> SanitizePatterns
         {
             get => _sanitizePatterns ?? (_sanitizePatterns = new InputList<string>());
@@ -26,6 +33,10 @@ namespace Chronosphere.Pulumi.Inputs
 
         [Input("sources")]
         private InputList<Inputs.LogIngestConfigFieldNormalizationServiceSourceArgs>? _sources;
+
+        /// <summary>
+        /// Ordered list of field paths to check for values. The first non-empty value found is used.
+        /// </summary>
         public InputList<Inputs.LogIngestConfigFieldNormalizationServiceSourceArgs> Sources
         {
             get => _sources ?? (_sources = new InputList<Inputs.LogIngestConfigFieldNormalizationServiceSourceArgs>());
@@ -34,6 +45,10 @@ namespace Chronosphere.Pulumi.Inputs
 
         [Input("valueMap")]
         private InputMap<string>? _valueMap;
+
+        /// <summary>
+        /// Optional mapping that normalizes raw values to canonical ones (for example, `warn` to `WARNING`).
+        /// </summary>
         public InputMap<string> ValueMap
         {
             get => _valueMap ?? (_valueMap = new InputMap<string>());

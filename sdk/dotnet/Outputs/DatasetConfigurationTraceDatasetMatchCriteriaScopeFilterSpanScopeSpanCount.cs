@@ -14,7 +14,13 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCount
     {
+        /// <summary>
+        /// Maximum number of matching spans, inclusive. `0` means no upper bound.
+        /// </summary>
         public readonly int? Max;
+        /// <summary>
+        /// Minimum number of matching spans, inclusive. Defaults to `0`.
+        /// </summary>
         public readonly int? Min;
 
         [OutputConstructor]

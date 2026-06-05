@@ -20,6 +20,8 @@ class LogAllocationConfigArgs:
                  dataset_allocations: Optional[pulumi.Input[Sequence[pulumi.Input['LogAllocationConfigDatasetAllocationArgs']]]] = None):
         """
         The set of arguments for constructing a LogAllocationConfig resource.
+        :param pulumi.Input['LogAllocationConfigDefaultDatasetArgs'] default_dataset: Allocation and priority configuration for the default dataset, which receives any logs not matched by a `dataset_allocation` entry.
+        :param pulumi.Input[Sequence[pulumi.Input['LogAllocationConfigDatasetAllocationArgs']]] dataset_allocations: Per-dataset allocation and priority overrides. Datasets are evaluated in order; the first match wins.
         """
         pulumi.set(__self__, "default_dataset", default_dataset)
         if dataset_allocations is not None:
@@ -28,6 +30,9 @@ class LogAllocationConfigArgs:
     @property
     @pulumi.getter(name="defaultDataset")
     def default_dataset(self) -> pulumi.Input['LogAllocationConfigDefaultDatasetArgs']:
+        """
+        Allocation and priority configuration for the default dataset, which receives any logs not matched by a `dataset_allocation` entry.
+        """
         return pulumi.get(self, "default_dataset")
 
     @default_dataset.setter
@@ -37,6 +42,9 @@ class LogAllocationConfigArgs:
     @property
     @pulumi.getter(name="datasetAllocations")
     def dataset_allocations(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LogAllocationConfigDatasetAllocationArgs']]]]:
+        """
+        Per-dataset allocation and priority overrides. Datasets are evaluated in order; the first match wins.
+        """
         return pulumi.get(self, "dataset_allocations")
 
     @dataset_allocations.setter
@@ -51,6 +59,8 @@ class _LogAllocationConfigState:
                  default_dataset: Optional[pulumi.Input['LogAllocationConfigDefaultDatasetArgs']] = None):
         """
         Input properties used for looking up and filtering LogAllocationConfig resources.
+        :param pulumi.Input[Sequence[pulumi.Input['LogAllocationConfigDatasetAllocationArgs']]] dataset_allocations: Per-dataset allocation and priority overrides. Datasets are evaluated in order; the first match wins.
+        :param pulumi.Input['LogAllocationConfigDefaultDatasetArgs'] default_dataset: Allocation and priority configuration for the default dataset, which receives any logs not matched by a `dataset_allocation` entry.
         """
         if dataset_allocations is not None:
             pulumi.set(__self__, "dataset_allocations", dataset_allocations)
@@ -60,6 +70,9 @@ class _LogAllocationConfigState:
     @property
     @pulumi.getter(name="datasetAllocations")
     def dataset_allocations(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LogAllocationConfigDatasetAllocationArgs']]]]:
+        """
+        Per-dataset allocation and priority overrides. Datasets are evaluated in order; the first match wins.
+        """
         return pulumi.get(self, "dataset_allocations")
 
     @dataset_allocations.setter
@@ -69,6 +82,9 @@ class _LogAllocationConfigState:
     @property
     @pulumi.getter(name="defaultDataset")
     def default_dataset(self) -> Optional[pulumi.Input['LogAllocationConfigDefaultDatasetArgs']]:
+        """
+        Allocation and priority configuration for the default dataset, which receives any logs not matched by a `dataset_allocation` entry.
+        """
         return pulumi.get(self, "default_dataset")
 
     @default_dataset.setter
@@ -85,9 +101,12 @@ class LogAllocationConfig(pulumi.CustomResource):
                  default_dataset: Optional[pulumi.Input[pulumi.InputType['LogAllocationConfigDefaultDatasetArgs']]] = None,
                  __props__=None):
         """
-        Create a LogAllocationConfig resource with the given unique name, props, and options.
+        Singleton config that allocates a portion of the org's log ingest quota to each dataset by priority, controlling which logs are kept when the quota is exceeded.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LogAllocationConfigDatasetAllocationArgs']]]] dataset_allocations: Per-dataset allocation and priority overrides. Datasets are evaluated in order; the first match wins.
+        :param pulumi.Input[pulumi.InputType['LogAllocationConfigDefaultDatasetArgs']] default_dataset: Allocation and priority configuration for the default dataset, which receives any logs not matched by a `dataset_allocation` entry.
         """
         ...
     @overload
@@ -96,7 +115,8 @@ class LogAllocationConfig(pulumi.CustomResource):
                  args: LogAllocationConfigArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a LogAllocationConfig resource with the given unique name, props, and options.
+        Singleton config that allocates a portion of the org's log ingest quota to each dataset by priority, controlling which logs are kept when the quota is exceeded.
+
         :param str resource_name: The name of the resource.
         :param LogAllocationConfigArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -146,6 +166,8 @@ class LogAllocationConfig(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LogAllocationConfigDatasetAllocationArgs']]]] dataset_allocations: Per-dataset allocation and priority overrides. Datasets are evaluated in order; the first match wins.
+        :param pulumi.Input[pulumi.InputType['LogAllocationConfigDefaultDatasetArgs']] default_dataset: Allocation and priority configuration for the default dataset, which receives any logs not matched by a `dataset_allocation` entry.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -158,10 +180,16 @@ class LogAllocationConfig(pulumi.CustomResource):
     @property
     @pulumi.getter(name="datasetAllocations")
     def dataset_allocations(self) -> pulumi.Output[Optional[Sequence['outputs.LogAllocationConfigDatasetAllocation']]]:
+        """
+        Per-dataset allocation and priority overrides. Datasets are evaluated in order; the first match wins.
+        """
         return pulumi.get(self, "dataset_allocations")
 
     @property
     @pulumi.getter(name="defaultDataset")
     def default_dataset(self) -> pulumi.Output['outputs.LogAllocationConfigDefaultDataset']:
+        """
+        Allocation and priority configuration for the default dataset, which receives any logs not matched by a `dataset_allocation` entry.
+        """
         return pulumi.get(self, "default_dataset")
 

@@ -12,21 +12,53 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class SLODefinitionBurnRateAlertingConfig {
+    /**
+     * @return Percentage of the error budget that can be consumed during `window` before the alert fires. Must be between 0.0 and 100.0 exclusive.
+     * 
+     */
     private Double budget;
+    /**
+     * @return Additional labels attached when this burn-rate alert fires. Can be used by notification policies to route different burn rates to different destinations.
+     * 
+     */
     private @Nullable Map<String,String> labels;
+    /**
+     * @return Severity assigned when the burn rate fires. Must be `critical` or `warn`.
+     * 
+     */
     private String severity;
+    /**
+     * @return Time window for the burn-rate calculation (e.g. `1h`, `6h`).
+     * 
+     */
     private String window;
 
     private SLODefinitionBurnRateAlertingConfig() {}
+    /**
+     * @return Percentage of the error budget that can be consumed during `window` before the alert fires. Must be between 0.0 and 100.0 exclusive.
+     * 
+     */
     public Double budget() {
         return this.budget;
     }
+    /**
+     * @return Additional labels attached when this burn-rate alert fires. Can be used by notification policies to route different burn rates to different destinations.
+     * 
+     */
     public Map<String,String> labels() {
         return this.labels == null ? Map.of() : this.labels;
     }
+    /**
+     * @return Severity assigned when the burn rate fires. Must be `critical` or `warn`.
+     * 
+     */
     public String severity() {
         return this.severity;
     }
+    /**
+     * @return Time window for the burn-rate calculation (e.g. `1h`, `6h`).
+     * 
+     */
     public String window() {
         return this.window;
     }

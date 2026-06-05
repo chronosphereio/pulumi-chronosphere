@@ -13,6 +13,9 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class ConsumptionBudgetThresholdInstantRateGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Fixed per-second rate threshold value, expressed in the threshold's `unit`.
+        /// </summary>
         [Input("fixedValuePerSec")]
         public Input<int>? FixedValuePerSec { get; set; }
 

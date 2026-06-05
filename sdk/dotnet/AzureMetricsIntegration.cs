@@ -10,27 +10,104 @@ using Pulumi;
 
 namespace Chronosphere.Pulumi
 {
+    /// <summary>
+    /// Scrapes Azure Monitor metrics from the configured subscriptions, locations, and resource types using a service-principal credential.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Pulumi = Chronosphere.Pulumi;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var subscription = new Pulumi.AzureMetricsIntegration("subscription", new()
+    ///     {
+    ///         CountMetricsEnabled = true,
+    ///         Name = "Azure Metrics",
+    ///         Principal = new Pulumi.Inputs.AzureMetricsIntegrationPrincipalArgs
+    ///         {
+    ///             ClientId = "00000000-0000-0000-0000-000000000000",
+    ///             TenantId = "00000000-0000-0000-0000-000000000000",
+    ///         },
+    ///         PropagateTags = true,
+    ///         ScrapeConfig = new Pulumi.Inputs.AzureMetricsIntegrationScrapeConfigArgs
+    ///         {
+    ///             Locations = new[]
+    ///             {
+    ///                 "eastus",
+    ///                 "westus",
+    ///             },
+    ///             ResourceTypes = new[]
+    ///             {
+    ///                 new Pulumi.Inputs.AzureMetricsIntegrationScrapeConfigResourceTypeArgs
+    ///                 {
+    ///                     Name = "Microsoft.Compute/virtualMachines",
+    ///                 },
+    ///                 new Pulumi.Inputs.AzureMetricsIntegrationScrapeConfigResourceTypeArgs
+    ///                 {
+    ///                     MetricNames = new[]
+    ///                     {
+    ///                         "UsedCapacity",
+    ///                     },
+    ///                     Name = "Microsoft.Storage/storageAccounts",
+    ///                 },
+    ///             },
+    ///             SubscriptionIds = new[]
+    ///             {
+    ///                 "00000000-0000-0000-0000-000000000000",
+    ///             },
+    ///         },
+    ///         Slug = "azure-metrics",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// </summary>
     [PulumiResourceType("chronosphere:index/azureMetricsIntegration:AzureMetricsIntegration")]
     public partial class AzureMetricsIntegration : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// If true, enables Azure count metrics for the configured resources.
+        /// </summary>
         [Output("countMetricsEnabled")]
         public Output<bool?> CountMetricsEnabled { get; private set; } = null!;
 
+        /// <summary>
+        /// Azure resource type identifier (e.g. `Microsoft.Compute/virtualMachines`).
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// Azure managed identity principal used to authenticate with Azure Monitor.
+        /// </summary>
         [Output("principal")]
         public Output<Outputs.AzureMetricsIntegrationPrincipal?> Principal { get; private set; } = null!;
 
+        /// <summary>
+        /// If true, propagates Azure resource, group, and subscription tags as metric labels.
+        /// </summary>
         [Output("propagateTags")]
         public Output<bool?> PropagateTags { get; private set; } = null!;
 
+        /// <summary>
+        /// Scope of Azure subscriptions, locations, and resource types from which to ingest metrics.
+        /// </summary>
         [Output("scrapeConfig")]
         public Output<Outputs.AzureMetricsIntegrationScrapeConfig?> ScrapeConfig { get; private set; } = null!;
 
+        /// <summary>
+        /// Stable identifier for the integration. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Output("slug")]
         public Output<string> Slug { get; private set; } = null!;
 
+        /// <summary>
+        /// If true, enables collection of Azure usage metrics under this principal (Microsoft.Compute, Microsoft.Network, Microsoft.Storage).
+        /// </summary>
         [Output("usageMetricsEnabled")]
         public Output<bool?> UsageMetricsEnabled { get; private set; } = null!;
 
@@ -81,24 +158,45 @@ namespace Chronosphere.Pulumi
 
     public sealed class AzureMetricsIntegrationArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// If true, enables Azure count metrics for the configured resources.
+        /// </summary>
         [Input("countMetricsEnabled")]
         public Input<bool>? CountMetricsEnabled { get; set; }
 
+        /// <summary>
+        /// Azure resource type identifier (e.g. `Microsoft.Compute/virtualMachines`).
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// Azure managed identity principal used to authenticate with Azure Monitor.
+        /// </summary>
         [Input("principal")]
         public Input<Inputs.AzureMetricsIntegrationPrincipalArgs>? Principal { get; set; }
 
+        /// <summary>
+        /// If true, propagates Azure resource, group, and subscription tags as metric labels.
+        /// </summary>
         [Input("propagateTags")]
         public Input<bool>? PropagateTags { get; set; }
 
+        /// <summary>
+        /// Scope of Azure subscriptions, locations, and resource types from which to ingest metrics.
+        /// </summary>
         [Input("scrapeConfig")]
         public Input<Inputs.AzureMetricsIntegrationScrapeConfigArgs>? ScrapeConfig { get; set; }
 
+        /// <summary>
+        /// Stable identifier for the integration. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 
+        /// <summary>
+        /// If true, enables collection of Azure usage metrics under this principal (Microsoft.Compute, Microsoft.Network, Microsoft.Storage).
+        /// </summary>
         [Input("usageMetricsEnabled")]
         public Input<bool>? UsageMetricsEnabled { get; set; }
 
@@ -110,24 +208,45 @@ namespace Chronosphere.Pulumi
 
     public sealed class AzureMetricsIntegrationState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// If true, enables Azure count metrics for the configured resources.
+        /// </summary>
         [Input("countMetricsEnabled")]
         public Input<bool>? CountMetricsEnabled { get; set; }
 
+        /// <summary>
+        /// Azure resource type identifier (e.g. `Microsoft.Compute/virtualMachines`).
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// Azure managed identity principal used to authenticate with Azure Monitor.
+        /// </summary>
         [Input("principal")]
         public Input<Inputs.AzureMetricsIntegrationPrincipalGetArgs>? Principal { get; set; }
 
+        /// <summary>
+        /// If true, propagates Azure resource, group, and subscription tags as metric labels.
+        /// </summary>
         [Input("propagateTags")]
         public Input<bool>? PropagateTags { get; set; }
 
+        /// <summary>
+        /// Scope of Azure subscriptions, locations, and resource types from which to ingest metrics.
+        /// </summary>
         [Input("scrapeConfig")]
         public Input<Inputs.AzureMetricsIntegrationScrapeConfigGetArgs>? ScrapeConfig { get; set; }
 
+        /// <summary>
+        /// Stable identifier for the integration. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 
+        /// <summary>
+        /// If true, enables collection of Azure usage metrics under this principal (Microsoft.Compute, Microsoft.Network, Microsoft.Storage).
+        /// </summary>
         [Input("usageMetricsEnabled")]
         public Input<bool>? UsageMetricsEnabled { get; set; }
 

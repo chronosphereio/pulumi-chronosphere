@@ -14,16 +14,32 @@ public final class TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationS
 
     public static final TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationStrategiesPerOperationStrategyArgs Empty = new TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationStrategiesPerOperationStrategyArgs();
 
+    /**
+     * Span operation (span name) this override applies to.
+     * 
+     */
     @Import(name="operation", required=true)
     private Output<String> operation;
 
+    /**
+     * @return Span operation (span name) this override applies to.
+     * 
+     */
     public Output<String> operation() {
         return this.operation;
     }
 
+    /**
+     * Probabilistic sampling configuration applied to spans whose operation matches.
+     * 
+     */
     @Import(name="probabilisticStrategy", required=true)
     private Output<TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationStrategiesPerOperationStrategyProbabilisticStrategyArgs> probabilisticStrategy;
 
+    /**
+     * @return Probabilistic sampling configuration applied to spans whose operation matches.
+     * 
+     */
     public Output<TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationStrategiesPerOperationStrategyProbabilisticStrategyArgs> probabilisticStrategy() {
         return this.probabilisticStrategy;
     }
@@ -53,20 +69,44 @@ public final class TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationS
             $ = new TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationStrategiesPerOperationStrategyArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param operation Span operation (span name) this override applies to.
+         * 
+         * @return builder
+         * 
+         */
         public Builder operation(Output<String> operation) {
             $.operation = operation;
             return this;
         }
 
+        /**
+         * @param operation Span operation (span name) this override applies to.
+         * 
+         * @return builder
+         * 
+         */
         public Builder operation(String operation) {
             return operation(Output.of(operation));
         }
 
+        /**
+         * @param probabilisticStrategy Probabilistic sampling configuration applied to spans whose operation matches.
+         * 
+         * @return builder
+         * 
+         */
         public Builder probabilisticStrategy(Output<TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationStrategiesPerOperationStrategyProbabilisticStrategyArgs> probabilisticStrategy) {
             $.probabilisticStrategy = probabilisticStrategy;
             return this;
         }
 
+        /**
+         * @param probabilisticStrategy Probabilistic sampling configuration applied to spans whose operation matches.
+         * 
+         * @return builder
+         * 
+         */
         public Builder probabilisticStrategy(TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationStrategiesPerOperationStrategyProbabilisticStrategyArgs probabilisticStrategy) {
             return probabilisticStrategy(Output.of(probabilisticStrategy));
         }

@@ -11,11 +11,14 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Tail-sampling rules that match completed traces against filters and apply per-rule sample rates (with a default rate fallback) to decide which traces are retained after the full trace has been observed.
 type TraceTailSamplingRules struct {
 	pulumi.CustomResourceState
 
+	// Default sampling decision applied after the full trace is observed when no rule in `rules` matches.
 	DefaultSampleRate TraceTailSamplingRulesDefaultSampleRatePtrOutput `pulumi:"defaultSampleRate"`
-	Rules             TraceTailSamplingRulesRuleArrayOutput            `pulumi:"rules"`
+	// Ordered list of tail-sampling rules evaluated after the full trace is observed. The first rule whose `filter` matches determines the sample rate; if none match, `defaultSampleRate` is applied.
+	Rules TraceTailSamplingRulesRuleArrayOutput `pulumi:"rules"`
 }
 
 // NewTraceTailSamplingRules registers a new resource with the given unique name, arguments, and options.
@@ -48,13 +51,17 @@ func GetTraceTailSamplingRules(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering TraceTailSamplingRules resources.
 type traceTailSamplingRulesState struct {
+	// Default sampling decision applied after the full trace is observed when no rule in `rules` matches.
 	DefaultSampleRate *TraceTailSamplingRulesDefaultSampleRate `pulumi:"defaultSampleRate"`
-	Rules             []TraceTailSamplingRulesRule             `pulumi:"rules"`
+	// Ordered list of tail-sampling rules evaluated after the full trace is observed. The first rule whose `filter` matches determines the sample rate; if none match, `defaultSampleRate` is applied.
+	Rules []TraceTailSamplingRulesRule `pulumi:"rules"`
 }
 
 type TraceTailSamplingRulesState struct {
+	// Default sampling decision applied after the full trace is observed when no rule in `rules` matches.
 	DefaultSampleRate TraceTailSamplingRulesDefaultSampleRatePtrInput
-	Rules             TraceTailSamplingRulesRuleArrayInput
+	// Ordered list of tail-sampling rules evaluated after the full trace is observed. The first rule whose `filter` matches determines the sample rate; if none match, `defaultSampleRate` is applied.
+	Rules TraceTailSamplingRulesRuleArrayInput
 }
 
 func (TraceTailSamplingRulesState) ElementType() reflect.Type {
@@ -62,14 +69,18 @@ func (TraceTailSamplingRulesState) ElementType() reflect.Type {
 }
 
 type traceTailSamplingRulesArgs struct {
+	// Default sampling decision applied after the full trace is observed when no rule in `rules` matches.
 	DefaultSampleRate *TraceTailSamplingRulesDefaultSampleRate `pulumi:"defaultSampleRate"`
-	Rules             []TraceTailSamplingRulesRule             `pulumi:"rules"`
+	// Ordered list of tail-sampling rules evaluated after the full trace is observed. The first rule whose `filter` matches determines the sample rate; if none match, `defaultSampleRate` is applied.
+	Rules []TraceTailSamplingRulesRule `pulumi:"rules"`
 }
 
 // The set of arguments for constructing a TraceTailSamplingRules resource.
 type TraceTailSamplingRulesArgs struct {
+	// Default sampling decision applied after the full trace is observed when no rule in `rules` matches.
 	DefaultSampleRate TraceTailSamplingRulesDefaultSampleRatePtrInput
-	Rules             TraceTailSamplingRulesRuleArrayInput
+	// Ordered list of tail-sampling rules evaluated after the full trace is observed. The first rule whose `filter` matches determines the sample rate; if none match, `defaultSampleRate` is applied.
+	Rules TraceTailSamplingRulesRuleArrayInput
 }
 
 func (TraceTailSamplingRulesArgs) ElementType() reflect.Type {
@@ -159,12 +170,14 @@ func (o TraceTailSamplingRulesOutput) ToTraceTailSamplingRulesOutputWithContext(
 	return o
 }
 
+// Default sampling decision applied after the full trace is observed when no rule in `rules` matches.
 func (o TraceTailSamplingRulesOutput) DefaultSampleRate() TraceTailSamplingRulesDefaultSampleRatePtrOutput {
 	return o.ApplyT(func(v *TraceTailSamplingRules) TraceTailSamplingRulesDefaultSampleRatePtrOutput {
 		return v.DefaultSampleRate
 	}).(TraceTailSamplingRulesDefaultSampleRatePtrOutput)
 }
 
+// Ordered list of tail-sampling rules evaluated after the full trace is observed. The first rule whose `filter` matches determines the sample rate; if none match, `defaultSampleRate` is applied.
 func (o TraceTailSamplingRulesOutput) Rules() TraceTailSamplingRulesRuleArrayOutput {
 	return o.ApplyT(func(v *TraceTailSamplingRules) TraceTailSamplingRulesRuleArrayOutput { return v.Rules }).(TraceTailSamplingRulesRuleArrayOutput)
 }

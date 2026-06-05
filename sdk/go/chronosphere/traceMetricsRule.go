@@ -12,17 +12,78 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// A rule that extracts a histogram metric from spans matching a trace filter, with configurable group-by keys and histogram buckets.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/chronosphereio/pulumi-chronosphere/sdk/go/chronosphere"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := chronosphere.NewTraceMetricsRule(ctx, "paymentsLatency", &chronosphere.TraceMetricsRuleArgs{
+//				GroupBies: chronosphere.TraceMetricsRuleGroupByArray{
+//					"operation",
+//				},
+//				HistogramBucketsSeconds: pulumi.Float64Array{
+//					pulumi.Float64(0.1),
+//					pulumi.Float64(0.5),
+//					pulumi.Float64(1),
+//					pulumi.Float64(2),
+//					pulumi.Float64(5),
+//				},
+//				MetricLabels: pulumi.StringMap{
+//					"service": pulumi.String("payments"),
+//				},
+//				MetricName: pulumi.String("payments_request_duration"),
+//				Name:       pulumi.String("Payments service latency"),
+//				Slug:       pulumi.String("payments-latency"),
+//				TraceFilter: &chronosphere.TraceMetricsRuleTraceFilterArgs{
+//					Spans: chronosphere.TraceMetricsRuleTraceFilterSpanArray{
+//						&chronosphere.TraceMetricsRuleTraceFilterSpanArgs{
+//							MatchType: pulumi.String("include"),
+//							Service: &chronosphere.TraceMetricsRuleTraceFilterSpanServiceArgs{
+//								Match: pulumi.String("exact"),
+//								Value: pulumi.String("payments"),
+//							},
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type TraceMetricsRule struct {
 	pulumi.CustomResourceState
 
-	GroupBies               TraceMetricsRuleGroupByArrayOutput   `pulumi:"groupBies"`
-	HistogramBucketsSeconds pulumi.Float64ArrayOutput            `pulumi:"histogramBucketsSeconds"`
-	MetricLabels            pulumi.StringMapOutput               `pulumi:"metricLabels"`
-	MetricName              pulumi.StringOutput                  `pulumi:"metricName"`
-	Name                    pulumi.StringOutput                  `pulumi:"name"`
-	ScopeFilter             TraceMetricsRuleScopeFilterPtrOutput `pulumi:"scopeFilter"`
-	Slug                    pulumi.StringOutput                  `pulumi:"slug"`
-	TraceFilter             TraceMetricsRuleTraceFilterOutput    `pulumi:"traceFilter"`
+	// Span attributes to project into metric labels. Each entry maps a key on the matched span to a label on the resulting metric series.
+	GroupBies TraceMetricsRuleGroupByArrayOutput `pulumi:"groupBies"`
+	// Histogram bucket upper bounds in seconds for the generated span-duration histogram metric.
+	HistogramBucketsSeconds pulumi.Float64ArrayOutput `pulumi:"histogramBucketsSeconds"`
+	// Static key/value labels added to every metric series emitted by the rule.
+	MetricLabels pulumi.StringMapOutput `pulumi:"metricLabels"`
+	// Base name of the generated Prometheus metrics emitted by this rule.
+	MetricName pulumi.StringOutput `pulumi:"metricName"`
+	// Display name of the trace metrics rule.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// Scope filter that further restricts which spans within a matched trace contribute to metrics or sampling. Only spans matching `spanScopes` are included in aggregation.
+	ScopeFilter TraceMetricsRuleScopeFilterPtrOutput `pulumi:"scopeFilter"`
+	// Stable identifier for the trace metrics rule. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringOutput `pulumi:"slug"`
+	// Filter that selects traces and spans. A trace matches when its trace-level conditions hold and every `span` block is satisfied by at least one span in the trace.
+	TraceFilter TraceMetricsRuleTraceFilterOutput `pulumi:"traceFilter"`
 }
 
 // NewTraceMetricsRule registers a new resource with the given unique name, arguments, and options.
@@ -64,25 +125,41 @@ func GetTraceMetricsRule(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering TraceMetricsRule resources.
 type traceMetricsRuleState struct {
-	GroupBies               []TraceMetricsRuleGroupBy    `pulumi:"groupBies"`
-	HistogramBucketsSeconds []float64                    `pulumi:"histogramBucketsSeconds"`
-	MetricLabels            map[string]string            `pulumi:"metricLabels"`
-	MetricName              *string                      `pulumi:"metricName"`
-	Name                    *string                      `pulumi:"name"`
-	ScopeFilter             *TraceMetricsRuleScopeFilter `pulumi:"scopeFilter"`
-	Slug                    *string                      `pulumi:"slug"`
-	TraceFilter             *TraceMetricsRuleTraceFilter `pulumi:"traceFilter"`
+	// Span attributes to project into metric labels. Each entry maps a key on the matched span to a label on the resulting metric series.
+	GroupBies []TraceMetricsRuleGroupBy `pulumi:"groupBies"`
+	// Histogram bucket upper bounds in seconds for the generated span-duration histogram metric.
+	HistogramBucketsSeconds []float64 `pulumi:"histogramBucketsSeconds"`
+	// Static key/value labels added to every metric series emitted by the rule.
+	MetricLabels map[string]string `pulumi:"metricLabels"`
+	// Base name of the generated Prometheus metrics emitted by this rule.
+	MetricName *string `pulumi:"metricName"`
+	// Display name of the trace metrics rule.
+	Name *string `pulumi:"name"`
+	// Scope filter that further restricts which spans within a matched trace contribute to metrics or sampling. Only spans matching `spanScopes` are included in aggregation.
+	ScopeFilter *TraceMetricsRuleScopeFilter `pulumi:"scopeFilter"`
+	// Stable identifier for the trace metrics rule. Generated from `name` if omitted. Immutable after creation.
+	Slug *string `pulumi:"slug"`
+	// Filter that selects traces and spans. A trace matches when its trace-level conditions hold and every `span` block is satisfied by at least one span in the trace.
+	TraceFilter *TraceMetricsRuleTraceFilter `pulumi:"traceFilter"`
 }
 
 type TraceMetricsRuleState struct {
-	GroupBies               TraceMetricsRuleGroupByArrayInput
+	// Span attributes to project into metric labels. Each entry maps a key on the matched span to a label on the resulting metric series.
+	GroupBies TraceMetricsRuleGroupByArrayInput
+	// Histogram bucket upper bounds in seconds for the generated span-duration histogram metric.
 	HistogramBucketsSeconds pulumi.Float64ArrayInput
-	MetricLabels            pulumi.StringMapInput
-	MetricName              pulumi.StringPtrInput
-	Name                    pulumi.StringPtrInput
-	ScopeFilter             TraceMetricsRuleScopeFilterPtrInput
-	Slug                    pulumi.StringPtrInput
-	TraceFilter             TraceMetricsRuleTraceFilterPtrInput
+	// Static key/value labels added to every metric series emitted by the rule.
+	MetricLabels pulumi.StringMapInput
+	// Base name of the generated Prometheus metrics emitted by this rule.
+	MetricName pulumi.StringPtrInput
+	// Display name of the trace metrics rule.
+	Name pulumi.StringPtrInput
+	// Scope filter that further restricts which spans within a matched trace contribute to metrics or sampling. Only spans matching `spanScopes` are included in aggregation.
+	ScopeFilter TraceMetricsRuleScopeFilterPtrInput
+	// Stable identifier for the trace metrics rule. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringPtrInput
+	// Filter that selects traces and spans. A trace matches when its trace-level conditions hold and every `span` block is satisfied by at least one span in the trace.
+	TraceFilter TraceMetricsRuleTraceFilterPtrInput
 }
 
 func (TraceMetricsRuleState) ElementType() reflect.Type {
@@ -90,26 +167,42 @@ func (TraceMetricsRuleState) ElementType() reflect.Type {
 }
 
 type traceMetricsRuleArgs struct {
-	GroupBies               []TraceMetricsRuleGroupBy    `pulumi:"groupBies"`
-	HistogramBucketsSeconds []float64                    `pulumi:"histogramBucketsSeconds"`
-	MetricLabels            map[string]string            `pulumi:"metricLabels"`
-	MetricName              string                       `pulumi:"metricName"`
-	Name                    string                       `pulumi:"name"`
-	ScopeFilter             *TraceMetricsRuleScopeFilter `pulumi:"scopeFilter"`
-	Slug                    *string                      `pulumi:"slug"`
-	TraceFilter             TraceMetricsRuleTraceFilter  `pulumi:"traceFilter"`
+	// Span attributes to project into metric labels. Each entry maps a key on the matched span to a label on the resulting metric series.
+	GroupBies []TraceMetricsRuleGroupBy `pulumi:"groupBies"`
+	// Histogram bucket upper bounds in seconds for the generated span-duration histogram metric.
+	HistogramBucketsSeconds []float64 `pulumi:"histogramBucketsSeconds"`
+	// Static key/value labels added to every metric series emitted by the rule.
+	MetricLabels map[string]string `pulumi:"metricLabels"`
+	// Base name of the generated Prometheus metrics emitted by this rule.
+	MetricName string `pulumi:"metricName"`
+	// Display name of the trace metrics rule.
+	Name string `pulumi:"name"`
+	// Scope filter that further restricts which spans within a matched trace contribute to metrics or sampling. Only spans matching `spanScopes` are included in aggregation.
+	ScopeFilter *TraceMetricsRuleScopeFilter `pulumi:"scopeFilter"`
+	// Stable identifier for the trace metrics rule. Generated from `name` if omitted. Immutable after creation.
+	Slug *string `pulumi:"slug"`
+	// Filter that selects traces and spans. A trace matches when its trace-level conditions hold and every `span` block is satisfied by at least one span in the trace.
+	TraceFilter TraceMetricsRuleTraceFilter `pulumi:"traceFilter"`
 }
 
 // The set of arguments for constructing a TraceMetricsRule resource.
 type TraceMetricsRuleArgs struct {
-	GroupBies               TraceMetricsRuleGroupByArrayInput
+	// Span attributes to project into metric labels. Each entry maps a key on the matched span to a label on the resulting metric series.
+	GroupBies TraceMetricsRuleGroupByArrayInput
+	// Histogram bucket upper bounds in seconds for the generated span-duration histogram metric.
 	HistogramBucketsSeconds pulumi.Float64ArrayInput
-	MetricLabels            pulumi.StringMapInput
-	MetricName              pulumi.StringInput
-	Name                    pulumi.StringInput
-	ScopeFilter             TraceMetricsRuleScopeFilterPtrInput
-	Slug                    pulumi.StringPtrInput
-	TraceFilter             TraceMetricsRuleTraceFilterInput
+	// Static key/value labels added to every metric series emitted by the rule.
+	MetricLabels pulumi.StringMapInput
+	// Base name of the generated Prometheus metrics emitted by this rule.
+	MetricName pulumi.StringInput
+	// Display name of the trace metrics rule.
+	Name pulumi.StringInput
+	// Scope filter that further restricts which spans within a matched trace contribute to metrics or sampling. Only spans matching `spanScopes` are included in aggregation.
+	ScopeFilter TraceMetricsRuleScopeFilterPtrInput
+	// Stable identifier for the trace metrics rule. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringPtrInput
+	// Filter that selects traces and spans. A trace matches when its trace-level conditions hold and every `span` block is satisfied by at least one span in the trace.
+	TraceFilter TraceMetricsRuleTraceFilterInput
 }
 
 func (TraceMetricsRuleArgs) ElementType() reflect.Type {
@@ -199,34 +292,42 @@ func (o TraceMetricsRuleOutput) ToTraceMetricsRuleOutputWithContext(ctx context.
 	return o
 }
 
+// Span attributes to project into metric labels. Each entry maps a key on the matched span to a label on the resulting metric series.
 func (o TraceMetricsRuleOutput) GroupBies() TraceMetricsRuleGroupByArrayOutput {
 	return o.ApplyT(func(v *TraceMetricsRule) TraceMetricsRuleGroupByArrayOutput { return v.GroupBies }).(TraceMetricsRuleGroupByArrayOutput)
 }
 
+// Histogram bucket upper bounds in seconds for the generated span-duration histogram metric.
 func (o TraceMetricsRuleOutput) HistogramBucketsSeconds() pulumi.Float64ArrayOutput {
 	return o.ApplyT(func(v *TraceMetricsRule) pulumi.Float64ArrayOutput { return v.HistogramBucketsSeconds }).(pulumi.Float64ArrayOutput)
 }
 
+// Static key/value labels added to every metric series emitted by the rule.
 func (o TraceMetricsRuleOutput) MetricLabels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *TraceMetricsRule) pulumi.StringMapOutput { return v.MetricLabels }).(pulumi.StringMapOutput)
 }
 
+// Base name of the generated Prometheus metrics emitted by this rule.
 func (o TraceMetricsRuleOutput) MetricName() pulumi.StringOutput {
 	return o.ApplyT(func(v *TraceMetricsRule) pulumi.StringOutput { return v.MetricName }).(pulumi.StringOutput)
 }
 
+// Display name of the trace metrics rule.
 func (o TraceMetricsRuleOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *TraceMetricsRule) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// Scope filter that further restricts which spans within a matched trace contribute to metrics or sampling. Only spans matching `spanScopes` are included in aggregation.
 func (o TraceMetricsRuleOutput) ScopeFilter() TraceMetricsRuleScopeFilterPtrOutput {
 	return o.ApplyT(func(v *TraceMetricsRule) TraceMetricsRuleScopeFilterPtrOutput { return v.ScopeFilter }).(TraceMetricsRuleScopeFilterPtrOutput)
 }
 
+// Stable identifier for the trace metrics rule. Generated from `name` if omitted. Immutable after creation.
 func (o TraceMetricsRuleOutput) Slug() pulumi.StringOutput {
 	return o.ApplyT(func(v *TraceMetricsRule) pulumi.StringOutput { return v.Slug }).(pulumi.StringOutput)
 }
 
+// Filter that selects traces and spans. A trace matches when its trace-level conditions hold and every `span` block is satisfied by at least one span in the trace.
 func (o TraceMetricsRuleOutput) TraceFilter() TraceMetricsRuleTraceFilterOutput {
 	return o.ApplyT(func(v *TraceMetricsRule) TraceMetricsRuleTraceFilterOutput { return v.TraceFilter }).(TraceMetricsRuleTraceFilterOutput)
 }

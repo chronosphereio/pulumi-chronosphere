@@ -16,9 +16,17 @@ public final class DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterArgs 
 
     public static final DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterArgs Empty = new DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterArgs();
 
+    /**
+     * Span conditions that select which spans are aggregated. Spans must match at least one block to be included.
+     * 
+     */
     @Import(name="spanScopes")
     private @Nullable Output<List<DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeArgs>> spanScopes;
 
+    /**
+     * @return Span conditions that select which spans are aggregated. Spans must match at least one block to be included.
+     * 
+     */
     public Optional<Output<List<DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeArgs>>> spanScopes() {
         return Optional.ofNullable(this.spanScopes);
     }
@@ -47,15 +55,33 @@ public final class DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterArgs 
             $ = new DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param spanScopes Span conditions that select which spans are aggregated. Spans must match at least one block to be included.
+         * 
+         * @return builder
+         * 
+         */
         public Builder spanScopes(@Nullable Output<List<DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeArgs>> spanScopes) {
             $.spanScopes = spanScopes;
             return this;
         }
 
+        /**
+         * @param spanScopes Span conditions that select which spans are aggregated. Spans must match at least one block to be included.
+         * 
+         * @return builder
+         * 
+         */
         public Builder spanScopes(List<DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeArgs> spanScopes) {
             return spanScopes(Output.of(spanScopes));
         }
 
+        /**
+         * @param spanScopes Span conditions that select which spans are aggregated. Spans must match at least one block to be included.
+         * 
+         * @return builder
+         * 
+         */
         public Builder spanScopes(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeArgs... spanScopes) {
             return spanScopes(List.of(spanScopes));
         }

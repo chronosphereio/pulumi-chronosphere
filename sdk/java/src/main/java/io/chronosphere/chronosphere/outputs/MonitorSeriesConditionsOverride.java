@@ -11,13 +11,29 @@ import java.util.Objects;
 
 @CustomType
 public final class MonitorSeriesConditionsOverride {
+    /**
+     * @return One or more severity/threshold conditions. Multiple conditions enable multi-severity monitors (e.g. warn at one threshold, page at a higher one).
+     * 
+     */
     private List<MonitorSeriesConditionsOverrideCondition> conditions;
+    /**
+     * @return List of label matchers used to select a subset of series.
+     * 
+     */
     private List<MonitorSeriesConditionsOverrideLabelMatcher> labelMatchers;
 
     private MonitorSeriesConditionsOverride() {}
+    /**
+     * @return One or more severity/threshold conditions. Multiple conditions enable multi-severity monitors (e.g. warn at one threshold, page at a higher one).
+     * 
+     */
     public List<MonitorSeriesConditionsOverrideCondition> conditions() {
         return this.conditions;
     }
+    /**
+     * @return List of label matchers used to select a subset of series.
+     * 
+     */
     public List<MonitorSeriesConditionsOverrideLabelMatcher> labelMatchers() {
         return this.labelMatchers;
     }

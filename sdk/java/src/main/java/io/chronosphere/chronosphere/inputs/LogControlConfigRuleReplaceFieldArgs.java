@@ -19,44 +19,92 @@ public final class LogControlConfigRuleReplaceFieldArgs extends com.pulumi.resou
 
     public static final LogControlConfigRuleReplaceFieldArgs Empty = new LogControlConfigRuleReplaceFieldArgs();
 
+    /**
+     * Path to a field within a log record.
+     * 
+     */
     @Import(name="field")
     private @Nullable Output<LogControlConfigRuleReplaceFieldFieldArgs> field;
 
+    /**
+     * @return Path to a field within a log record.
+     * 
+     */
     public Optional<Output<LogControlConfigRuleReplaceFieldFieldArgs>> field() {
         return Optional.ofNullable(this.field);
     }
 
+    /**
+     * Replace field values using a key/value lookup table. Exactly one of `mapped_value` or `static_value` must be set.
+     * 
+     */
     @Import(name="mappedValue")
     private @Nullable Output<LogControlConfigRuleReplaceFieldMappedValueArgs> mappedValue;
 
+    /**
+     * @return Replace field values using a key/value lookup table. Exactly one of `mapped_value` or `static_value` must be set.
+     * 
+     */
     public Optional<Output<LogControlConfigRuleReplaceFieldMappedValueArgs>> mappedValue() {
         return Optional.ofNullable(this.mappedValue);
     }
 
+    /**
+     * If `true`, replaces all matches. If `false`, replaces only the first match.
+     * 
+     */
     @Import(name="replaceAll")
     private @Nullable Output<Boolean> replaceAll;
 
+    /**
+     * @return If `true`, replaces all matches. If `false`, replaces only the first match.
+     * 
+     */
     public Optional<Output<Boolean>> replaceAll() {
         return Optional.ofNullable(this.replaceAll);
     }
 
+    /**
+     * Mode that controls how the replacement is applied to matched content.
+     * 
+     */
     @Import(name="replaceMode")
     private @Nullable Output<String> replaceMode;
 
+    /**
+     * @return Mode that controls how the replacement is applied to matched content.
+     * 
+     */
     public Optional<Output<String>> replaceMode() {
         return Optional.ofNullable(this.replaceMode);
     }
 
+    /**
+     * Regular expression that selects which part of the field value to replace.
+     * 
+     */
     @Import(name="replaceRegex")
     private @Nullable Output<String> replaceRegex;
 
+    /**
+     * @return Regular expression that selects which part of the field value to replace.
+     * 
+     */
     public Optional<Output<String>> replaceRegex() {
         return Optional.ofNullable(this.replaceRegex);
     }
 
+    /**
+     * Replace matched content with a static string. Exactly one of `mapped_value` or `static_value` must be set.
+     * 
+     */
     @Import(name="staticValue")
     private @Nullable Output<LogControlConfigRuleReplaceFieldStaticValueArgs> staticValue;
 
+    /**
+     * @return Replace matched content with a static string. Exactly one of `mapped_value` or `static_value` must be set.
+     * 
+     */
     public Optional<Output<LogControlConfigRuleReplaceFieldStaticValueArgs>> staticValue() {
         return Optional.ofNullable(this.staticValue);
     }
@@ -90,56 +138,128 @@ public final class LogControlConfigRuleReplaceFieldArgs extends com.pulumi.resou
             $ = new LogControlConfigRuleReplaceFieldArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param field Path to a field within a log record.
+         * 
+         * @return builder
+         * 
+         */
         public Builder field(@Nullable Output<LogControlConfigRuleReplaceFieldFieldArgs> field) {
             $.field = field;
             return this;
         }
 
+        /**
+         * @param field Path to a field within a log record.
+         * 
+         * @return builder
+         * 
+         */
         public Builder field(LogControlConfigRuleReplaceFieldFieldArgs field) {
             return field(Output.of(field));
         }
 
+        /**
+         * @param mappedValue Replace field values using a key/value lookup table. Exactly one of `mapped_value` or `static_value` must be set.
+         * 
+         * @return builder
+         * 
+         */
         public Builder mappedValue(@Nullable Output<LogControlConfigRuleReplaceFieldMappedValueArgs> mappedValue) {
             $.mappedValue = mappedValue;
             return this;
         }
 
+        /**
+         * @param mappedValue Replace field values using a key/value lookup table. Exactly one of `mapped_value` or `static_value` must be set.
+         * 
+         * @return builder
+         * 
+         */
         public Builder mappedValue(LogControlConfigRuleReplaceFieldMappedValueArgs mappedValue) {
             return mappedValue(Output.of(mappedValue));
         }
 
+        /**
+         * @param replaceAll If `true`, replaces all matches. If `false`, replaces only the first match.
+         * 
+         * @return builder
+         * 
+         */
         public Builder replaceAll(@Nullable Output<Boolean> replaceAll) {
             $.replaceAll = replaceAll;
             return this;
         }
 
+        /**
+         * @param replaceAll If `true`, replaces all matches. If `false`, replaces only the first match.
+         * 
+         * @return builder
+         * 
+         */
         public Builder replaceAll(Boolean replaceAll) {
             return replaceAll(Output.of(replaceAll));
         }
 
+        /**
+         * @param replaceMode Mode that controls how the replacement is applied to matched content.
+         * 
+         * @return builder
+         * 
+         */
         public Builder replaceMode(@Nullable Output<String> replaceMode) {
             $.replaceMode = replaceMode;
             return this;
         }
 
+        /**
+         * @param replaceMode Mode that controls how the replacement is applied to matched content.
+         * 
+         * @return builder
+         * 
+         */
         public Builder replaceMode(String replaceMode) {
             return replaceMode(Output.of(replaceMode));
         }
 
+        /**
+         * @param replaceRegex Regular expression that selects which part of the field value to replace.
+         * 
+         * @return builder
+         * 
+         */
         public Builder replaceRegex(@Nullable Output<String> replaceRegex) {
             $.replaceRegex = replaceRegex;
             return this;
         }
 
+        /**
+         * @param replaceRegex Regular expression that selects which part of the field value to replace.
+         * 
+         * @return builder
+         * 
+         */
         public Builder replaceRegex(String replaceRegex) {
             return replaceRegex(Output.of(replaceRegex));
         }
 
+        /**
+         * @param staticValue Replace matched content with a static string. Exactly one of `mapped_value` or `static_value` must be set.
+         * 
+         * @return builder
+         * 
+         */
         public Builder staticValue(@Nullable Output<LogControlConfigRuleReplaceFieldStaticValueArgs> staticValue) {
             $.staticValue = staticValue;
             return this;
         }
 
+        /**
+         * @param staticValue Replace matched content with a static string. Exactly one of `mapped_value` or `static_value` must be set.
+         * 
+         * @return builder
+         * 
+         */
         public Builder staticValue(LogControlConfigRuleReplaceFieldStaticValueArgs staticValue) {
             return staticValue(Output.of(staticValue));
         }

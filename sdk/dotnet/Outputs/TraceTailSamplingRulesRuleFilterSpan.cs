@@ -14,15 +14,45 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class TraceTailSamplingRulesRuleFilterSpan
     {
+        /// <summary>
+        /// Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, max_secs]` range.
+        /// </summary>
         public readonly Outputs.TraceTailSamplingRulesRuleFilterSpanDuration? Duration;
+        /// <summary>
+        /// Matches traces or spans where the target boolean field equals `value`.
+        /// </summary>
         public readonly Outputs.TraceTailSamplingRulesRuleFilterSpanError? Error;
+        /// <summary>
+        /// Matches traces or spans where the target boolean field equals `value`.
+        /// </summary>
         public readonly Outputs.TraceTailSamplingRulesRuleFilterSpanIsRootSpan? IsRootSpan;
+        /// <summary>
+        /// Whether matching spans are included (`INCLUDE`) or excluded (`EXCLUDE`) from the scope. Defaults to `INCLUDE`.
+        /// </summary>
         public readonly string? MatchType;
+        /// <summary>
+        /// Matches traces or spans where the target string field satisfies the match condition.
+        /// </summary>
         public readonly Outputs.TraceTailSamplingRulesRuleFilterSpanOperation? Operation;
+        /// <summary>
+        /// Matches traces or spans where the target string field satisfies the match condition.
+        /// </summary>
         public readonly Outputs.TraceTailSamplingRulesRuleFilterSpanParentOperation? ParentOperation;
+        /// <summary>
+        /// Matches traces or spans where the target string field satisfies the match condition.
+        /// </summary>
         public readonly Outputs.TraceTailSamplingRulesRuleFilterSpanParentService? ParentService;
+        /// <summary>
+        /// Matches traces or spans where the target string field satisfies the match condition.
+        /// </summary>
         public readonly Outputs.TraceTailSamplingRulesRuleFilterSpanService? Service;
+        /// <summary>
+        /// Matches traces where the number of spans satisfying the surrounding span conditions falls within the inclusive `[min, max]` range.
+        /// </summary>
         public readonly Outputs.TraceTailSamplingRulesRuleFilterSpanSpanCount? SpanCount;
+        /// <summary>
+        /// Matches spans whose tag (span attribute) with the given `key` has a value satisfying the nested string or numeric filter.
+        /// </summary>
         public readonly ImmutableArray<Outputs.TraceTailSamplingRulesRuleFilterSpanTag> Tags;
 
         [OutputConstructor]

@@ -15,15 +15,25 @@ namespace Chronosphere.Pulumi.Inputs
     {
         [Input("inValues")]
         private InputList<string>? _inValues;
+
+        /// <summary>
+        /// Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        /// </summary>
         public InputList<string> InValues
         {
             get => _inValues ?? (_inValues = new InputList<string>());
             set => _inValues = value;
         }
 
+        /// <summary>
+        /// Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        /// </summary>
         [Input("match")]
         public Input<string>? Match { get; set; }
 
+        /// <summary>
+        /// Boolean value the target field is compared against.
+        /// </summary>
         [Input("value")]
         public Input<string>? Value { get; set; }
 

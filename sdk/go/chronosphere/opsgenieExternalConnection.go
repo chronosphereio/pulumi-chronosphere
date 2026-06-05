@@ -12,17 +12,54 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Workspace-scoped OpsGenie credentials that downstream notifiers and LogScale actions can reference. Centralizes the OpsGenie API key so it isn't duplicated across individual notifiers; modern equivalent of the per-notifier credentials.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/chronosphereio/pulumi-chronosphere/sdk/go/chronosphere"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := chronosphere.NewOpsgenieExternalConnection(ctx, "opsgenie", &chronosphere.OpsgenieExternalConnectionArgs{
+//				ApiKey: pulumi.String("XXXXX"),
+//				ApiUrl: pulumi.String("https://api.opsgenie.com/"),
+//				Name:   pulumi.String("OpsGenie"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type OpsgenieExternalConnection struct {
 	pulumi.CustomResourceState
 
-	ApiKey                pulumi.StringPtrOutput `pulumi:"apiKey"`
-	ApiUrl                pulumi.StringPtrOutput `pulumi:"apiUrl"`
-	BasicAuthPassword     pulumi.StringPtrOutput `pulumi:"basicAuthPassword"`
-	BasicAuthUsername     pulumi.StringPtrOutput `pulumi:"basicAuthUsername"`
-	BearerToken           pulumi.StringPtrOutput `pulumi:"bearerToken"`
-	Name                  pulumi.StringOutput    `pulumi:"name"`
-	Slug                  pulumi.StringOutput    `pulumi:"slug"`
-	TlsInsecureSkipVerify pulumi.BoolPtrOutput   `pulumi:"tlsInsecureSkipVerify"`
+	// OpsGenie integration API key used to authenticate alert delivery. Treat as a secret.
+	ApiKey pulumi.StringPtrOutput `pulumi:"apiKey"`
+	// Base URL of the OpsGenie API. Override to target the EU region or a custom endpoint.
+	ApiUrl pulumi.StringPtrOutput `pulumi:"apiUrl"`
+	// Password for HTTP basic auth when calling OpsGenie. Treat as a secret.
+	BasicAuthPassword pulumi.StringPtrOutput `pulumi:"basicAuthPassword"`
+	// Username for HTTP basic auth when calling OpsGenie. Mutually exclusive with `bearerToken`.
+	BasicAuthUsername pulumi.StringPtrOutput `pulumi:"basicAuthUsername"`
+	// Bearer token sent in the `Authorization` header when calling OpsGenie. Mutually exclusive with basic auth. Treat as a secret.
+	BearerToken pulumi.StringPtrOutput `pulumi:"bearerToken"`
+	// Display name of the external connection.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringOutput `pulumi:"slug"`
+	// If true, skip TLS certificate verification when calling OpsGenie. Disable only in trusted environments.
+	TlsInsecureSkipVerify pulumi.BoolPtrOutput `pulumi:"tlsInsecureSkipVerify"`
 }
 
 // NewOpsgenieExternalConnection registers a new resource with the given unique name, arguments, and options.
@@ -69,24 +106,40 @@ func GetOpsgenieExternalConnection(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering OpsgenieExternalConnection resources.
 type opsgenieExternalConnectionState struct {
-	ApiKey                *string `pulumi:"apiKey"`
-	ApiUrl                *string `pulumi:"apiUrl"`
-	BasicAuthPassword     *string `pulumi:"basicAuthPassword"`
-	BasicAuthUsername     *string `pulumi:"basicAuthUsername"`
-	BearerToken           *string `pulumi:"bearerToken"`
-	Name                  *string `pulumi:"name"`
-	Slug                  *string `pulumi:"slug"`
-	TlsInsecureSkipVerify *bool   `pulumi:"tlsInsecureSkipVerify"`
+	// OpsGenie integration API key used to authenticate alert delivery. Treat as a secret.
+	ApiKey *string `pulumi:"apiKey"`
+	// Base URL of the OpsGenie API. Override to target the EU region or a custom endpoint.
+	ApiUrl *string `pulumi:"apiUrl"`
+	// Password for HTTP basic auth when calling OpsGenie. Treat as a secret.
+	BasicAuthPassword *string `pulumi:"basicAuthPassword"`
+	// Username for HTTP basic auth when calling OpsGenie. Mutually exclusive with `bearerToken`.
+	BasicAuthUsername *string `pulumi:"basicAuthUsername"`
+	// Bearer token sent in the `Authorization` header when calling OpsGenie. Mutually exclusive with basic auth. Treat as a secret.
+	BearerToken *string `pulumi:"bearerToken"`
+	// Display name of the external connection.
+	Name *string `pulumi:"name"`
+	// Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+	Slug *string `pulumi:"slug"`
+	// If true, skip TLS certificate verification when calling OpsGenie. Disable only in trusted environments.
+	TlsInsecureSkipVerify *bool `pulumi:"tlsInsecureSkipVerify"`
 }
 
 type OpsgenieExternalConnectionState struct {
-	ApiKey                pulumi.StringPtrInput
-	ApiUrl                pulumi.StringPtrInput
-	BasicAuthPassword     pulumi.StringPtrInput
-	BasicAuthUsername     pulumi.StringPtrInput
-	BearerToken           pulumi.StringPtrInput
-	Name                  pulumi.StringPtrInput
-	Slug                  pulumi.StringPtrInput
+	// OpsGenie integration API key used to authenticate alert delivery. Treat as a secret.
+	ApiKey pulumi.StringPtrInput
+	// Base URL of the OpsGenie API. Override to target the EU region or a custom endpoint.
+	ApiUrl pulumi.StringPtrInput
+	// Password for HTTP basic auth when calling OpsGenie. Treat as a secret.
+	BasicAuthPassword pulumi.StringPtrInput
+	// Username for HTTP basic auth when calling OpsGenie. Mutually exclusive with `bearerToken`.
+	BasicAuthUsername pulumi.StringPtrInput
+	// Bearer token sent in the `Authorization` header when calling OpsGenie. Mutually exclusive with basic auth. Treat as a secret.
+	BearerToken pulumi.StringPtrInput
+	// Display name of the external connection.
+	Name pulumi.StringPtrInput
+	// Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringPtrInput
+	// If true, skip TLS certificate verification when calling OpsGenie. Disable only in trusted environments.
 	TlsInsecureSkipVerify pulumi.BoolPtrInput
 }
 
@@ -95,25 +148,41 @@ func (OpsgenieExternalConnectionState) ElementType() reflect.Type {
 }
 
 type opsgenieExternalConnectionArgs struct {
-	ApiKey                *string `pulumi:"apiKey"`
-	ApiUrl                *string `pulumi:"apiUrl"`
-	BasicAuthPassword     *string `pulumi:"basicAuthPassword"`
-	BasicAuthUsername     *string `pulumi:"basicAuthUsername"`
-	BearerToken           *string `pulumi:"bearerToken"`
-	Name                  string  `pulumi:"name"`
-	Slug                  *string `pulumi:"slug"`
-	TlsInsecureSkipVerify *bool   `pulumi:"tlsInsecureSkipVerify"`
+	// OpsGenie integration API key used to authenticate alert delivery. Treat as a secret.
+	ApiKey *string `pulumi:"apiKey"`
+	// Base URL of the OpsGenie API. Override to target the EU region or a custom endpoint.
+	ApiUrl *string `pulumi:"apiUrl"`
+	// Password for HTTP basic auth when calling OpsGenie. Treat as a secret.
+	BasicAuthPassword *string `pulumi:"basicAuthPassword"`
+	// Username for HTTP basic auth when calling OpsGenie. Mutually exclusive with `bearerToken`.
+	BasicAuthUsername *string `pulumi:"basicAuthUsername"`
+	// Bearer token sent in the `Authorization` header when calling OpsGenie. Mutually exclusive with basic auth. Treat as a secret.
+	BearerToken *string `pulumi:"bearerToken"`
+	// Display name of the external connection.
+	Name string `pulumi:"name"`
+	// Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+	Slug *string `pulumi:"slug"`
+	// If true, skip TLS certificate verification when calling OpsGenie. Disable only in trusted environments.
+	TlsInsecureSkipVerify *bool `pulumi:"tlsInsecureSkipVerify"`
 }
 
 // The set of arguments for constructing a OpsgenieExternalConnection resource.
 type OpsgenieExternalConnectionArgs struct {
-	ApiKey                pulumi.StringPtrInput
-	ApiUrl                pulumi.StringPtrInput
-	BasicAuthPassword     pulumi.StringPtrInput
-	BasicAuthUsername     pulumi.StringPtrInput
-	BearerToken           pulumi.StringPtrInput
-	Name                  pulumi.StringInput
-	Slug                  pulumi.StringPtrInput
+	// OpsGenie integration API key used to authenticate alert delivery. Treat as a secret.
+	ApiKey pulumi.StringPtrInput
+	// Base URL of the OpsGenie API. Override to target the EU region or a custom endpoint.
+	ApiUrl pulumi.StringPtrInput
+	// Password for HTTP basic auth when calling OpsGenie. Treat as a secret.
+	BasicAuthPassword pulumi.StringPtrInput
+	// Username for HTTP basic auth when calling OpsGenie. Mutually exclusive with `bearerToken`.
+	BasicAuthUsername pulumi.StringPtrInput
+	// Bearer token sent in the `Authorization` header when calling OpsGenie. Mutually exclusive with basic auth. Treat as a secret.
+	BearerToken pulumi.StringPtrInput
+	// Display name of the external connection.
+	Name pulumi.StringInput
+	// Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringPtrInput
+	// If true, skip TLS certificate verification when calling OpsGenie. Disable only in trusted environments.
 	TlsInsecureSkipVerify pulumi.BoolPtrInput
 }
 
@@ -204,34 +273,42 @@ func (o OpsgenieExternalConnectionOutput) ToOpsgenieExternalConnectionOutputWith
 	return o
 }
 
+// OpsGenie integration API key used to authenticate alert delivery. Treat as a secret.
 func (o OpsgenieExternalConnectionOutput) ApiKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *OpsgenieExternalConnection) pulumi.StringPtrOutput { return v.ApiKey }).(pulumi.StringPtrOutput)
 }
 
+// Base URL of the OpsGenie API. Override to target the EU region or a custom endpoint.
 func (o OpsgenieExternalConnectionOutput) ApiUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *OpsgenieExternalConnection) pulumi.StringPtrOutput { return v.ApiUrl }).(pulumi.StringPtrOutput)
 }
 
+// Password for HTTP basic auth when calling OpsGenie. Treat as a secret.
 func (o OpsgenieExternalConnectionOutput) BasicAuthPassword() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *OpsgenieExternalConnection) pulumi.StringPtrOutput { return v.BasicAuthPassword }).(pulumi.StringPtrOutput)
 }
 
+// Username for HTTP basic auth when calling OpsGenie. Mutually exclusive with `bearerToken`.
 func (o OpsgenieExternalConnectionOutput) BasicAuthUsername() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *OpsgenieExternalConnection) pulumi.StringPtrOutput { return v.BasicAuthUsername }).(pulumi.StringPtrOutput)
 }
 
+// Bearer token sent in the `Authorization` header when calling OpsGenie. Mutually exclusive with basic auth. Treat as a secret.
 func (o OpsgenieExternalConnectionOutput) BearerToken() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *OpsgenieExternalConnection) pulumi.StringPtrOutput { return v.BearerToken }).(pulumi.StringPtrOutput)
 }
 
+// Display name of the external connection.
 func (o OpsgenieExternalConnectionOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *OpsgenieExternalConnection) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
 func (o OpsgenieExternalConnectionOutput) Slug() pulumi.StringOutput {
 	return o.ApplyT(func(v *OpsgenieExternalConnection) pulumi.StringOutput { return v.Slug }).(pulumi.StringOutput)
 }
 
+// If true, skip TLS certificate verification when calling OpsGenie. Disable only in trusted environments.
 func (o OpsgenieExternalConnectionOutput) TlsInsecureSkipVerify() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *OpsgenieExternalConnection) pulumi.BoolPtrOutput { return v.TlsInsecureSkipVerify }).(pulumi.BoolPtrOutput)
 }

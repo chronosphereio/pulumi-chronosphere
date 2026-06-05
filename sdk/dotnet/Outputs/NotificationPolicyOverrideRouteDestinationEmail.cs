@@ -14,6 +14,9 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class NotificationPolicyOverrideRouteDestinationEmail
     {
+        /// <summary>
+        /// Email addresses to deliver notifications to.
+        /// </summary>
         public readonly ImmutableArray<string> Addresses;
 
         [OutputConstructor]

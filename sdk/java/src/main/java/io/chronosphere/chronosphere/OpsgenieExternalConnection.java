@@ -16,53 +16,153 @@ import java.util.List;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
+/**
+ * Workspace-scoped OpsGenie credentials that downstream notifiers and LogScale actions can reference. Centralizes the OpsGenie API key so it isn&#39;t duplicated across individual notifiers; modern equivalent of the per-notifier credentials.
+ * 
+ * ## Example Usage
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.chronosphere.OpsgenieExternalConnection;
+ * import com.pulumi.chronosphere.OpsgenieExternalConnectionArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var opsgenie = new OpsgenieExternalConnection(&#34;opsgenie&#34;, OpsgenieExternalConnectionArgs.builder()        
+ *             .apiKey(&#34;XXXXX&#34;)
+ *             .apiUrl(&#34;https://api.opsgenie.com/&#34;)
+ *             .name(&#34;OpsGenie&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ */
 @ResourceType(type="chronosphere:index/opsgenieExternalConnection:OpsgenieExternalConnection")
 public class OpsgenieExternalConnection extends com.pulumi.resources.CustomResource {
+    /**
+     * OpsGenie integration API key used to authenticate alert delivery. Treat as a secret.
+     * 
+     */
     @Export(name="apiKey", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> apiKey;
 
+    /**
+     * @return OpsGenie integration API key used to authenticate alert delivery. Treat as a secret.
+     * 
+     */
     public Output<Optional<String>> apiKey() {
         return Codegen.optional(this.apiKey);
     }
+    /**
+     * Base URL of the OpsGenie API. Override to target the EU region or a custom endpoint.
+     * 
+     */
     @Export(name="apiUrl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> apiUrl;
 
+    /**
+     * @return Base URL of the OpsGenie API. Override to target the EU region or a custom endpoint.
+     * 
+     */
     public Output<Optional<String>> apiUrl() {
         return Codegen.optional(this.apiUrl);
     }
+    /**
+     * Password for HTTP basic auth when calling OpsGenie. Treat as a secret.
+     * 
+     */
     @Export(name="basicAuthPassword", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> basicAuthPassword;
 
+    /**
+     * @return Password for HTTP basic auth when calling OpsGenie. Treat as a secret.
+     * 
+     */
     public Output<Optional<String>> basicAuthPassword() {
         return Codegen.optional(this.basicAuthPassword);
     }
+    /**
+     * Username for HTTP basic auth when calling OpsGenie. Mutually exclusive with `bearer_token`.
+     * 
+     */
     @Export(name="basicAuthUsername", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> basicAuthUsername;
 
+    /**
+     * @return Username for HTTP basic auth when calling OpsGenie. Mutually exclusive with `bearer_token`.
+     * 
+     */
     public Output<Optional<String>> basicAuthUsername() {
         return Codegen.optional(this.basicAuthUsername);
     }
+    /**
+     * Bearer token sent in the `Authorization` header when calling OpsGenie. Mutually exclusive with basic auth. Treat as a secret.
+     * 
+     */
     @Export(name="bearerToken", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> bearerToken;
 
+    /**
+     * @return Bearer token sent in the `Authorization` header when calling OpsGenie. Mutually exclusive with basic auth. Treat as a secret.
+     * 
+     */
     public Output<Optional<String>> bearerToken() {
         return Codegen.optional(this.bearerToken);
     }
+    /**
+     * Display name of the external connection.
+     * 
+     */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
+    /**
+     * @return Display name of the external connection.
+     * 
+     */
     public Output<String> name() {
         return this.name;
     }
+    /**
+     * Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     @Export(name="slug", refs={String.class}, tree="[0]")
     private Output<String> slug;
 
+    /**
+     * @return Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     public Output<String> slug() {
         return this.slug;
     }
+    /**
+     * If true, skip TLS certificate verification when calling OpsGenie. Disable only in trusted environments.
+     * 
+     */
     @Export(name="tlsInsecureSkipVerify", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> tlsInsecureSkipVerify;
 
+    /**
+     * @return If true, skip TLS certificate verification when calling OpsGenie. Disable only in trusted environments.
+     * 
+     */
     public Output<Optional<Boolean>> tlsInsecureSkipVerify() {
         return Codegen.optional(this.tlsInsecureSkipVerify);
     }

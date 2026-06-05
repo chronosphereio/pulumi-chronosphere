@@ -12,17 +12,56 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// A legacy container for monitors, dashboards, and other resources, predating collections. Buckets can also own an inline notification policy via `notificationPolicyData`. New configurations should generally use `Collection`.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/chronosphereio/pulumi-chronosphere/sdk/go/chronosphere"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := chronosphere.NewBucket(ctx, "bucket", &chronosphere.BucketArgs{
+//				Name:        pulumi.String("Bucket"),
+//				Description: pulumi.String("bucket created by terraform examples"),
+//				Labels: pulumi.StringMap{
+//					"foo": pulumi.String("bar"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type Bucket struct {
 	pulumi.CustomResourceState
 
-	Description            pulumi.StringPtrOutput `pulumi:"description"`
-	Labels                 pulumi.StringMapOutput `pulumi:"labels"`
-	Name                   pulumi.StringOutput    `pulumi:"name"`
+	// Free-form description of the bucket.
+	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// Key/value labels attached to the bucket for organization and filtering.
+	Labels pulumi.StringMapOutput `pulumi:"labels"`
+	// Display name of the bucket. Can be changed after creation.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// Inline notification policy serialized as JSON. Conflicts with `notificationPolicyId`. For reusability, reference a named policy instead.
 	NotificationPolicyData pulumi.StringPtrOutput `pulumi:"notificationPolicyData"`
-	NotificationPolicyId   pulumi.StringPtrOutput `pulumi:"notificationPolicyId"`
-	NotificationPolicySlug pulumi.StringOutput    `pulumi:"notificationPolicySlug"`
-	Slug                   pulumi.StringOutput    `pulumi:"slug"`
-	TeamId                 pulumi.StringPtrOutput `pulumi:"teamId"`
+	// ID of the default notification policy applied to monitors in this bucket that do not explicitly reference one. Conflicts with `notificationPolicyData`.
+	NotificationPolicyId pulumi.StringPtrOutput `pulumi:"notificationPolicyId"`
+	// Internal field tracking the slug of an inline notification policy defined via `notificationPolicyData`. Use `notificationPolicyId` to reference a named policy.
+	NotificationPolicySlug pulumi.StringOutput `pulumi:"notificationPolicySlug"`
+	// Stable identifier for the bucket. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringOutput `pulumi:"slug"`
+	// ID of the team that owns this bucket.
+	TeamId pulumi.StringPtrOutput `pulumi:"teamId"`
 }
 
 // NewBucket registers a new resource with the given unique name, arguments, and options.
@@ -58,25 +97,41 @@ func GetBucket(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Bucket resources.
 type bucketState struct {
-	Description            *string           `pulumi:"description"`
-	Labels                 map[string]string `pulumi:"labels"`
-	Name                   *string           `pulumi:"name"`
-	NotificationPolicyData *string           `pulumi:"notificationPolicyData"`
-	NotificationPolicyId   *string           `pulumi:"notificationPolicyId"`
-	NotificationPolicySlug *string           `pulumi:"notificationPolicySlug"`
-	Slug                   *string           `pulumi:"slug"`
-	TeamId                 *string           `pulumi:"teamId"`
+	// Free-form description of the bucket.
+	Description *string `pulumi:"description"`
+	// Key/value labels attached to the bucket for organization and filtering.
+	Labels map[string]string `pulumi:"labels"`
+	// Display name of the bucket. Can be changed after creation.
+	Name *string `pulumi:"name"`
+	// Inline notification policy serialized as JSON. Conflicts with `notificationPolicyId`. For reusability, reference a named policy instead.
+	NotificationPolicyData *string `pulumi:"notificationPolicyData"`
+	// ID of the default notification policy applied to monitors in this bucket that do not explicitly reference one. Conflicts with `notificationPolicyData`.
+	NotificationPolicyId *string `pulumi:"notificationPolicyId"`
+	// Internal field tracking the slug of an inline notification policy defined via `notificationPolicyData`. Use `notificationPolicyId` to reference a named policy.
+	NotificationPolicySlug *string `pulumi:"notificationPolicySlug"`
+	// Stable identifier for the bucket. Generated from `name` if omitted. Immutable after creation.
+	Slug *string `pulumi:"slug"`
+	// ID of the team that owns this bucket.
+	TeamId *string `pulumi:"teamId"`
 }
 
 type BucketState struct {
-	Description            pulumi.StringPtrInput
-	Labels                 pulumi.StringMapInput
-	Name                   pulumi.StringPtrInput
+	// Free-form description of the bucket.
+	Description pulumi.StringPtrInput
+	// Key/value labels attached to the bucket for organization and filtering.
+	Labels pulumi.StringMapInput
+	// Display name of the bucket. Can be changed after creation.
+	Name pulumi.StringPtrInput
+	// Inline notification policy serialized as JSON. Conflicts with `notificationPolicyId`. For reusability, reference a named policy instead.
 	NotificationPolicyData pulumi.StringPtrInput
-	NotificationPolicyId   pulumi.StringPtrInput
+	// ID of the default notification policy applied to monitors in this bucket that do not explicitly reference one. Conflicts with `notificationPolicyData`.
+	NotificationPolicyId pulumi.StringPtrInput
+	// Internal field tracking the slug of an inline notification policy defined via `notificationPolicyData`. Use `notificationPolicyId` to reference a named policy.
 	NotificationPolicySlug pulumi.StringPtrInput
-	Slug                   pulumi.StringPtrInput
-	TeamId                 pulumi.StringPtrInput
+	// Stable identifier for the bucket. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringPtrInput
+	// ID of the team that owns this bucket.
+	TeamId pulumi.StringPtrInput
 }
 
 func (BucketState) ElementType() reflect.Type {
@@ -84,24 +139,38 @@ func (BucketState) ElementType() reflect.Type {
 }
 
 type bucketArgs struct {
-	Description            *string           `pulumi:"description"`
-	Labels                 map[string]string `pulumi:"labels"`
-	Name                   string            `pulumi:"name"`
-	NotificationPolicyData *string           `pulumi:"notificationPolicyData"`
-	NotificationPolicyId   *string           `pulumi:"notificationPolicyId"`
-	Slug                   *string           `pulumi:"slug"`
-	TeamId                 *string           `pulumi:"teamId"`
+	// Free-form description of the bucket.
+	Description *string `pulumi:"description"`
+	// Key/value labels attached to the bucket for organization and filtering.
+	Labels map[string]string `pulumi:"labels"`
+	// Display name of the bucket. Can be changed after creation.
+	Name string `pulumi:"name"`
+	// Inline notification policy serialized as JSON. Conflicts with `notificationPolicyId`. For reusability, reference a named policy instead.
+	NotificationPolicyData *string `pulumi:"notificationPolicyData"`
+	// ID of the default notification policy applied to monitors in this bucket that do not explicitly reference one. Conflicts with `notificationPolicyData`.
+	NotificationPolicyId *string `pulumi:"notificationPolicyId"`
+	// Stable identifier for the bucket. Generated from `name` if omitted. Immutable after creation.
+	Slug *string `pulumi:"slug"`
+	// ID of the team that owns this bucket.
+	TeamId *string `pulumi:"teamId"`
 }
 
 // The set of arguments for constructing a Bucket resource.
 type BucketArgs struct {
-	Description            pulumi.StringPtrInput
-	Labels                 pulumi.StringMapInput
-	Name                   pulumi.StringInput
+	// Free-form description of the bucket.
+	Description pulumi.StringPtrInput
+	// Key/value labels attached to the bucket for organization and filtering.
+	Labels pulumi.StringMapInput
+	// Display name of the bucket. Can be changed after creation.
+	Name pulumi.StringInput
+	// Inline notification policy serialized as JSON. Conflicts with `notificationPolicyId`. For reusability, reference a named policy instead.
 	NotificationPolicyData pulumi.StringPtrInput
-	NotificationPolicyId   pulumi.StringPtrInput
-	Slug                   pulumi.StringPtrInput
-	TeamId                 pulumi.StringPtrInput
+	// ID of the default notification policy applied to monitors in this bucket that do not explicitly reference one. Conflicts with `notificationPolicyData`.
+	NotificationPolicyId pulumi.StringPtrInput
+	// Stable identifier for the bucket. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringPtrInput
+	// ID of the team that owns this bucket.
+	TeamId pulumi.StringPtrInput
 }
 
 func (BucketArgs) ElementType() reflect.Type {
@@ -191,34 +260,42 @@ func (o BucketOutput) ToBucketOutputWithContext(ctx context.Context) BucketOutpu
 	return o
 }
 
+// Free-form description of the bucket.
 func (o BucketOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Bucket) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// Key/value labels attached to the bucket for organization and filtering.
 func (o BucketOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *Bucket) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }
 
+// Display name of the bucket. Can be changed after creation.
 func (o BucketOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Bucket) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// Inline notification policy serialized as JSON. Conflicts with `notificationPolicyId`. For reusability, reference a named policy instead.
 func (o BucketOutput) NotificationPolicyData() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Bucket) pulumi.StringPtrOutput { return v.NotificationPolicyData }).(pulumi.StringPtrOutput)
 }
 
+// ID of the default notification policy applied to monitors in this bucket that do not explicitly reference one. Conflicts with `notificationPolicyData`.
 func (o BucketOutput) NotificationPolicyId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Bucket) pulumi.StringPtrOutput { return v.NotificationPolicyId }).(pulumi.StringPtrOutput)
 }
 
+// Internal field tracking the slug of an inline notification policy defined via `notificationPolicyData`. Use `notificationPolicyId` to reference a named policy.
 func (o BucketOutput) NotificationPolicySlug() pulumi.StringOutput {
 	return o.ApplyT(func(v *Bucket) pulumi.StringOutput { return v.NotificationPolicySlug }).(pulumi.StringOutput)
 }
 
+// Stable identifier for the bucket. Generated from `name` if omitted. Immutable after creation.
 func (o BucketOutput) Slug() pulumi.StringOutput {
 	return o.ApplyT(func(v *Bucket) pulumi.StringOutput { return v.Slug }).(pulumi.StringOutput)
 }
 
+// ID of the team that owns this bucket.
 func (o BucketOutput) TeamId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Bucket) pulumi.StringPtrOutput { return v.TeamId }).(pulumi.StringPtrOutput)
 }

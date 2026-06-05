@@ -6,6 +6,26 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * Configures how incoming OTLP metric payloads have their OpenTelemetry resource attributes flattened, filtered, and mapped onto Prometheus-style labels at ingestion.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as chronosphere from "@pulumi-chronosphere/pulumi-chronosphere";
+ *
+ * const config = new chronosphere.OtelMetricsIngestion("config", {resourceAttributes: {
+ *     excludeKeys: [
+ *         "host.id",
+ *         "process.pid",
+ *     ],
+ *     filterMode: "APPEND_DEFAULT_EXCLUDE_KEYS",
+ *     flattenMode: "MERGE",
+ *     generateTargetInfo: false,
+ * }});
+ * ```
+ */
 export class OtelMetricsIngestion extends pulumi.CustomResource {
     /**
      * Get an existing OtelMetricsIngestion resource's state with the given name, ID, and optional extra
@@ -34,6 +54,9 @@ export class OtelMetricsIngestion extends pulumi.CustomResource {
         return obj['__pulumiType'] === OtelMetricsIngestion.__pulumiType;
     }
 
+    /**
+     * Controls how OpenTelemetry resource attributes are mapped to Prometheus labels at ingest.
+     */
     public readonly resourceAttributes!: pulumi.Output<outputs.OtelMetricsIngestionResourceAttributes | undefined>;
 
     /**
@@ -63,6 +86,9 @@ export class OtelMetricsIngestion extends pulumi.CustomResource {
  * Input properties used for looking up and filtering OtelMetricsIngestion resources.
  */
 export interface OtelMetricsIngestionState {
+    /**
+     * Controls how OpenTelemetry resource attributes are mapped to Prometheus labels at ingest.
+     */
     resourceAttributes?: pulumi.Input<inputs.OtelMetricsIngestionResourceAttributes>;
 }
 
@@ -70,5 +96,8 @@ export interface OtelMetricsIngestionState {
  * The set of arguments for constructing a OtelMetricsIngestion resource.
  */
 export interface OtelMetricsIngestionArgs {
+    /**
+     * Controls how OpenTelemetry resource attributes are mapped to Prometheus labels at ingest.
+     */
     resourceAttributes?: pulumi.Input<inputs.OtelMetricsIngestionResourceAttributes>;
 }

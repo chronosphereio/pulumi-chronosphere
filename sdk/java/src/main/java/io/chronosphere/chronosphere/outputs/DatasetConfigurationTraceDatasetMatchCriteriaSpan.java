@@ -21,45 +21,125 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class DatasetConfigurationTraceDatasetMatchCriteriaSpan {
+    /**
+     * @return Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, max_secs]` range.
+     * 
+     */
     private @Nullable DatasetConfigurationTraceDatasetMatchCriteriaSpanDuration duration;
+    /**
+     * @return Matches traces or spans where the target boolean field equals `value`.
+     * 
+     */
     private @Nullable DatasetConfigurationTraceDatasetMatchCriteriaSpanError error;
+    /**
+     * @return Matches traces or spans where the target boolean field equals `value`.
+     * 
+     */
     private @Nullable DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpan isRootSpan;
+    /**
+     * @return Whether matching spans are included (`INCLUDE`) or excluded (`EXCLUDE`) from the scope. Defaults to `INCLUDE`.
+     * 
+     */
     private @Nullable String matchType;
+    /**
+     * @return Matches traces or spans where the target string field satisfies the match condition.
+     * 
+     */
     private @Nullable DatasetConfigurationTraceDatasetMatchCriteriaSpanOperation operation;
+    /**
+     * @return Matches traces or spans where the target string field satisfies the match condition.
+     * 
+     */
     private @Nullable DatasetConfigurationTraceDatasetMatchCriteriaSpanParentOperation parentOperation;
+    /**
+     * @return Matches traces or spans where the target string field satisfies the match condition.
+     * 
+     */
     private @Nullable DatasetConfigurationTraceDatasetMatchCriteriaSpanParentService parentService;
+    /**
+     * @return Matches traces or spans where the target string field satisfies the match condition.
+     * 
+     */
     private @Nullable DatasetConfigurationTraceDatasetMatchCriteriaSpanService service;
+    /**
+     * @return Matches traces where the number of spans satisfying the surrounding span conditions falls within the inclusive `[min, max]` range.
+     * 
+     */
     private @Nullable DatasetConfigurationTraceDatasetMatchCriteriaSpanSpanCount spanCount;
+    /**
+     * @return Matches spans whose tag (span attribute) with the given `key` has a value satisfying the nested string or numeric filter.
+     * 
+     */
     private @Nullable List<DatasetConfigurationTraceDatasetMatchCriteriaSpanTag> tags;
 
     private DatasetConfigurationTraceDatasetMatchCriteriaSpan() {}
+    /**
+     * @return Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, max_secs]` range.
+     * 
+     */
     public Optional<DatasetConfigurationTraceDatasetMatchCriteriaSpanDuration> duration() {
         return Optional.ofNullable(this.duration);
     }
+    /**
+     * @return Matches traces or spans where the target boolean field equals `value`.
+     * 
+     */
     public Optional<DatasetConfigurationTraceDatasetMatchCriteriaSpanError> error() {
         return Optional.ofNullable(this.error);
     }
+    /**
+     * @return Matches traces or spans where the target boolean field equals `value`.
+     * 
+     */
     public Optional<DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpan> isRootSpan() {
         return Optional.ofNullable(this.isRootSpan);
     }
+    /**
+     * @return Whether matching spans are included (`INCLUDE`) or excluded (`EXCLUDE`) from the scope. Defaults to `INCLUDE`.
+     * 
+     */
     public Optional<String> matchType() {
         return Optional.ofNullable(this.matchType);
     }
+    /**
+     * @return Matches traces or spans where the target string field satisfies the match condition.
+     * 
+     */
     public Optional<DatasetConfigurationTraceDatasetMatchCriteriaSpanOperation> operation() {
         return Optional.ofNullable(this.operation);
     }
+    /**
+     * @return Matches traces or spans where the target string field satisfies the match condition.
+     * 
+     */
     public Optional<DatasetConfigurationTraceDatasetMatchCriteriaSpanParentOperation> parentOperation() {
         return Optional.ofNullable(this.parentOperation);
     }
+    /**
+     * @return Matches traces or spans where the target string field satisfies the match condition.
+     * 
+     */
     public Optional<DatasetConfigurationTraceDatasetMatchCriteriaSpanParentService> parentService() {
         return Optional.ofNullable(this.parentService);
     }
+    /**
+     * @return Matches traces or spans where the target string field satisfies the match condition.
+     * 
+     */
     public Optional<DatasetConfigurationTraceDatasetMatchCriteriaSpanService> service() {
         return Optional.ofNullable(this.service);
     }
+    /**
+     * @return Matches traces where the number of spans satisfying the surrounding span conditions falls within the inclusive `[min, max]` range.
+     * 
+     */
     public Optional<DatasetConfigurationTraceDatasetMatchCriteriaSpanSpanCount> spanCount() {
         return Optional.ofNullable(this.spanCount);
     }
+    /**
+     * @return Matches spans whose tag (span attribute) with the given `key` has a value satisfying the nested string or numeric filter.
+     * 
+     */
     public List<DatasetConfigurationTraceDatasetMatchCriteriaSpanTag> tags() {
         return this.tags == null ? List.of() : this.tags;
     }

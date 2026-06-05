@@ -16,21 +16,98 @@ import java.util.List;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
+/**
+ * Singleton allocation of metric license capacity into named pools that match metrics by label filter, each with priority-based dropping when the pool&#39;s allocation is exceeded.
+ * 
+ * ## Example Usage
+ * 
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.chronosphere.ResourcePoolsConfig;
+ * import com.pulumi.chronosphere.ResourcePoolsConfigArgs;
+ * import com.pulumi.chronosphere.inputs.ResourcePoolsConfigDefaultPoolArgs;
+ * import com.pulumi.chronosphere.inputs.ResourcePoolsConfigDefaultPoolPrioritiesArgs;
+ * import com.pulumi.chronosphere.inputs.ResourcePoolsConfigPoolArgs;
+ * import com.pulumi.chronosphere.inputs.ResourcePoolsConfigPoolAllocationArgs;
+ * import com.pulumi.chronosphere.inputs.ResourcePoolsConfigPoolPrioritiesArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var default_ = new ResourcePoolsConfig(&#34;default&#34;, ResourcePoolsConfigArgs.builder()        
+ *             .defaultPool(ResourcePoolsConfigDefaultPoolArgs.builder()
+ *                 .priorities(ResourcePoolsConfigDefaultPoolPrioritiesArgs.builder()
+ *                     .highPriorityMatchRules(&#34;cluster:production*&#34;)
+ *                     .lowPriorityMatchRules(&#34;cluster:test*&#34;)
+ *                     .build())
+ *                 .build())
+ *             .pools(ResourcePoolsConfigPoolArgs.builder()
+ *                 .allocation(ResourcePoolsConfigPoolAllocationArgs.builder()
+ *                     .fixedValue(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+ *                     .percentOfLicense(49.9)
+ *                     .build())
+ *                 .matchRules(                
+ *                     &#34;team:platform&#34;,
+ *                     &#34;env:production&#34;)
+ *                 .name(&#34;first&#34;)
+ *                 .priorities(ResourcePoolsConfigPoolPrioritiesArgs.builder()
+ *                     .highPriorityMatchRules(&#34;cluster:production*&#34;)
+ *                     .lowPriorityMatchRules(&#34;cluster:test*&#34;)
+ *                     .build())
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ */
 @ResourceType(type="chronosphere:index/resourcePoolsConfig:ResourcePoolsConfig")
 public class ResourcePoolsConfig extends com.pulumi.resources.CustomResource {
+    /**
+     * Catch-all pool that receives metrics not matched by any other pool. Also receives any license allocation left unassigned by the other pools.
+     * 
+     */
     @Export(name="defaultPool", refs={ResourcePoolsConfigDefaultPool.class}, tree="[0]")
     private Output</* @Nullable */ ResourcePoolsConfigDefaultPool> defaultPool;
 
+    /**
+     * @return Catch-all pool that receives metrics not matched by any other pool. Also receives any license allocation left unassigned by the other pools.
+     * 
+     */
     public Output<Optional<ResourcePoolsConfigDefaultPool>> defaultPool() {
         return Codegen.optional(this.defaultPool);
     }
+    /**
+     * Named pools that partition each license across teams or workloads. Pools are matched in declaration order via their `match_rules`.
+     * 
+     */
     @Export(name="pool", refs={List.class,ResourcePoolsConfigPool.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ResourcePoolsConfigPool>> pool;
 
+    /**
+     * @return Named pools that partition each license across teams or workloads. Pools are matched in declaration order via their `match_rules`.
+     * 
+     */
     public Output<Optional<List<ResourcePoolsConfigPool>>> pool() {
         return Codegen.optional(this.pool);
     }
     /**
+     * Deprecated: use `pool` instead. Set of named pools that partition the license.
+     * 
      * @deprecated
      * Use pool instead of pools
      * 
@@ -39,6 +116,10 @@ public class ResourcePoolsConfig extends com.pulumi.resources.CustomResource {
     @Export(name="pools", refs={List.class,ResourcePoolsConfigPool.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ResourcePoolsConfigPool>> pools;
 
+    /**
+     * @return Deprecated: use `pool` instead. Set of named pools that partition the license.
+     * 
+     */
     public Output<Optional<List<ResourcePoolsConfigPool>>> pools() {
         return Codegen.optional(this.pools);
     }

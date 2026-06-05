@@ -18,23 +18,47 @@ public final class ResourcePoolsConfigDefaultPoolAllocationArgs extends com.pulu
 
     public static final ResourcePoolsConfigDefaultPoolAllocationArgs Empty = new ResourcePoolsConfigDefaultPoolAllocationArgs();
 
+    /**
+     * Per-license fixed allocations that override `percent_of_license` for the named licenses. When any pool sets a fixed value for a license, every pool must also set one for that license.
+     * 
+     */
     @Import(name="fixedValues")
     private @Nullable Output<List<ResourcePoolsConfigDefaultPoolAllocationFixedValueArgs>> fixedValues;
 
+    /**
+     * @return Per-license fixed allocations that override `percent_of_license` for the named licenses. When any pool sets a fixed value for a license, every pool must also set one for that license.
+     * 
+     */
     public Optional<Output<List<ResourcePoolsConfigDefaultPoolAllocationFixedValueArgs>>> fixedValues() {
         return Optional.ofNullable(this.fixedValues);
     }
 
+    /**
+     * Percent of each license to allocate to this pool, between 0 and 100. Across non-default pools, the sum must not exceed 100; the default pool receives the remainder.
+     * 
+     */
     @Import(name="percentOfLicense")
     private @Nullable Output<Double> percentOfLicense;
 
+    /**
+     * @return Percent of each license to allocate to this pool, between 0 and 100. Across non-default pools, the sum must not exceed 100; the default pool receives the remainder.
+     * 
+     */
     public Optional<Output<Double>> percentOfLicense() {
         return Optional.ofNullable(this.percentOfLicense);
     }
 
+    /**
+     * Per-license drop thresholds for `PERSISTED_CARDINALITY_STANDARD` and `PERSISTED_CARDINALITY_HISTOGRAM` only. Defines strict upper bounds beyond which new consumption is dropped, optionally segmented by priority class.
+     * 
+     */
     @Import(name="priorityThresholds")
     private @Nullable Output<List<ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdArgs>> priorityThresholds;
 
+    /**
+     * @return Per-license drop thresholds for `PERSISTED_CARDINALITY_STANDARD` and `PERSISTED_CARDINALITY_HISTOGRAM` only. Defines strict upper bounds beyond which new consumption is dropped, optionally segmented by priority class.
+     * 
+     */
     public Optional<Output<List<ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdArgs>>> priorityThresholds() {
         return Optional.ofNullable(this.priorityThresholds);
     }
@@ -65,37 +89,85 @@ public final class ResourcePoolsConfigDefaultPoolAllocationArgs extends com.pulu
             $ = new ResourcePoolsConfigDefaultPoolAllocationArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param fixedValues Per-license fixed allocations that override `percent_of_license` for the named licenses. When any pool sets a fixed value for a license, every pool must also set one for that license.
+         * 
+         * @return builder
+         * 
+         */
         public Builder fixedValues(@Nullable Output<List<ResourcePoolsConfigDefaultPoolAllocationFixedValueArgs>> fixedValues) {
             $.fixedValues = fixedValues;
             return this;
         }
 
+        /**
+         * @param fixedValues Per-license fixed allocations that override `percent_of_license` for the named licenses. When any pool sets a fixed value for a license, every pool must also set one for that license.
+         * 
+         * @return builder
+         * 
+         */
         public Builder fixedValues(List<ResourcePoolsConfigDefaultPoolAllocationFixedValueArgs> fixedValues) {
             return fixedValues(Output.of(fixedValues));
         }
 
+        /**
+         * @param fixedValues Per-license fixed allocations that override `percent_of_license` for the named licenses. When any pool sets a fixed value for a license, every pool must also set one for that license.
+         * 
+         * @return builder
+         * 
+         */
         public Builder fixedValues(ResourcePoolsConfigDefaultPoolAllocationFixedValueArgs... fixedValues) {
             return fixedValues(List.of(fixedValues));
         }
 
+        /**
+         * @param percentOfLicense Percent of each license to allocate to this pool, between 0 and 100. Across non-default pools, the sum must not exceed 100; the default pool receives the remainder.
+         * 
+         * @return builder
+         * 
+         */
         public Builder percentOfLicense(@Nullable Output<Double> percentOfLicense) {
             $.percentOfLicense = percentOfLicense;
             return this;
         }
 
+        /**
+         * @param percentOfLicense Percent of each license to allocate to this pool, between 0 and 100. Across non-default pools, the sum must not exceed 100; the default pool receives the remainder.
+         * 
+         * @return builder
+         * 
+         */
         public Builder percentOfLicense(Double percentOfLicense) {
             return percentOfLicense(Output.of(percentOfLicense));
         }
 
+        /**
+         * @param priorityThresholds Per-license drop thresholds for `PERSISTED_CARDINALITY_STANDARD` and `PERSISTED_CARDINALITY_HISTOGRAM` only. Defines strict upper bounds beyond which new consumption is dropped, optionally segmented by priority class.
+         * 
+         * @return builder
+         * 
+         */
         public Builder priorityThresholds(@Nullable Output<List<ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdArgs>> priorityThresholds) {
             $.priorityThresholds = priorityThresholds;
             return this;
         }
 
+        /**
+         * @param priorityThresholds Per-license drop thresholds for `PERSISTED_CARDINALITY_STANDARD` and `PERSISTED_CARDINALITY_HISTOGRAM` only. Defines strict upper bounds beyond which new consumption is dropped, optionally segmented by priority class.
+         * 
+         * @return builder
+         * 
+         */
         public Builder priorityThresholds(List<ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdArgs> priorityThresholds) {
             return priorityThresholds(Output.of(priorityThresholds));
         }
 
+        /**
+         * @param priorityThresholds Per-license drop thresholds for `PERSISTED_CARDINALITY_STANDARD` and `PERSISTED_CARDINALITY_HISTOGRAM` only. Defines strict upper bounds beyond which new consumption is dropped, optionally segmented by priority class.
+         * 
+         * @return builder
+         * 
+         */
         public Builder priorityThresholds(ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdArgs... priorityThresholds) {
             return priorityThresholds(List.of(priorityThresholds));
         }

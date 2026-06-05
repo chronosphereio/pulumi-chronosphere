@@ -20,6 +20,8 @@ class TraceTailSamplingRulesArgs:
                  rules: Optional[pulumi.Input[Sequence[pulumi.Input['TraceTailSamplingRulesRuleArgs']]]] = None):
         """
         The set of arguments for constructing a TraceTailSamplingRules resource.
+        :param pulumi.Input['TraceTailSamplingRulesDefaultSampleRateArgs'] default_sample_rate: Default sampling decision applied after the full trace is observed when no rule in `rules` matches.
+        :param pulumi.Input[Sequence[pulumi.Input['TraceTailSamplingRulesRuleArgs']]] rules: Ordered list of tail-sampling rules evaluated after the full trace is observed. The first rule whose `filter` matches determines the sample rate; if none match, `default_sample_rate` is applied.
         """
         if default_sample_rate is not None:
             pulumi.set(__self__, "default_sample_rate", default_sample_rate)
@@ -29,6 +31,9 @@ class TraceTailSamplingRulesArgs:
     @property
     @pulumi.getter(name="defaultSampleRate")
     def default_sample_rate(self) -> Optional[pulumi.Input['TraceTailSamplingRulesDefaultSampleRateArgs']]:
+        """
+        Default sampling decision applied after the full trace is observed when no rule in `rules` matches.
+        """
         return pulumi.get(self, "default_sample_rate")
 
     @default_sample_rate.setter
@@ -38,6 +43,9 @@ class TraceTailSamplingRulesArgs:
     @property
     @pulumi.getter
     def rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['TraceTailSamplingRulesRuleArgs']]]]:
+        """
+        Ordered list of tail-sampling rules evaluated after the full trace is observed. The first rule whose `filter` matches determines the sample rate; if none match, `default_sample_rate` is applied.
+        """
         return pulumi.get(self, "rules")
 
     @rules.setter
@@ -52,6 +60,8 @@ class _TraceTailSamplingRulesState:
                  rules: Optional[pulumi.Input[Sequence[pulumi.Input['TraceTailSamplingRulesRuleArgs']]]] = None):
         """
         Input properties used for looking up and filtering TraceTailSamplingRules resources.
+        :param pulumi.Input['TraceTailSamplingRulesDefaultSampleRateArgs'] default_sample_rate: Default sampling decision applied after the full trace is observed when no rule in `rules` matches.
+        :param pulumi.Input[Sequence[pulumi.Input['TraceTailSamplingRulesRuleArgs']]] rules: Ordered list of tail-sampling rules evaluated after the full trace is observed. The first rule whose `filter` matches determines the sample rate; if none match, `default_sample_rate` is applied.
         """
         if default_sample_rate is not None:
             pulumi.set(__self__, "default_sample_rate", default_sample_rate)
@@ -61,6 +71,9 @@ class _TraceTailSamplingRulesState:
     @property
     @pulumi.getter(name="defaultSampleRate")
     def default_sample_rate(self) -> Optional[pulumi.Input['TraceTailSamplingRulesDefaultSampleRateArgs']]:
+        """
+        Default sampling decision applied after the full trace is observed when no rule in `rules` matches.
+        """
         return pulumi.get(self, "default_sample_rate")
 
     @default_sample_rate.setter
@@ -70,6 +83,9 @@ class _TraceTailSamplingRulesState:
     @property
     @pulumi.getter
     def rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['TraceTailSamplingRulesRuleArgs']]]]:
+        """
+        Ordered list of tail-sampling rules evaluated after the full trace is observed. The first rule whose `filter` matches determines the sample rate; if none match, `default_sample_rate` is applied.
+        """
         return pulumi.get(self, "rules")
 
     @rules.setter
@@ -86,9 +102,12 @@ class TraceTailSamplingRules(pulumi.CustomResource):
                  rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TraceTailSamplingRulesRuleArgs']]]]] = None,
                  __props__=None):
         """
-        Create a TraceTailSamplingRules resource with the given unique name, props, and options.
+        Tail-sampling rules that match completed traces against filters and apply per-rule sample rates (with a default rate fallback) to decide which traces are retained after the full trace has been observed.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[pulumi.InputType['TraceTailSamplingRulesDefaultSampleRateArgs']] default_sample_rate: Default sampling decision applied after the full trace is observed when no rule in `rules` matches.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TraceTailSamplingRulesRuleArgs']]]] rules: Ordered list of tail-sampling rules evaluated after the full trace is observed. The first rule whose `filter` matches determines the sample rate; if none match, `default_sample_rate` is applied.
         """
         ...
     @overload
@@ -97,7 +116,8 @@ class TraceTailSamplingRules(pulumi.CustomResource):
                  args: Optional[TraceTailSamplingRulesArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a TraceTailSamplingRules resource with the given unique name, props, and options.
+        Tail-sampling rules that match completed traces against filters and apply per-rule sample rates (with a default rate fallback) to decide which traces are retained after the full trace has been observed.
+
         :param str resource_name: The name of the resource.
         :param TraceTailSamplingRulesArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -145,6 +165,8 @@ class TraceTailSamplingRules(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[pulumi.InputType['TraceTailSamplingRulesDefaultSampleRateArgs']] default_sample_rate: Default sampling decision applied after the full trace is observed when no rule in `rules` matches.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TraceTailSamplingRulesRuleArgs']]]] rules: Ordered list of tail-sampling rules evaluated after the full trace is observed. The first rule whose `filter` matches determines the sample rate; if none match, `default_sample_rate` is applied.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -157,10 +179,16 @@ class TraceTailSamplingRules(pulumi.CustomResource):
     @property
     @pulumi.getter(name="defaultSampleRate")
     def default_sample_rate(self) -> pulumi.Output[Optional['outputs.TraceTailSamplingRulesDefaultSampleRate']]:
+        """
+        Default sampling decision applied after the full trace is observed when no rule in `rules` matches.
+        """
         return pulumi.get(self, "default_sample_rate")
 
     @property
     @pulumi.getter
     def rules(self) -> pulumi.Output[Optional[Sequence['outputs.TraceTailSamplingRulesRule']]]:
+        """
+        Ordered list of tail-sampling rules evaluated after the full trace is observed. The first rule whose `filter` matches determines the sample rate; if none match, `default_sample_rate` is applied.
+        """
         return pulumi.get(self, "rules")
 

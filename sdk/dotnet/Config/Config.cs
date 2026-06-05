@@ -33,6 +33,10 @@ namespace Chronosphere.Pulumi
         private static readonly global::Pulumi.Config __config = new global::Pulumi.Config("chronosphere");
 
         private static readonly __Value<string?> _apiToken = new __Value<string?>(() => __config.Get("apiToken") ?? Utilities.GetEnv("CHRONOSPHERE_API_TOKEN"));
+        /// <summary>
+        /// API token used to authenticate against the Chronosphere API. Treat as a secret. Falls back to the
+        /// `CHRONOSPHERE_API_TOKEN` environment variable.
+        /// </summary>
         public static string? ApiToken
         {
             get => _apiToken.Get();
@@ -40,6 +44,10 @@ namespace Chronosphere.Pulumi
         }
 
         private static readonly __Value<bool?> _disableDryrun = new __Value<bool?>(() => __config.GetBoolean("disableDryrun"));
+        /// <summary>
+        /// Disable the dry-run validation step that runs before every apply. Falls back to the
+        /// `CHRONOSPHERE_DRY_RUN_VALIDATION_DISABLED` environment variable (set to `1` to disable).
+        /// </summary>
         public static bool? DisableDryrun
         {
             get => _disableDryrun.Get();
@@ -47,6 +55,11 @@ namespace Chronosphere.Pulumi
         }
 
         private static readonly __Value<string?> _entityNamespace = new __Value<string?>(() => __config.Get("entityNamespace"));
+        /// <summary>
+        /// Optional namespace prefix applied to entity slugs managed by this provider instance, so multiple Terraform
+        /// configurations can coexist in one Chronosphere org. Falls back to the `CHRONOSPHERE_ENTITY_NAMESPACE` environment
+        /// variable.
+        /// </summary>
         public static string? EntityNamespace
         {
             get => _entityNamespace.Get();
@@ -54,6 +67,10 @@ namespace Chronosphere.Pulumi
         }
 
         private static readonly __Value<string?> _org = new __Value<string?>(() => __config.Get("org") ?? Utilities.GetEnv("CHRONOSPHERE_ORG", "CHRONOSPHERE_ORG_NAME"));
+        /// <summary>
+        /// Chronosphere organization name (the subdomain of `&lt;org&gt;.chronosphere.io`). Falls back to the `CHRONOSPHERE_ORG` or
+        /// `CHRONOSPHERE_ORG_NAME` environment variables.
+        /// </summary>
         public static string? Org
         {
             get => _org.Get();
@@ -61,6 +78,10 @@ namespace Chronosphere.Pulumi
         }
 
         private static readonly __Value<bool?> _unstable = new __Value<bool?>(() => __config.GetBoolean("unstable"));
+        /// <summary>
+        /// Opt into resources and behaviors backed by Chronosphere's unstable config API. Subject to breaking change without
+        /// notice. Falls back to the `CHRONOSPHERE_UNSTABLE` environment variable (set to `1` to enable).
+        /// </summary>
         public static bool? Unstable
         {
             get => _unstable.Get();

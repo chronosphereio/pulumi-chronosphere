@@ -15,17 +15,28 @@ namespace Chronosphere.Pulumi.Inputs
     {
         [Input("annotations")]
         private InputMap<string>? _annotations;
+
+        /// <summary>
+        /// Additional annotations to set on the generated monitor. Overrides the default `description`, `dashboard`, `resource`, `consumption_budget_slug`, `threshold_type`, and `partition` annotations when keys collide.
+        /// </summary>
         public InputMap<string> Annotations
         {
             get => _annotations ?? (_annotations = new InputMap<string>());
             set => _annotations = value;
         }
 
+        /// <summary>
+        /// How long instant-rate consumption must remain above the threshold before an alert fires, in seconds. Defaults to 0 (alert immediately on any breach).
+        /// </summary>
         [Input("instantRateSustainSecs")]
         public Input<int>? InstantRateSustainSecs { get; set; }
 
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// Additional labels to set on the generated monitor, usable for notification routing. The `resource`, `partition`, and `threshold_type` labels are reserved and cannot be overridden.
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());

@@ -14,8 +14,17 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class AzureMetricsIntegrationScrapeConfig
     {
+        /// <summary>
+        /// Azure locations (regions) to ingest from, applied across all subscriptions. Leave empty for all locations.
+        /// </summary>
         public readonly ImmutableArray<string> Locations;
+        /// <summary>
+        /// Azure resource types to scrape metrics from. Each entry can constrain the set of metric names to a subset.
+        /// </summary>
         public readonly ImmutableArray<Outputs.AzureMetricsIntegrationScrapeConfigResourceType> ResourceTypes;
+        /// <summary>
+        /// Azure subscription IDs to target. Leave empty to scrape from all subscriptions accessible to the principal.
+        /// </summary>
         public readonly ImmutableArray<string> SubscriptionIds;
 
         [OutputConstructor]

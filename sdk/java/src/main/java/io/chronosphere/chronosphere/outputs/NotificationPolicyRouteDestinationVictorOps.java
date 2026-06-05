@@ -10,13 +10,29 @@ import java.util.Objects;
 
 @CustomType
 public final class NotificationPolicyRouteDestinationVictorOps {
+    /**
+     * @return Slug of the OpsGenie external connection holding the integration credentials.
+     * 
+     */
     private String externalConnectionSlug;
+    /**
+     * @return VictorOps routing keys identifying the destination escalation policies.
+     * 
+     */
     private List<String> routingKeys;
 
     private NotificationPolicyRouteDestinationVictorOps() {}
+    /**
+     * @return Slug of the OpsGenie external connection holding the integration credentials.
+     * 
+     */
     public String externalConnectionSlug() {
         return this.externalConnectionSlug;
     }
+    /**
+     * @return VictorOps routing keys identifying the destination escalation policies.
+     * 
+     */
     public List<String> routingKeys() {
         return this.routingKeys;
     }

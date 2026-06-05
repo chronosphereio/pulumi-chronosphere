@@ -10,36 +10,69 @@ using Pulumi;
 
 namespace Chronosphere.Pulumi
 {
+    /// <summary>
+    /// Selects metrics by label filter and either drops them or applies an aggregation policy controlling their storage interval and aggregation function. Use `chronosphere.DropRule` for drop-only rules and `chronosphere.RollupRule` for label-reducing aggregations.
+    /// </summary>
     [PulumiResourceType("chronosphere:index/mappingRule:MappingRule")]
     public partial class MappingRule : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Aggregation type applied to matching metrics. Cannot be set if `drop` is `true`.
+        /// </summary>
         [Output("aggregations")]
         public Output<string?> Aggregations { get; private set; } = null!;
 
+        /// <summary>
+        /// ID of the bucket the mapping rule belongs to.
+        /// </summary>
         [Output("bucketId")]
         public Output<string?> BucketId { get; private set; } = null!;
 
+        /// <summary>
+        /// If `true`, drops the matching metrics instead of aggregating them. Cannot be set together with `aggregations`. Defaults to `false`.
+        /// </summary>
         [Output("drop")]
         public Output<bool?> Drop { get; private set; } = null!;
 
+        /// <summary>
+        /// Deprecated: no longer supported.
+        /// </summary>
         [Output("dropTimestamp")]
         public Output<bool?> DropTimestamp { get; private set; } = null!;
 
+        /// <summary>
+        /// Space-delimited list of `label=value_glob` matchers that select the metrics this rule applies to. A metric must match every filter to be considered.
+        /// </summary>
         [Output("filter")]
         public Output<string> Filter { get; private set; } = null!;
 
+        /// <summary>
+        /// Interval between aggregated data points produced by this mapping rule. Defaults to a server-side value when unset. Conflicts with `storage_policy`.
+        /// </summary>
         [Output("interval")]
         public Output<string> Interval { get; private set; } = null!;
 
+        /// <summary>
+        /// Mapping rule mode controlling whether it is active or in a preview state.
+        /// </summary>
         [Output("mode")]
         public Output<string?> Mode { get; private set; } = null!;
 
+        /// <summary>
+        /// Display name of the mapping rule. Can be changed after creation.
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// Stable identifier for the mapping rule. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Output("slug")]
         public Output<string> Slug { get; private set; } = null!;
 
+        /// <summary>
+        /// Storage policy controlling resolution and retention of mapped metrics. Deprecated: use `interval` instead.
+        /// </summary>
         [Output("storagePolicy")]
         public Output<Outputs.MappingRuleStoragePolicy?> StoragePolicy { get; private set; } = null!;
 
@@ -90,33 +123,63 @@ namespace Chronosphere.Pulumi
 
     public sealed class MappingRuleArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Aggregation type applied to matching metrics. Cannot be set if `drop` is `true`.
+        /// </summary>
         [Input("aggregations")]
         public Input<string>? Aggregations { get; set; }
 
+        /// <summary>
+        /// ID of the bucket the mapping rule belongs to.
+        /// </summary>
         [Input("bucketId")]
         public Input<string>? BucketId { get; set; }
 
+        /// <summary>
+        /// If `true`, drops the matching metrics instead of aggregating them. Cannot be set together with `aggregations`. Defaults to `false`.
+        /// </summary>
         [Input("drop")]
         public Input<bool>? Drop { get; set; }
 
+        /// <summary>
+        /// Deprecated: no longer supported.
+        /// </summary>
         [Input("dropTimestamp")]
         public Input<bool>? DropTimestamp { get; set; }
 
+        /// <summary>
+        /// Space-delimited list of `label=value_glob` matchers that select the metrics this rule applies to. A metric must match every filter to be considered.
+        /// </summary>
         [Input("filter", required: true)]
         public Input<string> Filter { get; set; } = null!;
 
+        /// <summary>
+        /// Interval between aggregated data points produced by this mapping rule. Defaults to a server-side value when unset. Conflicts with `storage_policy`.
+        /// </summary>
         [Input("interval")]
         public Input<string>? Interval { get; set; }
 
+        /// <summary>
+        /// Mapping rule mode controlling whether it is active or in a preview state.
+        /// </summary>
         [Input("mode")]
         public Input<string>? Mode { get; set; }
 
+        /// <summary>
+        /// Display name of the mapping rule. Can be changed after creation.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// Stable identifier for the mapping rule. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 
+        /// <summary>
+        /// Storage policy controlling resolution and retention of mapped metrics. Deprecated: use `interval` instead.
+        /// </summary>
         [Input("storagePolicy")]
         public Input<Inputs.MappingRuleStoragePolicyArgs>? StoragePolicy { get; set; }
 
@@ -128,33 +191,63 @@ namespace Chronosphere.Pulumi
 
     public sealed class MappingRuleState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Aggregation type applied to matching metrics. Cannot be set if `drop` is `true`.
+        /// </summary>
         [Input("aggregations")]
         public Input<string>? Aggregations { get; set; }
 
+        /// <summary>
+        /// ID of the bucket the mapping rule belongs to.
+        /// </summary>
         [Input("bucketId")]
         public Input<string>? BucketId { get; set; }
 
+        /// <summary>
+        /// If `true`, drops the matching metrics instead of aggregating them. Cannot be set together with `aggregations`. Defaults to `false`.
+        /// </summary>
         [Input("drop")]
         public Input<bool>? Drop { get; set; }
 
+        /// <summary>
+        /// Deprecated: no longer supported.
+        /// </summary>
         [Input("dropTimestamp")]
         public Input<bool>? DropTimestamp { get; set; }
 
+        /// <summary>
+        /// Space-delimited list of `label=value_glob` matchers that select the metrics this rule applies to. A metric must match every filter to be considered.
+        /// </summary>
         [Input("filter")]
         public Input<string>? Filter { get; set; }
 
+        /// <summary>
+        /// Interval between aggregated data points produced by this mapping rule. Defaults to a server-side value when unset. Conflicts with `storage_policy`.
+        /// </summary>
         [Input("interval")]
         public Input<string>? Interval { get; set; }
 
+        /// <summary>
+        /// Mapping rule mode controlling whether it is active or in a preview state.
+        /// </summary>
         [Input("mode")]
         public Input<string>? Mode { get; set; }
 
+        /// <summary>
+        /// Display name of the mapping rule. Can be changed after creation.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// Stable identifier for the mapping rule. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 
+        /// <summary>
+        /// Storage policy controlling resolution and retention of mapped metrics. Deprecated: use `interval` instead.
+        /// </summary>
         [Input("storagePolicy")]
         public Input<Inputs.MappingRuleStoragePolicyGetArgs>? StoragePolicy { get; set; }
 

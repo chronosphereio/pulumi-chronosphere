@@ -14,11 +14,61 @@ import io.chronosphere.chronosphere.outputs.OtelMetricsIngestionResourceAttribut
 import java.util.Optional;
 import javax.annotation.Nullable;
 
+/**
+ * Configures how incoming OTLP metric payloads have their OpenTelemetry resource attributes flattened, filtered, and mapped onto Prometheus-style labels at ingestion.
+ * 
+ * ## Example Usage
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.chronosphere.OtelMetricsIngestion;
+ * import com.pulumi.chronosphere.OtelMetricsIngestionArgs;
+ * import com.pulumi.chronosphere.inputs.OtelMetricsIngestionResourceAttributesArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var config = new OtelMetricsIngestion(&#34;config&#34;, OtelMetricsIngestionArgs.builder()        
+ *             .resourceAttributes(OtelMetricsIngestionResourceAttributesArgs.builder()
+ *                 .excludeKeys(                
+ *                     &#34;host.id&#34;,
+ *                     &#34;process.pid&#34;)
+ *                 .filterMode(&#34;APPEND_DEFAULT_EXCLUDE_KEYS&#34;)
+ *                 .flattenMode(&#34;MERGE&#34;)
+ *                 .generateTargetInfo(false)
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ */
 @ResourceType(type="chronosphere:index/otelMetricsIngestion:OtelMetricsIngestion")
 public class OtelMetricsIngestion extends com.pulumi.resources.CustomResource {
+    /**
+     * Controls how OpenTelemetry resource attributes are mapped to Prometheus labels at ingest.
+     * 
+     */
     @Export(name="resourceAttributes", refs={OtelMetricsIngestionResourceAttributes.class}, tree="[0]")
     private Output</* @Nullable */ OtelMetricsIngestionResourceAttributes> resourceAttributes;
 
+    /**
+     * @return Controls how OpenTelemetry resource attributes are mapped to Prometheus labels at ingest.
+     * 
+     */
     public Output<Optional<OtelMetricsIngestionResourceAttributes>> resourceAttributes() {
         return Codegen.optional(this.resourceAttributes);
     }

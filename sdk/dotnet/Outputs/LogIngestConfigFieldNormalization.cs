@@ -14,10 +14,25 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class LogIngestConfigFieldNormalization
     {
+        /// <summary>
+        /// Normalization rules for additional custom fields. These fields are not indexed; use them for things like environment, region, or user ID.
+        /// </summary>
         public readonly ImmutableArray<Outputs.LogIngestConfigFieldNormalizationCustomFieldNormalization> CustomFieldNormalizations;
+        /// <summary>
+        /// Rule that extracts and transforms a string value from a log field, with optional regex sanitization, default value, and value mapping.
+        /// </summary>
         public readonly Outputs.LogIngestConfigFieldNormalizationMessage? Message;
+        /// <summary>
+        /// Rule that extracts and transforms a string value from a log field, with optional regex sanitization, default value, and value mapping.
+        /// </summary>
         public readonly Outputs.LogIngestConfigFieldNormalizationService? Service;
+        /// <summary>
+        /// Rule that extracts and transforms a string value from a log field, with optional regex sanitization, default value, and value mapping.
+        /// </summary>
         public readonly Outputs.LogIngestConfigFieldNormalizationSeverity? Severity;
+        /// <summary>
+        /// Normalization rule for the well-known `timestamp` field.
+        /// </summary>
         public readonly Outputs.LogIngestConfigFieldNormalizationTimestamp? Timestamp;
 
         [OutputConstructor]

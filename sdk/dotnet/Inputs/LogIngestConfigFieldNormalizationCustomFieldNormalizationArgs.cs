@@ -13,9 +13,15 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class LogIngestConfigFieldNormalizationCustomFieldNormalizationArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Rule that extracts and transforms a string value from a log field, with optional regex sanitization, default value, and value mapping.
+        /// </summary>
         [Input("normalization")]
         public Input<Inputs.LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationArgs>? Normalization { get; set; }
 
+        /// <summary>
+        /// Name of the target field where the normalized value is stored.
+        /// </summary>
         [Input("target")]
         public Input<string>? Target { get; set; }
 

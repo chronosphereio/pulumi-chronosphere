@@ -13,9 +13,17 @@ public final class TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationS
 
     public static final TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationStrategiesPerOperationStrategyProbabilisticStrategyArgs Empty = new TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationStrategiesPerOperationStrategyProbabilisticStrategyArgs();
 
+    /**
+     * Probability in the range `[0.0, 1.0]` that any given trace is sampled. `0` samples no traces, `1` samples every trace.
+     * 
+     */
     @Import(name="samplingRate", required=true)
     private Output<Double> samplingRate;
 
+    /**
+     * @return Probability in the range `[0.0, 1.0]` that any given trace is sampled. `0` samples no traces, `1` samples every trace.
+     * 
+     */
     public Output<Double> samplingRate() {
         return this.samplingRate;
     }
@@ -44,11 +52,23 @@ public final class TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationS
             $ = new TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationStrategiesPerOperationStrategyProbabilisticStrategyArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param samplingRate Probability in the range `[0.0, 1.0]` that any given trace is sampled. `0` samples no traces, `1` samples every trace.
+         * 
+         * @return builder
+         * 
+         */
         public Builder samplingRate(Output<Double> samplingRate) {
             $.samplingRate = samplingRate;
             return this;
         }
 
+        /**
+         * @param samplingRate Probability in the range `[0.0, 1.0]` that any given trace is sampled. `0` samples no traces, `1` samples every trace.
+         * 
+         * @return builder
+         * 
+         */
         public Builder samplingRate(Double samplingRate) {
             return samplingRate(Output.of(samplingRate));
         }

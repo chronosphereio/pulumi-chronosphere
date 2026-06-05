@@ -13,13 +13,29 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class ConsumptionConfigPartitionPartitionFilter {
+    /**
+     * @return Conditions evaluated by the filter. Each condition matches by dataset, logs, metrics, or trace data; exactly one of `log_filter`, `metric_filter`, or `dataset_id` must be set per condition.
+     * 
+     */
     private @Nullable List<ConsumptionConfigPartitionPartitionFilterCondition> conditions;
+    /**
+     * @return Match operator (e.g. `IN`, `NOT_IN`) applied to the filter conditions.
+     * 
+     */
     private @Nullable String operator;
 
     private ConsumptionConfigPartitionPartitionFilter() {}
+    /**
+     * @return Conditions evaluated by the filter. Each condition matches by dataset, logs, metrics, or trace data; exactly one of `log_filter`, `metric_filter`, or `dataset_id` must be set per condition.
+     * 
+     */
     public List<ConsumptionConfigPartitionPartitionFilterCondition> conditions() {
         return this.conditions == null ? List.of() : this.conditions;
     }
+    /**
+     * @return Match operator (e.g. `IN`, `NOT_IN`) applied to the filter conditions.
+     * 
+     */
     public Optional<String> operator() {
         return Optional.ofNullable(this.operator);
     }

@@ -12,15 +12,61 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// A non-human identity used to authenticate API requests against Chronosphere. An API token is generated at creation and returned only once; store it securely, as a lost token requires recreating the service account.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/chronosphereio/pulumi-chronosphere/sdk/go/chronosphere"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := chronosphere.NewServiceAccount(ctx, "unrestricted", &chronosphere.ServiceAccountArgs{
+//				Name:         pulumi.String("ci-deployer"),
+//				Unrestricted: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = chronosphere.NewServiceAccount(ctx, "restrictedReadOnly", &chronosphere.ServiceAccountArgs{
+//				Name: pulumi.String("metrics-reader"),
+//				Restriction: &chronosphere.ServiceAccountRestrictionArgs{
+//					Labels: pulumi.StringMap{
+//						"team": pulumi.String("platform"),
+//					},
+//					Permission: pulumi.String("READ_ONLY"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type ServiceAccount struct {
 	pulumi.CustomResourceState
 
-	Email        pulumi.StringOutput                `pulumi:"email"`
-	Name         pulumi.StringOutput                `pulumi:"name"`
-	Restriction  ServiceAccountRestrictionPtrOutput `pulumi:"restriction"`
-	Slug         pulumi.StringOutput                `pulumi:"slug"`
-	Token        pulumi.StringOutput                `pulumi:"token"`
-	Unrestricted pulumi.BoolPtrOutput               `pulumi:"unrestricted"`
+	// Read-only: synthetic email address assigned to the service account by the server.
+	Email pulumi.StringOutput `pulumi:"email"`
+	// Display name of the service account. Immutable after creation.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// Restricts the service account to a specific permission and optional metric label scope. Exactly one of `unrestricted` or `restriction` must be set.
+	Restriction ServiceAccountRestrictionPtrOutput `pulumi:"restriction"`
+	// Stable identifier for the service account. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringOutput `pulumi:"slug"`
+	// Read-only: API token generated for the service account. Returned only at creation time; store it securely. If lost, the service account must be recreated.
+	Token pulumi.StringOutput `pulumi:"token"`
+	// If true, grants the service account access to all Chronosphere APIs within the access controls defined by team membership. Exactly one of `unrestricted` or `restriction` must be set.
+	Unrestricted pulumi.BoolPtrOutput `pulumi:"unrestricted"`
 }
 
 // NewServiceAccount registers a new resource with the given unique name, arguments, and options.
@@ -60,20 +106,32 @@ func GetServiceAccount(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ServiceAccount resources.
 type serviceAccountState struct {
-	Email        *string                    `pulumi:"email"`
-	Name         *string                    `pulumi:"name"`
-	Restriction  *ServiceAccountRestriction `pulumi:"restriction"`
-	Slug         *string                    `pulumi:"slug"`
-	Token        *string                    `pulumi:"token"`
-	Unrestricted *bool                      `pulumi:"unrestricted"`
+	// Read-only: synthetic email address assigned to the service account by the server.
+	Email *string `pulumi:"email"`
+	// Display name of the service account. Immutable after creation.
+	Name *string `pulumi:"name"`
+	// Restricts the service account to a specific permission and optional metric label scope. Exactly one of `unrestricted` or `restriction` must be set.
+	Restriction *ServiceAccountRestriction `pulumi:"restriction"`
+	// Stable identifier for the service account. Generated from `name` if omitted. Immutable after creation.
+	Slug *string `pulumi:"slug"`
+	// Read-only: API token generated for the service account. Returned only at creation time; store it securely. If lost, the service account must be recreated.
+	Token *string `pulumi:"token"`
+	// If true, grants the service account access to all Chronosphere APIs within the access controls defined by team membership. Exactly one of `unrestricted` or `restriction` must be set.
+	Unrestricted *bool `pulumi:"unrestricted"`
 }
 
 type ServiceAccountState struct {
-	Email        pulumi.StringPtrInput
-	Name         pulumi.StringPtrInput
-	Restriction  ServiceAccountRestrictionPtrInput
-	Slug         pulumi.StringPtrInput
-	Token        pulumi.StringPtrInput
+	// Read-only: synthetic email address assigned to the service account by the server.
+	Email pulumi.StringPtrInput
+	// Display name of the service account. Immutable after creation.
+	Name pulumi.StringPtrInput
+	// Restricts the service account to a specific permission and optional metric label scope. Exactly one of `unrestricted` or `restriction` must be set.
+	Restriction ServiceAccountRestrictionPtrInput
+	// Stable identifier for the service account. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringPtrInput
+	// Read-only: API token generated for the service account. Returned only at creation time; store it securely. If lost, the service account must be recreated.
+	Token pulumi.StringPtrInput
+	// If true, grants the service account access to all Chronosphere APIs within the access controls defined by team membership. Exactly one of `unrestricted` or `restriction` must be set.
 	Unrestricted pulumi.BoolPtrInput
 }
 
@@ -82,17 +140,25 @@ func (ServiceAccountState) ElementType() reflect.Type {
 }
 
 type serviceAccountArgs struct {
-	Name         string                     `pulumi:"name"`
-	Restriction  *ServiceAccountRestriction `pulumi:"restriction"`
-	Slug         *string                    `pulumi:"slug"`
-	Unrestricted *bool                      `pulumi:"unrestricted"`
+	// Display name of the service account. Immutable after creation.
+	Name string `pulumi:"name"`
+	// Restricts the service account to a specific permission and optional metric label scope. Exactly one of `unrestricted` or `restriction` must be set.
+	Restriction *ServiceAccountRestriction `pulumi:"restriction"`
+	// Stable identifier for the service account. Generated from `name` if omitted. Immutable after creation.
+	Slug *string `pulumi:"slug"`
+	// If true, grants the service account access to all Chronosphere APIs within the access controls defined by team membership. Exactly one of `unrestricted` or `restriction` must be set.
+	Unrestricted *bool `pulumi:"unrestricted"`
 }
 
 // The set of arguments for constructing a ServiceAccount resource.
 type ServiceAccountArgs struct {
-	Name         pulumi.StringInput
-	Restriction  ServiceAccountRestrictionPtrInput
-	Slug         pulumi.StringPtrInput
+	// Display name of the service account. Immutable after creation.
+	Name pulumi.StringInput
+	// Restricts the service account to a specific permission and optional metric label scope. Exactly one of `unrestricted` or `restriction` must be set.
+	Restriction ServiceAccountRestrictionPtrInput
+	// Stable identifier for the service account. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringPtrInput
+	// If true, grants the service account access to all Chronosphere APIs within the access controls defined by team membership. Exactly one of `unrestricted` or `restriction` must be set.
 	Unrestricted pulumi.BoolPtrInput
 }
 
@@ -183,26 +249,32 @@ func (o ServiceAccountOutput) ToServiceAccountOutputWithContext(ctx context.Cont
 	return o
 }
 
+// Read-only: synthetic email address assigned to the service account by the server.
 func (o ServiceAccountOutput) Email() pulumi.StringOutput {
 	return o.ApplyT(func(v *ServiceAccount) pulumi.StringOutput { return v.Email }).(pulumi.StringOutput)
 }
 
+// Display name of the service account. Immutable after creation.
 func (o ServiceAccountOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *ServiceAccount) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// Restricts the service account to a specific permission and optional metric label scope. Exactly one of `unrestricted` or `restriction` must be set.
 func (o ServiceAccountOutput) Restriction() ServiceAccountRestrictionPtrOutput {
 	return o.ApplyT(func(v *ServiceAccount) ServiceAccountRestrictionPtrOutput { return v.Restriction }).(ServiceAccountRestrictionPtrOutput)
 }
 
+// Stable identifier for the service account. Generated from `name` if omitted. Immutable after creation.
 func (o ServiceAccountOutput) Slug() pulumi.StringOutput {
 	return o.ApplyT(func(v *ServiceAccount) pulumi.StringOutput { return v.Slug }).(pulumi.StringOutput)
 }
 
+// Read-only: API token generated for the service account. Returned only at creation time; store it securely. If lost, the service account must be recreated.
 func (o ServiceAccountOutput) Token() pulumi.StringOutput {
 	return o.ApplyT(func(v *ServiceAccount) pulumi.StringOutput { return v.Token }).(pulumi.StringOutput)
 }
 
+// If true, grants the service account access to all Chronosphere APIs within the access controls defined by team membership. Exactly one of `unrestricted` or `restriction` must be set.
 func (o ServiceAccountOutput) Unrestricted() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ServiceAccount) pulumi.BoolPtrOutput { return v.Unrestricted }).(pulumi.BoolPtrOutput)
 }

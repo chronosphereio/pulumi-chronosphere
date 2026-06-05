@@ -10,21 +10,92 @@ using Pulumi;
 
 namespace Chronosphere.Pulumi
 {
+    /// <summary>
+    /// A virtual metric whose value is computed on demand from one of several underlying PromQL queries. The query selected at evaluation time is determined by matching the usage's labels against the configured selectors.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Pulumi = Chronosphere.Pulumi;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var requestRate = new Pulumi.DerivedMetric("requestRate", new()
+    ///     {
+    ///         Description = "Per-service request rate, with selector-aware variants",
+    ///         MetricName = "request_rate",
+    ///         Name = "request_rate",
+    ///         Queries = new[]
+    ///         {
+    ///             new Pulumi.Inputs.DerivedMetricQueryArgs
+    ///             {
+    ///                 Query = new Pulumi.Inputs.DerivedMetricQueryQueryArgs
+    ///                 {
+    ///                     Expr = "sum by (service) (rate(http_requests_total{label1=\"value1\"}[5m]))",
+    ///                     Variables = new[]
+    ///                     {
+    ///                         new Pulumi.Inputs.DerivedMetricQueryQueryVariableArgs
+    ///                         {
+    ///                             DefaultSelector = "service=default",
+    ///                             Name = "service",
+    ///                         },
+    ///                     },
+    ///                 },
+    ///                 Selector = new Pulumi.Inputs.DerivedMetricQuerySelectorArgs
+    ///                 {
+    ///                     Labels = 
+    ///                     {
+    ///                         { "label1", "value1" },
+    ///                     },
+    ///                 },
+    ///             },
+    ///             new Pulumi.Inputs.DerivedMetricQueryArgs
+    ///             {
+    ///                 Query = new Pulumi.Inputs.DerivedMetricQueryQueryArgs
+    ///                 {
+    ///                     Expr = "sum by (service) (rate(http_requests_total[5m]))",
+    ///                 },
+    ///             },
+    ///         },
+    ///         Slug = "request-rate",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// </summary>
     [PulumiResourceType("chronosphere:index/derivedMetric:DerivedMetric")]
     public partial class DerivedMetric : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Free-form description of the derived metric.
+        /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
+        /// <summary>
+        /// Name of the derived metric as referenced in queries. Must be unique across the system.
+        /// </summary>
         [Output("metricName")]
         public Output<string> MetricName { get; private set; } = null!;
 
+        /// <summary>
+        /// Variable name as referenced in `expr` (e.g. `service` for `$service`).
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// Ordered list of selector/query pairs. When the derived metric is used, the first entry whose `selector` matches the usage's labels supplies the PromQL `query`.
+        /// </summary>
         [Output("queries")]
         public Output<ImmutableArray<Outputs.DerivedMetricQuery>> Queries { get; private set; } = null!;
 
+        /// <summary>
+        /// Stable identifier for the derived metric. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Output("slug")]
         public Output<string> Slug { get; private set; } = null!;
 
@@ -75,23 +146,39 @@ namespace Chronosphere.Pulumi
 
     public sealed class DerivedMetricArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Free-form description of the derived metric.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// Name of the derived metric as referenced in queries. Must be unique across the system.
+        /// </summary>
         [Input("metricName", required: true)]
         public Input<string> MetricName { get; set; } = null!;
 
+        /// <summary>
+        /// Variable name as referenced in `expr` (e.g. `service` for `$service`).
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
         [Input("queries", required: true)]
         private InputList<Inputs.DerivedMetricQueryArgs>? _queries;
+
+        /// <summary>
+        /// Ordered list of selector/query pairs. When the derived metric is used, the first entry whose `selector` matches the usage's labels supplies the PromQL `query`.
+        /// </summary>
         public InputList<Inputs.DerivedMetricQueryArgs> Queries
         {
             get => _queries ?? (_queries = new InputList<Inputs.DerivedMetricQueryArgs>());
             set => _queries = value;
         }
 
+        /// <summary>
+        /// Stable identifier for the derived metric. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 
@@ -103,23 +190,39 @@ namespace Chronosphere.Pulumi
 
     public sealed class DerivedMetricState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Free-form description of the derived metric.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// Name of the derived metric as referenced in queries. Must be unique across the system.
+        /// </summary>
         [Input("metricName")]
         public Input<string>? MetricName { get; set; }
 
+        /// <summary>
+        /// Variable name as referenced in `expr` (e.g. `service` for `$service`).
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         [Input("queries")]
         private InputList<Inputs.DerivedMetricQueryGetArgs>? _queries;
+
+        /// <summary>
+        /// Ordered list of selector/query pairs. When the derived metric is used, the first entry whose `selector` matches the usage's labels supplies the PromQL `query`.
+        /// </summary>
         public InputList<Inputs.DerivedMetricQueryGetArgs> Queries
         {
             get => _queries ?? (_queries = new InputList<Inputs.DerivedMetricQueryGetArgs>());
             set => _queries = value;
         }
 
+        /// <summary>
+        /// Stable identifier for the derived metric. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 

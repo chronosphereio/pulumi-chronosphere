@@ -11,9 +11,17 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class RollupRuleGraphiteLabelPolicy {
+    /**
+     * @return List of positional Graphite label replacements applied to the output metric.
+     * 
+     */
     private @Nullable List<RollupRuleGraphiteLabelPolicyReplace> replaces;
 
     private RollupRuleGraphiteLabelPolicy() {}
+    /**
+     * @return List of positional Graphite label replacements applied to the output metric.
+     * 
+     */
     public List<RollupRuleGraphiteLabelPolicyReplace> replaces() {
         return this.replaces == null ? List.of() : this.replaces;
     }

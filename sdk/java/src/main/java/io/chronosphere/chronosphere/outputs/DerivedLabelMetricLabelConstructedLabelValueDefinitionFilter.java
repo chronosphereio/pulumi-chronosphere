@@ -9,13 +9,29 @@ import java.util.Objects;
 
 @CustomType
 public final class DerivedLabelMetricLabelConstructedLabelValueDefinitionFilter {
+    /**
+     * @return Name of the label to match.
+     * 
+     */
     private String name;
+    /**
+     * @return Glob pattern matched against the label value.
+     * 
+     */
     private String valueGlob;
 
     private DerivedLabelMetricLabelConstructedLabelValueDefinitionFilter() {}
+    /**
+     * @return Name of the label to match.
+     * 
+     */
     public String name() {
         return this.name;
     }
+    /**
+     * @return Glob pattern matched against the label value.
+     * 
+     */
     public String valueGlob() {
         return this.valueGlob;
     }

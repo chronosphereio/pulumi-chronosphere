@@ -10,42 +10,123 @@ using Pulumi;
 
 namespace Chronosphere.Pulumi
 {
+    /// <summary>
+    /// A CrowdStrike Falcon LogScale (formerly Humio) action target (email, Slack, webhook, PagerDuty, OpsGenie, VictorOps, or upload-file) invoked by a logscale_alert when it fires.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Pulumi = Chronosphere.Pulumi;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var email = new Pulumi.LogscaleAction("email", new()
+    ///     {
+    ///         EmailAction = new Pulumi.Inputs.LogscaleActionEmailActionArgs
+    ///         {
+    ///             AttachCsv = true,
+    ///             BodyTemplate = "{{query.results}}",
+    ///             Recipients = new[]
+    ///             {
+    ///                 "oncall@example.com",
+    ///             },
+    ///             SubjectTemplate = "Logscale alert: {{alert.name}}",
+    ///             UseProxy = false,
+    ///         },
+    ///         Name = "Email on-call",
+    ///         Repository = "default",
+    ///     });
+    /// 
+    ///     var pagerduty = new Pulumi.LogscaleAction("pagerduty", new()
+    ///     {
+    ///         Name = "PagerDuty page",
+    ///         PagerDutyAction = new Pulumi.Inputs.LogscaleActionPagerDutyActionArgs
+    ///         {
+    ///             RoutingKey = "XXXXX",
+    ///             Severity = "ERROR",
+    ///             UseProxy = false,
+    ///         },
+    ///         Repository = "default",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// </summary>
     [PulumiResourceType("chronosphere:index/logscaleAction:LogscaleAction")]
     public partial class LogscaleAction : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Send email when the alert triggers. Exactly one action type must be set.
+        /// </summary>
         [Output("emailAction")]
         public Output<Outputs.LogscaleActionEmailAction?> EmailAction { get; private set; } = null!;
 
+        /// <summary>
+        /// Forward results to another LogScale (Humio) repository via its ingest token. Exactly one action type must be set.
+        /// </summary>
         [Output("humioAction")]
         public Output<Outputs.LogscaleActionHumioAction?> HumioAction { get; private set; } = null!;
 
+        /// <summary>
+        /// Display name of the LogScale action.
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// Send an OpsGenie alert when the alert triggers. Exactly one action type must be set.
+        /// </summary>
         [Output("opsGenieAction")]
         public Output<Outputs.LogscaleActionOpsGenieAction?> OpsGenieAction { get; private set; } = null!;
 
+        /// <summary>
+        /// Send a PagerDuty event when the alert triggers. Exactly one action type must be set.
+        /// </summary>
         [Output("pagerDutyAction")]
         public Output<Outputs.LogscaleActionPagerDutyAction?> PagerDutyAction { get; private set; } = null!;
 
+        /// <summary>
+        /// Name of the LogScale repository the action belongs to. Immutable after creation.
+        /// </summary>
         [Output("repository")]
         public Output<string> Repository { get; private set; } = null!;
 
+        /// <summary>
+        /// Post a message to a Slack incoming webhook when the alert triggers. Exactly one action type must be set.
+        /// </summary>
         [Output("slackAction")]
         public Output<Outputs.LogscaleActionSlackAction?> SlackAction { get; private set; } = null!;
 
+        /// <summary>
+        /// Post a message to Slack channels using the Slack `chat.postMessage` API. Exactly one action type must be set.
+        /// </summary>
         [Output("slackPostMessageAction")]
         public Output<Outputs.LogscaleActionSlackPostMessageAction?> SlackPostMessageAction { get; private set; } = null!;
 
+        /// <summary>
+        /// Stable identifier for the LogScale action. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Output("slug")]
         public Output<string> Slug { get; private set; } = null!;
 
+        /// <summary>
+        /// Upload the query result as a file in LogScale. Exactly one action type must be set.
+        /// </summary>
         [Output("uploadFileAction")]
         public Output<Outputs.LogscaleActionUploadFileAction?> UploadFileAction { get; private set; } = null!;
 
+        /// <summary>
+        /// Send a VictorOps (Splunk On-Call) event when the alert triggers. Exactly one action type must be set.
+        /// </summary>
         [Output("victorOpsAction")]
         public Output<Outputs.LogscaleActionVictorOpsAction?> VictorOpsAction { get; private set; } = null!;
 
+        /// <summary>
+        /// Send an HTTP or HTTPS webhook when the alert triggers. Exactly one action type must be set.
+        /// </summary>
         [Output("webhookAction")]
         public Output<Outputs.LogscaleActionWebhookAction?> WebhookAction { get; private set; } = null!;
 
@@ -96,39 +177,75 @@ namespace Chronosphere.Pulumi
 
     public sealed class LogscaleActionArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Send email when the alert triggers. Exactly one action type must be set.
+        /// </summary>
         [Input("emailAction")]
         public Input<Inputs.LogscaleActionEmailActionArgs>? EmailAction { get; set; }
 
+        /// <summary>
+        /// Forward results to another LogScale (Humio) repository via its ingest token. Exactly one action type must be set.
+        /// </summary>
         [Input("humioAction")]
         public Input<Inputs.LogscaleActionHumioActionArgs>? HumioAction { get; set; }
 
+        /// <summary>
+        /// Display name of the LogScale action.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// Send an OpsGenie alert when the alert triggers. Exactly one action type must be set.
+        /// </summary>
         [Input("opsGenieAction")]
         public Input<Inputs.LogscaleActionOpsGenieActionArgs>? OpsGenieAction { get; set; }
 
+        /// <summary>
+        /// Send a PagerDuty event when the alert triggers. Exactly one action type must be set.
+        /// </summary>
         [Input("pagerDutyAction")]
         public Input<Inputs.LogscaleActionPagerDutyActionArgs>? PagerDutyAction { get; set; }
 
+        /// <summary>
+        /// Name of the LogScale repository the action belongs to. Immutable after creation.
+        /// </summary>
         [Input("repository", required: true)]
         public Input<string> Repository { get; set; } = null!;
 
+        /// <summary>
+        /// Post a message to a Slack incoming webhook when the alert triggers. Exactly one action type must be set.
+        /// </summary>
         [Input("slackAction")]
         public Input<Inputs.LogscaleActionSlackActionArgs>? SlackAction { get; set; }
 
+        /// <summary>
+        /// Post a message to Slack channels using the Slack `chat.postMessage` API. Exactly one action type must be set.
+        /// </summary>
         [Input("slackPostMessageAction")]
         public Input<Inputs.LogscaleActionSlackPostMessageActionArgs>? SlackPostMessageAction { get; set; }
 
+        /// <summary>
+        /// Stable identifier for the LogScale action. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 
+        /// <summary>
+        /// Upload the query result as a file in LogScale. Exactly one action type must be set.
+        /// </summary>
         [Input("uploadFileAction")]
         public Input<Inputs.LogscaleActionUploadFileActionArgs>? UploadFileAction { get; set; }
 
+        /// <summary>
+        /// Send a VictorOps (Splunk On-Call) event when the alert triggers. Exactly one action type must be set.
+        /// </summary>
         [Input("victorOpsAction")]
         public Input<Inputs.LogscaleActionVictorOpsActionArgs>? VictorOpsAction { get; set; }
 
+        /// <summary>
+        /// Send an HTTP or HTTPS webhook when the alert triggers. Exactly one action type must be set.
+        /// </summary>
         [Input("webhookAction")]
         public Input<Inputs.LogscaleActionWebhookActionArgs>? WebhookAction { get; set; }
 
@@ -140,39 +257,75 @@ namespace Chronosphere.Pulumi
 
     public sealed class LogscaleActionState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Send email when the alert triggers. Exactly one action type must be set.
+        /// </summary>
         [Input("emailAction")]
         public Input<Inputs.LogscaleActionEmailActionGetArgs>? EmailAction { get; set; }
 
+        /// <summary>
+        /// Forward results to another LogScale (Humio) repository via its ingest token. Exactly one action type must be set.
+        /// </summary>
         [Input("humioAction")]
         public Input<Inputs.LogscaleActionHumioActionGetArgs>? HumioAction { get; set; }
 
+        /// <summary>
+        /// Display name of the LogScale action.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// Send an OpsGenie alert when the alert triggers. Exactly one action type must be set.
+        /// </summary>
         [Input("opsGenieAction")]
         public Input<Inputs.LogscaleActionOpsGenieActionGetArgs>? OpsGenieAction { get; set; }
 
+        /// <summary>
+        /// Send a PagerDuty event when the alert triggers. Exactly one action type must be set.
+        /// </summary>
         [Input("pagerDutyAction")]
         public Input<Inputs.LogscaleActionPagerDutyActionGetArgs>? PagerDutyAction { get; set; }
 
+        /// <summary>
+        /// Name of the LogScale repository the action belongs to. Immutable after creation.
+        /// </summary>
         [Input("repository")]
         public Input<string>? Repository { get; set; }
 
+        /// <summary>
+        /// Post a message to a Slack incoming webhook when the alert triggers. Exactly one action type must be set.
+        /// </summary>
         [Input("slackAction")]
         public Input<Inputs.LogscaleActionSlackActionGetArgs>? SlackAction { get; set; }
 
+        /// <summary>
+        /// Post a message to Slack channels using the Slack `chat.postMessage` API. Exactly one action type must be set.
+        /// </summary>
         [Input("slackPostMessageAction")]
         public Input<Inputs.LogscaleActionSlackPostMessageActionGetArgs>? SlackPostMessageAction { get; set; }
 
+        /// <summary>
+        /// Stable identifier for the LogScale action. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 
+        /// <summary>
+        /// Upload the query result as a file in LogScale. Exactly one action type must be set.
+        /// </summary>
         [Input("uploadFileAction")]
         public Input<Inputs.LogscaleActionUploadFileActionGetArgs>? UploadFileAction { get; set; }
 
+        /// <summary>
+        /// Send a VictorOps (Splunk On-Call) event when the alert triggers. Exactly one action type must be set.
+        /// </summary>
         [Input("victorOpsAction")]
         public Input<Inputs.LogscaleActionVictorOpsActionGetArgs>? VictorOpsAction { get; set; }
 
+        /// <summary>
+        /// Send an HTTP or HTTPS webhook when the alert triggers. Exactly one action type must be set.
+        /// </summary>
         [Input("webhookAction")]
         public Input<Inputs.LogscaleActionWebhookActionGetArgs>? WebhookAction { get; set; }
 

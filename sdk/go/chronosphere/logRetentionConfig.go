@@ -12,14 +12,49 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// A retention policy dictating how long logs matching a given filter are kept before being deleted.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/chronosphereio/pulumi-chronosphere/sdk/go/chronosphere"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := chronosphere.NewLogRetentionConfig(ctx, "productionErrors", &chronosphere.LogRetentionConfigArgs{
+//				Filter:        pulumi.String("severity = 'error' AND env = 'production'"),
+//				Mode:          pulumi.String("ENABLED"),
+//				Name:          pulumi.String("Production Error Logs Long-term Retention"),
+//				RetentionDays: pulumi.Int(365),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type LogRetentionConfig struct {
 	pulumi.CustomResourceState
 
-	Filter        pulumi.StringOutput `pulumi:"filter"`
-	Mode          pulumi.StringOutput `pulumi:"mode"`
-	Name          pulumi.StringOutput `pulumi:"name"`
-	RetentionDays pulumi.IntOutput    `pulumi:"retentionDays"`
-	Slug          pulumi.StringOutput `pulumi:"slug"`
+	// Log query filter. The retention policy applies only to logs that match.
+	Filter pulumi.StringOutput `pulumi:"filter"`
+	// Mode that determines how matching logs are retained in long-term (Iceberg) storage.
+	Mode pulumi.StringOutput `pulumi:"mode"`
+	// Display name of the log retention config.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// Number of days to retain matching logs in long-term (Iceberg) storage after they are exported. When multiple configs overlap, the longest retention wins.
+	RetentionDays pulumi.IntOutput `pulumi:"retentionDays"`
+	// Stable identifier for the log retention config. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringOutput `pulumi:"slug"`
 }
 
 // NewLogRetentionConfig registers a new resource with the given unique name, arguments, and options.
@@ -64,19 +99,29 @@ func GetLogRetentionConfig(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering LogRetentionConfig resources.
 type logRetentionConfigState struct {
-	Filter        *string `pulumi:"filter"`
-	Mode          *string `pulumi:"mode"`
-	Name          *string `pulumi:"name"`
-	RetentionDays *int    `pulumi:"retentionDays"`
-	Slug          *string `pulumi:"slug"`
+	// Log query filter. The retention policy applies only to logs that match.
+	Filter *string `pulumi:"filter"`
+	// Mode that determines how matching logs are retained in long-term (Iceberg) storage.
+	Mode *string `pulumi:"mode"`
+	// Display name of the log retention config.
+	Name *string `pulumi:"name"`
+	// Number of days to retain matching logs in long-term (Iceberg) storage after they are exported. When multiple configs overlap, the longest retention wins.
+	RetentionDays *int `pulumi:"retentionDays"`
+	// Stable identifier for the log retention config. Generated from `name` if omitted. Immutable after creation.
+	Slug *string `pulumi:"slug"`
 }
 
 type LogRetentionConfigState struct {
-	Filter        pulumi.StringPtrInput
-	Mode          pulumi.StringPtrInput
-	Name          pulumi.StringPtrInput
+	// Log query filter. The retention policy applies only to logs that match.
+	Filter pulumi.StringPtrInput
+	// Mode that determines how matching logs are retained in long-term (Iceberg) storage.
+	Mode pulumi.StringPtrInput
+	// Display name of the log retention config.
+	Name pulumi.StringPtrInput
+	// Number of days to retain matching logs in long-term (Iceberg) storage after they are exported. When multiple configs overlap, the longest retention wins.
 	RetentionDays pulumi.IntPtrInput
-	Slug          pulumi.StringPtrInput
+	// Stable identifier for the log retention config. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringPtrInput
 }
 
 func (LogRetentionConfigState) ElementType() reflect.Type {
@@ -84,20 +129,30 @@ func (LogRetentionConfigState) ElementType() reflect.Type {
 }
 
 type logRetentionConfigArgs struct {
-	Filter        string  `pulumi:"filter"`
-	Mode          string  `pulumi:"mode"`
-	Name          string  `pulumi:"name"`
-	RetentionDays int     `pulumi:"retentionDays"`
-	Slug          *string `pulumi:"slug"`
+	// Log query filter. The retention policy applies only to logs that match.
+	Filter string `pulumi:"filter"`
+	// Mode that determines how matching logs are retained in long-term (Iceberg) storage.
+	Mode string `pulumi:"mode"`
+	// Display name of the log retention config.
+	Name string `pulumi:"name"`
+	// Number of days to retain matching logs in long-term (Iceberg) storage after they are exported. When multiple configs overlap, the longest retention wins.
+	RetentionDays int `pulumi:"retentionDays"`
+	// Stable identifier for the log retention config. Generated from `name` if omitted. Immutable after creation.
+	Slug *string `pulumi:"slug"`
 }
 
 // The set of arguments for constructing a LogRetentionConfig resource.
 type LogRetentionConfigArgs struct {
-	Filter        pulumi.StringInput
-	Mode          pulumi.StringInput
-	Name          pulumi.StringInput
+	// Log query filter. The retention policy applies only to logs that match.
+	Filter pulumi.StringInput
+	// Mode that determines how matching logs are retained in long-term (Iceberg) storage.
+	Mode pulumi.StringInput
+	// Display name of the log retention config.
+	Name pulumi.StringInput
+	// Number of days to retain matching logs in long-term (Iceberg) storage after they are exported. When multiple configs overlap, the longest retention wins.
 	RetentionDays pulumi.IntInput
-	Slug          pulumi.StringPtrInput
+	// Stable identifier for the log retention config. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringPtrInput
 }
 
 func (LogRetentionConfigArgs) ElementType() reflect.Type {
@@ -187,22 +242,27 @@ func (o LogRetentionConfigOutput) ToLogRetentionConfigOutputWithContext(ctx cont
 	return o
 }
 
+// Log query filter. The retention policy applies only to logs that match.
 func (o LogRetentionConfigOutput) Filter() pulumi.StringOutput {
 	return o.ApplyT(func(v *LogRetentionConfig) pulumi.StringOutput { return v.Filter }).(pulumi.StringOutput)
 }
 
+// Mode that determines how matching logs are retained in long-term (Iceberg) storage.
 func (o LogRetentionConfigOutput) Mode() pulumi.StringOutput {
 	return o.ApplyT(func(v *LogRetentionConfig) pulumi.StringOutput { return v.Mode }).(pulumi.StringOutput)
 }
 
+// Display name of the log retention config.
 func (o LogRetentionConfigOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *LogRetentionConfig) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// Number of days to retain matching logs in long-term (Iceberg) storage after they are exported. When multiple configs overlap, the longest retention wins.
 func (o LogRetentionConfigOutput) RetentionDays() pulumi.IntOutput {
 	return o.ApplyT(func(v *LogRetentionConfig) pulumi.IntOutput { return v.RetentionDays }).(pulumi.IntOutput)
 }
 
+// Stable identifier for the log retention config. Generated from `name` if omitted. Immutable after creation.
 func (o LogRetentionConfigOutput) Slug() pulumi.StringOutput {
 	return o.ApplyT(func(v *LogRetentionConfig) pulumi.StringOutput { return v.Slug }).(pulumi.StringOutput)
 }

@@ -6,6 +6,33 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * Routes alert signals from monitors and SLOs to notifiers, with per-severity routing and label-matcher-based overrides. If `name` is set the policy is independent (referenceable by ID); if `name` is omitted the policy is inline and can only be embedded in another resource (e.g. a bucket).
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as chronosphere from "@pulumi-chronosphere/pulumi-chronosphere";
+ *
+ * const platformTeam = new chronosphere.Team("platformTeam", {name: "Platform"});
+ * const email = new chronosphere.EmailAlertNotifier("email", {
+ *     name: "Platform Email",
+ *     to: "platform@example.com",
+ * });
+ * const platformNotificationPolicy = new chronosphere.NotificationPolicy("platformNotificationPolicy", {
+ *     name: "Platform Policy",
+ *     teamId: platformTeam.id,
+ *     routes: [{
+ *         severity: "warn",
+ *         notifiers: [email.id],
+ *         groupBy: {
+ *             labelNames: ["service"],
+ *         },
+ *     }],
+ * });
+ * ```
+ */
 export class NotificationPolicy extends pulumi.CustomResource {
     /**
      * Get an existing NotificationPolicy resource's state with the given name, ID, and optional extra
@@ -34,12 +61,33 @@ export class NotificationPolicy extends pulumi.CustomResource {
         return obj['__pulumiType'] === NotificationPolicy.__pulumiType;
     }
 
+    /**
+     * Read-only internal marker tracking whether the policy is independent (named) or inline. Used to force replacement when transitioning between the two.
+     */
     public /*out*/ readonly isIndependent!: pulumi.Output<boolean>;
+    /**
+     * Label name to match.
+     */
     public readonly name!: pulumi.Output<string | undefined>;
+    /**
+     * Computed/optional JSON serialization of the policy. Primarily used to attach inline policy data to other resources (e.g. buckets).
+     */
     public readonly notificationPolicyData!: pulumi.Output<string>;
+    /**
+     * Ordered overrides that route alerts matching specific label matchers to different destinations. The first matching override is applied; non-matching alerts fall through to the default `route`.
+     */
     public readonly overrides!: pulumi.Output<outputs.NotificationPolicyOverride[] | undefined>;
+    /**
+     * Per-severity routing rules. Each entry maps a severity (e.g. `warn`, `critical`) to a set of notifiers, destinations, grouping, and repeat behavior.
+     */
     public readonly routes!: pulumi.Output<outputs.NotificationPolicyRoute[] | undefined>;
+    /**
+     * Stable identifier for the notification policy. Can only be set when `name` is set. Generated from `name` if omitted. Immutable after creation.
+     */
     public readonly slug!: pulumi.Output<string>;
+    /**
+     * ID of the team that owns this notification policy. Required when `name` is set (anonymous policies cannot be owned).
+     */
     public readonly teamId!: pulumi.Output<string | undefined>;
 
     /**
@@ -81,12 +129,33 @@ export class NotificationPolicy extends pulumi.CustomResource {
  * Input properties used for looking up and filtering NotificationPolicy resources.
  */
 export interface NotificationPolicyState {
+    /**
+     * Read-only internal marker tracking whether the policy is independent (named) or inline. Used to force replacement when transitioning between the two.
+     */
     isIndependent?: pulumi.Input<boolean>;
+    /**
+     * Label name to match.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * Computed/optional JSON serialization of the policy. Primarily used to attach inline policy data to other resources (e.g. buckets).
+     */
     notificationPolicyData?: pulumi.Input<string>;
+    /**
+     * Ordered overrides that route alerts matching specific label matchers to different destinations. The first matching override is applied; non-matching alerts fall through to the default `route`.
+     */
     overrides?: pulumi.Input<pulumi.Input<inputs.NotificationPolicyOverride>[]>;
+    /**
+     * Per-severity routing rules. Each entry maps a severity (e.g. `warn`, `critical`) to a set of notifiers, destinations, grouping, and repeat behavior.
+     */
     routes?: pulumi.Input<pulumi.Input<inputs.NotificationPolicyRoute>[]>;
+    /**
+     * Stable identifier for the notification policy. Can only be set when `name` is set. Generated from `name` if omitted. Immutable after creation.
+     */
     slug?: pulumi.Input<string>;
+    /**
+     * ID of the team that owns this notification policy. Required when `name` is set (anonymous policies cannot be owned).
+     */
     teamId?: pulumi.Input<string>;
 }
 
@@ -94,10 +163,28 @@ export interface NotificationPolicyState {
  * The set of arguments for constructing a NotificationPolicy resource.
  */
 export interface NotificationPolicyArgs {
+    /**
+     * Label name to match.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * Computed/optional JSON serialization of the policy. Primarily used to attach inline policy data to other resources (e.g. buckets).
+     */
     notificationPolicyData?: pulumi.Input<string>;
+    /**
+     * Ordered overrides that route alerts matching specific label matchers to different destinations. The first matching override is applied; non-matching alerts fall through to the default `route`.
+     */
     overrides?: pulumi.Input<pulumi.Input<inputs.NotificationPolicyOverride>[]>;
+    /**
+     * Per-severity routing rules. Each entry maps a severity (e.g. `warn`, `critical`) to a set of notifiers, destinations, grouping, and repeat behavior.
+     */
     routes?: pulumi.Input<pulumi.Input<inputs.NotificationPolicyRoute>[]>;
+    /**
+     * Stable identifier for the notification policy. Can only be set when `name` is set. Generated from `name` if omitted. Immutable after creation.
+     */
     slug?: pulumi.Input<string>;
+    /**
+     * ID of the team that owns this notification policy. Required when `name` is set (anonymous policies cannot be owned).
+     */
     teamId?: pulumi.Input<string>;
 }

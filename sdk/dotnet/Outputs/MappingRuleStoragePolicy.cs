@@ -14,7 +14,13 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class MappingRuleStoragePolicy
     {
+        /// <summary>
+        /// Resolution at which mapped data points are stored.
+        /// </summary>
         public readonly string Resolution;
+        /// <summary>
+        /// Retention duration for mapped data points.
+        /// </summary>
         public readonly string Retention;
 
         [OutputConstructor]

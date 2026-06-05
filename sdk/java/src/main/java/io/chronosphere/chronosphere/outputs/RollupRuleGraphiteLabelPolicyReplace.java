@@ -9,13 +9,29 @@ import java.util.Objects;
 
 @CustomType
 public final class RollupRuleGraphiteLabelPolicyReplace {
+    /**
+     * @return Positional Graphite label to replace (e.g. `__g1__`).
+     * 
+     */
     private String name;
+    /**
+     * @return Replacement value for the named positional label.
+     * 
+     */
     private String newValue;
 
     private RollupRuleGraphiteLabelPolicyReplace() {}
+    /**
+     * @return Positional Graphite label to replace (e.g. `__g1__`).
+     * 
+     */
     public String name() {
         return this.name;
     }
+    /**
+     * @return Replacement value for the named positional label.
+     * 
+     */
     public String newValue() {
         return this.newValue;
     }

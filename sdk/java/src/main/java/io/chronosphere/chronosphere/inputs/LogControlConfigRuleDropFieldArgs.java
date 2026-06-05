@@ -16,16 +16,32 @@ public final class LogControlConfigRuleDropFieldArgs extends com.pulumi.resource
 
     public static final LogControlConfigRuleDropFieldArgs Empty = new LogControlConfigRuleDropFieldArgs();
 
+    /**
+     * Regular expression that selects which fields to drop.
+     * 
+     */
     @Import(name="fieldRegex")
     private @Nullable Output<String> fieldRegex;
 
+    /**
+     * @return Regular expression that selects which fields to drop.
+     * 
+     */
     public Optional<Output<String>> fieldRegex() {
         return Optional.ofNullable(this.fieldRegex);
     }
 
+    /**
+     * Path to a field within a log record.
+     * 
+     */
     @Import(name="parentPath")
     private @Nullable Output<LogControlConfigRuleDropFieldParentPathArgs> parentPath;
 
+    /**
+     * @return Path to a field within a log record.
+     * 
+     */
     public Optional<Output<LogControlConfigRuleDropFieldParentPathArgs>> parentPath() {
         return Optional.ofNullable(this.parentPath);
     }
@@ -55,20 +71,44 @@ public final class LogControlConfigRuleDropFieldArgs extends com.pulumi.resource
             $ = new LogControlConfigRuleDropFieldArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param fieldRegex Regular expression that selects which fields to drop.
+         * 
+         * @return builder
+         * 
+         */
         public Builder fieldRegex(@Nullable Output<String> fieldRegex) {
             $.fieldRegex = fieldRegex;
             return this;
         }
 
+        /**
+         * @param fieldRegex Regular expression that selects which fields to drop.
+         * 
+         * @return builder
+         * 
+         */
         public Builder fieldRegex(String fieldRegex) {
             return fieldRegex(Output.of(fieldRegex));
         }
 
+        /**
+         * @param parentPath Path to a field within a log record.
+         * 
+         * @return builder
+         * 
+         */
         public Builder parentPath(@Nullable Output<LogControlConfigRuleDropFieldParentPathArgs> parentPath) {
             $.parentPath = parentPath;
             return this;
         }
 
+        /**
+         * @param parentPath Path to a field within a log record.
+         * 
+         * @return builder
+         * 
+         */
         public Builder parentPath(LogControlConfigRuleDropFieldParentPathArgs parentPath) {
             return parentPath(Output.of(parentPath));
         }

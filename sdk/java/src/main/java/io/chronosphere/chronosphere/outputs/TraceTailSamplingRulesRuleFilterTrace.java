@@ -12,13 +12,29 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class TraceTailSamplingRulesRuleFilterTrace {
+    /**
+     * @return Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, max_secs]` range.
+     * 
+     */
     private @Nullable TraceTailSamplingRulesRuleFilterTraceDuration duration;
+    /**
+     * @return Matches traces or spans where the target boolean field equals `value`.
+     * 
+     */
     private @Nullable TraceTailSamplingRulesRuleFilterTraceError error;
 
     private TraceTailSamplingRulesRuleFilterTrace() {}
+    /**
+     * @return Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, max_secs]` range.
+     * 
+     */
     public Optional<TraceTailSamplingRulesRuleFilterTraceDuration> duration() {
         return Optional.ofNullable(this.duration);
     }
+    /**
+     * @return Matches traces or spans where the target boolean field equals `value`.
+     * 
+     */
     public Optional<TraceTailSamplingRulesRuleFilterTraceError> error() {
         return Optional.ofNullable(this.error);
     }

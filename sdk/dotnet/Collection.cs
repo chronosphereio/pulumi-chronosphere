@@ -10,21 +10,58 @@ using Pulumi;
 
 namespace Chronosphere.Pulumi
 {
+    /// <summary>
+    /// A logical grouping of monitors, dashboards, SLOs, and other resources, typically aligned with a team or system. Provides a default notification policy for contained monitors and SLOs that do not explicitly reference one.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Pulumi = Chronosphere.Pulumi;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var infra = new Pulumi.Collection("infra", new()
+    ///     {
+    ///         Description = "Collection of resources related to infrastructure services.",
+    ///         Name = "Infrastructure Collection",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// </summary>
     [PulumiResourceType("chronosphere:index/collection:Collection")]
     public partial class Collection : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Free-form description of the collection.
+        /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
+        /// <summary>
+        /// Display name of the collection. Can be changed after creation.
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// ID of the default notification policy applied to monitors in this collection that do not explicitly reference one. Monitors that set their own `notification_policy_id` are not overridden.
+        /// </summary>
         [Output("notificationPolicyId")]
         public Output<string?> NotificationPolicyId { get; private set; } = null!;
 
+        /// <summary>
+        /// Stable identifier for the collection. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Output("slug")]
         public Output<string> Slug { get; private set; } = null!;
 
+        /// <summary>
+        /// ID of the team that owns this collection.
+        /// </summary>
         [Output("teamId")]
         public Output<string?> TeamId { get; private set; } = null!;
 
@@ -75,18 +112,33 @@ namespace Chronosphere.Pulumi
 
     public sealed class CollectionArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Free-form description of the collection.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// Display name of the collection. Can be changed after creation.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// ID of the default notification policy applied to monitors in this collection that do not explicitly reference one. Monitors that set their own `notification_policy_id` are not overridden.
+        /// </summary>
         [Input("notificationPolicyId")]
         public Input<string>? NotificationPolicyId { get; set; }
 
+        /// <summary>
+        /// Stable identifier for the collection. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 
+        /// <summary>
+        /// ID of the team that owns this collection.
+        /// </summary>
         [Input("teamId")]
         public Input<string>? TeamId { get; set; }
 
@@ -98,18 +150,33 @@ namespace Chronosphere.Pulumi
 
     public sealed class CollectionState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Free-form description of the collection.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// Display name of the collection. Can be changed after creation.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// ID of the default notification policy applied to monitors in this collection that do not explicitly reference one. Monitors that set their own `notification_policy_id` are not overridden.
+        /// </summary>
         [Input("notificationPolicyId")]
         public Input<string>? NotificationPolicyId { get; set; }
 
+        /// <summary>
+        /// Stable identifier for the collection. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 
+        /// <summary>
+        /// ID of the team that owns this collection.
+        /// </summary>
         [Input("teamId")]
         public Input<string>? TeamId { get; set; }
 

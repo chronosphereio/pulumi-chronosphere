@@ -12,17 +12,37 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class BucketDataSourceResult {
+    /**
+     * @return Read-only: free-form description of the bucket.
+     * 
+     */
     private String description;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
      */
     private String id;
+    /**
+     * @return Read-only: key/value labels attached to the bucket.
+     * 
+     */
     private @Nullable Map<String,String> labels;
+    /**
+     * @return Name of the bucket to look up. Exactly one of `slug` or `name` must be set.
+     * 
+     */
     private @Nullable String name;
+    /**
+     * @return Slug of the bucket to look up. Exactly one of `slug` or `name` must be set.
+     * 
+     */
     private @Nullable String slug;
 
     private BucketDataSourceResult() {}
+    /**
+     * @return Read-only: free-form description of the bucket.
+     * 
+     */
     public String description() {
         return this.description;
     }
@@ -33,12 +53,24 @@ public final class BucketDataSourceResult {
     public String id() {
         return this.id;
     }
+    /**
+     * @return Read-only: key/value labels attached to the bucket.
+     * 
+     */
     public Map<String,String> labels() {
         return this.labels == null ? Map.of() : this.labels;
     }
+    /**
+     * @return Name of the bucket to look up. Exactly one of `slug` or `name` must be set.
+     * 
+     */
     public Optional<String> name() {
         return Optional.ofNullable(this.name);
     }
+    /**
+     * @return Slug of the bucket to look up. Exactly one of `slug` or `name` must be set.
+     * 
+     */
     public Optional<String> slug() {
         return Optional.ofNullable(this.slug);
     }

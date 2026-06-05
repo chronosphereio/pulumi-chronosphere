@@ -21,51 +21,107 @@ public final class LogControlConfigRuleEmitMetricsArgs extends com.pulumi.resour
 
     public static final LogControlConfigRuleEmitMetricsArgs Empty = new LogControlConfigRuleEmitMetricsArgs();
 
+    /**
+     * Emit a counter metric. Exactly one of `counter`, `gauge`, or `histogram` must be set.
+     * 
+     */
     @Import(name="counter")
     private @Nullable Output<LogControlConfigRuleEmitMetricsCounterArgs> counter;
 
+    /**
+     * @return Emit a counter metric. Exactly one of `counter`, `gauge`, or `histogram` must be set.
+     * 
+     */
     public Optional<Output<LogControlConfigRuleEmitMetricsCounterArgs>> counter() {
         return Optional.ofNullable(this.counter);
     }
 
+    /**
+     * If `true`, drops the entire log after emitting the metric.
+     * 
+     */
     @Import(name="dropLog")
     private @Nullable Output<Boolean> dropLog;
 
+    /**
+     * @return If `true`, drops the entire log after emitting the metric.
+     * 
+     */
     public Optional<Output<Boolean>> dropLog() {
         return Optional.ofNullable(this.dropLog);
     }
 
+    /**
+     * Emit a gauge metric. Exactly one of `counter`, `gauge`, or `histogram` must be set.
+     * 
+     */
     @Import(name="gauge")
     private @Nullable Output<LogControlConfigRuleEmitMetricsGaugeArgs> gauge;
 
+    /**
+     * @return Emit a gauge metric. Exactly one of `counter`, `gauge`, or `histogram` must be set.
+     * 
+     */
     public Optional<Output<LogControlConfigRuleEmitMetricsGaugeArgs>> gauge() {
         return Optional.ofNullable(this.gauge);
     }
 
+    /**
+     * Emit a histogram metric. Exactly one of `counter`, `gauge`, or `histogram` must be set.
+     * 
+     */
     @Import(name="histogram")
     private @Nullable Output<LogControlConfigRuleEmitMetricsHistogramArgs> histogram;
 
+    /**
+     * @return Emit a histogram metric. Exactly one of `counter`, `gauge`, or `histogram` must be set.
+     * 
+     */
     public Optional<Output<LogControlConfigRuleEmitMetricsHistogramArgs>> histogram() {
         return Optional.ofNullable(this.histogram);
     }
 
+    /**
+     * Labels to attach to the generated metric, specified as key/value pairs mapping a Prometheus label name to a log field path.
+     * 
+     */
     @Import(name="labels")
     private @Nullable Output<List<LogControlConfigRuleEmitMetricsLabelArgs>> labels;
 
+    /**
+     * @return Labels to attach to the generated metric, specified as key/value pairs mapping a Prometheus label name to a log field path.
+     * 
+     */
     public Optional<Output<List<LogControlConfigRuleEmitMetricsLabelArgs>>> labels() {
         return Optional.ofNullable(this.labels);
     }
 
+    /**
+     * Metric emission mode that controls how the metric is generated from matching logs.
+     * 
+     */
     @Import(name="mode")
     private @Nullable Output<String> mode;
 
+    /**
+     * @return Metric emission mode that controls how the metric is generated from matching logs.
+     * 
+     */
     public Optional<Output<String>> mode() {
         return Optional.ofNullable(this.mode);
     }
 
+    /**
+     * Name of the generated metric. Must conform to Prometheus naming conventions and be unique within the tenant.
+     * 
+     */
     @Import(name="name")
     private @Nullable Output<String> name;
 
+    /**
+     * @return Name of the generated metric. Must conform to Prometheus naming conventions and be unique within the tenant.
+     * 
+     */
     public Optional<Output<String>> name() {
         return Optional.ofNullable(this.name);
     }
@@ -100,69 +156,159 @@ public final class LogControlConfigRuleEmitMetricsArgs extends com.pulumi.resour
             $ = new LogControlConfigRuleEmitMetricsArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param counter Emit a counter metric. Exactly one of `counter`, `gauge`, or `histogram` must be set.
+         * 
+         * @return builder
+         * 
+         */
         public Builder counter(@Nullable Output<LogControlConfigRuleEmitMetricsCounterArgs> counter) {
             $.counter = counter;
             return this;
         }
 
+        /**
+         * @param counter Emit a counter metric. Exactly one of `counter`, `gauge`, or `histogram` must be set.
+         * 
+         * @return builder
+         * 
+         */
         public Builder counter(LogControlConfigRuleEmitMetricsCounterArgs counter) {
             return counter(Output.of(counter));
         }
 
+        /**
+         * @param dropLog If `true`, drops the entire log after emitting the metric.
+         * 
+         * @return builder
+         * 
+         */
         public Builder dropLog(@Nullable Output<Boolean> dropLog) {
             $.dropLog = dropLog;
             return this;
         }
 
+        /**
+         * @param dropLog If `true`, drops the entire log after emitting the metric.
+         * 
+         * @return builder
+         * 
+         */
         public Builder dropLog(Boolean dropLog) {
             return dropLog(Output.of(dropLog));
         }
 
+        /**
+         * @param gauge Emit a gauge metric. Exactly one of `counter`, `gauge`, or `histogram` must be set.
+         * 
+         * @return builder
+         * 
+         */
         public Builder gauge(@Nullable Output<LogControlConfigRuleEmitMetricsGaugeArgs> gauge) {
             $.gauge = gauge;
             return this;
         }
 
+        /**
+         * @param gauge Emit a gauge metric. Exactly one of `counter`, `gauge`, or `histogram` must be set.
+         * 
+         * @return builder
+         * 
+         */
         public Builder gauge(LogControlConfigRuleEmitMetricsGaugeArgs gauge) {
             return gauge(Output.of(gauge));
         }
 
+        /**
+         * @param histogram Emit a histogram metric. Exactly one of `counter`, `gauge`, or `histogram` must be set.
+         * 
+         * @return builder
+         * 
+         */
         public Builder histogram(@Nullable Output<LogControlConfigRuleEmitMetricsHistogramArgs> histogram) {
             $.histogram = histogram;
             return this;
         }
 
+        /**
+         * @param histogram Emit a histogram metric. Exactly one of `counter`, `gauge`, or `histogram` must be set.
+         * 
+         * @return builder
+         * 
+         */
         public Builder histogram(LogControlConfigRuleEmitMetricsHistogramArgs histogram) {
             return histogram(Output.of(histogram));
         }
 
+        /**
+         * @param labels Labels to attach to the generated metric, specified as key/value pairs mapping a Prometheus label name to a log field path.
+         * 
+         * @return builder
+         * 
+         */
         public Builder labels(@Nullable Output<List<LogControlConfigRuleEmitMetricsLabelArgs>> labels) {
             $.labels = labels;
             return this;
         }
 
+        /**
+         * @param labels Labels to attach to the generated metric, specified as key/value pairs mapping a Prometheus label name to a log field path.
+         * 
+         * @return builder
+         * 
+         */
         public Builder labels(List<LogControlConfigRuleEmitMetricsLabelArgs> labels) {
             return labels(Output.of(labels));
         }
 
+        /**
+         * @param labels Labels to attach to the generated metric, specified as key/value pairs mapping a Prometheus label name to a log field path.
+         * 
+         * @return builder
+         * 
+         */
         public Builder labels(LogControlConfigRuleEmitMetricsLabelArgs... labels) {
             return labels(List.of(labels));
         }
 
+        /**
+         * @param mode Metric emission mode that controls how the metric is generated from matching logs.
+         * 
+         * @return builder
+         * 
+         */
         public Builder mode(@Nullable Output<String> mode) {
             $.mode = mode;
             return this;
         }
 
+        /**
+         * @param mode Metric emission mode that controls how the metric is generated from matching logs.
+         * 
+         * @return builder
+         * 
+         */
         public Builder mode(String mode) {
             return mode(Output.of(mode));
         }
 
+        /**
+         * @param name Name of the generated metric. Must conform to Prometheus naming conventions and be unique within the tenant.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(@Nullable Output<String> name) {
             $.name = name;
             return this;
         }
 
+        /**
+         * @param name Name of the generated metric. Must conform to Prometheus naming conventions and be unique within the tenant.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(String name) {
             return name(Output.of(name));
         }

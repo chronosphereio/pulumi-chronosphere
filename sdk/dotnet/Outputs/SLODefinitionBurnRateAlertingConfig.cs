@@ -14,9 +14,21 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class SLODefinitionBurnRateAlertingConfig
     {
+        /// <summary>
+        /// Percentage of the error budget that can be consumed during `window` before the alert fires. Must be between 0.0 and 100.0 exclusive.
+        /// </summary>
         public readonly double Budget;
+        /// <summary>
+        /// Additional labels attached when this burn-rate alert fires. Can be used by notification policies to route different burn rates to different destinations.
+        /// </summary>
         public readonly ImmutableDictionary<string, string>? Labels;
+        /// <summary>
+        /// Severity assigned when the burn rate fires. Must be `critical` or `warn`.
+        /// </summary>
         public readonly string Severity;
+        /// <summary>
+        /// Time window for the burn-rate calculation (e.g. `1h`, `6h`).
+        /// </summary>
         public readonly string Window;
 
         [OutputConstructor]

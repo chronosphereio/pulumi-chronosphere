@@ -6,1761 +6,4175 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
 export interface AzureMetricsIntegrationPrincipal {
+    /**
+     * OAuth2 client ID of the managed identity principal.
+     */
     clientId?: pulumi.Input<string>;
+    /**
+     * ID of the Azure tenant that hosts the managed identity principal.
+     */
     tenantId?: pulumi.Input<string>;
 }
 
 export interface AzureMetricsIntegrationScrapeConfig {
+    /**
+     * Azure locations (regions) to ingest from, applied across all subscriptions. Leave empty for all locations.
+     */
     locations?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Azure resource types to scrape metrics from. Each entry can constrain the set of metric names to a subset.
+     */
     resourceTypes?: pulumi.Input<pulumi.Input<inputs.AzureMetricsIntegrationScrapeConfigResourceType>[]>;
+    /**
+     * Azure subscription IDs to target. Leave empty to scrape from all subscriptions accessible to the principal.
+     */
     subscriptionIds?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 export interface AzureMetricsIntegrationScrapeConfigResourceType {
+    /**
+     * Metric names to ingest for this resource type. Leave empty for all metrics.
+     */
     metricNames?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Azure resource type identifier (e.g. `Microsoft.Compute/virtualMachines`).
+     */
     name?: pulumi.Input<string>;
 }
 
 export interface ConsumptionBudgetAlertActionConfig {
+    /**
+     * Additional annotations to set on the generated monitor. Overrides the default `description`, `dashboard`, `resource`, `consumptionBudgetSlug`, `thresholdType`, and `partition` annotations when keys collide.
+     */
     annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * How long instant-rate consumption must remain above the threshold before an alert fires, in seconds. Defaults to 0 (alert immediately on any breach).
+     */
     instantRateSustainSecs?: pulumi.Input<number>;
+    /**
+     * Additional labels to set on the generated monitor, usable for notification routing. The `resource`, `partition`, and `thresholdType` labels are reserved and cannot be overridden.
+     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }
 
 export interface ConsumptionBudgetPriority {
+    /**
+     * Filters identifying which data matches this priority. Filters are AND-ed together: a request must match every filter to be assigned this priority.
+     */
     filters?: pulumi.Input<pulumi.Input<inputs.ConsumptionBudgetPriorityFilter>[]>;
+    /**
+     * Priority order used when dropping data. Priority `10` is dropped first; priority `1` is dropped last.
+     */
     priority?: pulumi.Input<number>;
 }
 
 export interface ConsumptionBudgetPriorityFilter {
+    /**
+     * Deprecated: use `logFilter` instead. Slug of the dataset to match against.
+     */
     datasetId?: pulumi.Input<string>;
+    /**
+     * Log search filter that matches log data for this priority.
+     */
     logFilter?: pulumi.Input<inputs.ConsumptionBudgetPriorityFilterLogFilter>;
 }
 
 export interface ConsumptionBudgetPriorityFilterLogFilter {
+    /**
+     * Log search query that selects matching logs. Supports only top-level operations; nested clauses are not allowed and only one type of `AND` or `OR` operator can be used.
+     */
     query: pulumi.Input<string>;
 }
 
 export interface ConsumptionBudgetThreshold {
+    /**
+     * Action to take when this threshold is exceeded (e.g. drop traffic, fire warning/critical alert).
+     */
     action?: pulumi.Input<string>;
+    /**
+     * Configures an instant-rate threshold value. Set when `type` is an instant-rate type.
+     */
     instantRate?: pulumi.Input<inputs.ConsumptionBudgetThresholdInstantRate>;
+    /**
+     * Resource group the threshold applies to (e.g. metrics, logs, traces). Replaces the deprecated top-level `resource` field.
+     */
+    resourceGroup?: pulumi.Input<string>;
+    /**
+     * SKU group the threshold applies to (e.g. metrics, logs, traces). Replaces the deprecated top-level `resource` field.
+     *
+     * @deprecated use resource_group instead
+     */
     skuGroup?: pulumi.Input<string>;
+    /**
+     * Measurement window over which the threshold is evaluated (e.g. instant rate vs. rolling volume).
+     */
     type?: pulumi.Input<string>;
+    /**
+     * Unit in which the threshold value is denominated (e.g. bytes, datapoints).
+     */
     unit?: pulumi.Input<string>;
+    /**
+     * Configures a volume threshold value. Set when `type` is a volume type.
+     */
     volume?: pulumi.Input<inputs.ConsumptionBudgetThresholdVolume>;
 }
 
 export interface ConsumptionBudgetThresholdInstantRate {
+    /**
+     * Fixed per-second rate threshold value, expressed in the threshold's `unit`.
+     */
     fixedValuePerSec?: pulumi.Input<number>;
 }
 
 export interface ConsumptionBudgetThresholdVolume {
+    /**
+     * Fixed volume threshold value, expressed in the threshold's `unit`.
+     */
     fixedValue?: pulumi.Input<number>;
 }
 
 export interface ConsumptionConfigPartition {
+    /**
+     * Filters identifying which data belongs to this partition. Filters are AND-ed together: a request must match every filter to be assigned to the partition. At most one `IN` filter and one `NOT_IN` filter can be specified.
+     */
     filters?: pulumi.Input<pulumi.Input<inputs.ConsumptionConfigPartitionFilter>[]>;
+    /**
+     * Display name of the partition. Must be unique within its parent partition. Can be changed after creation.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * Child partitions of this partition. Evaluated in order; requests not matching any child fall into an implicit `default` child partition.
+     */
     partitions?: pulumi.Input<pulumi.Input<inputs.ConsumptionConfigPartitionPartition>[]>;
+    /**
+     * Stable identifier of the partition. Must be unique within its parent partition. Immutable after creation.
+     */
     slug?: pulumi.Input<string>;
 }
 
 export interface ConsumptionConfigPartitionFilter {
+    /**
+     * Conditions evaluated by the filter. Each condition matches by dataset, logs, metrics, or trace data; exactly one of `logFilter`, `metricFilter`, or `datasetId` must be set per condition.
+     */
     conditions?: pulumi.Input<pulumi.Input<inputs.ConsumptionConfigPartitionFilterCondition>[]>;
+    /**
+     * Match operator (e.g. `IN`, `NOT_IN`) applied to the filter conditions.
+     */
     operator?: pulumi.Input<string>;
 }
 
 export interface ConsumptionConfigPartitionFilterCondition {
+    /**
+     * Deprecated: use `logFilter`, `metricFilter`, or trace filters instead. Slug of the dataset to match.
+     */
     datasetId?: pulumi.Input<string>;
+    /**
+     * Log search filter matching log data for this condition.
+     */
     logFilter?: pulumi.Input<inputs.ConsumptionConfigPartitionFilterConditionLogFilter>;
+    /**
+     * Metric label filters matched against incoming metric data. Multiple filters are AND-ed together; values support glob patterns including `service:{svc1,svc2}` style alternations.
+     */
     metricFilters?: pulumi.Input<pulumi.Input<inputs.ConsumptionConfigPartitionFilterConditionMetricFilter>[]>;
 }
 
 export interface ConsumptionConfigPartitionFilterConditionLogFilter {
+    /**
+     * Log search query that selects matching logs. Supports only top-level operations; nested clauses are not allowed and only one type of `AND` or `OR` operator can be used.
+     */
     query: pulumi.Input<string>;
 }
 
 export interface ConsumptionConfigPartitionFilterConditionMetricFilter {
+    /**
+     * Label name to match.
+     */
     name: pulumi.Input<string>;
+    /**
+     * Glob pattern matched against the label's value.
+     */
     valueGlob: pulumi.Input<string>;
 }
 
 export interface ConsumptionConfigPartitionPartition {
+    /**
+     * Filters identifying which data belongs to this partition. Filters are AND-ed together: a request must match every filter to be assigned to the partition. At most one `IN` filter and one `NOT_IN` filter can be specified.
+     */
     filters?: pulumi.Input<pulumi.Input<inputs.ConsumptionConfigPartitionPartitionFilter>[]>;
+    /**
+     * Display name of the partition. Must be unique within its parent partition. Can be changed after creation.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * Child partitions of this partition. Evaluated in order; requests not matching any child fall into an implicit `default` child partition.
+     */
     partitions?: pulumi.Input<pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartition>[]>;
+    /**
+     * Stable identifier of the partition. Must be unique within its parent partition. Immutable after creation.
+     */
     slug?: pulumi.Input<string>;
 }
 
 export interface ConsumptionConfigPartitionPartitionFilter {
+    /**
+     * Conditions evaluated by the filter. Each condition matches by dataset, logs, metrics, or trace data; exactly one of `logFilter`, `metricFilter`, or `datasetId` must be set per condition.
+     */
     conditions?: pulumi.Input<pulumi.Input<inputs.ConsumptionConfigPartitionPartitionFilterCondition>[]>;
+    /**
+     * Match operator (e.g. `IN`, `NOT_IN`) applied to the filter conditions.
+     */
     operator?: pulumi.Input<string>;
 }
 
 export interface ConsumptionConfigPartitionPartitionFilterCondition {
+    /**
+     * Deprecated: use `logFilter`, `metricFilter`, or trace filters instead. Slug of the dataset to match.
+     */
     datasetId?: pulumi.Input<string>;
+    /**
+     * Log search filter matching log data for this condition.
+     */
     logFilter?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionFilterConditionLogFilter>;
+    /**
+     * Metric label filters matched against incoming metric data. Multiple filters are AND-ed together; values support glob patterns including `service:{svc1,svc2}` style alternations.
+     */
     metricFilters?: pulumi.Input<pulumi.Input<inputs.ConsumptionConfigPartitionPartitionFilterConditionMetricFilter>[]>;
 }
 
 export interface ConsumptionConfigPartitionPartitionFilterConditionLogFilter {
+    /**
+     * Log search query that selects matching logs. Supports only top-level operations; nested clauses are not allowed and only one type of `AND` or `OR` operator can be used.
+     */
     query: pulumi.Input<string>;
 }
 
 export interface ConsumptionConfigPartitionPartitionFilterConditionMetricFilter {
+    /**
+     * Label name to match.
+     */
     name: pulumi.Input<string>;
+    /**
+     * Glob pattern matched against the label's value.
+     */
     valueGlob: pulumi.Input<string>;
 }
 
 export interface ConsumptionConfigPartitionPartitionPartition {
+    /**
+     * Filters identifying which data belongs to this partition. Filters are AND-ed together: a request must match every filter to be assigned to the partition. At most one `IN` filter and one `NOT_IN` filter can be specified.
+     */
     filters?: pulumi.Input<pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionFilter>[]>;
+    /**
+     * Display name of the partition. Must be unique within its parent partition. Can be changed after creation.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * Child partitions of this partition. Evaluated in order; requests not matching any child fall into an implicit `default` child partition.
+     */
     partitions?: pulumi.Input<pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartition>[]>;
+    /**
+     * Stable identifier of the partition. Must be unique within its parent partition. Immutable after creation.
+     */
     slug?: pulumi.Input<string>;
 }
 
 export interface ConsumptionConfigPartitionPartitionPartitionFilter {
+    /**
+     * Conditions evaluated by the filter. Each condition matches by dataset, logs, metrics, or trace data; exactly one of `logFilter`, `metricFilter`, or `datasetId` must be set per condition.
+     */
     conditions?: pulumi.Input<pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionFilterCondition>[]>;
+    /**
+     * Match operator (e.g. `IN`, `NOT_IN`) applied to the filter conditions.
+     */
     operator?: pulumi.Input<string>;
 }
 
 export interface ConsumptionConfigPartitionPartitionPartitionFilterCondition {
+    /**
+     * Deprecated: use `logFilter`, `metricFilter`, or trace filters instead. Slug of the dataset to match.
+     */
     datasetId?: pulumi.Input<string>;
+    /**
+     * Log search filter matching log data for this condition.
+     */
     logFilter?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilter>;
+    /**
+     * Metric label filters matched against incoming metric data. Multiple filters are AND-ed together; values support glob patterns including `service:{svc1,svc2}` style alternations.
+     */
     metricFilters?: pulumi.Input<pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionMetricFilter>[]>;
 }
 
 export interface ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilter {
+    /**
+     * Log search query that selects matching logs. Supports only top-level operations; nested clauses are not allowed and only one type of `AND` or `OR` operator can be used.
+     */
     query: pulumi.Input<string>;
 }
 
 export interface ConsumptionConfigPartitionPartitionPartitionFilterConditionMetricFilter {
+    /**
+     * Label name to match.
+     */
     name: pulumi.Input<string>;
+    /**
+     * Glob pattern matched against the label's value.
+     */
     valueGlob: pulumi.Input<string>;
 }
 
 export interface ConsumptionConfigPartitionPartitionPartitionPartition {
+    /**
+     * Filters identifying which data belongs to this partition. Filters are AND-ed together: a request must match every filter to be assigned to the partition. At most one `IN` filter and one `NOT_IN` filter can be specified.
+     */
     filters?: pulumi.Input<pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilter>[]>;
+    /**
+     * Display name of the partition. Must be unique within its parent partition. Can be changed after creation.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * Child partitions of this partition. Evaluated in order; requests not matching any child fall into an implicit `default` child partition.
+     */
     partitions?: pulumi.Input<pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartition>[]>;
+    /**
+     * Stable identifier of the partition. Must be unique within its parent partition. Immutable after creation.
+     */
     slug?: pulumi.Input<string>;
 }
 
 export interface ConsumptionConfigPartitionPartitionPartitionPartitionFilter {
+    /**
+     * Conditions evaluated by the filter. Each condition matches by dataset, logs, metrics, or trace data; exactly one of `logFilter`, `metricFilter`, or `datasetId` must be set per condition.
+     */
     conditions?: pulumi.Input<pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterCondition>[]>;
+    /**
+     * Match operator (e.g. `IN`, `NOT_IN`) applied to the filter conditions.
+     */
     operator?: pulumi.Input<string>;
 }
 
 export interface ConsumptionConfigPartitionPartitionPartitionPartitionFilterCondition {
+    /**
+     * Deprecated: use `logFilter`, `metricFilter`, or trace filters instead. Slug of the dataset to match.
+     */
     datasetId?: pulumi.Input<string>;
+    /**
+     * Log search filter matching log data for this condition.
+     */
     logFilter?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilter>;
+    /**
+     * Metric label filters matched against incoming metric data. Multiple filters are AND-ed together; values support glob patterns including `service:{svc1,svc2}` style alternations.
+     */
     metricFilters?: pulumi.Input<pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionMetricFilter>[]>;
 }
 
 export interface ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilter {
+    /**
+     * Log search query that selects matching logs. Supports only top-level operations; nested clauses are not allowed and only one type of `AND` or `OR` operator can be used.
+     */
     query: pulumi.Input<string>;
 }
 
 export interface ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionMetricFilter {
+    /**
+     * Label name to match.
+     */
     name: pulumi.Input<string>;
+    /**
+     * Glob pattern matched against the label's value.
+     */
     valueGlob: pulumi.Input<string>;
 }
 
 export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartition {
+    /**
+     * Filters identifying which data belongs to this partition. Filters are AND-ed together: a request must match every filter to be assigned to the partition. At most one `IN` filter and one `NOT_IN` filter can be specified.
+     */
     filters?: pulumi.Input<pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilter>[]>;
+    /**
+     * Display name of the partition. Must be unique within its parent partition. Can be changed after creation.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * Child partitions of this partition. Evaluated in order; requests not matching any child fall into an implicit `default` child partition.
+     */
     partitions?: pulumi.Input<pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartition>[]>;
+    /**
+     * Stable identifier of the partition. Must be unique within its parent partition. Immutable after creation.
+     */
     slug?: pulumi.Input<string>;
 }
 
 export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilter {
+    /**
+     * Conditions evaluated by the filter. Each condition matches by dataset, logs, metrics, or trace data; exactly one of `logFilter`, `metricFilter`, or `datasetId` must be set per condition.
+     */
     conditions?: pulumi.Input<pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterCondition>[]>;
+    /**
+     * Match operator (e.g. `IN`, `NOT_IN`) applied to the filter conditions.
+     */
     operator?: pulumi.Input<string>;
 }
 
 export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterCondition {
+    /**
+     * Deprecated: use `logFilter`, `metricFilter`, or trace filters instead. Slug of the dataset to match.
+     */
     datasetId?: pulumi.Input<string>;
+    /**
+     * Log search filter matching log data for this condition.
+     */
     logFilter?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter>;
+    /**
+     * Metric label filters matched against incoming metric data. Multiple filters are AND-ed together; values support glob patterns including `service:{svc1,svc2}` style alternations.
+     */
     metricFilters?: pulumi.Input<pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionMetricFilter>[]>;
 }
 
 export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter {
+    /**
+     * Log search query that selects matching logs. Supports only top-level operations; nested clauses are not allowed and only one type of `AND` or `OR` operator can be used.
+     */
     query: pulumi.Input<string>;
 }
 
 export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionMetricFilter {
+    /**
+     * Label name to match.
+     */
     name: pulumi.Input<string>;
+    /**
+     * Glob pattern matched against the label's value.
+     */
     valueGlob: pulumi.Input<string>;
 }
 
 export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartition {
+    /**
+     * Filters identifying which data belongs to this partition. Filters are AND-ed together: a request must match every filter to be assigned to the partition. At most one `IN` filter and one `NOT_IN` filter can be specified.
+     */
     filters?: pulumi.Input<pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilter>[]>;
+    /**
+     * Display name of the partition. Must be unique within its parent partition. Can be changed after creation.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * Stable identifier of the partition. Must be unique within its parent partition. Immutable after creation.
+     */
     slug?: pulumi.Input<string>;
 }
 
 export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilter {
+    /**
+     * Conditions evaluated by the filter. Each condition matches by dataset, logs, metrics, or trace data; exactly one of `logFilter`, `metricFilter`, or `datasetId` must be set per condition.
+     */
     conditions?: pulumi.Input<pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterCondition>[]>;
+    /**
+     * Match operator (e.g. `IN`, `NOT_IN`) applied to the filter conditions.
+     */
     operator?: pulumi.Input<string>;
 }
 
 export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterCondition {
+    /**
+     * Deprecated: use `logFilter`, `metricFilter`, or trace filters instead. Slug of the dataset to match.
+     */
     datasetId?: pulumi.Input<string>;
+    /**
+     * Log search filter matching log data for this condition.
+     */
     logFilter?: pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter>;
+    /**
+     * Metric label filters matched against incoming metric data. Multiple filters are AND-ed together; values support glob patterns including `service:{svc1,svc2}` style alternations.
+     */
     metricFilters?: pulumi.Input<pulumi.Input<inputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionMetricFilter>[]>;
 }
 
 export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter {
+    /**
+     * Log search query that selects matching logs. Supports only top-level operations; nested clauses are not allowed and only one type of `AND` or `OR` operator can be used.
+     */
     query: pulumi.Input<string>;
 }
 
 export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionMetricFilter {
+    /**
+     * Label name to match.
+     */
     name: pulumi.Input<string>;
+    /**
+     * Glob pattern matched against the label's value.
+     */
     valueGlob: pulumi.Input<string>;
 }
 
 export interface DatasetConfiguration {
+    /**
+     * Log-specific dataset configuration. Set only when `type` is a log type.
+     */
     logDataset?: pulumi.Input<inputs.DatasetConfigurationLogDataset>;
+    /**
+     * Trace-specific dataset configuration. Set only when `type` is a trace type.
+     */
     traceDataset?: pulumi.Input<inputs.DatasetConfigurationTraceDataset>;
+    /**
+     * Dataset type. Determines which of `traceDataset` or `logDataset` must be set.
+     */
     type: pulumi.Input<string>;
 }
 
 export interface DatasetConfigurationLogDataset {
+    /**
+     * Log search filter that defines which logs are included in this dataset.
+     */
     matchCriteria?: pulumi.Input<inputs.DatasetConfigurationLogDatasetMatchCriteria>;
 }
 
 export interface DatasetConfigurationLogDatasetMatchCriteria {
+    /**
+     * Log search query that selects matching logs. Supports only top-level operations; nested clauses are not allowed and only one type of `AND` or `OR` operator can be used.
+     */
     query: pulumi.Input<string>;
 }
 
 export interface DatasetConfigurationTraceDataset {
+    /**
+     * Log search filter that defines which logs are included in this dataset.
+     */
     matchCriteria: pulumi.Input<inputs.DatasetConfigurationTraceDatasetMatchCriteria>;
 }
 
 export interface DatasetConfigurationTraceDatasetMatchCriteria {
+    /**
+     * Scope filter that further restricts which spans within a matched trace contribute to metrics or sampling. Only spans matching `spanScopes` are included in aggregation.
+     */
     scopeFilter?: pulumi.Input<inputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilter>;
+    /**
+     * Span-level conditions. Each block defines a set of conditions that must all be satisfied by a single span in the trace for the trace to match.
+     */
     spans?: pulumi.Input<pulumi.Input<inputs.DatasetConfigurationTraceDatasetMatchCriteriaSpan>[]>;
+    /**
+     * Trace-level conditions evaluated against the whole trace (aggregated duration and error status).
+     */
     trace?: pulumi.Input<inputs.DatasetConfigurationTraceDatasetMatchCriteriaTrace>;
 }
 
 export interface DatasetConfigurationTraceDatasetMatchCriteriaScopeFilter {
+    /**
+     * Span conditions that select which spans are aggregated. Spans must match at least one block to be included.
+     */
     spanScopes?: pulumi.Input<pulumi.Input<inputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScope>[]>;
 }
 
 export interface DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScope {
+    /**
+     * Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, maxSecs]` range.
+     */
     duration?: pulumi.Input<inputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDuration>;
+    /**
+     * Matches traces or spans where the target boolean field equals `value`.
+     */
     error?: pulumi.Input<inputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeError>;
+    /**
+     * Matches traces or spans where the target boolean field equals `value`.
+     */
     isRootSpan?: pulumi.Input<inputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpan>;
+    /**
+     * Whether matching spans are included (`INCLUDE`) or excluded (`EXCLUDE`) from the scope. Defaults to `INCLUDE`.
+     */
     matchType?: pulumi.Input<string>;
+    /**
+     * Matches traces or spans where the target string field satisfies the match condition.
+     */
     operation?: pulumi.Input<inputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperation>;
+    /**
+     * Matches traces or spans where the target string field satisfies the match condition.
+     */
     parentOperation?: pulumi.Input<inputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperation>;
+    /**
+     * Matches traces or spans where the target string field satisfies the match condition.
+     */
     parentService?: pulumi.Input<inputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentService>;
+    /**
+     * Matches traces or spans where the target string field satisfies the match condition.
+     */
     service?: pulumi.Input<inputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeService>;
+    /**
+     * Matches traces where the number of spans satisfying the surrounding span conditions falls within the inclusive `[min, max]` range.
+     */
     spanCount?: pulumi.Input<inputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCount>;
+    /**
+     * Matches spans whose tag (span attribute) with the given `key` has a value satisfying the nested string or numeric filter.
+     */
     tags?: pulumi.Input<pulumi.Input<inputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTag>[]>;
 }
 
 export interface DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDuration {
+    /**
+     * Maximum duration in seconds, inclusive. Omit for no upper bound.
+     */
     maxSecs?: pulumi.Input<number>;
+    /**
+     * Minimum duration in seconds, inclusive. Defaults to `0`.
+     */
     minSecs?: pulumi.Input<number>;
 }
 
 export interface DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeError {
+    /**
+     * Boolean value the target field is compared against.
+     */
     value: pulumi.Input<boolean>;
 }
 
 export interface DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpan {
+    /**
+     * Boolean value the target field is compared against.
+     */
     value: pulumi.Input<boolean>;
 }
 
 export interface DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperation {
+    /**
+     * Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     */
     inValues?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Match operator applied to `value` or `inValues`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     */
     match?: pulumi.Input<string>;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: pulumi.Input<string>;
 }
 
 export interface DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperation {
+    /**
+     * Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     */
     inValues?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Match operator applied to `value` or `inValues`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     */
     match?: pulumi.Input<string>;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: pulumi.Input<string>;
 }
 
 export interface DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentService {
+    /**
+     * Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     */
     inValues?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Match operator applied to `value` or `inValues`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     */
     match?: pulumi.Input<string>;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: pulumi.Input<string>;
 }
 
 export interface DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeService {
+    /**
+     * Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     */
     inValues?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Match operator applied to `value` or `inValues`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     */
     match?: pulumi.Input<string>;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: pulumi.Input<string>;
 }
 
 export interface DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCount {
+    /**
+     * Maximum number of matching spans, inclusive. `0` means no upper bound.
+     */
     max?: pulumi.Input<number>;
+    /**
+     * Minimum number of matching spans, inclusive. Defaults to `0`.
+     */
     min?: pulumi.Input<number>;
 }
 
 export interface DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTag {
+    /**
+     * Name of the span tag (span attribute) inspected by this filter.
+     */
     key?: pulumi.Input<string>;
+    /**
+     * Matches traces or spans where the target numeric field satisfies the comparison against `value`.
+     */
     numericValue?: pulumi.Input<inputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValue>;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: pulumi.Input<inputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValue>;
 }
 
 export interface DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValue {
+    /**
+     * Numeric comparison operator (for example `EQUALS`, `GREATER_THAN`, `LESS_THAN_OR_EQUAL`).
+     */
     comparison: pulumi.Input<string>;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value: pulumi.Input<number>;
 }
 
 export interface DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValue {
+    /**
+     * Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     */
     inValues?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Match operator applied to `value` or `inValues`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     */
     match?: pulumi.Input<string>;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: pulumi.Input<string>;
 }
 
 export interface DatasetConfigurationTraceDatasetMatchCriteriaSpan {
+    /**
+     * Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, maxSecs]` range.
+     */
     duration?: pulumi.Input<inputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanDuration>;
+    /**
+     * Matches traces or spans where the target boolean field equals `value`.
+     */
     error?: pulumi.Input<inputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanError>;
+    /**
+     * Matches traces or spans where the target boolean field equals `value`.
+     */
     isRootSpan?: pulumi.Input<inputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpan>;
+    /**
+     * Whether matching spans are included (`INCLUDE`) or excluded (`EXCLUDE`) from the scope. Defaults to `INCLUDE`.
+     */
     matchType?: pulumi.Input<string>;
+    /**
+     * Matches traces or spans where the target string field satisfies the match condition.
+     */
     operation?: pulumi.Input<inputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanOperation>;
+    /**
+     * Matches traces or spans where the target string field satisfies the match condition.
+     */
     parentOperation?: pulumi.Input<inputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanParentOperation>;
+    /**
+     * Matches traces or spans where the target string field satisfies the match condition.
+     */
     parentService?: pulumi.Input<inputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanParentService>;
+    /**
+     * Matches traces or spans where the target string field satisfies the match condition.
+     */
     service?: pulumi.Input<inputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanService>;
+    /**
+     * Matches traces where the number of spans satisfying the surrounding span conditions falls within the inclusive `[min, max]` range.
+     */
     spanCount?: pulumi.Input<inputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanSpanCount>;
+    /**
+     * Matches spans whose tag (span attribute) with the given `key` has a value satisfying the nested string or numeric filter.
+     */
     tags?: pulumi.Input<pulumi.Input<inputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanTag>[]>;
 }
 
 export interface DatasetConfigurationTraceDatasetMatchCriteriaSpanDuration {
+    /**
+     * Maximum duration in seconds, inclusive. Omit for no upper bound.
+     */
     maxSecs?: pulumi.Input<number>;
+    /**
+     * Minimum duration in seconds, inclusive. Defaults to `0`.
+     */
     minSecs?: pulumi.Input<number>;
 }
 
 export interface DatasetConfigurationTraceDatasetMatchCriteriaSpanError {
+    /**
+     * Boolean value the target field is compared against.
+     */
     value: pulumi.Input<boolean>;
 }
 
 export interface DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpan {
+    /**
+     * Boolean value the target field is compared against.
+     */
     value: pulumi.Input<boolean>;
 }
 
 export interface DatasetConfigurationTraceDatasetMatchCriteriaSpanOperation {
+    /**
+     * Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     */
     inValues?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Match operator applied to `value` or `inValues`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     */
     match?: pulumi.Input<string>;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: pulumi.Input<string>;
 }
 
 export interface DatasetConfigurationTraceDatasetMatchCriteriaSpanParentOperation {
+    /**
+     * Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     */
     inValues?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Match operator applied to `value` or `inValues`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     */
     match?: pulumi.Input<string>;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: pulumi.Input<string>;
 }
 
 export interface DatasetConfigurationTraceDatasetMatchCriteriaSpanParentService {
+    /**
+     * Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     */
     inValues?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Match operator applied to `value` or `inValues`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     */
     match?: pulumi.Input<string>;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: pulumi.Input<string>;
 }
 
 export interface DatasetConfigurationTraceDatasetMatchCriteriaSpanService {
+    /**
+     * Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     */
     inValues?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Match operator applied to `value` or `inValues`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     */
     match?: pulumi.Input<string>;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: pulumi.Input<string>;
 }
 
 export interface DatasetConfigurationTraceDatasetMatchCriteriaSpanSpanCount {
+    /**
+     * Maximum number of matching spans, inclusive. `0` means no upper bound.
+     */
     max?: pulumi.Input<number>;
+    /**
+     * Minimum number of matching spans, inclusive. Defaults to `0`.
+     */
     min?: pulumi.Input<number>;
 }
 
 export interface DatasetConfigurationTraceDatasetMatchCriteriaSpanTag {
+    /**
+     * Name of the span tag (span attribute) inspected by this filter.
+     */
     key?: pulumi.Input<string>;
+    /**
+     * Matches traces or spans where the target numeric field satisfies the comparison against `value`.
+     */
     numericValue?: pulumi.Input<inputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanTagNumericValue>;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: pulumi.Input<inputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanTagValue>;
 }
 
 export interface DatasetConfigurationTraceDatasetMatchCriteriaSpanTagNumericValue {
+    /**
+     * Numeric comparison operator (for example `EQUALS`, `GREATER_THAN`, `LESS_THAN_OR_EQUAL`).
+     */
     comparison: pulumi.Input<string>;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value: pulumi.Input<number>;
 }
 
 export interface DatasetConfigurationTraceDatasetMatchCriteriaSpanTagValue {
+    /**
+     * Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     */
     inValues?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Match operator applied to `value` or `inValues`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     */
     match?: pulumi.Input<string>;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: pulumi.Input<string>;
 }
 
 export interface DatasetConfigurationTraceDatasetMatchCriteriaTrace {
+    /**
+     * Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, maxSecs]` range.
+     */
     duration?: pulumi.Input<inputs.DatasetConfigurationTraceDatasetMatchCriteriaTraceDuration>;
+    /**
+     * Matches traces or spans where the target boolean field equals `value`.
+     */
     error?: pulumi.Input<inputs.DatasetConfigurationTraceDatasetMatchCriteriaTraceError>;
 }
 
 export interface DatasetConfigurationTraceDatasetMatchCriteriaTraceDuration {
+    /**
+     * Maximum duration in seconds, inclusive. Omit for no upper bound.
+     */
     maxSecs?: pulumi.Input<number>;
+    /**
+     * Minimum duration in seconds, inclusive. Defaults to `0`.
+     */
     minSecs?: pulumi.Input<number>;
 }
 
 export interface DatasetConfigurationTraceDatasetMatchCriteriaTraceError {
+    /**
+     * Boolean value the target field is compared against.
+     */
     value: pulumi.Input<boolean>;
 }
 
 export interface DerivedLabelMetricLabel {
+    /**
+     * Constructs the derived label value from a list of value definitions, each gated by a filter on existing labels.
+     */
     constructedLabel?: pulumi.Input<inputs.DerivedLabelMetricLabelConstructedLabel>;
+    /**
+     * Derives the label value by mapping from an existing source label, optionally translating its values.
+     */
     mappingLabel?: pulumi.Input<inputs.DerivedLabelMetricLabelMappingLabel>;
 }
 
 export interface DerivedLabelMetricLabelConstructedLabel {
+    /**
+     * Ordered list of value definitions. The first definition whose filters match produces the derived label value.
+     */
     valueDefinitions: pulumi.Input<pulumi.Input<inputs.DerivedLabelMetricLabelConstructedLabelValueDefinition>[]>;
 }
 
 export interface DerivedLabelMetricLabelConstructedLabelValueDefinition {
+    /**
+     * Label filters that must all match for this value definition to apply.
+     */
     filters: pulumi.Input<pulumi.Input<inputs.DerivedLabelMetricLabelConstructedLabelValueDefinitionFilter>[]>;
+    /**
+     * Value assigned to the derived label when this definition's filters match.
+     */
     value: pulumi.Input<string>;
 }
 
 export interface DerivedLabelMetricLabelConstructedLabelValueDefinitionFilter {
+    /**
+     * Name of the label to match.
+     */
     name: pulumi.Input<string>;
+    /**
+     * Glob pattern matched against the label value.
+     */
     valueGlob: pulumi.Input<string>;
 }
 
 export interface DerivedLabelMetricLabelMappingLabel {
+    /**
+     * Ordered list of name mappings. The first mapping whose filters match supplies the derived label from its `sourceLabel`.
+     */
     nameMappings?: pulumi.Input<pulumi.Input<inputs.DerivedLabelMetricLabelMappingLabelNameMapping>[]>;
+    /**
+     * Translations from source label values to a normalized target value. Each entry maps a set of source globs to a single target.
+     */
     valueMappings?: pulumi.Input<pulumi.Input<inputs.DerivedLabelMetricLabelMappingLabelValueMapping>[]>;
 }
 
 export interface DerivedLabelMetricLabelMappingLabelNameMapping {
+    /**
+     * Label filters that must all match for this value definition to apply.
+     */
     filters: pulumi.Input<pulumi.Input<inputs.DerivedLabelMetricLabelMappingLabelNameMappingFilter>[]>;
+    /**
+     * Source label on the ingested time series to copy into the derived label.
+     */
     sourceLabel: pulumi.Input<string>;
+    /**
+     * Translations from source label values to a normalized target value. Each entry maps a set of source globs to a single target.
+     */
     valueMappings?: pulumi.Input<pulumi.Input<inputs.DerivedLabelMetricLabelMappingLabelNameMappingValueMapping>[]>;
 }
 
 export interface DerivedLabelMetricLabelMappingLabelNameMappingFilter {
+    /**
+     * Name of the label to match.
+     */
     name: pulumi.Input<string>;
+    /**
+     * Glob pattern matched against the label value.
+     */
     valueGlob: pulumi.Input<string>;
 }
 
 export interface DerivedLabelMetricLabelMappingLabelNameMappingValueMapping {
+    /**
+     * Glob patterns matched against the source label value. A match maps the value to `targetValue`.
+     */
     sourceValueGlobs: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Value to assign on the derived label when any `sourceValueGlobs` matches.
+     */
     targetValue: pulumi.Input<string>;
 }
 
 export interface DerivedLabelMetricLabelMappingLabelValueMapping {
+    /**
+     * Glob patterns matched against the source label value. A match maps the value to `targetValue`.
+     */
     sourceValueGlobs: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Value to assign on the derived label when any `sourceValueGlobs` matches.
+     */
     targetValue: pulumi.Input<string>;
 }
 
 export interface DerivedLabelSpanTag {
+    /**
+     * Ordered list of name mappings. The first mapping that matches supplies the derived label from its `sourceTag`.
+     */
     nameMappings?: pulumi.Input<pulumi.Input<inputs.DerivedLabelSpanTagNameMapping>[]>;
 }
 
 export interface DerivedLabelSpanTagNameMapping {
+    /**
+     * Source span tag name to copy into the derived label.
+     */
     sourceTag: pulumi.Input<string>;
 }
 
 export interface DerivedMetricQuery {
+    /**
+     * PromQL query executed when this selector matches.
+     */
     query: pulumi.Input<inputs.DerivedMetricQueryQuery>;
+    /**
+     * Label matchers that must be present on the derived metric usage for this query to be selected. If omitted, the query matches any usage.
+     */
     selector?: pulumi.Input<inputs.DerivedMetricQuerySelector>;
 }
 
 export interface DerivedMetricQueryQuery {
+    /**
+     * PromQL expression for the derived metric. References declared variables using `$name` syntax (e.g. `cpu_usage{$service}`).
+     */
     expr: pulumi.Input<string>;
+    /**
+     * Variables that can be substituted into `expr` at query time as label selectors.
+     */
     variables?: pulumi.Input<pulumi.Input<inputs.DerivedMetricQueryQueryVariable>[]>;
 }
 
 export interface DerivedMetricQueryQueryVariable {
+    /**
+     * PromQL label selector used when no override is supplied by the derived metric usage.
+     */
     defaultSelector: pulumi.Input<string>;
+    /**
+     * Variable name as referenced in `expr` (e.g. `service` for `$service`).
+     */
     name: pulumi.Input<string>;
 }
 
 export interface DerivedMetricQuerySelector {
+    /**
+     * Labels that must match (key/value) on the derived metric usage for the selector to apply.
+     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }
 
 export interface DropRuleValueBasedDrop {
+    /**
+     * Data point value at which matching points are dropped.
+     */
     targetDropValue: pulumi.Input<number>;
 }
 
 export interface GcpMetricsIntegrationMetricGroup {
+    /**
+     * Label filters applied to metrics in this group. All filters must match for a metric to be ingested.
+     */
     filters?: pulumi.Input<pulumi.Input<inputs.GcpMetricsIntegrationMetricGroupFilter>[]>;
+    /**
+     * List of Google Cloud metric prefixes to ingest (e.g. `compute.googleapis.com/`).
+     */
     prefixes?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Google Cloud project ID to read metrics from. The configured service account must have access.
+     */
     projectId: pulumi.Input<string>;
+    /**
+     * Server-side aggregation rules applied to metrics in this group before they are stored.
+     */
     rollupRules?: pulumi.Input<pulumi.Input<inputs.GcpMetricsIntegrationMetricGroupRollupRule>[]>;
 }
 
 export interface GcpMetricsIntegrationMetricGroupFilter {
+    /**
+     * Label context, e.g. resource vs. metric label. See the Chronosphere GCP integration documentation for accepted values.
+     */
     context?: pulumi.Input<string>;
+    /**
+     * Label name to filter on.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * Value pattern using glob syntax (e.g. `prod-*`). An exact match is applied when no glob characters are present.
+     */
     valueGlob?: pulumi.Input<string>;
 }
 
 export interface GcpMetricsIntegrationMetricGroupRollupRule {
+    /**
+     * Aggregation function applied across the dropped labels (e.g. sum, max).
+     */
     aggregation?: pulumi.Input<string>;
+    /**
+     * Specifies which labels to preserve during aggregation. Labels not listed are dropped.
+     */
     labelPolicy?: pulumi.Input<inputs.GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicy>;
+    /**
+     * Fully-qualified Google Cloud metric name the rollup rule targets (e.g. `cloudsql.googleapis.com/database/uptime`).
+     */
     metricName?: pulumi.Input<string>;
 }
 
 export interface GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicy {
+    /**
+     * Labels to retain after aggregation.
+     */
     keeps?: pulumi.Input<pulumi.Input<inputs.GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeep>[]>;
 }
 
 export interface GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeep {
+    /**
+     * Label context, e.g. resource vs. metric label. See the Chronosphere GCP integration documentation for accepted values.
+     */
     context?: pulumi.Input<string>;
+    /**
+     * Label name to filter on.
+     */
     name?: pulumi.Input<string>;
 }
 
 export interface GcpMetricsIntegrationServiceAccount {
+    /**
+     * Email address of the Google Cloud service account to impersonate for authentication.
+     */
     clientEmail: pulumi.Input<string>;
 }
 
 export interface LogAllocationConfigDatasetAllocation {
+    /**
+     * Resource allocation for the dataset, expressed as a share of the overall log license.
+     */
     allocation: pulumi.Input<inputs.LogAllocationConfigDatasetAllocationAllocation>;
+    /**
+     * Slug of the dataset this allocation applies to.
+     */
     datasetId: pulumi.Input<string>;
+    /**
+     * Defines high and low priority match criteria. Low priority logs are dropped first when the allocation is exhausted, then default priority, with high priority dropped last.
+     */
     priorities?: pulumi.Input<inputs.LogAllocationConfigDatasetAllocationPriorities>;
 }
 
 export interface LogAllocationConfigDatasetAllocationAllocation {
+    /**
+     * Percentage of the tenant's log license to allocate to this dataset, expressed as a number between 0 and 100.
+     */
     percentOfLicense: pulumi.Input<number>;
 }
 
 export interface LogAllocationConfigDatasetAllocationPriorities {
+    /**
+     * List of log search filters. Filters are combined as OR statements so only one filter needs to match.
+     */
     highPriorityFilters?: pulumi.Input<pulumi.Input<inputs.LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilter>[]>;
+    /**
+     * List of log search filters. Filters are combined as OR statements so only one filter needs to match.
+     */
     lowPriorityFilters?: pulumi.Input<pulumi.Input<inputs.LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilter>[]>;
 }
 
 export interface LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilter {
+    /**
+     * Log search query that selects matching logs. Supports only top-level operations; nested clauses are not allowed and only one type of `AND` or `OR` operator can be used.
+     */
     query: pulumi.Input<string>;
 }
 
 export interface LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilter {
+    /**
+     * Log search query that selects matching logs. Supports only top-level operations; nested clauses are not allowed and only one type of `AND` or `OR` operator can be used.
+     */
     query: pulumi.Input<string>;
 }
 
 export interface LogAllocationConfigDefaultDataset {
+    /**
+     * Resource allocation for the dataset, expressed as a share of the overall log license.
+     */
     allocation: pulumi.Input<inputs.LogAllocationConfigDefaultDatasetAllocation>;
+    /**
+     * Defines high and low priority match criteria. Low priority logs are dropped first when the allocation is exhausted, then default priority, with high priority dropped last.
+     */
     priorities?: pulumi.Input<inputs.LogAllocationConfigDefaultDatasetPriorities>;
 }
 
 export interface LogAllocationConfigDefaultDatasetAllocation {
+    /**
+     * Percentage of the tenant's log license to allocate to this dataset, expressed as a number between 0 and 100.
+     */
     percentOfLicense: pulumi.Input<number>;
 }
 
 export interface LogAllocationConfigDefaultDatasetPriorities {
+    /**
+     * List of log search filters. Filters are combined as OR statements so only one filter needs to match.
+     */
     highPriorityFilters?: pulumi.Input<pulumi.Input<inputs.LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilter>[]>;
+    /**
+     * List of log search filters. Filters are combined as OR statements so only one filter needs to match.
+     */
     lowPriorityFilters?: pulumi.Input<pulumi.Input<inputs.LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilter>[]>;
 }
 
 export interface LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilter {
+    /**
+     * Log search query that selects matching logs. Supports only top-level operations; nested clauses are not allowed and only one type of `AND` or `OR` operator can be used.
+     */
     query: pulumi.Input<string>;
 }
 
 export interface LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilter {
+    /**
+     * Log search query that selects matching logs. Supports only top-level operations; nested clauses are not allowed and only one type of `AND` or `OR` operator can be used.
+     */
     query: pulumi.Input<string>;
 }
 
 export interface LogControlConfigRule {
+    /**
+     * Configuration for the `DROP_FIELD` action, which removes fields from matching logs.
+     */
     dropField?: pulumi.Input<inputs.LogControlConfigRuleDropField>;
+    /**
+     * Configuration for the `EMIT_METRICS` action, which derives Prometheus metrics from matching logs.
+     */
     emitMetrics?: pulumi.Input<inputs.LogControlConfigRuleEmitMetrics>;
+    /**
+     * Log query filter that selects matching logs. The control action applies only to logs that match.
+     */
     filter?: pulumi.Input<string>;
+    /**
+     * Execution mode for the rule (for example, `ENABLED` or `DISABLED`).
+     */
     mode?: pulumi.Input<string>;
+    /**
+     * User-defined name for the control rule.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * Configuration for the `PARSE_FIELD` action, which parses a field with a regex, key/value, or grok parser and writes the result to another field.
+     */
     parseField?: pulumi.Input<inputs.LogControlConfigRuleParseField>;
+    /**
+     * Configuration for the `REPLACE_FIELD` action, which rewrites field values in matching logs.
+     */
     replaceField?: pulumi.Input<inputs.LogControlConfigRuleReplaceField>;
+    /**
+     * Configuration for the `SAMPLE_LOGS` action, which keeps a fraction of matching logs.
+     */
     sample?: pulumi.Input<inputs.LogControlConfigRuleSample>;
+    /**
+     * Type of control action this rule performs. Exactly one of the matching action blocks (`sample`, `dropField`, `emitMetrics`, `replaceField`, `parseField`) must be configured.
+     */
     type?: pulumi.Input<string>;
 }
 
 export interface LogControlConfigRuleDropField {
+    /**
+     * Regular expression that selects which fields to drop.
+     */
     fieldRegex?: pulumi.Input<string>;
+    /**
+     * Path to a field within a log record.
+     */
     parentPath?: pulumi.Input<inputs.LogControlConfigRuleDropFieldParentPath>;
 }
 
 export interface LogControlConfigRuleDropFieldParentPath {
+    /**
+     * Field path selector. Use `parent[child]` syntax to indicate nesting.
+     */
     selector?: pulumi.Input<string>;
 }
 
 export interface LogControlConfigRuleEmitMetrics {
+    /**
+     * Emit a counter metric. Exactly one of `counter`, `gauge`, or `histogram` must be set.
+     */
     counter?: pulumi.Input<inputs.LogControlConfigRuleEmitMetricsCounter>;
+    /**
+     * If `true`, drops the entire log after emitting the metric.
+     */
     dropLog?: pulumi.Input<boolean>;
+    /**
+     * Emit a gauge metric. Exactly one of `counter`, `gauge`, or `histogram` must be set.
+     */
     gauge?: pulumi.Input<inputs.LogControlConfigRuleEmitMetricsGauge>;
+    /**
+     * Emit a histogram metric. Exactly one of `counter`, `gauge`, or `histogram` must be set.
+     */
     histogram?: pulumi.Input<inputs.LogControlConfigRuleEmitMetricsHistogram>;
+    /**
+     * Labels to attach to the generated metric, specified as key/value pairs mapping a Prometheus label name to a log field path.
+     */
     labels?: pulumi.Input<pulumi.Input<inputs.LogControlConfigRuleEmitMetricsLabel>[]>;
+    /**
+     * Metric emission mode that controls how the metric is generated from matching logs.
+     */
     mode?: pulumi.Input<string>;
+    /**
+     * Name of the generated metric. Must conform to Prometheus naming conventions and be unique within the tenant.
+     */
     name?: pulumi.Input<string>;
 }
 
 export interface LogControlConfigRuleEmitMetricsCounter {
+    /**
+     * Path to a field within a log record.
+     */
     value?: pulumi.Input<inputs.LogControlConfigRuleEmitMetricsCounterValue>;
 }
 
 export interface LogControlConfigRuleEmitMetricsCounterValue {
+    /**
+     * Field path selector. Use `parent[child]` syntax to indicate nesting.
+     */
     selector?: pulumi.Input<string>;
 }
 
 export interface LogControlConfigRuleEmitMetricsGauge {
+    /**
+     * How multiple values are aggregated into the emitted gauge (for example, `LAST`, `MIN`, `MAX`).
+     */
     aggregationType?: pulumi.Input<string>;
+    /**
+     * Path to a field within a log record.
+     */
     value?: pulumi.Input<inputs.LogControlConfigRuleEmitMetricsGaugeValue>;
 }
 
 export interface LogControlConfigRuleEmitMetricsGaugeValue {
+    /**
+     * Field path selector. Use `parent[child]` syntax to indicate nesting.
+     */
     selector?: pulumi.Input<string>;
 }
 
 export interface LogControlConfigRuleEmitMetricsHistogram {
+    /**
+     * Path to a field within a log record.
+     */
     value?: pulumi.Input<inputs.LogControlConfigRuleEmitMetricsHistogramValue>;
 }
 
 export interface LogControlConfigRuleEmitMetricsHistogramValue {
+    /**
+     * Field path selector. Use `parent[child]` syntax to indicate nesting.
+     */
     selector?: pulumi.Input<string>;
 }
 
 export interface LogControlConfigRuleEmitMetricsLabel {
+    /**
+     * Prometheus label name to set on the emitted metric.
+     */
     key?: pulumi.Input<string>;
+    /**
+     * Path to a field within a log record.
+     */
     value?: pulumi.Input<inputs.LogControlConfigRuleEmitMetricsLabelValue>;
 }
 
 export interface LogControlConfigRuleEmitMetricsLabelValue {
+    /**
+     * Field path selector. Use `parent[child]` syntax to indicate nesting.
+     */
     selector?: pulumi.Input<string>;
 }
 
 export interface LogControlConfigRuleParseField {
+    /**
+     * Path to a field within a log record.
+     */
     destination?: pulumi.Input<inputs.LogControlConfigRuleParseFieldDestination>;
+    /**
+     * Parser configuration. Exactly one of `regexParser`, `keyValueParser`, or `grokParser` must be set, matching `parserType`.
+     */
     parser: pulumi.Input<inputs.LogControlConfigRuleParseFieldParser>;
+    /**
+     * Path to a field within a log record.
+     */
     source?: pulumi.Input<inputs.LogControlConfigRuleParseFieldSource>;
 }
 
 export interface LogControlConfigRuleParseFieldDestination {
+    /**
+     * Field path selector. Use `parent[child]` syntax to indicate nesting.
+     */
     selector?: pulumi.Input<string>;
 }
 
 export interface LogControlConfigRuleParseFieldParser {
+    /**
+     * Grok parser configuration. Only set when `parserType` is `GROK`.
+     */
     grokParser?: pulumi.Input<inputs.LogControlConfigRuleParseFieldParserGrokParser>;
+    /**
+     * Key/value parser configuration. Only set when `parserType` is `KEY_VALUE`. Duplicate keys keep the first occurrence.
+     */
     keyValueParser?: pulumi.Input<inputs.LogControlConfigRuleParseFieldParserKeyValueParser>;
+    /**
+     * Type of parser to apply. Determines which of `regexParser`, `keyValueParser`, or `grokParser` must be set.
+     */
     parserType: pulumi.Input<string>;
+    /**
+     * Regex parser configuration. Only set when `parserType` is `REGEX`.
+     */
     regexParser?: pulumi.Input<inputs.LogControlConfigRuleParseFieldParserRegexParser>;
 }
 
 export interface LogControlConfigRuleParseFieldParserGrokParser {
+    /**
+     * Grok pattern to apply. Named capture groups become named fields in the extracted log.
+     */
     pattern: pulumi.Input<string>;
 }
 
 export interface LogControlConfigRuleParseFieldParserKeyValueParser {
+    /**
+     * String used to split the input into individual key/value pairs.
+     */
     delimiter: pulumi.Input<string>;
+    /**
+     * String used to split each pair into a key and value.
+     */
     pairSeparator: pulumi.Input<string>;
+    /**
+     * Unicode code points to trim from the beginning and end of each key and value.
+     */
     trimSet?: pulumi.Input<string>;
 }
 
 export interface LogControlConfigRuleParseFieldParserRegexParser {
+    /**
+     * RE2 regular expression pattern. Named capturing groups become named fields in the extracted log.
+     */
     regex: pulumi.Input<string>;
 }
 
 export interface LogControlConfigRuleParseFieldSource {
+    /**
+     * Field path selector. Use `parent[child]` syntax to indicate nesting.
+     */
     selector?: pulumi.Input<string>;
 }
 
 export interface LogControlConfigRuleReplaceField {
+    /**
+     * Path to a field within a log record.
+     */
     field?: pulumi.Input<inputs.LogControlConfigRuleReplaceFieldField>;
+    /**
+     * Replace field values using a key/value lookup table. Exactly one of `mappedValue` or `staticValue` must be set.
+     */
     mappedValue?: pulumi.Input<inputs.LogControlConfigRuleReplaceFieldMappedValue>;
+    /**
+     * If `true`, replaces all matches. If `false`, replaces only the first match.
+     */
     replaceAll?: pulumi.Input<boolean>;
+    /**
+     * Mode that controls how the replacement is applied to matched content.
+     */
     replaceMode?: pulumi.Input<string>;
+    /**
+     * Regular expression that selects which part of the field value to replace.
+     */
     replaceRegex?: pulumi.Input<string>;
+    /**
+     * Replace matched content with a static string. Exactly one of `mappedValue` or `staticValue` must be set.
+     */
     staticValue?: pulumi.Input<inputs.LogControlConfigRuleReplaceFieldStaticValue>;
 }
 
 export interface LogControlConfigRuleReplaceFieldField {
+    /**
+     * Field path selector. Use `parent[child]` syntax to indicate nesting.
+     */
     selector?: pulumi.Input<string>;
 }
 
 export interface LogControlConfigRuleReplaceFieldMappedValue {
+    /**
+     * Value to substitute when no matching key is found, when `useDefault` is `true`.
+     */
     defaultValue?: pulumi.Input<string>;
+    /**
+     * List of key/value pairs that map matched content to replacement values.
+     */
     pairs?: pulumi.Input<pulumi.Input<inputs.LogControlConfigRuleReplaceFieldMappedValuePair>[]>;
+    /**
+     * If `true`, falls back to `defaultValue` when no key matches. If `false`, leaves the value unchanged on a miss.
+     */
     useDefault?: pulumi.Input<boolean>;
 }
 
 export interface LogControlConfigRuleReplaceFieldMappedValuePair {
+    /**
+     * Prometheus label name to set on the emitted metric.
+     */
     key?: pulumi.Input<string>;
+    /**
+     * Path to a field within a log record.
+     */
     value?: pulumi.Input<string>;
 }
 
 export interface LogControlConfigRuleReplaceFieldStaticValue {
+    /**
+     * Path to a field within a log record.
+     */
     value?: pulumi.Input<string>;
 }
 
 export interface LogControlConfigRuleSample {
+    /**
+     * Fraction of matching logs to keep, in the range `[0, 1]` (for example, `0.25` keeps 25%).
+     */
     rate?: pulumi.Input<number>;
 }
 
 export interface LogIngestConfigFieldNormalization {
+    /**
+     * Normalization rules for additional custom fields. These fields are not indexed; use them for things like environment, region, or user ID.
+     */
     customFieldNormalizations?: pulumi.Input<pulumi.Input<inputs.LogIngestConfigFieldNormalizationCustomFieldNormalization>[]>;
+    /**
+     * Rule that extracts and transforms a string value from a log field, with optional regex sanitization, default value, and value mapping.
+     */
     message?: pulumi.Input<inputs.LogIngestConfigFieldNormalizationMessage>;
+    /**
+     * Rule that extracts and transforms a string value from a log field, with optional regex sanitization, default value, and value mapping.
+     */
     service?: pulumi.Input<inputs.LogIngestConfigFieldNormalizationService>;
+    /**
+     * Rule that extracts and transforms a string value from a log field, with optional regex sanitization, default value, and value mapping.
+     */
     severity?: pulumi.Input<inputs.LogIngestConfigFieldNormalizationSeverity>;
+    /**
+     * Normalization rule for the well-known `timestamp` field.
+     */
     timestamp?: pulumi.Input<inputs.LogIngestConfigFieldNormalizationTimestamp>;
 }
 
 export interface LogIngestConfigFieldNormalizationCustomFieldNormalization {
+    /**
+     * Rule that extracts and transforms a string value from a log field, with optional regex sanitization, default value, and value mapping.
+     */
     normalization?: pulumi.Input<inputs.LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalization>;
+    /**
+     * Name of the target field where the normalized value is stored.
+     */
     target?: pulumi.Input<string>;
 }
 
 export interface LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalization {
+    /**
+     * Value to use when no source field contains a value.
+     */
     defaultValue?: pulumi.Input<string>;
+    /**
+     * Regex patterns used to extract and sanitize the value. Each pattern must have exactly one capturing group, whose contents are used as the result.
+     */
     sanitizePatterns?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Ordered list of field paths to check for values. The first non-empty value found is used.
+     */
     sources?: pulumi.Input<pulumi.Input<inputs.LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSource>[]>;
+    /**
+     * Optional mapping that normalizes raw values to canonical ones (for example, `warn` to `WARNING`).
+     */
     valueMap?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }
 
 export interface LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSource {
+    /**
+     * Field path selector. Use `parent[child]` syntax to indicate nesting.
+     */
     selector: pulumi.Input<string>;
 }
 
 export interface LogIngestConfigFieldNormalizationMessage {
+    /**
+     * Value to use when no source field contains a value.
+     */
     defaultValue?: pulumi.Input<string>;
+    /**
+     * Regex patterns used to extract and sanitize the value. Each pattern must have exactly one capturing group, whose contents are used as the result.
+     */
     sanitizePatterns?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Ordered list of field paths to check for values. The first non-empty value found is used.
+     */
     sources?: pulumi.Input<pulumi.Input<inputs.LogIngestConfigFieldNormalizationMessageSource>[]>;
+    /**
+     * Optional mapping that normalizes raw values to canonical ones (for example, `warn` to `WARNING`).
+     */
     valueMap?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }
 
 export interface LogIngestConfigFieldNormalizationMessageSource {
+    /**
+     * Field path selector. Use `parent[child]` syntax to indicate nesting.
+     */
     selector: pulumi.Input<string>;
 }
 
 export interface LogIngestConfigFieldNormalizationService {
+    /**
+     * Value to use when no source field contains a value.
+     */
     defaultValue?: pulumi.Input<string>;
+    /**
+     * Regex patterns used to extract and sanitize the value. Each pattern must have exactly one capturing group, whose contents are used as the result.
+     */
     sanitizePatterns?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Ordered list of field paths to check for values. The first non-empty value found is used.
+     */
     sources?: pulumi.Input<pulumi.Input<inputs.LogIngestConfigFieldNormalizationServiceSource>[]>;
+    /**
+     * Optional mapping that normalizes raw values to canonical ones (for example, `warn` to `WARNING`).
+     */
     valueMap?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }
 
 export interface LogIngestConfigFieldNormalizationServiceSource {
+    /**
+     * Field path selector. Use `parent[child]` syntax to indicate nesting.
+     */
     selector: pulumi.Input<string>;
 }
 
 export interface LogIngestConfigFieldNormalizationSeverity {
+    /**
+     * Value to use when no source field contains a value.
+     */
     defaultValue?: pulumi.Input<string>;
+    /**
+     * Regex patterns used to extract and sanitize the value. Each pattern must have exactly one capturing group, whose contents are used as the result.
+     */
     sanitizePatterns?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Ordered list of field paths to check for values. The first non-empty value found is used.
+     */
     sources?: pulumi.Input<pulumi.Input<inputs.LogIngestConfigFieldNormalizationSeveritySource>[]>;
+    /**
+     * Optional mapping that normalizes raw values to canonical ones (for example, `warn` to `WARNING`).
+     */
     valueMap?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }
 
 export interface LogIngestConfigFieldNormalizationSeveritySource {
+    /**
+     * Field path selector. Use `parent[child]` syntax to indicate nesting.
+     */
     selector: pulumi.Input<string>;
 }
 
 export interface LogIngestConfigFieldNormalizationTimestamp {
+    /**
+     * Ordered list of field paths to check for values. The first non-empty value found is used.
+     */
     sources?: pulumi.Input<pulumi.Input<inputs.LogIngestConfigFieldNormalizationTimestampSource>[]>;
 }
 
 export interface LogIngestConfigFieldNormalizationTimestampSource {
+    /**
+     * Field path selector. Use `parent[child]` syntax to indicate nesting.
+     */
     selector: pulumi.Input<string>;
 }
 
 export interface LogIngestConfigFieldParser {
+    /**
+     * Path to write the parsed output to. If omitted, parsed fields are written at the root.
+     */
     destination?: pulumi.Input<inputs.LogIngestConfigFieldParserDestination>;
+    /**
+     * Mode that controls when the field parser runs on incoming logs.
+     */
     mode?: pulumi.Input<string>;
+    /**
+     * Parser configuration. Exactly one of `regexParser`, `keyValueParser`, or `grokParser` must be set, matching `parserType`.
+     */
     parser: pulumi.Input<inputs.LogIngestConfigFieldParserParser>;
+    /**
+     * Path of the field to parse.
+     */
     source: pulumi.Input<inputs.LogIngestConfigFieldParserSource>;
 }
 
 export interface LogIngestConfigFieldParserDestination {
+    /**
+     * Field path selector. Use `parent[child]` syntax to indicate nesting.
+     */
     selector: pulumi.Input<string>;
 }
 
 export interface LogIngestConfigFieldParserParser {
+    /**
+     * Grok parser configuration. Only set when `parserType` is `GROK`.
+     */
     grokParser?: pulumi.Input<inputs.LogIngestConfigFieldParserParserGrokParser>;
+    /**
+     * Key/value parser configuration. Only set when `parserType` is `KEY_VALUE`. Duplicate keys keep the first occurrence.
+     */
     keyValueParser?: pulumi.Input<inputs.LogIngestConfigFieldParserParserKeyValueParser>;
+    /**
+     * Type of parser to apply. Determines which of `regexParser`, `keyValueParser`, or `grokParser` must be set.
+     */
     parserType: pulumi.Input<string>;
+    /**
+     * Regex parser configuration. Only set when `parserType` is `REGEX`.
+     */
     regexParser?: pulumi.Input<inputs.LogIngestConfigFieldParserParserRegexParser>;
 }
 
 export interface LogIngestConfigFieldParserParserGrokParser {
+    /**
+     * Grok pattern to apply. Named capture groups become named fields in the extracted log.
+     */
     pattern: pulumi.Input<string>;
 }
 
 export interface LogIngestConfigFieldParserParserKeyValueParser {
+    /**
+     * String used to split the input into individual key/value pairs.
+     */
     delimiter: pulumi.Input<string>;
+    /**
+     * String used to split each pair into a key and value.
+     */
     pairSeparator: pulumi.Input<string>;
+    /**
+     * Unicode code points to trim from the beginning and end of each key and value.
+     */
     trimSet?: pulumi.Input<string>;
 }
 
 export interface LogIngestConfigFieldParserParserRegexParser {
+    /**
+     * RE2 regular expression pattern. Named capturing groups become named fields in the extracted log.
+     */
     regex: pulumi.Input<string>;
 }
 
 export interface LogIngestConfigFieldParserSource {
+    /**
+     * Field path selector. Use `parent[child]` syntax to indicate nesting.
+     */
     selector: pulumi.Input<string>;
 }
 
 export interface LogIngestConfigPlaintextParser {
+    /**
+     * If `true`, the original log is retained after parsing and stored under the `plaintextLog` key. Defaults to `false`.
+     */
     keepOriginal?: pulumi.Input<boolean>;
+    /**
+     * Mode that controls how the parser matches incoming plaintext logs.
+     */
     mode?: pulumi.Input<string>;
+    /**
+     * Name of the parser. Must be unique within the configuration.
+     */
     name: pulumi.Input<string>;
+    /**
+     * Parser configuration. Exactly one of `regexParser`, `keyValueParser`, or `grokParser` must be set, matching `parserType`.
+     */
     parser: pulumi.Input<inputs.LogIngestConfigPlaintextParserParser>;
 }
 
 export interface LogIngestConfigPlaintextParserParser {
+    /**
+     * Grok parser configuration. Only set when `parserType` is `GROK`.
+     */
     grokParser?: pulumi.Input<inputs.LogIngestConfigPlaintextParserParserGrokParser>;
+    /**
+     * Key/value parser configuration. Only set when `parserType` is `KEY_VALUE`. Duplicate keys keep the first occurrence.
+     */
     keyValueParser?: pulumi.Input<inputs.LogIngestConfigPlaintextParserParserKeyValueParser>;
+    /**
+     * Type of parser to apply. Determines which of `regexParser`, `keyValueParser`, or `grokParser` must be set.
+     */
     parserType: pulumi.Input<string>;
+    /**
+     * Regex parser configuration. Only set when `parserType` is `REGEX`.
+     */
     regexParser?: pulumi.Input<inputs.LogIngestConfigPlaintextParserParserRegexParser>;
 }
 
 export interface LogIngestConfigPlaintextParserParserGrokParser {
+    /**
+     * Grok pattern to apply. Named capture groups become named fields in the extracted log.
+     */
     pattern: pulumi.Input<string>;
 }
 
 export interface LogIngestConfigPlaintextParserParserKeyValueParser {
+    /**
+     * String used to split the input into individual key/value pairs.
+     */
     delimiter: pulumi.Input<string>;
+    /**
+     * String used to split each pair into a key and value.
+     */
     pairSeparator: pulumi.Input<string>;
+    /**
+     * Unicode code points to trim from the beginning and end of each key and value.
+     */
     trimSet?: pulumi.Input<string>;
 }
 
 export interface LogIngestConfigPlaintextParserParserRegexParser {
+    /**
+     * RE2 regular expression pattern. Named capturing groups become named fields in the extracted log.
+     */
     regex: pulumi.Input<string>;
 }
 
 export interface LogscaleActionEmailAction {
+    /**
+     * If `true`, attaches the query result set as a CSV file.
+     */
     attachCsv?: pulumi.Input<boolean>;
+    /**
+     * Body of the email. Supports Go template syntax with values from the query result.
+     */
     bodyTemplate?: pulumi.Input<string>;
+    /**
+     * List of email addresses to send the message to.
+     */
     recipients: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Subject of the email. Supports Go template syntax with values from the query result.
+     */
     subjectTemplate?: pulumi.Input<string>;
+    /**
+     * If `true`, sends the request through the configured outbound proxy.
+     */
     useProxy?: pulumi.Input<boolean>;
 }
 
 export interface LogscaleActionHumioAction {
+    /**
+     * Ingest token for the target repository.
+     */
     ingestToken: pulumi.Input<string>;
 }
 
 export interface LogscaleActionOpsGenieAction {
+    /**
+     * OpsGenie webhook URL to send the request to.
+     */
     apiUrl: pulumi.Input<string>;
+    /**
+     * Key used to authenticate with OpsGenie.
+     */
     opsGenieKey: pulumi.Input<string>;
+    /**
+     * If `true`, sends the request through the configured outbound proxy.
+     */
     useProxy?: pulumi.Input<boolean>;
 }
 
 export interface LogscaleActionPagerDutyAction {
+    /**
+     * Routing key used to authenticate with PagerDuty.
+     */
     routingKey: pulumi.Input<string>;
+    /**
+     * Severity attached to the PagerDuty event.
+     */
     severity: pulumi.Input<string>;
+    /**
+     * If `true`, sends the request through the configured outbound proxy.
+     */
     useProxy?: pulumi.Input<boolean>;
 }
 
 export interface LogscaleActionSlackAction {
+    /**
+     * Fields to include in the Slack message. Values support Go template syntax with the query result.
+     */
     fields?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Slack incoming webhook URL to send the request to.
+     */
     url: pulumi.Input<string>;
+    /**
+     * If `true`, sends the request through the configured outbound proxy.
+     */
     useProxy?: pulumi.Input<boolean>;
 }
 
 export interface LogscaleActionSlackPostMessageAction {
+    /**
+     * Slack API token used to authenticate the request.
+     */
     apiToken: pulumi.Input<string>;
+    /**
+     * List of Slack channels to post the message to.
+     */
     channels: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Fields to include in the Slack message. Values support Go template syntax with the query result.
+     */
     fields?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * If `true`, sends the request through the configured outbound proxy.
+     */
     useProxy?: pulumi.Input<boolean>;
 }
 
 export interface LogscaleActionUploadFileAction {
+    /**
+     * Name to use for the uploaded file.
+     */
     fileName: pulumi.Input<string>;
 }
 
 export interface LogscaleActionVictorOpsAction {
+    /**
+     * Type of the VictorOps message to send (for example, `CRITICAL`, `WARNING`, `INFO`).
+     */
     messageType: pulumi.Input<string>;
+    /**
+     * VictorOps webhook URL to send the request to.
+     */
     notifyUrl: pulumi.Input<string>;
+    /**
+     * If `true`, sends the request through the configured outbound proxy.
+     */
     useProxy?: pulumi.Input<boolean>;
 }
 
 export interface LogscaleActionWebhookAction {
+    /**
+     * Body of the request. Supports Go template syntax with values from the query result.
+     */
     bodyTemplate?: pulumi.Input<string>;
+    /**
+     * Headers to include on the HTTP or HTTPS request.
+     */
     headers?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * If `true`, skips SSL certificate verification for the request.
+     */
     ignoreSsl?: pulumi.Input<boolean>;
+    /**
+     * HTTP method used for the webhook request.
+     */
     method: pulumi.Input<string>;
+    /**
+     * URL to send the HTTP or HTTPS request to.
+     */
     url: pulumi.Input<string>;
+    /**
+     * If `true`, sends the request through the configured outbound proxy.
+     */
     useProxy?: pulumi.Input<boolean>;
 }
 
 export interface MappingRuleStoragePolicy {
+    /**
+     * Resolution at which mapped data points are stored.
+     */
     resolution: pulumi.Input<string>;
+    /**
+     * Retention duration for mapped data points.
+     */
     retention: pulumi.Input<string>;
 }
 
 export interface MonitorNotificationTemplate {
+    /**
+     * Body/description template for the notification.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * Title template for the notification.
+     */
     title?: pulumi.Input<string>;
 }
 
 export interface MonitorQuery {
+    /**
+     * Graphite expression evaluated by the monitor.
+     */
     graphiteExpr?: pulumi.Input<string>;
+    /**
+     * Log query expression evaluated by the monitor.
+     */
     loggingExpr?: pulumi.Input<string>;
+    /**
+     * PromQL expression evaluated by the monitor.
+     */
     prometheusExpr?: pulumi.Input<string>;
 }
 
 export interface MonitorSchedule {
+    /**
+     * Time-of-day ranges during which the monitor is active. The monitor is inactive outside these ranges.
+     */
     ranges?: pulumi.Input<pulumi.Input<inputs.MonitorScheduleRange>[]>;
+    /**
+     * IANA timezone name (e.g. `America/New_York`) used to interpret `range` values.
+     */
     timezone: pulumi.Input<string>;
 }
 
 export interface MonitorScheduleRange {
+    /**
+     * Day of week, e.g. `monday`. Case-insensitive.
+     */
     day: pulumi.Input<string>;
+    /**
+     * End time of day, 24-hour `HH:MM` format.
+     */
     end: pulumi.Input<string>;
+    /**
+     * Start time of day, 24-hour `HH:MM` format.
+     */
     start: pulumi.Input<string>;
 }
 
 export interface MonitorSeriesConditions {
+    /**
+     * One or more severity/threshold conditions. Multiple conditions enable multi-severity monitors (e.g. warn at one threshold, page at a higher one).
+     */
     conditions: pulumi.Input<pulumi.Input<inputs.MonitorSeriesConditionsCondition>[]>;
+    /**
+     * Per-series overrides that apply different conditions to series matching a set of label matchers.
+     */
     overrides?: pulumi.Input<pulumi.Input<inputs.MonitorSeriesConditionsOverride>[]>;
 }
 
 export interface MonitorSeriesConditionsCondition {
+    /**
+     * Comparison operator between the query value and `value` (e.g. `gt`, `lt`, `eq`).
+     */
     op: pulumi.Input<string>;
+    /**
+     * Duration the condition must remain false continuously before an active signal resolves.
+     */
     resolveSustain?: pulumi.Input<string>;
+    /**
+     * Optional separate threshold used for resolution, enabling hysteresis (e.g. fire at >90, resolve at \n\n).
+     */
     resolveValue?: pulumi.Input<inputs.MonitorSeriesConditionsConditionResolveValue>;
+    /**
+     * Severity assigned when this condition matches (e.g. `warn`, `critical`). Case-sensitive.
+     */
     severity: pulumi.Input<string>;
+    /**
+     * Duration the condition must hold continuously before a signal fires.
+     */
     sustain?: pulumi.Input<string>;
+    /**
+     * Resolution threshold value.
+     */
     value?: pulumi.Input<number>;
 }
 
 export interface MonitorSeriesConditionsConditionResolveValue {
+    /**
+     * Whether the resolve-value threshold is active.
+     */
     enabled: pulumi.Input<boolean>;
+    /**
+     * Resolution threshold value.
+     */
     value: pulumi.Input<number>;
 }
 
 export interface MonitorSeriesConditionsOverride {
+    /**
+     * One or more severity/threshold conditions. Multiple conditions enable multi-severity monitors (e.g. warn at one threshold, page at a higher one).
+     */
     conditions: pulumi.Input<pulumi.Input<inputs.MonitorSeriesConditionsOverrideCondition>[]>;
+    /**
+     * List of label matchers used to select a subset of series.
+     */
     labelMatchers: pulumi.Input<pulumi.Input<inputs.MonitorSeriesConditionsOverrideLabelMatcher>[]>;
 }
 
 export interface MonitorSeriesConditionsOverrideCondition {
+    /**
+     * Comparison operator between the query value and `value` (e.g. `gt`, `lt`, `eq`).
+     */
     op: pulumi.Input<string>;
+    /**
+     * Duration the condition must remain false continuously before an active signal resolves.
+     */
     resolveSustain?: pulumi.Input<string>;
+    /**
+     * Optional separate threshold used for resolution, enabling hysteresis (e.g. fire at >90, resolve at \n\n).
+     */
     resolveValue?: pulumi.Input<inputs.MonitorSeriesConditionsOverrideConditionResolveValue>;
+    /**
+     * Severity assigned when this condition matches (e.g. `warn`, `critical`). Case-sensitive.
+     */
     severity: pulumi.Input<string>;
+    /**
+     * Duration the condition must hold continuously before a signal fires.
+     */
     sustain?: pulumi.Input<string>;
+    /**
+     * Resolution threshold value.
+     */
     value?: pulumi.Input<number>;
 }
 
 export interface MonitorSeriesConditionsOverrideConditionResolveValue {
+    /**
+     * Whether the resolve-value threshold is active.
+     */
     enabled: pulumi.Input<boolean>;
+    /**
+     * Resolution threshold value.
+     */
     value: pulumi.Input<number>;
 }
 
 export interface MonitorSeriesConditionsOverrideLabelMatcher {
+    /**
+     * Label name to match.
+     */
     name: pulumi.Input<string>;
+    /**
+     * Match operator: one of `=`, `!=`, `=~` (regex), `!~` (regex negation).
+     */
     type: pulumi.Input<string>;
+    /**
+     * Resolution threshold value.
+     */
     value: pulumi.Input<string>;
 }
 
 export interface MonitorSignalGrouping {
+    /**
+     * Labels to group by. Series sharing the same values for these labels produce one signal. Defaults to no grouping (one signal per series).
+     */
     labelNames?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * If true, treat each individual series as its own signal. Mutually exclusive with `labelNames`.
+     */
     signalPerSeries?: pulumi.Input<boolean>;
 }
 
 export interface NotificationPolicyOverride {
+    /**
+     * List of label matchers used to select a subset of series.
+     */
     alertLabelMatchers: pulumi.Input<pulumi.Input<inputs.NotificationPolicyOverrideAlertLabelMatcher>[]>;
+    /**
+     * Per-severity routing rules. Each entry maps a severity (e.g. `warn`, `critical`) to a set of notifiers, destinations, grouping, and repeat behavior.
+     */
     routes?: pulumi.Input<pulumi.Input<inputs.NotificationPolicyOverrideRoute>[]>;
 }
 
 export interface NotificationPolicyOverrideAlertLabelMatcher {
+    /**
+     * Label name to match.
+     */
     name: pulumi.Input<string>;
+    /**
+     * Match operator: one of `=`, `!=`, `=~` (regex), `!~` (regex negation).
+     */
     type: pulumi.Input<string>;
+    /**
+     * Label value (or regex pattern, for regex matchers) to match against.
+     */
     value: pulumi.Input<string>;
 }
 
 export interface NotificationPolicyOverrideRoute {
+    /**
+     * Inline notification destinations defined directly on the route. Each block sets at most one of `slack`, `pagerduty`, `webhook`, `opsGenie`, `victorOps`, or `email`. Cannot be combined with `notifiers`.
+     */
     destinations?: pulumi.Input<pulumi.Input<inputs.NotificationPolicyOverrideRouteDestination>[]>;
+    /**
+     * Optional grouping configuration controlling how alerts are batched before delivery.
+     */
     groupBy?: pulumi.Input<inputs.NotificationPolicyOverrideRouteGroupBy>;
+    /**
+     * Slugs of notifier resources that receive alerts at this severity. Cannot be combined with `destination`.
+     */
     notifiers?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * How often to resend unresolved alerts at this severity (e.g. `4h`).
+     */
     repeatInterval?: pulumi.Input<string>;
+    /**
+     * Severity this route applies to (e.g. `warn`, `critical`). Case-sensitive.
+     */
     severity: pulumi.Input<string>;
 }
 
 export interface NotificationPolicyOverrideRouteDestination {
+    /**
+     * If true, do not send notifications when alerts resolve. Defaults to false.
+     */
     disableResolves?: pulumi.Input<boolean>;
+    /**
+     * Email delivery configuration for this destination.
+     */
     email?: pulumi.Input<inputs.NotificationPolicyOverrideRouteDestinationEmail>;
+    /**
+     * OpsGenie delivery configuration for this destination.
+     */
     opsGenie?: pulumi.Input<inputs.NotificationPolicyOverrideRouteDestinationOpsGenie>;
+    /**
+     * PagerDuty delivery configuration for this destination.
+     */
     pagerduty?: pulumi.Input<inputs.NotificationPolicyOverrideRouteDestinationPagerduty>;
+    /**
+     * Slack delivery configuration for this destination.
+     */
     slack?: pulumi.Input<inputs.NotificationPolicyOverrideRouteDestinationSlack>;
+    /**
+     * VictorOps (Splunk On-Call) delivery configuration for this destination.
+     */
     victorOps?: pulumi.Input<inputs.NotificationPolicyOverrideRouteDestinationVictorOps>;
+    /**
+     * Generic webhook delivery configuration for this destination.
+     */
     webhook?: pulumi.Input<inputs.NotificationPolicyOverrideRouteDestinationWebhook>;
 }
 
 export interface NotificationPolicyOverrideRouteDestinationEmail {
+    /**
+     * Email addresses to deliver notifications to.
+     */
     addresses: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 export interface NotificationPolicyOverrideRouteDestinationOpsGenie {
+    /**
+     * Slug of the OpsGenie external connection holding the integration credentials.
+     */
     externalConnectionSlug: pulumi.Input<string>;
 }
 
 export interface NotificationPolicyOverrideRouteDestinationPagerduty {
+    /**
+     * Slug of the OpsGenie external connection holding the integration credentials.
+     */
     externalConnectionSlug: pulumi.Input<string>;
 }
 
 export interface NotificationPolicyOverrideRouteDestinationSlack {
+    /**
+     * Slack channels to send notifications to.
+     */
     channels?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Slug of the OpsGenie external connection holding the integration credentials.
+     */
     externalConnectionSlug: pulumi.Input<string>;
 }
 
 export interface NotificationPolicyOverrideRouteDestinationVictorOps {
+    /**
+     * Slug of the OpsGenie external connection holding the integration credentials.
+     */
     externalConnectionSlug: pulumi.Input<string>;
+    /**
+     * VictorOps routing keys identifying the destination escalation policies.
+     */
     routingKeys: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 export interface NotificationPolicyOverrideRouteDestinationWebhook {
+    /**
+     * Slug of the OpsGenie external connection holding the integration credentials.
+     */
     externalConnectionSlug: pulumi.Input<string>;
+    /**
+     * Additional query parameters appended to the webhook URL when delivering this notification.
+     */
     queryParameters?: pulumi.Input<pulumi.Input<inputs.NotificationPolicyOverrideRouteDestinationWebhookQueryParameter>[]>;
 }
 
 export interface NotificationPolicyOverrideRouteDestinationWebhookQueryParameter {
+    /**
+     * Query parameter name.
+     */
     key: pulumi.Input<string>;
+    /**
+     * Label value (or regex pattern, for regex matchers) to match against.
+     */
     value: pulumi.Input<string>;
 }
 
 export interface NotificationPolicyOverrideRouteGroupBy {
+    /**
+     * Label names to group alerts by. Alerts with identical values for these labels are bundled into a single notification.
+     */
     labelNames?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 export interface NotificationPolicyRoute {
+    /**
+     * Inline notification destinations defined directly on the route. Each block sets at most one of `slack`, `pagerduty`, `webhook`, `opsGenie`, `victorOps`, or `email`. Cannot be combined with `notifiers`.
+     */
     destinations?: pulumi.Input<pulumi.Input<inputs.NotificationPolicyRouteDestination>[]>;
+    /**
+     * Optional grouping configuration controlling how alerts are batched before delivery.
+     */
     groupBy?: pulumi.Input<inputs.NotificationPolicyRouteGroupBy>;
+    /**
+     * Slugs of notifier resources that receive alerts at this severity. Cannot be combined with `destination`.
+     */
     notifiers?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * How often to resend unresolved alerts at this severity (e.g. `4h`).
+     */
     repeatInterval?: pulumi.Input<string>;
+    /**
+     * Severity this route applies to (e.g. `warn`, `critical`). Case-sensitive.
+     */
     severity: pulumi.Input<string>;
 }
 
 export interface NotificationPolicyRouteDestination {
+    /**
+     * If true, do not send notifications when alerts resolve. Defaults to false.
+     */
     disableResolves?: pulumi.Input<boolean>;
+    /**
+     * Email delivery configuration for this destination.
+     */
     email?: pulumi.Input<inputs.NotificationPolicyRouteDestinationEmail>;
+    /**
+     * OpsGenie delivery configuration for this destination.
+     */
     opsGenie?: pulumi.Input<inputs.NotificationPolicyRouteDestinationOpsGenie>;
+    /**
+     * PagerDuty delivery configuration for this destination.
+     */
     pagerduty?: pulumi.Input<inputs.NotificationPolicyRouteDestinationPagerduty>;
+    /**
+     * Slack delivery configuration for this destination.
+     */
     slack?: pulumi.Input<inputs.NotificationPolicyRouteDestinationSlack>;
+    /**
+     * VictorOps (Splunk On-Call) delivery configuration for this destination.
+     */
     victorOps?: pulumi.Input<inputs.NotificationPolicyRouteDestinationVictorOps>;
+    /**
+     * Generic webhook delivery configuration for this destination.
+     */
     webhook?: pulumi.Input<inputs.NotificationPolicyRouteDestinationWebhook>;
 }
 
 export interface NotificationPolicyRouteDestinationEmail {
+    /**
+     * Email addresses to deliver notifications to.
+     */
     addresses: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 export interface NotificationPolicyRouteDestinationOpsGenie {
+    /**
+     * Slug of the OpsGenie external connection holding the integration credentials.
+     */
     externalConnectionSlug: pulumi.Input<string>;
 }
 
 export interface NotificationPolicyRouteDestinationPagerduty {
+    /**
+     * Slug of the OpsGenie external connection holding the integration credentials.
+     */
     externalConnectionSlug: pulumi.Input<string>;
 }
 
 export interface NotificationPolicyRouteDestinationSlack {
+    /**
+     * Slack channels to send notifications to.
+     */
     channels?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Slug of the OpsGenie external connection holding the integration credentials.
+     */
     externalConnectionSlug: pulumi.Input<string>;
 }
 
 export interface NotificationPolicyRouteDestinationVictorOps {
+    /**
+     * Slug of the OpsGenie external connection holding the integration credentials.
+     */
     externalConnectionSlug: pulumi.Input<string>;
+    /**
+     * VictorOps routing keys identifying the destination escalation policies.
+     */
     routingKeys: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 export interface NotificationPolicyRouteDestinationWebhook {
+    /**
+     * Slug of the OpsGenie external connection holding the integration credentials.
+     */
     externalConnectionSlug: pulumi.Input<string>;
+    /**
+     * Additional query parameters appended to the webhook URL when delivering this notification.
+     */
     queryParameters?: pulumi.Input<pulumi.Input<inputs.NotificationPolicyRouteDestinationWebhookQueryParameter>[]>;
 }
 
 export interface NotificationPolicyRouteDestinationWebhookQueryParameter {
+    /**
+     * Query parameter name.
+     */
     key: pulumi.Input<string>;
+    /**
+     * Label value (or regex pattern, for regex matchers) to match against.
+     */
     value: pulumi.Input<string>;
 }
 
 export interface NotificationPolicyRouteGroupBy {
+    /**
+     * Label names to group alerts by. Alerts with identical values for these labels are bundled into a single notification.
+     */
     labelNames?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 export interface OpsgenieAlertNotifierResponder {
+    /**
+     * Opsgenie identifier of the responder. Use instead of `name` or `username`.
+     */
     id?: pulumi.Input<string>;
+    /**
+     * Name of the responder team, schedule, or escalation policy.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * Responder type. One of `team`, `user`, `escalation`, or `schedule`.
+     */
     type: pulumi.Input<string>;
+    /**
+     * Username of a user responder.
+     */
     username?: pulumi.Input<string>;
 }
 
 export interface OtelMetricsIngestionResourceAttributes {
+    /**
+     * Resource attribute keys to exclude from the flatten operation, interpreted according to `filterMode`.
+     */
     excludeKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Controls how `excludeKeys` is interpreted (e.g. allow-list vs. block-list semantics).
+     */
     filterMode?: pulumi.Input<string>;
+    /**
+     * Controls how OTel resource attributes are flattened onto each metric's labels.
+     */
     flattenMode?: pulumi.Input<string>;
+    /**
+     * If true, generates a `targetInfo` time series with labels derived from resource attributes. `filterMode` and `excludeKeys` apply identically to this series. Defaults to false.
+     */
     generateTargetInfo?: pulumi.Input<boolean>;
 }
 
 export interface PagerdutyAlertNotifierImage {
+    /**
+     * Alternate text shown when the image cannot be rendered.
+     */
     alt?: pulumi.Input<string>;
+    /**
+     * Optional URL the image links to when clicked.
+     */
     href?: pulumi.Input<string>;
+    /**
+     * URL of the image to attach.
+     */
     src: pulumi.Input<string>;
 }
 
 export interface PagerdutyAlertNotifierLink {
+    /**
+     * URL the link points to.
+     */
     href: pulumi.Input<string>;
+    /**
+     * Display text for the link.
+     */
     text?: pulumi.Input<string>;
 }
 
 export interface ResourcePoolsConfigDefaultPool {
+    /**
+     * License allocation for the pool. Can be expressed as a percentage of the license (`percentOfLicense`) or as per-license fixed values (`fixedValue`).
+     */
     allocation?: pulumi.Input<inputs.ResourcePoolsConfigDefaultPoolAllocation>;
+    /**
+     * Optional high/low priority sub-classifications within the pool. Low-priority metrics are dropped first; high-priority metrics are dropped last when limits are hit.
+     */
     priorities?: pulumi.Input<inputs.ResourcePoolsConfigDefaultPoolPriorities>;
+    /**
+     * Per-license drop thresholds for `PERSISTED_CARDINALITY_STANDARD` and `PERSISTED_CARDINALITY_HISTOGRAM` only. Defines strict upper bounds beyond which new consumption is dropped, optionally segmented by priority class.
+     */
     priorityThresholds?: pulumi.Input<pulumi.Input<inputs.ResourcePoolsConfigDefaultPoolPriorityThreshold>[]>;
 }
 
 export interface ResourcePoolsConfigDefaultPoolAllocation {
+    /**
+     * Per-license fixed allocations that override `percentOfLicense` for the named licenses. When any pool sets a fixed value for a license, every pool must also set one for that license.
+     */
     fixedValues?: pulumi.Input<pulumi.Input<inputs.ResourcePoolsConfigDefaultPoolAllocationFixedValue>[]>;
+    /**
+     * Percent of each license to allocate to this pool, between 0 and 100. Across non-default pools, the sum must not exceed 100; the default pool receives the remainder.
+     */
     percentOfLicense?: pulumi.Input<number>;
+    /**
+     * Per-license drop thresholds for `PERSISTED_CARDINALITY_STANDARD` and `PERSISTED_CARDINALITY_HISTOGRAM` only. Defines strict upper bounds beyond which new consumption is dropped, optionally segmented by priority class.
+     */
     priorityThresholds?: pulumi.Input<pulumi.Input<inputs.ResourcePoolsConfigDefaultPoolAllocationPriorityThreshold>[]>;
 }
 
 export interface ResourcePoolsConfigDefaultPoolAllocationFixedValue {
+    /**
+     * License this fixed-value allocation applies to (e.g. `PERSISTED_WRITES`).
+     */
     license: pulumi.Input<string>;
+    /**
+     * Fixed amount of the license to allocate, in the license's native unit.
+     */
     value: pulumi.Input<number>;
 }
 
 export interface ResourcePoolsConfigDefaultPoolAllocationPriorityThreshold {
+    /**
+     * Threshold value, expressed as either a percent of the pool's allocation or as a fixed value in license units.
+     */
     allPriorities?: pulumi.Input<inputs.ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPriorities>;
+    /**
+     * Threshold value, expressed as either a percent of the pool's allocation or as a fixed value in license units.
+     */
     defaultAndLowPriority?: pulumi.Input<inputs.ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriority>;
+    /**
+     * License this fixed-value allocation applies to (e.g. `PERSISTED_WRITES`).
+     */
     license: pulumi.Input<string>;
+    /**
+     * Threshold value, expressed as either a percent of the pool's allocation or as a fixed value in license units.
+     */
     lowPriority?: pulumi.Input<inputs.ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriority>;
 }
 
 export interface ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPriorities {
+    /**
+     * Per-license fixed allocations that override `percentOfLicense` for the named licenses. When any pool sets a fixed value for a license, every pool must also set one for that license.
+     */
     fixedValue?: pulumi.Input<number>;
+    /**
+     * Threshold as a percent of the pool's allocation. `100` equals the full allocation; values above 100 allow the pool to exceed its baseline allocation.
+     */
     percentOfPoolAllocation?: pulumi.Input<number>;
 }
 
 export interface ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriority {
+    /**
+     * Per-license fixed allocations that override `percentOfLicense` for the named licenses. When any pool sets a fixed value for a license, every pool must also set one for that license.
+     */
     fixedValue?: pulumi.Input<number>;
+    /**
+     * Threshold as a percent of the pool's allocation. `100` equals the full allocation; values above 100 allow the pool to exceed its baseline allocation.
+     */
     percentOfPoolAllocation?: pulumi.Input<number>;
 }
 
 export interface ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriority {
+    /**
+     * Per-license fixed allocations that override `percentOfLicense` for the named licenses. When any pool sets a fixed value for a license, every pool must also set one for that license.
+     */
     fixedValue?: pulumi.Input<number>;
+    /**
+     * Threshold as a percent of the pool's allocation. `100` equals the full allocation; values above 100 allow the pool to exceed its baseline allocation.
+     */
     percentOfPoolAllocation?: pulumi.Input<number>;
 }
 
 export interface ResourcePoolsConfigDefaultPoolPriorities {
+    /**
+     * Matchers selecting metrics within the pool that are treated as high priority and dropped last.
+     */
     highPriorityMatchRules?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Matchers selecting metrics within the pool that are treated as low priority and dropped first.
+     */
     lowPriorityMatchRules?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 export interface ResourcePoolsConfigDefaultPoolPriorityThreshold {
+    /**
+     * Threshold value, expressed as either a percent of the pool's allocation or as a fixed value in license units.
+     */
     allPriorities?: pulumi.Input<inputs.ResourcePoolsConfigDefaultPoolPriorityThresholdAllPriorities>;
+    /**
+     * Threshold value, expressed as either a percent of the pool's allocation or as a fixed value in license units.
+     */
     defaultAndLowPriority?: pulumi.Input<inputs.ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriority>;
+    /**
+     * License this fixed-value allocation applies to (e.g. `PERSISTED_WRITES`).
+     */
     license: pulumi.Input<string>;
+    /**
+     * Threshold value, expressed as either a percent of the pool's allocation or as a fixed value in license units.
+     */
     lowPriority?: pulumi.Input<inputs.ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriority>;
 }
 
 export interface ResourcePoolsConfigDefaultPoolPriorityThresholdAllPriorities {
+    /**
+     * Per-license fixed allocations that override `percentOfLicense` for the named licenses. When any pool sets a fixed value for a license, every pool must also set one for that license.
+     */
     fixedValue?: pulumi.Input<number>;
+    /**
+     * Threshold as a percent of the pool's allocation. `100` equals the full allocation; values above 100 allow the pool to exceed its baseline allocation.
+     */
     percentOfPoolAllocation?: pulumi.Input<number>;
 }
 
 export interface ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriority {
+    /**
+     * Per-license fixed allocations that override `percentOfLicense` for the named licenses. When any pool sets a fixed value for a license, every pool must also set one for that license.
+     */
     fixedValue?: pulumi.Input<number>;
+    /**
+     * Threshold as a percent of the pool's allocation. `100` equals the full allocation; values above 100 allow the pool to exceed its baseline allocation.
+     */
     percentOfPoolAllocation?: pulumi.Input<number>;
 }
 
 export interface ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriority {
+    /**
+     * Per-license fixed allocations that override `percentOfLicense` for the named licenses. When any pool sets a fixed value for a license, every pool must also set one for that license.
+     */
     fixedValue?: pulumi.Input<number>;
+    /**
+     * Threshold as a percent of the pool's allocation. `100` equals the full allocation; values above 100 allow the pool to exceed its baseline allocation.
+     */
     percentOfPoolAllocation?: pulumi.Input<number>;
 }
 
 export interface ResourcePoolsConfigPool {
+    /**
+     * License allocation for the pool. Can be expressed as a percentage of the license (`percentOfLicense`) or as per-license fixed values (`fixedValue`).
+     */
     allocation?: pulumi.Input<inputs.ResourcePoolsConfigPoolAllocation>;
     /**
+     * Deprecated: use `matchRules` instead. Single matcher selecting metrics that belong to this pool.
+     *
      * @deprecated use match_rules
      */
     matchRule?: pulumi.Input<string>;
+    /**
+     * Matchers selecting metrics that map to this pool. A metric matching any rule is assigned to the pool.
+     */
     matchRules?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Unique name of the pool.
+     */
     name: pulumi.Input<string>;
+    /**
+     * Optional high/low priority sub-classifications within the pool. Low-priority metrics are dropped first; high-priority metrics are dropped last when limits are hit.
+     */
     priorities?: pulumi.Input<inputs.ResourcePoolsConfigPoolPriorities>;
 }
 
 export interface ResourcePoolsConfigPoolAllocation {
+    /**
+     * Per-license fixed allocations that override `percentOfLicense` for the named licenses. When any pool sets a fixed value for a license, every pool must also set one for that license.
+     */
     fixedValues?: pulumi.Input<pulumi.Input<inputs.ResourcePoolsConfigPoolAllocationFixedValue>[]>;
+    /**
+     * Percent of each license to allocate to this pool, between 0 and 100. Across non-default pools, the sum must not exceed 100; the default pool receives the remainder.
+     */
     percentOfLicense?: pulumi.Input<number>;
+    /**
+     * Per-license drop thresholds for `PERSISTED_CARDINALITY_STANDARD` and `PERSISTED_CARDINALITY_HISTOGRAM` only. Defines strict upper bounds beyond which new consumption is dropped, optionally segmented by priority class.
+     */
     priorityThresholds?: pulumi.Input<pulumi.Input<inputs.ResourcePoolsConfigPoolAllocationPriorityThreshold>[]>;
 }
 
 export interface ResourcePoolsConfigPoolAllocationFixedValue {
+    /**
+     * License this fixed-value allocation applies to (e.g. `PERSISTED_WRITES`).
+     */
     license: pulumi.Input<string>;
+    /**
+     * Fixed amount of the license to allocate, in the license's native unit.
+     */
     value: pulumi.Input<number>;
 }
 
 export interface ResourcePoolsConfigPoolAllocationPriorityThreshold {
+    /**
+     * Threshold value, expressed as either a percent of the pool's allocation or as a fixed value in license units.
+     */
     allPriorities?: pulumi.Input<inputs.ResourcePoolsConfigPoolAllocationPriorityThresholdAllPriorities>;
+    /**
+     * Threshold value, expressed as either a percent of the pool's allocation or as a fixed value in license units.
+     */
     defaultAndLowPriority?: pulumi.Input<inputs.ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriority>;
+    /**
+     * License this fixed-value allocation applies to (e.g. `PERSISTED_WRITES`).
+     */
     license: pulumi.Input<string>;
+    /**
+     * Threshold value, expressed as either a percent of the pool's allocation or as a fixed value in license units.
+     */
     lowPriority?: pulumi.Input<inputs.ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriority>;
 }
 
 export interface ResourcePoolsConfigPoolAllocationPriorityThresholdAllPriorities {
+    /**
+     * Per-license fixed allocations that override `percentOfLicense` for the named licenses. When any pool sets a fixed value for a license, every pool must also set one for that license.
+     */
     fixedValue?: pulumi.Input<number>;
+    /**
+     * Threshold as a percent of the pool's allocation. `100` equals the full allocation; values above 100 allow the pool to exceed its baseline allocation.
+     */
     percentOfPoolAllocation?: pulumi.Input<number>;
 }
 
 export interface ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriority {
+    /**
+     * Per-license fixed allocations that override `percentOfLicense` for the named licenses. When any pool sets a fixed value for a license, every pool must also set one for that license.
+     */
     fixedValue?: pulumi.Input<number>;
+    /**
+     * Threshold as a percent of the pool's allocation. `100` equals the full allocation; values above 100 allow the pool to exceed its baseline allocation.
+     */
     percentOfPoolAllocation?: pulumi.Input<number>;
 }
 
 export interface ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriority {
+    /**
+     * Per-license fixed allocations that override `percentOfLicense` for the named licenses. When any pool sets a fixed value for a license, every pool must also set one for that license.
+     */
     fixedValue?: pulumi.Input<number>;
+    /**
+     * Threshold as a percent of the pool's allocation. `100` equals the full allocation; values above 100 allow the pool to exceed its baseline allocation.
+     */
     percentOfPoolAllocation?: pulumi.Input<number>;
 }
 
 export interface ResourcePoolsConfigPoolPriorities {
+    /**
+     * Matchers selecting metrics within the pool that are treated as high priority and dropped last.
+     */
     highPriorityMatchRules?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Matchers selecting metrics within the pool that are treated as low priority and dropped first.
+     */
     lowPriorityMatchRules?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 export interface RollupRuleGraphiteLabelPolicy {
+    /**
+     * List of positional Graphite label replacements applied to the output metric.
+     */
     replaces?: pulumi.Input<pulumi.Input<inputs.RollupRuleGraphiteLabelPolicyReplace>[]>;
 }
 
 export interface RollupRuleGraphiteLabelPolicyReplace {
+    /**
+     * Positional Graphite label to replace (e.g. `__g1__`).
+     */
     name: pulumi.Input<string>;
+    /**
+     * Replacement value for the named positional label.
+     */
     newValue: pulumi.Input<string>;
 }
 
 export interface RollupRuleStoragePolicies {
+    /**
+     * Resolution at which rolled-up data points are stored.
+     */
     resolution: pulumi.Input<string>;
+    /**
+     * Retention duration for rolled-up data points.
+     */
     retention: pulumi.Input<string>;
 }
 
 export interface SLODefinition {
+    /**
+     * Custom burn-rate alert definitions. If omitted, the system default burn rates are used. Only takes effect when `enableBurnRateAlerting` is true.
+     */
     burnRateAlertingConfigs?: pulumi.Input<pulumi.Input<inputs.SLODefinitionBurnRateAlertingConfig>[]>;
+    /**
+     * Whether burn-rate alerting is enabled for this SLO.
+     */
     enableBurnRateAlerting?: pulumi.Input<boolean>;
+    /**
+     * Target SLO percentage representing the desired availability (e.g. `99.9`).
+     */
     objective: pulumi.Input<number>;
+    /**
+     * Rolling time window over which the SLO objective is evaluated.
+     */
     timeWindow?: pulumi.Input<inputs.SLODefinitionTimeWindow>;
 }
 
 export interface SLODefinitionBurnRateAlertingConfig {
+    /**
+     * Percentage of the error budget that can be consumed during `window` before the alert fires. Must be between 0.0 and 100.0 exclusive.
+     */
     budget: pulumi.Input<number>;
+    /**
+     * Additional labels attached when this burn-rate alert fires. Can be used by notification policies to route different burn rates to different destinations.
+     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Severity assigned when the burn rate fires. Must be `critical` or `warn`.
+     */
     severity: pulumi.Input<string>;
+    /**
+     * Time window for the burn-rate calculation (e.g. `1h`, `6h`).
+     */
     window: pulumi.Input<string>;
 }
 
 export interface SLODefinitionTimeWindow {
+    /**
+     * Length of the evaluation window (e.g. `28d`, `24h`).
+     */
     duration: pulumi.Input<string>;
 }
 
 export interface SLOSignalGrouping {
+    /**
+     * Labels to group by. Series sharing the same values for these labels produce one signal. Defaults to no grouping (one signal per series).
+     */
     labelNames?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * If true, treat each individual series as its own signal. Mutually exclusive with `labelNames`.
+     */
     signalPerSeries?: pulumi.Input<boolean>;
 }
 
 export interface SLOSli {
+    /**
+     * Additional PromQL label matchers applied to SLI queries via the `{{.AdditionalFilters}}` template variable. Used to narrow the metrics scope.
+     */
     additionalPromqlFilters?: pulumi.Input<pulumi.Input<inputs.SLOSliAdditionalPromqlFilter>[]>;
+    /**
+     * Additional labels exported from the underlying queries to group the error budget by. Available in PromQL templates via `{{.GroupBy}}`.
+     */
     customDimensionLabels?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Error-ratio SLI defined by good/bad/total PromQL query templates. Mutually exclusive with `customTimesliceIndicator`.
+     */
     customIndicator?: pulumi.Input<inputs.SLOSliCustomIndicator>;
+    /**
+     * Time-slice SLI that evaluates a PromQL query over fixed time slices against a threshold condition. Mutually exclusive with `customIndicator`.
+     */
     customTimesliceIndicator?: pulumi.Input<inputs.SLOSliCustomTimesliceIndicator>;
 }
 
 export interface SLOSliAdditionalPromqlFilter {
+    /**
+     * Prometheus label name to match.
+     */
     name: pulumi.Input<string>;
+    /**
+     * Matcher type (e.g. `=`, `!=`, `=~`, `!~`).
+     */
     type: pulumi.Input<string>;
+    /**
+     * Label value to match against using the chosen matcher `type`.
+     */
     value: pulumi.Input<string>;
 }
 
 export interface SLOSliCustomIndicator {
+    /**
+     * PromQL query template measuring the count of bad events. Mutually exclusive with `goodQueryTemplate`.
+     */
     badQueryTemplate?: pulumi.Input<string>;
+    /**
+     * PromQL query template measuring the count of good events. Mutually exclusive with `badQueryTemplate`.
+     */
     goodQueryTemplate?: pulumi.Input<string>;
+    /**
+     * PromQL query template measuring the total count of events. Required for error-ratio SLOs.
+     */
     totalQueryTemplate: pulumi.Input<string>;
 }
 
 export interface SLOSliCustomTimesliceIndicator {
+    /**
+     * Condition used to classify each time slice as good or bad based on the query result.
+     */
     condition: pulumi.Input<inputs.SLOSliCustomTimesliceIndicatorCondition>;
+    /**
+     * PromQL query template evaluated against each time slice.
+     */
     queryTemplate: pulumi.Input<string>;
+    /**
+     * Size of each time slice evaluated by the query (e.g. `1m`, `5m`).
+     */
     timesliceSize: pulumi.Input<string>;
 }
 
 export interface SLOSliCustomTimesliceIndicatorCondition {
+    /**
+     * Comparison operator between the query value and `value` (e.g. `gt`, `lt`, `eq`).
+     */
     op: pulumi.Input<string>;
+    /**
+     * Label value to match against using the chosen matcher `type`.
+     */
     value: pulumi.Input<number>;
 }
 
 export interface ServiceAccountRestriction {
+    /**
+     * Optional label matchers further scoping the restriction to metrics whose labels match these key/value pairs.
+     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Permission level granted by this restriction (e.g. metric read/write).
+     */
     permission: pulumi.Input<string>;
 }
 
 export interface SlackAlertNotifierAction {
+    /**
+     * Label for the cancel button in the confirmation dialog.
+     */
     actionConfirmDismissText?: pulumi.Input<string>;
+    /**
+     * Label for the confirm button in the confirmation dialog.
+     */
     actionConfirmOkText?: pulumi.Input<string>;
+    /**
+     * Body text of the confirmation dialog shown before the action runs.
+     */
     actionConfirmText?: pulumi.Input<string>;
+    /**
+     * Title of the confirmation dialog shown before the action runs.
+     */
     actionConfirmTile?: pulumi.Input<string>;
+    /**
+     * Identifier sent back to Slack when the button is clicked.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * Visual style of the button: `default`, `primary`, or `danger`.
+     */
     style?: pulumi.Input<string>;
+    /**
+     * Label shown on the button.
+     */
     text?: pulumi.Input<string>;
+    /**
+     * Action type. Typically `button`.
+     */
     type?: pulumi.Input<string>;
+    /**
+     * Link the button navigates to when clicked.
+     */
     url?: pulumi.Input<string>;
+    /**
+     * Opaque value sent back to Slack alongside `name` when the button is clicked.
+     */
     value?: pulumi.Input<string>;
 }
 
 export interface SlackAlertNotifierField {
+    /**
+     * If true, the field is short enough to be shown side-by-side with the next field.
+     */
     short?: pulumi.Input<boolean>;
+    /**
+     * Bold heading shown above the value.
+     */
     title?: pulumi.Input<string>;
+    /**
+     * Value text. Supports Go templating.
+     */
     value?: pulumi.Input<string>;
 }
 
 export interface TraceJaegerRemoteSamplingStrategyAppliedStrategy {
+    /**
+     * Per-operation sampling configuration with a service-wide default and optional per-operation overrides.
+     */
     perOperationStrategies?: pulumi.Input<inputs.TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationStrategies>;
+    /**
+     * Probabilistic sampling: each trace is sampled with a fixed probability.
+     */
     probabilisticStrategy?: pulumi.Input<inputs.TraceJaegerRemoteSamplingStrategyAppliedStrategyProbabilisticStrategy>;
+    /**
+     * Rate-limiting sampling: cap the number of sampled traces per second using a leaky bucket.
+     */
     rateLimitingStrategy?: pulumi.Input<inputs.TraceJaegerRemoteSamplingStrategyAppliedStrategyRateLimitingStrategy>;
 }
 
 export interface TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationStrategies {
+    /**
+     * Minimum number of traces per second sampled for any operation in the service, even when the probabilistic rate would yield fewer.
+     */
     defaultLowerBoundTracesPerSecond?: pulumi.Input<number>;
+    /**
+     * Service-wide sampling probability in the range `[0.0, 1.0]` applied when no per-operation override matches.
+     */
     defaultSamplingRate: pulumi.Input<number>;
+    /**
+     * Maximum number of traces per second sampled for any operation in the service, regardless of matching per-operation strategy.
+     */
     defaultUpperBoundTracesPerSecond?: pulumi.Input<number>;
+    /**
+     * Per-operation sampling configuration with a service-wide default and optional per-operation overrides.
+     */
     perOperationStrategies?: pulumi.Input<pulumi.Input<inputs.TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationStrategiesPerOperationStrategy>[]>;
 }
 
 export interface TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationStrategiesPerOperationStrategy {
+    /**
+     * Span operation (span name) this override applies to.
+     */
     operation: pulumi.Input<string>;
+    /**
+     * Probabilistic sampling configuration applied to spans whose operation matches.
+     */
     probabilisticStrategy: pulumi.Input<inputs.TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationStrategiesPerOperationStrategyProbabilisticStrategy>;
 }
 
 export interface TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationStrategiesPerOperationStrategyProbabilisticStrategy {
+    /**
+     * Probability in the range `[0.0, 1.0]` that any given trace is sampled. `0` samples no traces, `1` samples every trace.
+     */
     samplingRate: pulumi.Input<number>;
 }
 
 export interface TraceJaegerRemoteSamplingStrategyAppliedStrategyProbabilisticStrategy {
+    /**
+     * Probability in the range `[0.0, 1.0]` that any given trace is sampled. `0` samples no traces, `1` samples every trace.
+     */
     samplingRate: pulumi.Input<number>;
 }
 
 export interface TraceJaegerRemoteSamplingStrategyAppliedStrategyRateLimitingStrategy {
+    /**
+     * Maximum number of traces to sample per second for the service.
+     */
     maxTracesPerSecond: pulumi.Input<number>;
 }
 
 export interface TraceMetricsRuleGroupBy {
+    /**
+     * Span attribute to group by.
+     */
     key: pulumi.Input<inputs.TraceMetricsRuleGroupByKey>;
+    /**
+     * Name of the resulting metric label.
+     */
     label: pulumi.Input<string>;
 }
 
 export interface TraceMetricsRuleGroupByKey {
+    /**
+     * Name of the span tag when `type` requires one (for example `TAG`). Ignored for fixed-key types.
+     */
     namedKey?: pulumi.Input<string>;
+    /**
+     * Category of span attribute to group by (for example a well-known field such as `SERVICE` or `OPERATION`, or a generic span `TAG`).
+     */
     type: pulumi.Input<string>;
 }
 
 export interface TraceMetricsRuleScopeFilter {
+    /**
+     * Span conditions that select which spans are aggregated. Spans must match at least one block to be included.
+     */
     spanScopes?: pulumi.Input<pulumi.Input<inputs.TraceMetricsRuleScopeFilterSpanScope>[]>;
 }
 
 export interface TraceMetricsRuleScopeFilterSpanScope {
+    /**
+     * Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, maxSecs]` range.
+     */
     duration?: pulumi.Input<inputs.TraceMetricsRuleScopeFilterSpanScopeDuration>;
+    /**
+     * Matches traces or spans where the target boolean field equals `value`.
+     */
     error?: pulumi.Input<inputs.TraceMetricsRuleScopeFilterSpanScopeError>;
+    /**
+     * Matches traces or spans where the target boolean field equals `value`.
+     */
     isRootSpan?: pulumi.Input<inputs.TraceMetricsRuleScopeFilterSpanScopeIsRootSpan>;
+    /**
+     * Whether matching spans are included (`INCLUDE`) or excluded (`EXCLUDE`) from the scope. Defaults to `INCLUDE`.
+     */
     matchType?: pulumi.Input<string>;
+    /**
+     * Matches traces or spans where the target string field satisfies the match condition.
+     */
     operation?: pulumi.Input<inputs.TraceMetricsRuleScopeFilterSpanScopeOperation>;
+    /**
+     * Matches traces or spans where the target string field satisfies the match condition.
+     */
     parentOperation?: pulumi.Input<inputs.TraceMetricsRuleScopeFilterSpanScopeParentOperation>;
+    /**
+     * Matches traces or spans where the target string field satisfies the match condition.
+     */
     parentService?: pulumi.Input<inputs.TraceMetricsRuleScopeFilterSpanScopeParentService>;
+    /**
+     * Matches traces or spans where the target string field satisfies the match condition.
+     */
     service?: pulumi.Input<inputs.TraceMetricsRuleScopeFilterSpanScopeService>;
+    /**
+     * Matches traces where the number of spans satisfying the surrounding span conditions falls within the inclusive `[min, max]` range.
+     */
     spanCount?: pulumi.Input<inputs.TraceMetricsRuleScopeFilterSpanScopeSpanCount>;
+    /**
+     * Matches spans whose tag (span attribute) with the given `key` has a value satisfying the nested string or numeric filter.
+     */
     tags?: pulumi.Input<pulumi.Input<inputs.TraceMetricsRuleScopeFilterSpanScopeTag>[]>;
 }
 
 export interface TraceMetricsRuleScopeFilterSpanScopeDuration {
+    /**
+     * Maximum duration in seconds, inclusive. Omit for no upper bound.
+     */
     maxSecs?: pulumi.Input<number>;
+    /**
+     * Minimum duration in seconds, inclusive. Defaults to `0`.
+     */
     minSecs?: pulumi.Input<number>;
 }
 
 export interface TraceMetricsRuleScopeFilterSpanScopeError {
+    /**
+     * Boolean value the target field is compared against.
+     */
     value: pulumi.Input<boolean>;
 }
 
 export interface TraceMetricsRuleScopeFilterSpanScopeIsRootSpan {
+    /**
+     * Boolean value the target field is compared against.
+     */
     value: pulumi.Input<boolean>;
 }
 
 export interface TraceMetricsRuleScopeFilterSpanScopeOperation {
+    /**
+     * Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     */
     inValues?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Match operator applied to `value` or `inValues`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     */
     match?: pulumi.Input<string>;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: pulumi.Input<string>;
 }
 
 export interface TraceMetricsRuleScopeFilterSpanScopeParentOperation {
+    /**
+     * Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     */
     inValues?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Match operator applied to `value` or `inValues`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     */
     match?: pulumi.Input<string>;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: pulumi.Input<string>;
 }
 
 export interface TraceMetricsRuleScopeFilterSpanScopeParentService {
+    /**
+     * Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     */
     inValues?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Match operator applied to `value` or `inValues`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     */
     match?: pulumi.Input<string>;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: pulumi.Input<string>;
 }
 
 export interface TraceMetricsRuleScopeFilterSpanScopeService {
+    /**
+     * Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     */
     inValues?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Match operator applied to `value` or `inValues`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     */
     match?: pulumi.Input<string>;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: pulumi.Input<string>;
 }
 
 export interface TraceMetricsRuleScopeFilterSpanScopeSpanCount {
+    /**
+     * Maximum number of matching spans, inclusive. `0` means no upper bound.
+     */
     max?: pulumi.Input<number>;
+    /**
+     * Minimum number of matching spans, inclusive. Defaults to `0`.
+     */
     min?: pulumi.Input<number>;
 }
 
 export interface TraceMetricsRuleScopeFilterSpanScopeTag {
+    /**
+     * Span attribute to group by.
+     */
     key?: pulumi.Input<string>;
+    /**
+     * Matches traces or spans where the target numeric field satisfies the comparison against `value`.
+     */
     numericValue?: pulumi.Input<inputs.TraceMetricsRuleScopeFilterSpanScopeTagNumericValue>;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: pulumi.Input<inputs.TraceMetricsRuleScopeFilterSpanScopeTagValue>;
 }
 
 export interface TraceMetricsRuleScopeFilterSpanScopeTagNumericValue {
+    /**
+     * Numeric comparison operator (for example `EQUALS`, `GREATER_THAN`, `LESS_THAN_OR_EQUAL`).
+     */
     comparison: pulumi.Input<string>;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value: pulumi.Input<number>;
 }
 
 export interface TraceMetricsRuleScopeFilterSpanScopeTagValue {
+    /**
+     * Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     */
     inValues?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Match operator applied to `value` or `inValues`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     */
     match?: pulumi.Input<string>;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: pulumi.Input<string>;
 }
 
 export interface TraceMetricsRuleTraceFilter {
+    /**
+     * Scope filter that further restricts which spans within a matched trace contribute to metrics or sampling. Only spans matching `spanScopes` are included in aggregation.
+     */
     scopeFilter?: pulumi.Input<inputs.TraceMetricsRuleTraceFilterScopeFilter>;
+    /**
+     * Span-level conditions. Each block defines a set of conditions that must all be satisfied by a single span in the trace for the trace to match.
+     */
     spans?: pulumi.Input<pulumi.Input<inputs.TraceMetricsRuleTraceFilterSpan>[]>;
+    /**
+     * Trace-level conditions evaluated against the whole trace (aggregated duration and error status).
+     */
     trace?: pulumi.Input<inputs.TraceMetricsRuleTraceFilterTrace>;
 }
 
 export interface TraceMetricsRuleTraceFilterScopeFilter {
+    /**
+     * Span conditions that select which spans are aggregated. Spans must match at least one block to be included.
+     */
     spanScopes?: pulumi.Input<pulumi.Input<inputs.TraceMetricsRuleTraceFilterScopeFilterSpanScope>[]>;
 }
 
 export interface TraceMetricsRuleTraceFilterScopeFilterSpanScope {
+    /**
+     * Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, maxSecs]` range.
+     */
     duration?: pulumi.Input<inputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeDuration>;
+    /**
+     * Matches traces or spans where the target boolean field equals `value`.
+     */
     error?: pulumi.Input<inputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeError>;
+    /**
+     * Matches traces or spans where the target boolean field equals `value`.
+     */
     isRootSpan?: pulumi.Input<inputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpan>;
+    /**
+     * Whether matching spans are included (`INCLUDE`) or excluded (`EXCLUDE`) from the scope. Defaults to `INCLUDE`.
+     */
     matchType?: pulumi.Input<string>;
+    /**
+     * Matches traces or spans where the target string field satisfies the match condition.
+     */
     operation?: pulumi.Input<inputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperation>;
+    /**
+     * Matches traces or spans where the target string field satisfies the match condition.
+     */
     parentOperation?: pulumi.Input<inputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperation>;
+    /**
+     * Matches traces or spans where the target string field satisfies the match condition.
+     */
     parentService?: pulumi.Input<inputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentService>;
+    /**
+     * Matches traces or spans where the target string field satisfies the match condition.
+     */
     service?: pulumi.Input<inputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeService>;
+    /**
+     * Matches traces where the number of spans satisfying the surrounding span conditions falls within the inclusive `[min, max]` range.
+     */
     spanCount?: pulumi.Input<inputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCount>;
+    /**
+     * Matches spans whose tag (span attribute) with the given `key` has a value satisfying the nested string or numeric filter.
+     */
     tags?: pulumi.Input<pulumi.Input<inputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeTag>[]>;
 }
 
 export interface TraceMetricsRuleTraceFilterScopeFilterSpanScopeDuration {
+    /**
+     * Maximum duration in seconds, inclusive. Omit for no upper bound.
+     */
     maxSecs?: pulumi.Input<number>;
+    /**
+     * Minimum duration in seconds, inclusive. Defaults to `0`.
+     */
     minSecs?: pulumi.Input<number>;
 }
 
 export interface TraceMetricsRuleTraceFilterScopeFilterSpanScopeError {
+    /**
+     * Boolean value the target field is compared against.
+     */
     value: pulumi.Input<boolean>;
 }
 
 export interface TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpan {
+    /**
+     * Boolean value the target field is compared against.
+     */
     value: pulumi.Input<boolean>;
 }
 
 export interface TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperation {
+    /**
+     * Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     */
     inValues?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Match operator applied to `value` or `inValues`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     */
     match?: pulumi.Input<string>;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: pulumi.Input<string>;
 }
 
 export interface TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperation {
+    /**
+     * Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     */
     inValues?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Match operator applied to `value` or `inValues`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     */
     match?: pulumi.Input<string>;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: pulumi.Input<string>;
 }
 
 export interface TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentService {
+    /**
+     * Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     */
     inValues?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Match operator applied to `value` or `inValues`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     */
     match?: pulumi.Input<string>;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: pulumi.Input<string>;
 }
 
 export interface TraceMetricsRuleTraceFilterScopeFilterSpanScopeService {
+    /**
+     * Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     */
     inValues?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Match operator applied to `value` or `inValues`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     */
     match?: pulumi.Input<string>;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: pulumi.Input<string>;
 }
 
 export interface TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCount {
+    /**
+     * Maximum number of matching spans, inclusive. `0` means no upper bound.
+     */
     max?: pulumi.Input<number>;
+    /**
+     * Minimum number of matching spans, inclusive. Defaults to `0`.
+     */
     min?: pulumi.Input<number>;
 }
 
 export interface TraceMetricsRuleTraceFilterScopeFilterSpanScopeTag {
+    /**
+     * Span attribute to group by.
+     */
     key?: pulumi.Input<string>;
+    /**
+     * Matches traces or spans where the target numeric field satisfies the comparison against `value`.
+     */
     numericValue?: pulumi.Input<inputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValue>;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: pulumi.Input<inputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValue>;
 }
 
 export interface TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValue {
+    /**
+     * Numeric comparison operator (for example `EQUALS`, `GREATER_THAN`, `LESS_THAN_OR_EQUAL`).
+     */
     comparison: pulumi.Input<string>;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value: pulumi.Input<number>;
 }
 
 export interface TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValue {
+    /**
+     * Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     */
     inValues?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Match operator applied to `value` or `inValues`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     */
     match?: pulumi.Input<string>;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: pulumi.Input<string>;
 }
 
 export interface TraceMetricsRuleTraceFilterSpan {
+    /**
+     * Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, maxSecs]` range.
+     */
     duration?: pulumi.Input<inputs.TraceMetricsRuleTraceFilterSpanDuration>;
+    /**
+     * Matches traces or spans where the target boolean field equals `value`.
+     */
     error?: pulumi.Input<inputs.TraceMetricsRuleTraceFilterSpanError>;
+    /**
+     * Matches traces or spans where the target boolean field equals `value`.
+     */
     isRootSpan?: pulumi.Input<inputs.TraceMetricsRuleTraceFilterSpanIsRootSpan>;
+    /**
+     * Whether matching spans are included (`INCLUDE`) or excluded (`EXCLUDE`) from the scope. Defaults to `INCLUDE`.
+     */
     matchType?: pulumi.Input<string>;
+    /**
+     * Matches traces or spans where the target string field satisfies the match condition.
+     */
     operation?: pulumi.Input<inputs.TraceMetricsRuleTraceFilterSpanOperation>;
+    /**
+     * Matches traces or spans where the target string field satisfies the match condition.
+     */
     parentOperation?: pulumi.Input<inputs.TraceMetricsRuleTraceFilterSpanParentOperation>;
+    /**
+     * Matches traces or spans where the target string field satisfies the match condition.
+     */
     parentService?: pulumi.Input<inputs.TraceMetricsRuleTraceFilterSpanParentService>;
+    /**
+     * Matches traces or spans where the target string field satisfies the match condition.
+     */
     service?: pulumi.Input<inputs.TraceMetricsRuleTraceFilterSpanService>;
+    /**
+     * Matches traces where the number of spans satisfying the surrounding span conditions falls within the inclusive `[min, max]` range.
+     */
     spanCount?: pulumi.Input<inputs.TraceMetricsRuleTraceFilterSpanSpanCount>;
+    /**
+     * Matches spans whose tag (span attribute) with the given `key` has a value satisfying the nested string or numeric filter.
+     */
     tags?: pulumi.Input<pulumi.Input<inputs.TraceMetricsRuleTraceFilterSpanTag>[]>;
 }
 
 export interface TraceMetricsRuleTraceFilterSpanDuration {
+    /**
+     * Maximum duration in seconds, inclusive. Omit for no upper bound.
+     */
     maxSecs?: pulumi.Input<number>;
+    /**
+     * Minimum duration in seconds, inclusive. Defaults to `0`.
+     */
     minSecs?: pulumi.Input<number>;
 }
 
 export interface TraceMetricsRuleTraceFilterSpanError {
+    /**
+     * Boolean value the target field is compared against.
+     */
     value: pulumi.Input<boolean>;
 }
 
 export interface TraceMetricsRuleTraceFilterSpanIsRootSpan {
+    /**
+     * Boolean value the target field is compared against.
+     */
     value: pulumi.Input<boolean>;
 }
 
 export interface TraceMetricsRuleTraceFilterSpanOperation {
+    /**
+     * Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     */
     inValues?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Match operator applied to `value` or `inValues`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     */
     match?: pulumi.Input<string>;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: pulumi.Input<string>;
 }
 
 export interface TraceMetricsRuleTraceFilterSpanParentOperation {
+    /**
+     * Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     */
     inValues?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Match operator applied to `value` or `inValues`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     */
     match?: pulumi.Input<string>;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: pulumi.Input<string>;
 }
 
 export interface TraceMetricsRuleTraceFilterSpanParentService {
+    /**
+     * Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     */
     inValues?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Match operator applied to `value` or `inValues`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     */
     match?: pulumi.Input<string>;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: pulumi.Input<string>;
 }
 
 export interface TraceMetricsRuleTraceFilterSpanService {
+    /**
+     * Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     */
     inValues?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Match operator applied to `value` or `inValues`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     */
     match?: pulumi.Input<string>;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: pulumi.Input<string>;
 }
 
 export interface TraceMetricsRuleTraceFilterSpanSpanCount {
+    /**
+     * Maximum number of matching spans, inclusive. `0` means no upper bound.
+     */
     max?: pulumi.Input<number>;
+    /**
+     * Minimum number of matching spans, inclusive. Defaults to `0`.
+     */
     min?: pulumi.Input<number>;
 }
 
 export interface TraceMetricsRuleTraceFilterSpanTag {
+    /**
+     * Span attribute to group by.
+     */
     key?: pulumi.Input<string>;
+    /**
+     * Matches traces or spans where the target numeric field satisfies the comparison against `value`.
+     */
     numericValue?: pulumi.Input<inputs.TraceMetricsRuleTraceFilterSpanTagNumericValue>;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: pulumi.Input<inputs.TraceMetricsRuleTraceFilterSpanTagValue>;
 }
 
 export interface TraceMetricsRuleTraceFilterSpanTagNumericValue {
+    /**
+     * Numeric comparison operator (for example `EQUALS`, `GREATER_THAN`, `LESS_THAN_OR_EQUAL`).
+     */
     comparison: pulumi.Input<string>;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value: pulumi.Input<number>;
 }
 
 export interface TraceMetricsRuleTraceFilterSpanTagValue {
+    /**
+     * Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     */
     inValues?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Match operator applied to `value` or `inValues`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     */
     match?: pulumi.Input<string>;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: pulumi.Input<string>;
 }
 
 export interface TraceMetricsRuleTraceFilterTrace {
+    /**
+     * Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, maxSecs]` range.
+     */
     duration?: pulumi.Input<inputs.TraceMetricsRuleTraceFilterTraceDuration>;
+    /**
+     * Matches traces or spans where the target boolean field equals `value`.
+     */
     error?: pulumi.Input<inputs.TraceMetricsRuleTraceFilterTraceError>;
 }
 
 export interface TraceMetricsRuleTraceFilterTraceDuration {
+    /**
+     * Maximum duration in seconds, inclusive. Omit for no upper bound.
+     */
     maxSecs?: pulumi.Input<number>;
+    /**
+     * Minimum duration in seconds, inclusive. Defaults to `0`.
+     */
     minSecs?: pulumi.Input<number>;
 }
 
 export interface TraceMetricsRuleTraceFilterTraceError {
+    /**
+     * Boolean value the target field is compared against.
+     */
     value: pulumi.Input<boolean>;
 }
 
 export interface TraceTailSamplingRulesDefaultSampleRate {
+    /**
+     * Whether to override the platform default sample rate with `sampleRate`.
+     */
     enabled?: pulumi.Input<boolean>;
+    /**
+     * Fraction of matching traces to keep, in the range `[0.0, 1.0]`. `0` drops all matches, `1` keeps every match.
+     */
     sampleRate: pulumi.Input<number>;
 }
 
 export interface TraceTailSamplingRulesRule {
+    /**
+     * Filter that selects traces and spans. A trace matches when its trace-level conditions hold and every `span` block is satisfied by at least one span in the trace.
+     */
     filter: pulumi.Input<inputs.TraceTailSamplingRulesRuleFilter>;
+    /**
+     * Human-readable name of the rule.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * Fraction of matching traces to keep, in the range `[0.0, 1.0]`. `0` drops all matches, `1` keeps every match.
+     */
     sampleRate: pulumi.Input<number>;
+    /**
+     * Stable identifier used as the metric label value on metrics emitted by this rule.
+     */
     systemName?: pulumi.Input<string>;
 }
 
 export interface TraceTailSamplingRulesRuleFilter {
+    /**
+     * Scope filter that further restricts which spans within a matched trace contribute to metrics or sampling. Only spans matching `spanScopes` are included in aggregation.
+     */
     scopeFilter?: pulumi.Input<inputs.TraceTailSamplingRulesRuleFilterScopeFilter>;
+    /**
+     * Span-level conditions. Each block defines a set of conditions that must all be satisfied by a single span in the trace for the trace to match.
+     */
     spans?: pulumi.Input<pulumi.Input<inputs.TraceTailSamplingRulesRuleFilterSpan>[]>;
+    /**
+     * Trace-level conditions evaluated against the whole trace (aggregated duration and error status).
+     */
     trace?: pulumi.Input<inputs.TraceTailSamplingRulesRuleFilterTrace>;
 }
 
 export interface TraceTailSamplingRulesRuleFilterScopeFilter {
+    /**
+     * Span conditions that select which spans are aggregated. Spans must match at least one block to be included.
+     */
     spanScopes?: pulumi.Input<pulumi.Input<inputs.TraceTailSamplingRulesRuleFilterScopeFilterSpanScope>[]>;
 }
 
 export interface TraceTailSamplingRulesRuleFilterScopeFilterSpanScope {
+    /**
+     * Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, maxSecs]` range.
+     */
     duration?: pulumi.Input<inputs.TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDuration>;
+    /**
+     * Matches traces or spans where the target boolean field equals `value`.
+     */
     error?: pulumi.Input<inputs.TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeError>;
+    /**
+     * Matches traces or spans where the target boolean field equals `value`.
+     */
     isRootSpan?: pulumi.Input<inputs.TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpan>;
+    /**
+     * Whether matching spans are included (`INCLUDE`) or excluded (`EXCLUDE`) from the scope. Defaults to `INCLUDE`.
+     */
     matchType?: pulumi.Input<string>;
+    /**
+     * Matches traces or spans where the target string field satisfies the match condition.
+     */
     operation?: pulumi.Input<inputs.TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperation>;
+    /**
+     * Matches traces or spans where the target string field satisfies the match condition.
+     */
     parentOperation?: pulumi.Input<inputs.TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperation>;
+    /**
+     * Matches traces or spans where the target string field satisfies the match condition.
+     */
     parentService?: pulumi.Input<inputs.TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentService>;
+    /**
+     * Matches traces or spans where the target string field satisfies the match condition.
+     */
     service?: pulumi.Input<inputs.TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeService>;
+    /**
+     * Matches traces where the number of spans satisfying the surrounding span conditions falls within the inclusive `[min, max]` range.
+     */
     spanCount?: pulumi.Input<inputs.TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCount>;
+    /**
+     * Matches spans whose tag (span attribute) with the given `key` has a value satisfying the nested string or numeric filter.
+     */
     tags?: pulumi.Input<pulumi.Input<inputs.TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTag>[]>;
 }
 
 export interface TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDuration {
+    /**
+     * Maximum duration in seconds, inclusive. Omit for no upper bound.
+     */
     maxSecs?: pulumi.Input<number>;
+    /**
+     * Minimum duration in seconds, inclusive. Defaults to `0`.
+     */
     minSecs?: pulumi.Input<number>;
 }
 
 export interface TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeError {
+    /**
+     * Boolean value the target field is compared against.
+     */
     value: pulumi.Input<boolean>;
 }
 
 export interface TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpan {
+    /**
+     * Boolean value the target field is compared against.
+     */
     value: pulumi.Input<boolean>;
 }
 
 export interface TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperation {
+    /**
+     * Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     */
     inValues?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Match operator applied to `value` or `inValues`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     */
     match?: pulumi.Input<string>;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: pulumi.Input<string>;
 }
 
 export interface TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperation {
+    /**
+     * Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     */
     inValues?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Match operator applied to `value` or `inValues`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     */
     match?: pulumi.Input<string>;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: pulumi.Input<string>;
 }
 
 export interface TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentService {
+    /**
+     * Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     */
     inValues?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Match operator applied to `value` or `inValues`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     */
     match?: pulumi.Input<string>;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: pulumi.Input<string>;
 }
 
 export interface TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeService {
+    /**
+     * Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     */
     inValues?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Match operator applied to `value` or `inValues`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     */
     match?: pulumi.Input<string>;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: pulumi.Input<string>;
 }
 
 export interface TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCount {
+    /**
+     * Maximum number of matching spans, inclusive. `0` means no upper bound.
+     */
     max?: pulumi.Input<number>;
+    /**
+     * Minimum number of matching spans, inclusive. Defaults to `0`.
+     */
     min?: pulumi.Input<number>;
 }
 
 export interface TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTag {
+    /**
+     * Name of the span tag (span attribute) inspected by this filter.
+     */
     key?: pulumi.Input<string>;
+    /**
+     * Matches traces or spans where the target numeric field satisfies the comparison against `value`.
+     */
     numericValue?: pulumi.Input<inputs.TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValue>;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: pulumi.Input<inputs.TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValue>;
 }
 
 export interface TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValue {
+    /**
+     * Numeric comparison operator (for example `EQUALS`, `GREATER_THAN`, `LESS_THAN_OR_EQUAL`).
+     */
     comparison: pulumi.Input<string>;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value: pulumi.Input<number>;
 }
 
 export interface TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValue {
+    /**
+     * Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     */
     inValues?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Match operator applied to `value` or `inValues`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     */
     match?: pulumi.Input<string>;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: pulumi.Input<string>;
 }
 
 export interface TraceTailSamplingRulesRuleFilterSpan {
+    /**
+     * Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, maxSecs]` range.
+     */
     duration?: pulumi.Input<inputs.TraceTailSamplingRulesRuleFilterSpanDuration>;
+    /**
+     * Matches traces or spans where the target boolean field equals `value`.
+     */
     error?: pulumi.Input<inputs.TraceTailSamplingRulesRuleFilterSpanError>;
+    /**
+     * Matches traces or spans where the target boolean field equals `value`.
+     */
     isRootSpan?: pulumi.Input<inputs.TraceTailSamplingRulesRuleFilterSpanIsRootSpan>;
+    /**
+     * Whether matching spans are included (`INCLUDE`) or excluded (`EXCLUDE`) from the scope. Defaults to `INCLUDE`.
+     */
     matchType?: pulumi.Input<string>;
+    /**
+     * Matches traces or spans where the target string field satisfies the match condition.
+     */
     operation?: pulumi.Input<inputs.TraceTailSamplingRulesRuleFilterSpanOperation>;
+    /**
+     * Matches traces or spans where the target string field satisfies the match condition.
+     */
     parentOperation?: pulumi.Input<inputs.TraceTailSamplingRulesRuleFilterSpanParentOperation>;
+    /**
+     * Matches traces or spans where the target string field satisfies the match condition.
+     */
     parentService?: pulumi.Input<inputs.TraceTailSamplingRulesRuleFilterSpanParentService>;
+    /**
+     * Matches traces or spans where the target string field satisfies the match condition.
+     */
     service?: pulumi.Input<inputs.TraceTailSamplingRulesRuleFilterSpanService>;
+    /**
+     * Matches traces where the number of spans satisfying the surrounding span conditions falls within the inclusive `[min, max]` range.
+     */
     spanCount?: pulumi.Input<inputs.TraceTailSamplingRulesRuleFilterSpanSpanCount>;
+    /**
+     * Matches spans whose tag (span attribute) with the given `key` has a value satisfying the nested string or numeric filter.
+     */
     tags?: pulumi.Input<pulumi.Input<inputs.TraceTailSamplingRulesRuleFilterSpanTag>[]>;
 }
 
 export interface TraceTailSamplingRulesRuleFilterSpanDuration {
+    /**
+     * Maximum duration in seconds, inclusive. Omit for no upper bound.
+     */
     maxSecs?: pulumi.Input<number>;
+    /**
+     * Minimum duration in seconds, inclusive. Defaults to `0`.
+     */
     minSecs?: pulumi.Input<number>;
 }
 
 export interface TraceTailSamplingRulesRuleFilterSpanError {
+    /**
+     * Boolean value the target field is compared against.
+     */
     value: pulumi.Input<boolean>;
 }
 
 export interface TraceTailSamplingRulesRuleFilterSpanIsRootSpan {
+    /**
+     * Boolean value the target field is compared against.
+     */
     value: pulumi.Input<boolean>;
 }
 
 export interface TraceTailSamplingRulesRuleFilterSpanOperation {
+    /**
+     * Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     */
     inValues?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Match operator applied to `value` or `inValues`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     */
     match?: pulumi.Input<string>;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: pulumi.Input<string>;
 }
 
 export interface TraceTailSamplingRulesRuleFilterSpanParentOperation {
+    /**
+     * Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     */
     inValues?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Match operator applied to `value` or `inValues`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     */
     match?: pulumi.Input<string>;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: pulumi.Input<string>;
 }
 
 export interface TraceTailSamplingRulesRuleFilterSpanParentService {
+    /**
+     * Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     */
     inValues?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Match operator applied to `value` or `inValues`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     */
     match?: pulumi.Input<string>;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: pulumi.Input<string>;
 }
 
 export interface TraceTailSamplingRulesRuleFilterSpanService {
+    /**
+     * Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     */
     inValues?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Match operator applied to `value` or `inValues`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     */
     match?: pulumi.Input<string>;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: pulumi.Input<string>;
 }
 
 export interface TraceTailSamplingRulesRuleFilterSpanSpanCount {
+    /**
+     * Maximum number of matching spans, inclusive. `0` means no upper bound.
+     */
     max?: pulumi.Input<number>;
+    /**
+     * Minimum number of matching spans, inclusive. Defaults to `0`.
+     */
     min?: pulumi.Input<number>;
 }
 
 export interface TraceTailSamplingRulesRuleFilterSpanTag {
+    /**
+     * Name of the span tag (span attribute) inspected by this filter.
+     */
     key?: pulumi.Input<string>;
+    /**
+     * Matches traces or spans where the target numeric field satisfies the comparison against `value`.
+     */
     numericValue?: pulumi.Input<inputs.TraceTailSamplingRulesRuleFilterSpanTagNumericValue>;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: pulumi.Input<inputs.TraceTailSamplingRulesRuleFilterSpanTagValue>;
 }
 
 export interface TraceTailSamplingRulesRuleFilterSpanTagNumericValue {
+    /**
+     * Numeric comparison operator (for example `EQUALS`, `GREATER_THAN`, `LESS_THAN_OR_EQUAL`).
+     */
     comparison: pulumi.Input<string>;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value: pulumi.Input<number>;
 }
 
 export interface TraceTailSamplingRulesRuleFilterSpanTagValue {
+    /**
+     * Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     */
     inValues?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Match operator applied to `value` or `inValues`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     */
     match?: pulumi.Input<string>;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: pulumi.Input<string>;
 }
 
 export interface TraceTailSamplingRulesRuleFilterTrace {
+    /**
+     * Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, maxSecs]` range.
+     */
     duration?: pulumi.Input<inputs.TraceTailSamplingRulesRuleFilterTraceDuration>;
+    /**
+     * Matches traces or spans where the target boolean field equals `value`.
+     */
     error?: pulumi.Input<inputs.TraceTailSamplingRulesRuleFilterTraceError>;
 }
 
 export interface TraceTailSamplingRulesRuleFilterTraceDuration {
+    /**
+     * Maximum duration in seconds, inclusive. Omit for no upper bound.
+     */
     maxSecs?: pulumi.Input<number>;
+    /**
+     * Minimum duration in seconds, inclusive. Defaults to `0`.
+     */
     minSecs?: pulumi.Input<number>;
 }
 
 export interface TraceTailSamplingRulesRuleFilterTraceError {
+    /**
+     * Boolean value the target field is compared against.
+     */
     value: pulumi.Input<boolean>;
 }

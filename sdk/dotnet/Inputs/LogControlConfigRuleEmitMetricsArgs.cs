@@ -13,29 +13,51 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class LogControlConfigRuleEmitMetricsArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Emit a counter metric. Exactly one of `counter`, `gauge`, or `histogram` must be set.
+        /// </summary>
         [Input("counter")]
         public Input<Inputs.LogControlConfigRuleEmitMetricsCounterArgs>? Counter { get; set; }
 
+        /// <summary>
+        /// If `true`, drops the entire log after emitting the metric.
+        /// </summary>
         [Input("dropLog")]
         public Input<bool>? DropLog { get; set; }
 
+        /// <summary>
+        /// Emit a gauge metric. Exactly one of `counter`, `gauge`, or `histogram` must be set.
+        /// </summary>
         [Input("gauge")]
         public Input<Inputs.LogControlConfigRuleEmitMetricsGaugeArgs>? Gauge { get; set; }
 
+        /// <summary>
+        /// Emit a histogram metric. Exactly one of `counter`, `gauge`, or `histogram` must be set.
+        /// </summary>
         [Input("histogram")]
         public Input<Inputs.LogControlConfigRuleEmitMetricsHistogramArgs>? Histogram { get; set; }
 
         [Input("labels")]
         private InputList<Inputs.LogControlConfigRuleEmitMetricsLabelArgs>? _labels;
+
+        /// <summary>
+        /// Labels to attach to the generated metric, specified as key/value pairs mapping a Prometheus label name to a log field path.
+        /// </summary>
         public InputList<Inputs.LogControlConfigRuleEmitMetricsLabelArgs> Labels
         {
             get => _labels ?? (_labels = new InputList<Inputs.LogControlConfigRuleEmitMetricsLabelArgs>());
             set => _labels = value;
         }
 
+        /// <summary>
+        /// Metric emission mode that controls how the metric is generated from matching logs.
+        /// </summary>
         [Input("mode")]
         public Input<string>? Mode { get; set; }
 
+        /// <summary>
+        /// Name of the generated metric. Must conform to Prometheus naming conventions and be unique within the tenant.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 

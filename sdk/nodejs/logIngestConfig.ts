@@ -6,6 +6,9 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * Singleton per-tenant parser configuration controlling how raw log payloads are parsed into structured fields and how timestamps, severities, services, and other fields are normalized.
+ */
 export class LogIngestConfig extends pulumi.CustomResource {
     /**
      * Get an existing LogIngestConfig resource's state with the given name, ID, and optional extra
@@ -34,8 +37,17 @@ export class LogIngestConfig extends pulumi.CustomResource {
         return obj['__pulumiType'] === LogIngestConfig.__pulumiType;
     }
 
+    /**
+     * Field normalization rules that map and standardize well-known fields (timestamp, severity, message, service) across log formats. Runs after parsing.
+     */
     public readonly fieldNormalization!: pulumi.Output<outputs.LogIngestConfigFieldNormalization | undefined>;
+    /**
+     * Parsers applied to specific fields within structured logs (or to fields produced by a plaintext parser).
+     */
     public readonly fieldParsers!: pulumi.Output<outputs.LogIngestConfigFieldParser[] | undefined>;
+    /**
+     * Parsers applied to plaintext logs as they enter the ingest pipeline. The first parser that matches a log is used.
+     */
     public readonly plaintextParsers!: pulumi.Output<outputs.LogIngestConfigPlaintextParser[] | undefined>;
 
     /**
@@ -69,8 +81,17 @@ export class LogIngestConfig extends pulumi.CustomResource {
  * Input properties used for looking up and filtering LogIngestConfig resources.
  */
 export interface LogIngestConfigState {
+    /**
+     * Field normalization rules that map and standardize well-known fields (timestamp, severity, message, service) across log formats. Runs after parsing.
+     */
     fieldNormalization?: pulumi.Input<inputs.LogIngestConfigFieldNormalization>;
+    /**
+     * Parsers applied to specific fields within structured logs (or to fields produced by a plaintext parser).
+     */
     fieldParsers?: pulumi.Input<pulumi.Input<inputs.LogIngestConfigFieldParser>[]>;
+    /**
+     * Parsers applied to plaintext logs as they enter the ingest pipeline. The first parser that matches a log is used.
+     */
     plaintextParsers?: pulumi.Input<pulumi.Input<inputs.LogIngestConfigPlaintextParser>[]>;
 }
 
@@ -78,7 +99,16 @@ export interface LogIngestConfigState {
  * The set of arguments for constructing a LogIngestConfig resource.
  */
 export interface LogIngestConfigArgs {
+    /**
+     * Field normalization rules that map and standardize well-known fields (timestamp, severity, message, service) across log formats. Runs after parsing.
+     */
     fieldNormalization?: pulumi.Input<inputs.LogIngestConfigFieldNormalization>;
+    /**
+     * Parsers applied to specific fields within structured logs (or to fields produced by a plaintext parser).
+     */
     fieldParsers?: pulumi.Input<pulumi.Input<inputs.LogIngestConfigFieldParser>[]>;
+    /**
+     * Parsers applied to plaintext logs as they enter the ingest pipeline. The first parser that matches a log is used.
+     */
     plaintextParsers?: pulumi.Input<pulumi.Input<inputs.LogIngestConfigPlaintextParser>[]>;
 }

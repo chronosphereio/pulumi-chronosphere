@@ -14,6 +14,9 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicy
     {
+        /// <summary>
+        /// Labels to retain after aggregation.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeep> Keeps;
 
         [OutputConstructor]

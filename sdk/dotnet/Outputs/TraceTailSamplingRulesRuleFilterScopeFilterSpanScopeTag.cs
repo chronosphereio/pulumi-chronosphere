@@ -14,8 +14,17 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTag
     {
+        /// <summary>
+        /// Name of the span tag (span attribute) inspected by this filter.
+        /// </summary>
         public readonly string? Key;
+        /// <summary>
+        /// Matches traces or spans where the target numeric field satisfies the comparison against `value`.
+        /// </summary>
         public readonly Outputs.TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValue? NumericValue;
+        /// <summary>
+        /// Boolean value the target field is compared against.
+        /// </summary>
         public readonly Outputs.TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValue? Value;
 
         [OutputConstructor]

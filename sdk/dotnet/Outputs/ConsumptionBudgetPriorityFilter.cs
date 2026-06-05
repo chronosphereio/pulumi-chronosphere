@@ -14,7 +14,13 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class ConsumptionBudgetPriorityFilter
     {
+        /// <summary>
+        /// Deprecated: use `log_filter` instead. Slug of the dataset to match against.
+        /// </summary>
         public readonly string? DatasetId;
+        /// <summary>
+        /// Log search filter that matches log data for this priority.
+        /// </summary>
         public readonly Outputs.ConsumptionBudgetPriorityFilterLogFilter? LogFilter;
 
         [OutputConstructor]

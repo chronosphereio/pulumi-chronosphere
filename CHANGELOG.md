@@ -2,6 +2,15 @@
 
 ## Unreleased
 
+v0.9.16
+Added:
+* Add `resource_group` field to `chronosphere_consumption_budget` thresholds as a replacement for the deprecated `sku_group` field. Both accept the same values; `resource_group` is preferred.
+* Add `ROLLING_30_MINUTE_VOLUME` threshold type to `chronosphere_consumption_budget` thresholds.
+* Field-level descriptions are now included across the generated SDKs.
+
+Deprecated:
+* Deprecate the `sku_group` field on `chronosphere_consumption_budget` thresholds. Use `resource_group` instead.
+
 v0.9.15
 Removed:
 * Remove `trace_filter` field from `chronosphere_consumption_config` partition filter conditions.

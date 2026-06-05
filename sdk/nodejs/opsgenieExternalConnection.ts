@@ -4,6 +4,22 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Workspace-scoped OpsGenie credentials that downstream notifiers and LogScale actions can reference. Centralizes the OpsGenie API key so it isn't duplicated across individual notifiers; modern equivalent of the per-notifier credentials.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as chronosphere from "@pulumi-chronosphere/pulumi-chronosphere";
+ *
+ * const opsgenie = new chronosphere.OpsgenieExternalConnection("opsgenie", {
+ *     apiKey: "XXXXX",
+ *     apiUrl: "https://api.opsgenie.com/",
+ *     name: "OpsGenie",
+ * });
+ * ```
+ */
 export class OpsgenieExternalConnection extends pulumi.CustomResource {
     /**
      * Get an existing OpsgenieExternalConnection resource's state with the given name, ID, and optional extra
@@ -32,13 +48,37 @@ export class OpsgenieExternalConnection extends pulumi.CustomResource {
         return obj['__pulumiType'] === OpsgenieExternalConnection.__pulumiType;
     }
 
+    /**
+     * OpsGenie integration API key used to authenticate alert delivery. Treat as a secret.
+     */
     public readonly apiKey!: pulumi.Output<string | undefined>;
+    /**
+     * Base URL of the OpsGenie API. Override to target the EU region or a custom endpoint.
+     */
     public readonly apiUrl!: pulumi.Output<string | undefined>;
+    /**
+     * Password for HTTP basic auth when calling OpsGenie. Treat as a secret.
+     */
     public readonly basicAuthPassword!: pulumi.Output<string | undefined>;
+    /**
+     * Username for HTTP basic auth when calling OpsGenie. Mutually exclusive with `bearerToken`.
+     */
     public readonly basicAuthUsername!: pulumi.Output<string | undefined>;
+    /**
+     * Bearer token sent in the `Authorization` header when calling OpsGenie. Mutually exclusive with basic auth. Treat as a secret.
+     */
     public readonly bearerToken!: pulumi.Output<string | undefined>;
+    /**
+     * Display name of the external connection.
+     */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+     */
     public readonly slug!: pulumi.Output<string>;
+    /**
+     * If true, skip TLS certificate verification when calling OpsGenie. Disable only in trusted environments.
+     */
     public readonly tlsInsecureSkipVerify!: pulumi.Output<boolean | undefined>;
 
     /**
@@ -87,13 +127,37 @@ export class OpsgenieExternalConnection extends pulumi.CustomResource {
  * Input properties used for looking up and filtering OpsgenieExternalConnection resources.
  */
 export interface OpsgenieExternalConnectionState {
+    /**
+     * OpsGenie integration API key used to authenticate alert delivery. Treat as a secret.
+     */
     apiKey?: pulumi.Input<string>;
+    /**
+     * Base URL of the OpsGenie API. Override to target the EU region or a custom endpoint.
+     */
     apiUrl?: pulumi.Input<string>;
+    /**
+     * Password for HTTP basic auth when calling OpsGenie. Treat as a secret.
+     */
     basicAuthPassword?: pulumi.Input<string>;
+    /**
+     * Username for HTTP basic auth when calling OpsGenie. Mutually exclusive with `bearerToken`.
+     */
     basicAuthUsername?: pulumi.Input<string>;
+    /**
+     * Bearer token sent in the `Authorization` header when calling OpsGenie. Mutually exclusive with basic auth. Treat as a secret.
+     */
     bearerToken?: pulumi.Input<string>;
+    /**
+     * Display name of the external connection.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+     */
     slug?: pulumi.Input<string>;
+    /**
+     * If true, skip TLS certificate verification when calling OpsGenie. Disable only in trusted environments.
+     */
     tlsInsecureSkipVerify?: pulumi.Input<boolean>;
 }
 
@@ -101,12 +165,36 @@ export interface OpsgenieExternalConnectionState {
  * The set of arguments for constructing a OpsgenieExternalConnection resource.
  */
 export interface OpsgenieExternalConnectionArgs {
+    /**
+     * OpsGenie integration API key used to authenticate alert delivery. Treat as a secret.
+     */
     apiKey?: pulumi.Input<string>;
+    /**
+     * Base URL of the OpsGenie API. Override to target the EU region or a custom endpoint.
+     */
     apiUrl?: pulumi.Input<string>;
+    /**
+     * Password for HTTP basic auth when calling OpsGenie. Treat as a secret.
+     */
     basicAuthPassword?: pulumi.Input<string>;
+    /**
+     * Username for HTTP basic auth when calling OpsGenie. Mutually exclusive with `bearerToken`.
+     */
     basicAuthUsername?: pulumi.Input<string>;
+    /**
+     * Bearer token sent in the `Authorization` header when calling OpsGenie. Mutually exclusive with basic auth. Treat as a secret.
+     */
     bearerToken?: pulumi.Input<string>;
+    /**
+     * Display name of the external connection.
+     */
     name: pulumi.Input<string>;
+    /**
+     * Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+     */
     slug?: pulumi.Input<string>;
+    /**
+     * If true, skip TLS certificate verification when calling OpsGenie. Disable only in trusted environments.
+     */
     tlsInsecureSkipVerify?: pulumi.Input<boolean>;
 }

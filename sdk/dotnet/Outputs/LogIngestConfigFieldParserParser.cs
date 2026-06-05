@@ -14,9 +14,21 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class LogIngestConfigFieldParserParser
     {
+        /// <summary>
+        /// Grok parser configuration. Only set when `parser_type` is `GROK`.
+        /// </summary>
         public readonly Outputs.LogIngestConfigFieldParserParserGrokParser? GrokParser;
+        /// <summary>
+        /// Key/value parser configuration. Only set when `parser_type` is `KEY_VALUE`. Duplicate keys keep the first occurrence.
+        /// </summary>
         public readonly Outputs.LogIngestConfigFieldParserParserKeyValueParser? KeyValueParser;
+        /// <summary>
+        /// Type of parser to apply. Determines which of `regex_parser`, `key_value_parser`, or `grok_parser` must be set.
+        /// </summary>
         public readonly string ParserType;
+        /// <summary>
+        /// Regex parser configuration. Only set when `parser_type` is `REGEX`.
+        /// </summary>
         public readonly Outputs.LogIngestConfigFieldParserParserRegexParser? RegexParser;
 
         [OutputConstructor]

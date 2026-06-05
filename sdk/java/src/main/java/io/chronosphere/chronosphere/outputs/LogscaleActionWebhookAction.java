@@ -13,29 +13,77 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class LogscaleActionWebhookAction {
+    /**
+     * @return Body of the request. Supports Go template syntax with values from the query result.
+     * 
+     */
     private @Nullable String bodyTemplate;
+    /**
+     * @return Headers to include on the HTTP or HTTPS request.
+     * 
+     */
     private @Nullable Map<String,String> headers;
+    /**
+     * @return If `true`, skips SSL certificate verification for the request.
+     * 
+     */
     private @Nullable Boolean ignoreSsl;
+    /**
+     * @return HTTP method used for the webhook request.
+     * 
+     */
     private String method;
+    /**
+     * @return URL to send the HTTP or HTTPS request to.
+     * 
+     */
     private String url;
+    /**
+     * @return If `true`, sends the request through the configured outbound proxy.
+     * 
+     */
     private @Nullable Boolean useProxy;
 
     private LogscaleActionWebhookAction() {}
+    /**
+     * @return Body of the request. Supports Go template syntax with values from the query result.
+     * 
+     */
     public Optional<String> bodyTemplate() {
         return Optional.ofNullable(this.bodyTemplate);
     }
+    /**
+     * @return Headers to include on the HTTP or HTTPS request.
+     * 
+     */
     public Map<String,String> headers() {
         return this.headers == null ? Map.of() : this.headers;
     }
+    /**
+     * @return If `true`, skips SSL certificate verification for the request.
+     * 
+     */
     public Optional<Boolean> ignoreSsl() {
         return Optional.ofNullable(this.ignoreSsl);
     }
+    /**
+     * @return HTTP method used for the webhook request.
+     * 
+     */
     public String method() {
         return this.method;
     }
+    /**
+     * @return URL to send the HTTP or HTTPS request to.
+     * 
+     */
     public String url() {
         return this.url;
     }
+    /**
+     * @return If `true`, sends the request through the configured outbound proxy.
+     * 
+     */
     public Optional<Boolean> useProxy() {
         return Optional.ofNullable(this.useProxy);
     }

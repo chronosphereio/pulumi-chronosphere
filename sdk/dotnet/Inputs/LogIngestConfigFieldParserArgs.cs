@@ -13,15 +13,27 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class LogIngestConfigFieldParserArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Path to write the parsed output to. If omitted, parsed fields are written at the root.
+        /// </summary>
         [Input("destination")]
         public Input<Inputs.LogIngestConfigFieldParserDestinationArgs>? Destination { get; set; }
 
+        /// <summary>
+        /// Mode that controls when the field parser runs on incoming logs.
+        /// </summary>
         [Input("mode")]
         public Input<string>? Mode { get; set; }
 
+        /// <summary>
+        /// Parser configuration. Exactly one of `regex_parser`, `key_value_parser`, or `grok_parser` must be set, matching `parser_type`.
+        /// </summary>
         [Input("parser", required: true)]
         public Input<Inputs.LogIngestConfigFieldParserParserArgs> Parser { get; set; } = null!;
 
+        /// <summary>
+        /// Path of the field to parse.
+        /// </summary>
         [Input("source", required: true)]
         public Input<Inputs.LogIngestConfigFieldParserSourceArgs> Source { get; set; } = null!;
 

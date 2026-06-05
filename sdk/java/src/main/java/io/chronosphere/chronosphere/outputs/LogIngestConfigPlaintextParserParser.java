@@ -14,21 +14,53 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class LogIngestConfigPlaintextParserParser {
+    /**
+     * @return Grok parser configuration. Only set when `parser_type` is `GROK`.
+     * 
+     */
     private @Nullable LogIngestConfigPlaintextParserParserGrokParser grokParser;
+    /**
+     * @return Key/value parser configuration. Only set when `parser_type` is `KEY_VALUE`. Duplicate keys keep the first occurrence.
+     * 
+     */
     private @Nullable LogIngestConfigPlaintextParserParserKeyValueParser keyValueParser;
+    /**
+     * @return Type of parser to apply. Determines which of `regex_parser`, `key_value_parser`, or `grok_parser` must be set.
+     * 
+     */
     private String parserType;
+    /**
+     * @return Regex parser configuration. Only set when `parser_type` is `REGEX`.
+     * 
+     */
     private @Nullable LogIngestConfigPlaintextParserParserRegexParser regexParser;
 
     private LogIngestConfigPlaintextParserParser() {}
+    /**
+     * @return Grok parser configuration. Only set when `parser_type` is `GROK`.
+     * 
+     */
     public Optional<LogIngestConfigPlaintextParserParserGrokParser> grokParser() {
         return Optional.ofNullable(this.grokParser);
     }
+    /**
+     * @return Key/value parser configuration. Only set when `parser_type` is `KEY_VALUE`. Duplicate keys keep the first occurrence.
+     * 
+     */
     public Optional<LogIngestConfigPlaintextParserParserKeyValueParser> keyValueParser() {
         return Optional.ofNullable(this.keyValueParser);
     }
+    /**
+     * @return Type of parser to apply. Determines which of `regex_parser`, `key_value_parser`, or `grok_parser` must be set.
+     * 
+     */
     public String parserType() {
         return this.parserType;
     }
+    /**
+     * @return Regex parser configuration. Only set when `parser_type` is `REGEX`.
+     * 
+     */
     public Optional<LogIngestConfigPlaintextParserParserRegexParser> regexParser() {
         return Optional.ofNullable(this.regexParser);
     }

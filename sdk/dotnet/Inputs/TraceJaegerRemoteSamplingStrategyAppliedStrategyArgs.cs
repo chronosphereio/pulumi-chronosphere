@@ -13,12 +13,21 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class TraceJaegerRemoteSamplingStrategyAppliedStrategyArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Per-operation sampling configuration with a service-wide default and optional per-operation overrides.
+        /// </summary>
         [Input("perOperationStrategies")]
         public Input<Inputs.TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationStrategiesArgs>? PerOperationStrategies { get; set; }
 
+        /// <summary>
+        /// Probabilistic sampling: each trace is sampled with a fixed probability.
+        /// </summary>
         [Input("probabilisticStrategy")]
         public Input<Inputs.TraceJaegerRemoteSamplingStrategyAppliedStrategyProbabilisticStrategyArgs>? ProbabilisticStrategy { get; set; }
 
+        /// <summary>
+        /// Rate-limiting sampling: cap the number of sampled traces per second using a leaky bucket.
+        /// </summary>
         [Input("rateLimitingStrategy")]
         public Input<Inputs.TraceJaegerRemoteSamplingStrategyAppliedStrategyRateLimitingStrategyArgs>? RateLimitingStrategy { get; set; }
 

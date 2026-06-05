@@ -10,17 +10,41 @@ import java.util.Objects;
 
 @CustomType
 public final class SLOSliCustomTimesliceIndicator {
+    /**
+     * @return Condition used to classify each time slice as good or bad based on the query result.
+     * 
+     */
     private SLOSliCustomTimesliceIndicatorCondition condition;
+    /**
+     * @return PromQL query template evaluated against each time slice.
+     * 
+     */
     private String queryTemplate;
+    /**
+     * @return Size of each time slice evaluated by the query (e.g. `1m`, `5m`).
+     * 
+     */
     private String timesliceSize;
 
     private SLOSliCustomTimesliceIndicator() {}
+    /**
+     * @return Condition used to classify each time slice as good or bad based on the query result.
+     * 
+     */
     public SLOSliCustomTimesliceIndicatorCondition condition() {
         return this.condition;
     }
+    /**
+     * @return PromQL query template evaluated against each time slice.
+     * 
+     */
     public String queryTemplate() {
         return this.queryTemplate;
     }
+    /**
+     * @return Size of each time slice evaluated by the query (e.g. `1m`, `5m`).
+     * 
+     */
     public String timesliceSize() {
         return this.timesliceSize;
     }

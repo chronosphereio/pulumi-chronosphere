@@ -21,6 +21,9 @@ class ResourcePoolsConfigArgs:
                  pools: Optional[pulumi.Input[Sequence[pulumi.Input['ResourcePoolsConfigPoolArgs']]]] = None):
         """
         The set of arguments for constructing a ResourcePoolsConfig resource.
+        :param pulumi.Input['ResourcePoolsConfigDefaultPoolArgs'] default_pool: Catch-all pool that receives metrics not matched by any other pool. Also receives any license allocation left unassigned by the other pools.
+        :param pulumi.Input[Sequence[pulumi.Input['ResourcePoolsConfigPoolArgs']]] pool: Named pools that partition each license across teams or workloads. Pools are matched in declaration order via their `match_rules`.
+        :param pulumi.Input[Sequence[pulumi.Input['ResourcePoolsConfigPoolArgs']]] pools: Deprecated: use `pool` instead. Set of named pools that partition the license.
         """
         if default_pool is not None:
             pulumi.set(__self__, "default_pool", default_pool)
@@ -35,6 +38,9 @@ class ResourcePoolsConfigArgs:
     @property
     @pulumi.getter(name="defaultPool")
     def default_pool(self) -> Optional[pulumi.Input['ResourcePoolsConfigDefaultPoolArgs']]:
+        """
+        Catch-all pool that receives metrics not matched by any other pool. Also receives any license allocation left unassigned by the other pools.
+        """
         return pulumi.get(self, "default_pool")
 
     @default_pool.setter
@@ -44,6 +50,9 @@ class ResourcePoolsConfigArgs:
     @property
     @pulumi.getter
     def pool(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ResourcePoolsConfigPoolArgs']]]]:
+        """
+        Named pools that partition each license across teams or workloads. Pools are matched in declaration order via their `match_rules`.
+        """
         return pulumi.get(self, "pool")
 
     @pool.setter
@@ -53,6 +62,9 @@ class ResourcePoolsConfigArgs:
     @property
     @pulumi.getter
     def pools(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ResourcePoolsConfigPoolArgs']]]]:
+        """
+        Deprecated: use `pool` instead. Set of named pools that partition the license.
+        """
         warnings.warn("""Use pool instead of pools""", DeprecationWarning)
         pulumi.log.warn("""pools is deprecated: Use pool instead of pools""")
 
@@ -71,6 +83,9 @@ class _ResourcePoolsConfigState:
                  pools: Optional[pulumi.Input[Sequence[pulumi.Input['ResourcePoolsConfigPoolArgs']]]] = None):
         """
         Input properties used for looking up and filtering ResourcePoolsConfig resources.
+        :param pulumi.Input['ResourcePoolsConfigDefaultPoolArgs'] default_pool: Catch-all pool that receives metrics not matched by any other pool. Also receives any license allocation left unassigned by the other pools.
+        :param pulumi.Input[Sequence[pulumi.Input['ResourcePoolsConfigPoolArgs']]] pool: Named pools that partition each license across teams or workloads. Pools are matched in declaration order via their `match_rules`.
+        :param pulumi.Input[Sequence[pulumi.Input['ResourcePoolsConfigPoolArgs']]] pools: Deprecated: use `pool` instead. Set of named pools that partition the license.
         """
         if default_pool is not None:
             pulumi.set(__self__, "default_pool", default_pool)
@@ -85,6 +100,9 @@ class _ResourcePoolsConfigState:
     @property
     @pulumi.getter(name="defaultPool")
     def default_pool(self) -> Optional[pulumi.Input['ResourcePoolsConfigDefaultPoolArgs']]:
+        """
+        Catch-all pool that receives metrics not matched by any other pool. Also receives any license allocation left unassigned by the other pools.
+        """
         return pulumi.get(self, "default_pool")
 
     @default_pool.setter
@@ -94,6 +112,9 @@ class _ResourcePoolsConfigState:
     @property
     @pulumi.getter
     def pool(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ResourcePoolsConfigPoolArgs']]]]:
+        """
+        Named pools that partition each license across teams or workloads. Pools are matched in declaration order via their `match_rules`.
+        """
         return pulumi.get(self, "pool")
 
     @pool.setter
@@ -103,6 +124,9 @@ class _ResourcePoolsConfigState:
     @property
     @pulumi.getter
     def pools(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ResourcePoolsConfigPoolArgs']]]]:
+        """
+        Deprecated: use `pool` instead. Set of named pools that partition the license.
+        """
         warnings.warn("""Use pool instead of pools""", DeprecationWarning)
         pulumi.log.warn("""pools is deprecated: Use pool instead of pools""")
 
@@ -123,9 +147,13 @@ class ResourcePoolsConfig(pulumi.CustomResource):
                  pools: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ResourcePoolsConfigPoolArgs']]]]] = None,
                  __props__=None):
         """
-        Create a ResourcePoolsConfig resource with the given unique name, props, and options.
+        Singleton allocation of metric license capacity into named pools that match metrics by label filter, each with priority-based dropping when the pool's allocation is exceeded.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[pulumi.InputType['ResourcePoolsConfigDefaultPoolArgs']] default_pool: Catch-all pool that receives metrics not matched by any other pool. Also receives any license allocation left unassigned by the other pools.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ResourcePoolsConfigPoolArgs']]]] pool: Named pools that partition each license across teams or workloads. Pools are matched in declaration order via their `match_rules`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ResourcePoolsConfigPoolArgs']]]] pools: Deprecated: use `pool` instead. Set of named pools that partition the license.
         """
         ...
     @overload
@@ -134,7 +162,8 @@ class ResourcePoolsConfig(pulumi.CustomResource):
                  args: Optional[ResourcePoolsConfigArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a ResourcePoolsConfig resource with the given unique name, props, and options.
+        Singleton allocation of metric license capacity into named pools that match metrics by label filter, each with priority-based dropping when the pool's allocation is exceeded.
+
         :param str resource_name: The name of the resource.
         :param ResourcePoolsConfigArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -185,6 +214,9 @@ class ResourcePoolsConfig(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[pulumi.InputType['ResourcePoolsConfigDefaultPoolArgs']] default_pool: Catch-all pool that receives metrics not matched by any other pool. Also receives any license allocation left unassigned by the other pools.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ResourcePoolsConfigPoolArgs']]]] pool: Named pools that partition each license across teams or workloads. Pools are matched in declaration order via their `match_rules`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ResourcePoolsConfigPoolArgs']]]] pools: Deprecated: use `pool` instead. Set of named pools that partition the license.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -198,16 +230,25 @@ class ResourcePoolsConfig(pulumi.CustomResource):
     @property
     @pulumi.getter(name="defaultPool")
     def default_pool(self) -> pulumi.Output[Optional['outputs.ResourcePoolsConfigDefaultPool']]:
+        """
+        Catch-all pool that receives metrics not matched by any other pool. Also receives any license allocation left unassigned by the other pools.
+        """
         return pulumi.get(self, "default_pool")
 
     @property
     @pulumi.getter
     def pool(self) -> pulumi.Output[Optional[Sequence['outputs.ResourcePoolsConfigPool']]]:
+        """
+        Named pools that partition each license across teams or workloads. Pools are matched in declaration order via their `match_rules`.
+        """
         return pulumi.get(self, "pool")
 
     @property
     @pulumi.getter
     def pools(self) -> pulumi.Output[Optional[Sequence['outputs.ResourcePoolsConfigPool']]]:
+        """
+        Deprecated: use `pool` instead. Set of named pools that partition the license.
+        """
         warnings.warn("""Use pool instead of pools""", DeprecationWarning)
         pulumi.log.warn("""pools is deprecated: Use pool instead of pools""")
 

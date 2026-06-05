@@ -19,6 +19,7 @@ class ConsumptionConfigArgs:
                  partitions: Optional[pulumi.Input[Sequence[pulumi.Input['ConsumptionConfigPartitionArgs']]]] = None):
         """
         The set of arguments for constructing a ConsumptionConfig resource.
+        :param pulumi.Input[Sequence[pulumi.Input['ConsumptionConfigPartitionArgs']]] partitions: Child partitions of this partition. Evaluated in order; requests not matching any child fall into an implicit `default` child partition.
         """
         if partitions is not None:
             pulumi.set(__self__, "partitions", partitions)
@@ -26,6 +27,9 @@ class ConsumptionConfigArgs:
     @property
     @pulumi.getter
     def partitions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ConsumptionConfigPartitionArgs']]]]:
+        """
+        Child partitions of this partition. Evaluated in order; requests not matching any child fall into an implicit `default` child partition.
+        """
         return pulumi.get(self, "partitions")
 
     @partitions.setter
@@ -39,6 +43,7 @@ class _ConsumptionConfigState:
                  partitions: Optional[pulumi.Input[Sequence[pulumi.Input['ConsumptionConfigPartitionArgs']]]] = None):
         """
         Input properties used for looking up and filtering ConsumptionConfig resources.
+        :param pulumi.Input[Sequence[pulumi.Input['ConsumptionConfigPartitionArgs']]] partitions: Child partitions of this partition. Evaluated in order; requests not matching any child fall into an implicit `default` child partition.
         """
         if partitions is not None:
             pulumi.set(__self__, "partitions", partitions)
@@ -46,6 +51,9 @@ class _ConsumptionConfigState:
     @property
     @pulumi.getter
     def partitions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ConsumptionConfigPartitionArgs']]]]:
+        """
+        Child partitions of this partition. Evaluated in order; requests not matching any child fall into an implicit `default` child partition.
+        """
         return pulumi.get(self, "partitions")
 
     @partitions.setter
@@ -61,9 +69,11 @@ class ConsumptionConfig(pulumi.CustomResource):
                  partitions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ConsumptionConfigPartitionArgs']]]]] = None,
                  __props__=None):
         """
-        Create a ConsumptionConfig resource with the given unique name, props, and options.
+        Singleton tree of consumption partitions that classify metric and log data into hierarchical groups so that consumption_budget resources can enforce quotas against them.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ConsumptionConfigPartitionArgs']]]] partitions: Child partitions of this partition. Evaluated in order; requests not matching any child fall into an implicit `default` child partition.
         """
         ...
     @overload
@@ -72,7 +82,8 @@ class ConsumptionConfig(pulumi.CustomResource):
                  args: Optional[ConsumptionConfigArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a ConsumptionConfig resource with the given unique name, props, and options.
+        Singleton tree of consumption partitions that classify metric and log data into hierarchical groups so that consumption_budget resources can enforce quotas against them.
+
         :param str resource_name: The name of the resource.
         :param ConsumptionConfigArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -117,6 +128,7 @@ class ConsumptionConfig(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ConsumptionConfigPartitionArgs']]]] partitions: Child partitions of this partition. Evaluated in order; requests not matching any child fall into an implicit `default` child partition.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -128,5 +140,8 @@ class ConsumptionConfig(pulumi.CustomResource):
     @property
     @pulumi.getter
     def partitions(self) -> pulumi.Output[Optional[Sequence['outputs.ConsumptionConfigPartition']]]:
+        """
+        Child partitions of this partition. Evaluated in order; requests not matching any child fall into an implicit `default` child partition.
+        """
         return pulumi.get(self, "partitions")
 

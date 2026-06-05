@@ -14,6 +14,9 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class DerivedLabelSpanTag
     {
+        /// <summary>
+        /// Ordered list of name mappings. The first mapping that matches supplies the derived label from its `source_tag`.
+        /// </summary>
         public readonly ImmutableArray<Outputs.DerivedLabelSpanTagNameMapping> NameMappings;
 
         [OutputConstructor]

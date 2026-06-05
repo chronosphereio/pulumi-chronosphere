@@ -14,7 +14,13 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class SLOSliCustomTimesliceIndicatorCondition
     {
+        /// <summary>
+        /// Comparison operator between the query value and `value` (e.g. `gt`, `lt`, `eq`).
+        /// </summary>
         public readonly string Op;
+        /// <summary>
+        /// Label value to match against using the chosen matcher `type`.
+        /// </summary>
         public readonly double Value;
 
         [OutputConstructor]

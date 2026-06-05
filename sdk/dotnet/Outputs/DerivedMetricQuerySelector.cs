@@ -14,6 +14,9 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class DerivedMetricQuerySelector
     {
+        /// <summary>
+        /// Labels that must match (key/value) on the derived metric usage for the selector to apply.
+        /// </summary>
         public readonly ImmutableDictionary<string, string>? Labels;
 
         [OutputConstructor]

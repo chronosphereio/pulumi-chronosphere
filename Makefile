@@ -52,6 +52,9 @@ build_java: bin/pulumi-java-gen
 build_nodejs: VERSION := $(shell pulumictl get version --language javascript)
 build_nodejs:
 	$(WORKING_DIR)/bin/$(TFGEN) nodejs --out sdk/nodejs/
+	# tfgen emits root-relative imports in the nested config/ and types/ files; rewrite to parent-relative so tsc resolves them
+	sed -i.bak -E 's#from "\./(utilities|types/input|types/output)"#from "../\1"#g' sdk/nodejs/config/*.ts sdk/nodejs/types/*.ts
+	rm -f sdk/nodejs/config/*.bak sdk/nodejs/types/*.bak
 	cd sdk/nodejs/ && \
 		printf "module fake_nodejs_module // Exclude this directory from Go tools\n\ngo 1.24.5\n" > go.mod && \
 		yarn install && \
@@ -133,7 +136,7 @@ bin/pulumi-java-gen:
 	pulumictl download-binary -n pulumi-language-java -v $(JAVA_GEN_VERSION) -r pulumi/pulumi-java
 
 .pulumi/bin/pulumi: .pulumi/version
-	curl -fsSL https://get.pulumi.com | HOME=$(WORKING_DIR) sh -s -- --version $(cat .pulumi/version)
+	curl -fsSL https://get.pulumi.com | HOME=$(WORKING_DIR) sh -s -- --version $$(cat .pulumi/version)
 
 # Compute the version of Pulumi to use by inspecting the Go dependencies of the provider.
 .pulumi/version:

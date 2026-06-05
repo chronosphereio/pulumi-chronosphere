@@ -16,9 +16,17 @@ public final class DerivedMetricQuerySelectorArgs extends com.pulumi.resources.R
 
     public static final DerivedMetricQuerySelectorArgs Empty = new DerivedMetricQuerySelectorArgs();
 
+    /**
+     * Labels that must match (key/value) on the derived metric usage for the selector to apply.
+     * 
+     */
     @Import(name="labels")
     private @Nullable Output<Map<String,String>> labels;
 
+    /**
+     * @return Labels that must match (key/value) on the derived metric usage for the selector to apply.
+     * 
+     */
     public Optional<Output<Map<String,String>>> labels() {
         return Optional.ofNullable(this.labels);
     }
@@ -47,11 +55,23 @@ public final class DerivedMetricQuerySelectorArgs extends com.pulumi.resources.R
             $ = new DerivedMetricQuerySelectorArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param labels Labels that must match (key/value) on the derived metric usage for the selector to apply.
+         * 
+         * @return builder
+         * 
+         */
         public Builder labels(@Nullable Output<Map<String,String>> labels) {
             $.labels = labels;
             return this;
         }
 
+        /**
+         * @param labels Labels that must match (key/value) on the derived metric usage for the selector to apply.
+         * 
+         * @return builder
+         * 
+         */
         public Builder labels(Map<String,String> labels) {
             return labels(Output.of(labels));
         }

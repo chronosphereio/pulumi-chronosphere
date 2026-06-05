@@ -14,35 +14,110 @@ import java.lang.String;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
+/**
+ * A logical grouping of monitors, dashboards, SLOs, and other resources, typically aligned with a team or system. Provides a default notification policy for contained monitors and SLOs that do not explicitly reference one.
+ * 
+ * ## Example Usage
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.chronosphere.Collection;
+ * import com.pulumi.chronosphere.CollectionArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var infra = new Collection(&#34;infra&#34;, CollectionArgs.builder()        
+ *             .description(&#34;Collection of resources related to infrastructure services.&#34;)
+ *             .name(&#34;Infrastructure Collection&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ */
 @ResourceType(type="chronosphere:index/collection:Collection")
 public class Collection extends com.pulumi.resources.CustomResource {
+    /**
+     * Free-form description of the collection.
+     * 
+     */
     @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
+    /**
+     * @return Free-form description of the collection.
+     * 
+     */
     public Output<Optional<String>> description() {
         return Codegen.optional(this.description);
     }
+    /**
+     * Display name of the collection. Can be changed after creation.
+     * 
+     */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
+    /**
+     * @return Display name of the collection. Can be changed after creation.
+     * 
+     */
     public Output<String> name() {
         return this.name;
     }
+    /**
+     * ID of the default notification policy applied to monitors in this collection that do not explicitly reference one. Monitors that set their own `notification_policy_id` are not overridden.
+     * 
+     */
     @Export(name="notificationPolicyId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> notificationPolicyId;
 
+    /**
+     * @return ID of the default notification policy applied to monitors in this collection that do not explicitly reference one. Monitors that set their own `notification_policy_id` are not overridden.
+     * 
+     */
     public Output<Optional<String>> notificationPolicyId() {
         return Codegen.optional(this.notificationPolicyId);
     }
+    /**
+     * Stable identifier for the collection. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     @Export(name="slug", refs={String.class}, tree="[0]")
     private Output<String> slug;
 
+    /**
+     * @return Stable identifier for the collection. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     public Output<String> slug() {
         return this.slug;
     }
+    /**
+     * ID of the team that owns this collection.
+     * 
+     */
     @Export(name="teamId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> teamId;
 
+    /**
+     * @return ID of the team that owns this collection.
+     * 
+     */
     public Output<Optional<String>> teamId() {
         return Codegen.optional(this.teamId);
     }

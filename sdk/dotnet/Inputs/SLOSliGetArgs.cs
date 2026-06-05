@@ -15,6 +15,10 @@ namespace Chronosphere.Pulumi.Inputs
     {
         [Input("additionalPromqlFilters")]
         private InputList<Inputs.SLOSliAdditionalPromqlFilterGetArgs>? _additionalPromqlFilters;
+
+        /// <summary>
+        /// Additional PromQL label matchers applied to SLI queries via the `{{.AdditionalFilters}}` template variable. Used to narrow the metrics scope.
+        /// </summary>
         public InputList<Inputs.SLOSliAdditionalPromqlFilterGetArgs> AdditionalPromqlFilters
         {
             get => _additionalPromqlFilters ?? (_additionalPromqlFilters = new InputList<Inputs.SLOSliAdditionalPromqlFilterGetArgs>());
@@ -23,15 +27,25 @@ namespace Chronosphere.Pulumi.Inputs
 
         [Input("customDimensionLabels")]
         private InputList<string>? _customDimensionLabels;
+
+        /// <summary>
+        /// Additional labels exported from the underlying queries to group the error budget by. Available in PromQL templates via `{{.GroupBy}}`.
+        /// </summary>
         public InputList<string> CustomDimensionLabels
         {
             get => _customDimensionLabels ?? (_customDimensionLabels = new InputList<string>());
             set => _customDimensionLabels = value;
         }
 
+        /// <summary>
+        /// Error-ratio SLI defined by good/bad/total PromQL query templates. Mutually exclusive with `custom_timeslice_indicator`.
+        /// </summary>
         [Input("customIndicator")]
         public Input<Inputs.SLOSliCustomIndicatorGetArgs>? CustomIndicator { get; set; }
 
+        /// <summary>
+        /// Time-slice SLI that evaluates a PromQL query over fixed time slices against a threshold condition. Mutually exclusive with `custom_indicator`.
+        /// </summary>
         [Input("customTimesliceIndicator")]
         public Input<Inputs.SLOSliCustomTimesliceIndicatorGetArgs>? CustomTimesliceIndicator { get; set; }
 

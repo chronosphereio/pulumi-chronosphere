@@ -14,16 +14,32 @@ public final class NotificationPolicyRouteDestinationVictorOpsArgs extends com.p
 
     public static final NotificationPolicyRouteDestinationVictorOpsArgs Empty = new NotificationPolicyRouteDestinationVictorOpsArgs();
 
+    /**
+     * Slug of the OpsGenie external connection holding the integration credentials.
+     * 
+     */
     @Import(name="externalConnectionSlug", required=true)
     private Output<String> externalConnectionSlug;
 
+    /**
+     * @return Slug of the OpsGenie external connection holding the integration credentials.
+     * 
+     */
     public Output<String> externalConnectionSlug() {
         return this.externalConnectionSlug;
     }
 
+    /**
+     * VictorOps routing keys identifying the destination escalation policies.
+     * 
+     */
     @Import(name="routingKeys", required=true)
     private Output<List<String>> routingKeys;
 
+    /**
+     * @return VictorOps routing keys identifying the destination escalation policies.
+     * 
+     */
     public Output<List<String>> routingKeys() {
         return this.routingKeys;
     }
@@ -53,24 +69,54 @@ public final class NotificationPolicyRouteDestinationVictorOpsArgs extends com.p
             $ = new NotificationPolicyRouteDestinationVictorOpsArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param externalConnectionSlug Slug of the OpsGenie external connection holding the integration credentials.
+         * 
+         * @return builder
+         * 
+         */
         public Builder externalConnectionSlug(Output<String> externalConnectionSlug) {
             $.externalConnectionSlug = externalConnectionSlug;
             return this;
         }
 
+        /**
+         * @param externalConnectionSlug Slug of the OpsGenie external connection holding the integration credentials.
+         * 
+         * @return builder
+         * 
+         */
         public Builder externalConnectionSlug(String externalConnectionSlug) {
             return externalConnectionSlug(Output.of(externalConnectionSlug));
         }
 
+        /**
+         * @param routingKeys VictorOps routing keys identifying the destination escalation policies.
+         * 
+         * @return builder
+         * 
+         */
         public Builder routingKeys(Output<List<String>> routingKeys) {
             $.routingKeys = routingKeys;
             return this;
         }
 
+        /**
+         * @param routingKeys VictorOps routing keys identifying the destination escalation policies.
+         * 
+         * @return builder
+         * 
+         */
         public Builder routingKeys(List<String> routingKeys) {
             return routingKeys(Output.of(routingKeys));
         }
 
+        /**
+         * @param routingKeys VictorOps routing keys identifying the destination escalation policies.
+         * 
+         * @return builder
+         * 
+         */
         public Builder routingKeys(String... routingKeys) {
             return routingKeys(List.of(routingKeys));
         }

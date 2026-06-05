@@ -13,17 +13,41 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class DatasetConfiguration {
+    /**
+     * @return Log-specific dataset configuration. Set only when `type` is a log type.
+     * 
+     */
     private @Nullable DatasetConfigurationLogDataset logDataset;
+    /**
+     * @return Trace-specific dataset configuration. Set only when `type` is a trace type.
+     * 
+     */
     private @Nullable DatasetConfigurationTraceDataset traceDataset;
+    /**
+     * @return Dataset type. Determines which of `trace_dataset` or `log_dataset` must be set.
+     * 
+     */
     private String type;
 
     private DatasetConfiguration() {}
+    /**
+     * @return Log-specific dataset configuration. Set only when `type` is a log type.
+     * 
+     */
     public Optional<DatasetConfigurationLogDataset> logDataset() {
         return Optional.ofNullable(this.logDataset);
     }
+    /**
+     * @return Trace-specific dataset configuration. Set only when `type` is a trace type.
+     * 
+     */
     public Optional<DatasetConfigurationTraceDataset> traceDataset() {
         return Optional.ofNullable(this.traceDataset);
     }
+    /**
+     * @return Dataset type. Determines which of `trace_dataset` or `log_dataset` must be set.
+     * 
+     */
     public String type() {
         return this.type;
     }

@@ -19,133 +19,279 @@ public final class SlackAlertNotifierArgs extends com.pulumi.resources.ResourceA
 
     public static final SlackAlertNotifierArgs Empty = new SlackAlertNotifierArgs();
 
+    /**
+     * Interactive buttons appended to the Slack message. See https://api.slack.com/reference/messaging/attachments#action_fields.
+     * 
+     */
     @Import(name="actions")
     private @Nullable Output<List<SlackAlertNotifierActionArgs>> actions;
 
+    /**
+     * @return Interactive buttons appended to the Slack message. See https://api.slack.com/reference/messaging/attachments#action_fields.
+     * 
+     */
     public Optional<Output<List<SlackAlertNotifierActionArgs>>> actions() {
         return Optional.ofNullable(this.actions);
     }
 
+    /**
+     * Slack incoming webhook URL that receives the notifications. Treat this as a secret.
+     * 
+     */
     @Import(name="apiUrl", required=true)
     private Output<String> apiUrl;
 
+    /**
+     * @return Slack incoming webhook URL that receives the notifications. Treat this as a secret.
+     * 
+     */
     public Output<String> apiUrl() {
         return this.apiUrl;
     }
 
+    /**
+     * Password for HTTP basic auth when calling the webhook.
+     * 
+     */
     @Import(name="basicAuthPassword")
     private @Nullable Output<String> basicAuthPassword;
 
+    /**
+     * @return Password for HTTP basic auth when calling the webhook.
+     * 
+     */
     public Optional<Output<String>> basicAuthPassword() {
         return Optional.ofNullable(this.basicAuthPassword);
     }
 
+    /**
+     * Username for HTTP basic auth when calling the webhook. Mutually exclusive with `bearer_token`.
+     * 
+     */
     @Import(name="basicAuthUsername")
     private @Nullable Output<String> basicAuthUsername;
 
+    /**
+     * @return Username for HTTP basic auth when calling the webhook. Mutually exclusive with `bearer_token`.
+     * 
+     */
     public Optional<Output<String>> basicAuthUsername() {
         return Optional.ofNullable(this.basicAuthUsername);
     }
 
+    /**
+     * Bearer token sent in the `Authorization` header when calling the webhook. Mutually exclusive with basic auth.
+     * 
+     */
     @Import(name="bearerToken")
     private @Nullable Output<String> bearerToken;
 
+    /**
+     * @return Bearer token sent in the `Authorization` header when calling the webhook. Mutually exclusive with basic auth.
+     * 
+     */
     public Optional<Output<String>> bearerToken() {
         return Optional.ofNullable(this.bearerToken);
     }
 
+    /**
+     * Slack callback ID used to identify the source of interactive actions.
+     * 
+     */
     @Import(name="callbackId")
     private @Nullable Output<String> callbackId;
 
+    /**
+     * @return Slack callback ID used to identify the source of interactive actions.
+     * 
+     */
     public Optional<Output<String>> callbackId() {
         return Optional.ofNullable(this.callbackId);
     }
 
+    /**
+     * Slack channel to post notifications to (e.g. `#alerts`).
+     * 
+     */
     @Import(name="channel", required=true)
     private Output<String> channel;
 
+    /**
+     * @return Slack channel to post notifications to (e.g. `#alerts`).
+     * 
+     */
     public Output<String> channel() {
         return this.channel;
     }
 
+    /**
+     * Color of the attachment border. Hex code or one of `good`, `warning`, `danger`. Supports Go templating.
+     * 
+     */
     @Import(name="color")
     private @Nullable Output<String> color;
 
+    /**
+     * @return Color of the attachment border. Hex code or one of `good`, `warning`, `danger`. Supports Go templating.
+     * 
+     */
     public Optional<Output<String>> color() {
         return Optional.ofNullable(this.color);
     }
 
+    /**
+     * Plain-text fallback shown in notifications and clients that don&#39;t render attachments. Supports Go templating.
+     * 
+     */
     @Import(name="fallback")
     private @Nullable Output<String> fallback;
 
+    /**
+     * @return Plain-text fallback shown in notifications and clients that don&#39;t render attachments. Supports Go templating.
+     * 
+     */
     public Optional<Output<String>> fallback() {
         return Optional.ofNullable(this.fallback);
     }
 
+    /**
+     * Structured field/value pairs rendered as a table in the attachment.
+     * 
+     */
     @Import(name="fields")
     private @Nullable Output<List<SlackAlertNotifierFieldArgs>> fields;
 
+    /**
+     * @return Structured field/value pairs rendered as a table in the attachment.
+     * 
+     */
     public Optional<Output<List<SlackAlertNotifierFieldArgs>>> fields() {
         return Optional.ofNullable(this.fields);
     }
 
+    /**
+     * Footer text shown at the bottom of the attachment. Supports Go templating.
+     * 
+     */
     @Import(name="footer")
     private @Nullable Output<String> footer;
 
+    /**
+     * @return Footer text shown at the bottom of the attachment. Supports Go templating.
+     * 
+     */
     public Optional<Output<String>> footer() {
         return Optional.ofNullable(this.footer);
     }
 
+    /**
+     * Slack emoji to use as the bot avatar (e.g. `:fire:`). Mutually exclusive with `icon_url` at Slack.
+     * 
+     */
     @Import(name="iconEmoji")
     private @Nullable Output<String> iconEmoji;
 
+    /**
+     * @return Slack emoji to use as the bot avatar (e.g. `:fire:`). Mutually exclusive with `icon_url` at Slack.
+     * 
+     */
     public Optional<Output<String>> iconEmoji() {
         return Optional.ofNullable(this.iconEmoji);
     }
 
+    /**
+     * URL of an image to use as the bot avatar.
+     * 
+     */
     @Import(name="iconUrl")
     private @Nullable Output<String> iconUrl;
 
+    /**
+     * @return URL of an image to use as the bot avatar.
+     * 
+     */
     public Optional<Output<String>> iconUrl() {
         return Optional.ofNullable(this.iconUrl);
     }
 
+    /**
+     * URL of an image attached to the message.
+     * 
+     */
     @Import(name="imageUrl")
     private @Nullable Output<String> imageUrl;
 
+    /**
+     * @return URL of an image attached to the message.
+     * 
+     */
     public Optional<Output<String>> imageUrl() {
         return Optional.ofNullable(this.imageUrl);
     }
 
+    /**
+     * If true, find and link channel names and usernames in the message text.
+     * 
+     */
     @Import(name="linkNames")
     private @Nullable Output<Boolean> linkNames;
 
+    /**
+     * @return If true, find and link channel names and usernames in the message text.
+     * 
+     */
     public Optional<Output<Boolean>> linkNames() {
         return Optional.ofNullable(this.linkNames);
     }
 
+    /**
+     * Attachment fields in which Slack parses `mrkdwn` formatting. Common values: `pretext`, `text`, `fields`.
+     * 
+     */
     @Import(name="mrkdwnIns")
     private @Nullable Output<List<String>> mrkdwnIns;
 
+    /**
+     * @return Attachment fields in which Slack parses `mrkdwn` formatting. Common values: `pretext`, `text`, `fields`.
+     * 
+     */
     public Optional<Output<List<String>>> mrkdwnIns() {
         return Optional.ofNullable(this.mrkdwnIns);
     }
 
+    /**
+     * Identifier sent back to Slack when the button is clicked.
+     * 
+     */
     @Import(name="name", required=true)
     private Output<String> name;
 
+    /**
+     * @return Identifier sent back to Slack when the button is clicked.
+     * 
+     */
     public Output<String> name() {
         return this.name;
     }
 
+    /**
+     * Text shown above the attachment. Supports Go templating.
+     * 
+     */
     @Import(name="pretext")
     private @Nullable Output<String> pretext;
 
+    /**
+     * @return Text shown above the attachment. Supports Go templating.
+     * 
+     */
     public Optional<Output<String>> pretext() {
         return Optional.ofNullable(this.pretext);
     }
 
     /**
+     * Deprecated and ignored. Custom proxy URLs are not supported.
+     * 
      * @deprecated
      * custom proxy URLs are not supported
      * 
@@ -155,6 +301,8 @@ public final class SlackAlertNotifierArgs extends com.pulumi.resources.ResourceA
     private @Nullable Output<String> proxyUrl;
 
     /**
+     * @return Deprecated and ignored. Custom proxy URLs are not supported.
+     * 
      * @deprecated
      * custom proxy URLs are not supported
      * 
@@ -164,65 +312,137 @@ public final class SlackAlertNotifierArgs extends com.pulumi.resources.ResourceA
         return Optional.ofNullable(this.proxyUrl);
     }
 
+    /**
+     * Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+     * 
+     */
     @Import(name="sendResolved")
     private @Nullable Output<Boolean> sendResolved;
 
+    /**
+     * @return Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+     * 
+     */
     public Optional<Output<Boolean>> sendResolved() {
         return Optional.ofNullable(this.sendResolved);
     }
 
+    /**
+     * If true, render all `fields` with `short: true` regardless of per-field setting.
+     * 
+     */
     @Import(name="shortFields")
     private @Nullable Output<Boolean> shortFields;
 
+    /**
+     * @return If true, render all `fields` with `short: true` regardless of per-field setting.
+     * 
+     */
     public Optional<Output<Boolean>> shortFields() {
         return Optional.ofNullable(this.shortFields);
     }
 
+    /**
+     * Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     @Import(name="slug")
     private @Nullable Output<String> slug;
 
+    /**
+     * @return Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     public Optional<Output<String>> slug() {
         return Optional.ofNullable(this.slug);
     }
 
+    /**
+     * Label shown on the button.
+     * 
+     */
     @Import(name="text")
     private @Nullable Output<String> text;
 
+    /**
+     * @return Label shown on the button.
+     * 
+     */
     public Optional<Output<String>> text() {
         return Optional.ofNullable(this.text);
     }
 
+    /**
+     * URL of a small thumbnail image shown to the right of the attachment.
+     * 
+     */
     @Import(name="thumbUrl")
     private @Nullable Output<String> thumbUrl;
 
+    /**
+     * @return URL of a small thumbnail image shown to the right of the attachment.
+     * 
+     */
     public Optional<Output<String>> thumbUrl() {
         return Optional.ofNullable(this.thumbUrl);
     }
 
+    /**
+     * Bold heading shown above the value.
+     * 
+     */
     @Import(name="title")
     private @Nullable Output<String> title;
 
+    /**
+     * @return Bold heading shown above the value.
+     * 
+     */
     public Optional<Output<String>> title() {
         return Optional.ofNullable(this.title);
     }
 
+    /**
+     * URL the title links to when clicked.
+     * 
+     */
     @Import(name="titleLink")
     private @Nullable Output<String> titleLink;
 
+    /**
+     * @return URL the title links to when clicked.
+     * 
+     */
     public Optional<Output<String>> titleLink() {
         return Optional.ofNullable(this.titleLink);
     }
 
+    /**
+     * If true, skip TLS certificate verification when calling the webhook. Disable only in trusted environments.
+     * 
+     */
     @Import(name="tlsInsecureSkipVerify")
     private @Nullable Output<Boolean> tlsInsecureSkipVerify;
 
+    /**
+     * @return If true, skip TLS certificate verification when calling the webhook. Disable only in trusted environments.
+     * 
+     */
     public Optional<Output<Boolean>> tlsInsecureSkipVerify() {
         return Optional.ofNullable(this.tlsInsecureSkipVerify);
     }
 
+    /**
+     * Display name of the bot posting the message.
+     * 
+     */
     @Import(name="username")
     private @Nullable Output<String> username;
 
+    /**
+     * @return Display name of the bot posting the message.
+     * 
+     */
     public Optional<Output<String>> username() {
         return Optional.ofNullable(this.username);
     }
@@ -278,181 +498,417 @@ public final class SlackAlertNotifierArgs extends com.pulumi.resources.ResourceA
             $ = new SlackAlertNotifierArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param actions Interactive buttons appended to the Slack message. See https://api.slack.com/reference/messaging/attachments#action_fields.
+         * 
+         * @return builder
+         * 
+         */
         public Builder actions(@Nullable Output<List<SlackAlertNotifierActionArgs>> actions) {
             $.actions = actions;
             return this;
         }
 
+        /**
+         * @param actions Interactive buttons appended to the Slack message. See https://api.slack.com/reference/messaging/attachments#action_fields.
+         * 
+         * @return builder
+         * 
+         */
         public Builder actions(List<SlackAlertNotifierActionArgs> actions) {
             return actions(Output.of(actions));
         }
 
+        /**
+         * @param actions Interactive buttons appended to the Slack message. See https://api.slack.com/reference/messaging/attachments#action_fields.
+         * 
+         * @return builder
+         * 
+         */
         public Builder actions(SlackAlertNotifierActionArgs... actions) {
             return actions(List.of(actions));
         }
 
+        /**
+         * @param apiUrl Slack incoming webhook URL that receives the notifications. Treat this as a secret.
+         * 
+         * @return builder
+         * 
+         */
         public Builder apiUrl(Output<String> apiUrl) {
             $.apiUrl = apiUrl;
             return this;
         }
 
+        /**
+         * @param apiUrl Slack incoming webhook URL that receives the notifications. Treat this as a secret.
+         * 
+         * @return builder
+         * 
+         */
         public Builder apiUrl(String apiUrl) {
             return apiUrl(Output.of(apiUrl));
         }
 
+        /**
+         * @param basicAuthPassword Password for HTTP basic auth when calling the webhook.
+         * 
+         * @return builder
+         * 
+         */
         public Builder basicAuthPassword(@Nullable Output<String> basicAuthPassword) {
             $.basicAuthPassword = basicAuthPassword;
             return this;
         }
 
+        /**
+         * @param basicAuthPassword Password for HTTP basic auth when calling the webhook.
+         * 
+         * @return builder
+         * 
+         */
         public Builder basicAuthPassword(String basicAuthPassword) {
             return basicAuthPassword(Output.of(basicAuthPassword));
         }
 
+        /**
+         * @param basicAuthUsername Username for HTTP basic auth when calling the webhook. Mutually exclusive with `bearer_token`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder basicAuthUsername(@Nullable Output<String> basicAuthUsername) {
             $.basicAuthUsername = basicAuthUsername;
             return this;
         }
 
+        /**
+         * @param basicAuthUsername Username for HTTP basic auth when calling the webhook. Mutually exclusive with `bearer_token`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder basicAuthUsername(String basicAuthUsername) {
             return basicAuthUsername(Output.of(basicAuthUsername));
         }
 
+        /**
+         * @param bearerToken Bearer token sent in the `Authorization` header when calling the webhook. Mutually exclusive with basic auth.
+         * 
+         * @return builder
+         * 
+         */
         public Builder bearerToken(@Nullable Output<String> bearerToken) {
             $.bearerToken = bearerToken;
             return this;
         }
 
+        /**
+         * @param bearerToken Bearer token sent in the `Authorization` header when calling the webhook. Mutually exclusive with basic auth.
+         * 
+         * @return builder
+         * 
+         */
         public Builder bearerToken(String bearerToken) {
             return bearerToken(Output.of(bearerToken));
         }
 
+        /**
+         * @param callbackId Slack callback ID used to identify the source of interactive actions.
+         * 
+         * @return builder
+         * 
+         */
         public Builder callbackId(@Nullable Output<String> callbackId) {
             $.callbackId = callbackId;
             return this;
         }
 
+        /**
+         * @param callbackId Slack callback ID used to identify the source of interactive actions.
+         * 
+         * @return builder
+         * 
+         */
         public Builder callbackId(String callbackId) {
             return callbackId(Output.of(callbackId));
         }
 
+        /**
+         * @param channel Slack channel to post notifications to (e.g. `#alerts`).
+         * 
+         * @return builder
+         * 
+         */
         public Builder channel(Output<String> channel) {
             $.channel = channel;
             return this;
         }
 
+        /**
+         * @param channel Slack channel to post notifications to (e.g. `#alerts`).
+         * 
+         * @return builder
+         * 
+         */
         public Builder channel(String channel) {
             return channel(Output.of(channel));
         }
 
+        /**
+         * @param color Color of the attachment border. Hex code or one of `good`, `warning`, `danger`. Supports Go templating.
+         * 
+         * @return builder
+         * 
+         */
         public Builder color(@Nullable Output<String> color) {
             $.color = color;
             return this;
         }
 
+        /**
+         * @param color Color of the attachment border. Hex code or one of `good`, `warning`, `danger`. Supports Go templating.
+         * 
+         * @return builder
+         * 
+         */
         public Builder color(String color) {
             return color(Output.of(color));
         }
 
+        /**
+         * @param fallback Plain-text fallback shown in notifications and clients that don&#39;t render attachments. Supports Go templating.
+         * 
+         * @return builder
+         * 
+         */
         public Builder fallback(@Nullable Output<String> fallback) {
             $.fallback = fallback;
             return this;
         }
 
+        /**
+         * @param fallback Plain-text fallback shown in notifications and clients that don&#39;t render attachments. Supports Go templating.
+         * 
+         * @return builder
+         * 
+         */
         public Builder fallback(String fallback) {
             return fallback(Output.of(fallback));
         }
 
+        /**
+         * @param fields Structured field/value pairs rendered as a table in the attachment.
+         * 
+         * @return builder
+         * 
+         */
         public Builder fields(@Nullable Output<List<SlackAlertNotifierFieldArgs>> fields) {
             $.fields = fields;
             return this;
         }
 
+        /**
+         * @param fields Structured field/value pairs rendered as a table in the attachment.
+         * 
+         * @return builder
+         * 
+         */
         public Builder fields(List<SlackAlertNotifierFieldArgs> fields) {
             return fields(Output.of(fields));
         }
 
+        /**
+         * @param fields Structured field/value pairs rendered as a table in the attachment.
+         * 
+         * @return builder
+         * 
+         */
         public Builder fields(SlackAlertNotifierFieldArgs... fields) {
             return fields(List.of(fields));
         }
 
+        /**
+         * @param footer Footer text shown at the bottom of the attachment. Supports Go templating.
+         * 
+         * @return builder
+         * 
+         */
         public Builder footer(@Nullable Output<String> footer) {
             $.footer = footer;
             return this;
         }
 
+        /**
+         * @param footer Footer text shown at the bottom of the attachment. Supports Go templating.
+         * 
+         * @return builder
+         * 
+         */
         public Builder footer(String footer) {
             return footer(Output.of(footer));
         }
 
+        /**
+         * @param iconEmoji Slack emoji to use as the bot avatar (e.g. `:fire:`). Mutually exclusive with `icon_url` at Slack.
+         * 
+         * @return builder
+         * 
+         */
         public Builder iconEmoji(@Nullable Output<String> iconEmoji) {
             $.iconEmoji = iconEmoji;
             return this;
         }
 
+        /**
+         * @param iconEmoji Slack emoji to use as the bot avatar (e.g. `:fire:`). Mutually exclusive with `icon_url` at Slack.
+         * 
+         * @return builder
+         * 
+         */
         public Builder iconEmoji(String iconEmoji) {
             return iconEmoji(Output.of(iconEmoji));
         }
 
+        /**
+         * @param iconUrl URL of an image to use as the bot avatar.
+         * 
+         * @return builder
+         * 
+         */
         public Builder iconUrl(@Nullable Output<String> iconUrl) {
             $.iconUrl = iconUrl;
             return this;
         }
 
+        /**
+         * @param iconUrl URL of an image to use as the bot avatar.
+         * 
+         * @return builder
+         * 
+         */
         public Builder iconUrl(String iconUrl) {
             return iconUrl(Output.of(iconUrl));
         }
 
+        /**
+         * @param imageUrl URL of an image attached to the message.
+         * 
+         * @return builder
+         * 
+         */
         public Builder imageUrl(@Nullable Output<String> imageUrl) {
             $.imageUrl = imageUrl;
             return this;
         }
 
+        /**
+         * @param imageUrl URL of an image attached to the message.
+         * 
+         * @return builder
+         * 
+         */
         public Builder imageUrl(String imageUrl) {
             return imageUrl(Output.of(imageUrl));
         }
 
+        /**
+         * @param linkNames If true, find and link channel names and usernames in the message text.
+         * 
+         * @return builder
+         * 
+         */
         public Builder linkNames(@Nullable Output<Boolean> linkNames) {
             $.linkNames = linkNames;
             return this;
         }
 
+        /**
+         * @param linkNames If true, find and link channel names and usernames in the message text.
+         * 
+         * @return builder
+         * 
+         */
         public Builder linkNames(Boolean linkNames) {
             return linkNames(Output.of(linkNames));
         }
 
+        /**
+         * @param mrkdwnIns Attachment fields in which Slack parses `mrkdwn` formatting. Common values: `pretext`, `text`, `fields`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder mrkdwnIns(@Nullable Output<List<String>> mrkdwnIns) {
             $.mrkdwnIns = mrkdwnIns;
             return this;
         }
 
+        /**
+         * @param mrkdwnIns Attachment fields in which Slack parses `mrkdwn` formatting. Common values: `pretext`, `text`, `fields`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder mrkdwnIns(List<String> mrkdwnIns) {
             return mrkdwnIns(Output.of(mrkdwnIns));
         }
 
+        /**
+         * @param mrkdwnIns Attachment fields in which Slack parses `mrkdwn` formatting. Common values: `pretext`, `text`, `fields`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder mrkdwnIns(String... mrkdwnIns) {
             return mrkdwnIns(List.of(mrkdwnIns));
         }
 
+        /**
+         * @param name Identifier sent back to Slack when the button is clicked.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(Output<String> name) {
             $.name = name;
             return this;
         }
 
+        /**
+         * @param name Identifier sent back to Slack when the button is clicked.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(String name) {
             return name(Output.of(name));
         }
 
+        /**
+         * @param pretext Text shown above the attachment. Supports Go templating.
+         * 
+         * @return builder
+         * 
+         */
         public Builder pretext(@Nullable Output<String> pretext) {
             $.pretext = pretext;
             return this;
         }
 
+        /**
+         * @param pretext Text shown above the attachment. Supports Go templating.
+         * 
+         * @return builder
+         * 
+         */
         public Builder pretext(String pretext) {
             return pretext(Output.of(pretext));
         }
 
         /**
+         * @param proxyUrl Deprecated and ignored. Custom proxy URLs are not supported.
+         * 
          * @return builder
          * 
          * @deprecated
@@ -466,6 +922,8 @@ public final class SlackAlertNotifierArgs extends com.pulumi.resources.ResourceA
         }
 
         /**
+         * @param proxyUrl Deprecated and ignored. Custom proxy URLs are not supported.
+         * 
          * @return builder
          * 
          * @deprecated
@@ -477,83 +935,191 @@ public final class SlackAlertNotifierArgs extends com.pulumi.resources.ResourceA
             return proxyUrl(Output.of(proxyUrl));
         }
 
+        /**
+         * @param sendResolved Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+         * 
+         * @return builder
+         * 
+         */
         public Builder sendResolved(@Nullable Output<Boolean> sendResolved) {
             $.sendResolved = sendResolved;
             return this;
         }
 
+        /**
+         * @param sendResolved Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+         * 
+         * @return builder
+         * 
+         */
         public Builder sendResolved(Boolean sendResolved) {
             return sendResolved(Output.of(sendResolved));
         }
 
+        /**
+         * @param shortFields If true, render all `fields` with `short: true` regardless of per-field setting.
+         * 
+         * @return builder
+         * 
+         */
         public Builder shortFields(@Nullable Output<Boolean> shortFields) {
             $.shortFields = shortFields;
             return this;
         }
 
+        /**
+         * @param shortFields If true, render all `fields` with `short: true` regardless of per-field setting.
+         * 
+         * @return builder
+         * 
+         */
         public Builder shortFields(Boolean shortFields) {
             return shortFields(Output.of(shortFields));
         }
 
+        /**
+         * @param slug Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slug(@Nullable Output<String> slug) {
             $.slug = slug;
             return this;
         }
 
+        /**
+         * @param slug Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slug(String slug) {
             return slug(Output.of(slug));
         }
 
+        /**
+         * @param text Label shown on the button.
+         * 
+         * @return builder
+         * 
+         */
         public Builder text(@Nullable Output<String> text) {
             $.text = text;
             return this;
         }
 
+        /**
+         * @param text Label shown on the button.
+         * 
+         * @return builder
+         * 
+         */
         public Builder text(String text) {
             return text(Output.of(text));
         }
 
+        /**
+         * @param thumbUrl URL of a small thumbnail image shown to the right of the attachment.
+         * 
+         * @return builder
+         * 
+         */
         public Builder thumbUrl(@Nullable Output<String> thumbUrl) {
             $.thumbUrl = thumbUrl;
             return this;
         }
 
+        /**
+         * @param thumbUrl URL of a small thumbnail image shown to the right of the attachment.
+         * 
+         * @return builder
+         * 
+         */
         public Builder thumbUrl(String thumbUrl) {
             return thumbUrl(Output.of(thumbUrl));
         }
 
+        /**
+         * @param title Bold heading shown above the value.
+         * 
+         * @return builder
+         * 
+         */
         public Builder title(@Nullable Output<String> title) {
             $.title = title;
             return this;
         }
 
+        /**
+         * @param title Bold heading shown above the value.
+         * 
+         * @return builder
+         * 
+         */
         public Builder title(String title) {
             return title(Output.of(title));
         }
 
+        /**
+         * @param titleLink URL the title links to when clicked.
+         * 
+         * @return builder
+         * 
+         */
         public Builder titleLink(@Nullable Output<String> titleLink) {
             $.titleLink = titleLink;
             return this;
         }
 
+        /**
+         * @param titleLink URL the title links to when clicked.
+         * 
+         * @return builder
+         * 
+         */
         public Builder titleLink(String titleLink) {
             return titleLink(Output.of(titleLink));
         }
 
+        /**
+         * @param tlsInsecureSkipVerify If true, skip TLS certificate verification when calling the webhook. Disable only in trusted environments.
+         * 
+         * @return builder
+         * 
+         */
         public Builder tlsInsecureSkipVerify(@Nullable Output<Boolean> tlsInsecureSkipVerify) {
             $.tlsInsecureSkipVerify = tlsInsecureSkipVerify;
             return this;
         }
 
+        /**
+         * @param tlsInsecureSkipVerify If true, skip TLS certificate verification when calling the webhook. Disable only in trusted environments.
+         * 
+         * @return builder
+         * 
+         */
         public Builder tlsInsecureSkipVerify(Boolean tlsInsecureSkipVerify) {
             return tlsInsecureSkipVerify(Output.of(tlsInsecureSkipVerify));
         }
 
+        /**
+         * @param username Display name of the bot posting the message.
+         * 
+         * @return builder
+         * 
+         */
         public Builder username(@Nullable Output<String> username) {
             $.username = username;
             return this;
         }
 
+        /**
+         * @param username Display name of the bot posting the message.
+         * 
+         * @return builder
+         * 
+         */
         public Builder username(String username) {
             return username(Output.of(username));
         }

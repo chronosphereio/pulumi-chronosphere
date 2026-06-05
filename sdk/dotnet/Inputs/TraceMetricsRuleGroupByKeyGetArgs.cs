@@ -13,9 +13,15 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class TraceMetricsRuleGroupByKeyGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Name of the span tag when `type` requires one (for example `TAG`). Ignored for fixed-key types.
+        /// </summary>
         [Input("namedKey")]
         public Input<string>? NamedKey { get; set; }
 
+        /// <summary>
+        /// Category of span attribute to group by (for example a well-known field such as `SERVICE` or `OPERATION`, or a generic span `TAG`).
+        /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
 

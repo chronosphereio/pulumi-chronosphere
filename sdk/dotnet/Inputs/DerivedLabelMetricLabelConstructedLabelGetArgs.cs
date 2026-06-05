@@ -15,6 +15,10 @@ namespace Chronosphere.Pulumi.Inputs
     {
         [Input("valueDefinitions", required: true)]
         private InputList<Inputs.DerivedLabelMetricLabelConstructedLabelValueDefinitionGetArgs>? _valueDefinitions;
+
+        /// <summary>
+        /// Ordered list of value definitions. The first definition whose filters match produces the derived label value.
+        /// </summary>
         public InputList<Inputs.DerivedLabelMetricLabelConstructedLabelValueDefinitionGetArgs> ValueDefinitions
         {
             get => _valueDefinitions ?? (_valueDefinitions = new InputList<Inputs.DerivedLabelMetricLabelConstructedLabelValueDefinitionGetArgs>());

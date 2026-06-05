@@ -16,9 +16,17 @@ public final class ConsumptionConfigState extends com.pulumi.resources.ResourceA
 
     public static final ConsumptionConfigState Empty = new ConsumptionConfigState();
 
+    /**
+     * Child partitions of this partition. Evaluated in order; requests not matching any child fall into an implicit `default` child partition.
+     * 
+     */
     @Import(name="partitions")
     private @Nullable Output<List<ConsumptionConfigPartitionArgs>> partitions;
 
+    /**
+     * @return Child partitions of this partition. Evaluated in order; requests not matching any child fall into an implicit `default` child partition.
+     * 
+     */
     public Optional<Output<List<ConsumptionConfigPartitionArgs>>> partitions() {
         return Optional.ofNullable(this.partitions);
     }
@@ -47,15 +55,33 @@ public final class ConsumptionConfigState extends com.pulumi.resources.ResourceA
             $ = new ConsumptionConfigState(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param partitions Child partitions of this partition. Evaluated in order; requests not matching any child fall into an implicit `default` child partition.
+         * 
+         * @return builder
+         * 
+         */
         public Builder partitions(@Nullable Output<List<ConsumptionConfigPartitionArgs>> partitions) {
             $.partitions = partitions;
             return this;
         }
 
+        /**
+         * @param partitions Child partitions of this partition. Evaluated in order; requests not matching any child fall into an implicit `default` child partition.
+         * 
+         * @return builder
+         * 
+         */
         public Builder partitions(List<ConsumptionConfigPartitionArgs> partitions) {
             return partitions(Output.of(partitions));
         }
 
+        /**
+         * @param partitions Child partitions of this partition. Evaluated in order; requests not matching any child fall into an implicit `default` child partition.
+         * 
+         * @return builder
+         * 
+         */
         public Builder partitions(ConsumptionConfigPartitionArgs... partitions) {
             return partitions(List.of(partitions));
         }

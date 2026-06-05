@@ -13,9 +13,17 @@ public final class LogIngestConfigFieldParserSourceArgs extends com.pulumi.resou
 
     public static final LogIngestConfigFieldParserSourceArgs Empty = new LogIngestConfigFieldParserSourceArgs();
 
+    /**
+     * Field path selector. Use `parent[child]` syntax to indicate nesting.
+     * 
+     */
     @Import(name="selector", required=true)
     private Output<String> selector;
 
+    /**
+     * @return Field path selector. Use `parent[child]` syntax to indicate nesting.
+     * 
+     */
     public Output<String> selector() {
         return this.selector;
     }
@@ -44,11 +52,23 @@ public final class LogIngestConfigFieldParserSourceArgs extends com.pulumi.resou
             $ = new LogIngestConfigFieldParserSourceArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param selector Field path selector. Use `parent[child]` syntax to indicate nesting.
+         * 
+         * @return builder
+         * 
+         */
         public Builder selector(Output<String> selector) {
             $.selector = selector;
             return this;
         }
 
+        /**
+         * @param selector Field path selector. Use `parent[child]` syntax to indicate nesting.
+         * 
+         * @return builder
+         * 
+         */
         public Builder selector(String selector) {
             return selector(Output.of(selector));
         }

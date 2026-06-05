@@ -38,6 +38,9 @@ class CollectionDataSourceResult:
     @property
     @pulumi.getter
     def description(self) -> str:
+        """
+        Read-only: free-form description of the collection.
+        """
         return pulumi.get(self, "description")
 
     @property
@@ -51,11 +54,17 @@ class CollectionDataSourceResult:
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        Read-only: display name of the collection.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def slug(self) -> Optional[str]:
+        """
+        Slug of the collection to look up.
+        """
         return pulumi.get(self, "slug")
 
 
@@ -74,7 +83,17 @@ class AwaitableCollectionDataSourceResult(CollectionDataSourceResult):
 def collection_data_source(slug: Optional[str] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableCollectionDataSourceResult:
     """
-    Use this data source to access information about an existing resource.
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_chronosphere as chronosphere
+
+    default = chronosphere.collection_data_source(slug="default")
+    ```
+
+
+    :param str slug: Slug of the collection to look up.
     """
     __args__ = dict()
     __args__['slug'] = slug
@@ -92,6 +111,16 @@ def collection_data_source(slug: Optional[str] = None,
 def collection_data_source_output(slug: Optional[pulumi.Input[Optional[str]]] = None,
                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[CollectionDataSourceResult]:
     """
-    Use this data source to access information about an existing resource.
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_chronosphere as chronosphere
+
+    default = chronosphere.collection_data_source(slug="default")
+    ```
+
+
+    :param str slug: Slug of the collection to look up.
     """
     ...

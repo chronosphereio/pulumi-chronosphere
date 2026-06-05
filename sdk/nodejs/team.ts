@@ -4,6 +4,21 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * A named group of users that can own collections, buckets, and other resources. Teams scope access control and serve as the ownership unit for resources across the platform.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as chronosphere from "@pulumi-chronosphere/pulumi-chronosphere";
+ *
+ * const platform = new chronosphere.Team("platform", {
+ *     description: "Platform engineering team",
+ *     name: "Platform",
+ * });
+ * ```
+ */
 export class Team extends pulumi.CustomResource {
     /**
      * Get an existing Team resource's state with the given name, ID, and optional extra
@@ -32,9 +47,21 @@ export class Team extends pulumi.CustomResource {
         return obj['__pulumiType'] === Team.__pulumiType;
     }
 
+    /**
+     * Free-form description of the team.
+     */
     public readonly description!: pulumi.Output<string | undefined>;
+    /**
+     * Display name of the team. Can be changed after creation.
+     */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * Stable identifier for the team. Generated from `name` if omitted. Immutable after creation.
+     */
     public readonly slug!: pulumi.Output<string>;
+    /**
+     * Unordered set of email addresses identifying the users who are members of this team.
+     */
     public readonly userEmails!: pulumi.Output<string[] | undefined>;
 
     /**
@@ -73,9 +100,21 @@ export class Team extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Team resources.
  */
 export interface TeamState {
+    /**
+     * Free-form description of the team.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * Display name of the team. Can be changed after creation.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * Stable identifier for the team. Generated from `name` if omitted. Immutable after creation.
+     */
     slug?: pulumi.Input<string>;
+    /**
+     * Unordered set of email addresses identifying the users who are members of this team.
+     */
     userEmails?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
@@ -83,8 +122,20 @@ export interface TeamState {
  * The set of arguments for constructing a Team resource.
  */
 export interface TeamArgs {
+    /**
+     * Free-form description of the team.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * Display name of the team. Can be changed after creation.
+     */
     name: pulumi.Input<string>;
+    /**
+     * Stable identifier for the team. Generated from `name` if omitted. Immutable after creation.
+     */
     slug?: pulumi.Input<string>;
+    /**
+     * Unordered set of email addresses identifying the users who are members of this team.
+     */
     userEmails?: pulumi.Input<pulumi.Input<string>[]>;
 }

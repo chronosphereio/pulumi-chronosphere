@@ -13,21 +13,39 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class MonitorSeriesConditionsConditionGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Comparison operator between the query value and `value` (e.g. `gt`, `lt`, `eq`).
+        /// </summary>
         [Input("op", required: true)]
         public Input<string> Op { get; set; } = null!;
 
+        /// <summary>
+        /// Duration the condition must remain false continuously before an active signal resolves.
+        /// </summary>
         [Input("resolveSustain")]
         public Input<string>? ResolveSustain { get; set; }
 
+        /// <summary>
+        /// Optional separate threshold used for resolution, enabling hysteresis (e.g. fire at &gt;90, resolve at \n\n).
+        /// </summary>
         [Input("resolveValue")]
         public Input<Inputs.MonitorSeriesConditionsConditionResolveValueGetArgs>? ResolveValue { get; set; }
 
+        /// <summary>
+        /// Severity assigned when this condition matches (e.g. `warn`, `critical`). Case-sensitive.
+        /// </summary>
         [Input("severity", required: true)]
         public Input<string> Severity { get; set; } = null!;
 
+        /// <summary>
+        /// Duration the condition must hold continuously before a signal fires.
+        /// </summary>
         [Input("sustain")]
         public Input<string>? Sustain { get; set; }
 
+        /// <summary>
+        /// Resolution threshold value.
+        /// </summary>
         [Input("value")]
         public Input<double>? Value { get; set; }
 

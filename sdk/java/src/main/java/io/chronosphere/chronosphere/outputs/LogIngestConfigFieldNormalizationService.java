@@ -14,21 +14,53 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class LogIngestConfigFieldNormalizationService {
+    /**
+     * @return Value to use when no source field contains a value.
+     * 
+     */
     private @Nullable String defaultValue;
+    /**
+     * @return Regex patterns used to extract and sanitize the value. Each pattern must have exactly one capturing group, whose contents are used as the result.
+     * 
+     */
     private @Nullable List<String> sanitizePatterns;
+    /**
+     * @return Ordered list of field paths to check for values. The first non-empty value found is used.
+     * 
+     */
     private @Nullable List<LogIngestConfigFieldNormalizationServiceSource> sources;
+    /**
+     * @return Optional mapping that normalizes raw values to canonical ones (for example, `warn` to `WARNING`).
+     * 
+     */
     private @Nullable Map<String,String> valueMap;
 
     private LogIngestConfigFieldNormalizationService() {}
+    /**
+     * @return Value to use when no source field contains a value.
+     * 
+     */
     public Optional<String> defaultValue() {
         return Optional.ofNullable(this.defaultValue);
     }
+    /**
+     * @return Regex patterns used to extract and sanitize the value. Each pattern must have exactly one capturing group, whose contents are used as the result.
+     * 
+     */
     public List<String> sanitizePatterns() {
         return this.sanitizePatterns == null ? List.of() : this.sanitizePatterns;
     }
+    /**
+     * @return Ordered list of field paths to check for values. The first non-empty value found is used.
+     * 
+     */
     public List<LogIngestConfigFieldNormalizationServiceSource> sources() {
         return this.sources == null ? List.of() : this.sources;
     }
+    /**
+     * @return Optional mapping that normalizes raw values to canonical ones (for example, `warn` to `WARNING`).
+     * 
+     */
     public Map<String,String> valueMap() {
         return this.valueMap == null ? Map.of() : this.valueMap;
     }

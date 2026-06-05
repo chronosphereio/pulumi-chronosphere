@@ -9,9 +9,17 @@ import java.util.Objects;
 
 @CustomType
 public final class LogscaleActionHumioAction {
+    /**
+     * @return Ingest token for the target repository.
+     * 
+     */
     private String ingestToken;
 
     private LogscaleActionHumioAction() {}
+    /**
+     * @return Ingest token for the target repository.
+     * 
+     */
     public String ingestToken() {
         return this.ingestToken;
     }

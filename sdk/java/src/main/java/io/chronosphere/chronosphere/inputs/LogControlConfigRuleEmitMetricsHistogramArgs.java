@@ -15,9 +15,17 @@ public final class LogControlConfigRuleEmitMetricsHistogramArgs extends com.pulu
 
     public static final LogControlConfigRuleEmitMetricsHistogramArgs Empty = new LogControlConfigRuleEmitMetricsHistogramArgs();
 
+    /**
+     * Path to a field within a log record.
+     * 
+     */
     @Import(name="value")
     private @Nullable Output<LogControlConfigRuleEmitMetricsHistogramValueArgs> value;
 
+    /**
+     * @return Path to a field within a log record.
+     * 
+     */
     public Optional<Output<LogControlConfigRuleEmitMetricsHistogramValueArgs>> value() {
         return Optional.ofNullable(this.value);
     }
@@ -46,11 +54,23 @@ public final class LogControlConfigRuleEmitMetricsHistogramArgs extends com.pulu
             $ = new LogControlConfigRuleEmitMetricsHistogramArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param value Path to a field within a log record.
+         * 
+         * @return builder
+         * 
+         */
         public Builder value(@Nullable Output<LogControlConfigRuleEmitMetricsHistogramValueArgs> value) {
             $.value = value;
             return this;
         }
 
+        /**
+         * @param value Path to a field within a log record.
+         * 
+         * @return builder
+         * 
+         */
         public Builder value(LogControlConfigRuleEmitMetricsHistogramValueArgs value) {
             return value(Output.of(value));
         }

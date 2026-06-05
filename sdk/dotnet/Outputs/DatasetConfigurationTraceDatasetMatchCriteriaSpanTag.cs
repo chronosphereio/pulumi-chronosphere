@@ -14,8 +14,17 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class DatasetConfigurationTraceDatasetMatchCriteriaSpanTag
     {
+        /// <summary>
+        /// Name of the span tag (span attribute) inspected by this filter.
+        /// </summary>
         public readonly string? Key;
+        /// <summary>
+        /// Matches traces or spans where the target numeric field satisfies the comparison against `value`.
+        /// </summary>
         public readonly Outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanTagNumericValue? NumericValue;
+        /// <summary>
+        /// Boolean value the target field is compared against.
+        /// </summary>
         public readonly Outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanTagValue? Value;
 
         [OutputConstructor]

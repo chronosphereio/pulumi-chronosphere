@@ -15,6 +15,10 @@ namespace Chronosphere.Pulumi.Inputs
     {
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// Labels that must match (key/value) on the derived metric usage for the selector to apply.
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());

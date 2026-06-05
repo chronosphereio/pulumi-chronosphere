@@ -17,44 +17,92 @@ public final class LogscaleActionWebhookActionArgs extends com.pulumi.resources.
 
     public static final LogscaleActionWebhookActionArgs Empty = new LogscaleActionWebhookActionArgs();
 
+    /**
+     * Body of the request. Supports Go template syntax with values from the query result.
+     * 
+     */
     @Import(name="bodyTemplate")
     private @Nullable Output<String> bodyTemplate;
 
+    /**
+     * @return Body of the request. Supports Go template syntax with values from the query result.
+     * 
+     */
     public Optional<Output<String>> bodyTemplate() {
         return Optional.ofNullable(this.bodyTemplate);
     }
 
+    /**
+     * Headers to include on the HTTP or HTTPS request.
+     * 
+     */
     @Import(name="headers")
     private @Nullable Output<Map<String,String>> headers;
 
+    /**
+     * @return Headers to include on the HTTP or HTTPS request.
+     * 
+     */
     public Optional<Output<Map<String,String>>> headers() {
         return Optional.ofNullable(this.headers);
     }
 
+    /**
+     * If `true`, skips SSL certificate verification for the request.
+     * 
+     */
     @Import(name="ignoreSsl")
     private @Nullable Output<Boolean> ignoreSsl;
 
+    /**
+     * @return If `true`, skips SSL certificate verification for the request.
+     * 
+     */
     public Optional<Output<Boolean>> ignoreSsl() {
         return Optional.ofNullable(this.ignoreSsl);
     }
 
+    /**
+     * HTTP method used for the webhook request.
+     * 
+     */
     @Import(name="method", required=true)
     private Output<String> method;
 
+    /**
+     * @return HTTP method used for the webhook request.
+     * 
+     */
     public Output<String> method() {
         return this.method;
     }
 
+    /**
+     * URL to send the HTTP or HTTPS request to.
+     * 
+     */
     @Import(name="url", required=true)
     private Output<String> url;
 
+    /**
+     * @return URL to send the HTTP or HTTPS request to.
+     * 
+     */
     public Output<String> url() {
         return this.url;
     }
 
+    /**
+     * If `true`, sends the request through the configured outbound proxy.
+     * 
+     */
     @Import(name="useProxy")
     private @Nullable Output<Boolean> useProxy;
 
+    /**
+     * @return If `true`, sends the request through the configured outbound proxy.
+     * 
+     */
     public Optional<Output<Boolean>> useProxy() {
         return Optional.ofNullable(this.useProxy);
     }
@@ -88,56 +136,128 @@ public final class LogscaleActionWebhookActionArgs extends com.pulumi.resources.
             $ = new LogscaleActionWebhookActionArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param bodyTemplate Body of the request. Supports Go template syntax with values from the query result.
+         * 
+         * @return builder
+         * 
+         */
         public Builder bodyTemplate(@Nullable Output<String> bodyTemplate) {
             $.bodyTemplate = bodyTemplate;
             return this;
         }
 
+        /**
+         * @param bodyTemplate Body of the request. Supports Go template syntax with values from the query result.
+         * 
+         * @return builder
+         * 
+         */
         public Builder bodyTemplate(String bodyTemplate) {
             return bodyTemplate(Output.of(bodyTemplate));
         }
 
+        /**
+         * @param headers Headers to include on the HTTP or HTTPS request.
+         * 
+         * @return builder
+         * 
+         */
         public Builder headers(@Nullable Output<Map<String,String>> headers) {
             $.headers = headers;
             return this;
         }
 
+        /**
+         * @param headers Headers to include on the HTTP or HTTPS request.
+         * 
+         * @return builder
+         * 
+         */
         public Builder headers(Map<String,String> headers) {
             return headers(Output.of(headers));
         }
 
+        /**
+         * @param ignoreSsl If `true`, skips SSL certificate verification for the request.
+         * 
+         * @return builder
+         * 
+         */
         public Builder ignoreSsl(@Nullable Output<Boolean> ignoreSsl) {
             $.ignoreSsl = ignoreSsl;
             return this;
         }
 
+        /**
+         * @param ignoreSsl If `true`, skips SSL certificate verification for the request.
+         * 
+         * @return builder
+         * 
+         */
         public Builder ignoreSsl(Boolean ignoreSsl) {
             return ignoreSsl(Output.of(ignoreSsl));
         }
 
+        /**
+         * @param method HTTP method used for the webhook request.
+         * 
+         * @return builder
+         * 
+         */
         public Builder method(Output<String> method) {
             $.method = method;
             return this;
         }
 
+        /**
+         * @param method HTTP method used for the webhook request.
+         * 
+         * @return builder
+         * 
+         */
         public Builder method(String method) {
             return method(Output.of(method));
         }
 
+        /**
+         * @param url URL to send the HTTP or HTTPS request to.
+         * 
+         * @return builder
+         * 
+         */
         public Builder url(Output<String> url) {
             $.url = url;
             return this;
         }
 
+        /**
+         * @param url URL to send the HTTP or HTTPS request to.
+         * 
+         * @return builder
+         * 
+         */
         public Builder url(String url) {
             return url(Output.of(url));
         }
 
+        /**
+         * @param useProxy If `true`, sends the request through the configured outbound proxy.
+         * 
+         * @return builder
+         * 
+         */
         public Builder useProxy(@Nullable Output<Boolean> useProxy) {
             $.useProxy = useProxy;
             return this;
         }
 
+        /**
+         * @param useProxy If `true`, sends the request through the configured outbound proxy.
+         * 
+         * @return builder
+         * 
+         */
         public Builder useProxy(Boolean useProxy) {
             return useProxy(Output.of(useProxy));
         }

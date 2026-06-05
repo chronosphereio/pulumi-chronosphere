@@ -11,9 +11,17 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class LogControlConfigRuleSample {
+    /**
+     * @return Fraction of matching logs to keep, in the range `[0, 1]` (for example, `0.25` keeps 25%).
+     * 
+     */
     private @Nullable Double rate;
 
     private LogControlConfigRuleSample() {}
+    /**
+     * @return Fraction of matching logs to keep, in the range `[0, 1]` (for example, `0.25` keeps 25%).
+     * 
+     */
     public Optional<Double> rate() {
         return Optional.ofNullable(this.rate);
     }

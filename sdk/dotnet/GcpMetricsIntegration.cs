@@ -10,18 +10,56 @@ using Pulumi;
 
 namespace Chronosphere.Pulumi
 {
+    /// <summary>
+    /// Scrapes Google Cloud Monitoring metrics from the configured projects and metric prefixes using a GCP service-account credential, with optional filters and rollup rules.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Pulumi = Chronosphere.Pulumi;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var customer = new Pulumi.GcpMetricsIntegration("customer", new()
+    ///     {
+    ///         Name = "GCP Metrics Integration",
+    ///         ServiceAccount = new Pulumi.Inputs.GcpMetricsIntegrationServiceAccountArgs
+    ///         {
+    ///             ClientEmail = "chronosphere-collector@my-project.iam.gserviceaccount.com",
+    ///         },
+    ///         Slug = "gcp-metrics-integration",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// </summary>
     [PulumiResourceType("chronosphere:index/gcpMetricsIntegration:GcpMetricsIntegration")]
     public partial class GcpMetricsIntegration : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Groups of Google Cloud metrics to ingest. Each group targets a specific project and set of metric prefixes.
+        /// </summary>
         [Output("metricGroups")]
         public Output<ImmutableArray<Outputs.GcpMetricsIntegrationMetricGroup>> MetricGroups { get; private set; } = null!;
 
+        /// <summary>
+        /// Label name to filter on.
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// Google Cloud service account that Chronosphere impersonates to read metrics.
+        /// </summary>
         [Output("serviceAccount")]
         public Output<Outputs.GcpMetricsIntegrationServiceAccount?> ServiceAccount { get; private set; } = null!;
 
+        /// <summary>
+        /// Stable identifier for the integration. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Output("slug")]
         public Output<string?> Slug { get; private set; } = null!;
 
@@ -74,18 +112,31 @@ namespace Chronosphere.Pulumi
     {
         [Input("metricGroups")]
         private InputList<Inputs.GcpMetricsIntegrationMetricGroupArgs>? _metricGroups;
+
+        /// <summary>
+        /// Groups of Google Cloud metrics to ingest. Each group targets a specific project and set of metric prefixes.
+        /// </summary>
         public InputList<Inputs.GcpMetricsIntegrationMetricGroupArgs> MetricGroups
         {
             get => _metricGroups ?? (_metricGroups = new InputList<Inputs.GcpMetricsIntegrationMetricGroupArgs>());
             set => _metricGroups = value;
         }
 
+        /// <summary>
+        /// Label name to filter on.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// Google Cloud service account that Chronosphere impersonates to read metrics.
+        /// </summary>
         [Input("serviceAccount")]
         public Input<Inputs.GcpMetricsIntegrationServiceAccountArgs>? ServiceAccount { get; set; }
 
+        /// <summary>
+        /// Stable identifier for the integration. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 
@@ -99,18 +150,31 @@ namespace Chronosphere.Pulumi
     {
         [Input("metricGroups")]
         private InputList<Inputs.GcpMetricsIntegrationMetricGroupGetArgs>? _metricGroups;
+
+        /// <summary>
+        /// Groups of Google Cloud metrics to ingest. Each group targets a specific project and set of metric prefixes.
+        /// </summary>
         public InputList<Inputs.GcpMetricsIntegrationMetricGroupGetArgs> MetricGroups
         {
             get => _metricGroups ?? (_metricGroups = new InputList<Inputs.GcpMetricsIntegrationMetricGroupGetArgs>());
             set => _metricGroups = value;
         }
 
+        /// <summary>
+        /// Label name to filter on.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// Google Cloud service account that Chronosphere impersonates to read metrics.
+        /// </summary>
         [Input("serviceAccount")]
         public Input<Inputs.GcpMetricsIntegrationServiceAccountGetArgs>? ServiceAccount { get; set; }
 
+        /// <summary>
+        /// Stable identifier for the integration. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 

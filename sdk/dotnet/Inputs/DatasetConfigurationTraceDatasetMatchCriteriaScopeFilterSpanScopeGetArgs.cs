@@ -13,35 +13,66 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, max_secs]` range.
+        /// </summary>
         [Input("duration")]
         public Input<Inputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDurationGetArgs>? Duration { get; set; }
 
+        /// <summary>
+        /// Matches traces or spans where the target boolean field equals `value`.
+        /// </summary>
         [Input("error")]
         public Input<Inputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeErrorGetArgs>? Error { get; set; }
 
+        /// <summary>
+        /// Matches traces or spans where the target boolean field equals `value`.
+        /// </summary>
         [Input("isRootSpan")]
         public Input<Inputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpanGetArgs>? IsRootSpan { get; set; }
 
+        /// <summary>
+        /// Whether matching spans are included (`INCLUDE`) or excluded (`EXCLUDE`) from the scope. Defaults to `INCLUDE`.
+        /// </summary>
         [Input("matchType")]
         public Input<string>? MatchType { get; set; }
 
+        /// <summary>
+        /// Matches traces or spans where the target string field satisfies the match condition.
+        /// </summary>
         [Input("operation")]
         public Input<Inputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperationGetArgs>? Operation { get; set; }
 
+        /// <summary>
+        /// Matches traces or spans where the target string field satisfies the match condition.
+        /// </summary>
         [Input("parentOperation")]
         public Input<Inputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperationGetArgs>? ParentOperation { get; set; }
 
+        /// <summary>
+        /// Matches traces or spans where the target string field satisfies the match condition.
+        /// </summary>
         [Input("parentService")]
         public Input<Inputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentServiceGetArgs>? ParentService { get; set; }
 
+        /// <summary>
+        /// Matches traces or spans where the target string field satisfies the match condition.
+        /// </summary>
         [Input("service")]
         public Input<Inputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeServiceGetArgs>? Service { get; set; }
 
+        /// <summary>
+        /// Matches traces where the number of spans satisfying the surrounding span conditions falls within the inclusive `[min, max]` range.
+        /// </summary>
         [Input("spanCount")]
         public Input<Inputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCountGetArgs>? SpanCount { get; set; }
 
         [Input("tags")]
         private InputList<Inputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagGetArgs>? _tags;
+
+        /// <summary>
+        /// Matches spans whose tag (span attribute) with the given `key` has a value satisfying the nested string or numeric filter.
+        /// </summary>
         public InputList<Inputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagGetArgs> Tags
         {
             get => _tags ?? (_tags = new InputList<Inputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagGetArgs>());

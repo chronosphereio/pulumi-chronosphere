@@ -16,47 +16,162 @@ import java.util.List;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
+/**
+ * A LogScale alert that runs a saved LogScale query on a schedule and fires the configured logscale_action targets when the query returns results.
+ * 
+ * ## Example Usage
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.chronosphere.LogscaleAction;
+ * import com.pulumi.chronosphere.LogscaleActionArgs;
+ * import com.pulumi.chronosphere.inputs.LogscaleActionEmailActionArgs;
+ * import com.pulumi.chronosphere.LogscaleAlert;
+ * import com.pulumi.chronosphere.LogscaleAlertArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var email = new LogscaleAction(&#34;email&#34;, LogscaleActionArgs.builder()        
+ *             .repository(&#34;default&#34;)
+ *             .name(&#34;Email on-call&#34;)
+ *             .emailAction(LogscaleActionEmailActionArgs.builder()
+ *                 .recipients(&#34;oncall@example.com&#34;)
+ *                 .subjectTemplate(&#34;Logscale alert: {{alert.name}}&#34;)
+ *                 .bodyTemplate(&#34;{{query.results}}&#34;)
+ *                 .build())
+ *             .build());
+ * 
+ *         var highErrorRate = new LogscaleAlert(&#34;highErrorRate&#34;, LogscaleAlertArgs.builder()        
+ *             .repository(&#34;default&#34;)
+ *             .name(&#34;High error rate&#34;)
+ *             .description(&#34;More than 500 errors in a 60s window&#34;)
+ *             .alertType(&#34;STANDARD&#34;)
+ *             .query(&#34;level = ERROR | count(as=numErrors) | numErrors &gt; 500&#34;)
+ *             .timeWindow(&#34;60s&#34;)
+ *             .throttleDuration(&#34;60s&#34;)
+ *             .throttleField(&#34;service&#34;)
+ *             .tags(            
+ *                 &#34;errors&#34;,
+ *                 &#34;platform&#34;)
+ *             .disabled(false)
+ *             .actionIds(email.id())
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ */
 @ResourceType(type="chronosphere:index/logscaleAlert:LogscaleAlert")
 public class LogscaleAlert extends com.pulumi.resources.CustomResource {
+    /**
+     * Slugs of LogScale actions to invoke when the alert triggers. The alert does not fire if this list is empty.
+     * 
+     */
     @Export(name="actionIds", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> actionIds;
 
+    /**
+     * @return Slugs of LogScale actions to invoke when the alert triggers. The alert does not fire if this list is empty.
+     * 
+     */
     public Output<Optional<List<String>>> actionIds() {
         return Codegen.optional(this.actionIds);
     }
+    /**
+     * Type of LogScale alert. `STANDARD` runs the query on a schedule over a time window; `FILTER` evaluates the query against each incoming event.
+     * 
+     */
     @Export(name="alertType", refs={String.class}, tree="[0]")
     private Output<String> alertType;
 
+    /**
+     * @return Type of LogScale alert. `STANDARD` runs the query on a schedule over a time window; `FILTER` evaluates the query against each incoming event.
+     * 
+     */
     public Output<String> alertType() {
         return this.alertType;
     }
+    /**
+     * Human-readable description of the alert.
+     * 
+     */
     @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
+    /**
+     * @return Human-readable description of the alert.
+     * 
+     */
     public Output<Optional<String>> description() {
         return Codegen.optional(this.description);
     }
+    /**
+     * If `true`, the alert will not evaluate or trigger actions.
+     * 
+     */
     @Export(name="disabled", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> disabled;
 
+    /**
+     * @return If `true`, the alert will not evaluate or trigger actions.
+     * 
+     */
     public Output<Optional<Boolean>> disabled() {
         return Codegen.optional(this.disabled);
     }
+    /**
+     * Display name of the LogScale alert.
+     * 
+     */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
+    /**
+     * @return Display name of the LogScale alert.
+     * 
+     */
     public Output<String> name() {
         return this.name;
     }
+    /**
+     * LogScale query that the alert evaluates. Example: `level = ERROR | severity &gt; 3 | count(as=numErrors) | numErrors &gt; 500`.
+     * 
+     */
     @Export(name="query", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> query;
 
+    /**
+     * @return LogScale query that the alert evaluates. Example: `level = ERROR | severity &gt; 3 | count(as=numErrors) | numErrors &gt; 500`.
+     * 
+     */
     public Output<Optional<String>> query() {
         return Codegen.optional(this.query);
     }
+    /**
+     * Name of the LogScale repository the alert belongs to. Immutable after creation.
+     * 
+     */
     @Export(name="repository", refs={String.class}, tree="[0]")
     private Output<String> repository;
 
+    /**
+     * @return Name of the LogScale repository the alert belongs to. Immutable after creation.
+     * 
+     */
     public Output<String> repository() {
         return this.repository;
     }
@@ -74,47 +189,71 @@ public class LogscaleAlert extends com.pulumi.resources.CustomResource {
     public Output<String> runAsUser() {
         return this.runAsUser;
     }
+    /**
+     * Stable identifier for the LogScale alert. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     @Export(name="slug", refs={String.class}, tree="[0]")
     private Output<String> slug;
 
+    /**
+     * @return Stable identifier for the LogScale alert. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     public Output<String> slug() {
         return this.slug;
     }
+    /**
+     * Tags attached to the alert for organization and filtering.
+     * 
+     */
     @Export(name="tags", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> tags;
 
+    /**
+     * @return Tags attached to the alert for organization and filtering.
+     * 
+     */
     public Output<Optional<List<String>>> tags() {
         return Codegen.optional(this.tags);
     }
     /**
-     * Required for STANDARD type alerts, optional for FILTER type alerts
+     * Minimum interval between consecutive triggers of the alert. Required for `STANDARD` alerts, optional for `FILTER` alerts.
      * 
      */
     @Export(name="throttleDuration", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> throttleDuration;
 
     /**
-     * @return Required for STANDARD type alerts, optional for FILTER type alerts
+     * @return Minimum interval between consecutive triggers of the alert. Required for `STANDARD` alerts, optional for `FILTER` alerts.
      * 
      */
     public Output<Optional<String>> throttleDuration() {
         return Codegen.optional(this.throttleDuration);
     }
+    /**
+     * Optional field whose value is used to scope throttling, so the alert is throttled per distinct value of this field rather than globally.
+     * 
+     */
     @Export(name="throttleField", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> throttleField;
 
+    /**
+     * @return Optional field whose value is used to scope throttling, so the alert is throttled per distinct value of this field rather than globally.
+     * 
+     */
     public Output<Optional<String>> throttleField() {
         return Codegen.optional(this.throttleField);
     }
     /**
-     * Required for STANDARD type alerts, ignored for FILTER type alerts
+     * Lookback window for the alert query. Required for `STANDARD` alerts, ignored for `FILTER` alerts.
      * 
      */
     @Export(name="timeWindow", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> timeWindow;
 
     /**
-     * @return Required for STANDARD type alerts, ignored for FILTER type alerts
+     * @return Lookback window for the alert query. Required for `STANDARD` alerts, ignored for `FILTER` alerts.
      * 
      */
     public Output<Optional<String>> timeWindow() {

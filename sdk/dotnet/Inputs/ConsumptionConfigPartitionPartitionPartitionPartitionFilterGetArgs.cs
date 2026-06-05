@@ -15,12 +15,19 @@ namespace Chronosphere.Pulumi.Inputs
     {
         [Input("conditions")]
         private InputList<Inputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionGetArgs>? _conditions;
+
+        /// <summary>
+        /// Conditions evaluated by the filter. Each condition matches by dataset, logs, metrics, or trace data; exactly one of `log_filter`, `metric_filter`, or `dataset_id` must be set per condition.
+        /// </summary>
         public InputList<Inputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionGetArgs> Conditions
         {
             get => _conditions ?? (_conditions = new InputList<Inputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionGetArgs>());
             set => _conditions = value;
         }
 
+        /// <summary>
+        /// Match operator (e.g. `IN`, `NOT_IN`) applied to the filter conditions.
+        /// </summary>
         [Input("operator")]
         public Input<string>? Operator { get; set; }
 

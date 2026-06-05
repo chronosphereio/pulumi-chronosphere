@@ -6,6 +6,9 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * Singleton allocation of metric license capacity into named pools that match metrics by label filter, each with priority-based dropping when the pool's allocation is exceeded.
+ */
 export class ResourcePoolsConfig extends pulumi.CustomResource {
     /**
      * Get an existing ResourcePoolsConfig resource's state with the given name, ID, and optional extra
@@ -34,9 +37,17 @@ export class ResourcePoolsConfig extends pulumi.CustomResource {
         return obj['__pulumiType'] === ResourcePoolsConfig.__pulumiType;
     }
 
+    /**
+     * Catch-all pool that receives metrics not matched by any other pool. Also receives any license allocation left unassigned by the other pools.
+     */
     public readonly defaultPool!: pulumi.Output<outputs.ResourcePoolsConfigDefaultPool | undefined>;
+    /**
+     * Named pools that partition each license across teams or workloads. Pools are matched in declaration order via their `matchRules`.
+     */
     public readonly pool!: pulumi.Output<outputs.ResourcePoolsConfigPool[] | undefined>;
     /**
+     * Deprecated: use `pool` instead. Set of named pools that partition the license.
+     *
      * @deprecated Use pool instead of pools
      */
     public readonly pools!: pulumi.Output<outputs.ResourcePoolsConfigPool[] | undefined>;
@@ -72,9 +83,17 @@ export class ResourcePoolsConfig extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ResourcePoolsConfig resources.
  */
 export interface ResourcePoolsConfigState {
+    /**
+     * Catch-all pool that receives metrics not matched by any other pool. Also receives any license allocation left unassigned by the other pools.
+     */
     defaultPool?: pulumi.Input<inputs.ResourcePoolsConfigDefaultPool>;
+    /**
+     * Named pools that partition each license across teams or workloads. Pools are matched in declaration order via their `matchRules`.
+     */
     pool?: pulumi.Input<pulumi.Input<inputs.ResourcePoolsConfigPool>[]>;
     /**
+     * Deprecated: use `pool` instead. Set of named pools that partition the license.
+     *
      * @deprecated Use pool instead of pools
      */
     pools?: pulumi.Input<pulumi.Input<inputs.ResourcePoolsConfigPool>[]>;
@@ -84,9 +103,17 @@ export interface ResourcePoolsConfigState {
  * The set of arguments for constructing a ResourcePoolsConfig resource.
  */
 export interface ResourcePoolsConfigArgs {
+    /**
+     * Catch-all pool that receives metrics not matched by any other pool. Also receives any license allocation left unassigned by the other pools.
+     */
     defaultPool?: pulumi.Input<inputs.ResourcePoolsConfigDefaultPool>;
+    /**
+     * Named pools that partition each license across teams or workloads. Pools are matched in declaration order via their `matchRules`.
+     */
     pool?: pulumi.Input<pulumi.Input<inputs.ResourcePoolsConfigPool>[]>;
     /**
+     * Deprecated: use `pool` instead. Set of named pools that partition the license.
+     *
      * @deprecated Use pool instead of pools
      */
     pools?: pulumi.Input<pulumi.Input<inputs.ResourcePoolsConfigPool>[]>;

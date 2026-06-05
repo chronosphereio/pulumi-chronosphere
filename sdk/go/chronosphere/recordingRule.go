@@ -12,18 +12,60 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Evaluates a PromQL expression at a fixed interval and writes the result to a new time series. Useful for precomputing expensive queries or producing derived metrics.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/chronosphereio/pulumi-chronosphere/sdk/go/chronosphere"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := chronosphere.NewRecordingRule(ctx, "upByNamespace", &chronosphere.RecordingRuleArgs{
+//				Expr:     pulumi.String("sum by (kubernetes_namespace) (up)"),
+//				Interval: pulumi.String("60s"),
+//				Labels: pulumi.StringMap{
+//					"owner": pulumi.String("platform"),
+//				},
+//				MetricName: pulumi.String("up:by_namespace"),
+//				Name:       pulumi.String("up:by_namespace"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type RecordingRule struct {
 	pulumi.CustomResourceState
 
-	BucketId       pulumi.StringPtrOutput `pulumi:"bucketId"`
+	// ID of the bucket the recording rule belongs to. At least one of `bucketId` or `executionGroup` must be set; if both are set their values must match.
+	BucketId pulumi.StringPtrOutput `pulumi:"bucketId"`
+	// Slug of the execution group in which the rule is evaluated. Rules in the same group run sequentially at the configured interval; all rules in a group must finish before the next iteration starts. At least one of `bucketId` or `executionGroup` must be set.
 	ExecutionGroup pulumi.StringPtrOutput `pulumi:"executionGroup"`
-	ExecutionMode  pulumi.StringPtrOutput `pulumi:"executionMode"`
-	Expr           pulumi.StringOutput    `pulumi:"expr"`
-	Interval       pulumi.StringPtrOutput `pulumi:"interval"`
-	Labels         pulumi.StringMapOutput `pulumi:"labels"`
-	MetricName     pulumi.StringPtrOutput `pulumi:"metricName"`
-	Name           pulumi.StringOutput    `pulumi:"name"`
-	Slug           pulumi.StringOutput    `pulumi:"slug"`
+	// Execution mode controlling whether the recording rule is active.
+	ExecutionMode pulumi.StringPtrOutput `pulumi:"executionMode"`
+	// PromQL expression evaluated at each interval. The result is written to a new series named by `metricName` (or `name` if unset).
+	Expr pulumi.StringOutput `pulumi:"expr"`
+	// Evaluation interval (e.g. `30s`, `1m`). Defaults to `60s` when unset.
+	Interval pulumi.StringPtrOutput `pulumi:"interval"`
+	// Key/value labels added to every series produced by this recording rule.
+	Labels pulumi.StringMapOutput `pulumi:"labels"`
+	// Name of the output time series produced by `expr`. Must be a valid metric name. Defaults to `name` if omitted.
+	MetricName pulumi.StringPtrOutput `pulumi:"metricName"`
+	// Display name of the recording rule. Can be changed after creation.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// Stable identifier for the recording rule. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringOutput `pulumi:"slug"`
 }
 
 // NewRecordingRule registers a new resource with the given unique name, arguments, and options.
@@ -62,27 +104,45 @@ func GetRecordingRule(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RecordingRule resources.
 type recordingRuleState struct {
-	BucketId       *string           `pulumi:"bucketId"`
-	ExecutionGroup *string           `pulumi:"executionGroup"`
-	ExecutionMode  *string           `pulumi:"executionMode"`
-	Expr           *string           `pulumi:"expr"`
-	Interval       *string           `pulumi:"interval"`
-	Labels         map[string]string `pulumi:"labels"`
-	MetricName     *string           `pulumi:"metricName"`
-	Name           *string           `pulumi:"name"`
-	Slug           *string           `pulumi:"slug"`
+	// ID of the bucket the recording rule belongs to. At least one of `bucketId` or `executionGroup` must be set; if both are set their values must match.
+	BucketId *string `pulumi:"bucketId"`
+	// Slug of the execution group in which the rule is evaluated. Rules in the same group run sequentially at the configured interval; all rules in a group must finish before the next iteration starts. At least one of `bucketId` or `executionGroup` must be set.
+	ExecutionGroup *string `pulumi:"executionGroup"`
+	// Execution mode controlling whether the recording rule is active.
+	ExecutionMode *string `pulumi:"executionMode"`
+	// PromQL expression evaluated at each interval. The result is written to a new series named by `metricName` (or `name` if unset).
+	Expr *string `pulumi:"expr"`
+	// Evaluation interval (e.g. `30s`, `1m`). Defaults to `60s` when unset.
+	Interval *string `pulumi:"interval"`
+	// Key/value labels added to every series produced by this recording rule.
+	Labels map[string]string `pulumi:"labels"`
+	// Name of the output time series produced by `expr`. Must be a valid metric name. Defaults to `name` if omitted.
+	MetricName *string `pulumi:"metricName"`
+	// Display name of the recording rule. Can be changed after creation.
+	Name *string `pulumi:"name"`
+	// Stable identifier for the recording rule. Generated from `name` if omitted. Immutable after creation.
+	Slug *string `pulumi:"slug"`
 }
 
 type RecordingRuleState struct {
-	BucketId       pulumi.StringPtrInput
+	// ID of the bucket the recording rule belongs to. At least one of `bucketId` or `executionGroup` must be set; if both are set their values must match.
+	BucketId pulumi.StringPtrInput
+	// Slug of the execution group in which the rule is evaluated. Rules in the same group run sequentially at the configured interval; all rules in a group must finish before the next iteration starts. At least one of `bucketId` or `executionGroup` must be set.
 	ExecutionGroup pulumi.StringPtrInput
-	ExecutionMode  pulumi.StringPtrInput
-	Expr           pulumi.StringPtrInput
-	Interval       pulumi.StringPtrInput
-	Labels         pulumi.StringMapInput
-	MetricName     pulumi.StringPtrInput
-	Name           pulumi.StringPtrInput
-	Slug           pulumi.StringPtrInput
+	// Execution mode controlling whether the recording rule is active.
+	ExecutionMode pulumi.StringPtrInput
+	// PromQL expression evaluated at each interval. The result is written to a new series named by `metricName` (or `name` if unset).
+	Expr pulumi.StringPtrInput
+	// Evaluation interval (e.g. `30s`, `1m`). Defaults to `60s` when unset.
+	Interval pulumi.StringPtrInput
+	// Key/value labels added to every series produced by this recording rule.
+	Labels pulumi.StringMapInput
+	// Name of the output time series produced by `expr`. Must be a valid metric name. Defaults to `name` if omitted.
+	MetricName pulumi.StringPtrInput
+	// Display name of the recording rule. Can be changed after creation.
+	Name pulumi.StringPtrInput
+	// Stable identifier for the recording rule. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringPtrInput
 }
 
 func (RecordingRuleState) ElementType() reflect.Type {
@@ -90,28 +150,46 @@ func (RecordingRuleState) ElementType() reflect.Type {
 }
 
 type recordingRuleArgs struct {
-	BucketId       *string           `pulumi:"bucketId"`
-	ExecutionGroup *string           `pulumi:"executionGroup"`
-	ExecutionMode  *string           `pulumi:"executionMode"`
-	Expr           string            `pulumi:"expr"`
-	Interval       *string           `pulumi:"interval"`
-	Labels         map[string]string `pulumi:"labels"`
-	MetricName     *string           `pulumi:"metricName"`
-	Name           string            `pulumi:"name"`
-	Slug           *string           `pulumi:"slug"`
+	// ID of the bucket the recording rule belongs to. At least one of `bucketId` or `executionGroup` must be set; if both are set their values must match.
+	BucketId *string `pulumi:"bucketId"`
+	// Slug of the execution group in which the rule is evaluated. Rules in the same group run sequentially at the configured interval; all rules in a group must finish before the next iteration starts. At least one of `bucketId` or `executionGroup` must be set.
+	ExecutionGroup *string `pulumi:"executionGroup"`
+	// Execution mode controlling whether the recording rule is active.
+	ExecutionMode *string `pulumi:"executionMode"`
+	// PromQL expression evaluated at each interval. The result is written to a new series named by `metricName` (or `name` if unset).
+	Expr string `pulumi:"expr"`
+	// Evaluation interval (e.g. `30s`, `1m`). Defaults to `60s` when unset.
+	Interval *string `pulumi:"interval"`
+	// Key/value labels added to every series produced by this recording rule.
+	Labels map[string]string `pulumi:"labels"`
+	// Name of the output time series produced by `expr`. Must be a valid metric name. Defaults to `name` if omitted.
+	MetricName *string `pulumi:"metricName"`
+	// Display name of the recording rule. Can be changed after creation.
+	Name string `pulumi:"name"`
+	// Stable identifier for the recording rule. Generated from `name` if omitted. Immutable after creation.
+	Slug *string `pulumi:"slug"`
 }
 
 // The set of arguments for constructing a RecordingRule resource.
 type RecordingRuleArgs struct {
-	BucketId       pulumi.StringPtrInput
+	// ID of the bucket the recording rule belongs to. At least one of `bucketId` or `executionGroup` must be set; if both are set their values must match.
+	BucketId pulumi.StringPtrInput
+	// Slug of the execution group in which the rule is evaluated. Rules in the same group run sequentially at the configured interval; all rules in a group must finish before the next iteration starts. At least one of `bucketId` or `executionGroup` must be set.
 	ExecutionGroup pulumi.StringPtrInput
-	ExecutionMode  pulumi.StringPtrInput
-	Expr           pulumi.StringInput
-	Interval       pulumi.StringPtrInput
-	Labels         pulumi.StringMapInput
-	MetricName     pulumi.StringPtrInput
-	Name           pulumi.StringInput
-	Slug           pulumi.StringPtrInput
+	// Execution mode controlling whether the recording rule is active.
+	ExecutionMode pulumi.StringPtrInput
+	// PromQL expression evaluated at each interval. The result is written to a new series named by `metricName` (or `name` if unset).
+	Expr pulumi.StringInput
+	// Evaluation interval (e.g. `30s`, `1m`). Defaults to `60s` when unset.
+	Interval pulumi.StringPtrInput
+	// Key/value labels added to every series produced by this recording rule.
+	Labels pulumi.StringMapInput
+	// Name of the output time series produced by `expr`. Must be a valid metric name. Defaults to `name` if omitted.
+	MetricName pulumi.StringPtrInput
+	// Display name of the recording rule. Can be changed after creation.
+	Name pulumi.StringInput
+	// Stable identifier for the recording rule. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringPtrInput
 }
 
 func (RecordingRuleArgs) ElementType() reflect.Type {
@@ -201,38 +279,47 @@ func (o RecordingRuleOutput) ToRecordingRuleOutputWithContext(ctx context.Contex
 	return o
 }
 
+// ID of the bucket the recording rule belongs to. At least one of `bucketId` or `executionGroup` must be set; if both are set their values must match.
 func (o RecordingRuleOutput) BucketId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RecordingRule) pulumi.StringPtrOutput { return v.BucketId }).(pulumi.StringPtrOutput)
 }
 
+// Slug of the execution group in which the rule is evaluated. Rules in the same group run sequentially at the configured interval; all rules in a group must finish before the next iteration starts. At least one of `bucketId` or `executionGroup` must be set.
 func (o RecordingRuleOutput) ExecutionGroup() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RecordingRule) pulumi.StringPtrOutput { return v.ExecutionGroup }).(pulumi.StringPtrOutput)
 }
 
+// Execution mode controlling whether the recording rule is active.
 func (o RecordingRuleOutput) ExecutionMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RecordingRule) pulumi.StringPtrOutput { return v.ExecutionMode }).(pulumi.StringPtrOutput)
 }
 
+// PromQL expression evaluated at each interval. The result is written to a new series named by `metricName` (or `name` if unset).
 func (o RecordingRuleOutput) Expr() pulumi.StringOutput {
 	return o.ApplyT(func(v *RecordingRule) pulumi.StringOutput { return v.Expr }).(pulumi.StringOutput)
 }
 
+// Evaluation interval (e.g. `30s`, `1m`). Defaults to `60s` when unset.
 func (o RecordingRuleOutput) Interval() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RecordingRule) pulumi.StringPtrOutput { return v.Interval }).(pulumi.StringPtrOutput)
 }
 
+// Key/value labels added to every series produced by this recording rule.
 func (o RecordingRuleOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *RecordingRule) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }
 
+// Name of the output time series produced by `expr`. Must be a valid metric name. Defaults to `name` if omitted.
 func (o RecordingRuleOutput) MetricName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RecordingRule) pulumi.StringPtrOutput { return v.MetricName }).(pulumi.StringPtrOutput)
 }
 
+// Display name of the recording rule. Can be changed after creation.
 func (o RecordingRuleOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *RecordingRule) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// Stable identifier for the recording rule. Generated from `name` if omitted. Immutable after creation.
 func (o RecordingRuleOutput) Slug() pulumi.StringOutput {
 	return o.ApplyT(func(v *RecordingRule) pulumi.StringOutput { return v.Slug }).(pulumi.StringOutput)
 }

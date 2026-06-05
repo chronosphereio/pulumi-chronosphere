@@ -16,35 +16,133 @@ import java.util.List;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
+/**
+ * A virtual metric whose value is computed on demand from one of several underlying PromQL queries. The query selected at evaluation time is determined by matching the usage&#39;s labels against the configured selectors.
+ * 
+ * ## Example Usage
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.chronosphere.DerivedMetric;
+ * import com.pulumi.chronosphere.DerivedMetricArgs;
+ * import com.pulumi.chronosphere.inputs.DerivedMetricQueryArgs;
+ * import com.pulumi.chronosphere.inputs.DerivedMetricQueryQueryArgs;
+ * import com.pulumi.chronosphere.inputs.DerivedMetricQuerySelectorArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var requestRate = new DerivedMetric(&#34;requestRate&#34;, DerivedMetricArgs.builder()        
+ *             .description(&#34;Per-service request rate, with selector-aware variants&#34;)
+ *             .metricName(&#34;request_rate&#34;)
+ *             .name(&#34;request_rate&#34;)
+ *             .queries(            
+ *                 DerivedMetricQueryArgs.builder()
+ *                     .query(DerivedMetricQueryQueryArgs.builder()
+ *                         .expr(&#34;sum by (service) (rate(http_requests_total{label1=\&#34;value1\&#34;}[5m]))&#34;)
+ *                         .variables(DerivedMetricQueryQueryVariableArgs.builder()
+ *                             .defaultSelector(&#34;service=default&#34;)
+ *                             .name(&#34;service&#34;)
+ *                             .build())
+ *                         .build())
+ *                     .selector(DerivedMetricQuerySelectorArgs.builder()
+ *                         .labels(Map.of(&#34;label1&#34;, &#34;value1&#34;))
+ *                         .build())
+ *                     .build(),
+ *                 DerivedMetricQueryArgs.builder()
+ *                     .query(DerivedMetricQueryQueryArgs.builder()
+ *                         .expr(&#34;sum by (service) (rate(http_requests_total[5m]))&#34;)
+ *                         .build())
+ *                     .build())
+ *             .slug(&#34;request-rate&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ */
 @ResourceType(type="chronosphere:index/derivedMetric:DerivedMetric")
 public class DerivedMetric extends com.pulumi.resources.CustomResource {
+    /**
+     * Free-form description of the derived metric.
+     * 
+     */
     @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
+    /**
+     * @return Free-form description of the derived metric.
+     * 
+     */
     public Output<Optional<String>> description() {
         return Codegen.optional(this.description);
     }
+    /**
+     * Name of the derived metric as referenced in queries. Must be unique across the system.
+     * 
+     */
     @Export(name="metricName", refs={String.class}, tree="[0]")
     private Output<String> metricName;
 
+    /**
+     * @return Name of the derived metric as referenced in queries. Must be unique across the system.
+     * 
+     */
     public Output<String> metricName() {
         return this.metricName;
     }
+    /**
+     * Variable name as referenced in `expr` (e.g. `service` for `$service`).
+     * 
+     */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
+    /**
+     * @return Variable name as referenced in `expr` (e.g. `service` for `$service`).
+     * 
+     */
     public Output<String> name() {
         return this.name;
     }
+    /**
+     * Ordered list of selector/query pairs. When the derived metric is used, the first entry whose `selector` matches the usage&#39;s labels supplies the PromQL `query`.
+     * 
+     */
     @Export(name="queries", refs={List.class,DerivedMetricQuery.class}, tree="[0,1]")
     private Output<List<DerivedMetricQuery>> queries;
 
+    /**
+     * @return Ordered list of selector/query pairs. When the derived metric is used, the first entry whose `selector` matches the usage&#39;s labels supplies the PromQL `query`.
+     * 
+     */
     public Output<List<DerivedMetricQuery>> queries() {
         return this.queries;
     }
+    /**
+     * Stable identifier for the derived metric. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     @Export(name="slug", refs={String.class}, tree="[0]")
     private Output<String> slug;
 
+    /**
+     * @return Stable identifier for the derived metric. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     public Output<String> slug() {
         return this.slug;
     }

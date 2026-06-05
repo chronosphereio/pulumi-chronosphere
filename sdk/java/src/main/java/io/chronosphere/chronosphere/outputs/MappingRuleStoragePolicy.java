@@ -9,13 +9,29 @@ import java.util.Objects;
 
 @CustomType
 public final class MappingRuleStoragePolicy {
+    /**
+     * @return Resolution at which mapped data points are stored.
+     * 
+     */
     private String resolution;
+    /**
+     * @return Retention duration for mapped data points.
+     * 
+     */
     private String retention;
 
     private MappingRuleStoragePolicy() {}
+    /**
+     * @return Resolution at which mapped data points are stored.
+     * 
+     */
     public String resolution() {
         return this.resolution;
     }
+    /**
+     * @return Retention duration for mapped data points.
+     * 
+     */
     public String retention() {
         return this.retention;
     }

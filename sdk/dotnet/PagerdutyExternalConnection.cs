@@ -10,21 +10,59 @@ using Pulumi;
 
 namespace Chronosphere.Pulumi
 {
+    /// <summary>
+    /// Workspace-scoped PagerDuty credentials that downstream notifiers and LogScale actions can reference. Holds either a PagerDuty Events integration key (for alert delivery) or a REST API token (for incident note polling); modern equivalent of the per-notifier credentials.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Pulumi = Chronosphere.Pulumi;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var pagerduty = new Pulumi.PagerdutyExternalConnection("pagerduty", new()
+    ///     {
+    ///         Name = "PagerDuty",
+    ///         PagerdutyApiKey = "XXXXX",
+    ///         PagerdutyEventsVersion = "PAGERDUTY_EVENTS_VERSION_V2",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// </summary>
     [PulumiResourceType("chronosphere:index/pagerdutyExternalConnection:PagerdutyExternalConnection")]
     public partial class PagerdutyExternalConnection : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Display name of the external connection.
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// PagerDuty Events API integration key used to authenticate alert delivery. Called the routing key in Events v2 and the service key in Events v1. Treat as a secret. Mutually exclusive with `pagerduty_rest_api_key`.
+        /// </summary>
         [Output("pagerdutyApiKey")]
         public Output<string?> PagerdutyApiKey { get; private set; } = null!;
 
+        /// <summary>
+        /// PagerDuty Events API version used to deliver alerts: `PAGERDUTY_EVENTS_VERSION_V1` (legacy) or `PAGERDUTY_EVENTS_VERSION_V2` (default, recommended). Mutually exclusive with `pagerduty_rest_api_key`.
+        /// </summary>
         [Output("pagerdutyEventsVersion")]
         public Output<string?> PagerdutyEventsVersion { get; private set; } = null!;
 
+        /// <summary>
+        /// PagerDuty REST API token used to authenticate incident note polling. Treat as a secret. Mutually exclusive with `pagerduty_api_key` and `pagerduty_events_version`.
+        /// </summary>
         [Output("pagerdutyRestApiKey")]
         public Output<string?> PagerdutyRestApiKey { get; private set; } = null!;
 
+        /// <summary>
+        /// Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Output("slug")]
         public Output<string> Slug { get; private set; } = null!;
 
@@ -80,11 +118,18 @@ namespace Chronosphere.Pulumi
 
     public sealed class PagerdutyExternalConnectionArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Display name of the external connection.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
         [Input("pagerdutyApiKey")]
         private Input<string>? _pagerdutyApiKey;
+
+        /// <summary>
+        /// PagerDuty Events API integration key used to authenticate alert delivery. Called the routing key in Events v2 and the service key in Events v1. Treat as a secret. Mutually exclusive with `pagerduty_rest_api_key`.
+        /// </summary>
         public Input<string>? PagerdutyApiKey
         {
             get => _pagerdutyApiKey;
@@ -95,11 +140,18 @@ namespace Chronosphere.Pulumi
             }
         }
 
+        /// <summary>
+        /// PagerDuty Events API version used to deliver alerts: `PAGERDUTY_EVENTS_VERSION_V1` (legacy) or `PAGERDUTY_EVENTS_VERSION_V2` (default, recommended). Mutually exclusive with `pagerduty_rest_api_key`.
+        /// </summary>
         [Input("pagerdutyEventsVersion")]
         public Input<string>? PagerdutyEventsVersion { get; set; }
 
         [Input("pagerdutyRestApiKey")]
         private Input<string>? _pagerdutyRestApiKey;
+
+        /// <summary>
+        /// PagerDuty REST API token used to authenticate incident note polling. Treat as a secret. Mutually exclusive with `pagerduty_api_key` and `pagerduty_events_version`.
+        /// </summary>
         public Input<string>? PagerdutyRestApiKey
         {
             get => _pagerdutyRestApiKey;
@@ -110,6 +162,9 @@ namespace Chronosphere.Pulumi
             }
         }
 
+        /// <summary>
+        /// Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 
@@ -121,11 +176,18 @@ namespace Chronosphere.Pulumi
 
     public sealed class PagerdutyExternalConnectionState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Display name of the external connection.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         [Input("pagerdutyApiKey")]
         private Input<string>? _pagerdutyApiKey;
+
+        /// <summary>
+        /// PagerDuty Events API integration key used to authenticate alert delivery. Called the routing key in Events v2 and the service key in Events v1. Treat as a secret. Mutually exclusive with `pagerduty_rest_api_key`.
+        /// </summary>
         public Input<string>? PagerdutyApiKey
         {
             get => _pagerdutyApiKey;
@@ -136,11 +198,18 @@ namespace Chronosphere.Pulumi
             }
         }
 
+        /// <summary>
+        /// PagerDuty Events API version used to deliver alerts: `PAGERDUTY_EVENTS_VERSION_V1` (legacy) or `PAGERDUTY_EVENTS_VERSION_V2` (default, recommended). Mutually exclusive with `pagerduty_rest_api_key`.
+        /// </summary>
         [Input("pagerdutyEventsVersion")]
         public Input<string>? PagerdutyEventsVersion { get; set; }
 
         [Input("pagerdutyRestApiKey")]
         private Input<string>? _pagerdutyRestApiKey;
+
+        /// <summary>
+        /// PagerDuty REST API token used to authenticate incident note polling. Treat as a secret. Mutually exclusive with `pagerduty_api_key` and `pagerduty_events_version`.
+        /// </summary>
         public Input<string>? PagerdutyRestApiKey
         {
             get => _pagerdutyRestApiKey;
@@ -151,6 +220,9 @@ namespace Chronosphere.Pulumi
             }
         }
 
+        /// <summary>
+        /// Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 

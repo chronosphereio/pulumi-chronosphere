@@ -10,9 +10,17 @@ import java.util.Objects;
 
 @CustomType
 public final class DerivedLabelMetricLabelConstructedLabel {
+    /**
+     * @return Ordered list of value definitions. The first definition whose filters match produces the derived label value.
+     * 
+     */
     private List<DerivedLabelMetricLabelConstructedLabelValueDefinition> valueDefinitions;
 
     private DerivedLabelMetricLabelConstructedLabel() {}
+    /**
+     * @return Ordered list of value definitions. The first definition whose filters match produces the derived label value.
+     * 
+     */
     public List<DerivedLabelMetricLabelConstructedLabelValueDefinition> valueDefinitions() {
         return this.valueDefinitions;
     }

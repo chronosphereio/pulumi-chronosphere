@@ -17,23 +17,47 @@ public final class LogControlConfigRuleParseFieldArgs extends com.pulumi.resourc
 
     public static final LogControlConfigRuleParseFieldArgs Empty = new LogControlConfigRuleParseFieldArgs();
 
+    /**
+     * Path to a field within a log record.
+     * 
+     */
     @Import(name="destination")
     private @Nullable Output<LogControlConfigRuleParseFieldDestinationArgs> destination;
 
+    /**
+     * @return Path to a field within a log record.
+     * 
+     */
     public Optional<Output<LogControlConfigRuleParseFieldDestinationArgs>> destination() {
         return Optional.ofNullable(this.destination);
     }
 
+    /**
+     * Parser configuration. Exactly one of `regex_parser`, `key_value_parser`, or `grok_parser` must be set, matching `parser_type`.
+     * 
+     */
     @Import(name="parser", required=true)
     private Output<LogControlConfigRuleParseFieldParserArgs> parser;
 
+    /**
+     * @return Parser configuration. Exactly one of `regex_parser`, `key_value_parser`, or `grok_parser` must be set, matching `parser_type`.
+     * 
+     */
     public Output<LogControlConfigRuleParseFieldParserArgs> parser() {
         return this.parser;
     }
 
+    /**
+     * Path to a field within a log record.
+     * 
+     */
     @Import(name="source")
     private @Nullable Output<LogControlConfigRuleParseFieldSourceArgs> source;
 
+    /**
+     * @return Path to a field within a log record.
+     * 
+     */
     public Optional<Output<LogControlConfigRuleParseFieldSourceArgs>> source() {
         return Optional.ofNullable(this.source);
     }
@@ -64,29 +88,65 @@ public final class LogControlConfigRuleParseFieldArgs extends com.pulumi.resourc
             $ = new LogControlConfigRuleParseFieldArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param destination Path to a field within a log record.
+         * 
+         * @return builder
+         * 
+         */
         public Builder destination(@Nullable Output<LogControlConfigRuleParseFieldDestinationArgs> destination) {
             $.destination = destination;
             return this;
         }
 
+        /**
+         * @param destination Path to a field within a log record.
+         * 
+         * @return builder
+         * 
+         */
         public Builder destination(LogControlConfigRuleParseFieldDestinationArgs destination) {
             return destination(Output.of(destination));
         }
 
+        /**
+         * @param parser Parser configuration. Exactly one of `regex_parser`, `key_value_parser`, or `grok_parser` must be set, matching `parser_type`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder parser(Output<LogControlConfigRuleParseFieldParserArgs> parser) {
             $.parser = parser;
             return this;
         }
 
+        /**
+         * @param parser Parser configuration. Exactly one of `regex_parser`, `key_value_parser`, or `grok_parser` must be set, matching `parser_type`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder parser(LogControlConfigRuleParseFieldParserArgs parser) {
             return parser(Output.of(parser));
         }
 
+        /**
+         * @param source Path to a field within a log record.
+         * 
+         * @return builder
+         * 
+         */
         public Builder source(@Nullable Output<LogControlConfigRuleParseFieldSourceArgs> source) {
             $.source = source;
             return this;
         }
 
+        /**
+         * @param source Path to a field within a log record.
+         * 
+         * @return builder
+         * 
+         */
         public Builder source(LogControlConfigRuleParseFieldSourceArgs source) {
             return source(Output.of(source));
         }

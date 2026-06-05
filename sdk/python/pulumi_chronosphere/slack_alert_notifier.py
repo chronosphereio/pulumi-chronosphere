@@ -46,6 +46,34 @@ class SlackAlertNotifierArgs:
                  username: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a SlackAlertNotifier resource.
+        :param pulumi.Input[str] api_url: Slack incoming webhook URL that receives the notifications. Treat this as a secret.
+        :param pulumi.Input[str] channel: Slack channel to post notifications to (e.g. `#alerts`).
+        :param pulumi.Input[str] name: Identifier sent back to Slack when the button is clicked.
+        :param pulumi.Input[Sequence[pulumi.Input['SlackAlertNotifierActionArgs']]] actions: Interactive buttons appended to the Slack message. See https://api.slack.com/reference/messaging/attachments#action_fields.
+        :param pulumi.Input[str] basic_auth_password: Password for HTTP basic auth when calling the webhook.
+        :param pulumi.Input[str] basic_auth_username: Username for HTTP basic auth when calling the webhook. Mutually exclusive with `bearer_token`.
+        :param pulumi.Input[str] bearer_token: Bearer token sent in the `Authorization` header when calling the webhook. Mutually exclusive with basic auth.
+        :param pulumi.Input[str] callback_id: Slack callback ID used to identify the source of interactive actions.
+        :param pulumi.Input[str] color: Color of the attachment border. Hex code or one of `good`, `warning`, `danger`. Supports Go templating.
+        :param pulumi.Input[str] fallback: Plain-text fallback shown in notifications and clients that don't render attachments. Supports Go templating.
+        :param pulumi.Input[Sequence[pulumi.Input['SlackAlertNotifierFieldArgs']]] fields: Structured field/value pairs rendered as a table in the attachment.
+        :param pulumi.Input[str] footer: Footer text shown at the bottom of the attachment. Supports Go templating.
+        :param pulumi.Input[str] icon_emoji: Slack emoji to use as the bot avatar (e.g. `:fire:`). Mutually exclusive with `icon_url` at Slack.
+        :param pulumi.Input[str] icon_url: URL of an image to use as the bot avatar.
+        :param pulumi.Input[str] image_url: URL of an image attached to the message.
+        :param pulumi.Input[bool] link_names: If true, find and link channel names and usernames in the message text.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] mrkdwn_ins: Attachment fields in which Slack parses `mrkdwn` formatting. Common values: `pretext`, `text`, `fields`.
+        :param pulumi.Input[str] pretext: Text shown above the attachment. Supports Go templating.
+        :param pulumi.Input[str] proxy_url: Deprecated and ignored. Custom proxy URLs are not supported.
+        :param pulumi.Input[bool] send_resolved: Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+        :param pulumi.Input[bool] short_fields: If true, render all `fields` with `short: true` regardless of per-field setting.
+        :param pulumi.Input[str] slug: Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[str] text: Label shown on the button.
+        :param pulumi.Input[str] thumb_url: URL of a small thumbnail image shown to the right of the attachment.
+        :param pulumi.Input[str] title: Bold heading shown above the value.
+        :param pulumi.Input[str] title_link: URL the title links to when clicked.
+        :param pulumi.Input[bool] tls_insecure_skip_verify: If true, skip TLS certificate verification when calling the webhook. Disable only in trusted environments.
+        :param pulumi.Input[str] username: Display name of the bot posting the message.
         """
         pulumi.set(__self__, "api_url", api_url)
         pulumi.set(__self__, "channel", channel)
@@ -107,6 +135,9 @@ class SlackAlertNotifierArgs:
     @property
     @pulumi.getter(name="apiUrl")
     def api_url(self) -> pulumi.Input[str]:
+        """
+        Slack incoming webhook URL that receives the notifications. Treat this as a secret.
+        """
         return pulumi.get(self, "api_url")
 
     @api_url.setter
@@ -116,6 +147,9 @@ class SlackAlertNotifierArgs:
     @property
     @pulumi.getter
     def channel(self) -> pulumi.Input[str]:
+        """
+        Slack channel to post notifications to (e.g. `#alerts`).
+        """
         return pulumi.get(self, "channel")
 
     @channel.setter
@@ -125,6 +159,9 @@ class SlackAlertNotifierArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        Identifier sent back to Slack when the button is clicked.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -134,6 +171,9 @@ class SlackAlertNotifierArgs:
     @property
     @pulumi.getter
     def actions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SlackAlertNotifierActionArgs']]]]:
+        """
+        Interactive buttons appended to the Slack message. See https://api.slack.com/reference/messaging/attachments#action_fields.
+        """
         return pulumi.get(self, "actions")
 
     @actions.setter
@@ -143,6 +183,9 @@ class SlackAlertNotifierArgs:
     @property
     @pulumi.getter(name="basicAuthPassword")
     def basic_auth_password(self) -> Optional[pulumi.Input[str]]:
+        """
+        Password for HTTP basic auth when calling the webhook.
+        """
         return pulumi.get(self, "basic_auth_password")
 
     @basic_auth_password.setter
@@ -152,6 +195,9 @@ class SlackAlertNotifierArgs:
     @property
     @pulumi.getter(name="basicAuthUsername")
     def basic_auth_username(self) -> Optional[pulumi.Input[str]]:
+        """
+        Username for HTTP basic auth when calling the webhook. Mutually exclusive with `bearer_token`.
+        """
         return pulumi.get(self, "basic_auth_username")
 
     @basic_auth_username.setter
@@ -161,6 +207,9 @@ class SlackAlertNotifierArgs:
     @property
     @pulumi.getter(name="bearerToken")
     def bearer_token(self) -> Optional[pulumi.Input[str]]:
+        """
+        Bearer token sent in the `Authorization` header when calling the webhook. Mutually exclusive with basic auth.
+        """
         return pulumi.get(self, "bearer_token")
 
     @bearer_token.setter
@@ -170,6 +219,9 @@ class SlackAlertNotifierArgs:
     @property
     @pulumi.getter(name="callbackId")
     def callback_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Slack callback ID used to identify the source of interactive actions.
+        """
         return pulumi.get(self, "callback_id")
 
     @callback_id.setter
@@ -179,6 +231,9 @@ class SlackAlertNotifierArgs:
     @property
     @pulumi.getter
     def color(self) -> Optional[pulumi.Input[str]]:
+        """
+        Color of the attachment border. Hex code or one of `good`, `warning`, `danger`. Supports Go templating.
+        """
         return pulumi.get(self, "color")
 
     @color.setter
@@ -188,6 +243,9 @@ class SlackAlertNotifierArgs:
     @property
     @pulumi.getter
     def fallback(self) -> Optional[pulumi.Input[str]]:
+        """
+        Plain-text fallback shown in notifications and clients that don't render attachments. Supports Go templating.
+        """
         return pulumi.get(self, "fallback")
 
     @fallback.setter
@@ -197,6 +255,9 @@ class SlackAlertNotifierArgs:
     @property
     @pulumi.getter
     def fields(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SlackAlertNotifierFieldArgs']]]]:
+        """
+        Structured field/value pairs rendered as a table in the attachment.
+        """
         return pulumi.get(self, "fields")
 
     @fields.setter
@@ -206,6 +267,9 @@ class SlackAlertNotifierArgs:
     @property
     @pulumi.getter
     def footer(self) -> Optional[pulumi.Input[str]]:
+        """
+        Footer text shown at the bottom of the attachment. Supports Go templating.
+        """
         return pulumi.get(self, "footer")
 
     @footer.setter
@@ -215,6 +279,9 @@ class SlackAlertNotifierArgs:
     @property
     @pulumi.getter(name="iconEmoji")
     def icon_emoji(self) -> Optional[pulumi.Input[str]]:
+        """
+        Slack emoji to use as the bot avatar (e.g. `:fire:`). Mutually exclusive with `icon_url` at Slack.
+        """
         return pulumi.get(self, "icon_emoji")
 
     @icon_emoji.setter
@@ -224,6 +291,9 @@ class SlackAlertNotifierArgs:
     @property
     @pulumi.getter(name="iconUrl")
     def icon_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        URL of an image to use as the bot avatar.
+        """
         return pulumi.get(self, "icon_url")
 
     @icon_url.setter
@@ -233,6 +303,9 @@ class SlackAlertNotifierArgs:
     @property
     @pulumi.getter(name="imageUrl")
     def image_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        URL of an image attached to the message.
+        """
         return pulumi.get(self, "image_url")
 
     @image_url.setter
@@ -242,6 +315,9 @@ class SlackAlertNotifierArgs:
     @property
     @pulumi.getter(name="linkNames")
     def link_names(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If true, find and link channel names and usernames in the message text.
+        """
         return pulumi.get(self, "link_names")
 
     @link_names.setter
@@ -251,6 +327,9 @@ class SlackAlertNotifierArgs:
     @property
     @pulumi.getter(name="mrkdwnIns")
     def mrkdwn_ins(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Attachment fields in which Slack parses `mrkdwn` formatting. Common values: `pretext`, `text`, `fields`.
+        """
         return pulumi.get(self, "mrkdwn_ins")
 
     @mrkdwn_ins.setter
@@ -260,6 +339,9 @@ class SlackAlertNotifierArgs:
     @property
     @pulumi.getter
     def pretext(self) -> Optional[pulumi.Input[str]]:
+        """
+        Text shown above the attachment. Supports Go templating.
+        """
         return pulumi.get(self, "pretext")
 
     @pretext.setter
@@ -269,6 +351,9 @@ class SlackAlertNotifierArgs:
     @property
     @pulumi.getter(name="proxyUrl")
     def proxy_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        Deprecated and ignored. Custom proxy URLs are not supported.
+        """
         warnings.warn("""custom proxy URLs are not supported""", DeprecationWarning)
         pulumi.log.warn("""proxy_url is deprecated: custom proxy URLs are not supported""")
 
@@ -281,6 +366,9 @@ class SlackAlertNotifierArgs:
     @property
     @pulumi.getter(name="sendResolved")
     def send_resolved(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+        """
         return pulumi.get(self, "send_resolved")
 
     @send_resolved.setter
@@ -290,6 +378,9 @@ class SlackAlertNotifierArgs:
     @property
     @pulumi.getter(name="shortFields")
     def short_fields(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If true, render all `fields` with `short: true` regardless of per-field setting.
+        """
         return pulumi.get(self, "short_fields")
 
     @short_fields.setter
@@ -299,6 +390,9 @@ class SlackAlertNotifierArgs:
     @property
     @pulumi.getter
     def slug(self) -> Optional[pulumi.Input[str]]:
+        """
+        Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @slug.setter
@@ -308,6 +402,9 @@ class SlackAlertNotifierArgs:
     @property
     @pulumi.getter
     def text(self) -> Optional[pulumi.Input[str]]:
+        """
+        Label shown on the button.
+        """
         return pulumi.get(self, "text")
 
     @text.setter
@@ -317,6 +414,9 @@ class SlackAlertNotifierArgs:
     @property
     @pulumi.getter(name="thumbUrl")
     def thumb_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        URL of a small thumbnail image shown to the right of the attachment.
+        """
         return pulumi.get(self, "thumb_url")
 
     @thumb_url.setter
@@ -326,6 +426,9 @@ class SlackAlertNotifierArgs:
     @property
     @pulumi.getter
     def title(self) -> Optional[pulumi.Input[str]]:
+        """
+        Bold heading shown above the value.
+        """
         return pulumi.get(self, "title")
 
     @title.setter
@@ -335,6 +438,9 @@ class SlackAlertNotifierArgs:
     @property
     @pulumi.getter(name="titleLink")
     def title_link(self) -> Optional[pulumi.Input[str]]:
+        """
+        URL the title links to when clicked.
+        """
         return pulumi.get(self, "title_link")
 
     @title_link.setter
@@ -344,6 +450,9 @@ class SlackAlertNotifierArgs:
     @property
     @pulumi.getter(name="tlsInsecureSkipVerify")
     def tls_insecure_skip_verify(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If true, skip TLS certificate verification when calling the webhook. Disable only in trusted environments.
+        """
         return pulumi.get(self, "tls_insecure_skip_verify")
 
     @tls_insecure_skip_verify.setter
@@ -353,6 +462,9 @@ class SlackAlertNotifierArgs:
     @property
     @pulumi.getter
     def username(self) -> Optional[pulumi.Input[str]]:
+        """
+        Display name of the bot posting the message.
+        """
         return pulumi.get(self, "username")
 
     @username.setter
@@ -393,6 +505,34 @@ class _SlackAlertNotifierState:
                  username: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering SlackAlertNotifier resources.
+        :param pulumi.Input[Sequence[pulumi.Input['SlackAlertNotifierActionArgs']]] actions: Interactive buttons appended to the Slack message. See https://api.slack.com/reference/messaging/attachments#action_fields.
+        :param pulumi.Input[str] api_url: Slack incoming webhook URL that receives the notifications. Treat this as a secret.
+        :param pulumi.Input[str] basic_auth_password: Password for HTTP basic auth when calling the webhook.
+        :param pulumi.Input[str] basic_auth_username: Username for HTTP basic auth when calling the webhook. Mutually exclusive with `bearer_token`.
+        :param pulumi.Input[str] bearer_token: Bearer token sent in the `Authorization` header when calling the webhook. Mutually exclusive with basic auth.
+        :param pulumi.Input[str] callback_id: Slack callback ID used to identify the source of interactive actions.
+        :param pulumi.Input[str] channel: Slack channel to post notifications to (e.g. `#alerts`).
+        :param pulumi.Input[str] color: Color of the attachment border. Hex code or one of `good`, `warning`, `danger`. Supports Go templating.
+        :param pulumi.Input[str] fallback: Plain-text fallback shown in notifications and clients that don't render attachments. Supports Go templating.
+        :param pulumi.Input[Sequence[pulumi.Input['SlackAlertNotifierFieldArgs']]] fields: Structured field/value pairs rendered as a table in the attachment.
+        :param pulumi.Input[str] footer: Footer text shown at the bottom of the attachment. Supports Go templating.
+        :param pulumi.Input[str] icon_emoji: Slack emoji to use as the bot avatar (e.g. `:fire:`). Mutually exclusive with `icon_url` at Slack.
+        :param pulumi.Input[str] icon_url: URL of an image to use as the bot avatar.
+        :param pulumi.Input[str] image_url: URL of an image attached to the message.
+        :param pulumi.Input[bool] link_names: If true, find and link channel names and usernames in the message text.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] mrkdwn_ins: Attachment fields in which Slack parses `mrkdwn` formatting. Common values: `pretext`, `text`, `fields`.
+        :param pulumi.Input[str] name: Identifier sent back to Slack when the button is clicked.
+        :param pulumi.Input[str] pretext: Text shown above the attachment. Supports Go templating.
+        :param pulumi.Input[str] proxy_url: Deprecated and ignored. Custom proxy URLs are not supported.
+        :param pulumi.Input[bool] send_resolved: Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+        :param pulumi.Input[bool] short_fields: If true, render all `fields` with `short: true` regardless of per-field setting.
+        :param pulumi.Input[str] slug: Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[str] text: Label shown on the button.
+        :param pulumi.Input[str] thumb_url: URL of a small thumbnail image shown to the right of the attachment.
+        :param pulumi.Input[str] title: Bold heading shown above the value.
+        :param pulumi.Input[str] title_link: URL the title links to when clicked.
+        :param pulumi.Input[bool] tls_insecure_skip_verify: If true, skip TLS certificate verification when calling the webhook. Disable only in trusted environments.
+        :param pulumi.Input[str] username: Display name of the bot posting the message.
         """
         if actions is not None:
             pulumi.set(__self__, "actions", actions)
@@ -457,6 +597,9 @@ class _SlackAlertNotifierState:
     @property
     @pulumi.getter
     def actions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SlackAlertNotifierActionArgs']]]]:
+        """
+        Interactive buttons appended to the Slack message. See https://api.slack.com/reference/messaging/attachments#action_fields.
+        """
         return pulumi.get(self, "actions")
 
     @actions.setter
@@ -466,6 +609,9 @@ class _SlackAlertNotifierState:
     @property
     @pulumi.getter(name="apiUrl")
     def api_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        Slack incoming webhook URL that receives the notifications. Treat this as a secret.
+        """
         return pulumi.get(self, "api_url")
 
     @api_url.setter
@@ -475,6 +621,9 @@ class _SlackAlertNotifierState:
     @property
     @pulumi.getter(name="basicAuthPassword")
     def basic_auth_password(self) -> Optional[pulumi.Input[str]]:
+        """
+        Password for HTTP basic auth when calling the webhook.
+        """
         return pulumi.get(self, "basic_auth_password")
 
     @basic_auth_password.setter
@@ -484,6 +633,9 @@ class _SlackAlertNotifierState:
     @property
     @pulumi.getter(name="basicAuthUsername")
     def basic_auth_username(self) -> Optional[pulumi.Input[str]]:
+        """
+        Username for HTTP basic auth when calling the webhook. Mutually exclusive with `bearer_token`.
+        """
         return pulumi.get(self, "basic_auth_username")
 
     @basic_auth_username.setter
@@ -493,6 +645,9 @@ class _SlackAlertNotifierState:
     @property
     @pulumi.getter(name="bearerToken")
     def bearer_token(self) -> Optional[pulumi.Input[str]]:
+        """
+        Bearer token sent in the `Authorization` header when calling the webhook. Mutually exclusive with basic auth.
+        """
         return pulumi.get(self, "bearer_token")
 
     @bearer_token.setter
@@ -502,6 +657,9 @@ class _SlackAlertNotifierState:
     @property
     @pulumi.getter(name="callbackId")
     def callback_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Slack callback ID used to identify the source of interactive actions.
+        """
         return pulumi.get(self, "callback_id")
 
     @callback_id.setter
@@ -511,6 +669,9 @@ class _SlackAlertNotifierState:
     @property
     @pulumi.getter
     def channel(self) -> Optional[pulumi.Input[str]]:
+        """
+        Slack channel to post notifications to (e.g. `#alerts`).
+        """
         return pulumi.get(self, "channel")
 
     @channel.setter
@@ -520,6 +681,9 @@ class _SlackAlertNotifierState:
     @property
     @pulumi.getter
     def color(self) -> Optional[pulumi.Input[str]]:
+        """
+        Color of the attachment border. Hex code or one of `good`, `warning`, `danger`. Supports Go templating.
+        """
         return pulumi.get(self, "color")
 
     @color.setter
@@ -529,6 +693,9 @@ class _SlackAlertNotifierState:
     @property
     @pulumi.getter
     def fallback(self) -> Optional[pulumi.Input[str]]:
+        """
+        Plain-text fallback shown in notifications and clients that don't render attachments. Supports Go templating.
+        """
         return pulumi.get(self, "fallback")
 
     @fallback.setter
@@ -538,6 +705,9 @@ class _SlackAlertNotifierState:
     @property
     @pulumi.getter
     def fields(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SlackAlertNotifierFieldArgs']]]]:
+        """
+        Structured field/value pairs rendered as a table in the attachment.
+        """
         return pulumi.get(self, "fields")
 
     @fields.setter
@@ -547,6 +717,9 @@ class _SlackAlertNotifierState:
     @property
     @pulumi.getter
     def footer(self) -> Optional[pulumi.Input[str]]:
+        """
+        Footer text shown at the bottom of the attachment. Supports Go templating.
+        """
         return pulumi.get(self, "footer")
 
     @footer.setter
@@ -556,6 +729,9 @@ class _SlackAlertNotifierState:
     @property
     @pulumi.getter(name="iconEmoji")
     def icon_emoji(self) -> Optional[pulumi.Input[str]]:
+        """
+        Slack emoji to use as the bot avatar (e.g. `:fire:`). Mutually exclusive with `icon_url` at Slack.
+        """
         return pulumi.get(self, "icon_emoji")
 
     @icon_emoji.setter
@@ -565,6 +741,9 @@ class _SlackAlertNotifierState:
     @property
     @pulumi.getter(name="iconUrl")
     def icon_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        URL of an image to use as the bot avatar.
+        """
         return pulumi.get(self, "icon_url")
 
     @icon_url.setter
@@ -574,6 +753,9 @@ class _SlackAlertNotifierState:
     @property
     @pulumi.getter(name="imageUrl")
     def image_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        URL of an image attached to the message.
+        """
         return pulumi.get(self, "image_url")
 
     @image_url.setter
@@ -583,6 +765,9 @@ class _SlackAlertNotifierState:
     @property
     @pulumi.getter(name="linkNames")
     def link_names(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If true, find and link channel names and usernames in the message text.
+        """
         return pulumi.get(self, "link_names")
 
     @link_names.setter
@@ -592,6 +777,9 @@ class _SlackAlertNotifierState:
     @property
     @pulumi.getter(name="mrkdwnIns")
     def mrkdwn_ins(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Attachment fields in which Slack parses `mrkdwn` formatting. Common values: `pretext`, `text`, `fields`.
+        """
         return pulumi.get(self, "mrkdwn_ins")
 
     @mrkdwn_ins.setter
@@ -601,6 +789,9 @@ class _SlackAlertNotifierState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Identifier sent back to Slack when the button is clicked.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -610,6 +801,9 @@ class _SlackAlertNotifierState:
     @property
     @pulumi.getter
     def pretext(self) -> Optional[pulumi.Input[str]]:
+        """
+        Text shown above the attachment. Supports Go templating.
+        """
         return pulumi.get(self, "pretext")
 
     @pretext.setter
@@ -619,6 +813,9 @@ class _SlackAlertNotifierState:
     @property
     @pulumi.getter(name="proxyUrl")
     def proxy_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        Deprecated and ignored. Custom proxy URLs are not supported.
+        """
         warnings.warn("""custom proxy URLs are not supported""", DeprecationWarning)
         pulumi.log.warn("""proxy_url is deprecated: custom proxy URLs are not supported""")
 
@@ -631,6 +828,9 @@ class _SlackAlertNotifierState:
     @property
     @pulumi.getter(name="sendResolved")
     def send_resolved(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+        """
         return pulumi.get(self, "send_resolved")
 
     @send_resolved.setter
@@ -640,6 +840,9 @@ class _SlackAlertNotifierState:
     @property
     @pulumi.getter(name="shortFields")
     def short_fields(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If true, render all `fields` with `short: true` regardless of per-field setting.
+        """
         return pulumi.get(self, "short_fields")
 
     @short_fields.setter
@@ -649,6 +852,9 @@ class _SlackAlertNotifierState:
     @property
     @pulumi.getter
     def slug(self) -> Optional[pulumi.Input[str]]:
+        """
+        Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @slug.setter
@@ -658,6 +864,9 @@ class _SlackAlertNotifierState:
     @property
     @pulumi.getter
     def text(self) -> Optional[pulumi.Input[str]]:
+        """
+        Label shown on the button.
+        """
         return pulumi.get(self, "text")
 
     @text.setter
@@ -667,6 +876,9 @@ class _SlackAlertNotifierState:
     @property
     @pulumi.getter(name="thumbUrl")
     def thumb_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        URL of a small thumbnail image shown to the right of the attachment.
+        """
         return pulumi.get(self, "thumb_url")
 
     @thumb_url.setter
@@ -676,6 +888,9 @@ class _SlackAlertNotifierState:
     @property
     @pulumi.getter
     def title(self) -> Optional[pulumi.Input[str]]:
+        """
+        Bold heading shown above the value.
+        """
         return pulumi.get(self, "title")
 
     @title.setter
@@ -685,6 +900,9 @@ class _SlackAlertNotifierState:
     @property
     @pulumi.getter(name="titleLink")
     def title_link(self) -> Optional[pulumi.Input[str]]:
+        """
+        URL the title links to when clicked.
+        """
         return pulumi.get(self, "title_link")
 
     @title_link.setter
@@ -694,6 +912,9 @@ class _SlackAlertNotifierState:
     @property
     @pulumi.getter(name="tlsInsecureSkipVerify")
     def tls_insecure_skip_verify(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If true, skip TLS certificate verification when calling the webhook. Disable only in trusted environments.
+        """
         return pulumi.get(self, "tls_insecure_skip_verify")
 
     @tls_insecure_skip_verify.setter
@@ -703,6 +924,9 @@ class _SlackAlertNotifierState:
     @property
     @pulumi.getter
     def username(self) -> Optional[pulumi.Input[str]]:
+        """
+        Display name of the bot posting the message.
+        """
         return pulumi.get(self, "username")
 
     @username.setter
@@ -745,9 +969,50 @@ class SlackAlertNotifier(pulumi.CustomResource):
                  username: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a SlackAlertNotifier resource with the given unique name, props, and options.
+        Slack notifier that delivers monitor signals to a Slack channel via an incoming webhook. Referenced from notification policies.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_chronosphere as chronosphere
+
+        slack = chronosphere.SlackAlertNotifier("slack",
+            api_url="https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX",
+            channel="alerts",
+            name="Slack Notifier")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SlackAlertNotifierActionArgs']]]] actions: Interactive buttons appended to the Slack message. See https://api.slack.com/reference/messaging/attachments#action_fields.
+        :param pulumi.Input[str] api_url: Slack incoming webhook URL that receives the notifications. Treat this as a secret.
+        :param pulumi.Input[str] basic_auth_password: Password for HTTP basic auth when calling the webhook.
+        :param pulumi.Input[str] basic_auth_username: Username for HTTP basic auth when calling the webhook. Mutually exclusive with `bearer_token`.
+        :param pulumi.Input[str] bearer_token: Bearer token sent in the `Authorization` header when calling the webhook. Mutually exclusive with basic auth.
+        :param pulumi.Input[str] callback_id: Slack callback ID used to identify the source of interactive actions.
+        :param pulumi.Input[str] channel: Slack channel to post notifications to (e.g. `#alerts`).
+        :param pulumi.Input[str] color: Color of the attachment border. Hex code or one of `good`, `warning`, `danger`. Supports Go templating.
+        :param pulumi.Input[str] fallback: Plain-text fallback shown in notifications and clients that don't render attachments. Supports Go templating.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SlackAlertNotifierFieldArgs']]]] fields: Structured field/value pairs rendered as a table in the attachment.
+        :param pulumi.Input[str] footer: Footer text shown at the bottom of the attachment. Supports Go templating.
+        :param pulumi.Input[str] icon_emoji: Slack emoji to use as the bot avatar (e.g. `:fire:`). Mutually exclusive with `icon_url` at Slack.
+        :param pulumi.Input[str] icon_url: URL of an image to use as the bot avatar.
+        :param pulumi.Input[str] image_url: URL of an image attached to the message.
+        :param pulumi.Input[bool] link_names: If true, find and link channel names and usernames in the message text.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] mrkdwn_ins: Attachment fields in which Slack parses `mrkdwn` formatting. Common values: `pretext`, `text`, `fields`.
+        :param pulumi.Input[str] name: Identifier sent back to Slack when the button is clicked.
+        :param pulumi.Input[str] pretext: Text shown above the attachment. Supports Go templating.
+        :param pulumi.Input[str] proxy_url: Deprecated and ignored. Custom proxy URLs are not supported.
+        :param pulumi.Input[bool] send_resolved: Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+        :param pulumi.Input[bool] short_fields: If true, render all `fields` with `short: true` regardless of per-field setting.
+        :param pulumi.Input[str] slug: Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[str] text: Label shown on the button.
+        :param pulumi.Input[str] thumb_url: URL of a small thumbnail image shown to the right of the attachment.
+        :param pulumi.Input[str] title: Bold heading shown above the value.
+        :param pulumi.Input[str] title_link: URL the title links to when clicked.
+        :param pulumi.Input[bool] tls_insecure_skip_verify: If true, skip TLS certificate verification when calling the webhook. Disable only in trusted environments.
+        :param pulumi.Input[str] username: Display name of the bot posting the message.
         """
         ...
     @overload
@@ -756,7 +1021,20 @@ class SlackAlertNotifier(pulumi.CustomResource):
                  args: SlackAlertNotifierArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a SlackAlertNotifier resource with the given unique name, props, and options.
+        Slack notifier that delivers monitor signals to a Slack channel via an incoming webhook. Referenced from notification policies.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_chronosphere as chronosphere
+
+        slack = chronosphere.SlackAlertNotifier("slack",
+            api_url="https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX",
+            channel="alerts",
+            name="Slack Notifier")
+        ```
+
         :param str resource_name: The name of the resource.
         :param SlackAlertNotifierArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -890,6 +1168,34 @@ class SlackAlertNotifier(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SlackAlertNotifierActionArgs']]]] actions: Interactive buttons appended to the Slack message. See https://api.slack.com/reference/messaging/attachments#action_fields.
+        :param pulumi.Input[str] api_url: Slack incoming webhook URL that receives the notifications. Treat this as a secret.
+        :param pulumi.Input[str] basic_auth_password: Password for HTTP basic auth when calling the webhook.
+        :param pulumi.Input[str] basic_auth_username: Username for HTTP basic auth when calling the webhook. Mutually exclusive with `bearer_token`.
+        :param pulumi.Input[str] bearer_token: Bearer token sent in the `Authorization` header when calling the webhook. Mutually exclusive with basic auth.
+        :param pulumi.Input[str] callback_id: Slack callback ID used to identify the source of interactive actions.
+        :param pulumi.Input[str] channel: Slack channel to post notifications to (e.g. `#alerts`).
+        :param pulumi.Input[str] color: Color of the attachment border. Hex code or one of `good`, `warning`, `danger`. Supports Go templating.
+        :param pulumi.Input[str] fallback: Plain-text fallback shown in notifications and clients that don't render attachments. Supports Go templating.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SlackAlertNotifierFieldArgs']]]] fields: Structured field/value pairs rendered as a table in the attachment.
+        :param pulumi.Input[str] footer: Footer text shown at the bottom of the attachment. Supports Go templating.
+        :param pulumi.Input[str] icon_emoji: Slack emoji to use as the bot avatar (e.g. `:fire:`). Mutually exclusive with `icon_url` at Slack.
+        :param pulumi.Input[str] icon_url: URL of an image to use as the bot avatar.
+        :param pulumi.Input[str] image_url: URL of an image attached to the message.
+        :param pulumi.Input[bool] link_names: If true, find and link channel names and usernames in the message text.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] mrkdwn_ins: Attachment fields in which Slack parses `mrkdwn` formatting. Common values: `pretext`, `text`, `fields`.
+        :param pulumi.Input[str] name: Identifier sent back to Slack when the button is clicked.
+        :param pulumi.Input[str] pretext: Text shown above the attachment. Supports Go templating.
+        :param pulumi.Input[str] proxy_url: Deprecated and ignored. Custom proxy URLs are not supported.
+        :param pulumi.Input[bool] send_resolved: Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+        :param pulumi.Input[bool] short_fields: If true, render all `fields` with `short: true` regardless of per-field setting.
+        :param pulumi.Input[str] slug: Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[str] text: Label shown on the button.
+        :param pulumi.Input[str] thumb_url: URL of a small thumbnail image shown to the right of the attachment.
+        :param pulumi.Input[str] title: Bold heading shown above the value.
+        :param pulumi.Input[str] title_link: URL the title links to when clicked.
+        :param pulumi.Input[bool] tls_insecure_skip_verify: If true, skip TLS certificate verification when calling the webhook. Disable only in trusted environments.
+        :param pulumi.Input[str] username: Display name of the bot posting the message.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -928,96 +1234,153 @@ class SlackAlertNotifier(pulumi.CustomResource):
     @property
     @pulumi.getter
     def actions(self) -> pulumi.Output[Optional[Sequence['outputs.SlackAlertNotifierAction']]]:
+        """
+        Interactive buttons appended to the Slack message. See https://api.slack.com/reference/messaging/attachments#action_fields.
+        """
         return pulumi.get(self, "actions")
 
     @property
     @pulumi.getter(name="apiUrl")
     def api_url(self) -> pulumi.Output[str]:
+        """
+        Slack incoming webhook URL that receives the notifications. Treat this as a secret.
+        """
         return pulumi.get(self, "api_url")
 
     @property
     @pulumi.getter(name="basicAuthPassword")
     def basic_auth_password(self) -> pulumi.Output[Optional[str]]:
+        """
+        Password for HTTP basic auth when calling the webhook.
+        """
         return pulumi.get(self, "basic_auth_password")
 
     @property
     @pulumi.getter(name="basicAuthUsername")
     def basic_auth_username(self) -> pulumi.Output[Optional[str]]:
+        """
+        Username for HTTP basic auth when calling the webhook. Mutually exclusive with `bearer_token`.
+        """
         return pulumi.get(self, "basic_auth_username")
 
     @property
     @pulumi.getter(name="bearerToken")
     def bearer_token(self) -> pulumi.Output[Optional[str]]:
+        """
+        Bearer token sent in the `Authorization` header when calling the webhook. Mutually exclusive with basic auth.
+        """
         return pulumi.get(self, "bearer_token")
 
     @property
     @pulumi.getter(name="callbackId")
     def callback_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        Slack callback ID used to identify the source of interactive actions.
+        """
         return pulumi.get(self, "callback_id")
 
     @property
     @pulumi.getter
     def channel(self) -> pulumi.Output[str]:
+        """
+        Slack channel to post notifications to (e.g. `#alerts`).
+        """
         return pulumi.get(self, "channel")
 
     @property
     @pulumi.getter
     def color(self) -> pulumi.Output[Optional[str]]:
+        """
+        Color of the attachment border. Hex code or one of `good`, `warning`, `danger`. Supports Go templating.
+        """
         return pulumi.get(self, "color")
 
     @property
     @pulumi.getter
     def fallback(self) -> pulumi.Output[Optional[str]]:
+        """
+        Plain-text fallback shown in notifications and clients that don't render attachments. Supports Go templating.
+        """
         return pulumi.get(self, "fallback")
 
     @property
     @pulumi.getter
     def fields(self) -> pulumi.Output[Optional[Sequence['outputs.SlackAlertNotifierField']]]:
+        """
+        Structured field/value pairs rendered as a table in the attachment.
+        """
         return pulumi.get(self, "fields")
 
     @property
     @pulumi.getter
     def footer(self) -> pulumi.Output[Optional[str]]:
+        """
+        Footer text shown at the bottom of the attachment. Supports Go templating.
+        """
         return pulumi.get(self, "footer")
 
     @property
     @pulumi.getter(name="iconEmoji")
     def icon_emoji(self) -> pulumi.Output[Optional[str]]:
+        """
+        Slack emoji to use as the bot avatar (e.g. `:fire:`). Mutually exclusive with `icon_url` at Slack.
+        """
         return pulumi.get(self, "icon_emoji")
 
     @property
     @pulumi.getter(name="iconUrl")
     def icon_url(self) -> pulumi.Output[Optional[str]]:
+        """
+        URL of an image to use as the bot avatar.
+        """
         return pulumi.get(self, "icon_url")
 
     @property
     @pulumi.getter(name="imageUrl")
     def image_url(self) -> pulumi.Output[Optional[str]]:
+        """
+        URL of an image attached to the message.
+        """
         return pulumi.get(self, "image_url")
 
     @property
     @pulumi.getter(name="linkNames")
     def link_names(self) -> pulumi.Output[Optional[bool]]:
+        """
+        If true, find and link channel names and usernames in the message text.
+        """
         return pulumi.get(self, "link_names")
 
     @property
     @pulumi.getter(name="mrkdwnIns")
     def mrkdwn_ins(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        Attachment fields in which Slack parses `mrkdwn` formatting. Common values: `pretext`, `text`, `fields`.
+        """
         return pulumi.get(self, "mrkdwn_ins")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        Identifier sent back to Slack when the button is clicked.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def pretext(self) -> pulumi.Output[Optional[str]]:
+        """
+        Text shown above the attachment. Supports Go templating.
+        """
         return pulumi.get(self, "pretext")
 
     @property
     @pulumi.getter(name="proxyUrl")
     def proxy_url(self) -> pulumi.Output[Optional[str]]:
+        """
+        Deprecated and ignored. Custom proxy URLs are not supported.
+        """
         warnings.warn("""custom proxy URLs are not supported""", DeprecationWarning)
         pulumi.log.warn("""proxy_url is deprecated: custom proxy URLs are not supported""")
 
@@ -1026,45 +1389,72 @@ class SlackAlertNotifier(pulumi.CustomResource):
     @property
     @pulumi.getter(name="sendResolved")
     def send_resolved(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+        """
         return pulumi.get(self, "send_resolved")
 
     @property
     @pulumi.getter(name="shortFields")
     def short_fields(self) -> pulumi.Output[Optional[bool]]:
+        """
+        If true, render all `fields` with `short: true` regardless of per-field setting.
+        """
         return pulumi.get(self, "short_fields")
 
     @property
     @pulumi.getter
     def slug(self) -> pulumi.Output[str]:
+        """
+        Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @property
     @pulumi.getter
     def text(self) -> pulumi.Output[Optional[str]]:
+        """
+        Label shown on the button.
+        """
         return pulumi.get(self, "text")
 
     @property
     @pulumi.getter(name="thumbUrl")
     def thumb_url(self) -> pulumi.Output[Optional[str]]:
+        """
+        URL of a small thumbnail image shown to the right of the attachment.
+        """
         return pulumi.get(self, "thumb_url")
 
     @property
     @pulumi.getter
     def title(self) -> pulumi.Output[Optional[str]]:
+        """
+        Bold heading shown above the value.
+        """
         return pulumi.get(self, "title")
 
     @property
     @pulumi.getter(name="titleLink")
     def title_link(self) -> pulumi.Output[Optional[str]]:
+        """
+        URL the title links to when clicked.
+        """
         return pulumi.get(self, "title_link")
 
     @property
     @pulumi.getter(name="tlsInsecureSkipVerify")
     def tls_insecure_skip_verify(self) -> pulumi.Output[Optional[bool]]:
+        """
+        If true, skip TLS certificate verification when calling the webhook. Disable only in trusted environments.
+        """
         return pulumi.get(self, "tls_insecure_skip_verify")
 
     @property
     @pulumi.getter
     def username(self) -> pulumi.Output[Optional[str]]:
+        """
+        Display name of the bot posting the message.
+        """
         return pulumi.get(self, "username")
 

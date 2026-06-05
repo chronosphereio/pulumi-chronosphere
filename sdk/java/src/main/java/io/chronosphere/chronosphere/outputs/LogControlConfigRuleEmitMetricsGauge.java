@@ -12,13 +12,29 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class LogControlConfigRuleEmitMetricsGauge {
+    /**
+     * @return How multiple values are aggregated into the emitted gauge (for example, `LAST`, `MIN`, `MAX`).
+     * 
+     */
     private @Nullable String aggregationType;
+    /**
+     * @return Path to a field within a log record.
+     * 
+     */
     private @Nullable LogControlConfigRuleEmitMetricsGaugeValue value;
 
     private LogControlConfigRuleEmitMetricsGauge() {}
+    /**
+     * @return How multiple values are aggregated into the emitted gauge (for example, `LAST`, `MIN`, `MAX`).
+     * 
+     */
     public Optional<String> aggregationType() {
         return Optional.ofNullable(this.aggregationType);
     }
+    /**
+     * @return Path to a field within a log record.
+     * 
+     */
     public Optional<LogControlConfigRuleEmitMetricsGaugeValue> value() {
         return Optional.ofNullable(this.value);
     }

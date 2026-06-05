@@ -13,17 +13,30 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationStrategiesGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Minimum number of traces per second sampled for any operation in the service, even when the probabilistic rate would yield fewer.
+        /// </summary>
         [Input("defaultLowerBoundTracesPerSecond")]
         public Input<double>? DefaultLowerBoundTracesPerSecond { get; set; }
 
+        /// <summary>
+        /// Service-wide sampling probability in the range `[0.0, 1.0]` applied when no per-operation override matches.
+        /// </summary>
         [Input("defaultSamplingRate", required: true)]
         public Input<double> DefaultSamplingRate { get; set; } = null!;
 
+        /// <summary>
+        /// Maximum number of traces per second sampled for any operation in the service, regardless of matching per-operation strategy.
+        /// </summary>
         [Input("defaultUpperBoundTracesPerSecond")]
         public Input<double>? DefaultUpperBoundTracesPerSecond { get; set; }
 
         [Input("perOperationStrategies")]
         private InputList<Inputs.TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationStrategiesPerOperationStrategyGetArgs>? _perOperationStrategies;
+
+        /// <summary>
+        /// Per-operation sampling configuration with a service-wide default and optional per-operation overrides.
+        /// </summary>
         public InputList<Inputs.TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationStrategiesPerOperationStrategyGetArgs> PerOperationStrategies
         {
             get => _perOperationStrategies ?? (_perOperationStrategies = new InputList<Inputs.TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationStrategiesPerOperationStrategyGetArgs>());

@@ -16,51 +16,107 @@ public final class BucketArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final BucketArgs Empty = new BucketArgs();
 
+    /**
+     * Free-form description of the bucket.
+     * 
+     */
     @Import(name="description")
     private @Nullable Output<String> description;
 
+    /**
+     * @return Free-form description of the bucket.
+     * 
+     */
     public Optional<Output<String>> description() {
         return Optional.ofNullable(this.description);
     }
 
+    /**
+     * Key/value labels attached to the bucket for organization and filtering.
+     * 
+     */
     @Import(name="labels")
     private @Nullable Output<Map<String,String>> labels;
 
+    /**
+     * @return Key/value labels attached to the bucket for organization and filtering.
+     * 
+     */
     public Optional<Output<Map<String,String>>> labels() {
         return Optional.ofNullable(this.labels);
     }
 
+    /**
+     * Display name of the bucket. Can be changed after creation.
+     * 
+     */
     @Import(name="name", required=true)
     private Output<String> name;
 
+    /**
+     * @return Display name of the bucket. Can be changed after creation.
+     * 
+     */
     public Output<String> name() {
         return this.name;
     }
 
+    /**
+     * Inline notification policy serialized as JSON. Conflicts with `notification_policy_id`. For reusability, reference a named policy instead.
+     * 
+     */
     @Import(name="notificationPolicyData")
     private @Nullable Output<String> notificationPolicyData;
 
+    /**
+     * @return Inline notification policy serialized as JSON. Conflicts with `notification_policy_id`. For reusability, reference a named policy instead.
+     * 
+     */
     public Optional<Output<String>> notificationPolicyData() {
         return Optional.ofNullable(this.notificationPolicyData);
     }
 
+    /**
+     * ID of the default notification policy applied to monitors in this bucket that do not explicitly reference one. Conflicts with `notification_policy_data`.
+     * 
+     */
     @Import(name="notificationPolicyId")
     private @Nullable Output<String> notificationPolicyId;
 
+    /**
+     * @return ID of the default notification policy applied to monitors in this bucket that do not explicitly reference one. Conflicts with `notification_policy_data`.
+     * 
+     */
     public Optional<Output<String>> notificationPolicyId() {
         return Optional.ofNullable(this.notificationPolicyId);
     }
 
+    /**
+     * Stable identifier for the bucket. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     @Import(name="slug")
     private @Nullable Output<String> slug;
 
+    /**
+     * @return Stable identifier for the bucket. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     public Optional<Output<String>> slug() {
         return Optional.ofNullable(this.slug);
     }
 
+    /**
+     * ID of the team that owns this bucket.
+     * 
+     */
     @Import(name="teamId")
     private @Nullable Output<String> teamId;
 
+    /**
+     * @return ID of the team that owns this bucket.
+     * 
+     */
     public Optional<Output<String>> teamId() {
         return Optional.ofNullable(this.teamId);
     }
@@ -95,65 +151,149 @@ public final class BucketArgs extends com.pulumi.resources.ResourceArgs {
             $ = new BucketArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param description Free-form description of the bucket.
+         * 
+         * @return builder
+         * 
+         */
         public Builder description(@Nullable Output<String> description) {
             $.description = description;
             return this;
         }
 
+        /**
+         * @param description Free-form description of the bucket.
+         * 
+         * @return builder
+         * 
+         */
         public Builder description(String description) {
             return description(Output.of(description));
         }
 
+        /**
+         * @param labels Key/value labels attached to the bucket for organization and filtering.
+         * 
+         * @return builder
+         * 
+         */
         public Builder labels(@Nullable Output<Map<String,String>> labels) {
             $.labels = labels;
             return this;
         }
 
+        /**
+         * @param labels Key/value labels attached to the bucket for organization and filtering.
+         * 
+         * @return builder
+         * 
+         */
         public Builder labels(Map<String,String> labels) {
             return labels(Output.of(labels));
         }
 
+        /**
+         * @param name Display name of the bucket. Can be changed after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(Output<String> name) {
             $.name = name;
             return this;
         }
 
+        /**
+         * @param name Display name of the bucket. Can be changed after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(String name) {
             return name(Output.of(name));
         }
 
+        /**
+         * @param notificationPolicyData Inline notification policy serialized as JSON. Conflicts with `notification_policy_id`. For reusability, reference a named policy instead.
+         * 
+         * @return builder
+         * 
+         */
         public Builder notificationPolicyData(@Nullable Output<String> notificationPolicyData) {
             $.notificationPolicyData = notificationPolicyData;
             return this;
         }
 
+        /**
+         * @param notificationPolicyData Inline notification policy serialized as JSON. Conflicts with `notification_policy_id`. For reusability, reference a named policy instead.
+         * 
+         * @return builder
+         * 
+         */
         public Builder notificationPolicyData(String notificationPolicyData) {
             return notificationPolicyData(Output.of(notificationPolicyData));
         }
 
+        /**
+         * @param notificationPolicyId ID of the default notification policy applied to monitors in this bucket that do not explicitly reference one. Conflicts with `notification_policy_data`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder notificationPolicyId(@Nullable Output<String> notificationPolicyId) {
             $.notificationPolicyId = notificationPolicyId;
             return this;
         }
 
+        /**
+         * @param notificationPolicyId ID of the default notification policy applied to monitors in this bucket that do not explicitly reference one. Conflicts with `notification_policy_data`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder notificationPolicyId(String notificationPolicyId) {
             return notificationPolicyId(Output.of(notificationPolicyId));
         }
 
+        /**
+         * @param slug Stable identifier for the bucket. Generated from `name` if omitted. Immutable after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slug(@Nullable Output<String> slug) {
             $.slug = slug;
             return this;
         }
 
+        /**
+         * @param slug Stable identifier for the bucket. Generated from `name` if omitted. Immutable after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slug(String slug) {
             return slug(Output.of(slug));
         }
 
+        /**
+         * @param teamId ID of the team that owns this bucket.
+         * 
+         * @return builder
+         * 
+         */
         public Builder teamId(@Nullable Output<String> teamId) {
             $.teamId = teamId;
             return this;
         }
 
+        /**
+         * @param teamId ID of the team that owns this bucket.
+         * 
+         * @return builder
+         * 
+         */
         public Builder teamId(String teamId) {
             return teamId(Output.of(teamId));
         }

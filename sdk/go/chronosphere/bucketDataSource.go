@@ -11,6 +11,37 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/chronosphereio/pulumi-chronosphere/sdk/go/chronosphere"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := chronosphere.BucketDataSource(ctx, &chronosphere.BucketDataSourceArgs{
+//				Slug: pulumi.StringRef("default"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = chronosphere.BucketDataSource(ctx, &chronosphere.BucketDataSourceArgs{
+//				Name: pulumi.StringRef("Default"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func BucketDataSource(ctx *pulumi.Context, args *BucketDataSourceArgs, opts ...pulumi.InvokeOption) (*BucketDataSourceResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv BucketDataSourceResult
@@ -23,19 +54,26 @@ func BucketDataSource(ctx *pulumi.Context, args *BucketDataSourceArgs, opts ...p
 
 // A collection of arguments for invoking BucketDataSource.
 type BucketDataSourceArgs struct {
+	// Read-only: key/value labels attached to the bucket.
 	Labels map[string]string `pulumi:"labels"`
-	Name   *string           `pulumi:"name"`
-	Slug   *string           `pulumi:"slug"`
+	// Name of the bucket to look up. Exactly one of `slug` or `name` must be set.
+	Name *string `pulumi:"name"`
+	// Slug of the bucket to look up. Exactly one of `slug` or `name` must be set.
+	Slug *string `pulumi:"slug"`
 }
 
 // A collection of values returned by BucketDataSource.
 type BucketDataSourceResult struct {
+	// Read-only: free-form description of the bucket.
 	Description string `pulumi:"description"`
 	// The provider-assigned unique ID for this managed resource.
-	Id     string            `pulumi:"id"`
+	Id string `pulumi:"id"`
+	// Read-only: key/value labels attached to the bucket.
 	Labels map[string]string `pulumi:"labels"`
-	Name   *string           `pulumi:"name"`
-	Slug   *string           `pulumi:"slug"`
+	// Name of the bucket to look up. Exactly one of `slug` or `name` must be set.
+	Name *string `pulumi:"name"`
+	// Slug of the bucket to look up. Exactly one of `slug` or `name` must be set.
+	Slug *string `pulumi:"slug"`
 }
 
 func BucketDataSourceOutput(ctx *pulumi.Context, args BucketDataSourceOutputArgs, opts ...pulumi.InvokeOption) BucketDataSourceResultOutput {
@@ -53,9 +91,12 @@ func BucketDataSourceOutput(ctx *pulumi.Context, args BucketDataSourceOutputArgs
 
 // A collection of arguments for invoking BucketDataSource.
 type BucketDataSourceOutputArgs struct {
+	// Read-only: key/value labels attached to the bucket.
 	Labels pulumi.StringMapInput `pulumi:"labels"`
-	Name   pulumi.StringPtrInput `pulumi:"name"`
-	Slug   pulumi.StringPtrInput `pulumi:"slug"`
+	// Name of the bucket to look up. Exactly one of `slug` or `name` must be set.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// Slug of the bucket to look up. Exactly one of `slug` or `name` must be set.
+	Slug pulumi.StringPtrInput `pulumi:"slug"`
 }
 
 func (BucketDataSourceOutputArgs) ElementType() reflect.Type {
@@ -77,6 +118,7 @@ func (o BucketDataSourceResultOutput) ToBucketDataSourceResultOutputWithContext(
 	return o
 }
 
+// Read-only: free-form description of the bucket.
 func (o BucketDataSourceResultOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v BucketDataSourceResult) string { return v.Description }).(pulumi.StringOutput)
 }
@@ -86,14 +128,17 @@ func (o BucketDataSourceResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v BucketDataSourceResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// Read-only: key/value labels attached to the bucket.
 func (o BucketDataSourceResultOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v BucketDataSourceResult) map[string]string { return v.Labels }).(pulumi.StringMapOutput)
 }
 
+// Name of the bucket to look up. Exactly one of `slug` or `name` must be set.
 func (o BucketDataSourceResultOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v BucketDataSourceResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
+// Slug of the bucket to look up. Exactly one of `slug` or `name` must be set.
 func (o BucketDataSourceResultOutput) Slug() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v BucketDataSourceResult) *string { return v.Slug }).(pulumi.StringPtrOutput)
 }

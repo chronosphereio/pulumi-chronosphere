@@ -13,9 +13,15 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class RollupRuleStoragePoliciesGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Resolution at which rolled-up data points are stored.
+        /// </summary>
         [Input("resolution", required: true)]
         public Input<string> Resolution { get; set; } = null!;
 
+        /// <summary>
+        /// Retention duration for rolled-up data points.
+        /// </summary>
         [Input("retention", required: true)]
         public Input<string> Retention { get; set; } = null!;
 

@@ -13,6 +13,9 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class GcpMetricsIntegrationServiceAccountArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Email address of the Google Cloud service account to impersonate for authentication.
+        /// </summary>
         [Input("clientEmail", required: true)]
         public Input<string> ClientEmail { get; set; } = null!;
 

@@ -12,19 +12,32 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Selects metrics by label filter and either drops them or applies an aggregation policy controlling their storage interval and aggregation function. Use `DropRule` for drop-only rules and `RollupRule` for label-reducing aggregations.
 type MappingRule struct {
 	pulumi.CustomResourceState
 
+	// Aggregation type applied to matching metrics. Cannot be set if `drop` is `true`.
 	Aggregations pulumi.StringPtrOutput `pulumi:"aggregations"`
-	BucketId     pulumi.StringPtrOutput `pulumi:"bucketId"`
-	Drop         pulumi.BoolPtrOutput   `pulumi:"drop"`
+	// ID of the bucket the mapping rule belongs to.
+	BucketId pulumi.StringPtrOutput `pulumi:"bucketId"`
+	// If `true`, drops the matching metrics instead of aggregating them. Cannot be set together with `aggregations`. Defaults to `false`.
+	Drop pulumi.BoolPtrOutput `pulumi:"drop"`
+	// Deprecated: no longer supported.
+	//
 	// Deprecated: drop timestamp is no longer supported
-	DropTimestamp pulumi.BoolPtrOutput   `pulumi:"dropTimestamp"`
-	Filter        pulumi.StringOutput    `pulumi:"filter"`
-	Interval      pulumi.StringOutput    `pulumi:"interval"`
-	Mode          pulumi.StringPtrOutput `pulumi:"mode"`
-	Name          pulumi.StringOutput    `pulumi:"name"`
-	Slug          pulumi.StringOutput    `pulumi:"slug"`
+	DropTimestamp pulumi.BoolPtrOutput `pulumi:"dropTimestamp"`
+	// Space-delimited list of `label=value_glob` matchers that select the metrics this rule applies to. A metric must match every filter to be considered.
+	Filter pulumi.StringOutput `pulumi:"filter"`
+	// Interval between aggregated data points produced by this mapping rule. Defaults to a server-side value when unset. Conflicts with `storagePolicy`.
+	Interval pulumi.StringOutput `pulumi:"interval"`
+	// Mapping rule mode controlling whether it is active or in a preview state.
+	Mode pulumi.StringPtrOutput `pulumi:"mode"`
+	// Display name of the mapping rule. Can be changed after creation.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// Stable identifier for the mapping rule. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringOutput `pulumi:"slug"`
+	// Storage policy controlling resolution and retention of mapped metrics. Deprecated: use `interval` instead.
+	//
 	// Deprecated: use `interval` instead
 	StoragePolicy MappingRuleStoragePolicyPtrOutput `pulumi:"storagePolicy"`
 }
@@ -65,31 +78,55 @@ func GetMappingRule(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering MappingRule resources.
 type mappingRuleState struct {
+	// Aggregation type applied to matching metrics. Cannot be set if `drop` is `true`.
 	Aggregations *string `pulumi:"aggregations"`
-	BucketId     *string `pulumi:"bucketId"`
-	Drop         *bool   `pulumi:"drop"`
+	// ID of the bucket the mapping rule belongs to.
+	BucketId *string `pulumi:"bucketId"`
+	// If `true`, drops the matching metrics instead of aggregating them. Cannot be set together with `aggregations`. Defaults to `false`.
+	Drop *bool `pulumi:"drop"`
+	// Deprecated: no longer supported.
+	//
 	// Deprecated: drop timestamp is no longer supported
-	DropTimestamp *bool   `pulumi:"dropTimestamp"`
-	Filter        *string `pulumi:"filter"`
-	Interval      *string `pulumi:"interval"`
-	Mode          *string `pulumi:"mode"`
-	Name          *string `pulumi:"name"`
-	Slug          *string `pulumi:"slug"`
+	DropTimestamp *bool `pulumi:"dropTimestamp"`
+	// Space-delimited list of `label=value_glob` matchers that select the metrics this rule applies to. A metric must match every filter to be considered.
+	Filter *string `pulumi:"filter"`
+	// Interval between aggregated data points produced by this mapping rule. Defaults to a server-side value when unset. Conflicts with `storagePolicy`.
+	Interval *string `pulumi:"interval"`
+	// Mapping rule mode controlling whether it is active or in a preview state.
+	Mode *string `pulumi:"mode"`
+	// Display name of the mapping rule. Can be changed after creation.
+	Name *string `pulumi:"name"`
+	// Stable identifier for the mapping rule. Generated from `name` if omitted. Immutable after creation.
+	Slug *string `pulumi:"slug"`
+	// Storage policy controlling resolution and retention of mapped metrics. Deprecated: use `interval` instead.
+	//
 	// Deprecated: use `interval` instead
 	StoragePolicy *MappingRuleStoragePolicy `pulumi:"storagePolicy"`
 }
 
 type MappingRuleState struct {
+	// Aggregation type applied to matching metrics. Cannot be set if `drop` is `true`.
 	Aggregations pulumi.StringPtrInput
-	BucketId     pulumi.StringPtrInput
-	Drop         pulumi.BoolPtrInput
+	// ID of the bucket the mapping rule belongs to.
+	BucketId pulumi.StringPtrInput
+	// If `true`, drops the matching metrics instead of aggregating them. Cannot be set together with `aggregations`. Defaults to `false`.
+	Drop pulumi.BoolPtrInput
+	// Deprecated: no longer supported.
+	//
 	// Deprecated: drop timestamp is no longer supported
 	DropTimestamp pulumi.BoolPtrInput
-	Filter        pulumi.StringPtrInput
-	Interval      pulumi.StringPtrInput
-	Mode          pulumi.StringPtrInput
-	Name          pulumi.StringPtrInput
-	Slug          pulumi.StringPtrInput
+	// Space-delimited list of `label=value_glob` matchers that select the metrics this rule applies to. A metric must match every filter to be considered.
+	Filter pulumi.StringPtrInput
+	// Interval between aggregated data points produced by this mapping rule. Defaults to a server-side value when unset. Conflicts with `storagePolicy`.
+	Interval pulumi.StringPtrInput
+	// Mapping rule mode controlling whether it is active or in a preview state.
+	Mode pulumi.StringPtrInput
+	// Display name of the mapping rule. Can be changed after creation.
+	Name pulumi.StringPtrInput
+	// Stable identifier for the mapping rule. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringPtrInput
+	// Storage policy controlling resolution and retention of mapped metrics. Deprecated: use `interval` instead.
+	//
 	// Deprecated: use `interval` instead
 	StoragePolicy MappingRuleStoragePolicyPtrInput
 }
@@ -99,32 +136,56 @@ func (MappingRuleState) ElementType() reflect.Type {
 }
 
 type mappingRuleArgs struct {
+	// Aggregation type applied to matching metrics. Cannot be set if `drop` is `true`.
 	Aggregations *string `pulumi:"aggregations"`
-	BucketId     *string `pulumi:"bucketId"`
-	Drop         *bool   `pulumi:"drop"`
+	// ID of the bucket the mapping rule belongs to.
+	BucketId *string `pulumi:"bucketId"`
+	// If `true`, drops the matching metrics instead of aggregating them. Cannot be set together with `aggregations`. Defaults to `false`.
+	Drop *bool `pulumi:"drop"`
+	// Deprecated: no longer supported.
+	//
 	// Deprecated: drop timestamp is no longer supported
-	DropTimestamp *bool   `pulumi:"dropTimestamp"`
-	Filter        string  `pulumi:"filter"`
-	Interval      *string `pulumi:"interval"`
-	Mode          *string `pulumi:"mode"`
-	Name          string  `pulumi:"name"`
-	Slug          *string `pulumi:"slug"`
+	DropTimestamp *bool `pulumi:"dropTimestamp"`
+	// Space-delimited list of `label=value_glob` matchers that select the metrics this rule applies to. A metric must match every filter to be considered.
+	Filter string `pulumi:"filter"`
+	// Interval between aggregated data points produced by this mapping rule. Defaults to a server-side value when unset. Conflicts with `storagePolicy`.
+	Interval *string `pulumi:"interval"`
+	// Mapping rule mode controlling whether it is active or in a preview state.
+	Mode *string `pulumi:"mode"`
+	// Display name of the mapping rule. Can be changed after creation.
+	Name string `pulumi:"name"`
+	// Stable identifier for the mapping rule. Generated from `name` if omitted. Immutable after creation.
+	Slug *string `pulumi:"slug"`
+	// Storage policy controlling resolution and retention of mapped metrics. Deprecated: use `interval` instead.
+	//
 	// Deprecated: use `interval` instead
 	StoragePolicy *MappingRuleStoragePolicy `pulumi:"storagePolicy"`
 }
 
 // The set of arguments for constructing a MappingRule resource.
 type MappingRuleArgs struct {
+	// Aggregation type applied to matching metrics. Cannot be set if `drop` is `true`.
 	Aggregations pulumi.StringPtrInput
-	BucketId     pulumi.StringPtrInput
-	Drop         pulumi.BoolPtrInput
+	// ID of the bucket the mapping rule belongs to.
+	BucketId pulumi.StringPtrInput
+	// If `true`, drops the matching metrics instead of aggregating them. Cannot be set together with `aggregations`. Defaults to `false`.
+	Drop pulumi.BoolPtrInput
+	// Deprecated: no longer supported.
+	//
 	// Deprecated: drop timestamp is no longer supported
 	DropTimestamp pulumi.BoolPtrInput
-	Filter        pulumi.StringInput
-	Interval      pulumi.StringPtrInput
-	Mode          pulumi.StringPtrInput
-	Name          pulumi.StringInput
-	Slug          pulumi.StringPtrInput
+	// Space-delimited list of `label=value_glob` matchers that select the metrics this rule applies to. A metric must match every filter to be considered.
+	Filter pulumi.StringInput
+	// Interval between aggregated data points produced by this mapping rule. Defaults to a server-side value when unset. Conflicts with `storagePolicy`.
+	Interval pulumi.StringPtrInput
+	// Mapping rule mode controlling whether it is active or in a preview state.
+	Mode pulumi.StringPtrInput
+	// Display name of the mapping rule. Can be changed after creation.
+	Name pulumi.StringInput
+	// Stable identifier for the mapping rule. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringPtrInput
+	// Storage policy controlling resolution and retention of mapped metrics. Deprecated: use `interval` instead.
+	//
 	// Deprecated: use `interval` instead
 	StoragePolicy MappingRuleStoragePolicyPtrInput
 }
@@ -216,43 +277,55 @@ func (o MappingRuleOutput) ToMappingRuleOutputWithContext(ctx context.Context) M
 	return o
 }
 
+// Aggregation type applied to matching metrics. Cannot be set if `drop` is `true`.
 func (o MappingRuleOutput) Aggregations() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *MappingRule) pulumi.StringPtrOutput { return v.Aggregations }).(pulumi.StringPtrOutput)
 }
 
+// ID of the bucket the mapping rule belongs to.
 func (o MappingRuleOutput) BucketId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *MappingRule) pulumi.StringPtrOutput { return v.BucketId }).(pulumi.StringPtrOutput)
 }
 
+// If `true`, drops the matching metrics instead of aggregating them. Cannot be set together with `aggregations`. Defaults to `false`.
 func (o MappingRuleOutput) Drop() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *MappingRule) pulumi.BoolPtrOutput { return v.Drop }).(pulumi.BoolPtrOutput)
 }
 
+// Deprecated: no longer supported.
+//
 // Deprecated: drop timestamp is no longer supported
 func (o MappingRuleOutput) DropTimestamp() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *MappingRule) pulumi.BoolPtrOutput { return v.DropTimestamp }).(pulumi.BoolPtrOutput)
 }
 
+// Space-delimited list of `label=value_glob` matchers that select the metrics this rule applies to. A metric must match every filter to be considered.
 func (o MappingRuleOutput) Filter() pulumi.StringOutput {
 	return o.ApplyT(func(v *MappingRule) pulumi.StringOutput { return v.Filter }).(pulumi.StringOutput)
 }
 
+// Interval between aggregated data points produced by this mapping rule. Defaults to a server-side value when unset. Conflicts with `storagePolicy`.
 func (o MappingRuleOutput) Interval() pulumi.StringOutput {
 	return o.ApplyT(func(v *MappingRule) pulumi.StringOutput { return v.Interval }).(pulumi.StringOutput)
 }
 
+// Mapping rule mode controlling whether it is active or in a preview state.
 func (o MappingRuleOutput) Mode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *MappingRule) pulumi.StringPtrOutput { return v.Mode }).(pulumi.StringPtrOutput)
 }
 
+// Display name of the mapping rule. Can be changed after creation.
 func (o MappingRuleOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *MappingRule) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// Stable identifier for the mapping rule. Generated from `name` if omitted. Immutable after creation.
 func (o MappingRuleOutput) Slug() pulumi.StringOutput {
 	return o.ApplyT(func(v *MappingRule) pulumi.StringOutput { return v.Slug }).(pulumi.StringOutput)
 }
 
+// Storage policy controlling resolution and retention of mapped metrics. Deprecated: use `interval` instead.
+//
 // Deprecated: use `interval` instead
 func (o MappingRuleOutput) StoragePolicy() MappingRuleStoragePolicyPtrOutput {
 	return o.ApplyT(func(v *MappingRule) MappingRuleStoragePolicyPtrOutput { return v.StoragePolicy }).(MappingRuleStoragePolicyPtrOutput)

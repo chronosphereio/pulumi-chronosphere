@@ -16,37 +16,77 @@ public final class DashboardState extends com.pulumi.resources.ResourceArgs {
 
     public static final DashboardState Empty = new DashboardState();
 
+    /**
+     * ID of the collection that owns this dashboard.
+     * 
+     */
     @Import(name="collectionId")
     private @Nullable Output<String> collectionId;
 
+    /**
+     * @return ID of the collection that owns this dashboard.
+     * 
+     */
     public Optional<Output<String>> collectionId() {
         return Optional.ofNullable(this.collectionId);
     }
 
+    /**
+     * JSON payload describing the dashboard&#39;s panels, layouts, variables, and other content. Wrap with `jsonencode({...})` in HCL. The provider sanitizes the JSON before diffing, so cosmetic differences (key ordering, whitespace) do not cause spurious plans.
+     * 
+     */
     @Import(name="dashboardJson")
     private @Nullable Output<String> dashboardJson;
 
+    /**
+     * @return JSON payload describing the dashboard&#39;s panels, layouts, variables, and other content. Wrap with `jsonencode({...})` in HCL. The provider sanitizes the JSON before diffing, so cosmetic differences (key ordering, whitespace) do not cause spurious plans.
+     * 
+     */
     public Optional<Output<String>> dashboardJson() {
         return Optional.ofNullable(this.dashboardJson);
     }
 
+    /**
+     * Key/value labels attached to the dashboard for organization and filtering.
+     * 
+     */
     @Import(name="labels")
     private @Nullable Output<Map<String,String>> labels;
 
+    /**
+     * @return Key/value labels attached to the dashboard for organization and filtering.
+     * 
+     */
     public Optional<Output<Map<String,String>>> labels() {
         return Optional.ofNullable(this.labels);
     }
 
+    /**
+     * Display name of the dashboard. Can be changed after creation.
+     * 
+     */
     @Import(name="name")
     private @Nullable Output<String> name;
 
+    /**
+     * @return Display name of the dashboard. Can be changed after creation.
+     * 
+     */
     public Optional<Output<String>> name() {
         return Optional.ofNullable(this.name);
     }
 
+    /**
+     * Stable identifier for the dashboard. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     @Import(name="slug")
     private @Nullable Output<String> slug;
 
+    /**
+     * @return Stable identifier for the dashboard. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     public Optional<Output<String>> slug() {
         return Optional.ofNullable(this.slug);
     }
@@ -79,47 +119,107 @@ public final class DashboardState extends com.pulumi.resources.ResourceArgs {
             $ = new DashboardState(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param collectionId ID of the collection that owns this dashboard.
+         * 
+         * @return builder
+         * 
+         */
         public Builder collectionId(@Nullable Output<String> collectionId) {
             $.collectionId = collectionId;
             return this;
         }
 
+        /**
+         * @param collectionId ID of the collection that owns this dashboard.
+         * 
+         * @return builder
+         * 
+         */
         public Builder collectionId(String collectionId) {
             return collectionId(Output.of(collectionId));
         }
 
+        /**
+         * @param dashboardJson JSON payload describing the dashboard&#39;s panels, layouts, variables, and other content. Wrap with `jsonencode({...})` in HCL. The provider sanitizes the JSON before diffing, so cosmetic differences (key ordering, whitespace) do not cause spurious plans.
+         * 
+         * @return builder
+         * 
+         */
         public Builder dashboardJson(@Nullable Output<String> dashboardJson) {
             $.dashboardJson = dashboardJson;
             return this;
         }
 
+        /**
+         * @param dashboardJson JSON payload describing the dashboard&#39;s panels, layouts, variables, and other content. Wrap with `jsonencode({...})` in HCL. The provider sanitizes the JSON before diffing, so cosmetic differences (key ordering, whitespace) do not cause spurious plans.
+         * 
+         * @return builder
+         * 
+         */
         public Builder dashboardJson(String dashboardJson) {
             return dashboardJson(Output.of(dashboardJson));
         }
 
+        /**
+         * @param labels Key/value labels attached to the dashboard for organization and filtering.
+         * 
+         * @return builder
+         * 
+         */
         public Builder labels(@Nullable Output<Map<String,String>> labels) {
             $.labels = labels;
             return this;
         }
 
+        /**
+         * @param labels Key/value labels attached to the dashboard for organization and filtering.
+         * 
+         * @return builder
+         * 
+         */
         public Builder labels(Map<String,String> labels) {
             return labels(Output.of(labels));
         }
 
+        /**
+         * @param name Display name of the dashboard. Can be changed after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(@Nullable Output<String> name) {
             $.name = name;
             return this;
         }
 
+        /**
+         * @param name Display name of the dashboard. Can be changed after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(String name) {
             return name(Output.of(name));
         }
 
+        /**
+         * @param slug Stable identifier for the dashboard. Generated from `name` if omitted. Immutable after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slug(@Nullable Output<String> slug) {
             $.slug = slug;
             return this;
         }
 
+        /**
+         * @param slug Stable identifier for the dashboard. Generated from `name` if omitted. Immutable after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slug(String slug) {
             return slug(Output.of(slug));
         }

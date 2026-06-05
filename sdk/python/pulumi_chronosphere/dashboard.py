@@ -21,6 +21,11 @@ class DashboardArgs:
                  slug: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Dashboard resource.
+        :param pulumi.Input[str] dashboard_json: JSON payload describing the dashboard's panels, layouts, variables, and other content. Wrap with `jsonencode({...})` in HCL. The provider sanitizes the JSON before diffing, so cosmetic differences (key ordering, whitespace) do not cause spurious plans.
+        :param pulumi.Input[str] collection_id: ID of the collection that owns this dashboard.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Key/value labels attached to the dashboard for organization and filtering.
+        :param pulumi.Input[str] name: Display name of the dashboard. Can be changed after creation.
+        :param pulumi.Input[str] slug: Stable identifier for the dashboard. Generated from `name` if omitted. Immutable after creation.
         """
         pulumi.set(__self__, "dashboard_json", dashboard_json)
         if collection_id is not None:
@@ -35,6 +40,9 @@ class DashboardArgs:
     @property
     @pulumi.getter(name="dashboardJson")
     def dashboard_json(self) -> pulumi.Input[str]:
+        """
+        JSON payload describing the dashboard's panels, layouts, variables, and other content. Wrap with `jsonencode({...})` in HCL. The provider sanitizes the JSON before diffing, so cosmetic differences (key ordering, whitespace) do not cause spurious plans.
+        """
         return pulumi.get(self, "dashboard_json")
 
     @dashboard_json.setter
@@ -44,6 +52,9 @@ class DashboardArgs:
     @property
     @pulumi.getter(name="collectionId")
     def collection_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the collection that owns this dashboard.
+        """
         return pulumi.get(self, "collection_id")
 
     @collection_id.setter
@@ -53,6 +64,9 @@ class DashboardArgs:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Key/value labels attached to the dashboard for organization and filtering.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -62,6 +76,9 @@ class DashboardArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Display name of the dashboard. Can be changed after creation.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -71,6 +88,9 @@ class DashboardArgs:
     @property
     @pulumi.getter
     def slug(self) -> Optional[pulumi.Input[str]]:
+        """
+        Stable identifier for the dashboard. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @slug.setter
@@ -88,6 +108,11 @@ class _DashboardState:
                  slug: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Dashboard resources.
+        :param pulumi.Input[str] collection_id: ID of the collection that owns this dashboard.
+        :param pulumi.Input[str] dashboard_json: JSON payload describing the dashboard's panels, layouts, variables, and other content. Wrap with `jsonencode({...})` in HCL. The provider sanitizes the JSON before diffing, so cosmetic differences (key ordering, whitespace) do not cause spurious plans.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Key/value labels attached to the dashboard for organization and filtering.
+        :param pulumi.Input[str] name: Display name of the dashboard. Can be changed after creation.
+        :param pulumi.Input[str] slug: Stable identifier for the dashboard. Generated from `name` if omitted. Immutable after creation.
         """
         if collection_id is not None:
             pulumi.set(__self__, "collection_id", collection_id)
@@ -103,6 +128,9 @@ class _DashboardState:
     @property
     @pulumi.getter(name="collectionId")
     def collection_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the collection that owns this dashboard.
+        """
         return pulumi.get(self, "collection_id")
 
     @collection_id.setter
@@ -112,6 +140,9 @@ class _DashboardState:
     @property
     @pulumi.getter(name="dashboardJson")
     def dashboard_json(self) -> Optional[pulumi.Input[str]]:
+        """
+        JSON payload describing the dashboard's panels, layouts, variables, and other content. Wrap with `jsonencode({...})` in HCL. The provider sanitizes the JSON before diffing, so cosmetic differences (key ordering, whitespace) do not cause spurious plans.
+        """
         return pulumi.get(self, "dashboard_json")
 
     @dashboard_json.setter
@@ -121,6 +152,9 @@ class _DashboardState:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Key/value labels attached to the dashboard for organization and filtering.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -130,6 +164,9 @@ class _DashboardState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Display name of the dashboard. Can be changed after creation.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -139,6 +176,9 @@ class _DashboardState:
     @property
     @pulumi.getter
     def slug(self) -> Optional[pulumi.Input[str]]:
+        """
+        Stable identifier for the dashboard. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @slug.setter
@@ -158,9 +198,43 @@ class Dashboard(pulumi.CustomResource):
                  slug: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a Dashboard resource with the given unique name, props, and options.
+        A Chronosphere dashboard composed of panels, layouts, and variables defined by `dashboard_json`. For Grafana-compatible dashboards, use `ClassicDashboard` instead.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import json
+        import pulumi_chronosphere as chronosphere
+
+        collection = chronosphere.Collection("collection", name="Platform")
+        platform = chronosphere.Dashboard("platform",
+            name="Platform Overview",
+            slug="platform-overview",
+            collection_id=collection.id,
+            labels={
+                "team": "platform",
+            },
+            dashboard_json=json.dumps({
+                "kind": "Dashboard",
+                "spec": {
+                    "events": [],
+                    "panels": {},
+                    "layouts": [],
+                    "variables": [],
+                    "duration": "30m",
+                },
+                "spec_version": "1",
+            }))
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] collection_id: ID of the collection that owns this dashboard.
+        :param pulumi.Input[str] dashboard_json: JSON payload describing the dashboard's panels, layouts, variables, and other content. Wrap with `jsonencode({...})` in HCL. The provider sanitizes the JSON before diffing, so cosmetic differences (key ordering, whitespace) do not cause spurious plans.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Key/value labels attached to the dashboard for organization and filtering.
+        :param pulumi.Input[str] name: Display name of the dashboard. Can be changed after creation.
+        :param pulumi.Input[str] slug: Stable identifier for the dashboard. Generated from `name` if omitted. Immutable after creation.
         """
         ...
     @overload
@@ -169,7 +243,36 @@ class Dashboard(pulumi.CustomResource):
                  args: DashboardArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a Dashboard resource with the given unique name, props, and options.
+        A Chronosphere dashboard composed of panels, layouts, and variables defined by `dashboard_json`. For Grafana-compatible dashboards, use `ClassicDashboard` instead.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import json
+        import pulumi_chronosphere as chronosphere
+
+        collection = chronosphere.Collection("collection", name="Platform")
+        platform = chronosphere.Dashboard("platform",
+            name="Platform Overview",
+            slug="platform-overview",
+            collection_id=collection.id,
+            labels={
+                "team": "platform",
+            },
+            dashboard_json=json.dumps({
+                "kind": "Dashboard",
+                "spec": {
+                    "events": [],
+                    "panels": {},
+                    "layouts": [],
+                    "variables": [],
+                    "duration": "30m",
+                },
+                "spec_version": "1",
+            }))
+        ```
+
         :param str resource_name: The name of the resource.
         :param DashboardArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -228,6 +331,11 @@ class Dashboard(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] collection_id: ID of the collection that owns this dashboard.
+        :param pulumi.Input[str] dashboard_json: JSON payload describing the dashboard's panels, layouts, variables, and other content. Wrap with `jsonencode({...})` in HCL. The provider sanitizes the JSON before diffing, so cosmetic differences (key ordering, whitespace) do not cause spurious plans.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Key/value labels attached to the dashboard for organization and filtering.
+        :param pulumi.Input[str] name: Display name of the dashboard. Can be changed after creation.
+        :param pulumi.Input[str] slug: Stable identifier for the dashboard. Generated from `name` if omitted. Immutable after creation.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -243,25 +351,40 @@ class Dashboard(pulumi.CustomResource):
     @property
     @pulumi.getter(name="collectionId")
     def collection_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        ID of the collection that owns this dashboard.
+        """
         return pulumi.get(self, "collection_id")
 
     @property
     @pulumi.getter(name="dashboardJson")
     def dashboard_json(self) -> pulumi.Output[str]:
+        """
+        JSON payload describing the dashboard's panels, layouts, variables, and other content. Wrap with `jsonencode({...})` in HCL. The provider sanitizes the JSON before diffing, so cosmetic differences (key ordering, whitespace) do not cause spurious plans.
+        """
         return pulumi.get(self, "dashboard_json")
 
     @property
     @pulumi.getter
     def labels(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+        """
+        Key/value labels attached to the dashboard for organization and filtering.
+        """
         return pulumi.get(self, "labels")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[Optional[str]]:
+        """
+        Display name of the dashboard. Can be changed after creation.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def slug(self) -> pulumi.Output[str]:
+        """
+        Stable identifier for the dashboard. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 

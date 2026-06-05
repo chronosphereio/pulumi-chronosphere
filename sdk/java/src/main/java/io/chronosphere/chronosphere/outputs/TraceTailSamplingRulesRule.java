@@ -13,21 +13,53 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class TraceTailSamplingRulesRule {
+    /**
+     * @return Filter that selects traces and spans. A trace matches when its trace-level conditions hold and every `span` block is satisfied by at least one span in the trace.
+     * 
+     */
     private TraceTailSamplingRulesRuleFilter filter;
+    /**
+     * @return Human-readable name of the rule.
+     * 
+     */
     private @Nullable String name;
+    /**
+     * @return Fraction of matching traces to keep, in the range `[0.0, 1.0]`. `0` drops all matches, `1` keeps every match.
+     * 
+     */
     private Double sampleRate;
+    /**
+     * @return Stable identifier used as the metric label value on metrics emitted by this rule.
+     * 
+     */
     private @Nullable String systemName;
 
     private TraceTailSamplingRulesRule() {}
+    /**
+     * @return Filter that selects traces and spans. A trace matches when its trace-level conditions hold and every `span` block is satisfied by at least one span in the trace.
+     * 
+     */
     public TraceTailSamplingRulesRuleFilter filter() {
         return this.filter;
     }
+    /**
+     * @return Human-readable name of the rule.
+     * 
+     */
     public Optional<String> name() {
         return Optional.ofNullable(this.name);
     }
+    /**
+     * @return Fraction of matching traces to keep, in the range `[0.0, 1.0]`. `0` drops all matches, `1` keeps every match.
+     * 
+     */
     public Double sampleRate() {
         return this.sampleRate;
     }
+    /**
+     * @return Stable identifier used as the metric label value on metrics emitted by this rule.
+     * 
+     */
     public Optional<String> systemName() {
         return Optional.ofNullable(this.systemName);
     }

@@ -11,6 +11,50 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/chronosphereio/pulumi-chronosphere/sdk/go/chronosphere"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			gateway, err := chronosphere.ServiceDataSource(ctx, &chronosphere.ServiceDataSourceArgs{
+//				Slug: "gateway",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = chronosphere.NewMonitor(ctx, "gatewayUp", &chronosphere.MonitorArgs{
+//				Name:         pulumi.String("Gateway up"),
+//				CollectionId: *pulumi.String(gateway.Id),
+//				Query: &chronosphere.MonitorQueryArgs{
+//					PrometheusExpr: pulumi.String("up{service=\"gateway\"}"),
+//				},
+//				SeriesConditions: &chronosphere.MonitorSeriesConditionsArgs{
+//					Conditions: chronosphere.MonitorSeriesConditionsConditionArray{
+//						&chronosphere.MonitorSeriesConditionsConditionArgs{
+//							Severity: pulumi.String("warn"),
+//							Value:    pulumi.Float64(1),
+//							Op:       pulumi.String("LT"),
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func ServiceDataSource(ctx *pulumi.Context, args *ServiceDataSourceArgs, opts ...pulumi.InvokeOption) (*ServiceDataSourceResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ServiceDataSourceResult
@@ -23,15 +67,19 @@ func ServiceDataSource(ctx *pulumi.Context, args *ServiceDataSourceArgs, opts ..
 
 // A collection of arguments for invoking ServiceDataSource.
 type ServiceDataSourceArgs struct {
+	// Slug of the service to look up.
 	Slug string `pulumi:"slug"`
 }
 
 // A collection of values returned by ServiceDataSource.
 type ServiceDataSourceResult struct {
+	// Read-only: free-form description of the service.
 	Description string `pulumi:"description"`
 	// The provider-assigned unique ID for this managed resource.
-	Id   string `pulumi:"id"`
+	Id string `pulumi:"id"`
+	// Read-only: display name of the service.
 	Name string `pulumi:"name"`
+	// Slug of the service to look up.
 	Slug string `pulumi:"slug"`
 }
 
@@ -50,6 +98,7 @@ func ServiceDataSourceOutput(ctx *pulumi.Context, args ServiceDataSourceOutputAr
 
 // A collection of arguments for invoking ServiceDataSource.
 type ServiceDataSourceOutputArgs struct {
+	// Slug of the service to look up.
 	Slug pulumi.StringInput `pulumi:"slug"`
 }
 
@@ -72,6 +121,7 @@ func (o ServiceDataSourceResultOutput) ToServiceDataSourceResultOutputWithContex
 	return o
 }
 
+// Read-only: free-form description of the service.
 func (o ServiceDataSourceResultOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceDataSourceResult) string { return v.Description }).(pulumi.StringOutput)
 }
@@ -81,10 +131,12 @@ func (o ServiceDataSourceResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceDataSourceResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// Read-only: display name of the service.
 func (o ServiceDataSourceResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceDataSourceResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Slug of the service to look up.
 func (o ServiceDataSourceResultOutput) Slug() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceDataSourceResult) string { return v.Slug }).(pulumi.StringOutput)
 }

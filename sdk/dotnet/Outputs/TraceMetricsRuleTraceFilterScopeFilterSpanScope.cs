@@ -14,15 +14,45 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class TraceMetricsRuleTraceFilterScopeFilterSpanScope
     {
+        /// <summary>
+        /// Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, max_secs]` range.
+        /// </summary>
         public readonly Outputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeDuration? Duration;
+        /// <summary>
+        /// Matches traces or spans where the target boolean field equals `value`.
+        /// </summary>
         public readonly Outputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeError? Error;
+        /// <summary>
+        /// Matches traces or spans where the target boolean field equals `value`.
+        /// </summary>
         public readonly Outputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpan? IsRootSpan;
+        /// <summary>
+        /// Whether matching spans are included (`INCLUDE`) or excluded (`EXCLUDE`) from the scope. Defaults to `INCLUDE`.
+        /// </summary>
         public readonly string? MatchType;
+        /// <summary>
+        /// Matches traces or spans where the target string field satisfies the match condition.
+        /// </summary>
         public readonly Outputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperation? Operation;
+        /// <summary>
+        /// Matches traces or spans where the target string field satisfies the match condition.
+        /// </summary>
         public readonly Outputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperation? ParentOperation;
+        /// <summary>
+        /// Matches traces or spans where the target string field satisfies the match condition.
+        /// </summary>
         public readonly Outputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentService? ParentService;
+        /// <summary>
+        /// Matches traces or spans where the target string field satisfies the match condition.
+        /// </summary>
         public readonly Outputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeService? Service;
+        /// <summary>
+        /// Matches traces where the number of spans satisfying the surrounding span conditions falls within the inclusive `[min, max]` range.
+        /// </summary>
         public readonly Outputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCount? SpanCount;
+        /// <summary>
+        /// Matches spans whose tag (span attribute) with the given `key` has a value satisfying the nested string or numeric filter.
+        /// </summary>
         public readonly ImmutableArray<Outputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeTag> Tags;
 
         [OutputConstructor]

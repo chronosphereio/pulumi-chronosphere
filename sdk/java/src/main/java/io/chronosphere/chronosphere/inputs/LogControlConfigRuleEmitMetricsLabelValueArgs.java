@@ -15,9 +15,17 @@ public final class LogControlConfigRuleEmitMetricsLabelValueArgs extends com.pul
 
     public static final LogControlConfigRuleEmitMetricsLabelValueArgs Empty = new LogControlConfigRuleEmitMetricsLabelValueArgs();
 
+    /**
+     * Field path selector. Use `parent[child]` syntax to indicate nesting.
+     * 
+     */
     @Import(name="selector")
     private @Nullable Output<String> selector;
 
+    /**
+     * @return Field path selector. Use `parent[child]` syntax to indicate nesting.
+     * 
+     */
     public Optional<Output<String>> selector() {
         return Optional.ofNullable(this.selector);
     }
@@ -46,11 +54,23 @@ public final class LogControlConfigRuleEmitMetricsLabelValueArgs extends com.pul
             $ = new LogControlConfigRuleEmitMetricsLabelValueArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param selector Field path selector. Use `parent[child]` syntax to indicate nesting.
+         * 
+         * @return builder
+         * 
+         */
         public Builder selector(@Nullable Output<String> selector) {
             $.selector = selector;
             return this;
         }
 
+        /**
+         * @param selector Field path selector. Use `parent[child]` syntax to indicate nesting.
+         * 
+         * @return builder
+         * 
+         */
         public Builder selector(String selector) {
             return selector(Output.of(selector));
         }

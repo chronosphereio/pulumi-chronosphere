@@ -28,6 +28,16 @@ class DropRuleArgs:
                  value_based_drop: Optional[pulumi.Input['DropRuleValueBasedDropArgs']] = None):
         """
         The set of arguments for constructing a DropRule resource.
+        :param pulumi.Input[str] name: Display name of the drop rule. Can be changed after creation.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] queries: List of label filter queries that select which metrics to drop. A metric is dropped if it matches all filters in any one query.
+        :param pulumi.Input[str] activated_drop_duration: Once a conditional drop activates, how long it stays activated before re-checking against `rate_limit_threshold`.
+        :param pulumi.Input[bool] active: Whether the drop rule is active. Deprecated: use `mode` instead.
+        :param pulumi.Input[bool] conditional_drop: If `true`, the drop only activates when the configured `rate_limit_threshold` is exceeded.
+        :param pulumi.Input[bool] drop_nan_value: If `true`, drops data points whose value is NaN, including any associated staleness markers.
+        :param pulumi.Input[str] mode: Drop rule mode controlling whether it is enabled, disabled, or in a preview state. Defaults to `ENABLED`.
+        :param pulumi.Input[float] rate_limit_threshold: Percentage of the licensed metrics limit (0-100) at which a conditional drop activates.
+        :param pulumi.Input[str] slug: Stable identifier for the drop rule. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input['DropRuleValueBasedDropArgs'] value_based_drop: Configuration for dropping data points whose value matches a target.
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "queries", queries)
@@ -54,6 +64,9 @@ class DropRuleArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        Display name of the drop rule. Can be changed after creation.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -63,6 +76,9 @@ class DropRuleArgs:
     @property
     @pulumi.getter
     def queries(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        """
+        List of label filter queries that select which metrics to drop. A metric is dropped if it matches all filters in any one query.
+        """
         return pulumi.get(self, "queries")
 
     @queries.setter
@@ -72,6 +88,9 @@ class DropRuleArgs:
     @property
     @pulumi.getter(name="activatedDropDuration")
     def activated_drop_duration(self) -> Optional[pulumi.Input[str]]:
+        """
+        Once a conditional drop activates, how long it stays activated before re-checking against `rate_limit_threshold`.
+        """
         return pulumi.get(self, "activated_drop_duration")
 
     @activated_drop_duration.setter
@@ -81,6 +100,9 @@ class DropRuleArgs:
     @property
     @pulumi.getter
     def active(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether the drop rule is active. Deprecated: use `mode` instead.
+        """
         warnings.warn("""use `mode` instead""", DeprecationWarning)
         pulumi.log.warn("""active is deprecated: use `mode` instead""")
 
@@ -93,6 +115,9 @@ class DropRuleArgs:
     @property
     @pulumi.getter(name="conditionalDrop")
     def conditional_drop(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If `true`, the drop only activates when the configured `rate_limit_threshold` is exceeded.
+        """
         return pulumi.get(self, "conditional_drop")
 
     @conditional_drop.setter
@@ -102,6 +127,9 @@ class DropRuleArgs:
     @property
     @pulumi.getter(name="dropNanValue")
     def drop_nan_value(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If `true`, drops data points whose value is NaN, including any associated staleness markers.
+        """
         return pulumi.get(self, "drop_nan_value")
 
     @drop_nan_value.setter
@@ -111,6 +139,9 @@ class DropRuleArgs:
     @property
     @pulumi.getter
     def mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Drop rule mode controlling whether it is enabled, disabled, or in a preview state. Defaults to `ENABLED`.
+        """
         return pulumi.get(self, "mode")
 
     @mode.setter
@@ -120,6 +151,9 @@ class DropRuleArgs:
     @property
     @pulumi.getter(name="rateLimitThreshold")
     def rate_limit_threshold(self) -> Optional[pulumi.Input[float]]:
+        """
+        Percentage of the licensed metrics limit (0-100) at which a conditional drop activates.
+        """
         return pulumi.get(self, "rate_limit_threshold")
 
     @rate_limit_threshold.setter
@@ -129,6 +163,9 @@ class DropRuleArgs:
     @property
     @pulumi.getter
     def slug(self) -> Optional[pulumi.Input[str]]:
+        """
+        Stable identifier for the drop rule. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @slug.setter
@@ -138,6 +175,9 @@ class DropRuleArgs:
     @property
     @pulumi.getter(name="valueBasedDrop")
     def value_based_drop(self) -> Optional[pulumi.Input['DropRuleValueBasedDropArgs']]:
+        """
+        Configuration for dropping data points whose value matches a target.
+        """
         return pulumi.get(self, "value_based_drop")
 
     @value_based_drop.setter
@@ -160,6 +200,16 @@ class _DropRuleState:
                  value_based_drop: Optional[pulumi.Input['DropRuleValueBasedDropArgs']] = None):
         """
         Input properties used for looking up and filtering DropRule resources.
+        :param pulumi.Input[str] activated_drop_duration: Once a conditional drop activates, how long it stays activated before re-checking against `rate_limit_threshold`.
+        :param pulumi.Input[bool] active: Whether the drop rule is active. Deprecated: use `mode` instead.
+        :param pulumi.Input[bool] conditional_drop: If `true`, the drop only activates when the configured `rate_limit_threshold` is exceeded.
+        :param pulumi.Input[bool] drop_nan_value: If `true`, drops data points whose value is NaN, including any associated staleness markers.
+        :param pulumi.Input[str] mode: Drop rule mode controlling whether it is enabled, disabled, or in a preview state. Defaults to `ENABLED`.
+        :param pulumi.Input[str] name: Display name of the drop rule. Can be changed after creation.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] queries: List of label filter queries that select which metrics to drop. A metric is dropped if it matches all filters in any one query.
+        :param pulumi.Input[float] rate_limit_threshold: Percentage of the licensed metrics limit (0-100) at which a conditional drop activates.
+        :param pulumi.Input[str] slug: Stable identifier for the drop rule. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input['DropRuleValueBasedDropArgs'] value_based_drop: Configuration for dropping data points whose value matches a target.
         """
         if activated_drop_duration is not None:
             pulumi.set(__self__, "activated_drop_duration", activated_drop_duration)
@@ -188,6 +238,9 @@ class _DropRuleState:
     @property
     @pulumi.getter(name="activatedDropDuration")
     def activated_drop_duration(self) -> Optional[pulumi.Input[str]]:
+        """
+        Once a conditional drop activates, how long it stays activated before re-checking against `rate_limit_threshold`.
+        """
         return pulumi.get(self, "activated_drop_duration")
 
     @activated_drop_duration.setter
@@ -197,6 +250,9 @@ class _DropRuleState:
     @property
     @pulumi.getter
     def active(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether the drop rule is active. Deprecated: use `mode` instead.
+        """
         warnings.warn("""use `mode` instead""", DeprecationWarning)
         pulumi.log.warn("""active is deprecated: use `mode` instead""")
 
@@ -209,6 +265,9 @@ class _DropRuleState:
     @property
     @pulumi.getter(name="conditionalDrop")
     def conditional_drop(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If `true`, the drop only activates when the configured `rate_limit_threshold` is exceeded.
+        """
         return pulumi.get(self, "conditional_drop")
 
     @conditional_drop.setter
@@ -218,6 +277,9 @@ class _DropRuleState:
     @property
     @pulumi.getter(name="dropNanValue")
     def drop_nan_value(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If `true`, drops data points whose value is NaN, including any associated staleness markers.
+        """
         return pulumi.get(self, "drop_nan_value")
 
     @drop_nan_value.setter
@@ -227,6 +289,9 @@ class _DropRuleState:
     @property
     @pulumi.getter
     def mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Drop rule mode controlling whether it is enabled, disabled, or in a preview state. Defaults to `ENABLED`.
+        """
         return pulumi.get(self, "mode")
 
     @mode.setter
@@ -236,6 +301,9 @@ class _DropRuleState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Display name of the drop rule. Can be changed after creation.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -245,6 +313,9 @@ class _DropRuleState:
     @property
     @pulumi.getter
     def queries(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of label filter queries that select which metrics to drop. A metric is dropped if it matches all filters in any one query.
+        """
         return pulumi.get(self, "queries")
 
     @queries.setter
@@ -254,6 +325,9 @@ class _DropRuleState:
     @property
     @pulumi.getter(name="rateLimitThreshold")
     def rate_limit_threshold(self) -> Optional[pulumi.Input[float]]:
+        """
+        Percentage of the licensed metrics limit (0-100) at which a conditional drop activates.
+        """
         return pulumi.get(self, "rate_limit_threshold")
 
     @rate_limit_threshold.setter
@@ -263,6 +337,9 @@ class _DropRuleState:
     @property
     @pulumi.getter
     def slug(self) -> Optional[pulumi.Input[str]]:
+        """
+        Stable identifier for the drop rule. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @slug.setter
@@ -272,6 +349,9 @@ class _DropRuleState:
     @property
     @pulumi.getter(name="valueBasedDrop")
     def value_based_drop(self) -> Optional[pulumi.Input['DropRuleValueBasedDropArgs']]:
+        """
+        Configuration for dropping data points whose value matches a target.
+        """
         return pulumi.get(self, "value_based_drop")
 
     @value_based_drop.setter
@@ -296,9 +376,32 @@ class DropRule(pulumi.CustomResource):
                  value_based_drop: Optional[pulumi.Input[pulumi.InputType['DropRuleValueBasedDropArgs']]] = None,
                  __props__=None):
         """
-        Create a DropRule resource with the given unique name, props, and options.
+        Discards matching metric data at ingest time before it is stored. Supports unconditional drops, NaN-value drops, value-based drops, and conditional drops that activate only when a cardinality threshold is exceeded.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_chronosphere as chronosphere
+
+        noisy_metric = chronosphere.DropRule("noisyMetric",
+            mode="ENABLED",
+            name="Drop noisy metric",
+            queries=["__name__:noisy_metric_name"])
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] activated_drop_duration: Once a conditional drop activates, how long it stays activated before re-checking against `rate_limit_threshold`.
+        :param pulumi.Input[bool] active: Whether the drop rule is active. Deprecated: use `mode` instead.
+        :param pulumi.Input[bool] conditional_drop: If `true`, the drop only activates when the configured `rate_limit_threshold` is exceeded.
+        :param pulumi.Input[bool] drop_nan_value: If `true`, drops data points whose value is NaN, including any associated staleness markers.
+        :param pulumi.Input[str] mode: Drop rule mode controlling whether it is enabled, disabled, or in a preview state. Defaults to `ENABLED`.
+        :param pulumi.Input[str] name: Display name of the drop rule. Can be changed after creation.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] queries: List of label filter queries that select which metrics to drop. A metric is dropped if it matches all filters in any one query.
+        :param pulumi.Input[float] rate_limit_threshold: Percentage of the licensed metrics limit (0-100) at which a conditional drop activates.
+        :param pulumi.Input[str] slug: Stable identifier for the drop rule. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[pulumi.InputType['DropRuleValueBasedDropArgs']] value_based_drop: Configuration for dropping data points whose value matches a target.
         """
         ...
     @overload
@@ -307,7 +410,20 @@ class DropRule(pulumi.CustomResource):
                  args: DropRuleArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a DropRule resource with the given unique name, props, and options.
+        Discards matching metric data at ingest time before it is stored. Supports unconditional drops, NaN-value drops, value-based drops, and conditional drops that activate only when a cardinality threshold is exceeded.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_chronosphere as chronosphere
+
+        noisy_metric = chronosphere.DropRule("noisyMetric",
+            mode="ENABLED",
+            name="Drop noisy metric",
+            queries=["__name__:noisy_metric_name"])
+        ```
+
         :param str resource_name: The name of the resource.
         :param DropRuleArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -383,6 +499,16 @@ class DropRule(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] activated_drop_duration: Once a conditional drop activates, how long it stays activated before re-checking against `rate_limit_threshold`.
+        :param pulumi.Input[bool] active: Whether the drop rule is active. Deprecated: use `mode` instead.
+        :param pulumi.Input[bool] conditional_drop: If `true`, the drop only activates when the configured `rate_limit_threshold` is exceeded.
+        :param pulumi.Input[bool] drop_nan_value: If `true`, drops data points whose value is NaN, including any associated staleness markers.
+        :param pulumi.Input[str] mode: Drop rule mode controlling whether it is enabled, disabled, or in a preview state. Defaults to `ENABLED`.
+        :param pulumi.Input[str] name: Display name of the drop rule. Can be changed after creation.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] queries: List of label filter queries that select which metrics to drop. A metric is dropped if it matches all filters in any one query.
+        :param pulumi.Input[float] rate_limit_threshold: Percentage of the licensed metrics limit (0-100) at which a conditional drop activates.
+        :param pulumi.Input[str] slug: Stable identifier for the drop rule. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[pulumi.InputType['DropRuleValueBasedDropArgs']] value_based_drop: Configuration for dropping data points whose value matches a target.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -403,11 +529,17 @@ class DropRule(pulumi.CustomResource):
     @property
     @pulumi.getter(name="activatedDropDuration")
     def activated_drop_duration(self) -> pulumi.Output[Optional[str]]:
+        """
+        Once a conditional drop activates, how long it stays activated before re-checking against `rate_limit_threshold`.
+        """
         return pulumi.get(self, "activated_drop_duration")
 
     @property
     @pulumi.getter
     def active(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Whether the drop rule is active. Deprecated: use `mode` instead.
+        """
         warnings.warn("""use `mode` instead""", DeprecationWarning)
         pulumi.log.warn("""active is deprecated: use `mode` instead""")
 
@@ -416,40 +548,64 @@ class DropRule(pulumi.CustomResource):
     @property
     @pulumi.getter(name="conditionalDrop")
     def conditional_drop(self) -> pulumi.Output[Optional[bool]]:
+        """
+        If `true`, the drop only activates when the configured `rate_limit_threshold` is exceeded.
+        """
         return pulumi.get(self, "conditional_drop")
 
     @property
     @pulumi.getter(name="dropNanValue")
     def drop_nan_value(self) -> pulumi.Output[Optional[bool]]:
+        """
+        If `true`, drops data points whose value is NaN, including any associated staleness markers.
+        """
         return pulumi.get(self, "drop_nan_value")
 
     @property
     @pulumi.getter
     def mode(self) -> pulumi.Output[Optional[str]]:
+        """
+        Drop rule mode controlling whether it is enabled, disabled, or in a preview state. Defaults to `ENABLED`.
+        """
         return pulumi.get(self, "mode")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        Display name of the drop rule. Can be changed after creation.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def queries(self) -> pulumi.Output[Sequence[str]]:
+        """
+        List of label filter queries that select which metrics to drop. A metric is dropped if it matches all filters in any one query.
+        """
         return pulumi.get(self, "queries")
 
     @property
     @pulumi.getter(name="rateLimitThreshold")
     def rate_limit_threshold(self) -> pulumi.Output[Optional[float]]:
+        """
+        Percentage of the licensed metrics limit (0-100) at which a conditional drop activates.
+        """
         return pulumi.get(self, "rate_limit_threshold")
 
     @property
     @pulumi.getter
     def slug(self) -> pulumi.Output[str]:
+        """
+        Stable identifier for the drop rule. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @property
     @pulumi.getter(name="valueBasedDrop")
     def value_based_drop(self) -> pulumi.Output[Optional['outputs.DropRuleValueBasedDrop']]:
+        """
+        Configuration for dropping data points whose value matches a target.
+        """
         return pulumi.get(self, "value_based_drop")
 

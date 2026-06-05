@@ -16,23 +16,47 @@ public final class TraceMetricsRuleTraceFilterSpanOperationArgs extends com.pulu
 
     public static final TraceMetricsRuleTraceFilterSpanOperationArgs Empty = new TraceMetricsRuleTraceFilterSpanOperationArgs();
 
+    /**
+     * Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     * 
+     */
     @Import(name="inValues")
     private @Nullable Output<List<String>> inValues;
 
+    /**
+     * @return Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     * 
+     */
     public Optional<Output<List<String>>> inValues() {
         return Optional.ofNullable(this.inValues);
     }
 
+    /**
+     * Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     * 
+     */
     @Import(name="match")
     private @Nullable Output<String> match;
 
+    /**
+     * @return Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     * 
+     */
     public Optional<Output<String>> match() {
         return Optional.ofNullable(this.match);
     }
 
+    /**
+     * Boolean value the target field is compared against.
+     * 
+     */
     @Import(name="value")
     private @Nullable Output<String> value;
 
+    /**
+     * @return Boolean value the target field is compared against.
+     * 
+     */
     public Optional<Output<String>> value() {
         return Optional.ofNullable(this.value);
     }
@@ -63,33 +87,75 @@ public final class TraceMetricsRuleTraceFilterSpanOperationArgs extends com.pulu
             $ = new TraceMetricsRuleTraceFilterSpanOperationArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param inValues Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+         * 
+         * @return builder
+         * 
+         */
         public Builder inValues(@Nullable Output<List<String>> inValues) {
             $.inValues = inValues;
             return this;
         }
 
+        /**
+         * @param inValues Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+         * 
+         * @return builder
+         * 
+         */
         public Builder inValues(List<String> inValues) {
             return inValues(Output.of(inValues));
         }
 
+        /**
+         * @param inValues Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+         * 
+         * @return builder
+         * 
+         */
         public Builder inValues(String... inValues) {
             return inValues(List.of(inValues));
         }
 
+        /**
+         * @param match Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder match(@Nullable Output<String> match) {
             $.match = match;
             return this;
         }
 
+        /**
+         * @param match Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder match(String match) {
             return match(Output.of(match));
         }
 
+        /**
+         * @param value Boolean value the target field is compared against.
+         * 
+         * @return builder
+         * 
+         */
         public Builder value(@Nullable Output<String> value) {
             $.value = value;
             return this;
         }
 
+        /**
+         * @param value Boolean value the target field is compared against.
+         * 
+         * @return builder
+         * 
+         */
         public Builder value(String value) {
             return value(Output.of(value));
         }

@@ -25,6 +25,15 @@ class RecordingRuleArgs:
                  slug: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a RecordingRule resource.
+        :param pulumi.Input[str] expr: PromQL expression evaluated at each interval. The result is written to a new series named by `metric_name` (or `name` if unset).
+        :param pulumi.Input[str] name: Display name of the recording rule. Can be changed after creation.
+        :param pulumi.Input[str] bucket_id: ID of the bucket the recording rule belongs to. At least one of `bucket_id` or `execution_group` must be set; if both are set their values must match.
+        :param pulumi.Input[str] execution_group: Slug of the execution group in which the rule is evaluated. Rules in the same group run sequentially at the configured interval; all rules in a group must finish before the next iteration starts. At least one of `bucket_id` or `execution_group` must be set.
+        :param pulumi.Input[str] execution_mode: Execution mode controlling whether the recording rule is active.
+        :param pulumi.Input[str] interval: Evaluation interval (e.g. `30s`, `1m`). Defaults to `60s` when unset.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Key/value labels added to every series produced by this recording rule.
+        :param pulumi.Input[str] metric_name: Name of the output time series produced by `expr`. Must be a valid metric name. Defaults to `name` if omitted.
+        :param pulumi.Input[str] slug: Stable identifier for the recording rule. Generated from `name` if omitted. Immutable after creation.
         """
         pulumi.set(__self__, "expr", expr)
         pulumi.set(__self__, "name", name)
@@ -46,6 +55,9 @@ class RecordingRuleArgs:
     @property
     @pulumi.getter
     def expr(self) -> pulumi.Input[str]:
+        """
+        PromQL expression evaluated at each interval. The result is written to a new series named by `metric_name` (or `name` if unset).
+        """
         return pulumi.get(self, "expr")
 
     @expr.setter
@@ -55,6 +67,9 @@ class RecordingRuleArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        Display name of the recording rule. Can be changed after creation.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -64,6 +79,9 @@ class RecordingRuleArgs:
     @property
     @pulumi.getter(name="bucketId")
     def bucket_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the bucket the recording rule belongs to. At least one of `bucket_id` or `execution_group` must be set; if both are set their values must match.
+        """
         return pulumi.get(self, "bucket_id")
 
     @bucket_id.setter
@@ -73,6 +91,9 @@ class RecordingRuleArgs:
     @property
     @pulumi.getter(name="executionGroup")
     def execution_group(self) -> Optional[pulumi.Input[str]]:
+        """
+        Slug of the execution group in which the rule is evaluated. Rules in the same group run sequentially at the configured interval; all rules in a group must finish before the next iteration starts. At least one of `bucket_id` or `execution_group` must be set.
+        """
         return pulumi.get(self, "execution_group")
 
     @execution_group.setter
@@ -82,6 +103,9 @@ class RecordingRuleArgs:
     @property
     @pulumi.getter(name="executionMode")
     def execution_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Execution mode controlling whether the recording rule is active.
+        """
         return pulumi.get(self, "execution_mode")
 
     @execution_mode.setter
@@ -91,6 +115,9 @@ class RecordingRuleArgs:
     @property
     @pulumi.getter
     def interval(self) -> Optional[pulumi.Input[str]]:
+        """
+        Evaluation interval (e.g. `30s`, `1m`). Defaults to `60s` when unset.
+        """
         return pulumi.get(self, "interval")
 
     @interval.setter
@@ -100,6 +127,9 @@ class RecordingRuleArgs:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Key/value labels added to every series produced by this recording rule.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -109,6 +139,9 @@ class RecordingRuleArgs:
     @property
     @pulumi.getter(name="metricName")
     def metric_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the output time series produced by `expr`. Must be a valid metric name. Defaults to `name` if omitted.
+        """
         return pulumi.get(self, "metric_name")
 
     @metric_name.setter
@@ -118,6 +151,9 @@ class RecordingRuleArgs:
     @property
     @pulumi.getter
     def slug(self) -> Optional[pulumi.Input[str]]:
+        """
+        Stable identifier for the recording rule. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @slug.setter
@@ -139,6 +175,15 @@ class _RecordingRuleState:
                  slug: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering RecordingRule resources.
+        :param pulumi.Input[str] bucket_id: ID of the bucket the recording rule belongs to. At least one of `bucket_id` or `execution_group` must be set; if both are set their values must match.
+        :param pulumi.Input[str] execution_group: Slug of the execution group in which the rule is evaluated. Rules in the same group run sequentially at the configured interval; all rules in a group must finish before the next iteration starts. At least one of `bucket_id` or `execution_group` must be set.
+        :param pulumi.Input[str] execution_mode: Execution mode controlling whether the recording rule is active.
+        :param pulumi.Input[str] expr: PromQL expression evaluated at each interval. The result is written to a new series named by `metric_name` (or `name` if unset).
+        :param pulumi.Input[str] interval: Evaluation interval (e.g. `30s`, `1m`). Defaults to `60s` when unset.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Key/value labels added to every series produced by this recording rule.
+        :param pulumi.Input[str] metric_name: Name of the output time series produced by `expr`. Must be a valid metric name. Defaults to `name` if omitted.
+        :param pulumi.Input[str] name: Display name of the recording rule. Can be changed after creation.
+        :param pulumi.Input[str] slug: Stable identifier for the recording rule. Generated from `name` if omitted. Immutable after creation.
         """
         if bucket_id is not None:
             pulumi.set(__self__, "bucket_id", bucket_id)
@@ -162,6 +207,9 @@ class _RecordingRuleState:
     @property
     @pulumi.getter(name="bucketId")
     def bucket_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the bucket the recording rule belongs to. At least one of `bucket_id` or `execution_group` must be set; if both are set their values must match.
+        """
         return pulumi.get(self, "bucket_id")
 
     @bucket_id.setter
@@ -171,6 +219,9 @@ class _RecordingRuleState:
     @property
     @pulumi.getter(name="executionGroup")
     def execution_group(self) -> Optional[pulumi.Input[str]]:
+        """
+        Slug of the execution group in which the rule is evaluated. Rules in the same group run sequentially at the configured interval; all rules in a group must finish before the next iteration starts. At least one of `bucket_id` or `execution_group` must be set.
+        """
         return pulumi.get(self, "execution_group")
 
     @execution_group.setter
@@ -180,6 +231,9 @@ class _RecordingRuleState:
     @property
     @pulumi.getter(name="executionMode")
     def execution_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Execution mode controlling whether the recording rule is active.
+        """
         return pulumi.get(self, "execution_mode")
 
     @execution_mode.setter
@@ -189,6 +243,9 @@ class _RecordingRuleState:
     @property
     @pulumi.getter
     def expr(self) -> Optional[pulumi.Input[str]]:
+        """
+        PromQL expression evaluated at each interval. The result is written to a new series named by `metric_name` (or `name` if unset).
+        """
         return pulumi.get(self, "expr")
 
     @expr.setter
@@ -198,6 +255,9 @@ class _RecordingRuleState:
     @property
     @pulumi.getter
     def interval(self) -> Optional[pulumi.Input[str]]:
+        """
+        Evaluation interval (e.g. `30s`, `1m`). Defaults to `60s` when unset.
+        """
         return pulumi.get(self, "interval")
 
     @interval.setter
@@ -207,6 +267,9 @@ class _RecordingRuleState:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Key/value labels added to every series produced by this recording rule.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -216,6 +279,9 @@ class _RecordingRuleState:
     @property
     @pulumi.getter(name="metricName")
     def metric_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the output time series produced by `expr`. Must be a valid metric name. Defaults to `name` if omitted.
+        """
         return pulumi.get(self, "metric_name")
 
     @metric_name.setter
@@ -225,6 +291,9 @@ class _RecordingRuleState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Display name of the recording rule. Can be changed after creation.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -234,6 +303,9 @@ class _RecordingRuleState:
     @property
     @pulumi.getter
     def slug(self) -> Optional[pulumi.Input[str]]:
+        """
+        Stable identifier for the recording rule. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @slug.setter
@@ -257,9 +329,35 @@ class RecordingRule(pulumi.CustomResource):
                  slug: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a RecordingRule resource with the given unique name, props, and options.
+        Evaluates a PromQL expression at a fixed interval and writes the result to a new time series. Useful for precomputing expensive queries or producing derived metrics.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_chronosphere as chronosphere
+
+        up_by_namespace = chronosphere.RecordingRule("upByNamespace",
+            expr="sum by (kubernetes_namespace) (up)",
+            interval="60s",
+            labels={
+                "owner": "platform",
+            },
+            metric_name="up:by_namespace",
+            name="up:by_namespace")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] bucket_id: ID of the bucket the recording rule belongs to. At least one of `bucket_id` or `execution_group` must be set; if both are set their values must match.
+        :param pulumi.Input[str] execution_group: Slug of the execution group in which the rule is evaluated. Rules in the same group run sequentially at the configured interval; all rules in a group must finish before the next iteration starts. At least one of `bucket_id` or `execution_group` must be set.
+        :param pulumi.Input[str] execution_mode: Execution mode controlling whether the recording rule is active.
+        :param pulumi.Input[str] expr: PromQL expression evaluated at each interval. The result is written to a new series named by `metric_name` (or `name` if unset).
+        :param pulumi.Input[str] interval: Evaluation interval (e.g. `30s`, `1m`). Defaults to `60s` when unset.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Key/value labels added to every series produced by this recording rule.
+        :param pulumi.Input[str] metric_name: Name of the output time series produced by `expr`. Must be a valid metric name. Defaults to `name` if omitted.
+        :param pulumi.Input[str] name: Display name of the recording rule. Can be changed after creation.
+        :param pulumi.Input[str] slug: Stable identifier for the recording rule. Generated from `name` if omitted. Immutable after creation.
         """
         ...
     @overload
@@ -268,7 +366,24 @@ class RecordingRule(pulumi.CustomResource):
                  args: RecordingRuleArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a RecordingRule resource with the given unique name, props, and options.
+        Evaluates a PromQL expression at a fixed interval and writes the result to a new time series. Useful for precomputing expensive queries or producing derived metrics.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_chronosphere as chronosphere
+
+        up_by_namespace = chronosphere.RecordingRule("upByNamespace",
+            expr="sum by (kubernetes_namespace) (up)",
+            interval="60s",
+            labels={
+                "owner": "platform",
+            },
+            metric_name="up:by_namespace",
+            name="up:by_namespace")
+        ```
+
         :param str resource_name: The name of the resource.
         :param RecordingRuleArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -341,6 +456,15 @@ class RecordingRule(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] bucket_id: ID of the bucket the recording rule belongs to. At least one of `bucket_id` or `execution_group` must be set; if both are set their values must match.
+        :param pulumi.Input[str] execution_group: Slug of the execution group in which the rule is evaluated. Rules in the same group run sequentially at the configured interval; all rules in a group must finish before the next iteration starts. At least one of `bucket_id` or `execution_group` must be set.
+        :param pulumi.Input[str] execution_mode: Execution mode controlling whether the recording rule is active.
+        :param pulumi.Input[str] expr: PromQL expression evaluated at each interval. The result is written to a new series named by `metric_name` (or `name` if unset).
+        :param pulumi.Input[str] interval: Evaluation interval (e.g. `30s`, `1m`). Defaults to `60s` when unset.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Key/value labels added to every series produced by this recording rule.
+        :param pulumi.Input[str] metric_name: Name of the output time series produced by `expr`. Must be a valid metric name. Defaults to `name` if omitted.
+        :param pulumi.Input[str] name: Display name of the recording rule. Can be changed after creation.
+        :param pulumi.Input[str] slug: Stable identifier for the recording rule. Generated from `name` if omitted. Immutable after creation.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -360,45 +484,72 @@ class RecordingRule(pulumi.CustomResource):
     @property
     @pulumi.getter(name="bucketId")
     def bucket_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        ID of the bucket the recording rule belongs to. At least one of `bucket_id` or `execution_group` must be set; if both are set their values must match.
+        """
         return pulumi.get(self, "bucket_id")
 
     @property
     @pulumi.getter(name="executionGroup")
     def execution_group(self) -> pulumi.Output[Optional[str]]:
+        """
+        Slug of the execution group in which the rule is evaluated. Rules in the same group run sequentially at the configured interval; all rules in a group must finish before the next iteration starts. At least one of `bucket_id` or `execution_group` must be set.
+        """
         return pulumi.get(self, "execution_group")
 
     @property
     @pulumi.getter(name="executionMode")
     def execution_mode(self) -> pulumi.Output[Optional[str]]:
+        """
+        Execution mode controlling whether the recording rule is active.
+        """
         return pulumi.get(self, "execution_mode")
 
     @property
     @pulumi.getter
     def expr(self) -> pulumi.Output[str]:
+        """
+        PromQL expression evaluated at each interval. The result is written to a new series named by `metric_name` (or `name` if unset).
+        """
         return pulumi.get(self, "expr")
 
     @property
     @pulumi.getter
     def interval(self) -> pulumi.Output[Optional[str]]:
+        """
+        Evaluation interval (e.g. `30s`, `1m`). Defaults to `60s` when unset.
+        """
         return pulumi.get(self, "interval")
 
     @property
     @pulumi.getter
     def labels(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+        """
+        Key/value labels added to every series produced by this recording rule.
+        """
         return pulumi.get(self, "labels")
 
     @property
     @pulumi.getter(name="metricName")
     def metric_name(self) -> pulumi.Output[Optional[str]]:
+        """
+        Name of the output time series produced by `expr`. Must be a valid metric name. Defaults to `name` if omitted.
+        """
         return pulumi.get(self, "metric_name")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        Display name of the recording rule. Can be changed after creation.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def slug(self) -> pulumi.Output[str]:
+        """
+        Stable identifier for the recording rule. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 

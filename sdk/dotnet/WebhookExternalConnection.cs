@@ -10,27 +10,71 @@ using Pulumi;
 
 namespace Chronosphere.Pulumi
 {
+    /// <summary>
+    /// Workspace-scoped webhook credentials that downstream notifiers and LogScale actions can reference. Centralizes the destination URL and HTTP auth so they aren't duplicated across notifiers; modern equivalent of the per-notifier credentials.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Pulumi = Chronosphere.Pulumi;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var webhook = new Pulumi.WebhookExternalConnection("webhook", new()
+    ///     {
+    ///         BearerToken = "XXXXX",
+    ///         Name = "Webhook",
+    ///         Url = "https://example.com/notify",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// </summary>
     [PulumiResourceType("chronosphere:index/webhookExternalConnection:WebhookExternalConnection")]
     public partial class WebhookExternalConnection : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Password for HTTP basic auth when calling the webhook. Treat as a secret.
+        /// </summary>
         [Output("basicAuthPassword")]
         public Output<string?> BasicAuthPassword { get; private set; } = null!;
 
+        /// <summary>
+        /// Username for HTTP basic auth when calling the webhook. Mutually exclusive with `bearer_token`.
+        /// </summary>
         [Output("basicAuthUsername")]
         public Output<string?> BasicAuthUsername { get; private set; } = null!;
 
+        /// <summary>
+        /// Bearer token sent in the `Authorization` header when calling the webhook. Mutually exclusive with basic auth. Treat as a secret.
+        /// </summary>
         [Output("bearerToken")]
         public Output<string?> BearerToken { get; private set; } = null!;
 
+        /// <summary>
+        /// Display name of the external connection.
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Output("slug")]
         public Output<string> Slug { get; private set; } = null!;
 
+        /// <summary>
+        /// If true, skip TLS certificate verification when calling the webhook. Disable only in trusted environments.
+        /// </summary>
         [Output("tlsInsecureSkipVerify")]
         public Output<bool?> TlsInsecureSkipVerify { get; private set; } = null!;
 
+        /// <summary>
+        /// Destination URL that receives webhook POST requests for this connection.
+        /// </summary>
         [Output("url")]
         public Output<string?> Url { get; private set; } = null!;
 
@@ -87,6 +131,10 @@ namespace Chronosphere.Pulumi
     {
         [Input("basicAuthPassword")]
         private Input<string>? _basicAuthPassword;
+
+        /// <summary>
+        /// Password for HTTP basic auth when calling the webhook. Treat as a secret.
+        /// </summary>
         public Input<string>? BasicAuthPassword
         {
             get => _basicAuthPassword;
@@ -97,21 +145,39 @@ namespace Chronosphere.Pulumi
             }
         }
 
+        /// <summary>
+        /// Username for HTTP basic auth when calling the webhook. Mutually exclusive with `bearer_token`.
+        /// </summary>
         [Input("basicAuthUsername")]
         public Input<string>? BasicAuthUsername { get; set; }
 
+        /// <summary>
+        /// Bearer token sent in the `Authorization` header when calling the webhook. Mutually exclusive with basic auth. Treat as a secret.
+        /// </summary>
         [Input("bearerToken")]
         public Input<string>? BearerToken { get; set; }
 
+        /// <summary>
+        /// Display name of the external connection.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 
+        /// <summary>
+        /// If true, skip TLS certificate verification when calling the webhook. Disable only in trusted environments.
+        /// </summary>
         [Input("tlsInsecureSkipVerify")]
         public Input<bool>? TlsInsecureSkipVerify { get; set; }
 
+        /// <summary>
+        /// Destination URL that receives webhook POST requests for this connection.
+        /// </summary>
         [Input("url")]
         public Input<string>? Url { get; set; }
 
@@ -125,6 +191,10 @@ namespace Chronosphere.Pulumi
     {
         [Input("basicAuthPassword")]
         private Input<string>? _basicAuthPassword;
+
+        /// <summary>
+        /// Password for HTTP basic auth when calling the webhook. Treat as a secret.
+        /// </summary>
         public Input<string>? BasicAuthPassword
         {
             get => _basicAuthPassword;
@@ -135,21 +205,39 @@ namespace Chronosphere.Pulumi
             }
         }
 
+        /// <summary>
+        /// Username for HTTP basic auth when calling the webhook. Mutually exclusive with `bearer_token`.
+        /// </summary>
         [Input("basicAuthUsername")]
         public Input<string>? BasicAuthUsername { get; set; }
 
+        /// <summary>
+        /// Bearer token sent in the `Authorization` header when calling the webhook. Mutually exclusive with basic auth. Treat as a secret.
+        /// </summary>
         [Input("bearerToken")]
         public Input<string>? BearerToken { get; set; }
 
+        /// <summary>
+        /// Display name of the external connection.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 
+        /// <summary>
+        /// If true, skip TLS certificate verification when calling the webhook. Disable only in trusted environments.
+        /// </summary>
         [Input("tlsInsecureSkipVerify")]
         public Input<bool>? TlsInsecureSkipVerify { get; set; }
 
+        /// <summary>
+        /// Destination URL that receives webhook POST requests for this connection.
+        /// </summary>
         [Input("url")]
         public Input<string>? Url { get; set; }
 

@@ -16,41 +16,113 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class LogControlConfigRule {
+    /**
+     * @return Configuration for the `DROP_FIELD` action, which removes fields from matching logs.
+     * 
+     */
     private @Nullable LogControlConfigRuleDropField dropField;
+    /**
+     * @return Configuration for the `EMIT_METRICS` action, which derives Prometheus metrics from matching logs.
+     * 
+     */
     private @Nullable LogControlConfigRuleEmitMetrics emitMetrics;
+    /**
+     * @return Log query filter that selects matching logs. The control action applies only to logs that match.
+     * 
+     */
     private @Nullable String filter;
+    /**
+     * @return Execution mode for the rule (for example, `ENABLED` or `DISABLED`).
+     * 
+     */
     private @Nullable String mode;
+    /**
+     * @return User-defined name for the control rule.
+     * 
+     */
     private @Nullable String name;
+    /**
+     * @return Configuration for the `PARSE_FIELD` action, which parses a field with a regex, key/value, or grok parser and writes the result to another field.
+     * 
+     */
     private @Nullable LogControlConfigRuleParseField parseField;
+    /**
+     * @return Configuration for the `REPLACE_FIELD` action, which rewrites field values in matching logs.
+     * 
+     */
     private @Nullable LogControlConfigRuleReplaceField replaceField;
+    /**
+     * @return Configuration for the `SAMPLE_LOGS` action, which keeps a fraction of matching logs.
+     * 
+     */
     private @Nullable LogControlConfigRuleSample sample;
+    /**
+     * @return Type of control action this rule performs. Exactly one of the matching action blocks (`sample`, `drop_field`, `emit_metrics`, `replace_field`, `parse_field`) must be configured.
+     * 
+     */
     private @Nullable String type;
 
     private LogControlConfigRule() {}
+    /**
+     * @return Configuration for the `DROP_FIELD` action, which removes fields from matching logs.
+     * 
+     */
     public Optional<LogControlConfigRuleDropField> dropField() {
         return Optional.ofNullable(this.dropField);
     }
+    /**
+     * @return Configuration for the `EMIT_METRICS` action, which derives Prometheus metrics from matching logs.
+     * 
+     */
     public Optional<LogControlConfigRuleEmitMetrics> emitMetrics() {
         return Optional.ofNullable(this.emitMetrics);
     }
+    /**
+     * @return Log query filter that selects matching logs. The control action applies only to logs that match.
+     * 
+     */
     public Optional<String> filter() {
         return Optional.ofNullable(this.filter);
     }
+    /**
+     * @return Execution mode for the rule (for example, `ENABLED` or `DISABLED`).
+     * 
+     */
     public Optional<String> mode() {
         return Optional.ofNullable(this.mode);
     }
+    /**
+     * @return User-defined name for the control rule.
+     * 
+     */
     public Optional<String> name() {
         return Optional.ofNullable(this.name);
     }
+    /**
+     * @return Configuration for the `PARSE_FIELD` action, which parses a field with a regex, key/value, or grok parser and writes the result to another field.
+     * 
+     */
     public Optional<LogControlConfigRuleParseField> parseField() {
         return Optional.ofNullable(this.parseField);
     }
+    /**
+     * @return Configuration for the `REPLACE_FIELD` action, which rewrites field values in matching logs.
+     * 
+     */
     public Optional<LogControlConfigRuleReplaceField> replaceField() {
         return Optional.ofNullable(this.replaceField);
     }
+    /**
+     * @return Configuration for the `SAMPLE_LOGS` action, which keeps a fraction of matching logs.
+     * 
+     */
     public Optional<LogControlConfigRuleSample> sample() {
         return Optional.ofNullable(this.sample);
     }
+    /**
+     * @return Type of control action this rule performs. Exactly one of the matching action blocks (`sample`, `drop_field`, `emit_metrics`, `replace_field`, `parse_field`) must be configured.
+     * 
+     */
     public Optional<String> type() {
         return Optional.ofNullable(this.type);
     }

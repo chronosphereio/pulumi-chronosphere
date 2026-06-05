@@ -10,15 +10,27 @@ using Pulumi;
 
 namespace Chronosphere.Pulumi
 {
+    /// <summary>
+    /// Singleton allocation of metric license capacity into named pools that match metrics by label filter, each with priority-based dropping when the pool's allocation is exceeded.
+    /// </summary>
     [PulumiResourceType("chronosphere:index/resourcePoolsConfig:ResourcePoolsConfig")]
     public partial class ResourcePoolsConfig : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Catch-all pool that receives metrics not matched by any other pool. Also receives any license allocation left unassigned by the other pools.
+        /// </summary>
         [Output("defaultPool")]
         public Output<Outputs.ResourcePoolsConfigDefaultPool?> DefaultPool { get; private set; } = null!;
 
+        /// <summary>
+        /// Named pools that partition each license across teams or workloads. Pools are matched in declaration order via their `match_rules`.
+        /// </summary>
         [Output("pool")]
         public Output<ImmutableArray<Outputs.ResourcePoolsConfigPool>> Pool { get; private set; } = null!;
 
+        /// <summary>
+        /// Deprecated: use `pool` instead. Set of named pools that partition the license.
+        /// </summary>
         [Output("pools")]
         public Output<ImmutableArray<Outputs.ResourcePoolsConfigPool>> Pools { get; private set; } = null!;
 
@@ -69,11 +81,18 @@ namespace Chronosphere.Pulumi
 
     public sealed class ResourcePoolsConfigArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Catch-all pool that receives metrics not matched by any other pool. Also receives any license allocation left unassigned by the other pools.
+        /// </summary>
         [Input("defaultPool")]
         public Input<Inputs.ResourcePoolsConfigDefaultPoolArgs>? DefaultPool { get; set; }
 
         [Input("pool")]
         private InputList<Inputs.ResourcePoolsConfigPoolArgs>? _pool;
+
+        /// <summary>
+        /// Named pools that partition each license across teams or workloads. Pools are matched in declaration order via their `match_rules`.
+        /// </summary>
         public InputList<Inputs.ResourcePoolsConfigPoolArgs> Pool
         {
             get => _pool ?? (_pool = new InputList<Inputs.ResourcePoolsConfigPoolArgs>());
@@ -82,6 +101,10 @@ namespace Chronosphere.Pulumi
 
         [Input("pools")]
         private InputList<Inputs.ResourcePoolsConfigPoolArgs>? _pools;
+
+        /// <summary>
+        /// Deprecated: use `pool` instead. Set of named pools that partition the license.
+        /// </summary>
         [Obsolete(@"Use pool instead of pools")]
         public InputList<Inputs.ResourcePoolsConfigPoolArgs> Pools
         {
@@ -97,11 +120,18 @@ namespace Chronosphere.Pulumi
 
     public sealed class ResourcePoolsConfigState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Catch-all pool that receives metrics not matched by any other pool. Also receives any license allocation left unassigned by the other pools.
+        /// </summary>
         [Input("defaultPool")]
         public Input<Inputs.ResourcePoolsConfigDefaultPoolGetArgs>? DefaultPool { get; set; }
 
         [Input("pool")]
         private InputList<Inputs.ResourcePoolsConfigPoolGetArgs>? _pool;
+
+        /// <summary>
+        /// Named pools that partition each license across teams or workloads. Pools are matched in declaration order via their `match_rules`.
+        /// </summary>
         public InputList<Inputs.ResourcePoolsConfigPoolGetArgs> Pool
         {
             get => _pool ?? (_pool = new InputList<Inputs.ResourcePoolsConfigPoolGetArgs>());
@@ -110,6 +140,10 @@ namespace Chronosphere.Pulumi
 
         [Input("pools")]
         private InputList<Inputs.ResourcePoolsConfigPoolGetArgs>? _pools;
+
+        /// <summary>
+        /// Deprecated: use `pool` instead. Set of named pools that partition the license.
+        /// </summary>
         [Obsolete(@"Use pool instead of pools")]
         public InputList<Inputs.ResourcePoolsConfigPoolGetArgs> Pools
         {

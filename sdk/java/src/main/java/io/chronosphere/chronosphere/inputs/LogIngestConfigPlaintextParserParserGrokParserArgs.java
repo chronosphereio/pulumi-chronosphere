@@ -13,9 +13,17 @@ public final class LogIngestConfigPlaintextParserParserGrokParserArgs extends co
 
     public static final LogIngestConfigPlaintextParserParserGrokParserArgs Empty = new LogIngestConfigPlaintextParserParserGrokParserArgs();
 
+    /**
+     * Grok pattern to apply. Named capture groups become named fields in the extracted log.
+     * 
+     */
     @Import(name="pattern", required=true)
     private Output<String> pattern;
 
+    /**
+     * @return Grok pattern to apply. Named capture groups become named fields in the extracted log.
+     * 
+     */
     public Output<String> pattern() {
         return this.pattern;
     }
@@ -44,11 +52,23 @@ public final class LogIngestConfigPlaintextParserParserGrokParserArgs extends co
             $ = new LogIngestConfigPlaintextParserParserGrokParserArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param pattern Grok pattern to apply. Named capture groups become named fields in the extracted log.
+         * 
+         * @return builder
+         * 
+         */
         public Builder pattern(Output<String> pattern) {
             $.pattern = pattern;
             return this;
         }
 
+        /**
+         * @param pattern Grok pattern to apply. Named capture groups become named fields in the extracted log.
+         * 
+         * @return builder
+         * 
+         */
         public Builder pattern(String pattern) {
             return pattern(Output.of(pattern));
         }

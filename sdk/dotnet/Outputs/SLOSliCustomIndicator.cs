@@ -14,8 +14,17 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class SLOSliCustomIndicator
     {
+        /// <summary>
+        /// PromQL query template measuring the count of bad events. Mutually exclusive with `good_query_template`.
+        /// </summary>
         public readonly string? BadQueryTemplate;
+        /// <summary>
+        /// PromQL query template measuring the count of good events. Mutually exclusive with `bad_query_template`.
+        /// </summary>
         public readonly string? GoodQueryTemplate;
+        /// <summary>
+        /// PromQL query template measuring the total count of events. Required for error-ratio SLOs.
+        /// </summary>
         public readonly string TotalQueryTemplate;
 
         [OutputConstructor]

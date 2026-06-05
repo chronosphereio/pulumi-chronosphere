@@ -14,6 +14,9 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class TraceJaegerRemoteSamplingStrategyAppliedStrategyRateLimitingStrategy
     {
+        /// <summary>
+        /// Maximum number of traces to sample per second for the service.
+        /// </summary>
         public readonly int MaxTracesPerSecond;
 
         [OutputConstructor]

@@ -12,13 +12,45 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Workspace-scoped Slack credentials that downstream notifiers and LogScale actions can reference. Centralizes webhook URLs and bot tokens so they aren't duplicated across notifiers; modern equivalent of the per-notifier credentials.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/chronosphereio/pulumi-chronosphere/sdk/go/chronosphere"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := chronosphere.NewSlackExternalConnection(ctx, "slack", &chronosphere.SlackExternalConnectionArgs{
+//				ApiUrl: pulumi.String("https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX"),
+//				Name:   pulumi.String("Slack"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type SlackExternalConnection struct {
 	pulumi.CustomResourceState
 
+	// Slack incoming webhook URL used to deliver messages. Treat as a secret.
 	ApiUrl pulumi.StringPtrOutput `pulumi:"apiUrl"`
-	Name   pulumi.StringOutput    `pulumi:"name"`
-	Slug   pulumi.StringOutput    `pulumi:"slug"`
-	Token  pulumi.StringPtrOutput `pulumi:"token"`
+	// Display name of the external connection.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringOutput `pulumi:"slug"`
+	// Slack bot or app token used to authenticate API calls when posting messages. Treat as a secret.
+	Token pulumi.StringPtrOutput `pulumi:"token"`
 }
 
 // NewSlackExternalConnection registers a new resource with the given unique name, arguments, and options.
@@ -61,17 +93,25 @@ func GetSlackExternalConnection(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SlackExternalConnection resources.
 type slackExternalConnectionState struct {
+	// Slack incoming webhook URL used to deliver messages. Treat as a secret.
 	ApiUrl *string `pulumi:"apiUrl"`
-	Name   *string `pulumi:"name"`
-	Slug   *string `pulumi:"slug"`
-	Token  *string `pulumi:"token"`
+	// Display name of the external connection.
+	Name *string `pulumi:"name"`
+	// Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+	Slug *string `pulumi:"slug"`
+	// Slack bot or app token used to authenticate API calls when posting messages. Treat as a secret.
+	Token *string `pulumi:"token"`
 }
 
 type SlackExternalConnectionState struct {
+	// Slack incoming webhook URL used to deliver messages. Treat as a secret.
 	ApiUrl pulumi.StringPtrInput
-	Name   pulumi.StringPtrInput
-	Slug   pulumi.StringPtrInput
-	Token  pulumi.StringPtrInput
+	// Display name of the external connection.
+	Name pulumi.StringPtrInput
+	// Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringPtrInput
+	// Slack bot or app token used to authenticate API calls when posting messages. Treat as a secret.
+	Token pulumi.StringPtrInput
 }
 
 func (SlackExternalConnectionState) ElementType() reflect.Type {
@@ -79,18 +119,26 @@ func (SlackExternalConnectionState) ElementType() reflect.Type {
 }
 
 type slackExternalConnectionArgs struct {
+	// Slack incoming webhook URL used to deliver messages. Treat as a secret.
 	ApiUrl *string `pulumi:"apiUrl"`
-	Name   string  `pulumi:"name"`
-	Slug   *string `pulumi:"slug"`
-	Token  *string `pulumi:"token"`
+	// Display name of the external connection.
+	Name string `pulumi:"name"`
+	// Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+	Slug *string `pulumi:"slug"`
+	// Slack bot or app token used to authenticate API calls when posting messages. Treat as a secret.
+	Token *string `pulumi:"token"`
 }
 
 // The set of arguments for constructing a SlackExternalConnection resource.
 type SlackExternalConnectionArgs struct {
+	// Slack incoming webhook URL used to deliver messages. Treat as a secret.
 	ApiUrl pulumi.StringPtrInput
-	Name   pulumi.StringInput
-	Slug   pulumi.StringPtrInput
-	Token  pulumi.StringPtrInput
+	// Display name of the external connection.
+	Name pulumi.StringInput
+	// Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringPtrInput
+	// Slack bot or app token used to authenticate API calls when posting messages. Treat as a secret.
+	Token pulumi.StringPtrInput
 }
 
 func (SlackExternalConnectionArgs) ElementType() reflect.Type {
@@ -180,18 +228,22 @@ func (o SlackExternalConnectionOutput) ToSlackExternalConnectionOutputWithContex
 	return o
 }
 
+// Slack incoming webhook URL used to deliver messages. Treat as a secret.
 func (o SlackExternalConnectionOutput) ApiUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SlackExternalConnection) pulumi.StringPtrOutput { return v.ApiUrl }).(pulumi.StringPtrOutput)
 }
 
+// Display name of the external connection.
 func (o SlackExternalConnectionOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *SlackExternalConnection) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
 func (o SlackExternalConnectionOutput) Slug() pulumi.StringOutput {
 	return o.ApplyT(func(v *SlackExternalConnection) pulumi.StringOutput { return v.Slug }).(pulumi.StringOutput)
 }
 
+// Slack bot or app token used to authenticate API calls when posting messages. Treat as a secret.
 func (o SlackExternalConnectionOutput) Token() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SlackExternalConnection) pulumi.StringPtrOutput { return v.Token }).(pulumi.StringPtrOutput)
 }

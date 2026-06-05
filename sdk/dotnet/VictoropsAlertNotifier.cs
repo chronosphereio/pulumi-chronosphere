@@ -10,54 +10,126 @@ using Pulumi;
 
 namespace Chronosphere.Pulumi
 {
+    /// <summary>
+    /// VictorOps (Splunk On-Call) notifier that delivers monitor signals to a VictorOps routing key via its REST integration. Referenced from notification policies.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Pulumi = Chronosphere.Pulumi;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var victorops = new Pulumi.VictoropsAlertNotifier("victorops", new()
+    ///     {
+    ///         ApiKey = "00000000-0000-0000-0000-000000000000",
+    ///         ApiUrl = "https://alert.victorops.com/integrations/generic/00000000/alert/",
+    ///         Name = "test-victorops",
+    ///         RoutingKey = "test",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// </summary>
     [PulumiResourceType("chronosphere:index/victoropsAlertNotifier:VictoropsAlertNotifier")]
     public partial class VictoropsAlertNotifier : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// VictorOps (Splunk On-Call) API key used to authenticate requests. Treat as a secret.
+        /// </summary>
         [Output("apiKey")]
         public Output<string> ApiKey { get; private set; } = null!;
 
+        /// <summary>
+        /// VictorOps REST endpoint URL to send events to.
+        /// </summary>
         [Output("apiUrl")]
         public Output<string?> ApiUrl { get; private set; } = null!;
 
+        /// <summary>
+        /// Password for HTTP basic auth when calling the VictorOps API. Treat as a secret.
+        /// </summary>
         [Output("basicAuthPassword")]
         public Output<string?> BasicAuthPassword { get; private set; } = null!;
 
+        /// <summary>
+        /// Username for HTTP basic auth when calling the VictorOps API. Mutually exclusive with `bearer_token`.
+        /// </summary>
         [Output("basicAuthUsername")]
         public Output<string?> BasicAuthUsername { get; private set; } = null!;
 
+        /// <summary>
+        /// Bearer token sent in the `Authorization` header when calling the VictorOps API. Treat as a secret. Mutually exclusive with basic auth.
+        /// </summary>
         [Output("bearerToken")]
         public Output<string?> BearerToken { get; private set; } = null!;
 
+        /// <summary>
+        /// Arbitrary key/value pairs forwarded to VictorOps as custom incident fields. Values support Go templating.
+        /// </summary>
         [Output("customFields")]
         public Output<ImmutableDictionary<string, string>?> CustomFields { get; private set; } = null!;
 
+        /// <summary>
+        /// Short summary of the alerted problem shown in VictorOps. Supports Go templating.
+        /// </summary>
         [Output("entityDisplayName")]
         public Output<string?> EntityDisplayName { get; private set; } = null!;
 
+        /// <summary>
+        /// Behavior of the alert in VictorOps. One of `CRITICAL`, `WARNING`, or `INFO`.
+        /// </summary>
         [Output("messageType")]
         public Output<string?> MessageType { get; private set; } = null!;
 
+        /// <summary>
+        /// Name of the monitoring tool the state message originated from.
+        /// </summary>
         [Output("monitoringTool")]
         public Output<string?> MonitoringTool { get; private set; } = null!;
 
+        /// <summary>
+        /// Display name of the notifier.
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// Deprecated and ignored. Custom proxy URLs are not supported.
+        /// </summary>
         [Output("proxyUrl")]
         public Output<string?> ProxyUrl { get; private set; } = null!;
 
+        /// <summary>
+        /// VictorOps routing key that determines which team or escalation policy receives the alert.
+        /// </summary>
         [Output("routingKey")]
         public Output<string> RoutingKey { get; private set; } = null!;
 
+        /// <summary>
+        /// Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+        /// </summary>
         [Output("sendResolved")]
         public Output<bool?> SendResolved { get; private set; } = null!;
 
+        /// <summary>
+        /// Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Output("slug")]
         public Output<string> Slug { get; private set; } = null!;
 
+        /// <summary>
+        /// Detailed explanation of the alerted problem. Supports Go templating.
+        /// </summary>
         [Output("stateMessage")]
         public Output<string?> StateMessage { get; private set; } = null!;
 
+        /// <summary>
+        /// If true, skip TLS certificate verification when calling the VictorOps API. Disable only in trusted environments.
+        /// </summary>
         [Output("tlsInsecureSkipVerify")]
         public Output<bool?> TlsInsecureSkipVerify { get; private set; } = null!;
 
@@ -115,6 +187,10 @@ namespace Chronosphere.Pulumi
     {
         [Input("apiKey", required: true)]
         private Input<string>? _apiKey;
+
+        /// <summary>
+        /// VictorOps (Splunk On-Call) API key used to authenticate requests. Treat as a secret.
+        /// </summary>
         public Input<string>? ApiKey
         {
             get => _apiKey;
@@ -125,11 +201,18 @@ namespace Chronosphere.Pulumi
             }
         }
 
+        /// <summary>
+        /// VictorOps REST endpoint URL to send events to.
+        /// </summary>
         [Input("apiUrl")]
         public Input<string>? ApiUrl { get; set; }
 
         [Input("basicAuthPassword")]
         private Input<string>? _basicAuthPassword;
+
+        /// <summary>
+        /// Password for HTTP basic auth when calling the VictorOps API. Treat as a secret.
+        /// </summary>
         public Input<string>? BasicAuthPassword
         {
             get => _basicAuthPassword;
@@ -140,47 +223,87 @@ namespace Chronosphere.Pulumi
             }
         }
 
+        /// <summary>
+        /// Username for HTTP basic auth when calling the VictorOps API. Mutually exclusive with `bearer_token`.
+        /// </summary>
         [Input("basicAuthUsername")]
         public Input<string>? BasicAuthUsername { get; set; }
 
+        /// <summary>
+        /// Bearer token sent in the `Authorization` header when calling the VictorOps API. Treat as a secret. Mutually exclusive with basic auth.
+        /// </summary>
         [Input("bearerToken")]
         public Input<string>? BearerToken { get; set; }
 
         [Input("customFields")]
         private InputMap<string>? _customFields;
+
+        /// <summary>
+        /// Arbitrary key/value pairs forwarded to VictorOps as custom incident fields. Values support Go templating.
+        /// </summary>
         public InputMap<string> CustomFields
         {
             get => _customFields ?? (_customFields = new InputMap<string>());
             set => _customFields = value;
         }
 
+        /// <summary>
+        /// Short summary of the alerted problem shown in VictorOps. Supports Go templating.
+        /// </summary>
         [Input("entityDisplayName")]
         public Input<string>? EntityDisplayName { get; set; }
 
+        /// <summary>
+        /// Behavior of the alert in VictorOps. One of `CRITICAL`, `WARNING`, or `INFO`.
+        /// </summary>
         [Input("messageType")]
         public Input<string>? MessageType { get; set; }
 
+        /// <summary>
+        /// Name of the monitoring tool the state message originated from.
+        /// </summary>
         [Input("monitoringTool")]
         public Input<string>? MonitoringTool { get; set; }
 
+        /// <summary>
+        /// Display name of the notifier.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// Deprecated and ignored. Custom proxy URLs are not supported.
+        /// </summary>
         [Input("proxyUrl")]
         public Input<string>? ProxyUrl { get; set; }
 
+        /// <summary>
+        /// VictorOps routing key that determines which team or escalation policy receives the alert.
+        /// </summary>
         [Input("routingKey", required: true)]
         public Input<string> RoutingKey { get; set; } = null!;
 
+        /// <summary>
+        /// Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+        /// </summary>
         [Input("sendResolved")]
         public Input<bool>? SendResolved { get; set; }
 
+        /// <summary>
+        /// Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 
+        /// <summary>
+        /// Detailed explanation of the alerted problem. Supports Go templating.
+        /// </summary>
         [Input("stateMessage")]
         public Input<string>? StateMessage { get; set; }
 
+        /// <summary>
+        /// If true, skip TLS certificate verification when calling the VictorOps API. Disable only in trusted environments.
+        /// </summary>
         [Input("tlsInsecureSkipVerify")]
         public Input<bool>? TlsInsecureSkipVerify { get; set; }
 
@@ -194,6 +317,10 @@ namespace Chronosphere.Pulumi
     {
         [Input("apiKey")]
         private Input<string>? _apiKey;
+
+        /// <summary>
+        /// VictorOps (Splunk On-Call) API key used to authenticate requests. Treat as a secret.
+        /// </summary>
         public Input<string>? ApiKey
         {
             get => _apiKey;
@@ -204,11 +331,18 @@ namespace Chronosphere.Pulumi
             }
         }
 
+        /// <summary>
+        /// VictorOps REST endpoint URL to send events to.
+        /// </summary>
         [Input("apiUrl")]
         public Input<string>? ApiUrl { get; set; }
 
         [Input("basicAuthPassword")]
         private Input<string>? _basicAuthPassword;
+
+        /// <summary>
+        /// Password for HTTP basic auth when calling the VictorOps API. Treat as a secret.
+        /// </summary>
         public Input<string>? BasicAuthPassword
         {
             get => _basicAuthPassword;
@@ -219,47 +353,87 @@ namespace Chronosphere.Pulumi
             }
         }
 
+        /// <summary>
+        /// Username for HTTP basic auth when calling the VictorOps API. Mutually exclusive with `bearer_token`.
+        /// </summary>
         [Input("basicAuthUsername")]
         public Input<string>? BasicAuthUsername { get; set; }
 
+        /// <summary>
+        /// Bearer token sent in the `Authorization` header when calling the VictorOps API. Treat as a secret. Mutually exclusive with basic auth.
+        /// </summary>
         [Input("bearerToken")]
         public Input<string>? BearerToken { get; set; }
 
         [Input("customFields")]
         private InputMap<string>? _customFields;
+
+        /// <summary>
+        /// Arbitrary key/value pairs forwarded to VictorOps as custom incident fields. Values support Go templating.
+        /// </summary>
         public InputMap<string> CustomFields
         {
             get => _customFields ?? (_customFields = new InputMap<string>());
             set => _customFields = value;
         }
 
+        /// <summary>
+        /// Short summary of the alerted problem shown in VictorOps. Supports Go templating.
+        /// </summary>
         [Input("entityDisplayName")]
         public Input<string>? EntityDisplayName { get; set; }
 
+        /// <summary>
+        /// Behavior of the alert in VictorOps. One of `CRITICAL`, `WARNING`, or `INFO`.
+        /// </summary>
         [Input("messageType")]
         public Input<string>? MessageType { get; set; }
 
+        /// <summary>
+        /// Name of the monitoring tool the state message originated from.
+        /// </summary>
         [Input("monitoringTool")]
         public Input<string>? MonitoringTool { get; set; }
 
+        /// <summary>
+        /// Display name of the notifier.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// Deprecated and ignored. Custom proxy URLs are not supported.
+        /// </summary>
         [Input("proxyUrl")]
         public Input<string>? ProxyUrl { get; set; }
 
+        /// <summary>
+        /// VictorOps routing key that determines which team or escalation policy receives the alert.
+        /// </summary>
         [Input("routingKey")]
         public Input<string>? RoutingKey { get; set; }
 
+        /// <summary>
+        /// Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+        /// </summary>
         [Input("sendResolved")]
         public Input<bool>? SendResolved { get; set; }
 
+        /// <summary>
+        /// Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 
+        /// <summary>
+        /// Detailed explanation of the alerted problem. Supports Go templating.
+        /// </summary>
         [Input("stateMessage")]
         public Input<string>? StateMessage { get; set; }
 
+        /// <summary>
+        /// If true, skip TLS certificate verification when calling the VictorOps API. Disable only in trusted environments.
+        /// </summary>
         [Input("tlsInsecureSkipVerify")]
         public Input<bool>? TlsInsecureSkipVerify { get; set; }
 

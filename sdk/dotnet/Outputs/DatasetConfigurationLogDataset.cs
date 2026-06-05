@@ -14,6 +14,9 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class DatasetConfigurationLogDataset
     {
+        /// <summary>
+        /// Log search filter that defines which logs are included in this dataset.
+        /// </summary>
         public readonly Outputs.DatasetConfigurationLogDatasetMatchCriteria? MatchCriteria;
 
         [OutputConstructor]

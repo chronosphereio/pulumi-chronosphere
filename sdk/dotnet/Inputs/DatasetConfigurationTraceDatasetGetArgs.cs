@@ -13,6 +13,9 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class DatasetConfigurationTraceDatasetGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Log search filter that defines which logs are included in this dataset.
+        /// </summary>
         [Input("matchCriteria", required: true)]
         public Input<Inputs.DatasetConfigurationTraceDatasetMatchCriteriaGetArgs> MatchCriteria { get; set; } = null!;
 

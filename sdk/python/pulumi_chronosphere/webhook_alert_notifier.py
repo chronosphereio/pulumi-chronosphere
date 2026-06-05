@@ -25,6 +25,15 @@ class WebhookAlertNotifierArgs:
                  tls_insecure_skip_verify: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a WebhookAlertNotifier resource.
+        :param pulumi.Input[str] name: Display name of the notifier.
+        :param pulumi.Input[str] url: Webhook URL that receives the alert payload via HTTP POST.
+        :param pulumi.Input[str] basic_auth_password: Password for HTTP basic auth when calling the webhook. Treat as a secret.
+        :param pulumi.Input[str] basic_auth_username: Username for HTTP basic auth when calling the webhook. Mutually exclusive with `bearer_token`.
+        :param pulumi.Input[str] bearer_token: Bearer token sent in the `Authorization` header when calling the webhook. Treat as a secret. Mutually exclusive with basic auth.
+        :param pulumi.Input[str] proxy_url: Deprecated and ignored. Custom proxy URLs are not supported.
+        :param pulumi.Input[bool] send_resolved: Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+        :param pulumi.Input[str] slug: Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[bool] tls_insecure_skip_verify: If true, skip TLS certificate verification when calling the webhook. Disable only in trusted environments.
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "url", url)
@@ -49,6 +58,9 @@ class WebhookAlertNotifierArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        Display name of the notifier.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -58,6 +70,9 @@ class WebhookAlertNotifierArgs:
     @property
     @pulumi.getter
     def url(self) -> pulumi.Input[str]:
+        """
+        Webhook URL that receives the alert payload via HTTP POST.
+        """
         return pulumi.get(self, "url")
 
     @url.setter
@@ -67,6 +82,9 @@ class WebhookAlertNotifierArgs:
     @property
     @pulumi.getter(name="basicAuthPassword")
     def basic_auth_password(self) -> Optional[pulumi.Input[str]]:
+        """
+        Password for HTTP basic auth when calling the webhook. Treat as a secret.
+        """
         return pulumi.get(self, "basic_auth_password")
 
     @basic_auth_password.setter
@@ -76,6 +94,9 @@ class WebhookAlertNotifierArgs:
     @property
     @pulumi.getter(name="basicAuthUsername")
     def basic_auth_username(self) -> Optional[pulumi.Input[str]]:
+        """
+        Username for HTTP basic auth when calling the webhook. Mutually exclusive with `bearer_token`.
+        """
         return pulumi.get(self, "basic_auth_username")
 
     @basic_auth_username.setter
@@ -85,6 +106,9 @@ class WebhookAlertNotifierArgs:
     @property
     @pulumi.getter(name="bearerToken")
     def bearer_token(self) -> Optional[pulumi.Input[str]]:
+        """
+        Bearer token sent in the `Authorization` header when calling the webhook. Treat as a secret. Mutually exclusive with basic auth.
+        """
         return pulumi.get(self, "bearer_token")
 
     @bearer_token.setter
@@ -94,6 +118,9 @@ class WebhookAlertNotifierArgs:
     @property
     @pulumi.getter(name="proxyUrl")
     def proxy_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        Deprecated and ignored. Custom proxy URLs are not supported.
+        """
         warnings.warn("""custom proxy URLs are not supported""", DeprecationWarning)
         pulumi.log.warn("""proxy_url is deprecated: custom proxy URLs are not supported""")
 
@@ -106,6 +133,9 @@ class WebhookAlertNotifierArgs:
     @property
     @pulumi.getter(name="sendResolved")
     def send_resolved(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+        """
         return pulumi.get(self, "send_resolved")
 
     @send_resolved.setter
@@ -115,6 +145,9 @@ class WebhookAlertNotifierArgs:
     @property
     @pulumi.getter
     def slug(self) -> Optional[pulumi.Input[str]]:
+        """
+        Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @slug.setter
@@ -124,6 +157,9 @@ class WebhookAlertNotifierArgs:
     @property
     @pulumi.getter(name="tlsInsecureSkipVerify")
     def tls_insecure_skip_verify(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If true, skip TLS certificate verification when calling the webhook. Disable only in trusted environments.
+        """
         return pulumi.get(self, "tls_insecure_skip_verify")
 
     @tls_insecure_skip_verify.setter
@@ -145,6 +181,15 @@ class _WebhookAlertNotifierState:
                  url: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering WebhookAlertNotifier resources.
+        :param pulumi.Input[str] basic_auth_password: Password for HTTP basic auth when calling the webhook. Treat as a secret.
+        :param pulumi.Input[str] basic_auth_username: Username for HTTP basic auth when calling the webhook. Mutually exclusive with `bearer_token`.
+        :param pulumi.Input[str] bearer_token: Bearer token sent in the `Authorization` header when calling the webhook. Treat as a secret. Mutually exclusive with basic auth.
+        :param pulumi.Input[str] name: Display name of the notifier.
+        :param pulumi.Input[str] proxy_url: Deprecated and ignored. Custom proxy URLs are not supported.
+        :param pulumi.Input[bool] send_resolved: Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+        :param pulumi.Input[str] slug: Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[bool] tls_insecure_skip_verify: If true, skip TLS certificate verification when calling the webhook. Disable only in trusted environments.
+        :param pulumi.Input[str] url: Webhook URL that receives the alert payload via HTTP POST.
         """
         if basic_auth_password is not None:
             pulumi.set(__self__, "basic_auth_password", basic_auth_password)
@@ -171,6 +216,9 @@ class _WebhookAlertNotifierState:
     @property
     @pulumi.getter(name="basicAuthPassword")
     def basic_auth_password(self) -> Optional[pulumi.Input[str]]:
+        """
+        Password for HTTP basic auth when calling the webhook. Treat as a secret.
+        """
         return pulumi.get(self, "basic_auth_password")
 
     @basic_auth_password.setter
@@ -180,6 +228,9 @@ class _WebhookAlertNotifierState:
     @property
     @pulumi.getter(name="basicAuthUsername")
     def basic_auth_username(self) -> Optional[pulumi.Input[str]]:
+        """
+        Username for HTTP basic auth when calling the webhook. Mutually exclusive with `bearer_token`.
+        """
         return pulumi.get(self, "basic_auth_username")
 
     @basic_auth_username.setter
@@ -189,6 +240,9 @@ class _WebhookAlertNotifierState:
     @property
     @pulumi.getter(name="bearerToken")
     def bearer_token(self) -> Optional[pulumi.Input[str]]:
+        """
+        Bearer token sent in the `Authorization` header when calling the webhook. Treat as a secret. Mutually exclusive with basic auth.
+        """
         return pulumi.get(self, "bearer_token")
 
     @bearer_token.setter
@@ -198,6 +252,9 @@ class _WebhookAlertNotifierState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Display name of the notifier.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -207,6 +264,9 @@ class _WebhookAlertNotifierState:
     @property
     @pulumi.getter(name="proxyUrl")
     def proxy_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        Deprecated and ignored. Custom proxy URLs are not supported.
+        """
         warnings.warn("""custom proxy URLs are not supported""", DeprecationWarning)
         pulumi.log.warn("""proxy_url is deprecated: custom proxy URLs are not supported""")
 
@@ -219,6 +279,9 @@ class _WebhookAlertNotifierState:
     @property
     @pulumi.getter(name="sendResolved")
     def send_resolved(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+        """
         return pulumi.get(self, "send_resolved")
 
     @send_resolved.setter
@@ -228,6 +291,9 @@ class _WebhookAlertNotifierState:
     @property
     @pulumi.getter
     def slug(self) -> Optional[pulumi.Input[str]]:
+        """
+        Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @slug.setter
@@ -237,6 +303,9 @@ class _WebhookAlertNotifierState:
     @property
     @pulumi.getter(name="tlsInsecureSkipVerify")
     def tls_insecure_skip_verify(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If true, skip TLS certificate verification when calling the webhook. Disable only in trusted environments.
+        """
         return pulumi.get(self, "tls_insecure_skip_verify")
 
     @tls_insecure_skip_verify.setter
@@ -246,6 +315,9 @@ class _WebhookAlertNotifierState:
     @property
     @pulumi.getter
     def url(self) -> Optional[pulumi.Input[str]]:
+        """
+        Webhook URL that receives the alert payload via HTTP POST.
+        """
         return pulumi.get(self, "url")
 
     @url.setter
@@ -269,9 +341,32 @@ class WebhookAlertNotifier(pulumi.CustomResource):
                  url: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a WebhookAlertNotifier resource with the given unique name, props, and options.
+        Webhook notifier that POSTs monitor signal payloads to an arbitrary HTTP endpoint. Referenced from notification policies.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_chronosphere as chronosphere
+
+        webhook = chronosphere.WebhookAlertNotifier("webhook",
+            bearer_token="bearer-token",
+            name="Webhook",
+            send_resolved=False,
+            url="http://example.com/url")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] basic_auth_password: Password for HTTP basic auth when calling the webhook. Treat as a secret.
+        :param pulumi.Input[str] basic_auth_username: Username for HTTP basic auth when calling the webhook. Mutually exclusive with `bearer_token`.
+        :param pulumi.Input[str] bearer_token: Bearer token sent in the `Authorization` header when calling the webhook. Treat as a secret. Mutually exclusive with basic auth.
+        :param pulumi.Input[str] name: Display name of the notifier.
+        :param pulumi.Input[str] proxy_url: Deprecated and ignored. Custom proxy URLs are not supported.
+        :param pulumi.Input[bool] send_resolved: Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+        :param pulumi.Input[str] slug: Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[bool] tls_insecure_skip_verify: If true, skip TLS certificate verification when calling the webhook. Disable only in trusted environments.
+        :param pulumi.Input[str] url: Webhook URL that receives the alert payload via HTTP POST.
         """
         ...
     @overload
@@ -280,7 +375,21 @@ class WebhookAlertNotifier(pulumi.CustomResource):
                  args: WebhookAlertNotifierArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a WebhookAlertNotifier resource with the given unique name, props, and options.
+        Webhook notifier that POSTs monitor signal payloads to an arbitrary HTTP endpoint. Referenced from notification policies.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_chronosphere as chronosphere
+
+        webhook = chronosphere.WebhookAlertNotifier("webhook",
+            bearer_token="bearer-token",
+            name="Webhook",
+            send_resolved=False,
+            url="http://example.com/url")
+        ```
+
         :param str resource_name: The name of the resource.
         :param WebhookAlertNotifierArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -355,6 +464,15 @@ class WebhookAlertNotifier(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] basic_auth_password: Password for HTTP basic auth when calling the webhook. Treat as a secret.
+        :param pulumi.Input[str] basic_auth_username: Username for HTTP basic auth when calling the webhook. Mutually exclusive with `bearer_token`.
+        :param pulumi.Input[str] bearer_token: Bearer token sent in the `Authorization` header when calling the webhook. Treat as a secret. Mutually exclusive with basic auth.
+        :param pulumi.Input[str] name: Display name of the notifier.
+        :param pulumi.Input[str] proxy_url: Deprecated and ignored. Custom proxy URLs are not supported.
+        :param pulumi.Input[bool] send_resolved: Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+        :param pulumi.Input[str] slug: Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[bool] tls_insecure_skip_verify: If true, skip TLS certificate verification when calling the webhook. Disable only in trusted environments.
+        :param pulumi.Input[str] url: Webhook URL that receives the alert payload via HTTP POST.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -374,26 +492,41 @@ class WebhookAlertNotifier(pulumi.CustomResource):
     @property
     @pulumi.getter(name="basicAuthPassword")
     def basic_auth_password(self) -> pulumi.Output[Optional[str]]:
+        """
+        Password for HTTP basic auth when calling the webhook. Treat as a secret.
+        """
         return pulumi.get(self, "basic_auth_password")
 
     @property
     @pulumi.getter(name="basicAuthUsername")
     def basic_auth_username(self) -> pulumi.Output[Optional[str]]:
+        """
+        Username for HTTP basic auth when calling the webhook. Mutually exclusive with `bearer_token`.
+        """
         return pulumi.get(self, "basic_auth_username")
 
     @property
     @pulumi.getter(name="bearerToken")
     def bearer_token(self) -> pulumi.Output[Optional[str]]:
+        """
+        Bearer token sent in the `Authorization` header when calling the webhook. Treat as a secret. Mutually exclusive with basic auth.
+        """
         return pulumi.get(self, "bearer_token")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        Display name of the notifier.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="proxyUrl")
     def proxy_url(self) -> pulumi.Output[Optional[str]]:
+        """
+        Deprecated and ignored. Custom proxy URLs are not supported.
+        """
         warnings.warn("""custom proxy URLs are not supported""", DeprecationWarning)
         pulumi.log.warn("""proxy_url is deprecated: custom proxy URLs are not supported""")
 
@@ -402,20 +535,32 @@ class WebhookAlertNotifier(pulumi.CustomResource):
     @property
     @pulumi.getter(name="sendResolved")
     def send_resolved(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+        """
         return pulumi.get(self, "send_resolved")
 
     @property
     @pulumi.getter
     def slug(self) -> pulumi.Output[str]:
+        """
+        Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @property
     @pulumi.getter(name="tlsInsecureSkipVerify")
     def tls_insecure_skip_verify(self) -> pulumi.Output[Optional[bool]]:
+        """
+        If true, skip TLS certificate verification when calling the webhook. Disable only in trusted environments.
+        """
         return pulumi.get(self, "tls_insecure_skip_verify")
 
     @property
     @pulumi.getter
     def url(self) -> pulumi.Output[str]:
+        """
+        Webhook URL that receives the alert payload via HTTP POST.
+        """
         return pulumi.get(self, "url")
 

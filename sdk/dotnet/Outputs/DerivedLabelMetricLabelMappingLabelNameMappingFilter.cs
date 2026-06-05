@@ -14,7 +14,13 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class DerivedLabelMetricLabelMappingLabelNameMappingFilter
     {
+        /// <summary>
+        /// Name of the label to match.
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// Glob pattern matched against the label value.
+        /// </summary>
         public readonly string ValueGlob;
 
         [OutputConstructor]

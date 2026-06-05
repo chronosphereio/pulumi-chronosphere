@@ -12,17 +12,41 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class LogscaleActionPagerDutyAction {
+    /**
+     * @return Routing key used to authenticate with PagerDuty.
+     * 
+     */
     private String routingKey;
+    /**
+     * @return Severity attached to the PagerDuty event.
+     * 
+     */
     private String severity;
+    /**
+     * @return If `true`, sends the request through the configured outbound proxy.
+     * 
+     */
     private @Nullable Boolean useProxy;
 
     private LogscaleActionPagerDutyAction() {}
+    /**
+     * @return Routing key used to authenticate with PagerDuty.
+     * 
+     */
     public String routingKey() {
         return this.routingKey;
     }
+    /**
+     * @return Severity attached to the PagerDuty event.
+     * 
+     */
     public String severity() {
         return this.severity;
     }
+    /**
+     * @return If `true`, sends the request through the configured outbound proxy.
+     * 
+     */
     public Optional<Boolean> useProxy() {
         return Optional.ofNullable(this.useProxy);
     }

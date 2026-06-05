@@ -17,30 +17,62 @@ public final class LogIngestConfigPlaintextParserArgs extends com.pulumi.resourc
 
     public static final LogIngestConfigPlaintextParserArgs Empty = new LogIngestConfigPlaintextParserArgs();
 
+    /**
+     * If `true`, the original log is retained after parsing and stored under the `plaintext_log` key. Defaults to `false`.
+     * 
+     */
     @Import(name="keepOriginal")
     private @Nullable Output<Boolean> keepOriginal;
 
+    /**
+     * @return If `true`, the original log is retained after parsing and stored under the `plaintext_log` key. Defaults to `false`.
+     * 
+     */
     public Optional<Output<Boolean>> keepOriginal() {
         return Optional.ofNullable(this.keepOriginal);
     }
 
+    /**
+     * Mode that controls how the parser matches incoming plaintext logs.
+     * 
+     */
     @Import(name="mode")
     private @Nullable Output<String> mode;
 
+    /**
+     * @return Mode that controls how the parser matches incoming plaintext logs.
+     * 
+     */
     public Optional<Output<String>> mode() {
         return Optional.ofNullable(this.mode);
     }
 
+    /**
+     * Name of the parser. Must be unique within the configuration.
+     * 
+     */
     @Import(name="name", required=true)
     private Output<String> name;
 
+    /**
+     * @return Name of the parser. Must be unique within the configuration.
+     * 
+     */
     public Output<String> name() {
         return this.name;
     }
 
+    /**
+     * Parser configuration. Exactly one of `regex_parser`, `key_value_parser`, or `grok_parser` must be set, matching `parser_type`.
+     * 
+     */
     @Import(name="parser", required=true)
     private Output<LogIngestConfigPlaintextParserParserArgs> parser;
 
+    /**
+     * @return Parser configuration. Exactly one of `regex_parser`, `key_value_parser`, or `grok_parser` must be set, matching `parser_type`.
+     * 
+     */
     public Output<LogIngestConfigPlaintextParserParserArgs> parser() {
         return this.parser;
     }
@@ -72,38 +104,86 @@ public final class LogIngestConfigPlaintextParserArgs extends com.pulumi.resourc
             $ = new LogIngestConfigPlaintextParserArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param keepOriginal If `true`, the original log is retained after parsing and stored under the `plaintext_log` key. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder keepOriginal(@Nullable Output<Boolean> keepOriginal) {
             $.keepOriginal = keepOriginal;
             return this;
         }
 
+        /**
+         * @param keepOriginal If `true`, the original log is retained after parsing and stored under the `plaintext_log` key. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder keepOriginal(Boolean keepOriginal) {
             return keepOriginal(Output.of(keepOriginal));
         }
 
+        /**
+         * @param mode Mode that controls how the parser matches incoming plaintext logs.
+         * 
+         * @return builder
+         * 
+         */
         public Builder mode(@Nullable Output<String> mode) {
             $.mode = mode;
             return this;
         }
 
+        /**
+         * @param mode Mode that controls how the parser matches incoming plaintext logs.
+         * 
+         * @return builder
+         * 
+         */
         public Builder mode(String mode) {
             return mode(Output.of(mode));
         }
 
+        /**
+         * @param name Name of the parser. Must be unique within the configuration.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(Output<String> name) {
             $.name = name;
             return this;
         }
 
+        /**
+         * @param name Name of the parser. Must be unique within the configuration.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(String name) {
             return name(Output.of(name));
         }
 
+        /**
+         * @param parser Parser configuration. Exactly one of `regex_parser`, `key_value_parser`, or `grok_parser` must be set, matching `parser_type`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder parser(Output<LogIngestConfigPlaintextParserParserArgs> parser) {
             $.parser = parser;
             return this;
         }
 
+        /**
+         * @param parser Parser configuration. Exactly one of `regex_parser`, `key_value_parser`, or `grok_parser` must be set, matching `parser_type`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder parser(LogIngestConfigPlaintextParserParserArgs parser) {
             return parser(Output.of(parser));
         }

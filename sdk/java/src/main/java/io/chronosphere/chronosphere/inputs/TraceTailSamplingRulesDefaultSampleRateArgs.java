@@ -16,16 +16,32 @@ public final class TraceTailSamplingRulesDefaultSampleRateArgs extends com.pulum
 
     public static final TraceTailSamplingRulesDefaultSampleRateArgs Empty = new TraceTailSamplingRulesDefaultSampleRateArgs();
 
+    /**
+     * Whether to override the platform default sample rate with `sample_rate`.
+     * 
+     */
     @Import(name="enabled")
     private @Nullable Output<Boolean> enabled;
 
+    /**
+     * @return Whether to override the platform default sample rate with `sample_rate`.
+     * 
+     */
     public Optional<Output<Boolean>> enabled() {
         return Optional.ofNullable(this.enabled);
     }
 
+    /**
+     * Fraction of matching traces to keep, in the range `[0.0, 1.0]`. `0` drops all matches, `1` keeps every match.
+     * 
+     */
     @Import(name="sampleRate", required=true)
     private Output<Double> sampleRate;
 
+    /**
+     * @return Fraction of matching traces to keep, in the range `[0.0, 1.0]`. `0` drops all matches, `1` keeps every match.
+     * 
+     */
     public Output<Double> sampleRate() {
         return this.sampleRate;
     }
@@ -55,20 +71,44 @@ public final class TraceTailSamplingRulesDefaultSampleRateArgs extends com.pulum
             $ = new TraceTailSamplingRulesDefaultSampleRateArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param enabled Whether to override the platform default sample rate with `sample_rate`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder enabled(@Nullable Output<Boolean> enabled) {
             $.enabled = enabled;
             return this;
         }
 
+        /**
+         * @param enabled Whether to override the platform default sample rate with `sample_rate`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder enabled(Boolean enabled) {
             return enabled(Output.of(enabled));
         }
 
+        /**
+         * @param sampleRate Fraction of matching traces to keep, in the range `[0.0, 1.0]`. `0` drops all matches, `1` keeps every match.
+         * 
+         * @return builder
+         * 
+         */
         public Builder sampleRate(Output<Double> sampleRate) {
             $.sampleRate = sampleRate;
             return this;
         }
 
+        /**
+         * @param sampleRate Fraction of matching traces to keep, in the range `[0.0, 1.0]`. `0` drops all matches, `1` keeps every match.
+         * 
+         * @return builder
+         * 
+         */
         public Builder sampleRate(Double sampleRate) {
             return sampleRate(Output.of(sampleRate));
         }

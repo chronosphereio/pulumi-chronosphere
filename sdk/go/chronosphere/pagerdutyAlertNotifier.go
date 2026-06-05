@@ -12,31 +12,87 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// PagerDuty notifier that delivers monitor signals to PagerDuty as incidents via the Events API. Referenced from notification policies.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/chronosphereio/pulumi-chronosphere/sdk/go/chronosphere"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := chronosphere.NewPagerdutyAlertNotifier(ctx, "pagerduty", &chronosphere.PagerdutyAlertNotifierArgs{
+//				Details: pulumi.StringMap{
+//					"runbook": pulumi.String("http://runbook"),
+//				},
+//				Name:         pulumi.String("PagerDuty Notifier"),
+//				RoutingKey:   pulumi.String("XXXXX"),
+//				SendResolved: pulumi.Bool(true),
+//				Severity:     pulumi.String("info"),
+//				Url:          pulumi.String("https://events.pagerduty.com/v2/enqueue"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type PagerdutyAlertNotifier struct {
 	pulumi.CustomResourceState
 
-	BasicAuthPassword pulumi.StringPtrOutput                 `pulumi:"basicAuthPassword"`
-	BasicAuthUsername pulumi.StringPtrOutput                 `pulumi:"basicAuthUsername"`
-	BearerToken       pulumi.StringPtrOutput                 `pulumi:"bearerToken"`
-	Class             pulumi.StringPtrOutput                 `pulumi:"class"`
-	Client            pulumi.StringPtrOutput                 `pulumi:"client"`
-	ClientUrl         pulumi.StringPtrOutput                 `pulumi:"clientUrl"`
-	Component         pulumi.StringPtrOutput                 `pulumi:"component"`
-	Description       pulumi.StringPtrOutput                 `pulumi:"description"`
-	Details           pulumi.StringMapOutput                 `pulumi:"details"`
-	Group             pulumi.StringPtrOutput                 `pulumi:"group"`
-	Images            PagerdutyAlertNotifierImageArrayOutput `pulumi:"images"`
-	Links             PagerdutyAlertNotifierLinkArrayOutput  `pulumi:"links"`
-	Name              pulumi.StringOutput                    `pulumi:"name"`
+	// Password for HTTP basic auth when calling the PagerDuty API. Treat as a secret.
+	BasicAuthPassword pulumi.StringPtrOutput `pulumi:"basicAuthPassword"`
+	// Username for HTTP basic auth when calling the PagerDuty API. Mutually exclusive with `bearerToken`.
+	BasicAuthUsername pulumi.StringPtrOutput `pulumi:"basicAuthUsername"`
+	// Bearer token sent in the `Authorization` header when calling the PagerDuty API. Treat as a secret. Mutually exclusive with basic auth.
+	BearerToken pulumi.StringPtrOutput `pulumi:"bearerToken"`
+	// Class of the event reported to PagerDuty (e.g. `cpu`, `database`). Supports Go templating.
+	Class pulumi.StringPtrOutput `pulumi:"class"`
+	// Name of the monitoring client identified in the notification.
+	Client pulumi.StringPtrOutput `pulumi:"client"`
+	// Backlink to the sender of the notification, shown in PagerDuty.
+	ClientUrl pulumi.StringPtrOutput `pulumi:"clientUrl"`
+	// Part or component of the affected system that is broken. Supports Go templating.
+	Component pulumi.StringPtrOutput `pulumi:"component"`
+	// Summary of the incident. Supports Go templating.
+	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// Arbitrary key/value pairs attached to the incident as additional context. Values support Go templating.
+	Details pulumi.StringMapOutput `pulumi:"details"`
+	// Logical grouping of services the incident belongs to. Supports Go templating.
+	Group pulumi.StringPtrOutput `pulumi:"group"`
+	// Images attached to the PagerDuty incident. See https://developer.pagerduty.com/docs/events-api-v2/trigger-events/.
+	Images PagerdutyAlertNotifierImageArrayOutput `pulumi:"images"`
+	// Hyperlinks attached to the PagerDuty incident. See https://developer.pagerduty.com/docs/events-api-v2/trigger-events/.
+	Links PagerdutyAlertNotifierLinkArrayOutput `pulumi:"links"`
+	// Display name of the notifier.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// Deprecated and ignored. Custom proxy URLs are not supported.
+	//
 	// Deprecated: custom proxy URLs are not supported
-	ProxyUrl              pulumi.StringPtrOutput `pulumi:"proxyUrl"`
-	RoutingKey            pulumi.StringPtrOutput `pulumi:"routingKey"`
-	SendResolved          pulumi.BoolPtrOutput   `pulumi:"sendResolved"`
-	ServiceKey            pulumi.StringPtrOutput `pulumi:"serviceKey"`
-	Severity              pulumi.StringOutput    `pulumi:"severity"`
-	Slug                  pulumi.StringOutput    `pulumi:"slug"`
-	TlsInsecureSkipVerify pulumi.BoolPtrOutput   `pulumi:"tlsInsecureSkipVerify"`
-	Url                   pulumi.StringOutput    `pulumi:"url"`
+	ProxyUrl pulumi.StringPtrOutput `pulumi:"proxyUrl"`
+	// PagerDuty integration key when using the `Events API v2` integration type. Treat as a secret. Mutually exclusive with `serviceKey`.
+	RoutingKey pulumi.StringPtrOutput `pulumi:"routingKey"`
+	// Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+	SendResolved pulumi.BoolPtrOutput `pulumi:"sendResolved"`
+	// PagerDuty integration key when using the `Prometheus` integration type. Treat as a secret. Mutually exclusive with `routingKey`.
+	ServiceKey pulumi.StringPtrOutput `pulumi:"serviceKey"`
+	// Severity of the incident. One of `critical`, `error`, `warning`, or `info`.
+	Severity pulumi.StringOutput `pulumi:"severity"`
+	// Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringOutput `pulumi:"slug"`
+	// If true, skip TLS certificate verification when calling the PagerDuty API. Disable only in trusted environments.
+	TlsInsecureSkipVerify pulumi.BoolPtrOutput `pulumi:"tlsInsecureSkipVerify"`
+	// PagerDuty API URL to send events to (e.g. `https://events.pagerduty.com/v2/enqueue`).
+	Url pulumi.StringOutput `pulumi:"url"`
 }
 
 // NewPagerdutyAlertNotifier registers a new resource with the given unique name, arguments, and options.
@@ -89,53 +145,97 @@ func GetPagerdutyAlertNotifier(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering PagerdutyAlertNotifier resources.
 type pagerdutyAlertNotifierState struct {
-	BasicAuthPassword *string                       `pulumi:"basicAuthPassword"`
-	BasicAuthUsername *string                       `pulumi:"basicAuthUsername"`
-	BearerToken       *string                       `pulumi:"bearerToken"`
-	Class             *string                       `pulumi:"class"`
-	Client            *string                       `pulumi:"client"`
-	ClientUrl         *string                       `pulumi:"clientUrl"`
-	Component         *string                       `pulumi:"component"`
-	Description       *string                       `pulumi:"description"`
-	Details           map[string]string             `pulumi:"details"`
-	Group             *string                       `pulumi:"group"`
-	Images            []PagerdutyAlertNotifierImage `pulumi:"images"`
-	Links             []PagerdutyAlertNotifierLink  `pulumi:"links"`
-	Name              *string                       `pulumi:"name"`
+	// Password for HTTP basic auth when calling the PagerDuty API. Treat as a secret.
+	BasicAuthPassword *string `pulumi:"basicAuthPassword"`
+	// Username for HTTP basic auth when calling the PagerDuty API. Mutually exclusive with `bearerToken`.
+	BasicAuthUsername *string `pulumi:"basicAuthUsername"`
+	// Bearer token sent in the `Authorization` header when calling the PagerDuty API. Treat as a secret. Mutually exclusive with basic auth.
+	BearerToken *string `pulumi:"bearerToken"`
+	// Class of the event reported to PagerDuty (e.g. `cpu`, `database`). Supports Go templating.
+	Class *string `pulumi:"class"`
+	// Name of the monitoring client identified in the notification.
+	Client *string `pulumi:"client"`
+	// Backlink to the sender of the notification, shown in PagerDuty.
+	ClientUrl *string `pulumi:"clientUrl"`
+	// Part or component of the affected system that is broken. Supports Go templating.
+	Component *string `pulumi:"component"`
+	// Summary of the incident. Supports Go templating.
+	Description *string `pulumi:"description"`
+	// Arbitrary key/value pairs attached to the incident as additional context. Values support Go templating.
+	Details map[string]string `pulumi:"details"`
+	// Logical grouping of services the incident belongs to. Supports Go templating.
+	Group *string `pulumi:"group"`
+	// Images attached to the PagerDuty incident. See https://developer.pagerduty.com/docs/events-api-v2/trigger-events/.
+	Images []PagerdutyAlertNotifierImage `pulumi:"images"`
+	// Hyperlinks attached to the PagerDuty incident. See https://developer.pagerduty.com/docs/events-api-v2/trigger-events/.
+	Links []PagerdutyAlertNotifierLink `pulumi:"links"`
+	// Display name of the notifier.
+	Name *string `pulumi:"name"`
+	// Deprecated and ignored. Custom proxy URLs are not supported.
+	//
 	// Deprecated: custom proxy URLs are not supported
-	ProxyUrl              *string `pulumi:"proxyUrl"`
-	RoutingKey            *string `pulumi:"routingKey"`
-	SendResolved          *bool   `pulumi:"sendResolved"`
-	ServiceKey            *string `pulumi:"serviceKey"`
-	Severity              *string `pulumi:"severity"`
-	Slug                  *string `pulumi:"slug"`
-	TlsInsecureSkipVerify *bool   `pulumi:"tlsInsecureSkipVerify"`
-	Url                   *string `pulumi:"url"`
+	ProxyUrl *string `pulumi:"proxyUrl"`
+	// PagerDuty integration key when using the `Events API v2` integration type. Treat as a secret. Mutually exclusive with `serviceKey`.
+	RoutingKey *string `pulumi:"routingKey"`
+	// Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+	SendResolved *bool `pulumi:"sendResolved"`
+	// PagerDuty integration key when using the `Prometheus` integration type. Treat as a secret. Mutually exclusive with `routingKey`.
+	ServiceKey *string `pulumi:"serviceKey"`
+	// Severity of the incident. One of `critical`, `error`, `warning`, or `info`.
+	Severity *string `pulumi:"severity"`
+	// Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+	Slug *string `pulumi:"slug"`
+	// If true, skip TLS certificate verification when calling the PagerDuty API. Disable only in trusted environments.
+	TlsInsecureSkipVerify *bool `pulumi:"tlsInsecureSkipVerify"`
+	// PagerDuty API URL to send events to (e.g. `https://events.pagerduty.com/v2/enqueue`).
+	Url *string `pulumi:"url"`
 }
 
 type PagerdutyAlertNotifierState struct {
+	// Password for HTTP basic auth when calling the PagerDuty API. Treat as a secret.
 	BasicAuthPassword pulumi.StringPtrInput
+	// Username for HTTP basic auth when calling the PagerDuty API. Mutually exclusive with `bearerToken`.
 	BasicAuthUsername pulumi.StringPtrInput
-	BearerToken       pulumi.StringPtrInput
-	Class             pulumi.StringPtrInput
-	Client            pulumi.StringPtrInput
-	ClientUrl         pulumi.StringPtrInput
-	Component         pulumi.StringPtrInput
-	Description       pulumi.StringPtrInput
-	Details           pulumi.StringMapInput
-	Group             pulumi.StringPtrInput
-	Images            PagerdutyAlertNotifierImageArrayInput
-	Links             PagerdutyAlertNotifierLinkArrayInput
-	Name              pulumi.StringPtrInput
+	// Bearer token sent in the `Authorization` header when calling the PagerDuty API. Treat as a secret. Mutually exclusive with basic auth.
+	BearerToken pulumi.StringPtrInput
+	// Class of the event reported to PagerDuty (e.g. `cpu`, `database`). Supports Go templating.
+	Class pulumi.StringPtrInput
+	// Name of the monitoring client identified in the notification.
+	Client pulumi.StringPtrInput
+	// Backlink to the sender of the notification, shown in PagerDuty.
+	ClientUrl pulumi.StringPtrInput
+	// Part or component of the affected system that is broken. Supports Go templating.
+	Component pulumi.StringPtrInput
+	// Summary of the incident. Supports Go templating.
+	Description pulumi.StringPtrInput
+	// Arbitrary key/value pairs attached to the incident as additional context. Values support Go templating.
+	Details pulumi.StringMapInput
+	// Logical grouping of services the incident belongs to. Supports Go templating.
+	Group pulumi.StringPtrInput
+	// Images attached to the PagerDuty incident. See https://developer.pagerduty.com/docs/events-api-v2/trigger-events/.
+	Images PagerdutyAlertNotifierImageArrayInput
+	// Hyperlinks attached to the PagerDuty incident. See https://developer.pagerduty.com/docs/events-api-v2/trigger-events/.
+	Links PagerdutyAlertNotifierLinkArrayInput
+	// Display name of the notifier.
+	Name pulumi.StringPtrInput
+	// Deprecated and ignored. Custom proxy URLs are not supported.
+	//
 	// Deprecated: custom proxy URLs are not supported
-	ProxyUrl              pulumi.StringPtrInput
-	RoutingKey            pulumi.StringPtrInput
-	SendResolved          pulumi.BoolPtrInput
-	ServiceKey            pulumi.StringPtrInput
-	Severity              pulumi.StringPtrInput
-	Slug                  pulumi.StringPtrInput
+	ProxyUrl pulumi.StringPtrInput
+	// PagerDuty integration key when using the `Events API v2` integration type. Treat as a secret. Mutually exclusive with `serviceKey`.
+	RoutingKey pulumi.StringPtrInput
+	// Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+	SendResolved pulumi.BoolPtrInput
+	// PagerDuty integration key when using the `Prometheus` integration type. Treat as a secret. Mutually exclusive with `routingKey`.
+	ServiceKey pulumi.StringPtrInput
+	// Severity of the incident. One of `critical`, `error`, `warning`, or `info`.
+	Severity pulumi.StringPtrInput
+	// Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringPtrInput
+	// If true, skip TLS certificate verification when calling the PagerDuty API. Disable only in trusted environments.
 	TlsInsecureSkipVerify pulumi.BoolPtrInput
-	Url                   pulumi.StringPtrInput
+	// PagerDuty API URL to send events to (e.g. `https://events.pagerduty.com/v2/enqueue`).
+	Url pulumi.StringPtrInput
 }
 
 func (PagerdutyAlertNotifierState) ElementType() reflect.Type {
@@ -143,54 +243,98 @@ func (PagerdutyAlertNotifierState) ElementType() reflect.Type {
 }
 
 type pagerdutyAlertNotifierArgs struct {
-	BasicAuthPassword *string                       `pulumi:"basicAuthPassword"`
-	BasicAuthUsername *string                       `pulumi:"basicAuthUsername"`
-	BearerToken       *string                       `pulumi:"bearerToken"`
-	Class             *string                       `pulumi:"class"`
-	Client            *string                       `pulumi:"client"`
-	ClientUrl         *string                       `pulumi:"clientUrl"`
-	Component         *string                       `pulumi:"component"`
-	Description       *string                       `pulumi:"description"`
-	Details           map[string]string             `pulumi:"details"`
-	Group             *string                       `pulumi:"group"`
-	Images            []PagerdutyAlertNotifierImage `pulumi:"images"`
-	Links             []PagerdutyAlertNotifierLink  `pulumi:"links"`
-	Name              string                        `pulumi:"name"`
+	// Password for HTTP basic auth when calling the PagerDuty API. Treat as a secret.
+	BasicAuthPassword *string `pulumi:"basicAuthPassword"`
+	// Username for HTTP basic auth when calling the PagerDuty API. Mutually exclusive with `bearerToken`.
+	BasicAuthUsername *string `pulumi:"basicAuthUsername"`
+	// Bearer token sent in the `Authorization` header when calling the PagerDuty API. Treat as a secret. Mutually exclusive with basic auth.
+	BearerToken *string `pulumi:"bearerToken"`
+	// Class of the event reported to PagerDuty (e.g. `cpu`, `database`). Supports Go templating.
+	Class *string `pulumi:"class"`
+	// Name of the monitoring client identified in the notification.
+	Client *string `pulumi:"client"`
+	// Backlink to the sender of the notification, shown in PagerDuty.
+	ClientUrl *string `pulumi:"clientUrl"`
+	// Part or component of the affected system that is broken. Supports Go templating.
+	Component *string `pulumi:"component"`
+	// Summary of the incident. Supports Go templating.
+	Description *string `pulumi:"description"`
+	// Arbitrary key/value pairs attached to the incident as additional context. Values support Go templating.
+	Details map[string]string `pulumi:"details"`
+	// Logical grouping of services the incident belongs to. Supports Go templating.
+	Group *string `pulumi:"group"`
+	// Images attached to the PagerDuty incident. See https://developer.pagerduty.com/docs/events-api-v2/trigger-events/.
+	Images []PagerdutyAlertNotifierImage `pulumi:"images"`
+	// Hyperlinks attached to the PagerDuty incident. See https://developer.pagerduty.com/docs/events-api-v2/trigger-events/.
+	Links []PagerdutyAlertNotifierLink `pulumi:"links"`
+	// Display name of the notifier.
+	Name string `pulumi:"name"`
+	// Deprecated and ignored. Custom proxy URLs are not supported.
+	//
 	// Deprecated: custom proxy URLs are not supported
-	ProxyUrl              *string `pulumi:"proxyUrl"`
-	RoutingKey            *string `pulumi:"routingKey"`
-	SendResolved          *bool   `pulumi:"sendResolved"`
-	ServiceKey            *string `pulumi:"serviceKey"`
-	Severity              string  `pulumi:"severity"`
-	Slug                  *string `pulumi:"slug"`
-	TlsInsecureSkipVerify *bool   `pulumi:"tlsInsecureSkipVerify"`
-	Url                   string  `pulumi:"url"`
+	ProxyUrl *string `pulumi:"proxyUrl"`
+	// PagerDuty integration key when using the `Events API v2` integration type. Treat as a secret. Mutually exclusive with `serviceKey`.
+	RoutingKey *string `pulumi:"routingKey"`
+	// Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+	SendResolved *bool `pulumi:"sendResolved"`
+	// PagerDuty integration key when using the `Prometheus` integration type. Treat as a secret. Mutually exclusive with `routingKey`.
+	ServiceKey *string `pulumi:"serviceKey"`
+	// Severity of the incident. One of `critical`, `error`, `warning`, or `info`.
+	Severity string `pulumi:"severity"`
+	// Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+	Slug *string `pulumi:"slug"`
+	// If true, skip TLS certificate verification when calling the PagerDuty API. Disable only in trusted environments.
+	TlsInsecureSkipVerify *bool `pulumi:"tlsInsecureSkipVerify"`
+	// PagerDuty API URL to send events to (e.g. `https://events.pagerduty.com/v2/enqueue`).
+	Url string `pulumi:"url"`
 }
 
 // The set of arguments for constructing a PagerdutyAlertNotifier resource.
 type PagerdutyAlertNotifierArgs struct {
+	// Password for HTTP basic auth when calling the PagerDuty API. Treat as a secret.
 	BasicAuthPassword pulumi.StringPtrInput
+	// Username for HTTP basic auth when calling the PagerDuty API. Mutually exclusive with `bearerToken`.
 	BasicAuthUsername pulumi.StringPtrInput
-	BearerToken       pulumi.StringPtrInput
-	Class             pulumi.StringPtrInput
-	Client            pulumi.StringPtrInput
-	ClientUrl         pulumi.StringPtrInput
-	Component         pulumi.StringPtrInput
-	Description       pulumi.StringPtrInput
-	Details           pulumi.StringMapInput
-	Group             pulumi.StringPtrInput
-	Images            PagerdutyAlertNotifierImageArrayInput
-	Links             PagerdutyAlertNotifierLinkArrayInput
-	Name              pulumi.StringInput
+	// Bearer token sent in the `Authorization` header when calling the PagerDuty API. Treat as a secret. Mutually exclusive with basic auth.
+	BearerToken pulumi.StringPtrInput
+	// Class of the event reported to PagerDuty (e.g. `cpu`, `database`). Supports Go templating.
+	Class pulumi.StringPtrInput
+	// Name of the monitoring client identified in the notification.
+	Client pulumi.StringPtrInput
+	// Backlink to the sender of the notification, shown in PagerDuty.
+	ClientUrl pulumi.StringPtrInput
+	// Part or component of the affected system that is broken. Supports Go templating.
+	Component pulumi.StringPtrInput
+	// Summary of the incident. Supports Go templating.
+	Description pulumi.StringPtrInput
+	// Arbitrary key/value pairs attached to the incident as additional context. Values support Go templating.
+	Details pulumi.StringMapInput
+	// Logical grouping of services the incident belongs to. Supports Go templating.
+	Group pulumi.StringPtrInput
+	// Images attached to the PagerDuty incident. See https://developer.pagerduty.com/docs/events-api-v2/trigger-events/.
+	Images PagerdutyAlertNotifierImageArrayInput
+	// Hyperlinks attached to the PagerDuty incident. See https://developer.pagerduty.com/docs/events-api-v2/trigger-events/.
+	Links PagerdutyAlertNotifierLinkArrayInput
+	// Display name of the notifier.
+	Name pulumi.StringInput
+	// Deprecated and ignored. Custom proxy URLs are not supported.
+	//
 	// Deprecated: custom proxy URLs are not supported
-	ProxyUrl              pulumi.StringPtrInput
-	RoutingKey            pulumi.StringPtrInput
-	SendResolved          pulumi.BoolPtrInput
-	ServiceKey            pulumi.StringPtrInput
-	Severity              pulumi.StringInput
-	Slug                  pulumi.StringPtrInput
+	ProxyUrl pulumi.StringPtrInput
+	// PagerDuty integration key when using the `Events API v2` integration type. Treat as a secret. Mutually exclusive with `serviceKey`.
+	RoutingKey pulumi.StringPtrInput
+	// Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+	SendResolved pulumi.BoolPtrInput
+	// PagerDuty integration key when using the `Prometheus` integration type. Treat as a secret. Mutually exclusive with `routingKey`.
+	ServiceKey pulumi.StringPtrInput
+	// Severity of the incident. One of `critical`, `error`, `warning`, or `info`.
+	Severity pulumi.StringInput
+	// Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringPtrInput
+	// If true, skip TLS certificate verification when calling the PagerDuty API. Disable only in trusted environments.
 	TlsInsecureSkipVerify pulumi.BoolPtrInput
-	Url                   pulumi.StringInput
+	// PagerDuty API URL to send events to (e.g. `https://events.pagerduty.com/v2/enqueue`).
+	Url pulumi.StringInput
 }
 
 func (PagerdutyAlertNotifierArgs) ElementType() reflect.Type {
@@ -280,87 +424,109 @@ func (o PagerdutyAlertNotifierOutput) ToPagerdutyAlertNotifierOutputWithContext(
 	return o
 }
 
+// Password for HTTP basic auth when calling the PagerDuty API. Treat as a secret.
 func (o PagerdutyAlertNotifierOutput) BasicAuthPassword() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *PagerdutyAlertNotifier) pulumi.StringPtrOutput { return v.BasicAuthPassword }).(pulumi.StringPtrOutput)
 }
 
+// Username for HTTP basic auth when calling the PagerDuty API. Mutually exclusive with `bearerToken`.
 func (o PagerdutyAlertNotifierOutput) BasicAuthUsername() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *PagerdutyAlertNotifier) pulumi.StringPtrOutput { return v.BasicAuthUsername }).(pulumi.StringPtrOutput)
 }
 
+// Bearer token sent in the `Authorization` header when calling the PagerDuty API. Treat as a secret. Mutually exclusive with basic auth.
 func (o PagerdutyAlertNotifierOutput) BearerToken() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *PagerdutyAlertNotifier) pulumi.StringPtrOutput { return v.BearerToken }).(pulumi.StringPtrOutput)
 }
 
+// Class of the event reported to PagerDuty (e.g. `cpu`, `database`). Supports Go templating.
 func (o PagerdutyAlertNotifierOutput) Class() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *PagerdutyAlertNotifier) pulumi.StringPtrOutput { return v.Class }).(pulumi.StringPtrOutput)
 }
 
+// Name of the monitoring client identified in the notification.
 func (o PagerdutyAlertNotifierOutput) Client() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *PagerdutyAlertNotifier) pulumi.StringPtrOutput { return v.Client }).(pulumi.StringPtrOutput)
 }
 
+// Backlink to the sender of the notification, shown in PagerDuty.
 func (o PagerdutyAlertNotifierOutput) ClientUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *PagerdutyAlertNotifier) pulumi.StringPtrOutput { return v.ClientUrl }).(pulumi.StringPtrOutput)
 }
 
+// Part or component of the affected system that is broken. Supports Go templating.
 func (o PagerdutyAlertNotifierOutput) Component() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *PagerdutyAlertNotifier) pulumi.StringPtrOutput { return v.Component }).(pulumi.StringPtrOutput)
 }
 
+// Summary of the incident. Supports Go templating.
 func (o PagerdutyAlertNotifierOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *PagerdutyAlertNotifier) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// Arbitrary key/value pairs attached to the incident as additional context. Values support Go templating.
 func (o PagerdutyAlertNotifierOutput) Details() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *PagerdutyAlertNotifier) pulumi.StringMapOutput { return v.Details }).(pulumi.StringMapOutput)
 }
 
+// Logical grouping of services the incident belongs to. Supports Go templating.
 func (o PagerdutyAlertNotifierOutput) Group() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *PagerdutyAlertNotifier) pulumi.StringPtrOutput { return v.Group }).(pulumi.StringPtrOutput)
 }
 
+// Images attached to the PagerDuty incident. See https://developer.pagerduty.com/docs/events-api-v2/trigger-events/.
 func (o PagerdutyAlertNotifierOutput) Images() PagerdutyAlertNotifierImageArrayOutput {
 	return o.ApplyT(func(v *PagerdutyAlertNotifier) PagerdutyAlertNotifierImageArrayOutput { return v.Images }).(PagerdutyAlertNotifierImageArrayOutput)
 }
 
+// Hyperlinks attached to the PagerDuty incident. See https://developer.pagerduty.com/docs/events-api-v2/trigger-events/.
 func (o PagerdutyAlertNotifierOutput) Links() PagerdutyAlertNotifierLinkArrayOutput {
 	return o.ApplyT(func(v *PagerdutyAlertNotifier) PagerdutyAlertNotifierLinkArrayOutput { return v.Links }).(PagerdutyAlertNotifierLinkArrayOutput)
 }
 
+// Display name of the notifier.
 func (o PagerdutyAlertNotifierOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *PagerdutyAlertNotifier) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// Deprecated and ignored. Custom proxy URLs are not supported.
+//
 // Deprecated: custom proxy URLs are not supported
 func (o PagerdutyAlertNotifierOutput) ProxyUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *PagerdutyAlertNotifier) pulumi.StringPtrOutput { return v.ProxyUrl }).(pulumi.StringPtrOutput)
 }
 
+// PagerDuty integration key when using the `Events API v2` integration type. Treat as a secret. Mutually exclusive with `serviceKey`.
 func (o PagerdutyAlertNotifierOutput) RoutingKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *PagerdutyAlertNotifier) pulumi.StringPtrOutput { return v.RoutingKey }).(pulumi.StringPtrOutput)
 }
 
+// Whether to send a follow-up notification when an alert is resolved. Defaults to true.
 func (o PagerdutyAlertNotifierOutput) SendResolved() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *PagerdutyAlertNotifier) pulumi.BoolPtrOutput { return v.SendResolved }).(pulumi.BoolPtrOutput)
 }
 
+// PagerDuty integration key when using the `Prometheus` integration type. Treat as a secret. Mutually exclusive with `routingKey`.
 func (o PagerdutyAlertNotifierOutput) ServiceKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *PagerdutyAlertNotifier) pulumi.StringPtrOutput { return v.ServiceKey }).(pulumi.StringPtrOutput)
 }
 
+// Severity of the incident. One of `critical`, `error`, `warning`, or `info`.
 func (o PagerdutyAlertNotifierOutput) Severity() pulumi.StringOutput {
 	return o.ApplyT(func(v *PagerdutyAlertNotifier) pulumi.StringOutput { return v.Severity }).(pulumi.StringOutput)
 }
 
+// Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
 func (o PagerdutyAlertNotifierOutput) Slug() pulumi.StringOutput {
 	return o.ApplyT(func(v *PagerdutyAlertNotifier) pulumi.StringOutput { return v.Slug }).(pulumi.StringOutput)
 }
 
+// If true, skip TLS certificate verification when calling the PagerDuty API. Disable only in trusted environments.
 func (o PagerdutyAlertNotifierOutput) TlsInsecureSkipVerify() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *PagerdutyAlertNotifier) pulumi.BoolPtrOutput { return v.TlsInsecureSkipVerify }).(pulumi.BoolPtrOutput)
 }
 
+// PagerDuty API URL to send events to (e.g. `https://events.pagerduty.com/v2/enqueue`).
 func (o PagerdutyAlertNotifierOutput) Url() pulumi.StringOutput {
 	return o.ApplyT(func(v *PagerdutyAlertNotifier) pulumi.StringOutput { return v.Url }).(pulumi.StringOutput)
 }

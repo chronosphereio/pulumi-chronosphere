@@ -14,7 +14,13 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class DerivedMetricQuery
     {
+        /// <summary>
+        /// PromQL query executed when this selector matches.
+        /// </summary>
         public readonly Outputs.DerivedMetricQueryQuery Query;
+        /// <summary>
+        /// Label matchers that must be present on the derived metric usage for this query to be selected. If omitted, the query matches any usage.
+        /// </summary>
         public readonly Outputs.DerivedMetricQuerySelector? Selector;
 
         [OutputConstructor]

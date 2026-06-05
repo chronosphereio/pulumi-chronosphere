@@ -13,29 +13,97 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class ConsumptionBudgetThreshold {
+    /**
+     * @return Action to take when this threshold is exceeded (e.g. drop traffic, fire warning/critical alert).
+     * 
+     */
     private @Nullable String action;
+    /**
+     * @return Configures an instant-rate threshold value. Set when `type` is an instant-rate type.
+     * 
+     */
     private @Nullable ConsumptionBudgetThresholdInstantRate instantRate;
+    /**
+     * @return Resource group the threshold applies to (e.g. metrics, logs, traces). Replaces the deprecated top-level `resource` field.
+     * 
+     */
+    private @Nullable String resourceGroup;
+    /**
+     * @return SKU group the threshold applies to (e.g. metrics, logs, traces). Replaces the deprecated top-level `resource` field.
+     * 
+     * @deprecated
+     * use resource_group instead
+     * 
+     */
+    @Deprecated /* use resource_group instead */
     private @Nullable String skuGroup;
+    /**
+     * @return Measurement window over which the threshold is evaluated (e.g. instant rate vs. rolling volume).
+     * 
+     */
     private @Nullable String type;
+    /**
+     * @return Unit in which the threshold value is denominated (e.g. bytes, datapoints).
+     * 
+     */
     private @Nullable String unit;
+    /**
+     * @return Configures a volume threshold value. Set when `type` is a volume type.
+     * 
+     */
     private @Nullable ConsumptionBudgetThresholdVolume volume;
 
     private ConsumptionBudgetThreshold() {}
+    /**
+     * @return Action to take when this threshold is exceeded (e.g. drop traffic, fire warning/critical alert).
+     * 
+     */
     public Optional<String> action() {
         return Optional.ofNullable(this.action);
     }
+    /**
+     * @return Configures an instant-rate threshold value. Set when `type` is an instant-rate type.
+     * 
+     */
     public Optional<ConsumptionBudgetThresholdInstantRate> instantRate() {
         return Optional.ofNullable(this.instantRate);
     }
+    /**
+     * @return Resource group the threshold applies to (e.g. metrics, logs, traces). Replaces the deprecated top-level `resource` field.
+     * 
+     */
+    public Optional<String> resourceGroup() {
+        return Optional.ofNullable(this.resourceGroup);
+    }
+    /**
+     * @return SKU group the threshold applies to (e.g. metrics, logs, traces). Replaces the deprecated top-level `resource` field.
+     * 
+     * @deprecated
+     * use resource_group instead
+     * 
+     */
+    @Deprecated /* use resource_group instead */
     public Optional<String> skuGroup() {
         return Optional.ofNullable(this.skuGroup);
     }
+    /**
+     * @return Measurement window over which the threshold is evaluated (e.g. instant rate vs. rolling volume).
+     * 
+     */
     public Optional<String> type() {
         return Optional.ofNullable(this.type);
     }
+    /**
+     * @return Unit in which the threshold value is denominated (e.g. bytes, datapoints).
+     * 
+     */
     public Optional<String> unit() {
         return Optional.ofNullable(this.unit);
     }
+    /**
+     * @return Configures a volume threshold value. Set when `type` is a volume type.
+     * 
+     */
     public Optional<ConsumptionBudgetThresholdVolume> volume() {
         return Optional.ofNullable(this.volume);
     }
@@ -51,6 +119,7 @@ public final class ConsumptionBudgetThreshold {
     public static final class Builder {
         private @Nullable String action;
         private @Nullable ConsumptionBudgetThresholdInstantRate instantRate;
+        private @Nullable String resourceGroup;
         private @Nullable String skuGroup;
         private @Nullable String type;
         private @Nullable String unit;
@@ -60,6 +129,7 @@ public final class ConsumptionBudgetThreshold {
     	      Objects.requireNonNull(defaults);
     	      this.action = defaults.action;
     	      this.instantRate = defaults.instantRate;
+    	      this.resourceGroup = defaults.resourceGroup;
     	      this.skuGroup = defaults.skuGroup;
     	      this.type = defaults.type;
     	      this.unit = defaults.unit;
@@ -74,6 +144,11 @@ public final class ConsumptionBudgetThreshold {
         @CustomType.Setter
         public Builder instantRate(@Nullable ConsumptionBudgetThresholdInstantRate instantRate) {
             this.instantRate = instantRate;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder resourceGroup(@Nullable String resourceGroup) {
+            this.resourceGroup = resourceGroup;
             return this;
         }
         @CustomType.Setter
@@ -100,6 +175,7 @@ public final class ConsumptionBudgetThreshold {
             final var o = new ConsumptionBudgetThreshold();
             o.action = action;
             o.instantRate = instantRate;
+            o.resourceGroup = resourceGroup;
             o.skuGroup = skuGroup;
             o.type = type;
             o.unit = unit;

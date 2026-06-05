@@ -13,9 +13,17 @@ public final class ServiceDataSourceArgs extends com.pulumi.resources.InvokeArgs
 
     public static final ServiceDataSourceArgs Empty = new ServiceDataSourceArgs();
 
+    /**
+     * Slug of the service to look up.
+     * 
+     */
     @Import(name="slug", required=true)
     private Output<String> slug;
 
+    /**
+     * @return Slug of the service to look up.
+     * 
+     */
     public Output<String> slug() {
         return this.slug;
     }
@@ -44,11 +52,23 @@ public final class ServiceDataSourceArgs extends com.pulumi.resources.InvokeArgs
             $ = new ServiceDataSourceArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param slug Slug of the service to look up.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slug(Output<String> slug) {
             $.slug = slug;
             return this;
         }
 
+        /**
+         * @param slug Slug of the service to look up.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slug(String slug) {
             return slug(Output.of(slug));
         }

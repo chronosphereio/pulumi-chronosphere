@@ -16,9 +16,17 @@ public final class GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyArgs ext
 
     public static final GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyArgs Empty = new GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyArgs();
 
+    /**
+     * Labels to retain after aggregation.
+     * 
+     */
     @Import(name="keeps")
     private @Nullable Output<List<GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepArgs>> keeps;
 
+    /**
+     * @return Labels to retain after aggregation.
+     * 
+     */
     public Optional<Output<List<GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepArgs>>> keeps() {
         return Optional.ofNullable(this.keeps);
     }
@@ -47,15 +55,33 @@ public final class GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyArgs ext
             $ = new GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param keeps Labels to retain after aggregation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder keeps(@Nullable Output<List<GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepArgs>> keeps) {
             $.keeps = keeps;
             return this;
         }
 
+        /**
+         * @param keeps Labels to retain after aggregation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder keeps(List<GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepArgs> keeps) {
             return keeps(Output.of(keeps));
         }
 
+        /**
+         * @param keeps Labels to retain after aggregation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder keeps(GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepArgs... keeps) {
             return keeps(List.of(keeps));
         }

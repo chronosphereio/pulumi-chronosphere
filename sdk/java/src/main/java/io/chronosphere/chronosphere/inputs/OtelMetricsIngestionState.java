@@ -15,9 +15,17 @@ public final class OtelMetricsIngestionState extends com.pulumi.resources.Resour
 
     public static final OtelMetricsIngestionState Empty = new OtelMetricsIngestionState();
 
+    /**
+     * Controls how OpenTelemetry resource attributes are mapped to Prometheus labels at ingest.
+     * 
+     */
     @Import(name="resourceAttributes")
     private @Nullable Output<OtelMetricsIngestionResourceAttributesArgs> resourceAttributes;
 
+    /**
+     * @return Controls how OpenTelemetry resource attributes are mapped to Prometheus labels at ingest.
+     * 
+     */
     public Optional<Output<OtelMetricsIngestionResourceAttributesArgs>> resourceAttributes() {
         return Optional.ofNullable(this.resourceAttributes);
     }
@@ -46,11 +54,23 @@ public final class OtelMetricsIngestionState extends com.pulumi.resources.Resour
             $ = new OtelMetricsIngestionState(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param resourceAttributes Controls how OpenTelemetry resource attributes are mapped to Prometheus labels at ingest.
+         * 
+         * @return builder
+         * 
+         */
         public Builder resourceAttributes(@Nullable Output<OtelMetricsIngestionResourceAttributesArgs> resourceAttributes) {
             $.resourceAttributes = resourceAttributes;
             return this;
         }
 
+        /**
+         * @param resourceAttributes Controls how OpenTelemetry resource attributes are mapped to Prometheus labels at ingest.
+         * 
+         * @return builder
+         * 
+         */
         public Builder resourceAttributes(OtelMetricsIngestionResourceAttributesArgs resourceAttributes) {
             return resourceAttributes(Output.of(resourceAttributes));
         }

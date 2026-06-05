@@ -14,6 +14,9 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class LogIngestConfigPlaintextParserParserGrokParser
     {
+        /// <summary>
+        /// Grok pattern to apply. Named capture groups become named fields in the extracted log.
+        /// </summary>
         public readonly string Pattern;
 
         [OutputConstructor]

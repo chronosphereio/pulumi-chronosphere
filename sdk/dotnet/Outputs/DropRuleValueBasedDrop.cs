@@ -14,6 +14,9 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class DropRuleValueBasedDrop
     {
+        /// <summary>
+        /// Data point value at which matching points are dropped.
+        /// </summary>
         public readonly double TargetDropValue;
 
         [OutputConstructor]

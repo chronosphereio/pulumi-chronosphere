@@ -11,13 +11,29 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class TraceMetricsRuleTraceFilterTraceDuration {
+    /**
+     * @return Maximum duration in seconds, inclusive. Omit for no upper bound.
+     * 
+     */
     private @Nullable Double maxSecs;
+    /**
+     * @return Minimum duration in seconds, inclusive. Defaults to `0`.
+     * 
+     */
     private @Nullable Double minSecs;
 
     private TraceMetricsRuleTraceFilterTraceDuration() {}
+    /**
+     * @return Maximum duration in seconds, inclusive. Omit for no upper bound.
+     * 
+     */
     public Optional<Double> maxSecs() {
         return Optional.ofNullable(this.maxSecs);
     }
+    /**
+     * @return Minimum duration in seconds, inclusive. Defaults to `0`.
+     * 
+     */
     public Optional<Double> minSecs() {
         return Optional.ofNullable(this.minSecs);
     }

@@ -18,117 +18,299 @@ import java.util.List;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
+/**
+ * Slack notifier that delivers monitor signals to a Slack channel via an incoming webhook. Referenced from notification policies.
+ * 
+ * ## Example Usage
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.chronosphere.SlackAlertNotifier;
+ * import com.pulumi.chronosphere.SlackAlertNotifierArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var slack = new SlackAlertNotifier(&#34;slack&#34;, SlackAlertNotifierArgs.builder()        
+ *             .apiUrl(&#34;https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX&#34;)
+ *             .channel(&#34;alerts&#34;)
+ *             .name(&#34;Slack Notifier&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ */
 @ResourceType(type="chronosphere:index/slackAlertNotifier:SlackAlertNotifier")
 public class SlackAlertNotifier extends com.pulumi.resources.CustomResource {
+    /**
+     * Interactive buttons appended to the Slack message. See https://api.slack.com/reference/messaging/attachments#action_fields.
+     * 
+     */
     @Export(name="actions", refs={List.class,SlackAlertNotifierAction.class}, tree="[0,1]")
     private Output</* @Nullable */ List<SlackAlertNotifierAction>> actions;
 
+    /**
+     * @return Interactive buttons appended to the Slack message. See https://api.slack.com/reference/messaging/attachments#action_fields.
+     * 
+     */
     public Output<Optional<List<SlackAlertNotifierAction>>> actions() {
         return Codegen.optional(this.actions);
     }
+    /**
+     * Slack incoming webhook URL that receives the notifications. Treat this as a secret.
+     * 
+     */
     @Export(name="apiUrl", refs={String.class}, tree="[0]")
     private Output<String> apiUrl;
 
+    /**
+     * @return Slack incoming webhook URL that receives the notifications. Treat this as a secret.
+     * 
+     */
     public Output<String> apiUrl() {
         return this.apiUrl;
     }
+    /**
+     * Password for HTTP basic auth when calling the webhook.
+     * 
+     */
     @Export(name="basicAuthPassword", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> basicAuthPassword;
 
+    /**
+     * @return Password for HTTP basic auth when calling the webhook.
+     * 
+     */
     public Output<Optional<String>> basicAuthPassword() {
         return Codegen.optional(this.basicAuthPassword);
     }
+    /**
+     * Username for HTTP basic auth when calling the webhook. Mutually exclusive with `bearer_token`.
+     * 
+     */
     @Export(name="basicAuthUsername", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> basicAuthUsername;
 
+    /**
+     * @return Username for HTTP basic auth when calling the webhook. Mutually exclusive with `bearer_token`.
+     * 
+     */
     public Output<Optional<String>> basicAuthUsername() {
         return Codegen.optional(this.basicAuthUsername);
     }
+    /**
+     * Bearer token sent in the `Authorization` header when calling the webhook. Mutually exclusive with basic auth.
+     * 
+     */
     @Export(name="bearerToken", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> bearerToken;
 
+    /**
+     * @return Bearer token sent in the `Authorization` header when calling the webhook. Mutually exclusive with basic auth.
+     * 
+     */
     public Output<Optional<String>> bearerToken() {
         return Codegen.optional(this.bearerToken);
     }
+    /**
+     * Slack callback ID used to identify the source of interactive actions.
+     * 
+     */
     @Export(name="callbackId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> callbackId;
 
+    /**
+     * @return Slack callback ID used to identify the source of interactive actions.
+     * 
+     */
     public Output<Optional<String>> callbackId() {
         return Codegen.optional(this.callbackId);
     }
+    /**
+     * Slack channel to post notifications to (e.g. `#alerts`).
+     * 
+     */
     @Export(name="channel", refs={String.class}, tree="[0]")
     private Output<String> channel;
 
+    /**
+     * @return Slack channel to post notifications to (e.g. `#alerts`).
+     * 
+     */
     public Output<String> channel() {
         return this.channel;
     }
+    /**
+     * Color of the attachment border. Hex code or one of `good`, `warning`, `danger`. Supports Go templating.
+     * 
+     */
     @Export(name="color", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> color;
 
+    /**
+     * @return Color of the attachment border. Hex code or one of `good`, `warning`, `danger`. Supports Go templating.
+     * 
+     */
     public Output<Optional<String>> color() {
         return Codegen.optional(this.color);
     }
+    /**
+     * Plain-text fallback shown in notifications and clients that don&#39;t render attachments. Supports Go templating.
+     * 
+     */
     @Export(name="fallback", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> fallback;
 
+    /**
+     * @return Plain-text fallback shown in notifications and clients that don&#39;t render attachments. Supports Go templating.
+     * 
+     */
     public Output<Optional<String>> fallback() {
         return Codegen.optional(this.fallback);
     }
+    /**
+     * Structured field/value pairs rendered as a table in the attachment.
+     * 
+     */
     @Export(name="fields", refs={List.class,SlackAlertNotifierField.class}, tree="[0,1]")
     private Output</* @Nullable */ List<SlackAlertNotifierField>> fields;
 
+    /**
+     * @return Structured field/value pairs rendered as a table in the attachment.
+     * 
+     */
     public Output<Optional<List<SlackAlertNotifierField>>> fields() {
         return Codegen.optional(this.fields);
     }
+    /**
+     * Footer text shown at the bottom of the attachment. Supports Go templating.
+     * 
+     */
     @Export(name="footer", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> footer;
 
+    /**
+     * @return Footer text shown at the bottom of the attachment. Supports Go templating.
+     * 
+     */
     public Output<Optional<String>> footer() {
         return Codegen.optional(this.footer);
     }
+    /**
+     * Slack emoji to use as the bot avatar (e.g. `:fire:`). Mutually exclusive with `icon_url` at Slack.
+     * 
+     */
     @Export(name="iconEmoji", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> iconEmoji;
 
+    /**
+     * @return Slack emoji to use as the bot avatar (e.g. `:fire:`). Mutually exclusive with `icon_url` at Slack.
+     * 
+     */
     public Output<Optional<String>> iconEmoji() {
         return Codegen.optional(this.iconEmoji);
     }
+    /**
+     * URL of an image to use as the bot avatar.
+     * 
+     */
     @Export(name="iconUrl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> iconUrl;
 
+    /**
+     * @return URL of an image to use as the bot avatar.
+     * 
+     */
     public Output<Optional<String>> iconUrl() {
         return Codegen.optional(this.iconUrl);
     }
+    /**
+     * URL of an image attached to the message.
+     * 
+     */
     @Export(name="imageUrl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> imageUrl;
 
+    /**
+     * @return URL of an image attached to the message.
+     * 
+     */
     public Output<Optional<String>> imageUrl() {
         return Codegen.optional(this.imageUrl);
     }
+    /**
+     * If true, find and link channel names and usernames in the message text.
+     * 
+     */
     @Export(name="linkNames", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> linkNames;
 
+    /**
+     * @return If true, find and link channel names and usernames in the message text.
+     * 
+     */
     public Output<Optional<Boolean>> linkNames() {
         return Codegen.optional(this.linkNames);
     }
+    /**
+     * Attachment fields in which Slack parses `mrkdwn` formatting. Common values: `pretext`, `text`, `fields`.
+     * 
+     */
     @Export(name="mrkdwnIns", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> mrkdwnIns;
 
+    /**
+     * @return Attachment fields in which Slack parses `mrkdwn` formatting. Common values: `pretext`, `text`, `fields`.
+     * 
+     */
     public Output<Optional<List<String>>> mrkdwnIns() {
         return Codegen.optional(this.mrkdwnIns);
     }
+    /**
+     * Identifier sent back to Slack when the button is clicked.
+     * 
+     */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
+    /**
+     * @return Identifier sent back to Slack when the button is clicked.
+     * 
+     */
     public Output<String> name() {
         return this.name;
     }
+    /**
+     * Text shown above the attachment. Supports Go templating.
+     * 
+     */
     @Export(name="pretext", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> pretext;
 
+    /**
+     * @return Text shown above the attachment. Supports Go templating.
+     * 
+     */
     public Output<Optional<String>> pretext() {
         return Codegen.optional(this.pretext);
     }
     /**
+     * Deprecated and ignored. Custom proxy URLs are not supported.
+     * 
      * @deprecated
      * custom proxy URLs are not supported
      * 
@@ -137,60 +319,136 @@ public class SlackAlertNotifier extends com.pulumi.resources.CustomResource {
     @Export(name="proxyUrl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> proxyUrl;
 
+    /**
+     * @return Deprecated and ignored. Custom proxy URLs are not supported.
+     * 
+     */
     public Output<Optional<String>> proxyUrl() {
         return Codegen.optional(this.proxyUrl);
     }
+    /**
+     * Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+     * 
+     */
     @Export(name="sendResolved", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> sendResolved;
 
+    /**
+     * @return Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+     * 
+     */
     public Output<Optional<Boolean>> sendResolved() {
         return Codegen.optional(this.sendResolved);
     }
+    /**
+     * If true, render all `fields` with `short: true` regardless of per-field setting.
+     * 
+     */
     @Export(name="shortFields", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> shortFields;
 
+    /**
+     * @return If true, render all `fields` with `short: true` regardless of per-field setting.
+     * 
+     */
     public Output<Optional<Boolean>> shortFields() {
         return Codegen.optional(this.shortFields);
     }
+    /**
+     * Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     @Export(name="slug", refs={String.class}, tree="[0]")
     private Output<String> slug;
 
+    /**
+     * @return Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     public Output<String> slug() {
         return this.slug;
     }
+    /**
+     * Label shown on the button.
+     * 
+     */
     @Export(name="text", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> text;
 
+    /**
+     * @return Label shown on the button.
+     * 
+     */
     public Output<Optional<String>> text() {
         return Codegen.optional(this.text);
     }
+    /**
+     * URL of a small thumbnail image shown to the right of the attachment.
+     * 
+     */
     @Export(name="thumbUrl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> thumbUrl;
 
+    /**
+     * @return URL of a small thumbnail image shown to the right of the attachment.
+     * 
+     */
     public Output<Optional<String>> thumbUrl() {
         return Codegen.optional(this.thumbUrl);
     }
+    /**
+     * Bold heading shown above the value.
+     * 
+     */
     @Export(name="title", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> title;
 
+    /**
+     * @return Bold heading shown above the value.
+     * 
+     */
     public Output<Optional<String>> title() {
         return Codegen.optional(this.title);
     }
+    /**
+     * URL the title links to when clicked.
+     * 
+     */
     @Export(name="titleLink", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> titleLink;
 
+    /**
+     * @return URL the title links to when clicked.
+     * 
+     */
     public Output<Optional<String>> titleLink() {
         return Codegen.optional(this.titleLink);
     }
+    /**
+     * If true, skip TLS certificate verification when calling the webhook. Disable only in trusted environments.
+     * 
+     */
     @Export(name="tlsInsecureSkipVerify", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> tlsInsecureSkipVerify;
 
+    /**
+     * @return If true, skip TLS certificate verification when calling the webhook. Disable only in trusted environments.
+     * 
+     */
     public Output<Optional<Boolean>> tlsInsecureSkipVerify() {
         return Codegen.optional(this.tlsInsecureSkipVerify);
     }
+    /**
+     * Display name of the bot posting the message.
+     * 
+     */
     @Export(name="username", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> username;
 
+    /**
+     * @return Display name of the bot posting the message.
+     * 
+     */
     public Output<Optional<String>> username() {
         return Codegen.optional(this.username);
     }

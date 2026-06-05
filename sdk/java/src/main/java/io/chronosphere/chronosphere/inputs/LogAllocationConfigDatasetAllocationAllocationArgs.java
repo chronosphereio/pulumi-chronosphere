@@ -13,9 +13,17 @@ public final class LogAllocationConfigDatasetAllocationAllocationArgs extends co
 
     public static final LogAllocationConfigDatasetAllocationAllocationArgs Empty = new LogAllocationConfigDatasetAllocationAllocationArgs();
 
+    /**
+     * Percentage of the tenant&#39;s log license to allocate to this dataset, expressed as a number between 0 and 100.
+     * 
+     */
     @Import(name="percentOfLicense", required=true)
     private Output<Double> percentOfLicense;
 
+    /**
+     * @return Percentage of the tenant&#39;s log license to allocate to this dataset, expressed as a number between 0 and 100.
+     * 
+     */
     public Output<Double> percentOfLicense() {
         return this.percentOfLicense;
     }
@@ -44,11 +52,23 @@ public final class LogAllocationConfigDatasetAllocationAllocationArgs extends co
             $ = new LogAllocationConfigDatasetAllocationAllocationArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param percentOfLicense Percentage of the tenant&#39;s log license to allocate to this dataset, expressed as a number between 0 and 100.
+         * 
+         * @return builder
+         * 
+         */
         public Builder percentOfLicense(Output<Double> percentOfLicense) {
             $.percentOfLicense = percentOfLicense;
             return this;
         }
 
+        /**
+         * @param percentOfLicense Percentage of the tenant&#39;s log license to allocate to this dataset, expressed as a number between 0 and 100.
+         * 
+         * @return builder
+         * 
+         */
         public Builder percentOfLicense(Double percentOfLicense) {
             return percentOfLicense(Output.of(percentOfLicense));
         }

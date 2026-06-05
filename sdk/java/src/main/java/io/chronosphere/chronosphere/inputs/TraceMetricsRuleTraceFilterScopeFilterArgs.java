@@ -16,9 +16,17 @@ public final class TraceMetricsRuleTraceFilterScopeFilterArgs extends com.pulumi
 
     public static final TraceMetricsRuleTraceFilterScopeFilterArgs Empty = new TraceMetricsRuleTraceFilterScopeFilterArgs();
 
+    /**
+     * Span conditions that select which spans are aggregated. Spans must match at least one block to be included.
+     * 
+     */
     @Import(name="spanScopes")
     private @Nullable Output<List<TraceMetricsRuleTraceFilterScopeFilterSpanScopeArgs>> spanScopes;
 
+    /**
+     * @return Span conditions that select which spans are aggregated. Spans must match at least one block to be included.
+     * 
+     */
     public Optional<Output<List<TraceMetricsRuleTraceFilterScopeFilterSpanScopeArgs>>> spanScopes() {
         return Optional.ofNullable(this.spanScopes);
     }
@@ -47,15 +55,33 @@ public final class TraceMetricsRuleTraceFilterScopeFilterArgs extends com.pulumi
             $ = new TraceMetricsRuleTraceFilterScopeFilterArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param spanScopes Span conditions that select which spans are aggregated. Spans must match at least one block to be included.
+         * 
+         * @return builder
+         * 
+         */
         public Builder spanScopes(@Nullable Output<List<TraceMetricsRuleTraceFilterScopeFilterSpanScopeArgs>> spanScopes) {
             $.spanScopes = spanScopes;
             return this;
         }
 
+        /**
+         * @param spanScopes Span conditions that select which spans are aggregated. Spans must match at least one block to be included.
+         * 
+         * @return builder
+         * 
+         */
         public Builder spanScopes(List<TraceMetricsRuleTraceFilterScopeFilterSpanScopeArgs> spanScopes) {
             return spanScopes(Output.of(spanScopes));
         }
 
+        /**
+         * @param spanScopes Span conditions that select which spans are aggregated. Spans must match at least one block to be included.
+         * 
+         * @return builder
+         * 
+         */
         public Builder spanScopes(TraceMetricsRuleTraceFilterScopeFilterSpanScopeArgs... spanScopes) {
             return spanScopes(List.of(spanScopes));
         }

@@ -14,7 +14,13 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class TraceMetricsRuleGroupBy
     {
+        /// <summary>
+        /// Span attribute to group by.
+        /// </summary>
         public readonly Outputs.TraceMetricsRuleGroupByKey Key;
+        /// <summary>
+        /// Name of the resulting metric label.
+        /// </summary>
         public readonly string Label;
 
         [OutputConstructor]

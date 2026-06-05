@@ -14,7 +14,13 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class RollupRuleGraphiteLabelPolicyReplace
     {
+        /// <summary>
+        /// Positional Graphite label to replace (e.g. `__g1__`).
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// Replacement value for the named positional label.
+        /// </summary>
         public readonly string NewValue;
 
         [OutputConstructor]

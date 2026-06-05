@@ -16,16 +16,32 @@ public final class ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndL
 
     public static final ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityArgs Empty = new ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityArgs();
 
+    /**
+     * Per-license fixed allocations that override `percent_of_license` for the named licenses. When any pool sets a fixed value for a license, every pool must also set one for that license.
+     * 
+     */
     @Import(name="fixedValue")
     private @Nullable Output<Integer> fixedValue;
 
+    /**
+     * @return Per-license fixed allocations that override `percent_of_license` for the named licenses. When any pool sets a fixed value for a license, every pool must also set one for that license.
+     * 
+     */
     public Optional<Output<Integer>> fixedValue() {
         return Optional.ofNullable(this.fixedValue);
     }
 
+    /**
+     * Threshold as a percent of the pool&#39;s allocation. `100` equals the full allocation; values above 100 allow the pool to exceed its baseline allocation.
+     * 
+     */
     @Import(name="percentOfPoolAllocation")
     private @Nullable Output<Double> percentOfPoolAllocation;
 
+    /**
+     * @return Threshold as a percent of the pool&#39;s allocation. `100` equals the full allocation; values above 100 allow the pool to exceed its baseline allocation.
+     * 
+     */
     public Optional<Output<Double>> percentOfPoolAllocation() {
         return Optional.ofNullable(this.percentOfPoolAllocation);
     }
@@ -55,20 +71,44 @@ public final class ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndL
             $ = new ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriorityArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param fixedValue Per-license fixed allocations that override `percent_of_license` for the named licenses. When any pool sets a fixed value for a license, every pool must also set one for that license.
+         * 
+         * @return builder
+         * 
+         */
         public Builder fixedValue(@Nullable Output<Integer> fixedValue) {
             $.fixedValue = fixedValue;
             return this;
         }
 
+        /**
+         * @param fixedValue Per-license fixed allocations that override `percent_of_license` for the named licenses. When any pool sets a fixed value for a license, every pool must also set one for that license.
+         * 
+         * @return builder
+         * 
+         */
         public Builder fixedValue(Integer fixedValue) {
             return fixedValue(Output.of(fixedValue));
         }
 
+        /**
+         * @param percentOfPoolAllocation Threshold as a percent of the pool&#39;s allocation. `100` equals the full allocation; values above 100 allow the pool to exceed its baseline allocation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder percentOfPoolAllocation(@Nullable Output<Double> percentOfPoolAllocation) {
             $.percentOfPoolAllocation = percentOfPoolAllocation;
             return this;
         }
 
+        /**
+         * @param percentOfPoolAllocation Threshold as a percent of the pool&#39;s allocation. `100` equals the full allocation; values above 100 allow the pool to exceed its baseline allocation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder percentOfPoolAllocation(Double percentOfPoolAllocation) {
             return percentOfPoolAllocation(Output.of(percentOfPoolAllocation));
         }

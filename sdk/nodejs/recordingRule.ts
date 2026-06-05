@@ -4,6 +4,26 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Evaluates a PromQL expression at a fixed interval and writes the result to a new time series. Useful for precomputing expensive queries or producing derived metrics.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as chronosphere from "@pulumi-chronosphere/pulumi-chronosphere";
+ *
+ * const upByNamespace = new chronosphere.RecordingRule("upByNamespace", {
+ *     expr: "sum by (kubernetes_namespace) (up)",
+ *     interval: "60s",
+ *     labels: {
+ *         owner: "platform",
+ *     },
+ *     metricName: "up:by_namespace",
+ *     name: "up:by_namespace",
+ * });
+ * ```
+ */
 export class RecordingRule extends pulumi.CustomResource {
     /**
      * Get an existing RecordingRule resource's state with the given name, ID, and optional extra
@@ -32,14 +52,41 @@ export class RecordingRule extends pulumi.CustomResource {
         return obj['__pulumiType'] === RecordingRule.__pulumiType;
     }
 
+    /**
+     * ID of the bucket the recording rule belongs to. At least one of `bucketId` or `executionGroup` must be set; if both are set their values must match.
+     */
     public readonly bucketId!: pulumi.Output<string | undefined>;
+    /**
+     * Slug of the execution group in which the rule is evaluated. Rules in the same group run sequentially at the configured interval; all rules in a group must finish before the next iteration starts. At least one of `bucketId` or `executionGroup` must be set.
+     */
     public readonly executionGroup!: pulumi.Output<string | undefined>;
+    /**
+     * Execution mode controlling whether the recording rule is active.
+     */
     public readonly executionMode!: pulumi.Output<string | undefined>;
+    /**
+     * PromQL expression evaluated at each interval. The result is written to a new series named by `metricName` (or `name` if unset).
+     */
     public readonly expr!: pulumi.Output<string>;
+    /**
+     * Evaluation interval (e.g. `30s`, `1m`). Defaults to `60s` when unset.
+     */
     public readonly interval!: pulumi.Output<string | undefined>;
+    /**
+     * Key/value labels added to every series produced by this recording rule.
+     */
     public readonly labels!: pulumi.Output<{[key: string]: string} | undefined>;
+    /**
+     * Name of the output time series produced by `expr`. Must be a valid metric name. Defaults to `name` if omitted.
+     */
     public readonly metricName!: pulumi.Output<string | undefined>;
+    /**
+     * Display name of the recording rule. Can be changed after creation.
+     */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * Stable identifier for the recording rule. Generated from `name` if omitted. Immutable after creation.
+     */
     public readonly slug!: pulumi.Output<string>;
 
     /**
@@ -91,14 +138,41 @@ export class RecordingRule extends pulumi.CustomResource {
  * Input properties used for looking up and filtering RecordingRule resources.
  */
 export interface RecordingRuleState {
+    /**
+     * ID of the bucket the recording rule belongs to. At least one of `bucketId` or `executionGroup` must be set; if both are set their values must match.
+     */
     bucketId?: pulumi.Input<string>;
+    /**
+     * Slug of the execution group in which the rule is evaluated. Rules in the same group run sequentially at the configured interval; all rules in a group must finish before the next iteration starts. At least one of `bucketId` or `executionGroup` must be set.
+     */
     executionGroup?: pulumi.Input<string>;
+    /**
+     * Execution mode controlling whether the recording rule is active.
+     */
     executionMode?: pulumi.Input<string>;
+    /**
+     * PromQL expression evaluated at each interval. The result is written to a new series named by `metricName` (or `name` if unset).
+     */
     expr?: pulumi.Input<string>;
+    /**
+     * Evaluation interval (e.g. `30s`, `1m`). Defaults to `60s` when unset.
+     */
     interval?: pulumi.Input<string>;
+    /**
+     * Key/value labels added to every series produced by this recording rule.
+     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Name of the output time series produced by `expr`. Must be a valid metric name. Defaults to `name` if omitted.
+     */
     metricName?: pulumi.Input<string>;
+    /**
+     * Display name of the recording rule. Can be changed after creation.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * Stable identifier for the recording rule. Generated from `name` if omitted. Immutable after creation.
+     */
     slug?: pulumi.Input<string>;
 }
 
@@ -106,13 +180,40 @@ export interface RecordingRuleState {
  * The set of arguments for constructing a RecordingRule resource.
  */
 export interface RecordingRuleArgs {
+    /**
+     * ID of the bucket the recording rule belongs to. At least one of `bucketId` or `executionGroup` must be set; if both are set their values must match.
+     */
     bucketId?: pulumi.Input<string>;
+    /**
+     * Slug of the execution group in which the rule is evaluated. Rules in the same group run sequentially at the configured interval; all rules in a group must finish before the next iteration starts. At least one of `bucketId` or `executionGroup` must be set.
+     */
     executionGroup?: pulumi.Input<string>;
+    /**
+     * Execution mode controlling whether the recording rule is active.
+     */
     executionMode?: pulumi.Input<string>;
+    /**
+     * PromQL expression evaluated at each interval. The result is written to a new series named by `metricName` (or `name` if unset).
+     */
     expr: pulumi.Input<string>;
+    /**
+     * Evaluation interval (e.g. `30s`, `1m`). Defaults to `60s` when unset.
+     */
     interval?: pulumi.Input<string>;
+    /**
+     * Key/value labels added to every series produced by this recording rule.
+     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Name of the output time series produced by `expr`. Must be a valid metric name. Defaults to `name` if omitted.
+     */
     metricName?: pulumi.Input<string>;
+    /**
+     * Display name of the recording rule. Can be changed after creation.
+     */
     name: pulumi.Input<string>;
+    /**
+     * Stable identifier for the recording rule. Generated from `name` if omitted. Immutable after creation.
+     */
     slug?: pulumi.Input<string>;
 }

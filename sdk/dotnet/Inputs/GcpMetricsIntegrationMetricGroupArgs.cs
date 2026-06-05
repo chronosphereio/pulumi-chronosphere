@@ -15,6 +15,10 @@ namespace Chronosphere.Pulumi.Inputs
     {
         [Input("filters")]
         private InputList<Inputs.GcpMetricsIntegrationMetricGroupFilterArgs>? _filters;
+
+        /// <summary>
+        /// Label filters applied to metrics in this group. All filters must match for a metric to be ingested.
+        /// </summary>
         public InputList<Inputs.GcpMetricsIntegrationMetricGroupFilterArgs> Filters
         {
             get => _filters ?? (_filters = new InputList<Inputs.GcpMetricsIntegrationMetricGroupFilterArgs>());
@@ -23,17 +27,28 @@ namespace Chronosphere.Pulumi.Inputs
 
         [Input("prefixes")]
         private InputList<string>? _prefixes;
+
+        /// <summary>
+        /// List of Google Cloud metric prefixes to ingest (e.g. `compute.googleapis.com/`).
+        /// </summary>
         public InputList<string> Prefixes
         {
             get => _prefixes ?? (_prefixes = new InputList<string>());
             set => _prefixes = value;
         }
 
+        /// <summary>
+        /// Google Cloud project ID to read metrics from. The configured service account must have access.
+        /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
 
         [Input("rollupRules")]
         private InputList<Inputs.GcpMetricsIntegrationMetricGroupRollupRuleArgs>? _rollupRules;
+
+        /// <summary>
+        /// Server-side aggregation rules applied to metrics in this group before they are stored.
+        /// </summary>
         public InputList<Inputs.GcpMetricsIntegrationMetricGroupRollupRuleArgs> RollupRules
         {
             get => _rollupRules ?? (_rollupRules = new InputList<Inputs.GcpMetricsIntegrationMetricGroupRollupRuleArgs>());

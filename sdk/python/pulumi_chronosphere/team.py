@@ -20,6 +20,10 @@ class TeamArgs:
                  user_emails: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a Team resource.
+        :param pulumi.Input[str] name: Display name of the team. Can be changed after creation.
+        :param pulumi.Input[str] description: Free-form description of the team.
+        :param pulumi.Input[str] slug: Stable identifier for the team. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] user_emails: Unordered set of email addresses identifying the users who are members of this team.
         """
         pulumi.set(__self__, "name", name)
         if description is not None:
@@ -32,6 +36,9 @@ class TeamArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        Display name of the team. Can be changed after creation.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -41,6 +48,9 @@ class TeamArgs:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Free-form description of the team.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -50,6 +60,9 @@ class TeamArgs:
     @property
     @pulumi.getter
     def slug(self) -> Optional[pulumi.Input[str]]:
+        """
+        Stable identifier for the team. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @slug.setter
@@ -59,6 +72,9 @@ class TeamArgs:
     @property
     @pulumi.getter(name="userEmails")
     def user_emails(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Unordered set of email addresses identifying the users who are members of this team.
+        """
         return pulumi.get(self, "user_emails")
 
     @user_emails.setter
@@ -75,6 +91,10 @@ class _TeamState:
                  user_emails: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         Input properties used for looking up and filtering Team resources.
+        :param pulumi.Input[str] description: Free-form description of the team.
+        :param pulumi.Input[str] name: Display name of the team. Can be changed after creation.
+        :param pulumi.Input[str] slug: Stable identifier for the team. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] user_emails: Unordered set of email addresses identifying the users who are members of this team.
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -88,6 +108,9 @@ class _TeamState:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Free-form description of the team.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -97,6 +120,9 @@ class _TeamState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Display name of the team. Can be changed after creation.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -106,6 +132,9 @@ class _TeamState:
     @property
     @pulumi.getter
     def slug(self) -> Optional[pulumi.Input[str]]:
+        """
+        Stable identifier for the team. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @slug.setter
@@ -115,6 +144,9 @@ class _TeamState:
     @property
     @pulumi.getter(name="userEmails")
     def user_emails(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Unordered set of email addresses identifying the users who are members of this team.
+        """
         return pulumi.get(self, "user_emails")
 
     @user_emails.setter
@@ -133,9 +165,25 @@ class Team(pulumi.CustomResource):
                  user_emails: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
-        Create a Team resource with the given unique name, props, and options.
+        A named group of users that can own collections, buckets, and other resources. Teams scope access control and serve as the ownership unit for resources across the platform.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_chronosphere as chronosphere
+
+        platform = chronosphere.Team("platform",
+            description="Platform engineering team",
+            name="Platform")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] description: Free-form description of the team.
+        :param pulumi.Input[str] name: Display name of the team. Can be changed after creation.
+        :param pulumi.Input[str] slug: Stable identifier for the team. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] user_emails: Unordered set of email addresses identifying the users who are members of this team.
         """
         ...
     @overload
@@ -144,7 +192,19 @@ class Team(pulumi.CustomResource):
                  args: TeamArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a Team resource with the given unique name, props, and options.
+        A named group of users that can own collections, buckets, and other resources. Teams scope access control and serve as the ownership unit for resources across the platform.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_chronosphere as chronosphere
+
+        platform = chronosphere.Team("platform",
+            description="Platform engineering team",
+            name="Platform")
+        ```
+
         :param str resource_name: The name of the resource.
         :param TeamArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -200,6 +260,10 @@ class Team(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] description: Free-form description of the team.
+        :param pulumi.Input[str] name: Display name of the team. Can be changed after creation.
+        :param pulumi.Input[str] slug: Stable identifier for the team. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] user_emails: Unordered set of email addresses identifying the users who are members of this team.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -214,20 +278,32 @@ class Team(pulumi.CustomResource):
     @property
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
+        """
+        Free-form description of the team.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        Display name of the team. Can be changed after creation.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def slug(self) -> pulumi.Output[str]:
+        """
+        Stable identifier for the team. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @property
     @pulumi.getter(name="userEmails")
     def user_emails(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        Unordered set of email addresses identifying the users who are members of this team.
+        """
         return pulumi.get(self, "user_emails")
 

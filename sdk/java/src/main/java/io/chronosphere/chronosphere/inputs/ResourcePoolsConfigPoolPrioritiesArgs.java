@@ -16,16 +16,32 @@ public final class ResourcePoolsConfigPoolPrioritiesArgs extends com.pulumi.reso
 
     public static final ResourcePoolsConfigPoolPrioritiesArgs Empty = new ResourcePoolsConfigPoolPrioritiesArgs();
 
+    /**
+     * Matchers selecting metrics within the pool that are treated as high priority and dropped last.
+     * 
+     */
     @Import(name="highPriorityMatchRules")
     private @Nullable Output<List<String>> highPriorityMatchRules;
 
+    /**
+     * @return Matchers selecting metrics within the pool that are treated as high priority and dropped last.
+     * 
+     */
     public Optional<Output<List<String>>> highPriorityMatchRules() {
         return Optional.ofNullable(this.highPriorityMatchRules);
     }
 
+    /**
+     * Matchers selecting metrics within the pool that are treated as low priority and dropped first.
+     * 
+     */
     @Import(name="lowPriorityMatchRules")
     private @Nullable Output<List<String>> lowPriorityMatchRules;
 
+    /**
+     * @return Matchers selecting metrics within the pool that are treated as low priority and dropped first.
+     * 
+     */
     public Optional<Output<List<String>>> lowPriorityMatchRules() {
         return Optional.ofNullable(this.lowPriorityMatchRules);
     }
@@ -55,28 +71,64 @@ public final class ResourcePoolsConfigPoolPrioritiesArgs extends com.pulumi.reso
             $ = new ResourcePoolsConfigPoolPrioritiesArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param highPriorityMatchRules Matchers selecting metrics within the pool that are treated as high priority and dropped last.
+         * 
+         * @return builder
+         * 
+         */
         public Builder highPriorityMatchRules(@Nullable Output<List<String>> highPriorityMatchRules) {
             $.highPriorityMatchRules = highPriorityMatchRules;
             return this;
         }
 
+        /**
+         * @param highPriorityMatchRules Matchers selecting metrics within the pool that are treated as high priority and dropped last.
+         * 
+         * @return builder
+         * 
+         */
         public Builder highPriorityMatchRules(List<String> highPriorityMatchRules) {
             return highPriorityMatchRules(Output.of(highPriorityMatchRules));
         }
 
+        /**
+         * @param highPriorityMatchRules Matchers selecting metrics within the pool that are treated as high priority and dropped last.
+         * 
+         * @return builder
+         * 
+         */
         public Builder highPriorityMatchRules(String... highPriorityMatchRules) {
             return highPriorityMatchRules(List.of(highPriorityMatchRules));
         }
 
+        /**
+         * @param lowPriorityMatchRules Matchers selecting metrics within the pool that are treated as low priority and dropped first.
+         * 
+         * @return builder
+         * 
+         */
         public Builder lowPriorityMatchRules(@Nullable Output<List<String>> lowPriorityMatchRules) {
             $.lowPriorityMatchRules = lowPriorityMatchRules;
             return this;
         }
 
+        /**
+         * @param lowPriorityMatchRules Matchers selecting metrics within the pool that are treated as low priority and dropped first.
+         * 
+         * @return builder
+         * 
+         */
         public Builder lowPriorityMatchRules(List<String> lowPriorityMatchRules) {
             return lowPriorityMatchRules(Output.of(lowPriorityMatchRules));
         }
 
+        /**
+         * @param lowPriorityMatchRules Matchers selecting metrics within the pool that are treated as low priority and dropped first.
+         * 
+         * @return builder
+         * 
+         */
         public Builder lowPriorityMatchRules(String... lowPriorityMatchRules) {
             return lowPriorityMatchRules(List.of(lowPriorityMatchRules));
         }

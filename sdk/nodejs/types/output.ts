@@ -6,1762 +6,4176 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
 export interface AzureMetricsIntegrationPrincipal {
+    /**
+     * OAuth2 client ID of the managed identity principal.
+     */
     clientId?: string;
+    /**
+     * ID of the Azure tenant that hosts the managed identity principal.
+     */
     tenantId?: string;
 }
 
 export interface AzureMetricsIntegrationScrapeConfig {
+    /**
+     * Azure locations (regions) to ingest from, applied across all subscriptions. Leave empty for all locations.
+     */
     locations?: string[];
+    /**
+     * Azure resource types to scrape metrics from. Each entry can constrain the set of metric names to a subset.
+     */
     resourceTypes?: outputs.AzureMetricsIntegrationScrapeConfigResourceType[];
+    /**
+     * Azure subscription IDs to target. Leave empty to scrape from all subscriptions accessible to the principal.
+     */
     subscriptionIds?: string[];
 }
 
 export interface AzureMetricsIntegrationScrapeConfigResourceType {
+    /**
+     * Metric names to ingest for this resource type. Leave empty for all metrics.
+     */
     metricNames?: string[];
+    /**
+     * Azure resource type identifier (e.g. `Microsoft.Compute/virtualMachines`).
+     */
     name?: string;
 }
 
 export interface ConsumptionBudgetAlertActionConfig {
+    /**
+     * Additional annotations to set on the generated monitor. Overrides the default `description`, `dashboard`, `resource`, `consumptionBudgetSlug`, `thresholdType`, and `partition` annotations when keys collide.
+     */
     annotations?: {[key: string]: string};
+    /**
+     * How long instant-rate consumption must remain above the threshold before an alert fires, in seconds. Defaults to 0 (alert immediately on any breach).
+     */
     instantRateSustainSecs?: number;
+    /**
+     * Additional labels to set on the generated monitor, usable for notification routing. The `resource`, `partition`, and `thresholdType` labels are reserved and cannot be overridden.
+     */
     labels?: {[key: string]: string};
 }
 
 export interface ConsumptionBudgetPriority {
+    /**
+     * Filters identifying which data matches this priority. Filters are AND-ed together: a request must match every filter to be assigned this priority.
+     */
     filters?: outputs.ConsumptionBudgetPriorityFilter[];
+    /**
+     * Priority order used when dropping data. Priority `10` is dropped first; priority `1` is dropped last.
+     */
     priority?: number;
 }
 
 export interface ConsumptionBudgetPriorityFilter {
+    /**
+     * Deprecated: use `logFilter` instead. Slug of the dataset to match against.
+     */
     datasetId?: string;
+    /**
+     * Log search filter that matches log data for this priority.
+     */
     logFilter?: outputs.ConsumptionBudgetPriorityFilterLogFilter;
 }
 
 export interface ConsumptionBudgetPriorityFilterLogFilter {
+    /**
+     * Log search query that selects matching logs. Supports only top-level operations; nested clauses are not allowed and only one type of `AND` or `OR` operator can be used.
+     */
     query: string;
 }
 
 export interface ConsumptionBudgetThreshold {
+    /**
+     * Action to take when this threshold is exceeded (e.g. drop traffic, fire warning/critical alert).
+     */
     action?: string;
+    /**
+     * Configures an instant-rate threshold value. Set when `type` is an instant-rate type.
+     */
     instantRate?: outputs.ConsumptionBudgetThresholdInstantRate;
+    /**
+     * Resource group the threshold applies to (e.g. metrics, logs, traces). Replaces the deprecated top-level `resource` field.
+     */
+    resourceGroup?: string;
+    /**
+     * SKU group the threshold applies to (e.g. metrics, logs, traces). Replaces the deprecated top-level `resource` field.
+     *
+     * @deprecated use resource_group instead
+     */
     skuGroup?: string;
+    /**
+     * Measurement window over which the threshold is evaluated (e.g. instant rate vs. rolling volume).
+     */
     type?: string;
+    /**
+     * Unit in which the threshold value is denominated (e.g. bytes, datapoints).
+     */
     unit?: string;
+    /**
+     * Configures a volume threshold value. Set when `type` is a volume type.
+     */
     volume?: outputs.ConsumptionBudgetThresholdVolume;
 }
 
 export interface ConsumptionBudgetThresholdInstantRate {
+    /**
+     * Fixed per-second rate threshold value, expressed in the threshold's `unit`.
+     */
     fixedValuePerSec?: number;
 }
 
 export interface ConsumptionBudgetThresholdVolume {
+    /**
+     * Fixed volume threshold value, expressed in the threshold's `unit`.
+     */
     fixedValue?: number;
 }
 
 export interface ConsumptionConfigPartition {
+    /**
+     * Filters identifying which data belongs to this partition. Filters are AND-ed together: a request must match every filter to be assigned to the partition. At most one `IN` filter and one `NOT_IN` filter can be specified.
+     */
     filters?: outputs.ConsumptionConfigPartitionFilter[];
+    /**
+     * Display name of the partition. Must be unique within its parent partition. Can be changed after creation.
+     */
     name?: string;
+    /**
+     * Child partitions of this partition. Evaluated in order; requests not matching any child fall into an implicit `default` child partition.
+     */
     partitions?: outputs.ConsumptionConfigPartitionPartition[];
+    /**
+     * Stable identifier of the partition. Must be unique within its parent partition. Immutable after creation.
+     */
     slug?: string;
 }
 
 export interface ConsumptionConfigPartitionFilter {
+    /**
+     * Conditions evaluated by the filter. Each condition matches by dataset, logs, metrics, or trace data; exactly one of `logFilter`, `metricFilter`, or `datasetId` must be set per condition.
+     */
     conditions?: outputs.ConsumptionConfigPartitionFilterCondition[];
+    /**
+     * Match operator (e.g. `IN`, `NOT_IN`) applied to the filter conditions.
+     */
     operator?: string;
 }
 
 export interface ConsumptionConfigPartitionFilterCondition {
+    /**
+     * Deprecated: use `logFilter`, `metricFilter`, or trace filters instead. Slug of the dataset to match.
+     */
     datasetId?: string;
+    /**
+     * Log search filter matching log data for this condition.
+     */
     logFilter?: outputs.ConsumptionConfigPartitionFilterConditionLogFilter;
+    /**
+     * Metric label filters matched against incoming metric data. Multiple filters are AND-ed together; values support glob patterns including `service:{svc1,svc2}` style alternations.
+     */
     metricFilters?: outputs.ConsumptionConfigPartitionFilterConditionMetricFilter[];
 }
 
 export interface ConsumptionConfigPartitionFilterConditionLogFilter {
+    /**
+     * Log search query that selects matching logs. Supports only top-level operations; nested clauses are not allowed and only one type of `AND` or `OR` operator can be used.
+     */
     query: string;
 }
 
 export interface ConsumptionConfigPartitionFilterConditionMetricFilter {
+    /**
+     * Label name to match.
+     */
     name: string;
+    /**
+     * Glob pattern matched against the label's value.
+     */
     valueGlob: string;
 }
 
 export interface ConsumptionConfigPartitionPartition {
+    /**
+     * Filters identifying which data belongs to this partition. Filters are AND-ed together: a request must match every filter to be assigned to the partition. At most one `IN` filter and one `NOT_IN` filter can be specified.
+     */
     filters?: outputs.ConsumptionConfigPartitionPartitionFilter[];
+    /**
+     * Display name of the partition. Must be unique within its parent partition. Can be changed after creation.
+     */
     name?: string;
+    /**
+     * Child partitions of this partition. Evaluated in order; requests not matching any child fall into an implicit `default` child partition.
+     */
     partitions?: outputs.ConsumptionConfigPartitionPartitionPartition[];
+    /**
+     * Stable identifier of the partition. Must be unique within its parent partition. Immutable after creation.
+     */
     slug?: string;
 }
 
 export interface ConsumptionConfigPartitionPartitionFilter {
+    /**
+     * Conditions evaluated by the filter. Each condition matches by dataset, logs, metrics, or trace data; exactly one of `logFilter`, `metricFilter`, or `datasetId` must be set per condition.
+     */
     conditions?: outputs.ConsumptionConfigPartitionPartitionFilterCondition[];
+    /**
+     * Match operator (e.g. `IN`, `NOT_IN`) applied to the filter conditions.
+     */
     operator?: string;
 }
 
 export interface ConsumptionConfigPartitionPartitionFilterCondition {
+    /**
+     * Deprecated: use `logFilter`, `metricFilter`, or trace filters instead. Slug of the dataset to match.
+     */
     datasetId?: string;
+    /**
+     * Log search filter matching log data for this condition.
+     */
     logFilter?: outputs.ConsumptionConfigPartitionPartitionFilterConditionLogFilter;
+    /**
+     * Metric label filters matched against incoming metric data. Multiple filters are AND-ed together; values support glob patterns including `service:{svc1,svc2}` style alternations.
+     */
     metricFilters?: outputs.ConsumptionConfigPartitionPartitionFilterConditionMetricFilter[];
 }
 
 export interface ConsumptionConfigPartitionPartitionFilterConditionLogFilter {
+    /**
+     * Log search query that selects matching logs. Supports only top-level operations; nested clauses are not allowed and only one type of `AND` or `OR` operator can be used.
+     */
     query: string;
 }
 
 export interface ConsumptionConfigPartitionPartitionFilterConditionMetricFilter {
+    /**
+     * Label name to match.
+     */
     name: string;
+    /**
+     * Glob pattern matched against the label's value.
+     */
     valueGlob: string;
 }
 
 export interface ConsumptionConfigPartitionPartitionPartition {
+    /**
+     * Filters identifying which data belongs to this partition. Filters are AND-ed together: a request must match every filter to be assigned to the partition. At most one `IN` filter and one `NOT_IN` filter can be specified.
+     */
     filters?: outputs.ConsumptionConfigPartitionPartitionPartitionFilter[];
+    /**
+     * Display name of the partition. Must be unique within its parent partition. Can be changed after creation.
+     */
     name?: string;
+    /**
+     * Child partitions of this partition. Evaluated in order; requests not matching any child fall into an implicit `default` child partition.
+     */
     partitions?: outputs.ConsumptionConfigPartitionPartitionPartitionPartition[];
+    /**
+     * Stable identifier of the partition. Must be unique within its parent partition. Immutable after creation.
+     */
     slug?: string;
 }
 
 export interface ConsumptionConfigPartitionPartitionPartitionFilter {
+    /**
+     * Conditions evaluated by the filter. Each condition matches by dataset, logs, metrics, or trace data; exactly one of `logFilter`, `metricFilter`, or `datasetId` must be set per condition.
+     */
     conditions?: outputs.ConsumptionConfigPartitionPartitionPartitionFilterCondition[];
+    /**
+     * Match operator (e.g. `IN`, `NOT_IN`) applied to the filter conditions.
+     */
     operator?: string;
 }
 
 export interface ConsumptionConfigPartitionPartitionPartitionFilterCondition {
+    /**
+     * Deprecated: use `logFilter`, `metricFilter`, or trace filters instead. Slug of the dataset to match.
+     */
     datasetId?: string;
+    /**
+     * Log search filter matching log data for this condition.
+     */
     logFilter?: outputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilter;
+    /**
+     * Metric label filters matched against incoming metric data. Multiple filters are AND-ed together; values support glob patterns including `service:{svc1,svc2}` style alternations.
+     */
     metricFilters?: outputs.ConsumptionConfigPartitionPartitionPartitionFilterConditionMetricFilter[];
 }
 
 export interface ConsumptionConfigPartitionPartitionPartitionFilterConditionLogFilter {
+    /**
+     * Log search query that selects matching logs. Supports only top-level operations; nested clauses are not allowed and only one type of `AND` or `OR` operator can be used.
+     */
     query: string;
 }
 
 export interface ConsumptionConfigPartitionPartitionPartitionFilterConditionMetricFilter {
+    /**
+     * Label name to match.
+     */
     name: string;
+    /**
+     * Glob pattern matched against the label's value.
+     */
     valueGlob: string;
 }
 
 export interface ConsumptionConfigPartitionPartitionPartitionPartition {
+    /**
+     * Filters identifying which data belongs to this partition. Filters are AND-ed together: a request must match every filter to be assigned to the partition. At most one `IN` filter and one `NOT_IN` filter can be specified.
+     */
     filters?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilter[];
+    /**
+     * Display name of the partition. Must be unique within its parent partition. Can be changed after creation.
+     */
     name?: string;
+    /**
+     * Child partitions of this partition. Evaluated in order; requests not matching any child fall into an implicit `default` child partition.
+     */
     partitions?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartition[];
+    /**
+     * Stable identifier of the partition. Must be unique within its parent partition. Immutable after creation.
+     */
     slug?: string;
 }
 
 export interface ConsumptionConfigPartitionPartitionPartitionPartitionFilter {
+    /**
+     * Conditions evaluated by the filter. Each condition matches by dataset, logs, metrics, or trace data; exactly one of `logFilter`, `metricFilter`, or `datasetId` must be set per condition.
+     */
     conditions?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterCondition[];
+    /**
+     * Match operator (e.g. `IN`, `NOT_IN`) applied to the filter conditions.
+     */
     operator?: string;
 }
 
 export interface ConsumptionConfigPartitionPartitionPartitionPartitionFilterCondition {
+    /**
+     * Deprecated: use `logFilter`, `metricFilter`, or trace filters instead. Slug of the dataset to match.
+     */
     datasetId?: string;
+    /**
+     * Log search filter matching log data for this condition.
+     */
     logFilter?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilter;
+    /**
+     * Metric label filters matched against incoming metric data. Multiple filters are AND-ed together; values support glob patterns including `service:{svc1,svc2}` style alternations.
+     */
     metricFilters?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionMetricFilter[];
 }
 
 export interface ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionLogFilter {
+    /**
+     * Log search query that selects matching logs. Supports only top-level operations; nested clauses are not allowed and only one type of `AND` or `OR` operator can be used.
+     */
     query: string;
 }
 
 export interface ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionMetricFilter {
+    /**
+     * Label name to match.
+     */
     name: string;
+    /**
+     * Glob pattern matched against the label's value.
+     */
     valueGlob: string;
 }
 
 export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartition {
+    /**
+     * Filters identifying which data belongs to this partition. Filters are AND-ed together: a request must match every filter to be assigned to the partition. At most one `IN` filter and one `NOT_IN` filter can be specified.
+     */
     filters?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilter[];
+    /**
+     * Display name of the partition. Must be unique within its parent partition. Can be changed after creation.
+     */
     name?: string;
+    /**
+     * Child partitions of this partition. Evaluated in order; requests not matching any child fall into an implicit `default` child partition.
+     */
     partitions?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartition[];
+    /**
+     * Stable identifier of the partition. Must be unique within its parent partition. Immutable after creation.
+     */
     slug?: string;
 }
 
 export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilter {
+    /**
+     * Conditions evaluated by the filter. Each condition matches by dataset, logs, metrics, or trace data; exactly one of `logFilter`, `metricFilter`, or `datasetId` must be set per condition.
+     */
     conditions?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterCondition[];
+    /**
+     * Match operator (e.g. `IN`, `NOT_IN`) applied to the filter conditions.
+     */
     operator?: string;
 }
 
 export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterCondition {
+    /**
+     * Deprecated: use `logFilter`, `metricFilter`, or trace filters instead. Slug of the dataset to match.
+     */
     datasetId?: string;
+    /**
+     * Log search filter matching log data for this condition.
+     */
     logFilter?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter;
+    /**
+     * Metric label filters matched against incoming metric data. Multiple filters are AND-ed together; values support glob patterns including `service:{svc1,svc2}` style alternations.
+     */
     metricFilters?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionMetricFilter[];
 }
 
 export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter {
+    /**
+     * Log search query that selects matching logs. Supports only top-level operations; nested clauses are not allowed and only one type of `AND` or `OR` operator can be used.
+     */
     query: string;
 }
 
 export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionFilterConditionMetricFilter {
+    /**
+     * Label name to match.
+     */
     name: string;
+    /**
+     * Glob pattern matched against the label's value.
+     */
     valueGlob: string;
 }
 
 export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartition {
+    /**
+     * Filters identifying which data belongs to this partition. Filters are AND-ed together: a request must match every filter to be assigned to the partition. At most one `IN` filter and one `NOT_IN` filter can be specified.
+     */
     filters?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilter[];
+    /**
+     * Display name of the partition. Must be unique within its parent partition. Can be changed after creation.
+     */
     name?: string;
+    /**
+     * Stable identifier of the partition. Must be unique within its parent partition. Immutable after creation.
+     */
     slug?: string;
 }
 
 export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilter {
+    /**
+     * Conditions evaluated by the filter. Each condition matches by dataset, logs, metrics, or trace data; exactly one of `logFilter`, `metricFilter`, or `datasetId` must be set per condition.
+     */
     conditions?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterCondition[];
+    /**
+     * Match operator (e.g. `IN`, `NOT_IN`) applied to the filter conditions.
+     */
     operator?: string;
 }
 
 export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterCondition {
+    /**
+     * Deprecated: use `logFilter`, `metricFilter`, or trace filters instead. Slug of the dataset to match.
+     */
     datasetId?: string;
+    /**
+     * Log search filter matching log data for this condition.
+     */
     logFilter?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter;
+    /**
+     * Metric label filters matched against incoming metric data. Multiple filters are AND-ed together; values support glob patterns including `service:{svc1,svc2}` style alternations.
+     */
     metricFilters?: outputs.ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionMetricFilter[];
 }
 
 export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionLogFilter {
+    /**
+     * Log search query that selects matching logs. Supports only top-level operations; nested clauses are not allowed and only one type of `AND` or `OR` operator can be used.
+     */
     query: string;
 }
 
 export interface ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterConditionMetricFilter {
+    /**
+     * Label name to match.
+     */
     name: string;
+    /**
+     * Glob pattern matched against the label's value.
+     */
     valueGlob: string;
 }
 
 export interface DatasetConfiguration {
+    /**
+     * Log-specific dataset configuration. Set only when `type` is a log type.
+     */
     logDataset?: outputs.DatasetConfigurationLogDataset;
+    /**
+     * Trace-specific dataset configuration. Set only when `type` is a trace type.
+     */
     traceDataset?: outputs.DatasetConfigurationTraceDataset;
+    /**
+     * Dataset type. Determines which of `traceDataset` or `logDataset` must be set.
+     */
     type: string;
 }
 
 export interface DatasetConfigurationLogDataset {
+    /**
+     * Log search filter that defines which logs are included in this dataset.
+     */
     matchCriteria?: outputs.DatasetConfigurationLogDatasetMatchCriteria;
 }
 
 export interface DatasetConfigurationLogDatasetMatchCriteria {
+    /**
+     * Log search query that selects matching logs. Supports only top-level operations; nested clauses are not allowed and only one type of `AND` or `OR` operator can be used.
+     */
     query: string;
 }
 
 export interface DatasetConfigurationTraceDataset {
+    /**
+     * Log search filter that defines which logs are included in this dataset.
+     */
     matchCriteria: outputs.DatasetConfigurationTraceDatasetMatchCriteria;
 }
 
 export interface DatasetConfigurationTraceDatasetMatchCriteria {
+    /**
+     * Scope filter that further restricts which spans within a matched trace contribute to metrics or sampling. Only spans matching `spanScopes` are included in aggregation.
+     */
     scopeFilter?: outputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilter;
+    /**
+     * Span-level conditions. Each block defines a set of conditions that must all be satisfied by a single span in the trace for the trace to match.
+     */
     spans?: outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpan[];
+    /**
+     * Trace-level conditions evaluated against the whole trace (aggregated duration and error status).
+     */
     trace?: outputs.DatasetConfigurationTraceDatasetMatchCriteriaTrace;
 }
 
 export interface DatasetConfigurationTraceDatasetMatchCriteriaScopeFilter {
+    /**
+     * Span conditions that select which spans are aggregated. Spans must match at least one block to be included.
+     */
     spanScopes?: outputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScope[];
 }
 
 export interface DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScope {
+    /**
+     * Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, maxSecs]` range.
+     */
     duration?: outputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDuration;
+    /**
+     * Matches traces or spans where the target boolean field equals `value`.
+     */
     error?: outputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeError;
+    /**
+     * Matches traces or spans where the target boolean field equals `value`.
+     */
     isRootSpan?: outputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpan;
+    /**
+     * Whether matching spans are included (`INCLUDE`) or excluded (`EXCLUDE`) from the scope. Defaults to `INCLUDE`.
+     */
     matchType?: string;
+    /**
+     * Matches traces or spans where the target string field satisfies the match condition.
+     */
     operation?: outputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperation;
+    /**
+     * Matches traces or spans where the target string field satisfies the match condition.
+     */
     parentOperation?: outputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperation;
+    /**
+     * Matches traces or spans where the target string field satisfies the match condition.
+     */
     parentService?: outputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentService;
+    /**
+     * Matches traces or spans where the target string field satisfies the match condition.
+     */
     service?: outputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeService;
+    /**
+     * Matches traces where the number of spans satisfying the surrounding span conditions falls within the inclusive `[min, max]` range.
+     */
     spanCount?: outputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCount;
+    /**
+     * Matches spans whose tag (span attribute) with the given `key` has a value satisfying the nested string or numeric filter.
+     */
     tags?: outputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTag[];
 }
 
 export interface DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeDuration {
+    /**
+     * Maximum duration in seconds, inclusive. Omit for no upper bound.
+     */
     maxSecs?: number;
+    /**
+     * Minimum duration in seconds, inclusive. Defaults to `0`.
+     */
     minSecs?: number;
 }
 
 export interface DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeError {
+    /**
+     * Boolean value the target field is compared against.
+     */
     value: boolean;
 }
 
 export interface DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeIsRootSpan {
+    /**
+     * Boolean value the target field is compared against.
+     */
     value: boolean;
 }
 
 export interface DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeOperation {
+    /**
+     * Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     */
     inValues?: string[];
+    /**
+     * Match operator applied to `value` or `inValues`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     */
     match?: string;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: string;
 }
 
 export interface DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentOperation {
+    /**
+     * Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     */
     inValues?: string[];
+    /**
+     * Match operator applied to `value` or `inValues`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     */
     match?: string;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: string;
 }
 
 export interface DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeParentService {
+    /**
+     * Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     */
     inValues?: string[];
+    /**
+     * Match operator applied to `value` or `inValues`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     */
     match?: string;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: string;
 }
 
 export interface DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeService {
+    /**
+     * Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     */
     inValues?: string[];
+    /**
+     * Match operator applied to `value` or `inValues`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     */
     match?: string;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: string;
 }
 
 export interface DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeSpanCount {
+    /**
+     * Maximum number of matching spans, inclusive. `0` means no upper bound.
+     */
     max?: number;
+    /**
+     * Minimum number of matching spans, inclusive. Defaults to `0`.
+     */
     min?: number;
 }
 
 export interface DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTag {
+    /**
+     * Name of the span tag (span attribute) inspected by this filter.
+     */
     key?: string;
+    /**
+     * Matches traces or spans where the target numeric field satisfies the comparison against `value`.
+     */
     numericValue?: outputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValue;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: outputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValue;
 }
 
 export interface DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagNumericValue {
+    /**
+     * Numeric comparison operator (for example `EQUALS`, `GREATER_THAN`, `LESS_THAN_OR_EQUAL`).
+     */
     comparison: string;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value: number;
 }
 
 export interface DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeTagValue {
+    /**
+     * Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     */
     inValues?: string[];
+    /**
+     * Match operator applied to `value` or `inValues`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     */
     match?: string;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: string;
 }
 
 export interface DatasetConfigurationTraceDatasetMatchCriteriaSpan {
+    /**
+     * Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, maxSecs]` range.
+     */
     duration?: outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanDuration;
+    /**
+     * Matches traces or spans where the target boolean field equals `value`.
+     */
     error?: outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanError;
+    /**
+     * Matches traces or spans where the target boolean field equals `value`.
+     */
     isRootSpan?: outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpan;
+    /**
+     * Whether matching spans are included (`INCLUDE`) or excluded (`EXCLUDE`) from the scope. Defaults to `INCLUDE`.
+     */
     matchType?: string;
+    /**
+     * Matches traces or spans where the target string field satisfies the match condition.
+     */
     operation?: outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanOperation;
+    /**
+     * Matches traces or spans where the target string field satisfies the match condition.
+     */
     parentOperation?: outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanParentOperation;
+    /**
+     * Matches traces or spans where the target string field satisfies the match condition.
+     */
     parentService?: outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanParentService;
+    /**
+     * Matches traces or spans where the target string field satisfies the match condition.
+     */
     service?: outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanService;
+    /**
+     * Matches traces where the number of spans satisfying the surrounding span conditions falls within the inclusive `[min, max]` range.
+     */
     spanCount?: outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanSpanCount;
+    /**
+     * Matches spans whose tag (span attribute) with the given `key` has a value satisfying the nested string or numeric filter.
+     */
     tags?: outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanTag[];
 }
 
 export interface DatasetConfigurationTraceDatasetMatchCriteriaSpanDuration {
+    /**
+     * Maximum duration in seconds, inclusive. Omit for no upper bound.
+     */
     maxSecs?: number;
+    /**
+     * Minimum duration in seconds, inclusive. Defaults to `0`.
+     */
     minSecs?: number;
 }
 
 export interface DatasetConfigurationTraceDatasetMatchCriteriaSpanError {
+    /**
+     * Boolean value the target field is compared against.
+     */
     value: boolean;
 }
 
 export interface DatasetConfigurationTraceDatasetMatchCriteriaSpanIsRootSpan {
+    /**
+     * Boolean value the target field is compared against.
+     */
     value: boolean;
 }
 
 export interface DatasetConfigurationTraceDatasetMatchCriteriaSpanOperation {
+    /**
+     * Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     */
     inValues?: string[];
+    /**
+     * Match operator applied to `value` or `inValues`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     */
     match?: string;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: string;
 }
 
 export interface DatasetConfigurationTraceDatasetMatchCriteriaSpanParentOperation {
+    /**
+     * Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     */
     inValues?: string[];
+    /**
+     * Match operator applied to `value` or `inValues`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     */
     match?: string;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: string;
 }
 
 export interface DatasetConfigurationTraceDatasetMatchCriteriaSpanParentService {
+    /**
+     * Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     */
     inValues?: string[];
+    /**
+     * Match operator applied to `value` or `inValues`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     */
     match?: string;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: string;
 }
 
 export interface DatasetConfigurationTraceDatasetMatchCriteriaSpanService {
+    /**
+     * Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     */
     inValues?: string[];
+    /**
+     * Match operator applied to `value` or `inValues`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     */
     match?: string;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: string;
 }
 
 export interface DatasetConfigurationTraceDatasetMatchCriteriaSpanSpanCount {
+    /**
+     * Maximum number of matching spans, inclusive. `0` means no upper bound.
+     */
     max?: number;
+    /**
+     * Minimum number of matching spans, inclusive. Defaults to `0`.
+     */
     min?: number;
 }
 
 export interface DatasetConfigurationTraceDatasetMatchCriteriaSpanTag {
+    /**
+     * Name of the span tag (span attribute) inspected by this filter.
+     */
     key?: string;
+    /**
+     * Matches traces or spans where the target numeric field satisfies the comparison against `value`.
+     */
     numericValue?: outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanTagNumericValue;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: outputs.DatasetConfigurationTraceDatasetMatchCriteriaSpanTagValue;
 }
 
 export interface DatasetConfigurationTraceDatasetMatchCriteriaSpanTagNumericValue {
+    /**
+     * Numeric comparison operator (for example `EQUALS`, `GREATER_THAN`, `LESS_THAN_OR_EQUAL`).
+     */
     comparison: string;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value: number;
 }
 
 export interface DatasetConfigurationTraceDatasetMatchCriteriaSpanTagValue {
+    /**
+     * Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     */
     inValues?: string[];
+    /**
+     * Match operator applied to `value` or `inValues`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     */
     match?: string;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: string;
 }
 
 export interface DatasetConfigurationTraceDatasetMatchCriteriaTrace {
+    /**
+     * Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, maxSecs]` range.
+     */
     duration?: outputs.DatasetConfigurationTraceDatasetMatchCriteriaTraceDuration;
+    /**
+     * Matches traces or spans where the target boolean field equals `value`.
+     */
     error?: outputs.DatasetConfigurationTraceDatasetMatchCriteriaTraceError;
 }
 
 export interface DatasetConfigurationTraceDatasetMatchCriteriaTraceDuration {
+    /**
+     * Maximum duration in seconds, inclusive. Omit for no upper bound.
+     */
     maxSecs?: number;
+    /**
+     * Minimum duration in seconds, inclusive. Defaults to `0`.
+     */
     minSecs?: number;
 }
 
 export interface DatasetConfigurationTraceDatasetMatchCriteriaTraceError {
+    /**
+     * Boolean value the target field is compared against.
+     */
     value: boolean;
 }
 
 export interface DerivedLabelMetricLabel {
+    /**
+     * Constructs the derived label value from a list of value definitions, each gated by a filter on existing labels.
+     */
     constructedLabel?: outputs.DerivedLabelMetricLabelConstructedLabel;
+    /**
+     * Derives the label value by mapping from an existing source label, optionally translating its values.
+     */
     mappingLabel?: outputs.DerivedLabelMetricLabelMappingLabel;
 }
 
 export interface DerivedLabelMetricLabelConstructedLabel {
+    /**
+     * Ordered list of value definitions. The first definition whose filters match produces the derived label value.
+     */
     valueDefinitions: outputs.DerivedLabelMetricLabelConstructedLabelValueDefinition[];
 }
 
 export interface DerivedLabelMetricLabelConstructedLabelValueDefinition {
+    /**
+     * Label filters that must all match for this value definition to apply.
+     */
     filters: outputs.DerivedLabelMetricLabelConstructedLabelValueDefinitionFilter[];
+    /**
+     * Value assigned to the derived label when this definition's filters match.
+     */
     value: string;
 }
 
 export interface DerivedLabelMetricLabelConstructedLabelValueDefinitionFilter {
+    /**
+     * Name of the label to match.
+     */
     name: string;
+    /**
+     * Glob pattern matched against the label value.
+     */
     valueGlob: string;
 }
 
 export interface DerivedLabelMetricLabelMappingLabel {
+    /**
+     * Ordered list of name mappings. The first mapping whose filters match supplies the derived label from its `sourceLabel`.
+     */
     nameMappings?: outputs.DerivedLabelMetricLabelMappingLabelNameMapping[];
+    /**
+     * Translations from source label values to a normalized target value. Each entry maps a set of source globs to a single target.
+     */
     valueMappings?: outputs.DerivedLabelMetricLabelMappingLabelValueMapping[];
 }
 
 export interface DerivedLabelMetricLabelMappingLabelNameMapping {
+    /**
+     * Label filters that must all match for this value definition to apply.
+     */
     filters: outputs.DerivedLabelMetricLabelMappingLabelNameMappingFilter[];
+    /**
+     * Source label on the ingested time series to copy into the derived label.
+     */
     sourceLabel: string;
+    /**
+     * Translations from source label values to a normalized target value. Each entry maps a set of source globs to a single target.
+     */
     valueMappings?: outputs.DerivedLabelMetricLabelMappingLabelNameMappingValueMapping[];
 }
 
 export interface DerivedLabelMetricLabelMappingLabelNameMappingFilter {
+    /**
+     * Name of the label to match.
+     */
     name: string;
+    /**
+     * Glob pattern matched against the label value.
+     */
     valueGlob: string;
 }
 
 export interface DerivedLabelMetricLabelMappingLabelNameMappingValueMapping {
+    /**
+     * Glob patterns matched against the source label value. A match maps the value to `targetValue`.
+     */
     sourceValueGlobs: string[];
+    /**
+     * Value to assign on the derived label when any `sourceValueGlobs` matches.
+     */
     targetValue: string;
 }
 
 export interface DerivedLabelMetricLabelMappingLabelValueMapping {
+    /**
+     * Glob patterns matched against the source label value. A match maps the value to `targetValue`.
+     */
     sourceValueGlobs: string[];
+    /**
+     * Value to assign on the derived label when any `sourceValueGlobs` matches.
+     */
     targetValue: string;
 }
 
 export interface DerivedLabelSpanTag {
+    /**
+     * Ordered list of name mappings. The first mapping that matches supplies the derived label from its `sourceTag`.
+     */
     nameMappings?: outputs.DerivedLabelSpanTagNameMapping[];
 }
 
 export interface DerivedLabelSpanTagNameMapping {
+    /**
+     * Source span tag name to copy into the derived label.
+     */
     sourceTag: string;
 }
 
 export interface DerivedMetricQuery {
+    /**
+     * PromQL query executed when this selector matches.
+     */
     query: outputs.DerivedMetricQueryQuery;
+    /**
+     * Label matchers that must be present on the derived metric usage for this query to be selected. If omitted, the query matches any usage.
+     */
     selector?: outputs.DerivedMetricQuerySelector;
 }
 
 export interface DerivedMetricQueryQuery {
+    /**
+     * PromQL expression for the derived metric. References declared variables using `$name` syntax (e.g. `cpu_usage{$service}`).
+     */
     expr: string;
+    /**
+     * Variables that can be substituted into `expr` at query time as label selectors.
+     */
     variables?: outputs.DerivedMetricQueryQueryVariable[];
 }
 
 export interface DerivedMetricQueryQueryVariable {
+    /**
+     * PromQL label selector used when no override is supplied by the derived metric usage.
+     */
     defaultSelector: string;
+    /**
+     * Variable name as referenced in `expr` (e.g. `service` for `$service`).
+     */
     name: string;
 }
 
 export interface DerivedMetricQuerySelector {
+    /**
+     * Labels that must match (key/value) on the derived metric usage for the selector to apply.
+     */
     labels?: {[key: string]: string};
 }
 
 export interface DropRuleValueBasedDrop {
+    /**
+     * Data point value at which matching points are dropped.
+     */
     targetDropValue: number;
 }
 
 export interface GcpMetricsIntegrationMetricGroup {
+    /**
+     * Label filters applied to metrics in this group. All filters must match for a metric to be ingested.
+     */
     filters?: outputs.GcpMetricsIntegrationMetricGroupFilter[];
+    /**
+     * List of Google Cloud metric prefixes to ingest (e.g. `compute.googleapis.com/`).
+     */
     prefixes?: string[];
+    /**
+     * Google Cloud project ID to read metrics from. The configured service account must have access.
+     */
     projectId: string;
+    /**
+     * Server-side aggregation rules applied to metrics in this group before they are stored.
+     */
     rollupRules?: outputs.GcpMetricsIntegrationMetricGroupRollupRule[];
 }
 
 export interface GcpMetricsIntegrationMetricGroupFilter {
+    /**
+     * Label context, e.g. resource vs. metric label. See the Chronosphere GCP integration documentation for accepted values.
+     */
     context?: string;
+    /**
+     * Label name to filter on.
+     */
     name?: string;
+    /**
+     * Value pattern using glob syntax (e.g. `prod-*`). An exact match is applied when no glob characters are present.
+     */
     valueGlob?: string;
 }
 
 export interface GcpMetricsIntegrationMetricGroupRollupRule {
+    /**
+     * Aggregation function applied across the dropped labels (e.g. sum, max).
+     */
     aggregation?: string;
+    /**
+     * Specifies which labels to preserve during aggregation. Labels not listed are dropped.
+     */
     labelPolicy?: outputs.GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicy;
+    /**
+     * Fully-qualified Google Cloud metric name the rollup rule targets (e.g. `cloudsql.googleapis.com/database/uptime`).
+     */
     metricName?: string;
 }
 
 export interface GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicy {
+    /**
+     * Labels to retain after aggregation.
+     */
     keeps?: outputs.GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeep[];
 }
 
 export interface GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeep {
+    /**
+     * Label context, e.g. resource vs. metric label. See the Chronosphere GCP integration documentation for accepted values.
+     */
     context?: string;
+    /**
+     * Label name to filter on.
+     */
     name?: string;
 }
 
 export interface GcpMetricsIntegrationServiceAccount {
+    /**
+     * Email address of the Google Cloud service account to impersonate for authentication.
+     */
     clientEmail: string;
 }
 
 export interface LogAllocationConfigDatasetAllocation {
+    /**
+     * Resource allocation for the dataset, expressed as a share of the overall log license.
+     */
     allocation: outputs.LogAllocationConfigDatasetAllocationAllocation;
+    /**
+     * Slug of the dataset this allocation applies to.
+     */
     datasetId: string;
+    /**
+     * Defines high and low priority match criteria. Low priority logs are dropped first when the allocation is exhausted, then default priority, with high priority dropped last.
+     */
     priorities?: outputs.LogAllocationConfigDatasetAllocationPriorities;
 }
 
 export interface LogAllocationConfigDatasetAllocationAllocation {
+    /**
+     * Percentage of the tenant's log license to allocate to this dataset, expressed as a number between 0 and 100.
+     */
     percentOfLicense: number;
 }
 
 export interface LogAllocationConfigDatasetAllocationPriorities {
+    /**
+     * List of log search filters. Filters are combined as OR statements so only one filter needs to match.
+     */
     highPriorityFilters?: outputs.LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilter[];
+    /**
+     * List of log search filters. Filters are combined as OR statements so only one filter needs to match.
+     */
     lowPriorityFilters?: outputs.LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilter[];
 }
 
 export interface LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilter {
+    /**
+     * Log search query that selects matching logs. Supports only top-level operations; nested clauses are not allowed and only one type of `AND` or `OR` operator can be used.
+     */
     query: string;
 }
 
 export interface LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilter {
+    /**
+     * Log search query that selects matching logs. Supports only top-level operations; nested clauses are not allowed and only one type of `AND` or `OR` operator can be used.
+     */
     query: string;
 }
 
 export interface LogAllocationConfigDefaultDataset {
+    /**
+     * Resource allocation for the dataset, expressed as a share of the overall log license.
+     */
     allocation: outputs.LogAllocationConfigDefaultDatasetAllocation;
+    /**
+     * Defines high and low priority match criteria. Low priority logs are dropped first when the allocation is exhausted, then default priority, with high priority dropped last.
+     */
     priorities?: outputs.LogAllocationConfigDefaultDatasetPriorities;
 }
 
 export interface LogAllocationConfigDefaultDatasetAllocation {
+    /**
+     * Percentage of the tenant's log license to allocate to this dataset, expressed as a number between 0 and 100.
+     */
     percentOfLicense: number;
 }
 
 export interface LogAllocationConfigDefaultDatasetPriorities {
+    /**
+     * List of log search filters. Filters are combined as OR statements so only one filter needs to match.
+     */
     highPriorityFilters?: outputs.LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilter[];
+    /**
+     * List of log search filters. Filters are combined as OR statements so only one filter needs to match.
+     */
     lowPriorityFilters?: outputs.LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilter[];
 }
 
 export interface LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilter {
+    /**
+     * Log search query that selects matching logs. Supports only top-level operations; nested clauses are not allowed and only one type of `AND` or `OR` operator can be used.
+     */
     query: string;
 }
 
 export interface LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilter {
+    /**
+     * Log search query that selects matching logs. Supports only top-level operations; nested clauses are not allowed and only one type of `AND` or `OR` operator can be used.
+     */
     query: string;
 }
 
 export interface LogControlConfigRule {
+    /**
+     * Configuration for the `DROP_FIELD` action, which removes fields from matching logs.
+     */
     dropField?: outputs.LogControlConfigRuleDropField;
+    /**
+     * Configuration for the `EMIT_METRICS` action, which derives Prometheus metrics from matching logs.
+     */
     emitMetrics?: outputs.LogControlConfigRuleEmitMetrics;
+    /**
+     * Log query filter that selects matching logs. The control action applies only to logs that match.
+     */
     filter?: string;
+    /**
+     * Execution mode for the rule (for example, `ENABLED` or `DISABLED`).
+     */
     mode?: string;
+    /**
+     * User-defined name for the control rule.
+     */
     name?: string;
+    /**
+     * Configuration for the `PARSE_FIELD` action, which parses a field with a regex, key/value, or grok parser and writes the result to another field.
+     */
     parseField?: outputs.LogControlConfigRuleParseField;
+    /**
+     * Configuration for the `REPLACE_FIELD` action, which rewrites field values in matching logs.
+     */
     replaceField?: outputs.LogControlConfigRuleReplaceField;
+    /**
+     * Configuration for the `SAMPLE_LOGS` action, which keeps a fraction of matching logs.
+     */
     sample?: outputs.LogControlConfigRuleSample;
+    /**
+     * Type of control action this rule performs. Exactly one of the matching action blocks (`sample`, `dropField`, `emitMetrics`, `replaceField`, `parseField`) must be configured.
+     */
     type?: string;
 }
 
 export interface LogControlConfigRuleDropField {
+    /**
+     * Regular expression that selects which fields to drop.
+     */
     fieldRegex?: string;
+    /**
+     * Path to a field within a log record.
+     */
     parentPath?: outputs.LogControlConfigRuleDropFieldParentPath;
 }
 
 export interface LogControlConfigRuleDropFieldParentPath {
+    /**
+     * Field path selector. Use `parent[child]` syntax to indicate nesting.
+     */
     selector?: string;
 }
 
 export interface LogControlConfigRuleEmitMetrics {
+    /**
+     * Emit a counter metric. Exactly one of `counter`, `gauge`, or `histogram` must be set.
+     */
     counter?: outputs.LogControlConfigRuleEmitMetricsCounter;
+    /**
+     * If `true`, drops the entire log after emitting the metric.
+     */
     dropLog?: boolean;
+    /**
+     * Emit a gauge metric. Exactly one of `counter`, `gauge`, or `histogram` must be set.
+     */
     gauge?: outputs.LogControlConfigRuleEmitMetricsGauge;
+    /**
+     * Emit a histogram metric. Exactly one of `counter`, `gauge`, or `histogram` must be set.
+     */
     histogram?: outputs.LogControlConfigRuleEmitMetricsHistogram;
+    /**
+     * Labels to attach to the generated metric, specified as key/value pairs mapping a Prometheus label name to a log field path.
+     */
     labels?: outputs.LogControlConfigRuleEmitMetricsLabel[];
+    /**
+     * Metric emission mode that controls how the metric is generated from matching logs.
+     */
     mode?: string;
+    /**
+     * Name of the generated metric. Must conform to Prometheus naming conventions and be unique within the tenant.
+     */
     name?: string;
 }
 
 export interface LogControlConfigRuleEmitMetricsCounter {
+    /**
+     * Path to a field within a log record.
+     */
     value?: outputs.LogControlConfigRuleEmitMetricsCounterValue;
 }
 
 export interface LogControlConfigRuleEmitMetricsCounterValue {
+    /**
+     * Field path selector. Use `parent[child]` syntax to indicate nesting.
+     */
     selector?: string;
 }
 
 export interface LogControlConfigRuleEmitMetricsGauge {
+    /**
+     * How multiple values are aggregated into the emitted gauge (for example, `LAST`, `MIN`, `MAX`).
+     */
     aggregationType?: string;
+    /**
+     * Path to a field within a log record.
+     */
     value?: outputs.LogControlConfigRuleEmitMetricsGaugeValue;
 }
 
 export interface LogControlConfigRuleEmitMetricsGaugeValue {
+    /**
+     * Field path selector. Use `parent[child]` syntax to indicate nesting.
+     */
     selector?: string;
 }
 
 export interface LogControlConfigRuleEmitMetricsHistogram {
+    /**
+     * Path to a field within a log record.
+     */
     value?: outputs.LogControlConfigRuleEmitMetricsHistogramValue;
 }
 
 export interface LogControlConfigRuleEmitMetricsHistogramValue {
+    /**
+     * Field path selector. Use `parent[child]` syntax to indicate nesting.
+     */
     selector?: string;
 }
 
 export interface LogControlConfigRuleEmitMetricsLabel {
+    /**
+     * Prometheus label name to set on the emitted metric.
+     */
     key?: string;
+    /**
+     * Path to a field within a log record.
+     */
     value?: outputs.LogControlConfigRuleEmitMetricsLabelValue;
 }
 
 export interface LogControlConfigRuleEmitMetricsLabelValue {
+    /**
+     * Field path selector. Use `parent[child]` syntax to indicate nesting.
+     */
     selector?: string;
 }
 
 export interface LogControlConfigRuleParseField {
+    /**
+     * Path to a field within a log record.
+     */
     destination?: outputs.LogControlConfigRuleParseFieldDestination;
+    /**
+     * Parser configuration. Exactly one of `regexParser`, `keyValueParser`, or `grokParser` must be set, matching `parserType`.
+     */
     parser: outputs.LogControlConfigRuleParseFieldParser;
+    /**
+     * Path to a field within a log record.
+     */
     source?: outputs.LogControlConfigRuleParseFieldSource;
 }
 
 export interface LogControlConfigRuleParseFieldDestination {
+    /**
+     * Field path selector. Use `parent[child]` syntax to indicate nesting.
+     */
     selector?: string;
 }
 
 export interface LogControlConfigRuleParseFieldParser {
+    /**
+     * Grok parser configuration. Only set when `parserType` is `GROK`.
+     */
     grokParser?: outputs.LogControlConfigRuleParseFieldParserGrokParser;
+    /**
+     * Key/value parser configuration. Only set when `parserType` is `KEY_VALUE`. Duplicate keys keep the first occurrence.
+     */
     keyValueParser?: outputs.LogControlConfigRuleParseFieldParserKeyValueParser;
+    /**
+     * Type of parser to apply. Determines which of `regexParser`, `keyValueParser`, or `grokParser` must be set.
+     */
     parserType: string;
+    /**
+     * Regex parser configuration. Only set when `parserType` is `REGEX`.
+     */
     regexParser?: outputs.LogControlConfigRuleParseFieldParserRegexParser;
 }
 
 export interface LogControlConfigRuleParseFieldParserGrokParser {
+    /**
+     * Grok pattern to apply. Named capture groups become named fields in the extracted log.
+     */
     pattern: string;
 }
 
 export interface LogControlConfigRuleParseFieldParserKeyValueParser {
+    /**
+     * String used to split the input into individual key/value pairs.
+     */
     delimiter: string;
+    /**
+     * String used to split each pair into a key and value.
+     */
     pairSeparator: string;
+    /**
+     * Unicode code points to trim from the beginning and end of each key and value.
+     */
     trimSet?: string;
 }
 
 export interface LogControlConfigRuleParseFieldParserRegexParser {
+    /**
+     * RE2 regular expression pattern. Named capturing groups become named fields in the extracted log.
+     */
     regex: string;
 }
 
 export interface LogControlConfigRuleParseFieldSource {
+    /**
+     * Field path selector. Use `parent[child]` syntax to indicate nesting.
+     */
     selector?: string;
 }
 
 export interface LogControlConfigRuleReplaceField {
+    /**
+     * Path to a field within a log record.
+     */
     field?: outputs.LogControlConfigRuleReplaceFieldField;
+    /**
+     * Replace field values using a key/value lookup table. Exactly one of `mappedValue` or `staticValue` must be set.
+     */
     mappedValue?: outputs.LogControlConfigRuleReplaceFieldMappedValue;
+    /**
+     * If `true`, replaces all matches. If `false`, replaces only the first match.
+     */
     replaceAll?: boolean;
+    /**
+     * Mode that controls how the replacement is applied to matched content.
+     */
     replaceMode?: string;
+    /**
+     * Regular expression that selects which part of the field value to replace.
+     */
     replaceRegex?: string;
+    /**
+     * Replace matched content with a static string. Exactly one of `mappedValue` or `staticValue` must be set.
+     */
     staticValue?: outputs.LogControlConfigRuleReplaceFieldStaticValue;
 }
 
 export interface LogControlConfigRuleReplaceFieldField {
+    /**
+     * Field path selector. Use `parent[child]` syntax to indicate nesting.
+     */
     selector?: string;
 }
 
 export interface LogControlConfigRuleReplaceFieldMappedValue {
+    /**
+     * Value to substitute when no matching key is found, when `useDefault` is `true`.
+     */
     defaultValue?: string;
+    /**
+     * List of key/value pairs that map matched content to replacement values.
+     */
     pairs?: outputs.LogControlConfigRuleReplaceFieldMappedValuePair[];
+    /**
+     * If `true`, falls back to `defaultValue` when no key matches. If `false`, leaves the value unchanged on a miss.
+     */
     useDefault?: boolean;
 }
 
 export interface LogControlConfigRuleReplaceFieldMappedValuePair {
+    /**
+     * Prometheus label name to set on the emitted metric.
+     */
     key?: string;
+    /**
+     * Path to a field within a log record.
+     */
     value?: string;
 }
 
 export interface LogControlConfigRuleReplaceFieldStaticValue {
+    /**
+     * Path to a field within a log record.
+     */
     value?: string;
 }
 
 export interface LogControlConfigRuleSample {
+    /**
+     * Fraction of matching logs to keep, in the range `[0, 1]` (for example, `0.25` keeps 25%).
+     */
     rate?: number;
 }
 
 export interface LogIngestConfigFieldNormalization {
+    /**
+     * Normalization rules for additional custom fields. These fields are not indexed; use them for things like environment, region, or user ID.
+     */
     customFieldNormalizations?: outputs.LogIngestConfigFieldNormalizationCustomFieldNormalization[];
+    /**
+     * Rule that extracts and transforms a string value from a log field, with optional regex sanitization, default value, and value mapping.
+     */
     message?: outputs.LogIngestConfigFieldNormalizationMessage;
+    /**
+     * Rule that extracts and transforms a string value from a log field, with optional regex sanitization, default value, and value mapping.
+     */
     service?: outputs.LogIngestConfigFieldNormalizationService;
+    /**
+     * Rule that extracts and transforms a string value from a log field, with optional regex sanitization, default value, and value mapping.
+     */
     severity?: outputs.LogIngestConfigFieldNormalizationSeverity;
+    /**
+     * Normalization rule for the well-known `timestamp` field.
+     */
     timestamp?: outputs.LogIngestConfigFieldNormalizationTimestamp;
 }
 
 export interface LogIngestConfigFieldNormalizationCustomFieldNormalization {
+    /**
+     * Rule that extracts and transforms a string value from a log field, with optional regex sanitization, default value, and value mapping.
+     */
     normalization?: outputs.LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalization;
+    /**
+     * Name of the target field where the normalized value is stored.
+     */
     target?: string;
 }
 
 export interface LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalization {
+    /**
+     * Value to use when no source field contains a value.
+     */
     defaultValue?: string;
+    /**
+     * Regex patterns used to extract and sanitize the value. Each pattern must have exactly one capturing group, whose contents are used as the result.
+     */
     sanitizePatterns?: string[];
+    /**
+     * Ordered list of field paths to check for values. The first non-empty value found is used.
+     */
     sources?: outputs.LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSource[];
+    /**
+     * Optional mapping that normalizes raw values to canonical ones (for example, `warn` to `WARNING`).
+     */
     valueMap?: {[key: string]: string};
 }
 
 export interface LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSource {
+    /**
+     * Field path selector. Use `parent[child]` syntax to indicate nesting.
+     */
     selector: string;
 }
 
 export interface LogIngestConfigFieldNormalizationMessage {
+    /**
+     * Value to use when no source field contains a value.
+     */
     defaultValue?: string;
+    /**
+     * Regex patterns used to extract and sanitize the value. Each pattern must have exactly one capturing group, whose contents are used as the result.
+     */
     sanitizePatterns?: string[];
+    /**
+     * Ordered list of field paths to check for values. The first non-empty value found is used.
+     */
     sources?: outputs.LogIngestConfigFieldNormalizationMessageSource[];
+    /**
+     * Optional mapping that normalizes raw values to canonical ones (for example, `warn` to `WARNING`).
+     */
     valueMap?: {[key: string]: string};
 }
 
 export interface LogIngestConfigFieldNormalizationMessageSource {
+    /**
+     * Field path selector. Use `parent[child]` syntax to indicate nesting.
+     */
     selector: string;
 }
 
 export interface LogIngestConfigFieldNormalizationService {
+    /**
+     * Value to use when no source field contains a value.
+     */
     defaultValue?: string;
+    /**
+     * Regex patterns used to extract and sanitize the value. Each pattern must have exactly one capturing group, whose contents are used as the result.
+     */
     sanitizePatterns?: string[];
+    /**
+     * Ordered list of field paths to check for values. The first non-empty value found is used.
+     */
     sources?: outputs.LogIngestConfigFieldNormalizationServiceSource[];
+    /**
+     * Optional mapping that normalizes raw values to canonical ones (for example, `warn` to `WARNING`).
+     */
     valueMap?: {[key: string]: string};
 }
 
 export interface LogIngestConfigFieldNormalizationServiceSource {
+    /**
+     * Field path selector. Use `parent[child]` syntax to indicate nesting.
+     */
     selector: string;
 }
 
 export interface LogIngestConfigFieldNormalizationSeverity {
+    /**
+     * Value to use when no source field contains a value.
+     */
     defaultValue?: string;
+    /**
+     * Regex patterns used to extract and sanitize the value. Each pattern must have exactly one capturing group, whose contents are used as the result.
+     */
     sanitizePatterns?: string[];
+    /**
+     * Ordered list of field paths to check for values. The first non-empty value found is used.
+     */
     sources?: outputs.LogIngestConfigFieldNormalizationSeveritySource[];
+    /**
+     * Optional mapping that normalizes raw values to canonical ones (for example, `warn` to `WARNING`).
+     */
     valueMap?: {[key: string]: string};
 }
 
 export interface LogIngestConfigFieldNormalizationSeveritySource {
+    /**
+     * Field path selector. Use `parent[child]` syntax to indicate nesting.
+     */
     selector: string;
 }
 
 export interface LogIngestConfigFieldNormalizationTimestamp {
+    /**
+     * Ordered list of field paths to check for values. The first non-empty value found is used.
+     */
     sources?: outputs.LogIngestConfigFieldNormalizationTimestampSource[];
 }
 
 export interface LogIngestConfigFieldNormalizationTimestampSource {
+    /**
+     * Field path selector. Use `parent[child]` syntax to indicate nesting.
+     */
     selector: string;
 }
 
 export interface LogIngestConfigFieldParser {
+    /**
+     * Path to write the parsed output to. If omitted, parsed fields are written at the root.
+     */
     destination?: outputs.LogIngestConfigFieldParserDestination;
+    /**
+     * Mode that controls when the field parser runs on incoming logs.
+     */
     mode?: string;
+    /**
+     * Parser configuration. Exactly one of `regexParser`, `keyValueParser`, or `grokParser` must be set, matching `parserType`.
+     */
     parser: outputs.LogIngestConfigFieldParserParser;
+    /**
+     * Path of the field to parse.
+     */
     source: outputs.LogIngestConfigFieldParserSource;
 }
 
 export interface LogIngestConfigFieldParserDestination {
+    /**
+     * Field path selector. Use `parent[child]` syntax to indicate nesting.
+     */
     selector: string;
 }
 
 export interface LogIngestConfigFieldParserParser {
+    /**
+     * Grok parser configuration. Only set when `parserType` is `GROK`.
+     */
     grokParser?: outputs.LogIngestConfigFieldParserParserGrokParser;
+    /**
+     * Key/value parser configuration. Only set when `parserType` is `KEY_VALUE`. Duplicate keys keep the first occurrence.
+     */
     keyValueParser?: outputs.LogIngestConfigFieldParserParserKeyValueParser;
+    /**
+     * Type of parser to apply. Determines which of `regexParser`, `keyValueParser`, or `grokParser` must be set.
+     */
     parserType: string;
+    /**
+     * Regex parser configuration. Only set when `parserType` is `REGEX`.
+     */
     regexParser?: outputs.LogIngestConfigFieldParserParserRegexParser;
 }
 
 export interface LogIngestConfigFieldParserParserGrokParser {
+    /**
+     * Grok pattern to apply. Named capture groups become named fields in the extracted log.
+     */
     pattern: string;
 }
 
 export interface LogIngestConfigFieldParserParserKeyValueParser {
+    /**
+     * String used to split the input into individual key/value pairs.
+     */
     delimiter: string;
+    /**
+     * String used to split each pair into a key and value.
+     */
     pairSeparator: string;
+    /**
+     * Unicode code points to trim from the beginning and end of each key and value.
+     */
     trimSet?: string;
 }
 
 export interface LogIngestConfigFieldParserParserRegexParser {
+    /**
+     * RE2 regular expression pattern. Named capturing groups become named fields in the extracted log.
+     */
     regex: string;
 }
 
 export interface LogIngestConfigFieldParserSource {
+    /**
+     * Field path selector. Use `parent[child]` syntax to indicate nesting.
+     */
     selector: string;
 }
 
 export interface LogIngestConfigPlaintextParser {
+    /**
+     * If `true`, the original log is retained after parsing and stored under the `plaintextLog` key. Defaults to `false`.
+     */
     keepOriginal?: boolean;
+    /**
+     * Mode that controls how the parser matches incoming plaintext logs.
+     */
     mode?: string;
+    /**
+     * Name of the parser. Must be unique within the configuration.
+     */
     name: string;
+    /**
+     * Parser configuration. Exactly one of `regexParser`, `keyValueParser`, or `grokParser` must be set, matching `parserType`.
+     */
     parser: outputs.LogIngestConfigPlaintextParserParser;
 }
 
 export interface LogIngestConfigPlaintextParserParser {
+    /**
+     * Grok parser configuration. Only set when `parserType` is `GROK`.
+     */
     grokParser?: outputs.LogIngestConfigPlaintextParserParserGrokParser;
+    /**
+     * Key/value parser configuration. Only set when `parserType` is `KEY_VALUE`. Duplicate keys keep the first occurrence.
+     */
     keyValueParser?: outputs.LogIngestConfigPlaintextParserParserKeyValueParser;
+    /**
+     * Type of parser to apply. Determines which of `regexParser`, `keyValueParser`, or `grokParser` must be set.
+     */
     parserType: string;
+    /**
+     * Regex parser configuration. Only set when `parserType` is `REGEX`.
+     */
     regexParser?: outputs.LogIngestConfigPlaintextParserParserRegexParser;
 }
 
 export interface LogIngestConfigPlaintextParserParserGrokParser {
+    /**
+     * Grok pattern to apply. Named capture groups become named fields in the extracted log.
+     */
     pattern: string;
 }
 
 export interface LogIngestConfigPlaintextParserParserKeyValueParser {
+    /**
+     * String used to split the input into individual key/value pairs.
+     */
     delimiter: string;
+    /**
+     * String used to split each pair into a key and value.
+     */
     pairSeparator: string;
+    /**
+     * Unicode code points to trim from the beginning and end of each key and value.
+     */
     trimSet?: string;
 }
 
 export interface LogIngestConfigPlaintextParserParserRegexParser {
+    /**
+     * RE2 regular expression pattern. Named capturing groups become named fields in the extracted log.
+     */
     regex: string;
 }
 
 export interface LogscaleActionEmailAction {
+    /**
+     * If `true`, attaches the query result set as a CSV file.
+     */
     attachCsv?: boolean;
+    /**
+     * Body of the email. Supports Go template syntax with values from the query result.
+     */
     bodyTemplate?: string;
+    /**
+     * List of email addresses to send the message to.
+     */
     recipients: string[];
+    /**
+     * Subject of the email. Supports Go template syntax with values from the query result.
+     */
     subjectTemplate?: string;
+    /**
+     * If `true`, sends the request through the configured outbound proxy.
+     */
     useProxy?: boolean;
 }
 
 export interface LogscaleActionHumioAction {
+    /**
+     * Ingest token for the target repository.
+     */
     ingestToken: string;
 }
 
 export interface LogscaleActionOpsGenieAction {
+    /**
+     * OpsGenie webhook URL to send the request to.
+     */
     apiUrl: string;
+    /**
+     * Key used to authenticate with OpsGenie.
+     */
     opsGenieKey: string;
+    /**
+     * If `true`, sends the request through the configured outbound proxy.
+     */
     useProxy?: boolean;
 }
 
 export interface LogscaleActionPagerDutyAction {
+    /**
+     * Routing key used to authenticate with PagerDuty.
+     */
     routingKey: string;
+    /**
+     * Severity attached to the PagerDuty event.
+     */
     severity: string;
+    /**
+     * If `true`, sends the request through the configured outbound proxy.
+     */
     useProxy?: boolean;
 }
 
 export interface LogscaleActionSlackAction {
+    /**
+     * Fields to include in the Slack message. Values support Go template syntax with the query result.
+     */
     fields?: {[key: string]: string};
+    /**
+     * Slack incoming webhook URL to send the request to.
+     */
     url: string;
+    /**
+     * If `true`, sends the request through the configured outbound proxy.
+     */
     useProxy?: boolean;
 }
 
 export interface LogscaleActionSlackPostMessageAction {
+    /**
+     * Slack API token used to authenticate the request.
+     */
     apiToken: string;
+    /**
+     * List of Slack channels to post the message to.
+     */
     channels: string[];
+    /**
+     * Fields to include in the Slack message. Values support Go template syntax with the query result.
+     */
     fields?: {[key: string]: string};
+    /**
+     * If `true`, sends the request through the configured outbound proxy.
+     */
     useProxy?: boolean;
 }
 
 export interface LogscaleActionUploadFileAction {
+    /**
+     * Name to use for the uploaded file.
+     */
     fileName: string;
 }
 
 export interface LogscaleActionVictorOpsAction {
+    /**
+     * Type of the VictorOps message to send (for example, `CRITICAL`, `WARNING`, `INFO`).
+     */
     messageType: string;
+    /**
+     * VictorOps webhook URL to send the request to.
+     */
     notifyUrl: string;
+    /**
+     * If `true`, sends the request through the configured outbound proxy.
+     */
     useProxy?: boolean;
 }
 
 export interface LogscaleActionWebhookAction {
+    /**
+     * Body of the request. Supports Go template syntax with values from the query result.
+     */
     bodyTemplate?: string;
+    /**
+     * Headers to include on the HTTP or HTTPS request.
+     */
     headers?: {[key: string]: string};
+    /**
+     * If `true`, skips SSL certificate verification for the request.
+     */
     ignoreSsl?: boolean;
+    /**
+     * HTTP method used for the webhook request.
+     */
     method: string;
+    /**
+     * URL to send the HTTP or HTTPS request to.
+     */
     url: string;
+    /**
+     * If `true`, sends the request through the configured outbound proxy.
+     */
     useProxy?: boolean;
 }
 
 export interface MappingRuleStoragePolicy {
+    /**
+     * Resolution at which mapped data points are stored.
+     */
     resolution: string;
+    /**
+     * Retention duration for mapped data points.
+     */
     retention: string;
 }
 
 export interface MonitorNotificationTemplate {
+    /**
+     * Body/description template for the notification.
+     */
     description?: string;
+    /**
+     * Title template for the notification.
+     */
     title?: string;
 }
 
 export interface MonitorQuery {
+    /**
+     * Graphite expression evaluated by the monitor.
+     */
     graphiteExpr?: string;
+    /**
+     * Log query expression evaluated by the monitor.
+     */
     loggingExpr?: string;
+    /**
+     * PromQL expression evaluated by the monitor.
+     */
     prometheusExpr?: string;
 }
 
 export interface MonitorSchedule {
+    /**
+     * Time-of-day ranges during which the monitor is active. The monitor is inactive outside these ranges.
+     */
     ranges?: outputs.MonitorScheduleRange[];
+    /**
+     * IANA timezone name (e.g. `America/New_York`) used to interpret `range` values.
+     */
     timezone: string;
 }
 
 export interface MonitorScheduleRange {
+    /**
+     * Day of week, e.g. `monday`. Case-insensitive.
+     */
     day: string;
+    /**
+     * End time of day, 24-hour `HH:MM` format.
+     */
     end: string;
+    /**
+     * Start time of day, 24-hour `HH:MM` format.
+     */
     start: string;
 }
 
 export interface MonitorSeriesConditions {
+    /**
+     * One or more severity/threshold conditions. Multiple conditions enable multi-severity monitors (e.g. warn at one threshold, page at a higher one).
+     */
     conditions: outputs.MonitorSeriesConditionsCondition[];
+    /**
+     * Per-series overrides that apply different conditions to series matching a set of label matchers.
+     */
     overrides?: outputs.MonitorSeriesConditionsOverride[];
 }
 
 export interface MonitorSeriesConditionsCondition {
+    /**
+     * Comparison operator between the query value and `value` (e.g. `gt`, `lt`, `eq`).
+     */
     op: string;
+    /**
+     * Duration the condition must remain false continuously before an active signal resolves.
+     */
     resolveSustain?: string;
+    /**
+     * Optional separate threshold used for resolution, enabling hysteresis (e.g. fire at >90, resolve at \n\n).
+     */
     resolveValue?: outputs.MonitorSeriesConditionsConditionResolveValue;
+    /**
+     * Severity assigned when this condition matches (e.g. `warn`, `critical`). Case-sensitive.
+     */
     severity: string;
+    /**
+     * Duration the condition must hold continuously before a signal fires.
+     */
     sustain?: string;
+    /**
+     * Resolution threshold value.
+     */
     value?: number;
 }
 
 export interface MonitorSeriesConditionsConditionResolveValue {
+    /**
+     * Whether the resolve-value threshold is active.
+     */
     enabled: boolean;
+    /**
+     * Resolution threshold value.
+     */
     value: number;
 }
 
 export interface MonitorSeriesConditionsOverride {
+    /**
+     * One or more severity/threshold conditions. Multiple conditions enable multi-severity monitors (e.g. warn at one threshold, page at a higher one).
+     */
     conditions: outputs.MonitorSeriesConditionsOverrideCondition[];
+    /**
+     * List of label matchers used to select a subset of series.
+     */
     labelMatchers: outputs.MonitorSeriesConditionsOverrideLabelMatcher[];
 }
 
 export interface MonitorSeriesConditionsOverrideCondition {
+    /**
+     * Comparison operator between the query value and `value` (e.g. `gt`, `lt`, `eq`).
+     */
     op: string;
+    /**
+     * Duration the condition must remain false continuously before an active signal resolves.
+     */
     resolveSustain?: string;
+    /**
+     * Optional separate threshold used for resolution, enabling hysteresis (e.g. fire at >90, resolve at \n\n).
+     */
     resolveValue?: outputs.MonitorSeriesConditionsOverrideConditionResolveValue;
+    /**
+     * Severity assigned when this condition matches (e.g. `warn`, `critical`). Case-sensitive.
+     */
     severity: string;
+    /**
+     * Duration the condition must hold continuously before a signal fires.
+     */
     sustain?: string;
+    /**
+     * Resolution threshold value.
+     */
     value?: number;
 }
 
 export interface MonitorSeriesConditionsOverrideConditionResolveValue {
+    /**
+     * Whether the resolve-value threshold is active.
+     */
     enabled: boolean;
+    /**
+     * Resolution threshold value.
+     */
     value: number;
 }
 
 export interface MonitorSeriesConditionsOverrideLabelMatcher {
+    /**
+     * Label name to match.
+     */
     name: string;
+    /**
+     * Match operator: one of `=`, `!=`, `=~` (regex), `!~` (regex negation).
+     */
     type: string;
+    /**
+     * Resolution threshold value.
+     */
     value: string;
 }
 
 export interface MonitorSignalGrouping {
+    /**
+     * Labels to group by. Series sharing the same values for these labels produce one signal. Defaults to no grouping (one signal per series).
+     */
     labelNames?: string[];
+    /**
+     * If true, treat each individual series as its own signal. Mutually exclusive with `labelNames`.
+     */
     signalPerSeries?: boolean;
 }
 
 export interface NotificationPolicyOverride {
+    /**
+     * List of label matchers used to select a subset of series.
+     */
     alertLabelMatchers: outputs.NotificationPolicyOverrideAlertLabelMatcher[];
+    /**
+     * Per-severity routing rules. Each entry maps a severity (e.g. `warn`, `critical`) to a set of notifiers, destinations, grouping, and repeat behavior.
+     */
     routes?: outputs.NotificationPolicyOverrideRoute[];
 }
 
 export interface NotificationPolicyOverrideAlertLabelMatcher {
+    /**
+     * Label name to match.
+     */
     name: string;
+    /**
+     * Match operator: one of `=`, `!=`, `=~` (regex), `!~` (regex negation).
+     */
     type: string;
+    /**
+     * Label value (or regex pattern, for regex matchers) to match against.
+     */
     value: string;
 }
 
 export interface NotificationPolicyOverrideRoute {
+    /**
+     * Inline notification destinations defined directly on the route. Each block sets at most one of `slack`, `pagerduty`, `webhook`, `opsGenie`, `victorOps`, or `email`. Cannot be combined with `notifiers`.
+     */
     destinations?: outputs.NotificationPolicyOverrideRouteDestination[];
+    /**
+     * Optional grouping configuration controlling how alerts are batched before delivery.
+     */
     groupBy?: outputs.NotificationPolicyOverrideRouteGroupBy;
+    /**
+     * Slugs of notifier resources that receive alerts at this severity. Cannot be combined with `destination`.
+     */
     notifiers?: string[];
+    /**
+     * How often to resend unresolved alerts at this severity (e.g. `4h`).
+     */
     repeatInterval?: string;
+    /**
+     * Severity this route applies to (e.g. `warn`, `critical`). Case-sensitive.
+     */
     severity: string;
 }
 
 export interface NotificationPolicyOverrideRouteDestination {
+    /**
+     * If true, do not send notifications when alerts resolve. Defaults to false.
+     */
     disableResolves?: boolean;
+    /**
+     * Email delivery configuration for this destination.
+     */
     email?: outputs.NotificationPolicyOverrideRouteDestinationEmail;
+    /**
+     * OpsGenie delivery configuration for this destination.
+     */
     opsGenie?: outputs.NotificationPolicyOverrideRouteDestinationOpsGenie;
+    /**
+     * PagerDuty delivery configuration for this destination.
+     */
     pagerduty?: outputs.NotificationPolicyOverrideRouteDestinationPagerduty;
+    /**
+     * Slack delivery configuration for this destination.
+     */
     slack?: outputs.NotificationPolicyOverrideRouteDestinationSlack;
+    /**
+     * VictorOps (Splunk On-Call) delivery configuration for this destination.
+     */
     victorOps?: outputs.NotificationPolicyOverrideRouteDestinationVictorOps;
+    /**
+     * Generic webhook delivery configuration for this destination.
+     */
     webhook?: outputs.NotificationPolicyOverrideRouteDestinationWebhook;
 }
 
 export interface NotificationPolicyOverrideRouteDestinationEmail {
+    /**
+     * Email addresses to deliver notifications to.
+     */
     addresses: string[];
 }
 
 export interface NotificationPolicyOverrideRouteDestinationOpsGenie {
+    /**
+     * Slug of the OpsGenie external connection holding the integration credentials.
+     */
     externalConnectionSlug: string;
 }
 
 export interface NotificationPolicyOverrideRouteDestinationPagerduty {
+    /**
+     * Slug of the OpsGenie external connection holding the integration credentials.
+     */
     externalConnectionSlug: string;
 }
 
 export interface NotificationPolicyOverrideRouteDestinationSlack {
+    /**
+     * Slack channels to send notifications to.
+     */
     channels?: string[];
+    /**
+     * Slug of the OpsGenie external connection holding the integration credentials.
+     */
     externalConnectionSlug: string;
 }
 
 export interface NotificationPolicyOverrideRouteDestinationVictorOps {
+    /**
+     * Slug of the OpsGenie external connection holding the integration credentials.
+     */
     externalConnectionSlug: string;
+    /**
+     * VictorOps routing keys identifying the destination escalation policies.
+     */
     routingKeys: string[];
 }
 
 export interface NotificationPolicyOverrideRouteDestinationWebhook {
+    /**
+     * Slug of the OpsGenie external connection holding the integration credentials.
+     */
     externalConnectionSlug: string;
+    /**
+     * Additional query parameters appended to the webhook URL when delivering this notification.
+     */
     queryParameters?: outputs.NotificationPolicyOverrideRouteDestinationWebhookQueryParameter[];
 }
 
 export interface NotificationPolicyOverrideRouteDestinationWebhookQueryParameter {
+    /**
+     * Query parameter name.
+     */
     key: string;
+    /**
+     * Label value (or regex pattern, for regex matchers) to match against.
+     */
     value: string;
 }
 
 export interface NotificationPolicyOverrideRouteGroupBy {
+    /**
+     * Label names to group alerts by. Alerts with identical values for these labels are bundled into a single notification.
+     */
     labelNames?: string[];
 }
 
 export interface NotificationPolicyRoute {
+    /**
+     * Inline notification destinations defined directly on the route. Each block sets at most one of `slack`, `pagerduty`, `webhook`, `opsGenie`, `victorOps`, or `email`. Cannot be combined with `notifiers`.
+     */
     destinations?: outputs.NotificationPolicyRouteDestination[];
+    /**
+     * Optional grouping configuration controlling how alerts are batched before delivery.
+     */
     groupBy?: outputs.NotificationPolicyRouteGroupBy;
+    /**
+     * Slugs of notifier resources that receive alerts at this severity. Cannot be combined with `destination`.
+     */
     notifiers?: string[];
+    /**
+     * How often to resend unresolved alerts at this severity (e.g. `4h`).
+     */
     repeatInterval?: string;
+    /**
+     * Severity this route applies to (e.g. `warn`, `critical`). Case-sensitive.
+     */
     severity: string;
 }
 
 export interface NotificationPolicyRouteDestination {
+    /**
+     * If true, do not send notifications when alerts resolve. Defaults to false.
+     */
     disableResolves?: boolean;
+    /**
+     * Email delivery configuration for this destination.
+     */
     email?: outputs.NotificationPolicyRouteDestinationEmail;
+    /**
+     * OpsGenie delivery configuration for this destination.
+     */
     opsGenie?: outputs.NotificationPolicyRouteDestinationOpsGenie;
+    /**
+     * PagerDuty delivery configuration for this destination.
+     */
     pagerduty?: outputs.NotificationPolicyRouteDestinationPagerduty;
+    /**
+     * Slack delivery configuration for this destination.
+     */
     slack?: outputs.NotificationPolicyRouteDestinationSlack;
+    /**
+     * VictorOps (Splunk On-Call) delivery configuration for this destination.
+     */
     victorOps?: outputs.NotificationPolicyRouteDestinationVictorOps;
+    /**
+     * Generic webhook delivery configuration for this destination.
+     */
     webhook?: outputs.NotificationPolicyRouteDestinationWebhook;
 }
 
 export interface NotificationPolicyRouteDestinationEmail {
+    /**
+     * Email addresses to deliver notifications to.
+     */
     addresses: string[];
 }
 
 export interface NotificationPolicyRouteDestinationOpsGenie {
+    /**
+     * Slug of the OpsGenie external connection holding the integration credentials.
+     */
     externalConnectionSlug: string;
 }
 
 export interface NotificationPolicyRouteDestinationPagerduty {
+    /**
+     * Slug of the OpsGenie external connection holding the integration credentials.
+     */
     externalConnectionSlug: string;
 }
 
 export interface NotificationPolicyRouteDestinationSlack {
+    /**
+     * Slack channels to send notifications to.
+     */
     channels?: string[];
+    /**
+     * Slug of the OpsGenie external connection holding the integration credentials.
+     */
     externalConnectionSlug: string;
 }
 
 export interface NotificationPolicyRouteDestinationVictorOps {
+    /**
+     * Slug of the OpsGenie external connection holding the integration credentials.
+     */
     externalConnectionSlug: string;
+    /**
+     * VictorOps routing keys identifying the destination escalation policies.
+     */
     routingKeys: string[];
 }
 
 export interface NotificationPolicyRouteDestinationWebhook {
+    /**
+     * Slug of the OpsGenie external connection holding the integration credentials.
+     */
     externalConnectionSlug: string;
+    /**
+     * Additional query parameters appended to the webhook URL when delivering this notification.
+     */
     queryParameters?: outputs.NotificationPolicyRouteDestinationWebhookQueryParameter[];
 }
 
 export interface NotificationPolicyRouteDestinationWebhookQueryParameter {
+    /**
+     * Query parameter name.
+     */
     key: string;
+    /**
+     * Label value (or regex pattern, for regex matchers) to match against.
+     */
     value: string;
 }
 
 export interface NotificationPolicyRouteGroupBy {
+    /**
+     * Label names to group alerts by. Alerts with identical values for these labels are bundled into a single notification.
+     */
     labelNames?: string[];
 }
 
 export interface OpsgenieAlertNotifierResponder {
+    /**
+     * Opsgenie identifier of the responder. Use instead of `name` or `username`.
+     */
     id?: string;
+    /**
+     * Name of the responder team, schedule, or escalation policy.
+     */
     name?: string;
+    /**
+     * Responder type. One of `team`, `user`, `escalation`, or `schedule`.
+     */
     type: string;
+    /**
+     * Username of a user responder.
+     */
     username?: string;
 }
 
 export interface OtelMetricsIngestionResourceAttributes {
+    /**
+     * Resource attribute keys to exclude from the flatten operation, interpreted according to `filterMode`.
+     */
     excludeKeys?: string[];
+    /**
+     * Controls how `excludeKeys` is interpreted (e.g. allow-list vs. block-list semantics).
+     */
     filterMode?: string;
+    /**
+     * Controls how OTel resource attributes are flattened onto each metric's labels.
+     */
     flattenMode?: string;
+    /**
+     * If true, generates a `targetInfo` time series with labels derived from resource attributes. `filterMode` and `excludeKeys` apply identically to this series. Defaults to false.
+     */
     generateTargetInfo?: boolean;
 }
 
 export interface PagerdutyAlertNotifierImage {
+    /**
+     * Alternate text shown when the image cannot be rendered.
+     */
     alt?: string;
+    /**
+     * Optional URL the image links to when clicked.
+     */
     href?: string;
+    /**
+     * URL of the image to attach.
+     */
     src: string;
 }
 
 export interface PagerdutyAlertNotifierLink {
+    /**
+     * URL the link points to.
+     */
     href: string;
+    /**
+     * Display text for the link.
+     */
     text?: string;
 }
 
 export interface ResourcePoolsConfigDefaultPool {
+    /**
+     * License allocation for the pool. Can be expressed as a percentage of the license (`percentOfLicense`) or as per-license fixed values (`fixedValue`).
+     */
     allocation?: outputs.ResourcePoolsConfigDefaultPoolAllocation;
+    /**
+     * Optional high/low priority sub-classifications within the pool. Low-priority metrics are dropped first; high-priority metrics are dropped last when limits are hit.
+     */
     priorities?: outputs.ResourcePoolsConfigDefaultPoolPriorities;
+    /**
+     * Per-license drop thresholds for `PERSISTED_CARDINALITY_STANDARD` and `PERSISTED_CARDINALITY_HISTOGRAM` only. Defines strict upper bounds beyond which new consumption is dropped, optionally segmented by priority class.
+     */
     priorityThresholds?: outputs.ResourcePoolsConfigDefaultPoolPriorityThreshold[];
 }
 
 export interface ResourcePoolsConfigDefaultPoolAllocation {
+    /**
+     * Per-license fixed allocations that override `percentOfLicense` for the named licenses. When any pool sets a fixed value for a license, every pool must also set one for that license.
+     */
     fixedValues?: outputs.ResourcePoolsConfigDefaultPoolAllocationFixedValue[];
+    /**
+     * Percent of each license to allocate to this pool, between 0 and 100. Across non-default pools, the sum must not exceed 100; the default pool receives the remainder.
+     */
     percentOfLicense?: number;
+    /**
+     * Per-license drop thresholds for `PERSISTED_CARDINALITY_STANDARD` and `PERSISTED_CARDINALITY_HISTOGRAM` only. Defines strict upper bounds beyond which new consumption is dropped, optionally segmented by priority class.
+     */
     priorityThresholds?: outputs.ResourcePoolsConfigDefaultPoolAllocationPriorityThreshold[];
 }
 
 export interface ResourcePoolsConfigDefaultPoolAllocationFixedValue {
+    /**
+     * License this fixed-value allocation applies to (e.g. `PERSISTED_WRITES`).
+     */
     license: string;
+    /**
+     * Fixed amount of the license to allocate, in the license's native unit.
+     */
     value: number;
 }
 
 export interface ResourcePoolsConfigDefaultPoolAllocationPriorityThreshold {
+    /**
+     * Threshold value, expressed as either a percent of the pool's allocation or as a fixed value in license units.
+     */
     allPriorities?: outputs.ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPriorities;
+    /**
+     * Threshold value, expressed as either a percent of the pool's allocation or as a fixed value in license units.
+     */
     defaultAndLowPriority?: outputs.ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriority;
+    /**
+     * License this fixed-value allocation applies to (e.g. `PERSISTED_WRITES`).
+     */
     license: string;
+    /**
+     * Threshold value, expressed as either a percent of the pool's allocation or as a fixed value in license units.
+     */
     lowPriority?: outputs.ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriority;
 }
 
 export interface ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdAllPriorities {
+    /**
+     * Per-license fixed allocations that override `percentOfLicense` for the named licenses. When any pool sets a fixed value for a license, every pool must also set one for that license.
+     */
     fixedValue?: number;
+    /**
+     * Threshold as a percent of the pool's allocation. `100` equals the full allocation; values above 100 allow the pool to exceed its baseline allocation.
+     */
     percentOfPoolAllocation?: number;
 }
 
 export interface ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdDefaultAndLowPriority {
+    /**
+     * Per-license fixed allocations that override `percentOfLicense` for the named licenses. When any pool sets a fixed value for a license, every pool must also set one for that license.
+     */
     fixedValue?: number;
+    /**
+     * Threshold as a percent of the pool's allocation. `100` equals the full allocation; values above 100 allow the pool to exceed its baseline allocation.
+     */
     percentOfPoolAllocation?: number;
 }
 
 export interface ResourcePoolsConfigDefaultPoolAllocationPriorityThresholdLowPriority {
+    /**
+     * Per-license fixed allocations that override `percentOfLicense` for the named licenses. When any pool sets a fixed value for a license, every pool must also set one for that license.
+     */
     fixedValue?: number;
+    /**
+     * Threshold as a percent of the pool's allocation. `100` equals the full allocation; values above 100 allow the pool to exceed its baseline allocation.
+     */
     percentOfPoolAllocation?: number;
 }
 
 export interface ResourcePoolsConfigDefaultPoolPriorities {
+    /**
+     * Matchers selecting metrics within the pool that are treated as high priority and dropped last.
+     */
     highPriorityMatchRules?: string[];
+    /**
+     * Matchers selecting metrics within the pool that are treated as low priority and dropped first.
+     */
     lowPriorityMatchRules?: string[];
 }
 
 export interface ResourcePoolsConfigDefaultPoolPriorityThreshold {
+    /**
+     * Threshold value, expressed as either a percent of the pool's allocation or as a fixed value in license units.
+     */
     allPriorities?: outputs.ResourcePoolsConfigDefaultPoolPriorityThresholdAllPriorities;
+    /**
+     * Threshold value, expressed as either a percent of the pool's allocation or as a fixed value in license units.
+     */
     defaultAndLowPriority?: outputs.ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriority;
+    /**
+     * License this fixed-value allocation applies to (e.g. `PERSISTED_WRITES`).
+     */
     license: string;
+    /**
+     * Threshold value, expressed as either a percent of the pool's allocation or as a fixed value in license units.
+     */
     lowPriority?: outputs.ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriority;
 }
 
 export interface ResourcePoolsConfigDefaultPoolPriorityThresholdAllPriorities {
+    /**
+     * Per-license fixed allocations that override `percentOfLicense` for the named licenses. When any pool sets a fixed value for a license, every pool must also set one for that license.
+     */
     fixedValue?: number;
+    /**
+     * Threshold as a percent of the pool's allocation. `100` equals the full allocation; values above 100 allow the pool to exceed its baseline allocation.
+     */
     percentOfPoolAllocation?: number;
 }
 
 export interface ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriority {
+    /**
+     * Per-license fixed allocations that override `percentOfLicense` for the named licenses. When any pool sets a fixed value for a license, every pool must also set one for that license.
+     */
     fixedValue?: number;
+    /**
+     * Threshold as a percent of the pool's allocation. `100` equals the full allocation; values above 100 allow the pool to exceed its baseline allocation.
+     */
     percentOfPoolAllocation?: number;
 }
 
 export interface ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriority {
+    /**
+     * Per-license fixed allocations that override `percentOfLicense` for the named licenses. When any pool sets a fixed value for a license, every pool must also set one for that license.
+     */
     fixedValue?: number;
+    /**
+     * Threshold as a percent of the pool's allocation. `100` equals the full allocation; values above 100 allow the pool to exceed its baseline allocation.
+     */
     percentOfPoolAllocation?: number;
 }
 
 export interface ResourcePoolsConfigPool {
+    /**
+     * License allocation for the pool. Can be expressed as a percentage of the license (`percentOfLicense`) or as per-license fixed values (`fixedValue`).
+     */
     allocation?: outputs.ResourcePoolsConfigPoolAllocation;
     /**
+     * Deprecated: use `matchRules` instead. Single matcher selecting metrics that belong to this pool.
+     *
      * @deprecated use match_rules
      */
     matchRule?: string;
+    /**
+     * Matchers selecting metrics that map to this pool. A metric matching any rule is assigned to the pool.
+     */
     matchRules?: string[];
+    /**
+     * Unique name of the pool.
+     */
     name: string;
+    /**
+     * Optional high/low priority sub-classifications within the pool. Low-priority metrics are dropped first; high-priority metrics are dropped last when limits are hit.
+     */
     priorities?: outputs.ResourcePoolsConfigPoolPriorities;
 }
 
 export interface ResourcePoolsConfigPoolAllocation {
+    /**
+     * Per-license fixed allocations that override `percentOfLicense` for the named licenses. When any pool sets a fixed value for a license, every pool must also set one for that license.
+     */
     fixedValues?: outputs.ResourcePoolsConfigPoolAllocationFixedValue[];
+    /**
+     * Percent of each license to allocate to this pool, between 0 and 100. Across non-default pools, the sum must not exceed 100; the default pool receives the remainder.
+     */
     percentOfLicense?: number;
+    /**
+     * Per-license drop thresholds for `PERSISTED_CARDINALITY_STANDARD` and `PERSISTED_CARDINALITY_HISTOGRAM` only. Defines strict upper bounds beyond which new consumption is dropped, optionally segmented by priority class.
+     */
     priorityThresholds?: outputs.ResourcePoolsConfigPoolAllocationPriorityThreshold[];
 }
 
 export interface ResourcePoolsConfigPoolAllocationFixedValue {
+    /**
+     * License this fixed-value allocation applies to (e.g. `PERSISTED_WRITES`).
+     */
     license: string;
+    /**
+     * Fixed amount of the license to allocate, in the license's native unit.
+     */
     value: number;
 }
 
 export interface ResourcePoolsConfigPoolAllocationPriorityThreshold {
+    /**
+     * Threshold value, expressed as either a percent of the pool's allocation or as a fixed value in license units.
+     */
     allPriorities?: outputs.ResourcePoolsConfigPoolAllocationPriorityThresholdAllPriorities;
+    /**
+     * Threshold value, expressed as either a percent of the pool's allocation or as a fixed value in license units.
+     */
     defaultAndLowPriority?: outputs.ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriority;
+    /**
+     * License this fixed-value allocation applies to (e.g. `PERSISTED_WRITES`).
+     */
     license: string;
+    /**
+     * Threshold value, expressed as either a percent of the pool's allocation or as a fixed value in license units.
+     */
     lowPriority?: outputs.ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriority;
 }
 
 export interface ResourcePoolsConfigPoolAllocationPriorityThresholdAllPriorities {
+    /**
+     * Per-license fixed allocations that override `percentOfLicense` for the named licenses. When any pool sets a fixed value for a license, every pool must also set one for that license.
+     */
     fixedValue?: number;
+    /**
+     * Threshold as a percent of the pool's allocation. `100` equals the full allocation; values above 100 allow the pool to exceed its baseline allocation.
+     */
     percentOfPoolAllocation?: number;
 }
 
 export interface ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriority {
+    /**
+     * Per-license fixed allocations that override `percentOfLicense` for the named licenses. When any pool sets a fixed value for a license, every pool must also set one for that license.
+     */
     fixedValue?: number;
+    /**
+     * Threshold as a percent of the pool's allocation. `100` equals the full allocation; values above 100 allow the pool to exceed its baseline allocation.
+     */
     percentOfPoolAllocation?: number;
 }
 
 export interface ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriority {
+    /**
+     * Per-license fixed allocations that override `percentOfLicense` for the named licenses. When any pool sets a fixed value for a license, every pool must also set one for that license.
+     */
     fixedValue?: number;
+    /**
+     * Threshold as a percent of the pool's allocation. `100` equals the full allocation; values above 100 allow the pool to exceed its baseline allocation.
+     */
     percentOfPoolAllocation?: number;
 }
 
 export interface ResourcePoolsConfigPoolPriorities {
+    /**
+     * Matchers selecting metrics within the pool that are treated as high priority and dropped last.
+     */
     highPriorityMatchRules?: string[];
+    /**
+     * Matchers selecting metrics within the pool that are treated as low priority and dropped first.
+     */
     lowPriorityMatchRules?: string[];
 }
 
 export interface RollupRuleGraphiteLabelPolicy {
+    /**
+     * List of positional Graphite label replacements applied to the output metric.
+     */
     replaces?: outputs.RollupRuleGraphiteLabelPolicyReplace[];
 }
 
 export interface RollupRuleGraphiteLabelPolicyReplace {
+    /**
+     * Positional Graphite label to replace (e.g. `__g1__`).
+     */
     name: string;
+    /**
+     * Replacement value for the named positional label.
+     */
     newValue: string;
 }
 
 export interface RollupRuleStoragePolicies {
+    /**
+     * Resolution at which rolled-up data points are stored.
+     */
     resolution: string;
+    /**
+     * Retention duration for rolled-up data points.
+     */
     retention: string;
 }
 
 export interface SLODefinition {
+    /**
+     * Custom burn-rate alert definitions. If omitted, the system default burn rates are used. Only takes effect when `enableBurnRateAlerting` is true.
+     */
     burnRateAlertingConfigs: outputs.SLODefinitionBurnRateAlertingConfig[];
+    /**
+     * Whether burn-rate alerting is enabled for this SLO.
+     */
     enableBurnRateAlerting: boolean;
+    /**
+     * Target SLO percentage representing the desired availability (e.g. `99.9`).
+     */
     objective: number;
+    /**
+     * Rolling time window over which the SLO objective is evaluated.
+     */
     timeWindow: outputs.SLODefinitionTimeWindow;
 }
 
 export interface SLODefinitionBurnRateAlertingConfig {
+    /**
+     * Percentage of the error budget that can be consumed during `window` before the alert fires. Must be between 0.0 and 100.0 exclusive.
+     */
     budget: number;
+    /**
+     * Additional labels attached when this burn-rate alert fires. Can be used by notification policies to route different burn rates to different destinations.
+     */
     labels?: {[key: string]: string};
+    /**
+     * Severity assigned when the burn rate fires. Must be `critical` or `warn`.
+     */
     severity: string;
+    /**
+     * Time window for the burn-rate calculation (e.g. `1h`, `6h`).
+     */
     window: string;
 }
 
 export interface SLODefinitionTimeWindow {
+    /**
+     * Length of the evaluation window (e.g. `28d`, `24h`).
+     */
     duration: string;
 }
 
 export interface SLOSignalGrouping {
+    /**
+     * Labels to group by. Series sharing the same values for these labels produce one signal. Defaults to no grouping (one signal per series).
+     */
     labelNames?: string[];
+    /**
+     * If true, treat each individual series as its own signal. Mutually exclusive with `labelNames`.
+     */
     signalPerSeries?: boolean;
 }
 
 export interface SLOSli {
+    /**
+     * Additional PromQL label matchers applied to SLI queries via the `{{.AdditionalFilters}}` template variable. Used to narrow the metrics scope.
+     */
     additionalPromqlFilters?: outputs.SLOSliAdditionalPromqlFilter[];
+    /**
+     * Additional labels exported from the underlying queries to group the error budget by. Available in PromQL templates via `{{.GroupBy}}`.
+     */
     customDimensionLabels?: string[];
+    /**
+     * Error-ratio SLI defined by good/bad/total PromQL query templates. Mutually exclusive with `customTimesliceIndicator`.
+     */
     customIndicator?: outputs.SLOSliCustomIndicator;
+    /**
+     * Time-slice SLI that evaluates a PromQL query over fixed time slices against a threshold condition. Mutually exclusive with `customIndicator`.
+     */
     customTimesliceIndicator?: outputs.SLOSliCustomTimesliceIndicator;
 }
 
 export interface SLOSliAdditionalPromqlFilter {
+    /**
+     * Prometheus label name to match.
+     */
     name: string;
+    /**
+     * Matcher type (e.g. `=`, `!=`, `=~`, `!~`).
+     */
     type: string;
+    /**
+     * Label value to match against using the chosen matcher `type`.
+     */
     value: string;
 }
 
 export interface SLOSliCustomIndicator {
+    /**
+     * PromQL query template measuring the count of bad events. Mutually exclusive with `goodQueryTemplate`.
+     */
     badQueryTemplate?: string;
+    /**
+     * PromQL query template measuring the count of good events. Mutually exclusive with `badQueryTemplate`.
+     */
     goodQueryTemplate?: string;
+    /**
+     * PromQL query template measuring the total count of events. Required for error-ratio SLOs.
+     */
     totalQueryTemplate: string;
 }
 
 export interface SLOSliCustomTimesliceIndicator {
+    /**
+     * Condition used to classify each time slice as good or bad based on the query result.
+     */
     condition: outputs.SLOSliCustomTimesliceIndicatorCondition;
+    /**
+     * PromQL query template evaluated against each time slice.
+     */
     queryTemplate: string;
+    /**
+     * Size of each time slice evaluated by the query (e.g. `1m`, `5m`).
+     */
     timesliceSize: string;
 }
 
 export interface SLOSliCustomTimesliceIndicatorCondition {
+    /**
+     * Comparison operator between the query value and `value` (e.g. `gt`, `lt`, `eq`).
+     */
     op: string;
+    /**
+     * Label value to match against using the chosen matcher `type`.
+     */
     value: number;
 }
 
 export interface ServiceAccountRestriction {
+    /**
+     * Optional label matchers further scoping the restriction to metrics whose labels match these key/value pairs.
+     */
     labels?: {[key: string]: string};
+    /**
+     * Permission level granted by this restriction (e.g. metric read/write).
+     */
     permission: string;
 }
 
 export interface SlackAlertNotifierAction {
+    /**
+     * Label for the cancel button in the confirmation dialog.
+     */
     actionConfirmDismissText?: string;
+    /**
+     * Label for the confirm button in the confirmation dialog.
+     */
     actionConfirmOkText?: string;
+    /**
+     * Body text of the confirmation dialog shown before the action runs.
+     */
     actionConfirmText?: string;
+    /**
+     * Title of the confirmation dialog shown before the action runs.
+     */
     actionConfirmTile?: string;
+    /**
+     * Identifier sent back to Slack when the button is clicked.
+     */
     name?: string;
+    /**
+     * Visual style of the button: `default`, `primary`, or `danger`.
+     */
     style?: string;
+    /**
+     * Label shown on the button.
+     */
     text?: string;
+    /**
+     * Action type. Typically `button`.
+     */
     type?: string;
+    /**
+     * Link the button navigates to when clicked.
+     */
     url?: string;
+    /**
+     * Opaque value sent back to Slack alongside `name` when the button is clicked.
+     */
     value?: string;
 }
 
 export interface SlackAlertNotifierField {
+    /**
+     * If true, the field is short enough to be shown side-by-side with the next field.
+     */
     short?: boolean;
+    /**
+     * Bold heading shown above the value.
+     */
     title?: string;
+    /**
+     * Value text. Supports Go templating.
+     */
     value?: string;
 }
 
 export interface TraceJaegerRemoteSamplingStrategyAppliedStrategy {
+    /**
+     * Per-operation sampling configuration with a service-wide default and optional per-operation overrides.
+     */
     perOperationStrategies?: outputs.TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationStrategies;
+    /**
+     * Probabilistic sampling: each trace is sampled with a fixed probability.
+     */
     probabilisticStrategy?: outputs.TraceJaegerRemoteSamplingStrategyAppliedStrategyProbabilisticStrategy;
+    /**
+     * Rate-limiting sampling: cap the number of sampled traces per second using a leaky bucket.
+     */
     rateLimitingStrategy?: outputs.TraceJaegerRemoteSamplingStrategyAppliedStrategyRateLimitingStrategy;
 }
 
 export interface TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationStrategies {
+    /**
+     * Minimum number of traces per second sampled for any operation in the service, even when the probabilistic rate would yield fewer.
+     */
     defaultLowerBoundTracesPerSecond?: number;
+    /**
+     * Service-wide sampling probability in the range `[0.0, 1.0]` applied when no per-operation override matches.
+     */
     defaultSamplingRate: number;
+    /**
+     * Maximum number of traces per second sampled for any operation in the service, regardless of matching per-operation strategy.
+     */
     defaultUpperBoundTracesPerSecond?: number;
+    /**
+     * Per-operation sampling configuration with a service-wide default and optional per-operation overrides.
+     */
     perOperationStrategies?: outputs.TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationStrategiesPerOperationStrategy[];
 }
 
 export interface TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationStrategiesPerOperationStrategy {
+    /**
+     * Span operation (span name) this override applies to.
+     */
     operation: string;
+    /**
+     * Probabilistic sampling configuration applied to spans whose operation matches.
+     */
     probabilisticStrategy: outputs.TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationStrategiesPerOperationStrategyProbabilisticStrategy;
 }
 
 export interface TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationStrategiesPerOperationStrategyProbabilisticStrategy {
+    /**
+     * Probability in the range `[0.0, 1.0]` that any given trace is sampled. `0` samples no traces, `1` samples every trace.
+     */
     samplingRate: number;
 }
 
 export interface TraceJaegerRemoteSamplingStrategyAppliedStrategyProbabilisticStrategy {
+    /**
+     * Probability in the range `[0.0, 1.0]` that any given trace is sampled. `0` samples no traces, `1` samples every trace.
+     */
     samplingRate: number;
 }
 
 export interface TraceJaegerRemoteSamplingStrategyAppliedStrategyRateLimitingStrategy {
+    /**
+     * Maximum number of traces to sample per second for the service.
+     */
     maxTracesPerSecond: number;
 }
 
 export interface TraceMetricsRuleGroupBy {
+    /**
+     * Span attribute to group by.
+     */
     key: outputs.TraceMetricsRuleGroupByKey;
+    /**
+     * Name of the resulting metric label.
+     */
     label: string;
 }
 
 export interface TraceMetricsRuleGroupByKey {
+    /**
+     * Name of the span tag when `type` requires one (for example `TAG`). Ignored for fixed-key types.
+     */
     namedKey?: string;
+    /**
+     * Category of span attribute to group by (for example a well-known field such as `SERVICE` or `OPERATION`, or a generic span `TAG`).
+     */
     type: string;
 }
 
 export interface TraceMetricsRuleScopeFilter {
+    /**
+     * Span conditions that select which spans are aggregated. Spans must match at least one block to be included.
+     */
     spanScopes?: outputs.TraceMetricsRuleScopeFilterSpanScope[];
 }
 
 export interface TraceMetricsRuleScopeFilterSpanScope {
+    /**
+     * Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, maxSecs]` range.
+     */
     duration?: outputs.TraceMetricsRuleScopeFilterSpanScopeDuration;
+    /**
+     * Matches traces or spans where the target boolean field equals `value`.
+     */
     error?: outputs.TraceMetricsRuleScopeFilterSpanScopeError;
+    /**
+     * Matches traces or spans where the target boolean field equals `value`.
+     */
     isRootSpan?: outputs.TraceMetricsRuleScopeFilterSpanScopeIsRootSpan;
+    /**
+     * Whether matching spans are included (`INCLUDE`) or excluded (`EXCLUDE`) from the scope. Defaults to `INCLUDE`.
+     */
     matchType?: string;
+    /**
+     * Matches traces or spans where the target string field satisfies the match condition.
+     */
     operation?: outputs.TraceMetricsRuleScopeFilterSpanScopeOperation;
+    /**
+     * Matches traces or spans where the target string field satisfies the match condition.
+     */
     parentOperation?: outputs.TraceMetricsRuleScopeFilterSpanScopeParentOperation;
+    /**
+     * Matches traces or spans where the target string field satisfies the match condition.
+     */
     parentService?: outputs.TraceMetricsRuleScopeFilterSpanScopeParentService;
+    /**
+     * Matches traces or spans where the target string field satisfies the match condition.
+     */
     service?: outputs.TraceMetricsRuleScopeFilterSpanScopeService;
+    /**
+     * Matches traces where the number of spans satisfying the surrounding span conditions falls within the inclusive `[min, max]` range.
+     */
     spanCount?: outputs.TraceMetricsRuleScopeFilterSpanScopeSpanCount;
+    /**
+     * Matches spans whose tag (span attribute) with the given `key` has a value satisfying the nested string or numeric filter.
+     */
     tags?: outputs.TraceMetricsRuleScopeFilterSpanScopeTag[];
 }
 
 export interface TraceMetricsRuleScopeFilterSpanScopeDuration {
+    /**
+     * Maximum duration in seconds, inclusive. Omit for no upper bound.
+     */
     maxSecs?: number;
+    /**
+     * Minimum duration in seconds, inclusive. Defaults to `0`.
+     */
     minSecs?: number;
 }
 
 export interface TraceMetricsRuleScopeFilterSpanScopeError {
+    /**
+     * Boolean value the target field is compared against.
+     */
     value: boolean;
 }
 
 export interface TraceMetricsRuleScopeFilterSpanScopeIsRootSpan {
+    /**
+     * Boolean value the target field is compared against.
+     */
     value: boolean;
 }
 
 export interface TraceMetricsRuleScopeFilterSpanScopeOperation {
+    /**
+     * Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     */
     inValues?: string[];
+    /**
+     * Match operator applied to `value` or `inValues`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     */
     match?: string;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: string;
 }
 
 export interface TraceMetricsRuleScopeFilterSpanScopeParentOperation {
+    /**
+     * Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     */
     inValues?: string[];
+    /**
+     * Match operator applied to `value` or `inValues`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     */
     match?: string;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: string;
 }
 
 export interface TraceMetricsRuleScopeFilterSpanScopeParentService {
+    /**
+     * Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     */
     inValues?: string[];
+    /**
+     * Match operator applied to `value` or `inValues`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     */
     match?: string;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: string;
 }
 
 export interface TraceMetricsRuleScopeFilterSpanScopeService {
+    /**
+     * Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     */
     inValues?: string[];
+    /**
+     * Match operator applied to `value` or `inValues`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     */
     match?: string;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: string;
 }
 
 export interface TraceMetricsRuleScopeFilterSpanScopeSpanCount {
+    /**
+     * Maximum number of matching spans, inclusive. `0` means no upper bound.
+     */
     max?: number;
+    /**
+     * Minimum number of matching spans, inclusive. Defaults to `0`.
+     */
     min?: number;
 }
 
 export interface TraceMetricsRuleScopeFilterSpanScopeTag {
+    /**
+     * Span attribute to group by.
+     */
     key?: string;
+    /**
+     * Matches traces or spans where the target numeric field satisfies the comparison against `value`.
+     */
     numericValue?: outputs.TraceMetricsRuleScopeFilterSpanScopeTagNumericValue;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: outputs.TraceMetricsRuleScopeFilterSpanScopeTagValue;
 }
 
 export interface TraceMetricsRuleScopeFilterSpanScopeTagNumericValue {
+    /**
+     * Numeric comparison operator (for example `EQUALS`, `GREATER_THAN`, `LESS_THAN_OR_EQUAL`).
+     */
     comparison: string;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value: number;
 }
 
 export interface TraceMetricsRuleScopeFilterSpanScopeTagValue {
+    /**
+     * Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     */
     inValues?: string[];
+    /**
+     * Match operator applied to `value` or `inValues`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     */
     match?: string;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: string;
 }
 
 export interface TraceMetricsRuleTraceFilter {
+    /**
+     * Scope filter that further restricts which spans within a matched trace contribute to metrics or sampling. Only spans matching `spanScopes` are included in aggregation.
+     */
     scopeFilter?: outputs.TraceMetricsRuleTraceFilterScopeFilter;
+    /**
+     * Span-level conditions. Each block defines a set of conditions that must all be satisfied by a single span in the trace for the trace to match.
+     */
     spans?: outputs.TraceMetricsRuleTraceFilterSpan[];
+    /**
+     * Trace-level conditions evaluated against the whole trace (aggregated duration and error status).
+     */
     trace?: outputs.TraceMetricsRuleTraceFilterTrace;
 }
 
 export interface TraceMetricsRuleTraceFilterScopeFilter {
+    /**
+     * Span conditions that select which spans are aggregated. Spans must match at least one block to be included.
+     */
     spanScopes?: outputs.TraceMetricsRuleTraceFilterScopeFilterSpanScope[];
 }
 
 export interface TraceMetricsRuleTraceFilterScopeFilterSpanScope {
+    /**
+     * Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, maxSecs]` range.
+     */
     duration?: outputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeDuration;
+    /**
+     * Matches traces or spans where the target boolean field equals `value`.
+     */
     error?: outputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeError;
+    /**
+     * Matches traces or spans where the target boolean field equals `value`.
+     */
     isRootSpan?: outputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpan;
+    /**
+     * Whether matching spans are included (`INCLUDE`) or excluded (`EXCLUDE`) from the scope. Defaults to `INCLUDE`.
+     */
     matchType?: string;
+    /**
+     * Matches traces or spans where the target string field satisfies the match condition.
+     */
     operation?: outputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperation;
+    /**
+     * Matches traces or spans where the target string field satisfies the match condition.
+     */
     parentOperation?: outputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperation;
+    /**
+     * Matches traces or spans where the target string field satisfies the match condition.
+     */
     parentService?: outputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentService;
+    /**
+     * Matches traces or spans where the target string field satisfies the match condition.
+     */
     service?: outputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeService;
+    /**
+     * Matches traces where the number of spans satisfying the surrounding span conditions falls within the inclusive `[min, max]` range.
+     */
     spanCount?: outputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCount;
+    /**
+     * Matches spans whose tag (span attribute) with the given `key` has a value satisfying the nested string or numeric filter.
+     */
     tags?: outputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeTag[];
 }
 
 export interface TraceMetricsRuleTraceFilterScopeFilterSpanScopeDuration {
+    /**
+     * Maximum duration in seconds, inclusive. Omit for no upper bound.
+     */
     maxSecs?: number;
+    /**
+     * Minimum duration in seconds, inclusive. Defaults to `0`.
+     */
     minSecs?: number;
 }
 
 export interface TraceMetricsRuleTraceFilterScopeFilterSpanScopeError {
+    /**
+     * Boolean value the target field is compared against.
+     */
     value: boolean;
 }
 
 export interface TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpan {
+    /**
+     * Boolean value the target field is compared against.
+     */
     value: boolean;
 }
 
 export interface TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperation {
+    /**
+     * Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     */
     inValues?: string[];
+    /**
+     * Match operator applied to `value` or `inValues`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     */
     match?: string;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: string;
 }
 
 export interface TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperation {
+    /**
+     * Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     */
     inValues?: string[];
+    /**
+     * Match operator applied to `value` or `inValues`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     */
     match?: string;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: string;
 }
 
 export interface TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentService {
+    /**
+     * Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     */
     inValues?: string[];
+    /**
+     * Match operator applied to `value` or `inValues`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     */
     match?: string;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: string;
 }
 
 export interface TraceMetricsRuleTraceFilterScopeFilterSpanScopeService {
+    /**
+     * Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     */
     inValues?: string[];
+    /**
+     * Match operator applied to `value` or `inValues`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     */
     match?: string;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: string;
 }
 
 export interface TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCount {
+    /**
+     * Maximum number of matching spans, inclusive. `0` means no upper bound.
+     */
     max?: number;
+    /**
+     * Minimum number of matching spans, inclusive. Defaults to `0`.
+     */
     min?: number;
 }
 
 export interface TraceMetricsRuleTraceFilterScopeFilterSpanScopeTag {
+    /**
+     * Span attribute to group by.
+     */
     key?: string;
+    /**
+     * Matches traces or spans where the target numeric field satisfies the comparison against `value`.
+     */
     numericValue?: outputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValue;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: outputs.TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValue;
 }
 
 export interface TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValue {
+    /**
+     * Numeric comparison operator (for example `EQUALS`, `GREATER_THAN`, `LESS_THAN_OR_EQUAL`).
+     */
     comparison: string;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value: number;
 }
 
 export interface TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagValue {
+    /**
+     * Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     */
     inValues?: string[];
+    /**
+     * Match operator applied to `value` or `inValues`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     */
     match?: string;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: string;
 }
 
 export interface TraceMetricsRuleTraceFilterSpan {
+    /**
+     * Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, maxSecs]` range.
+     */
     duration?: outputs.TraceMetricsRuleTraceFilterSpanDuration;
+    /**
+     * Matches traces or spans where the target boolean field equals `value`.
+     */
     error?: outputs.TraceMetricsRuleTraceFilterSpanError;
+    /**
+     * Matches traces or spans where the target boolean field equals `value`.
+     */
     isRootSpan?: outputs.TraceMetricsRuleTraceFilterSpanIsRootSpan;
+    /**
+     * Whether matching spans are included (`INCLUDE`) or excluded (`EXCLUDE`) from the scope. Defaults to `INCLUDE`.
+     */
     matchType?: string;
+    /**
+     * Matches traces or spans where the target string field satisfies the match condition.
+     */
     operation?: outputs.TraceMetricsRuleTraceFilterSpanOperation;
+    /**
+     * Matches traces or spans where the target string field satisfies the match condition.
+     */
     parentOperation?: outputs.TraceMetricsRuleTraceFilterSpanParentOperation;
+    /**
+     * Matches traces or spans where the target string field satisfies the match condition.
+     */
     parentService?: outputs.TraceMetricsRuleTraceFilterSpanParentService;
+    /**
+     * Matches traces or spans where the target string field satisfies the match condition.
+     */
     service?: outputs.TraceMetricsRuleTraceFilterSpanService;
+    /**
+     * Matches traces where the number of spans satisfying the surrounding span conditions falls within the inclusive `[min, max]` range.
+     */
     spanCount?: outputs.TraceMetricsRuleTraceFilterSpanSpanCount;
+    /**
+     * Matches spans whose tag (span attribute) with the given `key` has a value satisfying the nested string or numeric filter.
+     */
     tags?: outputs.TraceMetricsRuleTraceFilterSpanTag[];
 }
 
 export interface TraceMetricsRuleTraceFilterSpanDuration {
+    /**
+     * Maximum duration in seconds, inclusive. Omit for no upper bound.
+     */
     maxSecs?: number;
+    /**
+     * Minimum duration in seconds, inclusive. Defaults to `0`.
+     */
     minSecs?: number;
 }
 
 export interface TraceMetricsRuleTraceFilterSpanError {
+    /**
+     * Boolean value the target field is compared against.
+     */
     value: boolean;
 }
 
 export interface TraceMetricsRuleTraceFilterSpanIsRootSpan {
+    /**
+     * Boolean value the target field is compared against.
+     */
     value: boolean;
 }
 
 export interface TraceMetricsRuleTraceFilterSpanOperation {
+    /**
+     * Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     */
     inValues?: string[];
+    /**
+     * Match operator applied to `value` or `inValues`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     */
     match?: string;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: string;
 }
 
 export interface TraceMetricsRuleTraceFilterSpanParentOperation {
+    /**
+     * Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     */
     inValues?: string[];
+    /**
+     * Match operator applied to `value` or `inValues`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     */
     match?: string;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: string;
 }
 
 export interface TraceMetricsRuleTraceFilterSpanParentService {
+    /**
+     * Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     */
     inValues?: string[];
+    /**
+     * Match operator applied to `value` or `inValues`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     */
     match?: string;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: string;
 }
 
 export interface TraceMetricsRuleTraceFilterSpanService {
+    /**
+     * Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     */
     inValues?: string[];
+    /**
+     * Match operator applied to `value` or `inValues`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     */
     match?: string;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: string;
 }
 
 export interface TraceMetricsRuleTraceFilterSpanSpanCount {
+    /**
+     * Maximum number of matching spans, inclusive. `0` means no upper bound.
+     */
     max?: number;
+    /**
+     * Minimum number of matching spans, inclusive. Defaults to `0`.
+     */
     min?: number;
 }
 
 export interface TraceMetricsRuleTraceFilterSpanTag {
+    /**
+     * Span attribute to group by.
+     */
     key?: string;
+    /**
+     * Matches traces or spans where the target numeric field satisfies the comparison against `value`.
+     */
     numericValue?: outputs.TraceMetricsRuleTraceFilterSpanTagNumericValue;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: outputs.TraceMetricsRuleTraceFilterSpanTagValue;
 }
 
 export interface TraceMetricsRuleTraceFilterSpanTagNumericValue {
+    /**
+     * Numeric comparison operator (for example `EQUALS`, `GREATER_THAN`, `LESS_THAN_OR_EQUAL`).
+     */
     comparison: string;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value: number;
 }
 
 export interface TraceMetricsRuleTraceFilterSpanTagValue {
+    /**
+     * Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     */
     inValues?: string[];
+    /**
+     * Match operator applied to `value` or `inValues`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     */
     match?: string;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: string;
 }
 
 export interface TraceMetricsRuleTraceFilterTrace {
+    /**
+     * Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, maxSecs]` range.
+     */
     duration?: outputs.TraceMetricsRuleTraceFilterTraceDuration;
+    /**
+     * Matches traces or spans where the target boolean field equals `value`.
+     */
     error?: outputs.TraceMetricsRuleTraceFilterTraceError;
 }
 
 export interface TraceMetricsRuleTraceFilterTraceDuration {
+    /**
+     * Maximum duration in seconds, inclusive. Omit for no upper bound.
+     */
     maxSecs?: number;
+    /**
+     * Minimum duration in seconds, inclusive. Defaults to `0`.
+     */
     minSecs?: number;
 }
 
 export interface TraceMetricsRuleTraceFilterTraceError {
+    /**
+     * Boolean value the target field is compared against.
+     */
     value: boolean;
 }
 
 export interface TraceTailSamplingRulesDefaultSampleRate {
+    /**
+     * Whether to override the platform default sample rate with `sampleRate`.
+     */
     enabled?: boolean;
+    /**
+     * Fraction of matching traces to keep, in the range `[0.0, 1.0]`. `0` drops all matches, `1` keeps every match.
+     */
     sampleRate: number;
 }
 
 export interface TraceTailSamplingRulesRule {
+    /**
+     * Filter that selects traces and spans. A trace matches when its trace-level conditions hold and every `span` block is satisfied by at least one span in the trace.
+     */
     filter: outputs.TraceTailSamplingRulesRuleFilter;
+    /**
+     * Human-readable name of the rule.
+     */
     name?: string;
+    /**
+     * Fraction of matching traces to keep, in the range `[0.0, 1.0]`. `0` drops all matches, `1` keeps every match.
+     */
     sampleRate: number;
+    /**
+     * Stable identifier used as the metric label value on metrics emitted by this rule.
+     */
     systemName?: string;
 }
 
 export interface TraceTailSamplingRulesRuleFilter {
+    /**
+     * Scope filter that further restricts which spans within a matched trace contribute to metrics or sampling. Only spans matching `spanScopes` are included in aggregation.
+     */
     scopeFilter?: outputs.TraceTailSamplingRulesRuleFilterScopeFilter;
+    /**
+     * Span-level conditions. Each block defines a set of conditions that must all be satisfied by a single span in the trace for the trace to match.
+     */
     spans?: outputs.TraceTailSamplingRulesRuleFilterSpan[];
+    /**
+     * Trace-level conditions evaluated against the whole trace (aggregated duration and error status).
+     */
     trace?: outputs.TraceTailSamplingRulesRuleFilterTrace;
 }
 
 export interface TraceTailSamplingRulesRuleFilterScopeFilter {
+    /**
+     * Span conditions that select which spans are aggregated. Spans must match at least one block to be included.
+     */
     spanScopes?: outputs.TraceTailSamplingRulesRuleFilterScopeFilterSpanScope[];
 }
 
 export interface TraceTailSamplingRulesRuleFilterScopeFilterSpanScope {
+    /**
+     * Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, maxSecs]` range.
+     */
     duration?: outputs.TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDuration;
+    /**
+     * Matches traces or spans where the target boolean field equals `value`.
+     */
     error?: outputs.TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeError;
+    /**
+     * Matches traces or spans where the target boolean field equals `value`.
+     */
     isRootSpan?: outputs.TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpan;
+    /**
+     * Whether matching spans are included (`INCLUDE`) or excluded (`EXCLUDE`) from the scope. Defaults to `INCLUDE`.
+     */
     matchType?: string;
+    /**
+     * Matches traces or spans where the target string field satisfies the match condition.
+     */
     operation?: outputs.TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperation;
+    /**
+     * Matches traces or spans where the target string field satisfies the match condition.
+     */
     parentOperation?: outputs.TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperation;
+    /**
+     * Matches traces or spans where the target string field satisfies the match condition.
+     */
     parentService?: outputs.TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentService;
+    /**
+     * Matches traces or spans where the target string field satisfies the match condition.
+     */
     service?: outputs.TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeService;
+    /**
+     * Matches traces where the number of spans satisfying the surrounding span conditions falls within the inclusive `[min, max]` range.
+     */
     spanCount?: outputs.TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCount;
+    /**
+     * Matches spans whose tag (span attribute) with the given `key` has a value satisfying the nested string or numeric filter.
+     */
     tags?: outputs.TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTag[];
 }
 
 export interface TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDuration {
+    /**
+     * Maximum duration in seconds, inclusive. Omit for no upper bound.
+     */
     maxSecs?: number;
+    /**
+     * Minimum duration in seconds, inclusive. Defaults to `0`.
+     */
     minSecs?: number;
 }
 
 export interface TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeError {
+    /**
+     * Boolean value the target field is compared against.
+     */
     value: boolean;
 }
 
 export interface TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpan {
+    /**
+     * Boolean value the target field is compared against.
+     */
     value: boolean;
 }
 
 export interface TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperation {
+    /**
+     * Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     */
     inValues?: string[];
+    /**
+     * Match operator applied to `value` or `inValues`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     */
     match?: string;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: string;
 }
 
 export interface TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperation {
+    /**
+     * Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     */
     inValues?: string[];
+    /**
+     * Match operator applied to `value` or `inValues`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     */
     match?: string;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: string;
 }
 
 export interface TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentService {
+    /**
+     * Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     */
     inValues?: string[];
+    /**
+     * Match operator applied to `value` or `inValues`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     */
     match?: string;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: string;
 }
 
 export interface TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeService {
+    /**
+     * Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     */
     inValues?: string[];
+    /**
+     * Match operator applied to `value` or `inValues`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     */
     match?: string;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: string;
 }
 
 export interface TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCount {
+    /**
+     * Maximum number of matching spans, inclusive. `0` means no upper bound.
+     */
     max?: number;
+    /**
+     * Minimum number of matching spans, inclusive. Defaults to `0`.
+     */
     min?: number;
 }
 
 export interface TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTag {
+    /**
+     * Name of the span tag (span attribute) inspected by this filter.
+     */
     key?: string;
+    /**
+     * Matches traces or spans where the target numeric field satisfies the comparison against `value`.
+     */
     numericValue?: outputs.TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValue;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: outputs.TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValue;
 }
 
 export interface TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValue {
+    /**
+     * Numeric comparison operator (for example `EQUALS`, `GREATER_THAN`, `LESS_THAN_OR_EQUAL`).
+     */
     comparison: string;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value: number;
 }
 
 export interface TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValue {
+    /**
+     * Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     */
     inValues?: string[];
+    /**
+     * Match operator applied to `value` or `inValues`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     */
     match?: string;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: string;
 }
 
 export interface TraceTailSamplingRulesRuleFilterSpan {
+    /**
+     * Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, maxSecs]` range.
+     */
     duration?: outputs.TraceTailSamplingRulesRuleFilterSpanDuration;
+    /**
+     * Matches traces or spans where the target boolean field equals `value`.
+     */
     error?: outputs.TraceTailSamplingRulesRuleFilterSpanError;
+    /**
+     * Matches traces or spans where the target boolean field equals `value`.
+     */
     isRootSpan?: outputs.TraceTailSamplingRulesRuleFilterSpanIsRootSpan;
+    /**
+     * Whether matching spans are included (`INCLUDE`) or excluded (`EXCLUDE`) from the scope. Defaults to `INCLUDE`.
+     */
     matchType?: string;
+    /**
+     * Matches traces or spans where the target string field satisfies the match condition.
+     */
     operation?: outputs.TraceTailSamplingRulesRuleFilterSpanOperation;
+    /**
+     * Matches traces or spans where the target string field satisfies the match condition.
+     */
     parentOperation?: outputs.TraceTailSamplingRulesRuleFilterSpanParentOperation;
+    /**
+     * Matches traces or spans where the target string field satisfies the match condition.
+     */
     parentService?: outputs.TraceTailSamplingRulesRuleFilterSpanParentService;
+    /**
+     * Matches traces or spans where the target string field satisfies the match condition.
+     */
     service?: outputs.TraceTailSamplingRulesRuleFilterSpanService;
+    /**
+     * Matches traces where the number of spans satisfying the surrounding span conditions falls within the inclusive `[min, max]` range.
+     */
     spanCount?: outputs.TraceTailSamplingRulesRuleFilterSpanSpanCount;
+    /**
+     * Matches spans whose tag (span attribute) with the given `key` has a value satisfying the nested string or numeric filter.
+     */
     tags?: outputs.TraceTailSamplingRulesRuleFilterSpanTag[];
 }
 
 export interface TraceTailSamplingRulesRuleFilterSpanDuration {
+    /**
+     * Maximum duration in seconds, inclusive. Omit for no upper bound.
+     */
     maxSecs?: number;
+    /**
+     * Minimum duration in seconds, inclusive. Defaults to `0`.
+     */
     minSecs?: number;
 }
 
 export interface TraceTailSamplingRulesRuleFilterSpanError {
+    /**
+     * Boolean value the target field is compared against.
+     */
     value: boolean;
 }
 
 export interface TraceTailSamplingRulesRuleFilterSpanIsRootSpan {
+    /**
+     * Boolean value the target field is compared against.
+     */
     value: boolean;
 }
 
 export interface TraceTailSamplingRulesRuleFilterSpanOperation {
+    /**
+     * Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     */
     inValues?: string[];
+    /**
+     * Match operator applied to `value` or `inValues`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     */
     match?: string;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: string;
 }
 
 export interface TraceTailSamplingRulesRuleFilterSpanParentOperation {
+    /**
+     * Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     */
     inValues?: string[];
+    /**
+     * Match operator applied to `value` or `inValues`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     */
     match?: string;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: string;
 }
 
 export interface TraceTailSamplingRulesRuleFilterSpanParentService {
+    /**
+     * Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     */
     inValues?: string[];
+    /**
+     * Match operator applied to `value` or `inValues`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     */
     match?: string;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: string;
 }
 
 export interface TraceTailSamplingRulesRuleFilterSpanService {
+    /**
+     * Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     */
     inValues?: string[];
+    /**
+     * Match operator applied to `value` or `inValues`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     */
     match?: string;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: string;
 }
 
 export interface TraceTailSamplingRulesRuleFilterSpanSpanCount {
+    /**
+     * Maximum number of matching spans, inclusive. `0` means no upper bound.
+     */
     max?: number;
+    /**
+     * Minimum number of matching spans, inclusive. Defaults to `0`.
+     */
     min?: number;
 }
 
 export interface TraceTailSamplingRulesRuleFilterSpanTag {
+    /**
+     * Name of the span tag (span attribute) inspected by this filter.
+     */
     key?: string;
+    /**
+     * Matches traces or spans where the target numeric field satisfies the comparison against `value`.
+     */
     numericValue?: outputs.TraceTailSamplingRulesRuleFilterSpanTagNumericValue;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: outputs.TraceTailSamplingRulesRuleFilterSpanTagValue;
 }
 
 export interface TraceTailSamplingRulesRuleFilterSpanTagNumericValue {
+    /**
+     * Numeric comparison operator (for example `EQUALS`, `GREATER_THAN`, `LESS_THAN_OR_EQUAL`).
+     */
     comparison: string;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value: number;
 }
 
 export interface TraceTailSamplingRulesRuleFilterSpanTagValue {
+    /**
+     * Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+     */
     inValues?: string[];
+    /**
+     * Match operator applied to `value` or `inValues`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+     */
     match?: string;
+    /**
+     * Boolean value the target field is compared against.
+     */
     value?: string;
 }
 
 export interface TraceTailSamplingRulesRuleFilterTrace {
+    /**
+     * Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, maxSecs]` range.
+     */
     duration?: outputs.TraceTailSamplingRulesRuleFilterTraceDuration;
+    /**
+     * Matches traces or spans where the target boolean field equals `value`.
+     */
     error?: outputs.TraceTailSamplingRulesRuleFilterTraceError;
 }
 
 export interface TraceTailSamplingRulesRuleFilterTraceDuration {
+    /**
+     * Maximum duration in seconds, inclusive. Omit for no upper bound.
+     */
     maxSecs?: number;
+    /**
+     * Minimum duration in seconds, inclusive. Defaults to `0`.
+     */
     minSecs?: number;
 }
 
 export interface TraceTailSamplingRulesRuleFilterTraceError {
+    /**
+     * Boolean value the target field is compared against.
+     */
     value: boolean;
 }
 

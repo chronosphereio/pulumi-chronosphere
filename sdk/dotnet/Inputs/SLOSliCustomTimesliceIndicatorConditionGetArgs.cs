@@ -13,9 +13,15 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class SLOSliCustomTimesliceIndicatorConditionGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Comparison operator between the query value and `value` (e.g. `gt`, `lt`, `eq`).
+        /// </summary>
         [Input("op", required: true)]
         public Input<string> Op { get; set; } = null!;
 
+        /// <summary>
+        /// Label value to match against using the chosen matcher `type`.
+        /// </summary>
         [Input("value", required: true)]
         public Input<double> Value { get; set; } = null!;
 

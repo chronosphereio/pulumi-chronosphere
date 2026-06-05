@@ -12,13 +12,29 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class TraceMetricsRuleTraceFilterTrace {
+    /**
+     * @return Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, max_secs]` range.
+     * 
+     */
     private @Nullable TraceMetricsRuleTraceFilterTraceDuration duration;
+    /**
+     * @return Matches traces or spans where the target boolean field equals `value`.
+     * 
+     */
     private @Nullable TraceMetricsRuleTraceFilterTraceError error;
 
     private TraceMetricsRuleTraceFilterTrace() {}
+    /**
+     * @return Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, max_secs]` range.
+     * 
+     */
     public Optional<TraceMetricsRuleTraceFilterTraceDuration> duration() {
         return Optional.ofNullable(this.duration);
     }
+    /**
+     * @return Matches traces or spans where the target boolean field equals `value`.
+     * 
+     */
     public Optional<TraceMetricsRuleTraceFilterTraceError> error() {
         return Optional.ofNullable(this.error);
     }
