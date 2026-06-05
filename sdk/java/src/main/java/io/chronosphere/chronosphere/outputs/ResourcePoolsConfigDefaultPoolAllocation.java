@@ -14,17 +14,41 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class ResourcePoolsConfigDefaultPoolAllocation {
+    /**
+     * @return Per-license fixed allocations that override `percent_of_license` for the named licenses. When any pool sets a fixed value for a license, every pool must also set one for that license.
+     * 
+     */
     private @Nullable List<ResourcePoolsConfigDefaultPoolAllocationFixedValue> fixedValues;
+    /**
+     * @return Percent of each license to allocate to this pool, between 0 and 100. Across non-default pools, the sum must not exceed 100; the default pool receives the remainder.
+     * 
+     */
     private @Nullable Double percentOfLicense;
+    /**
+     * @return Per-license drop thresholds for `PERSISTED_CARDINALITY_STANDARD` and `PERSISTED_CARDINALITY_HISTOGRAM` only. Defines strict upper bounds beyond which new consumption is dropped, optionally segmented by priority class.
+     * 
+     */
     private @Nullable List<ResourcePoolsConfigDefaultPoolAllocationPriorityThreshold> priorityThresholds;
 
     private ResourcePoolsConfigDefaultPoolAllocation() {}
+    /**
+     * @return Per-license fixed allocations that override `percent_of_license` for the named licenses. When any pool sets a fixed value for a license, every pool must also set one for that license.
+     * 
+     */
     public List<ResourcePoolsConfigDefaultPoolAllocationFixedValue> fixedValues() {
         return this.fixedValues == null ? List.of() : this.fixedValues;
     }
+    /**
+     * @return Percent of each license to allocate to this pool, between 0 and 100. Across non-default pools, the sum must not exceed 100; the default pool receives the remainder.
+     * 
+     */
     public Optional<Double> percentOfLicense() {
         return Optional.ofNullable(this.percentOfLicense);
     }
+    /**
+     * @return Per-license drop thresholds for `PERSISTED_CARDINALITY_STANDARD` and `PERSISTED_CARDINALITY_HISTOGRAM` only. Defines strict upper bounds beyond which new consumption is dropped, optionally segmented by priority class.
+     * 
+     */
     public List<ResourcePoolsConfigDefaultPoolAllocationPriorityThreshold> priorityThresholds() {
         return this.priorityThresholds == null ? List.of() : this.priorityThresholds;
     }

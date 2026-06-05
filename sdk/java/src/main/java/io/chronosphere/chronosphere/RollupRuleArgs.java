@@ -19,98 +19,204 @@ public final class RollupRuleArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final RollupRuleArgs Empty = new RollupRuleArgs();
 
+    /**
+     * Aggregation function applied across grouped series (e.g. `sum`, `min`, `max`, `last`).
+     * 
+     */
     @Import(name="aggregation")
     private @Nullable Output<String> aggregation;
 
+    /**
+     * @return Aggregation function applied across grouped series (e.g. `sum`, `min`, `max`, `last`).
+     * 
+     */
     public Optional<Output<String>> aggregation() {
         return Optional.ofNullable(this.aggregation);
     }
 
+    /**
+     * ID of the bucket the rollup rule belongs to.
+     * 
+     */
     @Import(name="bucketId")
     private @Nullable Output<String> bucketId;
 
+    /**
+     * @return ID of the bucket the rollup rule belongs to.
+     * 
+     */
     public Optional<Output<String>> bucketId() {
         return Optional.ofNullable(this.bucketId);
     }
 
+    /**
+     * If `true`, automatically generates a drop rule that removes the raw input metrics matching this rollup. Defaults to `false`.
+     * 
+     */
     @Import(name="dropRaw")
     private @Nullable Output<Boolean> dropRaw;
 
+    /**
+     * @return If `true`, automatically generates a drop rule that removes the raw input metrics matching this rollup. Defaults to `false`.
+     * 
+     */
     public Optional<Output<Boolean>> dropRaw() {
         return Optional.ofNullable(this.dropRaw);
     }
 
+    /**
+     * Labels to drop when aggregating; all other labels are preserved. Mutually exclusive with `group_by`.
+     * 
+     */
     @Import(name="excludeBies")
     private @Nullable Output<List<String>> excludeBies;
 
+    /**
+     * @return Labels to drop when aggregating; all other labels are preserved. Mutually exclusive with `group_by`.
+     * 
+     */
     public Optional<Output<List<String>>> excludeBies() {
         return Optional.ofNullable(this.excludeBies);
     }
 
+    /**
+     * Space-delimited list of `label:value_glob` matchers that select the input series. Supports glob patterns and special filters like `__name__`, `__metric_type__`, and `__metric_source__`.
+     * 
+     */
     @Import(name="filter", required=true)
     private Output<String> filter;
 
+    /**
+     * @return Space-delimited list of `label:value_glob` matchers that select the input series. Supports glob patterns and special filters like `__name__`, `__metric_type__`, and `__metric_source__`.
+     * 
+     */
     public Output<String> filter() {
         return this.filter;
     }
 
+    /**
+     * Graphite-specific label policy applied to positional labels (`__gX__`) on the output metric.
+     * 
+     */
     @Import(name="graphiteLabelPolicy")
     private @Nullable Output<RollupRuleGraphiteLabelPolicyArgs> graphiteLabelPolicy;
 
+    /**
+     * @return Graphite-specific label policy applied to positional labels (`__gX__`) on the output metric.
+     * 
+     */
     public Optional<Output<RollupRuleGraphiteLabelPolicyArgs>> graphiteLabelPolicy() {
         return Optional.ofNullable(this.graphiteLabelPolicy);
     }
 
+    /**
+     * Labels to preserve when aggregating; all other labels are dropped. Mutually exclusive with `exclude_by`.
+     * 
+     */
     @Import(name="groupBies")
     private @Nullable Output<List<String>> groupBies;
 
+    /**
+     * @return Labels to preserve when aggregating; all other labels are dropped. Mutually exclusive with `exclude_by`.
+     * 
+     */
     public Optional<Output<List<String>>> groupBies() {
         return Optional.ofNullable(this.groupBies);
     }
 
+    /**
+     * Interval between aggregated data points produced by the rollup. Defaults to a server-side value when unset. Conflicts with `storage_policies`.
+     * 
+     */
     @Import(name="interval")
     private @Nullable Output<String> interval;
 
+    /**
+     * @return Interval between aggregated data points produced by the rollup. Defaults to a server-side value when unset. Conflicts with `storage_policies`.
+     * 
+     */
     public Optional<Output<String>> interval() {
         return Optional.ofNullable(this.interval);
     }
 
+    /**
+     * Type of the source metric being rolled up (e.g. `gauge`, `counter`, `histogram`).
+     * 
+     */
     @Import(name="metricType", required=true)
     private Output<String> metricType;
 
+    /**
+     * @return Type of the source metric being rolled up (e.g. `gauge`, `counter`, `histogram`).
+     * 
+     */
     public Output<String> metricType() {
         return this.metricType;
     }
 
+    /**
+     * Whether to add a `__rollup_type__` label to the output metric identifying the rollup type. Defaults to `false`.
+     * 
+     */
     @Import(name="metricTypeTag")
     private @Nullable Output<Boolean> metricTypeTag;
 
+    /**
+     * @return Whether to add a `__rollup_type__` label to the output metric identifying the rollup type. Defaults to `false`.
+     * 
+     */
     public Optional<Output<Boolean>> metricTypeTag() {
         return Optional.ofNullable(this.metricTypeTag);
     }
 
+    /**
+     * Rollup mode controlling whether the rule is active or in a preview state.
+     * 
+     */
     @Import(name="mode")
     private @Nullable Output<String> mode;
 
+    /**
+     * @return Rollup mode controlling whether the rule is active or in a preview state.
+     * 
+     */
     public Optional<Output<String>> mode() {
         return Optional.ofNullable(this.mode);
     }
 
+    /**
+     * Positional Graphite label to replace (e.g. `__g1__`).
+     * 
+     */
     @Import(name="name", required=true)
     private Output<String> name;
 
+    /**
+     * @return Positional Graphite label to replace (e.g. `__g1__`).
+     * 
+     */
     public Output<String> name() {
         return this.name;
     }
 
+    /**
+     * Name of the output metric produced by the rollup. Supports the `{{.MetricName}}` template variable to reference the source metric name. Optional for Graphite rollup rules.
+     * 
+     */
     @Import(name="newMetric")
     private @Nullable Output<String> newMetric;
 
+    /**
+     * @return Name of the output metric produced by the rollup. Supports the `{{.MetricName}}` template variable to reference the source metric name. Optional for Graphite rollup rules.
+     * 
+     */
     public Optional<Output<String>> newMetric() {
         return Optional.ofNullable(this.newMetric);
     }
 
     /**
+     * Deprecated: no longer supported.
+     * 
      * @deprecated
      * permissive is no longer supported
      * 
@@ -120,6 +226,8 @@ public final class RollupRuleArgs extends com.pulumi.resources.ResourceArgs {
     private @Nullable Output<Boolean> permissive;
 
     /**
+     * @return Deprecated: no longer supported.
+     * 
      * @deprecated
      * permissive is no longer supported
      * 
@@ -129,21 +237,39 @@ public final class RollupRuleArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.permissive);
     }
 
+    /**
+     * If `true`, this rule is skipped when another rollup rule already produces a metric with the same output name. Defaults to `false`.
+     * 
+     */
     @Import(name="skipOnConflict")
     private @Nullable Output<Boolean> skipOnConflict;
 
+    /**
+     * @return If `true`, this rule is skipped when another rollup rule already produces a metric with the same output name. Defaults to `false`.
+     * 
+     */
     public Optional<Output<Boolean>> skipOnConflict() {
         return Optional.ofNullable(this.skipOnConflict);
     }
 
+    /**
+     * Stable identifier for the rollup rule. Immutable after creation. Unlike most resources, the slug is required and is not auto-generated from `name`.
+     * 
+     */
     @Import(name="slug", required=true)
     private Output<String> slug;
 
+    /**
+     * @return Stable identifier for the rollup rule. Immutable after creation. Unlike most resources, the slug is required and is not auto-generated from `name`.
+     * 
+     */
     public Output<String> slug() {
         return this.slug;
     }
 
     /**
+     * Storage policy controlling resolution and retention of rolled-up metrics. Deprecated: use `interval` instead.
+     * 
      * @deprecated
      * use `interval` instead
      * 
@@ -153,6 +279,8 @@ public final class RollupRuleArgs extends com.pulumi.resources.ResourceArgs {
     private @Nullable Output<RollupRuleStoragePoliciesArgs> storagePolicies;
 
     /**
+     * @return Storage policy controlling resolution and retention of rolled-up metrics. Deprecated: use `interval` instead.
+     * 
      * @deprecated
      * use `interval` instead
      * 
@@ -202,132 +330,302 @@ public final class RollupRuleArgs extends com.pulumi.resources.ResourceArgs {
             $ = new RollupRuleArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param aggregation Aggregation function applied across grouped series (e.g. `sum`, `min`, `max`, `last`).
+         * 
+         * @return builder
+         * 
+         */
         public Builder aggregation(@Nullable Output<String> aggregation) {
             $.aggregation = aggregation;
             return this;
         }
 
+        /**
+         * @param aggregation Aggregation function applied across grouped series (e.g. `sum`, `min`, `max`, `last`).
+         * 
+         * @return builder
+         * 
+         */
         public Builder aggregation(String aggregation) {
             return aggregation(Output.of(aggregation));
         }
 
+        /**
+         * @param bucketId ID of the bucket the rollup rule belongs to.
+         * 
+         * @return builder
+         * 
+         */
         public Builder bucketId(@Nullable Output<String> bucketId) {
             $.bucketId = bucketId;
             return this;
         }
 
+        /**
+         * @param bucketId ID of the bucket the rollup rule belongs to.
+         * 
+         * @return builder
+         * 
+         */
         public Builder bucketId(String bucketId) {
             return bucketId(Output.of(bucketId));
         }
 
+        /**
+         * @param dropRaw If `true`, automatically generates a drop rule that removes the raw input metrics matching this rollup. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder dropRaw(@Nullable Output<Boolean> dropRaw) {
             $.dropRaw = dropRaw;
             return this;
         }
 
+        /**
+         * @param dropRaw If `true`, automatically generates a drop rule that removes the raw input metrics matching this rollup. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder dropRaw(Boolean dropRaw) {
             return dropRaw(Output.of(dropRaw));
         }
 
+        /**
+         * @param excludeBies Labels to drop when aggregating; all other labels are preserved. Mutually exclusive with `group_by`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder excludeBies(@Nullable Output<List<String>> excludeBies) {
             $.excludeBies = excludeBies;
             return this;
         }
 
+        /**
+         * @param excludeBies Labels to drop when aggregating; all other labels are preserved. Mutually exclusive with `group_by`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder excludeBies(List<String> excludeBies) {
             return excludeBies(Output.of(excludeBies));
         }
 
+        /**
+         * @param excludeBies Labels to drop when aggregating; all other labels are preserved. Mutually exclusive with `group_by`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder excludeBies(String... excludeBies) {
             return excludeBies(List.of(excludeBies));
         }
 
+        /**
+         * @param filter Space-delimited list of `label:value_glob` matchers that select the input series. Supports glob patterns and special filters like `__name__`, `__metric_type__`, and `__metric_source__`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder filter(Output<String> filter) {
             $.filter = filter;
             return this;
         }
 
+        /**
+         * @param filter Space-delimited list of `label:value_glob` matchers that select the input series. Supports glob patterns and special filters like `__name__`, `__metric_type__`, and `__metric_source__`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder filter(String filter) {
             return filter(Output.of(filter));
         }
 
+        /**
+         * @param graphiteLabelPolicy Graphite-specific label policy applied to positional labels (`__gX__`) on the output metric.
+         * 
+         * @return builder
+         * 
+         */
         public Builder graphiteLabelPolicy(@Nullable Output<RollupRuleGraphiteLabelPolicyArgs> graphiteLabelPolicy) {
             $.graphiteLabelPolicy = graphiteLabelPolicy;
             return this;
         }
 
+        /**
+         * @param graphiteLabelPolicy Graphite-specific label policy applied to positional labels (`__gX__`) on the output metric.
+         * 
+         * @return builder
+         * 
+         */
         public Builder graphiteLabelPolicy(RollupRuleGraphiteLabelPolicyArgs graphiteLabelPolicy) {
             return graphiteLabelPolicy(Output.of(graphiteLabelPolicy));
         }
 
+        /**
+         * @param groupBies Labels to preserve when aggregating; all other labels are dropped. Mutually exclusive with `exclude_by`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder groupBies(@Nullable Output<List<String>> groupBies) {
             $.groupBies = groupBies;
             return this;
         }
 
+        /**
+         * @param groupBies Labels to preserve when aggregating; all other labels are dropped. Mutually exclusive with `exclude_by`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder groupBies(List<String> groupBies) {
             return groupBies(Output.of(groupBies));
         }
 
+        /**
+         * @param groupBies Labels to preserve when aggregating; all other labels are dropped. Mutually exclusive with `exclude_by`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder groupBies(String... groupBies) {
             return groupBies(List.of(groupBies));
         }
 
+        /**
+         * @param interval Interval between aggregated data points produced by the rollup. Defaults to a server-side value when unset. Conflicts with `storage_policies`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder interval(@Nullable Output<String> interval) {
             $.interval = interval;
             return this;
         }
 
+        /**
+         * @param interval Interval between aggregated data points produced by the rollup. Defaults to a server-side value when unset. Conflicts with `storage_policies`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder interval(String interval) {
             return interval(Output.of(interval));
         }
 
+        /**
+         * @param metricType Type of the source metric being rolled up (e.g. `gauge`, `counter`, `histogram`).
+         * 
+         * @return builder
+         * 
+         */
         public Builder metricType(Output<String> metricType) {
             $.metricType = metricType;
             return this;
         }
 
+        /**
+         * @param metricType Type of the source metric being rolled up (e.g. `gauge`, `counter`, `histogram`).
+         * 
+         * @return builder
+         * 
+         */
         public Builder metricType(String metricType) {
             return metricType(Output.of(metricType));
         }
 
+        /**
+         * @param metricTypeTag Whether to add a `__rollup_type__` label to the output metric identifying the rollup type. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder metricTypeTag(@Nullable Output<Boolean> metricTypeTag) {
             $.metricTypeTag = metricTypeTag;
             return this;
         }
 
+        /**
+         * @param metricTypeTag Whether to add a `__rollup_type__` label to the output metric identifying the rollup type. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder metricTypeTag(Boolean metricTypeTag) {
             return metricTypeTag(Output.of(metricTypeTag));
         }
 
+        /**
+         * @param mode Rollup mode controlling whether the rule is active or in a preview state.
+         * 
+         * @return builder
+         * 
+         */
         public Builder mode(@Nullable Output<String> mode) {
             $.mode = mode;
             return this;
         }
 
+        /**
+         * @param mode Rollup mode controlling whether the rule is active or in a preview state.
+         * 
+         * @return builder
+         * 
+         */
         public Builder mode(String mode) {
             return mode(Output.of(mode));
         }
 
+        /**
+         * @param name Positional Graphite label to replace (e.g. `__g1__`).
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(Output<String> name) {
             $.name = name;
             return this;
         }
 
+        /**
+         * @param name Positional Graphite label to replace (e.g. `__g1__`).
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(String name) {
             return name(Output.of(name));
         }
 
+        /**
+         * @param newMetric Name of the output metric produced by the rollup. Supports the `{{.MetricName}}` template variable to reference the source metric name. Optional for Graphite rollup rules.
+         * 
+         * @return builder
+         * 
+         */
         public Builder newMetric(@Nullable Output<String> newMetric) {
             $.newMetric = newMetric;
             return this;
         }
 
+        /**
+         * @param newMetric Name of the output metric produced by the rollup. Supports the `{{.MetricName}}` template variable to reference the source metric name. Optional for Graphite rollup rules.
+         * 
+         * @return builder
+         * 
+         */
         public Builder newMetric(String newMetric) {
             return newMetric(Output.of(newMetric));
         }
 
         /**
+         * @param permissive Deprecated: no longer supported.
+         * 
          * @return builder
          * 
          * @deprecated
@@ -341,6 +639,8 @@ public final class RollupRuleArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
+         * @param permissive Deprecated: no longer supported.
+         * 
          * @return builder
          * 
          * @deprecated
@@ -352,25 +652,51 @@ public final class RollupRuleArgs extends com.pulumi.resources.ResourceArgs {
             return permissive(Output.of(permissive));
         }
 
+        /**
+         * @param skipOnConflict If `true`, this rule is skipped when another rollup rule already produces a metric with the same output name. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder skipOnConflict(@Nullable Output<Boolean> skipOnConflict) {
             $.skipOnConflict = skipOnConflict;
             return this;
         }
 
+        /**
+         * @param skipOnConflict If `true`, this rule is skipped when another rollup rule already produces a metric with the same output name. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder skipOnConflict(Boolean skipOnConflict) {
             return skipOnConflict(Output.of(skipOnConflict));
         }
 
+        /**
+         * @param slug Stable identifier for the rollup rule. Immutable after creation. Unlike most resources, the slug is required and is not auto-generated from `name`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slug(Output<String> slug) {
             $.slug = slug;
             return this;
         }
 
+        /**
+         * @param slug Stable identifier for the rollup rule. Immutable after creation. Unlike most resources, the slug is required and is not auto-generated from `name`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slug(String slug) {
             return slug(Output.of(slug));
         }
 
         /**
+         * @param storagePolicies Storage policy controlling resolution and retention of rolled-up metrics. Deprecated: use `interval` instead.
+         * 
          * @return builder
          * 
          * @deprecated
@@ -384,6 +710,8 @@ public final class RollupRuleArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
+         * @param storagePolicies Storage policy controlling resolution and retention of rolled-up metrics. Deprecated: use `interval` instead.
+         * 
          * @return builder
          * 
          * @deprecated

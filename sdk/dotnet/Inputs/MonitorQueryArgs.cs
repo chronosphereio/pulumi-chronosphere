@@ -13,12 +13,21 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class MonitorQueryArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Graphite expression evaluated by the monitor.
+        /// </summary>
         [Input("graphiteExpr")]
         public Input<string>? GraphiteExpr { get; set; }
 
+        /// <summary>
+        /// Log query expression evaluated by the monitor.
+        /// </summary>
         [Input("loggingExpr")]
         public Input<string>? LoggingExpr { get; set; }
 
+        /// <summary>
+        /// PromQL expression evaluated by the monitor.
+        /// </summary>
         [Input("prometheusExpr")]
         public Input<string>? PrometheusExpr { get; set; }
 

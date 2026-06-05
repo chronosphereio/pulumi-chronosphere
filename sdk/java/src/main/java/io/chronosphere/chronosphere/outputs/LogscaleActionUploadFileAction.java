@@ -9,9 +9,17 @@ import java.util.Objects;
 
 @CustomType
 public final class LogscaleActionUploadFileAction {
+    /**
+     * @return Name to use for the uploaded file.
+     * 
+     */
     private String fileName;
 
     private LogscaleActionUploadFileAction() {}
+    /**
+     * @return Name to use for the uploaded file.
+     * 
+     */
     public String fileName() {
         return this.fileName;
     }

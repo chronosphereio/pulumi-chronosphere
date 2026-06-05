@@ -13,9 +13,15 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class ConsumptionBudgetPriorityFilterGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Deprecated: use `log_filter` instead. Slug of the dataset to match against.
+        /// </summary>
         [Input("datasetId")]
         public Input<string>? DatasetId { get; set; }
 
+        /// <summary>
+        /// Log search filter that matches log data for this priority.
+        /// </summary>
         [Input("logFilter")]
         public Input<Inputs.ConsumptionBudgetPriorityFilterLogFilterGetArgs>? LogFilter { get; set; }
 

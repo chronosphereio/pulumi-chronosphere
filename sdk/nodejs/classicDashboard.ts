@@ -4,6 +4,38 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * A Grafana-compatible dashboard rendered by Chronosphere. The dashboard's `name` and `slug` are derived from the `title` and `uid` fields inside `dashboardJson`. For native Chronosphere dashboards, use `chronosphere.Dashboard` instead.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as chronosphere from "@pulumi-chronosphere/pulumi-chronosphere";
+ *
+ * const collection = new chronosphere.Collection("collection", {name: "Platform"});
+ * const platform = new chronosphere.ClassicDashboard("platform", {
+ *     collectionId: collection.id,
+ *     dashboardJson: JSON.stringify({
+ *         title: "Dashboard",
+ *         panels: [{
+ *             gridPos: {
+ *                 h: 12,
+ *                 w: 24,
+ *                 x: 0,
+ *                 y: 0,
+ *             },
+ *             id: 2,
+ *             targets: [{
+ *                 expr: "up",
+ *             }],
+ *             title: "Up by instance",
+ *             type: "graph",
+ *         }],
+ *     }),
+ * });
+ * ```
+ */
 export class ClassicDashboard extends pulumi.CustomResource {
     /**
      * Get an existing ClassicDashboard resource's state with the given name, ID, and optional extra
@@ -32,8 +64,17 @@ export class ClassicDashboard extends pulumi.CustomResource {
         return obj['__pulumiType'] === ClassicDashboard.__pulumiType;
     }
 
+    /**
+     * ID of the bucket the dashboard belongs to. Exactly one of `bucketId` or `collectionId` must be set.
+     */
     public readonly bucketId!: pulumi.Output<string | undefined>;
+    /**
+     * ID of the collection the dashboard belongs to. Exactly one of `bucketId` or `collectionId` must be set.
+     */
     public readonly collectionId!: pulumi.Output<string | undefined>;
+    /**
+     * Grafana-compatible dashboard definition serialized as JSON. The `id` and `version` fields are stripped before diffing.
+     */
     public readonly dashboardJson!: pulumi.Output<string>;
 
     /**
@@ -70,8 +111,17 @@ export class ClassicDashboard extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ClassicDashboard resources.
  */
 export interface ClassicDashboardState {
+    /**
+     * ID of the bucket the dashboard belongs to. Exactly one of `bucketId` or `collectionId` must be set.
+     */
     bucketId?: pulumi.Input<string>;
+    /**
+     * ID of the collection the dashboard belongs to. Exactly one of `bucketId` or `collectionId` must be set.
+     */
     collectionId?: pulumi.Input<string>;
+    /**
+     * Grafana-compatible dashboard definition serialized as JSON. The `id` and `version` fields are stripped before diffing.
+     */
     dashboardJson?: pulumi.Input<string>;
 }
 
@@ -79,7 +129,16 @@ export interface ClassicDashboardState {
  * The set of arguments for constructing a ClassicDashboard resource.
  */
 export interface ClassicDashboardArgs {
+    /**
+     * ID of the bucket the dashboard belongs to. Exactly one of `bucketId` or `collectionId` must be set.
+     */
     bucketId?: pulumi.Input<string>;
+    /**
+     * ID of the collection the dashboard belongs to. Exactly one of `bucketId` or `collectionId` must be set.
+     */
     collectionId?: pulumi.Input<string>;
+    /**
+     * Grafana-compatible dashboard definition serialized as JSON. The `id` and `version` fields are stripped before diffing.
+     */
     dashboardJson: pulumi.Input<string>;
 }

@@ -14,6 +14,9 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class SLODefinitionTimeWindow
     {
+        /// <summary>
+        /// Length of the evaluation window (e.g. `28d`, `24h`).
+        /// </summary>
         public readonly string Duration;
 
         [OutputConstructor]

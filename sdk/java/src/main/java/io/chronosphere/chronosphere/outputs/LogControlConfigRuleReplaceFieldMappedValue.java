@@ -14,17 +14,41 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class LogControlConfigRuleReplaceFieldMappedValue {
+    /**
+     * @return Value to substitute when no matching key is found, when `use_default` is `true`.
+     * 
+     */
     private @Nullable String defaultValue;
+    /**
+     * @return List of key/value pairs that map matched content to replacement values.
+     * 
+     */
     private @Nullable List<LogControlConfigRuleReplaceFieldMappedValuePair> pairs;
+    /**
+     * @return If `true`, falls back to `default_value` when no key matches. If `false`, leaves the value unchanged on a miss.
+     * 
+     */
     private @Nullable Boolean useDefault;
 
     private LogControlConfigRuleReplaceFieldMappedValue() {}
+    /**
+     * @return Value to substitute when no matching key is found, when `use_default` is `true`.
+     * 
+     */
     public Optional<String> defaultValue() {
         return Optional.ofNullable(this.defaultValue);
     }
+    /**
+     * @return List of key/value pairs that map matched content to replacement values.
+     * 
+     */
     public List<LogControlConfigRuleReplaceFieldMappedValuePair> pairs() {
         return this.pairs == null ? List.of() : this.pairs;
     }
+    /**
+     * @return If `true`, falls back to `default_value` when no key matches. If `false`, leaves the value unchanged on a miss.
+     * 
+     */
     public Optional<Boolean> useDefault() {
         return Optional.ofNullable(this.useDefault);
     }

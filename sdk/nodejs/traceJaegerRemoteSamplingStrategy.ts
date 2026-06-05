@@ -6,6 +6,35 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * Per-service Jaeger remote sampling strategy (probabilistic, rate-limiting, or per-operation) served to instrumented applications so they can sample traces at the configured rate.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as chronosphere from "@pulumi-chronosphere/pulumi-chronosphere";
+ *
+ * const probabilistic = new chronosphere.TraceJaegerRemoteSamplingStrategy("probabilistic", {
+ *     appliedStrategy: {
+ *         probabilisticStrategy: {
+ *             samplingRate: 0.01,
+ *         },
+ *     },
+ *     name: "Probabilistic sampling for service A",
+ *     serviceName: "service-a",
+ * });
+ * const rateLimited = new chronosphere.TraceJaegerRemoteSamplingStrategy("rateLimited", {
+ *     appliedStrategy: {
+ *         rateLimitingStrategy: {
+ *             maxTracesPerSecond: 2,
+ *         },
+ *     },
+ *     name: "Rate-limited sampling for service B",
+ *     serviceName: "service-b",
+ * });
+ * ```
+ */
 export class TraceJaegerRemoteSamplingStrategy extends pulumi.CustomResource {
     /**
      * Get an existing TraceJaegerRemoteSamplingStrategy resource's state with the given name, ID, and optional extra
@@ -34,9 +63,21 @@ export class TraceJaegerRemoteSamplingStrategy extends pulumi.CustomResource {
         return obj['__pulumiType'] === TraceJaegerRemoteSamplingStrategy.__pulumiType;
     }
 
+    /**
+     * Sampling strategy returned to the Jaeger client. Exactly one of `probabilisticStrategy`, `rateLimitingStrategy`, or `perOperationStrategies` must be set.
+     */
     public readonly appliedStrategy!: pulumi.Output<outputs.TraceJaegerRemoteSamplingStrategyAppliedStrategy>;
+    /**
+     * Display name of the Jaeger remote sampling strategy.
+     */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * Value of `service.name` the strategy applies to. Jaeger SDK clients reporting under this service receive this sampling configuration.
+     */
     public readonly serviceName!: pulumi.Output<string>;
+    /**
+     * Stable identifier for the Jaeger remote sampling strategy. Generated from `name` if omitted. Immutable after creation.
+     */
     public readonly slug!: pulumi.Output<string>;
 
     /**
@@ -81,9 +122,21 @@ export class TraceJaegerRemoteSamplingStrategy extends pulumi.CustomResource {
  * Input properties used for looking up and filtering TraceJaegerRemoteSamplingStrategy resources.
  */
 export interface TraceJaegerRemoteSamplingStrategyState {
+    /**
+     * Sampling strategy returned to the Jaeger client. Exactly one of `probabilisticStrategy`, `rateLimitingStrategy`, or `perOperationStrategies` must be set.
+     */
     appliedStrategy?: pulumi.Input<inputs.TraceJaegerRemoteSamplingStrategyAppliedStrategy>;
+    /**
+     * Display name of the Jaeger remote sampling strategy.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * Value of `service.name` the strategy applies to. Jaeger SDK clients reporting under this service receive this sampling configuration.
+     */
     serviceName?: pulumi.Input<string>;
+    /**
+     * Stable identifier for the Jaeger remote sampling strategy. Generated from `name` if omitted. Immutable after creation.
+     */
     slug?: pulumi.Input<string>;
 }
 
@@ -91,8 +144,20 @@ export interface TraceJaegerRemoteSamplingStrategyState {
  * The set of arguments for constructing a TraceJaegerRemoteSamplingStrategy resource.
  */
 export interface TraceJaegerRemoteSamplingStrategyArgs {
+    /**
+     * Sampling strategy returned to the Jaeger client. Exactly one of `probabilisticStrategy`, `rateLimitingStrategy`, or `perOperationStrategies` must be set.
+     */
     appliedStrategy: pulumi.Input<inputs.TraceJaegerRemoteSamplingStrategyAppliedStrategy>;
+    /**
+     * Display name of the Jaeger remote sampling strategy.
+     */
     name: pulumi.Input<string>;
+    /**
+     * Value of `service.name` the strategy applies to. Jaeger SDK clients reporting under this service receive this sampling configuration.
+     */
     serviceName: pulumi.Input<string>;
+    /**
+     * Stable identifier for the Jaeger remote sampling strategy. Generated from `name` if omitted. Immutable after creation.
+     */
     slug?: pulumi.Input<string>;
 }

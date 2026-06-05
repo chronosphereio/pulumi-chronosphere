@@ -9,9 +9,17 @@ import java.util.Objects;
 
 @CustomType
 public final class TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationStrategiesPerOperationStrategyProbabilisticStrategy {
+    /**
+     * @return Probability in the range `[0.0, 1.0]` that any given trace is sampled. `0` samples no traces, `1` samples every trace.
+     * 
+     */
     private Double samplingRate;
 
     private TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationStrategiesPerOperationStrategyProbabilisticStrategy() {}
+    /**
+     * @return Probability in the range `[0.0, 1.0]` that any given trace is sampled. `0` samples no traces, `1` samples every trace.
+     * 
+     */
     public Double samplingRate() {
         return this.samplingRate;
     }

@@ -20,83 +20,248 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
+/**
+ * A monitor evaluates a query against time-series, log, or trace data and produces signals when configured thresholds are crossed. Signals are routed to notifiers via the referenced notification policy or the parent collection&#39;s default policy.
+ * 
+ * ## Example Usage
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.chronosphere.Collection;
+ * import com.pulumi.chronosphere.CollectionArgs;
+ * import com.pulumi.chronosphere.Monitor;
+ * import com.pulumi.chronosphere.MonitorArgs;
+ * import com.pulumi.chronosphere.inputs.MonitorQueryArgs;
+ * import com.pulumi.chronosphere.inputs.MonitorSignalGroupingArgs;
+ * import com.pulumi.chronosphere.inputs.MonitorSeriesConditionsArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var collection = new Collection(&#34;collection&#34;, CollectionArgs.builder()        
+ *             .name(&#34;Platform&#34;)
+ *             .build());
+ * 
+ *         var namespaceUp = new Monitor(&#34;namespaceUp&#34;, MonitorArgs.builder()        
+ *             .name(&#34;Namespace up&#34;)
+ *             .collectionId(collection.id())
+ *             .query(MonitorQueryArgs.builder()
+ *                 .prometheusExpr(&#34;&#34;&#34;
+ * sum by (kubernetes_namespace) (
+ *   up{kubernetes_namespace=&#34;production&#34;}
+ * )
+ *                 &#34;&#34;&#34;)
+ *                 .build())
+ *             .signalGrouping(MonitorSignalGroupingArgs.builder()
+ *                 .labelNames(&#34;kubernetes_namespace&#34;)
+ *                 .build())
+ *             .seriesConditions(MonitorSeriesConditionsArgs.builder()
+ *                 .conditions(MonitorSeriesConditionsConditionArgs.builder()
+ *                     .severity(&#34;warn&#34;)
+ *                     .value(20)
+ *                     .op(&#34;GT&#34;)
+ *                     .build())
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ */
 @ResourceType(type="chronosphere:index/monitor:Monitor")
 public class Monitor extends com.pulumi.resources.CustomResource {
+    /**
+     * Free-form key/value pairs attached to every signal, intended for human consumption such as runbook URLs and descriptions.
+     * 
+     */
     @Export(name="annotations", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> annotations;
 
+    /**
+     * @return Free-form key/value pairs attached to every signal, intended for human consumption such as runbook URLs and descriptions.
+     * 
+     */
     public Output<Optional<Map<String,String>>> annotations() {
         return Codegen.optional(this.annotations);
     }
+    /**
+     * ID of the bucket the monitor belongs to. Exactly one of `bucket_id` or `collection_id` must be set.
+     * 
+     */
     @Export(name="bucketId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> bucketId;
 
+    /**
+     * @return ID of the bucket the monitor belongs to. Exactly one of `bucket_id` or `collection_id` must be set.
+     * 
+     */
     public Output<Optional<String>> bucketId() {
         return Codegen.optional(this.bucketId);
     }
+    /**
+     * ID of the collection the monitor belongs to. Exactly one of `bucket_id` or `collection_id` must be set.
+     * 
+     */
     @Export(name="collectionId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> collectionId;
 
+    /**
+     * @return ID of the collection the monitor belongs to. Exactly one of `bucket_id` or `collection_id` must be set.
+     * 
+     */
     public Output<Optional<String>> collectionId() {
         return Codegen.optional(this.collectionId);
     }
+    /**
+     * Evaluation interval (e.g. `30s`, `1m`). Defaults to the system default if unset.
+     * 
+     */
     @Export(name="interval", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> interval;
 
+    /**
+     * @return Evaluation interval (e.g. `30s`, `1m`). Defaults to the system default if unset.
+     * 
+     */
     public Output<Optional<String>> interval() {
         return Codegen.optional(this.interval);
     }
+    /**
+     * Key/value labels attached to every signal emitted by the monitor. Used for routing and filtering.
+     * 
+     */
     @Export(name="labels", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> labels;
 
+    /**
+     * @return Key/value labels attached to every signal emitted by the monitor. Used for routing and filtering.
+     * 
+     */
     public Output<Optional<Map<String,String>>> labels() {
         return Codegen.optional(this.labels);
     }
+    /**
+     * Label name to match.
+     * 
+     */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
+    /**
+     * @return Label name to match.
+     * 
+     */
     public Output<String> name() {
         return this.name;
     }
+    /**
+     * ID of the notification policy that routes signals from this monitor. If omitted, the parent collection&#39;s default policy applies. Must reference a named policy (anonymous policies are rejected).
+     * 
+     */
     @Export(name="notificationPolicyId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> notificationPolicyId;
 
+    /**
+     * @return ID of the notification policy that routes signals from this monitor. If omitted, the parent collection&#39;s default policy applies. Must reference a named policy (anonymous policies are rejected).
+     * 
+     */
     public Output<Optional<String>> notificationPolicyId() {
         return Codegen.optional(this.notificationPolicyId);
     }
+    /**
+     * Templated title/description rendered into outbound notifications. Supports Go templating with access to signal labels and annotations.
+     * 
+     */
     @Export(name="notificationTemplate", refs={MonitorNotificationTemplate.class}, tree="[0]")
     private Output</* @Nullable */ MonitorNotificationTemplate> notificationTemplate;
 
+    /**
+     * @return Templated title/description rendered into outbound notifications. Supports Go templating with access to signal labels and annotations.
+     * 
+     */
     public Output<Optional<MonitorNotificationTemplate>> notificationTemplate() {
         return Codegen.optional(this.notificationTemplate);
     }
+    /**
+     * Query that produces the time series evaluated by the monitor. Exactly one of `prometheus_expr`, `graphite_expr`, or `logging_expr` must be set.
+     * 
+     */
     @Export(name="query", refs={MonitorQuery.class}, tree="[0]")
     private Output<MonitorQuery> query;
 
+    /**
+     * @return Query that produces the time series evaluated by the monitor. Exactly one of `prometheus_expr`, `graphite_expr`, or `logging_expr` must be set.
+     * 
+     */
     public Output<MonitorQuery> query() {
         return this.query;
     }
+    /**
+     * Optional schedule restricting when the monitor evaluates and fires.
+     * 
+     */
     @Export(name="schedule", refs={MonitorSchedule.class}, tree="[0]")
     private Output</* @Nullable */ MonitorSchedule> schedule;
 
+    /**
+     * @return Optional schedule restricting when the monitor evaluates and fires.
+     * 
+     */
     public Output<Optional<MonitorSchedule>> schedule() {
         return Codegen.optional(this.schedule);
     }
+    /**
+     * Conditions that determine when a series fires a signal.
+     * 
+     */
     @Export(name="seriesConditions", refs={MonitorSeriesConditions.class}, tree="[0]")
     private Output<MonitorSeriesConditions> seriesConditions;
 
+    /**
+     * @return Conditions that determine when a series fires a signal.
+     * 
+     */
     public Output<MonitorSeriesConditions> seriesConditions() {
         return this.seriesConditions;
     }
+    /**
+     * Controls how individual time series are grouped into signals for alerting purposes.
+     * 
+     */
     @Export(name="signalGrouping", refs={MonitorSignalGrouping.class}, tree="[0]")
     private Output</* @Nullable */ MonitorSignalGrouping> signalGrouping;
 
+    /**
+     * @return Controls how individual time series are grouped into signals for alerting purposes.
+     * 
+     */
     public Output<Optional<MonitorSignalGrouping>> signalGrouping() {
         return Codegen.optional(this.signalGrouping);
     }
+    /**
+     * Stable identifier for the monitor. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     @Export(name="slug", refs={String.class}, tree="[0]")
     private Output<String> slug;
 
+    /**
+     * @return Stable identifier for the monitor. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     public Output<String> slug() {
         return this.slug;
     }

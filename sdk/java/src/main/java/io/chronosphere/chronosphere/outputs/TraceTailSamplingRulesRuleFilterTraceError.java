@@ -9,9 +9,17 @@ import java.util.Objects;
 
 @CustomType
 public final class TraceTailSamplingRulesRuleFilterTraceError {
+    /**
+     * @return Boolean value the target field is compared against.
+     * 
+     */
     private Boolean value;
 
     private TraceTailSamplingRulesRuleFilterTraceError() {}
+    /**
+     * @return Boolean value the target field is compared against.
+     * 
+     */
     public Boolean value() {
         return this.value;
     }

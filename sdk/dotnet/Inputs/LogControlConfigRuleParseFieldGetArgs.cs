@@ -13,12 +13,21 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class LogControlConfigRuleParseFieldGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Path to a field within a log record.
+        /// </summary>
         [Input("destination")]
         public Input<Inputs.LogControlConfigRuleParseFieldDestinationGetArgs>? Destination { get; set; }
 
+        /// <summary>
+        /// Parser configuration. Exactly one of `regex_parser`, `key_value_parser`, or `grok_parser` must be set, matching `parser_type`.
+        /// </summary>
         [Input("parser", required: true)]
         public Input<Inputs.LogControlConfigRuleParseFieldParserGetArgs> Parser { get; set; } = null!;
 
+        /// <summary>
+        /// Path to a field within a log record.
+        /// </summary>
         [Input("source")]
         public Input<Inputs.LogControlConfigRuleParseFieldSourceGetArgs>? Source { get; set; }
 

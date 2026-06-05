@@ -14,9 +14,21 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class LogIngestConfigFieldNormalizationSeverity
     {
+        /// <summary>
+        /// Value to use when no source field contains a value.
+        /// </summary>
         public readonly string? DefaultValue;
+        /// <summary>
+        /// Regex patterns used to extract and sanitize the value. Each pattern must have exactly one capturing group, whose contents are used as the result.
+        /// </summary>
         public readonly ImmutableArray<string> SanitizePatterns;
+        /// <summary>
+        /// Ordered list of field paths to check for values. The first non-empty value found is used.
+        /// </summary>
         public readonly ImmutableArray<Outputs.LogIngestConfigFieldNormalizationSeveritySource> Sources;
+        /// <summary>
+        /// Optional mapping that normalizes raw values to canonical ones (for example, `warn` to `WARNING`).
+        /// </summary>
         public readonly ImmutableDictionary<string, string>? ValueMap;
 
         [OutputConstructor]

@@ -14,9 +14,17 @@ public final class DerivedLabelMetricLabelConstructedLabelArgs extends com.pulum
 
     public static final DerivedLabelMetricLabelConstructedLabelArgs Empty = new DerivedLabelMetricLabelConstructedLabelArgs();
 
+    /**
+     * Ordered list of value definitions. The first definition whose filters match produces the derived label value.
+     * 
+     */
     @Import(name="valueDefinitions", required=true)
     private Output<List<DerivedLabelMetricLabelConstructedLabelValueDefinitionArgs>> valueDefinitions;
 
+    /**
+     * @return Ordered list of value definitions. The first definition whose filters match produces the derived label value.
+     * 
+     */
     public Output<List<DerivedLabelMetricLabelConstructedLabelValueDefinitionArgs>> valueDefinitions() {
         return this.valueDefinitions;
     }
@@ -45,15 +53,33 @@ public final class DerivedLabelMetricLabelConstructedLabelArgs extends com.pulum
             $ = new DerivedLabelMetricLabelConstructedLabelArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param valueDefinitions Ordered list of value definitions. The first definition whose filters match produces the derived label value.
+         * 
+         * @return builder
+         * 
+         */
         public Builder valueDefinitions(Output<List<DerivedLabelMetricLabelConstructedLabelValueDefinitionArgs>> valueDefinitions) {
             $.valueDefinitions = valueDefinitions;
             return this;
         }
 
+        /**
+         * @param valueDefinitions Ordered list of value definitions. The first definition whose filters match produces the derived label value.
+         * 
+         * @return builder
+         * 
+         */
         public Builder valueDefinitions(List<DerivedLabelMetricLabelConstructedLabelValueDefinitionArgs> valueDefinitions) {
             return valueDefinitions(Output.of(valueDefinitions));
         }
 
+        /**
+         * @param valueDefinitions Ordered list of value definitions. The first definition whose filters match produces the derived label value.
+         * 
+         * @return builder
+         * 
+         */
         public Builder valueDefinitions(DerivedLabelMetricLabelConstructedLabelValueDefinitionArgs... valueDefinitions) {
             return valueDefinitions(List.of(valueDefinitions));
         }

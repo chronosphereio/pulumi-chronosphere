@@ -17,44 +17,115 @@ public final class ConsumptionBudgetThresholdArgs extends com.pulumi.resources.R
 
     public static final ConsumptionBudgetThresholdArgs Empty = new ConsumptionBudgetThresholdArgs();
 
+    /**
+     * Action to take when this threshold is exceeded (e.g. drop traffic, fire warning/critical alert).
+     * 
+     */
     @Import(name="action")
     private @Nullable Output<String> action;
 
+    /**
+     * @return Action to take when this threshold is exceeded (e.g. drop traffic, fire warning/critical alert).
+     * 
+     */
     public Optional<Output<String>> action() {
         return Optional.ofNullable(this.action);
     }
 
+    /**
+     * Configures an instant-rate threshold value. Set when `type` is an instant-rate type.
+     * 
+     */
     @Import(name="instantRate")
     private @Nullable Output<ConsumptionBudgetThresholdInstantRateArgs> instantRate;
 
+    /**
+     * @return Configures an instant-rate threshold value. Set when `type` is an instant-rate type.
+     * 
+     */
     public Optional<Output<ConsumptionBudgetThresholdInstantRateArgs>> instantRate() {
         return Optional.ofNullable(this.instantRate);
     }
 
+    /**
+     * Resource group the threshold applies to (e.g. metrics, logs, traces). Replaces the deprecated top-level `resource` field.
+     * 
+     */
+    @Import(name="resourceGroup")
+    private @Nullable Output<String> resourceGroup;
+
+    /**
+     * @return Resource group the threshold applies to (e.g. metrics, logs, traces). Replaces the deprecated top-level `resource` field.
+     * 
+     */
+    public Optional<Output<String>> resourceGroup() {
+        return Optional.ofNullable(this.resourceGroup);
+    }
+
+    /**
+     * SKU group the threshold applies to (e.g. metrics, logs, traces). Replaces the deprecated top-level `resource` field.
+     * 
+     * @deprecated
+     * use resource_group instead
+     * 
+     */
+    @Deprecated /* use resource_group instead */
     @Import(name="skuGroup")
     private @Nullable Output<String> skuGroup;
 
+    /**
+     * @return SKU group the threshold applies to (e.g. metrics, logs, traces). Replaces the deprecated top-level `resource` field.
+     * 
+     * @deprecated
+     * use resource_group instead
+     * 
+     */
+    @Deprecated /* use resource_group instead */
     public Optional<Output<String>> skuGroup() {
         return Optional.ofNullable(this.skuGroup);
     }
 
+    /**
+     * Measurement window over which the threshold is evaluated (e.g. instant rate vs. rolling volume).
+     * 
+     */
     @Import(name="type")
     private @Nullable Output<String> type;
 
+    /**
+     * @return Measurement window over which the threshold is evaluated (e.g. instant rate vs. rolling volume).
+     * 
+     */
     public Optional<Output<String>> type() {
         return Optional.ofNullable(this.type);
     }
 
+    /**
+     * Unit in which the threshold value is denominated (e.g. bytes, datapoints).
+     * 
+     */
     @Import(name="unit")
     private @Nullable Output<String> unit;
 
+    /**
+     * @return Unit in which the threshold value is denominated (e.g. bytes, datapoints).
+     * 
+     */
     public Optional<Output<String>> unit() {
         return Optional.ofNullable(this.unit);
     }
 
+    /**
+     * Configures a volume threshold value. Set when `type` is a volume type.
+     * 
+     */
     @Import(name="volume")
     private @Nullable Output<ConsumptionBudgetThresholdVolumeArgs> volume;
 
+    /**
+     * @return Configures a volume threshold value. Set when `type` is a volume type.
+     * 
+     */
     public Optional<Output<ConsumptionBudgetThresholdVolumeArgs>> volume() {
         return Optional.ofNullable(this.volume);
     }
@@ -64,6 +135,7 @@ public final class ConsumptionBudgetThresholdArgs extends com.pulumi.resources.R
     private ConsumptionBudgetThresholdArgs(ConsumptionBudgetThresholdArgs $) {
         this.action = $.action;
         this.instantRate = $.instantRate;
+        this.resourceGroup = $.resourceGroup;
         this.skuGroup = $.skuGroup;
         this.type = $.type;
         this.unit = $.unit;
@@ -88,56 +160,157 @@ public final class ConsumptionBudgetThresholdArgs extends com.pulumi.resources.R
             $ = new ConsumptionBudgetThresholdArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param action Action to take when this threshold is exceeded (e.g. drop traffic, fire warning/critical alert).
+         * 
+         * @return builder
+         * 
+         */
         public Builder action(@Nullable Output<String> action) {
             $.action = action;
             return this;
         }
 
+        /**
+         * @param action Action to take when this threshold is exceeded (e.g. drop traffic, fire warning/critical alert).
+         * 
+         * @return builder
+         * 
+         */
         public Builder action(String action) {
             return action(Output.of(action));
         }
 
+        /**
+         * @param instantRate Configures an instant-rate threshold value. Set when `type` is an instant-rate type.
+         * 
+         * @return builder
+         * 
+         */
         public Builder instantRate(@Nullable Output<ConsumptionBudgetThresholdInstantRateArgs> instantRate) {
             $.instantRate = instantRate;
             return this;
         }
 
+        /**
+         * @param instantRate Configures an instant-rate threshold value. Set when `type` is an instant-rate type.
+         * 
+         * @return builder
+         * 
+         */
         public Builder instantRate(ConsumptionBudgetThresholdInstantRateArgs instantRate) {
             return instantRate(Output.of(instantRate));
         }
 
+        /**
+         * @param resourceGroup Resource group the threshold applies to (e.g. metrics, logs, traces). Replaces the deprecated top-level `resource` field.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder resourceGroup(@Nullable Output<String> resourceGroup) {
+            $.resourceGroup = resourceGroup;
+            return this;
+        }
+
+        /**
+         * @param resourceGroup Resource group the threshold applies to (e.g. metrics, logs, traces). Replaces the deprecated top-level `resource` field.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder resourceGroup(String resourceGroup) {
+            return resourceGroup(Output.of(resourceGroup));
+        }
+
+        /**
+         * @param skuGroup SKU group the threshold applies to (e.g. metrics, logs, traces). Replaces the deprecated top-level `resource` field.
+         * 
+         * @return builder
+         * 
+         * @deprecated
+         * use resource_group instead
+         * 
+         */
+        @Deprecated /* use resource_group instead */
         public Builder skuGroup(@Nullable Output<String> skuGroup) {
             $.skuGroup = skuGroup;
             return this;
         }
 
+        /**
+         * @param skuGroup SKU group the threshold applies to (e.g. metrics, logs, traces). Replaces the deprecated top-level `resource` field.
+         * 
+         * @return builder
+         * 
+         * @deprecated
+         * use resource_group instead
+         * 
+         */
+        @Deprecated /* use resource_group instead */
         public Builder skuGroup(String skuGroup) {
             return skuGroup(Output.of(skuGroup));
         }
 
+        /**
+         * @param type Measurement window over which the threshold is evaluated (e.g. instant rate vs. rolling volume).
+         * 
+         * @return builder
+         * 
+         */
         public Builder type(@Nullable Output<String> type) {
             $.type = type;
             return this;
         }
 
+        /**
+         * @param type Measurement window over which the threshold is evaluated (e.g. instant rate vs. rolling volume).
+         * 
+         * @return builder
+         * 
+         */
         public Builder type(String type) {
             return type(Output.of(type));
         }
 
+        /**
+         * @param unit Unit in which the threshold value is denominated (e.g. bytes, datapoints).
+         * 
+         * @return builder
+         * 
+         */
         public Builder unit(@Nullable Output<String> unit) {
             $.unit = unit;
             return this;
         }
 
+        /**
+         * @param unit Unit in which the threshold value is denominated (e.g. bytes, datapoints).
+         * 
+         * @return builder
+         * 
+         */
         public Builder unit(String unit) {
             return unit(Output.of(unit));
         }
 
+        /**
+         * @param volume Configures a volume threshold value. Set when `type` is a volume type.
+         * 
+         * @return builder
+         * 
+         */
         public Builder volume(@Nullable Output<ConsumptionBudgetThresholdVolumeArgs> volume) {
             $.volume = volume;
             return this;
         }
 
+        /**
+         * @param volume Configures a volume threshold value. Set when `type` is a volume type.
+         * 
+         * @return builder
+         * 
+         */
         public Builder volume(ConsumptionBudgetThresholdVolumeArgs volume) {
             return volume(Output.of(volume));
         }

@@ -14,15 +14,45 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class SlackAlertNotifierAction
     {
+        /// <summary>
+        /// Label for the cancel button in the confirmation dialog.
+        /// </summary>
         public readonly string? ActionConfirmDismissText;
+        /// <summary>
+        /// Label for the confirm button in the confirmation dialog.
+        /// </summary>
         public readonly string? ActionConfirmOkText;
+        /// <summary>
+        /// Body text of the confirmation dialog shown before the action runs.
+        /// </summary>
         public readonly string? ActionConfirmText;
+        /// <summary>
+        /// Title of the confirmation dialog shown before the action runs.
+        /// </summary>
         public readonly string? ActionConfirmTile;
+        /// <summary>
+        /// Identifier sent back to Slack when the button is clicked.
+        /// </summary>
         public readonly string? Name;
+        /// <summary>
+        /// Visual style of the button: `default`, `primary`, or `danger`.
+        /// </summary>
         public readonly string? Style;
+        /// <summary>
+        /// Label shown on the button.
+        /// </summary>
         public readonly string? Text;
+        /// <summary>
+        /// Action type. Typically `button`.
+        /// </summary>
         public readonly string? Type;
+        /// <summary>
+        /// Link the button navigates to when clicked.
+        /// </summary>
         public readonly string? Url;
+        /// <summary>
+        /// Opaque value sent back to Slack alongside `name` when the button is clicked.
+        /// </summary>
         public readonly string? Value;
 
         [OutputConstructor]

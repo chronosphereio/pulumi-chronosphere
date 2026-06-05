@@ -11,13 +11,29 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class TraceMetricsRuleGroupByKey {
+    /**
+     * @return Name of the span tag when `type` requires one (for example `TAG`). Ignored for fixed-key types.
+     * 
+     */
     private @Nullable String namedKey;
+    /**
+     * @return Category of span attribute to group by (for example a well-known field such as `SERVICE` or `OPERATION`, or a generic span `TAG`).
+     * 
+     */
     private String type;
 
     private TraceMetricsRuleGroupByKey() {}
+    /**
+     * @return Name of the span tag when `type` requires one (for example `TAG`). Ignored for fixed-key types.
+     * 
+     */
     public Optional<String> namedKey() {
         return Optional.ofNullable(this.namedKey);
     }
+    /**
+     * @return Category of span attribute to group by (for example a well-known field such as `SERVICE` or `OPERATION`, or a generic span `TAG`).
+     * 
+     */
     public String type() {
         return this.type;
     }

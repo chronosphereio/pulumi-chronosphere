@@ -16,23 +16,47 @@ public final class LogscaleActionPagerDutyActionArgs extends com.pulumi.resource
 
     public static final LogscaleActionPagerDutyActionArgs Empty = new LogscaleActionPagerDutyActionArgs();
 
+    /**
+     * Routing key used to authenticate with PagerDuty.
+     * 
+     */
     @Import(name="routingKey", required=true)
     private Output<String> routingKey;
 
+    /**
+     * @return Routing key used to authenticate with PagerDuty.
+     * 
+     */
     public Output<String> routingKey() {
         return this.routingKey;
     }
 
+    /**
+     * Severity attached to the PagerDuty event.
+     * 
+     */
     @Import(name="severity", required=true)
     private Output<String> severity;
 
+    /**
+     * @return Severity attached to the PagerDuty event.
+     * 
+     */
     public Output<String> severity() {
         return this.severity;
     }
 
+    /**
+     * If `true`, sends the request through the configured outbound proxy.
+     * 
+     */
     @Import(name="useProxy")
     private @Nullable Output<Boolean> useProxy;
 
+    /**
+     * @return If `true`, sends the request through the configured outbound proxy.
+     * 
+     */
     public Optional<Output<Boolean>> useProxy() {
         return Optional.ofNullable(this.useProxy);
     }
@@ -63,29 +87,65 @@ public final class LogscaleActionPagerDutyActionArgs extends com.pulumi.resource
             $ = new LogscaleActionPagerDutyActionArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param routingKey Routing key used to authenticate with PagerDuty.
+         * 
+         * @return builder
+         * 
+         */
         public Builder routingKey(Output<String> routingKey) {
             $.routingKey = routingKey;
             return this;
         }
 
+        /**
+         * @param routingKey Routing key used to authenticate with PagerDuty.
+         * 
+         * @return builder
+         * 
+         */
         public Builder routingKey(String routingKey) {
             return routingKey(Output.of(routingKey));
         }
 
+        /**
+         * @param severity Severity attached to the PagerDuty event.
+         * 
+         * @return builder
+         * 
+         */
         public Builder severity(Output<String> severity) {
             $.severity = severity;
             return this;
         }
 
+        /**
+         * @param severity Severity attached to the PagerDuty event.
+         * 
+         * @return builder
+         * 
+         */
         public Builder severity(String severity) {
             return severity(Output.of(severity));
         }
 
+        /**
+         * @param useProxy If `true`, sends the request through the configured outbound proxy.
+         * 
+         * @return builder
+         * 
+         */
         public Builder useProxy(@Nullable Output<Boolean> useProxy) {
             $.useProxy = useProxy;
             return this;
         }
 
+        /**
+         * @param useProxy If `true`, sends the request through the configured outbound proxy.
+         * 
+         * @return builder
+         * 
+         */
         public Builder useProxy(Boolean useProxy) {
             return useProxy(Output.of(useProxy));
         }

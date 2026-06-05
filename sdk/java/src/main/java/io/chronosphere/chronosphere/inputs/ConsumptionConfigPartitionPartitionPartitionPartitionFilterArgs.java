@@ -17,16 +17,32 @@ public final class ConsumptionConfigPartitionPartitionPartitionPartitionFilterAr
 
     public static final ConsumptionConfigPartitionPartitionPartitionPartitionFilterArgs Empty = new ConsumptionConfigPartitionPartitionPartitionPartitionFilterArgs();
 
+    /**
+     * Conditions evaluated by the filter. Each condition matches by dataset, logs, metrics, or trace data; exactly one of `log_filter`, `metric_filter`, or `dataset_id` must be set per condition.
+     * 
+     */
     @Import(name="conditions")
     private @Nullable Output<List<ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionArgs>> conditions;
 
+    /**
+     * @return Conditions evaluated by the filter. Each condition matches by dataset, logs, metrics, or trace data; exactly one of `log_filter`, `metric_filter`, or `dataset_id` must be set per condition.
+     * 
+     */
     public Optional<Output<List<ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionArgs>>> conditions() {
         return Optional.ofNullable(this.conditions);
     }
 
+    /**
+     * Match operator (e.g. `IN`, `NOT_IN`) applied to the filter conditions.
+     * 
+     */
     @Import(name="operator")
     private @Nullable Output<String> operator;
 
+    /**
+     * @return Match operator (e.g. `IN`, `NOT_IN`) applied to the filter conditions.
+     * 
+     */
     public Optional<Output<String>> operator() {
         return Optional.ofNullable(this.operator);
     }
@@ -56,24 +72,54 @@ public final class ConsumptionConfigPartitionPartitionPartitionPartitionFilterAr
             $ = new ConsumptionConfigPartitionPartitionPartitionPartitionFilterArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param conditions Conditions evaluated by the filter. Each condition matches by dataset, logs, metrics, or trace data; exactly one of `log_filter`, `metric_filter`, or `dataset_id` must be set per condition.
+         * 
+         * @return builder
+         * 
+         */
         public Builder conditions(@Nullable Output<List<ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionArgs>> conditions) {
             $.conditions = conditions;
             return this;
         }
 
+        /**
+         * @param conditions Conditions evaluated by the filter. Each condition matches by dataset, logs, metrics, or trace data; exactly one of `log_filter`, `metric_filter`, or `dataset_id` must be set per condition.
+         * 
+         * @return builder
+         * 
+         */
         public Builder conditions(List<ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionArgs> conditions) {
             return conditions(Output.of(conditions));
         }
 
+        /**
+         * @param conditions Conditions evaluated by the filter. Each condition matches by dataset, logs, metrics, or trace data; exactly one of `log_filter`, `metric_filter`, or `dataset_id` must be set per condition.
+         * 
+         * @return builder
+         * 
+         */
         public Builder conditions(ConsumptionConfigPartitionPartitionPartitionPartitionFilterConditionArgs... conditions) {
             return conditions(List.of(conditions));
         }
 
+        /**
+         * @param operator Match operator (e.g. `IN`, `NOT_IN`) applied to the filter conditions.
+         * 
+         * @return builder
+         * 
+         */
         public Builder operator(@Nullable Output<String> operator) {
             $.operator = operator;
             return this;
         }
 
+        /**
+         * @param operator Match operator (e.g. `IN`, `NOT_IN`) applied to the filter conditions.
+         * 
+         * @return builder
+         * 
+         */
         public Builder operator(String operator) {
             return operator(Output.of(operator));
         }

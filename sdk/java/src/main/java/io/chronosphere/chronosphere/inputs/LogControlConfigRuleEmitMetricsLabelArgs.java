@@ -16,16 +16,32 @@ public final class LogControlConfigRuleEmitMetricsLabelArgs extends com.pulumi.r
 
     public static final LogControlConfigRuleEmitMetricsLabelArgs Empty = new LogControlConfigRuleEmitMetricsLabelArgs();
 
+    /**
+     * Prometheus label name to set on the emitted metric.
+     * 
+     */
     @Import(name="key")
     private @Nullable Output<String> key;
 
+    /**
+     * @return Prometheus label name to set on the emitted metric.
+     * 
+     */
     public Optional<Output<String>> key() {
         return Optional.ofNullable(this.key);
     }
 
+    /**
+     * Path to a field within a log record.
+     * 
+     */
     @Import(name="value")
     private @Nullable Output<LogControlConfigRuleEmitMetricsLabelValueArgs> value;
 
+    /**
+     * @return Path to a field within a log record.
+     * 
+     */
     public Optional<Output<LogControlConfigRuleEmitMetricsLabelValueArgs>> value() {
         return Optional.ofNullable(this.value);
     }
@@ -55,20 +71,44 @@ public final class LogControlConfigRuleEmitMetricsLabelArgs extends com.pulumi.r
             $ = new LogControlConfigRuleEmitMetricsLabelArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param key Prometheus label name to set on the emitted metric.
+         * 
+         * @return builder
+         * 
+         */
         public Builder key(@Nullable Output<String> key) {
             $.key = key;
             return this;
         }
 
+        /**
+         * @param key Prometheus label name to set on the emitted metric.
+         * 
+         * @return builder
+         * 
+         */
         public Builder key(String key) {
             return key(Output.of(key));
         }
 
+        /**
+         * @param value Path to a field within a log record.
+         * 
+         * @return builder
+         * 
+         */
         public Builder value(@Nullable Output<LogControlConfigRuleEmitMetricsLabelValueArgs> value) {
             $.value = value;
             return this;
         }
 
+        /**
+         * @param value Path to a field within a log record.
+         * 
+         * @return builder
+         * 
+         */
         public Builder value(LogControlConfigRuleEmitMetricsLabelValueArgs value) {
             return value(Output.of(value));
         }

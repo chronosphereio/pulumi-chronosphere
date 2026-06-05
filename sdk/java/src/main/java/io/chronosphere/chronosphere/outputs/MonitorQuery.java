@@ -11,17 +11,41 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class MonitorQuery {
+    /**
+     * @return Graphite expression evaluated by the monitor.
+     * 
+     */
     private @Nullable String graphiteExpr;
+    /**
+     * @return Log query expression evaluated by the monitor.
+     * 
+     */
     private @Nullable String loggingExpr;
+    /**
+     * @return PromQL expression evaluated by the monitor.
+     * 
+     */
     private @Nullable String prometheusExpr;
 
     private MonitorQuery() {}
+    /**
+     * @return Graphite expression evaluated by the monitor.
+     * 
+     */
     public Optional<String> graphiteExpr() {
         return Optional.ofNullable(this.graphiteExpr);
     }
+    /**
+     * @return Log query expression evaluated by the monitor.
+     * 
+     */
     public Optional<String> loggingExpr() {
         return Optional.ofNullable(this.loggingExpr);
     }
+    /**
+     * @return PromQL expression evaluated by the monitor.
+     * 
+     */
     public Optional<String> prometheusExpr() {
         return Optional.ofNullable(this.prometheusExpr);
     }

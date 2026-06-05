@@ -17,23 +17,47 @@ public final class AzureMetricsIntegrationScrapeConfigArgs extends com.pulumi.re
 
     public static final AzureMetricsIntegrationScrapeConfigArgs Empty = new AzureMetricsIntegrationScrapeConfigArgs();
 
+    /**
+     * Azure locations (regions) to ingest from, applied across all subscriptions. Leave empty for all locations.
+     * 
+     */
     @Import(name="locations")
     private @Nullable Output<List<String>> locations;
 
+    /**
+     * @return Azure locations (regions) to ingest from, applied across all subscriptions. Leave empty for all locations.
+     * 
+     */
     public Optional<Output<List<String>>> locations() {
         return Optional.ofNullable(this.locations);
     }
 
+    /**
+     * Azure resource types to scrape metrics from. Each entry can constrain the set of metric names to a subset.
+     * 
+     */
     @Import(name="resourceTypes")
     private @Nullable Output<List<AzureMetricsIntegrationScrapeConfigResourceTypeArgs>> resourceTypes;
 
+    /**
+     * @return Azure resource types to scrape metrics from. Each entry can constrain the set of metric names to a subset.
+     * 
+     */
     public Optional<Output<List<AzureMetricsIntegrationScrapeConfigResourceTypeArgs>>> resourceTypes() {
         return Optional.ofNullable(this.resourceTypes);
     }
 
+    /**
+     * Azure subscription IDs to target. Leave empty to scrape from all subscriptions accessible to the principal.
+     * 
+     */
     @Import(name="subscriptionIds")
     private @Nullable Output<List<String>> subscriptionIds;
 
+    /**
+     * @return Azure subscription IDs to target. Leave empty to scrape from all subscriptions accessible to the principal.
+     * 
+     */
     public Optional<Output<List<String>>> subscriptionIds() {
         return Optional.ofNullable(this.subscriptionIds);
     }
@@ -64,41 +88,95 @@ public final class AzureMetricsIntegrationScrapeConfigArgs extends com.pulumi.re
             $ = new AzureMetricsIntegrationScrapeConfigArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param locations Azure locations (regions) to ingest from, applied across all subscriptions. Leave empty for all locations.
+         * 
+         * @return builder
+         * 
+         */
         public Builder locations(@Nullable Output<List<String>> locations) {
             $.locations = locations;
             return this;
         }
 
+        /**
+         * @param locations Azure locations (regions) to ingest from, applied across all subscriptions. Leave empty for all locations.
+         * 
+         * @return builder
+         * 
+         */
         public Builder locations(List<String> locations) {
             return locations(Output.of(locations));
         }
 
+        /**
+         * @param locations Azure locations (regions) to ingest from, applied across all subscriptions. Leave empty for all locations.
+         * 
+         * @return builder
+         * 
+         */
         public Builder locations(String... locations) {
             return locations(List.of(locations));
         }
 
+        /**
+         * @param resourceTypes Azure resource types to scrape metrics from. Each entry can constrain the set of metric names to a subset.
+         * 
+         * @return builder
+         * 
+         */
         public Builder resourceTypes(@Nullable Output<List<AzureMetricsIntegrationScrapeConfigResourceTypeArgs>> resourceTypes) {
             $.resourceTypes = resourceTypes;
             return this;
         }
 
+        /**
+         * @param resourceTypes Azure resource types to scrape metrics from. Each entry can constrain the set of metric names to a subset.
+         * 
+         * @return builder
+         * 
+         */
         public Builder resourceTypes(List<AzureMetricsIntegrationScrapeConfigResourceTypeArgs> resourceTypes) {
             return resourceTypes(Output.of(resourceTypes));
         }
 
+        /**
+         * @param resourceTypes Azure resource types to scrape metrics from. Each entry can constrain the set of metric names to a subset.
+         * 
+         * @return builder
+         * 
+         */
         public Builder resourceTypes(AzureMetricsIntegrationScrapeConfigResourceTypeArgs... resourceTypes) {
             return resourceTypes(List.of(resourceTypes));
         }
 
+        /**
+         * @param subscriptionIds Azure subscription IDs to target. Leave empty to scrape from all subscriptions accessible to the principal.
+         * 
+         * @return builder
+         * 
+         */
         public Builder subscriptionIds(@Nullable Output<List<String>> subscriptionIds) {
             $.subscriptionIds = subscriptionIds;
             return this;
         }
 
+        /**
+         * @param subscriptionIds Azure subscription IDs to target. Leave empty to scrape from all subscriptions accessible to the principal.
+         * 
+         * @return builder
+         * 
+         */
         public Builder subscriptionIds(List<String> subscriptionIds) {
             return subscriptionIds(Output.of(subscriptionIds));
         }
 
+        /**
+         * @param subscriptionIds Azure subscription IDs to target. Leave empty to scrape from all subscriptions accessible to the principal.
+         * 
+         * @return builder
+         * 
+         */
         public Builder subscriptionIds(String... subscriptionIds) {
             return subscriptionIds(List.of(subscriptionIds));
         }

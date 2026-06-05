@@ -13,9 +13,15 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class ResourcePoolsConfigPoolAllocationPriorityThresholdAllPrioritiesArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Per-license fixed allocations that override `percent_of_license` for the named licenses. When any pool sets a fixed value for a license, every pool must also set one for that license.
+        /// </summary>
         [Input("fixedValue")]
         public Input<int>? FixedValue { get; set; }
 
+        /// <summary>
+        /// Threshold as a percent of the pool's allocation. `100` equals the full allocation; values above 100 allow the pool to exceed its baseline allocation.
+        /// </summary>
         [Input("percentOfPoolAllocation")]
         public Input<double>? PercentOfPoolAllocation { get; set; }
 

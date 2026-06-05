@@ -25,8 +25,21 @@ export class Provider extends pulumi.ProviderResource {
         return obj['__pulumiType'] === "pulumi:providers:" + Provider.__pulumiType;
     }
 
+    /**
+     * API token used to authenticate against the Chronosphere API. Treat as a secret. Falls back to the
+     * `CHRONOSPHERE_API_TOKEN` environment variable.
+     */
     public readonly apiToken!: pulumi.Output<string | undefined>;
+    /**
+     * Optional namespace prefix applied to entity slugs managed by this provider instance, so multiple Terraform
+     * configurations can coexist in one Chronosphere org. Falls back to the `CHRONOSPHERE_ENTITY_NAMESPACE` environment
+     * variable.
+     */
     public readonly entityNamespace!: pulumi.Output<string | undefined>;
+    /**
+     * Chronosphere organization name (the subdomain of `<org>.chronosphere.io`). Falls back to the `CHRONOSPHERE_ORG` or
+     * `CHRONOSPHERE_ORG_NAME` environment variables.
+     */
     public readonly org!: pulumi.Output<string | undefined>;
 
     /**
@@ -57,9 +70,30 @@ export class Provider extends pulumi.ProviderResource {
  * The set of arguments for constructing a Provider resource.
  */
 export interface ProviderArgs {
+    /**
+     * API token used to authenticate against the Chronosphere API. Treat as a secret. Falls back to the
+     * `CHRONOSPHERE_API_TOKEN` environment variable.
+     */
     apiToken?: pulumi.Input<string>;
+    /**
+     * Disable the dry-run validation step that runs before every apply. Falls back to the
+     * `CHRONOSPHERE_DRY_RUN_VALIDATION_DISABLED` environment variable (set to `1` to disable).
+     */
     disableDryrun?: pulumi.Input<boolean>;
+    /**
+     * Optional namespace prefix applied to entity slugs managed by this provider instance, so multiple Terraform
+     * configurations can coexist in one Chronosphere org. Falls back to the `CHRONOSPHERE_ENTITY_NAMESPACE` environment
+     * variable.
+     */
     entityNamespace?: pulumi.Input<string>;
+    /**
+     * Chronosphere organization name (the subdomain of `<org>.chronosphere.io`). Falls back to the `CHRONOSPHERE_ORG` or
+     * `CHRONOSPHERE_ORG_NAME` environment variables.
+     */
     org?: pulumi.Input<string>;
+    /**
+     * Opt into resources and behaviors backed by Chronosphere's unstable config API. Subject to breaking change without
+     * notice. Falls back to the `CHRONOSPHERE_UNSTABLE` environment variable (set to `1` to enable).
+     */
     unstable?: pulumi.Input<boolean>;
 }

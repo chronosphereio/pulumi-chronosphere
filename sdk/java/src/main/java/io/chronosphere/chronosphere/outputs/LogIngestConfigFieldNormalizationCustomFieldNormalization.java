@@ -12,13 +12,29 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class LogIngestConfigFieldNormalizationCustomFieldNormalization {
+    /**
+     * @return Rule that extracts and transforms a string value from a log field, with optional regex sanitization, default value, and value mapping.
+     * 
+     */
     private @Nullable LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalization normalization;
+    /**
+     * @return Name of the target field where the normalized value is stored.
+     * 
+     */
     private @Nullable String target;
 
     private LogIngestConfigFieldNormalizationCustomFieldNormalization() {}
+    /**
+     * @return Rule that extracts and transforms a string value from a log field, with optional regex sanitization, default value, and value mapping.
+     * 
+     */
     public Optional<LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalization> normalization() {
         return Optional.ofNullable(this.normalization);
     }
+    /**
+     * @return Name of the target field where the normalized value is stored.
+     * 
+     */
     public Optional<String> target() {
         return Optional.ofNullable(this.target);
     }

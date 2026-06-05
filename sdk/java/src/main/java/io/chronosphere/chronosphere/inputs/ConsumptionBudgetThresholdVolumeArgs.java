@@ -15,9 +15,17 @@ public final class ConsumptionBudgetThresholdVolumeArgs extends com.pulumi.resou
 
     public static final ConsumptionBudgetThresholdVolumeArgs Empty = new ConsumptionBudgetThresholdVolumeArgs();
 
+    /**
+     * Fixed volume threshold value, expressed in the threshold&#39;s `unit`.
+     * 
+     */
     @Import(name="fixedValue")
     private @Nullable Output<Integer> fixedValue;
 
+    /**
+     * @return Fixed volume threshold value, expressed in the threshold&#39;s `unit`.
+     * 
+     */
     public Optional<Output<Integer>> fixedValue() {
         return Optional.ofNullable(this.fixedValue);
     }
@@ -46,11 +54,23 @@ public final class ConsumptionBudgetThresholdVolumeArgs extends com.pulumi.resou
             $ = new ConsumptionBudgetThresholdVolumeArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param fixedValue Fixed volume threshold value, expressed in the threshold&#39;s `unit`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder fixedValue(@Nullable Output<Integer> fixedValue) {
             $.fixedValue = fixedValue;
             return this;
         }
 
+        /**
+         * @param fixedValue Fixed volume threshold value, expressed in the threshold&#39;s `unit`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder fixedValue(Integer fixedValue) {
             return fixedValue(Output.of(fixedValue));
         }

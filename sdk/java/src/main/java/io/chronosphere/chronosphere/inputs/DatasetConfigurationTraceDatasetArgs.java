@@ -13,9 +13,17 @@ public final class DatasetConfigurationTraceDatasetArgs extends com.pulumi.resou
 
     public static final DatasetConfigurationTraceDatasetArgs Empty = new DatasetConfigurationTraceDatasetArgs();
 
+    /**
+     * Log search filter that defines which logs are included in this dataset.
+     * 
+     */
     @Import(name="matchCriteria", required=true)
     private Output<DatasetConfigurationTraceDatasetMatchCriteriaArgs> matchCriteria;
 
+    /**
+     * @return Log search filter that defines which logs are included in this dataset.
+     * 
+     */
     public Output<DatasetConfigurationTraceDatasetMatchCriteriaArgs> matchCriteria() {
         return this.matchCriteria;
     }
@@ -44,11 +52,23 @@ public final class DatasetConfigurationTraceDatasetArgs extends com.pulumi.resou
             $ = new DatasetConfigurationTraceDatasetArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param matchCriteria Log search filter that defines which logs are included in this dataset.
+         * 
+         * @return builder
+         * 
+         */
         public Builder matchCriteria(Output<DatasetConfigurationTraceDatasetMatchCriteriaArgs> matchCriteria) {
             $.matchCriteria = matchCriteria;
             return this;
         }
 
+        /**
+         * @param matchCriteria Log search filter that defines which logs are included in this dataset.
+         * 
+         * @return builder
+         * 
+         */
         public Builder matchCriteria(DatasetConfigurationTraceDatasetMatchCriteriaArgs matchCriteria) {
             return matchCriteria(Output.of(matchCriteria));
         }

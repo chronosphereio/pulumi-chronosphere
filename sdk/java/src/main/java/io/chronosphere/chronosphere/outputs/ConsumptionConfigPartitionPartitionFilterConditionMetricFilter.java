@@ -9,13 +9,29 @@ import java.util.Objects;
 
 @CustomType
 public final class ConsumptionConfigPartitionPartitionFilterConditionMetricFilter {
+    /**
+     * @return Label name to match.
+     * 
+     */
     private String name;
+    /**
+     * @return Glob pattern matched against the label&#39;s value.
+     * 
+     */
     private String valueGlob;
 
     private ConsumptionConfigPartitionPartitionFilterConditionMetricFilter() {}
+    /**
+     * @return Label name to match.
+     * 
+     */
     public String name() {
         return this.name;
     }
+    /**
+     * @return Glob pattern matched against the label&#39;s value.
+     * 
+     */
     public String valueGlob() {
         return this.valueGlob;
     }

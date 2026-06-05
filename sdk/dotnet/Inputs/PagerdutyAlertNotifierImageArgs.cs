@@ -13,12 +13,21 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class PagerdutyAlertNotifierImageArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Alternate text shown when the image cannot be rendered.
+        /// </summary>
         [Input("alt")]
         public Input<string>? Alt { get; set; }
 
+        /// <summary>
+        /// Optional URL the image links to when clicked.
+        /// </summary>
         [Input("href")]
         public Input<string>? Href { get; set; }
 
+        /// <summary>
+        /// URL of the image to attach.
+        /// </summary>
         [Input("src", required: true)]
         public Input<string> Src { get; set; } = null!;
 

@@ -13,9 +13,15 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValueArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Numeric comparison operator (for example `EQUALS`, `GREATER_THAN`, `LESS_THAN_OR_EQUAL`).
+        /// </summary>
         [Input("comparison", required: true)]
         public Input<string> Comparison { get; set; } = null!;
 
+        /// <summary>
+        /// Boolean value the target field is compared against.
+        /// </summary>
         [Input("value", required: true)]
         public Input<double> Value { get; set; } = null!;
 

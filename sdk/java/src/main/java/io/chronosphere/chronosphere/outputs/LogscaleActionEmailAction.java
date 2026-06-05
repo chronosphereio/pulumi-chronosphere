@@ -13,25 +13,65 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class LogscaleActionEmailAction {
+    /**
+     * @return If `true`, attaches the query result set as a CSV file.
+     * 
+     */
     private @Nullable Boolean attachCsv;
+    /**
+     * @return Body of the email. Supports Go template syntax with values from the query result.
+     * 
+     */
     private @Nullable String bodyTemplate;
+    /**
+     * @return List of email addresses to send the message to.
+     * 
+     */
     private List<String> recipients;
+    /**
+     * @return Subject of the email. Supports Go template syntax with values from the query result.
+     * 
+     */
     private @Nullable String subjectTemplate;
+    /**
+     * @return If `true`, sends the request through the configured outbound proxy.
+     * 
+     */
     private @Nullable Boolean useProxy;
 
     private LogscaleActionEmailAction() {}
+    /**
+     * @return If `true`, attaches the query result set as a CSV file.
+     * 
+     */
     public Optional<Boolean> attachCsv() {
         return Optional.ofNullable(this.attachCsv);
     }
+    /**
+     * @return Body of the email. Supports Go template syntax with values from the query result.
+     * 
+     */
     public Optional<String> bodyTemplate() {
         return Optional.ofNullable(this.bodyTemplate);
     }
+    /**
+     * @return List of email addresses to send the message to.
+     * 
+     */
     public List<String> recipients() {
         return this.recipients;
     }
+    /**
+     * @return Subject of the email. Supports Go template syntax with values from the query result.
+     * 
+     */
     public Optional<String> subjectTemplate() {
         return Optional.ofNullable(this.subjectTemplate);
     }
+    /**
+     * @return If `true`, sends the request through the configured outbound proxy.
+     * 
+     */
     public Optional<Boolean> useProxy() {
         return Optional.ofNullable(this.useProxy);
     }

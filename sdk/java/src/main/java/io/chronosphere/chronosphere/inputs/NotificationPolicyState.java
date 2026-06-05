@@ -19,51 +19,107 @@ public final class NotificationPolicyState extends com.pulumi.resources.Resource
 
     public static final NotificationPolicyState Empty = new NotificationPolicyState();
 
+    /**
+     * Read-only internal marker tracking whether the policy is independent (named) or inline. Used to force replacement when transitioning between the two.
+     * 
+     */
     @Import(name="isIndependent")
     private @Nullable Output<Boolean> isIndependent;
 
+    /**
+     * @return Read-only internal marker tracking whether the policy is independent (named) or inline. Used to force replacement when transitioning between the two.
+     * 
+     */
     public Optional<Output<Boolean>> isIndependent() {
         return Optional.ofNullable(this.isIndependent);
     }
 
+    /**
+     * Label name to match.
+     * 
+     */
     @Import(name="name")
     private @Nullable Output<String> name;
 
+    /**
+     * @return Label name to match.
+     * 
+     */
     public Optional<Output<String>> name() {
         return Optional.ofNullable(this.name);
     }
 
+    /**
+     * Computed/optional JSON serialization of the policy. Primarily used to attach inline policy data to other resources (e.g. buckets).
+     * 
+     */
     @Import(name="notificationPolicyData")
     private @Nullable Output<String> notificationPolicyData;
 
+    /**
+     * @return Computed/optional JSON serialization of the policy. Primarily used to attach inline policy data to other resources (e.g. buckets).
+     * 
+     */
     public Optional<Output<String>> notificationPolicyData() {
         return Optional.ofNullable(this.notificationPolicyData);
     }
 
+    /**
+     * Ordered overrides that route alerts matching specific label matchers to different destinations. The first matching override is applied; non-matching alerts fall through to the default `route`.
+     * 
+     */
     @Import(name="overrides")
     private @Nullable Output<List<NotificationPolicyOverrideArgs>> overrides;
 
+    /**
+     * @return Ordered overrides that route alerts matching specific label matchers to different destinations. The first matching override is applied; non-matching alerts fall through to the default `route`.
+     * 
+     */
     public Optional<Output<List<NotificationPolicyOverrideArgs>>> overrides() {
         return Optional.ofNullable(this.overrides);
     }
 
+    /**
+     * Per-severity routing rules. Each entry maps a severity (e.g. `warn`, `critical`) to a set of notifiers, destinations, grouping, and repeat behavior.
+     * 
+     */
     @Import(name="routes")
     private @Nullable Output<List<NotificationPolicyRouteArgs>> routes;
 
+    /**
+     * @return Per-severity routing rules. Each entry maps a severity (e.g. `warn`, `critical`) to a set of notifiers, destinations, grouping, and repeat behavior.
+     * 
+     */
     public Optional<Output<List<NotificationPolicyRouteArgs>>> routes() {
         return Optional.ofNullable(this.routes);
     }
 
+    /**
+     * Stable identifier for the notification policy. Can only be set when `name` is set. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     @Import(name="slug")
     private @Nullable Output<String> slug;
 
+    /**
+     * @return Stable identifier for the notification policy. Can only be set when `name` is set. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     public Optional<Output<String>> slug() {
         return Optional.ofNullable(this.slug);
     }
 
+    /**
+     * ID of the team that owns this notification policy. Required when `name` is set (anonymous policies cannot be owned).
+     * 
+     */
     @Import(name="teamId")
     private @Nullable Output<String> teamId;
 
+    /**
+     * @return ID of the team that owns this notification policy. Required when `name` is set (anonymous policies cannot be owned).
+     * 
+     */
     public Optional<Output<String>> teamId() {
         return Optional.ofNullable(this.teamId);
     }
@@ -98,73 +154,169 @@ public final class NotificationPolicyState extends com.pulumi.resources.Resource
             $ = new NotificationPolicyState(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param isIndependent Read-only internal marker tracking whether the policy is independent (named) or inline. Used to force replacement when transitioning between the two.
+         * 
+         * @return builder
+         * 
+         */
         public Builder isIndependent(@Nullable Output<Boolean> isIndependent) {
             $.isIndependent = isIndependent;
             return this;
         }
 
+        /**
+         * @param isIndependent Read-only internal marker tracking whether the policy is independent (named) or inline. Used to force replacement when transitioning between the two.
+         * 
+         * @return builder
+         * 
+         */
         public Builder isIndependent(Boolean isIndependent) {
             return isIndependent(Output.of(isIndependent));
         }
 
+        /**
+         * @param name Label name to match.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(@Nullable Output<String> name) {
             $.name = name;
             return this;
         }
 
+        /**
+         * @param name Label name to match.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(String name) {
             return name(Output.of(name));
         }
 
+        /**
+         * @param notificationPolicyData Computed/optional JSON serialization of the policy. Primarily used to attach inline policy data to other resources (e.g. buckets).
+         * 
+         * @return builder
+         * 
+         */
         public Builder notificationPolicyData(@Nullable Output<String> notificationPolicyData) {
             $.notificationPolicyData = notificationPolicyData;
             return this;
         }
 
+        /**
+         * @param notificationPolicyData Computed/optional JSON serialization of the policy. Primarily used to attach inline policy data to other resources (e.g. buckets).
+         * 
+         * @return builder
+         * 
+         */
         public Builder notificationPolicyData(String notificationPolicyData) {
             return notificationPolicyData(Output.of(notificationPolicyData));
         }
 
+        /**
+         * @param overrides Ordered overrides that route alerts matching specific label matchers to different destinations. The first matching override is applied; non-matching alerts fall through to the default `route`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder overrides(@Nullable Output<List<NotificationPolicyOverrideArgs>> overrides) {
             $.overrides = overrides;
             return this;
         }
 
+        /**
+         * @param overrides Ordered overrides that route alerts matching specific label matchers to different destinations. The first matching override is applied; non-matching alerts fall through to the default `route`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder overrides(List<NotificationPolicyOverrideArgs> overrides) {
             return overrides(Output.of(overrides));
         }
 
+        /**
+         * @param overrides Ordered overrides that route alerts matching specific label matchers to different destinations. The first matching override is applied; non-matching alerts fall through to the default `route`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder overrides(NotificationPolicyOverrideArgs... overrides) {
             return overrides(List.of(overrides));
         }
 
+        /**
+         * @param routes Per-severity routing rules. Each entry maps a severity (e.g. `warn`, `critical`) to a set of notifiers, destinations, grouping, and repeat behavior.
+         * 
+         * @return builder
+         * 
+         */
         public Builder routes(@Nullable Output<List<NotificationPolicyRouteArgs>> routes) {
             $.routes = routes;
             return this;
         }
 
+        /**
+         * @param routes Per-severity routing rules. Each entry maps a severity (e.g. `warn`, `critical`) to a set of notifiers, destinations, grouping, and repeat behavior.
+         * 
+         * @return builder
+         * 
+         */
         public Builder routes(List<NotificationPolicyRouteArgs> routes) {
             return routes(Output.of(routes));
         }
 
+        /**
+         * @param routes Per-severity routing rules. Each entry maps a severity (e.g. `warn`, `critical`) to a set of notifiers, destinations, grouping, and repeat behavior.
+         * 
+         * @return builder
+         * 
+         */
         public Builder routes(NotificationPolicyRouteArgs... routes) {
             return routes(List.of(routes));
         }
 
+        /**
+         * @param slug Stable identifier for the notification policy. Can only be set when `name` is set. Generated from `name` if omitted. Immutable after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slug(@Nullable Output<String> slug) {
             $.slug = slug;
             return this;
         }
 
+        /**
+         * @param slug Stable identifier for the notification policy. Can only be set when `name` is set. Generated from `name` if omitted. Immutable after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slug(String slug) {
             return slug(Output.of(slug));
         }
 
+        /**
+         * @param teamId ID of the team that owns this notification policy. Required when `name` is set (anonymous policies cannot be owned).
+         * 
+         * @return builder
+         * 
+         */
         public Builder teamId(@Nullable Output<String> teamId) {
             $.teamId = teamId;
             return this;
         }
 
+        /**
+         * @param teamId ID of the team that owns this notification policy. Required when `name` is set (anonymous policies cannot be owned).
+         * 
+         * @return builder
+         * 
+         */
         public Builder teamId(String teamId) {
             return teamId(Output.of(teamId));
         }

@@ -14,7 +14,13 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class NotificationPolicyOverrideRouteDestinationWebhookQueryParameter
     {
+        /// <summary>
+        /// Query parameter name.
+        /// </summary>
         public readonly string Key;
+        /// <summary>
+        /// Label value (or regex pattern, for regex matchers) to match against.
+        /// </summary>
         public readonly string Value;
 
         [OutputConstructor]

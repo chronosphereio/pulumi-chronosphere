@@ -14,16 +14,32 @@ public final class SLOSliCustomTimesliceIndicatorConditionArgs extends com.pulum
 
     public static final SLOSliCustomTimesliceIndicatorConditionArgs Empty = new SLOSliCustomTimesliceIndicatorConditionArgs();
 
+    /**
+     * Comparison operator between the query value and `value` (e.g. `gt`, `lt`, `eq`).
+     * 
+     */
     @Import(name="op", required=true)
     private Output<String> op;
 
+    /**
+     * @return Comparison operator between the query value and `value` (e.g. `gt`, `lt`, `eq`).
+     * 
+     */
     public Output<String> op() {
         return this.op;
     }
 
+    /**
+     * Label value to match against using the chosen matcher `type`.
+     * 
+     */
     @Import(name="value", required=true)
     private Output<Double> value;
 
+    /**
+     * @return Label value to match against using the chosen matcher `type`.
+     * 
+     */
     public Output<Double> value() {
         return this.value;
     }
@@ -53,20 +69,44 @@ public final class SLOSliCustomTimesliceIndicatorConditionArgs extends com.pulum
             $ = new SLOSliCustomTimesliceIndicatorConditionArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param op Comparison operator between the query value and `value` (e.g. `gt`, `lt`, `eq`).
+         * 
+         * @return builder
+         * 
+         */
         public Builder op(Output<String> op) {
             $.op = op;
             return this;
         }
 
+        /**
+         * @param op Comparison operator between the query value and `value` (e.g. `gt`, `lt`, `eq`).
+         * 
+         * @return builder
+         * 
+         */
         public Builder op(String op) {
             return op(Output.of(op));
         }
 
+        /**
+         * @param value Label value to match against using the chosen matcher `type`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder value(Output<Double> value) {
             $.value = value;
             return this;
         }
 
+        /**
+         * @param value Label value to match against using the chosen matcher `type`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder value(Double value) {
             return value(Output.of(value));
         }

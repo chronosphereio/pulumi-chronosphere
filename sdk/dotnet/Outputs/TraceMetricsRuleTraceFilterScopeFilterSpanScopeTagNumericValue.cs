@@ -14,7 +14,13 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class TraceMetricsRuleTraceFilterScopeFilterSpanScopeTagNumericValue
     {
+        /// <summary>
+        /// Numeric comparison operator (for example `EQUALS`, `GREATER_THAN`, `LESS_THAN_OR_EQUAL`).
+        /// </summary>
         public readonly string Comparison;
+        /// <summary>
+        /// Boolean value the target field is compared against.
+        /// </summary>
         public readonly double Value;
 
         [OutputConstructor]

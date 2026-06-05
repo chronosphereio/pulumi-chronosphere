@@ -10,33 +10,84 @@ using Pulumi;
 
 namespace Chronosphere.Pulumi
 {
+    /// <summary>
+    /// Webhook notifier that POSTs monitor signal payloads to an arbitrary HTTP endpoint. Referenced from notification policies.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Pulumi = Chronosphere.Pulumi;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var webhook = new Pulumi.WebhookAlertNotifier("webhook", new()
+    ///     {
+    ///         BearerToken = "bearer-token",
+    ///         Name = "Webhook",
+    ///         SendResolved = false,
+    ///         Url = "http://example.com/url",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// </summary>
     [PulumiResourceType("chronosphere:index/webhookAlertNotifier:WebhookAlertNotifier")]
     public partial class WebhookAlertNotifier : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Password for HTTP basic auth when calling the webhook. Treat as a secret.
+        /// </summary>
         [Output("basicAuthPassword")]
         public Output<string?> BasicAuthPassword { get; private set; } = null!;
 
+        /// <summary>
+        /// Username for HTTP basic auth when calling the webhook. Mutually exclusive with `bearer_token`.
+        /// </summary>
         [Output("basicAuthUsername")]
         public Output<string?> BasicAuthUsername { get; private set; } = null!;
 
+        /// <summary>
+        /// Bearer token sent in the `Authorization` header when calling the webhook. Treat as a secret. Mutually exclusive with basic auth.
+        /// </summary>
         [Output("bearerToken")]
         public Output<string?> BearerToken { get; private set; } = null!;
 
+        /// <summary>
+        /// Display name of the notifier.
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// Deprecated and ignored. Custom proxy URLs are not supported.
+        /// </summary>
         [Output("proxyUrl")]
         public Output<string?> ProxyUrl { get; private set; } = null!;
 
+        /// <summary>
+        /// Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+        /// </summary>
         [Output("sendResolved")]
         public Output<bool?> SendResolved { get; private set; } = null!;
 
+        /// <summary>
+        /// Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Output("slug")]
         public Output<string> Slug { get; private set; } = null!;
 
+        /// <summary>
+        /// If true, skip TLS certificate verification when calling the webhook. Disable only in trusted environments.
+        /// </summary>
         [Output("tlsInsecureSkipVerify")]
         public Output<bool?> TlsInsecureSkipVerify { get; private set; } = null!;
 
+        /// <summary>
+        /// Webhook URL that receives the alert payload via HTTP POST.
+        /// </summary>
         [Output("url")]
         public Output<string> Url { get; private set; } = null!;
 
@@ -93,6 +144,10 @@ namespace Chronosphere.Pulumi
     {
         [Input("basicAuthPassword")]
         private Input<string>? _basicAuthPassword;
+
+        /// <summary>
+        /// Password for HTTP basic auth when calling the webhook. Treat as a secret.
+        /// </summary>
         public Input<string>? BasicAuthPassword
         {
             get => _basicAuthPassword;
@@ -103,27 +158,51 @@ namespace Chronosphere.Pulumi
             }
         }
 
+        /// <summary>
+        /// Username for HTTP basic auth when calling the webhook. Mutually exclusive with `bearer_token`.
+        /// </summary>
         [Input("basicAuthUsername")]
         public Input<string>? BasicAuthUsername { get; set; }
 
+        /// <summary>
+        /// Bearer token sent in the `Authorization` header when calling the webhook. Treat as a secret. Mutually exclusive with basic auth.
+        /// </summary>
         [Input("bearerToken")]
         public Input<string>? BearerToken { get; set; }
 
+        /// <summary>
+        /// Display name of the notifier.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// Deprecated and ignored. Custom proxy URLs are not supported.
+        /// </summary>
         [Input("proxyUrl")]
         public Input<string>? ProxyUrl { get; set; }
 
+        /// <summary>
+        /// Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+        /// </summary>
         [Input("sendResolved")]
         public Input<bool>? SendResolved { get; set; }
 
+        /// <summary>
+        /// Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 
+        /// <summary>
+        /// If true, skip TLS certificate verification when calling the webhook. Disable only in trusted environments.
+        /// </summary>
         [Input("tlsInsecureSkipVerify")]
         public Input<bool>? TlsInsecureSkipVerify { get; set; }
 
+        /// <summary>
+        /// Webhook URL that receives the alert payload via HTTP POST.
+        /// </summary>
         [Input("url", required: true)]
         public Input<string> Url { get; set; } = null!;
 
@@ -137,6 +216,10 @@ namespace Chronosphere.Pulumi
     {
         [Input("basicAuthPassword")]
         private Input<string>? _basicAuthPassword;
+
+        /// <summary>
+        /// Password for HTTP basic auth when calling the webhook. Treat as a secret.
+        /// </summary>
         public Input<string>? BasicAuthPassword
         {
             get => _basicAuthPassword;
@@ -147,27 +230,51 @@ namespace Chronosphere.Pulumi
             }
         }
 
+        /// <summary>
+        /// Username for HTTP basic auth when calling the webhook. Mutually exclusive with `bearer_token`.
+        /// </summary>
         [Input("basicAuthUsername")]
         public Input<string>? BasicAuthUsername { get; set; }
 
+        /// <summary>
+        /// Bearer token sent in the `Authorization` header when calling the webhook. Treat as a secret. Mutually exclusive with basic auth.
+        /// </summary>
         [Input("bearerToken")]
         public Input<string>? BearerToken { get; set; }
 
+        /// <summary>
+        /// Display name of the notifier.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// Deprecated and ignored. Custom proxy URLs are not supported.
+        /// </summary>
         [Input("proxyUrl")]
         public Input<string>? ProxyUrl { get; set; }
 
+        /// <summary>
+        /// Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+        /// </summary>
         [Input("sendResolved")]
         public Input<bool>? SendResolved { get; set; }
 
+        /// <summary>
+        /// Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 
+        /// <summary>
+        /// If true, skip TLS certificate verification when calling the webhook. Disable only in trusted environments.
+        /// </summary>
         [Input("tlsInsecureSkipVerify")]
         public Input<bool>? TlsInsecureSkipVerify { get; set; }
 
+        /// <summary>
+        /// Webhook URL that receives the alert payload via HTTP POST.
+        /// </summary>
         [Input("url")]
         public Input<string>? Url { get; set; }
 

@@ -14,6 +14,9 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpan
     {
+        /// <summary>
+        /// Boolean value the target field is compared against.
+        /// </summary>
         public readonly bool Value;
 
         [OutputConstructor]

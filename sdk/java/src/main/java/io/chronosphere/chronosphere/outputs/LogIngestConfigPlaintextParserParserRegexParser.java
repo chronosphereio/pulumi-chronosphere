@@ -9,9 +9,17 @@ import java.util.Objects;
 
 @CustomType
 public final class LogIngestConfigPlaintextParserParserRegexParser {
+    /**
+     * @return RE2 regular expression pattern. Named capturing groups become named fields in the extracted log.
+     * 
+     */
     private String regex;
 
     private LogIngestConfigPlaintextParserParserRegexParser() {}
+    /**
+     * @return RE2 regular expression pattern. Named capturing groups become named fields in the extracted log.
+     * 
+     */
     public String regex() {
         return this.regex;
     }

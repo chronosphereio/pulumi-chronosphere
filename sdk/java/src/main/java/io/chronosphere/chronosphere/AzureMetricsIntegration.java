@@ -17,47 +17,160 @@ import java.lang.String;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
+/**
+ * Scrapes Azure Monitor metrics from the configured subscriptions, locations, and resource types using a service-principal credential.
+ * 
+ * ## Example Usage
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.chronosphere.AzureMetricsIntegration;
+ * import com.pulumi.chronosphere.AzureMetricsIntegrationArgs;
+ * import com.pulumi.chronosphere.inputs.AzureMetricsIntegrationPrincipalArgs;
+ * import com.pulumi.chronosphere.inputs.AzureMetricsIntegrationScrapeConfigArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var subscription = new AzureMetricsIntegration(&#34;subscription&#34;, AzureMetricsIntegrationArgs.builder()        
+ *             .countMetricsEnabled(true)
+ *             .name(&#34;Azure Metrics&#34;)
+ *             .principal(AzureMetricsIntegrationPrincipalArgs.builder()
+ *                 .clientId(&#34;00000000-0000-0000-0000-000000000000&#34;)
+ *                 .tenantId(&#34;00000000-0000-0000-0000-000000000000&#34;)
+ *                 .build())
+ *             .propagateTags(true)
+ *             .scrapeConfig(AzureMetricsIntegrationScrapeConfigArgs.builder()
+ *                 .locations(                
+ *                     &#34;eastus&#34;,
+ *                     &#34;westus&#34;)
+ *                 .resourceTypes(                
+ *                     AzureMetricsIntegrationScrapeConfigResourceTypeArgs.builder()
+ *                         .name(&#34;Microsoft.Compute/virtualMachines&#34;)
+ *                         .build(),
+ *                     AzureMetricsIntegrationScrapeConfigResourceTypeArgs.builder()
+ *                         .metricNames(&#34;UsedCapacity&#34;)
+ *                         .name(&#34;Microsoft.Storage/storageAccounts&#34;)
+ *                         .build())
+ *                 .subscriptionIds(&#34;00000000-0000-0000-0000-000000000000&#34;)
+ *                 .build())
+ *             .slug(&#34;azure-metrics&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ */
 @ResourceType(type="chronosphere:index/azureMetricsIntegration:AzureMetricsIntegration")
 public class AzureMetricsIntegration extends com.pulumi.resources.CustomResource {
+    /**
+     * If true, enables Azure count metrics for the configured resources.
+     * 
+     */
     @Export(name="countMetricsEnabled", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> countMetricsEnabled;
 
+    /**
+     * @return If true, enables Azure count metrics for the configured resources.
+     * 
+     */
     public Output<Optional<Boolean>> countMetricsEnabled() {
         return Codegen.optional(this.countMetricsEnabled);
     }
+    /**
+     * Azure resource type identifier (e.g. `Microsoft.Compute/virtualMachines`).
+     * 
+     */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
+    /**
+     * @return Azure resource type identifier (e.g. `Microsoft.Compute/virtualMachines`).
+     * 
+     */
     public Output<String> name() {
         return this.name;
     }
+    /**
+     * Azure managed identity principal used to authenticate with Azure Monitor.
+     * 
+     */
     @Export(name="principal", refs={AzureMetricsIntegrationPrincipal.class}, tree="[0]")
     private Output</* @Nullable */ AzureMetricsIntegrationPrincipal> principal;
 
+    /**
+     * @return Azure managed identity principal used to authenticate with Azure Monitor.
+     * 
+     */
     public Output<Optional<AzureMetricsIntegrationPrincipal>> principal() {
         return Codegen.optional(this.principal);
     }
+    /**
+     * If true, propagates Azure resource, group, and subscription tags as metric labels.
+     * 
+     */
     @Export(name="propagateTags", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> propagateTags;
 
+    /**
+     * @return If true, propagates Azure resource, group, and subscription tags as metric labels.
+     * 
+     */
     public Output<Optional<Boolean>> propagateTags() {
         return Codegen.optional(this.propagateTags);
     }
+    /**
+     * Scope of Azure subscriptions, locations, and resource types from which to ingest metrics.
+     * 
+     */
     @Export(name="scrapeConfig", refs={AzureMetricsIntegrationScrapeConfig.class}, tree="[0]")
     private Output</* @Nullable */ AzureMetricsIntegrationScrapeConfig> scrapeConfig;
 
+    /**
+     * @return Scope of Azure subscriptions, locations, and resource types from which to ingest metrics.
+     * 
+     */
     public Output<Optional<AzureMetricsIntegrationScrapeConfig>> scrapeConfig() {
         return Codegen.optional(this.scrapeConfig);
     }
+    /**
+     * Stable identifier for the integration. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     @Export(name="slug", refs={String.class}, tree="[0]")
     private Output<String> slug;
 
+    /**
+     * @return Stable identifier for the integration. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     public Output<String> slug() {
         return this.slug;
     }
+    /**
+     * If true, enables collection of Azure usage metrics under this principal (Microsoft.Compute, Microsoft.Network, Microsoft.Storage).
+     * 
+     */
     @Export(name="usageMetricsEnabled", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> usageMetricsEnabled;
 
+    /**
+     * @return If true, enables collection of Azure usage metrics under this principal (Microsoft.Compute, Microsoft.Network, Microsoft.Storage).
+     * 
+     */
     public Output<Optional<Boolean>> usageMetricsEnabled() {
         return Codegen.optional(this.usageMetricsEnabled);
     }

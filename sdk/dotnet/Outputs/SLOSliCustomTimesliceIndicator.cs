@@ -14,8 +14,17 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class SLOSliCustomTimesliceIndicator
     {
+        /// <summary>
+        /// Condition used to classify each time slice as good or bad based on the query result.
+        /// </summary>
         public readonly Outputs.SLOSliCustomTimesliceIndicatorCondition Condition;
+        /// <summary>
+        /// PromQL query template evaluated against each time slice.
+        /// </summary>
         public readonly string QueryTemplate;
+        /// <summary>
+        /// Size of each time slice evaluated by the query (e.g. `1m`, `5m`).
+        /// </summary>
         public readonly string TimesliceSize;
 
         [OutputConstructor]

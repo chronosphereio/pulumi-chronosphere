@@ -13,29 +13,77 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class MonitorSeriesConditionsOverrideCondition {
+    /**
+     * @return Comparison operator between the query value and `value` (e.g. `gt`, `lt`, `eq`).
+     * 
+     */
     private String op;
+    /**
+     * @return Duration the condition must remain false continuously before an active signal resolves.
+     * 
+     */
     private @Nullable String resolveSustain;
+    /**
+     * @return Optional separate threshold used for resolution, enabling hysteresis (e.g. fire at &gt;90, resolve at \n\n).
+     * 
+     */
     private @Nullable MonitorSeriesConditionsOverrideConditionResolveValue resolveValue;
+    /**
+     * @return Severity assigned when this condition matches (e.g. `warn`, `critical`). Case-sensitive.
+     * 
+     */
     private String severity;
+    /**
+     * @return Duration the condition must hold continuously before a signal fires.
+     * 
+     */
     private @Nullable String sustain;
+    /**
+     * @return Resolution threshold value.
+     * 
+     */
     private @Nullable Double value;
 
     private MonitorSeriesConditionsOverrideCondition() {}
+    /**
+     * @return Comparison operator between the query value and `value` (e.g. `gt`, `lt`, `eq`).
+     * 
+     */
     public String op() {
         return this.op;
     }
+    /**
+     * @return Duration the condition must remain false continuously before an active signal resolves.
+     * 
+     */
     public Optional<String> resolveSustain() {
         return Optional.ofNullable(this.resolveSustain);
     }
+    /**
+     * @return Optional separate threshold used for resolution, enabling hysteresis (e.g. fire at &gt;90, resolve at \n\n).
+     * 
+     */
     public Optional<MonitorSeriesConditionsOverrideConditionResolveValue> resolveValue() {
         return Optional.ofNullable(this.resolveValue);
     }
+    /**
+     * @return Severity assigned when this condition matches (e.g. `warn`, `critical`). Case-sensitive.
+     * 
+     */
     public String severity() {
         return this.severity;
     }
+    /**
+     * @return Duration the condition must hold continuously before a signal fires.
+     * 
+     */
     public Optional<String> sustain() {
         return Optional.ofNullable(this.sustain);
     }
+    /**
+     * @return Resolution threshold value.
+     * 
+     */
     public Optional<Double> value() {
         return Optional.ofNullable(this.value);
     }

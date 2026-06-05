@@ -13,15 +13,27 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class OpsgenieAlertNotifierResponderGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Opsgenie identifier of the responder. Use instead of `name` or `username`.
+        /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
 
+        /// <summary>
+        /// Name of the responder team, schedule, or escalation policy.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// Responder type. One of `team`, `user`, `escalation`, or `schedule`.
+        /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
 
+        /// <summary>
+        /// Username of a user responder.
+        /// </summary>
         [Input("username")]
         public Input<string>? Username { get; set; }
 

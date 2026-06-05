@@ -14,17 +14,41 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class DatasetConfigurationTraceDatasetMatchCriteria {
+    /**
+     * @return Scope filter that further restricts which spans within a matched trace contribute to metrics or sampling. Only spans matching `span_scopes` are included in aggregation.
+     * 
+     */
     private @Nullable DatasetConfigurationTraceDatasetMatchCriteriaScopeFilter scopeFilter;
+    /**
+     * @return Span-level conditions. Each block defines a set of conditions that must all be satisfied by a single span in the trace for the trace to match.
+     * 
+     */
     private @Nullable List<DatasetConfigurationTraceDatasetMatchCriteriaSpan> spans;
+    /**
+     * @return Trace-level conditions evaluated against the whole trace (aggregated duration and error status).
+     * 
+     */
     private @Nullable DatasetConfigurationTraceDatasetMatchCriteriaTrace trace;
 
     private DatasetConfigurationTraceDatasetMatchCriteria() {}
+    /**
+     * @return Scope filter that further restricts which spans within a matched trace contribute to metrics or sampling. Only spans matching `span_scopes` are included in aggregation.
+     * 
+     */
     public Optional<DatasetConfigurationTraceDatasetMatchCriteriaScopeFilter> scopeFilter() {
         return Optional.ofNullable(this.scopeFilter);
     }
+    /**
+     * @return Span-level conditions. Each block defines a set of conditions that must all be satisfied by a single span in the trace for the trace to match.
+     * 
+     */
     public List<DatasetConfigurationTraceDatasetMatchCriteriaSpan> spans() {
         return this.spans == null ? List.of() : this.spans;
     }
+    /**
+     * @return Trace-level conditions evaluated against the whole trace (aggregated duration and error status).
+     * 
+     */
     public Optional<DatasetConfigurationTraceDatasetMatchCriteriaTrace> trace() {
         return Optional.ofNullable(this.trace);
     }

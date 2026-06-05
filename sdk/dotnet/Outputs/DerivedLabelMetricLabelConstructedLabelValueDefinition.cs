@@ -14,7 +14,13 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class DerivedLabelMetricLabelConstructedLabelValueDefinition
     {
+        /// <summary>
+        /// Label filters that must all match for this value definition to apply.
+        /// </summary>
         public readonly ImmutableArray<Outputs.DerivedLabelMetricLabelConstructedLabelValueDefinitionFilter> Filters;
+        /// <summary>
+        /// Value assigned to the derived label when this definition's filters match.
+        /// </summary>
         public readonly string Value;
 
         [OutputConstructor]

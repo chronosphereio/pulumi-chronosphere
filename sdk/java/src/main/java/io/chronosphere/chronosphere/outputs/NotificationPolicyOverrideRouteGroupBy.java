@@ -11,9 +11,17 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class NotificationPolicyOverrideRouteGroupBy {
+    /**
+     * @return Label names to group alerts by. Alerts with identical values for these labels are bundled into a single notification.
+     * 
+     */
     private @Nullable List<String> labelNames;
 
     private NotificationPolicyOverrideRouteGroupBy() {}
+    /**
+     * @return Label names to group alerts by. Alerts with identical values for these labels are bundled into a single notification.
+     * 
+     */
     public List<String> labelNames() {
         return this.labelNames == null ? List.of() : this.labelNames;
     }

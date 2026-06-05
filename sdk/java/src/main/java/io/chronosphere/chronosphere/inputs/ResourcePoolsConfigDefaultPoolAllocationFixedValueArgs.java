@@ -14,16 +14,32 @@ public final class ResourcePoolsConfigDefaultPoolAllocationFixedValueArgs extend
 
     public static final ResourcePoolsConfigDefaultPoolAllocationFixedValueArgs Empty = new ResourcePoolsConfigDefaultPoolAllocationFixedValueArgs();
 
+    /**
+     * License this fixed-value allocation applies to (e.g. `PERSISTED_WRITES`).
+     * 
+     */
     @Import(name="license", required=true)
     private Output<String> license;
 
+    /**
+     * @return License this fixed-value allocation applies to (e.g. `PERSISTED_WRITES`).
+     * 
+     */
     public Output<String> license() {
         return this.license;
     }
 
+    /**
+     * Fixed amount of the license to allocate, in the license&#39;s native unit.
+     * 
+     */
     @Import(name="value", required=true)
     private Output<Integer> value;
 
+    /**
+     * @return Fixed amount of the license to allocate, in the license&#39;s native unit.
+     * 
+     */
     public Output<Integer> value() {
         return this.value;
     }
@@ -53,20 +69,44 @@ public final class ResourcePoolsConfigDefaultPoolAllocationFixedValueArgs extend
             $ = new ResourcePoolsConfigDefaultPoolAllocationFixedValueArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param license License this fixed-value allocation applies to (e.g. `PERSISTED_WRITES`).
+         * 
+         * @return builder
+         * 
+         */
         public Builder license(Output<String> license) {
             $.license = license;
             return this;
         }
 
+        /**
+         * @param license License this fixed-value allocation applies to (e.g. `PERSISTED_WRITES`).
+         * 
+         * @return builder
+         * 
+         */
         public Builder license(String license) {
             return license(Output.of(license));
         }
 
+        /**
+         * @param value Fixed amount of the license to allocate, in the license&#39;s native unit.
+         * 
+         * @return builder
+         * 
+         */
         public Builder value(Output<Integer> value) {
             $.value = value;
             return this;
         }
 
+        /**
+         * @param value Fixed amount of the license to allocate, in the license&#39;s native unit.
+         * 
+         * @return builder
+         * 
+         */
         public Builder value(Integer value) {
             return value(Output.of(value));
         }

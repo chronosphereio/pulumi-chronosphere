@@ -9,17 +9,41 @@ import java.util.Objects;
 
 @CustomType
 public final class NotificationPolicyOverrideAlertLabelMatcher {
+    /**
+     * @return Label name to match.
+     * 
+     */
     private String name;
+    /**
+     * @return Match operator: one of `=`, `!=`, `=~` (regex), `!~` (regex negation).
+     * 
+     */
     private String type;
+    /**
+     * @return Label value (or regex pattern, for regex matchers) to match against.
+     * 
+     */
     private String value;
 
     private NotificationPolicyOverrideAlertLabelMatcher() {}
+    /**
+     * @return Label name to match.
+     * 
+     */
     public String name() {
         return this.name;
     }
+    /**
+     * @return Match operator: one of `=`, `!=`, `=~` (regex), `!~` (regex negation).
+     * 
+     */
     public String type() {
         return this.type;
     }
+    /**
+     * @return Label value (or regex pattern, for regex matchers) to match against.
+     * 
+     */
     public String value() {
         return this.value;
     }

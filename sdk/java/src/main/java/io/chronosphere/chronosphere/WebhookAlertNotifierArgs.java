@@ -16,35 +16,69 @@ public final class WebhookAlertNotifierArgs extends com.pulumi.resources.Resourc
 
     public static final WebhookAlertNotifierArgs Empty = new WebhookAlertNotifierArgs();
 
+    /**
+     * Password for HTTP basic auth when calling the webhook. Treat as a secret.
+     * 
+     */
     @Import(name="basicAuthPassword")
     private @Nullable Output<String> basicAuthPassword;
 
+    /**
+     * @return Password for HTTP basic auth when calling the webhook. Treat as a secret.
+     * 
+     */
     public Optional<Output<String>> basicAuthPassword() {
         return Optional.ofNullable(this.basicAuthPassword);
     }
 
+    /**
+     * Username for HTTP basic auth when calling the webhook. Mutually exclusive with `bearer_token`.
+     * 
+     */
     @Import(name="basicAuthUsername")
     private @Nullable Output<String> basicAuthUsername;
 
+    /**
+     * @return Username for HTTP basic auth when calling the webhook. Mutually exclusive with `bearer_token`.
+     * 
+     */
     public Optional<Output<String>> basicAuthUsername() {
         return Optional.ofNullable(this.basicAuthUsername);
     }
 
+    /**
+     * Bearer token sent in the `Authorization` header when calling the webhook. Treat as a secret. Mutually exclusive with basic auth.
+     * 
+     */
     @Import(name="bearerToken")
     private @Nullable Output<String> bearerToken;
 
+    /**
+     * @return Bearer token sent in the `Authorization` header when calling the webhook. Treat as a secret. Mutually exclusive with basic auth.
+     * 
+     */
     public Optional<Output<String>> bearerToken() {
         return Optional.ofNullable(this.bearerToken);
     }
 
+    /**
+     * Display name of the notifier.
+     * 
+     */
     @Import(name="name", required=true)
     private Output<String> name;
 
+    /**
+     * @return Display name of the notifier.
+     * 
+     */
     public Output<String> name() {
         return this.name;
     }
 
     /**
+     * Deprecated and ignored. Custom proxy URLs are not supported.
+     * 
      * @deprecated
      * custom proxy URLs are not supported
      * 
@@ -54,6 +88,8 @@ public final class WebhookAlertNotifierArgs extends com.pulumi.resources.Resourc
     private @Nullable Output<String> proxyUrl;
 
     /**
+     * @return Deprecated and ignored. Custom proxy URLs are not supported.
+     * 
      * @deprecated
      * custom proxy URLs are not supported
      * 
@@ -63,30 +99,62 @@ public final class WebhookAlertNotifierArgs extends com.pulumi.resources.Resourc
         return Optional.ofNullable(this.proxyUrl);
     }
 
+    /**
+     * Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+     * 
+     */
     @Import(name="sendResolved")
     private @Nullable Output<Boolean> sendResolved;
 
+    /**
+     * @return Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+     * 
+     */
     public Optional<Output<Boolean>> sendResolved() {
         return Optional.ofNullable(this.sendResolved);
     }
 
+    /**
+     * Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     @Import(name="slug")
     private @Nullable Output<String> slug;
 
+    /**
+     * @return Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     public Optional<Output<String>> slug() {
         return Optional.ofNullable(this.slug);
     }
 
+    /**
+     * If true, skip TLS certificate verification when calling the webhook. Disable only in trusted environments.
+     * 
+     */
     @Import(name="tlsInsecureSkipVerify")
     private @Nullable Output<Boolean> tlsInsecureSkipVerify;
 
+    /**
+     * @return If true, skip TLS certificate verification when calling the webhook. Disable only in trusted environments.
+     * 
+     */
     public Optional<Output<Boolean>> tlsInsecureSkipVerify() {
         return Optional.ofNullable(this.tlsInsecureSkipVerify);
     }
 
+    /**
+     * Webhook URL that receives the alert payload via HTTP POST.
+     * 
+     */
     @Import(name="url", required=true)
     private Output<String> url;
 
+    /**
+     * @return Webhook URL that receives the alert payload via HTTP POST.
+     * 
+     */
     public Output<String> url() {
         return this.url;
     }
@@ -123,43 +191,93 @@ public final class WebhookAlertNotifierArgs extends com.pulumi.resources.Resourc
             $ = new WebhookAlertNotifierArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param basicAuthPassword Password for HTTP basic auth when calling the webhook. Treat as a secret.
+         * 
+         * @return builder
+         * 
+         */
         public Builder basicAuthPassword(@Nullable Output<String> basicAuthPassword) {
             $.basicAuthPassword = basicAuthPassword;
             return this;
         }
 
+        /**
+         * @param basicAuthPassword Password for HTTP basic auth when calling the webhook. Treat as a secret.
+         * 
+         * @return builder
+         * 
+         */
         public Builder basicAuthPassword(String basicAuthPassword) {
             return basicAuthPassword(Output.of(basicAuthPassword));
         }
 
+        /**
+         * @param basicAuthUsername Username for HTTP basic auth when calling the webhook. Mutually exclusive with `bearer_token`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder basicAuthUsername(@Nullable Output<String> basicAuthUsername) {
             $.basicAuthUsername = basicAuthUsername;
             return this;
         }
 
+        /**
+         * @param basicAuthUsername Username for HTTP basic auth when calling the webhook. Mutually exclusive with `bearer_token`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder basicAuthUsername(String basicAuthUsername) {
             return basicAuthUsername(Output.of(basicAuthUsername));
         }
 
+        /**
+         * @param bearerToken Bearer token sent in the `Authorization` header when calling the webhook. Treat as a secret. Mutually exclusive with basic auth.
+         * 
+         * @return builder
+         * 
+         */
         public Builder bearerToken(@Nullable Output<String> bearerToken) {
             $.bearerToken = bearerToken;
             return this;
         }
 
+        /**
+         * @param bearerToken Bearer token sent in the `Authorization` header when calling the webhook. Treat as a secret. Mutually exclusive with basic auth.
+         * 
+         * @return builder
+         * 
+         */
         public Builder bearerToken(String bearerToken) {
             return bearerToken(Output.of(bearerToken));
         }
 
+        /**
+         * @param name Display name of the notifier.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(Output<String> name) {
             $.name = name;
             return this;
         }
 
+        /**
+         * @param name Display name of the notifier.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(String name) {
             return name(Output.of(name));
         }
 
         /**
+         * @param proxyUrl Deprecated and ignored. Custom proxy URLs are not supported.
+         * 
          * @return builder
          * 
          * @deprecated
@@ -173,6 +291,8 @@ public final class WebhookAlertNotifierArgs extends com.pulumi.resources.Resourc
         }
 
         /**
+         * @param proxyUrl Deprecated and ignored. Custom proxy URLs are not supported.
+         * 
          * @return builder
          * 
          * @deprecated
@@ -184,38 +304,86 @@ public final class WebhookAlertNotifierArgs extends com.pulumi.resources.Resourc
             return proxyUrl(Output.of(proxyUrl));
         }
 
+        /**
+         * @param sendResolved Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+         * 
+         * @return builder
+         * 
+         */
         public Builder sendResolved(@Nullable Output<Boolean> sendResolved) {
             $.sendResolved = sendResolved;
             return this;
         }
 
+        /**
+         * @param sendResolved Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+         * 
+         * @return builder
+         * 
+         */
         public Builder sendResolved(Boolean sendResolved) {
             return sendResolved(Output.of(sendResolved));
         }
 
+        /**
+         * @param slug Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slug(@Nullable Output<String> slug) {
             $.slug = slug;
             return this;
         }
 
+        /**
+         * @param slug Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slug(String slug) {
             return slug(Output.of(slug));
         }
 
+        /**
+         * @param tlsInsecureSkipVerify If true, skip TLS certificate verification when calling the webhook. Disable only in trusted environments.
+         * 
+         * @return builder
+         * 
+         */
         public Builder tlsInsecureSkipVerify(@Nullable Output<Boolean> tlsInsecureSkipVerify) {
             $.tlsInsecureSkipVerify = tlsInsecureSkipVerify;
             return this;
         }
 
+        /**
+         * @param tlsInsecureSkipVerify If true, skip TLS certificate verification when calling the webhook. Disable only in trusted environments.
+         * 
+         * @return builder
+         * 
+         */
         public Builder tlsInsecureSkipVerify(Boolean tlsInsecureSkipVerify) {
             return tlsInsecureSkipVerify(Output.of(tlsInsecureSkipVerify));
         }
 
+        /**
+         * @param url Webhook URL that receives the alert payload via HTTP POST.
+         * 
+         * @return builder
+         * 
+         */
         public Builder url(Output<String> url) {
             $.url = url;
             return this;
         }
 
+        /**
+         * @param url Webhook URL that receives the alert payload via HTTP POST.
+         * 
+         * @return builder
+         * 
+         */
         public Builder url(String url) {
             return url(Output.of(url));
         }

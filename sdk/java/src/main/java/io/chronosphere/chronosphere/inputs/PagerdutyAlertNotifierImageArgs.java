@@ -15,23 +15,47 @@ public final class PagerdutyAlertNotifierImageArgs extends com.pulumi.resources.
 
     public static final PagerdutyAlertNotifierImageArgs Empty = new PagerdutyAlertNotifierImageArgs();
 
+    /**
+     * Alternate text shown when the image cannot be rendered.
+     * 
+     */
     @Import(name="alt")
     private @Nullable Output<String> alt;
 
+    /**
+     * @return Alternate text shown when the image cannot be rendered.
+     * 
+     */
     public Optional<Output<String>> alt() {
         return Optional.ofNullable(this.alt);
     }
 
+    /**
+     * Optional URL the image links to when clicked.
+     * 
+     */
     @Import(name="href")
     private @Nullable Output<String> href;
 
+    /**
+     * @return Optional URL the image links to when clicked.
+     * 
+     */
     public Optional<Output<String>> href() {
         return Optional.ofNullable(this.href);
     }
 
+    /**
+     * URL of the image to attach.
+     * 
+     */
     @Import(name="src", required=true)
     private Output<String> src;
 
+    /**
+     * @return URL of the image to attach.
+     * 
+     */
     public Output<String> src() {
         return this.src;
     }
@@ -62,29 +86,65 @@ public final class PagerdutyAlertNotifierImageArgs extends com.pulumi.resources.
             $ = new PagerdutyAlertNotifierImageArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param alt Alternate text shown when the image cannot be rendered.
+         * 
+         * @return builder
+         * 
+         */
         public Builder alt(@Nullable Output<String> alt) {
             $.alt = alt;
             return this;
         }
 
+        /**
+         * @param alt Alternate text shown when the image cannot be rendered.
+         * 
+         * @return builder
+         * 
+         */
         public Builder alt(String alt) {
             return alt(Output.of(alt));
         }
 
+        /**
+         * @param href Optional URL the image links to when clicked.
+         * 
+         * @return builder
+         * 
+         */
         public Builder href(@Nullable Output<String> href) {
             $.href = href;
             return this;
         }
 
+        /**
+         * @param href Optional URL the image links to when clicked.
+         * 
+         * @return builder
+         * 
+         */
         public Builder href(String href) {
             return href(Output.of(href));
         }
 
+        /**
+         * @param src URL of the image to attach.
+         * 
+         * @return builder
+         * 
+         */
         public Builder src(Output<String> src) {
             $.src = src;
             return this;
         }
 
+        /**
+         * @param src URL of the image to attach.
+         * 
+         * @return builder
+         * 
+         */
         public Builder src(String src) {
             return src(Output.of(src));
         }

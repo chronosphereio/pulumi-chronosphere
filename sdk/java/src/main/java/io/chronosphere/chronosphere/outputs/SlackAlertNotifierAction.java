@@ -11,45 +11,125 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class SlackAlertNotifierAction {
+    /**
+     * @return Label for the cancel button in the confirmation dialog.
+     * 
+     */
     private @Nullable String actionConfirmDismissText;
+    /**
+     * @return Label for the confirm button in the confirmation dialog.
+     * 
+     */
     private @Nullable String actionConfirmOkText;
+    /**
+     * @return Body text of the confirmation dialog shown before the action runs.
+     * 
+     */
     private @Nullable String actionConfirmText;
+    /**
+     * @return Title of the confirmation dialog shown before the action runs.
+     * 
+     */
     private @Nullable String actionConfirmTile;
+    /**
+     * @return Identifier sent back to Slack when the button is clicked.
+     * 
+     */
     private @Nullable String name;
+    /**
+     * @return Visual style of the button: `default`, `primary`, or `danger`.
+     * 
+     */
     private @Nullable String style;
+    /**
+     * @return Label shown on the button.
+     * 
+     */
     private @Nullable String text;
+    /**
+     * @return Action type. Typically `button`.
+     * 
+     */
     private @Nullable String type;
+    /**
+     * @return Link the button navigates to when clicked.
+     * 
+     */
     private @Nullable String url;
+    /**
+     * @return Opaque value sent back to Slack alongside `name` when the button is clicked.
+     * 
+     */
     private @Nullable String value;
 
     private SlackAlertNotifierAction() {}
+    /**
+     * @return Label for the cancel button in the confirmation dialog.
+     * 
+     */
     public Optional<String> actionConfirmDismissText() {
         return Optional.ofNullable(this.actionConfirmDismissText);
     }
+    /**
+     * @return Label for the confirm button in the confirmation dialog.
+     * 
+     */
     public Optional<String> actionConfirmOkText() {
         return Optional.ofNullable(this.actionConfirmOkText);
     }
+    /**
+     * @return Body text of the confirmation dialog shown before the action runs.
+     * 
+     */
     public Optional<String> actionConfirmText() {
         return Optional.ofNullable(this.actionConfirmText);
     }
+    /**
+     * @return Title of the confirmation dialog shown before the action runs.
+     * 
+     */
     public Optional<String> actionConfirmTile() {
         return Optional.ofNullable(this.actionConfirmTile);
     }
+    /**
+     * @return Identifier sent back to Slack when the button is clicked.
+     * 
+     */
     public Optional<String> name() {
         return Optional.ofNullable(this.name);
     }
+    /**
+     * @return Visual style of the button: `default`, `primary`, or `danger`.
+     * 
+     */
     public Optional<String> style() {
         return Optional.ofNullable(this.style);
     }
+    /**
+     * @return Label shown on the button.
+     * 
+     */
     public Optional<String> text() {
         return Optional.ofNullable(this.text);
     }
+    /**
+     * @return Action type. Typically `button`.
+     * 
+     */
     public Optional<String> type() {
         return Optional.ofNullable(this.type);
     }
+    /**
+     * @return Link the button navigates to when clicked.
+     * 
+     */
     public Optional<String> url() {
         return Optional.ofNullable(this.url);
     }
+    /**
+     * @return Opaque value sent back to Slack alongside `name` when the button is clicked.
+     * 
+     */
     public Optional<String> value() {
         return Optional.ofNullable(this.value);
     }

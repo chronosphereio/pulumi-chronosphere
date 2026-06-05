@@ -11,9 +11,17 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class LogControlConfigRuleEmitMetricsCounter {
+    /**
+     * @return Path to a field within a log record.
+     * 
+     */
     private @Nullable LogControlConfigRuleEmitMetricsCounterValue value;
 
     private LogControlConfigRuleEmitMetricsCounter() {}
+    /**
+     * @return Path to a field within a log record.
+     * 
+     */
     public Optional<LogControlConfigRuleEmitMetricsCounterValue> value() {
         return Optional.ofNullable(this.value);
     }

@@ -6,6 +6,24 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * Scrapes Google Cloud Monitoring metrics from the configured projects and metric prefixes using a GCP service-account credential, with optional filters and rollup rules.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as chronosphere from "@pulumi-chronosphere/pulumi-chronosphere";
+ *
+ * const customer = new chronosphere.GcpMetricsIntegration("customer", {
+ *     name: "GCP Metrics Integration",
+ *     serviceAccount: {
+ *         clientEmail: "chronosphere-collector@my-project.iam.gserviceaccount.com",
+ *     },
+ *     slug: "gcp-metrics-integration",
+ * });
+ * ```
+ */
 export class GcpMetricsIntegration extends pulumi.CustomResource {
     /**
      * Get an existing GcpMetricsIntegration resource's state with the given name, ID, and optional extra
@@ -34,9 +52,21 @@ export class GcpMetricsIntegration extends pulumi.CustomResource {
         return obj['__pulumiType'] === GcpMetricsIntegration.__pulumiType;
     }
 
+    /**
+     * Groups of Google Cloud metrics to ingest. Each group targets a specific project and set of metric prefixes.
+     */
     public readonly metricGroups!: pulumi.Output<outputs.GcpMetricsIntegrationMetricGroup[] | undefined>;
+    /**
+     * Label name to filter on.
+     */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * Google Cloud service account that Chronosphere impersonates to read metrics.
+     */
     public readonly serviceAccount!: pulumi.Output<outputs.GcpMetricsIntegrationServiceAccount | undefined>;
+    /**
+     * Stable identifier for the integration. Generated from `name` if omitted. Immutable after creation.
+     */
     public readonly slug!: pulumi.Output<string | undefined>;
 
     /**
@@ -75,9 +105,21 @@ export class GcpMetricsIntegration extends pulumi.CustomResource {
  * Input properties used for looking up and filtering GcpMetricsIntegration resources.
  */
 export interface GcpMetricsIntegrationState {
+    /**
+     * Groups of Google Cloud metrics to ingest. Each group targets a specific project and set of metric prefixes.
+     */
     metricGroups?: pulumi.Input<pulumi.Input<inputs.GcpMetricsIntegrationMetricGroup>[]>;
+    /**
+     * Label name to filter on.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * Google Cloud service account that Chronosphere impersonates to read metrics.
+     */
     serviceAccount?: pulumi.Input<inputs.GcpMetricsIntegrationServiceAccount>;
+    /**
+     * Stable identifier for the integration. Generated from `name` if omitted. Immutable after creation.
+     */
     slug?: pulumi.Input<string>;
 }
 
@@ -85,8 +127,20 @@ export interface GcpMetricsIntegrationState {
  * The set of arguments for constructing a GcpMetricsIntegration resource.
  */
 export interface GcpMetricsIntegrationArgs {
+    /**
+     * Groups of Google Cloud metrics to ingest. Each group targets a specific project and set of metric prefixes.
+     */
     metricGroups?: pulumi.Input<pulumi.Input<inputs.GcpMetricsIntegrationMetricGroup>[]>;
+    /**
+     * Label name to filter on.
+     */
     name: pulumi.Input<string>;
+    /**
+     * Google Cloud service account that Chronosphere impersonates to read metrics.
+     */
     serviceAccount?: pulumi.Input<inputs.GcpMetricsIntegrationServiceAccount>;
+    /**
+     * Stable identifier for the integration. Generated from `name` if omitted. Immutable after creation.
+     */
     slug?: pulumi.Input<string>;
 }

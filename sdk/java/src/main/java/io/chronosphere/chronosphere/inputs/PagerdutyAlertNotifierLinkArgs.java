@@ -15,16 +15,32 @@ public final class PagerdutyAlertNotifierLinkArgs extends com.pulumi.resources.R
 
     public static final PagerdutyAlertNotifierLinkArgs Empty = new PagerdutyAlertNotifierLinkArgs();
 
+    /**
+     * URL the link points to.
+     * 
+     */
     @Import(name="href", required=true)
     private Output<String> href;
 
+    /**
+     * @return URL the link points to.
+     * 
+     */
     public Output<String> href() {
         return this.href;
     }
 
+    /**
+     * Display text for the link.
+     * 
+     */
     @Import(name="text")
     private @Nullable Output<String> text;
 
+    /**
+     * @return Display text for the link.
+     * 
+     */
     public Optional<Output<String>> text() {
         return Optional.ofNullable(this.text);
     }
@@ -54,20 +70,44 @@ public final class PagerdutyAlertNotifierLinkArgs extends com.pulumi.resources.R
             $ = new PagerdutyAlertNotifierLinkArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param href URL the link points to.
+         * 
+         * @return builder
+         * 
+         */
         public Builder href(Output<String> href) {
             $.href = href;
             return this;
         }
 
+        /**
+         * @param href URL the link points to.
+         * 
+         * @return builder
+         * 
+         */
         public Builder href(String href) {
             return href(Output.of(href));
         }
 
+        /**
+         * @param text Display text for the link.
+         * 
+         * @return builder
+         * 
+         */
         public Builder text(@Nullable Output<String> text) {
             $.text = text;
             return this;
         }
 
+        /**
+         * @param text Display text for the link.
+         * 
+         * @return builder
+         * 
+         */
         public Builder text(String text) {
             return text(Output.of(text));
         }

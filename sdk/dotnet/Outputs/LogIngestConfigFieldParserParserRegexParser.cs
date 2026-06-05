@@ -14,6 +14,9 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class LogIngestConfigFieldParserParserRegexParser
     {
+        /// <summary>
+        /// RE2 regular expression pattern. Named capturing groups become named fields in the extracted log.
+        /// </summary>
         public readonly string Regex;
 
         [OutputConstructor]

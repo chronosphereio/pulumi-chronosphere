@@ -18,47 +18,160 @@ import java.util.List;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
+/**
+ * Routes alert signals from monitors and SLOs to notifiers, with per-severity routing and label-matcher-based overrides. If `name` is set the policy is independent (referenceable by ID); if `name` is omitted the policy is inline and can only be embedded in another resource (e.g. a bucket).
+ * 
+ * ## Example Usage
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.chronosphere.Team;
+ * import com.pulumi.chronosphere.TeamArgs;
+ * import com.pulumi.chronosphere.EmailAlertNotifier;
+ * import com.pulumi.chronosphere.EmailAlertNotifierArgs;
+ * import com.pulumi.chronosphere.NotificationPolicy;
+ * import com.pulumi.chronosphere.NotificationPolicyArgs;
+ * import com.pulumi.chronosphere.inputs.NotificationPolicyRouteArgs;
+ * import com.pulumi.chronosphere.inputs.NotificationPolicyRouteGroupByArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var platformTeam = new Team(&#34;platformTeam&#34;, TeamArgs.builder()        
+ *             .name(&#34;Platform&#34;)
+ *             .build());
+ * 
+ *         var email = new EmailAlertNotifier(&#34;email&#34;, EmailAlertNotifierArgs.builder()        
+ *             .name(&#34;Platform Email&#34;)
+ *             .to(&#34;platform@example.com&#34;)
+ *             .build());
+ * 
+ *         var platformNotificationPolicy = new NotificationPolicy(&#34;platformNotificationPolicy&#34;, NotificationPolicyArgs.builder()        
+ *             .name(&#34;Platform Policy&#34;)
+ *             .teamId(platformTeam.id())
+ *             .routes(NotificationPolicyRouteArgs.builder()
+ *                 .severity(&#34;warn&#34;)
+ *                 .notifiers(email.id())
+ *                 .groupBy(NotificationPolicyRouteGroupByArgs.builder()
+ *                     .labelNames(&#34;service&#34;)
+ *                     .build())
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ */
 @ResourceType(type="chronosphere:index/notificationPolicy:NotificationPolicy")
 public class NotificationPolicy extends com.pulumi.resources.CustomResource {
+    /**
+     * Read-only internal marker tracking whether the policy is independent (named) or inline. Used to force replacement when transitioning between the two.
+     * 
+     */
     @Export(name="isIndependent", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> isIndependent;
 
+    /**
+     * @return Read-only internal marker tracking whether the policy is independent (named) or inline. Used to force replacement when transitioning between the two.
+     * 
+     */
     public Output<Boolean> isIndependent() {
         return this.isIndependent;
     }
+    /**
+     * Label name to match.
+     * 
+     */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> name;
 
+    /**
+     * @return Label name to match.
+     * 
+     */
     public Output<Optional<String>> name() {
         return Codegen.optional(this.name);
     }
+    /**
+     * Computed/optional JSON serialization of the policy. Primarily used to attach inline policy data to other resources (e.g. buckets).
+     * 
+     */
     @Export(name="notificationPolicyData", refs={String.class}, tree="[0]")
     private Output<String> notificationPolicyData;
 
+    /**
+     * @return Computed/optional JSON serialization of the policy. Primarily used to attach inline policy data to other resources (e.g. buckets).
+     * 
+     */
     public Output<String> notificationPolicyData() {
         return this.notificationPolicyData;
     }
+    /**
+     * Ordered overrides that route alerts matching specific label matchers to different destinations. The first matching override is applied; non-matching alerts fall through to the default `route`.
+     * 
+     */
     @Export(name="overrides", refs={List.class,NotificationPolicyOverride.class}, tree="[0,1]")
     private Output</* @Nullable */ List<NotificationPolicyOverride>> overrides;
 
+    /**
+     * @return Ordered overrides that route alerts matching specific label matchers to different destinations. The first matching override is applied; non-matching alerts fall through to the default `route`.
+     * 
+     */
     public Output<Optional<List<NotificationPolicyOverride>>> overrides() {
         return Codegen.optional(this.overrides);
     }
+    /**
+     * Per-severity routing rules. Each entry maps a severity (e.g. `warn`, `critical`) to a set of notifiers, destinations, grouping, and repeat behavior.
+     * 
+     */
     @Export(name="routes", refs={List.class,NotificationPolicyRoute.class}, tree="[0,1]")
     private Output</* @Nullable */ List<NotificationPolicyRoute>> routes;
 
+    /**
+     * @return Per-severity routing rules. Each entry maps a severity (e.g. `warn`, `critical`) to a set of notifiers, destinations, grouping, and repeat behavior.
+     * 
+     */
     public Output<Optional<List<NotificationPolicyRoute>>> routes() {
         return Codegen.optional(this.routes);
     }
+    /**
+     * Stable identifier for the notification policy. Can only be set when `name` is set. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     @Export(name="slug", refs={String.class}, tree="[0]")
     private Output<String> slug;
 
+    /**
+     * @return Stable identifier for the notification policy. Can only be set when `name` is set. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     public Output<String> slug() {
         return this.slug;
     }
+    /**
+     * ID of the team that owns this notification policy. Required when `name` is set (anonymous policies cannot be owned).
+     * 
+     */
     @Export(name="teamId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> teamId;
 
+    /**
+     * @return ID of the team that owns this notification policy. Required when `name` is set (anonymous policies cannot be owned).
+     * 
+     */
     public Output<Optional<String>> teamId() {
         return Codegen.optional(this.teamId);
     }

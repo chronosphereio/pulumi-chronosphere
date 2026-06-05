@@ -13,9 +13,17 @@ public final class TraceJaegerRemoteSamplingStrategyAppliedStrategyRateLimitingS
 
     public static final TraceJaegerRemoteSamplingStrategyAppliedStrategyRateLimitingStrategyArgs Empty = new TraceJaegerRemoteSamplingStrategyAppliedStrategyRateLimitingStrategyArgs();
 
+    /**
+     * Maximum number of traces to sample per second for the service.
+     * 
+     */
     @Import(name="maxTracesPerSecond", required=true)
     private Output<Integer> maxTracesPerSecond;
 
+    /**
+     * @return Maximum number of traces to sample per second for the service.
+     * 
+     */
     public Output<Integer> maxTracesPerSecond() {
         return this.maxTracesPerSecond;
     }
@@ -44,11 +52,23 @@ public final class TraceJaegerRemoteSamplingStrategyAppliedStrategyRateLimitingS
             $ = new TraceJaegerRemoteSamplingStrategyAppliedStrategyRateLimitingStrategyArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param maxTracesPerSecond Maximum number of traces to sample per second for the service.
+         * 
+         * @return builder
+         * 
+         */
         public Builder maxTracesPerSecond(Output<Integer> maxTracesPerSecond) {
             $.maxTracesPerSecond = maxTracesPerSecond;
             return this;
         }
 
+        /**
+         * @param maxTracesPerSecond Maximum number of traces to sample per second for the service.
+         * 
+         * @return builder
+         * 
+         */
         public Builder maxTracesPerSecond(Integer maxTracesPerSecond) {
             return maxTracesPerSecond(Output.of(maxTracesPerSecond));
         }

@@ -15,11 +15,104 @@ import java.util.List;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
+/**
+ * Singleton org-wide pipeline of rules that sample, drop, replace, parse, or emit metrics from logs at ingest.
+ * 
+ * ## Example Usage
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.chronosphere.LogControlConfig;
+ * import com.pulumi.chronosphere.LogControlConfigArgs;
+ * import com.pulumi.chronosphere.inputs.LogControlConfigRuleArgs;
+ * import com.pulumi.chronosphere.inputs.LogControlConfigRuleSampleArgs;
+ * import com.pulumi.chronosphere.inputs.LogControlConfigRuleDropFieldArgs;
+ * import com.pulumi.chronosphere.inputs.LogControlConfigRuleDropFieldParentPathArgs;
+ * import com.pulumi.chronosphere.inputs.LogControlConfigRuleReplaceFieldArgs;
+ * import com.pulumi.chronosphere.inputs.LogControlConfigRuleReplaceFieldFieldArgs;
+ * import com.pulumi.chronosphere.inputs.LogControlConfigRuleReplaceFieldStaticValueArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var config = new LogControlConfig(&#34;config&#34;, LogControlConfigArgs.builder()        
+ *             .rules(            
+ *                 LogControlConfigRuleArgs.builder()
+ *                     .filter(&#34;service = &#39;sample-service&#39; AND severity = &#39;debug&#39;&#34;)
+ *                     .mode(&#34;ENABLED&#34;)
+ *                     .name(&#34;sample-debug&#34;)
+ *                     .sample(LogControlConfigRuleSampleArgs.builder()
+ *                         .rate(0.01)
+ *                         .build())
+ *                     .type(&#34;SAMPLE&#34;)
+ *                     .build(),
+ *                 LogControlConfigRuleArgs.builder()
+ *                     .filter(&#34;service = &#39;deprecated-service&#39;&#34;)
+ *                     .mode(&#34;ENABLED&#34;)
+ *                     .name(&#34;drop-deprecated&#34;)
+ *                     .type(&#34;DROP&#34;)
+ *                     .build(),
+ *                 LogControlConfigRuleArgs.builder()
+ *                     .dropField(LogControlConfigRuleDropFieldArgs.builder()
+ *                         .fieldRegex(&#34;password|secret|api_key&#34;)
+ *                         .parentPath(LogControlConfigRuleDropFieldParentPathArgs.builder()
+ *                             .selector(&#34;kubernetes[&#39;labels&#39;]&#34;)
+ *                             .build())
+ *                         .build())
+ *                     .filter(&#34;service = &#39;api-gateway&#39;&#34;)
+ *                     .mode(&#34;ENABLED&#34;)
+ *                     .name(&#34;drop-sensitive-fields&#34;)
+ *                     .type(&#34;DROP_FIELD&#34;)
+ *                     .build(),
+ *                 LogControlConfigRuleArgs.builder()
+ *                     .filter(&#34;service = &#39;api-gateway&#39;&#34;)
+ *                     .mode(&#34;ENABLED&#34;)
+ *                     .name(&#34;shorten-trace-ids&#34;)
+ *                     .replaceField(LogControlConfigRuleReplaceFieldArgs.builder()
+ *                         .field(LogControlConfigRuleReplaceFieldFieldArgs.builder()
+ *                             .selector(&#34;trace_id&#34;)
+ *                             .build())
+ *                         .replaceAll(false)
+ *                         .replaceMode(&#34;STATIC_VALUE&#34;)
+ *                         .replaceRegex(&#34;[0-9a-f]{32}&#34;)
+ *                         .staticValue(LogControlConfigRuleReplaceFieldStaticValueArgs.builder()
+ *                             .value(&#34;[trace-id]&#34;)
+ *                             .build())
+ *                         .build())
+ *                     .type(&#34;REPLACE_FIELD&#34;)
+ *                     .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ */
 @ResourceType(type="chronosphere:index/logControlConfig:LogControlConfig")
 public class LogControlConfig extends com.pulumi.resources.CustomResource {
+    /**
+     * Ordered list of log control rules applied to the log ingest pipeline. Rules are evaluated in order.
+     * 
+     */
     @Export(name="rules", refs={List.class,LogControlConfigRule.class}, tree="[0,1]")
     private Output</* @Nullable */ List<LogControlConfigRule>> rules;
 
+    /**
+     * @return Ordered list of log control rules applied to the log ingest pipeline. Rules are evaluated in order.
+     * 
+     */
     public Output<Optional<List<LogControlConfigRule>>> rules() {
         return Codegen.optional(this.rules);
     }

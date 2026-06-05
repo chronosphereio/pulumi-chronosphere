@@ -11,17 +11,41 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class PagerdutyAlertNotifierImage {
+    /**
+     * @return Alternate text shown when the image cannot be rendered.
+     * 
+     */
     private @Nullable String alt;
+    /**
+     * @return Optional URL the image links to when clicked.
+     * 
+     */
     private @Nullable String href;
+    /**
+     * @return URL of the image to attach.
+     * 
+     */
     private String src;
 
     private PagerdutyAlertNotifierImage() {}
+    /**
+     * @return Alternate text shown when the image cannot be rendered.
+     * 
+     */
     public Optional<String> alt() {
         return Optional.ofNullable(this.alt);
     }
+    /**
+     * @return Optional URL the image links to when clicked.
+     * 
+     */
     public Optional<String> href() {
         return Optional.ofNullable(this.href);
     }
+    /**
+     * @return URL of the image to attach.
+     * 
+     */
     public String src() {
         return this.src;
     }

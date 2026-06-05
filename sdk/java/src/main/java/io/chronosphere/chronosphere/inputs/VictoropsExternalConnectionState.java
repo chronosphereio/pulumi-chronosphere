@@ -15,30 +15,62 @@ public final class VictoropsExternalConnectionState extends com.pulumi.resources
 
     public static final VictoropsExternalConnectionState Empty = new VictoropsExternalConnectionState();
 
+    /**
+     * VictorOps (Splunk On-Call) REST integration API key used to authenticate alert delivery. Treat as a secret.
+     * 
+     */
     @Import(name="apiKey")
     private @Nullable Output<String> apiKey;
 
+    /**
+     * @return VictorOps (Splunk On-Call) REST integration API key used to authenticate alert delivery. Treat as a secret.
+     * 
+     */
     public Optional<Output<String>> apiKey() {
         return Optional.ofNullable(this.apiKey);
     }
 
+    /**
+     * VictorOps REST endpoint URL that receives alert payloads. Override to target a custom endpoint.
+     * 
+     */
     @Import(name="apiUrl")
     private @Nullable Output<String> apiUrl;
 
+    /**
+     * @return VictorOps REST endpoint URL that receives alert payloads. Override to target a custom endpoint.
+     * 
+     */
     public Optional<Output<String>> apiUrl() {
         return Optional.ofNullable(this.apiUrl);
     }
 
+    /**
+     * Display name of the external connection.
+     * 
+     */
     @Import(name="name")
     private @Nullable Output<String> name;
 
+    /**
+     * @return Display name of the external connection.
+     * 
+     */
     public Optional<Output<String>> name() {
         return Optional.ofNullable(this.name);
     }
 
+    /**
+     * Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     @Import(name="slug")
     private @Nullable Output<String> slug;
 
+    /**
+     * @return Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     public Optional<Output<String>> slug() {
         return Optional.ofNullable(this.slug);
     }
@@ -70,38 +102,86 @@ public final class VictoropsExternalConnectionState extends com.pulumi.resources
             $ = new VictoropsExternalConnectionState(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param apiKey VictorOps (Splunk On-Call) REST integration API key used to authenticate alert delivery. Treat as a secret.
+         * 
+         * @return builder
+         * 
+         */
         public Builder apiKey(@Nullable Output<String> apiKey) {
             $.apiKey = apiKey;
             return this;
         }
 
+        /**
+         * @param apiKey VictorOps (Splunk On-Call) REST integration API key used to authenticate alert delivery. Treat as a secret.
+         * 
+         * @return builder
+         * 
+         */
         public Builder apiKey(String apiKey) {
             return apiKey(Output.of(apiKey));
         }
 
+        /**
+         * @param apiUrl VictorOps REST endpoint URL that receives alert payloads. Override to target a custom endpoint.
+         * 
+         * @return builder
+         * 
+         */
         public Builder apiUrl(@Nullable Output<String> apiUrl) {
             $.apiUrl = apiUrl;
             return this;
         }
 
+        /**
+         * @param apiUrl VictorOps REST endpoint URL that receives alert payloads. Override to target a custom endpoint.
+         * 
+         * @return builder
+         * 
+         */
         public Builder apiUrl(String apiUrl) {
             return apiUrl(Output.of(apiUrl));
         }
 
+        /**
+         * @param name Display name of the external connection.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(@Nullable Output<String> name) {
             $.name = name;
             return this;
         }
 
+        /**
+         * @param name Display name of the external connection.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(String name) {
             return name(Output.of(name));
         }
 
+        /**
+         * @param slug Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slug(@Nullable Output<String> slug) {
             $.slug = slug;
             return this;
         }
 
+        /**
+         * @param slug Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slug(String slug) {
             return slug(Output.of(slug));
         }

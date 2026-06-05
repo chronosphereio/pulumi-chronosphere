@@ -13,6 +13,9 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class DerivedLabelSpanTagNameMappingArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Source span tag name to copy into the derived label.
+        /// </summary>
         [Input("sourceTag", required: true)]
         public Input<string> SourceTag { get; set; } = null!;
 

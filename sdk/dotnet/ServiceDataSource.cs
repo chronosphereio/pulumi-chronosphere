@@ -12,9 +12,101 @@ namespace Chronosphere.Pulumi
 {
     public static class ServiceDataSource
     {
+        /// <summary>
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Pulumi = Chronosphere.Pulumi;
+        /// using Pulumi = Pulumi.Pulumi;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var gateway = Pulumi.ServiceDataSource.Invoke(new()
+        ///     {
+        ///         Slug = "gateway",
+        ///     });
+        /// 
+        ///     var gatewayUp = new Pulumi.Monitor("gatewayUp", new()
+        ///     {
+        ///         Name = "Gateway up",
+        ///         CollectionId = gateway.Apply(serviceDataSourceResult =&gt; serviceDataSourceResult.Id),
+        ///         Query = new Pulumi.Inputs.MonitorQueryArgs
+        ///         {
+        ///             PrometheusExpr = "up{service=\"gateway\"}",
+        ///         },
+        ///         SeriesConditions = new Pulumi.Inputs.MonitorSeriesConditionsArgs
+        ///         {
+        ///             Conditions = new[]
+        ///             {
+        ///                 new Pulumi.Inputs.MonitorSeriesConditionsConditionArgs
+        ///                 {
+        ///                     Severity = "warn",
+        ///                     Value = 1,
+        ///                     Op = "LT",
+        ///                 },
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Task<ServiceDataSourceResult> InvokeAsync(ServiceDataSourceArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<ServiceDataSourceResult>("chronosphere:index/serviceDataSource:ServiceDataSource", args ?? new ServiceDataSourceArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Pulumi = Chronosphere.Pulumi;
+        /// using Pulumi = Pulumi.Pulumi;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var gateway = Pulumi.ServiceDataSource.Invoke(new()
+        ///     {
+        ///         Slug = "gateway",
+        ///     });
+        /// 
+        ///     var gatewayUp = new Pulumi.Monitor("gatewayUp", new()
+        ///     {
+        ///         Name = "Gateway up",
+        ///         CollectionId = gateway.Apply(serviceDataSourceResult =&gt; serviceDataSourceResult.Id),
+        ///         Query = new Pulumi.Inputs.MonitorQueryArgs
+        ///         {
+        ///             PrometheusExpr = "up{service=\"gateway\"}",
+        ///         },
+        ///         SeriesConditions = new Pulumi.Inputs.MonitorSeriesConditionsArgs
+        ///         {
+        ///             Conditions = new[]
+        ///             {
+        ///                 new Pulumi.Inputs.MonitorSeriesConditionsConditionArgs
+        ///                 {
+        ///                     Severity = "warn",
+        ///                     Value = 1,
+        ///                     Op = "LT",
+        ///                 },
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Output<ServiceDataSourceResult> Invoke(ServiceDataSourceInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<ServiceDataSourceResult>("chronosphere:index/serviceDataSource:ServiceDataSource", args ?? new ServiceDataSourceInvokeArgs(), options.WithDefaults());
     }
@@ -22,6 +114,9 @@ namespace Chronosphere.Pulumi
 
     public sealed class ServiceDataSourceArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Slug of the service to look up.
+        /// </summary>
         [Input("slug", required: true)]
         public string Slug { get; set; } = null!;
 
@@ -33,6 +128,9 @@ namespace Chronosphere.Pulumi
 
     public sealed class ServiceDataSourceInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Slug of the service to look up.
+        /// </summary>
         [Input("slug", required: true)]
         public Input<string> Slug { get; set; } = null!;
 
@@ -46,12 +144,21 @@ namespace Chronosphere.Pulumi
     [OutputType]
     public sealed class ServiceDataSourceResult
     {
+        /// <summary>
+        /// Read-only: free-form description of the service.
+        /// </summary>
         public readonly string Description;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// Read-only: display name of the service.
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// Slug of the service to look up.
+        /// </summary>
         public readonly string Slug;
 
         [OutputConstructor]

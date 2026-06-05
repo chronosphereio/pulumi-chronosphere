@@ -9,9 +9,17 @@ import java.util.Objects;
 
 @CustomType
 public final class TraceMetricsRuleTraceFilterSpanIsRootSpan {
+    /**
+     * @return Boolean value the target field is compared against.
+     * 
+     */
     private Boolean value;
 
     private TraceMetricsRuleTraceFilterSpanIsRootSpan() {}
+    /**
+     * @return Boolean value the target field is compared against.
+     * 
+     */
     public Boolean value() {
         return this.value;
     }

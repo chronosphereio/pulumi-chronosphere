@@ -4,6 +4,33 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as chronosphere from "@pulumi-chronosphere/pulumi-chronosphere";
+ * import * as chronosphere from "@pulumi/chronosphere";
+ *
+ * const gateway = chronosphere.ServiceDataSource({
+ *     slug: "gateway",
+ * });
+ * const gatewayUp = new chronosphere.Monitor("gatewayUp", {
+ *     name: "Gateway up",
+ *     collectionId: gateway.then(gateway => gateway.id),
+ *     query: {
+ *         prometheusExpr: "up{service=\"gateway\"}",
+ *     },
+ *     seriesConditions: {
+ *         conditions: [{
+ *             severity: "warn",
+ *             value: 1,
+ *             op: "LT",
+ *         }],
+ *     },
+ * });
+ * ```
+ */
 export function serviceDataSource(args: ServiceDataSourceArgs, opts?: pulumi.InvokeOptions): Promise<ServiceDataSourceResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -16,6 +43,9 @@ export function serviceDataSource(args: ServiceDataSourceArgs, opts?: pulumi.Inv
  * A collection of arguments for invoking ServiceDataSource.
  */
 export interface ServiceDataSourceArgs {
+    /**
+     * Slug of the service to look up.
+     */
     slug: string;
 }
 
@@ -23,14 +53,50 @@ export interface ServiceDataSourceArgs {
  * A collection of values returned by ServiceDataSource.
  */
 export interface ServiceDataSourceResult {
+    /**
+     * Read-only: free-form description of the service.
+     */
     readonly description: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * Read-only: display name of the service.
+     */
     readonly name: string;
+    /**
+     * Slug of the service to look up.
+     */
     readonly slug: string;
 }
+/**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as chronosphere from "@pulumi-chronosphere/pulumi-chronosphere";
+ * import * as chronosphere from "@pulumi/chronosphere";
+ *
+ * const gateway = chronosphere.ServiceDataSource({
+ *     slug: "gateway",
+ * });
+ * const gatewayUp = new chronosphere.Monitor("gatewayUp", {
+ *     name: "Gateway up",
+ *     collectionId: gateway.then(gateway => gateway.id),
+ *     query: {
+ *         prometheusExpr: "up{service=\"gateway\"}",
+ *     },
+ *     seriesConditions: {
+ *         conditions: [{
+ *             severity: "warn",
+ *             value: 1,
+ *             op: "LT",
+ *         }],
+ *     },
+ * });
+ * ```
+ */
 export function serviceDataSourceOutput(args: ServiceDataSourceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ServiceDataSourceResult> {
     return pulumi.output(args).apply((a: any) => serviceDataSource(a, opts))
 }
@@ -39,5 +105,8 @@ export function serviceDataSourceOutput(args: ServiceDataSourceOutputArgs, opts?
  * A collection of arguments for invoking ServiceDataSource.
  */
 export interface ServiceDataSourceOutputArgs {
+    /**
+     * Slug of the service to look up.
+     */
     slug: pulumi.Input<string>;
 }

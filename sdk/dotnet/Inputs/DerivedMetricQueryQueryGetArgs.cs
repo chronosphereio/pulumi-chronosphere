@@ -13,11 +13,18 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class DerivedMetricQueryQueryGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// PromQL expression for the derived metric. References declared variables using `$name` syntax (e.g. `cpu_usage{$service}`).
+        /// </summary>
         [Input("expr", required: true)]
         public Input<string> Expr { get; set; } = null!;
 
         [Input("variables")]
         private InputList<Inputs.DerivedMetricQueryQueryVariableGetArgs>? _variables;
+
+        /// <summary>
+        /// Variables that can be substituted into `expr` at query time as label selectors.
+        /// </summary>
         public InputList<Inputs.DerivedMetricQueryQueryVariableGetArgs> Variables
         {
             get => _variables ?? (_variables = new InputList<Inputs.DerivedMetricQueryQueryVariableGetArgs>());

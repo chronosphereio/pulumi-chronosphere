@@ -12,13 +12,29 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class DerivedMetricQuery {
+    /**
+     * @return PromQL query executed when this selector matches.
+     * 
+     */
     private DerivedMetricQueryQuery query;
+    /**
+     * @return Label matchers that must be present on the derived metric usage for this query to be selected. If omitted, the query matches any usage.
+     * 
+     */
     private @Nullable DerivedMetricQuerySelector selector;
 
     private DerivedMetricQuery() {}
+    /**
+     * @return PromQL query executed when this selector matches.
+     * 
+     */
     public DerivedMetricQueryQuery query() {
         return this.query;
     }
+    /**
+     * @return Label matchers that must be present on the derived metric usage for this query to be selected. If omitted, the query matches any usage.
+     * 
+     */
     public Optional<DerivedMetricQuerySelector> selector() {
         return Optional.ofNullable(this.selector);
     }

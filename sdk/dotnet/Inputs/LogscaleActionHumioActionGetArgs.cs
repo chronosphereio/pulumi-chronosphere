@@ -13,6 +13,9 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class LogscaleActionHumioActionGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Ingest token for the target repository.
+        /// </summary>
         [Input("ingestToken", required: true)]
         public Input<string> IngestToken { get; set; } = null!;
 

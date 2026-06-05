@@ -12,38 +12,96 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Slack notifier that delivers monitor signals to a Slack channel via an incoming webhook. Referenced from notification policies.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/chronosphereio/pulumi-chronosphere/sdk/go/chronosphere"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := chronosphere.NewSlackAlertNotifier(ctx, "slack", &chronosphere.SlackAlertNotifierArgs{
+//				ApiUrl:  pulumi.String("https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX"),
+//				Channel: pulumi.String("alerts"),
+//				Name:    pulumi.String("Slack Notifier"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type SlackAlertNotifier struct {
 	pulumi.CustomResourceState
 
-	Actions           SlackAlertNotifierActionArrayOutput `pulumi:"actions"`
-	ApiUrl            pulumi.StringOutput                 `pulumi:"apiUrl"`
-	BasicAuthPassword pulumi.StringPtrOutput              `pulumi:"basicAuthPassword"`
-	BasicAuthUsername pulumi.StringPtrOutput              `pulumi:"basicAuthUsername"`
-	BearerToken       pulumi.StringPtrOutput              `pulumi:"bearerToken"`
-	CallbackId        pulumi.StringPtrOutput              `pulumi:"callbackId"`
-	Channel           pulumi.StringOutput                 `pulumi:"channel"`
-	Color             pulumi.StringPtrOutput              `pulumi:"color"`
-	Fallback          pulumi.StringPtrOutput              `pulumi:"fallback"`
-	Fields            SlackAlertNotifierFieldArrayOutput  `pulumi:"fields"`
-	Footer            pulumi.StringPtrOutput              `pulumi:"footer"`
-	IconEmoji         pulumi.StringPtrOutput              `pulumi:"iconEmoji"`
-	IconUrl           pulumi.StringPtrOutput              `pulumi:"iconUrl"`
-	ImageUrl          pulumi.StringPtrOutput              `pulumi:"imageUrl"`
-	LinkNames         pulumi.BoolPtrOutput                `pulumi:"linkNames"`
-	MrkdwnIns         pulumi.StringArrayOutput            `pulumi:"mrkdwnIns"`
-	Name              pulumi.StringOutput                 `pulumi:"name"`
-	Pretext           pulumi.StringPtrOutput              `pulumi:"pretext"`
+	// Interactive buttons appended to the Slack message. See https://api.slack.com/reference/messaging/attachments#action_fields.
+	Actions SlackAlertNotifierActionArrayOutput `pulumi:"actions"`
+	// Slack incoming webhook URL that receives the notifications. Treat this as a secret.
+	ApiUrl pulumi.StringOutput `pulumi:"apiUrl"`
+	// Password for HTTP basic auth when calling the webhook.
+	BasicAuthPassword pulumi.StringPtrOutput `pulumi:"basicAuthPassword"`
+	// Username for HTTP basic auth when calling the webhook. Mutually exclusive with `bearerToken`.
+	BasicAuthUsername pulumi.StringPtrOutput `pulumi:"basicAuthUsername"`
+	// Bearer token sent in the `Authorization` header when calling the webhook. Mutually exclusive with basic auth.
+	BearerToken pulumi.StringPtrOutput `pulumi:"bearerToken"`
+	// Slack callback ID used to identify the source of interactive actions.
+	CallbackId pulumi.StringPtrOutput `pulumi:"callbackId"`
+	// Slack channel to post notifications to (e.g. `#alerts`).
+	Channel pulumi.StringOutput `pulumi:"channel"`
+	// Color of the attachment border. Hex code or one of `good`, `warning`, `danger`. Supports Go templating.
+	Color pulumi.StringPtrOutput `pulumi:"color"`
+	// Plain-text fallback shown in notifications and clients that don't render attachments. Supports Go templating.
+	Fallback pulumi.StringPtrOutput `pulumi:"fallback"`
+	// Structured field/value pairs rendered as a table in the attachment.
+	Fields SlackAlertNotifierFieldArrayOutput `pulumi:"fields"`
+	// Footer text shown at the bottom of the attachment. Supports Go templating.
+	Footer pulumi.StringPtrOutput `pulumi:"footer"`
+	// Slack emoji to use as the bot avatar (e.g. `:fire:`). Mutually exclusive with `iconUrl` at Slack.
+	IconEmoji pulumi.StringPtrOutput `pulumi:"iconEmoji"`
+	// URL of an image to use as the bot avatar.
+	IconUrl pulumi.StringPtrOutput `pulumi:"iconUrl"`
+	// URL of an image attached to the message.
+	ImageUrl pulumi.StringPtrOutput `pulumi:"imageUrl"`
+	// If true, find and link channel names and usernames in the message text.
+	LinkNames pulumi.BoolPtrOutput `pulumi:"linkNames"`
+	// Attachment fields in which Slack parses `mrkdwn` formatting. Common values: `pretext`, `text`, `fields`.
+	MrkdwnIns pulumi.StringArrayOutput `pulumi:"mrkdwnIns"`
+	// Identifier sent back to Slack when the button is clicked.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// Text shown above the attachment. Supports Go templating.
+	Pretext pulumi.StringPtrOutput `pulumi:"pretext"`
+	// Deprecated and ignored. Custom proxy URLs are not supported.
+	//
 	// Deprecated: custom proxy URLs are not supported
-	ProxyUrl              pulumi.StringPtrOutput `pulumi:"proxyUrl"`
-	SendResolved          pulumi.BoolPtrOutput   `pulumi:"sendResolved"`
-	ShortFields           pulumi.BoolPtrOutput   `pulumi:"shortFields"`
-	Slug                  pulumi.StringOutput    `pulumi:"slug"`
-	Text                  pulumi.StringPtrOutput `pulumi:"text"`
-	ThumbUrl              pulumi.StringPtrOutput `pulumi:"thumbUrl"`
-	Title                 pulumi.StringPtrOutput `pulumi:"title"`
-	TitleLink             pulumi.StringPtrOutput `pulumi:"titleLink"`
-	TlsInsecureSkipVerify pulumi.BoolPtrOutput   `pulumi:"tlsInsecureSkipVerify"`
-	Username              pulumi.StringPtrOutput `pulumi:"username"`
+	ProxyUrl pulumi.StringPtrOutput `pulumi:"proxyUrl"`
+	// Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+	SendResolved pulumi.BoolPtrOutput `pulumi:"sendResolved"`
+	// If true, render all `fields` with `short: true` regardless of per-field setting.
+	ShortFields pulumi.BoolPtrOutput `pulumi:"shortFields"`
+	// Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringOutput `pulumi:"slug"`
+	// Label shown on the button.
+	Text pulumi.StringPtrOutput `pulumi:"text"`
+	// URL of a small thumbnail image shown to the right of the attachment.
+	ThumbUrl pulumi.StringPtrOutput `pulumi:"thumbUrl"`
+	// Bold heading shown above the value.
+	Title pulumi.StringPtrOutput `pulumi:"title"`
+	// URL the title links to when clicked.
+	TitleLink pulumi.StringPtrOutput `pulumi:"titleLink"`
+	// If true, skip TLS certificate verification when calling the webhook. Disable only in trusted environments.
+	TlsInsecureSkipVerify pulumi.BoolPtrOutput `pulumi:"tlsInsecureSkipVerify"`
+	// Display name of the bot posting the message.
+	Username pulumi.StringPtrOutput `pulumi:"username"`
 }
 
 // NewSlackAlertNotifier registers a new resource with the given unique name, arguments, and options.
@@ -96,67 +154,125 @@ func GetSlackAlertNotifier(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SlackAlertNotifier resources.
 type slackAlertNotifierState struct {
-	Actions           []SlackAlertNotifierAction `pulumi:"actions"`
-	ApiUrl            *string                    `pulumi:"apiUrl"`
-	BasicAuthPassword *string                    `pulumi:"basicAuthPassword"`
-	BasicAuthUsername *string                    `pulumi:"basicAuthUsername"`
-	BearerToken       *string                    `pulumi:"bearerToken"`
-	CallbackId        *string                    `pulumi:"callbackId"`
-	Channel           *string                    `pulumi:"channel"`
-	Color             *string                    `pulumi:"color"`
-	Fallback          *string                    `pulumi:"fallback"`
-	Fields            []SlackAlertNotifierField  `pulumi:"fields"`
-	Footer            *string                    `pulumi:"footer"`
-	IconEmoji         *string                    `pulumi:"iconEmoji"`
-	IconUrl           *string                    `pulumi:"iconUrl"`
-	ImageUrl          *string                    `pulumi:"imageUrl"`
-	LinkNames         *bool                      `pulumi:"linkNames"`
-	MrkdwnIns         []string                   `pulumi:"mrkdwnIns"`
-	Name              *string                    `pulumi:"name"`
-	Pretext           *string                    `pulumi:"pretext"`
+	// Interactive buttons appended to the Slack message. See https://api.slack.com/reference/messaging/attachments#action_fields.
+	Actions []SlackAlertNotifierAction `pulumi:"actions"`
+	// Slack incoming webhook URL that receives the notifications. Treat this as a secret.
+	ApiUrl *string `pulumi:"apiUrl"`
+	// Password for HTTP basic auth when calling the webhook.
+	BasicAuthPassword *string `pulumi:"basicAuthPassword"`
+	// Username for HTTP basic auth when calling the webhook. Mutually exclusive with `bearerToken`.
+	BasicAuthUsername *string `pulumi:"basicAuthUsername"`
+	// Bearer token sent in the `Authorization` header when calling the webhook. Mutually exclusive with basic auth.
+	BearerToken *string `pulumi:"bearerToken"`
+	// Slack callback ID used to identify the source of interactive actions.
+	CallbackId *string `pulumi:"callbackId"`
+	// Slack channel to post notifications to (e.g. `#alerts`).
+	Channel *string `pulumi:"channel"`
+	// Color of the attachment border. Hex code or one of `good`, `warning`, `danger`. Supports Go templating.
+	Color *string `pulumi:"color"`
+	// Plain-text fallback shown in notifications and clients that don't render attachments. Supports Go templating.
+	Fallback *string `pulumi:"fallback"`
+	// Structured field/value pairs rendered as a table in the attachment.
+	Fields []SlackAlertNotifierField `pulumi:"fields"`
+	// Footer text shown at the bottom of the attachment. Supports Go templating.
+	Footer *string `pulumi:"footer"`
+	// Slack emoji to use as the bot avatar (e.g. `:fire:`). Mutually exclusive with `iconUrl` at Slack.
+	IconEmoji *string `pulumi:"iconEmoji"`
+	// URL of an image to use as the bot avatar.
+	IconUrl *string `pulumi:"iconUrl"`
+	// URL of an image attached to the message.
+	ImageUrl *string `pulumi:"imageUrl"`
+	// If true, find and link channel names and usernames in the message text.
+	LinkNames *bool `pulumi:"linkNames"`
+	// Attachment fields in which Slack parses `mrkdwn` formatting. Common values: `pretext`, `text`, `fields`.
+	MrkdwnIns []string `pulumi:"mrkdwnIns"`
+	// Identifier sent back to Slack when the button is clicked.
+	Name *string `pulumi:"name"`
+	// Text shown above the attachment. Supports Go templating.
+	Pretext *string `pulumi:"pretext"`
+	// Deprecated and ignored. Custom proxy URLs are not supported.
+	//
 	// Deprecated: custom proxy URLs are not supported
-	ProxyUrl              *string `pulumi:"proxyUrl"`
-	SendResolved          *bool   `pulumi:"sendResolved"`
-	ShortFields           *bool   `pulumi:"shortFields"`
-	Slug                  *string `pulumi:"slug"`
-	Text                  *string `pulumi:"text"`
-	ThumbUrl              *string `pulumi:"thumbUrl"`
-	Title                 *string `pulumi:"title"`
-	TitleLink             *string `pulumi:"titleLink"`
-	TlsInsecureSkipVerify *bool   `pulumi:"tlsInsecureSkipVerify"`
-	Username              *string `pulumi:"username"`
+	ProxyUrl *string `pulumi:"proxyUrl"`
+	// Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+	SendResolved *bool `pulumi:"sendResolved"`
+	// If true, render all `fields` with `short: true` regardless of per-field setting.
+	ShortFields *bool `pulumi:"shortFields"`
+	// Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+	Slug *string `pulumi:"slug"`
+	// Label shown on the button.
+	Text *string `pulumi:"text"`
+	// URL of a small thumbnail image shown to the right of the attachment.
+	ThumbUrl *string `pulumi:"thumbUrl"`
+	// Bold heading shown above the value.
+	Title *string `pulumi:"title"`
+	// URL the title links to when clicked.
+	TitleLink *string `pulumi:"titleLink"`
+	// If true, skip TLS certificate verification when calling the webhook. Disable only in trusted environments.
+	TlsInsecureSkipVerify *bool `pulumi:"tlsInsecureSkipVerify"`
+	// Display name of the bot posting the message.
+	Username *string `pulumi:"username"`
 }
 
 type SlackAlertNotifierState struct {
-	Actions           SlackAlertNotifierActionArrayInput
-	ApiUrl            pulumi.StringPtrInput
+	// Interactive buttons appended to the Slack message. See https://api.slack.com/reference/messaging/attachments#action_fields.
+	Actions SlackAlertNotifierActionArrayInput
+	// Slack incoming webhook URL that receives the notifications. Treat this as a secret.
+	ApiUrl pulumi.StringPtrInput
+	// Password for HTTP basic auth when calling the webhook.
 	BasicAuthPassword pulumi.StringPtrInput
+	// Username for HTTP basic auth when calling the webhook. Mutually exclusive with `bearerToken`.
 	BasicAuthUsername pulumi.StringPtrInput
-	BearerToken       pulumi.StringPtrInput
-	CallbackId        pulumi.StringPtrInput
-	Channel           pulumi.StringPtrInput
-	Color             pulumi.StringPtrInput
-	Fallback          pulumi.StringPtrInput
-	Fields            SlackAlertNotifierFieldArrayInput
-	Footer            pulumi.StringPtrInput
-	IconEmoji         pulumi.StringPtrInput
-	IconUrl           pulumi.StringPtrInput
-	ImageUrl          pulumi.StringPtrInput
-	LinkNames         pulumi.BoolPtrInput
-	MrkdwnIns         pulumi.StringArrayInput
-	Name              pulumi.StringPtrInput
-	Pretext           pulumi.StringPtrInput
+	// Bearer token sent in the `Authorization` header when calling the webhook. Mutually exclusive with basic auth.
+	BearerToken pulumi.StringPtrInput
+	// Slack callback ID used to identify the source of interactive actions.
+	CallbackId pulumi.StringPtrInput
+	// Slack channel to post notifications to (e.g. `#alerts`).
+	Channel pulumi.StringPtrInput
+	// Color of the attachment border. Hex code or one of `good`, `warning`, `danger`. Supports Go templating.
+	Color pulumi.StringPtrInput
+	// Plain-text fallback shown in notifications and clients that don't render attachments. Supports Go templating.
+	Fallback pulumi.StringPtrInput
+	// Structured field/value pairs rendered as a table in the attachment.
+	Fields SlackAlertNotifierFieldArrayInput
+	// Footer text shown at the bottom of the attachment. Supports Go templating.
+	Footer pulumi.StringPtrInput
+	// Slack emoji to use as the bot avatar (e.g. `:fire:`). Mutually exclusive with `iconUrl` at Slack.
+	IconEmoji pulumi.StringPtrInput
+	// URL of an image to use as the bot avatar.
+	IconUrl pulumi.StringPtrInput
+	// URL of an image attached to the message.
+	ImageUrl pulumi.StringPtrInput
+	// If true, find and link channel names and usernames in the message text.
+	LinkNames pulumi.BoolPtrInput
+	// Attachment fields in which Slack parses `mrkdwn` formatting. Common values: `pretext`, `text`, `fields`.
+	MrkdwnIns pulumi.StringArrayInput
+	// Identifier sent back to Slack when the button is clicked.
+	Name pulumi.StringPtrInput
+	// Text shown above the attachment. Supports Go templating.
+	Pretext pulumi.StringPtrInput
+	// Deprecated and ignored. Custom proxy URLs are not supported.
+	//
 	// Deprecated: custom proxy URLs are not supported
-	ProxyUrl              pulumi.StringPtrInput
-	SendResolved          pulumi.BoolPtrInput
-	ShortFields           pulumi.BoolPtrInput
-	Slug                  pulumi.StringPtrInput
-	Text                  pulumi.StringPtrInput
-	ThumbUrl              pulumi.StringPtrInput
-	Title                 pulumi.StringPtrInput
-	TitleLink             pulumi.StringPtrInput
+	ProxyUrl pulumi.StringPtrInput
+	// Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+	SendResolved pulumi.BoolPtrInput
+	// If true, render all `fields` with `short: true` regardless of per-field setting.
+	ShortFields pulumi.BoolPtrInput
+	// Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringPtrInput
+	// Label shown on the button.
+	Text pulumi.StringPtrInput
+	// URL of a small thumbnail image shown to the right of the attachment.
+	ThumbUrl pulumi.StringPtrInput
+	// Bold heading shown above the value.
+	Title pulumi.StringPtrInput
+	// URL the title links to when clicked.
+	TitleLink pulumi.StringPtrInput
+	// If true, skip TLS certificate verification when calling the webhook. Disable only in trusted environments.
 	TlsInsecureSkipVerify pulumi.BoolPtrInput
-	Username              pulumi.StringPtrInput
+	// Display name of the bot posting the message.
+	Username pulumi.StringPtrInput
 }
 
 func (SlackAlertNotifierState) ElementType() reflect.Type {
@@ -164,68 +280,126 @@ func (SlackAlertNotifierState) ElementType() reflect.Type {
 }
 
 type slackAlertNotifierArgs struct {
-	Actions           []SlackAlertNotifierAction `pulumi:"actions"`
-	ApiUrl            string                     `pulumi:"apiUrl"`
-	BasicAuthPassword *string                    `pulumi:"basicAuthPassword"`
-	BasicAuthUsername *string                    `pulumi:"basicAuthUsername"`
-	BearerToken       *string                    `pulumi:"bearerToken"`
-	CallbackId        *string                    `pulumi:"callbackId"`
-	Channel           string                     `pulumi:"channel"`
-	Color             *string                    `pulumi:"color"`
-	Fallback          *string                    `pulumi:"fallback"`
-	Fields            []SlackAlertNotifierField  `pulumi:"fields"`
-	Footer            *string                    `pulumi:"footer"`
-	IconEmoji         *string                    `pulumi:"iconEmoji"`
-	IconUrl           *string                    `pulumi:"iconUrl"`
-	ImageUrl          *string                    `pulumi:"imageUrl"`
-	LinkNames         *bool                      `pulumi:"linkNames"`
-	MrkdwnIns         []string                   `pulumi:"mrkdwnIns"`
-	Name              string                     `pulumi:"name"`
-	Pretext           *string                    `pulumi:"pretext"`
+	// Interactive buttons appended to the Slack message. See https://api.slack.com/reference/messaging/attachments#action_fields.
+	Actions []SlackAlertNotifierAction `pulumi:"actions"`
+	// Slack incoming webhook URL that receives the notifications. Treat this as a secret.
+	ApiUrl string `pulumi:"apiUrl"`
+	// Password for HTTP basic auth when calling the webhook.
+	BasicAuthPassword *string `pulumi:"basicAuthPassword"`
+	// Username for HTTP basic auth when calling the webhook. Mutually exclusive with `bearerToken`.
+	BasicAuthUsername *string `pulumi:"basicAuthUsername"`
+	// Bearer token sent in the `Authorization` header when calling the webhook. Mutually exclusive with basic auth.
+	BearerToken *string `pulumi:"bearerToken"`
+	// Slack callback ID used to identify the source of interactive actions.
+	CallbackId *string `pulumi:"callbackId"`
+	// Slack channel to post notifications to (e.g. `#alerts`).
+	Channel string `pulumi:"channel"`
+	// Color of the attachment border. Hex code or one of `good`, `warning`, `danger`. Supports Go templating.
+	Color *string `pulumi:"color"`
+	// Plain-text fallback shown in notifications and clients that don't render attachments. Supports Go templating.
+	Fallback *string `pulumi:"fallback"`
+	// Structured field/value pairs rendered as a table in the attachment.
+	Fields []SlackAlertNotifierField `pulumi:"fields"`
+	// Footer text shown at the bottom of the attachment. Supports Go templating.
+	Footer *string `pulumi:"footer"`
+	// Slack emoji to use as the bot avatar (e.g. `:fire:`). Mutually exclusive with `iconUrl` at Slack.
+	IconEmoji *string `pulumi:"iconEmoji"`
+	// URL of an image to use as the bot avatar.
+	IconUrl *string `pulumi:"iconUrl"`
+	// URL of an image attached to the message.
+	ImageUrl *string `pulumi:"imageUrl"`
+	// If true, find and link channel names and usernames in the message text.
+	LinkNames *bool `pulumi:"linkNames"`
+	// Attachment fields in which Slack parses `mrkdwn` formatting. Common values: `pretext`, `text`, `fields`.
+	MrkdwnIns []string `pulumi:"mrkdwnIns"`
+	// Identifier sent back to Slack when the button is clicked.
+	Name string `pulumi:"name"`
+	// Text shown above the attachment. Supports Go templating.
+	Pretext *string `pulumi:"pretext"`
+	// Deprecated and ignored. Custom proxy URLs are not supported.
+	//
 	// Deprecated: custom proxy URLs are not supported
-	ProxyUrl              *string `pulumi:"proxyUrl"`
-	SendResolved          *bool   `pulumi:"sendResolved"`
-	ShortFields           *bool   `pulumi:"shortFields"`
-	Slug                  *string `pulumi:"slug"`
-	Text                  *string `pulumi:"text"`
-	ThumbUrl              *string `pulumi:"thumbUrl"`
-	Title                 *string `pulumi:"title"`
-	TitleLink             *string `pulumi:"titleLink"`
-	TlsInsecureSkipVerify *bool   `pulumi:"tlsInsecureSkipVerify"`
-	Username              *string `pulumi:"username"`
+	ProxyUrl *string `pulumi:"proxyUrl"`
+	// Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+	SendResolved *bool `pulumi:"sendResolved"`
+	// If true, render all `fields` with `short: true` regardless of per-field setting.
+	ShortFields *bool `pulumi:"shortFields"`
+	// Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+	Slug *string `pulumi:"slug"`
+	// Label shown on the button.
+	Text *string `pulumi:"text"`
+	// URL of a small thumbnail image shown to the right of the attachment.
+	ThumbUrl *string `pulumi:"thumbUrl"`
+	// Bold heading shown above the value.
+	Title *string `pulumi:"title"`
+	// URL the title links to when clicked.
+	TitleLink *string `pulumi:"titleLink"`
+	// If true, skip TLS certificate verification when calling the webhook. Disable only in trusted environments.
+	TlsInsecureSkipVerify *bool `pulumi:"tlsInsecureSkipVerify"`
+	// Display name of the bot posting the message.
+	Username *string `pulumi:"username"`
 }
 
 // The set of arguments for constructing a SlackAlertNotifier resource.
 type SlackAlertNotifierArgs struct {
-	Actions           SlackAlertNotifierActionArrayInput
-	ApiUrl            pulumi.StringInput
+	// Interactive buttons appended to the Slack message. See https://api.slack.com/reference/messaging/attachments#action_fields.
+	Actions SlackAlertNotifierActionArrayInput
+	// Slack incoming webhook URL that receives the notifications. Treat this as a secret.
+	ApiUrl pulumi.StringInput
+	// Password for HTTP basic auth when calling the webhook.
 	BasicAuthPassword pulumi.StringPtrInput
+	// Username for HTTP basic auth when calling the webhook. Mutually exclusive with `bearerToken`.
 	BasicAuthUsername pulumi.StringPtrInput
-	BearerToken       pulumi.StringPtrInput
-	CallbackId        pulumi.StringPtrInput
-	Channel           pulumi.StringInput
-	Color             pulumi.StringPtrInput
-	Fallback          pulumi.StringPtrInput
-	Fields            SlackAlertNotifierFieldArrayInput
-	Footer            pulumi.StringPtrInput
-	IconEmoji         pulumi.StringPtrInput
-	IconUrl           pulumi.StringPtrInput
-	ImageUrl          pulumi.StringPtrInput
-	LinkNames         pulumi.BoolPtrInput
-	MrkdwnIns         pulumi.StringArrayInput
-	Name              pulumi.StringInput
-	Pretext           pulumi.StringPtrInput
+	// Bearer token sent in the `Authorization` header when calling the webhook. Mutually exclusive with basic auth.
+	BearerToken pulumi.StringPtrInput
+	// Slack callback ID used to identify the source of interactive actions.
+	CallbackId pulumi.StringPtrInput
+	// Slack channel to post notifications to (e.g. `#alerts`).
+	Channel pulumi.StringInput
+	// Color of the attachment border. Hex code or one of `good`, `warning`, `danger`. Supports Go templating.
+	Color pulumi.StringPtrInput
+	// Plain-text fallback shown in notifications and clients that don't render attachments. Supports Go templating.
+	Fallback pulumi.StringPtrInput
+	// Structured field/value pairs rendered as a table in the attachment.
+	Fields SlackAlertNotifierFieldArrayInput
+	// Footer text shown at the bottom of the attachment. Supports Go templating.
+	Footer pulumi.StringPtrInput
+	// Slack emoji to use as the bot avatar (e.g. `:fire:`). Mutually exclusive with `iconUrl` at Slack.
+	IconEmoji pulumi.StringPtrInput
+	// URL of an image to use as the bot avatar.
+	IconUrl pulumi.StringPtrInput
+	// URL of an image attached to the message.
+	ImageUrl pulumi.StringPtrInput
+	// If true, find and link channel names and usernames in the message text.
+	LinkNames pulumi.BoolPtrInput
+	// Attachment fields in which Slack parses `mrkdwn` formatting. Common values: `pretext`, `text`, `fields`.
+	MrkdwnIns pulumi.StringArrayInput
+	// Identifier sent back to Slack when the button is clicked.
+	Name pulumi.StringInput
+	// Text shown above the attachment. Supports Go templating.
+	Pretext pulumi.StringPtrInput
+	// Deprecated and ignored. Custom proxy URLs are not supported.
+	//
 	// Deprecated: custom proxy URLs are not supported
-	ProxyUrl              pulumi.StringPtrInput
-	SendResolved          pulumi.BoolPtrInput
-	ShortFields           pulumi.BoolPtrInput
-	Slug                  pulumi.StringPtrInput
-	Text                  pulumi.StringPtrInput
-	ThumbUrl              pulumi.StringPtrInput
-	Title                 pulumi.StringPtrInput
-	TitleLink             pulumi.StringPtrInput
+	ProxyUrl pulumi.StringPtrInput
+	// Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+	SendResolved pulumi.BoolPtrInput
+	// If true, render all `fields` with `short: true` regardless of per-field setting.
+	ShortFields pulumi.BoolPtrInput
+	// Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringPtrInput
+	// Label shown on the button.
+	Text pulumi.StringPtrInput
+	// URL of a small thumbnail image shown to the right of the attachment.
+	ThumbUrl pulumi.StringPtrInput
+	// Bold heading shown above the value.
+	Title pulumi.StringPtrInput
+	// URL the title links to when clicked.
+	TitleLink pulumi.StringPtrInput
+	// If true, skip TLS certificate verification when calling the webhook. Disable only in trusted environments.
 	TlsInsecureSkipVerify pulumi.BoolPtrInput
-	Username              pulumi.StringPtrInput
+	// Display name of the bot posting the message.
+	Username pulumi.StringPtrInput
 }
 
 func (SlackAlertNotifierArgs) ElementType() reflect.Type {
@@ -315,115 +489,144 @@ func (o SlackAlertNotifierOutput) ToSlackAlertNotifierOutputWithContext(ctx cont
 	return o
 }
 
+// Interactive buttons appended to the Slack message. See https://api.slack.com/reference/messaging/attachments#action_fields.
 func (o SlackAlertNotifierOutput) Actions() SlackAlertNotifierActionArrayOutput {
 	return o.ApplyT(func(v *SlackAlertNotifier) SlackAlertNotifierActionArrayOutput { return v.Actions }).(SlackAlertNotifierActionArrayOutput)
 }
 
+// Slack incoming webhook URL that receives the notifications. Treat this as a secret.
 func (o SlackAlertNotifierOutput) ApiUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v *SlackAlertNotifier) pulumi.StringOutput { return v.ApiUrl }).(pulumi.StringOutput)
 }
 
+// Password for HTTP basic auth when calling the webhook.
 func (o SlackAlertNotifierOutput) BasicAuthPassword() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SlackAlertNotifier) pulumi.StringPtrOutput { return v.BasicAuthPassword }).(pulumi.StringPtrOutput)
 }
 
+// Username for HTTP basic auth when calling the webhook. Mutually exclusive with `bearerToken`.
 func (o SlackAlertNotifierOutput) BasicAuthUsername() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SlackAlertNotifier) pulumi.StringPtrOutput { return v.BasicAuthUsername }).(pulumi.StringPtrOutput)
 }
 
+// Bearer token sent in the `Authorization` header when calling the webhook. Mutually exclusive with basic auth.
 func (o SlackAlertNotifierOutput) BearerToken() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SlackAlertNotifier) pulumi.StringPtrOutput { return v.BearerToken }).(pulumi.StringPtrOutput)
 }
 
+// Slack callback ID used to identify the source of interactive actions.
 func (o SlackAlertNotifierOutput) CallbackId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SlackAlertNotifier) pulumi.StringPtrOutput { return v.CallbackId }).(pulumi.StringPtrOutput)
 }
 
+// Slack channel to post notifications to (e.g. `#alerts`).
 func (o SlackAlertNotifierOutput) Channel() pulumi.StringOutput {
 	return o.ApplyT(func(v *SlackAlertNotifier) pulumi.StringOutput { return v.Channel }).(pulumi.StringOutput)
 }
 
+// Color of the attachment border. Hex code or one of `good`, `warning`, `danger`. Supports Go templating.
 func (o SlackAlertNotifierOutput) Color() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SlackAlertNotifier) pulumi.StringPtrOutput { return v.Color }).(pulumi.StringPtrOutput)
 }
 
+// Plain-text fallback shown in notifications and clients that don't render attachments. Supports Go templating.
 func (o SlackAlertNotifierOutput) Fallback() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SlackAlertNotifier) pulumi.StringPtrOutput { return v.Fallback }).(pulumi.StringPtrOutput)
 }
 
+// Structured field/value pairs rendered as a table in the attachment.
 func (o SlackAlertNotifierOutput) Fields() SlackAlertNotifierFieldArrayOutput {
 	return o.ApplyT(func(v *SlackAlertNotifier) SlackAlertNotifierFieldArrayOutput { return v.Fields }).(SlackAlertNotifierFieldArrayOutput)
 }
 
+// Footer text shown at the bottom of the attachment. Supports Go templating.
 func (o SlackAlertNotifierOutput) Footer() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SlackAlertNotifier) pulumi.StringPtrOutput { return v.Footer }).(pulumi.StringPtrOutput)
 }
 
+// Slack emoji to use as the bot avatar (e.g. `:fire:`). Mutually exclusive with `iconUrl` at Slack.
 func (o SlackAlertNotifierOutput) IconEmoji() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SlackAlertNotifier) pulumi.StringPtrOutput { return v.IconEmoji }).(pulumi.StringPtrOutput)
 }
 
+// URL of an image to use as the bot avatar.
 func (o SlackAlertNotifierOutput) IconUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SlackAlertNotifier) pulumi.StringPtrOutput { return v.IconUrl }).(pulumi.StringPtrOutput)
 }
 
+// URL of an image attached to the message.
 func (o SlackAlertNotifierOutput) ImageUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SlackAlertNotifier) pulumi.StringPtrOutput { return v.ImageUrl }).(pulumi.StringPtrOutput)
 }
 
+// If true, find and link channel names and usernames in the message text.
 func (o SlackAlertNotifierOutput) LinkNames() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SlackAlertNotifier) pulumi.BoolPtrOutput { return v.LinkNames }).(pulumi.BoolPtrOutput)
 }
 
+// Attachment fields in which Slack parses `mrkdwn` formatting. Common values: `pretext`, `text`, `fields`.
 func (o SlackAlertNotifierOutput) MrkdwnIns() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *SlackAlertNotifier) pulumi.StringArrayOutput { return v.MrkdwnIns }).(pulumi.StringArrayOutput)
 }
 
+// Identifier sent back to Slack when the button is clicked.
 func (o SlackAlertNotifierOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *SlackAlertNotifier) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// Text shown above the attachment. Supports Go templating.
 func (o SlackAlertNotifierOutput) Pretext() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SlackAlertNotifier) pulumi.StringPtrOutput { return v.Pretext }).(pulumi.StringPtrOutput)
 }
 
+// Deprecated and ignored. Custom proxy URLs are not supported.
+//
 // Deprecated: custom proxy URLs are not supported
 func (o SlackAlertNotifierOutput) ProxyUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SlackAlertNotifier) pulumi.StringPtrOutput { return v.ProxyUrl }).(pulumi.StringPtrOutput)
 }
 
+// Whether to send a follow-up notification when an alert is resolved. Defaults to true.
 func (o SlackAlertNotifierOutput) SendResolved() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SlackAlertNotifier) pulumi.BoolPtrOutput { return v.SendResolved }).(pulumi.BoolPtrOutput)
 }
 
+// If true, render all `fields` with `short: true` regardless of per-field setting.
 func (o SlackAlertNotifierOutput) ShortFields() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SlackAlertNotifier) pulumi.BoolPtrOutput { return v.ShortFields }).(pulumi.BoolPtrOutput)
 }
 
+// Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
 func (o SlackAlertNotifierOutput) Slug() pulumi.StringOutput {
 	return o.ApplyT(func(v *SlackAlertNotifier) pulumi.StringOutput { return v.Slug }).(pulumi.StringOutput)
 }
 
+// Label shown on the button.
 func (o SlackAlertNotifierOutput) Text() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SlackAlertNotifier) pulumi.StringPtrOutput { return v.Text }).(pulumi.StringPtrOutput)
 }
 
+// URL of a small thumbnail image shown to the right of the attachment.
 func (o SlackAlertNotifierOutput) ThumbUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SlackAlertNotifier) pulumi.StringPtrOutput { return v.ThumbUrl }).(pulumi.StringPtrOutput)
 }
 
+// Bold heading shown above the value.
 func (o SlackAlertNotifierOutput) Title() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SlackAlertNotifier) pulumi.StringPtrOutput { return v.Title }).(pulumi.StringPtrOutput)
 }
 
+// URL the title links to when clicked.
 func (o SlackAlertNotifierOutput) TitleLink() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SlackAlertNotifier) pulumi.StringPtrOutput { return v.TitleLink }).(pulumi.StringPtrOutput)
 }
 
+// If true, skip TLS certificate verification when calling the webhook. Disable only in trusted environments.
 func (o SlackAlertNotifierOutput) TlsInsecureSkipVerify() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SlackAlertNotifier) pulumi.BoolPtrOutput { return v.TlsInsecureSkipVerify }).(pulumi.BoolPtrOutput)
 }
 
+// Display name of the bot posting the message.
 func (o SlackAlertNotifierOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SlackAlertNotifier) pulumi.StringPtrOutput { return v.Username }).(pulumi.StringPtrOutput)
 }

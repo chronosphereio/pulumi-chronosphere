@@ -21,51 +21,107 @@ public final class NotificationPolicyRouteDestinationArgs extends com.pulumi.res
 
     public static final NotificationPolicyRouteDestinationArgs Empty = new NotificationPolicyRouteDestinationArgs();
 
+    /**
+     * If true, do not send notifications when alerts resolve. Defaults to false.
+     * 
+     */
     @Import(name="disableResolves")
     private @Nullable Output<Boolean> disableResolves;
 
+    /**
+     * @return If true, do not send notifications when alerts resolve. Defaults to false.
+     * 
+     */
     public Optional<Output<Boolean>> disableResolves() {
         return Optional.ofNullable(this.disableResolves);
     }
 
+    /**
+     * Email delivery configuration for this destination.
+     * 
+     */
     @Import(name="email")
     private @Nullable Output<NotificationPolicyRouteDestinationEmailArgs> email;
 
+    /**
+     * @return Email delivery configuration for this destination.
+     * 
+     */
     public Optional<Output<NotificationPolicyRouteDestinationEmailArgs>> email() {
         return Optional.ofNullable(this.email);
     }
 
+    /**
+     * OpsGenie delivery configuration for this destination.
+     * 
+     */
     @Import(name="opsGenie")
     private @Nullable Output<NotificationPolicyRouteDestinationOpsGenieArgs> opsGenie;
 
+    /**
+     * @return OpsGenie delivery configuration for this destination.
+     * 
+     */
     public Optional<Output<NotificationPolicyRouteDestinationOpsGenieArgs>> opsGenie() {
         return Optional.ofNullable(this.opsGenie);
     }
 
+    /**
+     * PagerDuty delivery configuration for this destination.
+     * 
+     */
     @Import(name="pagerduty")
     private @Nullable Output<NotificationPolicyRouteDestinationPagerdutyArgs> pagerduty;
 
+    /**
+     * @return PagerDuty delivery configuration for this destination.
+     * 
+     */
     public Optional<Output<NotificationPolicyRouteDestinationPagerdutyArgs>> pagerduty() {
         return Optional.ofNullable(this.pagerduty);
     }
 
+    /**
+     * Slack delivery configuration for this destination.
+     * 
+     */
     @Import(name="slack")
     private @Nullable Output<NotificationPolicyRouteDestinationSlackArgs> slack;
 
+    /**
+     * @return Slack delivery configuration for this destination.
+     * 
+     */
     public Optional<Output<NotificationPolicyRouteDestinationSlackArgs>> slack() {
         return Optional.ofNullable(this.slack);
     }
 
+    /**
+     * VictorOps (Splunk On-Call) delivery configuration for this destination.
+     * 
+     */
     @Import(name="victorOps")
     private @Nullable Output<NotificationPolicyRouteDestinationVictorOpsArgs> victorOps;
 
+    /**
+     * @return VictorOps (Splunk On-Call) delivery configuration for this destination.
+     * 
+     */
     public Optional<Output<NotificationPolicyRouteDestinationVictorOpsArgs>> victorOps() {
         return Optional.ofNullable(this.victorOps);
     }
 
+    /**
+     * Generic webhook delivery configuration for this destination.
+     * 
+     */
     @Import(name="webhook")
     private @Nullable Output<NotificationPolicyRouteDestinationWebhookArgs> webhook;
 
+    /**
+     * @return Generic webhook delivery configuration for this destination.
+     * 
+     */
     public Optional<Output<NotificationPolicyRouteDestinationWebhookArgs>> webhook() {
         return Optional.ofNullable(this.webhook);
     }
@@ -100,65 +156,149 @@ public final class NotificationPolicyRouteDestinationArgs extends com.pulumi.res
             $ = new NotificationPolicyRouteDestinationArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param disableResolves If true, do not send notifications when alerts resolve. Defaults to false.
+         * 
+         * @return builder
+         * 
+         */
         public Builder disableResolves(@Nullable Output<Boolean> disableResolves) {
             $.disableResolves = disableResolves;
             return this;
         }
 
+        /**
+         * @param disableResolves If true, do not send notifications when alerts resolve. Defaults to false.
+         * 
+         * @return builder
+         * 
+         */
         public Builder disableResolves(Boolean disableResolves) {
             return disableResolves(Output.of(disableResolves));
         }
 
+        /**
+         * @param email Email delivery configuration for this destination.
+         * 
+         * @return builder
+         * 
+         */
         public Builder email(@Nullable Output<NotificationPolicyRouteDestinationEmailArgs> email) {
             $.email = email;
             return this;
         }
 
+        /**
+         * @param email Email delivery configuration for this destination.
+         * 
+         * @return builder
+         * 
+         */
         public Builder email(NotificationPolicyRouteDestinationEmailArgs email) {
             return email(Output.of(email));
         }
 
+        /**
+         * @param opsGenie OpsGenie delivery configuration for this destination.
+         * 
+         * @return builder
+         * 
+         */
         public Builder opsGenie(@Nullable Output<NotificationPolicyRouteDestinationOpsGenieArgs> opsGenie) {
             $.opsGenie = opsGenie;
             return this;
         }
 
+        /**
+         * @param opsGenie OpsGenie delivery configuration for this destination.
+         * 
+         * @return builder
+         * 
+         */
         public Builder opsGenie(NotificationPolicyRouteDestinationOpsGenieArgs opsGenie) {
             return opsGenie(Output.of(opsGenie));
         }
 
+        /**
+         * @param pagerduty PagerDuty delivery configuration for this destination.
+         * 
+         * @return builder
+         * 
+         */
         public Builder pagerduty(@Nullable Output<NotificationPolicyRouteDestinationPagerdutyArgs> pagerduty) {
             $.pagerduty = pagerduty;
             return this;
         }
 
+        /**
+         * @param pagerduty PagerDuty delivery configuration for this destination.
+         * 
+         * @return builder
+         * 
+         */
         public Builder pagerduty(NotificationPolicyRouteDestinationPagerdutyArgs pagerduty) {
             return pagerduty(Output.of(pagerduty));
         }
 
+        /**
+         * @param slack Slack delivery configuration for this destination.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slack(@Nullable Output<NotificationPolicyRouteDestinationSlackArgs> slack) {
             $.slack = slack;
             return this;
         }
 
+        /**
+         * @param slack Slack delivery configuration for this destination.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slack(NotificationPolicyRouteDestinationSlackArgs slack) {
             return slack(Output.of(slack));
         }
 
+        /**
+         * @param victorOps VictorOps (Splunk On-Call) delivery configuration for this destination.
+         * 
+         * @return builder
+         * 
+         */
         public Builder victorOps(@Nullable Output<NotificationPolicyRouteDestinationVictorOpsArgs> victorOps) {
             $.victorOps = victorOps;
             return this;
         }
 
+        /**
+         * @param victorOps VictorOps (Splunk On-Call) delivery configuration for this destination.
+         * 
+         * @return builder
+         * 
+         */
         public Builder victorOps(NotificationPolicyRouteDestinationVictorOpsArgs victorOps) {
             return victorOps(Output.of(victorOps));
         }
 
+        /**
+         * @param webhook Generic webhook delivery configuration for this destination.
+         * 
+         * @return builder
+         * 
+         */
         public Builder webhook(@Nullable Output<NotificationPolicyRouteDestinationWebhookArgs> webhook) {
             $.webhook = webhook;
             return this;
         }
 
+        /**
+         * @param webhook Generic webhook delivery configuration for this destination.
+         * 
+         * @return builder
+         * 
+         */
         public Builder webhook(NotificationPolicyRouteDestinationWebhookArgs webhook) {
             return webhook(Output.of(webhook));
         }

@@ -17,16 +17,32 @@ public final class DerivedLabelMetricLabelMappingLabelArgs extends com.pulumi.re
 
     public static final DerivedLabelMetricLabelMappingLabelArgs Empty = new DerivedLabelMetricLabelMappingLabelArgs();
 
+    /**
+     * Ordered list of name mappings. The first mapping whose filters match supplies the derived label from its `source_label`.
+     * 
+     */
     @Import(name="nameMappings")
     private @Nullable Output<List<DerivedLabelMetricLabelMappingLabelNameMappingArgs>> nameMappings;
 
+    /**
+     * @return Ordered list of name mappings. The first mapping whose filters match supplies the derived label from its `source_label`.
+     * 
+     */
     public Optional<Output<List<DerivedLabelMetricLabelMappingLabelNameMappingArgs>>> nameMappings() {
         return Optional.ofNullable(this.nameMappings);
     }
 
+    /**
+     * Translations from source label values to a normalized target value. Each entry maps a set of source globs to a single target.
+     * 
+     */
     @Import(name="valueMappings")
     private @Nullable Output<List<DerivedLabelMetricLabelMappingLabelValueMappingArgs>> valueMappings;
 
+    /**
+     * @return Translations from source label values to a normalized target value. Each entry maps a set of source globs to a single target.
+     * 
+     */
     public Optional<Output<List<DerivedLabelMetricLabelMappingLabelValueMappingArgs>>> valueMappings() {
         return Optional.ofNullable(this.valueMappings);
     }
@@ -56,28 +72,64 @@ public final class DerivedLabelMetricLabelMappingLabelArgs extends com.pulumi.re
             $ = new DerivedLabelMetricLabelMappingLabelArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param nameMappings Ordered list of name mappings. The first mapping whose filters match supplies the derived label from its `source_label`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder nameMappings(@Nullable Output<List<DerivedLabelMetricLabelMappingLabelNameMappingArgs>> nameMappings) {
             $.nameMappings = nameMappings;
             return this;
         }
 
+        /**
+         * @param nameMappings Ordered list of name mappings. The first mapping whose filters match supplies the derived label from its `source_label`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder nameMappings(List<DerivedLabelMetricLabelMappingLabelNameMappingArgs> nameMappings) {
             return nameMappings(Output.of(nameMappings));
         }
 
+        /**
+         * @param nameMappings Ordered list of name mappings. The first mapping whose filters match supplies the derived label from its `source_label`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder nameMappings(DerivedLabelMetricLabelMappingLabelNameMappingArgs... nameMappings) {
             return nameMappings(List.of(nameMappings));
         }
 
+        /**
+         * @param valueMappings Translations from source label values to a normalized target value. Each entry maps a set of source globs to a single target.
+         * 
+         * @return builder
+         * 
+         */
         public Builder valueMappings(@Nullable Output<List<DerivedLabelMetricLabelMappingLabelValueMappingArgs>> valueMappings) {
             $.valueMappings = valueMappings;
             return this;
         }
 
+        /**
+         * @param valueMappings Translations from source label values to a normalized target value. Each entry maps a set of source globs to a single target.
+         * 
+         * @return builder
+         * 
+         */
         public Builder valueMappings(List<DerivedLabelMetricLabelMappingLabelValueMappingArgs> valueMappings) {
             return valueMappings(Output.of(valueMappings));
         }
 
+        /**
+         * @param valueMappings Translations from source label values to a normalized target value. Each entry maps a set of source globs to a single target.
+         * 
+         * @return builder
+         * 
+         */
         public Builder valueMappings(DerivedLabelMetricLabelMappingLabelValueMappingArgs... valueMappings) {
             return valueMappings(List.of(valueMappings));
         }

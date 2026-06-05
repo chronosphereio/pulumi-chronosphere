@@ -15,12 +15,19 @@ namespace Chronosphere.Pulumi.Inputs
     {
         [Input("channels")]
         private InputList<string>? _channels;
+
+        /// <summary>
+        /// Slack channels to send notifications to.
+        /// </summary>
         public InputList<string> Channels
         {
             get => _channels ?? (_channels = new InputList<string>());
             set => _channels = value;
         }
 
+        /// <summary>
+        /// Slug of the OpsGenie external connection holding the integration credentials.
+        /// </summary>
         [Input("externalConnectionSlug", required: true)]
         public Input<string> ExternalConnectionSlug { get; set; } = null!;
 

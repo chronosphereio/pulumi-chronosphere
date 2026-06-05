@@ -14,25 +14,65 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class NotificationPolicyRoute {
+    /**
+     * @return Inline notification destinations defined directly on the route. Each block sets at most one of `slack`, `pagerduty`, `webhook`, `ops_genie`, `victor_ops`, or `email`. Cannot be combined with `notifiers`.
+     * 
+     */
     private @Nullable List<NotificationPolicyRouteDestination> destinations;
+    /**
+     * @return Optional grouping configuration controlling how alerts are batched before delivery.
+     * 
+     */
     private @Nullable NotificationPolicyRouteGroupBy groupBy;
+    /**
+     * @return Slugs of notifier resources that receive alerts at this severity. Cannot be combined with `destination`.
+     * 
+     */
     private @Nullable List<String> notifiers;
+    /**
+     * @return How often to resend unresolved alerts at this severity (e.g. `4h`).
+     * 
+     */
     private @Nullable String repeatInterval;
+    /**
+     * @return Severity this route applies to (e.g. `warn`, `critical`). Case-sensitive.
+     * 
+     */
     private String severity;
 
     private NotificationPolicyRoute() {}
+    /**
+     * @return Inline notification destinations defined directly on the route. Each block sets at most one of `slack`, `pagerduty`, `webhook`, `ops_genie`, `victor_ops`, or `email`. Cannot be combined with `notifiers`.
+     * 
+     */
     public List<NotificationPolicyRouteDestination> destinations() {
         return this.destinations == null ? List.of() : this.destinations;
     }
+    /**
+     * @return Optional grouping configuration controlling how alerts are batched before delivery.
+     * 
+     */
     public Optional<NotificationPolicyRouteGroupBy> groupBy() {
         return Optional.ofNullable(this.groupBy);
     }
+    /**
+     * @return Slugs of notifier resources that receive alerts at this severity. Cannot be combined with `destination`.
+     * 
+     */
     public List<String> notifiers() {
         return this.notifiers == null ? List.of() : this.notifiers;
     }
+    /**
+     * @return How often to resend unresolved alerts at this severity (e.g. `4h`).
+     * 
+     */
     public Optional<String> repeatInterval() {
         return Optional.ofNullable(this.repeatInterval);
     }
+    /**
+     * @return Severity this route applies to (e.g. `warn`, `critical`). Case-sensitive.
+     * 
+     */
     public String severity() {
         return this.severity;
     }

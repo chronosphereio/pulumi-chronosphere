@@ -10,15 +10,78 @@ using Pulumi;
 
 namespace Chronosphere.Pulumi
 {
+    /// <summary>
+    /// A Grafana-compatible dashboard rendered by Chronosphere. The dashboard's `name` and `slug` are derived from the `title` and `uid` fields inside `dashboard_json`. For native Chronosphere dashboards, use `chronosphere.Dashboard` instead.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using System.Text.Json;
+    /// using Pulumi;
+    /// using Pulumi = Chronosphere.Pulumi;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var collection = new Pulumi.Collection("collection", new()
+    ///     {
+    ///         Name = "Platform",
+    ///     });
+    /// 
+    ///     var platform = new Pulumi.ClassicDashboard("platform", new()
+    ///     {
+    ///         CollectionId = collection.Id,
+    ///         DashboardJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+    ///         {
+    ///             ["title"] = "Dashboard",
+    ///             ["panels"] = new[]
+    ///             {
+    ///                 new Dictionary&lt;string, object?&gt;
+    ///                 {
+    ///                     ["gridPos"] = new Dictionary&lt;string, object?&gt;
+    ///                     {
+    ///                         ["h"] = 12,
+    ///                         ["w"] = 24,
+    ///                         ["x"] = 0,
+    ///                         ["y"] = 0,
+    ///                     },
+    ///                     ["id"] = 2,
+    ///                     ["targets"] = new[]
+    ///                     {
+    ///                         new Dictionary&lt;string, object?&gt;
+    ///                         {
+    ///                             ["expr"] = "up",
+    ///                         },
+    ///                     },
+    ///                     ["title"] = "Up by instance",
+    ///                     ["type"] = "graph",
+    ///                 },
+    ///             },
+    ///         }),
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// </summary>
     [PulumiResourceType("chronosphere:index/classicDashboard:ClassicDashboard")]
     public partial class ClassicDashboard : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// ID of the bucket the dashboard belongs to. Exactly one of `bucket_id` or `collection_id` must be set.
+        /// </summary>
         [Output("bucketId")]
         public Output<string?> BucketId { get; private set; } = null!;
 
+        /// <summary>
+        /// ID of the collection the dashboard belongs to. Exactly one of `bucket_id` or `collection_id` must be set.
+        /// </summary>
         [Output("collectionId")]
         public Output<string?> CollectionId { get; private set; } = null!;
 
+        /// <summary>
+        /// Grafana-compatible dashboard definition serialized as JSON. The `id` and `version` fields are stripped before diffing.
+        /// </summary>
         [Output("dashboardJson")]
         public Output<string> DashboardJson { get; private set; } = null!;
 
@@ -69,12 +132,21 @@ namespace Chronosphere.Pulumi
 
     public sealed class ClassicDashboardArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// ID of the bucket the dashboard belongs to. Exactly one of `bucket_id` or `collection_id` must be set.
+        /// </summary>
         [Input("bucketId")]
         public Input<string>? BucketId { get; set; }
 
+        /// <summary>
+        /// ID of the collection the dashboard belongs to. Exactly one of `bucket_id` or `collection_id` must be set.
+        /// </summary>
         [Input("collectionId")]
         public Input<string>? CollectionId { get; set; }
 
+        /// <summary>
+        /// Grafana-compatible dashboard definition serialized as JSON. The `id` and `version` fields are stripped before diffing.
+        /// </summary>
         [Input("dashboardJson", required: true)]
         public Input<string> DashboardJson { get; set; } = null!;
 
@@ -86,12 +158,21 @@ namespace Chronosphere.Pulumi
 
     public sealed class ClassicDashboardState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// ID of the bucket the dashboard belongs to. Exactly one of `bucket_id` or `collection_id` must be set.
+        /// </summary>
         [Input("bucketId")]
         public Input<string>? BucketId { get; set; }
 
+        /// <summary>
+        /// ID of the collection the dashboard belongs to. Exactly one of `bucket_id` or `collection_id` must be set.
+        /// </summary>
         [Input("collectionId")]
         public Input<string>? CollectionId { get; set; }
 
+        /// <summary>
+        /// Grafana-compatible dashboard definition serialized as JSON. The `id` and `version` fields are stripped before diffing.
+        /// </summary>
         [Input("dashboardJson")]
         public Input<string>? DashboardJson { get; set; }
 

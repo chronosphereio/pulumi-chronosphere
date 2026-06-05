@@ -23,6 +23,13 @@ class WebhookExternalConnectionArgs:
                  url: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a WebhookExternalConnection resource.
+        :param pulumi.Input[str] name: Display name of the external connection.
+        :param pulumi.Input[str] basic_auth_password: Password for HTTP basic auth when calling the webhook. Treat as a secret.
+        :param pulumi.Input[str] basic_auth_username: Username for HTTP basic auth when calling the webhook. Mutually exclusive with `bearer_token`.
+        :param pulumi.Input[str] bearer_token: Bearer token sent in the `Authorization` header when calling the webhook. Mutually exclusive with basic auth. Treat as a secret.
+        :param pulumi.Input[str] slug: Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[bool] tls_insecure_skip_verify: If true, skip TLS certificate verification when calling the webhook. Disable only in trusted environments.
+        :param pulumi.Input[str] url: Destination URL that receives webhook POST requests for this connection.
         """
         pulumi.set(__self__, "name", name)
         if basic_auth_password is not None:
@@ -41,6 +48,9 @@ class WebhookExternalConnectionArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        Display name of the external connection.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -50,6 +60,9 @@ class WebhookExternalConnectionArgs:
     @property
     @pulumi.getter(name="basicAuthPassword")
     def basic_auth_password(self) -> Optional[pulumi.Input[str]]:
+        """
+        Password for HTTP basic auth when calling the webhook. Treat as a secret.
+        """
         return pulumi.get(self, "basic_auth_password")
 
     @basic_auth_password.setter
@@ -59,6 +72,9 @@ class WebhookExternalConnectionArgs:
     @property
     @pulumi.getter(name="basicAuthUsername")
     def basic_auth_username(self) -> Optional[pulumi.Input[str]]:
+        """
+        Username for HTTP basic auth when calling the webhook. Mutually exclusive with `bearer_token`.
+        """
         return pulumi.get(self, "basic_auth_username")
 
     @basic_auth_username.setter
@@ -68,6 +84,9 @@ class WebhookExternalConnectionArgs:
     @property
     @pulumi.getter(name="bearerToken")
     def bearer_token(self) -> Optional[pulumi.Input[str]]:
+        """
+        Bearer token sent in the `Authorization` header when calling the webhook. Mutually exclusive with basic auth. Treat as a secret.
+        """
         return pulumi.get(self, "bearer_token")
 
     @bearer_token.setter
@@ -77,6 +96,9 @@ class WebhookExternalConnectionArgs:
     @property
     @pulumi.getter
     def slug(self) -> Optional[pulumi.Input[str]]:
+        """
+        Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @slug.setter
@@ -86,6 +108,9 @@ class WebhookExternalConnectionArgs:
     @property
     @pulumi.getter(name="tlsInsecureSkipVerify")
     def tls_insecure_skip_verify(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If true, skip TLS certificate verification when calling the webhook. Disable only in trusted environments.
+        """
         return pulumi.get(self, "tls_insecure_skip_verify")
 
     @tls_insecure_skip_verify.setter
@@ -95,6 +120,9 @@ class WebhookExternalConnectionArgs:
     @property
     @pulumi.getter
     def url(self) -> Optional[pulumi.Input[str]]:
+        """
+        Destination URL that receives webhook POST requests for this connection.
+        """
         return pulumi.get(self, "url")
 
     @url.setter
@@ -114,6 +142,13 @@ class _WebhookExternalConnectionState:
                  url: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering WebhookExternalConnection resources.
+        :param pulumi.Input[str] basic_auth_password: Password for HTTP basic auth when calling the webhook. Treat as a secret.
+        :param pulumi.Input[str] basic_auth_username: Username for HTTP basic auth when calling the webhook. Mutually exclusive with `bearer_token`.
+        :param pulumi.Input[str] bearer_token: Bearer token sent in the `Authorization` header when calling the webhook. Mutually exclusive with basic auth. Treat as a secret.
+        :param pulumi.Input[str] name: Display name of the external connection.
+        :param pulumi.Input[str] slug: Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[bool] tls_insecure_skip_verify: If true, skip TLS certificate verification when calling the webhook. Disable only in trusted environments.
+        :param pulumi.Input[str] url: Destination URL that receives webhook POST requests for this connection.
         """
         if basic_auth_password is not None:
             pulumi.set(__self__, "basic_auth_password", basic_auth_password)
@@ -133,6 +168,9 @@ class _WebhookExternalConnectionState:
     @property
     @pulumi.getter(name="basicAuthPassword")
     def basic_auth_password(self) -> Optional[pulumi.Input[str]]:
+        """
+        Password for HTTP basic auth when calling the webhook. Treat as a secret.
+        """
         return pulumi.get(self, "basic_auth_password")
 
     @basic_auth_password.setter
@@ -142,6 +180,9 @@ class _WebhookExternalConnectionState:
     @property
     @pulumi.getter(name="basicAuthUsername")
     def basic_auth_username(self) -> Optional[pulumi.Input[str]]:
+        """
+        Username for HTTP basic auth when calling the webhook. Mutually exclusive with `bearer_token`.
+        """
         return pulumi.get(self, "basic_auth_username")
 
     @basic_auth_username.setter
@@ -151,6 +192,9 @@ class _WebhookExternalConnectionState:
     @property
     @pulumi.getter(name="bearerToken")
     def bearer_token(self) -> Optional[pulumi.Input[str]]:
+        """
+        Bearer token sent in the `Authorization` header when calling the webhook. Mutually exclusive with basic auth. Treat as a secret.
+        """
         return pulumi.get(self, "bearer_token")
 
     @bearer_token.setter
@@ -160,6 +204,9 @@ class _WebhookExternalConnectionState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Display name of the external connection.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -169,6 +216,9 @@ class _WebhookExternalConnectionState:
     @property
     @pulumi.getter
     def slug(self) -> Optional[pulumi.Input[str]]:
+        """
+        Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @slug.setter
@@ -178,6 +228,9 @@ class _WebhookExternalConnectionState:
     @property
     @pulumi.getter(name="tlsInsecureSkipVerify")
     def tls_insecure_skip_verify(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If true, skip TLS certificate verification when calling the webhook. Disable only in trusted environments.
+        """
         return pulumi.get(self, "tls_insecure_skip_verify")
 
     @tls_insecure_skip_verify.setter
@@ -187,6 +240,9 @@ class _WebhookExternalConnectionState:
     @property
     @pulumi.getter
     def url(self) -> Optional[pulumi.Input[str]]:
+        """
+        Destination URL that receives webhook POST requests for this connection.
+        """
         return pulumi.get(self, "url")
 
     @url.setter
@@ -208,9 +264,29 @@ class WebhookExternalConnection(pulumi.CustomResource):
                  url: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a WebhookExternalConnection resource with the given unique name, props, and options.
+        Workspace-scoped webhook credentials that downstream notifiers and LogScale actions can reference. Centralizes the destination URL and HTTP auth so they aren't duplicated across notifiers; modern equivalent of the per-notifier credentials.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_chronosphere as chronosphere
+
+        webhook = chronosphere.WebhookExternalConnection("webhook",
+            bearer_token="XXXXX",
+            name="Webhook",
+            url="https://example.com/notify")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] basic_auth_password: Password for HTTP basic auth when calling the webhook. Treat as a secret.
+        :param pulumi.Input[str] basic_auth_username: Username for HTTP basic auth when calling the webhook. Mutually exclusive with `bearer_token`.
+        :param pulumi.Input[str] bearer_token: Bearer token sent in the `Authorization` header when calling the webhook. Mutually exclusive with basic auth. Treat as a secret.
+        :param pulumi.Input[str] name: Display name of the external connection.
+        :param pulumi.Input[str] slug: Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[bool] tls_insecure_skip_verify: If true, skip TLS certificate verification when calling the webhook. Disable only in trusted environments.
+        :param pulumi.Input[str] url: Destination URL that receives webhook POST requests for this connection.
         """
         ...
     @overload
@@ -219,7 +295,20 @@ class WebhookExternalConnection(pulumi.CustomResource):
                  args: WebhookExternalConnectionArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a WebhookExternalConnection resource with the given unique name, props, and options.
+        Workspace-scoped webhook credentials that downstream notifiers and LogScale actions can reference. Centralizes the destination URL and HTTP auth so they aren't duplicated across notifiers; modern equivalent of the per-notifier credentials.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_chronosphere as chronosphere
+
+        webhook = chronosphere.WebhookExternalConnection("webhook",
+            bearer_token="XXXXX",
+            name="Webhook",
+            url="https://example.com/notify")
+        ```
+
         :param str resource_name: The name of the resource.
         :param WebhookExternalConnectionArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -286,6 +375,13 @@ class WebhookExternalConnection(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] basic_auth_password: Password for HTTP basic auth when calling the webhook. Treat as a secret.
+        :param pulumi.Input[str] basic_auth_username: Username for HTTP basic auth when calling the webhook. Mutually exclusive with `bearer_token`.
+        :param pulumi.Input[str] bearer_token: Bearer token sent in the `Authorization` header when calling the webhook. Mutually exclusive with basic auth. Treat as a secret.
+        :param pulumi.Input[str] name: Display name of the external connection.
+        :param pulumi.Input[str] slug: Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[bool] tls_insecure_skip_verify: If true, skip TLS certificate verification when calling the webhook. Disable only in trusted environments.
+        :param pulumi.Input[str] url: Destination URL that receives webhook POST requests for this connection.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -303,35 +399,56 @@ class WebhookExternalConnection(pulumi.CustomResource):
     @property
     @pulumi.getter(name="basicAuthPassword")
     def basic_auth_password(self) -> pulumi.Output[Optional[str]]:
+        """
+        Password for HTTP basic auth when calling the webhook. Treat as a secret.
+        """
         return pulumi.get(self, "basic_auth_password")
 
     @property
     @pulumi.getter(name="basicAuthUsername")
     def basic_auth_username(self) -> pulumi.Output[Optional[str]]:
+        """
+        Username for HTTP basic auth when calling the webhook. Mutually exclusive with `bearer_token`.
+        """
         return pulumi.get(self, "basic_auth_username")
 
     @property
     @pulumi.getter(name="bearerToken")
     def bearer_token(self) -> pulumi.Output[Optional[str]]:
+        """
+        Bearer token sent in the `Authorization` header when calling the webhook. Mutually exclusive with basic auth. Treat as a secret.
+        """
         return pulumi.get(self, "bearer_token")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        Display name of the external connection.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def slug(self) -> pulumi.Output[str]:
+        """
+        Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @property
     @pulumi.getter(name="tlsInsecureSkipVerify")
     def tls_insecure_skip_verify(self) -> pulumi.Output[Optional[bool]]:
+        """
+        If true, skip TLS certificate verification when calling the webhook. Disable only in trusted environments.
+        """
         return pulumi.get(self, "tls_insecure_skip_verify")
 
     @property
     @pulumi.getter
     def url(self) -> pulumi.Output[Optional[str]]:
+        """
+        Destination URL that receives webhook POST requests for this connection.
+        """
         return pulumi.get(self, "url")
 

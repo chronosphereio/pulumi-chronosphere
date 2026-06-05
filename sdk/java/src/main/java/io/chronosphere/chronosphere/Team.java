@@ -15,29 +15,96 @@ import java.util.List;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
+/**
+ * A named group of users that can own collections, buckets, and other resources. Teams scope access control and serve as the ownership unit for resources across the platform.
+ * 
+ * ## Example Usage
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.chronosphere.Team;
+ * import com.pulumi.chronosphere.TeamArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var platform = new Team(&#34;platform&#34;, TeamArgs.builder()        
+ *             .description(&#34;Platform engineering team&#34;)
+ *             .name(&#34;Platform&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ */
 @ResourceType(type="chronosphere:index/team:Team")
 public class Team extends com.pulumi.resources.CustomResource {
+    /**
+     * Free-form description of the team.
+     * 
+     */
     @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
+    /**
+     * @return Free-form description of the team.
+     * 
+     */
     public Output<Optional<String>> description() {
         return Codegen.optional(this.description);
     }
+    /**
+     * Display name of the team. Can be changed after creation.
+     * 
+     */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
+    /**
+     * @return Display name of the team. Can be changed after creation.
+     * 
+     */
     public Output<String> name() {
         return this.name;
     }
+    /**
+     * Stable identifier for the team. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     @Export(name="slug", refs={String.class}, tree="[0]")
     private Output<String> slug;
 
+    /**
+     * @return Stable identifier for the team. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     public Output<String> slug() {
         return this.slug;
     }
+    /**
+     * Unordered set of email addresses identifying the users who are members of this team.
+     * 
+     */
     @Export(name="userEmails", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> userEmails;
 
+    /**
+     * @return Unordered set of email addresses identifying the users who are members of this team.
+     * 
+     */
     public Output<Optional<List<String>>> userEmails() {
         return Codegen.optional(this.userEmails);
     }

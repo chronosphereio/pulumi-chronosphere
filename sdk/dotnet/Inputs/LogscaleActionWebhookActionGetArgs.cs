@@ -13,26 +13,45 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class LogscaleActionWebhookActionGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Body of the request. Supports Go template syntax with values from the query result.
+        /// </summary>
         [Input("bodyTemplate")]
         public Input<string>? BodyTemplate { get; set; }
 
         [Input("headers")]
         private InputMap<string>? _headers;
+
+        /// <summary>
+        /// Headers to include on the HTTP or HTTPS request.
+        /// </summary>
         public InputMap<string> Headers
         {
             get => _headers ?? (_headers = new InputMap<string>());
             set => _headers = value;
         }
 
+        /// <summary>
+        /// If `true`, skips SSL certificate verification for the request.
+        /// </summary>
         [Input("ignoreSsl")]
         public Input<bool>? IgnoreSsl { get; set; }
 
+        /// <summary>
+        /// HTTP method used for the webhook request.
+        /// </summary>
         [Input("method", required: true)]
         public Input<string> Method { get; set; } = null!;
 
+        /// <summary>
+        /// URL to send the HTTP or HTTPS request to.
+        /// </summary>
         [Input("url", required: true)]
         public Input<string> Url { get; set; } = null!;
 
+        /// <summary>
+        /// If `true`, sends the request through the configured outbound proxy.
+        /// </summary>
         [Input("useProxy")]
         public Input<bool>? UseProxy { get; set; }
 

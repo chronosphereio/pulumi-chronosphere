@@ -4,6 +4,22 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Workspace-scoped VictorOps (Splunk On-Call) credentials that downstream notifiers and LogScale actions can reference. Centralizes the REST integration API key so it isn't duplicated across notifiers; modern equivalent of the per-notifier credentials.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as chronosphere from "@pulumi-chronosphere/pulumi-chronosphere";
+ *
+ * const victorops = new chronosphere.VictoropsExternalConnection("victorops", {
+ *     apiKey: "00000000-0000-0000-0000-000000000000",
+ *     apiUrl: "https://alert.victorops.com/integrations/generic/00000000/alert/",
+ *     name: "VictorOps",
+ * });
+ * ```
+ */
 export class VictoropsExternalConnection extends pulumi.CustomResource {
     /**
      * Get an existing VictoropsExternalConnection resource's state with the given name, ID, and optional extra
@@ -32,9 +48,21 @@ export class VictoropsExternalConnection extends pulumi.CustomResource {
         return obj['__pulumiType'] === VictoropsExternalConnection.__pulumiType;
     }
 
+    /**
+     * VictorOps (Splunk On-Call) REST integration API key used to authenticate alert delivery. Treat as a secret.
+     */
     public readonly apiKey!: pulumi.Output<string | undefined>;
+    /**
+     * VictorOps REST endpoint URL that receives alert payloads. Override to target a custom endpoint.
+     */
     public readonly apiUrl!: pulumi.Output<string | undefined>;
+    /**
+     * Display name of the external connection.
+     */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+     */
     public readonly slug!: pulumi.Output<string>;
 
     /**
@@ -75,9 +103,21 @@ export class VictoropsExternalConnection extends pulumi.CustomResource {
  * Input properties used for looking up and filtering VictoropsExternalConnection resources.
  */
 export interface VictoropsExternalConnectionState {
+    /**
+     * VictorOps (Splunk On-Call) REST integration API key used to authenticate alert delivery. Treat as a secret.
+     */
     apiKey?: pulumi.Input<string>;
+    /**
+     * VictorOps REST endpoint URL that receives alert payloads. Override to target a custom endpoint.
+     */
     apiUrl?: pulumi.Input<string>;
+    /**
+     * Display name of the external connection.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+     */
     slug?: pulumi.Input<string>;
 }
 
@@ -85,8 +125,20 @@ export interface VictoropsExternalConnectionState {
  * The set of arguments for constructing a VictoropsExternalConnection resource.
  */
 export interface VictoropsExternalConnectionArgs {
+    /**
+     * VictorOps (Splunk On-Call) REST integration API key used to authenticate alert delivery. Treat as a secret.
+     */
     apiKey?: pulumi.Input<string>;
+    /**
+     * VictorOps REST endpoint URL that receives alert payloads. Override to target a custom endpoint.
+     */
     apiUrl?: pulumi.Input<string>;
+    /**
+     * Display name of the external connection.
+     */
     name: pulumi.Input<string>;
+    /**
+     * Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+     */
     slug?: pulumi.Input<string>;
 }

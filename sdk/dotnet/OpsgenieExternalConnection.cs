@@ -10,30 +10,77 @@ using Pulumi;
 
 namespace Chronosphere.Pulumi
 {
+    /// <summary>
+    /// Workspace-scoped OpsGenie credentials that downstream notifiers and LogScale actions can reference. Centralizes the OpsGenie API key so it isn't duplicated across individual notifiers; modern equivalent of the per-notifier credentials.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Pulumi = Chronosphere.Pulumi;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var opsgenie = new Pulumi.OpsgenieExternalConnection("opsgenie", new()
+    ///     {
+    ///         ApiKey = "XXXXX",
+    ///         ApiUrl = "https://api.opsgenie.com/",
+    ///         Name = "OpsGenie",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// </summary>
     [PulumiResourceType("chronosphere:index/opsgenieExternalConnection:OpsgenieExternalConnection")]
     public partial class OpsgenieExternalConnection : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// OpsGenie integration API key used to authenticate alert delivery. Treat as a secret.
+        /// </summary>
         [Output("apiKey")]
         public Output<string?> ApiKey { get; private set; } = null!;
 
+        /// <summary>
+        /// Base URL of the OpsGenie API. Override to target the EU region or a custom endpoint.
+        /// </summary>
         [Output("apiUrl")]
         public Output<string?> ApiUrl { get; private set; } = null!;
 
+        /// <summary>
+        /// Password for HTTP basic auth when calling OpsGenie. Treat as a secret.
+        /// </summary>
         [Output("basicAuthPassword")]
         public Output<string?> BasicAuthPassword { get; private set; } = null!;
 
+        /// <summary>
+        /// Username for HTTP basic auth when calling OpsGenie. Mutually exclusive with `bearer_token`.
+        /// </summary>
         [Output("basicAuthUsername")]
         public Output<string?> BasicAuthUsername { get; private set; } = null!;
 
+        /// <summary>
+        /// Bearer token sent in the `Authorization` header when calling OpsGenie. Mutually exclusive with basic auth. Treat as a secret.
+        /// </summary>
         [Output("bearerToken")]
         public Output<string?> BearerToken { get; private set; } = null!;
 
+        /// <summary>
+        /// Display name of the external connection.
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Output("slug")]
         public Output<string> Slug { get; private set; } = null!;
 
+        /// <summary>
+        /// If true, skip TLS certificate verification when calling OpsGenie. Disable only in trusted environments.
+        /// </summary>
         [Output("tlsInsecureSkipVerify")]
         public Output<bool?> TlsInsecureSkipVerify { get; private set; } = null!;
 
@@ -91,6 +138,10 @@ namespace Chronosphere.Pulumi
     {
         [Input("apiKey")]
         private Input<string>? _apiKey;
+
+        /// <summary>
+        /// OpsGenie integration API key used to authenticate alert delivery. Treat as a secret.
+        /// </summary>
         public Input<string>? ApiKey
         {
             get => _apiKey;
@@ -101,11 +152,18 @@ namespace Chronosphere.Pulumi
             }
         }
 
+        /// <summary>
+        /// Base URL of the OpsGenie API. Override to target the EU region or a custom endpoint.
+        /// </summary>
         [Input("apiUrl")]
         public Input<string>? ApiUrl { get; set; }
 
         [Input("basicAuthPassword")]
         private Input<string>? _basicAuthPassword;
+
+        /// <summary>
+        /// Password for HTTP basic auth when calling OpsGenie. Treat as a secret.
+        /// </summary>
         public Input<string>? BasicAuthPassword
         {
             get => _basicAuthPassword;
@@ -116,18 +174,33 @@ namespace Chronosphere.Pulumi
             }
         }
 
+        /// <summary>
+        /// Username for HTTP basic auth when calling OpsGenie. Mutually exclusive with `bearer_token`.
+        /// </summary>
         [Input("basicAuthUsername")]
         public Input<string>? BasicAuthUsername { get; set; }
 
+        /// <summary>
+        /// Bearer token sent in the `Authorization` header when calling OpsGenie. Mutually exclusive with basic auth. Treat as a secret.
+        /// </summary>
         [Input("bearerToken")]
         public Input<string>? BearerToken { get; set; }
 
+        /// <summary>
+        /// Display name of the external connection.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 
+        /// <summary>
+        /// If true, skip TLS certificate verification when calling OpsGenie. Disable only in trusted environments.
+        /// </summary>
         [Input("tlsInsecureSkipVerify")]
         public Input<bool>? TlsInsecureSkipVerify { get; set; }
 
@@ -141,6 +214,10 @@ namespace Chronosphere.Pulumi
     {
         [Input("apiKey")]
         private Input<string>? _apiKey;
+
+        /// <summary>
+        /// OpsGenie integration API key used to authenticate alert delivery. Treat as a secret.
+        /// </summary>
         public Input<string>? ApiKey
         {
             get => _apiKey;
@@ -151,11 +228,18 @@ namespace Chronosphere.Pulumi
             }
         }
 
+        /// <summary>
+        /// Base URL of the OpsGenie API. Override to target the EU region or a custom endpoint.
+        /// </summary>
         [Input("apiUrl")]
         public Input<string>? ApiUrl { get; set; }
 
         [Input("basicAuthPassword")]
         private Input<string>? _basicAuthPassword;
+
+        /// <summary>
+        /// Password for HTTP basic auth when calling OpsGenie. Treat as a secret.
+        /// </summary>
         public Input<string>? BasicAuthPassword
         {
             get => _basicAuthPassword;
@@ -166,18 +250,33 @@ namespace Chronosphere.Pulumi
             }
         }
 
+        /// <summary>
+        /// Username for HTTP basic auth when calling OpsGenie. Mutually exclusive with `bearer_token`.
+        /// </summary>
         [Input("basicAuthUsername")]
         public Input<string>? BasicAuthUsername { get; set; }
 
+        /// <summary>
+        /// Bearer token sent in the `Authorization` header when calling OpsGenie. Mutually exclusive with basic auth. Treat as a secret.
+        /// </summary>
         [Input("bearerToken")]
         public Input<string>? BearerToken { get; set; }
 
+        /// <summary>
+        /// Display name of the external connection.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 
+        /// <summary>
+        /// If true, skip TLS certificate verification when calling OpsGenie. Disable only in trusted environments.
+        /// </summary>
         [Input("tlsInsecureSkipVerify")]
         public Input<bool>? TlsInsecureSkipVerify { get; set; }
 

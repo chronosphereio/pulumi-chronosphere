@@ -9,17 +9,41 @@ import java.util.Objects;
 
 @CustomType
 public final class MonitorScheduleRange {
+    /**
+     * @return Day of week, e.g. `monday`. Case-insensitive.
+     * 
+     */
     private String day;
+    /**
+     * @return End time of day, 24-hour `HH:MM` format.
+     * 
+     */
     private String end;
+    /**
+     * @return Start time of day, 24-hour `HH:MM` format.
+     * 
+     */
     private String start;
 
     private MonitorScheduleRange() {}
+    /**
+     * @return Day of week, e.g. `monday`. Case-insensitive.
+     * 
+     */
     public String day() {
         return this.day;
     }
+    /**
+     * @return End time of day, 24-hour `HH:MM` format.
+     * 
+     */
     public String end() {
         return this.end;
     }
+    /**
+     * @return Start time of day, 24-hour `HH:MM` format.
+     * 
+     */
     public String start() {
         return this.start;
     }

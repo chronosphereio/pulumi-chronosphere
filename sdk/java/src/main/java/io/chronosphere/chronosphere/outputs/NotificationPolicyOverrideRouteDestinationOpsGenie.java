@@ -9,9 +9,17 @@ import java.util.Objects;
 
 @CustomType
 public final class NotificationPolicyOverrideRouteDestinationOpsGenie {
+    /**
+     * @return Slug of the OpsGenie external connection holding the integration credentials.
+     * 
+     */
     private String externalConnectionSlug;
 
     private NotificationPolicyOverrideRouteDestinationOpsGenie() {}
+    /**
+     * @return Slug of the OpsGenie external connection holding the integration credentials.
+     * 
+     */
     public String externalConnectionSlug() {
         return this.externalConnectionSlug;
     }

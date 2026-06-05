@@ -13,16 +13,32 @@ public final class NotificationPolicyOverrideRouteDestinationWebhookQueryParamet
 
     public static final NotificationPolicyOverrideRouteDestinationWebhookQueryParameterArgs Empty = new NotificationPolicyOverrideRouteDestinationWebhookQueryParameterArgs();
 
+    /**
+     * Query parameter name.
+     * 
+     */
     @Import(name="key", required=true)
     private Output<String> key;
 
+    /**
+     * @return Query parameter name.
+     * 
+     */
     public Output<String> key() {
         return this.key;
     }
 
+    /**
+     * Label value (or regex pattern, for regex matchers) to match against.
+     * 
+     */
     @Import(name="value", required=true)
     private Output<String> value;
 
+    /**
+     * @return Label value (or regex pattern, for regex matchers) to match against.
+     * 
+     */
     public Output<String> value() {
         return this.value;
     }
@@ -52,20 +68,44 @@ public final class NotificationPolicyOverrideRouteDestinationWebhookQueryParamet
             $ = new NotificationPolicyOverrideRouteDestinationWebhookQueryParameterArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param key Query parameter name.
+         * 
+         * @return builder
+         * 
+         */
         public Builder key(Output<String> key) {
             $.key = key;
             return this;
         }
 
+        /**
+         * @param key Query parameter name.
+         * 
+         * @return builder
+         * 
+         */
         public Builder key(String key) {
             return key(Output.of(key));
         }
 
+        /**
+         * @param value Label value (or regex pattern, for regex matchers) to match against.
+         * 
+         * @return builder
+         * 
+         */
         public Builder value(Output<String> value) {
             $.value = value;
             return this;
         }
 
+        /**
+         * @param value Label value (or regex pattern, for regex matchers) to match against.
+         * 
+         * @return builder
+         * 
+         */
         public Builder value(String value) {
             return value(Output.of(value));
         }

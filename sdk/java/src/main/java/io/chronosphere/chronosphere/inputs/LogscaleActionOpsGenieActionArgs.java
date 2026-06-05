@@ -16,23 +16,47 @@ public final class LogscaleActionOpsGenieActionArgs extends com.pulumi.resources
 
     public static final LogscaleActionOpsGenieActionArgs Empty = new LogscaleActionOpsGenieActionArgs();
 
+    /**
+     * OpsGenie webhook URL to send the request to.
+     * 
+     */
     @Import(name="apiUrl", required=true)
     private Output<String> apiUrl;
 
+    /**
+     * @return OpsGenie webhook URL to send the request to.
+     * 
+     */
     public Output<String> apiUrl() {
         return this.apiUrl;
     }
 
+    /**
+     * Key used to authenticate with OpsGenie.
+     * 
+     */
     @Import(name="opsGenieKey", required=true)
     private Output<String> opsGenieKey;
 
+    /**
+     * @return Key used to authenticate with OpsGenie.
+     * 
+     */
     public Output<String> opsGenieKey() {
         return this.opsGenieKey;
     }
 
+    /**
+     * If `true`, sends the request through the configured outbound proxy.
+     * 
+     */
     @Import(name="useProxy")
     private @Nullable Output<Boolean> useProxy;
 
+    /**
+     * @return If `true`, sends the request through the configured outbound proxy.
+     * 
+     */
     public Optional<Output<Boolean>> useProxy() {
         return Optional.ofNullable(this.useProxy);
     }
@@ -63,29 +87,65 @@ public final class LogscaleActionOpsGenieActionArgs extends com.pulumi.resources
             $ = new LogscaleActionOpsGenieActionArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param apiUrl OpsGenie webhook URL to send the request to.
+         * 
+         * @return builder
+         * 
+         */
         public Builder apiUrl(Output<String> apiUrl) {
             $.apiUrl = apiUrl;
             return this;
         }
 
+        /**
+         * @param apiUrl OpsGenie webhook URL to send the request to.
+         * 
+         * @return builder
+         * 
+         */
         public Builder apiUrl(String apiUrl) {
             return apiUrl(Output.of(apiUrl));
         }
 
+        /**
+         * @param opsGenieKey Key used to authenticate with OpsGenie.
+         * 
+         * @return builder
+         * 
+         */
         public Builder opsGenieKey(Output<String> opsGenieKey) {
             $.opsGenieKey = opsGenieKey;
             return this;
         }
 
+        /**
+         * @param opsGenieKey Key used to authenticate with OpsGenie.
+         * 
+         * @return builder
+         * 
+         */
         public Builder opsGenieKey(String opsGenieKey) {
             return opsGenieKey(Output.of(opsGenieKey));
         }
 
+        /**
+         * @param useProxy If `true`, sends the request through the configured outbound proxy.
+         * 
+         * @return builder
+         * 
+         */
         public Builder useProxy(@Nullable Output<Boolean> useProxy) {
             $.useProxy = useProxy;
             return this;
         }
 
+        /**
+         * @param useProxy If `true`, sends the request through the configured outbound proxy.
+         * 
+         * @return builder
+         * 
+         */
         public Builder useProxy(Boolean useProxy) {
             return useProxy(Output.of(useProxy));
         }

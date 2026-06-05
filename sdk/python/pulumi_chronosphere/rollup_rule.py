@@ -35,6 +35,23 @@ class RollupRuleArgs:
                  storage_policies: Optional[pulumi.Input['RollupRuleStoragePoliciesArgs']] = None):
         """
         The set of arguments for constructing a RollupRule resource.
+        :param pulumi.Input[str] filter: Space-delimited list of `label:value_glob` matchers that select the input series. Supports glob patterns and special filters like `__name__`, `__metric_type__`, and `__metric_source__`.
+        :param pulumi.Input[str] metric_type: Type of the source metric being rolled up (e.g. `gauge`, `counter`, `histogram`).
+        :param pulumi.Input[str] name: Positional Graphite label to replace (e.g. `__g1__`).
+        :param pulumi.Input[str] slug: Stable identifier for the rollup rule. Immutable after creation. Unlike most resources, the slug is required and is not auto-generated from `name`.
+        :param pulumi.Input[str] aggregation: Aggregation function applied across grouped series (e.g. `sum`, `min`, `max`, `last`).
+        :param pulumi.Input[str] bucket_id: ID of the bucket the rollup rule belongs to.
+        :param pulumi.Input[bool] drop_raw: If `true`, automatically generates a drop rule that removes the raw input metrics matching this rollup. Defaults to `false`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] exclude_bies: Labels to drop when aggregating; all other labels are preserved. Mutually exclusive with `group_by`.
+        :param pulumi.Input['RollupRuleGraphiteLabelPolicyArgs'] graphite_label_policy: Graphite-specific label policy applied to positional labels (`__gX__`) on the output metric.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] group_bies: Labels to preserve when aggregating; all other labels are dropped. Mutually exclusive with `exclude_by`.
+        :param pulumi.Input[str] interval: Interval between aggregated data points produced by the rollup. Defaults to a server-side value when unset. Conflicts with `storage_policies`.
+        :param pulumi.Input[bool] metric_type_tag: Whether to add a `__rollup_type__` label to the output metric identifying the rollup type. Defaults to `false`.
+        :param pulumi.Input[str] mode: Rollup mode controlling whether the rule is active or in a preview state.
+        :param pulumi.Input[str] new_metric: Name of the output metric produced by the rollup. Supports the `{{.MetricName}}` template variable to reference the source metric name. Optional for Graphite rollup rules.
+        :param pulumi.Input[bool] permissive: Deprecated: no longer supported.
+        :param pulumi.Input[bool] skip_on_conflict: If `true`, this rule is skipped when another rollup rule already produces a metric with the same output name. Defaults to `false`.
+        :param pulumi.Input['RollupRuleStoragePoliciesArgs'] storage_policies: Storage policy controlling resolution and retention of rolled-up metrics. Deprecated: use `interval` instead.
         """
         pulumi.set(__self__, "filter", filter)
         pulumi.set(__self__, "metric_type", metric_type)
@@ -76,6 +93,9 @@ class RollupRuleArgs:
     @property
     @pulumi.getter
     def filter(self) -> pulumi.Input[str]:
+        """
+        Space-delimited list of `label:value_glob` matchers that select the input series. Supports glob patterns and special filters like `__name__`, `__metric_type__`, and `__metric_source__`.
+        """
         return pulumi.get(self, "filter")
 
     @filter.setter
@@ -85,6 +105,9 @@ class RollupRuleArgs:
     @property
     @pulumi.getter(name="metricType")
     def metric_type(self) -> pulumi.Input[str]:
+        """
+        Type of the source metric being rolled up (e.g. `gauge`, `counter`, `histogram`).
+        """
         return pulumi.get(self, "metric_type")
 
     @metric_type.setter
@@ -94,6 +117,9 @@ class RollupRuleArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        Positional Graphite label to replace (e.g. `__g1__`).
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -103,6 +129,9 @@ class RollupRuleArgs:
     @property
     @pulumi.getter
     def slug(self) -> pulumi.Input[str]:
+        """
+        Stable identifier for the rollup rule. Immutable after creation. Unlike most resources, the slug is required and is not auto-generated from `name`.
+        """
         return pulumi.get(self, "slug")
 
     @slug.setter
@@ -112,6 +141,9 @@ class RollupRuleArgs:
     @property
     @pulumi.getter
     def aggregation(self) -> Optional[pulumi.Input[str]]:
+        """
+        Aggregation function applied across grouped series (e.g. `sum`, `min`, `max`, `last`).
+        """
         return pulumi.get(self, "aggregation")
 
     @aggregation.setter
@@ -121,6 +153,9 @@ class RollupRuleArgs:
     @property
     @pulumi.getter(name="bucketId")
     def bucket_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the bucket the rollup rule belongs to.
+        """
         return pulumi.get(self, "bucket_id")
 
     @bucket_id.setter
@@ -130,6 +165,9 @@ class RollupRuleArgs:
     @property
     @pulumi.getter(name="dropRaw")
     def drop_raw(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If `true`, automatically generates a drop rule that removes the raw input metrics matching this rollup. Defaults to `false`.
+        """
         return pulumi.get(self, "drop_raw")
 
     @drop_raw.setter
@@ -139,6 +177,9 @@ class RollupRuleArgs:
     @property
     @pulumi.getter(name="excludeBies")
     def exclude_bies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Labels to drop when aggregating; all other labels are preserved. Mutually exclusive with `group_by`.
+        """
         return pulumi.get(self, "exclude_bies")
 
     @exclude_bies.setter
@@ -148,6 +189,9 @@ class RollupRuleArgs:
     @property
     @pulumi.getter(name="graphiteLabelPolicy")
     def graphite_label_policy(self) -> Optional[pulumi.Input['RollupRuleGraphiteLabelPolicyArgs']]:
+        """
+        Graphite-specific label policy applied to positional labels (`__gX__`) on the output metric.
+        """
         return pulumi.get(self, "graphite_label_policy")
 
     @graphite_label_policy.setter
@@ -157,6 +201,9 @@ class RollupRuleArgs:
     @property
     @pulumi.getter(name="groupBies")
     def group_bies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Labels to preserve when aggregating; all other labels are dropped. Mutually exclusive with `exclude_by`.
+        """
         return pulumi.get(self, "group_bies")
 
     @group_bies.setter
@@ -166,6 +213,9 @@ class RollupRuleArgs:
     @property
     @pulumi.getter
     def interval(self) -> Optional[pulumi.Input[str]]:
+        """
+        Interval between aggregated data points produced by the rollup. Defaults to a server-side value when unset. Conflicts with `storage_policies`.
+        """
         return pulumi.get(self, "interval")
 
     @interval.setter
@@ -175,6 +225,9 @@ class RollupRuleArgs:
     @property
     @pulumi.getter(name="metricTypeTag")
     def metric_type_tag(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to add a `__rollup_type__` label to the output metric identifying the rollup type. Defaults to `false`.
+        """
         return pulumi.get(self, "metric_type_tag")
 
     @metric_type_tag.setter
@@ -184,6 +237,9 @@ class RollupRuleArgs:
     @property
     @pulumi.getter
     def mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Rollup mode controlling whether the rule is active or in a preview state.
+        """
         return pulumi.get(self, "mode")
 
     @mode.setter
@@ -193,6 +249,9 @@ class RollupRuleArgs:
     @property
     @pulumi.getter(name="newMetric")
     def new_metric(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the output metric produced by the rollup. Supports the `{{.MetricName}}` template variable to reference the source metric name. Optional for Graphite rollup rules.
+        """
         return pulumi.get(self, "new_metric")
 
     @new_metric.setter
@@ -202,6 +261,9 @@ class RollupRuleArgs:
     @property
     @pulumi.getter
     def permissive(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Deprecated: no longer supported.
+        """
         warnings.warn("""permissive is no longer supported""", DeprecationWarning)
         pulumi.log.warn("""permissive is deprecated: permissive is no longer supported""")
 
@@ -214,6 +276,9 @@ class RollupRuleArgs:
     @property
     @pulumi.getter(name="skipOnConflict")
     def skip_on_conflict(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If `true`, this rule is skipped when another rollup rule already produces a metric with the same output name. Defaults to `false`.
+        """
         return pulumi.get(self, "skip_on_conflict")
 
     @skip_on_conflict.setter
@@ -223,6 +288,9 @@ class RollupRuleArgs:
     @property
     @pulumi.getter(name="storagePolicies")
     def storage_policies(self) -> Optional[pulumi.Input['RollupRuleStoragePoliciesArgs']]:
+        """
+        Storage policy controlling resolution and retention of rolled-up metrics. Deprecated: use `interval` instead.
+        """
         warnings.warn("""use `interval` instead""", DeprecationWarning)
         pulumi.log.warn("""storage_policies is deprecated: use `interval` instead""")
 
@@ -255,6 +323,23 @@ class _RollupRuleState:
                  storage_policies: Optional[pulumi.Input['RollupRuleStoragePoliciesArgs']] = None):
         """
         Input properties used for looking up and filtering RollupRule resources.
+        :param pulumi.Input[str] aggregation: Aggregation function applied across grouped series (e.g. `sum`, `min`, `max`, `last`).
+        :param pulumi.Input[str] bucket_id: ID of the bucket the rollup rule belongs to.
+        :param pulumi.Input[bool] drop_raw: If `true`, automatically generates a drop rule that removes the raw input metrics matching this rollup. Defaults to `false`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] exclude_bies: Labels to drop when aggregating; all other labels are preserved. Mutually exclusive with `group_by`.
+        :param pulumi.Input[str] filter: Space-delimited list of `label:value_glob` matchers that select the input series. Supports glob patterns and special filters like `__name__`, `__metric_type__`, and `__metric_source__`.
+        :param pulumi.Input['RollupRuleGraphiteLabelPolicyArgs'] graphite_label_policy: Graphite-specific label policy applied to positional labels (`__gX__`) on the output metric.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] group_bies: Labels to preserve when aggregating; all other labels are dropped. Mutually exclusive with `exclude_by`.
+        :param pulumi.Input[str] interval: Interval between aggregated data points produced by the rollup. Defaults to a server-side value when unset. Conflicts with `storage_policies`.
+        :param pulumi.Input[str] metric_type: Type of the source metric being rolled up (e.g. `gauge`, `counter`, `histogram`).
+        :param pulumi.Input[bool] metric_type_tag: Whether to add a `__rollup_type__` label to the output metric identifying the rollup type. Defaults to `false`.
+        :param pulumi.Input[str] mode: Rollup mode controlling whether the rule is active or in a preview state.
+        :param pulumi.Input[str] name: Positional Graphite label to replace (e.g. `__g1__`).
+        :param pulumi.Input[str] new_metric: Name of the output metric produced by the rollup. Supports the `{{.MetricName}}` template variable to reference the source metric name. Optional for Graphite rollup rules.
+        :param pulumi.Input[bool] permissive: Deprecated: no longer supported.
+        :param pulumi.Input[bool] skip_on_conflict: If `true`, this rule is skipped when another rollup rule already produces a metric with the same output name. Defaults to `false`.
+        :param pulumi.Input[str] slug: Stable identifier for the rollup rule. Immutable after creation. Unlike most resources, the slug is required and is not auto-generated from `name`.
+        :param pulumi.Input['RollupRuleStoragePoliciesArgs'] storage_policies: Storage policy controlling resolution and retention of rolled-up metrics. Deprecated: use `interval` instead.
         """
         if aggregation is not None:
             pulumi.set(__self__, "aggregation", aggregation)
@@ -300,6 +385,9 @@ class _RollupRuleState:
     @property
     @pulumi.getter
     def aggregation(self) -> Optional[pulumi.Input[str]]:
+        """
+        Aggregation function applied across grouped series (e.g. `sum`, `min`, `max`, `last`).
+        """
         return pulumi.get(self, "aggregation")
 
     @aggregation.setter
@@ -309,6 +397,9 @@ class _RollupRuleState:
     @property
     @pulumi.getter(name="bucketId")
     def bucket_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the bucket the rollup rule belongs to.
+        """
         return pulumi.get(self, "bucket_id")
 
     @bucket_id.setter
@@ -318,6 +409,9 @@ class _RollupRuleState:
     @property
     @pulumi.getter(name="dropRaw")
     def drop_raw(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If `true`, automatically generates a drop rule that removes the raw input metrics matching this rollup. Defaults to `false`.
+        """
         return pulumi.get(self, "drop_raw")
 
     @drop_raw.setter
@@ -327,6 +421,9 @@ class _RollupRuleState:
     @property
     @pulumi.getter(name="excludeBies")
     def exclude_bies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Labels to drop when aggregating; all other labels are preserved. Mutually exclusive with `group_by`.
+        """
         return pulumi.get(self, "exclude_bies")
 
     @exclude_bies.setter
@@ -336,6 +433,9 @@ class _RollupRuleState:
     @property
     @pulumi.getter
     def filter(self) -> Optional[pulumi.Input[str]]:
+        """
+        Space-delimited list of `label:value_glob` matchers that select the input series. Supports glob patterns and special filters like `__name__`, `__metric_type__`, and `__metric_source__`.
+        """
         return pulumi.get(self, "filter")
 
     @filter.setter
@@ -345,6 +445,9 @@ class _RollupRuleState:
     @property
     @pulumi.getter(name="graphiteLabelPolicy")
     def graphite_label_policy(self) -> Optional[pulumi.Input['RollupRuleGraphiteLabelPolicyArgs']]:
+        """
+        Graphite-specific label policy applied to positional labels (`__gX__`) on the output metric.
+        """
         return pulumi.get(self, "graphite_label_policy")
 
     @graphite_label_policy.setter
@@ -354,6 +457,9 @@ class _RollupRuleState:
     @property
     @pulumi.getter(name="groupBies")
     def group_bies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Labels to preserve when aggregating; all other labels are dropped. Mutually exclusive with `exclude_by`.
+        """
         return pulumi.get(self, "group_bies")
 
     @group_bies.setter
@@ -363,6 +469,9 @@ class _RollupRuleState:
     @property
     @pulumi.getter
     def interval(self) -> Optional[pulumi.Input[str]]:
+        """
+        Interval between aggregated data points produced by the rollup. Defaults to a server-side value when unset. Conflicts with `storage_policies`.
+        """
         return pulumi.get(self, "interval")
 
     @interval.setter
@@ -372,6 +481,9 @@ class _RollupRuleState:
     @property
     @pulumi.getter(name="metricType")
     def metric_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Type of the source metric being rolled up (e.g. `gauge`, `counter`, `histogram`).
+        """
         return pulumi.get(self, "metric_type")
 
     @metric_type.setter
@@ -381,6 +493,9 @@ class _RollupRuleState:
     @property
     @pulumi.getter(name="metricTypeTag")
     def metric_type_tag(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to add a `__rollup_type__` label to the output metric identifying the rollup type. Defaults to `false`.
+        """
         return pulumi.get(self, "metric_type_tag")
 
     @metric_type_tag.setter
@@ -390,6 +505,9 @@ class _RollupRuleState:
     @property
     @pulumi.getter
     def mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Rollup mode controlling whether the rule is active or in a preview state.
+        """
         return pulumi.get(self, "mode")
 
     @mode.setter
@@ -399,6 +517,9 @@ class _RollupRuleState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Positional Graphite label to replace (e.g. `__g1__`).
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -408,6 +529,9 @@ class _RollupRuleState:
     @property
     @pulumi.getter(name="newMetric")
     def new_metric(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the output metric produced by the rollup. Supports the `{{.MetricName}}` template variable to reference the source metric name. Optional for Graphite rollup rules.
+        """
         return pulumi.get(self, "new_metric")
 
     @new_metric.setter
@@ -417,6 +541,9 @@ class _RollupRuleState:
     @property
     @pulumi.getter
     def permissive(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Deprecated: no longer supported.
+        """
         warnings.warn("""permissive is no longer supported""", DeprecationWarning)
         pulumi.log.warn("""permissive is deprecated: permissive is no longer supported""")
 
@@ -429,6 +556,9 @@ class _RollupRuleState:
     @property
     @pulumi.getter(name="skipOnConflict")
     def skip_on_conflict(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If `true`, this rule is skipped when another rollup rule already produces a metric with the same output name. Defaults to `false`.
+        """
         return pulumi.get(self, "skip_on_conflict")
 
     @skip_on_conflict.setter
@@ -438,6 +568,9 @@ class _RollupRuleState:
     @property
     @pulumi.getter
     def slug(self) -> Optional[pulumi.Input[str]]:
+        """
+        Stable identifier for the rollup rule. Immutable after creation. Unlike most resources, the slug is required and is not auto-generated from `name`.
+        """
         return pulumi.get(self, "slug")
 
     @slug.setter
@@ -447,6 +580,9 @@ class _RollupRuleState:
     @property
     @pulumi.getter(name="storagePolicies")
     def storage_policies(self) -> Optional[pulumi.Input['RollupRuleStoragePoliciesArgs']]:
+        """
+        Storage policy controlling resolution and retention of rolled-up metrics. Deprecated: use `interval` instead.
+        """
         warnings.warn("""use `interval` instead""", DeprecationWarning)
         pulumi.log.warn("""storage_policies is deprecated: use `interval` instead""")
 
@@ -481,9 +617,53 @@ class RollupRule(pulumi.CustomResource):
                  storage_policies: Optional[pulumi.Input[pulumi.InputType['RollupRuleStoragePoliciesArgs']]] = None,
                  __props__=None):
         """
-        Create a RollupRule resource with the given unique name, props, and options.
+        Aggregates matching input metrics into a lower-cardinality output series at ingest time, reducing storage cost and query load. Selects input series by filter, applies an aggregation function (e.g. `sum`, `max`), and emits a new metric grouped by the specified labels.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_chronosphere as chronosphere
+
+        bucket = chronosphere.Bucket("bucket", name="Platform")
+        rollup_rule = chronosphere.RollupRule("rollupRule",
+            name="RollupRule",
+            slug="rollup-rule",
+            bucket_id=bucket.id,
+            filter="__name__:metric_name",
+            aggregation="SUM",
+            drop_raw=True,
+            group_bies=["service"],
+            metric_type="COUNTER",
+            metric_type_tag=False,
+            new_metric="new_metric_name",
+            permissive=True,
+            storage_policies=chronosphere.RollupRuleStoragePoliciesArgs(
+                resolution="30s",
+                retention="120h",
+            ),
+            mode="PREVIEW")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] aggregation: Aggregation function applied across grouped series (e.g. `sum`, `min`, `max`, `last`).
+        :param pulumi.Input[str] bucket_id: ID of the bucket the rollup rule belongs to.
+        :param pulumi.Input[bool] drop_raw: If `true`, automatically generates a drop rule that removes the raw input metrics matching this rollup. Defaults to `false`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] exclude_bies: Labels to drop when aggregating; all other labels are preserved. Mutually exclusive with `group_by`.
+        :param pulumi.Input[str] filter: Space-delimited list of `label:value_glob` matchers that select the input series. Supports glob patterns and special filters like `__name__`, `__metric_type__`, and `__metric_source__`.
+        :param pulumi.Input[pulumi.InputType['RollupRuleGraphiteLabelPolicyArgs']] graphite_label_policy: Graphite-specific label policy applied to positional labels (`__gX__`) on the output metric.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] group_bies: Labels to preserve when aggregating; all other labels are dropped. Mutually exclusive with `exclude_by`.
+        :param pulumi.Input[str] interval: Interval between aggregated data points produced by the rollup. Defaults to a server-side value when unset. Conflicts with `storage_policies`.
+        :param pulumi.Input[str] metric_type: Type of the source metric being rolled up (e.g. `gauge`, `counter`, `histogram`).
+        :param pulumi.Input[bool] metric_type_tag: Whether to add a `__rollup_type__` label to the output metric identifying the rollup type. Defaults to `false`.
+        :param pulumi.Input[str] mode: Rollup mode controlling whether the rule is active or in a preview state.
+        :param pulumi.Input[str] name: Positional Graphite label to replace (e.g. `__g1__`).
+        :param pulumi.Input[str] new_metric: Name of the output metric produced by the rollup. Supports the `{{.MetricName}}` template variable to reference the source metric name. Optional for Graphite rollup rules.
+        :param pulumi.Input[bool] permissive: Deprecated: no longer supported.
+        :param pulumi.Input[bool] skip_on_conflict: If `true`, this rule is skipped when another rollup rule already produces a metric with the same output name. Defaults to `false`.
+        :param pulumi.Input[str] slug: Stable identifier for the rollup rule. Immutable after creation. Unlike most resources, the slug is required and is not auto-generated from `name`.
+        :param pulumi.Input[pulumi.InputType['RollupRuleStoragePoliciesArgs']] storage_policies: Storage policy controlling resolution and retention of rolled-up metrics. Deprecated: use `interval` instead.
         """
         ...
     @overload
@@ -492,7 +672,34 @@ class RollupRule(pulumi.CustomResource):
                  args: RollupRuleArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a RollupRule resource with the given unique name, props, and options.
+        Aggregates matching input metrics into a lower-cardinality output series at ingest time, reducing storage cost and query load. Selects input series by filter, applies an aggregation function (e.g. `sum`, `max`), and emits a new metric grouped by the specified labels.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_chronosphere as chronosphere
+
+        bucket = chronosphere.Bucket("bucket", name="Platform")
+        rollup_rule = chronosphere.RollupRule("rollupRule",
+            name="RollupRule",
+            slug="rollup-rule",
+            bucket_id=bucket.id,
+            filter="__name__:metric_name",
+            aggregation="SUM",
+            drop_raw=True,
+            group_bies=["service"],
+            metric_type="COUNTER",
+            metric_type_tag=False,
+            new_metric="new_metric_name",
+            permissive=True,
+            storage_policies=chronosphere.RollupRuleStoragePoliciesArgs(
+                resolution="30s",
+                retention="120h",
+            ),
+            mode="PREVIEW")
+        ```
+
         :param str resource_name: The name of the resource.
         :param RollupRuleArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -593,6 +800,23 @@ class RollupRule(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] aggregation: Aggregation function applied across grouped series (e.g. `sum`, `min`, `max`, `last`).
+        :param pulumi.Input[str] bucket_id: ID of the bucket the rollup rule belongs to.
+        :param pulumi.Input[bool] drop_raw: If `true`, automatically generates a drop rule that removes the raw input metrics matching this rollup. Defaults to `false`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] exclude_bies: Labels to drop when aggregating; all other labels are preserved. Mutually exclusive with `group_by`.
+        :param pulumi.Input[str] filter: Space-delimited list of `label:value_glob` matchers that select the input series. Supports glob patterns and special filters like `__name__`, `__metric_type__`, and `__metric_source__`.
+        :param pulumi.Input[pulumi.InputType['RollupRuleGraphiteLabelPolicyArgs']] graphite_label_policy: Graphite-specific label policy applied to positional labels (`__gX__`) on the output metric.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] group_bies: Labels to preserve when aggregating; all other labels are dropped. Mutually exclusive with `exclude_by`.
+        :param pulumi.Input[str] interval: Interval between aggregated data points produced by the rollup. Defaults to a server-side value when unset. Conflicts with `storage_policies`.
+        :param pulumi.Input[str] metric_type: Type of the source metric being rolled up (e.g. `gauge`, `counter`, `histogram`).
+        :param pulumi.Input[bool] metric_type_tag: Whether to add a `__rollup_type__` label to the output metric identifying the rollup type. Defaults to `false`.
+        :param pulumi.Input[str] mode: Rollup mode controlling whether the rule is active or in a preview state.
+        :param pulumi.Input[str] name: Positional Graphite label to replace (e.g. `__g1__`).
+        :param pulumi.Input[str] new_metric: Name of the output metric produced by the rollup. Supports the `{{.MetricName}}` template variable to reference the source metric name. Optional for Graphite rollup rules.
+        :param pulumi.Input[bool] permissive: Deprecated: no longer supported.
+        :param pulumi.Input[bool] skip_on_conflict: If `true`, this rule is skipped when another rollup rule already produces a metric with the same output name. Defaults to `false`.
+        :param pulumi.Input[str] slug: Stable identifier for the rollup rule. Immutable after creation. Unlike most resources, the slug is required and is not auto-generated from `name`.
+        :param pulumi.Input[pulumi.InputType['RollupRuleStoragePoliciesArgs']] storage_policies: Storage policy controlling resolution and retention of rolled-up metrics. Deprecated: use `interval` instead.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -620,71 +844,113 @@ class RollupRule(pulumi.CustomResource):
     @property
     @pulumi.getter
     def aggregation(self) -> pulumi.Output[Optional[str]]:
+        """
+        Aggregation function applied across grouped series (e.g. `sum`, `min`, `max`, `last`).
+        """
         return pulumi.get(self, "aggregation")
 
     @property
     @pulumi.getter(name="bucketId")
     def bucket_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        ID of the bucket the rollup rule belongs to.
+        """
         return pulumi.get(self, "bucket_id")
 
     @property
     @pulumi.getter(name="dropRaw")
     def drop_raw(self) -> pulumi.Output[Optional[bool]]:
+        """
+        If `true`, automatically generates a drop rule that removes the raw input metrics matching this rollup. Defaults to `false`.
+        """
         return pulumi.get(self, "drop_raw")
 
     @property
     @pulumi.getter(name="excludeBies")
     def exclude_bies(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        Labels to drop when aggregating; all other labels are preserved. Mutually exclusive with `group_by`.
+        """
         return pulumi.get(self, "exclude_bies")
 
     @property
     @pulumi.getter
     def filter(self) -> pulumi.Output[str]:
+        """
+        Space-delimited list of `label:value_glob` matchers that select the input series. Supports glob patterns and special filters like `__name__`, `__metric_type__`, and `__metric_source__`.
+        """
         return pulumi.get(self, "filter")
 
     @property
     @pulumi.getter(name="graphiteLabelPolicy")
     def graphite_label_policy(self) -> pulumi.Output[Optional['outputs.RollupRuleGraphiteLabelPolicy']]:
+        """
+        Graphite-specific label policy applied to positional labels (`__gX__`) on the output metric.
+        """
         return pulumi.get(self, "graphite_label_policy")
 
     @property
     @pulumi.getter(name="groupBies")
     def group_bies(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        Labels to preserve when aggregating; all other labels are dropped. Mutually exclusive with `exclude_by`.
+        """
         return pulumi.get(self, "group_bies")
 
     @property
     @pulumi.getter
     def interval(self) -> pulumi.Output[str]:
+        """
+        Interval between aggregated data points produced by the rollup. Defaults to a server-side value when unset. Conflicts with `storage_policies`.
+        """
         return pulumi.get(self, "interval")
 
     @property
     @pulumi.getter(name="metricType")
     def metric_type(self) -> pulumi.Output[str]:
+        """
+        Type of the source metric being rolled up (e.g. `gauge`, `counter`, `histogram`).
+        """
         return pulumi.get(self, "metric_type")
 
     @property
     @pulumi.getter(name="metricTypeTag")
     def metric_type_tag(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Whether to add a `__rollup_type__` label to the output metric identifying the rollup type. Defaults to `false`.
+        """
         return pulumi.get(self, "metric_type_tag")
 
     @property
     @pulumi.getter
     def mode(self) -> pulumi.Output[Optional[str]]:
+        """
+        Rollup mode controlling whether the rule is active or in a preview state.
+        """
         return pulumi.get(self, "mode")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        Positional Graphite label to replace (e.g. `__g1__`).
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="newMetric")
     def new_metric(self) -> pulumi.Output[Optional[str]]:
+        """
+        Name of the output metric produced by the rollup. Supports the `{{.MetricName}}` template variable to reference the source metric name. Optional for Graphite rollup rules.
+        """
         return pulumi.get(self, "new_metric")
 
     @property
     @pulumi.getter
     def permissive(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Deprecated: no longer supported.
+        """
         warnings.warn("""permissive is no longer supported""", DeprecationWarning)
         pulumi.log.warn("""permissive is deprecated: permissive is no longer supported""")
 
@@ -693,16 +959,25 @@ class RollupRule(pulumi.CustomResource):
     @property
     @pulumi.getter(name="skipOnConflict")
     def skip_on_conflict(self) -> pulumi.Output[Optional[bool]]:
+        """
+        If `true`, this rule is skipped when another rollup rule already produces a metric with the same output name. Defaults to `false`.
+        """
         return pulumi.get(self, "skip_on_conflict")
 
     @property
     @pulumi.getter
     def slug(self) -> pulumi.Output[str]:
+        """
+        Stable identifier for the rollup rule. Immutable after creation. Unlike most resources, the slug is required and is not auto-generated from `name`.
+        """
         return pulumi.get(self, "slug")
 
     @property
     @pulumi.getter(name="storagePolicies")
     def storage_policies(self) -> pulumi.Output[Optional['outputs.RollupRuleStoragePolicies']]:
+        """
+        Storage policy controlling resolution and retention of rolled-up metrics. Deprecated: use `interval` instead.
+        """
         warnings.warn("""use `interval` instead""", DeprecationWarning)
         pulumi.log.warn("""storage_policies is deprecated: use `interval` instead""")
 

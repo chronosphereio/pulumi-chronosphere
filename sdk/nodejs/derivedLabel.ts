@@ -6,6 +6,50 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * Defines a synthetic label whose value is derived from existing metric labels or trace span tags via mapping or constructed-value rules. The derived label can then be referenced in queries as if it were a real label on the source series.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as chronosphere from "@pulumi-chronosphere/pulumi-chronosphere";
+ *
+ * const tier = new chronosphere.DerivedLabel("tier", {
+ *     description: "Derives a 'tier' label (read/write/admin) from the instance label",
+ *     labelName: "tier",
+ *     metricLabel: {
+ *         constructedLabel: {
+ *             valueDefinitions: [
+ *                 {
+ *                     filters: [{
+ *                         name: "instance",
+ *                         valueGlob: "reader-*",
+ *                     }],
+ *                     value: "read",
+ *                 },
+ *                 {
+ *                     filters: [{
+ *                         name: "instance",
+ *                         valueGlob: "writer-*",
+ *                     }],
+ *                     value: "write",
+ *                 },
+ *                 {
+ *                     filters: [{
+ *                         name: "instance",
+ *                         valueGlob: "admin-*",
+ *                     }],
+ *                     value: "admin",
+ *                 },
+ *             ],
+ *         },
+ *     },
+ *     name: "Tier from instance name",
+ *     slug: "tier-from-instance",
+ * });
+ * ```
+ */
 export class DerivedLabel extends pulumi.CustomResource {
     /**
      * Get an existing DerivedLabel resource's state with the given name, ID, and optional extra
@@ -34,12 +78,33 @@ export class DerivedLabel extends pulumi.CustomResource {
         return obj['__pulumiType'] === DerivedLabel.__pulumiType;
     }
 
+    /**
+     * Free-form description of the derived label.
+     */
     public readonly description!: pulumi.Output<string | undefined>;
+    /**
+     * Policy controlling behavior when the target label already exists on the source series (e.g. keep, replace).
+     */
     public readonly existingLabelPolicy!: pulumi.Output<string | undefined>;
+    /**
+     * Name of the label exposed on derived series. Must be unique across the system.
+     */
     public readonly labelName!: pulumi.Output<string>;
+    /**
+     * Derives a label for metrics, either by constructing a new value from filters or by mapping an existing label. Mutually exclusive with `spanTag`.
+     */
     public readonly metricLabel!: pulumi.Output<outputs.DerivedLabelMetricLabel | undefined>;
+    /**
+     * Name of the label to match.
+     */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * Stable identifier for the derived label. Generated from `name` if omitted. Immutable after creation.
+     */
     public readonly slug!: pulumi.Output<string>;
+    /**
+     * Derives a label for trace spans by mapping from an existing span tag. Mutually exclusive with `metricLabel`.
+     */
     public readonly spanTag!: pulumi.Output<outputs.DerivedLabelSpanTag | undefined>;
 
     /**
@@ -87,12 +152,33 @@ export class DerivedLabel extends pulumi.CustomResource {
  * Input properties used for looking up and filtering DerivedLabel resources.
  */
 export interface DerivedLabelState {
+    /**
+     * Free-form description of the derived label.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * Policy controlling behavior when the target label already exists on the source series (e.g. keep, replace).
+     */
     existingLabelPolicy?: pulumi.Input<string>;
+    /**
+     * Name of the label exposed on derived series. Must be unique across the system.
+     */
     labelName?: pulumi.Input<string>;
+    /**
+     * Derives a label for metrics, either by constructing a new value from filters or by mapping an existing label. Mutually exclusive with `spanTag`.
+     */
     metricLabel?: pulumi.Input<inputs.DerivedLabelMetricLabel>;
+    /**
+     * Name of the label to match.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * Stable identifier for the derived label. Generated from `name` if omitted. Immutable after creation.
+     */
     slug?: pulumi.Input<string>;
+    /**
+     * Derives a label for trace spans by mapping from an existing span tag. Mutually exclusive with `metricLabel`.
+     */
     spanTag?: pulumi.Input<inputs.DerivedLabelSpanTag>;
 }
 
@@ -100,11 +186,32 @@ export interface DerivedLabelState {
  * The set of arguments for constructing a DerivedLabel resource.
  */
 export interface DerivedLabelArgs {
+    /**
+     * Free-form description of the derived label.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * Policy controlling behavior when the target label already exists on the source series (e.g. keep, replace).
+     */
     existingLabelPolicy?: pulumi.Input<string>;
+    /**
+     * Name of the label exposed on derived series. Must be unique across the system.
+     */
     labelName: pulumi.Input<string>;
+    /**
+     * Derives a label for metrics, either by constructing a new value from filters or by mapping an existing label. Mutually exclusive with `spanTag`.
+     */
     metricLabel?: pulumi.Input<inputs.DerivedLabelMetricLabel>;
+    /**
+     * Name of the label to match.
+     */
     name: pulumi.Input<string>;
+    /**
+     * Stable identifier for the derived label. Generated from `name` if omitted. Immutable after creation.
+     */
     slug?: pulumi.Input<string>;
+    /**
+     * Derives a label for trace spans by mapping from an existing span tag. Mutually exclusive with `metricLabel`.
+     */
     spanTag?: pulumi.Input<inputs.DerivedLabelSpanTag>;
 }

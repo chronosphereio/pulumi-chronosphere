@@ -11,6 +11,31 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/chronosphereio/pulumi-chronosphere/sdk/go/chronosphere"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := chronosphere.CollectionDataSource(ctx, &chronosphere.CollectionDataSourceArgs{
+//				Slug: pulumi.StringRef("default"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func CollectionDataSource(ctx *pulumi.Context, args *CollectionDataSourceArgs, opts ...pulumi.InvokeOption) (*CollectionDataSourceResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv CollectionDataSourceResult
@@ -23,15 +48,19 @@ func CollectionDataSource(ctx *pulumi.Context, args *CollectionDataSourceArgs, o
 
 // A collection of arguments for invoking CollectionDataSource.
 type CollectionDataSourceArgs struct {
+	// Slug of the collection to look up.
 	Slug *string `pulumi:"slug"`
 }
 
 // A collection of values returned by CollectionDataSource.
 type CollectionDataSourceResult struct {
+	// Read-only: free-form description of the collection.
 	Description string `pulumi:"description"`
 	// The provider-assigned unique ID for this managed resource.
-	Id   string  `pulumi:"id"`
-	Name string  `pulumi:"name"`
+	Id string `pulumi:"id"`
+	// Read-only: display name of the collection.
+	Name string `pulumi:"name"`
+	// Slug of the collection to look up.
 	Slug *string `pulumi:"slug"`
 }
 
@@ -50,6 +79,7 @@ func CollectionDataSourceOutput(ctx *pulumi.Context, args CollectionDataSourceOu
 
 // A collection of arguments for invoking CollectionDataSource.
 type CollectionDataSourceOutputArgs struct {
+	// Slug of the collection to look up.
 	Slug pulumi.StringPtrInput `pulumi:"slug"`
 }
 
@@ -72,6 +102,7 @@ func (o CollectionDataSourceResultOutput) ToCollectionDataSourceResultOutputWith
 	return o
 }
 
+// Read-only: free-form description of the collection.
 func (o CollectionDataSourceResultOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v CollectionDataSourceResult) string { return v.Description }).(pulumi.StringOutput)
 }
@@ -81,10 +112,12 @@ func (o CollectionDataSourceResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v CollectionDataSourceResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// Read-only: display name of the collection.
 func (o CollectionDataSourceResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v CollectionDataSourceResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Slug of the collection to look up.
 func (o CollectionDataSourceResultOutput) Slug() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CollectionDataSourceResult) *string { return v.Slug }).(pulumi.StringPtrOutput)
 }

@@ -13,9 +13,15 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class DerivedMetricQueryArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// PromQL query executed when this selector matches.
+        /// </summary>
         [Input("query", required: true)]
         public Input<Inputs.DerivedMetricQueryQueryArgs> Query { get; set; } = null!;
 
+        /// <summary>
+        /// Label matchers that must be present on the derived metric usage for this query to be selected. If omitted, the query matches any usage.
+        /// </summary>
         [Input("selector")]
         public Input<Inputs.DerivedMetricQuerySelectorArgs>? Selector { get; set; }
 

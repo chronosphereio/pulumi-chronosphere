@@ -12,14 +12,75 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// A Chronosphere dashboard composed of panels, layouts, and variables defined by `dashboardJson`. For Grafana-compatible dashboards, use `ClassicDashboard` instead.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"encoding/json"
+//
+//	"github.com/chronosphereio/pulumi-chronosphere/sdk/go/chronosphere"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			collection, err := chronosphere.NewCollection(ctx, "collection", &chronosphere.CollectionArgs{
+//				Name: pulumi.String("Platform"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			tmpJSON0, err := json.Marshal(map[string]interface{}{
+//				"kind": "Dashboard",
+//				"spec": map[string]interface{}{
+//					"events":    []interface{}{},
+//					"panels":    nil,
+//					"layouts":   []interface{}{},
+//					"variables": []interface{}{},
+//					"duration":  "30m",
+//				},
+//				"spec_version": "1",
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json0 := string(tmpJSON0)
+//			_, err = chronosphere.NewDashboard(ctx, "platform", &chronosphere.DashboardArgs{
+//				Name:         pulumi.String("Platform Overview"),
+//				Slug:         pulumi.String("platform-overview"),
+//				CollectionId: collection.ID(),
+//				Labels: pulumi.StringMap{
+//					"team": pulumi.String("platform"),
+//				},
+//				DashboardJson: pulumi.String(json0),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type Dashboard struct {
 	pulumi.CustomResourceState
 
-	CollectionId  pulumi.StringPtrOutput `pulumi:"collectionId"`
-	DashboardJson pulumi.StringOutput    `pulumi:"dashboardJson"`
-	Labels        pulumi.StringMapOutput `pulumi:"labels"`
-	Name          pulumi.StringPtrOutput `pulumi:"name"`
-	Slug          pulumi.StringOutput    `pulumi:"slug"`
+	// ID of the collection that owns this dashboard.
+	CollectionId pulumi.StringPtrOutput `pulumi:"collectionId"`
+	// JSON payload describing the dashboard's panels, layouts, variables, and other content. Wrap with `jsonencode({...})` in HCL. The provider sanitizes the JSON before diffing, so cosmetic differences (key ordering, whitespace) do not cause spurious plans.
+	DashboardJson pulumi.StringOutput `pulumi:"dashboardJson"`
+	// Key/value labels attached to the dashboard for organization and filtering.
+	Labels pulumi.StringMapOutput `pulumi:"labels"`
+	// Display name of the dashboard. Can be changed after creation.
+	Name pulumi.StringPtrOutput `pulumi:"name"`
+	// Stable identifier for the dashboard. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringOutput `pulumi:"slug"`
 }
 
 // NewDashboard registers a new resource with the given unique name, arguments, and options.
@@ -55,19 +116,29 @@ func GetDashboard(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Dashboard resources.
 type dashboardState struct {
-	CollectionId  *string           `pulumi:"collectionId"`
-	DashboardJson *string           `pulumi:"dashboardJson"`
-	Labels        map[string]string `pulumi:"labels"`
-	Name          *string           `pulumi:"name"`
-	Slug          *string           `pulumi:"slug"`
+	// ID of the collection that owns this dashboard.
+	CollectionId *string `pulumi:"collectionId"`
+	// JSON payload describing the dashboard's panels, layouts, variables, and other content. Wrap with `jsonencode({...})` in HCL. The provider sanitizes the JSON before diffing, so cosmetic differences (key ordering, whitespace) do not cause spurious plans.
+	DashboardJson *string `pulumi:"dashboardJson"`
+	// Key/value labels attached to the dashboard for organization and filtering.
+	Labels map[string]string `pulumi:"labels"`
+	// Display name of the dashboard. Can be changed after creation.
+	Name *string `pulumi:"name"`
+	// Stable identifier for the dashboard. Generated from `name` if omitted. Immutable after creation.
+	Slug *string `pulumi:"slug"`
 }
 
 type DashboardState struct {
-	CollectionId  pulumi.StringPtrInput
+	// ID of the collection that owns this dashboard.
+	CollectionId pulumi.StringPtrInput
+	// JSON payload describing the dashboard's panels, layouts, variables, and other content. Wrap with `jsonencode({...})` in HCL. The provider sanitizes the JSON before diffing, so cosmetic differences (key ordering, whitespace) do not cause spurious plans.
 	DashboardJson pulumi.StringPtrInput
-	Labels        pulumi.StringMapInput
-	Name          pulumi.StringPtrInput
-	Slug          pulumi.StringPtrInput
+	// Key/value labels attached to the dashboard for organization and filtering.
+	Labels pulumi.StringMapInput
+	// Display name of the dashboard. Can be changed after creation.
+	Name pulumi.StringPtrInput
+	// Stable identifier for the dashboard. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringPtrInput
 }
 
 func (DashboardState) ElementType() reflect.Type {
@@ -75,20 +146,30 @@ func (DashboardState) ElementType() reflect.Type {
 }
 
 type dashboardArgs struct {
-	CollectionId  *string           `pulumi:"collectionId"`
-	DashboardJson string            `pulumi:"dashboardJson"`
-	Labels        map[string]string `pulumi:"labels"`
-	Name          *string           `pulumi:"name"`
-	Slug          *string           `pulumi:"slug"`
+	// ID of the collection that owns this dashboard.
+	CollectionId *string `pulumi:"collectionId"`
+	// JSON payload describing the dashboard's panels, layouts, variables, and other content. Wrap with `jsonencode({...})` in HCL. The provider sanitizes the JSON before diffing, so cosmetic differences (key ordering, whitespace) do not cause spurious plans.
+	DashboardJson string `pulumi:"dashboardJson"`
+	// Key/value labels attached to the dashboard for organization and filtering.
+	Labels map[string]string `pulumi:"labels"`
+	// Display name of the dashboard. Can be changed after creation.
+	Name *string `pulumi:"name"`
+	// Stable identifier for the dashboard. Generated from `name` if omitted. Immutable after creation.
+	Slug *string `pulumi:"slug"`
 }
 
 // The set of arguments for constructing a Dashboard resource.
 type DashboardArgs struct {
-	CollectionId  pulumi.StringPtrInput
+	// ID of the collection that owns this dashboard.
+	CollectionId pulumi.StringPtrInput
+	// JSON payload describing the dashboard's panels, layouts, variables, and other content. Wrap with `jsonencode({...})` in HCL. The provider sanitizes the JSON before diffing, so cosmetic differences (key ordering, whitespace) do not cause spurious plans.
 	DashboardJson pulumi.StringInput
-	Labels        pulumi.StringMapInput
-	Name          pulumi.StringPtrInput
-	Slug          pulumi.StringPtrInput
+	// Key/value labels attached to the dashboard for organization and filtering.
+	Labels pulumi.StringMapInput
+	// Display name of the dashboard. Can be changed after creation.
+	Name pulumi.StringPtrInput
+	// Stable identifier for the dashboard. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringPtrInput
 }
 
 func (DashboardArgs) ElementType() reflect.Type {
@@ -178,22 +259,27 @@ func (o DashboardOutput) ToDashboardOutputWithContext(ctx context.Context) Dashb
 	return o
 }
 
+// ID of the collection that owns this dashboard.
 func (o DashboardOutput) CollectionId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Dashboard) pulumi.StringPtrOutput { return v.CollectionId }).(pulumi.StringPtrOutput)
 }
 
+// JSON payload describing the dashboard's panels, layouts, variables, and other content. Wrap with `jsonencode({...})` in HCL. The provider sanitizes the JSON before diffing, so cosmetic differences (key ordering, whitespace) do not cause spurious plans.
 func (o DashboardOutput) DashboardJson() pulumi.StringOutput {
 	return o.ApplyT(func(v *Dashboard) pulumi.StringOutput { return v.DashboardJson }).(pulumi.StringOutput)
 }
 
+// Key/value labels attached to the dashboard for organization and filtering.
 func (o DashboardOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *Dashboard) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }
 
+// Display name of the dashboard. Can be changed after creation.
 func (o DashboardOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Dashboard) pulumi.StringPtrOutput { return v.Name }).(pulumi.StringPtrOutput)
 }
 
+// Stable identifier for the dashboard. Generated from `name` if omitted. Immutable after creation.
 func (o DashboardOutput) Slug() pulumi.StringOutput {
 	return o.ApplyT(func(v *Dashboard) pulumi.StringOutput { return v.Slug }).(pulumi.StringOutput)
 }

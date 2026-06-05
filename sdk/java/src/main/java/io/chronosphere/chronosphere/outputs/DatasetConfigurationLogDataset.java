@@ -11,9 +11,17 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class DatasetConfigurationLogDataset {
+    /**
+     * @return Log search filter that defines which logs are included in this dataset.
+     * 
+     */
     private @Nullable DatasetConfigurationLogDatasetMatchCriteria matchCriteria;
 
     private DatasetConfigurationLogDataset() {}
+    /**
+     * @return Log search filter that defines which logs are included in this dataset.
+     * 
+     */
     public Optional<DatasetConfigurationLogDatasetMatchCriteria> matchCriteria() {
         return Optional.ofNullable(this.matchCriteria);
     }

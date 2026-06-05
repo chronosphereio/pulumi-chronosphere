@@ -13,6 +13,9 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class LogscaleActionUploadFileActionGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Name to use for the uploaded file.
+        /// </summary>
         [Input("fileName", required: true)]
         public Input<string> FileName { get; set; } = null!;
 

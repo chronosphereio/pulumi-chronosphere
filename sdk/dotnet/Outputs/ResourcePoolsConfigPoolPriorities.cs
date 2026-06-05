@@ -14,7 +14,13 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class ResourcePoolsConfigPoolPriorities
     {
+        /// <summary>
+        /// Matchers selecting metrics within the pool that are treated as high priority and dropped last.
+        /// </summary>
         public readonly ImmutableArray<string> HighPriorityMatchRules;
+        /// <summary>
+        /// Matchers selecting metrics within the pool that are treated as low priority and dropped first.
+        /// </summary>
         public readonly ImmutableArray<string> LowPriorityMatchRules;
 
         [OutputConstructor]

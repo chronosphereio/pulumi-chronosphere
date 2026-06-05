@@ -9,9 +9,17 @@ import java.util.Objects;
 
 @CustomType
 public final class DatasetConfigurationTraceDataset {
+    /**
+     * @return Log search filter that defines which logs are included in this dataset.
+     * 
+     */
     private DatasetConfigurationTraceDatasetMatchCriteria matchCriteria;
 
     private DatasetConfigurationTraceDataset() {}
+    /**
+     * @return Log search filter that defines which logs are included in this dataset.
+     * 
+     */
     public DatasetConfigurationTraceDatasetMatchCriteria matchCriteria() {
         return this.matchCriteria;
     }

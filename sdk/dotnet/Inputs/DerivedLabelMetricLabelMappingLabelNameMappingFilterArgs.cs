@@ -13,9 +13,15 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class DerivedLabelMetricLabelMappingLabelNameMappingFilterArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Name of the label to match.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// Glob pattern matched against the label value.
+        /// </summary>
         [Input("valueGlob", required: true)]
         public Input<string> ValueGlob { get; set; } = null!;
 

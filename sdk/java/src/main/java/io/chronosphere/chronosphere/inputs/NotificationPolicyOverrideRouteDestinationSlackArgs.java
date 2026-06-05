@@ -16,16 +16,32 @@ public final class NotificationPolicyOverrideRouteDestinationSlackArgs extends c
 
     public static final NotificationPolicyOverrideRouteDestinationSlackArgs Empty = new NotificationPolicyOverrideRouteDestinationSlackArgs();
 
+    /**
+     * Slack channels to send notifications to.
+     * 
+     */
     @Import(name="channels")
     private @Nullable Output<List<String>> channels;
 
+    /**
+     * @return Slack channels to send notifications to.
+     * 
+     */
     public Optional<Output<List<String>>> channels() {
         return Optional.ofNullable(this.channels);
     }
 
+    /**
+     * Slug of the OpsGenie external connection holding the integration credentials.
+     * 
+     */
     @Import(name="externalConnectionSlug", required=true)
     private Output<String> externalConnectionSlug;
 
+    /**
+     * @return Slug of the OpsGenie external connection holding the integration credentials.
+     * 
+     */
     public Output<String> externalConnectionSlug() {
         return this.externalConnectionSlug;
     }
@@ -55,24 +71,54 @@ public final class NotificationPolicyOverrideRouteDestinationSlackArgs extends c
             $ = new NotificationPolicyOverrideRouteDestinationSlackArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param channels Slack channels to send notifications to.
+         * 
+         * @return builder
+         * 
+         */
         public Builder channels(@Nullable Output<List<String>> channels) {
             $.channels = channels;
             return this;
         }
 
+        /**
+         * @param channels Slack channels to send notifications to.
+         * 
+         * @return builder
+         * 
+         */
         public Builder channels(List<String> channels) {
             return channels(Output.of(channels));
         }
 
+        /**
+         * @param channels Slack channels to send notifications to.
+         * 
+         * @return builder
+         * 
+         */
         public Builder channels(String... channels) {
             return channels(List.of(channels));
         }
 
+        /**
+         * @param externalConnectionSlug Slug of the OpsGenie external connection holding the integration credentials.
+         * 
+         * @return builder
+         * 
+         */
         public Builder externalConnectionSlug(Output<String> externalConnectionSlug) {
             $.externalConnectionSlug = externalConnectionSlug;
             return this;
         }
 
+        /**
+         * @param externalConnectionSlug Slug of the OpsGenie external connection holding the integration credentials.
+         * 
+         * @return builder
+         * 
+         */
         public Builder externalConnectionSlug(String externalConnectionSlug) {
             return externalConnectionSlug(Output.of(externalConnectionSlug));
         }

@@ -9,9 +9,17 @@ import java.util.Objects;
 
 @CustomType
 public final class LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSource {
+    /**
+     * @return Field path selector. Use `parent[child]` syntax to indicate nesting.
+     * 
+     */
     private String selector;
 
     private LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSource() {}
+    /**
+     * @return Field path selector. Use `parent[child]` syntax to indicate nesting.
+     * 
+     */
     public String selector() {
         return this.selector;
     }

@@ -13,15 +13,27 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class LogIngestConfigFieldParserParserGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Grok parser configuration. Only set when `parser_type` is `GROK`.
+        /// </summary>
         [Input("grokParser")]
         public Input<Inputs.LogIngestConfigFieldParserParserGrokParserGetArgs>? GrokParser { get; set; }
 
+        /// <summary>
+        /// Key/value parser configuration. Only set when `parser_type` is `KEY_VALUE`. Duplicate keys keep the first occurrence.
+        /// </summary>
         [Input("keyValueParser")]
         public Input<Inputs.LogIngestConfigFieldParserParserKeyValueParserGetArgs>? KeyValueParser { get; set; }
 
+        /// <summary>
+        /// Type of parser to apply. Determines which of `regex_parser`, `key_value_parser`, or `grok_parser` must be set.
+        /// </summary>
         [Input("parserType", required: true)]
         public Input<string> ParserType { get; set; } = null!;
 
+        /// <summary>
+        /// Regex parser configuration. Only set when `parser_type` is `REGEX`.
+        /// </summary>
         [Input("regexParser")]
         public Input<Inputs.LogIngestConfigFieldParserParserRegexParserGetArgs>? RegexParser { get; set; }
 

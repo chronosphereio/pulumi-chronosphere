@@ -19,6 +19,7 @@ class LogControlConfigArgs:
                  rules: Optional[pulumi.Input[Sequence[pulumi.Input['LogControlConfigRuleArgs']]]] = None):
         """
         The set of arguments for constructing a LogControlConfig resource.
+        :param pulumi.Input[Sequence[pulumi.Input['LogControlConfigRuleArgs']]] rules: Ordered list of log control rules applied to the log ingest pipeline. Rules are evaluated in order.
         """
         if rules is not None:
             pulumi.set(__self__, "rules", rules)
@@ -26,6 +27,9 @@ class LogControlConfigArgs:
     @property
     @pulumi.getter
     def rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LogControlConfigRuleArgs']]]]:
+        """
+        Ordered list of log control rules applied to the log ingest pipeline. Rules are evaluated in order.
+        """
         return pulumi.get(self, "rules")
 
     @rules.setter
@@ -39,6 +43,7 @@ class _LogControlConfigState:
                  rules: Optional[pulumi.Input[Sequence[pulumi.Input['LogControlConfigRuleArgs']]]] = None):
         """
         Input properties used for looking up and filtering LogControlConfig resources.
+        :param pulumi.Input[Sequence[pulumi.Input['LogControlConfigRuleArgs']]] rules: Ordered list of log control rules applied to the log ingest pipeline. Rules are evaluated in order.
         """
         if rules is not None:
             pulumi.set(__self__, "rules", rules)
@@ -46,6 +51,9 @@ class _LogControlConfigState:
     @property
     @pulumi.getter
     def rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LogControlConfigRuleArgs']]]]:
+        """
+        Ordered list of log control rules applied to the log ingest pipeline. Rules are evaluated in order.
+        """
         return pulumi.get(self, "rules")
 
     @rules.setter
@@ -61,9 +69,65 @@ class LogControlConfig(pulumi.CustomResource):
                  rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LogControlConfigRuleArgs']]]]] = None,
                  __props__=None):
         """
-        Create a LogControlConfig resource with the given unique name, props, and options.
+        Singleton org-wide pipeline of rules that sample, drop, replace, parse, or emit metrics from logs at ingest.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_chronosphere as chronosphere
+
+        config = chronosphere.LogControlConfig("config", rules=[
+            chronosphere.LogControlConfigRuleArgs(
+                filter="service = 'sample-service' AND severity = 'debug'",
+                mode="ENABLED",
+                name="sample-debug",
+                sample=chronosphere.LogControlConfigRuleSampleArgs(
+                    rate=0.01,
+                ),
+                type="SAMPLE",
+            ),
+            chronosphere.LogControlConfigRuleArgs(
+                filter="service = 'deprecated-service'",
+                mode="ENABLED",
+                name="drop-deprecated",
+                type="DROP",
+            ),
+            chronosphere.LogControlConfigRuleArgs(
+                drop_field=chronosphere.LogControlConfigRuleDropFieldArgs(
+                    field_regex="password|secret|api_key",
+                    parent_path=chronosphere.LogControlConfigRuleDropFieldParentPathArgs(
+                        selector="kubernetes['labels']",
+                    ),
+                ),
+                filter="service = 'api-gateway'",
+                mode="ENABLED",
+                name="drop-sensitive-fields",
+                type="DROP_FIELD",
+            ),
+            chronosphere.LogControlConfigRuleArgs(
+                filter="service = 'api-gateway'",
+                mode="ENABLED",
+                name="shorten-trace-ids",
+                replace_field=chronosphere.LogControlConfigRuleReplaceFieldArgs(
+                    field=chronosphere.LogControlConfigRuleReplaceFieldFieldArgs(
+                        selector="trace_id",
+                    ),
+                    replace_all=False,
+                    replace_mode="STATIC_VALUE",
+                    replace_regex="[0-9a-f]{32}",
+                    static_value=chronosphere.LogControlConfigRuleReplaceFieldStaticValueArgs(
+                        value="[trace-id]",
+                    ),
+                ),
+                type="REPLACE_FIELD",
+            ),
+        ])
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LogControlConfigRuleArgs']]]] rules: Ordered list of log control rules applied to the log ingest pipeline. Rules are evaluated in order.
         """
         ...
     @overload
@@ -72,7 +136,62 @@ class LogControlConfig(pulumi.CustomResource):
                  args: Optional[LogControlConfigArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a LogControlConfig resource with the given unique name, props, and options.
+        Singleton org-wide pipeline of rules that sample, drop, replace, parse, or emit metrics from logs at ingest.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_chronosphere as chronosphere
+
+        config = chronosphere.LogControlConfig("config", rules=[
+            chronosphere.LogControlConfigRuleArgs(
+                filter="service = 'sample-service' AND severity = 'debug'",
+                mode="ENABLED",
+                name="sample-debug",
+                sample=chronosphere.LogControlConfigRuleSampleArgs(
+                    rate=0.01,
+                ),
+                type="SAMPLE",
+            ),
+            chronosphere.LogControlConfigRuleArgs(
+                filter="service = 'deprecated-service'",
+                mode="ENABLED",
+                name="drop-deprecated",
+                type="DROP",
+            ),
+            chronosphere.LogControlConfigRuleArgs(
+                drop_field=chronosphere.LogControlConfigRuleDropFieldArgs(
+                    field_regex="password|secret|api_key",
+                    parent_path=chronosphere.LogControlConfigRuleDropFieldParentPathArgs(
+                        selector="kubernetes['labels']",
+                    ),
+                ),
+                filter="service = 'api-gateway'",
+                mode="ENABLED",
+                name="drop-sensitive-fields",
+                type="DROP_FIELD",
+            ),
+            chronosphere.LogControlConfigRuleArgs(
+                filter="service = 'api-gateway'",
+                mode="ENABLED",
+                name="shorten-trace-ids",
+                replace_field=chronosphere.LogControlConfigRuleReplaceFieldArgs(
+                    field=chronosphere.LogControlConfigRuleReplaceFieldFieldArgs(
+                        selector="trace_id",
+                    ),
+                    replace_all=False,
+                    replace_mode="STATIC_VALUE",
+                    replace_regex="[0-9a-f]{32}",
+                    static_value=chronosphere.LogControlConfigRuleReplaceFieldStaticValueArgs(
+                        value="[trace-id]",
+                    ),
+                ),
+                type="REPLACE_FIELD",
+            ),
+        ])
+        ```
+
         :param str resource_name: The name of the resource.
         :param LogControlConfigArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -117,6 +236,7 @@ class LogControlConfig(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LogControlConfigRuleArgs']]]] rules: Ordered list of log control rules applied to the log ingest pipeline. Rules are evaluated in order.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -128,5 +248,8 @@ class LogControlConfig(pulumi.CustomResource):
     @property
     @pulumi.getter
     def rules(self) -> pulumi.Output[Optional[Sequence['outputs.LogControlConfigRule']]]:
+        """
+        Ordered list of log control rules applied to the log ingest pipeline. Rules are evaluated in order.
+        """
         return pulumi.get(self, "rules")
 

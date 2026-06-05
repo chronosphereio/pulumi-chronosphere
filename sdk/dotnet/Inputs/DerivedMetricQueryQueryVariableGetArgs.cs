@@ -13,9 +13,15 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class DerivedMetricQueryQueryVariableGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// PromQL label selector used when no override is supplied by the derived metric usage.
+        /// </summary>
         [Input("defaultSelector", required: true)]
         public Input<string> DefaultSelector { get; set; } = null!;
 
+        /// <summary>
+        /// Variable name as referenced in `expr` (e.g. `service` for `$service`).
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 

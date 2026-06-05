@@ -13,6 +13,9 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class LogIngestConfigFieldNormalizationTimestampSourceGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Field path selector. Use `parent[child]` syntax to indicate nesting.
+        /// </summary>
         [Input("selector", required: true)]
         public Input<string> Selector { get; set; } = null!;
 

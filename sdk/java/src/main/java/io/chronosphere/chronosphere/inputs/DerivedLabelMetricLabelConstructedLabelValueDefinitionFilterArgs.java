@@ -13,16 +13,32 @@ public final class DerivedLabelMetricLabelConstructedLabelValueDefinitionFilterA
 
     public static final DerivedLabelMetricLabelConstructedLabelValueDefinitionFilterArgs Empty = new DerivedLabelMetricLabelConstructedLabelValueDefinitionFilterArgs();
 
+    /**
+     * Name of the label to match.
+     * 
+     */
     @Import(name="name", required=true)
     private Output<String> name;
 
+    /**
+     * @return Name of the label to match.
+     * 
+     */
     public Output<String> name() {
         return this.name;
     }
 
+    /**
+     * Glob pattern matched against the label value.
+     * 
+     */
     @Import(name="valueGlob", required=true)
     private Output<String> valueGlob;
 
+    /**
+     * @return Glob pattern matched against the label value.
+     * 
+     */
     public Output<String> valueGlob() {
         return this.valueGlob;
     }
@@ -52,20 +68,44 @@ public final class DerivedLabelMetricLabelConstructedLabelValueDefinitionFilterA
             $ = new DerivedLabelMetricLabelConstructedLabelValueDefinitionFilterArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param name Name of the label to match.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(Output<String> name) {
             $.name = name;
             return this;
         }
 
+        /**
+         * @param name Name of the label to match.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(String name) {
             return name(Output.of(name));
         }
 
+        /**
+         * @param valueGlob Glob pattern matched against the label value.
+         * 
+         * @return builder
+         * 
+         */
         public Builder valueGlob(Output<String> valueGlob) {
             $.valueGlob = valueGlob;
             return this;
         }
 
+        /**
+         * @param valueGlob Glob pattern matched against the label value.
+         * 
+         * @return builder
+         * 
+         */
         public Builder valueGlob(String valueGlob) {
             return valueGlob(Output.of(valueGlob));
         }

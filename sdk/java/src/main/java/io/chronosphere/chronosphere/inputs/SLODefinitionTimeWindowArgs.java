@@ -13,9 +13,17 @@ public final class SLODefinitionTimeWindowArgs extends com.pulumi.resources.Reso
 
     public static final SLODefinitionTimeWindowArgs Empty = new SLODefinitionTimeWindowArgs();
 
+    /**
+     * Length of the evaluation window (e.g. `28d`, `24h`).
+     * 
+     */
     @Import(name="duration", required=true)
     private Output<String> duration;
 
+    /**
+     * @return Length of the evaluation window (e.g. `28d`, `24h`).
+     * 
+     */
     public Output<String> duration() {
         return this.duration;
     }
@@ -44,11 +52,23 @@ public final class SLODefinitionTimeWindowArgs extends com.pulumi.resources.Reso
             $ = new SLODefinitionTimeWindowArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param duration Length of the evaluation window (e.g. `28d`, `24h`).
+         * 
+         * @return builder
+         * 
+         */
         public Builder duration(Output<String> duration) {
             $.duration = duration;
             return this;
         }
 
+        /**
+         * @param duration Length of the evaluation window (e.g. `28d`, `24h`).
+         * 
+         * @return builder
+         * 
+         */
         public Builder duration(String duration) {
             return duration(Output.of(duration));
         }

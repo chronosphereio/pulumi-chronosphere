@@ -14,9 +14,17 @@ public final class NotificationPolicyOverrideRouteDestinationEmailArgs extends c
 
     public static final NotificationPolicyOverrideRouteDestinationEmailArgs Empty = new NotificationPolicyOverrideRouteDestinationEmailArgs();
 
+    /**
+     * Email addresses to deliver notifications to.
+     * 
+     */
     @Import(name="addresses", required=true)
     private Output<List<String>> addresses;
 
+    /**
+     * @return Email addresses to deliver notifications to.
+     * 
+     */
     public Output<List<String>> addresses() {
         return this.addresses;
     }
@@ -45,15 +53,33 @@ public final class NotificationPolicyOverrideRouteDestinationEmailArgs extends c
             $ = new NotificationPolicyOverrideRouteDestinationEmailArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param addresses Email addresses to deliver notifications to.
+         * 
+         * @return builder
+         * 
+         */
         public Builder addresses(Output<List<String>> addresses) {
             $.addresses = addresses;
             return this;
         }
 
+        /**
+         * @param addresses Email addresses to deliver notifications to.
+         * 
+         * @return builder
+         * 
+         */
         public Builder addresses(List<String> addresses) {
             return addresses(Output.of(addresses));
         }
 
+        /**
+         * @param addresses Email addresses to deliver notifications to.
+         * 
+         * @return builder
+         * 
+         */
         public Builder addresses(String... addresses) {
             return addresses(List.of(addresses));
         }

@@ -15,9 +15,17 @@ public final class LogControlConfigRuleReplaceFieldStaticValueArgs extends com.p
 
     public static final LogControlConfigRuleReplaceFieldStaticValueArgs Empty = new LogControlConfigRuleReplaceFieldStaticValueArgs();
 
+    /**
+     * Path to a field within a log record.
+     * 
+     */
     @Import(name="value")
     private @Nullable Output<String> value;
 
+    /**
+     * @return Path to a field within a log record.
+     * 
+     */
     public Optional<Output<String>> value() {
         return Optional.ofNullable(this.value);
     }
@@ -46,11 +54,23 @@ public final class LogControlConfigRuleReplaceFieldStaticValueArgs extends com.p
             $ = new LogControlConfigRuleReplaceFieldStaticValueArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param value Path to a field within a log record.
+         * 
+         * @return builder
+         * 
+         */
         public Builder value(@Nullable Output<String> value) {
             $.value = value;
             return this;
         }
 
+        /**
+         * @param value Path to a field within a log record.
+         * 
+         * @return builder
+         * 
+         */
         public Builder value(String value) {
             return value(Output.of(value));
         }

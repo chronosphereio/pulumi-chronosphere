@@ -17,77 +17,159 @@ public final class VictoropsAlertNotifierArgs extends com.pulumi.resources.Resou
 
     public static final VictoropsAlertNotifierArgs Empty = new VictoropsAlertNotifierArgs();
 
+    /**
+     * VictorOps (Splunk On-Call) API key used to authenticate requests. Treat as a secret.
+     * 
+     */
     @Import(name="apiKey", required=true)
     private Output<String> apiKey;
 
+    /**
+     * @return VictorOps (Splunk On-Call) API key used to authenticate requests. Treat as a secret.
+     * 
+     */
     public Output<String> apiKey() {
         return this.apiKey;
     }
 
+    /**
+     * VictorOps REST endpoint URL to send events to.
+     * 
+     */
     @Import(name="apiUrl")
     private @Nullable Output<String> apiUrl;
 
+    /**
+     * @return VictorOps REST endpoint URL to send events to.
+     * 
+     */
     public Optional<Output<String>> apiUrl() {
         return Optional.ofNullable(this.apiUrl);
     }
 
+    /**
+     * Password for HTTP basic auth when calling the VictorOps API. Treat as a secret.
+     * 
+     */
     @Import(name="basicAuthPassword")
     private @Nullable Output<String> basicAuthPassword;
 
+    /**
+     * @return Password for HTTP basic auth when calling the VictorOps API. Treat as a secret.
+     * 
+     */
     public Optional<Output<String>> basicAuthPassword() {
         return Optional.ofNullable(this.basicAuthPassword);
     }
 
+    /**
+     * Username for HTTP basic auth when calling the VictorOps API. Mutually exclusive with `bearer_token`.
+     * 
+     */
     @Import(name="basicAuthUsername")
     private @Nullable Output<String> basicAuthUsername;
 
+    /**
+     * @return Username for HTTP basic auth when calling the VictorOps API. Mutually exclusive with `bearer_token`.
+     * 
+     */
     public Optional<Output<String>> basicAuthUsername() {
         return Optional.ofNullable(this.basicAuthUsername);
     }
 
+    /**
+     * Bearer token sent in the `Authorization` header when calling the VictorOps API. Treat as a secret. Mutually exclusive with basic auth.
+     * 
+     */
     @Import(name="bearerToken")
     private @Nullable Output<String> bearerToken;
 
+    /**
+     * @return Bearer token sent in the `Authorization` header when calling the VictorOps API. Treat as a secret. Mutually exclusive with basic auth.
+     * 
+     */
     public Optional<Output<String>> bearerToken() {
         return Optional.ofNullable(this.bearerToken);
     }
 
+    /**
+     * Arbitrary key/value pairs forwarded to VictorOps as custom incident fields. Values support Go templating.
+     * 
+     */
     @Import(name="customFields")
     private @Nullable Output<Map<String,String>> customFields;
 
+    /**
+     * @return Arbitrary key/value pairs forwarded to VictorOps as custom incident fields. Values support Go templating.
+     * 
+     */
     public Optional<Output<Map<String,String>>> customFields() {
         return Optional.ofNullable(this.customFields);
     }
 
+    /**
+     * Short summary of the alerted problem shown in VictorOps. Supports Go templating.
+     * 
+     */
     @Import(name="entityDisplayName")
     private @Nullable Output<String> entityDisplayName;
 
+    /**
+     * @return Short summary of the alerted problem shown in VictorOps. Supports Go templating.
+     * 
+     */
     public Optional<Output<String>> entityDisplayName() {
         return Optional.ofNullable(this.entityDisplayName);
     }
 
+    /**
+     * Behavior of the alert in VictorOps. One of `CRITICAL`, `WARNING`, or `INFO`.
+     * 
+     */
     @Import(name="messageType")
     private @Nullable Output<String> messageType;
 
+    /**
+     * @return Behavior of the alert in VictorOps. One of `CRITICAL`, `WARNING`, or `INFO`.
+     * 
+     */
     public Optional<Output<String>> messageType() {
         return Optional.ofNullable(this.messageType);
     }
 
+    /**
+     * Name of the monitoring tool the state message originated from.
+     * 
+     */
     @Import(name="monitoringTool")
     private @Nullable Output<String> monitoringTool;
 
+    /**
+     * @return Name of the monitoring tool the state message originated from.
+     * 
+     */
     public Optional<Output<String>> monitoringTool() {
         return Optional.ofNullable(this.monitoringTool);
     }
 
+    /**
+     * Display name of the notifier.
+     * 
+     */
     @Import(name="name", required=true)
     private Output<String> name;
 
+    /**
+     * @return Display name of the notifier.
+     * 
+     */
     public Output<String> name() {
         return this.name;
     }
 
     /**
+     * Deprecated and ignored. Custom proxy URLs are not supported.
+     * 
      * @deprecated
      * custom proxy URLs are not supported
      * 
@@ -97,6 +179,8 @@ public final class VictoropsAlertNotifierArgs extends com.pulumi.resources.Resou
     private @Nullable Output<String> proxyUrl;
 
     /**
+     * @return Deprecated and ignored. Custom proxy URLs are not supported.
+     * 
      * @deprecated
      * custom proxy URLs are not supported
      * 
@@ -106,37 +190,77 @@ public final class VictoropsAlertNotifierArgs extends com.pulumi.resources.Resou
         return Optional.ofNullable(this.proxyUrl);
     }
 
+    /**
+     * VictorOps routing key that determines which team or escalation policy receives the alert.
+     * 
+     */
     @Import(name="routingKey", required=true)
     private Output<String> routingKey;
 
+    /**
+     * @return VictorOps routing key that determines which team or escalation policy receives the alert.
+     * 
+     */
     public Output<String> routingKey() {
         return this.routingKey;
     }
 
+    /**
+     * Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+     * 
+     */
     @Import(name="sendResolved")
     private @Nullable Output<Boolean> sendResolved;
 
+    /**
+     * @return Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+     * 
+     */
     public Optional<Output<Boolean>> sendResolved() {
         return Optional.ofNullable(this.sendResolved);
     }
 
+    /**
+     * Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     @Import(name="slug")
     private @Nullable Output<String> slug;
 
+    /**
+     * @return Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     public Optional<Output<String>> slug() {
         return Optional.ofNullable(this.slug);
     }
 
+    /**
+     * Detailed explanation of the alerted problem. Supports Go templating.
+     * 
+     */
     @Import(name="stateMessage")
     private @Nullable Output<String> stateMessage;
 
+    /**
+     * @return Detailed explanation of the alerted problem. Supports Go templating.
+     * 
+     */
     public Optional<Output<String>> stateMessage() {
         return Optional.ofNullable(this.stateMessage);
     }
 
+    /**
+     * If true, skip TLS certificate verification when calling the VictorOps API. Disable only in trusted environments.
+     * 
+     */
     @Import(name="tlsInsecureSkipVerify")
     private @Nullable Output<Boolean> tlsInsecureSkipVerify;
 
+    /**
+     * @return If true, skip TLS certificate verification when calling the VictorOps API. Disable only in trusted environments.
+     * 
+     */
     public Optional<Output<Boolean>> tlsInsecureSkipVerify() {
         return Optional.ofNullable(this.tlsInsecureSkipVerify);
     }
@@ -180,97 +304,219 @@ public final class VictoropsAlertNotifierArgs extends com.pulumi.resources.Resou
             $ = new VictoropsAlertNotifierArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param apiKey VictorOps (Splunk On-Call) API key used to authenticate requests. Treat as a secret.
+         * 
+         * @return builder
+         * 
+         */
         public Builder apiKey(Output<String> apiKey) {
             $.apiKey = apiKey;
             return this;
         }
 
+        /**
+         * @param apiKey VictorOps (Splunk On-Call) API key used to authenticate requests. Treat as a secret.
+         * 
+         * @return builder
+         * 
+         */
         public Builder apiKey(String apiKey) {
             return apiKey(Output.of(apiKey));
         }
 
+        /**
+         * @param apiUrl VictorOps REST endpoint URL to send events to.
+         * 
+         * @return builder
+         * 
+         */
         public Builder apiUrl(@Nullable Output<String> apiUrl) {
             $.apiUrl = apiUrl;
             return this;
         }
 
+        /**
+         * @param apiUrl VictorOps REST endpoint URL to send events to.
+         * 
+         * @return builder
+         * 
+         */
         public Builder apiUrl(String apiUrl) {
             return apiUrl(Output.of(apiUrl));
         }
 
+        /**
+         * @param basicAuthPassword Password for HTTP basic auth when calling the VictorOps API. Treat as a secret.
+         * 
+         * @return builder
+         * 
+         */
         public Builder basicAuthPassword(@Nullable Output<String> basicAuthPassword) {
             $.basicAuthPassword = basicAuthPassword;
             return this;
         }
 
+        /**
+         * @param basicAuthPassword Password for HTTP basic auth when calling the VictorOps API. Treat as a secret.
+         * 
+         * @return builder
+         * 
+         */
         public Builder basicAuthPassword(String basicAuthPassword) {
             return basicAuthPassword(Output.of(basicAuthPassword));
         }
 
+        /**
+         * @param basicAuthUsername Username for HTTP basic auth when calling the VictorOps API. Mutually exclusive with `bearer_token`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder basicAuthUsername(@Nullable Output<String> basicAuthUsername) {
             $.basicAuthUsername = basicAuthUsername;
             return this;
         }
 
+        /**
+         * @param basicAuthUsername Username for HTTP basic auth when calling the VictorOps API. Mutually exclusive with `bearer_token`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder basicAuthUsername(String basicAuthUsername) {
             return basicAuthUsername(Output.of(basicAuthUsername));
         }
 
+        /**
+         * @param bearerToken Bearer token sent in the `Authorization` header when calling the VictorOps API. Treat as a secret. Mutually exclusive with basic auth.
+         * 
+         * @return builder
+         * 
+         */
         public Builder bearerToken(@Nullable Output<String> bearerToken) {
             $.bearerToken = bearerToken;
             return this;
         }
 
+        /**
+         * @param bearerToken Bearer token sent in the `Authorization` header when calling the VictorOps API. Treat as a secret. Mutually exclusive with basic auth.
+         * 
+         * @return builder
+         * 
+         */
         public Builder bearerToken(String bearerToken) {
             return bearerToken(Output.of(bearerToken));
         }
 
+        /**
+         * @param customFields Arbitrary key/value pairs forwarded to VictorOps as custom incident fields. Values support Go templating.
+         * 
+         * @return builder
+         * 
+         */
         public Builder customFields(@Nullable Output<Map<String,String>> customFields) {
             $.customFields = customFields;
             return this;
         }
 
+        /**
+         * @param customFields Arbitrary key/value pairs forwarded to VictorOps as custom incident fields. Values support Go templating.
+         * 
+         * @return builder
+         * 
+         */
         public Builder customFields(Map<String,String> customFields) {
             return customFields(Output.of(customFields));
         }
 
+        /**
+         * @param entityDisplayName Short summary of the alerted problem shown in VictorOps. Supports Go templating.
+         * 
+         * @return builder
+         * 
+         */
         public Builder entityDisplayName(@Nullable Output<String> entityDisplayName) {
             $.entityDisplayName = entityDisplayName;
             return this;
         }
 
+        /**
+         * @param entityDisplayName Short summary of the alerted problem shown in VictorOps. Supports Go templating.
+         * 
+         * @return builder
+         * 
+         */
         public Builder entityDisplayName(String entityDisplayName) {
             return entityDisplayName(Output.of(entityDisplayName));
         }
 
+        /**
+         * @param messageType Behavior of the alert in VictorOps. One of `CRITICAL`, `WARNING`, or `INFO`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder messageType(@Nullable Output<String> messageType) {
             $.messageType = messageType;
             return this;
         }
 
+        /**
+         * @param messageType Behavior of the alert in VictorOps. One of `CRITICAL`, `WARNING`, or `INFO`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder messageType(String messageType) {
             return messageType(Output.of(messageType));
         }
 
+        /**
+         * @param monitoringTool Name of the monitoring tool the state message originated from.
+         * 
+         * @return builder
+         * 
+         */
         public Builder monitoringTool(@Nullable Output<String> monitoringTool) {
             $.monitoringTool = monitoringTool;
             return this;
         }
 
+        /**
+         * @param monitoringTool Name of the monitoring tool the state message originated from.
+         * 
+         * @return builder
+         * 
+         */
         public Builder monitoringTool(String monitoringTool) {
             return monitoringTool(Output.of(monitoringTool));
         }
 
+        /**
+         * @param name Display name of the notifier.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(Output<String> name) {
             $.name = name;
             return this;
         }
 
+        /**
+         * @param name Display name of the notifier.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(String name) {
             return name(Output.of(name));
         }
 
         /**
+         * @param proxyUrl Deprecated and ignored. Custom proxy URLs are not supported.
+         * 
          * @return builder
          * 
          * @deprecated
@@ -284,6 +530,8 @@ public final class VictoropsAlertNotifierArgs extends com.pulumi.resources.Resou
         }
 
         /**
+         * @param proxyUrl Deprecated and ignored. Custom proxy URLs are not supported.
+         * 
          * @return builder
          * 
          * @deprecated
@@ -295,47 +543,107 @@ public final class VictoropsAlertNotifierArgs extends com.pulumi.resources.Resou
             return proxyUrl(Output.of(proxyUrl));
         }
 
+        /**
+         * @param routingKey VictorOps routing key that determines which team or escalation policy receives the alert.
+         * 
+         * @return builder
+         * 
+         */
         public Builder routingKey(Output<String> routingKey) {
             $.routingKey = routingKey;
             return this;
         }
 
+        /**
+         * @param routingKey VictorOps routing key that determines which team or escalation policy receives the alert.
+         * 
+         * @return builder
+         * 
+         */
         public Builder routingKey(String routingKey) {
             return routingKey(Output.of(routingKey));
         }
 
+        /**
+         * @param sendResolved Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+         * 
+         * @return builder
+         * 
+         */
         public Builder sendResolved(@Nullable Output<Boolean> sendResolved) {
             $.sendResolved = sendResolved;
             return this;
         }
 
+        /**
+         * @param sendResolved Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+         * 
+         * @return builder
+         * 
+         */
         public Builder sendResolved(Boolean sendResolved) {
             return sendResolved(Output.of(sendResolved));
         }
 
+        /**
+         * @param slug Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slug(@Nullable Output<String> slug) {
             $.slug = slug;
             return this;
         }
 
+        /**
+         * @param slug Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slug(String slug) {
             return slug(Output.of(slug));
         }
 
+        /**
+         * @param stateMessage Detailed explanation of the alerted problem. Supports Go templating.
+         * 
+         * @return builder
+         * 
+         */
         public Builder stateMessage(@Nullable Output<String> stateMessage) {
             $.stateMessage = stateMessage;
             return this;
         }
 
+        /**
+         * @param stateMessage Detailed explanation of the alerted problem. Supports Go templating.
+         * 
+         * @return builder
+         * 
+         */
         public Builder stateMessage(String stateMessage) {
             return stateMessage(Output.of(stateMessage));
         }
 
+        /**
+         * @param tlsInsecureSkipVerify If true, skip TLS certificate verification when calling the VictorOps API. Disable only in trusted environments.
+         * 
+         * @return builder
+         * 
+         */
         public Builder tlsInsecureSkipVerify(@Nullable Output<Boolean> tlsInsecureSkipVerify) {
             $.tlsInsecureSkipVerify = tlsInsecureSkipVerify;
             return this;
         }
 
+        /**
+         * @param tlsInsecureSkipVerify If true, skip TLS certificate verification when calling the VictorOps API. Disable only in trusted environments.
+         * 
+         * @return builder
+         * 
+         */
         public Builder tlsInsecureSkipVerify(Boolean tlsInsecureSkipVerify) {
             return tlsInsecureSkipVerify(Output.of(tlsInsecureSkipVerify));
         }

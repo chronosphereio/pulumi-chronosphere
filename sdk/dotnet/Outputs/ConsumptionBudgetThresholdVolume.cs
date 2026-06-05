@@ -14,6 +14,9 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class ConsumptionBudgetThresholdVolume
     {
+        /// <summary>
+        /// Fixed volume threshold value, expressed in the threshold's `unit`.
+        /// </summary>
         public readonly int? FixedValue;
 
         [OutputConstructor]

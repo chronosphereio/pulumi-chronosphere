@@ -14,8 +14,17 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class TraceJaegerRemoteSamplingStrategyAppliedStrategy
     {
+        /// <summary>
+        /// Per-operation sampling configuration with a service-wide default and optional per-operation overrides.
+        /// </summary>
         public readonly Outputs.TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationStrategies? PerOperationStrategies;
+        /// <summary>
+        /// Probabilistic sampling: each trace is sampled with a fixed probability.
+        /// </summary>
         public readonly Outputs.TraceJaegerRemoteSamplingStrategyAppliedStrategyProbabilisticStrategy? ProbabilisticStrategy;
+        /// <summary>
+        /// Rate-limiting sampling: cap the number of sampled traces per second using a leaky bucket.
+        /// </summary>
         public readonly Outputs.TraceJaegerRemoteSamplingStrategyAppliedStrategyRateLimitingStrategy? RateLimitingStrategy;
 
         [OutputConstructor]

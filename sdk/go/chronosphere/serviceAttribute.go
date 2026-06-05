@@ -12,6 +12,35 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Associates metadata with an existing service, such as a human-readable name, description, owning team, and default notification policy. The service itself must already exist; this resource only attaches attributes to it.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/chronosphereio/pulumi-chronosphere/sdk/go/chronosphere"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := chronosphere.NewServiceAttribute(ctx, "gateway", &chronosphere.ServiceAttributeArgs{
+//				Description: pulumi.String("Edge API gateway"),
+//				Name:        pulumi.String("Gateway"),
+//				ServiceSlug: pulumi.String("gateway"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type ServiceAttribute struct {
 	pulumi.CustomResourceState
 

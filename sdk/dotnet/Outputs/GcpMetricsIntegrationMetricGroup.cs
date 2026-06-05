@@ -14,9 +14,21 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class GcpMetricsIntegrationMetricGroup
     {
+        /// <summary>
+        /// Label filters applied to metrics in this group. All filters must match for a metric to be ingested.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GcpMetricsIntegrationMetricGroupFilter> Filters;
+        /// <summary>
+        /// List of Google Cloud metric prefixes to ingest (e.g. `compute.googleapis.com/`).
+        /// </summary>
         public readonly ImmutableArray<string> Prefixes;
+        /// <summary>
+        /// Google Cloud project ID to read metrics from. The configured service account must have access.
+        /// </summary>
         public readonly string ProjectId;
+        /// <summary>
+        /// Server-side aggregation rules applied to metrics in this group before they are stored.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GcpMetricsIntegrationMetricGroupRollupRule> RollupRules;
 
         [OutputConstructor]

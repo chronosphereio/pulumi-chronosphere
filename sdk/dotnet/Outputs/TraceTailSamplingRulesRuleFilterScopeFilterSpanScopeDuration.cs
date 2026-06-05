@@ -14,7 +14,13 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDuration
     {
+        /// <summary>
+        /// Maximum duration in seconds, inclusive. Omit for no upper bound.
+        /// </summary>
         public readonly double? MaxSecs;
+        /// <summary>
+        /// Minimum duration in seconds, inclusive. Defaults to `0`.
+        /// </summary>
         public readonly double? MinSecs;
 
         [OutputConstructor]

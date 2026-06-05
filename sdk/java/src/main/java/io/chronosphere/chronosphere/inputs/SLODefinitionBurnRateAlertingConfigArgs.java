@@ -17,30 +17,62 @@ public final class SLODefinitionBurnRateAlertingConfigArgs extends com.pulumi.re
 
     public static final SLODefinitionBurnRateAlertingConfigArgs Empty = new SLODefinitionBurnRateAlertingConfigArgs();
 
+    /**
+     * Percentage of the error budget that can be consumed during `window` before the alert fires. Must be between 0.0 and 100.0 exclusive.
+     * 
+     */
     @Import(name="budget", required=true)
     private Output<Double> budget;
 
+    /**
+     * @return Percentage of the error budget that can be consumed during `window` before the alert fires. Must be between 0.0 and 100.0 exclusive.
+     * 
+     */
     public Output<Double> budget() {
         return this.budget;
     }
 
+    /**
+     * Additional labels attached when this burn-rate alert fires. Can be used by notification policies to route different burn rates to different destinations.
+     * 
+     */
     @Import(name="labels")
     private @Nullable Output<Map<String,String>> labels;
 
+    /**
+     * @return Additional labels attached when this burn-rate alert fires. Can be used by notification policies to route different burn rates to different destinations.
+     * 
+     */
     public Optional<Output<Map<String,String>>> labels() {
         return Optional.ofNullable(this.labels);
     }
 
+    /**
+     * Severity assigned when the burn rate fires. Must be `critical` or `warn`.
+     * 
+     */
     @Import(name="severity", required=true)
     private Output<String> severity;
 
+    /**
+     * @return Severity assigned when the burn rate fires. Must be `critical` or `warn`.
+     * 
+     */
     public Output<String> severity() {
         return this.severity;
     }
 
+    /**
+     * Time window for the burn-rate calculation (e.g. `1h`, `6h`).
+     * 
+     */
     @Import(name="window", required=true)
     private Output<String> window;
 
+    /**
+     * @return Time window for the burn-rate calculation (e.g. `1h`, `6h`).
+     * 
+     */
     public Output<String> window() {
         return this.window;
     }
@@ -72,38 +104,86 @@ public final class SLODefinitionBurnRateAlertingConfigArgs extends com.pulumi.re
             $ = new SLODefinitionBurnRateAlertingConfigArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param budget Percentage of the error budget that can be consumed during `window` before the alert fires. Must be between 0.0 and 100.0 exclusive.
+         * 
+         * @return builder
+         * 
+         */
         public Builder budget(Output<Double> budget) {
             $.budget = budget;
             return this;
         }
 
+        /**
+         * @param budget Percentage of the error budget that can be consumed during `window` before the alert fires. Must be between 0.0 and 100.0 exclusive.
+         * 
+         * @return builder
+         * 
+         */
         public Builder budget(Double budget) {
             return budget(Output.of(budget));
         }
 
+        /**
+         * @param labels Additional labels attached when this burn-rate alert fires. Can be used by notification policies to route different burn rates to different destinations.
+         * 
+         * @return builder
+         * 
+         */
         public Builder labels(@Nullable Output<Map<String,String>> labels) {
             $.labels = labels;
             return this;
         }
 
+        /**
+         * @param labels Additional labels attached when this burn-rate alert fires. Can be used by notification policies to route different burn rates to different destinations.
+         * 
+         * @return builder
+         * 
+         */
         public Builder labels(Map<String,String> labels) {
             return labels(Output.of(labels));
         }
 
+        /**
+         * @param severity Severity assigned when the burn rate fires. Must be `critical` or `warn`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder severity(Output<String> severity) {
             $.severity = severity;
             return this;
         }
 
+        /**
+         * @param severity Severity assigned when the burn rate fires. Must be `critical` or `warn`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder severity(String severity) {
             return severity(Output.of(severity));
         }
 
+        /**
+         * @param window Time window for the burn-rate calculation (e.g. `1h`, `6h`).
+         * 
+         * @return builder
+         * 
+         */
         public Builder window(Output<String> window) {
             $.window = window;
             return this;
         }
 
+        /**
+         * @param window Time window for the burn-rate calculation (e.g. `1h`, `6h`).
+         * 
+         * @return builder
+         * 
+         */
         public Builder window(String window) {
             return window(Output.of(window));
         }

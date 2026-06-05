@@ -17,37 +17,77 @@ public final class LogscaleActionEmailActionArgs extends com.pulumi.resources.Re
 
     public static final LogscaleActionEmailActionArgs Empty = new LogscaleActionEmailActionArgs();
 
+    /**
+     * If `true`, attaches the query result set as a CSV file.
+     * 
+     */
     @Import(name="attachCsv")
     private @Nullable Output<Boolean> attachCsv;
 
+    /**
+     * @return If `true`, attaches the query result set as a CSV file.
+     * 
+     */
     public Optional<Output<Boolean>> attachCsv() {
         return Optional.ofNullable(this.attachCsv);
     }
 
+    /**
+     * Body of the email. Supports Go template syntax with values from the query result.
+     * 
+     */
     @Import(name="bodyTemplate")
     private @Nullable Output<String> bodyTemplate;
 
+    /**
+     * @return Body of the email. Supports Go template syntax with values from the query result.
+     * 
+     */
     public Optional<Output<String>> bodyTemplate() {
         return Optional.ofNullable(this.bodyTemplate);
     }
 
+    /**
+     * List of email addresses to send the message to.
+     * 
+     */
     @Import(name="recipients", required=true)
     private Output<List<String>> recipients;
 
+    /**
+     * @return List of email addresses to send the message to.
+     * 
+     */
     public Output<List<String>> recipients() {
         return this.recipients;
     }
 
+    /**
+     * Subject of the email. Supports Go template syntax with values from the query result.
+     * 
+     */
     @Import(name="subjectTemplate")
     private @Nullable Output<String> subjectTemplate;
 
+    /**
+     * @return Subject of the email. Supports Go template syntax with values from the query result.
+     * 
+     */
     public Optional<Output<String>> subjectTemplate() {
         return Optional.ofNullable(this.subjectTemplate);
     }
 
+    /**
+     * If `true`, sends the request through the configured outbound proxy.
+     * 
+     */
     @Import(name="useProxy")
     private @Nullable Output<Boolean> useProxy;
 
+    /**
+     * @return If `true`, sends the request through the configured outbound proxy.
+     * 
+     */
     public Optional<Output<Boolean>> useProxy() {
         return Optional.ofNullable(this.useProxy);
     }
@@ -80,51 +120,117 @@ public final class LogscaleActionEmailActionArgs extends com.pulumi.resources.Re
             $ = new LogscaleActionEmailActionArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param attachCsv If `true`, attaches the query result set as a CSV file.
+         * 
+         * @return builder
+         * 
+         */
         public Builder attachCsv(@Nullable Output<Boolean> attachCsv) {
             $.attachCsv = attachCsv;
             return this;
         }
 
+        /**
+         * @param attachCsv If `true`, attaches the query result set as a CSV file.
+         * 
+         * @return builder
+         * 
+         */
         public Builder attachCsv(Boolean attachCsv) {
             return attachCsv(Output.of(attachCsv));
         }
 
+        /**
+         * @param bodyTemplate Body of the email. Supports Go template syntax with values from the query result.
+         * 
+         * @return builder
+         * 
+         */
         public Builder bodyTemplate(@Nullable Output<String> bodyTemplate) {
             $.bodyTemplate = bodyTemplate;
             return this;
         }
 
+        /**
+         * @param bodyTemplate Body of the email. Supports Go template syntax with values from the query result.
+         * 
+         * @return builder
+         * 
+         */
         public Builder bodyTemplate(String bodyTemplate) {
             return bodyTemplate(Output.of(bodyTemplate));
         }
 
+        /**
+         * @param recipients List of email addresses to send the message to.
+         * 
+         * @return builder
+         * 
+         */
         public Builder recipients(Output<List<String>> recipients) {
             $.recipients = recipients;
             return this;
         }
 
+        /**
+         * @param recipients List of email addresses to send the message to.
+         * 
+         * @return builder
+         * 
+         */
         public Builder recipients(List<String> recipients) {
             return recipients(Output.of(recipients));
         }
 
+        /**
+         * @param recipients List of email addresses to send the message to.
+         * 
+         * @return builder
+         * 
+         */
         public Builder recipients(String... recipients) {
             return recipients(List.of(recipients));
         }
 
+        /**
+         * @param subjectTemplate Subject of the email. Supports Go template syntax with values from the query result.
+         * 
+         * @return builder
+         * 
+         */
         public Builder subjectTemplate(@Nullable Output<String> subjectTemplate) {
             $.subjectTemplate = subjectTemplate;
             return this;
         }
 
+        /**
+         * @param subjectTemplate Subject of the email. Supports Go template syntax with values from the query result.
+         * 
+         * @return builder
+         * 
+         */
         public Builder subjectTemplate(String subjectTemplate) {
             return subjectTemplate(Output.of(subjectTemplate));
         }
 
+        /**
+         * @param useProxy If `true`, sends the request through the configured outbound proxy.
+         * 
+         * @return builder
+         * 
+         */
         public Builder useProxy(@Nullable Output<Boolean> useProxy) {
             $.useProxy = useProxy;
             return this;
         }
 
+        /**
+         * @param useProxy If `true`, sends the request through the configured outbound proxy.
+         * 
+         * @return builder
+         * 
+         */
         public Builder useProxy(Boolean useProxy) {
             return useProxy(Output.of(useProxy));
         }

@@ -20,6 +20,10 @@ class SlackExternalConnectionArgs:
                  token: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a SlackExternalConnection resource.
+        :param pulumi.Input[str] name: Display name of the external connection.
+        :param pulumi.Input[str] api_url: Slack incoming webhook URL used to deliver messages. Treat as a secret.
+        :param pulumi.Input[str] slug: Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[str] token: Slack bot or app token used to authenticate API calls when posting messages. Treat as a secret.
         """
         pulumi.set(__self__, "name", name)
         if api_url is not None:
@@ -32,6 +36,9 @@ class SlackExternalConnectionArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        Display name of the external connection.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -41,6 +48,9 @@ class SlackExternalConnectionArgs:
     @property
     @pulumi.getter(name="apiUrl")
     def api_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        Slack incoming webhook URL used to deliver messages. Treat as a secret.
+        """
         return pulumi.get(self, "api_url")
 
     @api_url.setter
@@ -50,6 +60,9 @@ class SlackExternalConnectionArgs:
     @property
     @pulumi.getter
     def slug(self) -> Optional[pulumi.Input[str]]:
+        """
+        Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @slug.setter
@@ -59,6 +72,9 @@ class SlackExternalConnectionArgs:
     @property
     @pulumi.getter
     def token(self) -> Optional[pulumi.Input[str]]:
+        """
+        Slack bot or app token used to authenticate API calls when posting messages. Treat as a secret.
+        """
         return pulumi.get(self, "token")
 
     @token.setter
@@ -75,6 +91,10 @@ class _SlackExternalConnectionState:
                  token: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering SlackExternalConnection resources.
+        :param pulumi.Input[str] api_url: Slack incoming webhook URL used to deliver messages. Treat as a secret.
+        :param pulumi.Input[str] name: Display name of the external connection.
+        :param pulumi.Input[str] slug: Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[str] token: Slack bot or app token used to authenticate API calls when posting messages. Treat as a secret.
         """
         if api_url is not None:
             pulumi.set(__self__, "api_url", api_url)
@@ -88,6 +108,9 @@ class _SlackExternalConnectionState:
     @property
     @pulumi.getter(name="apiUrl")
     def api_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        Slack incoming webhook URL used to deliver messages. Treat as a secret.
+        """
         return pulumi.get(self, "api_url")
 
     @api_url.setter
@@ -97,6 +120,9 @@ class _SlackExternalConnectionState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Display name of the external connection.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -106,6 +132,9 @@ class _SlackExternalConnectionState:
     @property
     @pulumi.getter
     def slug(self) -> Optional[pulumi.Input[str]]:
+        """
+        Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @slug.setter
@@ -115,6 +144,9 @@ class _SlackExternalConnectionState:
     @property
     @pulumi.getter
     def token(self) -> Optional[pulumi.Input[str]]:
+        """
+        Slack bot or app token used to authenticate API calls when posting messages. Treat as a secret.
+        """
         return pulumi.get(self, "token")
 
     @token.setter
@@ -133,9 +165,25 @@ class SlackExternalConnection(pulumi.CustomResource):
                  token: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a SlackExternalConnection resource with the given unique name, props, and options.
+        Workspace-scoped Slack credentials that downstream notifiers and LogScale actions can reference. Centralizes webhook URLs and bot tokens so they aren't duplicated across notifiers; modern equivalent of the per-notifier credentials.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_chronosphere as chronosphere
+
+        slack = chronosphere.SlackExternalConnection("slack",
+            api_url="https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX",
+            name="Slack")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] api_url: Slack incoming webhook URL used to deliver messages. Treat as a secret.
+        :param pulumi.Input[str] name: Display name of the external connection.
+        :param pulumi.Input[str] slug: Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[str] token: Slack bot or app token used to authenticate API calls when posting messages. Treat as a secret.
         """
         ...
     @overload
@@ -144,7 +192,19 @@ class SlackExternalConnection(pulumi.CustomResource):
                  args: SlackExternalConnectionArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a SlackExternalConnection resource with the given unique name, props, and options.
+        Workspace-scoped Slack credentials that downstream notifiers and LogScale actions can reference. Centralizes webhook URLs and bot tokens so they aren't duplicated across notifiers; modern equivalent of the per-notifier credentials.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_chronosphere as chronosphere
+
+        slack = chronosphere.SlackExternalConnection("slack",
+            api_url="https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX",
+            name="Slack")
+        ```
+
         :param str resource_name: The name of the resource.
         :param SlackExternalConnectionArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -202,6 +262,10 @@ class SlackExternalConnection(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] api_url: Slack incoming webhook URL used to deliver messages. Treat as a secret.
+        :param pulumi.Input[str] name: Display name of the external connection.
+        :param pulumi.Input[str] slug: Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[str] token: Slack bot or app token used to authenticate API calls when posting messages. Treat as a secret.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -216,20 +280,32 @@ class SlackExternalConnection(pulumi.CustomResource):
     @property
     @pulumi.getter(name="apiUrl")
     def api_url(self) -> pulumi.Output[Optional[str]]:
+        """
+        Slack incoming webhook URL used to deliver messages. Treat as a secret.
+        """
         return pulumi.get(self, "api_url")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        Display name of the external connection.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def slug(self) -> pulumi.Output[str]:
+        """
+        Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @property
     @pulumi.getter
     def token(self) -> pulumi.Output[Optional[str]]:
+        """
+        Slack bot or app token used to authenticate API calls when posting messages. Treat as a secret.
+        """
         return pulumi.get(self, "token")
 

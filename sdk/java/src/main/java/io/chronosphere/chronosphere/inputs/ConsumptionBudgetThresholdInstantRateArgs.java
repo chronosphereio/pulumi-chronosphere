@@ -15,9 +15,17 @@ public final class ConsumptionBudgetThresholdInstantRateArgs extends com.pulumi.
 
     public static final ConsumptionBudgetThresholdInstantRateArgs Empty = new ConsumptionBudgetThresholdInstantRateArgs();
 
+    /**
+     * Fixed per-second rate threshold value, expressed in the threshold&#39;s `unit`.
+     * 
+     */
     @Import(name="fixedValuePerSec")
     private @Nullable Output<Integer> fixedValuePerSec;
 
+    /**
+     * @return Fixed per-second rate threshold value, expressed in the threshold&#39;s `unit`.
+     * 
+     */
     public Optional<Output<Integer>> fixedValuePerSec() {
         return Optional.ofNullable(this.fixedValuePerSec);
     }
@@ -46,11 +54,23 @@ public final class ConsumptionBudgetThresholdInstantRateArgs extends com.pulumi.
             $ = new ConsumptionBudgetThresholdInstantRateArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param fixedValuePerSec Fixed per-second rate threshold value, expressed in the threshold&#39;s `unit`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder fixedValuePerSec(@Nullable Output<Integer> fixedValuePerSec) {
             $.fixedValuePerSec = fixedValuePerSec;
             return this;
         }
 
+        /**
+         * @param fixedValuePerSec Fixed per-second rate threshold value, expressed in the threshold&#39;s `unit`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder fixedValuePerSec(Integer fixedValuePerSec) {
             return fixedValuePerSec(Output.of(fixedValuePerSec));
         }

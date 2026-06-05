@@ -29,9 +29,19 @@ class LogscaleAlertArgs:
                  time_window: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a LogscaleAlert resource.
+        :param pulumi.Input[str] alert_type: Type of LogScale alert. `STANDARD` runs the query on a schedule over a time window; `FILTER` evaluates the query against each incoming event.
+        :param pulumi.Input[str] name: Display name of the LogScale alert.
+        :param pulumi.Input[str] repository: Name of the LogScale repository the alert belongs to. Immutable after creation.
         :param pulumi.Input[str] run_as_user: Email of the user that the alert runs on behalf of
-        :param pulumi.Input[str] throttle_duration: Required for STANDARD type alerts, optional for FILTER type alerts
-        :param pulumi.Input[str] time_window: Required for STANDARD type alerts, ignored for FILTER type alerts
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] action_ids: Slugs of LogScale actions to invoke when the alert triggers. The alert does not fire if this list is empty.
+        :param pulumi.Input[str] description: Human-readable description of the alert.
+        :param pulumi.Input[bool] disabled: If `true`, the alert will not evaluate or trigger actions.
+        :param pulumi.Input[str] query: LogScale query that the alert evaluates. Example: `level = ERROR | severity > 3 | count(as=numErrors) | numErrors > 500`.
+        :param pulumi.Input[str] slug: Stable identifier for the LogScale alert. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: Tags attached to the alert for organization and filtering.
+        :param pulumi.Input[str] throttle_duration: Minimum interval between consecutive triggers of the alert. Required for `STANDARD` alerts, optional for `FILTER` alerts.
+        :param pulumi.Input[str] throttle_field: Optional field whose value is used to scope throttling, so the alert is throttled per distinct value of this field rather than globally.
+        :param pulumi.Input[str] time_window: Lookback window for the alert query. Required for `STANDARD` alerts, ignored for `FILTER` alerts.
         """
         pulumi.set(__self__, "alert_type", alert_type)
         pulumi.set(__self__, "name", name)
@@ -59,6 +69,9 @@ class LogscaleAlertArgs:
     @property
     @pulumi.getter(name="alertType")
     def alert_type(self) -> pulumi.Input[str]:
+        """
+        Type of LogScale alert. `STANDARD` runs the query on a schedule over a time window; `FILTER` evaluates the query against each incoming event.
+        """
         return pulumi.get(self, "alert_type")
 
     @alert_type.setter
@@ -68,6 +81,9 @@ class LogscaleAlertArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        Display name of the LogScale alert.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -77,6 +93,9 @@ class LogscaleAlertArgs:
     @property
     @pulumi.getter
     def repository(self) -> pulumi.Input[str]:
+        """
+        Name of the LogScale repository the alert belongs to. Immutable after creation.
+        """
         return pulumi.get(self, "repository")
 
     @repository.setter
@@ -98,6 +117,9 @@ class LogscaleAlertArgs:
     @property
     @pulumi.getter(name="actionIds")
     def action_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Slugs of LogScale actions to invoke when the alert triggers. The alert does not fire if this list is empty.
+        """
         return pulumi.get(self, "action_ids")
 
     @action_ids.setter
@@ -107,6 +129,9 @@ class LogscaleAlertArgs:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Human-readable description of the alert.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -116,6 +141,9 @@ class LogscaleAlertArgs:
     @property
     @pulumi.getter
     def disabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If `true`, the alert will not evaluate or trigger actions.
+        """
         return pulumi.get(self, "disabled")
 
     @disabled.setter
@@ -125,6 +153,9 @@ class LogscaleAlertArgs:
     @property
     @pulumi.getter
     def query(self) -> Optional[pulumi.Input[str]]:
+        """
+        LogScale query that the alert evaluates. Example: `level = ERROR | severity > 3 | count(as=numErrors) | numErrors > 500`.
+        """
         return pulumi.get(self, "query")
 
     @query.setter
@@ -134,6 +165,9 @@ class LogscaleAlertArgs:
     @property
     @pulumi.getter
     def slug(self) -> Optional[pulumi.Input[str]]:
+        """
+        Stable identifier for the LogScale alert. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @slug.setter
@@ -143,6 +177,9 @@ class LogscaleAlertArgs:
     @property
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Tags attached to the alert for organization and filtering.
+        """
         return pulumi.get(self, "tags")
 
     @tags.setter
@@ -153,7 +190,7 @@ class LogscaleAlertArgs:
     @pulumi.getter(name="throttleDuration")
     def throttle_duration(self) -> Optional[pulumi.Input[str]]:
         """
-        Required for STANDARD type alerts, optional for FILTER type alerts
+        Minimum interval between consecutive triggers of the alert. Required for `STANDARD` alerts, optional for `FILTER` alerts.
         """
         return pulumi.get(self, "throttle_duration")
 
@@ -164,6 +201,9 @@ class LogscaleAlertArgs:
     @property
     @pulumi.getter(name="throttleField")
     def throttle_field(self) -> Optional[pulumi.Input[str]]:
+        """
+        Optional field whose value is used to scope throttling, so the alert is throttled per distinct value of this field rather than globally.
+        """
         return pulumi.get(self, "throttle_field")
 
     @throttle_field.setter
@@ -174,7 +214,7 @@ class LogscaleAlertArgs:
     @pulumi.getter(name="timeWindow")
     def time_window(self) -> Optional[pulumi.Input[str]]:
         """
-        Required for STANDARD type alerts, ignored for FILTER type alerts
+        Lookback window for the alert query. Required for `STANDARD` alerts, ignored for `FILTER` alerts.
         """
         return pulumi.get(self, "time_window")
 
@@ -201,9 +241,19 @@ class _LogscaleAlertState:
                  time_window: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering LogscaleAlert resources.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] action_ids: Slugs of LogScale actions to invoke when the alert triggers. The alert does not fire if this list is empty.
+        :param pulumi.Input[str] alert_type: Type of LogScale alert. `STANDARD` runs the query on a schedule over a time window; `FILTER` evaluates the query against each incoming event.
+        :param pulumi.Input[str] description: Human-readable description of the alert.
+        :param pulumi.Input[bool] disabled: If `true`, the alert will not evaluate or trigger actions.
+        :param pulumi.Input[str] name: Display name of the LogScale alert.
+        :param pulumi.Input[str] query: LogScale query that the alert evaluates. Example: `level = ERROR | severity > 3 | count(as=numErrors) | numErrors > 500`.
+        :param pulumi.Input[str] repository: Name of the LogScale repository the alert belongs to. Immutable after creation.
         :param pulumi.Input[str] run_as_user: Email of the user that the alert runs on behalf of
-        :param pulumi.Input[str] throttle_duration: Required for STANDARD type alerts, optional for FILTER type alerts
-        :param pulumi.Input[str] time_window: Required for STANDARD type alerts, ignored for FILTER type alerts
+        :param pulumi.Input[str] slug: Stable identifier for the LogScale alert. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: Tags attached to the alert for organization and filtering.
+        :param pulumi.Input[str] throttle_duration: Minimum interval between consecutive triggers of the alert. Required for `STANDARD` alerts, optional for `FILTER` alerts.
+        :param pulumi.Input[str] throttle_field: Optional field whose value is used to scope throttling, so the alert is throttled per distinct value of this field rather than globally.
+        :param pulumi.Input[str] time_window: Lookback window for the alert query. Required for `STANDARD` alerts, ignored for `FILTER` alerts.
         """
         if action_ids is not None:
             pulumi.set(__self__, "action_ids", action_ids)
@@ -235,6 +285,9 @@ class _LogscaleAlertState:
     @property
     @pulumi.getter(name="actionIds")
     def action_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Slugs of LogScale actions to invoke when the alert triggers. The alert does not fire if this list is empty.
+        """
         return pulumi.get(self, "action_ids")
 
     @action_ids.setter
@@ -244,6 +297,9 @@ class _LogscaleAlertState:
     @property
     @pulumi.getter(name="alertType")
     def alert_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Type of LogScale alert. `STANDARD` runs the query on a schedule over a time window; `FILTER` evaluates the query against each incoming event.
+        """
         return pulumi.get(self, "alert_type")
 
     @alert_type.setter
@@ -253,6 +309,9 @@ class _LogscaleAlertState:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Human-readable description of the alert.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -262,6 +321,9 @@ class _LogscaleAlertState:
     @property
     @pulumi.getter
     def disabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If `true`, the alert will not evaluate or trigger actions.
+        """
         return pulumi.get(self, "disabled")
 
     @disabled.setter
@@ -271,6 +333,9 @@ class _LogscaleAlertState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Display name of the LogScale alert.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -280,6 +345,9 @@ class _LogscaleAlertState:
     @property
     @pulumi.getter
     def query(self) -> Optional[pulumi.Input[str]]:
+        """
+        LogScale query that the alert evaluates. Example: `level = ERROR | severity > 3 | count(as=numErrors) | numErrors > 500`.
+        """
         return pulumi.get(self, "query")
 
     @query.setter
@@ -289,6 +357,9 @@ class _LogscaleAlertState:
     @property
     @pulumi.getter
     def repository(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the LogScale repository the alert belongs to. Immutable after creation.
+        """
         return pulumi.get(self, "repository")
 
     @repository.setter
@@ -310,6 +381,9 @@ class _LogscaleAlertState:
     @property
     @pulumi.getter
     def slug(self) -> Optional[pulumi.Input[str]]:
+        """
+        Stable identifier for the LogScale alert. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @slug.setter
@@ -319,6 +393,9 @@ class _LogscaleAlertState:
     @property
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Tags attached to the alert for organization and filtering.
+        """
         return pulumi.get(self, "tags")
 
     @tags.setter
@@ -329,7 +406,7 @@ class _LogscaleAlertState:
     @pulumi.getter(name="throttleDuration")
     def throttle_duration(self) -> Optional[pulumi.Input[str]]:
         """
-        Required for STANDARD type alerts, optional for FILTER type alerts
+        Minimum interval between consecutive triggers of the alert. Required for `STANDARD` alerts, optional for `FILTER` alerts.
         """
         return pulumi.get(self, "throttle_duration")
 
@@ -340,6 +417,9 @@ class _LogscaleAlertState:
     @property
     @pulumi.getter(name="throttleField")
     def throttle_field(self) -> Optional[pulumi.Input[str]]:
+        """
+        Optional field whose value is used to scope throttling, so the alert is throttled per distinct value of this field rather than globally.
+        """
         return pulumi.get(self, "throttle_field")
 
     @throttle_field.setter
@@ -350,7 +430,7 @@ class _LogscaleAlertState:
     @pulumi.getter(name="timeWindow")
     def time_window(self) -> Optional[pulumi.Input[str]]:
         """
-        Required for STANDARD type alerts, ignored for FILTER type alerts
+        Lookback window for the alert query. Required for `STANDARD` alerts, ignored for `FILTER` alerts.
         """
         return pulumi.get(self, "time_window")
 
@@ -379,12 +459,54 @@ class LogscaleAlert(pulumi.CustomResource):
                  time_window: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a LogscaleAlert resource with the given unique name, props, and options.
+        A LogScale alert that runs a saved LogScale query on a schedule and fires the configured logscale_action targets when the query returns results.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_chronosphere as chronosphere
+
+        email = chronosphere.LogscaleAction("email",
+            repository="default",
+            name="Email on-call",
+            email_action=chronosphere.LogscaleActionEmailActionArgs(
+                recipients=["oncall@example.com"],
+                subject_template="Logscale alert: {{alert.name}}",
+                body_template="{{query.results}}",
+            ))
+        high_error_rate = chronosphere.LogscaleAlert("highErrorRate",
+            repository="default",
+            name="High error rate",
+            description="More than 500 errors in a 60s window",
+            alert_type="STANDARD",
+            query="level = ERROR | count(as=numErrors) | numErrors > 500",
+            time_window="60s",
+            throttle_duration="60s",
+            throttle_field="service",
+            tags=[
+                "errors",
+                "platform",
+            ],
+            disabled=False,
+            action_ids=[email.id])
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] action_ids: Slugs of LogScale actions to invoke when the alert triggers. The alert does not fire if this list is empty.
+        :param pulumi.Input[str] alert_type: Type of LogScale alert. `STANDARD` runs the query on a schedule over a time window; `FILTER` evaluates the query against each incoming event.
+        :param pulumi.Input[str] description: Human-readable description of the alert.
+        :param pulumi.Input[bool] disabled: If `true`, the alert will not evaluate or trigger actions.
+        :param pulumi.Input[str] name: Display name of the LogScale alert.
+        :param pulumi.Input[str] query: LogScale query that the alert evaluates. Example: `level = ERROR | severity > 3 | count(as=numErrors) | numErrors > 500`.
+        :param pulumi.Input[str] repository: Name of the LogScale repository the alert belongs to. Immutable after creation.
         :param pulumi.Input[str] run_as_user: Email of the user that the alert runs on behalf of
-        :param pulumi.Input[str] throttle_duration: Required for STANDARD type alerts, optional for FILTER type alerts
-        :param pulumi.Input[str] time_window: Required for STANDARD type alerts, ignored for FILTER type alerts
+        :param pulumi.Input[str] slug: Stable identifier for the LogScale alert. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: Tags attached to the alert for organization and filtering.
+        :param pulumi.Input[str] throttle_duration: Minimum interval between consecutive triggers of the alert. Required for `STANDARD` alerts, optional for `FILTER` alerts.
+        :param pulumi.Input[str] throttle_field: Optional field whose value is used to scope throttling, so the alert is throttled per distinct value of this field rather than globally.
+        :param pulumi.Input[str] time_window: Lookback window for the alert query. Required for `STANDARD` alerts, ignored for `FILTER` alerts.
         """
         ...
     @overload
@@ -393,7 +515,39 @@ class LogscaleAlert(pulumi.CustomResource):
                  args: LogscaleAlertArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a LogscaleAlert resource with the given unique name, props, and options.
+        A LogScale alert that runs a saved LogScale query on a schedule and fires the configured logscale_action targets when the query returns results.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_chronosphere as chronosphere
+
+        email = chronosphere.LogscaleAction("email",
+            repository="default",
+            name="Email on-call",
+            email_action=chronosphere.LogscaleActionEmailActionArgs(
+                recipients=["oncall@example.com"],
+                subject_template="Logscale alert: {{alert.name}}",
+                body_template="{{query.results}}",
+            ))
+        high_error_rate = chronosphere.LogscaleAlert("highErrorRate",
+            repository="default",
+            name="High error rate",
+            description="More than 500 errors in a 60s window",
+            alert_type="STANDARD",
+            query="level = ERROR | count(as=numErrors) | numErrors > 500",
+            time_window="60s",
+            throttle_duration="60s",
+            throttle_field="service",
+            tags=[
+                "errors",
+                "platform",
+            ],
+            disabled=False,
+            action_ids=[email.id])
+        ```
+
         :param str resource_name: The name of the resource.
         :param LogscaleAlertArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -482,9 +636,19 @@ class LogscaleAlert(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] action_ids: Slugs of LogScale actions to invoke when the alert triggers. The alert does not fire if this list is empty.
+        :param pulumi.Input[str] alert_type: Type of LogScale alert. `STANDARD` runs the query on a schedule over a time window; `FILTER` evaluates the query against each incoming event.
+        :param pulumi.Input[str] description: Human-readable description of the alert.
+        :param pulumi.Input[bool] disabled: If `true`, the alert will not evaluate or trigger actions.
+        :param pulumi.Input[str] name: Display name of the LogScale alert.
+        :param pulumi.Input[str] query: LogScale query that the alert evaluates. Example: `level = ERROR | severity > 3 | count(as=numErrors) | numErrors > 500`.
+        :param pulumi.Input[str] repository: Name of the LogScale repository the alert belongs to. Immutable after creation.
         :param pulumi.Input[str] run_as_user: Email of the user that the alert runs on behalf of
-        :param pulumi.Input[str] throttle_duration: Required for STANDARD type alerts, optional for FILTER type alerts
-        :param pulumi.Input[str] time_window: Required for STANDARD type alerts, ignored for FILTER type alerts
+        :param pulumi.Input[str] slug: Stable identifier for the LogScale alert. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: Tags attached to the alert for organization and filtering.
+        :param pulumi.Input[str] throttle_duration: Minimum interval between consecutive triggers of the alert. Required for `STANDARD` alerts, optional for `FILTER` alerts.
+        :param pulumi.Input[str] throttle_field: Optional field whose value is used to scope throttling, so the alert is throttled per distinct value of this field rather than globally.
+        :param pulumi.Input[str] time_window: Lookback window for the alert query. Required for `STANDARD` alerts, ignored for `FILTER` alerts.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -508,36 +672,57 @@ class LogscaleAlert(pulumi.CustomResource):
     @property
     @pulumi.getter(name="actionIds")
     def action_ids(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        Slugs of LogScale actions to invoke when the alert triggers. The alert does not fire if this list is empty.
+        """
         return pulumi.get(self, "action_ids")
 
     @property
     @pulumi.getter(name="alertType")
     def alert_type(self) -> pulumi.Output[str]:
+        """
+        Type of LogScale alert. `STANDARD` runs the query on a schedule over a time window; `FILTER` evaluates the query against each incoming event.
+        """
         return pulumi.get(self, "alert_type")
 
     @property
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
+        """
+        Human-readable description of the alert.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
     def disabled(self) -> pulumi.Output[Optional[bool]]:
+        """
+        If `true`, the alert will not evaluate or trigger actions.
+        """
         return pulumi.get(self, "disabled")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        Display name of the LogScale alert.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def query(self) -> pulumi.Output[Optional[str]]:
+        """
+        LogScale query that the alert evaluates. Example: `level = ERROR | severity > 3 | count(as=numErrors) | numErrors > 500`.
+        """
         return pulumi.get(self, "query")
 
     @property
     @pulumi.getter
     def repository(self) -> pulumi.Output[str]:
+        """
+        Name of the LogScale repository the alert belongs to. Immutable after creation.
+        """
         return pulumi.get(self, "repository")
 
     @property
@@ -551,31 +736,40 @@ class LogscaleAlert(pulumi.CustomResource):
     @property
     @pulumi.getter
     def slug(self) -> pulumi.Output[str]:
+        """
+        Stable identifier for the LogScale alert. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @property
     @pulumi.getter
     def tags(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        Tags attached to the alert for organization and filtering.
+        """
         return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="throttleDuration")
     def throttle_duration(self) -> pulumi.Output[Optional[str]]:
         """
-        Required for STANDARD type alerts, optional for FILTER type alerts
+        Minimum interval between consecutive triggers of the alert. Required for `STANDARD` alerts, optional for `FILTER` alerts.
         """
         return pulumi.get(self, "throttle_duration")
 
     @property
     @pulumi.getter(name="throttleField")
     def throttle_field(self) -> pulumi.Output[Optional[str]]:
+        """
+        Optional field whose value is used to scope throttling, so the alert is throttled per distinct value of this field rather than globally.
+        """
         return pulumi.get(self, "throttle_field")
 
     @property
     @pulumi.getter(name="timeWindow")
     def time_window(self) -> pulumi.Output[Optional[str]]:
         """
-        Required for STANDARD type alerts, ignored for FILTER type alerts
+        Lookback window for the alert query. Required for `STANDARD` alerts, ignored for `FILTER` alerts.
         """
         return pulumi.get(self, "time_window")
 

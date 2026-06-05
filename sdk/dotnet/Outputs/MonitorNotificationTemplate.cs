@@ -14,7 +14,13 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class MonitorNotificationTemplate
     {
+        /// <summary>
+        /// Body/description template for the notification.
+        /// </summary>
         public readonly string? Description;
+        /// <summary>
+        /// Title template for the notification.
+        /// </summary>
         public readonly string? Title;
 
         [OutputConstructor]

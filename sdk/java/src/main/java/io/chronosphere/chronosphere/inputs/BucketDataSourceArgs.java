@@ -16,23 +16,47 @@ public final class BucketDataSourceArgs extends com.pulumi.resources.InvokeArgs 
 
     public static final BucketDataSourceArgs Empty = new BucketDataSourceArgs();
 
+    /**
+     * Read-only: key/value labels attached to the bucket.
+     * 
+     */
     @Import(name="labels")
     private @Nullable Output<Map<String,String>> labels;
 
+    /**
+     * @return Read-only: key/value labels attached to the bucket.
+     * 
+     */
     public Optional<Output<Map<String,String>>> labels() {
         return Optional.ofNullable(this.labels);
     }
 
+    /**
+     * Name of the bucket to look up. Exactly one of `slug` or `name` must be set.
+     * 
+     */
     @Import(name="name")
     private @Nullable Output<String> name;
 
+    /**
+     * @return Name of the bucket to look up. Exactly one of `slug` or `name` must be set.
+     * 
+     */
     public Optional<Output<String>> name() {
         return Optional.ofNullable(this.name);
     }
 
+    /**
+     * Slug of the bucket to look up. Exactly one of `slug` or `name` must be set.
+     * 
+     */
     @Import(name="slug")
     private @Nullable Output<String> slug;
 
+    /**
+     * @return Slug of the bucket to look up. Exactly one of `slug` or `name` must be set.
+     * 
+     */
     public Optional<Output<String>> slug() {
         return Optional.ofNullable(this.slug);
     }
@@ -63,29 +87,65 @@ public final class BucketDataSourceArgs extends com.pulumi.resources.InvokeArgs 
             $ = new BucketDataSourceArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param labels Read-only: key/value labels attached to the bucket.
+         * 
+         * @return builder
+         * 
+         */
         public Builder labels(@Nullable Output<Map<String,String>> labels) {
             $.labels = labels;
             return this;
         }
 
+        /**
+         * @param labels Read-only: key/value labels attached to the bucket.
+         * 
+         * @return builder
+         * 
+         */
         public Builder labels(Map<String,String> labels) {
             return labels(Output.of(labels));
         }
 
+        /**
+         * @param name Name of the bucket to look up. Exactly one of `slug` or `name` must be set.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(@Nullable Output<String> name) {
             $.name = name;
             return this;
         }
 
+        /**
+         * @param name Name of the bucket to look up. Exactly one of `slug` or `name` must be set.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(String name) {
             return name(Output.of(name));
         }
 
+        /**
+         * @param slug Slug of the bucket to look up. Exactly one of `slug` or `name` must be set.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slug(@Nullable Output<String> slug) {
             $.slug = slug;
             return this;
         }
 
+        /**
+         * @param slug Slug of the bucket to look up. Exactly one of `slug` or `name` must be set.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slug(String slug) {
             return slug(Output.of(slug));
         }

@@ -12,22 +12,86 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// A monitor evaluates a query against time-series, log, or trace data and produces signals when configured thresholds are crossed. Signals are routed to notifiers via the referenced notification policy or the parent collection's default policy.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/chronosphereio/pulumi-chronosphere/sdk/go/chronosphere"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			collection, err := chronosphere.NewCollection(ctx, "collection", &chronosphere.CollectionArgs{
+//				Name: pulumi.String("Platform"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = chronosphere.NewMonitor(ctx, "namespaceUp", &chronosphere.MonitorArgs{
+//				Name:         pulumi.String("Namespace up"),
+//				CollectionId: collection.ID(),
+//				Query: &chronosphere.MonitorQueryArgs{
+//					PrometheusExpr: pulumi.String("sum by (kubernetes_namespace) (\n  up{kubernetes_namespace=\"production\"}\n)\n"),
+//				},
+//				SignalGrouping: &chronosphere.MonitorSignalGroupingArgs{
+//					LabelNames: pulumi.StringArray{
+//						pulumi.String("kubernetes_namespace"),
+//					},
+//				},
+//				SeriesConditions: &chronosphere.MonitorSeriesConditionsArgs{
+//					Conditions: chronosphere.MonitorSeriesConditionsConditionArray{
+//						&chronosphere.MonitorSeriesConditionsConditionArgs{
+//							Severity: pulumi.String("warn"),
+//							Value:    pulumi.Float64(20),
+//							Op:       pulumi.String("GT"),
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type Monitor struct {
 	pulumi.CustomResourceState
 
-	Annotations          pulumi.StringMapOutput               `pulumi:"annotations"`
-	BucketId             pulumi.StringPtrOutput               `pulumi:"bucketId"`
-	CollectionId         pulumi.StringPtrOutput               `pulumi:"collectionId"`
-	Interval             pulumi.StringPtrOutput               `pulumi:"interval"`
-	Labels               pulumi.StringMapOutput               `pulumi:"labels"`
-	Name                 pulumi.StringOutput                  `pulumi:"name"`
-	NotificationPolicyId pulumi.StringPtrOutput               `pulumi:"notificationPolicyId"`
+	// Free-form key/value pairs attached to every signal, intended for human consumption such as runbook URLs and descriptions.
+	Annotations pulumi.StringMapOutput `pulumi:"annotations"`
+	// ID of the bucket the monitor belongs to. Exactly one of `bucketId` or `collectionId` must be set.
+	BucketId pulumi.StringPtrOutput `pulumi:"bucketId"`
+	// ID of the collection the monitor belongs to. Exactly one of `bucketId` or `collectionId` must be set.
+	CollectionId pulumi.StringPtrOutput `pulumi:"collectionId"`
+	// Evaluation interval (e.g. `30s`, `1m`). Defaults to the system default if unset.
+	Interval pulumi.StringPtrOutput `pulumi:"interval"`
+	// Key/value labels attached to every signal emitted by the monitor. Used for routing and filtering.
+	Labels pulumi.StringMapOutput `pulumi:"labels"`
+	// Label name to match.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// ID of the notification policy that routes signals from this monitor. If omitted, the parent collection's default policy applies. Must reference a named policy (anonymous policies are rejected).
+	NotificationPolicyId pulumi.StringPtrOutput `pulumi:"notificationPolicyId"`
+	// Templated title/description rendered into outbound notifications. Supports Go templating with access to signal labels and annotations.
 	NotificationTemplate MonitorNotificationTemplatePtrOutput `pulumi:"notificationTemplate"`
-	Query                MonitorQueryOutput                   `pulumi:"query"`
-	Schedule             MonitorSchedulePtrOutput             `pulumi:"schedule"`
-	SeriesConditions     MonitorSeriesConditionsOutput        `pulumi:"seriesConditions"`
-	SignalGrouping       MonitorSignalGroupingPtrOutput       `pulumi:"signalGrouping"`
-	Slug                 pulumi.StringOutput                  `pulumi:"slug"`
+	// Query that produces the time series evaluated by the monitor. Exactly one of `prometheusExpr`, `graphiteExpr`, or `loggingExpr` must be set.
+	Query MonitorQueryOutput `pulumi:"query"`
+	// Optional schedule restricting when the monitor evaluates and fires.
+	Schedule MonitorSchedulePtrOutput `pulumi:"schedule"`
+	// Conditions that determine when a series fires a signal.
+	SeriesConditions MonitorSeriesConditionsOutput `pulumi:"seriesConditions"`
+	// Controls how individual time series are grouped into signals for alerting purposes.
+	SignalGrouping MonitorSignalGroupingPtrOutput `pulumi:"signalGrouping"`
+	// Stable identifier for the monitor. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringOutput `pulumi:"slug"`
 }
 
 // NewMonitor registers a new resource with the given unique name, arguments, and options.
@@ -69,35 +133,61 @@ func GetMonitor(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Monitor resources.
 type monitorState struct {
-	Annotations          map[string]string            `pulumi:"annotations"`
-	BucketId             *string                      `pulumi:"bucketId"`
-	CollectionId         *string                      `pulumi:"collectionId"`
-	Interval             *string                      `pulumi:"interval"`
-	Labels               map[string]string            `pulumi:"labels"`
-	Name                 *string                      `pulumi:"name"`
-	NotificationPolicyId *string                      `pulumi:"notificationPolicyId"`
+	// Free-form key/value pairs attached to every signal, intended for human consumption such as runbook URLs and descriptions.
+	Annotations map[string]string `pulumi:"annotations"`
+	// ID of the bucket the monitor belongs to. Exactly one of `bucketId` or `collectionId` must be set.
+	BucketId *string `pulumi:"bucketId"`
+	// ID of the collection the monitor belongs to. Exactly one of `bucketId` or `collectionId` must be set.
+	CollectionId *string `pulumi:"collectionId"`
+	// Evaluation interval (e.g. `30s`, `1m`). Defaults to the system default if unset.
+	Interval *string `pulumi:"interval"`
+	// Key/value labels attached to every signal emitted by the monitor. Used for routing and filtering.
+	Labels map[string]string `pulumi:"labels"`
+	// Label name to match.
+	Name *string `pulumi:"name"`
+	// ID of the notification policy that routes signals from this monitor. If omitted, the parent collection's default policy applies. Must reference a named policy (anonymous policies are rejected).
+	NotificationPolicyId *string `pulumi:"notificationPolicyId"`
+	// Templated title/description rendered into outbound notifications. Supports Go templating with access to signal labels and annotations.
 	NotificationTemplate *MonitorNotificationTemplate `pulumi:"notificationTemplate"`
-	Query                *MonitorQuery                `pulumi:"query"`
-	Schedule             *MonitorSchedule             `pulumi:"schedule"`
-	SeriesConditions     *MonitorSeriesConditions     `pulumi:"seriesConditions"`
-	SignalGrouping       *MonitorSignalGrouping       `pulumi:"signalGrouping"`
-	Slug                 *string                      `pulumi:"slug"`
+	// Query that produces the time series evaluated by the monitor. Exactly one of `prometheusExpr`, `graphiteExpr`, or `loggingExpr` must be set.
+	Query *MonitorQuery `pulumi:"query"`
+	// Optional schedule restricting when the monitor evaluates and fires.
+	Schedule *MonitorSchedule `pulumi:"schedule"`
+	// Conditions that determine when a series fires a signal.
+	SeriesConditions *MonitorSeriesConditions `pulumi:"seriesConditions"`
+	// Controls how individual time series are grouped into signals for alerting purposes.
+	SignalGrouping *MonitorSignalGrouping `pulumi:"signalGrouping"`
+	// Stable identifier for the monitor. Generated from `name` if omitted. Immutable after creation.
+	Slug *string `pulumi:"slug"`
 }
 
 type MonitorState struct {
-	Annotations          pulumi.StringMapInput
-	BucketId             pulumi.StringPtrInput
-	CollectionId         pulumi.StringPtrInput
-	Interval             pulumi.StringPtrInput
-	Labels               pulumi.StringMapInput
-	Name                 pulumi.StringPtrInput
+	// Free-form key/value pairs attached to every signal, intended for human consumption such as runbook URLs and descriptions.
+	Annotations pulumi.StringMapInput
+	// ID of the bucket the monitor belongs to. Exactly one of `bucketId` or `collectionId` must be set.
+	BucketId pulumi.StringPtrInput
+	// ID of the collection the monitor belongs to. Exactly one of `bucketId` or `collectionId` must be set.
+	CollectionId pulumi.StringPtrInput
+	// Evaluation interval (e.g. `30s`, `1m`). Defaults to the system default if unset.
+	Interval pulumi.StringPtrInput
+	// Key/value labels attached to every signal emitted by the monitor. Used for routing and filtering.
+	Labels pulumi.StringMapInput
+	// Label name to match.
+	Name pulumi.StringPtrInput
+	// ID of the notification policy that routes signals from this monitor. If omitted, the parent collection's default policy applies. Must reference a named policy (anonymous policies are rejected).
 	NotificationPolicyId pulumi.StringPtrInput
+	// Templated title/description rendered into outbound notifications. Supports Go templating with access to signal labels and annotations.
 	NotificationTemplate MonitorNotificationTemplatePtrInput
-	Query                MonitorQueryPtrInput
-	Schedule             MonitorSchedulePtrInput
-	SeriesConditions     MonitorSeriesConditionsPtrInput
-	SignalGrouping       MonitorSignalGroupingPtrInput
-	Slug                 pulumi.StringPtrInput
+	// Query that produces the time series evaluated by the monitor. Exactly one of `prometheusExpr`, `graphiteExpr`, or `loggingExpr` must be set.
+	Query MonitorQueryPtrInput
+	// Optional schedule restricting when the monitor evaluates and fires.
+	Schedule MonitorSchedulePtrInput
+	// Conditions that determine when a series fires a signal.
+	SeriesConditions MonitorSeriesConditionsPtrInput
+	// Controls how individual time series are grouped into signals for alerting purposes.
+	SignalGrouping MonitorSignalGroupingPtrInput
+	// Stable identifier for the monitor. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringPtrInput
 }
 
 func (MonitorState) ElementType() reflect.Type {
@@ -105,36 +195,62 @@ func (MonitorState) ElementType() reflect.Type {
 }
 
 type monitorArgs struct {
-	Annotations          map[string]string            `pulumi:"annotations"`
-	BucketId             *string                      `pulumi:"bucketId"`
-	CollectionId         *string                      `pulumi:"collectionId"`
-	Interval             *string                      `pulumi:"interval"`
-	Labels               map[string]string            `pulumi:"labels"`
-	Name                 string                       `pulumi:"name"`
-	NotificationPolicyId *string                      `pulumi:"notificationPolicyId"`
+	// Free-form key/value pairs attached to every signal, intended for human consumption such as runbook URLs and descriptions.
+	Annotations map[string]string `pulumi:"annotations"`
+	// ID of the bucket the monitor belongs to. Exactly one of `bucketId` or `collectionId` must be set.
+	BucketId *string `pulumi:"bucketId"`
+	// ID of the collection the monitor belongs to. Exactly one of `bucketId` or `collectionId` must be set.
+	CollectionId *string `pulumi:"collectionId"`
+	// Evaluation interval (e.g. `30s`, `1m`). Defaults to the system default if unset.
+	Interval *string `pulumi:"interval"`
+	// Key/value labels attached to every signal emitted by the monitor. Used for routing and filtering.
+	Labels map[string]string `pulumi:"labels"`
+	// Label name to match.
+	Name string `pulumi:"name"`
+	// ID of the notification policy that routes signals from this monitor. If omitted, the parent collection's default policy applies. Must reference a named policy (anonymous policies are rejected).
+	NotificationPolicyId *string `pulumi:"notificationPolicyId"`
+	// Templated title/description rendered into outbound notifications. Supports Go templating with access to signal labels and annotations.
 	NotificationTemplate *MonitorNotificationTemplate `pulumi:"notificationTemplate"`
-	Query                MonitorQuery                 `pulumi:"query"`
-	Schedule             *MonitorSchedule             `pulumi:"schedule"`
-	SeriesConditions     MonitorSeriesConditions      `pulumi:"seriesConditions"`
-	SignalGrouping       *MonitorSignalGrouping       `pulumi:"signalGrouping"`
-	Slug                 *string                      `pulumi:"slug"`
+	// Query that produces the time series evaluated by the monitor. Exactly one of `prometheusExpr`, `graphiteExpr`, or `loggingExpr` must be set.
+	Query MonitorQuery `pulumi:"query"`
+	// Optional schedule restricting when the monitor evaluates and fires.
+	Schedule *MonitorSchedule `pulumi:"schedule"`
+	// Conditions that determine when a series fires a signal.
+	SeriesConditions MonitorSeriesConditions `pulumi:"seriesConditions"`
+	// Controls how individual time series are grouped into signals for alerting purposes.
+	SignalGrouping *MonitorSignalGrouping `pulumi:"signalGrouping"`
+	// Stable identifier for the monitor. Generated from `name` if omitted. Immutable after creation.
+	Slug *string `pulumi:"slug"`
 }
 
 // The set of arguments for constructing a Monitor resource.
 type MonitorArgs struct {
-	Annotations          pulumi.StringMapInput
-	BucketId             pulumi.StringPtrInput
-	CollectionId         pulumi.StringPtrInput
-	Interval             pulumi.StringPtrInput
-	Labels               pulumi.StringMapInput
-	Name                 pulumi.StringInput
+	// Free-form key/value pairs attached to every signal, intended for human consumption such as runbook URLs and descriptions.
+	Annotations pulumi.StringMapInput
+	// ID of the bucket the monitor belongs to. Exactly one of `bucketId` or `collectionId` must be set.
+	BucketId pulumi.StringPtrInput
+	// ID of the collection the monitor belongs to. Exactly one of `bucketId` or `collectionId` must be set.
+	CollectionId pulumi.StringPtrInput
+	// Evaluation interval (e.g. `30s`, `1m`). Defaults to the system default if unset.
+	Interval pulumi.StringPtrInput
+	// Key/value labels attached to every signal emitted by the monitor. Used for routing and filtering.
+	Labels pulumi.StringMapInput
+	// Label name to match.
+	Name pulumi.StringInput
+	// ID of the notification policy that routes signals from this monitor. If omitted, the parent collection's default policy applies. Must reference a named policy (anonymous policies are rejected).
 	NotificationPolicyId pulumi.StringPtrInput
+	// Templated title/description rendered into outbound notifications. Supports Go templating with access to signal labels and annotations.
 	NotificationTemplate MonitorNotificationTemplatePtrInput
-	Query                MonitorQueryInput
-	Schedule             MonitorSchedulePtrInput
-	SeriesConditions     MonitorSeriesConditionsInput
-	SignalGrouping       MonitorSignalGroupingPtrInput
-	Slug                 pulumi.StringPtrInput
+	// Query that produces the time series evaluated by the monitor. Exactly one of `prometheusExpr`, `graphiteExpr`, or `loggingExpr` must be set.
+	Query MonitorQueryInput
+	// Optional schedule restricting when the monitor evaluates and fires.
+	Schedule MonitorSchedulePtrInput
+	// Conditions that determine when a series fires a signal.
+	SeriesConditions MonitorSeriesConditionsInput
+	// Controls how individual time series are grouped into signals for alerting purposes.
+	SignalGrouping MonitorSignalGroupingPtrInput
+	// Stable identifier for the monitor. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringPtrInput
 }
 
 func (MonitorArgs) ElementType() reflect.Type {
@@ -224,54 +340,67 @@ func (o MonitorOutput) ToMonitorOutputWithContext(ctx context.Context) MonitorOu
 	return o
 }
 
+// Free-form key/value pairs attached to every signal, intended for human consumption such as runbook URLs and descriptions.
 func (o MonitorOutput) Annotations() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *Monitor) pulumi.StringMapOutput { return v.Annotations }).(pulumi.StringMapOutput)
 }
 
+// ID of the bucket the monitor belongs to. Exactly one of `bucketId` or `collectionId` must be set.
 func (o MonitorOutput) BucketId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Monitor) pulumi.StringPtrOutput { return v.BucketId }).(pulumi.StringPtrOutput)
 }
 
+// ID of the collection the monitor belongs to. Exactly one of `bucketId` or `collectionId` must be set.
 func (o MonitorOutput) CollectionId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Monitor) pulumi.StringPtrOutput { return v.CollectionId }).(pulumi.StringPtrOutput)
 }
 
+// Evaluation interval (e.g. `30s`, `1m`). Defaults to the system default if unset.
 func (o MonitorOutput) Interval() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Monitor) pulumi.StringPtrOutput { return v.Interval }).(pulumi.StringPtrOutput)
 }
 
+// Key/value labels attached to every signal emitted by the monitor. Used for routing and filtering.
 func (o MonitorOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *Monitor) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }
 
+// Label name to match.
 func (o MonitorOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Monitor) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// ID of the notification policy that routes signals from this monitor. If omitted, the parent collection's default policy applies. Must reference a named policy (anonymous policies are rejected).
 func (o MonitorOutput) NotificationPolicyId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Monitor) pulumi.StringPtrOutput { return v.NotificationPolicyId }).(pulumi.StringPtrOutput)
 }
 
+// Templated title/description rendered into outbound notifications. Supports Go templating with access to signal labels and annotations.
 func (o MonitorOutput) NotificationTemplate() MonitorNotificationTemplatePtrOutput {
 	return o.ApplyT(func(v *Monitor) MonitorNotificationTemplatePtrOutput { return v.NotificationTemplate }).(MonitorNotificationTemplatePtrOutput)
 }
 
+// Query that produces the time series evaluated by the monitor. Exactly one of `prometheusExpr`, `graphiteExpr`, or `loggingExpr` must be set.
 func (o MonitorOutput) Query() MonitorQueryOutput {
 	return o.ApplyT(func(v *Monitor) MonitorQueryOutput { return v.Query }).(MonitorQueryOutput)
 }
 
+// Optional schedule restricting when the monitor evaluates and fires.
 func (o MonitorOutput) Schedule() MonitorSchedulePtrOutput {
 	return o.ApplyT(func(v *Monitor) MonitorSchedulePtrOutput { return v.Schedule }).(MonitorSchedulePtrOutput)
 }
 
+// Conditions that determine when a series fires a signal.
 func (o MonitorOutput) SeriesConditions() MonitorSeriesConditionsOutput {
 	return o.ApplyT(func(v *Monitor) MonitorSeriesConditionsOutput { return v.SeriesConditions }).(MonitorSeriesConditionsOutput)
 }
 
+// Controls how individual time series are grouped into signals for alerting purposes.
 func (o MonitorOutput) SignalGrouping() MonitorSignalGroupingPtrOutput {
 	return o.ApplyT(func(v *Monitor) MonitorSignalGroupingPtrOutput { return v.SignalGrouping }).(MonitorSignalGroupingPtrOutput)
 }
 
+// Stable identifier for the monitor. Generated from `name` if omitted. Immutable after creation.
 func (o MonitorOutput) Slug() pulumi.StringOutput {
 	return o.ApplyT(func(v *Monitor) pulumi.StringOutput { return v.Slug }).(pulumi.StringOutput)
 }

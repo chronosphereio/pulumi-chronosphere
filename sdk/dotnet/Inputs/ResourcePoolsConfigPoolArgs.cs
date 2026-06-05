@@ -13,23 +13,39 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class ResourcePoolsConfigPoolArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// License allocation for the pool. Can be expressed as a percentage of the license (`percent_of_license`) or as per-license fixed values (`fixed_value`).
+        /// </summary>
         [Input("allocation")]
         public Input<Inputs.ResourcePoolsConfigPoolAllocationArgs>? Allocation { get; set; }
 
+        /// <summary>
+        /// Deprecated: use `match_rules` instead. Single matcher selecting metrics that belong to this pool.
+        /// </summary>
         [Input("matchRule")]
         public Input<string>? MatchRule { get; set; }
 
         [Input("matchRules")]
         private InputList<string>? _matchRules;
+
+        /// <summary>
+        /// Matchers selecting metrics that map to this pool. A metric matching any rule is assigned to the pool.
+        /// </summary>
         public InputList<string> MatchRules
         {
             get => _matchRules ?? (_matchRules = new InputList<string>());
             set => _matchRules = value;
         }
 
+        /// <summary>
+        /// Unique name of the pool.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// Optional high/low priority sub-classifications within the pool. Low-priority metrics are dropped first; high-priority metrics are dropped last when limits are hit.
+        /// </summary>
         [Input("priorities")]
         public Input<Inputs.ResourcePoolsConfigPoolPrioritiesArgs>? Priorities { get; set; }
 

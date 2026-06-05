@@ -14,7 +14,13 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationStrategiesPerOperationStrategy
     {
+        /// <summary>
+        /// Span operation (span name) this override applies to.
+        /// </summary>
         public readonly string Operation;
+        /// <summary>
+        /// Probabilistic sampling configuration applied to spans whose operation matches.
+        /// </summary>
         public readonly Outputs.TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationStrategiesPerOperationStrategyProbabilisticStrategy ProbabilisticStrategy;
 
         [OutputConstructor]

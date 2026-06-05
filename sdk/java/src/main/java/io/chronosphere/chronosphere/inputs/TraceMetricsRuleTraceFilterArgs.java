@@ -18,23 +18,47 @@ public final class TraceMetricsRuleTraceFilterArgs extends com.pulumi.resources.
 
     public static final TraceMetricsRuleTraceFilterArgs Empty = new TraceMetricsRuleTraceFilterArgs();
 
+    /**
+     * Scope filter that further restricts which spans within a matched trace contribute to metrics or sampling. Only spans matching `span_scopes` are included in aggregation.
+     * 
+     */
     @Import(name="scopeFilter")
     private @Nullable Output<TraceMetricsRuleTraceFilterScopeFilterArgs> scopeFilter;
 
+    /**
+     * @return Scope filter that further restricts which spans within a matched trace contribute to metrics or sampling. Only spans matching `span_scopes` are included in aggregation.
+     * 
+     */
     public Optional<Output<TraceMetricsRuleTraceFilterScopeFilterArgs>> scopeFilter() {
         return Optional.ofNullable(this.scopeFilter);
     }
 
+    /**
+     * Span-level conditions. Each block defines a set of conditions that must all be satisfied by a single span in the trace for the trace to match.
+     * 
+     */
     @Import(name="spans")
     private @Nullable Output<List<TraceMetricsRuleTraceFilterSpanArgs>> spans;
 
+    /**
+     * @return Span-level conditions. Each block defines a set of conditions that must all be satisfied by a single span in the trace for the trace to match.
+     * 
+     */
     public Optional<Output<List<TraceMetricsRuleTraceFilterSpanArgs>>> spans() {
         return Optional.ofNullable(this.spans);
     }
 
+    /**
+     * Trace-level conditions evaluated against the whole trace (aggregated duration and error status).
+     * 
+     */
     @Import(name="trace")
     private @Nullable Output<TraceMetricsRuleTraceFilterTraceArgs> trace;
 
+    /**
+     * @return Trace-level conditions evaluated against the whole trace (aggregated duration and error status).
+     * 
+     */
     public Optional<Output<TraceMetricsRuleTraceFilterTraceArgs>> trace() {
         return Optional.ofNullable(this.trace);
     }
@@ -65,33 +89,75 @@ public final class TraceMetricsRuleTraceFilterArgs extends com.pulumi.resources.
             $ = new TraceMetricsRuleTraceFilterArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param scopeFilter Scope filter that further restricts which spans within a matched trace contribute to metrics or sampling. Only spans matching `span_scopes` are included in aggregation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder scopeFilter(@Nullable Output<TraceMetricsRuleTraceFilterScopeFilterArgs> scopeFilter) {
             $.scopeFilter = scopeFilter;
             return this;
         }
 
+        /**
+         * @param scopeFilter Scope filter that further restricts which spans within a matched trace contribute to metrics or sampling. Only spans matching `span_scopes` are included in aggregation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder scopeFilter(TraceMetricsRuleTraceFilterScopeFilterArgs scopeFilter) {
             return scopeFilter(Output.of(scopeFilter));
         }
 
+        /**
+         * @param spans Span-level conditions. Each block defines a set of conditions that must all be satisfied by a single span in the trace for the trace to match.
+         * 
+         * @return builder
+         * 
+         */
         public Builder spans(@Nullable Output<List<TraceMetricsRuleTraceFilterSpanArgs>> spans) {
             $.spans = spans;
             return this;
         }
 
+        /**
+         * @param spans Span-level conditions. Each block defines a set of conditions that must all be satisfied by a single span in the trace for the trace to match.
+         * 
+         * @return builder
+         * 
+         */
         public Builder spans(List<TraceMetricsRuleTraceFilterSpanArgs> spans) {
             return spans(Output.of(spans));
         }
 
+        /**
+         * @param spans Span-level conditions. Each block defines a set of conditions that must all be satisfied by a single span in the trace for the trace to match.
+         * 
+         * @return builder
+         * 
+         */
         public Builder spans(TraceMetricsRuleTraceFilterSpanArgs... spans) {
             return spans(List.of(spans));
         }
 
+        /**
+         * @param trace Trace-level conditions evaluated against the whole trace (aggregated duration and error status).
+         * 
+         * @return builder
+         * 
+         */
         public Builder trace(@Nullable Output<TraceMetricsRuleTraceFilterTraceArgs> trace) {
             $.trace = trace;
             return this;
         }
 
+        /**
+         * @param trace Trace-level conditions evaluated against the whole trace (aggregated duration and error status).
+         * 
+         * @return builder
+         * 
+         */
         public Builder trace(TraceMetricsRuleTraceFilterTraceArgs trace) {
             return trace(Output.of(trace));
         }

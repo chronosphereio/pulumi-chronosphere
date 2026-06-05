@@ -6,6 +6,43 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * Scrapes Azure Monitor metrics from the configured subscriptions, locations, and resource types using a service-principal credential.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as chronosphere from "@pulumi-chronosphere/pulumi-chronosphere";
+ *
+ * const subscription = new chronosphere.AzureMetricsIntegration("subscription", {
+ *     countMetricsEnabled: true,
+ *     name: "Azure Metrics",
+ *     principal: {
+ *         clientId: "00000000-0000-0000-0000-000000000000",
+ *         tenantId: "00000000-0000-0000-0000-000000000000",
+ *     },
+ *     propagateTags: true,
+ *     scrapeConfig: {
+ *         locations: [
+ *             "eastus",
+ *             "westus",
+ *         ],
+ *         resourceTypes: [
+ *             {
+ *                 name: "Microsoft.Compute/virtualMachines",
+ *             },
+ *             {
+ *                 metricNames: ["UsedCapacity"],
+ *                 name: "Microsoft.Storage/storageAccounts",
+ *             },
+ *         ],
+ *         subscriptionIds: ["00000000-0000-0000-0000-000000000000"],
+ *     },
+ *     slug: "azure-metrics",
+ * });
+ * ```
+ */
 export class AzureMetricsIntegration extends pulumi.CustomResource {
     /**
      * Get an existing AzureMetricsIntegration resource's state with the given name, ID, and optional extra
@@ -34,12 +71,33 @@ export class AzureMetricsIntegration extends pulumi.CustomResource {
         return obj['__pulumiType'] === AzureMetricsIntegration.__pulumiType;
     }
 
+    /**
+     * If true, enables Azure count metrics for the configured resources.
+     */
     public readonly countMetricsEnabled!: pulumi.Output<boolean | undefined>;
+    /**
+     * Azure resource type identifier (e.g. `Microsoft.Compute/virtualMachines`).
+     */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * Azure managed identity principal used to authenticate with Azure Monitor.
+     */
     public readonly principal!: pulumi.Output<outputs.AzureMetricsIntegrationPrincipal | undefined>;
+    /**
+     * If true, propagates Azure resource, group, and subscription tags as metric labels.
+     */
     public readonly propagateTags!: pulumi.Output<boolean | undefined>;
+    /**
+     * Scope of Azure subscriptions, locations, and resource types from which to ingest metrics.
+     */
     public readonly scrapeConfig!: pulumi.Output<outputs.AzureMetricsIntegrationScrapeConfig | undefined>;
+    /**
+     * Stable identifier for the integration. Generated from `name` if omitted. Immutable after creation.
+     */
     public readonly slug!: pulumi.Output<string>;
+    /**
+     * If true, enables collection of Azure usage metrics under this principal (Microsoft.Compute, Microsoft.Network, Microsoft.Storage).
+     */
     public readonly usageMetricsEnabled!: pulumi.Output<boolean | undefined>;
 
     /**
@@ -84,12 +142,33 @@ export class AzureMetricsIntegration extends pulumi.CustomResource {
  * Input properties used for looking up and filtering AzureMetricsIntegration resources.
  */
 export interface AzureMetricsIntegrationState {
+    /**
+     * If true, enables Azure count metrics for the configured resources.
+     */
     countMetricsEnabled?: pulumi.Input<boolean>;
+    /**
+     * Azure resource type identifier (e.g. `Microsoft.Compute/virtualMachines`).
+     */
     name?: pulumi.Input<string>;
+    /**
+     * Azure managed identity principal used to authenticate with Azure Monitor.
+     */
     principal?: pulumi.Input<inputs.AzureMetricsIntegrationPrincipal>;
+    /**
+     * If true, propagates Azure resource, group, and subscription tags as metric labels.
+     */
     propagateTags?: pulumi.Input<boolean>;
+    /**
+     * Scope of Azure subscriptions, locations, and resource types from which to ingest metrics.
+     */
     scrapeConfig?: pulumi.Input<inputs.AzureMetricsIntegrationScrapeConfig>;
+    /**
+     * Stable identifier for the integration. Generated from `name` if omitted. Immutable after creation.
+     */
     slug?: pulumi.Input<string>;
+    /**
+     * If true, enables collection of Azure usage metrics under this principal (Microsoft.Compute, Microsoft.Network, Microsoft.Storage).
+     */
     usageMetricsEnabled?: pulumi.Input<boolean>;
 }
 
@@ -97,11 +176,32 @@ export interface AzureMetricsIntegrationState {
  * The set of arguments for constructing a AzureMetricsIntegration resource.
  */
 export interface AzureMetricsIntegrationArgs {
+    /**
+     * If true, enables Azure count metrics for the configured resources.
+     */
     countMetricsEnabled?: pulumi.Input<boolean>;
+    /**
+     * Azure resource type identifier (e.g. `Microsoft.Compute/virtualMachines`).
+     */
     name: pulumi.Input<string>;
+    /**
+     * Azure managed identity principal used to authenticate with Azure Monitor.
+     */
     principal?: pulumi.Input<inputs.AzureMetricsIntegrationPrincipal>;
+    /**
+     * If true, propagates Azure resource, group, and subscription tags as metric labels.
+     */
     propagateTags?: pulumi.Input<boolean>;
+    /**
+     * Scope of Azure subscriptions, locations, and resource types from which to ingest metrics.
+     */
     scrapeConfig?: pulumi.Input<inputs.AzureMetricsIntegrationScrapeConfig>;
+    /**
+     * Stable identifier for the integration. Generated from `name` if omitted. Immutable after creation.
+     */
     slug?: pulumi.Input<string>;
+    /**
+     * If true, enables collection of Azure usage metrics under this principal (Microsoft.Compute, Microsoft.Network, Microsoft.Storage).
+     */
     usageMetricsEnabled?: pulumi.Input<boolean>;
 }

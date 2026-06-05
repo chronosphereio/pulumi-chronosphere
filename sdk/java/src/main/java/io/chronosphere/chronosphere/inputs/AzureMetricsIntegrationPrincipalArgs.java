@@ -15,16 +15,32 @@ public final class AzureMetricsIntegrationPrincipalArgs extends com.pulumi.resou
 
     public static final AzureMetricsIntegrationPrincipalArgs Empty = new AzureMetricsIntegrationPrincipalArgs();
 
+    /**
+     * OAuth2 client ID of the managed identity principal.
+     * 
+     */
     @Import(name="clientId")
     private @Nullable Output<String> clientId;
 
+    /**
+     * @return OAuth2 client ID of the managed identity principal.
+     * 
+     */
     public Optional<Output<String>> clientId() {
         return Optional.ofNullable(this.clientId);
     }
 
+    /**
+     * ID of the Azure tenant that hosts the managed identity principal.
+     * 
+     */
     @Import(name="tenantId")
     private @Nullable Output<String> tenantId;
 
+    /**
+     * @return ID of the Azure tenant that hosts the managed identity principal.
+     * 
+     */
     public Optional<Output<String>> tenantId() {
         return Optional.ofNullable(this.tenantId);
     }
@@ -54,20 +70,44 @@ public final class AzureMetricsIntegrationPrincipalArgs extends com.pulumi.resou
             $ = new AzureMetricsIntegrationPrincipalArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param clientId OAuth2 client ID of the managed identity principal.
+         * 
+         * @return builder
+         * 
+         */
         public Builder clientId(@Nullable Output<String> clientId) {
             $.clientId = clientId;
             return this;
         }
 
+        /**
+         * @param clientId OAuth2 client ID of the managed identity principal.
+         * 
+         * @return builder
+         * 
+         */
         public Builder clientId(String clientId) {
             return clientId(Output.of(clientId));
         }
 
+        /**
+         * @param tenantId ID of the Azure tenant that hosts the managed identity principal.
+         * 
+         * @return builder
+         * 
+         */
         public Builder tenantId(@Nullable Output<String> tenantId) {
             $.tenantId = tenantId;
             return this;
         }
 
+        /**
+         * @param tenantId ID of the Azure tenant that hosts the managed identity principal.
+         * 
+         * @return builder
+         * 
+         */
         public Builder tenantId(String tenantId) {
             return tenantId(Output.of(tenantId));
         }

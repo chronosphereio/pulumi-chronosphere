@@ -12,12 +12,76 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// A Grafana-compatible dashboard rendered by Chronosphere. The dashboard's `name` and `slug` are derived from the `title` and `uid` fields inside `dashboardJson`. For native Chronosphere dashboards, use `Dashboard` instead.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"encoding/json"
+//
+//	"github.com/chronosphereio/pulumi-chronosphere/sdk/go/chronosphere"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			collection, err := chronosphere.NewCollection(ctx, "collection", &chronosphere.CollectionArgs{
+//				Name: pulumi.String("Platform"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			tmpJSON0, err := json.Marshal(map[string]interface{}{
+//				"title": "Dashboard",
+//				"panels": []map[string]interface{}{
+//					map[string]interface{}{
+//						"gridPos": map[string]interface{}{
+//							"h": 12,
+//							"w": 24,
+//							"x": 0,
+//							"y": 0,
+//						},
+//						"id": 2,
+//						"targets": []map[string]interface{}{
+//							map[string]interface{}{
+//								"expr": "up",
+//							},
+//						},
+//						"title": "Up by instance",
+//						"type":  "graph",
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json0 := string(tmpJSON0)
+//			_, err = chronosphere.NewClassicDashboard(ctx, "platform", &chronosphere.ClassicDashboardArgs{
+//				CollectionId:  collection.ID(),
+//				DashboardJson: pulumi.String(json0),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type ClassicDashboard struct {
 	pulumi.CustomResourceState
 
-	BucketId      pulumi.StringPtrOutput `pulumi:"bucketId"`
-	CollectionId  pulumi.StringPtrOutput `pulumi:"collectionId"`
-	DashboardJson pulumi.StringOutput    `pulumi:"dashboardJson"`
+	// ID of the bucket the dashboard belongs to. Exactly one of `bucketId` or `collectionId` must be set.
+	BucketId pulumi.StringPtrOutput `pulumi:"bucketId"`
+	// ID of the collection the dashboard belongs to. Exactly one of `bucketId` or `collectionId` must be set.
+	CollectionId pulumi.StringPtrOutput `pulumi:"collectionId"`
+	// Grafana-compatible dashboard definition serialized as JSON. The `id` and `version` fields are stripped before diffing.
+	DashboardJson pulumi.StringOutput `pulumi:"dashboardJson"`
 }
 
 // NewClassicDashboard registers a new resource with the given unique name, arguments, and options.
@@ -53,14 +117,20 @@ func GetClassicDashboard(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ClassicDashboard resources.
 type classicDashboardState struct {
-	BucketId      *string `pulumi:"bucketId"`
-	CollectionId  *string `pulumi:"collectionId"`
+	// ID of the bucket the dashboard belongs to. Exactly one of `bucketId` or `collectionId` must be set.
+	BucketId *string `pulumi:"bucketId"`
+	// ID of the collection the dashboard belongs to. Exactly one of `bucketId` or `collectionId` must be set.
+	CollectionId *string `pulumi:"collectionId"`
+	// Grafana-compatible dashboard definition serialized as JSON. The `id` and `version` fields are stripped before diffing.
 	DashboardJson *string `pulumi:"dashboardJson"`
 }
 
 type ClassicDashboardState struct {
-	BucketId      pulumi.StringPtrInput
-	CollectionId  pulumi.StringPtrInput
+	// ID of the bucket the dashboard belongs to. Exactly one of `bucketId` or `collectionId` must be set.
+	BucketId pulumi.StringPtrInput
+	// ID of the collection the dashboard belongs to. Exactly one of `bucketId` or `collectionId` must be set.
+	CollectionId pulumi.StringPtrInput
+	// Grafana-compatible dashboard definition serialized as JSON. The `id` and `version` fields are stripped before diffing.
 	DashboardJson pulumi.StringPtrInput
 }
 
@@ -69,15 +139,21 @@ func (ClassicDashboardState) ElementType() reflect.Type {
 }
 
 type classicDashboardArgs struct {
-	BucketId      *string `pulumi:"bucketId"`
-	CollectionId  *string `pulumi:"collectionId"`
-	DashboardJson string  `pulumi:"dashboardJson"`
+	// ID of the bucket the dashboard belongs to. Exactly one of `bucketId` or `collectionId` must be set.
+	BucketId *string `pulumi:"bucketId"`
+	// ID of the collection the dashboard belongs to. Exactly one of `bucketId` or `collectionId` must be set.
+	CollectionId *string `pulumi:"collectionId"`
+	// Grafana-compatible dashboard definition serialized as JSON. The `id` and `version` fields are stripped before diffing.
+	DashboardJson string `pulumi:"dashboardJson"`
 }
 
 // The set of arguments for constructing a ClassicDashboard resource.
 type ClassicDashboardArgs struct {
-	BucketId      pulumi.StringPtrInput
-	CollectionId  pulumi.StringPtrInput
+	// ID of the bucket the dashboard belongs to. Exactly one of `bucketId` or `collectionId` must be set.
+	BucketId pulumi.StringPtrInput
+	// ID of the collection the dashboard belongs to. Exactly one of `bucketId` or `collectionId` must be set.
+	CollectionId pulumi.StringPtrInput
+	// Grafana-compatible dashboard definition serialized as JSON. The `id` and `version` fields are stripped before diffing.
 	DashboardJson pulumi.StringInput
 }
 
@@ -168,14 +244,17 @@ func (o ClassicDashboardOutput) ToClassicDashboardOutputWithContext(ctx context.
 	return o
 }
 
+// ID of the bucket the dashboard belongs to. Exactly one of `bucketId` or `collectionId` must be set.
 func (o ClassicDashboardOutput) BucketId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ClassicDashboard) pulumi.StringPtrOutput { return v.BucketId }).(pulumi.StringPtrOutput)
 }
 
+// ID of the collection the dashboard belongs to. Exactly one of `bucketId` or `collectionId` must be set.
 func (o ClassicDashboardOutput) CollectionId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ClassicDashboard) pulumi.StringPtrOutput { return v.CollectionId }).(pulumi.StringPtrOutput)
 }
 
+// Grafana-compatible dashboard definition serialized as JSON. The `id` and `version` fields are stripped before diffing.
 func (o ClassicDashboardOutput) DashboardJson() pulumi.StringOutput {
 	return o.ApplyT(func(v *ClassicDashboard) pulumi.StringOutput { return v.DashboardJson }).(pulumi.StringOutput)
 }

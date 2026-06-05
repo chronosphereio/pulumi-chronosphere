@@ -13,12 +13,21 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class SlackAlertNotifierFieldArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// If true, the field is short enough to be shown side-by-side with the next field.
+        /// </summary>
         [Input("short")]
         public Input<bool>? Short { get; set; }
 
+        /// <summary>
+        /// Bold heading shown above the value.
+        /// </summary>
         [Input("title")]
         public Input<string>? Title { get; set; }
 
+        /// <summary>
+        /// Value text. Supports Go templating.
+        /// </summary>
         [Input("value")]
         public Input<string>? Value { get; set; }
 

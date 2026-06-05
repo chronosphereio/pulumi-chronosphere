@@ -25,72 +25,152 @@ public final class TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeArgs exte
 
     public static final TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeArgs Empty = new TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeArgs();
 
+    /**
+     * Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, max_secs]` range.
+     * 
+     */
     @Import(name="duration")
     private @Nullable Output<TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationArgs> duration;
 
+    /**
+     * @return Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, max_secs]` range.
+     * 
+     */
     public Optional<Output<TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationArgs>> duration() {
         return Optional.ofNullable(this.duration);
     }
 
+    /**
+     * Matches traces or spans where the target boolean field equals `value`.
+     * 
+     */
     @Import(name="error")
     private @Nullable Output<TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorArgs> error;
 
+    /**
+     * @return Matches traces or spans where the target boolean field equals `value`.
+     * 
+     */
     public Optional<Output<TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorArgs>> error() {
         return Optional.ofNullable(this.error);
     }
 
+    /**
+     * Matches traces or spans where the target boolean field equals `value`.
+     * 
+     */
     @Import(name="isRootSpan")
     private @Nullable Output<TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanArgs> isRootSpan;
 
+    /**
+     * @return Matches traces or spans where the target boolean field equals `value`.
+     * 
+     */
     public Optional<Output<TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanArgs>> isRootSpan() {
         return Optional.ofNullable(this.isRootSpan);
     }
 
+    /**
+     * Whether matching spans are included (`INCLUDE`) or excluded (`EXCLUDE`) from the scope. Defaults to `INCLUDE`.
+     * 
+     */
     @Import(name="matchType")
     private @Nullable Output<String> matchType;
 
+    /**
+     * @return Whether matching spans are included (`INCLUDE`) or excluded (`EXCLUDE`) from the scope. Defaults to `INCLUDE`.
+     * 
+     */
     public Optional<Output<String>> matchType() {
         return Optional.ofNullable(this.matchType);
     }
 
+    /**
+     * Matches traces or spans where the target string field satisfies the match condition.
+     * 
+     */
     @Import(name="operation")
     private @Nullable Output<TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationArgs> operation;
 
+    /**
+     * @return Matches traces or spans where the target string field satisfies the match condition.
+     * 
+     */
     public Optional<Output<TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationArgs>> operation() {
         return Optional.ofNullable(this.operation);
     }
 
+    /**
+     * Matches traces or spans where the target string field satisfies the match condition.
+     * 
+     */
     @Import(name="parentOperation")
     private @Nullable Output<TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationArgs> parentOperation;
 
+    /**
+     * @return Matches traces or spans where the target string field satisfies the match condition.
+     * 
+     */
     public Optional<Output<TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationArgs>> parentOperation() {
         return Optional.ofNullable(this.parentOperation);
     }
 
+    /**
+     * Matches traces or spans where the target string field satisfies the match condition.
+     * 
+     */
     @Import(name="parentService")
     private @Nullable Output<TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServiceArgs> parentService;
 
+    /**
+     * @return Matches traces or spans where the target string field satisfies the match condition.
+     * 
+     */
     public Optional<Output<TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServiceArgs>> parentService() {
         return Optional.ofNullable(this.parentService);
     }
 
+    /**
+     * Matches traces or spans where the target string field satisfies the match condition.
+     * 
+     */
     @Import(name="service")
     private @Nullable Output<TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServiceArgs> service;
 
+    /**
+     * @return Matches traces or spans where the target string field satisfies the match condition.
+     * 
+     */
     public Optional<Output<TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServiceArgs>> service() {
         return Optional.ofNullable(this.service);
     }
 
+    /**
+     * Matches traces where the number of spans satisfying the surrounding span conditions falls within the inclusive `[min, max]` range.
+     * 
+     */
     @Import(name="spanCount")
     private @Nullable Output<TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountArgs> spanCount;
 
+    /**
+     * @return Matches traces where the number of spans satisfying the surrounding span conditions falls within the inclusive `[min, max]` range.
+     * 
+     */
     public Optional<Output<TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountArgs>> spanCount() {
         return Optional.ofNullable(this.spanCount);
     }
 
+    /**
+     * Matches spans whose tag (span attribute) with the given `key` has a value satisfying the nested string or numeric filter.
+     * 
+     */
     @Import(name="tags")
     private @Nullable Output<List<TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagArgs>> tags;
 
+    /**
+     * @return Matches spans whose tag (span attribute) with the given `key` has a value satisfying the nested string or numeric filter.
+     * 
+     */
     public Optional<Output<List<TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagArgs>>> tags() {
         return Optional.ofNullable(this.tags);
     }
@@ -128,96 +208,222 @@ public final class TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeArgs exte
             $ = new TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param duration Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, max_secs]` range.
+         * 
+         * @return builder
+         * 
+         */
         public Builder duration(@Nullable Output<TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationArgs> duration) {
             $.duration = duration;
             return this;
         }
 
+        /**
+         * @param duration Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, max_secs]` range.
+         * 
+         * @return builder
+         * 
+         */
         public Builder duration(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationArgs duration) {
             return duration(Output.of(duration));
         }
 
+        /**
+         * @param error Matches traces or spans where the target boolean field equals `value`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder error(@Nullable Output<TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorArgs> error) {
             $.error = error;
             return this;
         }
 
+        /**
+         * @param error Matches traces or spans where the target boolean field equals `value`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder error(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeErrorArgs error) {
             return error(Output.of(error));
         }
 
+        /**
+         * @param isRootSpan Matches traces or spans where the target boolean field equals `value`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder isRootSpan(@Nullable Output<TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanArgs> isRootSpan) {
             $.isRootSpan = isRootSpan;
             return this;
         }
 
+        /**
+         * @param isRootSpan Matches traces or spans where the target boolean field equals `value`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder isRootSpan(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeIsRootSpanArgs isRootSpan) {
             return isRootSpan(Output.of(isRootSpan));
         }
 
+        /**
+         * @param matchType Whether matching spans are included (`INCLUDE`) or excluded (`EXCLUDE`) from the scope. Defaults to `INCLUDE`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder matchType(@Nullable Output<String> matchType) {
             $.matchType = matchType;
             return this;
         }
 
+        /**
+         * @param matchType Whether matching spans are included (`INCLUDE`) or excluded (`EXCLUDE`) from the scope. Defaults to `INCLUDE`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder matchType(String matchType) {
             return matchType(Output.of(matchType));
         }
 
+        /**
+         * @param operation Matches traces or spans where the target string field satisfies the match condition.
+         * 
+         * @return builder
+         * 
+         */
         public Builder operation(@Nullable Output<TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationArgs> operation) {
             $.operation = operation;
             return this;
         }
 
+        /**
+         * @param operation Matches traces or spans where the target string field satisfies the match condition.
+         * 
+         * @return builder
+         * 
+         */
         public Builder operation(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeOperationArgs operation) {
             return operation(Output.of(operation));
         }
 
+        /**
+         * @param parentOperation Matches traces or spans where the target string field satisfies the match condition.
+         * 
+         * @return builder
+         * 
+         */
         public Builder parentOperation(@Nullable Output<TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationArgs> parentOperation) {
             $.parentOperation = parentOperation;
             return this;
         }
 
+        /**
+         * @param parentOperation Matches traces or spans where the target string field satisfies the match condition.
+         * 
+         * @return builder
+         * 
+         */
         public Builder parentOperation(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentOperationArgs parentOperation) {
             return parentOperation(Output.of(parentOperation));
         }
 
+        /**
+         * @param parentService Matches traces or spans where the target string field satisfies the match condition.
+         * 
+         * @return builder
+         * 
+         */
         public Builder parentService(@Nullable Output<TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServiceArgs> parentService) {
             $.parentService = parentService;
             return this;
         }
 
+        /**
+         * @param parentService Matches traces or spans where the target string field satisfies the match condition.
+         * 
+         * @return builder
+         * 
+         */
         public Builder parentService(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeParentServiceArgs parentService) {
             return parentService(Output.of(parentService));
         }
 
+        /**
+         * @param service Matches traces or spans where the target string field satisfies the match condition.
+         * 
+         * @return builder
+         * 
+         */
         public Builder service(@Nullable Output<TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServiceArgs> service) {
             $.service = service;
             return this;
         }
 
+        /**
+         * @param service Matches traces or spans where the target string field satisfies the match condition.
+         * 
+         * @return builder
+         * 
+         */
         public Builder service(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeServiceArgs service) {
             return service(Output.of(service));
         }
 
+        /**
+         * @param spanCount Matches traces where the number of spans satisfying the surrounding span conditions falls within the inclusive `[min, max]` range.
+         * 
+         * @return builder
+         * 
+         */
         public Builder spanCount(@Nullable Output<TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountArgs> spanCount) {
             $.spanCount = spanCount;
             return this;
         }
 
+        /**
+         * @param spanCount Matches traces where the number of spans satisfying the surrounding span conditions falls within the inclusive `[min, max]` range.
+         * 
+         * @return builder
+         * 
+         */
         public Builder spanCount(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeSpanCountArgs spanCount) {
             return spanCount(Output.of(spanCount));
         }
 
+        /**
+         * @param tags Matches spans whose tag (span attribute) with the given `key` has a value satisfying the nested string or numeric filter.
+         * 
+         * @return builder
+         * 
+         */
         public Builder tags(@Nullable Output<List<TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagArgs>> tags) {
             $.tags = tags;
             return this;
         }
 
+        /**
+         * @param tags Matches spans whose tag (span attribute) with the given `key` has a value satisfying the nested string or numeric filter.
+         * 
+         * @return builder
+         * 
+         */
         public Builder tags(List<TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagArgs> tags) {
             return tags(Output.of(tags));
         }
 
+        /**
+         * @param tags Matches spans whose tag (span attribute) with the given `key` has a value satisfying the nested string or numeric filter.
+         * 
+         * @return builder
+         * 
+         */
         public Builder tags(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagArgs... tags) {
             return tags(List.of(tags));
         }

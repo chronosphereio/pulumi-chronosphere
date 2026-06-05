@@ -4,6 +4,21 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * A logical grouping of monitors, dashboards, SLOs, and other resources, typically aligned with a team or system. Provides a default notification policy for contained monitors and SLOs that do not explicitly reference one.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as chronosphere from "@pulumi-chronosphere/pulumi-chronosphere";
+ *
+ * const infra = new chronosphere.Collection("infra", {
+ *     description: "Collection of resources related to infrastructure services.",
+ *     name: "Infrastructure Collection",
+ * });
+ * ```
+ */
 export class Collection extends pulumi.CustomResource {
     /**
      * Get an existing Collection resource's state with the given name, ID, and optional extra
@@ -32,10 +47,25 @@ export class Collection extends pulumi.CustomResource {
         return obj['__pulumiType'] === Collection.__pulumiType;
     }
 
+    /**
+     * Free-form description of the collection.
+     */
     public readonly description!: pulumi.Output<string | undefined>;
+    /**
+     * Display name of the collection. Can be changed after creation.
+     */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * ID of the default notification policy applied to monitors in this collection that do not explicitly reference one. Monitors that set their own `notificationPolicyId` are not overridden.
+     */
     public readonly notificationPolicyId!: pulumi.Output<string | undefined>;
+    /**
+     * Stable identifier for the collection. Generated from `name` if omitted. Immutable after creation.
+     */
     public readonly slug!: pulumi.Output<string>;
+    /**
+     * ID of the team that owns this collection.
+     */
     public readonly teamId!: pulumi.Output<string | undefined>;
 
     /**
@@ -76,10 +106,25 @@ export class Collection extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Collection resources.
  */
 export interface CollectionState {
+    /**
+     * Free-form description of the collection.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * Display name of the collection. Can be changed after creation.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * ID of the default notification policy applied to monitors in this collection that do not explicitly reference one. Monitors that set their own `notificationPolicyId` are not overridden.
+     */
     notificationPolicyId?: pulumi.Input<string>;
+    /**
+     * Stable identifier for the collection. Generated from `name` if omitted. Immutable after creation.
+     */
     slug?: pulumi.Input<string>;
+    /**
+     * ID of the team that owns this collection.
+     */
     teamId?: pulumi.Input<string>;
 }
 
@@ -87,9 +132,24 @@ export interface CollectionState {
  * The set of arguments for constructing a Collection resource.
  */
 export interface CollectionArgs {
+    /**
+     * Free-form description of the collection.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * Display name of the collection. Can be changed after creation.
+     */
     name: pulumi.Input<string>;
+    /**
+     * ID of the default notification policy applied to monitors in this collection that do not explicitly reference one. Monitors that set their own `notificationPolicyId` are not overridden.
+     */
     notificationPolicyId?: pulumi.Input<string>;
+    /**
+     * Stable identifier for the collection. Generated from `name` if omitted. Immutable after creation.
+     */
     slug?: pulumi.Input<string>;
+    /**
+     * ID of the team that owns this collection.
+     */
     teamId?: pulumi.Input<string>;
 }

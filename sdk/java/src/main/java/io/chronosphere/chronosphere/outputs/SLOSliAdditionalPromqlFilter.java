@@ -9,17 +9,41 @@ import java.util.Objects;
 
 @CustomType
 public final class SLOSliAdditionalPromqlFilter {
+    /**
+     * @return Prometheus label name to match.
+     * 
+     */
     private String name;
+    /**
+     * @return Matcher type (e.g. `=`, `!=`, `=~`, `!~`).
+     * 
+     */
     private String type;
+    /**
+     * @return Label value to match against using the chosen matcher `type`.
+     * 
+     */
     private String value;
 
     private SLOSliAdditionalPromqlFilter() {}
+    /**
+     * @return Prometheus label name to match.
+     * 
+     */
     public String name() {
         return this.name;
     }
+    /**
+     * @return Matcher type (e.g. `=`, `!=`, `=~`, `!~`).
+     * 
+     */
     public String type() {
         return this.type;
     }
+    /**
+     * @return Label value to match against using the chosen matcher `type`.
+     * 
+     */
     public String value() {
         return this.value;
     }

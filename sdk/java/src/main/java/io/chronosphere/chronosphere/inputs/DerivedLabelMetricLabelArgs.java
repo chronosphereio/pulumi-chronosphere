@@ -16,16 +16,32 @@ public final class DerivedLabelMetricLabelArgs extends com.pulumi.resources.Reso
 
     public static final DerivedLabelMetricLabelArgs Empty = new DerivedLabelMetricLabelArgs();
 
+    /**
+     * Constructs the derived label value from a list of value definitions, each gated by a filter on existing labels.
+     * 
+     */
     @Import(name="constructedLabel")
     private @Nullable Output<DerivedLabelMetricLabelConstructedLabelArgs> constructedLabel;
 
+    /**
+     * @return Constructs the derived label value from a list of value definitions, each gated by a filter on existing labels.
+     * 
+     */
     public Optional<Output<DerivedLabelMetricLabelConstructedLabelArgs>> constructedLabel() {
         return Optional.ofNullable(this.constructedLabel);
     }
 
+    /**
+     * Derives the label value by mapping from an existing source label, optionally translating its values.
+     * 
+     */
     @Import(name="mappingLabel")
     private @Nullable Output<DerivedLabelMetricLabelMappingLabelArgs> mappingLabel;
 
+    /**
+     * @return Derives the label value by mapping from an existing source label, optionally translating its values.
+     * 
+     */
     public Optional<Output<DerivedLabelMetricLabelMappingLabelArgs>> mappingLabel() {
         return Optional.ofNullable(this.mappingLabel);
     }
@@ -55,20 +71,44 @@ public final class DerivedLabelMetricLabelArgs extends com.pulumi.resources.Reso
             $ = new DerivedLabelMetricLabelArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param constructedLabel Constructs the derived label value from a list of value definitions, each gated by a filter on existing labels.
+         * 
+         * @return builder
+         * 
+         */
         public Builder constructedLabel(@Nullable Output<DerivedLabelMetricLabelConstructedLabelArgs> constructedLabel) {
             $.constructedLabel = constructedLabel;
             return this;
         }
 
+        /**
+         * @param constructedLabel Constructs the derived label value from a list of value definitions, each gated by a filter on existing labels.
+         * 
+         * @return builder
+         * 
+         */
         public Builder constructedLabel(DerivedLabelMetricLabelConstructedLabelArgs constructedLabel) {
             return constructedLabel(Output.of(constructedLabel));
         }
 
+        /**
+         * @param mappingLabel Derives the label value by mapping from an existing source label, optionally translating its values.
+         * 
+         * @return builder
+         * 
+         */
         public Builder mappingLabel(@Nullable Output<DerivedLabelMetricLabelMappingLabelArgs> mappingLabel) {
             $.mappingLabel = mappingLabel;
             return this;
         }
 
+        /**
+         * @param mappingLabel Derives the label value by mapping from an existing source label, optionally translating its values.
+         * 
+         * @return builder
+         * 
+         */
         public Builder mappingLabel(DerivedLabelMetricLabelMappingLabelArgs mappingLabel) {
             return mappingLabel(Output.of(mappingLabel));
         }

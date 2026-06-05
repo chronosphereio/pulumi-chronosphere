@@ -18,23 +18,47 @@ public final class DatasetConfigurationTraceDatasetMatchCriteriaArgs extends com
 
     public static final DatasetConfigurationTraceDatasetMatchCriteriaArgs Empty = new DatasetConfigurationTraceDatasetMatchCriteriaArgs();
 
+    /**
+     * Scope filter that further restricts which spans within a matched trace contribute to metrics or sampling. Only spans matching `span_scopes` are included in aggregation.
+     * 
+     */
     @Import(name="scopeFilter")
     private @Nullable Output<DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterArgs> scopeFilter;
 
+    /**
+     * @return Scope filter that further restricts which spans within a matched trace contribute to metrics or sampling. Only spans matching `span_scopes` are included in aggregation.
+     * 
+     */
     public Optional<Output<DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterArgs>> scopeFilter() {
         return Optional.ofNullable(this.scopeFilter);
     }
 
+    /**
+     * Span-level conditions. Each block defines a set of conditions that must all be satisfied by a single span in the trace for the trace to match.
+     * 
+     */
     @Import(name="spans")
     private @Nullable Output<List<DatasetConfigurationTraceDatasetMatchCriteriaSpanArgs>> spans;
 
+    /**
+     * @return Span-level conditions. Each block defines a set of conditions that must all be satisfied by a single span in the trace for the trace to match.
+     * 
+     */
     public Optional<Output<List<DatasetConfigurationTraceDatasetMatchCriteriaSpanArgs>>> spans() {
         return Optional.ofNullable(this.spans);
     }
 
+    /**
+     * Trace-level conditions evaluated against the whole trace (aggregated duration and error status).
+     * 
+     */
     @Import(name="trace")
     private @Nullable Output<DatasetConfigurationTraceDatasetMatchCriteriaTraceArgs> trace;
 
+    /**
+     * @return Trace-level conditions evaluated against the whole trace (aggregated duration and error status).
+     * 
+     */
     public Optional<Output<DatasetConfigurationTraceDatasetMatchCriteriaTraceArgs>> trace() {
         return Optional.ofNullable(this.trace);
     }
@@ -65,33 +89,75 @@ public final class DatasetConfigurationTraceDatasetMatchCriteriaArgs extends com
             $ = new DatasetConfigurationTraceDatasetMatchCriteriaArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param scopeFilter Scope filter that further restricts which spans within a matched trace contribute to metrics or sampling. Only spans matching `span_scopes` are included in aggregation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder scopeFilter(@Nullable Output<DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterArgs> scopeFilter) {
             $.scopeFilter = scopeFilter;
             return this;
         }
 
+        /**
+         * @param scopeFilter Scope filter that further restricts which spans within a matched trace contribute to metrics or sampling. Only spans matching `span_scopes` are included in aggregation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder scopeFilter(DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterArgs scopeFilter) {
             return scopeFilter(Output.of(scopeFilter));
         }
 
+        /**
+         * @param spans Span-level conditions. Each block defines a set of conditions that must all be satisfied by a single span in the trace for the trace to match.
+         * 
+         * @return builder
+         * 
+         */
         public Builder spans(@Nullable Output<List<DatasetConfigurationTraceDatasetMatchCriteriaSpanArgs>> spans) {
             $.spans = spans;
             return this;
         }
 
+        /**
+         * @param spans Span-level conditions. Each block defines a set of conditions that must all be satisfied by a single span in the trace for the trace to match.
+         * 
+         * @return builder
+         * 
+         */
         public Builder spans(List<DatasetConfigurationTraceDatasetMatchCriteriaSpanArgs> spans) {
             return spans(Output.of(spans));
         }
 
+        /**
+         * @param spans Span-level conditions. Each block defines a set of conditions that must all be satisfied by a single span in the trace for the trace to match.
+         * 
+         * @return builder
+         * 
+         */
         public Builder spans(DatasetConfigurationTraceDatasetMatchCriteriaSpanArgs... spans) {
             return spans(List.of(spans));
         }
 
+        /**
+         * @param trace Trace-level conditions evaluated against the whole trace (aggregated duration and error status).
+         * 
+         * @return builder
+         * 
+         */
         public Builder trace(@Nullable Output<DatasetConfigurationTraceDatasetMatchCriteriaTraceArgs> trace) {
             $.trace = trace;
             return this;
         }
 
+        /**
+         * @param trace Trace-level conditions evaluated against the whole trace (aggregated duration and error status).
+         * 
+         * @return builder
+         * 
+         */
         public Builder trace(DatasetConfigurationTraceDatasetMatchCriteriaTraceArgs trace) {
             return trace(Output.of(trace));
         }

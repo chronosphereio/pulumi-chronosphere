@@ -10,33 +10,88 @@ using Pulumi;
 
 namespace Chronosphere.Pulumi
 {
+    /// <summary>
+    /// Evaluates a PromQL expression at a fixed interval and writes the result to a new time series. Useful for precomputing expensive queries or producing derived metrics.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Pulumi = Chronosphere.Pulumi;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var upByNamespace = new Pulumi.RecordingRule("upByNamespace", new()
+    ///     {
+    ///         Expr = "sum by (kubernetes_namespace) (up)",
+    ///         Interval = "60s",
+    ///         Labels = 
+    ///         {
+    ///             { "owner", "platform" },
+    ///         },
+    ///         MetricName = "up:by_namespace",
+    ///         Name = "up:by_namespace",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// </summary>
     [PulumiResourceType("chronosphere:index/recordingRule:RecordingRule")]
     public partial class RecordingRule : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// ID of the bucket the recording rule belongs to. At least one of `bucket_id` or `execution_group` must be set; if both are set their values must match.
+        /// </summary>
         [Output("bucketId")]
         public Output<string?> BucketId { get; private set; } = null!;
 
+        /// <summary>
+        /// Slug of the execution group in which the rule is evaluated. Rules in the same group run sequentially at the configured interval; all rules in a group must finish before the next iteration starts. At least one of `bucket_id` or `execution_group` must be set.
+        /// </summary>
         [Output("executionGroup")]
         public Output<string?> ExecutionGroup { get; private set; } = null!;
 
+        /// <summary>
+        /// Execution mode controlling whether the recording rule is active.
+        /// </summary>
         [Output("executionMode")]
         public Output<string?> ExecutionMode { get; private set; } = null!;
 
+        /// <summary>
+        /// PromQL expression evaluated at each interval. The result is written to a new series named by `metric_name` (or `name` if unset).
+        /// </summary>
         [Output("expr")]
         public Output<string> Expr { get; private set; } = null!;
 
+        /// <summary>
+        /// Evaluation interval (e.g. `30s`, `1m`). Defaults to `60s` when unset.
+        /// </summary>
         [Output("interval")]
         public Output<string?> Interval { get; private set; } = null!;
 
+        /// <summary>
+        /// Key/value labels added to every series produced by this recording rule.
+        /// </summary>
         [Output("labels")]
         public Output<ImmutableDictionary<string, string>?> Labels { get; private set; } = null!;
 
+        /// <summary>
+        /// Name of the output time series produced by `expr`. Must be a valid metric name. Defaults to `name` if omitted.
+        /// </summary>
         [Output("metricName")]
         public Output<string?> MetricName { get; private set; } = null!;
 
+        /// <summary>
+        /// Display name of the recording rule. Can be changed after creation.
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// Stable identifier for the recording rule. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Output("slug")]
         public Output<string> Slug { get; private set; } = null!;
 
@@ -87,35 +142,63 @@ namespace Chronosphere.Pulumi
 
     public sealed class RecordingRuleArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// ID of the bucket the recording rule belongs to. At least one of `bucket_id` or `execution_group` must be set; if both are set their values must match.
+        /// </summary>
         [Input("bucketId")]
         public Input<string>? BucketId { get; set; }
 
+        /// <summary>
+        /// Slug of the execution group in which the rule is evaluated. Rules in the same group run sequentially at the configured interval; all rules in a group must finish before the next iteration starts. At least one of `bucket_id` or `execution_group` must be set.
+        /// </summary>
         [Input("executionGroup")]
         public Input<string>? ExecutionGroup { get; set; }
 
+        /// <summary>
+        /// Execution mode controlling whether the recording rule is active.
+        /// </summary>
         [Input("executionMode")]
         public Input<string>? ExecutionMode { get; set; }
 
+        /// <summary>
+        /// PromQL expression evaluated at each interval. The result is written to a new series named by `metric_name` (or `name` if unset).
+        /// </summary>
         [Input("expr", required: true)]
         public Input<string> Expr { get; set; } = null!;
 
+        /// <summary>
+        /// Evaluation interval (e.g. `30s`, `1m`). Defaults to `60s` when unset.
+        /// </summary>
         [Input("interval")]
         public Input<string>? Interval { get; set; }
 
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// Key/value labels added to every series produced by this recording rule.
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 
+        /// <summary>
+        /// Name of the output time series produced by `expr`. Must be a valid metric name. Defaults to `name` if omitted.
+        /// </summary>
         [Input("metricName")]
         public Input<string>? MetricName { get; set; }
 
+        /// <summary>
+        /// Display name of the recording rule. Can be changed after creation.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// Stable identifier for the recording rule. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 
@@ -127,35 +210,63 @@ namespace Chronosphere.Pulumi
 
     public sealed class RecordingRuleState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// ID of the bucket the recording rule belongs to. At least one of `bucket_id` or `execution_group` must be set; if both are set their values must match.
+        /// </summary>
         [Input("bucketId")]
         public Input<string>? BucketId { get; set; }
 
+        /// <summary>
+        /// Slug of the execution group in which the rule is evaluated. Rules in the same group run sequentially at the configured interval; all rules in a group must finish before the next iteration starts. At least one of `bucket_id` or `execution_group` must be set.
+        /// </summary>
         [Input("executionGroup")]
         public Input<string>? ExecutionGroup { get; set; }
 
+        /// <summary>
+        /// Execution mode controlling whether the recording rule is active.
+        /// </summary>
         [Input("executionMode")]
         public Input<string>? ExecutionMode { get; set; }
 
+        /// <summary>
+        /// PromQL expression evaluated at each interval. The result is written to a new series named by `metric_name` (or `name` if unset).
+        /// </summary>
         [Input("expr")]
         public Input<string>? Expr { get; set; }
 
+        /// <summary>
+        /// Evaluation interval (e.g. `30s`, `1m`). Defaults to `60s` when unset.
+        /// </summary>
         [Input("interval")]
         public Input<string>? Interval { get; set; }
 
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// Key/value labels added to every series produced by this recording rule.
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 
+        /// <summary>
+        /// Name of the output time series produced by `expr`. Must be a valid metric name. Defaults to `name` if omitted.
+        /// </summary>
         [Input("metricName")]
         public Input<string>? MetricName { get; set; }
 
+        /// <summary>
+        /// Display name of the recording rule. Can be changed after creation.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// Stable identifier for the recording rule. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 

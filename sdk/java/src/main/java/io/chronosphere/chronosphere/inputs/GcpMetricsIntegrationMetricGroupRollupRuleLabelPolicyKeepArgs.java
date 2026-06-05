@@ -15,16 +15,32 @@ public final class GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepArgs
 
     public static final GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepArgs Empty = new GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepArgs();
 
+    /**
+     * Label context, e.g. resource vs. metric label. See the Chronosphere GCP integration documentation for accepted values.
+     * 
+     */
     @Import(name="context")
     private @Nullable Output<String> context;
 
+    /**
+     * @return Label context, e.g. resource vs. metric label. See the Chronosphere GCP integration documentation for accepted values.
+     * 
+     */
     public Optional<Output<String>> context() {
         return Optional.ofNullable(this.context);
     }
 
+    /**
+     * Label name to filter on.
+     * 
+     */
     @Import(name="name")
     private @Nullable Output<String> name;
 
+    /**
+     * @return Label name to filter on.
+     * 
+     */
     public Optional<Output<String>> name() {
         return Optional.ofNullable(this.name);
     }
@@ -54,20 +70,44 @@ public final class GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepArgs
             $ = new GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param context Label context, e.g. resource vs. metric label. See the Chronosphere GCP integration documentation for accepted values.
+         * 
+         * @return builder
+         * 
+         */
         public Builder context(@Nullable Output<String> context) {
             $.context = context;
             return this;
         }
 
+        /**
+         * @param context Label context, e.g. resource vs. metric label. See the Chronosphere GCP integration documentation for accepted values.
+         * 
+         * @return builder
+         * 
+         */
         public Builder context(String context) {
             return context(Output.of(context));
         }
 
+        /**
+         * @param name Label name to filter on.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(@Nullable Output<String> name) {
             $.name = name;
             return this;
         }
 
+        /**
+         * @param name Label name to filter on.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(String name) {
             return name(Output.of(name));
         }

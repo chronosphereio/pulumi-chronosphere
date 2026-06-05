@@ -14,6 +14,9 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class LogscaleActionUploadFileAction
     {
+        /// <summary>
+        /// Name to use for the uploaded file.
+        /// </summary>
         public readonly string FileName;
 
         [OutputConstructor]

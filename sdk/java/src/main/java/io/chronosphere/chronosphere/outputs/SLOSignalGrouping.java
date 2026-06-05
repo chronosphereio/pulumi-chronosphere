@@ -13,13 +13,29 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class SLOSignalGrouping {
+    /**
+     * @return Labels to group by. Series sharing the same values for these labels produce one signal. Defaults to no grouping (one signal per series).
+     * 
+     */
     private @Nullable List<String> labelNames;
+    /**
+     * @return If true, treat each individual series as its own signal. Mutually exclusive with `label_names`.
+     * 
+     */
     private @Nullable Boolean signalPerSeries;
 
     private SLOSignalGrouping() {}
+    /**
+     * @return Labels to group by. Series sharing the same values for these labels produce one signal. Defaults to no grouping (one signal per series).
+     * 
+     */
     public List<String> labelNames() {
         return this.labelNames == null ? List.of() : this.labelNames;
     }
+    /**
+     * @return If true, treat each individual series as its own signal. Mutually exclusive with `label_names`.
+     * 
+     */
     public Optional<Boolean> signalPerSeries() {
         return Optional.ofNullable(this.signalPerSeries);
     }

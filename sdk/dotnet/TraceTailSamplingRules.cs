@@ -10,12 +10,21 @@ using Pulumi;
 
 namespace Chronosphere.Pulumi
 {
+    /// <summary>
+    /// Tail-sampling rules that match completed traces against filters and apply per-rule sample rates (with a default rate fallback) to decide which traces are retained after the full trace has been observed.
+    /// </summary>
     [PulumiResourceType("chronosphere:index/traceTailSamplingRules:TraceTailSamplingRules")]
     public partial class TraceTailSamplingRules : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Default sampling decision applied after the full trace is observed when no rule in `rules` matches.
+        /// </summary>
         [Output("defaultSampleRate")]
         public Output<Outputs.TraceTailSamplingRulesDefaultSampleRate?> DefaultSampleRate { get; private set; } = null!;
 
+        /// <summary>
+        /// Ordered list of tail-sampling rules evaluated after the full trace is observed. The first rule whose `filter` matches determines the sample rate; if none match, `default_sample_rate` is applied.
+        /// </summary>
         [Output("rules")]
         public Output<ImmutableArray<Outputs.TraceTailSamplingRulesRule>> Rules { get; private set; } = null!;
 
@@ -66,11 +75,18 @@ namespace Chronosphere.Pulumi
 
     public sealed class TraceTailSamplingRulesArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Default sampling decision applied after the full trace is observed when no rule in `rules` matches.
+        /// </summary>
         [Input("defaultSampleRate")]
         public Input<Inputs.TraceTailSamplingRulesDefaultSampleRateArgs>? DefaultSampleRate { get; set; }
 
         [Input("rules")]
         private InputList<Inputs.TraceTailSamplingRulesRuleArgs>? _rules;
+
+        /// <summary>
+        /// Ordered list of tail-sampling rules evaluated after the full trace is observed. The first rule whose `filter` matches determines the sample rate; if none match, `default_sample_rate` is applied.
+        /// </summary>
         public InputList<Inputs.TraceTailSamplingRulesRuleArgs> Rules
         {
             get => _rules ?? (_rules = new InputList<Inputs.TraceTailSamplingRulesRuleArgs>());
@@ -85,11 +101,18 @@ namespace Chronosphere.Pulumi
 
     public sealed class TraceTailSamplingRulesState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Default sampling decision applied after the full trace is observed when no rule in `rules` matches.
+        /// </summary>
         [Input("defaultSampleRate")]
         public Input<Inputs.TraceTailSamplingRulesDefaultSampleRateGetArgs>? DefaultSampleRate { get; set; }
 
         [Input("rules")]
         private InputList<Inputs.TraceTailSamplingRulesRuleGetArgs>? _rules;
+
+        /// <summary>
+        /// Ordered list of tail-sampling rules evaluated after the full trace is observed. The first rule whose `filter` matches determines the sample rate; if none match, `default_sample_rate` is applied.
+        /// </summary>
         public InputList<Inputs.TraceTailSamplingRulesRuleGetArgs> Rules
         {
             get => _rules ?? (_rules = new InputList<Inputs.TraceTailSamplingRulesRuleGetArgs>());

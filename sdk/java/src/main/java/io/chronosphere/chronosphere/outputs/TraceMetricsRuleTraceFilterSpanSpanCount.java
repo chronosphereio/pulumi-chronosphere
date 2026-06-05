@@ -11,13 +11,29 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class TraceMetricsRuleTraceFilterSpanSpanCount {
+    /**
+     * @return Maximum number of matching spans, inclusive. `0` means no upper bound.
+     * 
+     */
     private @Nullable Integer max;
+    /**
+     * @return Minimum number of matching spans, inclusive. Defaults to `0`.
+     * 
+     */
     private @Nullable Integer min;
 
     private TraceMetricsRuleTraceFilterSpanSpanCount() {}
+    /**
+     * @return Maximum number of matching spans, inclusive. `0` means no upper bound.
+     * 
+     */
     public Optional<Integer> max() {
         return Optional.ofNullable(this.max);
     }
+    /**
+     * @return Minimum number of matching spans, inclusive. Defaults to `0`.
+     * 
+     */
     public Optional<Integer> min() {
         return Optional.ofNullable(this.min);
     }

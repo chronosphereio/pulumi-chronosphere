@@ -13,6 +13,9 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class LogControlConfigRuleEmitMetricsCounterArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Path to a field within a log record.
+        /// </summary>
         [Input("value")]
         public Input<Inputs.LogControlConfigRuleEmitMetricsCounterValueArgs>? Value { get; set; }
 

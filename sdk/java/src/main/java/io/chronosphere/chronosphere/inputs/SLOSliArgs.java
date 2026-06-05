@@ -19,30 +19,62 @@ public final class SLOSliArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final SLOSliArgs Empty = new SLOSliArgs();
 
+    /**
+     * Additional PromQL label matchers applied to SLI queries via the `{{.AdditionalFilters}}` template variable. Used to narrow the metrics scope.
+     * 
+     */
     @Import(name="additionalPromqlFilters")
     private @Nullable Output<List<SLOSliAdditionalPromqlFilterArgs>> additionalPromqlFilters;
 
+    /**
+     * @return Additional PromQL label matchers applied to SLI queries via the `{{.AdditionalFilters}}` template variable. Used to narrow the metrics scope.
+     * 
+     */
     public Optional<Output<List<SLOSliAdditionalPromqlFilterArgs>>> additionalPromqlFilters() {
         return Optional.ofNullable(this.additionalPromqlFilters);
     }
 
+    /**
+     * Additional labels exported from the underlying queries to group the error budget by. Available in PromQL templates via `{{.GroupBy}}`.
+     * 
+     */
     @Import(name="customDimensionLabels")
     private @Nullable Output<List<String>> customDimensionLabels;
 
+    /**
+     * @return Additional labels exported from the underlying queries to group the error budget by. Available in PromQL templates via `{{.GroupBy}}`.
+     * 
+     */
     public Optional<Output<List<String>>> customDimensionLabels() {
         return Optional.ofNullable(this.customDimensionLabels);
     }
 
+    /**
+     * Error-ratio SLI defined by good/bad/total PromQL query templates. Mutually exclusive with `custom_timeslice_indicator`.
+     * 
+     */
     @Import(name="customIndicator")
     private @Nullable Output<SLOSliCustomIndicatorArgs> customIndicator;
 
+    /**
+     * @return Error-ratio SLI defined by good/bad/total PromQL query templates. Mutually exclusive with `custom_timeslice_indicator`.
+     * 
+     */
     public Optional<Output<SLOSliCustomIndicatorArgs>> customIndicator() {
         return Optional.ofNullable(this.customIndicator);
     }
 
+    /**
+     * Time-slice SLI that evaluates a PromQL query over fixed time slices against a threshold condition. Mutually exclusive with `custom_indicator`.
+     * 
+     */
     @Import(name="customTimesliceIndicator")
     private @Nullable Output<SLOSliCustomTimesliceIndicatorArgs> customTimesliceIndicator;
 
+    /**
+     * @return Time-slice SLI that evaluates a PromQL query over fixed time slices against a threshold condition. Mutually exclusive with `custom_indicator`.
+     * 
+     */
     public Optional<Output<SLOSliCustomTimesliceIndicatorArgs>> customTimesliceIndicator() {
         return Optional.ofNullable(this.customTimesliceIndicator);
     }
@@ -74,46 +106,106 @@ public final class SLOSliArgs extends com.pulumi.resources.ResourceArgs {
             $ = new SLOSliArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param additionalPromqlFilters Additional PromQL label matchers applied to SLI queries via the `{{.AdditionalFilters}}` template variable. Used to narrow the metrics scope.
+         * 
+         * @return builder
+         * 
+         */
         public Builder additionalPromqlFilters(@Nullable Output<List<SLOSliAdditionalPromqlFilterArgs>> additionalPromqlFilters) {
             $.additionalPromqlFilters = additionalPromqlFilters;
             return this;
         }
 
+        /**
+         * @param additionalPromqlFilters Additional PromQL label matchers applied to SLI queries via the `{{.AdditionalFilters}}` template variable. Used to narrow the metrics scope.
+         * 
+         * @return builder
+         * 
+         */
         public Builder additionalPromqlFilters(List<SLOSliAdditionalPromqlFilterArgs> additionalPromqlFilters) {
             return additionalPromqlFilters(Output.of(additionalPromqlFilters));
         }
 
+        /**
+         * @param additionalPromqlFilters Additional PromQL label matchers applied to SLI queries via the `{{.AdditionalFilters}}` template variable. Used to narrow the metrics scope.
+         * 
+         * @return builder
+         * 
+         */
         public Builder additionalPromqlFilters(SLOSliAdditionalPromqlFilterArgs... additionalPromqlFilters) {
             return additionalPromqlFilters(List.of(additionalPromqlFilters));
         }
 
+        /**
+         * @param customDimensionLabels Additional labels exported from the underlying queries to group the error budget by. Available in PromQL templates via `{{.GroupBy}}`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder customDimensionLabels(@Nullable Output<List<String>> customDimensionLabels) {
             $.customDimensionLabels = customDimensionLabels;
             return this;
         }
 
+        /**
+         * @param customDimensionLabels Additional labels exported from the underlying queries to group the error budget by. Available in PromQL templates via `{{.GroupBy}}`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder customDimensionLabels(List<String> customDimensionLabels) {
             return customDimensionLabels(Output.of(customDimensionLabels));
         }
 
+        /**
+         * @param customDimensionLabels Additional labels exported from the underlying queries to group the error budget by. Available in PromQL templates via `{{.GroupBy}}`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder customDimensionLabels(String... customDimensionLabels) {
             return customDimensionLabels(List.of(customDimensionLabels));
         }
 
+        /**
+         * @param customIndicator Error-ratio SLI defined by good/bad/total PromQL query templates. Mutually exclusive with `custom_timeslice_indicator`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder customIndicator(@Nullable Output<SLOSliCustomIndicatorArgs> customIndicator) {
             $.customIndicator = customIndicator;
             return this;
         }
 
+        /**
+         * @param customIndicator Error-ratio SLI defined by good/bad/total PromQL query templates. Mutually exclusive with `custom_timeslice_indicator`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder customIndicator(SLOSliCustomIndicatorArgs customIndicator) {
             return customIndicator(Output.of(customIndicator));
         }
 
+        /**
+         * @param customTimesliceIndicator Time-slice SLI that evaluates a PromQL query over fixed time slices against a threshold condition. Mutually exclusive with `custom_indicator`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder customTimesliceIndicator(@Nullable Output<SLOSliCustomTimesliceIndicatorArgs> customTimesliceIndicator) {
             $.customTimesliceIndicator = customTimesliceIndicator;
             return this;
         }
 
+        /**
+         * @param customTimesliceIndicator Time-slice SLI that evaluates a PromQL query over fixed time slices against a threshold condition. Mutually exclusive with `custom_indicator`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder customTimesliceIndicator(SLOSliCustomTimesliceIndicatorArgs customTimesliceIndicator) {
             return customTimesliceIndicator(Output.of(customTimesliceIndicator));
         }

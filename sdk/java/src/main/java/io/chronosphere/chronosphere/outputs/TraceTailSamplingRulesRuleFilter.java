@@ -14,17 +14,41 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class TraceTailSamplingRulesRuleFilter {
+    /**
+     * @return Scope filter that further restricts which spans within a matched trace contribute to metrics or sampling. Only spans matching `span_scopes` are included in aggregation.
+     * 
+     */
     private @Nullable TraceTailSamplingRulesRuleFilterScopeFilter scopeFilter;
+    /**
+     * @return Span-level conditions. Each block defines a set of conditions that must all be satisfied by a single span in the trace for the trace to match.
+     * 
+     */
     private @Nullable List<TraceTailSamplingRulesRuleFilterSpan> spans;
+    /**
+     * @return Trace-level conditions evaluated against the whole trace (aggregated duration and error status).
+     * 
+     */
     private @Nullable TraceTailSamplingRulesRuleFilterTrace trace;
 
     private TraceTailSamplingRulesRuleFilter() {}
+    /**
+     * @return Scope filter that further restricts which spans within a matched trace contribute to metrics or sampling. Only spans matching `span_scopes` are included in aggregation.
+     * 
+     */
     public Optional<TraceTailSamplingRulesRuleFilterScopeFilter> scopeFilter() {
         return Optional.ofNullable(this.scopeFilter);
     }
+    /**
+     * @return Span-level conditions. Each block defines a set of conditions that must all be satisfied by a single span in the trace for the trace to match.
+     * 
+     */
     public List<TraceTailSamplingRulesRuleFilterSpan> spans() {
         return this.spans == null ? List.of() : this.spans;
     }
+    /**
+     * @return Trace-level conditions evaluated against the whole trace (aggregated duration and error status).
+     * 
+     */
     public Optional<TraceTailSamplingRulesRuleFilterTrace> trace() {
         return Optional.ofNullable(this.trace);
     }

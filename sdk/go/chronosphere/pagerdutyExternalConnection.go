@@ -12,14 +12,48 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Workspace-scoped PagerDuty credentials that downstream notifiers and LogScale actions can reference. Holds either a PagerDuty Events integration key (for alert delivery) or a REST API token (for incident note polling); modern equivalent of the per-notifier credentials.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/chronosphereio/pulumi-chronosphere/sdk/go/chronosphere"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := chronosphere.NewPagerdutyExternalConnection(ctx, "pagerduty", &chronosphere.PagerdutyExternalConnectionArgs{
+//				Name:                   pulumi.String("PagerDuty"),
+//				PagerdutyApiKey:        pulumi.String("XXXXX"),
+//				PagerdutyEventsVersion: pulumi.String("PAGERDUTY_EVENTS_VERSION_V2"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type PagerdutyExternalConnection struct {
 	pulumi.CustomResourceState
 
-	Name                   pulumi.StringOutput    `pulumi:"name"`
-	PagerdutyApiKey        pulumi.StringPtrOutput `pulumi:"pagerdutyApiKey"`
+	// Display name of the external connection.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// PagerDuty Events API integration key used to authenticate alert delivery. Called the routing key in Events v2 and the service key in Events v1. Treat as a secret. Mutually exclusive with `pagerdutyRestApiKey`.
+	PagerdutyApiKey pulumi.StringPtrOutput `pulumi:"pagerdutyApiKey"`
+	// PagerDuty Events API version used to deliver alerts: `PAGERDUTY_EVENTS_VERSION_V1` (legacy) or `PAGERDUTY_EVENTS_VERSION_V2` (default, recommended). Mutually exclusive with `pagerdutyRestApiKey`.
 	PagerdutyEventsVersion pulumi.StringPtrOutput `pulumi:"pagerdutyEventsVersion"`
-	PagerdutyRestApiKey    pulumi.StringPtrOutput `pulumi:"pagerdutyRestApiKey"`
-	Slug                   pulumi.StringOutput    `pulumi:"slug"`
+	// PagerDuty REST API token used to authenticate incident note polling. Treat as a secret. Mutually exclusive with `pagerdutyApiKey` and `pagerdutyEventsVersion`.
+	PagerdutyRestApiKey pulumi.StringPtrOutput `pulumi:"pagerdutyRestApiKey"`
+	// Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringOutput `pulumi:"slug"`
 }
 
 // NewPagerdutyExternalConnection registers a new resource with the given unique name, arguments, and options.
@@ -66,19 +100,29 @@ func GetPagerdutyExternalConnection(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering PagerdutyExternalConnection resources.
 type pagerdutyExternalConnectionState struct {
-	Name                   *string `pulumi:"name"`
-	PagerdutyApiKey        *string `pulumi:"pagerdutyApiKey"`
+	// Display name of the external connection.
+	Name *string `pulumi:"name"`
+	// PagerDuty Events API integration key used to authenticate alert delivery. Called the routing key in Events v2 and the service key in Events v1. Treat as a secret. Mutually exclusive with `pagerdutyRestApiKey`.
+	PagerdutyApiKey *string `pulumi:"pagerdutyApiKey"`
+	// PagerDuty Events API version used to deliver alerts: `PAGERDUTY_EVENTS_VERSION_V1` (legacy) or `PAGERDUTY_EVENTS_VERSION_V2` (default, recommended). Mutually exclusive with `pagerdutyRestApiKey`.
 	PagerdutyEventsVersion *string `pulumi:"pagerdutyEventsVersion"`
-	PagerdutyRestApiKey    *string `pulumi:"pagerdutyRestApiKey"`
-	Slug                   *string `pulumi:"slug"`
+	// PagerDuty REST API token used to authenticate incident note polling. Treat as a secret. Mutually exclusive with `pagerdutyApiKey` and `pagerdutyEventsVersion`.
+	PagerdutyRestApiKey *string `pulumi:"pagerdutyRestApiKey"`
+	// Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+	Slug *string `pulumi:"slug"`
 }
 
 type PagerdutyExternalConnectionState struct {
-	Name                   pulumi.StringPtrInput
-	PagerdutyApiKey        pulumi.StringPtrInput
+	// Display name of the external connection.
+	Name pulumi.StringPtrInput
+	// PagerDuty Events API integration key used to authenticate alert delivery. Called the routing key in Events v2 and the service key in Events v1. Treat as a secret. Mutually exclusive with `pagerdutyRestApiKey`.
+	PagerdutyApiKey pulumi.StringPtrInput
+	// PagerDuty Events API version used to deliver alerts: `PAGERDUTY_EVENTS_VERSION_V1` (legacy) or `PAGERDUTY_EVENTS_VERSION_V2` (default, recommended). Mutually exclusive with `pagerdutyRestApiKey`.
 	PagerdutyEventsVersion pulumi.StringPtrInput
-	PagerdutyRestApiKey    pulumi.StringPtrInput
-	Slug                   pulumi.StringPtrInput
+	// PagerDuty REST API token used to authenticate incident note polling. Treat as a secret. Mutually exclusive with `pagerdutyApiKey` and `pagerdutyEventsVersion`.
+	PagerdutyRestApiKey pulumi.StringPtrInput
+	// Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringPtrInput
 }
 
 func (PagerdutyExternalConnectionState) ElementType() reflect.Type {
@@ -86,20 +130,30 @@ func (PagerdutyExternalConnectionState) ElementType() reflect.Type {
 }
 
 type pagerdutyExternalConnectionArgs struct {
-	Name                   string  `pulumi:"name"`
-	PagerdutyApiKey        *string `pulumi:"pagerdutyApiKey"`
+	// Display name of the external connection.
+	Name string `pulumi:"name"`
+	// PagerDuty Events API integration key used to authenticate alert delivery. Called the routing key in Events v2 and the service key in Events v1. Treat as a secret. Mutually exclusive with `pagerdutyRestApiKey`.
+	PagerdutyApiKey *string `pulumi:"pagerdutyApiKey"`
+	// PagerDuty Events API version used to deliver alerts: `PAGERDUTY_EVENTS_VERSION_V1` (legacy) or `PAGERDUTY_EVENTS_VERSION_V2` (default, recommended). Mutually exclusive with `pagerdutyRestApiKey`.
 	PagerdutyEventsVersion *string `pulumi:"pagerdutyEventsVersion"`
-	PagerdutyRestApiKey    *string `pulumi:"pagerdutyRestApiKey"`
-	Slug                   *string `pulumi:"slug"`
+	// PagerDuty REST API token used to authenticate incident note polling. Treat as a secret. Mutually exclusive with `pagerdutyApiKey` and `pagerdutyEventsVersion`.
+	PagerdutyRestApiKey *string `pulumi:"pagerdutyRestApiKey"`
+	// Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+	Slug *string `pulumi:"slug"`
 }
 
 // The set of arguments for constructing a PagerdutyExternalConnection resource.
 type PagerdutyExternalConnectionArgs struct {
-	Name                   pulumi.StringInput
-	PagerdutyApiKey        pulumi.StringPtrInput
+	// Display name of the external connection.
+	Name pulumi.StringInput
+	// PagerDuty Events API integration key used to authenticate alert delivery. Called the routing key in Events v2 and the service key in Events v1. Treat as a secret. Mutually exclusive with `pagerdutyRestApiKey`.
+	PagerdutyApiKey pulumi.StringPtrInput
+	// PagerDuty Events API version used to deliver alerts: `PAGERDUTY_EVENTS_VERSION_V1` (legacy) or `PAGERDUTY_EVENTS_VERSION_V2` (default, recommended). Mutually exclusive with `pagerdutyRestApiKey`.
 	PagerdutyEventsVersion pulumi.StringPtrInput
-	PagerdutyRestApiKey    pulumi.StringPtrInput
-	Slug                   pulumi.StringPtrInput
+	// PagerDuty REST API token used to authenticate incident note polling. Treat as a secret. Mutually exclusive with `pagerdutyApiKey` and `pagerdutyEventsVersion`.
+	PagerdutyRestApiKey pulumi.StringPtrInput
+	// Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringPtrInput
 }
 
 func (PagerdutyExternalConnectionArgs) ElementType() reflect.Type {
@@ -189,22 +243,27 @@ func (o PagerdutyExternalConnectionOutput) ToPagerdutyExternalConnectionOutputWi
 	return o
 }
 
+// Display name of the external connection.
 func (o PagerdutyExternalConnectionOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *PagerdutyExternalConnection) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// PagerDuty Events API integration key used to authenticate alert delivery. Called the routing key in Events v2 and the service key in Events v1. Treat as a secret. Mutually exclusive with `pagerdutyRestApiKey`.
 func (o PagerdutyExternalConnectionOutput) PagerdutyApiKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *PagerdutyExternalConnection) pulumi.StringPtrOutput { return v.PagerdutyApiKey }).(pulumi.StringPtrOutput)
 }
 
+// PagerDuty Events API version used to deliver alerts: `PAGERDUTY_EVENTS_VERSION_V1` (legacy) or `PAGERDUTY_EVENTS_VERSION_V2` (default, recommended). Mutually exclusive with `pagerdutyRestApiKey`.
 func (o PagerdutyExternalConnectionOutput) PagerdutyEventsVersion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *PagerdutyExternalConnection) pulumi.StringPtrOutput { return v.PagerdutyEventsVersion }).(pulumi.StringPtrOutput)
 }
 
+// PagerDuty REST API token used to authenticate incident note polling. Treat as a secret. Mutually exclusive with `pagerdutyApiKey` and `pagerdutyEventsVersion`.
 func (o PagerdutyExternalConnectionOutput) PagerdutyRestApiKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *PagerdutyExternalConnection) pulumi.StringPtrOutput { return v.PagerdutyRestApiKey }).(pulumi.StringPtrOutput)
 }
 
+// Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
 func (o PagerdutyExternalConnectionOutput) Slug() pulumi.StringOutput {
 	return o.ApplyT(func(v *PagerdutyExternalConnection) pulumi.StringOutput { return v.Slug }).(pulumi.StringOutput)
 }

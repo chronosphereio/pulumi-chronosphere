@@ -16,23 +16,47 @@ public final class GcpMetricsIntegrationMetricGroupRollupRuleArgs extends com.pu
 
     public static final GcpMetricsIntegrationMetricGroupRollupRuleArgs Empty = new GcpMetricsIntegrationMetricGroupRollupRuleArgs();
 
+    /**
+     * Aggregation function applied across the dropped labels (e.g. sum, max).
+     * 
+     */
     @Import(name="aggregation")
     private @Nullable Output<String> aggregation;
 
+    /**
+     * @return Aggregation function applied across the dropped labels (e.g. sum, max).
+     * 
+     */
     public Optional<Output<String>> aggregation() {
         return Optional.ofNullable(this.aggregation);
     }
 
+    /**
+     * Specifies which labels to preserve during aggregation. Labels not listed are dropped.
+     * 
+     */
     @Import(name="labelPolicy")
     private @Nullable Output<GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyArgs> labelPolicy;
 
+    /**
+     * @return Specifies which labels to preserve during aggregation. Labels not listed are dropped.
+     * 
+     */
     public Optional<Output<GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyArgs>> labelPolicy() {
         return Optional.ofNullable(this.labelPolicy);
     }
 
+    /**
+     * Fully-qualified Google Cloud metric name the rollup rule targets (e.g. `cloudsql.googleapis.com/database/uptime`).
+     * 
+     */
     @Import(name="metricName")
     private @Nullable Output<String> metricName;
 
+    /**
+     * @return Fully-qualified Google Cloud metric name the rollup rule targets (e.g. `cloudsql.googleapis.com/database/uptime`).
+     * 
+     */
     public Optional<Output<String>> metricName() {
         return Optional.ofNullable(this.metricName);
     }
@@ -63,29 +87,65 @@ public final class GcpMetricsIntegrationMetricGroupRollupRuleArgs extends com.pu
             $ = new GcpMetricsIntegrationMetricGroupRollupRuleArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param aggregation Aggregation function applied across the dropped labels (e.g. sum, max).
+         * 
+         * @return builder
+         * 
+         */
         public Builder aggregation(@Nullable Output<String> aggregation) {
             $.aggregation = aggregation;
             return this;
         }
 
+        /**
+         * @param aggregation Aggregation function applied across the dropped labels (e.g. sum, max).
+         * 
+         * @return builder
+         * 
+         */
         public Builder aggregation(String aggregation) {
             return aggregation(Output.of(aggregation));
         }
 
+        /**
+         * @param labelPolicy Specifies which labels to preserve during aggregation. Labels not listed are dropped.
+         * 
+         * @return builder
+         * 
+         */
         public Builder labelPolicy(@Nullable Output<GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyArgs> labelPolicy) {
             $.labelPolicy = labelPolicy;
             return this;
         }
 
+        /**
+         * @param labelPolicy Specifies which labels to preserve during aggregation. Labels not listed are dropped.
+         * 
+         * @return builder
+         * 
+         */
         public Builder labelPolicy(GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyArgs labelPolicy) {
             return labelPolicy(Output.of(labelPolicy));
         }
 
+        /**
+         * @param metricName Fully-qualified Google Cloud metric name the rollup rule targets (e.g. `cloudsql.googleapis.com/database/uptime`).
+         * 
+         * @return builder
+         * 
+         */
         public Builder metricName(@Nullable Output<String> metricName) {
             $.metricName = metricName;
             return this;
         }
 
+        /**
+         * @param metricName Fully-qualified Google Cloud metric name the rollup rule targets (e.g. `cloudsql.googleapis.com/database/uptime`).
+         * 
+         * @return builder
+         * 
+         */
         public Builder metricName(String metricName) {
             return metricName(Output.of(metricName));
         }

@@ -15,21 +15,53 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class SLOSli {
+    /**
+     * @return Additional PromQL label matchers applied to SLI queries via the `{{.AdditionalFilters}}` template variable. Used to narrow the metrics scope.
+     * 
+     */
     private @Nullable List<SLOSliAdditionalPromqlFilter> additionalPromqlFilters;
+    /**
+     * @return Additional labels exported from the underlying queries to group the error budget by. Available in PromQL templates via `{{.GroupBy}}`.
+     * 
+     */
     private @Nullable List<String> customDimensionLabels;
+    /**
+     * @return Error-ratio SLI defined by good/bad/total PromQL query templates. Mutually exclusive with `custom_timeslice_indicator`.
+     * 
+     */
     private @Nullable SLOSliCustomIndicator customIndicator;
+    /**
+     * @return Time-slice SLI that evaluates a PromQL query over fixed time slices against a threshold condition. Mutually exclusive with `custom_indicator`.
+     * 
+     */
     private @Nullable SLOSliCustomTimesliceIndicator customTimesliceIndicator;
 
     private SLOSli() {}
+    /**
+     * @return Additional PromQL label matchers applied to SLI queries via the `{{.AdditionalFilters}}` template variable. Used to narrow the metrics scope.
+     * 
+     */
     public List<SLOSliAdditionalPromqlFilter> additionalPromqlFilters() {
         return this.additionalPromqlFilters == null ? List.of() : this.additionalPromqlFilters;
     }
+    /**
+     * @return Additional labels exported from the underlying queries to group the error budget by. Available in PromQL templates via `{{.GroupBy}}`.
+     * 
+     */
     public List<String> customDimensionLabels() {
         return this.customDimensionLabels == null ? List.of() : this.customDimensionLabels;
     }
+    /**
+     * @return Error-ratio SLI defined by good/bad/total PromQL query templates. Mutually exclusive with `custom_timeslice_indicator`.
+     * 
+     */
     public Optional<SLOSliCustomIndicator> customIndicator() {
         return Optional.ofNullable(this.customIndicator);
     }
+    /**
+     * @return Time-slice SLI that evaluates a PromQL query over fixed time slices against a threshold condition. Mutually exclusive with `custom_indicator`.
+     * 
+     */
     public Optional<SLOSliCustomTimesliceIndicator> customTimesliceIndicator() {
         return Optional.ofNullable(this.customTimesliceIndicator);
     }

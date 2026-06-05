@@ -11,9 +11,17 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicy {
+    /**
+     * @return Labels to retain after aggregation.
+     * 
+     */
     private @Nullable List<GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeep> keeps;
 
     private GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicy() {}
+    /**
+     * @return Labels to retain after aggregation.
+     * 
+     */
     public List<GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeep> keeps() {
         return this.keeps == null ? List.of() : this.keeps;
     }

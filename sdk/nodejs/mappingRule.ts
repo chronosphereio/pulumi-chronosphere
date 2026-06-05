@@ -6,6 +6,9 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * Selects metrics by label filter and either drops them or applies an aggregation policy controlling their storage interval and aggregation function. Use `chronosphere.DropRule` for drop-only rules and `chronosphere.RollupRule` for label-reducing aggregations.
+ */
 export class MappingRule extends pulumi.CustomResource {
     /**
      * Get an existing MappingRule resource's state with the given name, ID, and optional extra
@@ -34,19 +37,47 @@ export class MappingRule extends pulumi.CustomResource {
         return obj['__pulumiType'] === MappingRule.__pulumiType;
     }
 
+    /**
+     * Aggregation type applied to matching metrics. Cannot be set if `drop` is `true`.
+     */
     public readonly aggregations!: pulumi.Output<string | undefined>;
+    /**
+     * ID of the bucket the mapping rule belongs to.
+     */
     public readonly bucketId!: pulumi.Output<string | undefined>;
+    /**
+     * If `true`, drops the matching metrics instead of aggregating them. Cannot be set together with `aggregations`. Defaults to `false`.
+     */
     public readonly drop!: pulumi.Output<boolean | undefined>;
     /**
+     * Deprecated: no longer supported.
+     *
      * @deprecated drop timestamp is no longer supported
      */
     public readonly dropTimestamp!: pulumi.Output<boolean | undefined>;
+    /**
+     * Space-delimited list of `label=value_glob` matchers that select the metrics this rule applies to. A metric must match every filter to be considered.
+     */
     public readonly filter!: pulumi.Output<string>;
+    /**
+     * Interval between aggregated data points produced by this mapping rule. Defaults to a server-side value when unset. Conflicts with `storagePolicy`.
+     */
     public readonly interval!: pulumi.Output<string>;
+    /**
+     * Mapping rule mode controlling whether it is active or in a preview state.
+     */
     public readonly mode!: pulumi.Output<string | undefined>;
+    /**
+     * Display name of the mapping rule. Can be changed after creation.
+     */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * Stable identifier for the mapping rule. Generated from `name` if omitted. Immutable after creation.
+     */
     public readonly slug!: pulumi.Output<string>;
     /**
+     * Storage policy controlling resolution and retention of mapped metrics. Deprecated: use `interval` instead.
+     *
      * @deprecated use `interval` instead
      */
     public readonly storagePolicy!: pulumi.Output<outputs.MappingRuleStoragePolicy | undefined>;
@@ -102,19 +133,47 @@ export class MappingRule extends pulumi.CustomResource {
  * Input properties used for looking up and filtering MappingRule resources.
  */
 export interface MappingRuleState {
+    /**
+     * Aggregation type applied to matching metrics. Cannot be set if `drop` is `true`.
+     */
     aggregations?: pulumi.Input<string>;
+    /**
+     * ID of the bucket the mapping rule belongs to.
+     */
     bucketId?: pulumi.Input<string>;
+    /**
+     * If `true`, drops the matching metrics instead of aggregating them. Cannot be set together with `aggregations`. Defaults to `false`.
+     */
     drop?: pulumi.Input<boolean>;
     /**
+     * Deprecated: no longer supported.
+     *
      * @deprecated drop timestamp is no longer supported
      */
     dropTimestamp?: pulumi.Input<boolean>;
+    /**
+     * Space-delimited list of `label=value_glob` matchers that select the metrics this rule applies to. A metric must match every filter to be considered.
+     */
     filter?: pulumi.Input<string>;
+    /**
+     * Interval between aggregated data points produced by this mapping rule. Defaults to a server-side value when unset. Conflicts with `storagePolicy`.
+     */
     interval?: pulumi.Input<string>;
+    /**
+     * Mapping rule mode controlling whether it is active or in a preview state.
+     */
     mode?: pulumi.Input<string>;
+    /**
+     * Display name of the mapping rule. Can be changed after creation.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * Stable identifier for the mapping rule. Generated from `name` if omitted. Immutable after creation.
+     */
     slug?: pulumi.Input<string>;
     /**
+     * Storage policy controlling resolution and retention of mapped metrics. Deprecated: use `interval` instead.
+     *
      * @deprecated use `interval` instead
      */
     storagePolicy?: pulumi.Input<inputs.MappingRuleStoragePolicy>;
@@ -124,19 +183,47 @@ export interface MappingRuleState {
  * The set of arguments for constructing a MappingRule resource.
  */
 export interface MappingRuleArgs {
+    /**
+     * Aggregation type applied to matching metrics. Cannot be set if `drop` is `true`.
+     */
     aggregations?: pulumi.Input<string>;
+    /**
+     * ID of the bucket the mapping rule belongs to.
+     */
     bucketId?: pulumi.Input<string>;
+    /**
+     * If `true`, drops the matching metrics instead of aggregating them. Cannot be set together with `aggregations`. Defaults to `false`.
+     */
     drop?: pulumi.Input<boolean>;
     /**
+     * Deprecated: no longer supported.
+     *
      * @deprecated drop timestamp is no longer supported
      */
     dropTimestamp?: pulumi.Input<boolean>;
+    /**
+     * Space-delimited list of `label=value_glob` matchers that select the metrics this rule applies to. A metric must match every filter to be considered.
+     */
     filter: pulumi.Input<string>;
+    /**
+     * Interval between aggregated data points produced by this mapping rule. Defaults to a server-side value when unset. Conflicts with `storagePolicy`.
+     */
     interval?: pulumi.Input<string>;
+    /**
+     * Mapping rule mode controlling whether it is active or in a preview state.
+     */
     mode?: pulumi.Input<string>;
+    /**
+     * Display name of the mapping rule. Can be changed after creation.
+     */
     name: pulumi.Input<string>;
+    /**
+     * Stable identifier for the mapping rule. Generated from `name` if omitted. Immutable after creation.
+     */
     slug?: pulumi.Input<string>;
     /**
+     * Storage policy controlling resolution and retention of mapped metrics. Deprecated: use `interval` instead.
+     *
      * @deprecated use `interval` instead
      */
     storagePolicy?: pulumi.Input<inputs.MappingRuleStoragePolicy>;

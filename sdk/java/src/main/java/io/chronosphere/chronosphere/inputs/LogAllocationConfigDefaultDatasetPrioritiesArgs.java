@@ -17,16 +17,32 @@ public final class LogAllocationConfigDefaultDatasetPrioritiesArgs extends com.p
 
     public static final LogAllocationConfigDefaultDatasetPrioritiesArgs Empty = new LogAllocationConfigDefaultDatasetPrioritiesArgs();
 
+    /**
+     * List of log search filters. Filters are combined as OR statements so only one filter needs to match.
+     * 
+     */
     @Import(name="highPriorityFilters")
     private @Nullable Output<List<LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterArgs>> highPriorityFilters;
 
+    /**
+     * @return List of log search filters. Filters are combined as OR statements so only one filter needs to match.
+     * 
+     */
     public Optional<Output<List<LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterArgs>>> highPriorityFilters() {
         return Optional.ofNullable(this.highPriorityFilters);
     }
 
+    /**
+     * List of log search filters. Filters are combined as OR statements so only one filter needs to match.
+     * 
+     */
     @Import(name="lowPriorityFilters")
     private @Nullable Output<List<LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterArgs>> lowPriorityFilters;
 
+    /**
+     * @return List of log search filters. Filters are combined as OR statements so only one filter needs to match.
+     * 
+     */
     public Optional<Output<List<LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterArgs>>> lowPriorityFilters() {
         return Optional.ofNullable(this.lowPriorityFilters);
     }
@@ -56,28 +72,64 @@ public final class LogAllocationConfigDefaultDatasetPrioritiesArgs extends com.p
             $ = new LogAllocationConfigDefaultDatasetPrioritiesArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param highPriorityFilters List of log search filters. Filters are combined as OR statements so only one filter needs to match.
+         * 
+         * @return builder
+         * 
+         */
         public Builder highPriorityFilters(@Nullable Output<List<LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterArgs>> highPriorityFilters) {
             $.highPriorityFilters = highPriorityFilters;
             return this;
         }
 
+        /**
+         * @param highPriorityFilters List of log search filters. Filters are combined as OR statements so only one filter needs to match.
+         * 
+         * @return builder
+         * 
+         */
         public Builder highPriorityFilters(List<LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterArgs> highPriorityFilters) {
             return highPriorityFilters(Output.of(highPriorityFilters));
         }
 
+        /**
+         * @param highPriorityFilters List of log search filters. Filters are combined as OR statements so only one filter needs to match.
+         * 
+         * @return builder
+         * 
+         */
         public Builder highPriorityFilters(LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterArgs... highPriorityFilters) {
             return highPriorityFilters(List.of(highPriorityFilters));
         }
 
+        /**
+         * @param lowPriorityFilters List of log search filters. Filters are combined as OR statements so only one filter needs to match.
+         * 
+         * @return builder
+         * 
+         */
         public Builder lowPriorityFilters(@Nullable Output<List<LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterArgs>> lowPriorityFilters) {
             $.lowPriorityFilters = lowPriorityFilters;
             return this;
         }
 
+        /**
+         * @param lowPriorityFilters List of log search filters. Filters are combined as OR statements so only one filter needs to match.
+         * 
+         * @return builder
+         * 
+         */
         public Builder lowPriorityFilters(List<LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterArgs> lowPriorityFilters) {
             return lowPriorityFilters(Output.of(lowPriorityFilters));
         }
 
+        /**
+         * @param lowPriorityFilters List of log search filters. Filters are combined as OR statements so only one filter needs to match.
+         * 
+         * @return builder
+         * 
+         */
         public Builder lowPriorityFilters(LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterArgs... lowPriorityFilters) {
             return lowPriorityFilters(List.of(lowPriorityFilters));
         }

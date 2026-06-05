@@ -14,11 +14,29 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class MonitorSeriesConditionsCondition
     {
+        /// <summary>
+        /// Comparison operator between the query value and `value` (e.g. `gt`, `lt`, `eq`).
+        /// </summary>
         public readonly string Op;
+        /// <summary>
+        /// Duration the condition must remain false continuously before an active signal resolves.
+        /// </summary>
         public readonly string? ResolveSustain;
+        /// <summary>
+        /// Optional separate threshold used for resolution, enabling hysteresis (e.g. fire at &gt;90, resolve at \n\n).
+        /// </summary>
         public readonly Outputs.MonitorSeriesConditionsConditionResolveValue? ResolveValue;
+        /// <summary>
+        /// Severity assigned when this condition matches (e.g. `warn`, `critical`). Case-sensitive.
+        /// </summary>
         public readonly string Severity;
+        /// <summary>
+        /// Duration the condition must hold continuously before a signal fires.
+        /// </summary>
         public readonly string? Sustain;
+        /// <summary>
+        /// Resolution threshold value.
+        /// </summary>
         public readonly double? Value;
 
         [OutputConstructor]

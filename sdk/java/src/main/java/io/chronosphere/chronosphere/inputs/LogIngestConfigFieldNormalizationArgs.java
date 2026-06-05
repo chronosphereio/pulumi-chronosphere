@@ -20,37 +20,77 @@ public final class LogIngestConfigFieldNormalizationArgs extends com.pulumi.reso
 
     public static final LogIngestConfigFieldNormalizationArgs Empty = new LogIngestConfigFieldNormalizationArgs();
 
+    /**
+     * Normalization rules for additional custom fields. These fields are not indexed; use them for things like environment, region, or user ID.
+     * 
+     */
     @Import(name="customFieldNormalizations")
     private @Nullable Output<List<LogIngestConfigFieldNormalizationCustomFieldNormalizationArgs>> customFieldNormalizations;
 
+    /**
+     * @return Normalization rules for additional custom fields. These fields are not indexed; use them for things like environment, region, or user ID.
+     * 
+     */
     public Optional<Output<List<LogIngestConfigFieldNormalizationCustomFieldNormalizationArgs>>> customFieldNormalizations() {
         return Optional.ofNullable(this.customFieldNormalizations);
     }
 
+    /**
+     * Rule that extracts and transforms a string value from a log field, with optional regex sanitization, default value, and value mapping.
+     * 
+     */
     @Import(name="message")
     private @Nullable Output<LogIngestConfigFieldNormalizationMessageArgs> message;
 
+    /**
+     * @return Rule that extracts and transforms a string value from a log field, with optional regex sanitization, default value, and value mapping.
+     * 
+     */
     public Optional<Output<LogIngestConfigFieldNormalizationMessageArgs>> message() {
         return Optional.ofNullable(this.message);
     }
 
+    /**
+     * Rule that extracts and transforms a string value from a log field, with optional regex sanitization, default value, and value mapping.
+     * 
+     */
     @Import(name="service")
     private @Nullable Output<LogIngestConfigFieldNormalizationServiceArgs> service;
 
+    /**
+     * @return Rule that extracts and transforms a string value from a log field, with optional regex sanitization, default value, and value mapping.
+     * 
+     */
     public Optional<Output<LogIngestConfigFieldNormalizationServiceArgs>> service() {
         return Optional.ofNullable(this.service);
     }
 
+    /**
+     * Rule that extracts and transforms a string value from a log field, with optional regex sanitization, default value, and value mapping.
+     * 
+     */
     @Import(name="severity")
     private @Nullable Output<LogIngestConfigFieldNormalizationSeverityArgs> severity;
 
+    /**
+     * @return Rule that extracts and transforms a string value from a log field, with optional regex sanitization, default value, and value mapping.
+     * 
+     */
     public Optional<Output<LogIngestConfigFieldNormalizationSeverityArgs>> severity() {
         return Optional.ofNullable(this.severity);
     }
 
+    /**
+     * Normalization rule for the well-known `timestamp` field.
+     * 
+     */
     @Import(name="timestamp")
     private @Nullable Output<LogIngestConfigFieldNormalizationTimestampArgs> timestamp;
 
+    /**
+     * @return Normalization rule for the well-known `timestamp` field.
+     * 
+     */
     public Optional<Output<LogIngestConfigFieldNormalizationTimestampArgs>> timestamp() {
         return Optional.ofNullable(this.timestamp);
     }
@@ -83,51 +123,117 @@ public final class LogIngestConfigFieldNormalizationArgs extends com.pulumi.reso
             $ = new LogIngestConfigFieldNormalizationArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param customFieldNormalizations Normalization rules for additional custom fields. These fields are not indexed; use them for things like environment, region, or user ID.
+         * 
+         * @return builder
+         * 
+         */
         public Builder customFieldNormalizations(@Nullable Output<List<LogIngestConfigFieldNormalizationCustomFieldNormalizationArgs>> customFieldNormalizations) {
             $.customFieldNormalizations = customFieldNormalizations;
             return this;
         }
 
+        /**
+         * @param customFieldNormalizations Normalization rules for additional custom fields. These fields are not indexed; use them for things like environment, region, or user ID.
+         * 
+         * @return builder
+         * 
+         */
         public Builder customFieldNormalizations(List<LogIngestConfigFieldNormalizationCustomFieldNormalizationArgs> customFieldNormalizations) {
             return customFieldNormalizations(Output.of(customFieldNormalizations));
         }
 
+        /**
+         * @param customFieldNormalizations Normalization rules for additional custom fields. These fields are not indexed; use them for things like environment, region, or user ID.
+         * 
+         * @return builder
+         * 
+         */
         public Builder customFieldNormalizations(LogIngestConfigFieldNormalizationCustomFieldNormalizationArgs... customFieldNormalizations) {
             return customFieldNormalizations(List.of(customFieldNormalizations));
         }
 
+        /**
+         * @param message Rule that extracts and transforms a string value from a log field, with optional regex sanitization, default value, and value mapping.
+         * 
+         * @return builder
+         * 
+         */
         public Builder message(@Nullable Output<LogIngestConfigFieldNormalizationMessageArgs> message) {
             $.message = message;
             return this;
         }
 
+        /**
+         * @param message Rule that extracts and transforms a string value from a log field, with optional regex sanitization, default value, and value mapping.
+         * 
+         * @return builder
+         * 
+         */
         public Builder message(LogIngestConfigFieldNormalizationMessageArgs message) {
             return message(Output.of(message));
         }
 
+        /**
+         * @param service Rule that extracts and transforms a string value from a log field, with optional regex sanitization, default value, and value mapping.
+         * 
+         * @return builder
+         * 
+         */
         public Builder service(@Nullable Output<LogIngestConfigFieldNormalizationServiceArgs> service) {
             $.service = service;
             return this;
         }
 
+        /**
+         * @param service Rule that extracts and transforms a string value from a log field, with optional regex sanitization, default value, and value mapping.
+         * 
+         * @return builder
+         * 
+         */
         public Builder service(LogIngestConfigFieldNormalizationServiceArgs service) {
             return service(Output.of(service));
         }
 
+        /**
+         * @param severity Rule that extracts and transforms a string value from a log field, with optional regex sanitization, default value, and value mapping.
+         * 
+         * @return builder
+         * 
+         */
         public Builder severity(@Nullable Output<LogIngestConfigFieldNormalizationSeverityArgs> severity) {
             $.severity = severity;
             return this;
         }
 
+        /**
+         * @param severity Rule that extracts and transforms a string value from a log field, with optional regex sanitization, default value, and value mapping.
+         * 
+         * @return builder
+         * 
+         */
         public Builder severity(LogIngestConfigFieldNormalizationSeverityArgs severity) {
             return severity(Output.of(severity));
         }
 
+        /**
+         * @param timestamp Normalization rule for the well-known `timestamp` field.
+         * 
+         * @return builder
+         * 
+         */
         public Builder timestamp(@Nullable Output<LogIngestConfigFieldNormalizationTimestampArgs> timestamp) {
             $.timestamp = timestamp;
             return this;
         }
 
+        /**
+         * @param timestamp Normalization rule for the well-known `timestamp` field.
+         * 
+         * @return builder
+         * 
+         */
         public Builder timestamp(LogIngestConfigFieldNormalizationTimestampArgs timestamp) {
             return timestamp(Output.of(timestamp));
         }

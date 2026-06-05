@@ -16,9 +16,17 @@ public final class NotificationPolicyRouteGroupByArgs extends com.pulumi.resourc
 
     public static final NotificationPolicyRouteGroupByArgs Empty = new NotificationPolicyRouteGroupByArgs();
 
+    /**
+     * Label names to group alerts by. Alerts with identical values for these labels are bundled into a single notification.
+     * 
+     */
     @Import(name="labelNames")
     private @Nullable Output<List<String>> labelNames;
 
+    /**
+     * @return Label names to group alerts by. Alerts with identical values for these labels are bundled into a single notification.
+     * 
+     */
     public Optional<Output<List<String>>> labelNames() {
         return Optional.ofNullable(this.labelNames);
     }
@@ -47,15 +55,33 @@ public final class NotificationPolicyRouteGroupByArgs extends com.pulumi.resourc
             $ = new NotificationPolicyRouteGroupByArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param labelNames Label names to group alerts by. Alerts with identical values for these labels are bundled into a single notification.
+         * 
+         * @return builder
+         * 
+         */
         public Builder labelNames(@Nullable Output<List<String>> labelNames) {
             $.labelNames = labelNames;
             return this;
         }
 
+        /**
+         * @param labelNames Label names to group alerts by. Alerts with identical values for these labels are bundled into a single notification.
+         * 
+         * @return builder
+         * 
+         */
         public Builder labelNames(List<String> labelNames) {
             return labelNames(Output.of(labelNames));
         }
 
+        /**
+         * @param labelNames Label names to group alerts by. Alerts with identical values for these labels are bundled into a single notification.
+         * 
+         * @return builder
+         * 
+         */
         public Builder labelNames(String... labelNames) {
             return labelNames(List.of(labelNames));
         }

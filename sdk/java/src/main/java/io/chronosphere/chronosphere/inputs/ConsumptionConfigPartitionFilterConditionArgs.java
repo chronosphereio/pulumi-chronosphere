@@ -18,23 +18,47 @@ public final class ConsumptionConfigPartitionFilterConditionArgs extends com.pul
 
     public static final ConsumptionConfigPartitionFilterConditionArgs Empty = new ConsumptionConfigPartitionFilterConditionArgs();
 
+    /**
+     * Deprecated: use `log_filter`, `metric_filter`, or trace filters instead. Slug of the dataset to match.
+     * 
+     */
     @Import(name="datasetId")
     private @Nullable Output<String> datasetId;
 
+    /**
+     * @return Deprecated: use `log_filter`, `metric_filter`, or trace filters instead. Slug of the dataset to match.
+     * 
+     */
     public Optional<Output<String>> datasetId() {
         return Optional.ofNullable(this.datasetId);
     }
 
+    /**
+     * Log search filter matching log data for this condition.
+     * 
+     */
     @Import(name="logFilter")
     private @Nullable Output<ConsumptionConfigPartitionFilterConditionLogFilterArgs> logFilter;
 
+    /**
+     * @return Log search filter matching log data for this condition.
+     * 
+     */
     public Optional<Output<ConsumptionConfigPartitionFilterConditionLogFilterArgs>> logFilter() {
         return Optional.ofNullable(this.logFilter);
     }
 
+    /**
+     * Metric label filters matched against incoming metric data. Multiple filters are AND-ed together; values support glob patterns including `service:{svc1,svc2}` style alternations.
+     * 
+     */
     @Import(name="metricFilters")
     private @Nullable Output<List<ConsumptionConfigPartitionFilterConditionMetricFilterArgs>> metricFilters;
 
+    /**
+     * @return Metric label filters matched against incoming metric data. Multiple filters are AND-ed together; values support glob patterns including `service:{svc1,svc2}` style alternations.
+     * 
+     */
     public Optional<Output<List<ConsumptionConfigPartitionFilterConditionMetricFilterArgs>>> metricFilters() {
         return Optional.ofNullable(this.metricFilters);
     }
@@ -65,33 +89,75 @@ public final class ConsumptionConfigPartitionFilterConditionArgs extends com.pul
             $ = new ConsumptionConfigPartitionFilterConditionArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param datasetId Deprecated: use `log_filter`, `metric_filter`, or trace filters instead. Slug of the dataset to match.
+         * 
+         * @return builder
+         * 
+         */
         public Builder datasetId(@Nullable Output<String> datasetId) {
             $.datasetId = datasetId;
             return this;
         }
 
+        /**
+         * @param datasetId Deprecated: use `log_filter`, `metric_filter`, or trace filters instead. Slug of the dataset to match.
+         * 
+         * @return builder
+         * 
+         */
         public Builder datasetId(String datasetId) {
             return datasetId(Output.of(datasetId));
         }
 
+        /**
+         * @param logFilter Log search filter matching log data for this condition.
+         * 
+         * @return builder
+         * 
+         */
         public Builder logFilter(@Nullable Output<ConsumptionConfigPartitionFilterConditionLogFilterArgs> logFilter) {
             $.logFilter = logFilter;
             return this;
         }
 
+        /**
+         * @param logFilter Log search filter matching log data for this condition.
+         * 
+         * @return builder
+         * 
+         */
         public Builder logFilter(ConsumptionConfigPartitionFilterConditionLogFilterArgs logFilter) {
             return logFilter(Output.of(logFilter));
         }
 
+        /**
+         * @param metricFilters Metric label filters matched against incoming metric data. Multiple filters are AND-ed together; values support glob patterns including `service:{svc1,svc2}` style alternations.
+         * 
+         * @return builder
+         * 
+         */
         public Builder metricFilters(@Nullable Output<List<ConsumptionConfigPartitionFilterConditionMetricFilterArgs>> metricFilters) {
             $.metricFilters = metricFilters;
             return this;
         }
 
+        /**
+         * @param metricFilters Metric label filters matched against incoming metric data. Multiple filters are AND-ed together; values support glob patterns including `service:{svc1,svc2}` style alternations.
+         * 
+         * @return builder
+         * 
+         */
         public Builder metricFilters(List<ConsumptionConfigPartitionFilterConditionMetricFilterArgs> metricFilters) {
             return metricFilters(Output.of(metricFilters));
         }
 
+        /**
+         * @param metricFilters Metric label filters matched against incoming metric data. Multiple filters are AND-ed together; values support glob patterns including `service:{svc1,svc2}` style alternations.
+         * 
+         * @return builder
+         * 
+         */
         public Builder metricFilters(ConsumptionConfigPartitionFilterConditionMetricFilterArgs... metricFilters) {
             return metricFilters(List.of(metricFilters));
         }

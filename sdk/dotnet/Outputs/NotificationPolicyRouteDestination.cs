@@ -14,12 +14,33 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class NotificationPolicyRouteDestination
     {
+        /// <summary>
+        /// If true, do not send notifications when alerts resolve. Defaults to false.
+        /// </summary>
         public readonly bool? DisableResolves;
+        /// <summary>
+        /// Email delivery configuration for this destination.
+        /// </summary>
         public readonly Outputs.NotificationPolicyRouteDestinationEmail? Email;
+        /// <summary>
+        /// OpsGenie delivery configuration for this destination.
+        /// </summary>
         public readonly Outputs.NotificationPolicyRouteDestinationOpsGenie? OpsGenie;
+        /// <summary>
+        /// PagerDuty delivery configuration for this destination.
+        /// </summary>
         public readonly Outputs.NotificationPolicyRouteDestinationPagerduty? Pagerduty;
+        /// <summary>
+        /// Slack delivery configuration for this destination.
+        /// </summary>
         public readonly Outputs.NotificationPolicyRouteDestinationSlack? Slack;
+        /// <summary>
+        /// VictorOps (Splunk On-Call) delivery configuration for this destination.
+        /// </summary>
         public readonly Outputs.NotificationPolicyRouteDestinationVictorOps? VictorOps;
+        /// <summary>
+        /// Generic webhook delivery configuration for this destination.
+        /// </summary>
         public readonly Outputs.NotificationPolicyRouteDestinationWebhook? Webhook;
 
         [OutputConstructor]

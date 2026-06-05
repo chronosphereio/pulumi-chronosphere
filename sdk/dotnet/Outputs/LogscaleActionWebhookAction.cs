@@ -14,11 +14,29 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class LogscaleActionWebhookAction
     {
+        /// <summary>
+        /// Body of the request. Supports Go template syntax with values from the query result.
+        /// </summary>
         public readonly string? BodyTemplate;
+        /// <summary>
+        /// Headers to include on the HTTP or HTTPS request.
+        /// </summary>
         public readonly ImmutableDictionary<string, string>? Headers;
+        /// <summary>
+        /// If `true`, skips SSL certificate verification for the request.
+        /// </summary>
         public readonly bool? IgnoreSsl;
+        /// <summary>
+        /// HTTP method used for the webhook request.
+        /// </summary>
         public readonly string Method;
+        /// <summary>
+        /// URL to send the HTTP or HTTPS request to.
+        /// </summary>
         public readonly string Url;
+        /// <summary>
+        /// If `true`, sends the request through the configured outbound proxy.
+        /// </summary>
         public readonly bool? UseProxy;
 
         [OutputConstructor]

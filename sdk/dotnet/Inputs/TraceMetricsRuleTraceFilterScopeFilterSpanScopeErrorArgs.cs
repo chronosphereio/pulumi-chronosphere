@@ -13,6 +13,9 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class TraceMetricsRuleTraceFilterScopeFilterSpanScopeErrorArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Boolean value the target field is compared against.
+        /// </summary>
         [Input("value", required: true)]
         public Input<bool> Value { get; set; } = null!;
 

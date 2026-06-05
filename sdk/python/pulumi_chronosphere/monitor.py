@@ -31,6 +31,19 @@ class MonitorArgs:
                  slug: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Monitor resource.
+        :param pulumi.Input[str] name: Label name to match.
+        :param pulumi.Input['MonitorQueryArgs'] query: Query that produces the time series evaluated by the monitor. Exactly one of `prometheus_expr`, `graphite_expr`, or `logging_expr` must be set.
+        :param pulumi.Input['MonitorSeriesConditionsArgs'] series_conditions: Conditions that determine when a series fires a signal.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] annotations: Free-form key/value pairs attached to every signal, intended for human consumption such as runbook URLs and descriptions.
+        :param pulumi.Input[str] bucket_id: ID of the bucket the monitor belongs to. Exactly one of `bucket_id` or `collection_id` must be set.
+        :param pulumi.Input[str] collection_id: ID of the collection the monitor belongs to. Exactly one of `bucket_id` or `collection_id` must be set.
+        :param pulumi.Input[str] interval: Evaluation interval (e.g. `30s`, `1m`). Defaults to the system default if unset.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Key/value labels attached to every signal emitted by the monitor. Used for routing and filtering.
+        :param pulumi.Input[str] notification_policy_id: ID of the notification policy that routes signals from this monitor. If omitted, the parent collection's default policy applies. Must reference a named policy (anonymous policies are rejected).
+        :param pulumi.Input['MonitorNotificationTemplateArgs'] notification_template: Templated title/description rendered into outbound notifications. Supports Go templating with access to signal labels and annotations.
+        :param pulumi.Input['MonitorScheduleArgs'] schedule: Optional schedule restricting when the monitor evaluates and fires.
+        :param pulumi.Input['MonitorSignalGroupingArgs'] signal_grouping: Controls how individual time series are grouped into signals for alerting purposes.
+        :param pulumi.Input[str] slug: Stable identifier for the monitor. Generated from `name` if omitted. Immutable after creation.
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "query", query)
@@ -59,6 +72,9 @@ class MonitorArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        Label name to match.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -68,6 +84,9 @@ class MonitorArgs:
     @property
     @pulumi.getter
     def query(self) -> pulumi.Input['MonitorQueryArgs']:
+        """
+        Query that produces the time series evaluated by the monitor. Exactly one of `prometheus_expr`, `graphite_expr`, or `logging_expr` must be set.
+        """
         return pulumi.get(self, "query")
 
     @query.setter
@@ -77,6 +96,9 @@ class MonitorArgs:
     @property
     @pulumi.getter(name="seriesConditions")
     def series_conditions(self) -> pulumi.Input['MonitorSeriesConditionsArgs']:
+        """
+        Conditions that determine when a series fires a signal.
+        """
         return pulumi.get(self, "series_conditions")
 
     @series_conditions.setter
@@ -86,6 +108,9 @@ class MonitorArgs:
     @property
     @pulumi.getter
     def annotations(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Free-form key/value pairs attached to every signal, intended for human consumption such as runbook URLs and descriptions.
+        """
         return pulumi.get(self, "annotations")
 
     @annotations.setter
@@ -95,6 +120,9 @@ class MonitorArgs:
     @property
     @pulumi.getter(name="bucketId")
     def bucket_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the bucket the monitor belongs to. Exactly one of `bucket_id` or `collection_id` must be set.
+        """
         return pulumi.get(self, "bucket_id")
 
     @bucket_id.setter
@@ -104,6 +132,9 @@ class MonitorArgs:
     @property
     @pulumi.getter(name="collectionId")
     def collection_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the collection the monitor belongs to. Exactly one of `bucket_id` or `collection_id` must be set.
+        """
         return pulumi.get(self, "collection_id")
 
     @collection_id.setter
@@ -113,6 +144,9 @@ class MonitorArgs:
     @property
     @pulumi.getter
     def interval(self) -> Optional[pulumi.Input[str]]:
+        """
+        Evaluation interval (e.g. `30s`, `1m`). Defaults to the system default if unset.
+        """
         return pulumi.get(self, "interval")
 
     @interval.setter
@@ -122,6 +156,9 @@ class MonitorArgs:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Key/value labels attached to every signal emitted by the monitor. Used for routing and filtering.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -131,6 +168,9 @@ class MonitorArgs:
     @property
     @pulumi.getter(name="notificationPolicyId")
     def notification_policy_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the notification policy that routes signals from this monitor. If omitted, the parent collection's default policy applies. Must reference a named policy (anonymous policies are rejected).
+        """
         return pulumi.get(self, "notification_policy_id")
 
     @notification_policy_id.setter
@@ -140,6 +180,9 @@ class MonitorArgs:
     @property
     @pulumi.getter(name="notificationTemplate")
     def notification_template(self) -> Optional[pulumi.Input['MonitorNotificationTemplateArgs']]:
+        """
+        Templated title/description rendered into outbound notifications. Supports Go templating with access to signal labels and annotations.
+        """
         return pulumi.get(self, "notification_template")
 
     @notification_template.setter
@@ -149,6 +192,9 @@ class MonitorArgs:
     @property
     @pulumi.getter
     def schedule(self) -> Optional[pulumi.Input['MonitorScheduleArgs']]:
+        """
+        Optional schedule restricting when the monitor evaluates and fires.
+        """
         return pulumi.get(self, "schedule")
 
     @schedule.setter
@@ -158,6 +204,9 @@ class MonitorArgs:
     @property
     @pulumi.getter(name="signalGrouping")
     def signal_grouping(self) -> Optional[pulumi.Input['MonitorSignalGroupingArgs']]:
+        """
+        Controls how individual time series are grouped into signals for alerting purposes.
+        """
         return pulumi.get(self, "signal_grouping")
 
     @signal_grouping.setter
@@ -167,6 +216,9 @@ class MonitorArgs:
     @property
     @pulumi.getter
     def slug(self) -> Optional[pulumi.Input[str]]:
+        """
+        Stable identifier for the monitor. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @slug.setter
@@ -192,6 +244,19 @@ class _MonitorState:
                  slug: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Monitor resources.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] annotations: Free-form key/value pairs attached to every signal, intended for human consumption such as runbook URLs and descriptions.
+        :param pulumi.Input[str] bucket_id: ID of the bucket the monitor belongs to. Exactly one of `bucket_id` or `collection_id` must be set.
+        :param pulumi.Input[str] collection_id: ID of the collection the monitor belongs to. Exactly one of `bucket_id` or `collection_id` must be set.
+        :param pulumi.Input[str] interval: Evaluation interval (e.g. `30s`, `1m`). Defaults to the system default if unset.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Key/value labels attached to every signal emitted by the monitor. Used for routing and filtering.
+        :param pulumi.Input[str] name: Label name to match.
+        :param pulumi.Input[str] notification_policy_id: ID of the notification policy that routes signals from this monitor. If omitted, the parent collection's default policy applies. Must reference a named policy (anonymous policies are rejected).
+        :param pulumi.Input['MonitorNotificationTemplateArgs'] notification_template: Templated title/description rendered into outbound notifications. Supports Go templating with access to signal labels and annotations.
+        :param pulumi.Input['MonitorQueryArgs'] query: Query that produces the time series evaluated by the monitor. Exactly one of `prometheus_expr`, `graphite_expr`, or `logging_expr` must be set.
+        :param pulumi.Input['MonitorScheduleArgs'] schedule: Optional schedule restricting when the monitor evaluates and fires.
+        :param pulumi.Input['MonitorSeriesConditionsArgs'] series_conditions: Conditions that determine when a series fires a signal.
+        :param pulumi.Input['MonitorSignalGroupingArgs'] signal_grouping: Controls how individual time series are grouped into signals for alerting purposes.
+        :param pulumi.Input[str] slug: Stable identifier for the monitor. Generated from `name` if omitted. Immutable after creation.
         """
         if annotations is not None:
             pulumi.set(__self__, "annotations", annotations)
@@ -223,6 +288,9 @@ class _MonitorState:
     @property
     @pulumi.getter
     def annotations(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Free-form key/value pairs attached to every signal, intended for human consumption such as runbook URLs and descriptions.
+        """
         return pulumi.get(self, "annotations")
 
     @annotations.setter
@@ -232,6 +300,9 @@ class _MonitorState:
     @property
     @pulumi.getter(name="bucketId")
     def bucket_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the bucket the monitor belongs to. Exactly one of `bucket_id` or `collection_id` must be set.
+        """
         return pulumi.get(self, "bucket_id")
 
     @bucket_id.setter
@@ -241,6 +312,9 @@ class _MonitorState:
     @property
     @pulumi.getter(name="collectionId")
     def collection_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the collection the monitor belongs to. Exactly one of `bucket_id` or `collection_id` must be set.
+        """
         return pulumi.get(self, "collection_id")
 
     @collection_id.setter
@@ -250,6 +324,9 @@ class _MonitorState:
     @property
     @pulumi.getter
     def interval(self) -> Optional[pulumi.Input[str]]:
+        """
+        Evaluation interval (e.g. `30s`, `1m`). Defaults to the system default if unset.
+        """
         return pulumi.get(self, "interval")
 
     @interval.setter
@@ -259,6 +336,9 @@ class _MonitorState:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Key/value labels attached to every signal emitted by the monitor. Used for routing and filtering.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -268,6 +348,9 @@ class _MonitorState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Label name to match.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -277,6 +360,9 @@ class _MonitorState:
     @property
     @pulumi.getter(name="notificationPolicyId")
     def notification_policy_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the notification policy that routes signals from this monitor. If omitted, the parent collection's default policy applies. Must reference a named policy (anonymous policies are rejected).
+        """
         return pulumi.get(self, "notification_policy_id")
 
     @notification_policy_id.setter
@@ -286,6 +372,9 @@ class _MonitorState:
     @property
     @pulumi.getter(name="notificationTemplate")
     def notification_template(self) -> Optional[pulumi.Input['MonitorNotificationTemplateArgs']]:
+        """
+        Templated title/description rendered into outbound notifications. Supports Go templating with access to signal labels and annotations.
+        """
         return pulumi.get(self, "notification_template")
 
     @notification_template.setter
@@ -295,6 +384,9 @@ class _MonitorState:
     @property
     @pulumi.getter
     def query(self) -> Optional[pulumi.Input['MonitorQueryArgs']]:
+        """
+        Query that produces the time series evaluated by the monitor. Exactly one of `prometheus_expr`, `graphite_expr`, or `logging_expr` must be set.
+        """
         return pulumi.get(self, "query")
 
     @query.setter
@@ -304,6 +396,9 @@ class _MonitorState:
     @property
     @pulumi.getter
     def schedule(self) -> Optional[pulumi.Input['MonitorScheduleArgs']]:
+        """
+        Optional schedule restricting when the monitor evaluates and fires.
+        """
         return pulumi.get(self, "schedule")
 
     @schedule.setter
@@ -313,6 +408,9 @@ class _MonitorState:
     @property
     @pulumi.getter(name="seriesConditions")
     def series_conditions(self) -> Optional[pulumi.Input['MonitorSeriesConditionsArgs']]:
+        """
+        Conditions that determine when a series fires a signal.
+        """
         return pulumi.get(self, "series_conditions")
 
     @series_conditions.setter
@@ -322,6 +420,9 @@ class _MonitorState:
     @property
     @pulumi.getter(name="signalGrouping")
     def signal_grouping(self) -> Optional[pulumi.Input['MonitorSignalGroupingArgs']]:
+        """
+        Controls how individual time series are grouped into signals for alerting purposes.
+        """
         return pulumi.get(self, "signal_grouping")
 
     @signal_grouping.setter
@@ -331,6 +432,9 @@ class _MonitorState:
     @property
     @pulumi.getter
     def slug(self) -> Optional[pulumi.Input[str]]:
+        """
+        Stable identifier for the monitor. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @slug.setter
@@ -358,9 +462,51 @@ class Monitor(pulumi.CustomResource):
                  slug: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a Monitor resource with the given unique name, props, and options.
+        A monitor evaluates a query against time-series, log, or trace data and produces signals when configured thresholds are crossed. Signals are routed to notifiers via the referenced notification policy or the parent collection's default policy.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_chronosphere as chronosphere
+
+        collection = chronosphere.Collection("collection", name="Platform")
+        namespace_up = chronosphere.Monitor("namespaceUp",
+            name="Namespace up",
+            collection_id=collection.id,
+            query=chronosphere.MonitorQueryArgs(
+                prometheus_expr=\"\"\"sum by (kubernetes_namespace) (
+          up{kubernetes_namespace="production"}
+        )
+        \"\"\",
+            ),
+            signal_grouping=chronosphere.MonitorSignalGroupingArgs(
+                label_names=["kubernetes_namespace"],
+            ),
+            series_conditions=chronosphere.MonitorSeriesConditionsArgs(
+                conditions=[chronosphere.MonitorSeriesConditionsConditionArgs(
+                    severity="warn",
+                    value=20,
+                    op="GT",
+                )],
+            ))
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] annotations: Free-form key/value pairs attached to every signal, intended for human consumption such as runbook URLs and descriptions.
+        :param pulumi.Input[str] bucket_id: ID of the bucket the monitor belongs to. Exactly one of `bucket_id` or `collection_id` must be set.
+        :param pulumi.Input[str] collection_id: ID of the collection the monitor belongs to. Exactly one of `bucket_id` or `collection_id` must be set.
+        :param pulumi.Input[str] interval: Evaluation interval (e.g. `30s`, `1m`). Defaults to the system default if unset.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Key/value labels attached to every signal emitted by the monitor. Used for routing and filtering.
+        :param pulumi.Input[str] name: Label name to match.
+        :param pulumi.Input[str] notification_policy_id: ID of the notification policy that routes signals from this monitor. If omitted, the parent collection's default policy applies. Must reference a named policy (anonymous policies are rejected).
+        :param pulumi.Input[pulumi.InputType['MonitorNotificationTemplateArgs']] notification_template: Templated title/description rendered into outbound notifications. Supports Go templating with access to signal labels and annotations.
+        :param pulumi.Input[pulumi.InputType['MonitorQueryArgs']] query: Query that produces the time series evaluated by the monitor. Exactly one of `prometheus_expr`, `graphite_expr`, or `logging_expr` must be set.
+        :param pulumi.Input[pulumi.InputType['MonitorScheduleArgs']] schedule: Optional schedule restricting when the monitor evaluates and fires.
+        :param pulumi.Input[pulumi.InputType['MonitorSeriesConditionsArgs']] series_conditions: Conditions that determine when a series fires a signal.
+        :param pulumi.Input[pulumi.InputType['MonitorSignalGroupingArgs']] signal_grouping: Controls how individual time series are grouped into signals for alerting purposes.
+        :param pulumi.Input[str] slug: Stable identifier for the monitor. Generated from `name` if omitted. Immutable after creation.
         """
         ...
     @overload
@@ -369,7 +515,36 @@ class Monitor(pulumi.CustomResource):
                  args: MonitorArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a Monitor resource with the given unique name, props, and options.
+        A monitor evaluates a query against time-series, log, or trace data and produces signals when configured thresholds are crossed. Signals are routed to notifiers via the referenced notification policy or the parent collection's default policy.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_chronosphere as chronosphere
+
+        collection = chronosphere.Collection("collection", name="Platform")
+        namespace_up = chronosphere.Monitor("namespaceUp",
+            name="Namespace up",
+            collection_id=collection.id,
+            query=chronosphere.MonitorQueryArgs(
+                prometheus_expr=\"\"\"sum by (kubernetes_namespace) (
+          up{kubernetes_namespace="production"}
+        )
+        \"\"\",
+            ),
+            signal_grouping=chronosphere.MonitorSignalGroupingArgs(
+                label_names=["kubernetes_namespace"],
+            ),
+            series_conditions=chronosphere.MonitorSeriesConditionsArgs(
+                conditions=[chronosphere.MonitorSeriesConditionsConditionArgs(
+                    severity="warn",
+                    value=20,
+                    op="GT",
+                )],
+            ))
+        ```
+
         :param str resource_name: The name of the resource.
         :param MonitorArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -456,6 +631,19 @@ class Monitor(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] annotations: Free-form key/value pairs attached to every signal, intended for human consumption such as runbook URLs and descriptions.
+        :param pulumi.Input[str] bucket_id: ID of the bucket the monitor belongs to. Exactly one of `bucket_id` or `collection_id` must be set.
+        :param pulumi.Input[str] collection_id: ID of the collection the monitor belongs to. Exactly one of `bucket_id` or `collection_id` must be set.
+        :param pulumi.Input[str] interval: Evaluation interval (e.g. `30s`, `1m`). Defaults to the system default if unset.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Key/value labels attached to every signal emitted by the monitor. Used for routing and filtering.
+        :param pulumi.Input[str] name: Label name to match.
+        :param pulumi.Input[str] notification_policy_id: ID of the notification policy that routes signals from this monitor. If omitted, the parent collection's default policy applies. Must reference a named policy (anonymous policies are rejected).
+        :param pulumi.Input[pulumi.InputType['MonitorNotificationTemplateArgs']] notification_template: Templated title/description rendered into outbound notifications. Supports Go templating with access to signal labels and annotations.
+        :param pulumi.Input[pulumi.InputType['MonitorQueryArgs']] query: Query that produces the time series evaluated by the monitor. Exactly one of `prometheus_expr`, `graphite_expr`, or `logging_expr` must be set.
+        :param pulumi.Input[pulumi.InputType['MonitorScheduleArgs']] schedule: Optional schedule restricting when the monitor evaluates and fires.
+        :param pulumi.Input[pulumi.InputType['MonitorSeriesConditionsArgs']] series_conditions: Conditions that determine when a series fires a signal.
+        :param pulumi.Input[pulumi.InputType['MonitorSignalGroupingArgs']] signal_grouping: Controls how individual time series are grouped into signals for alerting purposes.
+        :param pulumi.Input[str] slug: Stable identifier for the monitor. Generated from `name` if omitted. Immutable after creation.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -479,65 +667,104 @@ class Monitor(pulumi.CustomResource):
     @property
     @pulumi.getter
     def annotations(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+        """
+        Free-form key/value pairs attached to every signal, intended for human consumption such as runbook URLs and descriptions.
+        """
         return pulumi.get(self, "annotations")
 
     @property
     @pulumi.getter(name="bucketId")
     def bucket_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        ID of the bucket the monitor belongs to. Exactly one of `bucket_id` or `collection_id` must be set.
+        """
         return pulumi.get(self, "bucket_id")
 
     @property
     @pulumi.getter(name="collectionId")
     def collection_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        ID of the collection the monitor belongs to. Exactly one of `bucket_id` or `collection_id` must be set.
+        """
         return pulumi.get(self, "collection_id")
 
     @property
     @pulumi.getter
     def interval(self) -> pulumi.Output[Optional[str]]:
+        """
+        Evaluation interval (e.g. `30s`, `1m`). Defaults to the system default if unset.
+        """
         return pulumi.get(self, "interval")
 
     @property
     @pulumi.getter
     def labels(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+        """
+        Key/value labels attached to every signal emitted by the monitor. Used for routing and filtering.
+        """
         return pulumi.get(self, "labels")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        Label name to match.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="notificationPolicyId")
     def notification_policy_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        ID of the notification policy that routes signals from this monitor. If omitted, the parent collection's default policy applies. Must reference a named policy (anonymous policies are rejected).
+        """
         return pulumi.get(self, "notification_policy_id")
 
     @property
     @pulumi.getter(name="notificationTemplate")
     def notification_template(self) -> pulumi.Output[Optional['outputs.MonitorNotificationTemplate']]:
+        """
+        Templated title/description rendered into outbound notifications. Supports Go templating with access to signal labels and annotations.
+        """
         return pulumi.get(self, "notification_template")
 
     @property
     @pulumi.getter
     def query(self) -> pulumi.Output['outputs.MonitorQuery']:
+        """
+        Query that produces the time series evaluated by the monitor. Exactly one of `prometheus_expr`, `graphite_expr`, or `logging_expr` must be set.
+        """
         return pulumi.get(self, "query")
 
     @property
     @pulumi.getter
     def schedule(self) -> pulumi.Output[Optional['outputs.MonitorSchedule']]:
+        """
+        Optional schedule restricting when the monitor evaluates and fires.
+        """
         return pulumi.get(self, "schedule")
 
     @property
     @pulumi.getter(name="seriesConditions")
     def series_conditions(self) -> pulumi.Output['outputs.MonitorSeriesConditions']:
+        """
+        Conditions that determine when a series fires a signal.
+        """
         return pulumi.get(self, "series_conditions")
 
     @property
     @pulumi.getter(name="signalGrouping")
     def signal_grouping(self) -> pulumi.Output[Optional['outputs.MonitorSignalGrouping']]:
+        """
+        Controls how individual time series are grouped into signals for alerting purposes.
+        """
         return pulumi.get(self, "signal_grouping")
 
     @property
     @pulumi.getter
     def slug(self) -> pulumi.Output[str]:
+        """
+        Stable identifier for the monitor. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 

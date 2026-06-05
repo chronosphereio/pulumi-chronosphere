@@ -11,13 +11,29 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class PagerdutyAlertNotifierLink {
+    /**
+     * @return URL the link points to.
+     * 
+     */
     private String href;
+    /**
+     * @return Display text for the link.
+     * 
+     */
     private @Nullable String text;
 
     private PagerdutyAlertNotifierLink() {}
+    /**
+     * @return URL the link points to.
+     * 
+     */
     public String href() {
         return this.href;
     }
+    /**
+     * @return Display text for the link.
+     * 
+     */
     public Optional<String> text() {
         return Optional.ofNullable(this.text);
     }

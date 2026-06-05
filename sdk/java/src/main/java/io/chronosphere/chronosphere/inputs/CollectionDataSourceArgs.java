@@ -15,9 +15,17 @@ public final class CollectionDataSourceArgs extends com.pulumi.resources.InvokeA
 
     public static final CollectionDataSourceArgs Empty = new CollectionDataSourceArgs();
 
+    /**
+     * Slug of the collection to look up.
+     * 
+     */
     @Import(name="slug")
     private @Nullable Output<String> slug;
 
+    /**
+     * @return Slug of the collection to look up.
+     * 
+     */
     public Optional<Output<String>> slug() {
         return Optional.ofNullable(this.slug);
     }
@@ -46,11 +54,23 @@ public final class CollectionDataSourceArgs extends com.pulumi.resources.InvokeA
             $ = new CollectionDataSourceArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param slug Slug of the collection to look up.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slug(@Nullable Output<String> slug) {
             $.slug = slug;
             return this;
         }
 
+        /**
+         * @param slug Slug of the collection to look up.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slug(String slug) {
             return slug(Output.of(slug));
         }

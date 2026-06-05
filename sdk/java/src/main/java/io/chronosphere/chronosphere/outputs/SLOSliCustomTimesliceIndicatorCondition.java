@@ -10,13 +10,29 @@ import java.util.Objects;
 
 @CustomType
 public final class SLOSliCustomTimesliceIndicatorCondition {
+    /**
+     * @return Comparison operator between the query value and `value` (e.g. `gt`, `lt`, `eq`).
+     * 
+     */
     private String op;
+    /**
+     * @return Label value to match against using the chosen matcher `type`.
+     * 
+     */
     private Double value;
 
     private SLOSliCustomTimesliceIndicatorCondition() {}
+    /**
+     * @return Comparison operator between the query value and `value` (e.g. `gt`, `lt`, `eq`).
+     * 
+     */
     public String op() {
         return this.op;
     }
+    /**
+     * @return Label value to match against using the chosen matcher `type`.
+     * 
+     */
     public Double value() {
         return this.value;
     }

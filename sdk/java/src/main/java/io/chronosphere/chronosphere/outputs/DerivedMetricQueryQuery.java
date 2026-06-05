@@ -12,13 +12,29 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class DerivedMetricQueryQuery {
+    /**
+     * @return PromQL expression for the derived metric. References declared variables using `$name` syntax (e.g. `cpu_usage{$service}`).
+     * 
+     */
     private String expr;
+    /**
+     * @return Variables that can be substituted into `expr` at query time as label selectors.
+     * 
+     */
     private @Nullable List<DerivedMetricQueryQueryVariable> variables;
 
     private DerivedMetricQueryQuery() {}
+    /**
+     * @return PromQL expression for the derived metric. References declared variables using `$name` syntax (e.g. `cpu_usage{$service}`).
+     * 
+     */
     public String expr() {
         return this.expr;
     }
+    /**
+     * @return Variables that can be substituted into `expr` at query time as label selectors.
+     * 
+     */
     public List<DerivedMetricQueryQueryVariable> variables() {
         return this.variables == null ? List.of() : this.variables;
     }

@@ -4,6 +4,18 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as chronosphere from "@pulumi/chronosphere";
+ *
+ * const default = chronosphere.CollectionDataSource({
+ *     slug: "default",
+ * });
+ * ```
+ */
 export function collectionDataSource(args?: CollectionDataSourceArgs, opts?: pulumi.InvokeOptions): Promise<CollectionDataSourceResult> {
     args = args || {};
 
@@ -17,6 +29,9 @@ export function collectionDataSource(args?: CollectionDataSourceArgs, opts?: pul
  * A collection of arguments for invoking CollectionDataSource.
  */
 export interface CollectionDataSourceArgs {
+    /**
+     * Slug of the collection to look up.
+     */
     slug?: string;
 }
 
@@ -24,14 +39,35 @@ export interface CollectionDataSourceArgs {
  * A collection of values returned by CollectionDataSource.
  */
 export interface CollectionDataSourceResult {
+    /**
+     * Read-only: free-form description of the collection.
+     */
     readonly description: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * Read-only: display name of the collection.
+     */
     readonly name: string;
+    /**
+     * Slug of the collection to look up.
+     */
     readonly slug?: string;
 }
+/**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as chronosphere from "@pulumi/chronosphere";
+ *
+ * const default = chronosphere.CollectionDataSource({
+ *     slug: "default",
+ * });
+ * ```
+ */
 export function collectionDataSourceOutput(args?: CollectionDataSourceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<CollectionDataSourceResult> {
     return pulumi.output(args).apply((a: any) => collectionDataSource(a, opts))
 }
@@ -40,5 +76,8 @@ export function collectionDataSourceOutput(args?: CollectionDataSourceOutputArgs
  * A collection of arguments for invoking CollectionDataSource.
  */
 export interface CollectionDataSourceOutputArgs {
+    /**
+     * Slug of the collection to look up.
+     */
     slug?: pulumi.Input<string>;
 }

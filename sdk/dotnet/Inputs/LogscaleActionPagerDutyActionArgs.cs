@@ -13,12 +13,21 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class LogscaleActionPagerDutyActionArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Routing key used to authenticate with PagerDuty.
+        /// </summary>
         [Input("routingKey", required: true)]
         public Input<string> RoutingKey { get; set; } = null!;
 
+        /// <summary>
+        /// Severity attached to the PagerDuty event.
+        /// </summary>
         [Input("severity", required: true)]
         public Input<string> Severity { get; set; } = null!;
 
+        /// <summary>
+        /// If `true`, sends the request through the configured outbound proxy.
+        /// </summary>
         [Input("useProxy")]
         public Input<bool>? UseProxy { get; set; }
 

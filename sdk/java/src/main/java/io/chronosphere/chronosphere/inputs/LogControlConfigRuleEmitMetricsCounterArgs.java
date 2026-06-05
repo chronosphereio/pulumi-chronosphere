@@ -15,9 +15,17 @@ public final class LogControlConfigRuleEmitMetricsCounterArgs extends com.pulumi
 
     public static final LogControlConfigRuleEmitMetricsCounterArgs Empty = new LogControlConfigRuleEmitMetricsCounterArgs();
 
+    /**
+     * Path to a field within a log record.
+     * 
+     */
     @Import(name="value")
     private @Nullable Output<LogControlConfigRuleEmitMetricsCounterValueArgs> value;
 
+    /**
+     * @return Path to a field within a log record.
+     * 
+     */
     public Optional<Output<LogControlConfigRuleEmitMetricsCounterValueArgs>> value() {
         return Optional.ofNullable(this.value);
     }
@@ -46,11 +54,23 @@ public final class LogControlConfigRuleEmitMetricsCounterArgs extends com.pulumi
             $ = new LogControlConfigRuleEmitMetricsCounterArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param value Path to a field within a log record.
+         * 
+         * @return builder
+         * 
+         */
         public Builder value(@Nullable Output<LogControlConfigRuleEmitMetricsCounterValueArgs> value) {
             $.value = value;
             return this;
         }
 
+        /**
+         * @param value Path to a field within a log record.
+         * 
+         * @return builder
+         * 
+         */
         public Builder value(LogControlConfigRuleEmitMetricsCounterValueArgs value) {
             return value(Output.of(value));
         }

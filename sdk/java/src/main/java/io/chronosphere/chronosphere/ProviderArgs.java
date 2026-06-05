@@ -17,37 +17,89 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final ProviderArgs Empty = new ProviderArgs();
 
+    /**
+     * API token used to authenticate against the Chronosphere API. Treat as a secret. Falls back to the
+     * `CHRONOSPHERE_API_TOKEN` environment variable.
+     * 
+     */
     @Import(name="apiToken")
     private @Nullable Output<String> apiToken;
 
+    /**
+     * @return API token used to authenticate against the Chronosphere API. Treat as a secret. Falls back to the
+     * `CHRONOSPHERE_API_TOKEN` environment variable.
+     * 
+     */
     public Optional<Output<String>> apiToken() {
         return Optional.ofNullable(this.apiToken);
     }
 
+    /**
+     * Disable the dry-run validation step that runs before every apply. Falls back to the
+     * `CHRONOSPHERE_DRY_RUN_VALIDATION_DISABLED` environment variable (set to `1` to disable).
+     * 
+     */
     @Import(name="disableDryrun", json=true)
     private @Nullable Output<Boolean> disableDryrun;
 
+    /**
+     * @return Disable the dry-run validation step that runs before every apply. Falls back to the
+     * `CHRONOSPHERE_DRY_RUN_VALIDATION_DISABLED` environment variable (set to `1` to disable).
+     * 
+     */
     public Optional<Output<Boolean>> disableDryrun() {
         return Optional.ofNullable(this.disableDryrun);
     }
 
+    /**
+     * Optional namespace prefix applied to entity slugs managed by this provider instance, so multiple Terraform
+     * configurations can coexist in one Chronosphere org. Falls back to the `CHRONOSPHERE_ENTITY_NAMESPACE` environment
+     * variable.
+     * 
+     */
     @Import(name="entityNamespace")
     private @Nullable Output<String> entityNamespace;
 
+    /**
+     * @return Optional namespace prefix applied to entity slugs managed by this provider instance, so multiple Terraform
+     * configurations can coexist in one Chronosphere org. Falls back to the `CHRONOSPHERE_ENTITY_NAMESPACE` environment
+     * variable.
+     * 
+     */
     public Optional<Output<String>> entityNamespace() {
         return Optional.ofNullable(this.entityNamespace);
     }
 
+    /**
+     * Chronosphere organization name (the subdomain of `&lt;org&gt;.chronosphere.io`). Falls back to the `CHRONOSPHERE_ORG` or
+     * `CHRONOSPHERE_ORG_NAME` environment variables.
+     * 
+     */
     @Import(name="org")
     private @Nullable Output<String> org;
 
+    /**
+     * @return Chronosphere organization name (the subdomain of `&lt;org&gt;.chronosphere.io`). Falls back to the `CHRONOSPHERE_ORG` or
+     * `CHRONOSPHERE_ORG_NAME` environment variables.
+     * 
+     */
     public Optional<Output<String>> org() {
         return Optional.ofNullable(this.org);
     }
 
+    /**
+     * Opt into resources and behaviors backed by Chronosphere&#39;s unstable config API. Subject to breaking change without
+     * notice. Falls back to the `CHRONOSPHERE_UNSTABLE` environment variable (set to `1` to enable).
+     * 
+     */
     @Import(name="unstable", json=true)
     private @Nullable Output<Boolean> unstable;
 
+    /**
+     * @return Opt into resources and behaviors backed by Chronosphere&#39;s unstable config API. Subject to breaking change without
+     * notice. Falls back to the `CHRONOSPHERE_UNSTABLE` environment variable (set to `1` to enable).
+     * 
+     */
     public Optional<Output<Boolean>> unstable() {
         return Optional.ofNullable(this.unstable);
     }
@@ -80,47 +132,119 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
             $ = new ProviderArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param apiToken API token used to authenticate against the Chronosphere API. Treat as a secret. Falls back to the
+         * `CHRONOSPHERE_API_TOKEN` environment variable.
+         * 
+         * @return builder
+         * 
+         */
         public Builder apiToken(@Nullable Output<String> apiToken) {
             $.apiToken = apiToken;
             return this;
         }
 
+        /**
+         * @param apiToken API token used to authenticate against the Chronosphere API. Treat as a secret. Falls back to the
+         * `CHRONOSPHERE_API_TOKEN` environment variable.
+         * 
+         * @return builder
+         * 
+         */
         public Builder apiToken(String apiToken) {
             return apiToken(Output.of(apiToken));
         }
 
+        /**
+         * @param disableDryrun Disable the dry-run validation step that runs before every apply. Falls back to the
+         * `CHRONOSPHERE_DRY_RUN_VALIDATION_DISABLED` environment variable (set to `1` to disable).
+         * 
+         * @return builder
+         * 
+         */
         public Builder disableDryrun(@Nullable Output<Boolean> disableDryrun) {
             $.disableDryrun = disableDryrun;
             return this;
         }
 
+        /**
+         * @param disableDryrun Disable the dry-run validation step that runs before every apply. Falls back to the
+         * `CHRONOSPHERE_DRY_RUN_VALIDATION_DISABLED` environment variable (set to `1` to disable).
+         * 
+         * @return builder
+         * 
+         */
         public Builder disableDryrun(Boolean disableDryrun) {
             return disableDryrun(Output.of(disableDryrun));
         }
 
+        /**
+         * @param entityNamespace Optional namespace prefix applied to entity slugs managed by this provider instance, so multiple Terraform
+         * configurations can coexist in one Chronosphere org. Falls back to the `CHRONOSPHERE_ENTITY_NAMESPACE` environment
+         * variable.
+         * 
+         * @return builder
+         * 
+         */
         public Builder entityNamespace(@Nullable Output<String> entityNamespace) {
             $.entityNamespace = entityNamespace;
             return this;
         }
 
+        /**
+         * @param entityNamespace Optional namespace prefix applied to entity slugs managed by this provider instance, so multiple Terraform
+         * configurations can coexist in one Chronosphere org. Falls back to the `CHRONOSPHERE_ENTITY_NAMESPACE` environment
+         * variable.
+         * 
+         * @return builder
+         * 
+         */
         public Builder entityNamespace(String entityNamespace) {
             return entityNamespace(Output.of(entityNamespace));
         }
 
+        /**
+         * @param org Chronosphere organization name (the subdomain of `&lt;org&gt;.chronosphere.io`). Falls back to the `CHRONOSPHERE_ORG` or
+         * `CHRONOSPHERE_ORG_NAME` environment variables.
+         * 
+         * @return builder
+         * 
+         */
         public Builder org(@Nullable Output<String> org) {
             $.org = org;
             return this;
         }
 
+        /**
+         * @param org Chronosphere organization name (the subdomain of `&lt;org&gt;.chronosphere.io`). Falls back to the `CHRONOSPHERE_ORG` or
+         * `CHRONOSPHERE_ORG_NAME` environment variables.
+         * 
+         * @return builder
+         * 
+         */
         public Builder org(String org) {
             return org(Output.of(org));
         }
 
+        /**
+         * @param unstable Opt into resources and behaviors backed by Chronosphere&#39;s unstable config API. Subject to breaking change without
+         * notice. Falls back to the `CHRONOSPHERE_UNSTABLE` environment variable (set to `1` to enable).
+         * 
+         * @return builder
+         * 
+         */
         public Builder unstable(@Nullable Output<Boolean> unstable) {
             $.unstable = unstable;
             return this;
         }
 
+        /**
+         * @param unstable Opt into resources and behaviors backed by Chronosphere&#39;s unstable config API. Subject to breaking change without
+         * notice. Falls back to the `CHRONOSPHERE_UNSTABLE` environment variable (set to `1` to enable).
+         * 
+         * @return builder
+         * 
+         */
         public Builder unstable(Boolean unstable) {
             return unstable(Output.of(unstable));
         }

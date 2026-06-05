@@ -28,6 +28,16 @@ class MappingRuleArgs:
                  storage_policy: Optional[pulumi.Input['MappingRuleStoragePolicyArgs']] = None):
         """
         The set of arguments for constructing a MappingRule resource.
+        :param pulumi.Input[str] filter: Space-delimited list of `label=value_glob` matchers that select the metrics this rule applies to. A metric must match every filter to be considered.
+        :param pulumi.Input[str] name: Display name of the mapping rule. Can be changed after creation.
+        :param pulumi.Input[str] aggregations: Aggregation type applied to matching metrics. Cannot be set if `drop` is `true`.
+        :param pulumi.Input[str] bucket_id: ID of the bucket the mapping rule belongs to.
+        :param pulumi.Input[bool] drop: If `true`, drops the matching metrics instead of aggregating them. Cannot be set together with `aggregations`. Defaults to `false`.
+        :param pulumi.Input[bool] drop_timestamp: Deprecated: no longer supported.
+        :param pulumi.Input[str] interval: Interval between aggregated data points produced by this mapping rule. Defaults to a server-side value when unset. Conflicts with `storage_policy`.
+        :param pulumi.Input[str] mode: Mapping rule mode controlling whether it is active or in a preview state.
+        :param pulumi.Input[str] slug: Stable identifier for the mapping rule. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input['MappingRuleStoragePolicyArgs'] storage_policy: Storage policy controlling resolution and retention of mapped metrics. Deprecated: use `interval` instead.
         """
         pulumi.set(__self__, "filter", filter)
         pulumi.set(__self__, "name", name)
@@ -57,6 +67,9 @@ class MappingRuleArgs:
     @property
     @pulumi.getter
     def filter(self) -> pulumi.Input[str]:
+        """
+        Space-delimited list of `label=value_glob` matchers that select the metrics this rule applies to. A metric must match every filter to be considered.
+        """
         return pulumi.get(self, "filter")
 
     @filter.setter
@@ -66,6 +79,9 @@ class MappingRuleArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        Display name of the mapping rule. Can be changed after creation.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -75,6 +91,9 @@ class MappingRuleArgs:
     @property
     @pulumi.getter
     def aggregations(self) -> Optional[pulumi.Input[str]]:
+        """
+        Aggregation type applied to matching metrics. Cannot be set if `drop` is `true`.
+        """
         return pulumi.get(self, "aggregations")
 
     @aggregations.setter
@@ -84,6 +103,9 @@ class MappingRuleArgs:
     @property
     @pulumi.getter(name="bucketId")
     def bucket_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the bucket the mapping rule belongs to.
+        """
         return pulumi.get(self, "bucket_id")
 
     @bucket_id.setter
@@ -93,6 +115,9 @@ class MappingRuleArgs:
     @property
     @pulumi.getter
     def drop(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If `true`, drops the matching metrics instead of aggregating them. Cannot be set together with `aggregations`. Defaults to `false`.
+        """
         return pulumi.get(self, "drop")
 
     @drop.setter
@@ -102,6 +127,9 @@ class MappingRuleArgs:
     @property
     @pulumi.getter(name="dropTimestamp")
     def drop_timestamp(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Deprecated: no longer supported.
+        """
         warnings.warn("""drop timestamp is no longer supported""", DeprecationWarning)
         pulumi.log.warn("""drop_timestamp is deprecated: drop timestamp is no longer supported""")
 
@@ -114,6 +142,9 @@ class MappingRuleArgs:
     @property
     @pulumi.getter
     def interval(self) -> Optional[pulumi.Input[str]]:
+        """
+        Interval between aggregated data points produced by this mapping rule. Defaults to a server-side value when unset. Conflicts with `storage_policy`.
+        """
         return pulumi.get(self, "interval")
 
     @interval.setter
@@ -123,6 +154,9 @@ class MappingRuleArgs:
     @property
     @pulumi.getter
     def mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Mapping rule mode controlling whether it is active or in a preview state.
+        """
         return pulumi.get(self, "mode")
 
     @mode.setter
@@ -132,6 +166,9 @@ class MappingRuleArgs:
     @property
     @pulumi.getter
     def slug(self) -> Optional[pulumi.Input[str]]:
+        """
+        Stable identifier for the mapping rule. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @slug.setter
@@ -141,6 +178,9 @@ class MappingRuleArgs:
     @property
     @pulumi.getter(name="storagePolicy")
     def storage_policy(self) -> Optional[pulumi.Input['MappingRuleStoragePolicyArgs']]:
+        """
+        Storage policy controlling resolution and retention of mapped metrics. Deprecated: use `interval` instead.
+        """
         warnings.warn("""use `interval` instead""", DeprecationWarning)
         pulumi.log.warn("""storage_policy is deprecated: use `interval` instead""")
 
@@ -166,6 +206,16 @@ class _MappingRuleState:
                  storage_policy: Optional[pulumi.Input['MappingRuleStoragePolicyArgs']] = None):
         """
         Input properties used for looking up and filtering MappingRule resources.
+        :param pulumi.Input[str] aggregations: Aggregation type applied to matching metrics. Cannot be set if `drop` is `true`.
+        :param pulumi.Input[str] bucket_id: ID of the bucket the mapping rule belongs to.
+        :param pulumi.Input[bool] drop: If `true`, drops the matching metrics instead of aggregating them. Cannot be set together with `aggregations`. Defaults to `false`.
+        :param pulumi.Input[bool] drop_timestamp: Deprecated: no longer supported.
+        :param pulumi.Input[str] filter: Space-delimited list of `label=value_glob` matchers that select the metrics this rule applies to. A metric must match every filter to be considered.
+        :param pulumi.Input[str] interval: Interval between aggregated data points produced by this mapping rule. Defaults to a server-side value when unset. Conflicts with `storage_policy`.
+        :param pulumi.Input[str] mode: Mapping rule mode controlling whether it is active or in a preview state.
+        :param pulumi.Input[str] name: Display name of the mapping rule. Can be changed after creation.
+        :param pulumi.Input[str] slug: Stable identifier for the mapping rule. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input['MappingRuleStoragePolicyArgs'] storage_policy: Storage policy controlling resolution and retention of mapped metrics. Deprecated: use `interval` instead.
         """
         if aggregations is not None:
             pulumi.set(__self__, "aggregations", aggregations)
@@ -197,6 +247,9 @@ class _MappingRuleState:
     @property
     @pulumi.getter
     def aggregations(self) -> Optional[pulumi.Input[str]]:
+        """
+        Aggregation type applied to matching metrics. Cannot be set if `drop` is `true`.
+        """
         return pulumi.get(self, "aggregations")
 
     @aggregations.setter
@@ -206,6 +259,9 @@ class _MappingRuleState:
     @property
     @pulumi.getter(name="bucketId")
     def bucket_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the bucket the mapping rule belongs to.
+        """
         return pulumi.get(self, "bucket_id")
 
     @bucket_id.setter
@@ -215,6 +271,9 @@ class _MappingRuleState:
     @property
     @pulumi.getter
     def drop(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If `true`, drops the matching metrics instead of aggregating them. Cannot be set together with `aggregations`. Defaults to `false`.
+        """
         return pulumi.get(self, "drop")
 
     @drop.setter
@@ -224,6 +283,9 @@ class _MappingRuleState:
     @property
     @pulumi.getter(name="dropTimestamp")
     def drop_timestamp(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Deprecated: no longer supported.
+        """
         warnings.warn("""drop timestamp is no longer supported""", DeprecationWarning)
         pulumi.log.warn("""drop_timestamp is deprecated: drop timestamp is no longer supported""")
 
@@ -236,6 +298,9 @@ class _MappingRuleState:
     @property
     @pulumi.getter
     def filter(self) -> Optional[pulumi.Input[str]]:
+        """
+        Space-delimited list of `label=value_glob` matchers that select the metrics this rule applies to. A metric must match every filter to be considered.
+        """
         return pulumi.get(self, "filter")
 
     @filter.setter
@@ -245,6 +310,9 @@ class _MappingRuleState:
     @property
     @pulumi.getter
     def interval(self) -> Optional[pulumi.Input[str]]:
+        """
+        Interval between aggregated data points produced by this mapping rule. Defaults to a server-side value when unset. Conflicts with `storage_policy`.
+        """
         return pulumi.get(self, "interval")
 
     @interval.setter
@@ -254,6 +322,9 @@ class _MappingRuleState:
     @property
     @pulumi.getter
     def mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Mapping rule mode controlling whether it is active or in a preview state.
+        """
         return pulumi.get(self, "mode")
 
     @mode.setter
@@ -263,6 +334,9 @@ class _MappingRuleState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Display name of the mapping rule. Can be changed after creation.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -272,6 +346,9 @@ class _MappingRuleState:
     @property
     @pulumi.getter
     def slug(self) -> Optional[pulumi.Input[str]]:
+        """
+        Stable identifier for the mapping rule. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @slug.setter
@@ -281,6 +358,9 @@ class _MappingRuleState:
     @property
     @pulumi.getter(name="storagePolicy")
     def storage_policy(self) -> Optional[pulumi.Input['MappingRuleStoragePolicyArgs']]:
+        """
+        Storage policy controlling resolution and retention of mapped metrics. Deprecated: use `interval` instead.
+        """
         warnings.warn("""use `interval` instead""", DeprecationWarning)
         pulumi.log.warn("""storage_policy is deprecated: use `interval` instead""")
 
@@ -308,9 +388,20 @@ class MappingRule(pulumi.CustomResource):
                  storage_policy: Optional[pulumi.Input[pulumi.InputType['MappingRuleStoragePolicyArgs']]] = None,
                  __props__=None):
         """
-        Create a MappingRule resource with the given unique name, props, and options.
+        Selects metrics by label filter and either drops them or applies an aggregation policy controlling their storage interval and aggregation function. Use `DropRule` for drop-only rules and `RollupRule` for label-reducing aggregations.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] aggregations: Aggregation type applied to matching metrics. Cannot be set if `drop` is `true`.
+        :param pulumi.Input[str] bucket_id: ID of the bucket the mapping rule belongs to.
+        :param pulumi.Input[bool] drop: If `true`, drops the matching metrics instead of aggregating them. Cannot be set together with `aggregations`. Defaults to `false`.
+        :param pulumi.Input[bool] drop_timestamp: Deprecated: no longer supported.
+        :param pulumi.Input[str] filter: Space-delimited list of `label=value_glob` matchers that select the metrics this rule applies to. A metric must match every filter to be considered.
+        :param pulumi.Input[str] interval: Interval between aggregated data points produced by this mapping rule. Defaults to a server-side value when unset. Conflicts with `storage_policy`.
+        :param pulumi.Input[str] mode: Mapping rule mode controlling whether it is active or in a preview state.
+        :param pulumi.Input[str] name: Display name of the mapping rule. Can be changed after creation.
+        :param pulumi.Input[str] slug: Stable identifier for the mapping rule. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[pulumi.InputType['MappingRuleStoragePolicyArgs']] storage_policy: Storage policy controlling resolution and retention of mapped metrics. Deprecated: use `interval` instead.
         """
         ...
     @overload
@@ -319,7 +410,8 @@ class MappingRule(pulumi.CustomResource):
                  args: MappingRuleArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a MappingRule resource with the given unique name, props, and options.
+        Selects metrics by label filter and either drops them or applies an aggregation policy controlling their storage interval and aggregation function. Use `DropRule` for drop-only rules and `RollupRule` for label-reducing aggregations.
+
         :param str resource_name: The name of the resource.
         :param MappingRuleArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -395,6 +487,16 @@ class MappingRule(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] aggregations: Aggregation type applied to matching metrics. Cannot be set if `drop` is `true`.
+        :param pulumi.Input[str] bucket_id: ID of the bucket the mapping rule belongs to.
+        :param pulumi.Input[bool] drop: If `true`, drops the matching metrics instead of aggregating them. Cannot be set together with `aggregations`. Defaults to `false`.
+        :param pulumi.Input[bool] drop_timestamp: Deprecated: no longer supported.
+        :param pulumi.Input[str] filter: Space-delimited list of `label=value_glob` matchers that select the metrics this rule applies to. A metric must match every filter to be considered.
+        :param pulumi.Input[str] interval: Interval between aggregated data points produced by this mapping rule. Defaults to a server-side value when unset. Conflicts with `storage_policy`.
+        :param pulumi.Input[str] mode: Mapping rule mode controlling whether it is active or in a preview state.
+        :param pulumi.Input[str] name: Display name of the mapping rule. Can be changed after creation.
+        :param pulumi.Input[str] slug: Stable identifier for the mapping rule. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[pulumi.InputType['MappingRuleStoragePolicyArgs']] storage_policy: Storage policy controlling resolution and retention of mapped metrics. Deprecated: use `interval` instead.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -415,21 +517,33 @@ class MappingRule(pulumi.CustomResource):
     @property
     @pulumi.getter
     def aggregations(self) -> pulumi.Output[Optional[str]]:
+        """
+        Aggregation type applied to matching metrics. Cannot be set if `drop` is `true`.
+        """
         return pulumi.get(self, "aggregations")
 
     @property
     @pulumi.getter(name="bucketId")
     def bucket_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        ID of the bucket the mapping rule belongs to.
+        """
         return pulumi.get(self, "bucket_id")
 
     @property
     @pulumi.getter
     def drop(self) -> pulumi.Output[Optional[bool]]:
+        """
+        If `true`, drops the matching metrics instead of aggregating them. Cannot be set together with `aggregations`. Defaults to `false`.
+        """
         return pulumi.get(self, "drop")
 
     @property
     @pulumi.getter(name="dropTimestamp")
     def drop_timestamp(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Deprecated: no longer supported.
+        """
         warnings.warn("""drop timestamp is no longer supported""", DeprecationWarning)
         pulumi.log.warn("""drop_timestamp is deprecated: drop timestamp is no longer supported""")
 
@@ -438,31 +552,49 @@ class MappingRule(pulumi.CustomResource):
     @property
     @pulumi.getter
     def filter(self) -> pulumi.Output[str]:
+        """
+        Space-delimited list of `label=value_glob` matchers that select the metrics this rule applies to. A metric must match every filter to be considered.
+        """
         return pulumi.get(self, "filter")
 
     @property
     @pulumi.getter
     def interval(self) -> pulumi.Output[str]:
+        """
+        Interval between aggregated data points produced by this mapping rule. Defaults to a server-side value when unset. Conflicts with `storage_policy`.
+        """
         return pulumi.get(self, "interval")
 
     @property
     @pulumi.getter
     def mode(self) -> pulumi.Output[Optional[str]]:
+        """
+        Mapping rule mode controlling whether it is active or in a preview state.
+        """
         return pulumi.get(self, "mode")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        Display name of the mapping rule. Can be changed after creation.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def slug(self) -> pulumi.Output[str]:
+        """
+        Stable identifier for the mapping rule. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @property
     @pulumi.getter(name="storagePolicy")
     def storage_policy(self) -> pulumi.Output[Optional['outputs.MappingRuleStoragePolicy']]:
+        """
+        Storage policy controlling resolution and retention of mapped metrics. Deprecated: use `interval` instead.
+        """
         warnings.warn("""use `interval` instead""", DeprecationWarning)
         pulumi.log.warn("""storage_policy is deprecated: use `interval` instead""")
 

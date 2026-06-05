@@ -18,30 +18,62 @@ public final class GcpMetricsIntegrationState extends com.pulumi.resources.Resou
 
     public static final GcpMetricsIntegrationState Empty = new GcpMetricsIntegrationState();
 
+    /**
+     * Groups of Google Cloud metrics to ingest. Each group targets a specific project and set of metric prefixes.
+     * 
+     */
     @Import(name="metricGroups")
     private @Nullable Output<List<GcpMetricsIntegrationMetricGroupArgs>> metricGroups;
 
+    /**
+     * @return Groups of Google Cloud metrics to ingest. Each group targets a specific project and set of metric prefixes.
+     * 
+     */
     public Optional<Output<List<GcpMetricsIntegrationMetricGroupArgs>>> metricGroups() {
         return Optional.ofNullable(this.metricGroups);
     }
 
+    /**
+     * Label name to filter on.
+     * 
+     */
     @Import(name="name")
     private @Nullable Output<String> name;
 
+    /**
+     * @return Label name to filter on.
+     * 
+     */
     public Optional<Output<String>> name() {
         return Optional.ofNullable(this.name);
     }
 
+    /**
+     * Google Cloud service account that Chronosphere impersonates to read metrics.
+     * 
+     */
     @Import(name="serviceAccount")
     private @Nullable Output<GcpMetricsIntegrationServiceAccountArgs> serviceAccount;
 
+    /**
+     * @return Google Cloud service account that Chronosphere impersonates to read metrics.
+     * 
+     */
     public Optional<Output<GcpMetricsIntegrationServiceAccountArgs>> serviceAccount() {
         return Optional.ofNullable(this.serviceAccount);
     }
 
+    /**
+     * Stable identifier for the integration. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     @Import(name="slug")
     private @Nullable Output<String> slug;
 
+    /**
+     * @return Stable identifier for the integration. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     public Optional<Output<String>> slug() {
         return Optional.ofNullable(this.slug);
     }
@@ -73,42 +105,96 @@ public final class GcpMetricsIntegrationState extends com.pulumi.resources.Resou
             $ = new GcpMetricsIntegrationState(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param metricGroups Groups of Google Cloud metrics to ingest. Each group targets a specific project and set of metric prefixes.
+         * 
+         * @return builder
+         * 
+         */
         public Builder metricGroups(@Nullable Output<List<GcpMetricsIntegrationMetricGroupArgs>> metricGroups) {
             $.metricGroups = metricGroups;
             return this;
         }
 
+        /**
+         * @param metricGroups Groups of Google Cloud metrics to ingest. Each group targets a specific project and set of metric prefixes.
+         * 
+         * @return builder
+         * 
+         */
         public Builder metricGroups(List<GcpMetricsIntegrationMetricGroupArgs> metricGroups) {
             return metricGroups(Output.of(metricGroups));
         }
 
+        /**
+         * @param metricGroups Groups of Google Cloud metrics to ingest. Each group targets a specific project and set of metric prefixes.
+         * 
+         * @return builder
+         * 
+         */
         public Builder metricGroups(GcpMetricsIntegrationMetricGroupArgs... metricGroups) {
             return metricGroups(List.of(metricGroups));
         }
 
+        /**
+         * @param name Label name to filter on.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(@Nullable Output<String> name) {
             $.name = name;
             return this;
         }
 
+        /**
+         * @param name Label name to filter on.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(String name) {
             return name(Output.of(name));
         }
 
+        /**
+         * @param serviceAccount Google Cloud service account that Chronosphere impersonates to read metrics.
+         * 
+         * @return builder
+         * 
+         */
         public Builder serviceAccount(@Nullable Output<GcpMetricsIntegrationServiceAccountArgs> serviceAccount) {
             $.serviceAccount = serviceAccount;
             return this;
         }
 
+        /**
+         * @param serviceAccount Google Cloud service account that Chronosphere impersonates to read metrics.
+         * 
+         * @return builder
+         * 
+         */
         public Builder serviceAccount(GcpMetricsIntegrationServiceAccountArgs serviceAccount) {
             return serviceAccount(Output.of(serviceAccount));
         }
 
+        /**
+         * @param slug Stable identifier for the integration. Generated from `name` if omitted. Immutable after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slug(@Nullable Output<String> slug) {
             $.slug = slug;
             return this;
         }
 
+        /**
+         * @param slug Stable identifier for the integration. Generated from `name` if omitted. Immutable after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slug(String slug) {
             return slug(Output.of(slug));
         }

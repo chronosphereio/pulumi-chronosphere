@@ -15,6 +15,10 @@ namespace Chronosphere.Pulumi.Inputs
     {
         [Input("highPriorityFilters")]
         private InputList<Inputs.LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterGetArgs>? _highPriorityFilters;
+
+        /// <summary>
+        /// List of log search filters. Filters are combined as OR statements so only one filter needs to match.
+        /// </summary>
         public InputList<Inputs.LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterGetArgs> HighPriorityFilters
         {
             get => _highPriorityFilters ?? (_highPriorityFilters = new InputList<Inputs.LogAllocationConfigDefaultDatasetPrioritiesHighPriorityFilterGetArgs>());
@@ -23,6 +27,10 @@ namespace Chronosphere.Pulumi.Inputs
 
         [Input("lowPriorityFilters")]
         private InputList<Inputs.LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterGetArgs>? _lowPriorityFilters;
+
+        /// <summary>
+        /// List of log search filters. Filters are combined as OR statements so only one filter needs to match.
+        /// </summary>
         public InputList<Inputs.LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterGetArgs> LowPriorityFilters
         {
             get => _lowPriorityFilters ?? (_lowPriorityFilters = new InputList<Inputs.LogAllocationConfigDefaultDatasetPrioritiesLowPriorityFilterGetArgs>());

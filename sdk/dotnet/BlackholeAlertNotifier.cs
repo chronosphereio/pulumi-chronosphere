@@ -10,12 +10,39 @@ using Pulumi;
 
 namespace Chronosphere.Pulumi
 {
+    /// <summary>
+    /// Blackhole notifier that discards every signal routed to it. Reference from a notification policy route to silence alerts without delivering them anywhere.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Pulumi = Chronosphere.Pulumi;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var blackhole = new Pulumi.BlackholeAlertNotifier("blackhole", new()
+    ///     {
+    ///         Name = "Blackhole",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// </summary>
     [PulumiResourceType("chronosphere:index/blackholeAlertNotifier:BlackholeAlertNotifier")]
     public partial class BlackholeAlertNotifier : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Display name of the notifier.
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Output("slug")]
         public Output<string> Slug { get; private set; } = null!;
 
@@ -66,9 +93,15 @@ namespace Chronosphere.Pulumi
 
     public sealed class BlackholeAlertNotifierArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Display name of the notifier.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 
@@ -80,9 +113,15 @@ namespace Chronosphere.Pulumi
 
     public sealed class BlackholeAlertNotifierState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Display name of the notifier.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 

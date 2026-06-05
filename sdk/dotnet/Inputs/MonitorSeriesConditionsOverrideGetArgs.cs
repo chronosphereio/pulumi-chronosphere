@@ -15,6 +15,10 @@ namespace Chronosphere.Pulumi.Inputs
     {
         [Input("conditions", required: true)]
         private InputList<Inputs.MonitorSeriesConditionsOverrideConditionGetArgs>? _conditions;
+
+        /// <summary>
+        /// One or more severity/threshold conditions. Multiple conditions enable multi-severity monitors (e.g. warn at one threshold, page at a higher one).
+        /// </summary>
         public InputList<Inputs.MonitorSeriesConditionsOverrideConditionGetArgs> Conditions
         {
             get => _conditions ?? (_conditions = new InputList<Inputs.MonitorSeriesConditionsOverrideConditionGetArgs>());
@@ -23,6 +27,10 @@ namespace Chronosphere.Pulumi.Inputs
 
         [Input("labelMatchers", required: true)]
         private InputList<Inputs.MonitorSeriesConditionsOverrideLabelMatcherGetArgs>? _labelMatchers;
+
+        /// <summary>
+        /// List of label matchers used to select a subset of series.
+        /// </summary>
         public InputList<Inputs.MonitorSeriesConditionsOverrideLabelMatcherGetArgs> LabelMatchers
         {
             get => _labelMatchers ?? (_labelMatchers = new InputList<Inputs.MonitorSeriesConditionsOverrideLabelMatcherGetArgs>());

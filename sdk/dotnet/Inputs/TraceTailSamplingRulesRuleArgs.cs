@@ -13,15 +13,27 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class TraceTailSamplingRulesRuleArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Filter that selects traces and spans. A trace matches when its trace-level conditions hold and every `span` block is satisfied by at least one span in the trace.
+        /// </summary>
         [Input("filter", required: true)]
         public Input<Inputs.TraceTailSamplingRulesRuleFilterArgs> Filter { get; set; } = null!;
 
+        /// <summary>
+        /// Human-readable name of the rule.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// Fraction of matching traces to keep, in the range `[0.0, 1.0]`. `0` drops all matches, `1` keeps every match.
+        /// </summary>
         [Input("sampleRate", required: true)]
         public Input<double> SampleRate { get; set; } = null!;
 
+        /// <summary>
+        /// Stable identifier used as the metric label value on metrics emitted by this rule.
+        /// </summary>
         [Input("systemName")]
         public Input<string>? SystemName { get; set; }
 

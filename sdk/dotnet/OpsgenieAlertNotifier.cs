@@ -10,60 +10,147 @@ using Pulumi;
 
 namespace Chronosphere.Pulumi
 {
+    /// <summary>
+    /// OpsGenie notifier that delivers monitor signals to OpsGenie as alerts via its API integration. Referenced from notification policies.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Pulumi = Chronosphere.Pulumi;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var opsgenie = new Pulumi.OpsgenieAlertNotifier("opsgenie", new()
+    ///     {
+    ///         ApiKey = "XXXXX",
+    ///         ApiUrl = "https://api.opsgenie.com/",
+    ///         Name = "infra_compute_opsgenie",
+    ///         Priority = "P1",
+    ///         Responders = new[]
+    ///         {
+    ///             new Pulumi.Inputs.OpsgenieAlertNotifierResponderArgs
+    ///             {
+    ///                 Name = "Productivity Platform - Compute",
+    ///                 Type = "TEAM",
+    ///             },
+    ///         },
+    ///         SendResolved = true,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// </summary>
     [PulumiResourceType("chronosphere:index/opsgenieAlertNotifier:OpsgenieAlertNotifier")]
     public partial class OpsgenieAlertNotifier : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Opsgenie API key used to authenticate requests. Treat as a secret.
+        /// </summary>
         [Output("apiKey")]
         public Output<string> ApiKey { get; private set; } = null!;
 
+        /// <summary>
+        /// Opsgenie API URL to send requests to (e.g. `https://api.opsgenie.com/`).
+        /// </summary>
         [Output("apiUrl")]
         public Output<string?> ApiUrl { get; private set; } = null!;
 
+        /// <summary>
+        /// Password for HTTP basic auth when calling the Opsgenie API. Treat as a secret.
+        /// </summary>
         [Output("basicAuthPassword")]
         public Output<string?> BasicAuthPassword { get; private set; } = null!;
 
+        /// <summary>
+        /// Username for HTTP basic auth when calling the Opsgenie API. Mutually exclusive with `bearer_token`.
+        /// </summary>
         [Output("basicAuthUsername")]
         public Output<string?> BasicAuthUsername { get; private set; } = null!;
 
+        /// <summary>
+        /// Bearer token sent in the `Authorization` header when calling the Opsgenie API. Treat as a secret. Mutually exclusive with basic auth.
+        /// </summary>
         [Output("bearerToken")]
         public Output<string?> BearerToken { get; private set; } = null!;
 
+        /// <summary>
+        /// Detailed description of the alert. Supports Go templating.
+        /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
+        /// <summary>
+        /// Arbitrary key/value pairs attached to the alert as additional context. Values support Go templating.
+        /// </summary>
         [Output("details")]
         public Output<ImmutableDictionary<string, string>?> Details { get; private set; } = null!;
 
+        /// <summary>
+        /// Alert text shown in Opsgenie. Supports Go templating.
+        /// </summary>
         [Output("message")]
         public Output<string?> Message { get; private set; } = null!;
 
+        /// <summary>
+        /// Name of the responder team, schedule, or escalation policy.
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// Additional note appended to the alert. Supports Go templating.
+        /// </summary>
         [Output("note")]
         public Output<string?> Note { get; private set; } = null!;
 
+        /// <summary>
+        /// Priority level of the alert. One of `P1`, `P2`, `P3`, `P4`, or `P5`.
+        /// </summary>
         [Output("priority")]
         public Output<string?> Priority { get; private set; } = null!;
 
+        /// <summary>
+        /// Deprecated and ignored. Custom proxy URLs are not supported.
+        /// </summary>
         [Output("proxyUrl")]
         public Output<string?> ProxyUrl { get; private set; } = null!;
 
+        /// <summary>
+        /// Responders that Opsgenie will notify for the alert. See https://docs.opsgenie.com/docs/alert-api for accepted shapes.
+        /// </summary>
         [Output("responders")]
         public Output<ImmutableArray<Outputs.OpsgenieAlertNotifierResponder>> Responders { get; private set; } = null!;
 
+        /// <summary>
+        /// Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+        /// </summary>
         [Output("sendResolved")]
         public Output<bool?> SendResolved { get; private set; } = null!;
 
+        /// <summary>
+        /// Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Output("slug")]
         public Output<string> Slug { get; private set; } = null!;
 
+        /// <summary>
+        /// Backlink to the sender of the notification. Supports Go templating.
+        /// </summary>
         [Output("source")]
         public Output<string?> Source { get; private set; } = null!;
 
+        /// <summary>
+        /// Tags attached to the Opsgenie alert.
+        /// </summary>
         [Output("tags")]
         public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
 
+        /// <summary>
+        /// If true, skip TLS certificate verification when calling the Opsgenie API. Disable only in trusted environments.
+        /// </summary>
         [Output("tlsInsecureSkipVerify")]
         public Output<bool?> TlsInsecureSkipVerify { get; private set; } = null!;
 
@@ -121,6 +208,10 @@ namespace Chronosphere.Pulumi
     {
         [Input("apiKey", required: true)]
         private Input<string>? _apiKey;
+
+        /// <summary>
+        /// Opsgenie API key used to authenticate requests. Treat as a secret.
+        /// </summary>
         public Input<string>? ApiKey
         {
             get => _apiKey;
@@ -131,11 +222,18 @@ namespace Chronosphere.Pulumi
             }
         }
 
+        /// <summary>
+        /// Opsgenie API URL to send requests to (e.g. `https://api.opsgenie.com/`).
+        /// </summary>
         [Input("apiUrl")]
         public Input<string>? ApiUrl { get; set; }
 
         [Input("basicAuthPassword")]
         private Input<string>? _basicAuthPassword;
+
+        /// <summary>
+        /// Password for HTTP basic auth when calling the Opsgenie API. Treat as a secret.
+        /// </summary>
         public Input<string>? BasicAuthPassword
         {
             get => _basicAuthPassword;
@@ -146,63 +244,111 @@ namespace Chronosphere.Pulumi
             }
         }
 
+        /// <summary>
+        /// Username for HTTP basic auth when calling the Opsgenie API. Mutually exclusive with `bearer_token`.
+        /// </summary>
         [Input("basicAuthUsername")]
         public Input<string>? BasicAuthUsername { get; set; }
 
+        /// <summary>
+        /// Bearer token sent in the `Authorization` header when calling the Opsgenie API. Treat as a secret. Mutually exclusive with basic auth.
+        /// </summary>
         [Input("bearerToken")]
         public Input<string>? BearerToken { get; set; }
 
+        /// <summary>
+        /// Detailed description of the alert. Supports Go templating.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         [Input("details")]
         private InputMap<string>? _details;
+
+        /// <summary>
+        /// Arbitrary key/value pairs attached to the alert as additional context. Values support Go templating.
+        /// </summary>
         public InputMap<string> Details
         {
             get => _details ?? (_details = new InputMap<string>());
             set => _details = value;
         }
 
+        /// <summary>
+        /// Alert text shown in Opsgenie. Supports Go templating.
+        /// </summary>
         [Input("message")]
         public Input<string>? Message { get; set; }
 
+        /// <summary>
+        /// Name of the responder team, schedule, or escalation policy.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// Additional note appended to the alert. Supports Go templating.
+        /// </summary>
         [Input("note")]
         public Input<string>? Note { get; set; }
 
+        /// <summary>
+        /// Priority level of the alert. One of `P1`, `P2`, `P3`, `P4`, or `P5`.
+        /// </summary>
         [Input("priority")]
         public Input<string>? Priority { get; set; }
 
+        /// <summary>
+        /// Deprecated and ignored. Custom proxy URLs are not supported.
+        /// </summary>
         [Input("proxyUrl")]
         public Input<string>? ProxyUrl { get; set; }
 
         [Input("responders")]
         private InputList<Inputs.OpsgenieAlertNotifierResponderArgs>? _responders;
+
+        /// <summary>
+        /// Responders that Opsgenie will notify for the alert. See https://docs.opsgenie.com/docs/alert-api for accepted shapes.
+        /// </summary>
         public InputList<Inputs.OpsgenieAlertNotifierResponderArgs> Responders
         {
             get => _responders ?? (_responders = new InputList<Inputs.OpsgenieAlertNotifierResponderArgs>());
             set => _responders = value;
         }
 
+        /// <summary>
+        /// Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+        /// </summary>
         [Input("sendResolved")]
         public Input<bool>? SendResolved { get; set; }
 
+        /// <summary>
+        /// Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 
+        /// <summary>
+        /// Backlink to the sender of the notification. Supports Go templating.
+        /// </summary>
         [Input("source")]
         public Input<string>? Source { get; set; }
 
         [Input("tags")]
         private InputList<string>? _tags;
+
+        /// <summary>
+        /// Tags attached to the Opsgenie alert.
+        /// </summary>
         public InputList<string> Tags
         {
             get => _tags ?? (_tags = new InputList<string>());
             set => _tags = value;
         }
 
+        /// <summary>
+        /// If true, skip TLS certificate verification when calling the Opsgenie API. Disable only in trusted environments.
+        /// </summary>
         [Input("tlsInsecureSkipVerify")]
         public Input<bool>? TlsInsecureSkipVerify { get; set; }
 
@@ -216,6 +362,10 @@ namespace Chronosphere.Pulumi
     {
         [Input("apiKey")]
         private Input<string>? _apiKey;
+
+        /// <summary>
+        /// Opsgenie API key used to authenticate requests. Treat as a secret.
+        /// </summary>
         public Input<string>? ApiKey
         {
             get => _apiKey;
@@ -226,11 +376,18 @@ namespace Chronosphere.Pulumi
             }
         }
 
+        /// <summary>
+        /// Opsgenie API URL to send requests to (e.g. `https://api.opsgenie.com/`).
+        /// </summary>
         [Input("apiUrl")]
         public Input<string>? ApiUrl { get; set; }
 
         [Input("basicAuthPassword")]
         private Input<string>? _basicAuthPassword;
+
+        /// <summary>
+        /// Password for HTTP basic auth when calling the Opsgenie API. Treat as a secret.
+        /// </summary>
         public Input<string>? BasicAuthPassword
         {
             get => _basicAuthPassword;
@@ -241,63 +398,111 @@ namespace Chronosphere.Pulumi
             }
         }
 
+        /// <summary>
+        /// Username for HTTP basic auth when calling the Opsgenie API. Mutually exclusive with `bearer_token`.
+        /// </summary>
         [Input("basicAuthUsername")]
         public Input<string>? BasicAuthUsername { get; set; }
 
+        /// <summary>
+        /// Bearer token sent in the `Authorization` header when calling the Opsgenie API. Treat as a secret. Mutually exclusive with basic auth.
+        /// </summary>
         [Input("bearerToken")]
         public Input<string>? BearerToken { get; set; }
 
+        /// <summary>
+        /// Detailed description of the alert. Supports Go templating.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         [Input("details")]
         private InputMap<string>? _details;
+
+        /// <summary>
+        /// Arbitrary key/value pairs attached to the alert as additional context. Values support Go templating.
+        /// </summary>
         public InputMap<string> Details
         {
             get => _details ?? (_details = new InputMap<string>());
             set => _details = value;
         }
 
+        /// <summary>
+        /// Alert text shown in Opsgenie. Supports Go templating.
+        /// </summary>
         [Input("message")]
         public Input<string>? Message { get; set; }
 
+        /// <summary>
+        /// Name of the responder team, schedule, or escalation policy.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// Additional note appended to the alert. Supports Go templating.
+        /// </summary>
         [Input("note")]
         public Input<string>? Note { get; set; }
 
+        /// <summary>
+        /// Priority level of the alert. One of `P1`, `P2`, `P3`, `P4`, or `P5`.
+        /// </summary>
         [Input("priority")]
         public Input<string>? Priority { get; set; }
 
+        /// <summary>
+        /// Deprecated and ignored. Custom proxy URLs are not supported.
+        /// </summary>
         [Input("proxyUrl")]
         public Input<string>? ProxyUrl { get; set; }
 
         [Input("responders")]
         private InputList<Inputs.OpsgenieAlertNotifierResponderGetArgs>? _responders;
+
+        /// <summary>
+        /// Responders that Opsgenie will notify for the alert. See https://docs.opsgenie.com/docs/alert-api for accepted shapes.
+        /// </summary>
         public InputList<Inputs.OpsgenieAlertNotifierResponderGetArgs> Responders
         {
             get => _responders ?? (_responders = new InputList<Inputs.OpsgenieAlertNotifierResponderGetArgs>());
             set => _responders = value;
         }
 
+        /// <summary>
+        /// Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+        /// </summary>
         [Input("sendResolved")]
         public Input<bool>? SendResolved { get; set; }
 
+        /// <summary>
+        /// Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 
+        /// <summary>
+        /// Backlink to the sender of the notification. Supports Go templating.
+        /// </summary>
         [Input("source")]
         public Input<string>? Source { get; set; }
 
         [Input("tags")]
         private InputList<string>? _tags;
+
+        /// <summary>
+        /// Tags attached to the Opsgenie alert.
+        /// </summary>
         public InputList<string> Tags
         {
             get => _tags ?? (_tags = new InputList<string>());
             set => _tags = value;
         }
 
+        /// <summary>
+        /// If true, skip TLS certificate verification when calling the Opsgenie API. Disable only in trusted environments.
+        /// </summary>
         [Input("tlsInsecureSkipVerify")]
         public Input<bool>? TlsInsecureSkipVerify { get; set; }
 

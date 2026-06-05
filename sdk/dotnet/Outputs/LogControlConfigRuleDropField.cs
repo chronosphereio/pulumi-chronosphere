@@ -14,7 +14,13 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class LogControlConfigRuleDropField
     {
+        /// <summary>
+        /// Regular expression that selects which fields to drop.
+        /// </summary>
         public readonly string? FieldRegex;
+        /// <summary>
+        /// Path to a field within a log record.
+        /// </summary>
         public readonly Outputs.LogControlConfigRuleDropFieldParentPath? ParentPath;
 
         [OutputConstructor]

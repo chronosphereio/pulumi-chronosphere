@@ -13,11 +13,18 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class NotificationPolicyRouteDestinationVictorOpsGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Slug of the OpsGenie external connection holding the integration credentials.
+        /// </summary>
         [Input("externalConnectionSlug", required: true)]
         public Input<string> ExternalConnectionSlug { get; set; } = null!;
 
         [Input("routingKeys", required: true)]
         private InputList<string>? _routingKeys;
+
+        /// <summary>
+        /// VictorOps routing keys identifying the destination escalation policies.
+        /// </summary>
         public InputList<string> RoutingKeys
         {
             get => _routingKeys ?? (_routingKeys = new InputList<string>());

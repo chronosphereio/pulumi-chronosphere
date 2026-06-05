@@ -16,47 +16,139 @@ import java.util.List;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
+/**
+ * Workspace-scoped webhook credentials that downstream notifiers and LogScale actions can reference. Centralizes the destination URL and HTTP auth so they aren&#39;t duplicated across notifiers; modern equivalent of the per-notifier credentials.
+ * 
+ * ## Example Usage
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.chronosphere.WebhookExternalConnection;
+ * import com.pulumi.chronosphere.WebhookExternalConnectionArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var webhook = new WebhookExternalConnection(&#34;webhook&#34;, WebhookExternalConnectionArgs.builder()        
+ *             .bearerToken(&#34;XXXXX&#34;)
+ *             .name(&#34;Webhook&#34;)
+ *             .url(&#34;https://example.com/notify&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ */
 @ResourceType(type="chronosphere:index/webhookExternalConnection:WebhookExternalConnection")
 public class WebhookExternalConnection extends com.pulumi.resources.CustomResource {
+    /**
+     * Password for HTTP basic auth when calling the webhook. Treat as a secret.
+     * 
+     */
     @Export(name="basicAuthPassword", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> basicAuthPassword;
 
+    /**
+     * @return Password for HTTP basic auth when calling the webhook. Treat as a secret.
+     * 
+     */
     public Output<Optional<String>> basicAuthPassword() {
         return Codegen.optional(this.basicAuthPassword);
     }
+    /**
+     * Username for HTTP basic auth when calling the webhook. Mutually exclusive with `bearer_token`.
+     * 
+     */
     @Export(name="basicAuthUsername", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> basicAuthUsername;
 
+    /**
+     * @return Username for HTTP basic auth when calling the webhook. Mutually exclusive with `bearer_token`.
+     * 
+     */
     public Output<Optional<String>> basicAuthUsername() {
         return Codegen.optional(this.basicAuthUsername);
     }
+    /**
+     * Bearer token sent in the `Authorization` header when calling the webhook. Mutually exclusive with basic auth. Treat as a secret.
+     * 
+     */
     @Export(name="bearerToken", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> bearerToken;
 
+    /**
+     * @return Bearer token sent in the `Authorization` header when calling the webhook. Mutually exclusive with basic auth. Treat as a secret.
+     * 
+     */
     public Output<Optional<String>> bearerToken() {
         return Codegen.optional(this.bearerToken);
     }
+    /**
+     * Display name of the external connection.
+     * 
+     */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
+    /**
+     * @return Display name of the external connection.
+     * 
+     */
     public Output<String> name() {
         return this.name;
     }
+    /**
+     * Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     @Export(name="slug", refs={String.class}, tree="[0]")
     private Output<String> slug;
 
+    /**
+     * @return Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     public Output<String> slug() {
         return this.slug;
     }
+    /**
+     * If true, skip TLS certificate verification when calling the webhook. Disable only in trusted environments.
+     * 
+     */
     @Export(name="tlsInsecureSkipVerify", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> tlsInsecureSkipVerify;
 
+    /**
+     * @return If true, skip TLS certificate verification when calling the webhook. Disable only in trusted environments.
+     * 
+     */
     public Output<Optional<Boolean>> tlsInsecureSkipVerify() {
         return Codegen.optional(this.tlsInsecureSkipVerify);
     }
+    /**
+     * Destination URL that receives webhook POST requests for this connection.
+     * 
+     */
     @Export(name="url", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> url;
 
+    /**
+     * @return Destination URL that receives webhook POST requests for this connection.
+     * 
+     */
     public Output<Optional<String>> url() {
         return Codegen.optional(this.url);
     }

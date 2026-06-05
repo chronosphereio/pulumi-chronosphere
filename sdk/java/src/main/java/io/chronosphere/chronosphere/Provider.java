@@ -23,21 +23,53 @@ import javax.annotation.Nullable;
  */
 @ResourceType(type="pulumi:providers:chronosphere")
 public class Provider extends com.pulumi.resources.ProviderResource {
+    /**
+     * API token used to authenticate against the Chronosphere API. Treat as a secret. Falls back to the
+     * `CHRONOSPHERE_API_TOKEN` environment variable.
+     * 
+     */
     @Export(name="apiToken", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> apiToken;
 
+    /**
+     * @return API token used to authenticate against the Chronosphere API. Treat as a secret. Falls back to the
+     * `CHRONOSPHERE_API_TOKEN` environment variable.
+     * 
+     */
     public Output<Optional<String>> apiToken() {
         return Codegen.optional(this.apiToken);
     }
+    /**
+     * Optional namespace prefix applied to entity slugs managed by this provider instance, so multiple Terraform
+     * configurations can coexist in one Chronosphere org. Falls back to the `CHRONOSPHERE_ENTITY_NAMESPACE` environment
+     * variable.
+     * 
+     */
     @Export(name="entityNamespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> entityNamespace;
 
+    /**
+     * @return Optional namespace prefix applied to entity slugs managed by this provider instance, so multiple Terraform
+     * configurations can coexist in one Chronosphere org. Falls back to the `CHRONOSPHERE_ENTITY_NAMESPACE` environment
+     * variable.
+     * 
+     */
     public Output<Optional<String>> entityNamespace() {
         return Codegen.optional(this.entityNamespace);
     }
+    /**
+     * Chronosphere organization name (the subdomain of `&lt;org&gt;.chronosphere.io`). Falls back to the `CHRONOSPHERE_ORG` or
+     * `CHRONOSPHERE_ORG_NAME` environment variables.
+     * 
+     */
     @Export(name="org", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> org;
 
+    /**
+     * @return Chronosphere organization name (the subdomain of `&lt;org&gt;.chronosphere.io`). Falls back to the `CHRONOSPHERE_ORG` or
+     * `CHRONOSPHERE_ORG_NAME` environment variables.
+     * 
+     */
     public Output<Optional<String>> org() {
         return Codegen.optional(this.org);
     }

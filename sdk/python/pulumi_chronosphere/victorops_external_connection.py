@@ -20,6 +20,10 @@ class VictoropsExternalConnectionArgs:
                  slug: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a VictoropsExternalConnection resource.
+        :param pulumi.Input[str] name: Display name of the external connection.
+        :param pulumi.Input[str] api_key: VictorOps (Splunk On-Call) REST integration API key used to authenticate alert delivery. Treat as a secret.
+        :param pulumi.Input[str] api_url: VictorOps REST endpoint URL that receives alert payloads. Override to target a custom endpoint.
+        :param pulumi.Input[str] slug: Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
         """
         pulumi.set(__self__, "name", name)
         if api_key is not None:
@@ -32,6 +36,9 @@ class VictoropsExternalConnectionArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        Display name of the external connection.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -41,6 +48,9 @@ class VictoropsExternalConnectionArgs:
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        VictorOps (Splunk On-Call) REST integration API key used to authenticate alert delivery. Treat as a secret.
+        """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
@@ -50,6 +60,9 @@ class VictoropsExternalConnectionArgs:
     @property
     @pulumi.getter(name="apiUrl")
     def api_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        VictorOps REST endpoint URL that receives alert payloads. Override to target a custom endpoint.
+        """
         return pulumi.get(self, "api_url")
 
     @api_url.setter
@@ -59,6 +72,9 @@ class VictoropsExternalConnectionArgs:
     @property
     @pulumi.getter
     def slug(self) -> Optional[pulumi.Input[str]]:
+        """
+        Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @slug.setter
@@ -75,6 +91,10 @@ class _VictoropsExternalConnectionState:
                  slug: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering VictoropsExternalConnection resources.
+        :param pulumi.Input[str] api_key: VictorOps (Splunk On-Call) REST integration API key used to authenticate alert delivery. Treat as a secret.
+        :param pulumi.Input[str] api_url: VictorOps REST endpoint URL that receives alert payloads. Override to target a custom endpoint.
+        :param pulumi.Input[str] name: Display name of the external connection.
+        :param pulumi.Input[str] slug: Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
         """
         if api_key is not None:
             pulumi.set(__self__, "api_key", api_key)
@@ -88,6 +108,9 @@ class _VictoropsExternalConnectionState:
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        VictorOps (Splunk On-Call) REST integration API key used to authenticate alert delivery. Treat as a secret.
+        """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
@@ -97,6 +120,9 @@ class _VictoropsExternalConnectionState:
     @property
     @pulumi.getter(name="apiUrl")
     def api_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        VictorOps REST endpoint URL that receives alert payloads. Override to target a custom endpoint.
+        """
         return pulumi.get(self, "api_url")
 
     @api_url.setter
@@ -106,6 +132,9 @@ class _VictoropsExternalConnectionState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Display name of the external connection.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -115,6 +144,9 @@ class _VictoropsExternalConnectionState:
     @property
     @pulumi.getter
     def slug(self) -> Optional[pulumi.Input[str]]:
+        """
+        Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @slug.setter
@@ -133,9 +165,26 @@ class VictoropsExternalConnection(pulumi.CustomResource):
                  slug: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a VictoropsExternalConnection resource with the given unique name, props, and options.
+        Workspace-scoped VictorOps (Splunk On-Call) credentials that downstream notifiers and LogScale actions can reference. Centralizes the REST integration API key so it isn't duplicated across notifiers; modern equivalent of the per-notifier credentials.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_chronosphere as chronosphere
+
+        victorops = chronosphere.VictoropsExternalConnection("victorops",
+            api_key="00000000-0000-0000-0000-000000000000",
+            api_url="https://alert.victorops.com/integrations/generic/00000000/alert/",
+            name="VictorOps")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] api_key: VictorOps (Splunk On-Call) REST integration API key used to authenticate alert delivery. Treat as a secret.
+        :param pulumi.Input[str] api_url: VictorOps REST endpoint URL that receives alert payloads. Override to target a custom endpoint.
+        :param pulumi.Input[str] name: Display name of the external connection.
+        :param pulumi.Input[str] slug: Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
         """
         ...
     @overload
@@ -144,7 +193,20 @@ class VictoropsExternalConnection(pulumi.CustomResource):
                  args: VictoropsExternalConnectionArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a VictoropsExternalConnection resource with the given unique name, props, and options.
+        Workspace-scoped VictorOps (Splunk On-Call) credentials that downstream notifiers and LogScale actions can reference. Centralizes the REST integration API key so it isn't duplicated across notifiers; modern equivalent of the per-notifier credentials.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_chronosphere as chronosphere
+
+        victorops = chronosphere.VictoropsExternalConnection("victorops",
+            api_key="00000000-0000-0000-0000-000000000000",
+            api_url="https://alert.victorops.com/integrations/generic/00000000/alert/",
+            name="VictorOps")
+        ```
+
         :param str resource_name: The name of the resource.
         :param VictoropsExternalConnectionArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -202,6 +264,10 @@ class VictoropsExternalConnection(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] api_key: VictorOps (Splunk On-Call) REST integration API key used to authenticate alert delivery. Treat as a secret.
+        :param pulumi.Input[str] api_url: VictorOps REST endpoint URL that receives alert payloads. Override to target a custom endpoint.
+        :param pulumi.Input[str] name: Display name of the external connection.
+        :param pulumi.Input[str] slug: Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -216,20 +282,32 @@ class VictoropsExternalConnection(pulumi.CustomResource):
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Output[Optional[str]]:
+        """
+        VictorOps (Splunk On-Call) REST integration API key used to authenticate alert delivery. Treat as a secret.
+        """
         return pulumi.get(self, "api_key")
 
     @property
     @pulumi.getter(name="apiUrl")
     def api_url(self) -> pulumi.Output[Optional[str]]:
+        """
+        VictorOps REST endpoint URL that receives alert payloads. Override to target a custom endpoint.
+        """
         return pulumi.get(self, "api_url")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        Display name of the external connection.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def slug(self) -> pulumi.Output[str]:
+        """
+        Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 

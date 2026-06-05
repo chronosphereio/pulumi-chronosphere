@@ -15,29 +15,77 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class LogControlConfigRuleReplaceField {
+    /**
+     * @return Path to a field within a log record.
+     * 
+     */
     private @Nullable LogControlConfigRuleReplaceFieldField field;
+    /**
+     * @return Replace field values using a key/value lookup table. Exactly one of `mapped_value` or `static_value` must be set.
+     * 
+     */
     private @Nullable LogControlConfigRuleReplaceFieldMappedValue mappedValue;
+    /**
+     * @return If `true`, replaces all matches. If `false`, replaces only the first match.
+     * 
+     */
     private @Nullable Boolean replaceAll;
+    /**
+     * @return Mode that controls how the replacement is applied to matched content.
+     * 
+     */
     private @Nullable String replaceMode;
+    /**
+     * @return Regular expression that selects which part of the field value to replace.
+     * 
+     */
     private @Nullable String replaceRegex;
+    /**
+     * @return Replace matched content with a static string. Exactly one of `mapped_value` or `static_value` must be set.
+     * 
+     */
     private @Nullable LogControlConfigRuleReplaceFieldStaticValue staticValue;
 
     private LogControlConfigRuleReplaceField() {}
+    /**
+     * @return Path to a field within a log record.
+     * 
+     */
     public Optional<LogControlConfigRuleReplaceFieldField> field() {
         return Optional.ofNullable(this.field);
     }
+    /**
+     * @return Replace field values using a key/value lookup table. Exactly one of `mapped_value` or `static_value` must be set.
+     * 
+     */
     public Optional<LogControlConfigRuleReplaceFieldMappedValue> mappedValue() {
         return Optional.ofNullable(this.mappedValue);
     }
+    /**
+     * @return If `true`, replaces all matches. If `false`, replaces only the first match.
+     * 
+     */
     public Optional<Boolean> replaceAll() {
         return Optional.ofNullable(this.replaceAll);
     }
+    /**
+     * @return Mode that controls how the replacement is applied to matched content.
+     * 
+     */
     public Optional<String> replaceMode() {
         return Optional.ofNullable(this.replaceMode);
     }
+    /**
+     * @return Regular expression that selects which part of the field value to replace.
+     * 
+     */
     public Optional<String> replaceRegex() {
         return Optional.ofNullable(this.replaceRegex);
     }
+    /**
+     * @return Replace matched content with a static string. Exactly one of `mapped_value` or `static_value` must be set.
+     * 
+     */
     public Optional<LogControlConfigRuleReplaceFieldStaticValue> staticValue() {
         return Optional.ofNullable(this.staticValue);
     }

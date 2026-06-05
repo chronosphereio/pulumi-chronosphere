@@ -13,9 +13,15 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class LogControlConfigRuleEmitMetricsGaugeGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// How multiple values are aggregated into the emitted gauge (for example, `LAST`, `MIN`, `MAX`).
+        /// </summary>
         [Input("aggregationType")]
         public Input<string>? AggregationType { get; set; }
 
+        /// <summary>
+        /// Path to a field within a log record.
+        /// </summary>
         [Input("value")]
         public Input<Inputs.LogControlConfigRuleEmitMetricsGaugeValueGetArgs>? Value { get; set; }
 

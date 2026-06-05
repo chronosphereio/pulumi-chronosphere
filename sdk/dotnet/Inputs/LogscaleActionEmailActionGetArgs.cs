@@ -13,23 +13,39 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class LogscaleActionEmailActionGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// If `true`, attaches the query result set as a CSV file.
+        /// </summary>
         [Input("attachCsv")]
         public Input<bool>? AttachCsv { get; set; }
 
+        /// <summary>
+        /// Body of the email. Supports Go template syntax with values from the query result.
+        /// </summary>
         [Input("bodyTemplate")]
         public Input<string>? BodyTemplate { get; set; }
 
         [Input("recipients", required: true)]
         private InputList<string>? _recipients;
+
+        /// <summary>
+        /// List of email addresses to send the message to.
+        /// </summary>
         public InputList<string> Recipients
         {
             get => _recipients ?? (_recipients = new InputList<string>());
             set => _recipients = value;
         }
 
+        /// <summary>
+        /// Subject of the email. Supports Go template syntax with values from the query result.
+        /// </summary>
         [Input("subjectTemplate")]
         public Input<string>? SubjectTemplate { get; set; }
 
+        /// <summary>
+        /// If `true`, sends the request through the configured outbound proxy.
+        /// </summary>
         [Input("useProxy")]
         public Input<bool>? UseProxy { get; set; }
 

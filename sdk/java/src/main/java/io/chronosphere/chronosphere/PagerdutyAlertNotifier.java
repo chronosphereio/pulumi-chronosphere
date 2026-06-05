@@ -19,87 +19,232 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
+/**
+ * PagerDuty notifier that delivers monitor signals to PagerDuty as incidents via the Events API. Referenced from notification policies.
+ * 
+ * ## Example Usage
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.chronosphere.PagerdutyAlertNotifier;
+ * import com.pulumi.chronosphere.PagerdutyAlertNotifierArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var pagerduty = new PagerdutyAlertNotifier(&#34;pagerduty&#34;, PagerdutyAlertNotifierArgs.builder()        
+ *             .details(Map.of(&#34;runbook&#34;, &#34;http://runbook&#34;))
+ *             .name(&#34;PagerDuty Notifier&#34;)
+ *             .routingKey(&#34;XXXXX&#34;)
+ *             .sendResolved(true)
+ *             .severity(&#34;info&#34;)
+ *             .url(&#34;https://events.pagerduty.com/v2/enqueue&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ */
 @ResourceType(type="chronosphere:index/pagerdutyAlertNotifier:PagerdutyAlertNotifier")
 public class PagerdutyAlertNotifier extends com.pulumi.resources.CustomResource {
+    /**
+     * Password for HTTP basic auth when calling the PagerDuty API. Treat as a secret.
+     * 
+     */
     @Export(name="basicAuthPassword", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> basicAuthPassword;
 
+    /**
+     * @return Password for HTTP basic auth when calling the PagerDuty API. Treat as a secret.
+     * 
+     */
     public Output<Optional<String>> basicAuthPassword() {
         return Codegen.optional(this.basicAuthPassword);
     }
+    /**
+     * Username for HTTP basic auth when calling the PagerDuty API. Mutually exclusive with `bearer_token`.
+     * 
+     */
     @Export(name="basicAuthUsername", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> basicAuthUsername;
 
+    /**
+     * @return Username for HTTP basic auth when calling the PagerDuty API. Mutually exclusive with `bearer_token`.
+     * 
+     */
     public Output<Optional<String>> basicAuthUsername() {
         return Codegen.optional(this.basicAuthUsername);
     }
+    /**
+     * Bearer token sent in the `Authorization` header when calling the PagerDuty API. Treat as a secret. Mutually exclusive with basic auth.
+     * 
+     */
     @Export(name="bearerToken", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> bearerToken;
 
+    /**
+     * @return Bearer token sent in the `Authorization` header when calling the PagerDuty API. Treat as a secret. Mutually exclusive with basic auth.
+     * 
+     */
     public Output<Optional<String>> bearerToken() {
         return Codegen.optional(this.bearerToken);
     }
+    /**
+     * Class of the event reported to PagerDuty (e.g. `cpu`, `database`). Supports Go templating.
+     * 
+     */
     @Export(name="class", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> class_;
 
+    /**
+     * @return Class of the event reported to PagerDuty (e.g. `cpu`, `database`). Supports Go templating.
+     * 
+     */
     public Output<Optional<String>> class_() {
         return Codegen.optional(this.class_);
     }
+    /**
+     * Name of the monitoring client identified in the notification.
+     * 
+     */
     @Export(name="client", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> client;
 
+    /**
+     * @return Name of the monitoring client identified in the notification.
+     * 
+     */
     public Output<Optional<String>> client() {
         return Codegen.optional(this.client);
     }
+    /**
+     * Backlink to the sender of the notification, shown in PagerDuty.
+     * 
+     */
     @Export(name="clientUrl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> clientUrl;
 
+    /**
+     * @return Backlink to the sender of the notification, shown in PagerDuty.
+     * 
+     */
     public Output<Optional<String>> clientUrl() {
         return Codegen.optional(this.clientUrl);
     }
+    /**
+     * Part or component of the affected system that is broken. Supports Go templating.
+     * 
+     */
     @Export(name="component", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> component;
 
+    /**
+     * @return Part or component of the affected system that is broken. Supports Go templating.
+     * 
+     */
     public Output<Optional<String>> component() {
         return Codegen.optional(this.component);
     }
+    /**
+     * Summary of the incident. Supports Go templating.
+     * 
+     */
     @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
+    /**
+     * @return Summary of the incident. Supports Go templating.
+     * 
+     */
     public Output<Optional<String>> description() {
         return Codegen.optional(this.description);
     }
+    /**
+     * Arbitrary key/value pairs attached to the incident as additional context. Values support Go templating.
+     * 
+     */
     @Export(name="details", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> details;
 
+    /**
+     * @return Arbitrary key/value pairs attached to the incident as additional context. Values support Go templating.
+     * 
+     */
     public Output<Optional<Map<String,String>>> details() {
         return Codegen.optional(this.details);
     }
+    /**
+     * Logical grouping of services the incident belongs to. Supports Go templating.
+     * 
+     */
     @Export(name="group", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> group;
 
+    /**
+     * @return Logical grouping of services the incident belongs to. Supports Go templating.
+     * 
+     */
     public Output<Optional<String>> group() {
         return Codegen.optional(this.group);
     }
+    /**
+     * Images attached to the PagerDuty incident. See https://developer.pagerduty.com/docs/events-api-v2/trigger-events/.
+     * 
+     */
     @Export(name="images", refs={List.class,PagerdutyAlertNotifierImage.class}, tree="[0,1]")
     private Output</* @Nullable */ List<PagerdutyAlertNotifierImage>> images;
 
+    /**
+     * @return Images attached to the PagerDuty incident. See https://developer.pagerduty.com/docs/events-api-v2/trigger-events/.
+     * 
+     */
     public Output<Optional<List<PagerdutyAlertNotifierImage>>> images() {
         return Codegen.optional(this.images);
     }
+    /**
+     * Hyperlinks attached to the PagerDuty incident. See https://developer.pagerduty.com/docs/events-api-v2/trigger-events/.
+     * 
+     */
     @Export(name="links", refs={List.class,PagerdutyAlertNotifierLink.class}, tree="[0,1]")
     private Output</* @Nullable */ List<PagerdutyAlertNotifierLink>> links;
 
+    /**
+     * @return Hyperlinks attached to the PagerDuty incident. See https://developer.pagerduty.com/docs/events-api-v2/trigger-events/.
+     * 
+     */
     public Output<Optional<List<PagerdutyAlertNotifierLink>>> links() {
         return Codegen.optional(this.links);
     }
+    /**
+     * Display name of the notifier.
+     * 
+     */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
+    /**
+     * @return Display name of the notifier.
+     * 
+     */
     public Output<String> name() {
         return this.name;
     }
     /**
+     * Deprecated and ignored. Custom proxy URLs are not supported.
+     * 
      * @deprecated
      * custom proxy URLs are not supported
      * 
@@ -108,48 +253,108 @@ public class PagerdutyAlertNotifier extends com.pulumi.resources.CustomResource 
     @Export(name="proxyUrl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> proxyUrl;
 
+    /**
+     * @return Deprecated and ignored. Custom proxy URLs are not supported.
+     * 
+     */
     public Output<Optional<String>> proxyUrl() {
         return Codegen.optional(this.proxyUrl);
     }
+    /**
+     * PagerDuty integration key when using the `Events API v2` integration type. Treat as a secret. Mutually exclusive with `service_key`.
+     * 
+     */
     @Export(name="routingKey", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> routingKey;
 
+    /**
+     * @return PagerDuty integration key when using the `Events API v2` integration type. Treat as a secret. Mutually exclusive with `service_key`.
+     * 
+     */
     public Output<Optional<String>> routingKey() {
         return Codegen.optional(this.routingKey);
     }
+    /**
+     * Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+     * 
+     */
     @Export(name="sendResolved", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> sendResolved;
 
+    /**
+     * @return Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+     * 
+     */
     public Output<Optional<Boolean>> sendResolved() {
         return Codegen.optional(this.sendResolved);
     }
+    /**
+     * PagerDuty integration key when using the `Prometheus` integration type. Treat as a secret. Mutually exclusive with `routing_key`.
+     * 
+     */
     @Export(name="serviceKey", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> serviceKey;
 
+    /**
+     * @return PagerDuty integration key when using the `Prometheus` integration type. Treat as a secret. Mutually exclusive with `routing_key`.
+     * 
+     */
     public Output<Optional<String>> serviceKey() {
         return Codegen.optional(this.serviceKey);
     }
+    /**
+     * Severity of the incident. One of `critical`, `error`, `warning`, or `info`.
+     * 
+     */
     @Export(name="severity", refs={String.class}, tree="[0]")
     private Output<String> severity;
 
+    /**
+     * @return Severity of the incident. One of `critical`, `error`, `warning`, or `info`.
+     * 
+     */
     public Output<String> severity() {
         return this.severity;
     }
+    /**
+     * Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     @Export(name="slug", refs={String.class}, tree="[0]")
     private Output<String> slug;
 
+    /**
+     * @return Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     public Output<String> slug() {
         return this.slug;
     }
+    /**
+     * If true, skip TLS certificate verification when calling the PagerDuty API. Disable only in trusted environments.
+     * 
+     */
     @Export(name="tlsInsecureSkipVerify", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> tlsInsecureSkipVerify;
 
+    /**
+     * @return If true, skip TLS certificate verification when calling the PagerDuty API. Disable only in trusted environments.
+     * 
+     */
     public Output<Optional<Boolean>> tlsInsecureSkipVerify() {
         return Codegen.optional(this.tlsInsecureSkipVerify);
     }
+    /**
+     * PagerDuty API URL to send events to (e.g. `https://events.pagerduty.com/v2/enqueue`).
+     * 
+     */
     @Export(name="url", refs={String.class}, tree="[0]")
     private Output<String> url;
 
+    /**
+     * @return PagerDuty API URL to send events to (e.g. `https://events.pagerduty.com/v2/enqueue`).
+     * 
+     */
     public Output<String> url() {
         return this.url;
     }

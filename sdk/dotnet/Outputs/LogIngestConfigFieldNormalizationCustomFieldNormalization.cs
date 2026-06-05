@@ -14,7 +14,13 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class LogIngestConfigFieldNormalizationCustomFieldNormalization
     {
+        /// <summary>
+        /// Rule that extracts and transforms a string value from a log field, with optional regex sanitization, default value, and value mapping.
+        /// </summary>
         public readonly Outputs.LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalization? Normalization;
+        /// <summary>
+        /// Name of the target field where the normalized value is stored.
+        /// </summary>
         public readonly string? Target;
 
         [OutputConstructor]

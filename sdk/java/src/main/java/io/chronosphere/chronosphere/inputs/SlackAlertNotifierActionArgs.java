@@ -15,72 +15,152 @@ public final class SlackAlertNotifierActionArgs extends com.pulumi.resources.Res
 
     public static final SlackAlertNotifierActionArgs Empty = new SlackAlertNotifierActionArgs();
 
+    /**
+     * Label for the cancel button in the confirmation dialog.
+     * 
+     */
     @Import(name="actionConfirmDismissText")
     private @Nullable Output<String> actionConfirmDismissText;
 
+    /**
+     * @return Label for the cancel button in the confirmation dialog.
+     * 
+     */
     public Optional<Output<String>> actionConfirmDismissText() {
         return Optional.ofNullable(this.actionConfirmDismissText);
     }
 
+    /**
+     * Label for the confirm button in the confirmation dialog.
+     * 
+     */
     @Import(name="actionConfirmOkText")
     private @Nullable Output<String> actionConfirmOkText;
 
+    /**
+     * @return Label for the confirm button in the confirmation dialog.
+     * 
+     */
     public Optional<Output<String>> actionConfirmOkText() {
         return Optional.ofNullable(this.actionConfirmOkText);
     }
 
+    /**
+     * Body text of the confirmation dialog shown before the action runs.
+     * 
+     */
     @Import(name="actionConfirmText")
     private @Nullable Output<String> actionConfirmText;
 
+    /**
+     * @return Body text of the confirmation dialog shown before the action runs.
+     * 
+     */
     public Optional<Output<String>> actionConfirmText() {
         return Optional.ofNullable(this.actionConfirmText);
     }
 
+    /**
+     * Title of the confirmation dialog shown before the action runs.
+     * 
+     */
     @Import(name="actionConfirmTile")
     private @Nullable Output<String> actionConfirmTile;
 
+    /**
+     * @return Title of the confirmation dialog shown before the action runs.
+     * 
+     */
     public Optional<Output<String>> actionConfirmTile() {
         return Optional.ofNullable(this.actionConfirmTile);
     }
 
+    /**
+     * Identifier sent back to Slack when the button is clicked.
+     * 
+     */
     @Import(name="name")
     private @Nullable Output<String> name;
 
+    /**
+     * @return Identifier sent back to Slack when the button is clicked.
+     * 
+     */
     public Optional<Output<String>> name() {
         return Optional.ofNullable(this.name);
     }
 
+    /**
+     * Visual style of the button: `default`, `primary`, or `danger`.
+     * 
+     */
     @Import(name="style")
     private @Nullable Output<String> style;
 
+    /**
+     * @return Visual style of the button: `default`, `primary`, or `danger`.
+     * 
+     */
     public Optional<Output<String>> style() {
         return Optional.ofNullable(this.style);
     }
 
+    /**
+     * Label shown on the button.
+     * 
+     */
     @Import(name="text")
     private @Nullable Output<String> text;
 
+    /**
+     * @return Label shown on the button.
+     * 
+     */
     public Optional<Output<String>> text() {
         return Optional.ofNullable(this.text);
     }
 
+    /**
+     * Action type. Typically `button`.
+     * 
+     */
     @Import(name="type")
     private @Nullable Output<String> type;
 
+    /**
+     * @return Action type. Typically `button`.
+     * 
+     */
     public Optional<Output<String>> type() {
         return Optional.ofNullable(this.type);
     }
 
+    /**
+     * Link the button navigates to when clicked.
+     * 
+     */
     @Import(name="url")
     private @Nullable Output<String> url;
 
+    /**
+     * @return Link the button navigates to when clicked.
+     * 
+     */
     public Optional<Output<String>> url() {
         return Optional.ofNullable(this.url);
     }
 
+    /**
+     * Opaque value sent back to Slack alongside `name` when the button is clicked.
+     * 
+     */
     @Import(name="value")
     private @Nullable Output<String> value;
 
+    /**
+     * @return Opaque value sent back to Slack alongside `name` when the button is clicked.
+     * 
+     */
     public Optional<Output<String>> value() {
         return Optional.ofNullable(this.value);
     }
@@ -118,92 +198,212 @@ public final class SlackAlertNotifierActionArgs extends com.pulumi.resources.Res
             $ = new SlackAlertNotifierActionArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param actionConfirmDismissText Label for the cancel button in the confirmation dialog.
+         * 
+         * @return builder
+         * 
+         */
         public Builder actionConfirmDismissText(@Nullable Output<String> actionConfirmDismissText) {
             $.actionConfirmDismissText = actionConfirmDismissText;
             return this;
         }
 
+        /**
+         * @param actionConfirmDismissText Label for the cancel button in the confirmation dialog.
+         * 
+         * @return builder
+         * 
+         */
         public Builder actionConfirmDismissText(String actionConfirmDismissText) {
             return actionConfirmDismissText(Output.of(actionConfirmDismissText));
         }
 
+        /**
+         * @param actionConfirmOkText Label for the confirm button in the confirmation dialog.
+         * 
+         * @return builder
+         * 
+         */
         public Builder actionConfirmOkText(@Nullable Output<String> actionConfirmOkText) {
             $.actionConfirmOkText = actionConfirmOkText;
             return this;
         }
 
+        /**
+         * @param actionConfirmOkText Label for the confirm button in the confirmation dialog.
+         * 
+         * @return builder
+         * 
+         */
         public Builder actionConfirmOkText(String actionConfirmOkText) {
             return actionConfirmOkText(Output.of(actionConfirmOkText));
         }
 
+        /**
+         * @param actionConfirmText Body text of the confirmation dialog shown before the action runs.
+         * 
+         * @return builder
+         * 
+         */
         public Builder actionConfirmText(@Nullable Output<String> actionConfirmText) {
             $.actionConfirmText = actionConfirmText;
             return this;
         }
 
+        /**
+         * @param actionConfirmText Body text of the confirmation dialog shown before the action runs.
+         * 
+         * @return builder
+         * 
+         */
         public Builder actionConfirmText(String actionConfirmText) {
             return actionConfirmText(Output.of(actionConfirmText));
         }
 
+        /**
+         * @param actionConfirmTile Title of the confirmation dialog shown before the action runs.
+         * 
+         * @return builder
+         * 
+         */
         public Builder actionConfirmTile(@Nullable Output<String> actionConfirmTile) {
             $.actionConfirmTile = actionConfirmTile;
             return this;
         }
 
+        /**
+         * @param actionConfirmTile Title of the confirmation dialog shown before the action runs.
+         * 
+         * @return builder
+         * 
+         */
         public Builder actionConfirmTile(String actionConfirmTile) {
             return actionConfirmTile(Output.of(actionConfirmTile));
         }
 
+        /**
+         * @param name Identifier sent back to Slack when the button is clicked.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(@Nullable Output<String> name) {
             $.name = name;
             return this;
         }
 
+        /**
+         * @param name Identifier sent back to Slack when the button is clicked.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(String name) {
             return name(Output.of(name));
         }
 
+        /**
+         * @param style Visual style of the button: `default`, `primary`, or `danger`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder style(@Nullable Output<String> style) {
             $.style = style;
             return this;
         }
 
+        /**
+         * @param style Visual style of the button: `default`, `primary`, or `danger`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder style(String style) {
             return style(Output.of(style));
         }
 
+        /**
+         * @param text Label shown on the button.
+         * 
+         * @return builder
+         * 
+         */
         public Builder text(@Nullable Output<String> text) {
             $.text = text;
             return this;
         }
 
+        /**
+         * @param text Label shown on the button.
+         * 
+         * @return builder
+         * 
+         */
         public Builder text(String text) {
             return text(Output.of(text));
         }
 
+        /**
+         * @param type Action type. Typically `button`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder type(@Nullable Output<String> type) {
             $.type = type;
             return this;
         }
 
+        /**
+         * @param type Action type. Typically `button`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder type(String type) {
             return type(Output.of(type));
         }
 
+        /**
+         * @param url Link the button navigates to when clicked.
+         * 
+         * @return builder
+         * 
+         */
         public Builder url(@Nullable Output<String> url) {
             $.url = url;
             return this;
         }
 
+        /**
+         * @param url Link the button navigates to when clicked.
+         * 
+         * @return builder
+         * 
+         */
         public Builder url(String url) {
             return url(Output.of(url));
         }
 
+        /**
+         * @param value Opaque value sent back to Slack alongside `name` when the button is clicked.
+         * 
+         * @return builder
+         * 
+         */
         public Builder value(@Nullable Output<String> value) {
             $.value = value;
             return this;
         }
 
+        /**
+         * @param value Opaque value sent back to Slack alongside `name` when the button is clicked.
+         * 
+         * @return builder
+         * 
+         */
         public Builder value(String value) {
             return value(Output.of(value));
         }

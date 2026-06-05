@@ -18,87 +18,249 @@ import java.util.List;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
+/**
+ * Aggregates matching input metrics into a lower-cardinality output series at ingest time, reducing storage cost and query load. Selects input series by filter, applies an aggregation function (e.g. `sum`, `max`), and emits a new metric grouped by the specified labels.
+ * 
+ * ## Example Usage
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.chronosphere.Bucket;
+ * import com.pulumi.chronosphere.BucketArgs;
+ * import com.pulumi.chronosphere.RollupRule;
+ * import com.pulumi.chronosphere.RollupRuleArgs;
+ * import com.pulumi.chronosphere.inputs.RollupRuleStoragePoliciesArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var bucket = new Bucket(&#34;bucket&#34;, BucketArgs.builder()        
+ *             .name(&#34;Platform&#34;)
+ *             .build());
+ * 
+ *         var rollupRule = new RollupRule(&#34;rollupRule&#34;, RollupRuleArgs.builder()        
+ *             .name(&#34;RollupRule&#34;)
+ *             .slug(&#34;rollup-rule&#34;)
+ *             .bucketId(bucket.id())
+ *             .filter(&#34;__name__:metric_name&#34;)
+ *             .aggregation(&#34;SUM&#34;)
+ *             .dropRaw(true)
+ *             .groupBies(&#34;service&#34;)
+ *             .metricType(&#34;COUNTER&#34;)
+ *             .metricTypeTag(false)
+ *             .newMetric(&#34;new_metric_name&#34;)
+ *             .permissive(true)
+ *             .storagePolicies(RollupRuleStoragePoliciesArgs.builder()
+ *                 .resolution(&#34;30s&#34;)
+ *                 .retention(&#34;120h&#34;)
+ *                 .build())
+ *             .mode(&#34;PREVIEW&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ */
 @ResourceType(type="chronosphere:index/rollupRule:RollupRule")
 public class RollupRule extends com.pulumi.resources.CustomResource {
+    /**
+     * Aggregation function applied across grouped series (e.g. `sum`, `min`, `max`, `last`).
+     * 
+     */
     @Export(name="aggregation", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> aggregation;
 
+    /**
+     * @return Aggregation function applied across grouped series (e.g. `sum`, `min`, `max`, `last`).
+     * 
+     */
     public Output<Optional<String>> aggregation() {
         return Codegen.optional(this.aggregation);
     }
+    /**
+     * ID of the bucket the rollup rule belongs to.
+     * 
+     */
     @Export(name="bucketId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> bucketId;
 
+    /**
+     * @return ID of the bucket the rollup rule belongs to.
+     * 
+     */
     public Output<Optional<String>> bucketId() {
         return Codegen.optional(this.bucketId);
     }
+    /**
+     * If `true`, automatically generates a drop rule that removes the raw input metrics matching this rollup. Defaults to `false`.
+     * 
+     */
     @Export(name="dropRaw", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> dropRaw;
 
+    /**
+     * @return If `true`, automatically generates a drop rule that removes the raw input metrics matching this rollup. Defaults to `false`.
+     * 
+     */
     public Output<Optional<Boolean>> dropRaw() {
         return Codegen.optional(this.dropRaw);
     }
+    /**
+     * Labels to drop when aggregating; all other labels are preserved. Mutually exclusive with `group_by`.
+     * 
+     */
     @Export(name="excludeBies", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> excludeBies;
 
+    /**
+     * @return Labels to drop when aggregating; all other labels are preserved. Mutually exclusive with `group_by`.
+     * 
+     */
     public Output<Optional<List<String>>> excludeBies() {
         return Codegen.optional(this.excludeBies);
     }
+    /**
+     * Space-delimited list of `label:value_glob` matchers that select the input series. Supports glob patterns and special filters like `__name__`, `__metric_type__`, and `__metric_source__`.
+     * 
+     */
     @Export(name="filter", refs={String.class}, tree="[0]")
     private Output<String> filter;
 
+    /**
+     * @return Space-delimited list of `label:value_glob` matchers that select the input series. Supports glob patterns and special filters like `__name__`, `__metric_type__`, and `__metric_source__`.
+     * 
+     */
     public Output<String> filter() {
         return this.filter;
     }
+    /**
+     * Graphite-specific label policy applied to positional labels (`__gX__`) on the output metric.
+     * 
+     */
     @Export(name="graphiteLabelPolicy", refs={RollupRuleGraphiteLabelPolicy.class}, tree="[0]")
     private Output</* @Nullable */ RollupRuleGraphiteLabelPolicy> graphiteLabelPolicy;
 
+    /**
+     * @return Graphite-specific label policy applied to positional labels (`__gX__`) on the output metric.
+     * 
+     */
     public Output<Optional<RollupRuleGraphiteLabelPolicy>> graphiteLabelPolicy() {
         return Codegen.optional(this.graphiteLabelPolicy);
     }
+    /**
+     * Labels to preserve when aggregating; all other labels are dropped. Mutually exclusive with `exclude_by`.
+     * 
+     */
     @Export(name="groupBies", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> groupBies;
 
+    /**
+     * @return Labels to preserve when aggregating; all other labels are dropped. Mutually exclusive with `exclude_by`.
+     * 
+     */
     public Output<Optional<List<String>>> groupBies() {
         return Codegen.optional(this.groupBies);
     }
+    /**
+     * Interval between aggregated data points produced by the rollup. Defaults to a server-side value when unset. Conflicts with `storage_policies`.
+     * 
+     */
     @Export(name="interval", refs={String.class}, tree="[0]")
     private Output<String> interval;
 
+    /**
+     * @return Interval between aggregated data points produced by the rollup. Defaults to a server-side value when unset. Conflicts with `storage_policies`.
+     * 
+     */
     public Output<String> interval() {
         return this.interval;
     }
+    /**
+     * Type of the source metric being rolled up (e.g. `gauge`, `counter`, `histogram`).
+     * 
+     */
     @Export(name="metricType", refs={String.class}, tree="[0]")
     private Output<String> metricType;
 
+    /**
+     * @return Type of the source metric being rolled up (e.g. `gauge`, `counter`, `histogram`).
+     * 
+     */
     public Output<String> metricType() {
         return this.metricType;
     }
+    /**
+     * Whether to add a `__rollup_type__` label to the output metric identifying the rollup type. Defaults to `false`.
+     * 
+     */
     @Export(name="metricTypeTag", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> metricTypeTag;
 
+    /**
+     * @return Whether to add a `__rollup_type__` label to the output metric identifying the rollup type. Defaults to `false`.
+     * 
+     */
     public Output<Optional<Boolean>> metricTypeTag() {
         return Codegen.optional(this.metricTypeTag);
     }
+    /**
+     * Rollup mode controlling whether the rule is active or in a preview state.
+     * 
+     */
     @Export(name="mode", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> mode;
 
+    /**
+     * @return Rollup mode controlling whether the rule is active or in a preview state.
+     * 
+     */
     public Output<Optional<String>> mode() {
         return Codegen.optional(this.mode);
     }
+    /**
+     * Positional Graphite label to replace (e.g. `__g1__`).
+     * 
+     */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
+    /**
+     * @return Positional Graphite label to replace (e.g. `__g1__`).
+     * 
+     */
     public Output<String> name() {
         return this.name;
     }
+    /**
+     * Name of the output metric produced by the rollup. Supports the `{{.MetricName}}` template variable to reference the source metric name. Optional for Graphite rollup rules.
+     * 
+     */
     @Export(name="newMetric", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> newMetric;
 
+    /**
+     * @return Name of the output metric produced by the rollup. Supports the `{{.MetricName}}` template variable to reference the source metric name. Optional for Graphite rollup rules.
+     * 
+     */
     public Output<Optional<String>> newMetric() {
         return Codegen.optional(this.newMetric);
     }
     /**
+     * Deprecated: no longer supported.
+     * 
      * @deprecated
      * permissive is no longer supported
      * 
@@ -107,22 +269,44 @@ public class RollupRule extends com.pulumi.resources.CustomResource {
     @Export(name="permissive", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> permissive;
 
+    /**
+     * @return Deprecated: no longer supported.
+     * 
+     */
     public Output<Optional<Boolean>> permissive() {
         return Codegen.optional(this.permissive);
     }
+    /**
+     * If `true`, this rule is skipped when another rollup rule already produces a metric with the same output name. Defaults to `false`.
+     * 
+     */
     @Export(name="skipOnConflict", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> skipOnConflict;
 
+    /**
+     * @return If `true`, this rule is skipped when another rollup rule already produces a metric with the same output name. Defaults to `false`.
+     * 
+     */
     public Output<Optional<Boolean>> skipOnConflict() {
         return Codegen.optional(this.skipOnConflict);
     }
+    /**
+     * Stable identifier for the rollup rule. Immutable after creation. Unlike most resources, the slug is required and is not auto-generated from `name`.
+     * 
+     */
     @Export(name="slug", refs={String.class}, tree="[0]")
     private Output<String> slug;
 
+    /**
+     * @return Stable identifier for the rollup rule. Immutable after creation. Unlike most resources, the slug is required and is not auto-generated from `name`.
+     * 
+     */
     public Output<String> slug() {
         return this.slug;
     }
     /**
+     * Storage policy controlling resolution and retention of rolled-up metrics. Deprecated: use `interval` instead.
+     * 
      * @deprecated
      * use `interval` instead
      * 
@@ -131,6 +315,10 @@ public class RollupRule extends com.pulumi.resources.CustomResource {
     @Export(name="storagePolicies", refs={RollupRuleStoragePolicies.class}, tree="[0]")
     private Output</* @Nullable */ RollupRuleStoragePolicies> storagePolicies;
 
+    /**
+     * @return Storage policy controlling resolution and retention of rolled-up metrics. Deprecated: use `interval` instead.
+     * 
+     */
     public Output<Optional<RollupRuleStoragePolicies>> storagePolicies() {
         return Codegen.optional(this.storagePolicies);
     }

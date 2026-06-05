@@ -4,6 +4,37 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * A Chronosphere dashboard composed of panels, layouts, and variables defined by `dashboardJson`. For Grafana-compatible dashboards, use `chronosphere.ClassicDashboard` instead.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as chronosphere from "@pulumi-chronosphere/pulumi-chronosphere";
+ *
+ * const collection = new chronosphere.Collection("collection", {name: "Platform"});
+ * const platform = new chronosphere.Dashboard("platform", {
+ *     name: "Platform Overview",
+ *     slug: "platform-overview",
+ *     collectionId: collection.id,
+ *     labels: {
+ *         team: "platform",
+ *     },
+ *     dashboardJson: JSON.stringify({
+ *         kind: "Dashboard",
+ *         spec: {
+ *             events: [],
+ *             panels: {},
+ *             layouts: [],
+ *             variables: [],
+ *             duration: "30m",
+ *         },
+ *         spec_version: "1",
+ *     }),
+ * });
+ * ```
+ */
 export class Dashboard extends pulumi.CustomResource {
     /**
      * Get an existing Dashboard resource's state with the given name, ID, and optional extra
@@ -32,10 +63,25 @@ export class Dashboard extends pulumi.CustomResource {
         return obj['__pulumiType'] === Dashboard.__pulumiType;
     }
 
+    /**
+     * ID of the collection that owns this dashboard.
+     */
     public readonly collectionId!: pulumi.Output<string | undefined>;
+    /**
+     * JSON payload describing the dashboard's panels, layouts, variables, and other content. Wrap with `jsonencode({...})` in HCL. The provider sanitizes the JSON before diffing, so cosmetic differences (key ordering, whitespace) do not cause spurious plans.
+     */
     public readonly dashboardJson!: pulumi.Output<string>;
+    /**
+     * Key/value labels attached to the dashboard for organization and filtering.
+     */
     public readonly labels!: pulumi.Output<{[key: string]: string} | undefined>;
+    /**
+     * Display name of the dashboard. Can be changed after creation.
+     */
     public readonly name!: pulumi.Output<string | undefined>;
+    /**
+     * Stable identifier for the dashboard. Generated from `name` if omitted. Immutable after creation.
+     */
     public readonly slug!: pulumi.Output<string>;
 
     /**
@@ -76,10 +122,25 @@ export class Dashboard extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Dashboard resources.
  */
 export interface DashboardState {
+    /**
+     * ID of the collection that owns this dashboard.
+     */
     collectionId?: pulumi.Input<string>;
+    /**
+     * JSON payload describing the dashboard's panels, layouts, variables, and other content. Wrap with `jsonencode({...})` in HCL. The provider sanitizes the JSON before diffing, so cosmetic differences (key ordering, whitespace) do not cause spurious plans.
+     */
     dashboardJson?: pulumi.Input<string>;
+    /**
+     * Key/value labels attached to the dashboard for organization and filtering.
+     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Display name of the dashboard. Can be changed after creation.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * Stable identifier for the dashboard. Generated from `name` if omitted. Immutable after creation.
+     */
     slug?: pulumi.Input<string>;
 }
 
@@ -87,9 +148,24 @@ export interface DashboardState {
  * The set of arguments for constructing a Dashboard resource.
  */
 export interface DashboardArgs {
+    /**
+     * ID of the collection that owns this dashboard.
+     */
     collectionId?: pulumi.Input<string>;
+    /**
+     * JSON payload describing the dashboard's panels, layouts, variables, and other content. Wrap with `jsonencode({...})` in HCL. The provider sanitizes the JSON before diffing, so cosmetic differences (key ordering, whitespace) do not cause spurious plans.
+     */
     dashboardJson: pulumi.Input<string>;
+    /**
+     * Key/value labels attached to the dashboard for organization and filtering.
+     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Display name of the dashboard. Can be changed after creation.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * Stable identifier for the dashboard. Generated from `name` if omitted. Immutable after creation.
+     */
     slug?: pulumi.Input<string>;
 }

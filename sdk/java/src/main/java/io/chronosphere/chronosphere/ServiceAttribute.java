@@ -14,6 +14,42 @@ import java.lang.String;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
+/**
+ * Associates metadata with an existing service, such as a human-readable name, description, owning team, and default notification policy. The service itself must already exist; this resource only attaches attributes to it.
+ * 
+ * ## Example Usage
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.chronosphere.ServiceAttribute;
+ * import com.pulumi.chronosphere.ServiceAttributeArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var gateway = new ServiceAttribute(&#34;gateway&#34;, ServiceAttributeArgs.builder()        
+ *             .description(&#34;Edge API gateway&#34;)
+ *             .name(&#34;Gateway&#34;)
+ *             .serviceSlug(&#34;gateway&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ */
 @ResourceType(type="chronosphere:index/serviceAttribute:ServiceAttribute")
 public class ServiceAttribute extends com.pulumi.resources.CustomResource {
     /**

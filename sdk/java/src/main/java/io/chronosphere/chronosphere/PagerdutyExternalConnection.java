@@ -15,35 +15,111 @@ import java.util.List;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
+/**
+ * Workspace-scoped PagerDuty credentials that downstream notifiers and LogScale actions can reference. Holds either a PagerDuty Events integration key (for alert delivery) or a REST API token (for incident note polling); modern equivalent of the per-notifier credentials.
+ * 
+ * ## Example Usage
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.chronosphere.PagerdutyExternalConnection;
+ * import com.pulumi.chronosphere.PagerdutyExternalConnectionArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var pagerduty = new PagerdutyExternalConnection(&#34;pagerduty&#34;, PagerdutyExternalConnectionArgs.builder()        
+ *             .name(&#34;PagerDuty&#34;)
+ *             .pagerdutyApiKey(&#34;XXXXX&#34;)
+ *             .pagerdutyEventsVersion(&#34;PAGERDUTY_EVENTS_VERSION_V2&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ */
 @ResourceType(type="chronosphere:index/pagerdutyExternalConnection:PagerdutyExternalConnection")
 public class PagerdutyExternalConnection extends com.pulumi.resources.CustomResource {
+    /**
+     * Display name of the external connection.
+     * 
+     */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
+    /**
+     * @return Display name of the external connection.
+     * 
+     */
     public Output<String> name() {
         return this.name;
     }
+    /**
+     * PagerDuty Events API integration key used to authenticate alert delivery. Called the routing key in Events v2 and the service key in Events v1. Treat as a secret. Mutually exclusive with `pagerduty_rest_api_key`.
+     * 
+     */
     @Export(name="pagerdutyApiKey", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> pagerdutyApiKey;
 
+    /**
+     * @return PagerDuty Events API integration key used to authenticate alert delivery. Called the routing key in Events v2 and the service key in Events v1. Treat as a secret. Mutually exclusive with `pagerduty_rest_api_key`.
+     * 
+     */
     public Output<Optional<String>> pagerdutyApiKey() {
         return Codegen.optional(this.pagerdutyApiKey);
     }
+    /**
+     * PagerDuty Events API version used to deliver alerts: `PAGERDUTY_EVENTS_VERSION_V1` (legacy) or `PAGERDUTY_EVENTS_VERSION_V2` (default, recommended). Mutually exclusive with `pagerduty_rest_api_key`.
+     * 
+     */
     @Export(name="pagerdutyEventsVersion", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> pagerdutyEventsVersion;
 
+    /**
+     * @return PagerDuty Events API version used to deliver alerts: `PAGERDUTY_EVENTS_VERSION_V1` (legacy) or `PAGERDUTY_EVENTS_VERSION_V2` (default, recommended). Mutually exclusive with `pagerduty_rest_api_key`.
+     * 
+     */
     public Output<Optional<String>> pagerdutyEventsVersion() {
         return Codegen.optional(this.pagerdutyEventsVersion);
     }
+    /**
+     * PagerDuty REST API token used to authenticate incident note polling. Treat as a secret. Mutually exclusive with `pagerduty_api_key` and `pagerduty_events_version`.
+     * 
+     */
     @Export(name="pagerdutyRestApiKey", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> pagerdutyRestApiKey;
 
+    /**
+     * @return PagerDuty REST API token used to authenticate incident note polling. Treat as a secret. Mutually exclusive with `pagerduty_api_key` and `pagerduty_events_version`.
+     * 
+     */
     public Output<Optional<String>> pagerdutyRestApiKey() {
         return Codegen.optional(this.pagerdutyRestApiKey);
     }
+    /**
+     * Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     @Export(name="slug", refs={String.class}, tree="[0]")
     private Output<String> slug;
 
+    /**
+     * @return Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     public Output<String> slug() {
         return this.slug;
     }

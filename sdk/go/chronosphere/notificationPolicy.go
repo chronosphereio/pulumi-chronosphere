@@ -11,16 +11,77 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Routes alert signals from monitors and SLOs to notifiers, with per-severity routing and label-matcher-based overrides. If `name` is set the policy is independent (referenceable by ID); if `name` is omitted the policy is inline and can only be embedded in another resource (e.g. a bucket).
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/chronosphereio/pulumi-chronosphere/sdk/go/chronosphere"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			platformTeam, err := chronosphere.NewTeam(ctx, "platformTeam", &chronosphere.TeamArgs{
+//				Name: pulumi.String("Platform"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			email, err := chronosphere.NewEmailAlertNotifier(ctx, "email", &chronosphere.EmailAlertNotifierArgs{
+//				Name: pulumi.String("Platform Email"),
+//				To:   pulumi.String("platform@example.com"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = chronosphere.NewNotificationPolicy(ctx, "platformNotificationPolicy", &chronosphere.NotificationPolicyArgs{
+//				Name:   pulumi.String("Platform Policy"),
+//				TeamId: platformTeam.ID(),
+//				Routes: chronosphere.NotificationPolicyRouteArray{
+//					&chronosphere.NotificationPolicyRouteArgs{
+//						Severity: pulumi.String("warn"),
+//						Notifiers: pulumi.StringArray{
+//							email.ID(),
+//						},
+//						GroupBy: &chronosphere.NotificationPolicyRouteGroupByArgs{
+//							LabelNames: pulumi.StringArray{
+//								pulumi.String("service"),
+//							},
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type NotificationPolicy struct {
 	pulumi.CustomResourceState
 
-	IsIndependent          pulumi.BoolOutput                     `pulumi:"isIndependent"`
-	Name                   pulumi.StringPtrOutput                `pulumi:"name"`
-	NotificationPolicyData pulumi.StringOutput                   `pulumi:"notificationPolicyData"`
-	Overrides              NotificationPolicyOverrideArrayOutput `pulumi:"overrides"`
-	Routes                 NotificationPolicyRouteArrayOutput    `pulumi:"routes"`
-	Slug                   pulumi.StringOutput                   `pulumi:"slug"`
-	TeamId                 pulumi.StringPtrOutput                `pulumi:"teamId"`
+	// Read-only internal marker tracking whether the policy is independent (named) or inline. Used to force replacement when transitioning between the two.
+	IsIndependent pulumi.BoolOutput `pulumi:"isIndependent"`
+	// Label name to match.
+	Name pulumi.StringPtrOutput `pulumi:"name"`
+	// Computed/optional JSON serialization of the policy. Primarily used to attach inline policy data to other resources (e.g. buckets).
+	NotificationPolicyData pulumi.StringOutput `pulumi:"notificationPolicyData"`
+	// Ordered overrides that route alerts matching specific label matchers to different destinations. The first matching override is applied; non-matching alerts fall through to the default `route`.
+	Overrides NotificationPolicyOverrideArrayOutput `pulumi:"overrides"`
+	// Per-severity routing rules. Each entry maps a severity (e.g. `warn`, `critical`) to a set of notifiers, destinations, grouping, and repeat behavior.
+	Routes NotificationPolicyRouteArrayOutput `pulumi:"routes"`
+	// Stable identifier for the notification policy. Can only be set when `name` is set. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringOutput `pulumi:"slug"`
+	// ID of the team that owns this notification policy. Required when `name` is set (anonymous policies cannot be owned).
+	TeamId pulumi.StringPtrOutput `pulumi:"teamId"`
 }
 
 // NewNotificationPolicy registers a new resource with the given unique name, arguments, and options.
@@ -53,23 +114,37 @@ func GetNotificationPolicy(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering NotificationPolicy resources.
 type notificationPolicyState struct {
-	IsIndependent          *bool                        `pulumi:"isIndependent"`
-	Name                   *string                      `pulumi:"name"`
-	NotificationPolicyData *string                      `pulumi:"notificationPolicyData"`
-	Overrides              []NotificationPolicyOverride `pulumi:"overrides"`
-	Routes                 []NotificationPolicyRoute    `pulumi:"routes"`
-	Slug                   *string                      `pulumi:"slug"`
-	TeamId                 *string                      `pulumi:"teamId"`
+	// Read-only internal marker tracking whether the policy is independent (named) or inline. Used to force replacement when transitioning between the two.
+	IsIndependent *bool `pulumi:"isIndependent"`
+	// Label name to match.
+	Name *string `pulumi:"name"`
+	// Computed/optional JSON serialization of the policy. Primarily used to attach inline policy data to other resources (e.g. buckets).
+	NotificationPolicyData *string `pulumi:"notificationPolicyData"`
+	// Ordered overrides that route alerts matching specific label matchers to different destinations. The first matching override is applied; non-matching alerts fall through to the default `route`.
+	Overrides []NotificationPolicyOverride `pulumi:"overrides"`
+	// Per-severity routing rules. Each entry maps a severity (e.g. `warn`, `critical`) to a set of notifiers, destinations, grouping, and repeat behavior.
+	Routes []NotificationPolicyRoute `pulumi:"routes"`
+	// Stable identifier for the notification policy. Can only be set when `name` is set. Generated from `name` if omitted. Immutable after creation.
+	Slug *string `pulumi:"slug"`
+	// ID of the team that owns this notification policy. Required when `name` is set (anonymous policies cannot be owned).
+	TeamId *string `pulumi:"teamId"`
 }
 
 type NotificationPolicyState struct {
-	IsIndependent          pulumi.BoolPtrInput
-	Name                   pulumi.StringPtrInput
+	// Read-only internal marker tracking whether the policy is independent (named) or inline. Used to force replacement when transitioning between the two.
+	IsIndependent pulumi.BoolPtrInput
+	// Label name to match.
+	Name pulumi.StringPtrInput
+	// Computed/optional JSON serialization of the policy. Primarily used to attach inline policy data to other resources (e.g. buckets).
 	NotificationPolicyData pulumi.StringPtrInput
-	Overrides              NotificationPolicyOverrideArrayInput
-	Routes                 NotificationPolicyRouteArrayInput
-	Slug                   pulumi.StringPtrInput
-	TeamId                 pulumi.StringPtrInput
+	// Ordered overrides that route alerts matching specific label matchers to different destinations. The first matching override is applied; non-matching alerts fall through to the default `route`.
+	Overrides NotificationPolicyOverrideArrayInput
+	// Per-severity routing rules. Each entry maps a severity (e.g. `warn`, `critical`) to a set of notifiers, destinations, grouping, and repeat behavior.
+	Routes NotificationPolicyRouteArrayInput
+	// Stable identifier for the notification policy. Can only be set when `name` is set. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringPtrInput
+	// ID of the team that owns this notification policy. Required when `name` is set (anonymous policies cannot be owned).
+	TeamId pulumi.StringPtrInput
 }
 
 func (NotificationPolicyState) ElementType() reflect.Type {
@@ -77,22 +152,34 @@ func (NotificationPolicyState) ElementType() reflect.Type {
 }
 
 type notificationPolicyArgs struct {
-	Name                   *string                      `pulumi:"name"`
-	NotificationPolicyData *string                      `pulumi:"notificationPolicyData"`
-	Overrides              []NotificationPolicyOverride `pulumi:"overrides"`
-	Routes                 []NotificationPolicyRoute    `pulumi:"routes"`
-	Slug                   *string                      `pulumi:"slug"`
-	TeamId                 *string                      `pulumi:"teamId"`
+	// Label name to match.
+	Name *string `pulumi:"name"`
+	// Computed/optional JSON serialization of the policy. Primarily used to attach inline policy data to other resources (e.g. buckets).
+	NotificationPolicyData *string `pulumi:"notificationPolicyData"`
+	// Ordered overrides that route alerts matching specific label matchers to different destinations. The first matching override is applied; non-matching alerts fall through to the default `route`.
+	Overrides []NotificationPolicyOverride `pulumi:"overrides"`
+	// Per-severity routing rules. Each entry maps a severity (e.g. `warn`, `critical`) to a set of notifiers, destinations, grouping, and repeat behavior.
+	Routes []NotificationPolicyRoute `pulumi:"routes"`
+	// Stable identifier for the notification policy. Can only be set when `name` is set. Generated from `name` if omitted. Immutable after creation.
+	Slug *string `pulumi:"slug"`
+	// ID of the team that owns this notification policy. Required when `name` is set (anonymous policies cannot be owned).
+	TeamId *string `pulumi:"teamId"`
 }
 
 // The set of arguments for constructing a NotificationPolicy resource.
 type NotificationPolicyArgs struct {
-	Name                   pulumi.StringPtrInput
+	// Label name to match.
+	Name pulumi.StringPtrInput
+	// Computed/optional JSON serialization of the policy. Primarily used to attach inline policy data to other resources (e.g. buckets).
 	NotificationPolicyData pulumi.StringPtrInput
-	Overrides              NotificationPolicyOverrideArrayInput
-	Routes                 NotificationPolicyRouteArrayInput
-	Slug                   pulumi.StringPtrInput
-	TeamId                 pulumi.StringPtrInput
+	// Ordered overrides that route alerts matching specific label matchers to different destinations. The first matching override is applied; non-matching alerts fall through to the default `route`.
+	Overrides NotificationPolicyOverrideArrayInput
+	// Per-severity routing rules. Each entry maps a severity (e.g. `warn`, `critical`) to a set of notifiers, destinations, grouping, and repeat behavior.
+	Routes NotificationPolicyRouteArrayInput
+	// Stable identifier for the notification policy. Can only be set when `name` is set. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringPtrInput
+	// ID of the team that owns this notification policy. Required when `name` is set (anonymous policies cannot be owned).
+	TeamId pulumi.StringPtrInput
 }
 
 func (NotificationPolicyArgs) ElementType() reflect.Type {
@@ -182,30 +269,37 @@ func (o NotificationPolicyOutput) ToNotificationPolicyOutputWithContext(ctx cont
 	return o
 }
 
+// Read-only internal marker tracking whether the policy is independent (named) or inline. Used to force replacement when transitioning between the two.
 func (o NotificationPolicyOutput) IsIndependent() pulumi.BoolOutput {
 	return o.ApplyT(func(v *NotificationPolicy) pulumi.BoolOutput { return v.IsIndependent }).(pulumi.BoolOutput)
 }
 
+// Label name to match.
 func (o NotificationPolicyOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *NotificationPolicy) pulumi.StringPtrOutput { return v.Name }).(pulumi.StringPtrOutput)
 }
 
+// Computed/optional JSON serialization of the policy. Primarily used to attach inline policy data to other resources (e.g. buckets).
 func (o NotificationPolicyOutput) NotificationPolicyData() pulumi.StringOutput {
 	return o.ApplyT(func(v *NotificationPolicy) pulumi.StringOutput { return v.NotificationPolicyData }).(pulumi.StringOutput)
 }
 
+// Ordered overrides that route alerts matching specific label matchers to different destinations. The first matching override is applied; non-matching alerts fall through to the default `route`.
 func (o NotificationPolicyOutput) Overrides() NotificationPolicyOverrideArrayOutput {
 	return o.ApplyT(func(v *NotificationPolicy) NotificationPolicyOverrideArrayOutput { return v.Overrides }).(NotificationPolicyOverrideArrayOutput)
 }
 
+// Per-severity routing rules. Each entry maps a severity (e.g. `warn`, `critical`) to a set of notifiers, destinations, grouping, and repeat behavior.
 func (o NotificationPolicyOutput) Routes() NotificationPolicyRouteArrayOutput {
 	return o.ApplyT(func(v *NotificationPolicy) NotificationPolicyRouteArrayOutput { return v.Routes }).(NotificationPolicyRouteArrayOutput)
 }
 
+// Stable identifier for the notification policy. Can only be set when `name` is set. Generated from `name` if omitted. Immutable after creation.
 func (o NotificationPolicyOutput) Slug() pulumi.StringOutput {
 	return o.ApplyT(func(v *NotificationPolicy) pulumi.StringOutput { return v.Slug }).(pulumi.StringOutput)
 }
 
+// ID of the team that owns this notification policy. Required when `name` is set (anonymous policies cannot be owned).
 func (o NotificationPolicyOutput) TeamId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *NotificationPolicy) pulumi.StringPtrOutput { return v.TeamId }).(pulumi.StringPtrOutput)
 }

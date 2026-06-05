@@ -11,12 +11,16 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Singleton per-tenant parser configuration controlling how raw log payloads are parsed into structured fields and how timestamps, severities, services, and other fields are normalized.
 type LogIngestConfig struct {
 	pulumi.CustomResourceState
 
+	// Field normalization rules that map and standardize well-known fields (timestamp, severity, message, service) across log formats. Runs after parsing.
 	FieldNormalization LogIngestConfigFieldNormalizationPtrOutput `pulumi:"fieldNormalization"`
-	FieldParsers       LogIngestConfigFieldParserArrayOutput      `pulumi:"fieldParsers"`
-	PlaintextParsers   LogIngestConfigPlaintextParserArrayOutput  `pulumi:"plaintextParsers"`
+	// Parsers applied to specific fields within structured logs (or to fields produced by a plaintext parser).
+	FieldParsers LogIngestConfigFieldParserArrayOutput `pulumi:"fieldParsers"`
+	// Parsers applied to plaintext logs as they enter the ingest pipeline. The first parser that matches a log is used.
+	PlaintextParsers LogIngestConfigPlaintextParserArrayOutput `pulumi:"plaintextParsers"`
 }
 
 // NewLogIngestConfig registers a new resource with the given unique name, arguments, and options.
@@ -49,15 +53,21 @@ func GetLogIngestConfig(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering LogIngestConfig resources.
 type logIngestConfigState struct {
+	// Field normalization rules that map and standardize well-known fields (timestamp, severity, message, service) across log formats. Runs after parsing.
 	FieldNormalization *LogIngestConfigFieldNormalization `pulumi:"fieldNormalization"`
-	FieldParsers       []LogIngestConfigFieldParser       `pulumi:"fieldParsers"`
-	PlaintextParsers   []LogIngestConfigPlaintextParser   `pulumi:"plaintextParsers"`
+	// Parsers applied to specific fields within structured logs (or to fields produced by a plaintext parser).
+	FieldParsers []LogIngestConfigFieldParser `pulumi:"fieldParsers"`
+	// Parsers applied to plaintext logs as they enter the ingest pipeline. The first parser that matches a log is used.
+	PlaintextParsers []LogIngestConfigPlaintextParser `pulumi:"plaintextParsers"`
 }
 
 type LogIngestConfigState struct {
+	// Field normalization rules that map and standardize well-known fields (timestamp, severity, message, service) across log formats. Runs after parsing.
 	FieldNormalization LogIngestConfigFieldNormalizationPtrInput
-	FieldParsers       LogIngestConfigFieldParserArrayInput
-	PlaintextParsers   LogIngestConfigPlaintextParserArrayInput
+	// Parsers applied to specific fields within structured logs (or to fields produced by a plaintext parser).
+	FieldParsers LogIngestConfigFieldParserArrayInput
+	// Parsers applied to plaintext logs as they enter the ingest pipeline. The first parser that matches a log is used.
+	PlaintextParsers LogIngestConfigPlaintextParserArrayInput
 }
 
 func (LogIngestConfigState) ElementType() reflect.Type {
@@ -65,16 +75,22 @@ func (LogIngestConfigState) ElementType() reflect.Type {
 }
 
 type logIngestConfigArgs struct {
+	// Field normalization rules that map and standardize well-known fields (timestamp, severity, message, service) across log formats. Runs after parsing.
 	FieldNormalization *LogIngestConfigFieldNormalization `pulumi:"fieldNormalization"`
-	FieldParsers       []LogIngestConfigFieldParser       `pulumi:"fieldParsers"`
-	PlaintextParsers   []LogIngestConfigPlaintextParser   `pulumi:"plaintextParsers"`
+	// Parsers applied to specific fields within structured logs (or to fields produced by a plaintext parser).
+	FieldParsers []LogIngestConfigFieldParser `pulumi:"fieldParsers"`
+	// Parsers applied to plaintext logs as they enter the ingest pipeline. The first parser that matches a log is used.
+	PlaintextParsers []LogIngestConfigPlaintextParser `pulumi:"plaintextParsers"`
 }
 
 // The set of arguments for constructing a LogIngestConfig resource.
 type LogIngestConfigArgs struct {
+	// Field normalization rules that map and standardize well-known fields (timestamp, severity, message, service) across log formats. Runs after parsing.
 	FieldNormalization LogIngestConfigFieldNormalizationPtrInput
-	FieldParsers       LogIngestConfigFieldParserArrayInput
-	PlaintextParsers   LogIngestConfigPlaintextParserArrayInput
+	// Parsers applied to specific fields within structured logs (or to fields produced by a plaintext parser).
+	FieldParsers LogIngestConfigFieldParserArrayInput
+	// Parsers applied to plaintext logs as they enter the ingest pipeline. The first parser that matches a log is used.
+	PlaintextParsers LogIngestConfigPlaintextParserArrayInput
 }
 
 func (LogIngestConfigArgs) ElementType() reflect.Type {
@@ -164,14 +180,17 @@ func (o LogIngestConfigOutput) ToLogIngestConfigOutputWithContext(ctx context.Co
 	return o
 }
 
+// Field normalization rules that map and standardize well-known fields (timestamp, severity, message, service) across log formats. Runs after parsing.
 func (o LogIngestConfigOutput) FieldNormalization() LogIngestConfigFieldNormalizationPtrOutput {
 	return o.ApplyT(func(v *LogIngestConfig) LogIngestConfigFieldNormalizationPtrOutput { return v.FieldNormalization }).(LogIngestConfigFieldNormalizationPtrOutput)
 }
 
+// Parsers applied to specific fields within structured logs (or to fields produced by a plaintext parser).
 func (o LogIngestConfigOutput) FieldParsers() LogIngestConfigFieldParserArrayOutput {
 	return o.ApplyT(func(v *LogIngestConfig) LogIngestConfigFieldParserArrayOutput { return v.FieldParsers }).(LogIngestConfigFieldParserArrayOutput)
 }
 
+// Parsers applied to plaintext logs as they enter the ingest pipeline. The first parser that matches a log is used.
 func (o LogIngestConfigOutput) PlaintextParsers() LogIngestConfigPlaintextParserArrayOutput {
 	return o.ApplyT(func(v *LogIngestConfig) LogIngestConfigPlaintextParserArrayOutput { return v.PlaintextParsers }).(LogIngestConfigPlaintextParserArrayOutput)
 }

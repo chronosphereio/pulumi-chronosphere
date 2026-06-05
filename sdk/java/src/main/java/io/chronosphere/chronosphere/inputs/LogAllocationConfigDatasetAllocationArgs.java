@@ -17,23 +17,47 @@ public final class LogAllocationConfigDatasetAllocationArgs extends com.pulumi.r
 
     public static final LogAllocationConfigDatasetAllocationArgs Empty = new LogAllocationConfigDatasetAllocationArgs();
 
+    /**
+     * Resource allocation for the dataset, expressed as a share of the overall log license.
+     * 
+     */
     @Import(name="allocation", required=true)
     private Output<LogAllocationConfigDatasetAllocationAllocationArgs> allocation;
 
+    /**
+     * @return Resource allocation for the dataset, expressed as a share of the overall log license.
+     * 
+     */
     public Output<LogAllocationConfigDatasetAllocationAllocationArgs> allocation() {
         return this.allocation;
     }
 
+    /**
+     * Slug of the dataset this allocation applies to.
+     * 
+     */
     @Import(name="datasetId", required=true)
     private Output<String> datasetId;
 
+    /**
+     * @return Slug of the dataset this allocation applies to.
+     * 
+     */
     public Output<String> datasetId() {
         return this.datasetId;
     }
 
+    /**
+     * Defines high and low priority match criteria. Low priority logs are dropped first when the allocation is exhausted, then default priority, with high priority dropped last.
+     * 
+     */
     @Import(name="priorities")
     private @Nullable Output<LogAllocationConfigDatasetAllocationPrioritiesArgs> priorities;
 
+    /**
+     * @return Defines high and low priority match criteria. Low priority logs are dropped first when the allocation is exhausted, then default priority, with high priority dropped last.
+     * 
+     */
     public Optional<Output<LogAllocationConfigDatasetAllocationPrioritiesArgs>> priorities() {
         return Optional.ofNullable(this.priorities);
     }
@@ -64,29 +88,65 @@ public final class LogAllocationConfigDatasetAllocationArgs extends com.pulumi.r
             $ = new LogAllocationConfigDatasetAllocationArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param allocation Resource allocation for the dataset, expressed as a share of the overall log license.
+         * 
+         * @return builder
+         * 
+         */
         public Builder allocation(Output<LogAllocationConfigDatasetAllocationAllocationArgs> allocation) {
             $.allocation = allocation;
             return this;
         }
 
+        /**
+         * @param allocation Resource allocation for the dataset, expressed as a share of the overall log license.
+         * 
+         * @return builder
+         * 
+         */
         public Builder allocation(LogAllocationConfigDatasetAllocationAllocationArgs allocation) {
             return allocation(Output.of(allocation));
         }
 
+        /**
+         * @param datasetId Slug of the dataset this allocation applies to.
+         * 
+         * @return builder
+         * 
+         */
         public Builder datasetId(Output<String> datasetId) {
             $.datasetId = datasetId;
             return this;
         }
 
+        /**
+         * @param datasetId Slug of the dataset this allocation applies to.
+         * 
+         * @return builder
+         * 
+         */
         public Builder datasetId(String datasetId) {
             return datasetId(Output.of(datasetId));
         }
 
+        /**
+         * @param priorities Defines high and low priority match criteria. Low priority logs are dropped first when the allocation is exhausted, then default priority, with high priority dropped last.
+         * 
+         * @return builder
+         * 
+         */
         public Builder priorities(@Nullable Output<LogAllocationConfigDatasetAllocationPrioritiesArgs> priorities) {
             $.priorities = priorities;
             return this;
         }
 
+        /**
+         * @param priorities Defines high and low priority match criteria. Low priority logs are dropped first when the allocation is exhausted, then default priority, with high priority dropped last.
+         * 
+         * @return builder
+         * 
+         */
         public Builder priorities(LogAllocationConfigDatasetAllocationPrioritiesArgs priorities) {
             return priorities(Output.of(priorities));
         }

@@ -15,15 +15,25 @@ namespace Chronosphere.Pulumi.Inputs
     {
         [Input("fields")]
         private InputMap<string>? _fields;
+
+        /// <summary>
+        /// Fields to include in the Slack message. Values support Go template syntax with the query result.
+        /// </summary>
         public InputMap<string> Fields
         {
             get => _fields ?? (_fields = new InputMap<string>());
             set => _fields = value;
         }
 
+        /// <summary>
+        /// Slack incoming webhook URL to send the request to.
+        /// </summary>
         [Input("url", required: true)]
         public Input<string> Url { get; set; } = null!;
 
+        /// <summary>
+        /// If `true`, sends the request through the configured outbound proxy.
+        /// </summary>
         [Input("useProxy")]
         public Input<bool>? UseProxy { get; set; }
 

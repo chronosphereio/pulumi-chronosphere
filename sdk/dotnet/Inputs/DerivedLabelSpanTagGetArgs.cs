@@ -15,6 +15,10 @@ namespace Chronosphere.Pulumi.Inputs
     {
         [Input("nameMappings")]
         private InputList<Inputs.DerivedLabelSpanTagNameMappingGetArgs>? _nameMappings;
+
+        /// <summary>
+        /// Ordered list of name mappings. The first mapping that matches supplies the derived label from its `source_tag`.
+        /// </summary>
         public InputList<Inputs.DerivedLabelSpanTagNameMappingGetArgs> NameMappings
         {
             get => _nameMappings ?? (_nameMappings = new InputList<Inputs.DerivedLabelSpanTagNameMappingGetArgs>());

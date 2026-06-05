@@ -18,30 +18,62 @@ public final class LogIngestConfigPlaintextParserParserArgs extends com.pulumi.r
 
     public static final LogIngestConfigPlaintextParserParserArgs Empty = new LogIngestConfigPlaintextParserParserArgs();
 
+    /**
+     * Grok parser configuration. Only set when `parser_type` is `GROK`.
+     * 
+     */
     @Import(name="grokParser")
     private @Nullable Output<LogIngestConfigPlaintextParserParserGrokParserArgs> grokParser;
 
+    /**
+     * @return Grok parser configuration. Only set when `parser_type` is `GROK`.
+     * 
+     */
     public Optional<Output<LogIngestConfigPlaintextParserParserGrokParserArgs>> grokParser() {
         return Optional.ofNullable(this.grokParser);
     }
 
+    /**
+     * Key/value parser configuration. Only set when `parser_type` is `KEY_VALUE`. Duplicate keys keep the first occurrence.
+     * 
+     */
     @Import(name="keyValueParser")
     private @Nullable Output<LogIngestConfigPlaintextParserParserKeyValueParserArgs> keyValueParser;
 
+    /**
+     * @return Key/value parser configuration. Only set when `parser_type` is `KEY_VALUE`. Duplicate keys keep the first occurrence.
+     * 
+     */
     public Optional<Output<LogIngestConfigPlaintextParserParserKeyValueParserArgs>> keyValueParser() {
         return Optional.ofNullable(this.keyValueParser);
     }
 
+    /**
+     * Type of parser to apply. Determines which of `regex_parser`, `key_value_parser`, or `grok_parser` must be set.
+     * 
+     */
     @Import(name="parserType", required=true)
     private Output<String> parserType;
 
+    /**
+     * @return Type of parser to apply. Determines which of `regex_parser`, `key_value_parser`, or `grok_parser` must be set.
+     * 
+     */
     public Output<String> parserType() {
         return this.parserType;
     }
 
+    /**
+     * Regex parser configuration. Only set when `parser_type` is `REGEX`.
+     * 
+     */
     @Import(name="regexParser")
     private @Nullable Output<LogIngestConfigPlaintextParserParserRegexParserArgs> regexParser;
 
+    /**
+     * @return Regex parser configuration. Only set when `parser_type` is `REGEX`.
+     * 
+     */
     public Optional<Output<LogIngestConfigPlaintextParserParserRegexParserArgs>> regexParser() {
         return Optional.ofNullable(this.regexParser);
     }
@@ -73,38 +105,86 @@ public final class LogIngestConfigPlaintextParserParserArgs extends com.pulumi.r
             $ = new LogIngestConfigPlaintextParserParserArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param grokParser Grok parser configuration. Only set when `parser_type` is `GROK`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder grokParser(@Nullable Output<LogIngestConfigPlaintextParserParserGrokParserArgs> grokParser) {
             $.grokParser = grokParser;
             return this;
         }
 
+        /**
+         * @param grokParser Grok parser configuration. Only set when `parser_type` is `GROK`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder grokParser(LogIngestConfigPlaintextParserParserGrokParserArgs grokParser) {
             return grokParser(Output.of(grokParser));
         }
 
+        /**
+         * @param keyValueParser Key/value parser configuration. Only set when `parser_type` is `KEY_VALUE`. Duplicate keys keep the first occurrence.
+         * 
+         * @return builder
+         * 
+         */
         public Builder keyValueParser(@Nullable Output<LogIngestConfigPlaintextParserParserKeyValueParserArgs> keyValueParser) {
             $.keyValueParser = keyValueParser;
             return this;
         }
 
+        /**
+         * @param keyValueParser Key/value parser configuration. Only set when `parser_type` is `KEY_VALUE`. Duplicate keys keep the first occurrence.
+         * 
+         * @return builder
+         * 
+         */
         public Builder keyValueParser(LogIngestConfigPlaintextParserParserKeyValueParserArgs keyValueParser) {
             return keyValueParser(Output.of(keyValueParser));
         }
 
+        /**
+         * @param parserType Type of parser to apply. Determines which of `regex_parser`, `key_value_parser`, or `grok_parser` must be set.
+         * 
+         * @return builder
+         * 
+         */
         public Builder parserType(Output<String> parserType) {
             $.parserType = parserType;
             return this;
         }
 
+        /**
+         * @param parserType Type of parser to apply. Determines which of `regex_parser`, `key_value_parser`, or `grok_parser` must be set.
+         * 
+         * @return builder
+         * 
+         */
         public Builder parserType(String parserType) {
             return parserType(Output.of(parserType));
         }
 
+        /**
+         * @param regexParser Regex parser configuration. Only set when `parser_type` is `REGEX`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder regexParser(@Nullable Output<LogIngestConfigPlaintextParserParserRegexParserArgs> regexParser) {
             $.regexParser = regexParser;
             return this;
         }
 
+        /**
+         * @param regexParser Regex parser configuration. Only set when `parser_type` is `REGEX`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder regexParser(LogIngestConfigPlaintextParserParserRegexParserArgs regexParser) {
             return regexParser(Output.of(regexParser));
         }

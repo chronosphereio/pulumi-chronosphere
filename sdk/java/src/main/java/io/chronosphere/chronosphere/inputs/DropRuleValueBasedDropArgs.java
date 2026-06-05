@@ -13,9 +13,17 @@ public final class DropRuleValueBasedDropArgs extends com.pulumi.resources.Resou
 
     public static final DropRuleValueBasedDropArgs Empty = new DropRuleValueBasedDropArgs();
 
+    /**
+     * Data point value at which matching points are dropped.
+     * 
+     */
     @Import(name="targetDropValue", required=true)
     private Output<Double> targetDropValue;
 
+    /**
+     * @return Data point value at which matching points are dropped.
+     * 
+     */
     public Output<Double> targetDropValue() {
         return this.targetDropValue;
     }
@@ -44,11 +52,23 @@ public final class DropRuleValueBasedDropArgs extends com.pulumi.resources.Resou
             $ = new DropRuleValueBasedDropArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param targetDropValue Data point value at which matching points are dropped.
+         * 
+         * @return builder
+         * 
+         */
         public Builder targetDropValue(Output<Double> targetDropValue) {
             $.targetDropValue = targetDropValue;
             return this;
         }
 
+        /**
+         * @param targetDropValue Data point value at which matching points are dropped.
+         * 
+         * @return builder
+         * 
+         */
         public Builder targetDropValue(Double targetDropValue) {
             return targetDropValue(Output.of(targetDropValue));
         }

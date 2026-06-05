@@ -12,10 +12,39 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Blackhole notifier that discards every signal routed to it. Reference from a notification policy route to silence alerts without delivering them anywhere.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/chronosphereio/pulumi-chronosphere/sdk/go/chronosphere"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := chronosphere.NewBlackholeAlertNotifier(ctx, "blackhole", &chronosphere.BlackholeAlertNotifierArgs{
+//				Name: pulumi.String("Blackhole"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type BlackholeAlertNotifier struct {
 	pulumi.CustomResourceState
 
+	// Display name of the notifier.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
 	Slug pulumi.StringOutput `pulumi:"slug"`
 }
 
@@ -52,12 +81,16 @@ func GetBlackholeAlertNotifier(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering BlackholeAlertNotifier resources.
 type blackholeAlertNotifierState struct {
+	// Display name of the notifier.
 	Name *string `pulumi:"name"`
+	// Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
 	Slug *string `pulumi:"slug"`
 }
 
 type BlackholeAlertNotifierState struct {
+	// Display name of the notifier.
 	Name pulumi.StringPtrInput
+	// Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
 	Slug pulumi.StringPtrInput
 }
 
@@ -66,13 +99,17 @@ func (BlackholeAlertNotifierState) ElementType() reflect.Type {
 }
 
 type blackholeAlertNotifierArgs struct {
-	Name string  `pulumi:"name"`
+	// Display name of the notifier.
+	Name string `pulumi:"name"`
+	// Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
 	Slug *string `pulumi:"slug"`
 }
 
 // The set of arguments for constructing a BlackholeAlertNotifier resource.
 type BlackholeAlertNotifierArgs struct {
+	// Display name of the notifier.
 	Name pulumi.StringInput
+	// Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
 	Slug pulumi.StringPtrInput
 }
 
@@ -163,10 +200,12 @@ func (o BlackholeAlertNotifierOutput) ToBlackholeAlertNotifierOutputWithContext(
 	return o
 }
 
+// Display name of the notifier.
 func (o BlackholeAlertNotifierOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *BlackholeAlertNotifier) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
 func (o BlackholeAlertNotifierOutput) Slug() pulumi.StringOutput {
 	return o.ApplyT(func(v *BlackholeAlertNotifier) pulumi.StringOutput { return v.Slug }).(pulumi.StringOutput)
 }

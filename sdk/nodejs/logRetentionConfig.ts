@@ -4,6 +4,23 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * A retention policy dictating how long logs matching a given filter are kept before being deleted.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as chronosphere from "@pulumi-chronosphere/pulumi-chronosphere";
+ *
+ * const productionErrors = new chronosphere.LogRetentionConfig("productionErrors", {
+ *     filter: "severity = 'error' AND env = 'production'",
+ *     mode: "ENABLED",
+ *     name: "Production Error Logs Long-term Retention",
+ *     retentionDays: 365,
+ * });
+ * ```
+ */
 export class LogRetentionConfig extends pulumi.CustomResource {
     /**
      * Get an existing LogRetentionConfig resource's state with the given name, ID, and optional extra
@@ -32,10 +49,25 @@ export class LogRetentionConfig extends pulumi.CustomResource {
         return obj['__pulumiType'] === LogRetentionConfig.__pulumiType;
     }
 
+    /**
+     * Log query filter. The retention policy applies only to logs that match.
+     */
     public readonly filter!: pulumi.Output<string>;
+    /**
+     * Mode that determines how matching logs are retained in long-term (Iceberg) storage.
+     */
     public readonly mode!: pulumi.Output<string>;
+    /**
+     * Display name of the log retention config.
+     */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * Number of days to retain matching logs in long-term (Iceberg) storage after they are exported. When multiple configs overlap, the longest retention wins.
+     */
     public readonly retentionDays!: pulumi.Output<number>;
+    /**
+     * Stable identifier for the log retention config. Generated from `name` if omitted. Immutable after creation.
+     */
     public readonly slug!: pulumi.Output<string>;
 
     /**
@@ -85,10 +117,25 @@ export class LogRetentionConfig extends pulumi.CustomResource {
  * Input properties used for looking up and filtering LogRetentionConfig resources.
  */
 export interface LogRetentionConfigState {
+    /**
+     * Log query filter. The retention policy applies only to logs that match.
+     */
     filter?: pulumi.Input<string>;
+    /**
+     * Mode that determines how matching logs are retained in long-term (Iceberg) storage.
+     */
     mode?: pulumi.Input<string>;
+    /**
+     * Display name of the log retention config.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * Number of days to retain matching logs in long-term (Iceberg) storage after they are exported. When multiple configs overlap, the longest retention wins.
+     */
     retentionDays?: pulumi.Input<number>;
+    /**
+     * Stable identifier for the log retention config. Generated from `name` if omitted. Immutable after creation.
+     */
     slug?: pulumi.Input<string>;
 }
 
@@ -96,9 +143,24 @@ export interface LogRetentionConfigState {
  * The set of arguments for constructing a LogRetentionConfig resource.
  */
 export interface LogRetentionConfigArgs {
+    /**
+     * Log query filter. The retention policy applies only to logs that match.
+     */
     filter: pulumi.Input<string>;
+    /**
+     * Mode that determines how matching logs are retained in long-term (Iceberg) storage.
+     */
     mode: pulumi.Input<string>;
+    /**
+     * Display name of the log retention config.
+     */
     name: pulumi.Input<string>;
+    /**
+     * Number of days to retain matching logs in long-term (Iceberg) storage after they are exported. When multiple configs overlap, the longest retention wins.
+     */
     retentionDays: pulumi.Input<number>;
+    /**
+     * Stable identifier for the log retention config. Generated from `name` if omitted. Immutable after creation.
+     */
     slug?: pulumi.Input<string>;
 }

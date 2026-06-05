@@ -14,9 +14,21 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationStrategies
     {
+        /// <summary>
+        /// Minimum number of traces per second sampled for any operation in the service, even when the probabilistic rate would yield fewer.
+        /// </summary>
         public readonly double? DefaultLowerBoundTracesPerSecond;
+        /// <summary>
+        /// Service-wide sampling probability in the range `[0.0, 1.0]` applied when no per-operation override matches.
+        /// </summary>
         public readonly double DefaultSamplingRate;
+        /// <summary>
+        /// Maximum number of traces per second sampled for any operation in the service, regardless of matching per-operation strategy.
+        /// </summary>
         public readonly double? DefaultUpperBoundTracesPerSecond;
+        /// <summary>
+        /// Per-operation sampling configuration with a service-wide default and optional per-operation overrides.
+        /// </summary>
         public readonly ImmutableArray<Outputs.TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationStrategiesPerOperationStrategy> PerOperationStrategies;
 
         [OutputConstructor]

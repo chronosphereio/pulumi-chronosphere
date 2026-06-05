@@ -17,23 +17,47 @@ public final class ConsumptionConfigPartitionPartitionPartitionPartitionPartitio
 
     public static final ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionArgs Empty = new ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionArgs();
 
+    /**
+     * Filters identifying which data belongs to this partition. Filters are AND-ed together: a request must match every filter to be assigned to the partition. At most one `IN` filter and one `NOT_IN` filter can be specified.
+     * 
+     */
     @Import(name="filters")
     private @Nullable Output<List<ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterArgs>> filters;
 
+    /**
+     * @return Filters identifying which data belongs to this partition. Filters are AND-ed together: a request must match every filter to be assigned to the partition. At most one `IN` filter and one `NOT_IN` filter can be specified.
+     * 
+     */
     public Optional<Output<List<ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterArgs>>> filters() {
         return Optional.ofNullable(this.filters);
     }
 
+    /**
+     * Display name of the partition. Must be unique within its parent partition. Can be changed after creation.
+     * 
+     */
     @Import(name="name")
     private @Nullable Output<String> name;
 
+    /**
+     * @return Display name of the partition. Must be unique within its parent partition. Can be changed after creation.
+     * 
+     */
     public Optional<Output<String>> name() {
         return Optional.ofNullable(this.name);
     }
 
+    /**
+     * Stable identifier of the partition. Must be unique within its parent partition. Immutable after creation.
+     * 
+     */
     @Import(name="slug")
     private @Nullable Output<String> slug;
 
+    /**
+     * @return Stable identifier of the partition. Must be unique within its parent partition. Immutable after creation.
+     * 
+     */
     public Optional<Output<String>> slug() {
         return Optional.ofNullable(this.slug);
     }
@@ -64,33 +88,75 @@ public final class ConsumptionConfigPartitionPartitionPartitionPartitionPartitio
             $ = new ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param filters Filters identifying which data belongs to this partition. Filters are AND-ed together: a request must match every filter to be assigned to the partition. At most one `IN` filter and one `NOT_IN` filter can be specified.
+         * 
+         * @return builder
+         * 
+         */
         public Builder filters(@Nullable Output<List<ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterArgs>> filters) {
             $.filters = filters;
             return this;
         }
 
+        /**
+         * @param filters Filters identifying which data belongs to this partition. Filters are AND-ed together: a request must match every filter to be assigned to the partition. At most one `IN` filter and one `NOT_IN` filter can be specified.
+         * 
+         * @return builder
+         * 
+         */
         public Builder filters(List<ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterArgs> filters) {
             return filters(Output.of(filters));
         }
 
+        /**
+         * @param filters Filters identifying which data belongs to this partition. Filters are AND-ed together: a request must match every filter to be assigned to the partition. At most one `IN` filter and one `NOT_IN` filter can be specified.
+         * 
+         * @return builder
+         * 
+         */
         public Builder filters(ConsumptionConfigPartitionPartitionPartitionPartitionPartitionPartitionFilterArgs... filters) {
             return filters(List.of(filters));
         }
 
+        /**
+         * @param name Display name of the partition. Must be unique within its parent partition. Can be changed after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(@Nullable Output<String> name) {
             $.name = name;
             return this;
         }
 
+        /**
+         * @param name Display name of the partition. Must be unique within its parent partition. Can be changed after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(String name) {
             return name(Output.of(name));
         }
 
+        /**
+         * @param slug Stable identifier of the partition. Must be unique within its parent partition. Immutable after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slug(@Nullable Output<String> slug) {
             $.slug = slug;
             return this;
         }
 
+        /**
+         * @param slug Stable identifier of the partition. Must be unique within its parent partition. Immutable after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slug(String slug) {
             return slug(Output.of(slug));
         }

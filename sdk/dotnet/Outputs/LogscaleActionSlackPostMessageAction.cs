@@ -14,9 +14,21 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class LogscaleActionSlackPostMessageAction
     {
+        /// <summary>
+        /// Slack API token used to authenticate the request.
+        /// </summary>
         public readonly string ApiToken;
+        /// <summary>
+        /// List of Slack channels to post the message to.
+        /// </summary>
         public readonly ImmutableArray<string> Channels;
+        /// <summary>
+        /// Fields to include in the Slack message. Values support Go template syntax with the query result.
+        /// </summary>
         public readonly ImmutableDictionary<string, string>? Fields;
+        /// <summary>
+        /// If `true`, sends the request through the configured outbound proxy.
+        /// </summary>
         public readonly bool? UseProxy;
 
         [OutputConstructor]

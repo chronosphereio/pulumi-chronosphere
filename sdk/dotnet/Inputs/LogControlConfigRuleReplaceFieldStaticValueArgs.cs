@@ -13,6 +13,9 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class LogControlConfigRuleReplaceFieldStaticValueArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Path to a field within a log record.
+        /// </summary>
         [Input("value")]
         public Input<string>? Value { get; set; }
 

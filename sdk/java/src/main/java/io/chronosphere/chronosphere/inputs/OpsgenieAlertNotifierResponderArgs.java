@@ -15,30 +15,62 @@ public final class OpsgenieAlertNotifierResponderArgs extends com.pulumi.resourc
 
     public static final OpsgenieAlertNotifierResponderArgs Empty = new OpsgenieAlertNotifierResponderArgs();
 
+    /**
+     * Opsgenie identifier of the responder. Use instead of `name` or `username`.
+     * 
+     */
     @Import(name="id")
     private @Nullable Output<String> id;
 
+    /**
+     * @return Opsgenie identifier of the responder. Use instead of `name` or `username`.
+     * 
+     */
     public Optional<Output<String>> id() {
         return Optional.ofNullable(this.id);
     }
 
+    /**
+     * Name of the responder team, schedule, or escalation policy.
+     * 
+     */
     @Import(name="name")
     private @Nullable Output<String> name;
 
+    /**
+     * @return Name of the responder team, schedule, or escalation policy.
+     * 
+     */
     public Optional<Output<String>> name() {
         return Optional.ofNullable(this.name);
     }
 
+    /**
+     * Responder type. One of `team`, `user`, `escalation`, or `schedule`.
+     * 
+     */
     @Import(name="type", required=true)
     private Output<String> type;
 
+    /**
+     * @return Responder type. One of `team`, `user`, `escalation`, or `schedule`.
+     * 
+     */
     public Output<String> type() {
         return this.type;
     }
 
+    /**
+     * Username of a user responder.
+     * 
+     */
     @Import(name="username")
     private @Nullable Output<String> username;
 
+    /**
+     * @return Username of a user responder.
+     * 
+     */
     public Optional<Output<String>> username() {
         return Optional.ofNullable(this.username);
     }
@@ -70,38 +102,86 @@ public final class OpsgenieAlertNotifierResponderArgs extends com.pulumi.resourc
             $ = new OpsgenieAlertNotifierResponderArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param id Opsgenie identifier of the responder. Use instead of `name` or `username`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder id(@Nullable Output<String> id) {
             $.id = id;
             return this;
         }
 
+        /**
+         * @param id Opsgenie identifier of the responder. Use instead of `name` or `username`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder id(String id) {
             return id(Output.of(id));
         }
 
+        /**
+         * @param name Name of the responder team, schedule, or escalation policy.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(@Nullable Output<String> name) {
             $.name = name;
             return this;
         }
 
+        /**
+         * @param name Name of the responder team, schedule, or escalation policy.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(String name) {
             return name(Output.of(name));
         }
 
+        /**
+         * @param type Responder type. One of `team`, `user`, `escalation`, or `schedule`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder type(Output<String> type) {
             $.type = type;
             return this;
         }
 
+        /**
+         * @param type Responder type. One of `team`, `user`, `escalation`, or `schedule`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder type(String type) {
             return type(Output.of(type));
         }
 
+        /**
+         * @param username Username of a user responder.
+         * 
+         * @return builder
+         * 
+         */
         public Builder username(@Nullable Output<String> username) {
             $.username = username;
             return this;
         }
 
+        /**
+         * @param username Username of a user responder.
+         * 
+         * @return builder
+         * 
+         */
         public Builder username(String username) {
             return username(Output.of(username));
         }

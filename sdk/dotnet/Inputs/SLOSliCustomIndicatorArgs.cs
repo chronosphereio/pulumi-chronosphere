@@ -13,12 +13,21 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class SLOSliCustomIndicatorArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// PromQL query template measuring the count of bad events. Mutually exclusive with `good_query_template`.
+        /// </summary>
         [Input("badQueryTemplate")]
         public Input<string>? BadQueryTemplate { get; set; }
 
+        /// <summary>
+        /// PromQL query template measuring the count of good events. Mutually exclusive with `bad_query_template`.
+        /// </summary>
         [Input("goodQueryTemplate")]
         public Input<string>? GoodQueryTemplate { get; set; }
 
+        /// <summary>
+        /// PromQL query template measuring the total count of events. Required for error-ratio SLOs.
+        /// </summary>
         [Input("totalQueryTemplate", required: true)]
         public Input<string> TotalQueryTemplate { get; set; } = null!;
 

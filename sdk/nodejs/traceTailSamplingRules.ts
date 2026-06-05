@@ -6,6 +6,9 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * Tail-sampling rules that match completed traces against filters and apply per-rule sample rates (with a default rate fallback) to decide which traces are retained after the full trace has been observed.
+ */
 export class TraceTailSamplingRules extends pulumi.CustomResource {
     /**
      * Get an existing TraceTailSamplingRules resource's state with the given name, ID, and optional extra
@@ -34,7 +37,13 @@ export class TraceTailSamplingRules extends pulumi.CustomResource {
         return obj['__pulumiType'] === TraceTailSamplingRules.__pulumiType;
     }
 
+    /**
+     * Default sampling decision applied after the full trace is observed when no rule in `rules` matches.
+     */
     public readonly defaultSampleRate!: pulumi.Output<outputs.TraceTailSamplingRulesDefaultSampleRate | undefined>;
+    /**
+     * Ordered list of tail-sampling rules evaluated after the full trace is observed. The first rule whose `filter` matches determines the sample rate; if none match, `defaultSampleRate` is applied.
+     */
     public readonly rules!: pulumi.Output<outputs.TraceTailSamplingRulesRule[] | undefined>;
 
     /**
@@ -66,7 +75,13 @@ export class TraceTailSamplingRules extends pulumi.CustomResource {
  * Input properties used for looking up and filtering TraceTailSamplingRules resources.
  */
 export interface TraceTailSamplingRulesState {
+    /**
+     * Default sampling decision applied after the full trace is observed when no rule in `rules` matches.
+     */
     defaultSampleRate?: pulumi.Input<inputs.TraceTailSamplingRulesDefaultSampleRate>;
+    /**
+     * Ordered list of tail-sampling rules evaluated after the full trace is observed. The first rule whose `filter` matches determines the sample rate; if none match, `defaultSampleRate` is applied.
+     */
     rules?: pulumi.Input<pulumi.Input<inputs.TraceTailSamplingRulesRule>[]>;
 }
 
@@ -74,6 +89,12 @@ export interface TraceTailSamplingRulesState {
  * The set of arguments for constructing a TraceTailSamplingRules resource.
  */
 export interface TraceTailSamplingRulesArgs {
+    /**
+     * Default sampling decision applied after the full trace is observed when no rule in `rules` matches.
+     */
     defaultSampleRate?: pulumi.Input<inputs.TraceTailSamplingRulesDefaultSampleRate>;
+    /**
+     * Ordered list of tail-sampling rules evaluated after the full trace is observed. The first rule whose `filter` matches determines the sample rate; if none match, `defaultSampleRate` is applied.
+     */
     rules?: pulumi.Input<pulumi.Input<inputs.TraceTailSamplingRulesRule>[]>;
 }

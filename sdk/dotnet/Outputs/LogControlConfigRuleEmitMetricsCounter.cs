@@ -14,6 +14,9 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class LogControlConfigRuleEmitMetricsCounter
     {
+        /// <summary>
+        /// Path to a field within a log record.
+        /// </summary>
         public readonly Outputs.LogControlConfigRuleEmitMetricsCounterValue? Value;
 
         [OutputConstructor]

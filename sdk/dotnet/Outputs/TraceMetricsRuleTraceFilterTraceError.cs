@@ -14,6 +14,9 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class TraceMetricsRuleTraceFilterTraceError
     {
+        /// <summary>
+        /// Boolean value the target field is compared against.
+        /// </summary>
         public readonly bool Value;
 
         [OutputConstructor]

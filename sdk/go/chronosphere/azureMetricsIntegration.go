@@ -12,16 +12,77 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Scrapes Azure Monitor metrics from the configured subscriptions, locations, and resource types using a service-principal credential.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/chronosphereio/pulumi-chronosphere/sdk/go/chronosphere"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := chronosphere.NewAzureMetricsIntegration(ctx, "subscription", &chronosphere.AzureMetricsIntegrationArgs{
+//				CountMetricsEnabled: pulumi.Bool(true),
+//				Name:                pulumi.String("Azure Metrics"),
+//				Principal: &chronosphere.AzureMetricsIntegrationPrincipalArgs{
+//					ClientId: pulumi.String("00000000-0000-0000-0000-000000000000"),
+//					TenantId: pulumi.String("00000000-0000-0000-0000-000000000000"),
+//				},
+//				PropagateTags: pulumi.Bool(true),
+//				ScrapeConfig: &chronosphere.AzureMetricsIntegrationScrapeConfigArgs{
+//					Locations: pulumi.StringArray{
+//						pulumi.String("eastus"),
+//						pulumi.String("westus"),
+//					},
+//					ResourceTypes: chronosphere.AzureMetricsIntegrationScrapeConfigResourceTypeArray{
+//						&chronosphere.AzureMetricsIntegrationScrapeConfigResourceTypeArgs{
+//							Name: pulumi.String("Microsoft.Compute/virtualMachines"),
+//						},
+//						&chronosphere.AzureMetricsIntegrationScrapeConfigResourceTypeArgs{
+//							MetricNames: pulumi.StringArray{
+//								pulumi.String("UsedCapacity"),
+//							},
+//							Name: pulumi.String("Microsoft.Storage/storageAccounts"),
+//						},
+//					},
+//					SubscriptionIds: pulumi.StringArray{
+//						pulumi.String("00000000-0000-0000-0000-000000000000"),
+//					},
+//				},
+//				Slug: pulumi.String("azure-metrics"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type AzureMetricsIntegration struct {
 	pulumi.CustomResourceState
 
-	CountMetricsEnabled pulumi.BoolPtrOutput                         `pulumi:"countMetricsEnabled"`
-	Name                pulumi.StringOutput                          `pulumi:"name"`
-	Principal           AzureMetricsIntegrationPrincipalPtrOutput    `pulumi:"principal"`
-	PropagateTags       pulumi.BoolPtrOutput                         `pulumi:"propagateTags"`
-	ScrapeConfig        AzureMetricsIntegrationScrapeConfigPtrOutput `pulumi:"scrapeConfig"`
-	Slug                pulumi.StringOutput                          `pulumi:"slug"`
-	UsageMetricsEnabled pulumi.BoolPtrOutput                         `pulumi:"usageMetricsEnabled"`
+	// If true, enables Azure count metrics for the configured resources.
+	CountMetricsEnabled pulumi.BoolPtrOutput `pulumi:"countMetricsEnabled"`
+	// Azure resource type identifier (e.g. `Microsoft.Compute/virtualMachines`).
+	Name pulumi.StringOutput `pulumi:"name"`
+	// Azure managed identity principal used to authenticate with Azure Monitor.
+	Principal AzureMetricsIntegrationPrincipalPtrOutput `pulumi:"principal"`
+	// If true, propagates Azure resource, group, and subscription tags as metric labels.
+	PropagateTags pulumi.BoolPtrOutput `pulumi:"propagateTags"`
+	// Scope of Azure subscriptions, locations, and resource types from which to ingest metrics.
+	ScrapeConfig AzureMetricsIntegrationScrapeConfigPtrOutput `pulumi:"scrapeConfig"`
+	// Stable identifier for the integration. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringOutput `pulumi:"slug"`
+	// If true, enables collection of Azure usage metrics under this principal (Microsoft.Compute, Microsoft.Network, Microsoft.Storage).
+	UsageMetricsEnabled pulumi.BoolPtrOutput `pulumi:"usageMetricsEnabled"`
 }
 
 // NewAzureMetricsIntegration registers a new resource with the given unique name, arguments, and options.
@@ -57,22 +118,36 @@ func GetAzureMetricsIntegration(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering AzureMetricsIntegration resources.
 type azureMetricsIntegrationState struct {
-	CountMetricsEnabled *bool                                `pulumi:"countMetricsEnabled"`
-	Name                *string                              `pulumi:"name"`
-	Principal           *AzureMetricsIntegrationPrincipal    `pulumi:"principal"`
-	PropagateTags       *bool                                `pulumi:"propagateTags"`
-	ScrapeConfig        *AzureMetricsIntegrationScrapeConfig `pulumi:"scrapeConfig"`
-	Slug                *string                              `pulumi:"slug"`
-	UsageMetricsEnabled *bool                                `pulumi:"usageMetricsEnabled"`
+	// If true, enables Azure count metrics for the configured resources.
+	CountMetricsEnabled *bool `pulumi:"countMetricsEnabled"`
+	// Azure resource type identifier (e.g. `Microsoft.Compute/virtualMachines`).
+	Name *string `pulumi:"name"`
+	// Azure managed identity principal used to authenticate with Azure Monitor.
+	Principal *AzureMetricsIntegrationPrincipal `pulumi:"principal"`
+	// If true, propagates Azure resource, group, and subscription tags as metric labels.
+	PropagateTags *bool `pulumi:"propagateTags"`
+	// Scope of Azure subscriptions, locations, and resource types from which to ingest metrics.
+	ScrapeConfig *AzureMetricsIntegrationScrapeConfig `pulumi:"scrapeConfig"`
+	// Stable identifier for the integration. Generated from `name` if omitted. Immutable after creation.
+	Slug *string `pulumi:"slug"`
+	// If true, enables collection of Azure usage metrics under this principal (Microsoft.Compute, Microsoft.Network, Microsoft.Storage).
+	UsageMetricsEnabled *bool `pulumi:"usageMetricsEnabled"`
 }
 
 type AzureMetricsIntegrationState struct {
+	// If true, enables Azure count metrics for the configured resources.
 	CountMetricsEnabled pulumi.BoolPtrInput
-	Name                pulumi.StringPtrInput
-	Principal           AzureMetricsIntegrationPrincipalPtrInput
-	PropagateTags       pulumi.BoolPtrInput
-	ScrapeConfig        AzureMetricsIntegrationScrapeConfigPtrInput
-	Slug                pulumi.StringPtrInput
+	// Azure resource type identifier (e.g. `Microsoft.Compute/virtualMachines`).
+	Name pulumi.StringPtrInput
+	// Azure managed identity principal used to authenticate with Azure Monitor.
+	Principal AzureMetricsIntegrationPrincipalPtrInput
+	// If true, propagates Azure resource, group, and subscription tags as metric labels.
+	PropagateTags pulumi.BoolPtrInput
+	// Scope of Azure subscriptions, locations, and resource types from which to ingest metrics.
+	ScrapeConfig AzureMetricsIntegrationScrapeConfigPtrInput
+	// Stable identifier for the integration. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringPtrInput
+	// If true, enables collection of Azure usage metrics under this principal (Microsoft.Compute, Microsoft.Network, Microsoft.Storage).
 	UsageMetricsEnabled pulumi.BoolPtrInput
 }
 
@@ -81,23 +156,37 @@ func (AzureMetricsIntegrationState) ElementType() reflect.Type {
 }
 
 type azureMetricsIntegrationArgs struct {
-	CountMetricsEnabled *bool                                `pulumi:"countMetricsEnabled"`
-	Name                string                               `pulumi:"name"`
-	Principal           *AzureMetricsIntegrationPrincipal    `pulumi:"principal"`
-	PropagateTags       *bool                                `pulumi:"propagateTags"`
-	ScrapeConfig        *AzureMetricsIntegrationScrapeConfig `pulumi:"scrapeConfig"`
-	Slug                *string                              `pulumi:"slug"`
-	UsageMetricsEnabled *bool                                `pulumi:"usageMetricsEnabled"`
+	// If true, enables Azure count metrics for the configured resources.
+	CountMetricsEnabled *bool `pulumi:"countMetricsEnabled"`
+	// Azure resource type identifier (e.g. `Microsoft.Compute/virtualMachines`).
+	Name string `pulumi:"name"`
+	// Azure managed identity principal used to authenticate with Azure Monitor.
+	Principal *AzureMetricsIntegrationPrincipal `pulumi:"principal"`
+	// If true, propagates Azure resource, group, and subscription tags as metric labels.
+	PropagateTags *bool `pulumi:"propagateTags"`
+	// Scope of Azure subscriptions, locations, and resource types from which to ingest metrics.
+	ScrapeConfig *AzureMetricsIntegrationScrapeConfig `pulumi:"scrapeConfig"`
+	// Stable identifier for the integration. Generated from `name` if omitted. Immutable after creation.
+	Slug *string `pulumi:"slug"`
+	// If true, enables collection of Azure usage metrics under this principal (Microsoft.Compute, Microsoft.Network, Microsoft.Storage).
+	UsageMetricsEnabled *bool `pulumi:"usageMetricsEnabled"`
 }
 
 // The set of arguments for constructing a AzureMetricsIntegration resource.
 type AzureMetricsIntegrationArgs struct {
+	// If true, enables Azure count metrics for the configured resources.
 	CountMetricsEnabled pulumi.BoolPtrInput
-	Name                pulumi.StringInput
-	Principal           AzureMetricsIntegrationPrincipalPtrInput
-	PropagateTags       pulumi.BoolPtrInput
-	ScrapeConfig        AzureMetricsIntegrationScrapeConfigPtrInput
-	Slug                pulumi.StringPtrInput
+	// Azure resource type identifier (e.g. `Microsoft.Compute/virtualMachines`).
+	Name pulumi.StringInput
+	// Azure managed identity principal used to authenticate with Azure Monitor.
+	Principal AzureMetricsIntegrationPrincipalPtrInput
+	// If true, propagates Azure resource, group, and subscription tags as metric labels.
+	PropagateTags pulumi.BoolPtrInput
+	// Scope of Azure subscriptions, locations, and resource types from which to ingest metrics.
+	ScrapeConfig AzureMetricsIntegrationScrapeConfigPtrInput
+	// Stable identifier for the integration. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringPtrInput
+	// If true, enables collection of Azure usage metrics under this principal (Microsoft.Compute, Microsoft.Network, Microsoft.Storage).
 	UsageMetricsEnabled pulumi.BoolPtrInput
 }
 
@@ -188,30 +277,37 @@ func (o AzureMetricsIntegrationOutput) ToAzureMetricsIntegrationOutputWithContex
 	return o
 }
 
+// If true, enables Azure count metrics for the configured resources.
 func (o AzureMetricsIntegrationOutput) CountMetricsEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *AzureMetricsIntegration) pulumi.BoolPtrOutput { return v.CountMetricsEnabled }).(pulumi.BoolPtrOutput)
 }
 
+// Azure resource type identifier (e.g. `Microsoft.Compute/virtualMachines`).
 func (o AzureMetricsIntegrationOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *AzureMetricsIntegration) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// Azure managed identity principal used to authenticate with Azure Monitor.
 func (o AzureMetricsIntegrationOutput) Principal() AzureMetricsIntegrationPrincipalPtrOutput {
 	return o.ApplyT(func(v *AzureMetricsIntegration) AzureMetricsIntegrationPrincipalPtrOutput { return v.Principal }).(AzureMetricsIntegrationPrincipalPtrOutput)
 }
 
+// If true, propagates Azure resource, group, and subscription tags as metric labels.
 func (o AzureMetricsIntegrationOutput) PropagateTags() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *AzureMetricsIntegration) pulumi.BoolPtrOutput { return v.PropagateTags }).(pulumi.BoolPtrOutput)
 }
 
+// Scope of Azure subscriptions, locations, and resource types from which to ingest metrics.
 func (o AzureMetricsIntegrationOutput) ScrapeConfig() AzureMetricsIntegrationScrapeConfigPtrOutput {
 	return o.ApplyT(func(v *AzureMetricsIntegration) AzureMetricsIntegrationScrapeConfigPtrOutput { return v.ScrapeConfig }).(AzureMetricsIntegrationScrapeConfigPtrOutput)
 }
 
+// Stable identifier for the integration. Generated from `name` if omitted. Immutable after creation.
 func (o AzureMetricsIntegrationOutput) Slug() pulumi.StringOutput {
 	return o.ApplyT(func(v *AzureMetricsIntegration) pulumi.StringOutput { return v.Slug }).(pulumi.StringOutput)
 }
 
+// If true, enables collection of Azure usage metrics under this principal (Microsoft.Compute, Microsoft.Network, Microsoft.Storage).
 func (o AzureMetricsIntegrationOutput) UsageMetricsEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *AzureMetricsIntegration) pulumi.BoolPtrOutput { return v.UsageMetricsEnabled }).(pulumi.BoolPtrOutput)
 }

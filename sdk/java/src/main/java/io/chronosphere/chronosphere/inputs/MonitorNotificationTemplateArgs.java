@@ -15,16 +15,32 @@ public final class MonitorNotificationTemplateArgs extends com.pulumi.resources.
 
     public static final MonitorNotificationTemplateArgs Empty = new MonitorNotificationTemplateArgs();
 
+    /**
+     * Body/description template for the notification.
+     * 
+     */
     @Import(name="description")
     private @Nullable Output<String> description;
 
+    /**
+     * @return Body/description template for the notification.
+     * 
+     */
     public Optional<Output<String>> description() {
         return Optional.ofNullable(this.description);
     }
 
+    /**
+     * Title template for the notification.
+     * 
+     */
     @Import(name="title")
     private @Nullable Output<String> title;
 
+    /**
+     * @return Title template for the notification.
+     * 
+     */
     public Optional<Output<String>> title() {
         return Optional.ofNullable(this.title);
     }
@@ -54,20 +70,44 @@ public final class MonitorNotificationTemplateArgs extends com.pulumi.resources.
             $ = new MonitorNotificationTemplateArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param description Body/description template for the notification.
+         * 
+         * @return builder
+         * 
+         */
         public Builder description(@Nullable Output<String> description) {
             $.description = description;
             return this;
         }
 
+        /**
+         * @param description Body/description template for the notification.
+         * 
+         * @return builder
+         * 
+         */
         public Builder description(String description) {
             return description(Output.of(description));
         }
 
+        /**
+         * @param title Title template for the notification.
+         * 
+         * @return builder
+         * 
+         */
         public Builder title(@Nullable Output<String> title) {
             $.title = title;
             return this;
         }
 
+        /**
+         * @param title Title template for the notification.
+         * 
+         * @return builder
+         * 
+         */
         public Builder title(String title) {
             return title(Output.of(title));
         }

@@ -41,6 +41,9 @@ class BucketDataSourceResult:
     @property
     @pulumi.getter
     def description(self) -> str:
+        """
+        Read-only: free-form description of the bucket.
+        """
         return pulumi.get(self, "description")
 
     @property
@@ -54,16 +57,25 @@ class BucketDataSourceResult:
     @property
     @pulumi.getter
     def labels(self) -> Optional[Mapping[str, str]]:
+        """
+        Read-only: key/value labels attached to the bucket.
+        """
         return pulumi.get(self, "labels")
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
+        """
+        Name of the bucket to look up. Exactly one of `slug` or `name` must be set.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def slug(self) -> Optional[str]:
+        """
+        Slug of the bucket to look up. Exactly one of `slug` or `name` must be set.
+        """
         return pulumi.get(self, "slug")
 
 
@@ -85,7 +97,20 @@ def bucket_data_source(labels: Optional[Mapping[str, str]] = None,
                        slug: Optional[str] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableBucketDataSourceResult:
     """
-    Use this data source to access information about an existing resource.
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_chronosphere as chronosphere
+
+    default = chronosphere.bucket_data_source(slug="default")
+    by_name = chronosphere.bucket_data_source(name="Default")
+    ```
+
+
+    :param Mapping[str, str] labels: Read-only: key/value labels attached to the bucket.
+    :param str name: Name of the bucket to look up. Exactly one of `slug` or `name` must be set.
+    :param str slug: Slug of the bucket to look up. Exactly one of `slug` or `name` must be set.
     """
     __args__ = dict()
     __args__['labels'] = labels
@@ -108,6 +133,19 @@ def bucket_data_source_output(labels: Optional[pulumi.Input[Optional[Mapping[str
                               slug: Optional[pulumi.Input[Optional[str]]] = None,
                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[BucketDataSourceResult]:
     """
-    Use this data source to access information about an existing resource.
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_chronosphere as chronosphere
+
+    default = chronosphere.bucket_data_source(slug="default")
+    by_name = chronosphere.bucket_data_source(name="Default")
+    ```
+
+
+    :param Mapping[str, str] labels: Read-only: key/value labels attached to the bucket.
+    :param str name: Name of the bucket to look up. Exactly one of `slug` or `name` must be set.
+    :param str slug: Slug of the bucket to look up. Exactly one of `slug` or `name` must be set.
     """
     ...

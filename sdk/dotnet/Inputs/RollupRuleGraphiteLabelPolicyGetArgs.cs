@@ -15,6 +15,10 @@ namespace Chronosphere.Pulumi.Inputs
     {
         [Input("replaces")]
         private InputList<Inputs.RollupRuleGraphiteLabelPolicyReplaceGetArgs>? _replaces;
+
+        /// <summary>
+        /// List of positional Graphite label replacements applied to the output metric.
+        /// </summary>
         public InputList<Inputs.RollupRuleGraphiteLabelPolicyReplaceGetArgs> Replaces
         {
             get => _replaces ?? (_replaces = new InputList<Inputs.RollupRuleGraphiteLabelPolicyReplaceGetArgs>());

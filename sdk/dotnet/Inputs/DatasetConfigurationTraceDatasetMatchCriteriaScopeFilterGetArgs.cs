@@ -15,6 +15,10 @@ namespace Chronosphere.Pulumi.Inputs
     {
         [Input("spanScopes")]
         private InputList<Inputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeGetArgs>? _spanScopes;
+
+        /// <summary>
+        /// Span conditions that select which spans are aggregated. Spans must match at least one block to be included.
+        /// </summary>
         public InputList<Inputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeGetArgs> SpanScopes
         {
             get => _spanScopes ?? (_spanScopes = new InputList<Inputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScopeGetArgs>());

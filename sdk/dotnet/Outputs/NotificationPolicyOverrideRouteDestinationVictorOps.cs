@@ -14,7 +14,13 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class NotificationPolicyOverrideRouteDestinationVictorOps
     {
+        /// <summary>
+        /// Slug of the OpsGenie external connection holding the integration credentials.
+        /// </summary>
         public readonly string ExternalConnectionSlug;
+        /// <summary>
+        /// VictorOps routing keys identifying the destination escalation policies.
+        /// </summary>
         public readonly ImmutableArray<string> RoutingKeys;
 
         [OutputConstructor]

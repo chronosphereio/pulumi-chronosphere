@@ -13,9 +13,15 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class AzureMetricsIntegrationPrincipalGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// OAuth2 client ID of the managed identity principal.
+        /// </summary>
         [Input("clientId")]
         public Input<string>? ClientId { get; set; }
 
+        /// <summary>
+        /// ID of the Azure tenant that hosts the managed identity principal.
+        /// </summary>
         [Input("tenantId")]
         public Input<string>? TenantId { get; set; }
 

@@ -4,6 +4,42 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * A LogScale alert that runs a saved LogScale query on a schedule and fires the configured logscaleAction targets when the query returns results.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as chronosphere from "@pulumi-chronosphere/pulumi-chronosphere";
+ *
+ * const email = new chronosphere.LogscaleAction("email", {
+ *     repository: "default",
+ *     name: "Email on-call",
+ *     emailAction: {
+ *         recipients: ["oncall@example.com"],
+ *         subjectTemplate: "Logscale alert: {{alert.name}}",
+ *         bodyTemplate: "{{query.results}}",
+ *     },
+ * });
+ * const highErrorRate = new chronosphere.LogscaleAlert("highErrorRate", {
+ *     repository: "default",
+ *     name: "High error rate",
+ *     description: "More than 500 errors in a 60s window",
+ *     alertType: "STANDARD",
+ *     query: "level = ERROR | count(as=numErrors) | numErrors > 500",
+ *     timeWindow: "60s",
+ *     throttleDuration: "60s",
+ *     throttleField: "service",
+ *     tags: [
+ *         "errors",
+ *         "platform",
+ *     ],
+ *     disabled: false,
+ *     actionIds: [email.id],
+ * });
+ * ```
+ */
 export class LogscaleAlert extends pulumi.CustomResource {
     /**
      * Get an existing LogscaleAlert resource's state with the given name, ID, and optional extra
@@ -32,26 +68,56 @@ export class LogscaleAlert extends pulumi.CustomResource {
         return obj['__pulumiType'] === LogscaleAlert.__pulumiType;
     }
 
+    /**
+     * Slugs of LogScale actions to invoke when the alert triggers. The alert does not fire if this list is empty.
+     */
     public readonly actionIds!: pulumi.Output<string[] | undefined>;
+    /**
+     * Type of LogScale alert. `STANDARD` runs the query on a schedule over a time window; `FILTER` evaluates the query against each incoming event.
+     */
     public readonly alertType!: pulumi.Output<string>;
+    /**
+     * Human-readable description of the alert.
+     */
     public readonly description!: pulumi.Output<string | undefined>;
+    /**
+     * If `true`, the alert will not evaluate or trigger actions.
+     */
     public readonly disabled!: pulumi.Output<boolean | undefined>;
+    /**
+     * Display name of the LogScale alert.
+     */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * LogScale query that the alert evaluates. Example: `level = ERROR | severity > 3 | count(as=numErrors) | numErrors > 500`.
+     */
     public readonly query!: pulumi.Output<string | undefined>;
+    /**
+     * Name of the LogScale repository the alert belongs to. Immutable after creation.
+     */
     public readonly repository!: pulumi.Output<string>;
     /**
      * Email of the user that the alert runs on behalf of
      */
     public readonly runAsUser!: pulumi.Output<string>;
+    /**
+     * Stable identifier for the LogScale alert. Generated from `name` if omitted. Immutable after creation.
+     */
     public readonly slug!: pulumi.Output<string>;
+    /**
+     * Tags attached to the alert for organization and filtering.
+     */
     public readonly tags!: pulumi.Output<string[] | undefined>;
     /**
-     * Required for STANDARD type alerts, optional for FILTER type alerts
+     * Minimum interval between consecutive triggers of the alert. Required for `STANDARD` alerts, optional for `FILTER` alerts.
      */
     public readonly throttleDuration!: pulumi.Output<string | undefined>;
+    /**
+     * Optional field whose value is used to scope throttling, so the alert is throttled per distinct value of this field rather than globally.
+     */
     public readonly throttleField!: pulumi.Output<string | undefined>;
     /**
-     * Required for STANDARD type alerts, ignored for FILTER type alerts
+     * Lookback window for the alert query. Required for `STANDARD` alerts, ignored for `FILTER` alerts.
      */
     public readonly timeWindow!: pulumi.Output<string | undefined>;
 
@@ -118,26 +184,56 @@ export class LogscaleAlert extends pulumi.CustomResource {
  * Input properties used for looking up and filtering LogscaleAlert resources.
  */
 export interface LogscaleAlertState {
+    /**
+     * Slugs of LogScale actions to invoke when the alert triggers. The alert does not fire if this list is empty.
+     */
     actionIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Type of LogScale alert. `STANDARD` runs the query on a schedule over a time window; `FILTER` evaluates the query against each incoming event.
+     */
     alertType?: pulumi.Input<string>;
+    /**
+     * Human-readable description of the alert.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * If `true`, the alert will not evaluate or trigger actions.
+     */
     disabled?: pulumi.Input<boolean>;
+    /**
+     * Display name of the LogScale alert.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * LogScale query that the alert evaluates. Example: `level = ERROR | severity > 3 | count(as=numErrors) | numErrors > 500`.
+     */
     query?: pulumi.Input<string>;
+    /**
+     * Name of the LogScale repository the alert belongs to. Immutable after creation.
+     */
     repository?: pulumi.Input<string>;
     /**
      * Email of the user that the alert runs on behalf of
      */
     runAsUser?: pulumi.Input<string>;
+    /**
+     * Stable identifier for the LogScale alert. Generated from `name` if omitted. Immutable after creation.
+     */
     slug?: pulumi.Input<string>;
+    /**
+     * Tags attached to the alert for organization and filtering.
+     */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Required for STANDARD type alerts, optional for FILTER type alerts
+     * Minimum interval between consecutive triggers of the alert. Required for `STANDARD` alerts, optional for `FILTER` alerts.
      */
     throttleDuration?: pulumi.Input<string>;
+    /**
+     * Optional field whose value is used to scope throttling, so the alert is throttled per distinct value of this field rather than globally.
+     */
     throttleField?: pulumi.Input<string>;
     /**
-     * Required for STANDARD type alerts, ignored for FILTER type alerts
+     * Lookback window for the alert query. Required for `STANDARD` alerts, ignored for `FILTER` alerts.
      */
     timeWindow?: pulumi.Input<string>;
 }
@@ -146,26 +242,56 @@ export interface LogscaleAlertState {
  * The set of arguments for constructing a LogscaleAlert resource.
  */
 export interface LogscaleAlertArgs {
+    /**
+     * Slugs of LogScale actions to invoke when the alert triggers. The alert does not fire if this list is empty.
+     */
     actionIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Type of LogScale alert. `STANDARD` runs the query on a schedule over a time window; `FILTER` evaluates the query against each incoming event.
+     */
     alertType: pulumi.Input<string>;
+    /**
+     * Human-readable description of the alert.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * If `true`, the alert will not evaluate or trigger actions.
+     */
     disabled?: pulumi.Input<boolean>;
+    /**
+     * Display name of the LogScale alert.
+     */
     name: pulumi.Input<string>;
+    /**
+     * LogScale query that the alert evaluates. Example: `level = ERROR | severity > 3 | count(as=numErrors) | numErrors > 500`.
+     */
     query?: pulumi.Input<string>;
+    /**
+     * Name of the LogScale repository the alert belongs to. Immutable after creation.
+     */
     repository: pulumi.Input<string>;
     /**
      * Email of the user that the alert runs on behalf of
      */
     runAsUser: pulumi.Input<string>;
+    /**
+     * Stable identifier for the LogScale alert. Generated from `name` if omitted. Immutable after creation.
+     */
     slug?: pulumi.Input<string>;
+    /**
+     * Tags attached to the alert for organization and filtering.
+     */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Required for STANDARD type alerts, optional for FILTER type alerts
+     * Minimum interval between consecutive triggers of the alert. Required for `STANDARD` alerts, optional for `FILTER` alerts.
      */
     throttleDuration?: pulumi.Input<string>;
+    /**
+     * Optional field whose value is used to scope throttling, so the alert is throttled per distinct value of this field rather than globally.
+     */
     throttleField?: pulumi.Input<string>;
     /**
-     * Required for STANDARD type alerts, ignored for FILTER type alerts
+     * Lookback window for the alert query. Required for `STANDARD` alerts, ignored for `FILTER` alerts.
      */
     timeWindow?: pulumi.Input<string>;
 }

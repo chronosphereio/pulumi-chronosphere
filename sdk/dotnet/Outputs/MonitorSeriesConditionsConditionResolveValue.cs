@@ -14,7 +14,13 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class MonitorSeriesConditionsConditionResolveValue
     {
+        /// <summary>
+        /// Whether the resolve-value threshold is active.
+        /// </summary>
         public readonly bool Enabled;
+        /// <summary>
+        /// Resolution threshold value.
+        /// </summary>
         public readonly double Value;
 
         [OutputConstructor]

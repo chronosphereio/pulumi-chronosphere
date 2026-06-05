@@ -10,30 +10,80 @@ using Pulumi;
 
 namespace Chronosphere.Pulumi
 {
+    /// <summary>
+    /// A legacy container for monitors, dashboards, and other resources, predating collections. Buckets can also own an inline notification policy via `notification_policy_data`. New configurations should generally use `chronosphere.Collection`.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Pulumi = Chronosphere.Pulumi;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var bucket = new Pulumi.Bucket("bucket", new()
+    ///     {
+    ///         Name = "Bucket",
+    ///         Description = "bucket created by terraform examples",
+    ///         Labels = 
+    ///         {
+    ///             { "foo", "bar" },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// </summary>
     [PulumiResourceType("chronosphere:index/bucket:Bucket")]
     public partial class Bucket : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Free-form description of the bucket.
+        /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
+        /// <summary>
+        /// Key/value labels attached to the bucket for organization and filtering.
+        /// </summary>
         [Output("labels")]
         public Output<ImmutableDictionary<string, string>?> Labels { get; private set; } = null!;
 
+        /// <summary>
+        /// Display name of the bucket. Can be changed after creation.
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// Inline notification policy serialized as JSON. Conflicts with `notification_policy_id`. For reusability, reference a named policy instead.
+        /// </summary>
         [Output("notificationPolicyData")]
         public Output<string?> NotificationPolicyData { get; private set; } = null!;
 
+        /// <summary>
+        /// ID of the default notification policy applied to monitors in this bucket that do not explicitly reference one. Conflicts with `notification_policy_data`.
+        /// </summary>
         [Output("notificationPolicyId")]
         public Output<string?> NotificationPolicyId { get; private set; } = null!;
 
+        /// <summary>
+        /// Internal field tracking the slug of an inline notification policy defined via `notification_policy_data`. Use `notification_policy_id` to reference a named policy.
+        /// </summary>
         [Output("notificationPolicySlug")]
         public Output<string> NotificationPolicySlug { get; private set; } = null!;
 
+        /// <summary>
+        /// Stable identifier for the bucket. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Output("slug")]
         public Output<string> Slug { get; private set; } = null!;
 
+        /// <summary>
+        /// ID of the team that owns this bucket.
+        /// </summary>
         [Output("teamId")]
         public Output<string?> TeamId { get; private set; } = null!;
 
@@ -84,29 +134,51 @@ namespace Chronosphere.Pulumi
 
     public sealed class BucketArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Free-form description of the bucket.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// Key/value labels attached to the bucket for organization and filtering.
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 
+        /// <summary>
+        /// Display name of the bucket. Can be changed after creation.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// Inline notification policy serialized as JSON. Conflicts with `notification_policy_id`. For reusability, reference a named policy instead.
+        /// </summary>
         [Input("notificationPolicyData")]
         public Input<string>? NotificationPolicyData { get; set; }
 
+        /// <summary>
+        /// ID of the default notification policy applied to monitors in this bucket that do not explicitly reference one. Conflicts with `notification_policy_data`.
+        /// </summary>
         [Input("notificationPolicyId")]
         public Input<string>? NotificationPolicyId { get; set; }
 
+        /// <summary>
+        /// Stable identifier for the bucket. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 
+        /// <summary>
+        /// ID of the team that owns this bucket.
+        /// </summary>
         [Input("teamId")]
         public Input<string>? TeamId { get; set; }
 
@@ -118,32 +190,57 @@ namespace Chronosphere.Pulumi
 
     public sealed class BucketState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Free-form description of the bucket.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// Key/value labels attached to the bucket for organization and filtering.
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 
+        /// <summary>
+        /// Display name of the bucket. Can be changed after creation.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// Inline notification policy serialized as JSON. Conflicts with `notification_policy_id`. For reusability, reference a named policy instead.
+        /// </summary>
         [Input("notificationPolicyData")]
         public Input<string>? NotificationPolicyData { get; set; }
 
+        /// <summary>
+        /// ID of the default notification policy applied to monitors in this bucket that do not explicitly reference one. Conflicts with `notification_policy_data`.
+        /// </summary>
         [Input("notificationPolicyId")]
         public Input<string>? NotificationPolicyId { get; set; }
 
+        /// <summary>
+        /// Internal field tracking the slug of an inline notification policy defined via `notification_policy_data`. Use `notification_policy_id` to reference a named policy.
+        /// </summary>
         [Input("notificationPolicySlug")]
         public Input<string>? NotificationPolicySlug { get; set; }
 
+        /// <summary>
+        /// Stable identifier for the bucket. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 
+        /// <summary>
+        /// ID of the team that owns this bucket.
+        /// </summary>
         [Input("teamId")]
         public Input<string>? TeamId { get; set; }
 

@@ -15,21 +15,37 @@ namespace Chronosphere.Pulumi.Inputs
     {
         [Input("customFieldNormalizations")]
         private InputList<Inputs.LogIngestConfigFieldNormalizationCustomFieldNormalizationArgs>? _customFieldNormalizations;
+
+        /// <summary>
+        /// Normalization rules for additional custom fields. These fields are not indexed; use them for things like environment, region, or user ID.
+        /// </summary>
         public InputList<Inputs.LogIngestConfigFieldNormalizationCustomFieldNormalizationArgs> CustomFieldNormalizations
         {
             get => _customFieldNormalizations ?? (_customFieldNormalizations = new InputList<Inputs.LogIngestConfigFieldNormalizationCustomFieldNormalizationArgs>());
             set => _customFieldNormalizations = value;
         }
 
+        /// <summary>
+        /// Rule that extracts and transforms a string value from a log field, with optional regex sanitization, default value, and value mapping.
+        /// </summary>
         [Input("message")]
         public Input<Inputs.LogIngestConfigFieldNormalizationMessageArgs>? Message { get; set; }
 
+        /// <summary>
+        /// Rule that extracts and transforms a string value from a log field, with optional regex sanitization, default value, and value mapping.
+        /// </summary>
         [Input("service")]
         public Input<Inputs.LogIngestConfigFieldNormalizationServiceArgs>? Service { get; set; }
 
+        /// <summary>
+        /// Rule that extracts and transforms a string value from a log field, with optional regex sanitization, default value, and value mapping.
+        /// </summary>
         [Input("severity")]
         public Input<Inputs.LogIngestConfigFieldNormalizationSeverityArgs>? Severity { get; set; }
 
+        /// <summary>
+        /// Normalization rule for the well-known `timestamp` field.
+        /// </summary>
         [Input("timestamp")]
         public Input<Inputs.LogIngestConfigFieldNormalizationTimestampArgs>? Timestamp { get; set; }
 

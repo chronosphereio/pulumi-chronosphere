@@ -12,13 +12,48 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Scrapes Google Cloud Monitoring metrics from the configured projects and metric prefixes using a GCP service-account credential, with optional filters and rollup rules.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/chronosphereio/pulumi-chronosphere/sdk/go/chronosphere"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := chronosphere.NewGcpMetricsIntegration(ctx, "customer", &chronosphere.GcpMetricsIntegrationArgs{
+//				Name: pulumi.String("GCP Metrics Integration"),
+//				ServiceAccount: &chronosphere.GcpMetricsIntegrationServiceAccountArgs{
+//					ClientEmail: pulumi.String("chronosphere-collector@my-project.iam.gserviceaccount.com"),
+//				},
+//				Slug: pulumi.String("gcp-metrics-integration"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type GcpMetricsIntegration struct {
 	pulumi.CustomResourceState
 
-	MetricGroups   GcpMetricsIntegrationMetricGroupArrayOutput  `pulumi:"metricGroups"`
-	Name           pulumi.StringOutput                          `pulumi:"name"`
+	// Groups of Google Cloud metrics to ingest. Each group targets a specific project and set of metric prefixes.
+	MetricGroups GcpMetricsIntegrationMetricGroupArrayOutput `pulumi:"metricGroups"`
+	// Label name to filter on.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// Google Cloud service account that Chronosphere impersonates to read metrics.
 	ServiceAccount GcpMetricsIntegrationServiceAccountPtrOutput `pulumi:"serviceAccount"`
-	Slug           pulumi.StringPtrOutput                       `pulumi:"slug"`
+	// Stable identifier for the integration. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringPtrOutput `pulumi:"slug"`
 }
 
 // NewGcpMetricsIntegration registers a new resource with the given unique name, arguments, and options.
@@ -54,17 +89,25 @@ func GetGcpMetricsIntegration(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering GcpMetricsIntegration resources.
 type gcpMetricsIntegrationState struct {
-	MetricGroups   []GcpMetricsIntegrationMetricGroup   `pulumi:"metricGroups"`
-	Name           *string                              `pulumi:"name"`
+	// Groups of Google Cloud metrics to ingest. Each group targets a specific project and set of metric prefixes.
+	MetricGroups []GcpMetricsIntegrationMetricGroup `pulumi:"metricGroups"`
+	// Label name to filter on.
+	Name *string `pulumi:"name"`
+	// Google Cloud service account that Chronosphere impersonates to read metrics.
 	ServiceAccount *GcpMetricsIntegrationServiceAccount `pulumi:"serviceAccount"`
-	Slug           *string                              `pulumi:"slug"`
+	// Stable identifier for the integration. Generated from `name` if omitted. Immutable after creation.
+	Slug *string `pulumi:"slug"`
 }
 
 type GcpMetricsIntegrationState struct {
-	MetricGroups   GcpMetricsIntegrationMetricGroupArrayInput
-	Name           pulumi.StringPtrInput
+	// Groups of Google Cloud metrics to ingest. Each group targets a specific project and set of metric prefixes.
+	MetricGroups GcpMetricsIntegrationMetricGroupArrayInput
+	// Label name to filter on.
+	Name pulumi.StringPtrInput
+	// Google Cloud service account that Chronosphere impersonates to read metrics.
 	ServiceAccount GcpMetricsIntegrationServiceAccountPtrInput
-	Slug           pulumi.StringPtrInput
+	// Stable identifier for the integration. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringPtrInput
 }
 
 func (GcpMetricsIntegrationState) ElementType() reflect.Type {
@@ -72,18 +115,26 @@ func (GcpMetricsIntegrationState) ElementType() reflect.Type {
 }
 
 type gcpMetricsIntegrationArgs struct {
-	MetricGroups   []GcpMetricsIntegrationMetricGroup   `pulumi:"metricGroups"`
-	Name           string                               `pulumi:"name"`
+	// Groups of Google Cloud metrics to ingest. Each group targets a specific project and set of metric prefixes.
+	MetricGroups []GcpMetricsIntegrationMetricGroup `pulumi:"metricGroups"`
+	// Label name to filter on.
+	Name string `pulumi:"name"`
+	// Google Cloud service account that Chronosphere impersonates to read metrics.
 	ServiceAccount *GcpMetricsIntegrationServiceAccount `pulumi:"serviceAccount"`
-	Slug           *string                              `pulumi:"slug"`
+	// Stable identifier for the integration. Generated from `name` if omitted. Immutable after creation.
+	Slug *string `pulumi:"slug"`
 }
 
 // The set of arguments for constructing a GcpMetricsIntegration resource.
 type GcpMetricsIntegrationArgs struct {
-	MetricGroups   GcpMetricsIntegrationMetricGroupArrayInput
-	Name           pulumi.StringInput
+	// Groups of Google Cloud metrics to ingest. Each group targets a specific project and set of metric prefixes.
+	MetricGroups GcpMetricsIntegrationMetricGroupArrayInput
+	// Label name to filter on.
+	Name pulumi.StringInput
+	// Google Cloud service account that Chronosphere impersonates to read metrics.
 	ServiceAccount GcpMetricsIntegrationServiceAccountPtrInput
-	Slug           pulumi.StringPtrInput
+	// Stable identifier for the integration. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringPtrInput
 }
 
 func (GcpMetricsIntegrationArgs) ElementType() reflect.Type {
@@ -173,18 +224,22 @@ func (o GcpMetricsIntegrationOutput) ToGcpMetricsIntegrationOutputWithContext(ct
 	return o
 }
 
+// Groups of Google Cloud metrics to ingest. Each group targets a specific project and set of metric prefixes.
 func (o GcpMetricsIntegrationOutput) MetricGroups() GcpMetricsIntegrationMetricGroupArrayOutput {
 	return o.ApplyT(func(v *GcpMetricsIntegration) GcpMetricsIntegrationMetricGroupArrayOutput { return v.MetricGroups }).(GcpMetricsIntegrationMetricGroupArrayOutput)
 }
 
+// Label name to filter on.
 func (o GcpMetricsIntegrationOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *GcpMetricsIntegration) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// Google Cloud service account that Chronosphere impersonates to read metrics.
 func (o GcpMetricsIntegrationOutput) ServiceAccount() GcpMetricsIntegrationServiceAccountPtrOutput {
 	return o.ApplyT(func(v *GcpMetricsIntegration) GcpMetricsIntegrationServiceAccountPtrOutput { return v.ServiceAccount }).(GcpMetricsIntegrationServiceAccountPtrOutput)
 }
 
+// Stable identifier for the integration. Generated from `name` if omitted. Immutable after creation.
 func (o GcpMetricsIntegrationOutput) Slug() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GcpMetricsIntegration) pulumi.StringPtrOutput { return v.Slug }).(pulumi.StringPtrOutput)
 }

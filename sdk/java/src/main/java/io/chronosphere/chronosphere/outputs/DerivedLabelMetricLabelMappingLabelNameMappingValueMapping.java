@@ -10,13 +10,29 @@ import java.util.Objects;
 
 @CustomType
 public final class DerivedLabelMetricLabelMappingLabelNameMappingValueMapping {
+    /**
+     * @return Glob patterns matched against the source label value. A match maps the value to `target_value`.
+     * 
+     */
     private List<String> sourceValueGlobs;
+    /**
+     * @return Value to assign on the derived label when any `source_value_globs` matches.
+     * 
+     */
     private String targetValue;
 
     private DerivedLabelMetricLabelMappingLabelNameMappingValueMapping() {}
+    /**
+     * @return Glob patterns matched against the source label value. A match maps the value to `target_value`.
+     * 
+     */
     public List<String> sourceValueGlobs() {
         return this.sourceValueGlobs;
     }
+    /**
+     * @return Value to assign on the derived label when any `source_value_globs` matches.
+     * 
+     */
     public String targetValue() {
         return this.targetValue;
     }

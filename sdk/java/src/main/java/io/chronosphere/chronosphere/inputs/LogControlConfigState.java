@@ -16,9 +16,17 @@ public final class LogControlConfigState extends com.pulumi.resources.ResourceAr
 
     public static final LogControlConfigState Empty = new LogControlConfigState();
 
+    /**
+     * Ordered list of log control rules applied to the log ingest pipeline. Rules are evaluated in order.
+     * 
+     */
     @Import(name="rules")
     private @Nullable Output<List<LogControlConfigRuleArgs>> rules;
 
+    /**
+     * @return Ordered list of log control rules applied to the log ingest pipeline. Rules are evaluated in order.
+     * 
+     */
     public Optional<Output<List<LogControlConfigRuleArgs>>> rules() {
         return Optional.ofNullable(this.rules);
     }
@@ -47,15 +55,33 @@ public final class LogControlConfigState extends com.pulumi.resources.ResourceAr
             $ = new LogControlConfigState(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param rules Ordered list of log control rules applied to the log ingest pipeline. Rules are evaluated in order.
+         * 
+         * @return builder
+         * 
+         */
         public Builder rules(@Nullable Output<List<LogControlConfigRuleArgs>> rules) {
             $.rules = rules;
             return this;
         }
 
+        /**
+         * @param rules Ordered list of log control rules applied to the log ingest pipeline. Rules are evaluated in order.
+         * 
+         * @return builder
+         * 
+         */
         public Builder rules(List<LogControlConfigRuleArgs> rules) {
             return rules(Output.of(rules));
         }
 
+        /**
+         * @param rules Ordered list of log control rules applied to the log ingest pipeline. Rules are evaluated in order.
+         * 
+         * @return builder
+         * 
+         */
         public Builder rules(LogControlConfigRuleArgs... rules) {
             return rules(List.of(rules));
         }

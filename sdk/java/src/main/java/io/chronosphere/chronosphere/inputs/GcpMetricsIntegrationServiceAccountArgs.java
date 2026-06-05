@@ -13,9 +13,17 @@ public final class GcpMetricsIntegrationServiceAccountArgs extends com.pulumi.re
 
     public static final GcpMetricsIntegrationServiceAccountArgs Empty = new GcpMetricsIntegrationServiceAccountArgs();
 
+    /**
+     * Email address of the Google Cloud service account to impersonate for authentication.
+     * 
+     */
     @Import(name="clientEmail", required=true)
     private Output<String> clientEmail;
 
+    /**
+     * @return Email address of the Google Cloud service account to impersonate for authentication.
+     * 
+     */
     public Output<String> clientEmail() {
         return this.clientEmail;
     }
@@ -44,11 +52,23 @@ public final class GcpMetricsIntegrationServiceAccountArgs extends com.pulumi.re
             $ = new GcpMetricsIntegrationServiceAccountArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param clientEmail Email address of the Google Cloud service account to impersonate for authentication.
+         * 
+         * @return builder
+         * 
+         */
         public Builder clientEmail(Output<String> clientEmail) {
             $.clientEmail = clientEmail;
             return this;
         }
 
+        /**
+         * @param clientEmail Email address of the Google Cloud service account to impersonate for authentication.
+         * 
+         * @return builder
+         * 
+         */
         public Builder clientEmail(String clientEmail) {
             return clientEmail(Output.of(clientEmail));
         }

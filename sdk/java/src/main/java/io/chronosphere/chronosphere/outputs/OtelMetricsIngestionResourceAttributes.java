@@ -13,21 +13,53 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class OtelMetricsIngestionResourceAttributes {
+    /**
+     * @return Resource attribute keys to exclude from the flatten operation, interpreted according to `filter_mode`.
+     * 
+     */
     private @Nullable List<String> excludeKeys;
+    /**
+     * @return Controls how `exclude_keys` is interpreted (e.g. allow-list vs. block-list semantics).
+     * 
+     */
     private @Nullable String filterMode;
+    /**
+     * @return Controls how OTel resource attributes are flattened onto each metric&#39;s labels.
+     * 
+     */
     private @Nullable String flattenMode;
+    /**
+     * @return If true, generates a `target_info` time series with labels derived from resource attributes. `filter_mode` and `exclude_keys` apply identically to this series. Defaults to false.
+     * 
+     */
     private @Nullable Boolean generateTargetInfo;
 
     private OtelMetricsIngestionResourceAttributes() {}
+    /**
+     * @return Resource attribute keys to exclude from the flatten operation, interpreted according to `filter_mode`.
+     * 
+     */
     public List<String> excludeKeys() {
         return this.excludeKeys == null ? List.of() : this.excludeKeys;
     }
+    /**
+     * @return Controls how `exclude_keys` is interpreted (e.g. allow-list vs. block-list semantics).
+     * 
+     */
     public Optional<String> filterMode() {
         return Optional.ofNullable(this.filterMode);
     }
+    /**
+     * @return Controls how OTel resource attributes are flattened onto each metric&#39;s labels.
+     * 
+     */
     public Optional<String> flattenMode() {
         return Optional.ofNullable(this.flattenMode);
     }
+    /**
+     * @return If true, generates a `target_info` time series with labels derived from resource attributes. `filter_mode` and `exclude_keys` apply identically to this series. Defaults to false.
+     * 
+     */
     public Optional<Boolean> generateTargetInfo() {
         return Optional.ofNullable(this.generateTargetInfo);
     }

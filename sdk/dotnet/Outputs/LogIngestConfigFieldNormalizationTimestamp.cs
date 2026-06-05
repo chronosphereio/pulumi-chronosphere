@@ -14,6 +14,9 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class LogIngestConfigFieldNormalizationTimestamp
     {
+        /// <summary>
+        /// Ordered list of field paths to check for values. The first non-empty value found is used.
+        /// </summary>
         public readonly ImmutableArray<Outputs.LogIngestConfigFieldNormalizationTimestampSource> Sources;
 
         [OutputConstructor]

@@ -12,13 +12,29 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class LogAllocationConfigDatasetAllocationPriorities {
+    /**
+     * @return List of log search filters. Filters are combined as OR statements so only one filter needs to match.
+     * 
+     */
     private @Nullable List<LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilter> highPriorityFilters;
+    /**
+     * @return List of log search filters. Filters are combined as OR statements so only one filter needs to match.
+     * 
+     */
     private @Nullable List<LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilter> lowPriorityFilters;
 
     private LogAllocationConfigDatasetAllocationPriorities() {}
+    /**
+     * @return List of log search filters. Filters are combined as OR statements so only one filter needs to match.
+     * 
+     */
     public List<LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilter> highPriorityFilters() {
         return this.highPriorityFilters == null ? List.of() : this.highPriorityFilters;
     }
+    /**
+     * @return List of log search filters. Filters are combined as OR statements so only one filter needs to match.
+     * 
+     */
     public List<LogAllocationConfigDatasetAllocationPrioritiesLowPriorityFilter> lowPriorityFilters() {
         return this.lowPriorityFilters == null ? List.of() : this.lowPriorityFilters;
     }

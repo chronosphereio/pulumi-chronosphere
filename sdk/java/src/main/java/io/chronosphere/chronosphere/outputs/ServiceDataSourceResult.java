@@ -9,16 +9,32 @@ import java.util.Objects;
 
 @CustomType
 public final class ServiceDataSourceResult {
+    /**
+     * @return Read-only: free-form description of the service.
+     * 
+     */
     private String description;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
      */
     private String id;
+    /**
+     * @return Read-only: display name of the service.
+     * 
+     */
     private String name;
+    /**
+     * @return Slug of the service to look up.
+     * 
+     */
     private String slug;
 
     private ServiceDataSourceResult() {}
+    /**
+     * @return Read-only: free-form description of the service.
+     * 
+     */
     public String description() {
         return this.description;
     }
@@ -29,9 +45,17 @@ public final class ServiceDataSourceResult {
     public String id() {
         return this.id;
     }
+    /**
+     * @return Read-only: display name of the service.
+     * 
+     */
     public String name() {
         return this.name;
     }
+    /**
+     * @return Slug of the service to look up.
+     * 
+     */
     public String slug() {
         return this.slug;
     }

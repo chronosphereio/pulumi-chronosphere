@@ -20,53 +20,171 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
+/**
+ * A rule that extracts a histogram metric from spans matching a trace filter, with configurable group-by keys and histogram buckets.
+ * 
+ * ## Example Usage
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.chronosphere.TraceMetricsRule;
+ * import com.pulumi.chronosphere.TraceMetricsRuleArgs;
+ * import com.pulumi.chronosphere.inputs.TraceMetricsRuleTraceFilterArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var paymentsLatency = new TraceMetricsRule(&#34;paymentsLatency&#34;, TraceMetricsRuleArgs.builder()        
+ *             .groupBies(&#34;operation&#34;)
+ *             .histogramBucketsSeconds(            
+ *                 0.1,
+ *                 0.5,
+ *                 1,
+ *                 2,
+ *                 5)
+ *             .metricLabels(Map.of(&#34;service&#34;, &#34;payments&#34;))
+ *             .metricName(&#34;payments_request_duration&#34;)
+ *             .name(&#34;Payments service latency&#34;)
+ *             .slug(&#34;payments-latency&#34;)
+ *             .traceFilter(TraceMetricsRuleTraceFilterArgs.builder()
+ *                 .spans(TraceMetricsRuleTraceFilterSpanArgs.builder()
+ *                     .matchType(&#34;include&#34;)
+ *                     .service(TraceMetricsRuleTraceFilterSpanServiceArgs.builder()
+ *                         .match(&#34;exact&#34;)
+ *                         .value(&#34;payments&#34;)
+ *                         .build())
+ *                     .build())
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ */
 @ResourceType(type="chronosphere:index/traceMetricsRule:TraceMetricsRule")
 public class TraceMetricsRule extends com.pulumi.resources.CustomResource {
+    /**
+     * Span attributes to project into metric labels. Each entry maps a key on the matched span to a label on the resulting metric series.
+     * 
+     */
     @Export(name="groupBies", refs={List.class,TraceMetricsRuleGroupBy.class}, tree="[0,1]")
     private Output</* @Nullable */ List<TraceMetricsRuleGroupBy>> groupBies;
 
+    /**
+     * @return Span attributes to project into metric labels. Each entry maps a key on the matched span to a label on the resulting metric series.
+     * 
+     */
     public Output<Optional<List<TraceMetricsRuleGroupBy>>> groupBies() {
         return Codegen.optional(this.groupBies);
     }
+    /**
+     * Histogram bucket upper bounds in seconds for the generated span-duration histogram metric.
+     * 
+     */
     @Export(name="histogramBucketsSeconds", refs={List.class,Double.class}, tree="[0,1]")
     private Output</* @Nullable */ List<Double>> histogramBucketsSeconds;
 
+    /**
+     * @return Histogram bucket upper bounds in seconds for the generated span-duration histogram metric.
+     * 
+     */
     public Output<Optional<List<Double>>> histogramBucketsSeconds() {
         return Codegen.optional(this.histogramBucketsSeconds);
     }
+    /**
+     * Static key/value labels added to every metric series emitted by the rule.
+     * 
+     */
     @Export(name="metricLabels", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> metricLabels;
 
+    /**
+     * @return Static key/value labels added to every metric series emitted by the rule.
+     * 
+     */
     public Output<Optional<Map<String,String>>> metricLabels() {
         return Codegen.optional(this.metricLabels);
     }
+    /**
+     * Base name of the generated Prometheus metrics emitted by this rule.
+     * 
+     */
     @Export(name="metricName", refs={String.class}, tree="[0]")
     private Output<String> metricName;
 
+    /**
+     * @return Base name of the generated Prometheus metrics emitted by this rule.
+     * 
+     */
     public Output<String> metricName() {
         return this.metricName;
     }
+    /**
+     * Display name of the trace metrics rule.
+     * 
+     */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
+    /**
+     * @return Display name of the trace metrics rule.
+     * 
+     */
     public Output<String> name() {
         return this.name;
     }
+    /**
+     * Scope filter that further restricts which spans within a matched trace contribute to metrics or sampling. Only spans matching `span_scopes` are included in aggregation.
+     * 
+     */
     @Export(name="scopeFilter", refs={TraceMetricsRuleScopeFilter.class}, tree="[0]")
     private Output</* @Nullable */ TraceMetricsRuleScopeFilter> scopeFilter;
 
+    /**
+     * @return Scope filter that further restricts which spans within a matched trace contribute to metrics or sampling. Only spans matching `span_scopes` are included in aggregation.
+     * 
+     */
     public Output<Optional<TraceMetricsRuleScopeFilter>> scopeFilter() {
         return Codegen.optional(this.scopeFilter);
     }
+    /**
+     * Stable identifier for the trace metrics rule. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     @Export(name="slug", refs={String.class}, tree="[0]")
     private Output<String> slug;
 
+    /**
+     * @return Stable identifier for the trace metrics rule. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     public Output<String> slug() {
         return this.slug;
     }
+    /**
+     * Filter that selects traces and spans. A trace matches when its trace-level conditions hold and every `span` block is satisfied by at least one span in the trace.
+     * 
+     */
     @Export(name="traceFilter", refs={TraceMetricsRuleTraceFilter.class}, tree="[0]")
     private Output<TraceMetricsRuleTraceFilter> traceFilter;
 
+    /**
+     * @return Filter that selects traces and spans. A trace matches when its trace-level conditions hold and every `span` block is satisfied by at least one span in the trace.
+     * 
+     */
     public Output<TraceMetricsRuleTraceFilter> traceFilter() {
         return this.traceFilter;
     }

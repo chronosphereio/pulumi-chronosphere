@@ -14,14 +14,41 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class LogControlConfigRule
     {
+        /// <summary>
+        /// Configuration for the `DROP_FIELD` action, which removes fields from matching logs.
+        /// </summary>
         public readonly Outputs.LogControlConfigRuleDropField? DropField;
+        /// <summary>
+        /// Configuration for the `EMIT_METRICS` action, which derives Prometheus metrics from matching logs.
+        /// </summary>
         public readonly Outputs.LogControlConfigRuleEmitMetrics? EmitMetrics;
+        /// <summary>
+        /// Log query filter that selects matching logs. The control action applies only to logs that match.
+        /// </summary>
         public readonly string? Filter;
+        /// <summary>
+        /// Execution mode for the rule (for example, `ENABLED` or `DISABLED`).
+        /// </summary>
         public readonly string? Mode;
+        /// <summary>
+        /// User-defined name for the control rule.
+        /// </summary>
         public readonly string? Name;
+        /// <summary>
+        /// Configuration for the `PARSE_FIELD` action, which parses a field with a regex, key/value, or grok parser and writes the result to another field.
+        /// </summary>
         public readonly Outputs.LogControlConfigRuleParseField? ParseField;
+        /// <summary>
+        /// Configuration for the `REPLACE_FIELD` action, which rewrites field values in matching logs.
+        /// </summary>
         public readonly Outputs.LogControlConfigRuleReplaceField? ReplaceField;
+        /// <summary>
+        /// Configuration for the `SAMPLE_LOGS` action, which keeps a fraction of matching logs.
+        /// </summary>
         public readonly Outputs.LogControlConfigRuleSample? Sample;
+        /// <summary>
+        /// Type of control action this rule performs. Exactly one of the matching action blocks (`sample`, `drop_field`, `emit_metrics`, `replace_field`, `parse_field`) must be configured.
+        /// </summary>
         public readonly string? Type;
 
         [OutputConstructor]

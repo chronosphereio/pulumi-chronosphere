@@ -10,13 +10,29 @@ import java.util.Objects;
 
 @CustomType
 public final class DatasetConfigurationTraceDatasetMatchCriteriaSpanTagNumericValue {
+    /**
+     * @return Numeric comparison operator (for example `EQUALS`, `GREATER_THAN`, `LESS_THAN_OR_EQUAL`).
+     * 
+     */
     private String comparison;
+    /**
+     * @return Boolean value the target field is compared against.
+     * 
+     */
     private Double value;
 
     private DatasetConfigurationTraceDatasetMatchCriteriaSpanTagNumericValue() {}
+    /**
+     * @return Numeric comparison operator (for example `EQUALS`, `GREATER_THAN`, `LESS_THAN_OR_EQUAL`).
+     * 
+     */
     public String comparison() {
         return this.comparison;
     }
+    /**
+     * @return Boolean value the target field is compared against.
+     * 
+     */
     public Double value() {
         return this.value;
     }

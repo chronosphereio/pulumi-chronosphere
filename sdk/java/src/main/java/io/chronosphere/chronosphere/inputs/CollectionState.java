@@ -15,37 +15,77 @@ public final class CollectionState extends com.pulumi.resources.ResourceArgs {
 
     public static final CollectionState Empty = new CollectionState();
 
+    /**
+     * Free-form description of the collection.
+     * 
+     */
     @Import(name="description")
     private @Nullable Output<String> description;
 
+    /**
+     * @return Free-form description of the collection.
+     * 
+     */
     public Optional<Output<String>> description() {
         return Optional.ofNullable(this.description);
     }
 
+    /**
+     * Display name of the collection. Can be changed after creation.
+     * 
+     */
     @Import(name="name")
     private @Nullable Output<String> name;
 
+    /**
+     * @return Display name of the collection. Can be changed after creation.
+     * 
+     */
     public Optional<Output<String>> name() {
         return Optional.ofNullable(this.name);
     }
 
+    /**
+     * ID of the default notification policy applied to monitors in this collection that do not explicitly reference one. Monitors that set their own `notification_policy_id` are not overridden.
+     * 
+     */
     @Import(name="notificationPolicyId")
     private @Nullable Output<String> notificationPolicyId;
 
+    /**
+     * @return ID of the default notification policy applied to monitors in this collection that do not explicitly reference one. Monitors that set their own `notification_policy_id` are not overridden.
+     * 
+     */
     public Optional<Output<String>> notificationPolicyId() {
         return Optional.ofNullable(this.notificationPolicyId);
     }
 
+    /**
+     * Stable identifier for the collection. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     @Import(name="slug")
     private @Nullable Output<String> slug;
 
+    /**
+     * @return Stable identifier for the collection. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     public Optional<Output<String>> slug() {
         return Optional.ofNullable(this.slug);
     }
 
+    /**
+     * ID of the team that owns this collection.
+     * 
+     */
     @Import(name="teamId")
     private @Nullable Output<String> teamId;
 
+    /**
+     * @return ID of the team that owns this collection.
+     * 
+     */
     public Optional<Output<String>> teamId() {
         return Optional.ofNullable(this.teamId);
     }
@@ -78,47 +118,107 @@ public final class CollectionState extends com.pulumi.resources.ResourceArgs {
             $ = new CollectionState(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param description Free-form description of the collection.
+         * 
+         * @return builder
+         * 
+         */
         public Builder description(@Nullable Output<String> description) {
             $.description = description;
             return this;
         }
 
+        /**
+         * @param description Free-form description of the collection.
+         * 
+         * @return builder
+         * 
+         */
         public Builder description(String description) {
             return description(Output.of(description));
         }
 
+        /**
+         * @param name Display name of the collection. Can be changed after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(@Nullable Output<String> name) {
             $.name = name;
             return this;
         }
 
+        /**
+         * @param name Display name of the collection. Can be changed after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(String name) {
             return name(Output.of(name));
         }
 
+        /**
+         * @param notificationPolicyId ID of the default notification policy applied to monitors in this collection that do not explicitly reference one. Monitors that set their own `notification_policy_id` are not overridden.
+         * 
+         * @return builder
+         * 
+         */
         public Builder notificationPolicyId(@Nullable Output<String> notificationPolicyId) {
             $.notificationPolicyId = notificationPolicyId;
             return this;
         }
 
+        /**
+         * @param notificationPolicyId ID of the default notification policy applied to monitors in this collection that do not explicitly reference one. Monitors that set their own `notification_policy_id` are not overridden.
+         * 
+         * @return builder
+         * 
+         */
         public Builder notificationPolicyId(String notificationPolicyId) {
             return notificationPolicyId(Output.of(notificationPolicyId));
         }
 
+        /**
+         * @param slug Stable identifier for the collection. Generated from `name` if omitted. Immutable after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slug(@Nullable Output<String> slug) {
             $.slug = slug;
             return this;
         }
 
+        /**
+         * @param slug Stable identifier for the collection. Generated from `name` if omitted. Immutable after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slug(String slug) {
             return slug(Output.of(slug));
         }
 
+        /**
+         * @param teamId ID of the team that owns this collection.
+         * 
+         * @return builder
+         * 
+         */
         public Builder teamId(@Nullable Output<String> teamId) {
             $.teamId = teamId;
             return this;
         }
 
+        /**
+         * @param teamId ID of the team that owns this collection.
+         * 
+         * @return builder
+         * 
+         */
         public Builder teamId(String teamId) {
             return teamId(Output.of(teamId));
         }

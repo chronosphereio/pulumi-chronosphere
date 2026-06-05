@@ -18,15 +18,61 @@ import java.util.List;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
+/**
+ * Discards matching metric data at ingest time before it is stored. Supports unconditional drops, NaN-value drops, value-based drops, and conditional drops that activate only when a cardinality threshold is exceeded.
+ * 
+ * ## Example Usage
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.chronosphere.DropRule;
+ * import com.pulumi.chronosphere.DropRuleArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var noisyMetric = new DropRule(&#34;noisyMetric&#34;, DropRuleArgs.builder()        
+ *             .mode(&#34;ENABLED&#34;)
+ *             .name(&#34;Drop noisy metric&#34;)
+ *             .queries(&#34;__name__:noisy_metric_name&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ */
 @ResourceType(type="chronosphere:index/dropRule:DropRule")
 public class DropRule extends com.pulumi.resources.CustomResource {
+    /**
+     * Once a conditional drop activates, how long it stays activated before re-checking against `rate_limit_threshold`.
+     * 
+     */
     @Export(name="activatedDropDuration", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> activatedDropDuration;
 
+    /**
+     * @return Once a conditional drop activates, how long it stays activated before re-checking against `rate_limit_threshold`.
+     * 
+     */
     public Output<Optional<String>> activatedDropDuration() {
         return Codegen.optional(this.activatedDropDuration);
     }
     /**
+     * Whether the drop rule is active. Deprecated: use `mode` instead.
+     * 
      * @deprecated
      * use `mode` instead
      * 
@@ -35,54 +81,122 @@ public class DropRule extends com.pulumi.resources.CustomResource {
     @Export(name="active", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> active;
 
+    /**
+     * @return Whether the drop rule is active. Deprecated: use `mode` instead.
+     * 
+     */
     public Output<Optional<Boolean>> active() {
         return Codegen.optional(this.active);
     }
+    /**
+     * If `true`, the drop only activates when the configured `rate_limit_threshold` is exceeded.
+     * 
+     */
     @Export(name="conditionalDrop", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> conditionalDrop;
 
+    /**
+     * @return If `true`, the drop only activates when the configured `rate_limit_threshold` is exceeded.
+     * 
+     */
     public Output<Optional<Boolean>> conditionalDrop() {
         return Codegen.optional(this.conditionalDrop);
     }
+    /**
+     * If `true`, drops data points whose value is NaN, including any associated staleness markers.
+     * 
+     */
     @Export(name="dropNanValue", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> dropNanValue;
 
+    /**
+     * @return If `true`, drops data points whose value is NaN, including any associated staleness markers.
+     * 
+     */
     public Output<Optional<Boolean>> dropNanValue() {
         return Codegen.optional(this.dropNanValue);
     }
+    /**
+     * Drop rule mode controlling whether it is enabled, disabled, or in a preview state. Defaults to `ENABLED`.
+     * 
+     */
     @Export(name="mode", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> mode;
 
+    /**
+     * @return Drop rule mode controlling whether it is enabled, disabled, or in a preview state. Defaults to `ENABLED`.
+     * 
+     */
     public Output<Optional<String>> mode() {
         return Codegen.optional(this.mode);
     }
+    /**
+     * Display name of the drop rule. Can be changed after creation.
+     * 
+     */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
+    /**
+     * @return Display name of the drop rule. Can be changed after creation.
+     * 
+     */
     public Output<String> name() {
         return this.name;
     }
+    /**
+     * List of label filter queries that select which metrics to drop. A metric is dropped if it matches all filters in any one query.
+     * 
+     */
     @Export(name="queries", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> queries;
 
+    /**
+     * @return List of label filter queries that select which metrics to drop. A metric is dropped if it matches all filters in any one query.
+     * 
+     */
     public Output<List<String>> queries() {
         return this.queries;
     }
+    /**
+     * Percentage of the licensed metrics limit (0-100) at which a conditional drop activates.
+     * 
+     */
     @Export(name="rateLimitThreshold", refs={Double.class}, tree="[0]")
     private Output</* @Nullable */ Double> rateLimitThreshold;
 
+    /**
+     * @return Percentage of the licensed metrics limit (0-100) at which a conditional drop activates.
+     * 
+     */
     public Output<Optional<Double>> rateLimitThreshold() {
         return Codegen.optional(this.rateLimitThreshold);
     }
+    /**
+     * Stable identifier for the drop rule. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     @Export(name="slug", refs={String.class}, tree="[0]")
     private Output<String> slug;
 
+    /**
+     * @return Stable identifier for the drop rule. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     public Output<String> slug() {
         return this.slug;
     }
+    /**
+     * Configuration for dropping data points whose value matches a target.
+     * 
+     */
     @Export(name="valueBasedDrop", refs={DropRuleValueBasedDrop.class}, tree="[0]")
     private Output</* @Nullable */ DropRuleValueBasedDrop> valueBasedDrop;
 
+    /**
+     * @return Configuration for dropping data points whose value matches a target.
+     * 
+     */
     public Output<Optional<DropRuleValueBasedDrop>> valueBasedDrop() {
         return Codegen.optional(this.valueBasedDrop);
     }

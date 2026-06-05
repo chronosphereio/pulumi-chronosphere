@@ -38,6 +38,9 @@ class ServiceDataSourceResult:
     @property
     @pulumi.getter
     def description(self) -> str:
+        """
+        Read-only: free-form description of the service.
+        """
         return pulumi.get(self, "description")
 
     @property
@@ -51,11 +54,17 @@ class ServiceDataSourceResult:
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        Read-only: display name of the service.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def slug(self) -> str:
+        """
+        Slug of the service to look up.
+        """
         return pulumi.get(self, "slug")
 
 
@@ -74,7 +83,30 @@ class AwaitableServiceDataSourceResult(ServiceDataSourceResult):
 def service_data_source(slug: Optional[str] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableServiceDataSourceResult:
     """
-    Use this data source to access information about an existing resource.
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_chronosphere as chronosphere
+
+    gateway = chronosphere.service_data_source(slug="gateway")
+    gateway_up = chronosphere.Monitor("gatewayUp",
+        name="Gateway up",
+        collection_id=gateway.id,
+        query=chronosphere.MonitorQueryArgs(
+            prometheus_expr="up{service=\\"gateway\\"}",
+        ),
+        series_conditions=chronosphere.MonitorSeriesConditionsArgs(
+            conditions=[chronosphere.MonitorSeriesConditionsConditionArgs(
+                severity="warn",
+                value=1,
+                op="LT",
+            )],
+        ))
+    ```
+
+
+    :param str slug: Slug of the service to look up.
     """
     __args__ = dict()
     __args__['slug'] = slug
@@ -92,6 +124,29 @@ def service_data_source(slug: Optional[str] = None,
 def service_data_source_output(slug: Optional[pulumi.Input[str]] = None,
                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ServiceDataSourceResult]:
     """
-    Use this data source to access information about an existing resource.
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_chronosphere as chronosphere
+
+    gateway = chronosphere.service_data_source(slug="gateway")
+    gateway_up = chronosphere.Monitor("gatewayUp",
+        name="Gateway up",
+        collection_id=gateway.id,
+        query=chronosphere.MonitorQueryArgs(
+            prometheus_expr="up{service=\\"gateway\\"}",
+        ),
+        series_conditions=chronosphere.MonitorSeriesConditionsArgs(
+            conditions=[chronosphere.MonitorSeriesConditionsConditionArgs(
+                severity="warn",
+                value=1,
+                op="LT",
+            )],
+        ))
+    ```
+
+
+    :param str slug: Slug of the service to look up.
     """
     ...

@@ -17,16 +17,32 @@ public final class LogAllocationConfigArgs extends com.pulumi.resources.Resource
 
     public static final LogAllocationConfigArgs Empty = new LogAllocationConfigArgs();
 
+    /**
+     * Per-dataset allocation and priority overrides. Datasets are evaluated in order; the first match wins.
+     * 
+     */
     @Import(name="datasetAllocations")
     private @Nullable Output<List<LogAllocationConfigDatasetAllocationArgs>> datasetAllocations;
 
+    /**
+     * @return Per-dataset allocation and priority overrides. Datasets are evaluated in order; the first match wins.
+     * 
+     */
     public Optional<Output<List<LogAllocationConfigDatasetAllocationArgs>>> datasetAllocations() {
         return Optional.ofNullable(this.datasetAllocations);
     }
 
+    /**
+     * Allocation and priority configuration for the default dataset, which receives any logs not matched by a `dataset_allocation` entry.
+     * 
+     */
     @Import(name="defaultDataset", required=true)
     private Output<LogAllocationConfigDefaultDatasetArgs> defaultDataset;
 
+    /**
+     * @return Allocation and priority configuration for the default dataset, which receives any logs not matched by a `dataset_allocation` entry.
+     * 
+     */
     public Output<LogAllocationConfigDefaultDatasetArgs> defaultDataset() {
         return this.defaultDataset;
     }
@@ -56,24 +72,54 @@ public final class LogAllocationConfigArgs extends com.pulumi.resources.Resource
             $ = new LogAllocationConfigArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param datasetAllocations Per-dataset allocation and priority overrides. Datasets are evaluated in order; the first match wins.
+         * 
+         * @return builder
+         * 
+         */
         public Builder datasetAllocations(@Nullable Output<List<LogAllocationConfigDatasetAllocationArgs>> datasetAllocations) {
             $.datasetAllocations = datasetAllocations;
             return this;
         }
 
+        /**
+         * @param datasetAllocations Per-dataset allocation and priority overrides. Datasets are evaluated in order; the first match wins.
+         * 
+         * @return builder
+         * 
+         */
         public Builder datasetAllocations(List<LogAllocationConfigDatasetAllocationArgs> datasetAllocations) {
             return datasetAllocations(Output.of(datasetAllocations));
         }
 
+        /**
+         * @param datasetAllocations Per-dataset allocation and priority overrides. Datasets are evaluated in order; the first match wins.
+         * 
+         * @return builder
+         * 
+         */
         public Builder datasetAllocations(LogAllocationConfigDatasetAllocationArgs... datasetAllocations) {
             return datasetAllocations(List.of(datasetAllocations));
         }
 
+        /**
+         * @param defaultDataset Allocation and priority configuration for the default dataset, which receives any logs not matched by a `dataset_allocation` entry.
+         * 
+         * @return builder
+         * 
+         */
         public Builder defaultDataset(Output<LogAllocationConfigDefaultDatasetArgs> defaultDataset) {
             $.defaultDataset = defaultDataset;
             return this;
         }
 
+        /**
+         * @param defaultDataset Allocation and priority configuration for the default dataset, which receives any logs not matched by a `dataset_allocation` entry.
+         * 
+         * @return builder
+         * 
+         */
         public Builder defaultDataset(LogAllocationConfigDefaultDatasetArgs defaultDataset) {
             return defaultDataset(Output.of(defaultDataset));
         }

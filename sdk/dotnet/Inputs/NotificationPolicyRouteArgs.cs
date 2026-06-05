@@ -15,26 +15,43 @@ namespace Chronosphere.Pulumi.Inputs
     {
         [Input("destinations")]
         private InputList<Inputs.NotificationPolicyRouteDestinationArgs>? _destinations;
+
+        /// <summary>
+        /// Inline notification destinations defined directly on the route. Each block sets at most one of `slack`, `pagerduty`, `webhook`, `ops_genie`, `victor_ops`, or `email`. Cannot be combined with `notifiers`.
+        /// </summary>
         public InputList<Inputs.NotificationPolicyRouteDestinationArgs> Destinations
         {
             get => _destinations ?? (_destinations = new InputList<Inputs.NotificationPolicyRouteDestinationArgs>());
             set => _destinations = value;
         }
 
+        /// <summary>
+        /// Optional grouping configuration controlling how alerts are batched before delivery.
+        /// </summary>
         [Input("groupBy")]
         public Input<Inputs.NotificationPolicyRouteGroupByArgs>? GroupBy { get; set; }
 
         [Input("notifiers")]
         private InputList<string>? _notifiers;
+
+        /// <summary>
+        /// Slugs of notifier resources that receive alerts at this severity. Cannot be combined with `destination`.
+        /// </summary>
         public InputList<string> Notifiers
         {
             get => _notifiers ?? (_notifiers = new InputList<string>());
             set => _notifiers = value;
         }
 
+        /// <summary>
+        /// How often to resend unresolved alerts at this severity (e.g. `4h`).
+        /// </summary>
         [Input("repeatInterval")]
         public Input<string>? RepeatInterval { get; set; }
 
+        /// <summary>
+        /// Severity this route applies to (e.g. `warn`, `critical`). Case-sensitive.
+        /// </summary>
         [Input("severity", required: true)]
         public Input<string> Severity { get; set; } = null!;
 

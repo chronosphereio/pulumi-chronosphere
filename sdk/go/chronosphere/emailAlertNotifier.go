@@ -12,15 +12,49 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Email notifier that delivers monitor signals to a recipient address with templated HTML and/or plain-text bodies. Referenced from notification policies.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/chronosphereio/pulumi-chronosphere/sdk/go/chronosphere"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := chronosphere.NewEmailAlertNotifier(ctx, "email", &chronosphere.EmailAlertNotifierArgs{
+//				Name: pulumi.String("Email Blackhole"),
+//				To:   pulumi.String("blackhole@chronosphere.io"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type EmailAlertNotifier struct {
 	pulumi.CustomResourceState
 
-	Html         pulumi.StringPtrOutput `pulumi:"html"`
-	Name         pulumi.StringOutput    `pulumi:"name"`
-	SendResolved pulumi.BoolPtrOutput   `pulumi:"sendResolved"`
-	Slug         pulumi.StringOutput    `pulumi:"slug"`
-	Text         pulumi.StringPtrOutput `pulumi:"text"`
-	To           pulumi.StringOutput    `pulumi:"to"`
+	// Body of the email in HTML format. Supports Go templating.
+	Html pulumi.StringPtrOutput `pulumi:"html"`
+	// Display name of the notifier.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+	SendResolved pulumi.BoolPtrOutput `pulumi:"sendResolved"`
+	// Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringOutput `pulumi:"slug"`
+	// Body of the email in plain text format. Supports Go templating.
+	Text pulumi.StringPtrOutput `pulumi:"text"`
+	// Email address to send notifications to.
+	To pulumi.StringOutput `pulumi:"to"`
 }
 
 // NewEmailAlertNotifier registers a new resource with the given unique name, arguments, and options.
@@ -59,21 +93,33 @@ func GetEmailAlertNotifier(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering EmailAlertNotifier resources.
 type emailAlertNotifierState struct {
-	Html         *string `pulumi:"html"`
-	Name         *string `pulumi:"name"`
-	SendResolved *bool   `pulumi:"sendResolved"`
-	Slug         *string `pulumi:"slug"`
-	Text         *string `pulumi:"text"`
-	To           *string `pulumi:"to"`
+	// Body of the email in HTML format. Supports Go templating.
+	Html *string `pulumi:"html"`
+	// Display name of the notifier.
+	Name *string `pulumi:"name"`
+	// Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+	SendResolved *bool `pulumi:"sendResolved"`
+	// Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+	Slug *string `pulumi:"slug"`
+	// Body of the email in plain text format. Supports Go templating.
+	Text *string `pulumi:"text"`
+	// Email address to send notifications to.
+	To *string `pulumi:"to"`
 }
 
 type EmailAlertNotifierState struct {
-	Html         pulumi.StringPtrInput
-	Name         pulumi.StringPtrInput
+	// Body of the email in HTML format. Supports Go templating.
+	Html pulumi.StringPtrInput
+	// Display name of the notifier.
+	Name pulumi.StringPtrInput
+	// Whether to send a follow-up notification when an alert is resolved. Defaults to true.
 	SendResolved pulumi.BoolPtrInput
-	Slug         pulumi.StringPtrInput
-	Text         pulumi.StringPtrInput
-	To           pulumi.StringPtrInput
+	// Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringPtrInput
+	// Body of the email in plain text format. Supports Go templating.
+	Text pulumi.StringPtrInput
+	// Email address to send notifications to.
+	To pulumi.StringPtrInput
 }
 
 func (EmailAlertNotifierState) ElementType() reflect.Type {
@@ -81,22 +127,34 @@ func (EmailAlertNotifierState) ElementType() reflect.Type {
 }
 
 type emailAlertNotifierArgs struct {
-	Html         *string `pulumi:"html"`
-	Name         string  `pulumi:"name"`
-	SendResolved *bool   `pulumi:"sendResolved"`
-	Slug         *string `pulumi:"slug"`
-	Text         *string `pulumi:"text"`
-	To           string  `pulumi:"to"`
+	// Body of the email in HTML format. Supports Go templating.
+	Html *string `pulumi:"html"`
+	// Display name of the notifier.
+	Name string `pulumi:"name"`
+	// Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+	SendResolved *bool `pulumi:"sendResolved"`
+	// Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+	Slug *string `pulumi:"slug"`
+	// Body of the email in plain text format. Supports Go templating.
+	Text *string `pulumi:"text"`
+	// Email address to send notifications to.
+	To string `pulumi:"to"`
 }
 
 // The set of arguments for constructing a EmailAlertNotifier resource.
 type EmailAlertNotifierArgs struct {
-	Html         pulumi.StringPtrInput
-	Name         pulumi.StringInput
+	// Body of the email in HTML format. Supports Go templating.
+	Html pulumi.StringPtrInput
+	// Display name of the notifier.
+	Name pulumi.StringInput
+	// Whether to send a follow-up notification when an alert is resolved. Defaults to true.
 	SendResolved pulumi.BoolPtrInput
-	Slug         pulumi.StringPtrInput
-	Text         pulumi.StringPtrInput
-	To           pulumi.StringInput
+	// Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringPtrInput
+	// Body of the email in plain text format. Supports Go templating.
+	Text pulumi.StringPtrInput
+	// Email address to send notifications to.
+	To pulumi.StringInput
 }
 
 func (EmailAlertNotifierArgs) ElementType() reflect.Type {
@@ -186,26 +244,32 @@ func (o EmailAlertNotifierOutput) ToEmailAlertNotifierOutputWithContext(ctx cont
 	return o
 }
 
+// Body of the email in HTML format. Supports Go templating.
 func (o EmailAlertNotifierOutput) Html() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *EmailAlertNotifier) pulumi.StringPtrOutput { return v.Html }).(pulumi.StringPtrOutput)
 }
 
+// Display name of the notifier.
 func (o EmailAlertNotifierOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *EmailAlertNotifier) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// Whether to send a follow-up notification when an alert is resolved. Defaults to true.
 func (o EmailAlertNotifierOutput) SendResolved() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *EmailAlertNotifier) pulumi.BoolPtrOutput { return v.SendResolved }).(pulumi.BoolPtrOutput)
 }
 
+// Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
 func (o EmailAlertNotifierOutput) Slug() pulumi.StringOutput {
 	return o.ApplyT(func(v *EmailAlertNotifier) pulumi.StringOutput { return v.Slug }).(pulumi.StringOutput)
 }
 
+// Body of the email in plain text format. Supports Go templating.
 func (o EmailAlertNotifierOutput) Text() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *EmailAlertNotifier) pulumi.StringPtrOutput { return v.Text }).(pulumi.StringPtrOutput)
 }
 
+// Email address to send notifications to.
 func (o EmailAlertNotifierOutput) To() pulumi.StringOutput {
 	return o.ApplyT(func(v *EmailAlertNotifier) pulumi.StringOutput { return v.To }).(pulumi.StringOutput)
 }

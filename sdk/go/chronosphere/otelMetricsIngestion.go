@@ -11,9 +11,45 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Configures how incoming OTLP metric payloads have their OpenTelemetry resource attributes flattened, filtered, and mapped onto Prometheus-style labels at ingestion.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/chronosphereio/pulumi-chronosphere/sdk/go/chronosphere"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := chronosphere.NewOtelMetricsIngestion(ctx, "config", &chronosphere.OtelMetricsIngestionArgs{
+//				ResourceAttributes: &chronosphere.OtelMetricsIngestionResourceAttributesArgs{
+//					ExcludeKeys: pulumi.StringArray{
+//						pulumi.String("host.id"),
+//						pulumi.String("process.pid"),
+//					},
+//					FilterMode:         pulumi.String("APPEND_DEFAULT_EXCLUDE_KEYS"),
+//					FlattenMode:        pulumi.String("MERGE"),
+//					GenerateTargetInfo: pulumi.Bool(false),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type OtelMetricsIngestion struct {
 	pulumi.CustomResourceState
 
+	// Controls how OpenTelemetry resource attributes are mapped to Prometheus labels at ingest.
 	ResourceAttributes OtelMetricsIngestionResourceAttributesPtrOutput `pulumi:"resourceAttributes"`
 }
 
@@ -47,10 +83,12 @@ func GetOtelMetricsIngestion(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering OtelMetricsIngestion resources.
 type otelMetricsIngestionState struct {
+	// Controls how OpenTelemetry resource attributes are mapped to Prometheus labels at ingest.
 	ResourceAttributes *OtelMetricsIngestionResourceAttributes `pulumi:"resourceAttributes"`
 }
 
 type OtelMetricsIngestionState struct {
+	// Controls how OpenTelemetry resource attributes are mapped to Prometheus labels at ingest.
 	ResourceAttributes OtelMetricsIngestionResourceAttributesPtrInput
 }
 
@@ -59,11 +97,13 @@ func (OtelMetricsIngestionState) ElementType() reflect.Type {
 }
 
 type otelMetricsIngestionArgs struct {
+	// Controls how OpenTelemetry resource attributes are mapped to Prometheus labels at ingest.
 	ResourceAttributes *OtelMetricsIngestionResourceAttributes `pulumi:"resourceAttributes"`
 }
 
 // The set of arguments for constructing a OtelMetricsIngestion resource.
 type OtelMetricsIngestionArgs struct {
+	// Controls how OpenTelemetry resource attributes are mapped to Prometheus labels at ingest.
 	ResourceAttributes OtelMetricsIngestionResourceAttributesPtrInput
 }
 
@@ -154,6 +194,7 @@ func (o OtelMetricsIngestionOutput) ToOtelMetricsIngestionOutputWithContext(ctx 
 	return o
 }
 
+// Controls how OpenTelemetry resource attributes are mapped to Prometheus labels at ingest.
 func (o OtelMetricsIngestionOutput) ResourceAttributes() OtelMetricsIngestionResourceAttributesPtrOutput {
 	return o.ApplyT(func(v *OtelMetricsIngestion) OtelMetricsIngestionResourceAttributesPtrOutput {
 		return v.ResourceAttributes

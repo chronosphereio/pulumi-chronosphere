@@ -10,36 +10,92 @@ using Pulumi;
 
 namespace Chronosphere.Pulumi
 {
+    /// <summary>
+    /// Discards matching metric data at ingest time before it is stored. Supports unconditional drops, NaN-value drops, value-based drops, and conditional drops that activate only when a cardinality threshold is exceeded.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Pulumi = Chronosphere.Pulumi;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var noisyMetric = new Pulumi.DropRule("noisyMetric", new()
+    ///     {
+    ///         Mode = "ENABLED",
+    ///         Name = "Drop noisy metric",
+    ///         Queries = new[]
+    ///         {
+    ///             "__name__:noisy_metric_name",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// </summary>
     [PulumiResourceType("chronosphere:index/dropRule:DropRule")]
     public partial class DropRule : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Once a conditional drop activates, how long it stays activated before re-checking against `rate_limit_threshold`.
+        /// </summary>
         [Output("activatedDropDuration")]
         public Output<string?> ActivatedDropDuration { get; private set; } = null!;
 
+        /// <summary>
+        /// Whether the drop rule is active. Deprecated: use `mode` instead.
+        /// </summary>
         [Output("active")]
         public Output<bool?> Active { get; private set; } = null!;
 
+        /// <summary>
+        /// If `true`, the drop only activates when the configured `rate_limit_threshold` is exceeded.
+        /// </summary>
         [Output("conditionalDrop")]
         public Output<bool?> ConditionalDrop { get; private set; } = null!;
 
+        /// <summary>
+        /// If `true`, drops data points whose value is NaN, including any associated staleness markers.
+        /// </summary>
         [Output("dropNanValue")]
         public Output<bool?> DropNanValue { get; private set; } = null!;
 
+        /// <summary>
+        /// Drop rule mode controlling whether it is enabled, disabled, or in a preview state. Defaults to `ENABLED`.
+        /// </summary>
         [Output("mode")]
         public Output<string?> Mode { get; private set; } = null!;
 
+        /// <summary>
+        /// Display name of the drop rule. Can be changed after creation.
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// List of label filter queries that select which metrics to drop. A metric is dropped if it matches all filters in any one query.
+        /// </summary>
         [Output("queries")]
         public Output<ImmutableArray<string>> Queries { get; private set; } = null!;
 
+        /// <summary>
+        /// Percentage of the licensed metrics limit (0-100) at which a conditional drop activates.
+        /// </summary>
         [Output("rateLimitThreshold")]
         public Output<double?> RateLimitThreshold { get; private set; } = null!;
 
+        /// <summary>
+        /// Stable identifier for the drop rule. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Output("slug")]
         public Output<string> Slug { get; private set; } = null!;
 
+        /// <summary>
+        /// Configuration for dropping data points whose value matches a target.
+        /// </summary>
         [Output("valueBasedDrop")]
         public Output<Outputs.DropRuleValueBasedDrop?> ValueBasedDrop { get; private set; } = null!;
 
@@ -90,38 +146,69 @@ namespace Chronosphere.Pulumi
 
     public sealed class DropRuleArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Once a conditional drop activates, how long it stays activated before re-checking against `rate_limit_threshold`.
+        /// </summary>
         [Input("activatedDropDuration")]
         public Input<string>? ActivatedDropDuration { get; set; }
 
+        /// <summary>
+        /// Whether the drop rule is active. Deprecated: use `mode` instead.
+        /// </summary>
         [Input("active")]
         public Input<bool>? Active { get; set; }
 
+        /// <summary>
+        /// If `true`, the drop only activates when the configured `rate_limit_threshold` is exceeded.
+        /// </summary>
         [Input("conditionalDrop")]
         public Input<bool>? ConditionalDrop { get; set; }
 
+        /// <summary>
+        /// If `true`, drops data points whose value is NaN, including any associated staleness markers.
+        /// </summary>
         [Input("dropNanValue")]
         public Input<bool>? DropNanValue { get; set; }
 
+        /// <summary>
+        /// Drop rule mode controlling whether it is enabled, disabled, or in a preview state. Defaults to `ENABLED`.
+        /// </summary>
         [Input("mode")]
         public Input<string>? Mode { get; set; }
 
+        /// <summary>
+        /// Display name of the drop rule. Can be changed after creation.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
         [Input("queries", required: true)]
         private InputList<string>? _queries;
+
+        /// <summary>
+        /// List of label filter queries that select which metrics to drop. A metric is dropped if it matches all filters in any one query.
+        /// </summary>
         public InputList<string> Queries
         {
             get => _queries ?? (_queries = new InputList<string>());
             set => _queries = value;
         }
 
+        /// <summary>
+        /// Percentage of the licensed metrics limit (0-100) at which a conditional drop activates.
+        /// </summary>
         [Input("rateLimitThreshold")]
         public Input<double>? RateLimitThreshold { get; set; }
 
+        /// <summary>
+        /// Stable identifier for the drop rule. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 
+        /// <summary>
+        /// Configuration for dropping data points whose value matches a target.
+        /// </summary>
         [Input("valueBasedDrop")]
         public Input<Inputs.DropRuleValueBasedDropArgs>? ValueBasedDrop { get; set; }
 
@@ -133,38 +220,69 @@ namespace Chronosphere.Pulumi
 
     public sealed class DropRuleState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Once a conditional drop activates, how long it stays activated before re-checking against `rate_limit_threshold`.
+        /// </summary>
         [Input("activatedDropDuration")]
         public Input<string>? ActivatedDropDuration { get; set; }
 
+        /// <summary>
+        /// Whether the drop rule is active. Deprecated: use `mode` instead.
+        /// </summary>
         [Input("active")]
         public Input<bool>? Active { get; set; }
 
+        /// <summary>
+        /// If `true`, the drop only activates when the configured `rate_limit_threshold` is exceeded.
+        /// </summary>
         [Input("conditionalDrop")]
         public Input<bool>? ConditionalDrop { get; set; }
 
+        /// <summary>
+        /// If `true`, drops data points whose value is NaN, including any associated staleness markers.
+        /// </summary>
         [Input("dropNanValue")]
         public Input<bool>? DropNanValue { get; set; }
 
+        /// <summary>
+        /// Drop rule mode controlling whether it is enabled, disabled, or in a preview state. Defaults to `ENABLED`.
+        /// </summary>
         [Input("mode")]
         public Input<string>? Mode { get; set; }
 
+        /// <summary>
+        /// Display name of the drop rule. Can be changed after creation.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         [Input("queries")]
         private InputList<string>? _queries;
+
+        /// <summary>
+        /// List of label filter queries that select which metrics to drop. A metric is dropped if it matches all filters in any one query.
+        /// </summary>
         public InputList<string> Queries
         {
             get => _queries ?? (_queries = new InputList<string>());
             set => _queries = value;
         }
 
+        /// <summary>
+        /// Percentage of the licensed metrics limit (0-100) at which a conditional drop activates.
+        /// </summary>
         [Input("rateLimitThreshold")]
         public Input<double>? RateLimitThreshold { get; set; }
 
+        /// <summary>
+        /// Stable identifier for the drop rule. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 
+        /// <summary>
+        /// Configuration for dropping data points whose value matches a target.
+        /// </summary>
         [Input("valueBasedDrop")]
         public Input<Inputs.DropRuleValueBasedDropGetArgs>? ValueBasedDrop { get; set; }
 

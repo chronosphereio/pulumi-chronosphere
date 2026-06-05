@@ -14,8 +14,17 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class LogscaleActionPagerDutyAction
     {
+        /// <summary>
+        /// Routing key used to authenticate with PagerDuty.
+        /// </summary>
         public readonly string RoutingKey;
+        /// <summary>
+        /// Severity attached to the PagerDuty event.
+        /// </summary>
         public readonly string Severity;
+        /// <summary>
+        /// If `true`, sends the request through the configured outbound proxy.
+        /// </summary>
         public readonly bool? UseProxy;
 
         [OutputConstructor]

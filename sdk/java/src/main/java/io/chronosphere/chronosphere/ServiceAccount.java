@@ -17,41 +17,133 @@ import java.util.List;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
+/**
+ * A non-human identity used to authenticate API requests against Chronosphere. An API token is generated at creation and returned only once; store it securely, as a lost token requires recreating the service account.
+ * 
+ * ## Example Usage
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.chronosphere.ServiceAccount;
+ * import com.pulumi.chronosphere.ServiceAccountArgs;
+ * import com.pulumi.chronosphere.inputs.ServiceAccountRestrictionArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var unrestricted = new ServiceAccount(&#34;unrestricted&#34;, ServiceAccountArgs.builder()        
+ *             .name(&#34;ci-deployer&#34;)
+ *             .unrestricted(true)
+ *             .build());
+ * 
+ *         var restrictedReadOnly = new ServiceAccount(&#34;restrictedReadOnly&#34;, ServiceAccountArgs.builder()        
+ *             .name(&#34;metrics-reader&#34;)
+ *             .restriction(ServiceAccountRestrictionArgs.builder()
+ *                 .labels(Map.of(&#34;team&#34;, &#34;platform&#34;))
+ *                 .permission(&#34;READ_ONLY&#34;)
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ */
 @ResourceType(type="chronosphere:index/serviceAccount:ServiceAccount")
 public class ServiceAccount extends com.pulumi.resources.CustomResource {
+    /**
+     * Read-only: synthetic email address assigned to the service account by the server.
+     * 
+     */
     @Export(name="email", refs={String.class}, tree="[0]")
     private Output<String> email;
 
+    /**
+     * @return Read-only: synthetic email address assigned to the service account by the server.
+     * 
+     */
     public Output<String> email() {
         return this.email;
     }
+    /**
+     * Display name of the service account. Immutable after creation.
+     * 
+     */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
+    /**
+     * @return Display name of the service account. Immutable after creation.
+     * 
+     */
     public Output<String> name() {
         return this.name;
     }
+    /**
+     * Restricts the service account to a specific permission and optional metric label scope. Exactly one of `unrestricted` or `restriction` must be set.
+     * 
+     */
     @Export(name="restriction", refs={ServiceAccountRestriction.class}, tree="[0]")
     private Output</* @Nullable */ ServiceAccountRestriction> restriction;
 
+    /**
+     * @return Restricts the service account to a specific permission and optional metric label scope. Exactly one of `unrestricted` or `restriction` must be set.
+     * 
+     */
     public Output<Optional<ServiceAccountRestriction>> restriction() {
         return Codegen.optional(this.restriction);
     }
+    /**
+     * Stable identifier for the service account. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     @Export(name="slug", refs={String.class}, tree="[0]")
     private Output<String> slug;
 
+    /**
+     * @return Stable identifier for the service account. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     public Output<String> slug() {
         return this.slug;
     }
+    /**
+     * Read-only: API token generated for the service account. Returned only at creation time; store it securely. If lost, the service account must be recreated.
+     * 
+     */
     @Export(name="token", refs={String.class}, tree="[0]")
     private Output<String> token;
 
+    /**
+     * @return Read-only: API token generated for the service account. Returned only at creation time; store it securely. If lost, the service account must be recreated.
+     * 
+     */
     public Output<String> token() {
         return this.token;
     }
+    /**
+     * If true, grants the service account access to all Chronosphere APIs within the access controls defined by team membership. Exactly one of `unrestricted` or `restriction` must be set.
+     * 
+     */
     @Export(name="unrestricted", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> unrestricted;
 
+    /**
+     * @return If true, grants the service account access to all Chronosphere APIs within the access controls defined by team membership. Exactly one of `unrestricted` or `restriction` must be set.
+     * 
+     */
     public Output<Optional<Boolean>> unrestricted() {
         return Codegen.optional(this.unrestricted);
     }

@@ -18,30 +18,62 @@ public final class LogIngestConfigFieldNormalizationCustomFieldNormalizationNorm
 
     public static final LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationArgs Empty = new LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationArgs();
 
+    /**
+     * Value to use when no source field contains a value.
+     * 
+     */
     @Import(name="defaultValue")
     private @Nullable Output<String> defaultValue;
 
+    /**
+     * @return Value to use when no source field contains a value.
+     * 
+     */
     public Optional<Output<String>> defaultValue() {
         return Optional.ofNullable(this.defaultValue);
     }
 
+    /**
+     * Regex patterns used to extract and sanitize the value. Each pattern must have exactly one capturing group, whose contents are used as the result.
+     * 
+     */
     @Import(name="sanitizePatterns")
     private @Nullable Output<List<String>> sanitizePatterns;
 
+    /**
+     * @return Regex patterns used to extract and sanitize the value. Each pattern must have exactly one capturing group, whose contents are used as the result.
+     * 
+     */
     public Optional<Output<List<String>>> sanitizePatterns() {
         return Optional.ofNullable(this.sanitizePatterns);
     }
 
+    /**
+     * Ordered list of field paths to check for values. The first non-empty value found is used.
+     * 
+     */
     @Import(name="sources")
     private @Nullable Output<List<LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceArgs>> sources;
 
+    /**
+     * @return Ordered list of field paths to check for values. The first non-empty value found is used.
+     * 
+     */
     public Optional<Output<List<LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceArgs>>> sources() {
         return Optional.ofNullable(this.sources);
     }
 
+    /**
+     * Optional mapping that normalizes raw values to canonical ones (for example, `warn` to `WARNING`).
+     * 
+     */
     @Import(name="valueMap")
     private @Nullable Output<Map<String,String>> valueMap;
 
+    /**
+     * @return Optional mapping that normalizes raw values to canonical ones (for example, `warn` to `WARNING`).
+     * 
+     */
     public Optional<Output<Map<String,String>>> valueMap() {
         return Optional.ofNullable(this.valueMap);
     }
@@ -73,46 +105,106 @@ public final class LogIngestConfigFieldNormalizationCustomFieldNormalizationNorm
             $ = new LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param defaultValue Value to use when no source field contains a value.
+         * 
+         * @return builder
+         * 
+         */
         public Builder defaultValue(@Nullable Output<String> defaultValue) {
             $.defaultValue = defaultValue;
             return this;
         }
 
+        /**
+         * @param defaultValue Value to use when no source field contains a value.
+         * 
+         * @return builder
+         * 
+         */
         public Builder defaultValue(String defaultValue) {
             return defaultValue(Output.of(defaultValue));
         }
 
+        /**
+         * @param sanitizePatterns Regex patterns used to extract and sanitize the value. Each pattern must have exactly one capturing group, whose contents are used as the result.
+         * 
+         * @return builder
+         * 
+         */
         public Builder sanitizePatterns(@Nullable Output<List<String>> sanitizePatterns) {
             $.sanitizePatterns = sanitizePatterns;
             return this;
         }
 
+        /**
+         * @param sanitizePatterns Regex patterns used to extract and sanitize the value. Each pattern must have exactly one capturing group, whose contents are used as the result.
+         * 
+         * @return builder
+         * 
+         */
         public Builder sanitizePatterns(List<String> sanitizePatterns) {
             return sanitizePatterns(Output.of(sanitizePatterns));
         }
 
+        /**
+         * @param sanitizePatterns Regex patterns used to extract and sanitize the value. Each pattern must have exactly one capturing group, whose contents are used as the result.
+         * 
+         * @return builder
+         * 
+         */
         public Builder sanitizePatterns(String... sanitizePatterns) {
             return sanitizePatterns(List.of(sanitizePatterns));
         }
 
+        /**
+         * @param sources Ordered list of field paths to check for values. The first non-empty value found is used.
+         * 
+         * @return builder
+         * 
+         */
         public Builder sources(@Nullable Output<List<LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceArgs>> sources) {
             $.sources = sources;
             return this;
         }
 
+        /**
+         * @param sources Ordered list of field paths to check for values. The first non-empty value found is used.
+         * 
+         * @return builder
+         * 
+         */
         public Builder sources(List<LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceArgs> sources) {
             return sources(Output.of(sources));
         }
 
+        /**
+         * @param sources Ordered list of field paths to check for values. The first non-empty value found is used.
+         * 
+         * @return builder
+         * 
+         */
         public Builder sources(LogIngestConfigFieldNormalizationCustomFieldNormalizationNormalizationSourceArgs... sources) {
             return sources(List.of(sources));
         }
 
+        /**
+         * @param valueMap Optional mapping that normalizes raw values to canonical ones (for example, `warn` to `WARNING`).
+         * 
+         * @return builder
+         * 
+         */
         public Builder valueMap(@Nullable Output<Map<String,String>> valueMap) {
             $.valueMap = valueMap;
             return this;
         }
 
+        /**
+         * @param valueMap Optional mapping that normalizes raw values to canonical ones (for example, `warn` to `WARNING`).
+         * 
+         * @return builder
+         * 
+         */
         public Builder valueMap(Map<String,String> valueMap) {
             return valueMap(Output.of(valueMap));
         }

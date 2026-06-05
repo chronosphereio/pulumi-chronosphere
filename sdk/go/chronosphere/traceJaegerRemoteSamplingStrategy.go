@@ -12,13 +12,62 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Per-service Jaeger remote sampling strategy (probabilistic, rate-limiting, or per-operation) served to instrumented applications so they can sample traces at the configured rate.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/chronosphereio/pulumi-chronosphere/sdk/go/chronosphere"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := chronosphere.NewTraceJaegerRemoteSamplingStrategy(ctx, "probabilistic", &chronosphere.TraceJaegerRemoteSamplingStrategyArgs{
+//				AppliedStrategy: &chronosphere.TraceJaegerRemoteSamplingStrategyAppliedStrategyArgs{
+//					ProbabilisticStrategy: &chronosphere.TraceJaegerRemoteSamplingStrategyAppliedStrategyProbabilisticStrategyArgs{
+//						SamplingRate: pulumi.Float64(0.01),
+//					},
+//				},
+//				Name:        pulumi.String("Probabilistic sampling for service A"),
+//				ServiceName: pulumi.String("service-a"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = chronosphere.NewTraceJaegerRemoteSamplingStrategy(ctx, "rateLimited", &chronosphere.TraceJaegerRemoteSamplingStrategyArgs{
+//				AppliedStrategy: &chronosphere.TraceJaegerRemoteSamplingStrategyAppliedStrategyArgs{
+//					RateLimitingStrategy: &chronosphere.TraceJaegerRemoteSamplingStrategyAppliedStrategyRateLimitingStrategyArgs{
+//						MaxTracesPerSecond: pulumi.Int(2),
+//					},
+//				},
+//				Name:        pulumi.String("Rate-limited sampling for service B"),
+//				ServiceName: pulumi.String("service-b"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type TraceJaegerRemoteSamplingStrategy struct {
 	pulumi.CustomResourceState
 
+	// Sampling strategy returned to the Jaeger client. Exactly one of `probabilisticStrategy`, `rateLimitingStrategy`, or `perOperationStrategies` must be set.
 	AppliedStrategy TraceJaegerRemoteSamplingStrategyAppliedStrategyOutput `pulumi:"appliedStrategy"`
-	Name            pulumi.StringOutput                                    `pulumi:"name"`
-	ServiceName     pulumi.StringOutput                                    `pulumi:"serviceName"`
-	Slug            pulumi.StringOutput                                    `pulumi:"slug"`
+	// Display name of the Jaeger remote sampling strategy.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// Value of `service.name` the strategy applies to. Jaeger SDK clients reporting under this service receive this sampling configuration.
+	ServiceName pulumi.StringOutput `pulumi:"serviceName"`
+	// Stable identifier for the Jaeger remote sampling strategy. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringOutput `pulumi:"slug"`
 }
 
 // NewTraceJaegerRemoteSamplingStrategy registers a new resource with the given unique name, arguments, and options.
@@ -60,17 +109,25 @@ func GetTraceJaegerRemoteSamplingStrategy(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering TraceJaegerRemoteSamplingStrategy resources.
 type traceJaegerRemoteSamplingStrategyState struct {
+	// Sampling strategy returned to the Jaeger client. Exactly one of `probabilisticStrategy`, `rateLimitingStrategy`, or `perOperationStrategies` must be set.
 	AppliedStrategy *TraceJaegerRemoteSamplingStrategyAppliedStrategy `pulumi:"appliedStrategy"`
-	Name            *string                                           `pulumi:"name"`
-	ServiceName     *string                                           `pulumi:"serviceName"`
-	Slug            *string                                           `pulumi:"slug"`
+	// Display name of the Jaeger remote sampling strategy.
+	Name *string `pulumi:"name"`
+	// Value of `service.name` the strategy applies to. Jaeger SDK clients reporting under this service receive this sampling configuration.
+	ServiceName *string `pulumi:"serviceName"`
+	// Stable identifier for the Jaeger remote sampling strategy. Generated from `name` if omitted. Immutable after creation.
+	Slug *string `pulumi:"slug"`
 }
 
 type TraceJaegerRemoteSamplingStrategyState struct {
+	// Sampling strategy returned to the Jaeger client. Exactly one of `probabilisticStrategy`, `rateLimitingStrategy`, or `perOperationStrategies` must be set.
 	AppliedStrategy TraceJaegerRemoteSamplingStrategyAppliedStrategyPtrInput
-	Name            pulumi.StringPtrInput
-	ServiceName     pulumi.StringPtrInput
-	Slug            pulumi.StringPtrInput
+	// Display name of the Jaeger remote sampling strategy.
+	Name pulumi.StringPtrInput
+	// Value of `service.name` the strategy applies to. Jaeger SDK clients reporting under this service receive this sampling configuration.
+	ServiceName pulumi.StringPtrInput
+	// Stable identifier for the Jaeger remote sampling strategy. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringPtrInput
 }
 
 func (TraceJaegerRemoteSamplingStrategyState) ElementType() reflect.Type {
@@ -78,18 +135,26 @@ func (TraceJaegerRemoteSamplingStrategyState) ElementType() reflect.Type {
 }
 
 type traceJaegerRemoteSamplingStrategyArgs struct {
+	// Sampling strategy returned to the Jaeger client. Exactly one of `probabilisticStrategy`, `rateLimitingStrategy`, or `perOperationStrategies` must be set.
 	AppliedStrategy TraceJaegerRemoteSamplingStrategyAppliedStrategy `pulumi:"appliedStrategy"`
-	Name            string                                           `pulumi:"name"`
-	ServiceName     string                                           `pulumi:"serviceName"`
-	Slug            *string                                          `pulumi:"slug"`
+	// Display name of the Jaeger remote sampling strategy.
+	Name string `pulumi:"name"`
+	// Value of `service.name` the strategy applies to. Jaeger SDK clients reporting under this service receive this sampling configuration.
+	ServiceName string `pulumi:"serviceName"`
+	// Stable identifier for the Jaeger remote sampling strategy. Generated from `name` if omitted. Immutable after creation.
+	Slug *string `pulumi:"slug"`
 }
 
 // The set of arguments for constructing a TraceJaegerRemoteSamplingStrategy resource.
 type TraceJaegerRemoteSamplingStrategyArgs struct {
+	// Sampling strategy returned to the Jaeger client. Exactly one of `probabilisticStrategy`, `rateLimitingStrategy`, or `perOperationStrategies` must be set.
 	AppliedStrategy TraceJaegerRemoteSamplingStrategyAppliedStrategyInput
-	Name            pulumi.StringInput
-	ServiceName     pulumi.StringInput
-	Slug            pulumi.StringPtrInput
+	// Display name of the Jaeger remote sampling strategy.
+	Name pulumi.StringInput
+	// Value of `service.name` the strategy applies to. Jaeger SDK clients reporting under this service receive this sampling configuration.
+	ServiceName pulumi.StringInput
+	// Stable identifier for the Jaeger remote sampling strategy. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringPtrInput
 }
 
 func (TraceJaegerRemoteSamplingStrategyArgs) ElementType() reflect.Type {
@@ -179,20 +244,24 @@ func (o TraceJaegerRemoteSamplingStrategyOutput) ToTraceJaegerRemoteSamplingStra
 	return o
 }
 
+// Sampling strategy returned to the Jaeger client. Exactly one of `probabilisticStrategy`, `rateLimitingStrategy`, or `perOperationStrategies` must be set.
 func (o TraceJaegerRemoteSamplingStrategyOutput) AppliedStrategy() TraceJaegerRemoteSamplingStrategyAppliedStrategyOutput {
 	return o.ApplyT(func(v *TraceJaegerRemoteSamplingStrategy) TraceJaegerRemoteSamplingStrategyAppliedStrategyOutput {
 		return v.AppliedStrategy
 	}).(TraceJaegerRemoteSamplingStrategyAppliedStrategyOutput)
 }
 
+// Display name of the Jaeger remote sampling strategy.
 func (o TraceJaegerRemoteSamplingStrategyOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *TraceJaegerRemoteSamplingStrategy) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// Value of `service.name` the strategy applies to. Jaeger SDK clients reporting under this service receive this sampling configuration.
 func (o TraceJaegerRemoteSamplingStrategyOutput) ServiceName() pulumi.StringOutput {
 	return o.ApplyT(func(v *TraceJaegerRemoteSamplingStrategy) pulumi.StringOutput { return v.ServiceName }).(pulumi.StringOutput)
 }
 
+// Stable identifier for the Jaeger remote sampling strategy. Generated from `name` if omitted. Immutable after creation.
 func (o TraceJaegerRemoteSamplingStrategyOutput) Slug() pulumi.StringOutput {
 	return o.ApplyT(func(v *TraceJaegerRemoteSamplingStrategy) pulumi.StringOutput { return v.Slug }).(pulumi.StringOutput)
 }

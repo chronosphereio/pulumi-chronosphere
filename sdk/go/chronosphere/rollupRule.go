@@ -12,26 +12,95 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Aggregates matching input metrics into a lower-cardinality output series at ingest time, reducing storage cost and query load. Selects input series by filter, applies an aggregation function (e.g. `sum`, `max`), and emits a new metric grouped by the specified labels.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/chronosphereio/pulumi-chronosphere/sdk/go/chronosphere"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			bucket, err := chronosphere.NewBucket(ctx, "bucket", &chronosphere.BucketArgs{
+//				Name: pulumi.String("Platform"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = chronosphere.NewRollupRule(ctx, "rollupRule", &chronosphere.RollupRuleArgs{
+//				Name:        pulumi.String("RollupRule"),
+//				Slug:        pulumi.String("rollup-rule"),
+//				BucketId:    bucket.ID(),
+//				Filter:      pulumi.String("__name__:metric_name"),
+//				Aggregation: pulumi.String("SUM"),
+//				DropRaw:     pulumi.Bool(true),
+//				GroupBies: pulumi.StringArray{
+//					pulumi.String("service"),
+//				},
+//				MetricType:    pulumi.String("COUNTER"),
+//				MetricTypeTag: pulumi.Bool(false),
+//				NewMetric:     pulumi.String("new_metric_name"),
+//				Permissive:    pulumi.Bool(true),
+//				StoragePolicies: &chronosphere.RollupRuleStoragePoliciesArgs{
+//					Resolution: pulumi.String("30s"),
+//					Retention:  pulumi.String("120h"),
+//				},
+//				Mode: pulumi.String("PREVIEW"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type RollupRule struct {
 	pulumi.CustomResourceState
 
-	Aggregation         pulumi.StringPtrOutput                 `pulumi:"aggregation"`
-	BucketId            pulumi.StringPtrOutput                 `pulumi:"bucketId"`
-	DropRaw             pulumi.BoolPtrOutput                   `pulumi:"dropRaw"`
-	ExcludeBies         pulumi.StringArrayOutput               `pulumi:"excludeBies"`
-	Filter              pulumi.StringOutput                    `pulumi:"filter"`
+	// Aggregation function applied across grouped series (e.g. `sum`, `min`, `max`, `last`).
+	Aggregation pulumi.StringPtrOutput `pulumi:"aggregation"`
+	// ID of the bucket the rollup rule belongs to.
+	BucketId pulumi.StringPtrOutput `pulumi:"bucketId"`
+	// If `true`, automatically generates a drop rule that removes the raw input metrics matching this rollup. Defaults to `false`.
+	DropRaw pulumi.BoolPtrOutput `pulumi:"dropRaw"`
+	// Labels to drop when aggregating; all other labels are preserved. Mutually exclusive with `groupBy`.
+	ExcludeBies pulumi.StringArrayOutput `pulumi:"excludeBies"`
+	// Space-delimited list of `label:value_glob` matchers that select the input series. Supports glob patterns and special filters like `__name__`, `__metric_type__`, and `__metric_source__`.
+	Filter pulumi.StringOutput `pulumi:"filter"`
+	// Graphite-specific label policy applied to positional labels (`__gX__`) on the output metric.
 	GraphiteLabelPolicy RollupRuleGraphiteLabelPolicyPtrOutput `pulumi:"graphiteLabelPolicy"`
-	GroupBies           pulumi.StringArrayOutput               `pulumi:"groupBies"`
-	Interval            pulumi.StringOutput                    `pulumi:"interval"`
-	MetricType          pulumi.StringOutput                    `pulumi:"metricType"`
-	MetricTypeTag       pulumi.BoolPtrOutput                   `pulumi:"metricTypeTag"`
-	Mode                pulumi.StringPtrOutput                 `pulumi:"mode"`
-	Name                pulumi.StringOutput                    `pulumi:"name"`
-	NewMetric           pulumi.StringPtrOutput                 `pulumi:"newMetric"`
+	// Labels to preserve when aggregating; all other labels are dropped. Mutually exclusive with `excludeBy`.
+	GroupBies pulumi.StringArrayOutput `pulumi:"groupBies"`
+	// Interval between aggregated data points produced by the rollup. Defaults to a server-side value when unset. Conflicts with `storagePolicies`.
+	Interval pulumi.StringOutput `pulumi:"interval"`
+	// Type of the source metric being rolled up (e.g. `gauge`, `counter`, `histogram`).
+	MetricType pulumi.StringOutput `pulumi:"metricType"`
+	// Whether to add a `__rollup_type__` label to the output metric identifying the rollup type. Defaults to `false`.
+	MetricTypeTag pulumi.BoolPtrOutput `pulumi:"metricTypeTag"`
+	// Rollup mode controlling whether the rule is active or in a preview state.
+	Mode pulumi.StringPtrOutput `pulumi:"mode"`
+	// Positional Graphite label to replace (e.g. `__g1__`).
+	Name pulumi.StringOutput `pulumi:"name"`
+	// Name of the output metric produced by the rollup. Supports the `{{.MetricName}}` template variable to reference the source metric name. Optional for Graphite rollup rules.
+	NewMetric pulumi.StringPtrOutput `pulumi:"newMetric"`
+	// Deprecated: no longer supported.
+	//
 	// Deprecated: permissive is no longer supported
-	Permissive     pulumi.BoolPtrOutput `pulumi:"permissive"`
+	Permissive pulumi.BoolPtrOutput `pulumi:"permissive"`
+	// If `true`, this rule is skipped when another rollup rule already produces a metric with the same output name. Defaults to `false`.
 	SkipOnConflict pulumi.BoolPtrOutput `pulumi:"skipOnConflict"`
-	Slug           pulumi.StringOutput  `pulumi:"slug"`
+	// Stable identifier for the rollup rule. Immutable after creation. Unlike most resources, the slug is required and is not auto-generated from `name`.
+	Slug pulumi.StringOutput `pulumi:"slug"`
+	// Storage policy controlling resolution and retention of rolled-up metrics. Deprecated: use `interval` instead.
+	//
 	// Deprecated: use `interval` instead
 	StoragePolicies RollupRuleStoragePoliciesPtrOutput `pulumi:"storagePolicies"`
 }
@@ -78,45 +147,83 @@ func GetRollupRule(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RollupRule resources.
 type rollupRuleState struct {
-	Aggregation         *string                        `pulumi:"aggregation"`
-	BucketId            *string                        `pulumi:"bucketId"`
-	DropRaw             *bool                          `pulumi:"dropRaw"`
-	ExcludeBies         []string                       `pulumi:"excludeBies"`
-	Filter              *string                        `pulumi:"filter"`
+	// Aggregation function applied across grouped series (e.g. `sum`, `min`, `max`, `last`).
+	Aggregation *string `pulumi:"aggregation"`
+	// ID of the bucket the rollup rule belongs to.
+	BucketId *string `pulumi:"bucketId"`
+	// If `true`, automatically generates a drop rule that removes the raw input metrics matching this rollup. Defaults to `false`.
+	DropRaw *bool `pulumi:"dropRaw"`
+	// Labels to drop when aggregating; all other labels are preserved. Mutually exclusive with `groupBy`.
+	ExcludeBies []string `pulumi:"excludeBies"`
+	// Space-delimited list of `label:value_glob` matchers that select the input series. Supports glob patterns and special filters like `__name__`, `__metric_type__`, and `__metric_source__`.
+	Filter *string `pulumi:"filter"`
+	// Graphite-specific label policy applied to positional labels (`__gX__`) on the output metric.
 	GraphiteLabelPolicy *RollupRuleGraphiteLabelPolicy `pulumi:"graphiteLabelPolicy"`
-	GroupBies           []string                       `pulumi:"groupBies"`
-	Interval            *string                        `pulumi:"interval"`
-	MetricType          *string                        `pulumi:"metricType"`
-	MetricTypeTag       *bool                          `pulumi:"metricTypeTag"`
-	Mode                *string                        `pulumi:"mode"`
-	Name                *string                        `pulumi:"name"`
-	NewMetric           *string                        `pulumi:"newMetric"`
+	// Labels to preserve when aggregating; all other labels are dropped. Mutually exclusive with `excludeBy`.
+	GroupBies []string `pulumi:"groupBies"`
+	// Interval between aggregated data points produced by the rollup. Defaults to a server-side value when unset. Conflicts with `storagePolicies`.
+	Interval *string `pulumi:"interval"`
+	// Type of the source metric being rolled up (e.g. `gauge`, `counter`, `histogram`).
+	MetricType *string `pulumi:"metricType"`
+	// Whether to add a `__rollup_type__` label to the output metric identifying the rollup type. Defaults to `false`.
+	MetricTypeTag *bool `pulumi:"metricTypeTag"`
+	// Rollup mode controlling whether the rule is active or in a preview state.
+	Mode *string `pulumi:"mode"`
+	// Positional Graphite label to replace (e.g. `__g1__`).
+	Name *string `pulumi:"name"`
+	// Name of the output metric produced by the rollup. Supports the `{{.MetricName}}` template variable to reference the source metric name. Optional for Graphite rollup rules.
+	NewMetric *string `pulumi:"newMetric"`
+	// Deprecated: no longer supported.
+	//
 	// Deprecated: permissive is no longer supported
-	Permissive     *bool   `pulumi:"permissive"`
-	SkipOnConflict *bool   `pulumi:"skipOnConflict"`
-	Slug           *string `pulumi:"slug"`
+	Permissive *bool `pulumi:"permissive"`
+	// If `true`, this rule is skipped when another rollup rule already produces a metric with the same output name. Defaults to `false`.
+	SkipOnConflict *bool `pulumi:"skipOnConflict"`
+	// Stable identifier for the rollup rule. Immutable after creation. Unlike most resources, the slug is required and is not auto-generated from `name`.
+	Slug *string `pulumi:"slug"`
+	// Storage policy controlling resolution and retention of rolled-up metrics. Deprecated: use `interval` instead.
+	//
 	// Deprecated: use `interval` instead
 	StoragePolicies *RollupRuleStoragePolicies `pulumi:"storagePolicies"`
 }
 
 type RollupRuleState struct {
-	Aggregation         pulumi.StringPtrInput
-	BucketId            pulumi.StringPtrInput
-	DropRaw             pulumi.BoolPtrInput
-	ExcludeBies         pulumi.StringArrayInput
-	Filter              pulumi.StringPtrInput
+	// Aggregation function applied across grouped series (e.g. `sum`, `min`, `max`, `last`).
+	Aggregation pulumi.StringPtrInput
+	// ID of the bucket the rollup rule belongs to.
+	BucketId pulumi.StringPtrInput
+	// If `true`, automatically generates a drop rule that removes the raw input metrics matching this rollup. Defaults to `false`.
+	DropRaw pulumi.BoolPtrInput
+	// Labels to drop when aggregating; all other labels are preserved. Mutually exclusive with `groupBy`.
+	ExcludeBies pulumi.StringArrayInput
+	// Space-delimited list of `label:value_glob` matchers that select the input series. Supports glob patterns and special filters like `__name__`, `__metric_type__`, and `__metric_source__`.
+	Filter pulumi.StringPtrInput
+	// Graphite-specific label policy applied to positional labels (`__gX__`) on the output metric.
 	GraphiteLabelPolicy RollupRuleGraphiteLabelPolicyPtrInput
-	GroupBies           pulumi.StringArrayInput
-	Interval            pulumi.StringPtrInput
-	MetricType          pulumi.StringPtrInput
-	MetricTypeTag       pulumi.BoolPtrInput
-	Mode                pulumi.StringPtrInput
-	Name                pulumi.StringPtrInput
-	NewMetric           pulumi.StringPtrInput
+	// Labels to preserve when aggregating; all other labels are dropped. Mutually exclusive with `excludeBy`.
+	GroupBies pulumi.StringArrayInput
+	// Interval between aggregated data points produced by the rollup. Defaults to a server-side value when unset. Conflicts with `storagePolicies`.
+	Interval pulumi.StringPtrInput
+	// Type of the source metric being rolled up (e.g. `gauge`, `counter`, `histogram`).
+	MetricType pulumi.StringPtrInput
+	// Whether to add a `__rollup_type__` label to the output metric identifying the rollup type. Defaults to `false`.
+	MetricTypeTag pulumi.BoolPtrInput
+	// Rollup mode controlling whether the rule is active or in a preview state.
+	Mode pulumi.StringPtrInput
+	// Positional Graphite label to replace (e.g. `__g1__`).
+	Name pulumi.StringPtrInput
+	// Name of the output metric produced by the rollup. Supports the `{{.MetricName}}` template variable to reference the source metric name. Optional for Graphite rollup rules.
+	NewMetric pulumi.StringPtrInput
+	// Deprecated: no longer supported.
+	//
 	// Deprecated: permissive is no longer supported
-	Permissive     pulumi.BoolPtrInput
+	Permissive pulumi.BoolPtrInput
+	// If `true`, this rule is skipped when another rollup rule already produces a metric with the same output name. Defaults to `false`.
 	SkipOnConflict pulumi.BoolPtrInput
-	Slug           pulumi.StringPtrInput
+	// Stable identifier for the rollup rule. Immutable after creation. Unlike most resources, the slug is required and is not auto-generated from `name`.
+	Slug pulumi.StringPtrInput
+	// Storage policy controlling resolution and retention of rolled-up metrics. Deprecated: use `interval` instead.
+	//
 	// Deprecated: use `interval` instead
 	StoragePolicies RollupRuleStoragePoliciesPtrInput
 }
@@ -126,46 +233,84 @@ func (RollupRuleState) ElementType() reflect.Type {
 }
 
 type rollupRuleArgs struct {
-	Aggregation         *string                        `pulumi:"aggregation"`
-	BucketId            *string                        `pulumi:"bucketId"`
-	DropRaw             *bool                          `pulumi:"dropRaw"`
-	ExcludeBies         []string                       `pulumi:"excludeBies"`
-	Filter              string                         `pulumi:"filter"`
+	// Aggregation function applied across grouped series (e.g. `sum`, `min`, `max`, `last`).
+	Aggregation *string `pulumi:"aggregation"`
+	// ID of the bucket the rollup rule belongs to.
+	BucketId *string `pulumi:"bucketId"`
+	// If `true`, automatically generates a drop rule that removes the raw input metrics matching this rollup. Defaults to `false`.
+	DropRaw *bool `pulumi:"dropRaw"`
+	// Labels to drop when aggregating; all other labels are preserved. Mutually exclusive with `groupBy`.
+	ExcludeBies []string `pulumi:"excludeBies"`
+	// Space-delimited list of `label:value_glob` matchers that select the input series. Supports glob patterns and special filters like `__name__`, `__metric_type__`, and `__metric_source__`.
+	Filter string `pulumi:"filter"`
+	// Graphite-specific label policy applied to positional labels (`__gX__`) on the output metric.
 	GraphiteLabelPolicy *RollupRuleGraphiteLabelPolicy `pulumi:"graphiteLabelPolicy"`
-	GroupBies           []string                       `pulumi:"groupBies"`
-	Interval            *string                        `pulumi:"interval"`
-	MetricType          string                         `pulumi:"metricType"`
-	MetricTypeTag       *bool                          `pulumi:"metricTypeTag"`
-	Mode                *string                        `pulumi:"mode"`
-	Name                string                         `pulumi:"name"`
-	NewMetric           *string                        `pulumi:"newMetric"`
+	// Labels to preserve when aggregating; all other labels are dropped. Mutually exclusive with `excludeBy`.
+	GroupBies []string `pulumi:"groupBies"`
+	// Interval between aggregated data points produced by the rollup. Defaults to a server-side value when unset. Conflicts with `storagePolicies`.
+	Interval *string `pulumi:"interval"`
+	// Type of the source metric being rolled up (e.g. `gauge`, `counter`, `histogram`).
+	MetricType string `pulumi:"metricType"`
+	// Whether to add a `__rollup_type__` label to the output metric identifying the rollup type. Defaults to `false`.
+	MetricTypeTag *bool `pulumi:"metricTypeTag"`
+	// Rollup mode controlling whether the rule is active or in a preview state.
+	Mode *string `pulumi:"mode"`
+	// Positional Graphite label to replace (e.g. `__g1__`).
+	Name string `pulumi:"name"`
+	// Name of the output metric produced by the rollup. Supports the `{{.MetricName}}` template variable to reference the source metric name. Optional for Graphite rollup rules.
+	NewMetric *string `pulumi:"newMetric"`
+	// Deprecated: no longer supported.
+	//
 	// Deprecated: permissive is no longer supported
-	Permissive     *bool  `pulumi:"permissive"`
-	SkipOnConflict *bool  `pulumi:"skipOnConflict"`
-	Slug           string `pulumi:"slug"`
+	Permissive *bool `pulumi:"permissive"`
+	// If `true`, this rule is skipped when another rollup rule already produces a metric with the same output name. Defaults to `false`.
+	SkipOnConflict *bool `pulumi:"skipOnConflict"`
+	// Stable identifier for the rollup rule. Immutable after creation. Unlike most resources, the slug is required and is not auto-generated from `name`.
+	Slug string `pulumi:"slug"`
+	// Storage policy controlling resolution and retention of rolled-up metrics. Deprecated: use `interval` instead.
+	//
 	// Deprecated: use `interval` instead
 	StoragePolicies *RollupRuleStoragePolicies `pulumi:"storagePolicies"`
 }
 
 // The set of arguments for constructing a RollupRule resource.
 type RollupRuleArgs struct {
-	Aggregation         pulumi.StringPtrInput
-	BucketId            pulumi.StringPtrInput
-	DropRaw             pulumi.BoolPtrInput
-	ExcludeBies         pulumi.StringArrayInput
-	Filter              pulumi.StringInput
+	// Aggregation function applied across grouped series (e.g. `sum`, `min`, `max`, `last`).
+	Aggregation pulumi.StringPtrInput
+	// ID of the bucket the rollup rule belongs to.
+	BucketId pulumi.StringPtrInput
+	// If `true`, automatically generates a drop rule that removes the raw input metrics matching this rollup. Defaults to `false`.
+	DropRaw pulumi.BoolPtrInput
+	// Labels to drop when aggregating; all other labels are preserved. Mutually exclusive with `groupBy`.
+	ExcludeBies pulumi.StringArrayInput
+	// Space-delimited list of `label:value_glob` matchers that select the input series. Supports glob patterns and special filters like `__name__`, `__metric_type__`, and `__metric_source__`.
+	Filter pulumi.StringInput
+	// Graphite-specific label policy applied to positional labels (`__gX__`) on the output metric.
 	GraphiteLabelPolicy RollupRuleGraphiteLabelPolicyPtrInput
-	GroupBies           pulumi.StringArrayInput
-	Interval            pulumi.StringPtrInput
-	MetricType          pulumi.StringInput
-	MetricTypeTag       pulumi.BoolPtrInput
-	Mode                pulumi.StringPtrInput
-	Name                pulumi.StringInput
-	NewMetric           pulumi.StringPtrInput
+	// Labels to preserve when aggregating; all other labels are dropped. Mutually exclusive with `excludeBy`.
+	GroupBies pulumi.StringArrayInput
+	// Interval between aggregated data points produced by the rollup. Defaults to a server-side value when unset. Conflicts with `storagePolicies`.
+	Interval pulumi.StringPtrInput
+	// Type of the source metric being rolled up (e.g. `gauge`, `counter`, `histogram`).
+	MetricType pulumi.StringInput
+	// Whether to add a `__rollup_type__` label to the output metric identifying the rollup type. Defaults to `false`.
+	MetricTypeTag pulumi.BoolPtrInput
+	// Rollup mode controlling whether the rule is active or in a preview state.
+	Mode pulumi.StringPtrInput
+	// Positional Graphite label to replace (e.g. `__g1__`).
+	Name pulumi.StringInput
+	// Name of the output metric produced by the rollup. Supports the `{{.MetricName}}` template variable to reference the source metric name. Optional for Graphite rollup rules.
+	NewMetric pulumi.StringPtrInput
+	// Deprecated: no longer supported.
+	//
 	// Deprecated: permissive is no longer supported
-	Permissive     pulumi.BoolPtrInput
+	Permissive pulumi.BoolPtrInput
+	// If `true`, this rule is skipped when another rollup rule already produces a metric with the same output name. Defaults to `false`.
 	SkipOnConflict pulumi.BoolPtrInput
-	Slug           pulumi.StringInput
+	// Stable identifier for the rollup rule. Immutable after creation. Unlike most resources, the slug is required and is not auto-generated from `name`.
+	Slug pulumi.StringInput
+	// Storage policy controlling resolution and retention of rolled-up metrics. Deprecated: use `interval` instead.
+	//
 	// Deprecated: use `interval` instead
 	StoragePolicies RollupRuleStoragePoliciesPtrInput
 }
@@ -257,71 +402,90 @@ func (o RollupRuleOutput) ToRollupRuleOutputWithContext(ctx context.Context) Rol
 	return o
 }
 
+// Aggregation function applied across grouped series (e.g. `sum`, `min`, `max`, `last`).
 func (o RollupRuleOutput) Aggregation() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RollupRule) pulumi.StringPtrOutput { return v.Aggregation }).(pulumi.StringPtrOutput)
 }
 
+// ID of the bucket the rollup rule belongs to.
 func (o RollupRuleOutput) BucketId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RollupRule) pulumi.StringPtrOutput { return v.BucketId }).(pulumi.StringPtrOutput)
 }
 
+// If `true`, automatically generates a drop rule that removes the raw input metrics matching this rollup. Defaults to `false`.
 func (o RollupRuleOutput) DropRaw() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *RollupRule) pulumi.BoolPtrOutput { return v.DropRaw }).(pulumi.BoolPtrOutput)
 }
 
+// Labels to drop when aggregating; all other labels are preserved. Mutually exclusive with `groupBy`.
 func (o RollupRuleOutput) ExcludeBies() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *RollupRule) pulumi.StringArrayOutput { return v.ExcludeBies }).(pulumi.StringArrayOutput)
 }
 
+// Space-delimited list of `label:value_glob` matchers that select the input series. Supports glob patterns and special filters like `__name__`, `__metric_type__`, and `__metric_source__`.
 func (o RollupRuleOutput) Filter() pulumi.StringOutput {
 	return o.ApplyT(func(v *RollupRule) pulumi.StringOutput { return v.Filter }).(pulumi.StringOutput)
 }
 
+// Graphite-specific label policy applied to positional labels (`__gX__`) on the output metric.
 func (o RollupRuleOutput) GraphiteLabelPolicy() RollupRuleGraphiteLabelPolicyPtrOutput {
 	return o.ApplyT(func(v *RollupRule) RollupRuleGraphiteLabelPolicyPtrOutput { return v.GraphiteLabelPolicy }).(RollupRuleGraphiteLabelPolicyPtrOutput)
 }
 
+// Labels to preserve when aggregating; all other labels are dropped. Mutually exclusive with `excludeBy`.
 func (o RollupRuleOutput) GroupBies() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *RollupRule) pulumi.StringArrayOutput { return v.GroupBies }).(pulumi.StringArrayOutput)
 }
 
+// Interval between aggregated data points produced by the rollup. Defaults to a server-side value when unset. Conflicts with `storagePolicies`.
 func (o RollupRuleOutput) Interval() pulumi.StringOutput {
 	return o.ApplyT(func(v *RollupRule) pulumi.StringOutput { return v.Interval }).(pulumi.StringOutput)
 }
 
+// Type of the source metric being rolled up (e.g. `gauge`, `counter`, `histogram`).
 func (o RollupRuleOutput) MetricType() pulumi.StringOutput {
 	return o.ApplyT(func(v *RollupRule) pulumi.StringOutput { return v.MetricType }).(pulumi.StringOutput)
 }
 
+// Whether to add a `__rollup_type__` label to the output metric identifying the rollup type. Defaults to `false`.
 func (o RollupRuleOutput) MetricTypeTag() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *RollupRule) pulumi.BoolPtrOutput { return v.MetricTypeTag }).(pulumi.BoolPtrOutput)
 }
 
+// Rollup mode controlling whether the rule is active or in a preview state.
 func (o RollupRuleOutput) Mode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RollupRule) pulumi.StringPtrOutput { return v.Mode }).(pulumi.StringPtrOutput)
 }
 
+// Positional Graphite label to replace (e.g. `__g1__`).
 func (o RollupRuleOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *RollupRule) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// Name of the output metric produced by the rollup. Supports the `{{.MetricName}}` template variable to reference the source metric name. Optional for Graphite rollup rules.
 func (o RollupRuleOutput) NewMetric() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RollupRule) pulumi.StringPtrOutput { return v.NewMetric }).(pulumi.StringPtrOutput)
 }
 
+// Deprecated: no longer supported.
+//
 // Deprecated: permissive is no longer supported
 func (o RollupRuleOutput) Permissive() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *RollupRule) pulumi.BoolPtrOutput { return v.Permissive }).(pulumi.BoolPtrOutput)
 }
 
+// If `true`, this rule is skipped when another rollup rule already produces a metric with the same output name. Defaults to `false`.
 func (o RollupRuleOutput) SkipOnConflict() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *RollupRule) pulumi.BoolPtrOutput { return v.SkipOnConflict }).(pulumi.BoolPtrOutput)
 }
 
+// Stable identifier for the rollup rule. Immutable after creation. Unlike most resources, the slug is required and is not auto-generated from `name`.
 func (o RollupRuleOutput) Slug() pulumi.StringOutput {
 	return o.ApplyT(func(v *RollupRule) pulumi.StringOutput { return v.Slug }).(pulumi.StringOutput)
 }
 
+// Storage policy controlling resolution and retention of rolled-up metrics. Deprecated: use `interval` instead.
+//
 // Deprecated: use `interval` instead
 func (o RollupRuleOutput) StoragePolicies() RollupRuleStoragePoliciesPtrOutput {
 	return o.ApplyT(func(v *RollupRule) RollupRuleStoragePoliciesPtrOutput { return v.StoragePolicies }).(RollupRuleStoragePoliciesPtrOutput)

@@ -18,30 +18,62 @@ public final class LogscaleActionSlackPostMessageActionArgs extends com.pulumi.r
 
     public static final LogscaleActionSlackPostMessageActionArgs Empty = new LogscaleActionSlackPostMessageActionArgs();
 
+    /**
+     * Slack API token used to authenticate the request.
+     * 
+     */
     @Import(name="apiToken", required=true)
     private Output<String> apiToken;
 
+    /**
+     * @return Slack API token used to authenticate the request.
+     * 
+     */
     public Output<String> apiToken() {
         return this.apiToken;
     }
 
+    /**
+     * List of Slack channels to post the message to.
+     * 
+     */
     @Import(name="channels", required=true)
     private Output<List<String>> channels;
 
+    /**
+     * @return List of Slack channels to post the message to.
+     * 
+     */
     public Output<List<String>> channels() {
         return this.channels;
     }
 
+    /**
+     * Fields to include in the Slack message. Values support Go template syntax with the query result.
+     * 
+     */
     @Import(name="fields")
     private @Nullable Output<Map<String,String>> fields;
 
+    /**
+     * @return Fields to include in the Slack message. Values support Go template syntax with the query result.
+     * 
+     */
     public Optional<Output<Map<String,String>>> fields() {
         return Optional.ofNullable(this.fields);
     }
 
+    /**
+     * If `true`, sends the request through the configured outbound proxy.
+     * 
+     */
     @Import(name="useProxy")
     private @Nullable Output<Boolean> useProxy;
 
+    /**
+     * @return If `true`, sends the request through the configured outbound proxy.
+     * 
+     */
     public Optional<Output<Boolean>> useProxy() {
         return Optional.ofNullable(this.useProxy);
     }
@@ -73,42 +105,96 @@ public final class LogscaleActionSlackPostMessageActionArgs extends com.pulumi.r
             $ = new LogscaleActionSlackPostMessageActionArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param apiToken Slack API token used to authenticate the request.
+         * 
+         * @return builder
+         * 
+         */
         public Builder apiToken(Output<String> apiToken) {
             $.apiToken = apiToken;
             return this;
         }
 
+        /**
+         * @param apiToken Slack API token used to authenticate the request.
+         * 
+         * @return builder
+         * 
+         */
         public Builder apiToken(String apiToken) {
             return apiToken(Output.of(apiToken));
         }
 
+        /**
+         * @param channels List of Slack channels to post the message to.
+         * 
+         * @return builder
+         * 
+         */
         public Builder channels(Output<List<String>> channels) {
             $.channels = channels;
             return this;
         }
 
+        /**
+         * @param channels List of Slack channels to post the message to.
+         * 
+         * @return builder
+         * 
+         */
         public Builder channels(List<String> channels) {
             return channels(Output.of(channels));
         }
 
+        /**
+         * @param channels List of Slack channels to post the message to.
+         * 
+         * @return builder
+         * 
+         */
         public Builder channels(String... channels) {
             return channels(List.of(channels));
         }
 
+        /**
+         * @param fields Fields to include in the Slack message. Values support Go template syntax with the query result.
+         * 
+         * @return builder
+         * 
+         */
         public Builder fields(@Nullable Output<Map<String,String>> fields) {
             $.fields = fields;
             return this;
         }
 
+        /**
+         * @param fields Fields to include in the Slack message. Values support Go template syntax with the query result.
+         * 
+         * @return builder
+         * 
+         */
         public Builder fields(Map<String,String> fields) {
             return fields(Output.of(fields));
         }
 
+        /**
+         * @param useProxy If `true`, sends the request through the configured outbound proxy.
+         * 
+         * @return builder
+         * 
+         */
         public Builder useProxy(@Nullable Output<Boolean> useProxy) {
             $.useProxy = useProxy;
             return this;
         }
 
+        /**
+         * @param useProxy If `true`, sends the request through the configured outbound proxy.
+         * 
+         * @return builder
+         * 
+         */
         public Builder useProxy(Boolean useProxy) {
             return useProxy(Output.of(useProxy));
         }

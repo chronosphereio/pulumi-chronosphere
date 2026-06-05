@@ -9,9 +9,17 @@ import java.util.Objects;
 
 @CustomType
 public final class DropRuleValueBasedDrop {
+    /**
+     * @return Data point value at which matching points are dropped.
+     * 
+     */
     private Double targetDropValue;
 
     private DropRuleValueBasedDrop() {}
+    /**
+     * @return Data point value at which matching points are dropped.
+     * 
+     */
     public Double targetDropValue() {
         return this.targetDropValue;
     }

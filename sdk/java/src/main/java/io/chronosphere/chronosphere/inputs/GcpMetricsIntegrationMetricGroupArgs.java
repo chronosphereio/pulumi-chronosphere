@@ -18,30 +18,62 @@ public final class GcpMetricsIntegrationMetricGroupArgs extends com.pulumi.resou
 
     public static final GcpMetricsIntegrationMetricGroupArgs Empty = new GcpMetricsIntegrationMetricGroupArgs();
 
+    /**
+     * Label filters applied to metrics in this group. All filters must match for a metric to be ingested.
+     * 
+     */
     @Import(name="filters")
     private @Nullable Output<List<GcpMetricsIntegrationMetricGroupFilterArgs>> filters;
 
+    /**
+     * @return Label filters applied to metrics in this group. All filters must match for a metric to be ingested.
+     * 
+     */
     public Optional<Output<List<GcpMetricsIntegrationMetricGroupFilterArgs>>> filters() {
         return Optional.ofNullable(this.filters);
     }
 
+    /**
+     * List of Google Cloud metric prefixes to ingest (e.g. `compute.googleapis.com/`).
+     * 
+     */
     @Import(name="prefixes")
     private @Nullable Output<List<String>> prefixes;
 
+    /**
+     * @return List of Google Cloud metric prefixes to ingest (e.g. `compute.googleapis.com/`).
+     * 
+     */
     public Optional<Output<List<String>>> prefixes() {
         return Optional.ofNullable(this.prefixes);
     }
 
+    /**
+     * Google Cloud project ID to read metrics from. The configured service account must have access.
+     * 
+     */
     @Import(name="projectId", required=true)
     private Output<String> projectId;
 
+    /**
+     * @return Google Cloud project ID to read metrics from. The configured service account must have access.
+     * 
+     */
     public Output<String> projectId() {
         return this.projectId;
     }
 
+    /**
+     * Server-side aggregation rules applied to metrics in this group before they are stored.
+     * 
+     */
     @Import(name="rollupRules")
     private @Nullable Output<List<GcpMetricsIntegrationMetricGroupRollupRuleArgs>> rollupRules;
 
+    /**
+     * @return Server-side aggregation rules applied to metrics in this group before they are stored.
+     * 
+     */
     public Optional<Output<List<GcpMetricsIntegrationMetricGroupRollupRuleArgs>>> rollupRules() {
         return Optional.ofNullable(this.rollupRules);
     }
@@ -73,50 +105,116 @@ public final class GcpMetricsIntegrationMetricGroupArgs extends com.pulumi.resou
             $ = new GcpMetricsIntegrationMetricGroupArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param filters Label filters applied to metrics in this group. All filters must match for a metric to be ingested.
+         * 
+         * @return builder
+         * 
+         */
         public Builder filters(@Nullable Output<List<GcpMetricsIntegrationMetricGroupFilterArgs>> filters) {
             $.filters = filters;
             return this;
         }
 
+        /**
+         * @param filters Label filters applied to metrics in this group. All filters must match for a metric to be ingested.
+         * 
+         * @return builder
+         * 
+         */
         public Builder filters(List<GcpMetricsIntegrationMetricGroupFilterArgs> filters) {
             return filters(Output.of(filters));
         }
 
+        /**
+         * @param filters Label filters applied to metrics in this group. All filters must match for a metric to be ingested.
+         * 
+         * @return builder
+         * 
+         */
         public Builder filters(GcpMetricsIntegrationMetricGroupFilterArgs... filters) {
             return filters(List.of(filters));
         }
 
+        /**
+         * @param prefixes List of Google Cloud metric prefixes to ingest (e.g. `compute.googleapis.com/`).
+         * 
+         * @return builder
+         * 
+         */
         public Builder prefixes(@Nullable Output<List<String>> prefixes) {
             $.prefixes = prefixes;
             return this;
         }
 
+        /**
+         * @param prefixes List of Google Cloud metric prefixes to ingest (e.g. `compute.googleapis.com/`).
+         * 
+         * @return builder
+         * 
+         */
         public Builder prefixes(List<String> prefixes) {
             return prefixes(Output.of(prefixes));
         }
 
+        /**
+         * @param prefixes List of Google Cloud metric prefixes to ingest (e.g. `compute.googleapis.com/`).
+         * 
+         * @return builder
+         * 
+         */
         public Builder prefixes(String... prefixes) {
             return prefixes(List.of(prefixes));
         }
 
+        /**
+         * @param projectId Google Cloud project ID to read metrics from. The configured service account must have access.
+         * 
+         * @return builder
+         * 
+         */
         public Builder projectId(Output<String> projectId) {
             $.projectId = projectId;
             return this;
         }
 
+        /**
+         * @param projectId Google Cloud project ID to read metrics from. The configured service account must have access.
+         * 
+         * @return builder
+         * 
+         */
         public Builder projectId(String projectId) {
             return projectId(Output.of(projectId));
         }
 
+        /**
+         * @param rollupRules Server-side aggregation rules applied to metrics in this group before they are stored.
+         * 
+         * @return builder
+         * 
+         */
         public Builder rollupRules(@Nullable Output<List<GcpMetricsIntegrationMetricGroupRollupRuleArgs>> rollupRules) {
             $.rollupRules = rollupRules;
             return this;
         }
 
+        /**
+         * @param rollupRules Server-side aggregation rules applied to metrics in this group before they are stored.
+         * 
+         * @return builder
+         * 
+         */
         public Builder rollupRules(List<GcpMetricsIntegrationMetricGroupRollupRuleArgs> rollupRules) {
             return rollupRules(Output.of(rollupRules));
         }
 
+        /**
+         * @param rollupRules Server-side aggregation rules applied to metrics in this group before they are stored.
+         * 
+         * @return builder
+         * 
+         */
         public Builder rollupRules(GcpMetricsIntegrationMetricGroupRollupRuleArgs... rollupRules) {
             return rollupRules(List.of(rollupRules));
         }

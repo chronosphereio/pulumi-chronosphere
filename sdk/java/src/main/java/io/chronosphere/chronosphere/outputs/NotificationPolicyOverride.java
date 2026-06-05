@@ -12,13 +12,29 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class NotificationPolicyOverride {
+    /**
+     * @return List of label matchers used to select a subset of series.
+     * 
+     */
     private List<NotificationPolicyOverrideAlertLabelMatcher> alertLabelMatchers;
+    /**
+     * @return Per-severity routing rules. Each entry maps a severity (e.g. `warn`, `critical`) to a set of notifiers, destinations, grouping, and repeat behavior.
+     * 
+     */
     private @Nullable List<NotificationPolicyOverrideRoute> routes;
 
     private NotificationPolicyOverride() {}
+    /**
+     * @return List of label matchers used to select a subset of series.
+     * 
+     */
     public List<NotificationPolicyOverrideAlertLabelMatcher> alertLabelMatchers() {
         return this.alertLabelMatchers;
     }
+    /**
+     * @return Per-severity routing rules. Each entry maps a severity (e.g. `warn`, `critical`) to a set of notifiers, destinations, grouping, and repeat behavior.
+     * 
+     */
     public List<NotificationPolicyOverrideRoute> routes() {
         return this.routes == null ? List.of() : this.routes;
     }

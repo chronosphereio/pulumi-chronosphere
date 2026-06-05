@@ -13,6 +13,9 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class NotificationPolicyOverrideRouteDestinationPagerdutyArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Slug of the OpsGenie external connection holding the integration credentials.
+        /// </summary>
         [Input("externalConnectionSlug", required: true)]
         public Input<string> ExternalConnectionSlug { get; set; } = null!;
 

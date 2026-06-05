@@ -14,7 +14,13 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class TraceTailSamplingRulesDefaultSampleRate
     {
+        /// <summary>
+        /// Whether to override the platform default sample rate with `sample_rate`.
+        /// </summary>
         public readonly bool? Enabled;
+        /// <summary>
+        /// Fraction of matching traces to keep, in the range `[0.0, 1.0]`. `0` drops all matches, `1` keeps every match.
+        /// </summary>
         public readonly double SampleRate;
 
         [OutputConstructor]

@@ -16,9 +16,17 @@ public final class TraceTailSamplingRulesRuleFilterScopeFilterArgs extends com.p
 
     public static final TraceTailSamplingRulesRuleFilterScopeFilterArgs Empty = new TraceTailSamplingRulesRuleFilterScopeFilterArgs();
 
+    /**
+     * Span conditions that select which spans are aggregated. Spans must match at least one block to be included.
+     * 
+     */
     @Import(name="spanScopes")
     private @Nullable Output<List<TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeArgs>> spanScopes;
 
+    /**
+     * @return Span conditions that select which spans are aggregated. Spans must match at least one block to be included.
+     * 
+     */
     public Optional<Output<List<TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeArgs>>> spanScopes() {
         return Optional.ofNullable(this.spanScopes);
     }
@@ -47,15 +55,33 @@ public final class TraceTailSamplingRulesRuleFilterScopeFilterArgs extends com.p
             $ = new TraceTailSamplingRulesRuleFilterScopeFilterArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param spanScopes Span conditions that select which spans are aggregated. Spans must match at least one block to be included.
+         * 
+         * @return builder
+         * 
+         */
         public Builder spanScopes(@Nullable Output<List<TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeArgs>> spanScopes) {
             $.spanScopes = spanScopes;
             return this;
         }
 
+        /**
+         * @param spanScopes Span conditions that select which spans are aggregated. Spans must match at least one block to be included.
+         * 
+         * @return builder
+         * 
+         */
         public Builder spanScopes(List<TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeArgs> spanScopes) {
             return spanScopes(Output.of(spanScopes));
         }
 
+        /**
+         * @param spanScopes Span conditions that select which spans are aggregated. Spans must match at least one block to be included.
+         * 
+         * @return builder
+         * 
+         */
         public Builder spanScopes(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeArgs... spanScopes) {
             return spanScopes(List.of(spanScopes));
         }

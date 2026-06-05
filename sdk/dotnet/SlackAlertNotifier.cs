@@ -10,90 +10,197 @@ using Pulumi;
 
 namespace Chronosphere.Pulumi
 {
+    /// <summary>
+    /// Slack notifier that delivers monitor signals to a Slack channel via an incoming webhook. Referenced from notification policies.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Pulumi = Chronosphere.Pulumi;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var slack = new Pulumi.SlackAlertNotifier("slack", new()
+    ///     {
+    ///         ApiUrl = "https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX",
+    ///         Channel = "alerts",
+    ///         Name = "Slack Notifier",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// </summary>
     [PulumiResourceType("chronosphere:index/slackAlertNotifier:SlackAlertNotifier")]
     public partial class SlackAlertNotifier : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Interactive buttons appended to the Slack message. See https://api.slack.com/reference/messaging/attachments#action_fields.
+        /// </summary>
         [Output("actions")]
         public Output<ImmutableArray<Outputs.SlackAlertNotifierAction>> Actions { get; private set; } = null!;
 
+        /// <summary>
+        /// Slack incoming webhook URL that receives the notifications. Treat this as a secret.
+        /// </summary>
         [Output("apiUrl")]
         public Output<string> ApiUrl { get; private set; } = null!;
 
+        /// <summary>
+        /// Password for HTTP basic auth when calling the webhook.
+        /// </summary>
         [Output("basicAuthPassword")]
         public Output<string?> BasicAuthPassword { get; private set; } = null!;
 
+        /// <summary>
+        /// Username for HTTP basic auth when calling the webhook. Mutually exclusive with `bearer_token`.
+        /// </summary>
         [Output("basicAuthUsername")]
         public Output<string?> BasicAuthUsername { get; private set; } = null!;
 
+        /// <summary>
+        /// Bearer token sent in the `Authorization` header when calling the webhook. Mutually exclusive with basic auth.
+        /// </summary>
         [Output("bearerToken")]
         public Output<string?> BearerToken { get; private set; } = null!;
 
+        /// <summary>
+        /// Slack callback ID used to identify the source of interactive actions.
+        /// </summary>
         [Output("callbackId")]
         public Output<string?> CallbackId { get; private set; } = null!;
 
+        /// <summary>
+        /// Slack channel to post notifications to (e.g. `#alerts`).
+        /// </summary>
         [Output("channel")]
         public Output<string> Channel { get; private set; } = null!;
 
+        /// <summary>
+        /// Color of the attachment border. Hex code or one of `good`, `warning`, `danger`. Supports Go templating.
+        /// </summary>
         [Output("color")]
         public Output<string?> Color { get; private set; } = null!;
 
+        /// <summary>
+        /// Plain-text fallback shown in notifications and clients that don't render attachments. Supports Go templating.
+        /// </summary>
         [Output("fallback")]
         public Output<string?> Fallback { get; private set; } = null!;
 
+        /// <summary>
+        /// Structured field/value pairs rendered as a table in the attachment.
+        /// </summary>
         [Output("fields")]
         public Output<ImmutableArray<Outputs.SlackAlertNotifierField>> Fields { get; private set; } = null!;
 
+        /// <summary>
+        /// Footer text shown at the bottom of the attachment. Supports Go templating.
+        /// </summary>
         [Output("footer")]
         public Output<string?> Footer { get; private set; } = null!;
 
+        /// <summary>
+        /// Slack emoji to use as the bot avatar (e.g. `:fire:`). Mutually exclusive with `icon_url` at Slack.
+        /// </summary>
         [Output("iconEmoji")]
         public Output<string?> IconEmoji { get; private set; } = null!;
 
+        /// <summary>
+        /// URL of an image to use as the bot avatar.
+        /// </summary>
         [Output("iconUrl")]
         public Output<string?> IconUrl { get; private set; } = null!;
 
+        /// <summary>
+        /// URL of an image attached to the message.
+        /// </summary>
         [Output("imageUrl")]
         public Output<string?> ImageUrl { get; private set; } = null!;
 
+        /// <summary>
+        /// If true, find and link channel names and usernames in the message text.
+        /// </summary>
         [Output("linkNames")]
         public Output<bool?> LinkNames { get; private set; } = null!;
 
+        /// <summary>
+        /// Attachment fields in which Slack parses `mrkdwn` formatting. Common values: `pretext`, `text`, `fields`.
+        /// </summary>
         [Output("mrkdwnIns")]
         public Output<ImmutableArray<string>> MrkdwnIns { get; private set; } = null!;
 
+        /// <summary>
+        /// Identifier sent back to Slack when the button is clicked.
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// Text shown above the attachment. Supports Go templating.
+        /// </summary>
         [Output("pretext")]
         public Output<string?> Pretext { get; private set; } = null!;
 
+        /// <summary>
+        /// Deprecated and ignored. Custom proxy URLs are not supported.
+        /// </summary>
         [Output("proxyUrl")]
         public Output<string?> ProxyUrl { get; private set; } = null!;
 
+        /// <summary>
+        /// Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+        /// </summary>
         [Output("sendResolved")]
         public Output<bool?> SendResolved { get; private set; } = null!;
 
+        /// <summary>
+        /// If true, render all `fields` with `short: true` regardless of per-field setting.
+        /// </summary>
         [Output("shortFields")]
         public Output<bool?> ShortFields { get; private set; } = null!;
 
+        /// <summary>
+        /// Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Output("slug")]
         public Output<string> Slug { get; private set; } = null!;
 
+        /// <summary>
+        /// Label shown on the button.
+        /// </summary>
         [Output("text")]
         public Output<string?> Text { get; private set; } = null!;
 
+        /// <summary>
+        /// URL of a small thumbnail image shown to the right of the attachment.
+        /// </summary>
         [Output("thumbUrl")]
         public Output<string?> ThumbUrl { get; private set; } = null!;
 
+        /// <summary>
+        /// Bold heading shown above the value.
+        /// </summary>
         [Output("title")]
         public Output<string?> Title { get; private set; } = null!;
 
+        /// <summary>
+        /// URL the title links to when clicked.
+        /// </summary>
         [Output("titleLink")]
         public Output<string?> TitleLink { get; private set; } = null!;
 
+        /// <summary>
+        /// If true, skip TLS certificate verification when calling the webhook. Disable only in trusted environments.
+        /// </summary>
         [Output("tlsInsecureSkipVerify")]
         public Output<bool?> TlsInsecureSkipVerify { get; private set; } = null!;
 
+        /// <summary>
+        /// Display name of the bot posting the message.
+        /// </summary>
         [Output("username")]
         public Output<string?> Username { get; private set; } = null!;
 
@@ -151,6 +258,10 @@ namespace Chronosphere.Pulumi
     {
         [Input("actions")]
         private InputList<Inputs.SlackAlertNotifierActionArgs>? _actions;
+
+        /// <summary>
+        /// Interactive buttons appended to the Slack message. See https://api.slack.com/reference/messaging/attachments#action_fields.
+        /// </summary>
         public InputList<Inputs.SlackAlertNotifierActionArgs> Actions
         {
             get => _actions ?? (_actions = new InputList<Inputs.SlackAlertNotifierActionArgs>());
@@ -159,6 +270,10 @@ namespace Chronosphere.Pulumi
 
         [Input("apiUrl", required: true)]
         private Input<string>? _apiUrl;
+
+        /// <summary>
+        /// Slack incoming webhook URL that receives the notifications. Treat this as a secret.
+        /// </summary>
         public Input<string>? ApiUrl
         {
             get => _apiUrl;
@@ -171,6 +286,10 @@ namespace Chronosphere.Pulumi
 
         [Input("basicAuthPassword")]
         private Input<string>? _basicAuthPassword;
+
+        /// <summary>
+        /// Password for HTTP basic auth when calling the webhook.
+        /// </summary>
         public Input<string>? BasicAuthPassword
         {
             get => _basicAuthPassword;
@@ -181,88 +300,165 @@ namespace Chronosphere.Pulumi
             }
         }
 
+        /// <summary>
+        /// Username for HTTP basic auth when calling the webhook. Mutually exclusive with `bearer_token`.
+        /// </summary>
         [Input("basicAuthUsername")]
         public Input<string>? BasicAuthUsername { get; set; }
 
+        /// <summary>
+        /// Bearer token sent in the `Authorization` header when calling the webhook. Mutually exclusive with basic auth.
+        /// </summary>
         [Input("bearerToken")]
         public Input<string>? BearerToken { get; set; }
 
+        /// <summary>
+        /// Slack callback ID used to identify the source of interactive actions.
+        /// </summary>
         [Input("callbackId")]
         public Input<string>? CallbackId { get; set; }
 
+        /// <summary>
+        /// Slack channel to post notifications to (e.g. `#alerts`).
+        /// </summary>
         [Input("channel", required: true)]
         public Input<string> Channel { get; set; } = null!;
 
+        /// <summary>
+        /// Color of the attachment border. Hex code or one of `good`, `warning`, `danger`. Supports Go templating.
+        /// </summary>
         [Input("color")]
         public Input<string>? Color { get; set; }
 
+        /// <summary>
+        /// Plain-text fallback shown in notifications and clients that don't render attachments. Supports Go templating.
+        /// </summary>
         [Input("fallback")]
         public Input<string>? Fallback { get; set; }
 
         [Input("fields")]
         private InputList<Inputs.SlackAlertNotifierFieldArgs>? _fields;
+
+        /// <summary>
+        /// Structured field/value pairs rendered as a table in the attachment.
+        /// </summary>
         public InputList<Inputs.SlackAlertNotifierFieldArgs> Fields
         {
             get => _fields ?? (_fields = new InputList<Inputs.SlackAlertNotifierFieldArgs>());
             set => _fields = value;
         }
 
+        /// <summary>
+        /// Footer text shown at the bottom of the attachment. Supports Go templating.
+        /// </summary>
         [Input("footer")]
         public Input<string>? Footer { get; set; }
 
+        /// <summary>
+        /// Slack emoji to use as the bot avatar (e.g. `:fire:`). Mutually exclusive with `icon_url` at Slack.
+        /// </summary>
         [Input("iconEmoji")]
         public Input<string>? IconEmoji { get; set; }
 
+        /// <summary>
+        /// URL of an image to use as the bot avatar.
+        /// </summary>
         [Input("iconUrl")]
         public Input<string>? IconUrl { get; set; }
 
+        /// <summary>
+        /// URL of an image attached to the message.
+        /// </summary>
         [Input("imageUrl")]
         public Input<string>? ImageUrl { get; set; }
 
+        /// <summary>
+        /// If true, find and link channel names and usernames in the message text.
+        /// </summary>
         [Input("linkNames")]
         public Input<bool>? LinkNames { get; set; }
 
         [Input("mrkdwnIns")]
         private InputList<string>? _mrkdwnIns;
+
+        /// <summary>
+        /// Attachment fields in which Slack parses `mrkdwn` formatting. Common values: `pretext`, `text`, `fields`.
+        /// </summary>
         public InputList<string> MrkdwnIns
         {
             get => _mrkdwnIns ?? (_mrkdwnIns = new InputList<string>());
             set => _mrkdwnIns = value;
         }
 
+        /// <summary>
+        /// Identifier sent back to Slack when the button is clicked.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// Text shown above the attachment. Supports Go templating.
+        /// </summary>
         [Input("pretext")]
         public Input<string>? Pretext { get; set; }
 
+        /// <summary>
+        /// Deprecated and ignored. Custom proxy URLs are not supported.
+        /// </summary>
         [Input("proxyUrl")]
         public Input<string>? ProxyUrl { get; set; }
 
+        /// <summary>
+        /// Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+        /// </summary>
         [Input("sendResolved")]
         public Input<bool>? SendResolved { get; set; }
 
+        /// <summary>
+        /// If true, render all `fields` with `short: true` regardless of per-field setting.
+        /// </summary>
         [Input("shortFields")]
         public Input<bool>? ShortFields { get; set; }
 
+        /// <summary>
+        /// Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 
+        /// <summary>
+        /// Label shown on the button.
+        /// </summary>
         [Input("text")]
         public Input<string>? Text { get; set; }
 
+        /// <summary>
+        /// URL of a small thumbnail image shown to the right of the attachment.
+        /// </summary>
         [Input("thumbUrl")]
         public Input<string>? ThumbUrl { get; set; }
 
+        /// <summary>
+        /// Bold heading shown above the value.
+        /// </summary>
         [Input("title")]
         public Input<string>? Title { get; set; }
 
+        /// <summary>
+        /// URL the title links to when clicked.
+        /// </summary>
         [Input("titleLink")]
         public Input<string>? TitleLink { get; set; }
 
+        /// <summary>
+        /// If true, skip TLS certificate verification when calling the webhook. Disable only in trusted environments.
+        /// </summary>
         [Input("tlsInsecureSkipVerify")]
         public Input<bool>? TlsInsecureSkipVerify { get; set; }
 
+        /// <summary>
+        /// Display name of the bot posting the message.
+        /// </summary>
         [Input("username")]
         public Input<string>? Username { get; set; }
 
@@ -276,6 +472,10 @@ namespace Chronosphere.Pulumi
     {
         [Input("actions")]
         private InputList<Inputs.SlackAlertNotifierActionGetArgs>? _actions;
+
+        /// <summary>
+        /// Interactive buttons appended to the Slack message. See https://api.slack.com/reference/messaging/attachments#action_fields.
+        /// </summary>
         public InputList<Inputs.SlackAlertNotifierActionGetArgs> Actions
         {
             get => _actions ?? (_actions = new InputList<Inputs.SlackAlertNotifierActionGetArgs>());
@@ -284,6 +484,10 @@ namespace Chronosphere.Pulumi
 
         [Input("apiUrl")]
         private Input<string>? _apiUrl;
+
+        /// <summary>
+        /// Slack incoming webhook URL that receives the notifications. Treat this as a secret.
+        /// </summary>
         public Input<string>? ApiUrl
         {
             get => _apiUrl;
@@ -296,6 +500,10 @@ namespace Chronosphere.Pulumi
 
         [Input("basicAuthPassword")]
         private Input<string>? _basicAuthPassword;
+
+        /// <summary>
+        /// Password for HTTP basic auth when calling the webhook.
+        /// </summary>
         public Input<string>? BasicAuthPassword
         {
             get => _basicAuthPassword;
@@ -306,88 +514,165 @@ namespace Chronosphere.Pulumi
             }
         }
 
+        /// <summary>
+        /// Username for HTTP basic auth when calling the webhook. Mutually exclusive with `bearer_token`.
+        /// </summary>
         [Input("basicAuthUsername")]
         public Input<string>? BasicAuthUsername { get; set; }
 
+        /// <summary>
+        /// Bearer token sent in the `Authorization` header when calling the webhook. Mutually exclusive with basic auth.
+        /// </summary>
         [Input("bearerToken")]
         public Input<string>? BearerToken { get; set; }
 
+        /// <summary>
+        /// Slack callback ID used to identify the source of interactive actions.
+        /// </summary>
         [Input("callbackId")]
         public Input<string>? CallbackId { get; set; }
 
+        /// <summary>
+        /// Slack channel to post notifications to (e.g. `#alerts`).
+        /// </summary>
         [Input("channel")]
         public Input<string>? Channel { get; set; }
 
+        /// <summary>
+        /// Color of the attachment border. Hex code or one of `good`, `warning`, `danger`. Supports Go templating.
+        /// </summary>
         [Input("color")]
         public Input<string>? Color { get; set; }
 
+        /// <summary>
+        /// Plain-text fallback shown in notifications and clients that don't render attachments. Supports Go templating.
+        /// </summary>
         [Input("fallback")]
         public Input<string>? Fallback { get; set; }
 
         [Input("fields")]
         private InputList<Inputs.SlackAlertNotifierFieldGetArgs>? _fields;
+
+        /// <summary>
+        /// Structured field/value pairs rendered as a table in the attachment.
+        /// </summary>
         public InputList<Inputs.SlackAlertNotifierFieldGetArgs> Fields
         {
             get => _fields ?? (_fields = new InputList<Inputs.SlackAlertNotifierFieldGetArgs>());
             set => _fields = value;
         }
 
+        /// <summary>
+        /// Footer text shown at the bottom of the attachment. Supports Go templating.
+        /// </summary>
         [Input("footer")]
         public Input<string>? Footer { get; set; }
 
+        /// <summary>
+        /// Slack emoji to use as the bot avatar (e.g. `:fire:`). Mutually exclusive with `icon_url` at Slack.
+        /// </summary>
         [Input("iconEmoji")]
         public Input<string>? IconEmoji { get; set; }
 
+        /// <summary>
+        /// URL of an image to use as the bot avatar.
+        /// </summary>
         [Input("iconUrl")]
         public Input<string>? IconUrl { get; set; }
 
+        /// <summary>
+        /// URL of an image attached to the message.
+        /// </summary>
         [Input("imageUrl")]
         public Input<string>? ImageUrl { get; set; }
 
+        /// <summary>
+        /// If true, find and link channel names and usernames in the message text.
+        /// </summary>
         [Input("linkNames")]
         public Input<bool>? LinkNames { get; set; }
 
         [Input("mrkdwnIns")]
         private InputList<string>? _mrkdwnIns;
+
+        /// <summary>
+        /// Attachment fields in which Slack parses `mrkdwn` formatting. Common values: `pretext`, `text`, `fields`.
+        /// </summary>
         public InputList<string> MrkdwnIns
         {
             get => _mrkdwnIns ?? (_mrkdwnIns = new InputList<string>());
             set => _mrkdwnIns = value;
         }
 
+        /// <summary>
+        /// Identifier sent back to Slack when the button is clicked.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// Text shown above the attachment. Supports Go templating.
+        /// </summary>
         [Input("pretext")]
         public Input<string>? Pretext { get; set; }
 
+        /// <summary>
+        /// Deprecated and ignored. Custom proxy URLs are not supported.
+        /// </summary>
         [Input("proxyUrl")]
         public Input<string>? ProxyUrl { get; set; }
 
+        /// <summary>
+        /// Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+        /// </summary>
         [Input("sendResolved")]
         public Input<bool>? SendResolved { get; set; }
 
+        /// <summary>
+        /// If true, render all `fields` with `short: true` regardless of per-field setting.
+        /// </summary>
         [Input("shortFields")]
         public Input<bool>? ShortFields { get; set; }
 
+        /// <summary>
+        /// Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 
+        /// <summary>
+        /// Label shown on the button.
+        /// </summary>
         [Input("text")]
         public Input<string>? Text { get; set; }
 
+        /// <summary>
+        /// URL of a small thumbnail image shown to the right of the attachment.
+        /// </summary>
         [Input("thumbUrl")]
         public Input<string>? ThumbUrl { get; set; }
 
+        /// <summary>
+        /// Bold heading shown above the value.
+        /// </summary>
         [Input("title")]
         public Input<string>? Title { get; set; }
 
+        /// <summary>
+        /// URL the title links to when clicked.
+        /// </summary>
         [Input("titleLink")]
         public Input<string>? TitleLink { get; set; }
 
+        /// <summary>
+        /// If true, skip TLS certificate verification when calling the webhook. Disable only in trusted environments.
+        /// </summary>
         [Input("tlsInsecureSkipVerify")]
         public Input<bool>? TlsInsecureSkipVerify { get; set; }
 
+        /// <summary>
+        /// Display name of the bot posting the message.
+        /// </summary>
         [Input("username")]
         public Input<string>? Username { get; set; }
 

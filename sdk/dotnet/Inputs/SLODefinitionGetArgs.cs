@@ -15,18 +15,31 @@ namespace Chronosphere.Pulumi.Inputs
     {
         [Input("burnRateAlertingConfigs")]
         private InputList<Inputs.SLODefinitionBurnRateAlertingConfigGetArgs>? _burnRateAlertingConfigs;
+
+        /// <summary>
+        /// Custom burn-rate alert definitions. If omitted, the system default burn rates are used. Only takes effect when `enable_burn_rate_alerting` is true.
+        /// </summary>
         public InputList<Inputs.SLODefinitionBurnRateAlertingConfigGetArgs> BurnRateAlertingConfigs
         {
             get => _burnRateAlertingConfigs ?? (_burnRateAlertingConfigs = new InputList<Inputs.SLODefinitionBurnRateAlertingConfigGetArgs>());
             set => _burnRateAlertingConfigs = value;
         }
 
+        /// <summary>
+        /// Whether burn-rate alerting is enabled for this SLO.
+        /// </summary>
         [Input("enableBurnRateAlerting")]
         public Input<bool>? EnableBurnRateAlerting { get; set; }
 
+        /// <summary>
+        /// Target SLO percentage representing the desired availability (e.g. `99.9`).
+        /// </summary>
         [Input("objective", required: true)]
         public Input<double> Objective { get; set; } = null!;
 
+        /// <summary>
+        /// Rolling time window over which the SLO objective is evaluated.
+        /// </summary>
         [Input("timeWindow")]
         public Input<Inputs.SLODefinitionTimeWindowGetArgs>? TimeWindow { get; set; }
 

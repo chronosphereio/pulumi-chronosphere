@@ -10,13 +10,29 @@ import java.util.Objects;
 
 @CustomType
 public final class TraceMetricsRuleGroupBy {
+    /**
+     * @return Span attribute to group by.
+     * 
+     */
     private TraceMetricsRuleGroupByKey key;
+    /**
+     * @return Name of the resulting metric label.
+     * 
+     */
     private String label;
 
     private TraceMetricsRuleGroupBy() {}
+    /**
+     * @return Span attribute to group by.
+     * 
+     */
     public TraceMetricsRuleGroupByKey key() {
         return this.key;
     }
+    /**
+     * @return Name of the resulting metric label.
+     * 
+     */
     public String label() {
         return this.label;
     }

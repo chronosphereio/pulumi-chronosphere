@@ -14,21 +14,53 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class ConsumptionConfigPartitionPartitionPartition {
+    /**
+     * @return Filters identifying which data belongs to this partition. Filters are AND-ed together: a request must match every filter to be assigned to the partition. At most one `IN` filter and one `NOT_IN` filter can be specified.
+     * 
+     */
     private @Nullable List<ConsumptionConfigPartitionPartitionPartitionFilter> filters;
+    /**
+     * @return Display name of the partition. Must be unique within its parent partition. Can be changed after creation.
+     * 
+     */
     private @Nullable String name;
+    /**
+     * @return Child partitions of this partition. Evaluated in order; requests not matching any child fall into an implicit `default` child partition.
+     * 
+     */
     private @Nullable List<ConsumptionConfigPartitionPartitionPartitionPartition> partitions;
+    /**
+     * @return Stable identifier of the partition. Must be unique within its parent partition. Immutable after creation.
+     * 
+     */
     private @Nullable String slug;
 
     private ConsumptionConfigPartitionPartitionPartition() {}
+    /**
+     * @return Filters identifying which data belongs to this partition. Filters are AND-ed together: a request must match every filter to be assigned to the partition. At most one `IN` filter and one `NOT_IN` filter can be specified.
+     * 
+     */
     public List<ConsumptionConfigPartitionPartitionPartitionFilter> filters() {
         return this.filters == null ? List.of() : this.filters;
     }
+    /**
+     * @return Display name of the partition. Must be unique within its parent partition. Can be changed after creation.
+     * 
+     */
     public Optional<String> name() {
         return Optional.ofNullable(this.name);
     }
+    /**
+     * @return Child partitions of this partition. Evaluated in order; requests not matching any child fall into an implicit `default` child partition.
+     * 
+     */
     public List<ConsumptionConfigPartitionPartitionPartitionPartition> partitions() {
         return this.partitions == null ? List.of() : this.partitions;
     }
+    /**
+     * @return Stable identifier of the partition. Must be unique within its parent partition. Immutable after creation.
+     * 
+     */
     public Optional<String> slug() {
         return Optional.ofNullable(this.slug);
     }

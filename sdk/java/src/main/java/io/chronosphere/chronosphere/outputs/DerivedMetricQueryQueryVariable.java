@@ -9,13 +9,29 @@ import java.util.Objects;
 
 @CustomType
 public final class DerivedMetricQueryQueryVariable {
+    /**
+     * @return PromQL label selector used when no override is supplied by the derived metric usage.
+     * 
+     */
     private String defaultSelector;
+    /**
+     * @return Variable name as referenced in `expr` (e.g. `service` for `$service`).
+     * 
+     */
     private String name;
 
     private DerivedMetricQueryQueryVariable() {}
+    /**
+     * @return PromQL label selector used when no override is supplied by the derived metric usage.
+     * 
+     */
     public String defaultSelector() {
         return this.defaultSelector;
     }
+    /**
+     * @return Variable name as referenced in `expr` (e.g. `service` for `$service`).
+     * 
+     */
     public String name() {
         return this.name;
     }

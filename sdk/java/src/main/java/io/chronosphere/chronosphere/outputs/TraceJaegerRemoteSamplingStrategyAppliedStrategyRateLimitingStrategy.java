@@ -9,9 +9,17 @@ import java.util.Objects;
 
 @CustomType
 public final class TraceJaegerRemoteSamplingStrategyAppliedStrategyRateLimitingStrategy {
+    /**
+     * @return Maximum number of traces to sample per second for the service.
+     * 
+     */
     private Integer maxTracesPerSecond;
 
     private TraceJaegerRemoteSamplingStrategyAppliedStrategyRateLimitingStrategy() {}
+    /**
+     * @return Maximum number of traces to sample per second for the service.
+     * 
+     */
     public Integer maxTracesPerSecond() {
         return this.maxTracesPerSecond;
     }

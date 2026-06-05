@@ -14,6 +14,9 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class DerivedLabelSpanTagNameMapping
     {
+        /// <summary>
+        /// Source span tag name to copy into the derived label.
+        /// </summary>
         public readonly string SourceTag;
 
         [OutputConstructor]

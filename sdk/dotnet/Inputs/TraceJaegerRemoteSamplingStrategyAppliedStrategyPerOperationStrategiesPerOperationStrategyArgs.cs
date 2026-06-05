@@ -13,9 +13,15 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationStrategiesPerOperationStrategyArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Span operation (span name) this override applies to.
+        /// </summary>
         [Input("operation", required: true)]
         public Input<string> Operation { get; set; } = null!;
 
+        /// <summary>
+        /// Probabilistic sampling configuration applied to spans whose operation matches.
+        /// </summary>
         [Input("probabilisticStrategy", required: true)]
         public Input<Inputs.TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationStrategiesPerOperationStrategyProbabilisticStrategyArgs> ProbabilisticStrategy { get; set; } = null!;
 

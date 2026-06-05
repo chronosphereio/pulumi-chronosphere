@@ -10,21 +10,90 @@ using Pulumi;
 
 namespace Chronosphere.Pulumi
 {
+    /// <summary>
+    /// A Chronosphere dashboard composed of panels, layouts, and variables defined by `dashboard_json`. For Grafana-compatible dashboards, use `chronosphere.ClassicDashboard` instead.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using System.Text.Json;
+    /// using Pulumi;
+    /// using Pulumi = Chronosphere.Pulumi;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var collection = new Pulumi.Collection("collection", new()
+    ///     {
+    ///         Name = "Platform",
+    ///     });
+    /// 
+    ///     var platform = new Pulumi.Dashboard("platform", new()
+    ///     {
+    ///         Name = "Platform Overview",
+    ///         Slug = "platform-overview",
+    ///         CollectionId = collection.Id,
+    ///         Labels = 
+    ///         {
+    ///             { "team", "platform" },
+    ///         },
+    ///         DashboardJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+    ///         {
+    ///             ["kind"] = "Dashboard",
+    ///             ["spec"] = new Dictionary&lt;string, object?&gt;
+    ///             {
+    ///                 ["events"] = new[]
+    ///                 {
+    ///                 },
+    ///                 ["panels"] = new Dictionary&lt;string, object?&gt;
+    ///                 {
+    ///                 },
+    ///                 ["layouts"] = new[]
+    ///                 {
+    ///                 },
+    ///                 ["variables"] = new[]
+    ///                 {
+    ///                 },
+    ///                 ["duration"] = "30m",
+    ///             },
+    ///             ["spec_version"] = "1",
+    ///         }),
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// </summary>
     [PulumiResourceType("chronosphere:index/dashboard:Dashboard")]
     public partial class Dashboard : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// ID of the collection that owns this dashboard.
+        /// </summary>
         [Output("collectionId")]
         public Output<string?> CollectionId { get; private set; } = null!;
 
+        /// <summary>
+        /// JSON payload describing the dashboard's panels, layouts, variables, and other content. Wrap with `jsonencode({...})` in HCL. The provider sanitizes the JSON before diffing, so cosmetic differences (key ordering, whitespace) do not cause spurious plans.
+        /// </summary>
         [Output("dashboardJson")]
         public Output<string> DashboardJson { get; private set; } = null!;
 
+        /// <summary>
+        /// Key/value labels attached to the dashboard for organization and filtering.
+        /// </summary>
         [Output("labels")]
         public Output<ImmutableDictionary<string, string>?> Labels { get; private set; } = null!;
 
+        /// <summary>
+        /// Display name of the dashboard. Can be changed after creation.
+        /// </summary>
         [Output("name")]
         public Output<string?> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// Stable identifier for the dashboard. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Output("slug")]
         public Output<string> Slug { get; private set; } = null!;
 
@@ -75,23 +144,39 @@ namespace Chronosphere.Pulumi
 
     public sealed class DashboardArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// ID of the collection that owns this dashboard.
+        /// </summary>
         [Input("collectionId")]
         public Input<string>? CollectionId { get; set; }
 
+        /// <summary>
+        /// JSON payload describing the dashboard's panels, layouts, variables, and other content. Wrap with `jsonencode({...})` in HCL. The provider sanitizes the JSON before diffing, so cosmetic differences (key ordering, whitespace) do not cause spurious plans.
+        /// </summary>
         [Input("dashboardJson", required: true)]
         public Input<string> DashboardJson { get; set; } = null!;
 
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// Key/value labels attached to the dashboard for organization and filtering.
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 
+        /// <summary>
+        /// Display name of the dashboard. Can be changed after creation.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// Stable identifier for the dashboard. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 
@@ -103,23 +188,39 @@ namespace Chronosphere.Pulumi
 
     public sealed class DashboardState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// ID of the collection that owns this dashboard.
+        /// </summary>
         [Input("collectionId")]
         public Input<string>? CollectionId { get; set; }
 
+        /// <summary>
+        /// JSON payload describing the dashboard's panels, layouts, variables, and other content. Wrap with `jsonencode({...})` in HCL. The provider sanitizes the JSON before diffing, so cosmetic differences (key ordering, whitespace) do not cause spurious plans.
+        /// </summary>
         [Input("dashboardJson")]
         public Input<string>? DashboardJson { get; set; }
 
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// Key/value labels attached to the dashboard for organization and filtering.
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 
+        /// <summary>
+        /// Display name of the dashboard. Can be changed after creation.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// Stable identifier for the dashboard. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 

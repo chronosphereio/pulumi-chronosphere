@@ -21,45 +21,125 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class TraceMetricsRuleTraceFilterScopeFilterSpanScope {
+    /**
+     * @return Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, max_secs]` range.
+     * 
+     */
     private @Nullable TraceMetricsRuleTraceFilterScopeFilterSpanScopeDuration duration;
+    /**
+     * @return Matches traces or spans where the target boolean field equals `value`.
+     * 
+     */
     private @Nullable TraceMetricsRuleTraceFilterScopeFilterSpanScopeError error;
+    /**
+     * @return Matches traces or spans where the target boolean field equals `value`.
+     * 
+     */
     private @Nullable TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpan isRootSpan;
+    /**
+     * @return Whether matching spans are included (`INCLUDE`) or excluded (`EXCLUDE`) from the scope. Defaults to `INCLUDE`.
+     * 
+     */
     private @Nullable String matchType;
+    /**
+     * @return Matches traces or spans where the target string field satisfies the match condition.
+     * 
+     */
     private @Nullable TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperation operation;
+    /**
+     * @return Matches traces or spans where the target string field satisfies the match condition.
+     * 
+     */
     private @Nullable TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperation parentOperation;
+    /**
+     * @return Matches traces or spans where the target string field satisfies the match condition.
+     * 
+     */
     private @Nullable TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentService parentService;
+    /**
+     * @return Matches traces or spans where the target string field satisfies the match condition.
+     * 
+     */
     private @Nullable TraceMetricsRuleTraceFilterScopeFilterSpanScopeService service;
+    /**
+     * @return Matches traces where the number of spans satisfying the surrounding span conditions falls within the inclusive `[min, max]` range.
+     * 
+     */
     private @Nullable TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCount spanCount;
+    /**
+     * @return Matches spans whose tag (span attribute) with the given `key` has a value satisfying the nested string or numeric filter.
+     * 
+     */
     private @Nullable List<TraceMetricsRuleTraceFilterScopeFilterSpanScopeTag> tags;
 
     private TraceMetricsRuleTraceFilterScopeFilterSpanScope() {}
+    /**
+     * @return Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, max_secs]` range.
+     * 
+     */
     public Optional<TraceMetricsRuleTraceFilterScopeFilterSpanScopeDuration> duration() {
         return Optional.ofNullable(this.duration);
     }
+    /**
+     * @return Matches traces or spans where the target boolean field equals `value`.
+     * 
+     */
     public Optional<TraceMetricsRuleTraceFilterScopeFilterSpanScopeError> error() {
         return Optional.ofNullable(this.error);
     }
+    /**
+     * @return Matches traces or spans where the target boolean field equals `value`.
+     * 
+     */
     public Optional<TraceMetricsRuleTraceFilterScopeFilterSpanScopeIsRootSpan> isRootSpan() {
         return Optional.ofNullable(this.isRootSpan);
     }
+    /**
+     * @return Whether matching spans are included (`INCLUDE`) or excluded (`EXCLUDE`) from the scope. Defaults to `INCLUDE`.
+     * 
+     */
     public Optional<String> matchType() {
         return Optional.ofNullable(this.matchType);
     }
+    /**
+     * @return Matches traces or spans where the target string field satisfies the match condition.
+     * 
+     */
     public Optional<TraceMetricsRuleTraceFilterScopeFilterSpanScopeOperation> operation() {
         return Optional.ofNullable(this.operation);
     }
+    /**
+     * @return Matches traces or spans where the target string field satisfies the match condition.
+     * 
+     */
     public Optional<TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentOperation> parentOperation() {
         return Optional.ofNullable(this.parentOperation);
     }
+    /**
+     * @return Matches traces or spans where the target string field satisfies the match condition.
+     * 
+     */
     public Optional<TraceMetricsRuleTraceFilterScopeFilterSpanScopeParentService> parentService() {
         return Optional.ofNullable(this.parentService);
     }
+    /**
+     * @return Matches traces or spans where the target string field satisfies the match condition.
+     * 
+     */
     public Optional<TraceMetricsRuleTraceFilterScopeFilterSpanScopeService> service() {
         return Optional.ofNullable(this.service);
     }
+    /**
+     * @return Matches traces where the number of spans satisfying the surrounding span conditions falls within the inclusive `[min, max]` range.
+     * 
+     */
     public Optional<TraceMetricsRuleTraceFilterScopeFilterSpanScopeSpanCount> spanCount() {
         return Optional.ofNullable(this.spanCount);
     }
+    /**
+     * @return Matches spans whose tag (span attribute) with the given `key` has a value satisfying the nested string or numeric filter.
+     * 
+     */
     public List<TraceMetricsRuleTraceFilterScopeFilterSpanScopeTag> tags() {
         return this.tags == null ? List.of() : this.tags;
     }

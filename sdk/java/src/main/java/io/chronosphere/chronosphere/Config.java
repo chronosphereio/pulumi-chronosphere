@@ -11,18 +11,44 @@ import java.util.Optional;
 public final class Config {
 
     private static final com.pulumi.Config config = com.pulumi.Config.of("chronosphere");
+/**
+ * API token used to authenticate against the Chronosphere API. Treat as a secret. Falls back to the
+ * `CHRONOSPHERE_API_TOKEN` environment variable.
+ * 
+ */
     public Optional<String> apiToken() {
         return Codegen.stringProp("apiToken").config(config).env("CHRONOSPHERE_API_TOKEN").get();
     }
+/**
+ * Disable the dry-run validation step that runs before every apply. Falls back to the
+ * `CHRONOSPHERE_DRY_RUN_VALIDATION_DISABLED` environment variable (set to `1` to disable).
+ * 
+ */
     public Optional<Boolean> disableDryrun() {
         return Codegen.booleanProp("disableDryrun").config(config).get();
     }
+/**
+ * Optional namespace prefix applied to entity slugs managed by this provider instance, so multiple Terraform
+ * configurations can coexist in one Chronosphere org. Falls back to the `CHRONOSPHERE_ENTITY_NAMESPACE` environment
+ * variable.
+ * 
+ */
     public Optional<String> entityNamespace() {
         return Codegen.stringProp("entityNamespace").config(config).get();
     }
+/**
+ * Chronosphere organization name (the subdomain of `&lt;org&gt;.chronosphere.io`). Falls back to the `CHRONOSPHERE_ORG` or
+ * `CHRONOSPHERE_ORG_NAME` environment variables.
+ * 
+ */
     public String org() {
         return Codegen.stringProp("org").config(config).env("CHRONOSPHERE_ORG", "CHRONOSPHERE_ORG_NAME").require();
     }
+/**
+ * Opt into resources and behaviors backed by Chronosphere&#39;s unstable config API. Subject to breaking change without
+ * notice. Falls back to the `CHRONOSPHERE_UNSTABLE` environment variable (set to `1` to enable).
+ * 
+ */
     public Optional<Boolean> unstable() {
         return Codegen.booleanProp("unstable").config(config).get();
     }

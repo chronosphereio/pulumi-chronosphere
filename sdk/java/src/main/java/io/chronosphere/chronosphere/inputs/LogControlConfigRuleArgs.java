@@ -20,65 +20,137 @@ public final class LogControlConfigRuleArgs extends com.pulumi.resources.Resourc
 
     public static final LogControlConfigRuleArgs Empty = new LogControlConfigRuleArgs();
 
+    /**
+     * Configuration for the `DROP_FIELD` action, which removes fields from matching logs.
+     * 
+     */
     @Import(name="dropField")
     private @Nullable Output<LogControlConfigRuleDropFieldArgs> dropField;
 
+    /**
+     * @return Configuration for the `DROP_FIELD` action, which removes fields from matching logs.
+     * 
+     */
     public Optional<Output<LogControlConfigRuleDropFieldArgs>> dropField() {
         return Optional.ofNullable(this.dropField);
     }
 
+    /**
+     * Configuration for the `EMIT_METRICS` action, which derives Prometheus metrics from matching logs.
+     * 
+     */
     @Import(name="emitMetrics")
     private @Nullable Output<LogControlConfigRuleEmitMetricsArgs> emitMetrics;
 
+    /**
+     * @return Configuration for the `EMIT_METRICS` action, which derives Prometheus metrics from matching logs.
+     * 
+     */
     public Optional<Output<LogControlConfigRuleEmitMetricsArgs>> emitMetrics() {
         return Optional.ofNullable(this.emitMetrics);
     }
 
+    /**
+     * Log query filter that selects matching logs. The control action applies only to logs that match.
+     * 
+     */
     @Import(name="filter")
     private @Nullable Output<String> filter;
 
+    /**
+     * @return Log query filter that selects matching logs. The control action applies only to logs that match.
+     * 
+     */
     public Optional<Output<String>> filter() {
         return Optional.ofNullable(this.filter);
     }
 
+    /**
+     * Execution mode for the rule (for example, `ENABLED` or `DISABLED`).
+     * 
+     */
     @Import(name="mode")
     private @Nullable Output<String> mode;
 
+    /**
+     * @return Execution mode for the rule (for example, `ENABLED` or `DISABLED`).
+     * 
+     */
     public Optional<Output<String>> mode() {
         return Optional.ofNullable(this.mode);
     }
 
+    /**
+     * User-defined name for the control rule.
+     * 
+     */
     @Import(name="name")
     private @Nullable Output<String> name;
 
+    /**
+     * @return User-defined name for the control rule.
+     * 
+     */
     public Optional<Output<String>> name() {
         return Optional.ofNullable(this.name);
     }
 
+    /**
+     * Configuration for the `PARSE_FIELD` action, which parses a field with a regex, key/value, or grok parser and writes the result to another field.
+     * 
+     */
     @Import(name="parseField")
     private @Nullable Output<LogControlConfigRuleParseFieldArgs> parseField;
 
+    /**
+     * @return Configuration for the `PARSE_FIELD` action, which parses a field with a regex, key/value, or grok parser and writes the result to another field.
+     * 
+     */
     public Optional<Output<LogControlConfigRuleParseFieldArgs>> parseField() {
         return Optional.ofNullable(this.parseField);
     }
 
+    /**
+     * Configuration for the `REPLACE_FIELD` action, which rewrites field values in matching logs.
+     * 
+     */
     @Import(name="replaceField")
     private @Nullable Output<LogControlConfigRuleReplaceFieldArgs> replaceField;
 
+    /**
+     * @return Configuration for the `REPLACE_FIELD` action, which rewrites field values in matching logs.
+     * 
+     */
     public Optional<Output<LogControlConfigRuleReplaceFieldArgs>> replaceField() {
         return Optional.ofNullable(this.replaceField);
     }
 
+    /**
+     * Configuration for the `SAMPLE_LOGS` action, which keeps a fraction of matching logs.
+     * 
+     */
     @Import(name="sample")
     private @Nullable Output<LogControlConfigRuleSampleArgs> sample;
 
+    /**
+     * @return Configuration for the `SAMPLE_LOGS` action, which keeps a fraction of matching logs.
+     * 
+     */
     public Optional<Output<LogControlConfigRuleSampleArgs>> sample() {
         return Optional.ofNullable(this.sample);
     }
 
+    /**
+     * Type of control action this rule performs. Exactly one of the matching action blocks (`sample`, `drop_field`, `emit_metrics`, `replace_field`, `parse_field`) must be configured.
+     * 
+     */
     @Import(name="type")
     private @Nullable Output<String> type;
 
+    /**
+     * @return Type of control action this rule performs. Exactly one of the matching action blocks (`sample`, `drop_field`, `emit_metrics`, `replace_field`, `parse_field`) must be configured.
+     * 
+     */
     public Optional<Output<String>> type() {
         return Optional.ofNullable(this.type);
     }
@@ -115,83 +187,191 @@ public final class LogControlConfigRuleArgs extends com.pulumi.resources.Resourc
             $ = new LogControlConfigRuleArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param dropField Configuration for the `DROP_FIELD` action, which removes fields from matching logs.
+         * 
+         * @return builder
+         * 
+         */
         public Builder dropField(@Nullable Output<LogControlConfigRuleDropFieldArgs> dropField) {
             $.dropField = dropField;
             return this;
         }
 
+        /**
+         * @param dropField Configuration for the `DROP_FIELD` action, which removes fields from matching logs.
+         * 
+         * @return builder
+         * 
+         */
         public Builder dropField(LogControlConfigRuleDropFieldArgs dropField) {
             return dropField(Output.of(dropField));
         }
 
+        /**
+         * @param emitMetrics Configuration for the `EMIT_METRICS` action, which derives Prometheus metrics from matching logs.
+         * 
+         * @return builder
+         * 
+         */
         public Builder emitMetrics(@Nullable Output<LogControlConfigRuleEmitMetricsArgs> emitMetrics) {
             $.emitMetrics = emitMetrics;
             return this;
         }
 
+        /**
+         * @param emitMetrics Configuration for the `EMIT_METRICS` action, which derives Prometheus metrics from matching logs.
+         * 
+         * @return builder
+         * 
+         */
         public Builder emitMetrics(LogControlConfigRuleEmitMetricsArgs emitMetrics) {
             return emitMetrics(Output.of(emitMetrics));
         }
 
+        /**
+         * @param filter Log query filter that selects matching logs. The control action applies only to logs that match.
+         * 
+         * @return builder
+         * 
+         */
         public Builder filter(@Nullable Output<String> filter) {
             $.filter = filter;
             return this;
         }
 
+        /**
+         * @param filter Log query filter that selects matching logs. The control action applies only to logs that match.
+         * 
+         * @return builder
+         * 
+         */
         public Builder filter(String filter) {
             return filter(Output.of(filter));
         }
 
+        /**
+         * @param mode Execution mode for the rule (for example, `ENABLED` or `DISABLED`).
+         * 
+         * @return builder
+         * 
+         */
         public Builder mode(@Nullable Output<String> mode) {
             $.mode = mode;
             return this;
         }
 
+        /**
+         * @param mode Execution mode for the rule (for example, `ENABLED` or `DISABLED`).
+         * 
+         * @return builder
+         * 
+         */
         public Builder mode(String mode) {
             return mode(Output.of(mode));
         }
 
+        /**
+         * @param name User-defined name for the control rule.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(@Nullable Output<String> name) {
             $.name = name;
             return this;
         }
 
+        /**
+         * @param name User-defined name for the control rule.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(String name) {
             return name(Output.of(name));
         }
 
+        /**
+         * @param parseField Configuration for the `PARSE_FIELD` action, which parses a field with a regex, key/value, or grok parser and writes the result to another field.
+         * 
+         * @return builder
+         * 
+         */
         public Builder parseField(@Nullable Output<LogControlConfigRuleParseFieldArgs> parseField) {
             $.parseField = parseField;
             return this;
         }
 
+        /**
+         * @param parseField Configuration for the `PARSE_FIELD` action, which parses a field with a regex, key/value, or grok parser and writes the result to another field.
+         * 
+         * @return builder
+         * 
+         */
         public Builder parseField(LogControlConfigRuleParseFieldArgs parseField) {
             return parseField(Output.of(parseField));
         }
 
+        /**
+         * @param replaceField Configuration for the `REPLACE_FIELD` action, which rewrites field values in matching logs.
+         * 
+         * @return builder
+         * 
+         */
         public Builder replaceField(@Nullable Output<LogControlConfigRuleReplaceFieldArgs> replaceField) {
             $.replaceField = replaceField;
             return this;
         }
 
+        /**
+         * @param replaceField Configuration for the `REPLACE_FIELD` action, which rewrites field values in matching logs.
+         * 
+         * @return builder
+         * 
+         */
         public Builder replaceField(LogControlConfigRuleReplaceFieldArgs replaceField) {
             return replaceField(Output.of(replaceField));
         }
 
+        /**
+         * @param sample Configuration for the `SAMPLE_LOGS` action, which keeps a fraction of matching logs.
+         * 
+         * @return builder
+         * 
+         */
         public Builder sample(@Nullable Output<LogControlConfigRuleSampleArgs> sample) {
             $.sample = sample;
             return this;
         }
 
+        /**
+         * @param sample Configuration for the `SAMPLE_LOGS` action, which keeps a fraction of matching logs.
+         * 
+         * @return builder
+         * 
+         */
         public Builder sample(LogControlConfigRuleSampleArgs sample) {
             return sample(Output.of(sample));
         }
 
+        /**
+         * @param type Type of control action this rule performs. Exactly one of the matching action blocks (`sample`, `drop_field`, `emit_metrics`, `replace_field`, `parse_field`) must be configured.
+         * 
+         * @return builder
+         * 
+         */
         public Builder type(@Nullable Output<String> type) {
             $.type = type;
             return this;
         }
 
+        /**
+         * @param type Type of control action this rule performs. Exactly one of the matching action blocks (`sample`, `drop_field`, `emit_metrics`, `replace_field`, `parse_field`) must be configured.
+         * 
+         * @return builder
+         * 
+         */
         public Builder type(String type) {
             return type(Output.of(type));
         }

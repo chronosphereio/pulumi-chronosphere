@@ -10,24 +10,64 @@ using Pulumi;
 
 namespace Chronosphere.Pulumi
 {
+    /// <summary>
+    /// Email notifier that delivers monitor signals to a recipient address with templated HTML and/or plain-text bodies. Referenced from notification policies.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Pulumi = Chronosphere.Pulumi;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var email = new Pulumi.EmailAlertNotifier("email", new()
+    ///     {
+    ///         Name = "Email Blackhole",
+    ///         To = "blackhole@chronosphere.io",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// </summary>
     [PulumiResourceType("chronosphere:index/emailAlertNotifier:EmailAlertNotifier")]
     public partial class EmailAlertNotifier : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Body of the email in HTML format. Supports Go templating.
+        /// </summary>
         [Output("html")]
         public Output<string?> Html { get; private set; } = null!;
 
+        /// <summary>
+        /// Display name of the notifier.
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+        /// </summary>
         [Output("sendResolved")]
         public Output<bool?> SendResolved { get; private set; } = null!;
 
+        /// <summary>
+        /// Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Output("slug")]
         public Output<string> Slug { get; private set; } = null!;
 
+        /// <summary>
+        /// Body of the email in plain text format. Supports Go templating.
+        /// </summary>
         [Output("text")]
         public Output<string?> Text { get; private set; } = null!;
 
+        /// <summary>
+        /// Email address to send notifications to.
+        /// </summary>
         [Output("to")]
         public Output<string> To { get; private set; } = null!;
 
@@ -78,21 +118,39 @@ namespace Chronosphere.Pulumi
 
     public sealed class EmailAlertNotifierArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Body of the email in HTML format. Supports Go templating.
+        /// </summary>
         [Input("html")]
         public Input<string>? Html { get; set; }
 
+        /// <summary>
+        /// Display name of the notifier.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+        /// </summary>
         [Input("sendResolved")]
         public Input<bool>? SendResolved { get; set; }
 
+        /// <summary>
+        /// Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 
+        /// <summary>
+        /// Body of the email in plain text format. Supports Go templating.
+        /// </summary>
         [Input("text")]
         public Input<string>? Text { get; set; }
 
+        /// <summary>
+        /// Email address to send notifications to.
+        /// </summary>
         [Input("to", required: true)]
         public Input<string> To { get; set; } = null!;
 
@@ -104,21 +162,39 @@ namespace Chronosphere.Pulumi
 
     public sealed class EmailAlertNotifierState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Body of the email in HTML format. Supports Go templating.
+        /// </summary>
         [Input("html")]
         public Input<string>? Html { get; set; }
 
+        /// <summary>
+        /// Display name of the notifier.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+        /// </summary>
         [Input("sendResolved")]
         public Input<bool>? SendResolved { get; set; }
 
+        /// <summary>
+        /// Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 
+        /// <summary>
+        /// Body of the email in plain text format. Supports Go templating.
+        /// </summary>
         [Input("text")]
         public Input<string>? Text { get; set; }
 
+        /// <summary>
+        /// Email address to send notifications to.
+        /// </summary>
         [Input("to")]
         public Input<string>? To { get; set; }
 

@@ -13,12 +13,21 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class DatasetConfigurationGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Log-specific dataset configuration. Set only when `type` is a log type.
+        /// </summary>
         [Input("logDataset")]
         public Input<Inputs.DatasetConfigurationLogDatasetGetArgs>? LogDataset { get; set; }
 
+        /// <summary>
+        /// Trace-specific dataset configuration. Set only when `type` is a trace type.
+        /// </summary>
         [Input("traceDataset")]
         public Input<Inputs.DatasetConfigurationTraceDatasetGetArgs>? TraceDataset { get; set; }
 
+        /// <summary>
+        /// Dataset type. Determines which of `trace_dataset` or `log_dataset` must be set.
+        /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
 

@@ -11,9 +11,17 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class ConsumptionBudgetThresholdInstantRate {
+    /**
+     * @return Fixed per-second rate threshold value, expressed in the threshold&#39;s `unit`.
+     * 
+     */
     private @Nullable Integer fixedValuePerSec;
 
     private ConsumptionBudgetThresholdInstantRate() {}
+    /**
+     * @return Fixed per-second rate threshold value, expressed in the threshold&#39;s `unit`.
+     * 
+     */
     public Optional<Integer> fixedValuePerSec() {
         return Optional.ofNullable(this.fixedValuePerSec);
     }

@@ -15,12 +15,19 @@ namespace Chronosphere.Pulumi.Inputs
     {
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// Optional label matchers further scoping the restriction to metrics whose labels match these key/value pairs.
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 
+        /// <summary>
+        /// Permission level granted by this restriction (e.g. metric read/write).
+        /// </summary>
         [Input("permission", required: true)]
         public Input<string> Permission { get; set; } = null!;
 

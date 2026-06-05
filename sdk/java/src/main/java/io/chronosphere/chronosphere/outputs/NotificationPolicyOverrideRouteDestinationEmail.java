@@ -10,9 +10,17 @@ import java.util.Objects;
 
 @CustomType
 public final class NotificationPolicyOverrideRouteDestinationEmail {
+    /**
+     * @return Email addresses to deliver notifications to.
+     * 
+     */
     private List<String> addresses;
 
     private NotificationPolicyOverrideRouteDestinationEmail() {}
+    /**
+     * @return Email addresses to deliver notifications to.
+     * 
+     */
     public List<String> addresses() {
         return this.addresses;
     }

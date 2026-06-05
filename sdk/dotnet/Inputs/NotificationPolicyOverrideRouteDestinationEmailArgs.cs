@@ -15,6 +15,10 @@ namespace Chronosphere.Pulumi.Inputs
     {
         [Input("addresses", required: true)]
         private InputList<string>? _addresses;
+
+        /// <summary>
+        /// Email addresses to deliver notifications to.
+        /// </summary>
         public InputList<string> Addresses
         {
             get => _addresses ?? (_addresses = new InputList<string>());

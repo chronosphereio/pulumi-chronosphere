@@ -16,44 +16,92 @@ public final class EmailAlertNotifierState extends com.pulumi.resources.Resource
 
     public static final EmailAlertNotifierState Empty = new EmailAlertNotifierState();
 
+    /**
+     * Body of the email in HTML format. Supports Go templating.
+     * 
+     */
     @Import(name="html")
     private @Nullable Output<String> html;
 
+    /**
+     * @return Body of the email in HTML format. Supports Go templating.
+     * 
+     */
     public Optional<Output<String>> html() {
         return Optional.ofNullable(this.html);
     }
 
+    /**
+     * Display name of the notifier.
+     * 
+     */
     @Import(name="name")
     private @Nullable Output<String> name;
 
+    /**
+     * @return Display name of the notifier.
+     * 
+     */
     public Optional<Output<String>> name() {
         return Optional.ofNullable(this.name);
     }
 
+    /**
+     * Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+     * 
+     */
     @Import(name="sendResolved")
     private @Nullable Output<Boolean> sendResolved;
 
+    /**
+     * @return Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+     * 
+     */
     public Optional<Output<Boolean>> sendResolved() {
         return Optional.ofNullable(this.sendResolved);
     }
 
+    /**
+     * Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     @Import(name="slug")
     private @Nullable Output<String> slug;
 
+    /**
+     * @return Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     public Optional<Output<String>> slug() {
         return Optional.ofNullable(this.slug);
     }
 
+    /**
+     * Body of the email in plain text format. Supports Go templating.
+     * 
+     */
     @Import(name="text")
     private @Nullable Output<String> text;
 
+    /**
+     * @return Body of the email in plain text format. Supports Go templating.
+     * 
+     */
     public Optional<Output<String>> text() {
         return Optional.ofNullable(this.text);
     }
 
+    /**
+     * Email address to send notifications to.
+     * 
+     */
     @Import(name="to")
     private @Nullable Output<String> to;
 
+    /**
+     * @return Email address to send notifications to.
+     * 
+     */
     public Optional<Output<String>> to() {
         return Optional.ofNullable(this.to);
     }
@@ -87,56 +135,128 @@ public final class EmailAlertNotifierState extends com.pulumi.resources.Resource
             $ = new EmailAlertNotifierState(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param html Body of the email in HTML format. Supports Go templating.
+         * 
+         * @return builder
+         * 
+         */
         public Builder html(@Nullable Output<String> html) {
             $.html = html;
             return this;
         }
 
+        /**
+         * @param html Body of the email in HTML format. Supports Go templating.
+         * 
+         * @return builder
+         * 
+         */
         public Builder html(String html) {
             return html(Output.of(html));
         }
 
+        /**
+         * @param name Display name of the notifier.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(@Nullable Output<String> name) {
             $.name = name;
             return this;
         }
 
+        /**
+         * @param name Display name of the notifier.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(String name) {
             return name(Output.of(name));
         }
 
+        /**
+         * @param sendResolved Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+         * 
+         * @return builder
+         * 
+         */
         public Builder sendResolved(@Nullable Output<Boolean> sendResolved) {
             $.sendResolved = sendResolved;
             return this;
         }
 
+        /**
+         * @param sendResolved Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+         * 
+         * @return builder
+         * 
+         */
         public Builder sendResolved(Boolean sendResolved) {
             return sendResolved(Output.of(sendResolved));
         }
 
+        /**
+         * @param slug Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slug(@Nullable Output<String> slug) {
             $.slug = slug;
             return this;
         }
 
+        /**
+         * @param slug Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slug(String slug) {
             return slug(Output.of(slug));
         }
 
+        /**
+         * @param text Body of the email in plain text format. Supports Go templating.
+         * 
+         * @return builder
+         * 
+         */
         public Builder text(@Nullable Output<String> text) {
             $.text = text;
             return this;
         }
 
+        /**
+         * @param text Body of the email in plain text format. Supports Go templating.
+         * 
+         * @return builder
+         * 
+         */
         public Builder text(String text) {
             return text(Output.of(text));
         }
 
+        /**
+         * @param to Email address to send notifications to.
+         * 
+         * @return builder
+         * 
+         */
         public Builder to(@Nullable Output<String> to) {
             $.to = to;
             return this;
         }
 
+        /**
+         * @param to Email address to send notifications to.
+         * 
+         * @return builder
+         * 
+         */
         public Builder to(String to) {
             return to(Output.of(to));
         }

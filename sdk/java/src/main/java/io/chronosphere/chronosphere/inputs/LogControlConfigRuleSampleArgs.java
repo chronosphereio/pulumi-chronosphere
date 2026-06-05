@@ -15,9 +15,17 @@ public final class LogControlConfigRuleSampleArgs extends com.pulumi.resources.R
 
     public static final LogControlConfigRuleSampleArgs Empty = new LogControlConfigRuleSampleArgs();
 
+    /**
+     * Fraction of matching logs to keep, in the range `[0, 1]` (for example, `0.25` keeps 25%).
+     * 
+     */
     @Import(name="rate")
     private @Nullable Output<Double> rate;
 
+    /**
+     * @return Fraction of matching logs to keep, in the range `[0, 1]` (for example, `0.25` keeps 25%).
+     * 
+     */
     public Optional<Output<Double>> rate() {
         return Optional.ofNullable(this.rate);
     }
@@ -46,11 +54,23 @@ public final class LogControlConfigRuleSampleArgs extends com.pulumi.resources.R
             $ = new LogControlConfigRuleSampleArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param rate Fraction of matching logs to keep, in the range `[0, 1]` (for example, `0.25` keeps 25%).
+         * 
+         * @return builder
+         * 
+         */
         public Builder rate(@Nullable Output<Double> rate) {
             $.rate = rate;
             return this;
         }
 
+        /**
+         * @param rate Fraction of matching logs to keep, in the range `[0, 1]` (for example, `0.25` keeps 25%).
+         * 
+         * @return builder
+         * 
+         */
         public Builder rate(Double rate) {
             return rate(Output.of(rate));
         }

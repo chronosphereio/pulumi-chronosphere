@@ -17,16 +17,32 @@ public final class NotificationPolicyOverrideArgs extends com.pulumi.resources.R
 
     public static final NotificationPolicyOverrideArgs Empty = new NotificationPolicyOverrideArgs();
 
+    /**
+     * List of label matchers used to select a subset of series.
+     * 
+     */
     @Import(name="alertLabelMatchers", required=true)
     private Output<List<NotificationPolicyOverrideAlertLabelMatcherArgs>> alertLabelMatchers;
 
+    /**
+     * @return List of label matchers used to select a subset of series.
+     * 
+     */
     public Output<List<NotificationPolicyOverrideAlertLabelMatcherArgs>> alertLabelMatchers() {
         return this.alertLabelMatchers;
     }
 
+    /**
+     * Per-severity routing rules. Each entry maps a severity (e.g. `warn`, `critical`) to a set of notifiers, destinations, grouping, and repeat behavior.
+     * 
+     */
     @Import(name="routes")
     private @Nullable Output<List<NotificationPolicyOverrideRouteArgs>> routes;
 
+    /**
+     * @return Per-severity routing rules. Each entry maps a severity (e.g. `warn`, `critical`) to a set of notifiers, destinations, grouping, and repeat behavior.
+     * 
+     */
     public Optional<Output<List<NotificationPolicyOverrideRouteArgs>>> routes() {
         return Optional.ofNullable(this.routes);
     }
@@ -56,28 +72,64 @@ public final class NotificationPolicyOverrideArgs extends com.pulumi.resources.R
             $ = new NotificationPolicyOverrideArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param alertLabelMatchers List of label matchers used to select a subset of series.
+         * 
+         * @return builder
+         * 
+         */
         public Builder alertLabelMatchers(Output<List<NotificationPolicyOverrideAlertLabelMatcherArgs>> alertLabelMatchers) {
             $.alertLabelMatchers = alertLabelMatchers;
             return this;
         }
 
+        /**
+         * @param alertLabelMatchers List of label matchers used to select a subset of series.
+         * 
+         * @return builder
+         * 
+         */
         public Builder alertLabelMatchers(List<NotificationPolicyOverrideAlertLabelMatcherArgs> alertLabelMatchers) {
             return alertLabelMatchers(Output.of(alertLabelMatchers));
         }
 
+        /**
+         * @param alertLabelMatchers List of label matchers used to select a subset of series.
+         * 
+         * @return builder
+         * 
+         */
         public Builder alertLabelMatchers(NotificationPolicyOverrideAlertLabelMatcherArgs... alertLabelMatchers) {
             return alertLabelMatchers(List.of(alertLabelMatchers));
         }
 
+        /**
+         * @param routes Per-severity routing rules. Each entry maps a severity (e.g. `warn`, `critical`) to a set of notifiers, destinations, grouping, and repeat behavior.
+         * 
+         * @return builder
+         * 
+         */
         public Builder routes(@Nullable Output<List<NotificationPolicyOverrideRouteArgs>> routes) {
             $.routes = routes;
             return this;
         }
 
+        /**
+         * @param routes Per-severity routing rules. Each entry maps a severity (e.g. `warn`, `critical`) to a set of notifiers, destinations, grouping, and repeat behavior.
+         * 
+         * @return builder
+         * 
+         */
         public Builder routes(List<NotificationPolicyOverrideRouteArgs> routes) {
             return routes(Output.of(routes));
         }
 
+        /**
+         * @param routes Per-severity routing rules. Each entry maps a severity (e.g. `warn`, `critical`) to a set of notifiers, destinations, grouping, and repeat behavior.
+         * 
+         * @return builder
+         * 
+         */
         public Builder routes(NotificationPolicyOverrideRouteArgs... routes) {
             return routes(List.of(routes));
         }

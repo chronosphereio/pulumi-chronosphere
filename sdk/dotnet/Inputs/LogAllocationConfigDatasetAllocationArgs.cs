@@ -13,12 +13,21 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class LogAllocationConfigDatasetAllocationArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Resource allocation for the dataset, expressed as a share of the overall log license.
+        /// </summary>
         [Input("allocation", required: true)]
         public Input<Inputs.LogAllocationConfigDatasetAllocationAllocationArgs> Allocation { get; set; } = null!;
 
+        /// <summary>
+        /// Slug of the dataset this allocation applies to.
+        /// </summary>
         [Input("datasetId", required: true)]
         public Input<string> DatasetId { get; set; } = null!;
 
+        /// <summary>
+        /// Defines high and low priority match criteria. Low priority logs are dropped first when the allocation is exhausted, then default priority, with high priority dropped last.
+        /// </summary>
         [Input("priorities")]
         public Input<Inputs.LogAllocationConfigDatasetAllocationPrioritiesArgs>? Priorities { get; set; }
 

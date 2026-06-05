@@ -14,7 +14,13 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class LogControlConfigRuleEmitMetricsGauge
     {
+        /// <summary>
+        /// How multiple values are aggregated into the emitted gauge (for example, `LAST`, `MIN`, `MAX`).
+        /// </summary>
         public readonly string? AggregationType;
+        /// <summary>
+        /// Path to a field within a log record.
+        /// </summary>
         public readonly Outputs.LogControlConfigRuleEmitMetricsGaugeValue? Value;
 
         [OutputConstructor]

@@ -15,18 +15,31 @@ namespace Chronosphere.Pulumi.Inputs
     {
         [Input("excludeKeys")]
         private InputList<string>? _excludeKeys;
+
+        /// <summary>
+        /// Resource attribute keys to exclude from the flatten operation, interpreted according to `filter_mode`.
+        /// </summary>
         public InputList<string> ExcludeKeys
         {
             get => _excludeKeys ?? (_excludeKeys = new InputList<string>());
             set => _excludeKeys = value;
         }
 
+        /// <summary>
+        /// Controls how `exclude_keys` is interpreted (e.g. allow-list vs. block-list semantics).
+        /// </summary>
         [Input("filterMode")]
         public Input<string>? FilterMode { get; set; }
 
+        /// <summary>
+        /// Controls how OTel resource attributes are flattened onto each metric's labels.
+        /// </summary>
         [Input("flattenMode")]
         public Input<string>? FlattenMode { get; set; }
 
+        /// <summary>
+        /// If true, generates a `target_info` time series with labels derived from resource attributes. `filter_mode` and `exclude_keys` apply identically to this series. Defaults to false.
+        /// </summary>
         [Input("generateTargetInfo")]
         public Input<bool>? GenerateTargetInfo { get; set; }
 

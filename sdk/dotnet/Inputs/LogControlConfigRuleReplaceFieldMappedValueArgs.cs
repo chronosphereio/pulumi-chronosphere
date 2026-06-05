@@ -13,17 +13,27 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class LogControlConfigRuleReplaceFieldMappedValueArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Value to substitute when no matching key is found, when `use_default` is `true`.
+        /// </summary>
         [Input("defaultValue")]
         public Input<string>? DefaultValue { get; set; }
 
         [Input("pairs")]
         private InputList<Inputs.LogControlConfigRuleReplaceFieldMappedValuePairArgs>? _pairs;
+
+        /// <summary>
+        /// List of key/value pairs that map matched content to replacement values.
+        /// </summary>
         public InputList<Inputs.LogControlConfigRuleReplaceFieldMappedValuePairArgs> Pairs
         {
             get => _pairs ?? (_pairs = new InputList<Inputs.LogControlConfigRuleReplaceFieldMappedValuePairArgs>());
             set => _pairs = value;
         }
 
+        /// <summary>
+        /// If `true`, falls back to `default_value` when no key matches. If `false`, leaves the value unchanged on a miss.
+        /// </summary>
         [Input("useDefault")]
         public Input<bool>? UseDefault { get; set; }
 

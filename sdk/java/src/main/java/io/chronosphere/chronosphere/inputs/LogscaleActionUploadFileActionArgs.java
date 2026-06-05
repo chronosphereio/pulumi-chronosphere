@@ -13,9 +13,17 @@ public final class LogscaleActionUploadFileActionArgs extends com.pulumi.resourc
 
     public static final LogscaleActionUploadFileActionArgs Empty = new LogscaleActionUploadFileActionArgs();
 
+    /**
+     * Name to use for the uploaded file.
+     * 
+     */
     @Import(name="fileName", required=true)
     private Output<String> fileName;
 
+    /**
+     * @return Name to use for the uploaded file.
+     * 
+     */
     public Output<String> fileName() {
         return this.fileName;
     }
@@ -44,11 +52,23 @@ public final class LogscaleActionUploadFileActionArgs extends com.pulumi.resourc
             $ = new LogscaleActionUploadFileActionArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param fileName Name to use for the uploaded file.
+         * 
+         * @return builder
+         * 
+         */
         public Builder fileName(Output<String> fileName) {
             $.fileName = fileName;
             return this;
         }
 
+        /**
+         * @param fileName Name to use for the uploaded file.
+         * 
+         * @return builder
+         * 
+         */
         public Builder fileName(String fileName) {
             return fileName(Output.of(fileName));
         }

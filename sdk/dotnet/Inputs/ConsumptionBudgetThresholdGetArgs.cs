@@ -13,21 +13,45 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class ConsumptionBudgetThresholdGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Action to take when this threshold is exceeded (e.g. drop traffic, fire warning/critical alert).
+        /// </summary>
         [Input("action")]
         public Input<string>? Action { get; set; }
 
+        /// <summary>
+        /// Configures an instant-rate threshold value. Set when `type` is an instant-rate type.
+        /// </summary>
         [Input("instantRate")]
         public Input<Inputs.ConsumptionBudgetThresholdInstantRateGetArgs>? InstantRate { get; set; }
 
+        /// <summary>
+        /// Resource group the threshold applies to (e.g. metrics, logs, traces). Replaces the deprecated top-level `resource` field.
+        /// </summary>
+        [Input("resourceGroup")]
+        public Input<string>? ResourceGroup { get; set; }
+
+        /// <summary>
+        /// SKU group the threshold applies to (e.g. metrics, logs, traces). Replaces the deprecated top-level `resource` field.
+        /// </summary>
         [Input("skuGroup")]
         public Input<string>? SkuGroup { get; set; }
 
+        /// <summary>
+        /// Measurement window over which the threshold is evaluated (e.g. instant rate vs. rolling volume).
+        /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
 
+        /// <summary>
+        /// Unit in which the threshold value is denominated (e.g. bytes, datapoints).
+        /// </summary>
         [Input("unit")]
         public Input<string>? Unit { get; set; }
 
+        /// <summary>
+        /// Configures a volume threshold value. Set when `type` is a volume type.
+        /// </summary>
         [Input("volume")]
         public Input<Inputs.ConsumptionBudgetThresholdVolumeGetArgs>? Volume { get; set; }
 

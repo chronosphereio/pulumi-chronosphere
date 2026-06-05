@@ -10,13 +10,29 @@ import java.util.Objects;
 
 @CustomType
 public final class MonitorSeriesConditionsOverrideConditionResolveValue {
+    /**
+     * @return Whether the resolve-value threshold is active.
+     * 
+     */
     private Boolean enabled;
+    /**
+     * @return Resolution threshold value.
+     * 
+     */
     private Double value;
 
     private MonitorSeriesConditionsOverrideConditionResolveValue() {}
+    /**
+     * @return Whether the resolve-value threshold is active.
+     * 
+     */
     public Boolean enabled() {
         return this.enabled;
     }
+    /**
+     * @return Resolution threshold value.
+     * 
+     */
     public Double value() {
         return this.value;
     }

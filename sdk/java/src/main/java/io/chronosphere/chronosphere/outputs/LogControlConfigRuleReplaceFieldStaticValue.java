@@ -11,9 +11,17 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class LogControlConfigRuleReplaceFieldStaticValue {
+    /**
+     * @return Path to a field within a log record.
+     * 
+     */
     private @Nullable String value;
 
     private LogControlConfigRuleReplaceFieldStaticValue() {}
+    /**
+     * @return Path to a field within a log record.
+     * 
+     */
     public Optional<String> value() {
         return Optional.ofNullable(this.value);
     }

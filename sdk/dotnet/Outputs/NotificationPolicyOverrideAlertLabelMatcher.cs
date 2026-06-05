@@ -14,8 +14,17 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class NotificationPolicyOverrideAlertLabelMatcher
     {
+        /// <summary>
+        /// Label name to match.
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// Match operator: one of `=`, `!=`, `=~` (regex), `!~` (regex negation).
+        /// </summary>
         public readonly string Type;
+        /// <summary>
+        /// Label value (or regex pattern, for regex matchers) to match against.
+        /// </summary>
         public readonly string Value;
 
         [OutputConstructor]

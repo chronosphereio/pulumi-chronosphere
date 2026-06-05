@@ -14,8 +14,17 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class GcpMetricsIntegrationMetricGroupRollupRule
     {
+        /// <summary>
+        /// Aggregation function applied across the dropped labels (e.g. sum, max).
+        /// </summary>
         public readonly string? Aggregation;
+        /// <summary>
+        /// Specifies which labels to preserve during aggregation. Labels not listed are dropped.
+        /// </summary>
         public readonly Outputs.GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicy? LabelPolicy;
+        /// <summary>
+        /// Fully-qualified Google Cloud metric name the rollup rule targets (e.g. `cloudsql.googleapis.com/database/uptime`).
+        /// </summary>
         public readonly string? MetricName;
 
         [OutputConstructor]

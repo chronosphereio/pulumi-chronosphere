@@ -10,45 +10,137 @@ using Pulumi;
 
 namespace Chronosphere.Pulumi
 {
+    /// <summary>
+    /// A monitor evaluates a query against time-series, log, or trace data and produces signals when configured thresholds are crossed. Signals are routed to notifiers via the referenced notification policy or the parent collection's default policy.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Pulumi = Chronosphere.Pulumi;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var collection = new Pulumi.Collection("collection", new()
+    ///     {
+    ///         Name = "Platform",
+    ///     });
+    /// 
+    ///     var namespaceUp = new Pulumi.Monitor("namespaceUp", new()
+    ///     {
+    ///         Name = "Namespace up",
+    ///         CollectionId = collection.Id,
+    ///         Query = new Pulumi.Inputs.MonitorQueryArgs
+    ///         {
+    ///             PrometheusExpr = @"sum by (kubernetes_namespace) (
+    ///   up{kubernetes_namespace=""production""}
+    /// )
+    /// ",
+    ///         },
+    ///         SignalGrouping = new Pulumi.Inputs.MonitorSignalGroupingArgs
+    ///         {
+    ///             LabelNames = new[]
+    ///             {
+    ///                 "kubernetes_namespace",
+    ///             },
+    ///         },
+    ///         SeriesConditions = new Pulumi.Inputs.MonitorSeriesConditionsArgs
+    ///         {
+    ///             Conditions = new[]
+    ///             {
+    ///                 new Pulumi.Inputs.MonitorSeriesConditionsConditionArgs
+    ///                 {
+    ///                     Severity = "warn",
+    ///                     Value = 20,
+    ///                     Op = "GT",
+    ///                 },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// </summary>
     [PulumiResourceType("chronosphere:index/monitor:Monitor")]
     public partial class Monitor : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Free-form key/value pairs attached to every signal, intended for human consumption such as runbook URLs and descriptions.
+        /// </summary>
         [Output("annotations")]
         public Output<ImmutableDictionary<string, string>?> Annotations { get; private set; } = null!;
 
+        /// <summary>
+        /// ID of the bucket the monitor belongs to. Exactly one of `bucket_id` or `collection_id` must be set.
+        /// </summary>
         [Output("bucketId")]
         public Output<string?> BucketId { get; private set; } = null!;
 
+        /// <summary>
+        /// ID of the collection the monitor belongs to. Exactly one of `bucket_id` or `collection_id` must be set.
+        /// </summary>
         [Output("collectionId")]
         public Output<string?> CollectionId { get; private set; } = null!;
 
+        /// <summary>
+        /// Evaluation interval (e.g. `30s`, `1m`). Defaults to the system default if unset.
+        /// </summary>
         [Output("interval")]
         public Output<string?> Interval { get; private set; } = null!;
 
+        /// <summary>
+        /// Key/value labels attached to every signal emitted by the monitor. Used for routing and filtering.
+        /// </summary>
         [Output("labels")]
         public Output<ImmutableDictionary<string, string>?> Labels { get; private set; } = null!;
 
+        /// <summary>
+        /// Label name to match.
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// ID of the notification policy that routes signals from this monitor. If omitted, the parent collection's default policy applies. Must reference a named policy (anonymous policies are rejected).
+        /// </summary>
         [Output("notificationPolicyId")]
         public Output<string?> NotificationPolicyId { get; private set; } = null!;
 
+        /// <summary>
+        /// Templated title/description rendered into outbound notifications. Supports Go templating with access to signal labels and annotations.
+        /// </summary>
         [Output("notificationTemplate")]
         public Output<Outputs.MonitorNotificationTemplate?> NotificationTemplate { get; private set; } = null!;
 
+        /// <summary>
+        /// Query that produces the time series evaluated by the monitor. Exactly one of `prometheus_expr`, `graphite_expr`, or `logging_expr` must be set.
+        /// </summary>
         [Output("query")]
         public Output<Outputs.MonitorQuery> Query { get; private set; } = null!;
 
+        /// <summary>
+        /// Optional schedule restricting when the monitor evaluates and fires.
+        /// </summary>
         [Output("schedule")]
         public Output<Outputs.MonitorSchedule?> Schedule { get; private set; } = null!;
 
+        /// <summary>
+        /// Conditions that determine when a series fires a signal.
+        /// </summary>
         [Output("seriesConditions")]
         public Output<Outputs.MonitorSeriesConditions> SeriesConditions { get; private set; } = null!;
 
+        /// <summary>
+        /// Controls how individual time series are grouped into signals for alerting purposes.
+        /// </summary>
         [Output("signalGrouping")]
         public Output<Outputs.MonitorSignalGrouping?> SignalGrouping { get; private set; } = null!;
 
+        /// <summary>
+        /// Stable identifier for the monitor. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Output("slug")]
         public Output<string> Slug { get; private set; } = null!;
 
@@ -101,50 +193,91 @@ namespace Chronosphere.Pulumi
     {
         [Input("annotations")]
         private InputMap<string>? _annotations;
+
+        /// <summary>
+        /// Free-form key/value pairs attached to every signal, intended for human consumption such as runbook URLs and descriptions.
+        /// </summary>
         public InputMap<string> Annotations
         {
             get => _annotations ?? (_annotations = new InputMap<string>());
             set => _annotations = value;
         }
 
+        /// <summary>
+        /// ID of the bucket the monitor belongs to. Exactly one of `bucket_id` or `collection_id` must be set.
+        /// </summary>
         [Input("bucketId")]
         public Input<string>? BucketId { get; set; }
 
+        /// <summary>
+        /// ID of the collection the monitor belongs to. Exactly one of `bucket_id` or `collection_id` must be set.
+        /// </summary>
         [Input("collectionId")]
         public Input<string>? CollectionId { get; set; }
 
+        /// <summary>
+        /// Evaluation interval (e.g. `30s`, `1m`). Defaults to the system default if unset.
+        /// </summary>
         [Input("interval")]
         public Input<string>? Interval { get; set; }
 
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// Key/value labels attached to every signal emitted by the monitor. Used for routing and filtering.
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 
+        /// <summary>
+        /// Label name to match.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// ID of the notification policy that routes signals from this monitor. If omitted, the parent collection's default policy applies. Must reference a named policy (anonymous policies are rejected).
+        /// </summary>
         [Input("notificationPolicyId")]
         public Input<string>? NotificationPolicyId { get; set; }
 
+        /// <summary>
+        /// Templated title/description rendered into outbound notifications. Supports Go templating with access to signal labels and annotations.
+        /// </summary>
         [Input("notificationTemplate")]
         public Input<Inputs.MonitorNotificationTemplateArgs>? NotificationTemplate { get; set; }
 
+        /// <summary>
+        /// Query that produces the time series evaluated by the monitor. Exactly one of `prometheus_expr`, `graphite_expr`, or `logging_expr` must be set.
+        /// </summary>
         [Input("query", required: true)]
         public Input<Inputs.MonitorQueryArgs> Query { get; set; } = null!;
 
+        /// <summary>
+        /// Optional schedule restricting when the monitor evaluates and fires.
+        /// </summary>
         [Input("schedule")]
         public Input<Inputs.MonitorScheduleArgs>? Schedule { get; set; }
 
+        /// <summary>
+        /// Conditions that determine when a series fires a signal.
+        /// </summary>
         [Input("seriesConditions", required: true)]
         public Input<Inputs.MonitorSeriesConditionsArgs> SeriesConditions { get; set; } = null!;
 
+        /// <summary>
+        /// Controls how individual time series are grouped into signals for alerting purposes.
+        /// </summary>
         [Input("signalGrouping")]
         public Input<Inputs.MonitorSignalGroupingArgs>? SignalGrouping { get; set; }
 
+        /// <summary>
+        /// Stable identifier for the monitor. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 
@@ -158,50 +291,91 @@ namespace Chronosphere.Pulumi
     {
         [Input("annotations")]
         private InputMap<string>? _annotations;
+
+        /// <summary>
+        /// Free-form key/value pairs attached to every signal, intended for human consumption such as runbook URLs and descriptions.
+        /// </summary>
         public InputMap<string> Annotations
         {
             get => _annotations ?? (_annotations = new InputMap<string>());
             set => _annotations = value;
         }
 
+        /// <summary>
+        /// ID of the bucket the monitor belongs to. Exactly one of `bucket_id` or `collection_id` must be set.
+        /// </summary>
         [Input("bucketId")]
         public Input<string>? BucketId { get; set; }
 
+        /// <summary>
+        /// ID of the collection the monitor belongs to. Exactly one of `bucket_id` or `collection_id` must be set.
+        /// </summary>
         [Input("collectionId")]
         public Input<string>? CollectionId { get; set; }
 
+        /// <summary>
+        /// Evaluation interval (e.g. `30s`, `1m`). Defaults to the system default if unset.
+        /// </summary>
         [Input("interval")]
         public Input<string>? Interval { get; set; }
 
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// Key/value labels attached to every signal emitted by the monitor. Used for routing and filtering.
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 
+        /// <summary>
+        /// Label name to match.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// ID of the notification policy that routes signals from this monitor. If omitted, the parent collection's default policy applies. Must reference a named policy (anonymous policies are rejected).
+        /// </summary>
         [Input("notificationPolicyId")]
         public Input<string>? NotificationPolicyId { get; set; }
 
+        /// <summary>
+        /// Templated title/description rendered into outbound notifications. Supports Go templating with access to signal labels and annotations.
+        /// </summary>
         [Input("notificationTemplate")]
         public Input<Inputs.MonitorNotificationTemplateGetArgs>? NotificationTemplate { get; set; }
 
+        /// <summary>
+        /// Query that produces the time series evaluated by the monitor. Exactly one of `prometheus_expr`, `graphite_expr`, or `logging_expr` must be set.
+        /// </summary>
         [Input("query")]
         public Input<Inputs.MonitorQueryGetArgs>? Query { get; set; }
 
+        /// <summary>
+        /// Optional schedule restricting when the monitor evaluates and fires.
+        /// </summary>
         [Input("schedule")]
         public Input<Inputs.MonitorScheduleGetArgs>? Schedule { get; set; }
 
+        /// <summary>
+        /// Conditions that determine when a series fires a signal.
+        /// </summary>
         [Input("seriesConditions")]
         public Input<Inputs.MonitorSeriesConditionsGetArgs>? SeriesConditions { get; set; }
 
+        /// <summary>
+        /// Controls how individual time series are grouped into signals for alerting purposes.
+        /// </summary>
         [Input("signalGrouping")]
         public Input<Inputs.MonitorSignalGroupingGetArgs>? SignalGrouping { get; set; }
 
+        /// <summary>
+        /// Stable identifier for the monitor. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 

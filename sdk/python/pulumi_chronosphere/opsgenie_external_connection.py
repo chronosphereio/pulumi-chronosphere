@@ -24,6 +24,14 @@ class OpsgenieExternalConnectionArgs:
                  tls_insecure_skip_verify: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a OpsgenieExternalConnection resource.
+        :param pulumi.Input[str] name: Display name of the external connection.
+        :param pulumi.Input[str] api_key: OpsGenie integration API key used to authenticate alert delivery. Treat as a secret.
+        :param pulumi.Input[str] api_url: Base URL of the OpsGenie API. Override to target the EU region or a custom endpoint.
+        :param pulumi.Input[str] basic_auth_password: Password for HTTP basic auth when calling OpsGenie. Treat as a secret.
+        :param pulumi.Input[str] basic_auth_username: Username for HTTP basic auth when calling OpsGenie. Mutually exclusive with `bearer_token`.
+        :param pulumi.Input[str] bearer_token: Bearer token sent in the `Authorization` header when calling OpsGenie. Mutually exclusive with basic auth. Treat as a secret.
+        :param pulumi.Input[str] slug: Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[bool] tls_insecure_skip_verify: If true, skip TLS certificate verification when calling OpsGenie. Disable only in trusted environments.
         """
         pulumi.set(__self__, "name", name)
         if api_key is not None:
@@ -44,6 +52,9 @@ class OpsgenieExternalConnectionArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        Display name of the external connection.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -53,6 +64,9 @@ class OpsgenieExternalConnectionArgs:
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        OpsGenie integration API key used to authenticate alert delivery. Treat as a secret.
+        """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
@@ -62,6 +76,9 @@ class OpsgenieExternalConnectionArgs:
     @property
     @pulumi.getter(name="apiUrl")
     def api_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        Base URL of the OpsGenie API. Override to target the EU region or a custom endpoint.
+        """
         return pulumi.get(self, "api_url")
 
     @api_url.setter
@@ -71,6 +88,9 @@ class OpsgenieExternalConnectionArgs:
     @property
     @pulumi.getter(name="basicAuthPassword")
     def basic_auth_password(self) -> Optional[pulumi.Input[str]]:
+        """
+        Password for HTTP basic auth when calling OpsGenie. Treat as a secret.
+        """
         return pulumi.get(self, "basic_auth_password")
 
     @basic_auth_password.setter
@@ -80,6 +100,9 @@ class OpsgenieExternalConnectionArgs:
     @property
     @pulumi.getter(name="basicAuthUsername")
     def basic_auth_username(self) -> Optional[pulumi.Input[str]]:
+        """
+        Username for HTTP basic auth when calling OpsGenie. Mutually exclusive with `bearer_token`.
+        """
         return pulumi.get(self, "basic_auth_username")
 
     @basic_auth_username.setter
@@ -89,6 +112,9 @@ class OpsgenieExternalConnectionArgs:
     @property
     @pulumi.getter(name="bearerToken")
     def bearer_token(self) -> Optional[pulumi.Input[str]]:
+        """
+        Bearer token sent in the `Authorization` header when calling OpsGenie. Mutually exclusive with basic auth. Treat as a secret.
+        """
         return pulumi.get(self, "bearer_token")
 
     @bearer_token.setter
@@ -98,6 +124,9 @@ class OpsgenieExternalConnectionArgs:
     @property
     @pulumi.getter
     def slug(self) -> Optional[pulumi.Input[str]]:
+        """
+        Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @slug.setter
@@ -107,6 +136,9 @@ class OpsgenieExternalConnectionArgs:
     @property
     @pulumi.getter(name="tlsInsecureSkipVerify")
     def tls_insecure_skip_verify(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If true, skip TLS certificate verification when calling OpsGenie. Disable only in trusted environments.
+        """
         return pulumi.get(self, "tls_insecure_skip_verify")
 
     @tls_insecure_skip_verify.setter
@@ -127,6 +159,14 @@ class _OpsgenieExternalConnectionState:
                  tls_insecure_skip_verify: Optional[pulumi.Input[bool]] = None):
         """
         Input properties used for looking up and filtering OpsgenieExternalConnection resources.
+        :param pulumi.Input[str] api_key: OpsGenie integration API key used to authenticate alert delivery. Treat as a secret.
+        :param pulumi.Input[str] api_url: Base URL of the OpsGenie API. Override to target the EU region or a custom endpoint.
+        :param pulumi.Input[str] basic_auth_password: Password for HTTP basic auth when calling OpsGenie. Treat as a secret.
+        :param pulumi.Input[str] basic_auth_username: Username for HTTP basic auth when calling OpsGenie. Mutually exclusive with `bearer_token`.
+        :param pulumi.Input[str] bearer_token: Bearer token sent in the `Authorization` header when calling OpsGenie. Mutually exclusive with basic auth. Treat as a secret.
+        :param pulumi.Input[str] name: Display name of the external connection.
+        :param pulumi.Input[str] slug: Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[bool] tls_insecure_skip_verify: If true, skip TLS certificate verification when calling OpsGenie. Disable only in trusted environments.
         """
         if api_key is not None:
             pulumi.set(__self__, "api_key", api_key)
@@ -148,6 +188,9 @@ class _OpsgenieExternalConnectionState:
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        OpsGenie integration API key used to authenticate alert delivery. Treat as a secret.
+        """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
@@ -157,6 +200,9 @@ class _OpsgenieExternalConnectionState:
     @property
     @pulumi.getter(name="apiUrl")
     def api_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        Base URL of the OpsGenie API. Override to target the EU region or a custom endpoint.
+        """
         return pulumi.get(self, "api_url")
 
     @api_url.setter
@@ -166,6 +212,9 @@ class _OpsgenieExternalConnectionState:
     @property
     @pulumi.getter(name="basicAuthPassword")
     def basic_auth_password(self) -> Optional[pulumi.Input[str]]:
+        """
+        Password for HTTP basic auth when calling OpsGenie. Treat as a secret.
+        """
         return pulumi.get(self, "basic_auth_password")
 
     @basic_auth_password.setter
@@ -175,6 +224,9 @@ class _OpsgenieExternalConnectionState:
     @property
     @pulumi.getter(name="basicAuthUsername")
     def basic_auth_username(self) -> Optional[pulumi.Input[str]]:
+        """
+        Username for HTTP basic auth when calling OpsGenie. Mutually exclusive with `bearer_token`.
+        """
         return pulumi.get(self, "basic_auth_username")
 
     @basic_auth_username.setter
@@ -184,6 +236,9 @@ class _OpsgenieExternalConnectionState:
     @property
     @pulumi.getter(name="bearerToken")
     def bearer_token(self) -> Optional[pulumi.Input[str]]:
+        """
+        Bearer token sent in the `Authorization` header when calling OpsGenie. Mutually exclusive with basic auth. Treat as a secret.
+        """
         return pulumi.get(self, "bearer_token")
 
     @bearer_token.setter
@@ -193,6 +248,9 @@ class _OpsgenieExternalConnectionState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Display name of the external connection.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -202,6 +260,9 @@ class _OpsgenieExternalConnectionState:
     @property
     @pulumi.getter
     def slug(self) -> Optional[pulumi.Input[str]]:
+        """
+        Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @slug.setter
@@ -211,6 +272,9 @@ class _OpsgenieExternalConnectionState:
     @property
     @pulumi.getter(name="tlsInsecureSkipVerify")
     def tls_insecure_skip_verify(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If true, skip TLS certificate verification when calling OpsGenie. Disable only in trusted environments.
+        """
         return pulumi.get(self, "tls_insecure_skip_verify")
 
     @tls_insecure_skip_verify.setter
@@ -233,9 +297,30 @@ class OpsgenieExternalConnection(pulumi.CustomResource):
                  tls_insecure_skip_verify: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
-        Create a OpsgenieExternalConnection resource with the given unique name, props, and options.
+        Workspace-scoped OpsGenie credentials that downstream notifiers and LogScale actions can reference. Centralizes the OpsGenie API key so it isn't duplicated across individual notifiers; modern equivalent of the per-notifier credentials.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_chronosphere as chronosphere
+
+        opsgenie = chronosphere.OpsgenieExternalConnection("opsgenie",
+            api_key="XXXXX",
+            api_url="https://api.opsgenie.com/",
+            name="OpsGenie")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] api_key: OpsGenie integration API key used to authenticate alert delivery. Treat as a secret.
+        :param pulumi.Input[str] api_url: Base URL of the OpsGenie API. Override to target the EU region or a custom endpoint.
+        :param pulumi.Input[str] basic_auth_password: Password for HTTP basic auth when calling OpsGenie. Treat as a secret.
+        :param pulumi.Input[str] basic_auth_username: Username for HTTP basic auth when calling OpsGenie. Mutually exclusive with `bearer_token`.
+        :param pulumi.Input[str] bearer_token: Bearer token sent in the `Authorization` header when calling OpsGenie. Mutually exclusive with basic auth. Treat as a secret.
+        :param pulumi.Input[str] name: Display name of the external connection.
+        :param pulumi.Input[str] slug: Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[bool] tls_insecure_skip_verify: If true, skip TLS certificate verification when calling OpsGenie. Disable only in trusted environments.
         """
         ...
     @overload
@@ -244,7 +329,20 @@ class OpsgenieExternalConnection(pulumi.CustomResource):
                  args: OpsgenieExternalConnectionArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a OpsgenieExternalConnection resource with the given unique name, props, and options.
+        Workspace-scoped OpsGenie credentials that downstream notifiers and LogScale actions can reference. Centralizes the OpsGenie API key so it isn't duplicated across individual notifiers; modern equivalent of the per-notifier credentials.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_chronosphere as chronosphere
+
+        opsgenie = chronosphere.OpsgenieExternalConnection("opsgenie",
+            api_key="XXXXX",
+            api_url="https://api.opsgenie.com/",
+            name="OpsGenie")
+        ```
+
         :param str resource_name: The name of the resource.
         :param OpsgenieExternalConnectionArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -314,6 +412,14 @@ class OpsgenieExternalConnection(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] api_key: OpsGenie integration API key used to authenticate alert delivery. Treat as a secret.
+        :param pulumi.Input[str] api_url: Base URL of the OpsGenie API. Override to target the EU region or a custom endpoint.
+        :param pulumi.Input[str] basic_auth_password: Password for HTTP basic auth when calling OpsGenie. Treat as a secret.
+        :param pulumi.Input[str] basic_auth_username: Username for HTTP basic auth when calling OpsGenie. Mutually exclusive with `bearer_token`.
+        :param pulumi.Input[str] bearer_token: Bearer token sent in the `Authorization` header when calling OpsGenie. Mutually exclusive with basic auth. Treat as a secret.
+        :param pulumi.Input[str] name: Display name of the external connection.
+        :param pulumi.Input[str] slug: Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[bool] tls_insecure_skip_verify: If true, skip TLS certificate verification when calling OpsGenie. Disable only in trusted environments.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -332,40 +438,64 @@ class OpsgenieExternalConnection(pulumi.CustomResource):
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Output[Optional[str]]:
+        """
+        OpsGenie integration API key used to authenticate alert delivery. Treat as a secret.
+        """
         return pulumi.get(self, "api_key")
 
     @property
     @pulumi.getter(name="apiUrl")
     def api_url(self) -> pulumi.Output[Optional[str]]:
+        """
+        Base URL of the OpsGenie API. Override to target the EU region or a custom endpoint.
+        """
         return pulumi.get(self, "api_url")
 
     @property
     @pulumi.getter(name="basicAuthPassword")
     def basic_auth_password(self) -> pulumi.Output[Optional[str]]:
+        """
+        Password for HTTP basic auth when calling OpsGenie. Treat as a secret.
+        """
         return pulumi.get(self, "basic_auth_password")
 
     @property
     @pulumi.getter(name="basicAuthUsername")
     def basic_auth_username(self) -> pulumi.Output[Optional[str]]:
+        """
+        Username for HTTP basic auth when calling OpsGenie. Mutually exclusive with `bearer_token`.
+        """
         return pulumi.get(self, "basic_auth_username")
 
     @property
     @pulumi.getter(name="bearerToken")
     def bearer_token(self) -> pulumi.Output[Optional[str]]:
+        """
+        Bearer token sent in the `Authorization` header when calling OpsGenie. Mutually exclusive with basic auth. Treat as a secret.
+        """
         return pulumi.get(self, "bearer_token")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        Display name of the external connection.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def slug(self) -> pulumi.Output[str]:
+        """
+        Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @property
     @pulumi.getter(name="tlsInsecureSkipVerify")
     def tls_insecure_skip_verify(self) -> pulumi.Output[Optional[bool]]:
+        """
+        If true, skip TLS certificate verification when calling OpsGenie. Disable only in trusted environments.
+        """
         return pulumi.get(self, "tls_insecure_skip_verify")
 

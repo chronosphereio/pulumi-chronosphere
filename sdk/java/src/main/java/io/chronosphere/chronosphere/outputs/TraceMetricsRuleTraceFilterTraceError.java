@@ -9,9 +9,17 @@ import java.util.Objects;
 
 @CustomType
 public final class TraceMetricsRuleTraceFilterTraceError {
+    /**
+     * @return Boolean value the target field is compared against.
+     * 
+     */
     private Boolean value;
 
     private TraceMetricsRuleTraceFilterTraceError() {}
+    /**
+     * @return Boolean value the target field is compared against.
+     * 
+     */
     public Boolean value() {
         return this.value;
     }

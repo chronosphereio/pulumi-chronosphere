@@ -14,8 +14,17 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class LogIngestConfigPlaintextParserParserKeyValueParser
     {
+        /// <summary>
+        /// String used to split the input into individual key/value pairs.
+        /// </summary>
         public readonly string Delimiter;
+        /// <summary>
+        /// String used to split each pair into a key and value.
+        /// </summary>
         public readonly string PairSeparator;
+        /// <summary>
+        /// Unicode code points to trim from the beginning and end of each key and value.
+        /// </summary>
         public readonly string? TrimSet;
 
         [OutputConstructor]

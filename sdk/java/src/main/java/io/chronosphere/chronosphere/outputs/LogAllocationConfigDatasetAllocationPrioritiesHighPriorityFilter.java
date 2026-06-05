@@ -9,9 +9,17 @@ import java.util.Objects;
 
 @CustomType
 public final class LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilter {
+    /**
+     * @return Log search query that selects matching logs. Supports only top-level operations; nested clauses are not allowed and only one type of `AND` or `OR` operator can be used.
+     * 
+     */
     private String query;
 
     private LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilter() {}
+    /**
+     * @return Log search query that selects matching logs. Supports only top-level operations; nested clauses are not allowed and only one type of `AND` or `OR` operator can be used.
+     * 
+     */
     public String query() {
         return this.query;
     }

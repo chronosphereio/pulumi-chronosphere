@@ -14,21 +14,53 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class LogscaleActionSlackPostMessageAction {
+    /**
+     * @return Slack API token used to authenticate the request.
+     * 
+     */
     private String apiToken;
+    /**
+     * @return List of Slack channels to post the message to.
+     * 
+     */
     private List<String> channels;
+    /**
+     * @return Fields to include in the Slack message. Values support Go template syntax with the query result.
+     * 
+     */
     private @Nullable Map<String,String> fields;
+    /**
+     * @return If `true`, sends the request through the configured outbound proxy.
+     * 
+     */
     private @Nullable Boolean useProxy;
 
     private LogscaleActionSlackPostMessageAction() {}
+    /**
+     * @return Slack API token used to authenticate the request.
+     * 
+     */
     public String apiToken() {
         return this.apiToken;
     }
+    /**
+     * @return List of Slack channels to post the message to.
+     * 
+     */
     public List<String> channels() {
         return this.channels;
     }
+    /**
+     * @return Fields to include in the Slack message. Values support Go template syntax with the query result.
+     * 
+     */
     public Map<String,String> fields() {
         return this.fields == null ? Map.of() : this.fields;
     }
+    /**
+     * @return If `true`, sends the request through the configured outbound proxy.
+     * 
+     */
     public Optional<Boolean> useProxy() {
         return Optional.ofNullable(this.useProxy);
     }

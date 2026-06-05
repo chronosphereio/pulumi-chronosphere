@@ -16,65 +16,137 @@ public final class RecordingRuleArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final RecordingRuleArgs Empty = new RecordingRuleArgs();
 
+    /**
+     * ID of the bucket the recording rule belongs to. At least one of `bucket_id` or `execution_group` must be set; if both are set their values must match.
+     * 
+     */
     @Import(name="bucketId")
     private @Nullable Output<String> bucketId;
 
+    /**
+     * @return ID of the bucket the recording rule belongs to. At least one of `bucket_id` or `execution_group` must be set; if both are set their values must match.
+     * 
+     */
     public Optional<Output<String>> bucketId() {
         return Optional.ofNullable(this.bucketId);
     }
 
+    /**
+     * Slug of the execution group in which the rule is evaluated. Rules in the same group run sequentially at the configured interval; all rules in a group must finish before the next iteration starts. At least one of `bucket_id` or `execution_group` must be set.
+     * 
+     */
     @Import(name="executionGroup")
     private @Nullable Output<String> executionGroup;
 
+    /**
+     * @return Slug of the execution group in which the rule is evaluated. Rules in the same group run sequentially at the configured interval; all rules in a group must finish before the next iteration starts. At least one of `bucket_id` or `execution_group` must be set.
+     * 
+     */
     public Optional<Output<String>> executionGroup() {
         return Optional.ofNullable(this.executionGroup);
     }
 
+    /**
+     * Execution mode controlling whether the recording rule is active.
+     * 
+     */
     @Import(name="executionMode")
     private @Nullable Output<String> executionMode;
 
+    /**
+     * @return Execution mode controlling whether the recording rule is active.
+     * 
+     */
     public Optional<Output<String>> executionMode() {
         return Optional.ofNullable(this.executionMode);
     }
 
+    /**
+     * PromQL expression evaluated at each interval. The result is written to a new series named by `metric_name` (or `name` if unset).
+     * 
+     */
     @Import(name="expr", required=true)
     private Output<String> expr;
 
+    /**
+     * @return PromQL expression evaluated at each interval. The result is written to a new series named by `metric_name` (or `name` if unset).
+     * 
+     */
     public Output<String> expr() {
         return this.expr;
     }
 
+    /**
+     * Evaluation interval (e.g. `30s`, `1m`). Defaults to `60s` when unset.
+     * 
+     */
     @Import(name="interval")
     private @Nullable Output<String> interval;
 
+    /**
+     * @return Evaluation interval (e.g. `30s`, `1m`). Defaults to `60s` when unset.
+     * 
+     */
     public Optional<Output<String>> interval() {
         return Optional.ofNullable(this.interval);
     }
 
+    /**
+     * Key/value labels added to every series produced by this recording rule.
+     * 
+     */
     @Import(name="labels")
     private @Nullable Output<Map<String,String>> labels;
 
+    /**
+     * @return Key/value labels added to every series produced by this recording rule.
+     * 
+     */
     public Optional<Output<Map<String,String>>> labels() {
         return Optional.ofNullable(this.labels);
     }
 
+    /**
+     * Name of the output time series produced by `expr`. Must be a valid metric name. Defaults to `name` if omitted.
+     * 
+     */
     @Import(name="metricName")
     private @Nullable Output<String> metricName;
 
+    /**
+     * @return Name of the output time series produced by `expr`. Must be a valid metric name. Defaults to `name` if omitted.
+     * 
+     */
     public Optional<Output<String>> metricName() {
         return Optional.ofNullable(this.metricName);
     }
 
+    /**
+     * Display name of the recording rule. Can be changed after creation.
+     * 
+     */
     @Import(name="name", required=true)
     private Output<String> name;
 
+    /**
+     * @return Display name of the recording rule. Can be changed after creation.
+     * 
+     */
     public Output<String> name() {
         return this.name;
     }
 
+    /**
+     * Stable identifier for the recording rule. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     @Import(name="slug")
     private @Nullable Output<String> slug;
 
+    /**
+     * @return Stable identifier for the recording rule. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     public Optional<Output<String>> slug() {
         return Optional.ofNullable(this.slug);
     }
@@ -111,83 +183,191 @@ public final class RecordingRuleArgs extends com.pulumi.resources.ResourceArgs {
             $ = new RecordingRuleArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param bucketId ID of the bucket the recording rule belongs to. At least one of `bucket_id` or `execution_group` must be set; if both are set their values must match.
+         * 
+         * @return builder
+         * 
+         */
         public Builder bucketId(@Nullable Output<String> bucketId) {
             $.bucketId = bucketId;
             return this;
         }
 
+        /**
+         * @param bucketId ID of the bucket the recording rule belongs to. At least one of `bucket_id` or `execution_group` must be set; if both are set their values must match.
+         * 
+         * @return builder
+         * 
+         */
         public Builder bucketId(String bucketId) {
             return bucketId(Output.of(bucketId));
         }
 
+        /**
+         * @param executionGroup Slug of the execution group in which the rule is evaluated. Rules in the same group run sequentially at the configured interval; all rules in a group must finish before the next iteration starts. At least one of `bucket_id` or `execution_group` must be set.
+         * 
+         * @return builder
+         * 
+         */
         public Builder executionGroup(@Nullable Output<String> executionGroup) {
             $.executionGroup = executionGroup;
             return this;
         }
 
+        /**
+         * @param executionGroup Slug of the execution group in which the rule is evaluated. Rules in the same group run sequentially at the configured interval; all rules in a group must finish before the next iteration starts. At least one of `bucket_id` or `execution_group` must be set.
+         * 
+         * @return builder
+         * 
+         */
         public Builder executionGroup(String executionGroup) {
             return executionGroup(Output.of(executionGroup));
         }
 
+        /**
+         * @param executionMode Execution mode controlling whether the recording rule is active.
+         * 
+         * @return builder
+         * 
+         */
         public Builder executionMode(@Nullable Output<String> executionMode) {
             $.executionMode = executionMode;
             return this;
         }
 
+        /**
+         * @param executionMode Execution mode controlling whether the recording rule is active.
+         * 
+         * @return builder
+         * 
+         */
         public Builder executionMode(String executionMode) {
             return executionMode(Output.of(executionMode));
         }
 
+        /**
+         * @param expr PromQL expression evaluated at each interval. The result is written to a new series named by `metric_name` (or `name` if unset).
+         * 
+         * @return builder
+         * 
+         */
         public Builder expr(Output<String> expr) {
             $.expr = expr;
             return this;
         }
 
+        /**
+         * @param expr PromQL expression evaluated at each interval. The result is written to a new series named by `metric_name` (or `name` if unset).
+         * 
+         * @return builder
+         * 
+         */
         public Builder expr(String expr) {
             return expr(Output.of(expr));
         }
 
+        /**
+         * @param interval Evaluation interval (e.g. `30s`, `1m`). Defaults to `60s` when unset.
+         * 
+         * @return builder
+         * 
+         */
         public Builder interval(@Nullable Output<String> interval) {
             $.interval = interval;
             return this;
         }
 
+        /**
+         * @param interval Evaluation interval (e.g. `30s`, `1m`). Defaults to `60s` when unset.
+         * 
+         * @return builder
+         * 
+         */
         public Builder interval(String interval) {
             return interval(Output.of(interval));
         }
 
+        /**
+         * @param labels Key/value labels added to every series produced by this recording rule.
+         * 
+         * @return builder
+         * 
+         */
         public Builder labels(@Nullable Output<Map<String,String>> labels) {
             $.labels = labels;
             return this;
         }
 
+        /**
+         * @param labels Key/value labels added to every series produced by this recording rule.
+         * 
+         * @return builder
+         * 
+         */
         public Builder labels(Map<String,String> labels) {
             return labels(Output.of(labels));
         }
 
+        /**
+         * @param metricName Name of the output time series produced by `expr`. Must be a valid metric name. Defaults to `name` if omitted.
+         * 
+         * @return builder
+         * 
+         */
         public Builder metricName(@Nullable Output<String> metricName) {
             $.metricName = metricName;
             return this;
         }
 
+        /**
+         * @param metricName Name of the output time series produced by `expr`. Must be a valid metric name. Defaults to `name` if omitted.
+         * 
+         * @return builder
+         * 
+         */
         public Builder metricName(String metricName) {
             return metricName(Output.of(metricName));
         }
 
+        /**
+         * @param name Display name of the recording rule. Can be changed after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(Output<String> name) {
             $.name = name;
             return this;
         }
 
+        /**
+         * @param name Display name of the recording rule. Can be changed after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(String name) {
             return name(Output.of(name));
         }
 
+        /**
+         * @param slug Stable identifier for the recording rule. Generated from `name` if omitted. Immutable after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slug(@Nullable Output<String> slug) {
             $.slug = slug;
             return this;
         }
 
+        /**
+         * @param slug Stable identifier for the recording rule. Generated from `name` if omitted. Immutable after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slug(String slug) {
             return slug(Output.of(slug));
         }

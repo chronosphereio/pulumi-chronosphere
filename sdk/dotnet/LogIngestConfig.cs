@@ -10,15 +10,27 @@ using Pulumi;
 
 namespace Chronosphere.Pulumi
 {
+    /// <summary>
+    /// Singleton per-tenant parser configuration controlling how raw log payloads are parsed into structured fields and how timestamps, severities, services, and other fields are normalized.
+    /// </summary>
     [PulumiResourceType("chronosphere:index/logIngestConfig:LogIngestConfig")]
     public partial class LogIngestConfig : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Field normalization rules that map and standardize well-known fields (timestamp, severity, message, service) across log formats. Runs after parsing.
+        /// </summary>
         [Output("fieldNormalization")]
         public Output<Outputs.LogIngestConfigFieldNormalization?> FieldNormalization { get; private set; } = null!;
 
+        /// <summary>
+        /// Parsers applied to specific fields within structured logs (or to fields produced by a plaintext parser).
+        /// </summary>
         [Output("fieldParsers")]
         public Output<ImmutableArray<Outputs.LogIngestConfigFieldParser>> FieldParsers { get; private set; } = null!;
 
+        /// <summary>
+        /// Parsers applied to plaintext logs as they enter the ingest pipeline. The first parser that matches a log is used.
+        /// </summary>
         [Output("plaintextParsers")]
         public Output<ImmutableArray<Outputs.LogIngestConfigPlaintextParser>> PlaintextParsers { get; private set; } = null!;
 
@@ -69,11 +81,18 @@ namespace Chronosphere.Pulumi
 
     public sealed class LogIngestConfigArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Field normalization rules that map and standardize well-known fields (timestamp, severity, message, service) across log formats. Runs after parsing.
+        /// </summary>
         [Input("fieldNormalization")]
         public Input<Inputs.LogIngestConfigFieldNormalizationArgs>? FieldNormalization { get; set; }
 
         [Input("fieldParsers")]
         private InputList<Inputs.LogIngestConfigFieldParserArgs>? _fieldParsers;
+
+        /// <summary>
+        /// Parsers applied to specific fields within structured logs (or to fields produced by a plaintext parser).
+        /// </summary>
         public InputList<Inputs.LogIngestConfigFieldParserArgs> FieldParsers
         {
             get => _fieldParsers ?? (_fieldParsers = new InputList<Inputs.LogIngestConfigFieldParserArgs>());
@@ -82,6 +101,10 @@ namespace Chronosphere.Pulumi
 
         [Input("plaintextParsers")]
         private InputList<Inputs.LogIngestConfigPlaintextParserArgs>? _plaintextParsers;
+
+        /// <summary>
+        /// Parsers applied to plaintext logs as they enter the ingest pipeline. The first parser that matches a log is used.
+        /// </summary>
         public InputList<Inputs.LogIngestConfigPlaintextParserArgs> PlaintextParsers
         {
             get => _plaintextParsers ?? (_plaintextParsers = new InputList<Inputs.LogIngestConfigPlaintextParserArgs>());
@@ -96,11 +119,18 @@ namespace Chronosphere.Pulumi
 
     public sealed class LogIngestConfigState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Field normalization rules that map and standardize well-known fields (timestamp, severity, message, service) across log formats. Runs after parsing.
+        /// </summary>
         [Input("fieldNormalization")]
         public Input<Inputs.LogIngestConfigFieldNormalizationGetArgs>? FieldNormalization { get; set; }
 
         [Input("fieldParsers")]
         private InputList<Inputs.LogIngestConfigFieldParserGetArgs>? _fieldParsers;
+
+        /// <summary>
+        /// Parsers applied to specific fields within structured logs (or to fields produced by a plaintext parser).
+        /// </summary>
         public InputList<Inputs.LogIngestConfigFieldParserGetArgs> FieldParsers
         {
             get => _fieldParsers ?? (_fieldParsers = new InputList<Inputs.LogIngestConfigFieldParserGetArgs>());
@@ -109,6 +139,10 @@ namespace Chronosphere.Pulumi
 
         [Input("plaintextParsers")]
         private InputList<Inputs.LogIngestConfigPlaintextParserGetArgs>? _plaintextParsers;
+
+        /// <summary>
+        /// Parsers applied to plaintext logs as they enter the ingest pipeline. The first parser that matches a log is used.
+        /// </summary>
         public InputList<Inputs.LogIngestConfigPlaintextParserGetArgs> PlaintextParsers
         {
             get => _plaintextParsers ?? (_plaintextParsers = new InputList<Inputs.LogIngestConfigPlaintextParserGetArgs>());

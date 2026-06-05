@@ -13,17 +13,41 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class LogControlConfigRuleParseField {
+    /**
+     * @return Path to a field within a log record.
+     * 
+     */
     private @Nullable LogControlConfigRuleParseFieldDestination destination;
+    /**
+     * @return Parser configuration. Exactly one of `regex_parser`, `key_value_parser`, or `grok_parser` must be set, matching `parser_type`.
+     * 
+     */
     private LogControlConfigRuleParseFieldParser parser;
+    /**
+     * @return Path to a field within a log record.
+     * 
+     */
     private @Nullable LogControlConfigRuleParseFieldSource source;
 
     private LogControlConfigRuleParseField() {}
+    /**
+     * @return Path to a field within a log record.
+     * 
+     */
     public Optional<LogControlConfigRuleParseFieldDestination> destination() {
         return Optional.ofNullable(this.destination);
     }
+    /**
+     * @return Parser configuration. Exactly one of `regex_parser`, `key_value_parser`, or `grok_parser` must be set, matching `parser_type`.
+     * 
+     */
     public LogControlConfigRuleParseFieldParser parser() {
         return this.parser;
     }
+    /**
+     * @return Path to a field within a log record.
+     * 
+     */
     public Optional<LogControlConfigRuleParseFieldSource> source() {
         return Optional.ofNullable(this.source);
     }

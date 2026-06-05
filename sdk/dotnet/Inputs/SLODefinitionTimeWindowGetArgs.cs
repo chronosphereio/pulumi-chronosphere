@@ -13,6 +13,9 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class SLODefinitionTimeWindowGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Length of the evaluation window (e.g. `28d`, `24h`).
+        /// </summary>
         [Input("duration", required: true)]
         public Input<string> Duration { get; set; } = null!;
 

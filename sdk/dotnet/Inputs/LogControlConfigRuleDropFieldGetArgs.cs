@@ -13,9 +13,15 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class LogControlConfigRuleDropFieldGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Regular expression that selects which fields to drop.
+        /// </summary>
         [Input("fieldRegex")]
         public Input<string>? FieldRegex { get; set; }
 
+        /// <summary>
+        /// Path to a field within a log record.
+        /// </summary>
         [Input("parentPath")]
         public Input<Inputs.LogControlConfigRuleDropFieldParentPathGetArgs>? ParentPath { get; set; }
 

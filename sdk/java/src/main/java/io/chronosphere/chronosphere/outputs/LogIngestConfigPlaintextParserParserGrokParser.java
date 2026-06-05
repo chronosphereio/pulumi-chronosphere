@@ -9,9 +9,17 @@ import java.util.Objects;
 
 @CustomType
 public final class LogIngestConfigPlaintextParserParserGrokParser {
+    /**
+     * @return Grok pattern to apply. Named capture groups become named fields in the extracted log.
+     * 
+     */
     private String pattern;
 
     private LogIngestConfigPlaintextParserParserGrokParser() {}
+    /**
+     * @return Grok pattern to apply. Named capture groups become named fields in the extracted log.
+     * 
+     */
     public String pattern() {
         return this.pattern;
     }

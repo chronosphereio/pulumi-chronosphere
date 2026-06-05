@@ -17,28 +17,54 @@ public final class MappingRuleState extends com.pulumi.resources.ResourceArgs {
 
     public static final MappingRuleState Empty = new MappingRuleState();
 
+    /**
+     * Aggregation type applied to matching metrics. Cannot be set if `drop` is `true`.
+     * 
+     */
     @Import(name="aggregations")
     private @Nullable Output<String> aggregations;
 
+    /**
+     * @return Aggregation type applied to matching metrics. Cannot be set if `drop` is `true`.
+     * 
+     */
     public Optional<Output<String>> aggregations() {
         return Optional.ofNullable(this.aggregations);
     }
 
+    /**
+     * ID of the bucket the mapping rule belongs to.
+     * 
+     */
     @Import(name="bucketId")
     private @Nullable Output<String> bucketId;
 
+    /**
+     * @return ID of the bucket the mapping rule belongs to.
+     * 
+     */
     public Optional<Output<String>> bucketId() {
         return Optional.ofNullable(this.bucketId);
     }
 
+    /**
+     * If `true`, drops the matching metrics instead of aggregating them. Cannot be set together with `aggregations`. Defaults to `false`.
+     * 
+     */
     @Import(name="drop")
     private @Nullable Output<Boolean> drop;
 
+    /**
+     * @return If `true`, drops the matching metrics instead of aggregating them. Cannot be set together with `aggregations`. Defaults to `false`.
+     * 
+     */
     public Optional<Output<Boolean>> drop() {
         return Optional.ofNullable(this.drop);
     }
 
     /**
+     * Deprecated: no longer supported.
+     * 
      * @deprecated
      * drop timestamp is no longer supported
      * 
@@ -48,6 +74,8 @@ public final class MappingRuleState extends com.pulumi.resources.ResourceArgs {
     private @Nullable Output<Boolean> dropTimestamp;
 
     /**
+     * @return Deprecated: no longer supported.
+     * 
      * @deprecated
      * drop timestamp is no longer supported
      * 
@@ -57,42 +85,84 @@ public final class MappingRuleState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.dropTimestamp);
     }
 
+    /**
+     * Space-delimited list of `label=value_glob` matchers that select the metrics this rule applies to. A metric must match every filter to be considered.
+     * 
+     */
     @Import(name="filter")
     private @Nullable Output<String> filter;
 
+    /**
+     * @return Space-delimited list of `label=value_glob` matchers that select the metrics this rule applies to. A metric must match every filter to be considered.
+     * 
+     */
     public Optional<Output<String>> filter() {
         return Optional.ofNullable(this.filter);
     }
 
+    /**
+     * Interval between aggregated data points produced by this mapping rule. Defaults to a server-side value when unset. Conflicts with `storage_policy`.
+     * 
+     */
     @Import(name="interval")
     private @Nullable Output<String> interval;
 
+    /**
+     * @return Interval between aggregated data points produced by this mapping rule. Defaults to a server-side value when unset. Conflicts with `storage_policy`.
+     * 
+     */
     public Optional<Output<String>> interval() {
         return Optional.ofNullable(this.interval);
     }
 
+    /**
+     * Mapping rule mode controlling whether it is active or in a preview state.
+     * 
+     */
     @Import(name="mode")
     private @Nullable Output<String> mode;
 
+    /**
+     * @return Mapping rule mode controlling whether it is active or in a preview state.
+     * 
+     */
     public Optional<Output<String>> mode() {
         return Optional.ofNullable(this.mode);
     }
 
+    /**
+     * Display name of the mapping rule. Can be changed after creation.
+     * 
+     */
     @Import(name="name")
     private @Nullable Output<String> name;
 
+    /**
+     * @return Display name of the mapping rule. Can be changed after creation.
+     * 
+     */
     public Optional<Output<String>> name() {
         return Optional.ofNullable(this.name);
     }
 
+    /**
+     * Stable identifier for the mapping rule. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     @Import(name="slug")
     private @Nullable Output<String> slug;
 
+    /**
+     * @return Stable identifier for the mapping rule. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     public Optional<Output<String>> slug() {
         return Optional.ofNullable(this.slug);
     }
 
     /**
+     * Storage policy controlling resolution and retention of mapped metrics. Deprecated: use `interval` instead.
+     * 
      * @deprecated
      * use `interval` instead
      * 
@@ -102,6 +172,8 @@ public final class MappingRuleState extends com.pulumi.resources.ResourceArgs {
     private @Nullable Output<MappingRuleStoragePolicyArgs> storagePolicy;
 
     /**
+     * @return Storage policy controlling resolution and retention of mapped metrics. Deprecated: use `interval` instead.
+     * 
      * @deprecated
      * use `interval` instead
      * 
@@ -144,34 +216,72 @@ public final class MappingRuleState extends com.pulumi.resources.ResourceArgs {
             $ = new MappingRuleState(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param aggregations Aggregation type applied to matching metrics. Cannot be set if `drop` is `true`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder aggregations(@Nullable Output<String> aggregations) {
             $.aggregations = aggregations;
             return this;
         }
 
+        /**
+         * @param aggregations Aggregation type applied to matching metrics. Cannot be set if `drop` is `true`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder aggregations(String aggregations) {
             return aggregations(Output.of(aggregations));
         }
 
+        /**
+         * @param bucketId ID of the bucket the mapping rule belongs to.
+         * 
+         * @return builder
+         * 
+         */
         public Builder bucketId(@Nullable Output<String> bucketId) {
             $.bucketId = bucketId;
             return this;
         }
 
+        /**
+         * @param bucketId ID of the bucket the mapping rule belongs to.
+         * 
+         * @return builder
+         * 
+         */
         public Builder bucketId(String bucketId) {
             return bucketId(Output.of(bucketId));
         }
 
+        /**
+         * @param drop If `true`, drops the matching metrics instead of aggregating them. Cannot be set together with `aggregations`. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder drop(@Nullable Output<Boolean> drop) {
             $.drop = drop;
             return this;
         }
 
+        /**
+         * @param drop If `true`, drops the matching metrics instead of aggregating them. Cannot be set together with `aggregations`. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder drop(Boolean drop) {
             return drop(Output.of(drop));
         }
 
         /**
+         * @param dropTimestamp Deprecated: no longer supported.
+         * 
          * @return builder
          * 
          * @deprecated
@@ -185,6 +295,8 @@ public final class MappingRuleState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
+         * @param dropTimestamp Deprecated: no longer supported.
+         * 
          * @return builder
          * 
          * @deprecated
@@ -196,52 +308,114 @@ public final class MappingRuleState extends com.pulumi.resources.ResourceArgs {
             return dropTimestamp(Output.of(dropTimestamp));
         }
 
+        /**
+         * @param filter Space-delimited list of `label=value_glob` matchers that select the metrics this rule applies to. A metric must match every filter to be considered.
+         * 
+         * @return builder
+         * 
+         */
         public Builder filter(@Nullable Output<String> filter) {
             $.filter = filter;
             return this;
         }
 
+        /**
+         * @param filter Space-delimited list of `label=value_glob` matchers that select the metrics this rule applies to. A metric must match every filter to be considered.
+         * 
+         * @return builder
+         * 
+         */
         public Builder filter(String filter) {
             return filter(Output.of(filter));
         }
 
+        /**
+         * @param interval Interval between aggregated data points produced by this mapping rule. Defaults to a server-side value when unset. Conflicts with `storage_policy`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder interval(@Nullable Output<String> interval) {
             $.interval = interval;
             return this;
         }
 
+        /**
+         * @param interval Interval between aggregated data points produced by this mapping rule. Defaults to a server-side value when unset. Conflicts with `storage_policy`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder interval(String interval) {
             return interval(Output.of(interval));
         }
 
+        /**
+         * @param mode Mapping rule mode controlling whether it is active or in a preview state.
+         * 
+         * @return builder
+         * 
+         */
         public Builder mode(@Nullable Output<String> mode) {
             $.mode = mode;
             return this;
         }
 
+        /**
+         * @param mode Mapping rule mode controlling whether it is active or in a preview state.
+         * 
+         * @return builder
+         * 
+         */
         public Builder mode(String mode) {
             return mode(Output.of(mode));
         }
 
+        /**
+         * @param name Display name of the mapping rule. Can be changed after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(@Nullable Output<String> name) {
             $.name = name;
             return this;
         }
 
+        /**
+         * @param name Display name of the mapping rule. Can be changed after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(String name) {
             return name(Output.of(name));
         }
 
+        /**
+         * @param slug Stable identifier for the mapping rule. Generated from `name` if omitted. Immutable after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slug(@Nullable Output<String> slug) {
             $.slug = slug;
             return this;
         }
 
+        /**
+         * @param slug Stable identifier for the mapping rule. Generated from `name` if omitted. Immutable after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slug(String slug) {
             return slug(Output.of(slug));
         }
 
         /**
+         * @param storagePolicy Storage policy controlling resolution and retention of mapped metrics. Deprecated: use `interval` instead.
+         * 
          * @return builder
          * 
          * @deprecated
@@ -255,6 +429,8 @@ public final class MappingRuleState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
+         * @param storagePolicy Storage policy controlling resolution and retention of mapped metrics. Deprecated: use `interval` instead.
+         * 
          * @return builder
          * 
          * @deprecated

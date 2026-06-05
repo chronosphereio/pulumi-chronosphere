@@ -14,7 +14,13 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class PagerdutyAlertNotifierLink
     {
+        /// <summary>
+        /// URL the link points to.
+        /// </summary>
         public readonly string Href;
+        /// <summary>
+        /// Display text for the link.
+        /// </summary>
         public readonly string? Text;
 
         [OutputConstructor]

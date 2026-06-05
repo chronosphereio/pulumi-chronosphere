@@ -14,6 +14,9 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class DerivedLabelMetricLabelConstructedLabel
     {
+        /// <summary>
+        /// Ordered list of value definitions. The first definition whose filters match produces the derived label value.
+        /// </summary>
         public readonly ImmutableArray<Outputs.DerivedLabelMetricLabelConstructedLabelValueDefinition> ValueDefinitions;
 
         [OutputConstructor]

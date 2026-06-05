@@ -14,8 +14,17 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class MonitorQuery
     {
+        /// <summary>
+        /// Graphite expression evaluated by the monitor.
+        /// </summary>
         public readonly string? GraphiteExpr;
+        /// <summary>
+        /// Log query expression evaluated by the monitor.
+        /// </summary>
         public readonly string? LoggingExpr;
+        /// <summary>
+        /// PromQL expression evaluated by the monitor.
+        /// </summary>
         public readonly string? PrometheusExpr;
 
         [OutputConstructor]

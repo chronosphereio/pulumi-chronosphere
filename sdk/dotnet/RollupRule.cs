@@ -10,57 +10,153 @@ using Pulumi;
 
 namespace Chronosphere.Pulumi
 {
+    /// <summary>
+    /// Aggregates matching input metrics into a lower-cardinality output series at ingest time, reducing storage cost and query load. Selects input series by filter, applies an aggregation function (e.g. `sum`, `max`), and emits a new metric grouped by the specified labels.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Pulumi = Chronosphere.Pulumi;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var bucket = new Pulumi.Bucket("bucket", new()
+    ///     {
+    ///         Name = "Platform",
+    ///     });
+    /// 
+    ///     var rollupRule = new Pulumi.RollupRule("rollupRule", new()
+    ///     {
+    ///         Name = "RollupRule",
+    ///         Slug = "rollup-rule",
+    ///         BucketId = bucket.Id,
+    ///         Filter = "__name__:metric_name",
+    ///         Aggregation = "SUM",
+    ///         DropRaw = true,
+    ///         GroupBies = new[]
+    ///         {
+    ///             "service",
+    ///         },
+    ///         MetricType = "COUNTER",
+    ///         MetricTypeTag = false,
+    ///         NewMetric = "new_metric_name",
+    ///         Permissive = true,
+    ///         StoragePolicies = new Pulumi.Inputs.RollupRuleStoragePoliciesArgs
+    ///         {
+    ///             Resolution = "30s",
+    ///             Retention = "120h",
+    ///         },
+    ///         Mode = "PREVIEW",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// </summary>
     [PulumiResourceType("chronosphere:index/rollupRule:RollupRule")]
     public partial class RollupRule : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Aggregation function applied across grouped series (e.g. `sum`, `min`, `max`, `last`).
+        /// </summary>
         [Output("aggregation")]
         public Output<string?> Aggregation { get; private set; } = null!;
 
+        /// <summary>
+        /// ID of the bucket the rollup rule belongs to.
+        /// </summary>
         [Output("bucketId")]
         public Output<string?> BucketId { get; private set; } = null!;
 
+        /// <summary>
+        /// If `true`, automatically generates a drop rule that removes the raw input metrics matching this rollup. Defaults to `false`.
+        /// </summary>
         [Output("dropRaw")]
         public Output<bool?> DropRaw { get; private set; } = null!;
 
+        /// <summary>
+        /// Labels to drop when aggregating; all other labels are preserved. Mutually exclusive with `group_by`.
+        /// </summary>
         [Output("excludeBies")]
         public Output<ImmutableArray<string>> ExcludeBies { get; private set; } = null!;
 
+        /// <summary>
+        /// Space-delimited list of `label:value_glob` matchers that select the input series. Supports glob patterns and special filters like `__name__`, `__metric_type__`, and `__metric_source__`.
+        /// </summary>
         [Output("filter")]
         public Output<string> Filter { get; private set; } = null!;
 
+        /// <summary>
+        /// Graphite-specific label policy applied to positional labels (`__gX__`) on the output metric.
+        /// </summary>
         [Output("graphiteLabelPolicy")]
         public Output<Outputs.RollupRuleGraphiteLabelPolicy?> GraphiteLabelPolicy { get; private set; } = null!;
 
+        /// <summary>
+        /// Labels to preserve when aggregating; all other labels are dropped. Mutually exclusive with `exclude_by`.
+        /// </summary>
         [Output("groupBies")]
         public Output<ImmutableArray<string>> GroupBies { get; private set; } = null!;
 
+        /// <summary>
+        /// Interval between aggregated data points produced by the rollup. Defaults to a server-side value when unset. Conflicts with `storage_policies`.
+        /// </summary>
         [Output("interval")]
         public Output<string> Interval { get; private set; } = null!;
 
+        /// <summary>
+        /// Type of the source metric being rolled up (e.g. `gauge`, `counter`, `histogram`).
+        /// </summary>
         [Output("metricType")]
         public Output<string> MetricType { get; private set; } = null!;
 
+        /// <summary>
+        /// Whether to add a `__rollup_type__` label to the output metric identifying the rollup type. Defaults to `false`.
+        /// </summary>
         [Output("metricTypeTag")]
         public Output<bool?> MetricTypeTag { get; private set; } = null!;
 
+        /// <summary>
+        /// Rollup mode controlling whether the rule is active or in a preview state.
+        /// </summary>
         [Output("mode")]
         public Output<string?> Mode { get; private set; } = null!;
 
+        /// <summary>
+        /// Positional Graphite label to replace (e.g. `__g1__`).
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// Name of the output metric produced by the rollup. Supports the `{{.MetricName}}` template variable to reference the source metric name. Optional for Graphite rollup rules.
+        /// </summary>
         [Output("newMetric")]
         public Output<string?> NewMetric { get; private set; } = null!;
 
+        /// <summary>
+        /// Deprecated: no longer supported.
+        /// </summary>
         [Output("permissive")]
         public Output<bool?> Permissive { get; private set; } = null!;
 
+        /// <summary>
+        /// If `true`, this rule is skipped when another rollup rule already produces a metric with the same output name. Defaults to `false`.
+        /// </summary>
         [Output("skipOnConflict")]
         public Output<bool?> SkipOnConflict { get; private set; } = null!;
 
+        /// <summary>
+        /// Stable identifier for the rollup rule. Immutable after creation. Unlike most resources, the slug is required and is not auto-generated from `name`.
+        /// </summary>
         [Output("slug")]
         public Output<string> Slug { get; private set; } = null!;
 
+        /// <summary>
+        /// Storage policy controlling resolution and retention of rolled-up metrics. Deprecated: use `interval` instead.
+        /// </summary>
         [Output("storagePolicies")]
         public Output<Outputs.RollupRuleStoragePolicies?> StoragePolicies { get; private set; } = null!;
 
@@ -111,64 +207,117 @@ namespace Chronosphere.Pulumi
 
     public sealed class RollupRuleArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Aggregation function applied across grouped series (e.g. `sum`, `min`, `max`, `last`).
+        /// </summary>
         [Input("aggregation")]
         public Input<string>? Aggregation { get; set; }
 
+        /// <summary>
+        /// ID of the bucket the rollup rule belongs to.
+        /// </summary>
         [Input("bucketId")]
         public Input<string>? BucketId { get; set; }
 
+        /// <summary>
+        /// If `true`, automatically generates a drop rule that removes the raw input metrics matching this rollup. Defaults to `false`.
+        /// </summary>
         [Input("dropRaw")]
         public Input<bool>? DropRaw { get; set; }
 
         [Input("excludeBies")]
         private InputList<string>? _excludeBies;
+
+        /// <summary>
+        /// Labels to drop when aggregating; all other labels are preserved. Mutually exclusive with `group_by`.
+        /// </summary>
         public InputList<string> ExcludeBies
         {
             get => _excludeBies ?? (_excludeBies = new InputList<string>());
             set => _excludeBies = value;
         }
 
+        /// <summary>
+        /// Space-delimited list of `label:value_glob` matchers that select the input series. Supports glob patterns and special filters like `__name__`, `__metric_type__`, and `__metric_source__`.
+        /// </summary>
         [Input("filter", required: true)]
         public Input<string> Filter { get; set; } = null!;
 
+        /// <summary>
+        /// Graphite-specific label policy applied to positional labels (`__gX__`) on the output metric.
+        /// </summary>
         [Input("graphiteLabelPolicy")]
         public Input<Inputs.RollupRuleGraphiteLabelPolicyArgs>? GraphiteLabelPolicy { get; set; }
 
         [Input("groupBies")]
         private InputList<string>? _groupBies;
+
+        /// <summary>
+        /// Labels to preserve when aggregating; all other labels are dropped. Mutually exclusive with `exclude_by`.
+        /// </summary>
         public InputList<string> GroupBies
         {
             get => _groupBies ?? (_groupBies = new InputList<string>());
             set => _groupBies = value;
         }
 
+        /// <summary>
+        /// Interval between aggregated data points produced by the rollup. Defaults to a server-side value when unset. Conflicts with `storage_policies`.
+        /// </summary>
         [Input("interval")]
         public Input<string>? Interval { get; set; }
 
+        /// <summary>
+        /// Type of the source metric being rolled up (e.g. `gauge`, `counter`, `histogram`).
+        /// </summary>
         [Input("metricType", required: true)]
         public Input<string> MetricType { get; set; } = null!;
 
+        /// <summary>
+        /// Whether to add a `__rollup_type__` label to the output metric identifying the rollup type. Defaults to `false`.
+        /// </summary>
         [Input("metricTypeTag")]
         public Input<bool>? MetricTypeTag { get; set; }
 
+        /// <summary>
+        /// Rollup mode controlling whether the rule is active or in a preview state.
+        /// </summary>
         [Input("mode")]
         public Input<string>? Mode { get; set; }
 
+        /// <summary>
+        /// Positional Graphite label to replace (e.g. `__g1__`).
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// Name of the output metric produced by the rollup. Supports the `{{.MetricName}}` template variable to reference the source metric name. Optional for Graphite rollup rules.
+        /// </summary>
         [Input("newMetric")]
         public Input<string>? NewMetric { get; set; }
 
+        /// <summary>
+        /// Deprecated: no longer supported.
+        /// </summary>
         [Input("permissive")]
         public Input<bool>? Permissive { get; set; }
 
+        /// <summary>
+        /// If `true`, this rule is skipped when another rollup rule already produces a metric with the same output name. Defaults to `false`.
+        /// </summary>
         [Input("skipOnConflict")]
         public Input<bool>? SkipOnConflict { get; set; }
 
+        /// <summary>
+        /// Stable identifier for the rollup rule. Immutable after creation. Unlike most resources, the slug is required and is not auto-generated from `name`.
+        /// </summary>
         [Input("slug", required: true)]
         public Input<string> Slug { get; set; } = null!;
 
+        /// <summary>
+        /// Storage policy controlling resolution and retention of rolled-up metrics. Deprecated: use `interval` instead.
+        /// </summary>
         [Input("storagePolicies")]
         public Input<Inputs.RollupRuleStoragePoliciesArgs>? StoragePolicies { get; set; }
 
@@ -180,64 +329,117 @@ namespace Chronosphere.Pulumi
 
     public sealed class RollupRuleState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Aggregation function applied across grouped series (e.g. `sum`, `min`, `max`, `last`).
+        /// </summary>
         [Input("aggregation")]
         public Input<string>? Aggregation { get; set; }
 
+        /// <summary>
+        /// ID of the bucket the rollup rule belongs to.
+        /// </summary>
         [Input("bucketId")]
         public Input<string>? BucketId { get; set; }
 
+        /// <summary>
+        /// If `true`, automatically generates a drop rule that removes the raw input metrics matching this rollup. Defaults to `false`.
+        /// </summary>
         [Input("dropRaw")]
         public Input<bool>? DropRaw { get; set; }
 
         [Input("excludeBies")]
         private InputList<string>? _excludeBies;
+
+        /// <summary>
+        /// Labels to drop when aggregating; all other labels are preserved. Mutually exclusive with `group_by`.
+        /// </summary>
         public InputList<string> ExcludeBies
         {
             get => _excludeBies ?? (_excludeBies = new InputList<string>());
             set => _excludeBies = value;
         }
 
+        /// <summary>
+        /// Space-delimited list of `label:value_glob` matchers that select the input series. Supports glob patterns and special filters like `__name__`, `__metric_type__`, and `__metric_source__`.
+        /// </summary>
         [Input("filter")]
         public Input<string>? Filter { get; set; }
 
+        /// <summary>
+        /// Graphite-specific label policy applied to positional labels (`__gX__`) on the output metric.
+        /// </summary>
         [Input("graphiteLabelPolicy")]
         public Input<Inputs.RollupRuleGraphiteLabelPolicyGetArgs>? GraphiteLabelPolicy { get; set; }
 
         [Input("groupBies")]
         private InputList<string>? _groupBies;
+
+        /// <summary>
+        /// Labels to preserve when aggregating; all other labels are dropped. Mutually exclusive with `exclude_by`.
+        /// </summary>
         public InputList<string> GroupBies
         {
             get => _groupBies ?? (_groupBies = new InputList<string>());
             set => _groupBies = value;
         }
 
+        /// <summary>
+        /// Interval between aggregated data points produced by the rollup. Defaults to a server-side value when unset. Conflicts with `storage_policies`.
+        /// </summary>
         [Input("interval")]
         public Input<string>? Interval { get; set; }
 
+        /// <summary>
+        /// Type of the source metric being rolled up (e.g. `gauge`, `counter`, `histogram`).
+        /// </summary>
         [Input("metricType")]
         public Input<string>? MetricType { get; set; }
 
+        /// <summary>
+        /// Whether to add a `__rollup_type__` label to the output metric identifying the rollup type. Defaults to `false`.
+        /// </summary>
         [Input("metricTypeTag")]
         public Input<bool>? MetricTypeTag { get; set; }
 
+        /// <summary>
+        /// Rollup mode controlling whether the rule is active or in a preview state.
+        /// </summary>
         [Input("mode")]
         public Input<string>? Mode { get; set; }
 
+        /// <summary>
+        /// Positional Graphite label to replace (e.g. `__g1__`).
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// Name of the output metric produced by the rollup. Supports the `{{.MetricName}}` template variable to reference the source metric name. Optional for Graphite rollup rules.
+        /// </summary>
         [Input("newMetric")]
         public Input<string>? NewMetric { get; set; }
 
+        /// <summary>
+        /// Deprecated: no longer supported.
+        /// </summary>
         [Input("permissive")]
         public Input<bool>? Permissive { get; set; }
 
+        /// <summary>
+        /// If `true`, this rule is skipped when another rollup rule already produces a metric with the same output name. Defaults to `false`.
+        /// </summary>
         [Input("skipOnConflict")]
         public Input<bool>? SkipOnConflict { get; set; }
 
+        /// <summary>
+        /// Stable identifier for the rollup rule. Immutable after creation. Unlike most resources, the slug is required and is not auto-generated from `name`.
+        /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 
+        /// <summary>
+        /// Storage policy controlling resolution and retention of rolled-up metrics. Deprecated: use `interval` instead.
+        /// </summary>
         [Input("storagePolicies")]
         public Input<Inputs.RollupRuleStoragePoliciesGetArgs>? StoragePolicies { get; set; }
 

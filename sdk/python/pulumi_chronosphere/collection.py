@@ -21,6 +21,11 @@ class CollectionArgs:
                  team_id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Collection resource.
+        :param pulumi.Input[str] name: Display name of the collection. Can be changed after creation.
+        :param pulumi.Input[str] description: Free-form description of the collection.
+        :param pulumi.Input[str] notification_policy_id: ID of the default notification policy applied to monitors in this collection that do not explicitly reference one. Monitors that set their own `notification_policy_id` are not overridden.
+        :param pulumi.Input[str] slug: Stable identifier for the collection. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[str] team_id: ID of the team that owns this collection.
         """
         pulumi.set(__self__, "name", name)
         if description is not None:
@@ -35,6 +40,9 @@ class CollectionArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        Display name of the collection. Can be changed after creation.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -44,6 +52,9 @@ class CollectionArgs:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Free-form description of the collection.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -53,6 +64,9 @@ class CollectionArgs:
     @property
     @pulumi.getter(name="notificationPolicyId")
     def notification_policy_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the default notification policy applied to monitors in this collection that do not explicitly reference one. Monitors that set their own `notification_policy_id` are not overridden.
+        """
         return pulumi.get(self, "notification_policy_id")
 
     @notification_policy_id.setter
@@ -62,6 +76,9 @@ class CollectionArgs:
     @property
     @pulumi.getter
     def slug(self) -> Optional[pulumi.Input[str]]:
+        """
+        Stable identifier for the collection. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @slug.setter
@@ -71,6 +88,9 @@ class CollectionArgs:
     @property
     @pulumi.getter(name="teamId")
     def team_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the team that owns this collection.
+        """
         return pulumi.get(self, "team_id")
 
     @team_id.setter
@@ -88,6 +108,11 @@ class _CollectionState:
                  team_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Collection resources.
+        :param pulumi.Input[str] description: Free-form description of the collection.
+        :param pulumi.Input[str] name: Display name of the collection. Can be changed after creation.
+        :param pulumi.Input[str] notification_policy_id: ID of the default notification policy applied to monitors in this collection that do not explicitly reference one. Monitors that set their own `notification_policy_id` are not overridden.
+        :param pulumi.Input[str] slug: Stable identifier for the collection. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[str] team_id: ID of the team that owns this collection.
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -103,6 +128,9 @@ class _CollectionState:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Free-form description of the collection.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -112,6 +140,9 @@ class _CollectionState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Display name of the collection. Can be changed after creation.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -121,6 +152,9 @@ class _CollectionState:
     @property
     @pulumi.getter(name="notificationPolicyId")
     def notification_policy_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the default notification policy applied to monitors in this collection that do not explicitly reference one. Monitors that set their own `notification_policy_id` are not overridden.
+        """
         return pulumi.get(self, "notification_policy_id")
 
     @notification_policy_id.setter
@@ -130,6 +164,9 @@ class _CollectionState:
     @property
     @pulumi.getter
     def slug(self) -> Optional[pulumi.Input[str]]:
+        """
+        Stable identifier for the collection. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @slug.setter
@@ -139,6 +176,9 @@ class _CollectionState:
     @property
     @pulumi.getter(name="teamId")
     def team_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the team that owns this collection.
+        """
         return pulumi.get(self, "team_id")
 
     @team_id.setter
@@ -158,9 +198,26 @@ class Collection(pulumi.CustomResource):
                  team_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a Collection resource with the given unique name, props, and options.
+        A logical grouping of monitors, dashboards, SLOs, and other resources, typically aligned with a team or system. Provides a default notification policy for contained monitors and SLOs that do not explicitly reference one.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_chronosphere as chronosphere
+
+        infra = chronosphere.Collection("infra",
+            description="Collection of resources related to infrastructure services.",
+            name="Infrastructure Collection")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] description: Free-form description of the collection.
+        :param pulumi.Input[str] name: Display name of the collection. Can be changed after creation.
+        :param pulumi.Input[str] notification_policy_id: ID of the default notification policy applied to monitors in this collection that do not explicitly reference one. Monitors that set their own `notification_policy_id` are not overridden.
+        :param pulumi.Input[str] slug: Stable identifier for the collection. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[str] team_id: ID of the team that owns this collection.
         """
         ...
     @overload
@@ -169,7 +226,19 @@ class Collection(pulumi.CustomResource):
                  args: CollectionArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a Collection resource with the given unique name, props, and options.
+        A logical grouping of monitors, dashboards, SLOs, and other resources, typically aligned with a team or system. Provides a default notification policy for contained monitors and SLOs that do not explicitly reference one.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_chronosphere as chronosphere
+
+        infra = chronosphere.Collection("infra",
+            description="Collection of resources related to infrastructure services.",
+            name="Infrastructure Collection")
+        ```
+
         :param str resource_name: The name of the resource.
         :param CollectionArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -228,6 +297,11 @@ class Collection(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] description: Free-form description of the collection.
+        :param pulumi.Input[str] name: Display name of the collection. Can be changed after creation.
+        :param pulumi.Input[str] notification_policy_id: ID of the default notification policy applied to monitors in this collection that do not explicitly reference one. Monitors that set their own `notification_policy_id` are not overridden.
+        :param pulumi.Input[str] slug: Stable identifier for the collection. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[str] team_id: ID of the team that owns this collection.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -243,25 +317,40 @@ class Collection(pulumi.CustomResource):
     @property
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
+        """
+        Free-form description of the collection.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        Display name of the collection. Can be changed after creation.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="notificationPolicyId")
     def notification_policy_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        ID of the default notification policy applied to monitors in this collection that do not explicitly reference one. Monitors that set their own `notification_policy_id` are not overridden.
+        """
         return pulumi.get(self, "notification_policy_id")
 
     @property
     @pulumi.getter
     def slug(self) -> pulumi.Output[str]:
+        """
+        Stable identifier for the collection. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @property
     @pulumi.getter(name="teamId")
     def team_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        ID of the team that owns this collection.
+        """
         return pulumi.get(self, "team_id")
 

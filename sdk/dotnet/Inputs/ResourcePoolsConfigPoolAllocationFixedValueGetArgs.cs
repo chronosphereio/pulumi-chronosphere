@@ -13,9 +13,15 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class ResourcePoolsConfigPoolAllocationFixedValueGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// License this fixed-value allocation applies to (e.g. `PERSISTED_WRITES`).
+        /// </summary>
         [Input("license", required: true)]
         public Input<string> License { get; set; } = null!;
 
+        /// <summary>
+        /// Fixed amount of the license to allocate, in the license's native unit.
+        /// </summary>
         [Input("value", required: true)]
         public Input<int> Value { get; set; } = null!;
 

@@ -12,13 +12,29 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class LogControlConfigRuleEmitMetricsLabel {
+    /**
+     * @return Prometheus label name to set on the emitted metric.
+     * 
+     */
     private @Nullable String key;
+    /**
+     * @return Path to a field within a log record.
+     * 
+     */
     private @Nullable LogControlConfigRuleEmitMetricsLabelValue value;
 
     private LogControlConfigRuleEmitMetricsLabel() {}
+    /**
+     * @return Prometheus label name to set on the emitted metric.
+     * 
+     */
     public Optional<String> key() {
         return Optional.ofNullable(this.key);
     }
+    /**
+     * @return Path to a field within a log record.
+     * 
+     */
     public Optional<LogControlConfigRuleEmitMetricsLabelValue> value() {
         return Optional.ofNullable(this.value);
     }

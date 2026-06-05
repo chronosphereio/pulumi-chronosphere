@@ -14,7 +14,13 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class TraceMetricsRuleGroupByKey
     {
+        /// <summary>
+        /// Name of the span tag when `type` requires one (for example `TAG`). Ignored for fixed-key types.
+        /// </summary>
         public readonly string? NamedKey;
+        /// <summary>
+        /// Category of span attribute to group by (for example a well-known field such as `SERVICE` or `OPERATION`, or a generic span `TAG`).
+        /// </summary>
         public readonly string Type;
 
         [OutputConstructor]

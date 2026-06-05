@@ -14,8 +14,17 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class LogscaleActionVictorOpsAction
     {
+        /// <summary>
+        /// Type of the VictorOps message to send (for example, `CRITICAL`, `WARNING`, `INFO`).
+        /// </summary>
         public readonly string MessageType;
+        /// <summary>
+        /// VictorOps webhook URL to send the request to.
+        /// </summary>
         public readonly string NotifyUrl;
+        /// <summary>
+        /// If `true`, sends the request through the configured outbound proxy.
+        /// </summary>
         public readonly bool? UseProxy;
 
         [OutputConstructor]

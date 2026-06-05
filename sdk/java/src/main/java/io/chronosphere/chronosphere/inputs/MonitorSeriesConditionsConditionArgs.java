@@ -17,44 +17,92 @@ public final class MonitorSeriesConditionsConditionArgs extends com.pulumi.resou
 
     public static final MonitorSeriesConditionsConditionArgs Empty = new MonitorSeriesConditionsConditionArgs();
 
+    /**
+     * Comparison operator between the query value and `value` (e.g. `gt`, `lt`, `eq`).
+     * 
+     */
     @Import(name="op", required=true)
     private Output<String> op;
 
+    /**
+     * @return Comparison operator between the query value and `value` (e.g. `gt`, `lt`, `eq`).
+     * 
+     */
     public Output<String> op() {
         return this.op;
     }
 
+    /**
+     * Duration the condition must remain false continuously before an active signal resolves.
+     * 
+     */
     @Import(name="resolveSustain")
     private @Nullable Output<String> resolveSustain;
 
+    /**
+     * @return Duration the condition must remain false continuously before an active signal resolves.
+     * 
+     */
     public Optional<Output<String>> resolveSustain() {
         return Optional.ofNullable(this.resolveSustain);
     }
 
+    /**
+     * Optional separate threshold used for resolution, enabling hysteresis (e.g. fire at &gt;90, resolve at \n\n).
+     * 
+     */
     @Import(name="resolveValue")
     private @Nullable Output<MonitorSeriesConditionsConditionResolveValueArgs> resolveValue;
 
+    /**
+     * @return Optional separate threshold used for resolution, enabling hysteresis (e.g. fire at &gt;90, resolve at \n\n).
+     * 
+     */
     public Optional<Output<MonitorSeriesConditionsConditionResolveValueArgs>> resolveValue() {
         return Optional.ofNullable(this.resolveValue);
     }
 
+    /**
+     * Severity assigned when this condition matches (e.g. `warn`, `critical`). Case-sensitive.
+     * 
+     */
     @Import(name="severity", required=true)
     private Output<String> severity;
 
+    /**
+     * @return Severity assigned when this condition matches (e.g. `warn`, `critical`). Case-sensitive.
+     * 
+     */
     public Output<String> severity() {
         return this.severity;
     }
 
+    /**
+     * Duration the condition must hold continuously before a signal fires.
+     * 
+     */
     @Import(name="sustain")
     private @Nullable Output<String> sustain;
 
+    /**
+     * @return Duration the condition must hold continuously before a signal fires.
+     * 
+     */
     public Optional<Output<String>> sustain() {
         return Optional.ofNullable(this.sustain);
     }
 
+    /**
+     * Resolution threshold value.
+     * 
+     */
     @Import(name="value")
     private @Nullable Output<Double> value;
 
+    /**
+     * @return Resolution threshold value.
+     * 
+     */
     public Optional<Output<Double>> value() {
         return Optional.ofNullable(this.value);
     }
@@ -88,56 +136,128 @@ public final class MonitorSeriesConditionsConditionArgs extends com.pulumi.resou
             $ = new MonitorSeriesConditionsConditionArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param op Comparison operator between the query value and `value` (e.g. `gt`, `lt`, `eq`).
+         * 
+         * @return builder
+         * 
+         */
         public Builder op(Output<String> op) {
             $.op = op;
             return this;
         }
 
+        /**
+         * @param op Comparison operator between the query value and `value` (e.g. `gt`, `lt`, `eq`).
+         * 
+         * @return builder
+         * 
+         */
         public Builder op(String op) {
             return op(Output.of(op));
         }
 
+        /**
+         * @param resolveSustain Duration the condition must remain false continuously before an active signal resolves.
+         * 
+         * @return builder
+         * 
+         */
         public Builder resolveSustain(@Nullable Output<String> resolveSustain) {
             $.resolveSustain = resolveSustain;
             return this;
         }
 
+        /**
+         * @param resolveSustain Duration the condition must remain false continuously before an active signal resolves.
+         * 
+         * @return builder
+         * 
+         */
         public Builder resolveSustain(String resolveSustain) {
             return resolveSustain(Output.of(resolveSustain));
         }
 
+        /**
+         * @param resolveValue Optional separate threshold used for resolution, enabling hysteresis (e.g. fire at &gt;90, resolve at \n\n).
+         * 
+         * @return builder
+         * 
+         */
         public Builder resolveValue(@Nullable Output<MonitorSeriesConditionsConditionResolveValueArgs> resolveValue) {
             $.resolveValue = resolveValue;
             return this;
         }
 
+        /**
+         * @param resolveValue Optional separate threshold used for resolution, enabling hysteresis (e.g. fire at &gt;90, resolve at \n\n).
+         * 
+         * @return builder
+         * 
+         */
         public Builder resolveValue(MonitorSeriesConditionsConditionResolveValueArgs resolveValue) {
             return resolveValue(Output.of(resolveValue));
         }
 
+        /**
+         * @param severity Severity assigned when this condition matches (e.g. `warn`, `critical`). Case-sensitive.
+         * 
+         * @return builder
+         * 
+         */
         public Builder severity(Output<String> severity) {
             $.severity = severity;
             return this;
         }
 
+        /**
+         * @param severity Severity assigned when this condition matches (e.g. `warn`, `critical`). Case-sensitive.
+         * 
+         * @return builder
+         * 
+         */
         public Builder severity(String severity) {
             return severity(Output.of(severity));
         }
 
+        /**
+         * @param sustain Duration the condition must hold continuously before a signal fires.
+         * 
+         * @return builder
+         * 
+         */
         public Builder sustain(@Nullable Output<String> sustain) {
             $.sustain = sustain;
             return this;
         }
 
+        /**
+         * @param sustain Duration the condition must hold continuously before a signal fires.
+         * 
+         * @return builder
+         * 
+         */
         public Builder sustain(String sustain) {
             return sustain(Output.of(sustain));
         }
 
+        /**
+         * @param value Resolution threshold value.
+         * 
+         * @return builder
+         * 
+         */
         public Builder value(@Nullable Output<Double> value) {
             $.value = value;
             return this;
         }
 
+        /**
+         * @param value Resolution threshold value.
+         * 
+         * @return builder
+         * 
+         */
         public Builder value(Double value) {
             return value(Output.of(value));
         }

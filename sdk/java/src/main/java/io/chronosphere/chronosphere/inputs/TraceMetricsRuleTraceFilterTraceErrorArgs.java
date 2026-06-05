@@ -13,9 +13,17 @@ public final class TraceMetricsRuleTraceFilterTraceErrorArgs extends com.pulumi.
 
     public static final TraceMetricsRuleTraceFilterTraceErrorArgs Empty = new TraceMetricsRuleTraceFilterTraceErrorArgs();
 
+    /**
+     * Boolean value the target field is compared against.
+     * 
+     */
     @Import(name="value", required=true)
     private Output<Boolean> value;
 
+    /**
+     * @return Boolean value the target field is compared against.
+     * 
+     */
     public Output<Boolean> value() {
         return this.value;
     }
@@ -44,11 +52,23 @@ public final class TraceMetricsRuleTraceFilterTraceErrorArgs extends com.pulumi.
             $ = new TraceMetricsRuleTraceFilterTraceErrorArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param value Boolean value the target field is compared against.
+         * 
+         * @return builder
+         * 
+         */
         public Builder value(Output<Boolean> value) {
             $.value = value;
             return this;
         }
 
+        /**
+         * @param value Boolean value the target field is compared against.
+         * 
+         * @return builder
+         * 
+         */
         public Builder value(Boolean value) {
             return value(Output.of(value));
         }

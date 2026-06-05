@@ -13,6 +13,9 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class LogIngestConfigFieldParserParserGrokParserArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Grok pattern to apply. Named capture groups become named fields in the extracted log.
+        /// </summary>
         [Input("pattern", required: true)]
         public Input<string> Pattern { get; set; } = null!;
 

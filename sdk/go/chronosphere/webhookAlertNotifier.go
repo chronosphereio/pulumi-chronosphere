@@ -12,19 +12,59 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Webhook notifier that POSTs monitor signal payloads to an arbitrary HTTP endpoint. Referenced from notification policies.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/chronosphereio/pulumi-chronosphere/sdk/go/chronosphere"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := chronosphere.NewWebhookAlertNotifier(ctx, "webhook", &chronosphere.WebhookAlertNotifierArgs{
+//				BearerToken:  pulumi.String("bearer-token"),
+//				Name:         pulumi.String("Webhook"),
+//				SendResolved: pulumi.Bool(false),
+//				Url:          pulumi.String("http://example.com/url"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type WebhookAlertNotifier struct {
 	pulumi.CustomResourceState
 
+	// Password for HTTP basic auth when calling the webhook. Treat as a secret.
 	BasicAuthPassword pulumi.StringPtrOutput `pulumi:"basicAuthPassword"`
+	// Username for HTTP basic auth when calling the webhook. Mutually exclusive with `bearerToken`.
 	BasicAuthUsername pulumi.StringPtrOutput `pulumi:"basicAuthUsername"`
-	BearerToken       pulumi.StringPtrOutput `pulumi:"bearerToken"`
-	Name              pulumi.StringOutput    `pulumi:"name"`
+	// Bearer token sent in the `Authorization` header when calling the webhook. Treat as a secret. Mutually exclusive with basic auth.
+	BearerToken pulumi.StringPtrOutput `pulumi:"bearerToken"`
+	// Display name of the notifier.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// Deprecated and ignored. Custom proxy URLs are not supported.
+	//
 	// Deprecated: custom proxy URLs are not supported
-	ProxyUrl              pulumi.StringPtrOutput `pulumi:"proxyUrl"`
-	SendResolved          pulumi.BoolPtrOutput   `pulumi:"sendResolved"`
-	Slug                  pulumi.StringOutput    `pulumi:"slug"`
-	TlsInsecureSkipVerify pulumi.BoolPtrOutput   `pulumi:"tlsInsecureSkipVerify"`
-	Url                   pulumi.StringOutput    `pulumi:"url"`
+	ProxyUrl pulumi.StringPtrOutput `pulumi:"proxyUrl"`
+	// Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+	SendResolved pulumi.BoolPtrOutput `pulumi:"sendResolved"`
+	// Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringOutput `pulumi:"slug"`
+	// If true, skip TLS certificate verification when calling the webhook. Disable only in trusted environments.
+	TlsInsecureSkipVerify pulumi.BoolPtrOutput `pulumi:"tlsInsecureSkipVerify"`
+	// Webhook URL that receives the alert payload via HTTP POST.
+	Url pulumi.StringOutput `pulumi:"url"`
 }
 
 // NewWebhookAlertNotifier registers a new resource with the given unique name, arguments, and options.
@@ -70,29 +110,49 @@ func GetWebhookAlertNotifier(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WebhookAlertNotifier resources.
 type webhookAlertNotifierState struct {
+	// Password for HTTP basic auth when calling the webhook. Treat as a secret.
 	BasicAuthPassword *string `pulumi:"basicAuthPassword"`
+	// Username for HTTP basic auth when calling the webhook. Mutually exclusive with `bearerToken`.
 	BasicAuthUsername *string `pulumi:"basicAuthUsername"`
-	BearerToken       *string `pulumi:"bearerToken"`
-	Name              *string `pulumi:"name"`
+	// Bearer token sent in the `Authorization` header when calling the webhook. Treat as a secret. Mutually exclusive with basic auth.
+	BearerToken *string `pulumi:"bearerToken"`
+	// Display name of the notifier.
+	Name *string `pulumi:"name"`
+	// Deprecated and ignored. Custom proxy URLs are not supported.
+	//
 	// Deprecated: custom proxy URLs are not supported
-	ProxyUrl              *string `pulumi:"proxyUrl"`
-	SendResolved          *bool   `pulumi:"sendResolved"`
-	Slug                  *string `pulumi:"slug"`
-	TlsInsecureSkipVerify *bool   `pulumi:"tlsInsecureSkipVerify"`
-	Url                   *string `pulumi:"url"`
+	ProxyUrl *string `pulumi:"proxyUrl"`
+	// Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+	SendResolved *bool `pulumi:"sendResolved"`
+	// Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+	Slug *string `pulumi:"slug"`
+	// If true, skip TLS certificate verification when calling the webhook. Disable only in trusted environments.
+	TlsInsecureSkipVerify *bool `pulumi:"tlsInsecureSkipVerify"`
+	// Webhook URL that receives the alert payload via HTTP POST.
+	Url *string `pulumi:"url"`
 }
 
 type WebhookAlertNotifierState struct {
+	// Password for HTTP basic auth when calling the webhook. Treat as a secret.
 	BasicAuthPassword pulumi.StringPtrInput
+	// Username for HTTP basic auth when calling the webhook. Mutually exclusive with `bearerToken`.
 	BasicAuthUsername pulumi.StringPtrInput
-	BearerToken       pulumi.StringPtrInput
-	Name              pulumi.StringPtrInput
+	// Bearer token sent in the `Authorization` header when calling the webhook. Treat as a secret. Mutually exclusive with basic auth.
+	BearerToken pulumi.StringPtrInput
+	// Display name of the notifier.
+	Name pulumi.StringPtrInput
+	// Deprecated and ignored. Custom proxy URLs are not supported.
+	//
 	// Deprecated: custom proxy URLs are not supported
-	ProxyUrl              pulumi.StringPtrInput
-	SendResolved          pulumi.BoolPtrInput
-	Slug                  pulumi.StringPtrInput
+	ProxyUrl pulumi.StringPtrInput
+	// Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+	SendResolved pulumi.BoolPtrInput
+	// Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringPtrInput
+	// If true, skip TLS certificate verification when calling the webhook. Disable only in trusted environments.
 	TlsInsecureSkipVerify pulumi.BoolPtrInput
-	Url                   pulumi.StringPtrInput
+	// Webhook URL that receives the alert payload via HTTP POST.
+	Url pulumi.StringPtrInput
 }
 
 func (WebhookAlertNotifierState) ElementType() reflect.Type {
@@ -100,30 +160,50 @@ func (WebhookAlertNotifierState) ElementType() reflect.Type {
 }
 
 type webhookAlertNotifierArgs struct {
+	// Password for HTTP basic auth when calling the webhook. Treat as a secret.
 	BasicAuthPassword *string `pulumi:"basicAuthPassword"`
+	// Username for HTTP basic auth when calling the webhook. Mutually exclusive with `bearerToken`.
 	BasicAuthUsername *string `pulumi:"basicAuthUsername"`
-	BearerToken       *string `pulumi:"bearerToken"`
-	Name              string  `pulumi:"name"`
+	// Bearer token sent in the `Authorization` header when calling the webhook. Treat as a secret. Mutually exclusive with basic auth.
+	BearerToken *string `pulumi:"bearerToken"`
+	// Display name of the notifier.
+	Name string `pulumi:"name"`
+	// Deprecated and ignored. Custom proxy URLs are not supported.
+	//
 	// Deprecated: custom proxy URLs are not supported
-	ProxyUrl              *string `pulumi:"proxyUrl"`
-	SendResolved          *bool   `pulumi:"sendResolved"`
-	Slug                  *string `pulumi:"slug"`
-	TlsInsecureSkipVerify *bool   `pulumi:"tlsInsecureSkipVerify"`
-	Url                   string  `pulumi:"url"`
+	ProxyUrl *string `pulumi:"proxyUrl"`
+	// Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+	SendResolved *bool `pulumi:"sendResolved"`
+	// Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+	Slug *string `pulumi:"slug"`
+	// If true, skip TLS certificate verification when calling the webhook. Disable only in trusted environments.
+	TlsInsecureSkipVerify *bool `pulumi:"tlsInsecureSkipVerify"`
+	// Webhook URL that receives the alert payload via HTTP POST.
+	Url string `pulumi:"url"`
 }
 
 // The set of arguments for constructing a WebhookAlertNotifier resource.
 type WebhookAlertNotifierArgs struct {
+	// Password for HTTP basic auth when calling the webhook. Treat as a secret.
 	BasicAuthPassword pulumi.StringPtrInput
+	// Username for HTTP basic auth when calling the webhook. Mutually exclusive with `bearerToken`.
 	BasicAuthUsername pulumi.StringPtrInput
-	BearerToken       pulumi.StringPtrInput
-	Name              pulumi.StringInput
+	// Bearer token sent in the `Authorization` header when calling the webhook. Treat as a secret. Mutually exclusive with basic auth.
+	BearerToken pulumi.StringPtrInput
+	// Display name of the notifier.
+	Name pulumi.StringInput
+	// Deprecated and ignored. Custom proxy URLs are not supported.
+	//
 	// Deprecated: custom proxy URLs are not supported
-	ProxyUrl              pulumi.StringPtrInput
-	SendResolved          pulumi.BoolPtrInput
-	Slug                  pulumi.StringPtrInput
+	ProxyUrl pulumi.StringPtrInput
+	// Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+	SendResolved pulumi.BoolPtrInput
+	// Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringPtrInput
+	// If true, skip TLS certificate verification when calling the webhook. Disable only in trusted environments.
 	TlsInsecureSkipVerify pulumi.BoolPtrInput
-	Url                   pulumi.StringInput
+	// Webhook URL that receives the alert payload via HTTP POST.
+	Url pulumi.StringInput
 }
 
 func (WebhookAlertNotifierArgs) ElementType() reflect.Type {
@@ -213,39 +293,49 @@ func (o WebhookAlertNotifierOutput) ToWebhookAlertNotifierOutputWithContext(ctx 
 	return o
 }
 
+// Password for HTTP basic auth when calling the webhook. Treat as a secret.
 func (o WebhookAlertNotifierOutput) BasicAuthPassword() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WebhookAlertNotifier) pulumi.StringPtrOutput { return v.BasicAuthPassword }).(pulumi.StringPtrOutput)
 }
 
+// Username for HTTP basic auth when calling the webhook. Mutually exclusive with `bearerToken`.
 func (o WebhookAlertNotifierOutput) BasicAuthUsername() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WebhookAlertNotifier) pulumi.StringPtrOutput { return v.BasicAuthUsername }).(pulumi.StringPtrOutput)
 }
 
+// Bearer token sent in the `Authorization` header when calling the webhook. Treat as a secret. Mutually exclusive with basic auth.
 func (o WebhookAlertNotifierOutput) BearerToken() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WebhookAlertNotifier) pulumi.StringPtrOutput { return v.BearerToken }).(pulumi.StringPtrOutput)
 }
 
+// Display name of the notifier.
 func (o WebhookAlertNotifierOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *WebhookAlertNotifier) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// Deprecated and ignored. Custom proxy URLs are not supported.
+//
 // Deprecated: custom proxy URLs are not supported
 func (o WebhookAlertNotifierOutput) ProxyUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WebhookAlertNotifier) pulumi.StringPtrOutput { return v.ProxyUrl }).(pulumi.StringPtrOutput)
 }
 
+// Whether to send a follow-up notification when an alert is resolved. Defaults to true.
 func (o WebhookAlertNotifierOutput) SendResolved() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *WebhookAlertNotifier) pulumi.BoolPtrOutput { return v.SendResolved }).(pulumi.BoolPtrOutput)
 }
 
+// Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
 func (o WebhookAlertNotifierOutput) Slug() pulumi.StringOutput {
 	return o.ApplyT(func(v *WebhookAlertNotifier) pulumi.StringOutput { return v.Slug }).(pulumi.StringOutput)
 }
 
+// If true, skip TLS certificate verification when calling the webhook. Disable only in trusted environments.
 func (o WebhookAlertNotifierOutput) TlsInsecureSkipVerify() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *WebhookAlertNotifier) pulumi.BoolPtrOutput { return v.TlsInsecureSkipVerify }).(pulumi.BoolPtrOutput)
 }
 
+// Webhook URL that receives the alert payload via HTTP POST.
 func (o WebhookAlertNotifierOutput) Url() pulumi.StringOutput {
 	return o.ApplyT(func(v *WebhookAlertNotifier) pulumi.StringOutput { return v.Url }).(pulumi.StringOutput)
 }

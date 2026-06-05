@@ -11,9 +11,17 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class ConsumptionBudgetThresholdVolume {
+    /**
+     * @return Fixed volume threshold value, expressed in the threshold&#39;s `unit`.
+     * 
+     */
     private @Nullable Integer fixedValue;
 
     private ConsumptionBudgetThresholdVolume() {}
+    /**
+     * @return Fixed volume threshold value, expressed in the threshold&#39;s `unit`.
+     * 
+     */
     public Optional<Integer> fixedValue() {
         return Optional.ofNullable(this.fixedValue);
     }

@@ -14,7 +14,13 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class LogControlConfigRuleEmitMetricsLabel
     {
+        /// <summary>
+        /// Prometheus label name to set on the emitted metric.
+        /// </summary>
         public readonly string? Key;
+        /// <summary>
+        /// Path to a field within a log record.
+        /// </summary>
         public readonly Outputs.LogControlConfigRuleEmitMetricsLabelValue? Value;
 
         [OutputConstructor]

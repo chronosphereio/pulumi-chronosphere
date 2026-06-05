@@ -32,6 +32,22 @@ class VictoropsAlertNotifierArgs:
                  tls_insecure_skip_verify: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a VictoropsAlertNotifier resource.
+        :param pulumi.Input[str] api_key: VictorOps (Splunk On-Call) API key used to authenticate requests. Treat as a secret.
+        :param pulumi.Input[str] name: Display name of the notifier.
+        :param pulumi.Input[str] routing_key: VictorOps routing key that determines which team or escalation policy receives the alert.
+        :param pulumi.Input[str] api_url: VictorOps REST endpoint URL to send events to.
+        :param pulumi.Input[str] basic_auth_password: Password for HTTP basic auth when calling the VictorOps API. Treat as a secret.
+        :param pulumi.Input[str] basic_auth_username: Username for HTTP basic auth when calling the VictorOps API. Mutually exclusive with `bearer_token`.
+        :param pulumi.Input[str] bearer_token: Bearer token sent in the `Authorization` header when calling the VictorOps API. Treat as a secret. Mutually exclusive with basic auth.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] custom_fields: Arbitrary key/value pairs forwarded to VictorOps as custom incident fields. Values support Go templating.
+        :param pulumi.Input[str] entity_display_name: Short summary of the alerted problem shown in VictorOps. Supports Go templating.
+        :param pulumi.Input[str] message_type: Behavior of the alert in VictorOps. One of `CRITICAL`, `WARNING`, or `INFO`.
+        :param pulumi.Input[str] monitoring_tool: Name of the monitoring tool the state message originated from.
+        :param pulumi.Input[str] proxy_url: Deprecated and ignored. Custom proxy URLs are not supported.
+        :param pulumi.Input[bool] send_resolved: Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+        :param pulumi.Input[str] slug: Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[str] state_message: Detailed explanation of the alerted problem. Supports Go templating.
+        :param pulumi.Input[bool] tls_insecure_skip_verify: If true, skip TLS certificate verification when calling the VictorOps API. Disable only in trusted environments.
         """
         pulumi.set(__self__, "api_key", api_key)
         pulumi.set(__self__, "name", name)
@@ -69,6 +85,9 @@ class VictoropsAlertNotifierArgs:
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Input[str]:
+        """
+        VictorOps (Splunk On-Call) API key used to authenticate requests. Treat as a secret.
+        """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
@@ -78,6 +97,9 @@ class VictoropsAlertNotifierArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        Display name of the notifier.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -87,6 +109,9 @@ class VictoropsAlertNotifierArgs:
     @property
     @pulumi.getter(name="routingKey")
     def routing_key(self) -> pulumi.Input[str]:
+        """
+        VictorOps routing key that determines which team or escalation policy receives the alert.
+        """
         return pulumi.get(self, "routing_key")
 
     @routing_key.setter
@@ -96,6 +121,9 @@ class VictoropsAlertNotifierArgs:
     @property
     @pulumi.getter(name="apiUrl")
     def api_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        VictorOps REST endpoint URL to send events to.
+        """
         return pulumi.get(self, "api_url")
 
     @api_url.setter
@@ -105,6 +133,9 @@ class VictoropsAlertNotifierArgs:
     @property
     @pulumi.getter(name="basicAuthPassword")
     def basic_auth_password(self) -> Optional[pulumi.Input[str]]:
+        """
+        Password for HTTP basic auth when calling the VictorOps API. Treat as a secret.
+        """
         return pulumi.get(self, "basic_auth_password")
 
     @basic_auth_password.setter
@@ -114,6 +145,9 @@ class VictoropsAlertNotifierArgs:
     @property
     @pulumi.getter(name="basicAuthUsername")
     def basic_auth_username(self) -> Optional[pulumi.Input[str]]:
+        """
+        Username for HTTP basic auth when calling the VictorOps API. Mutually exclusive with `bearer_token`.
+        """
         return pulumi.get(self, "basic_auth_username")
 
     @basic_auth_username.setter
@@ -123,6 +157,9 @@ class VictoropsAlertNotifierArgs:
     @property
     @pulumi.getter(name="bearerToken")
     def bearer_token(self) -> Optional[pulumi.Input[str]]:
+        """
+        Bearer token sent in the `Authorization` header when calling the VictorOps API. Treat as a secret. Mutually exclusive with basic auth.
+        """
         return pulumi.get(self, "bearer_token")
 
     @bearer_token.setter
@@ -132,6 +169,9 @@ class VictoropsAlertNotifierArgs:
     @property
     @pulumi.getter(name="customFields")
     def custom_fields(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Arbitrary key/value pairs forwarded to VictorOps as custom incident fields. Values support Go templating.
+        """
         return pulumi.get(self, "custom_fields")
 
     @custom_fields.setter
@@ -141,6 +181,9 @@ class VictoropsAlertNotifierArgs:
     @property
     @pulumi.getter(name="entityDisplayName")
     def entity_display_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Short summary of the alerted problem shown in VictorOps. Supports Go templating.
+        """
         return pulumi.get(self, "entity_display_name")
 
     @entity_display_name.setter
@@ -150,6 +193,9 @@ class VictoropsAlertNotifierArgs:
     @property
     @pulumi.getter(name="messageType")
     def message_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Behavior of the alert in VictorOps. One of `CRITICAL`, `WARNING`, or `INFO`.
+        """
         return pulumi.get(self, "message_type")
 
     @message_type.setter
@@ -159,6 +205,9 @@ class VictoropsAlertNotifierArgs:
     @property
     @pulumi.getter(name="monitoringTool")
     def monitoring_tool(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the monitoring tool the state message originated from.
+        """
         return pulumi.get(self, "monitoring_tool")
 
     @monitoring_tool.setter
@@ -168,6 +217,9 @@ class VictoropsAlertNotifierArgs:
     @property
     @pulumi.getter(name="proxyUrl")
     def proxy_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        Deprecated and ignored. Custom proxy URLs are not supported.
+        """
         warnings.warn("""custom proxy URLs are not supported""", DeprecationWarning)
         pulumi.log.warn("""proxy_url is deprecated: custom proxy URLs are not supported""")
 
@@ -180,6 +232,9 @@ class VictoropsAlertNotifierArgs:
     @property
     @pulumi.getter(name="sendResolved")
     def send_resolved(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+        """
         return pulumi.get(self, "send_resolved")
 
     @send_resolved.setter
@@ -189,6 +244,9 @@ class VictoropsAlertNotifierArgs:
     @property
     @pulumi.getter
     def slug(self) -> Optional[pulumi.Input[str]]:
+        """
+        Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @slug.setter
@@ -198,6 +256,9 @@ class VictoropsAlertNotifierArgs:
     @property
     @pulumi.getter(name="stateMessage")
     def state_message(self) -> Optional[pulumi.Input[str]]:
+        """
+        Detailed explanation of the alerted problem. Supports Go templating.
+        """
         return pulumi.get(self, "state_message")
 
     @state_message.setter
@@ -207,6 +268,9 @@ class VictoropsAlertNotifierArgs:
     @property
     @pulumi.getter(name="tlsInsecureSkipVerify")
     def tls_insecure_skip_verify(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If true, skip TLS certificate verification when calling the VictorOps API. Disable only in trusted environments.
+        """
         return pulumi.get(self, "tls_insecure_skip_verify")
 
     @tls_insecure_skip_verify.setter
@@ -235,6 +299,22 @@ class _VictoropsAlertNotifierState:
                  tls_insecure_skip_verify: Optional[pulumi.Input[bool]] = None):
         """
         Input properties used for looking up and filtering VictoropsAlertNotifier resources.
+        :param pulumi.Input[str] api_key: VictorOps (Splunk On-Call) API key used to authenticate requests. Treat as a secret.
+        :param pulumi.Input[str] api_url: VictorOps REST endpoint URL to send events to.
+        :param pulumi.Input[str] basic_auth_password: Password for HTTP basic auth when calling the VictorOps API. Treat as a secret.
+        :param pulumi.Input[str] basic_auth_username: Username for HTTP basic auth when calling the VictorOps API. Mutually exclusive with `bearer_token`.
+        :param pulumi.Input[str] bearer_token: Bearer token sent in the `Authorization` header when calling the VictorOps API. Treat as a secret. Mutually exclusive with basic auth.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] custom_fields: Arbitrary key/value pairs forwarded to VictorOps as custom incident fields. Values support Go templating.
+        :param pulumi.Input[str] entity_display_name: Short summary of the alerted problem shown in VictorOps. Supports Go templating.
+        :param pulumi.Input[str] message_type: Behavior of the alert in VictorOps. One of `CRITICAL`, `WARNING`, or `INFO`.
+        :param pulumi.Input[str] monitoring_tool: Name of the monitoring tool the state message originated from.
+        :param pulumi.Input[str] name: Display name of the notifier.
+        :param pulumi.Input[str] proxy_url: Deprecated and ignored. Custom proxy URLs are not supported.
+        :param pulumi.Input[str] routing_key: VictorOps routing key that determines which team or escalation policy receives the alert.
+        :param pulumi.Input[bool] send_resolved: Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+        :param pulumi.Input[str] slug: Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[str] state_message: Detailed explanation of the alerted problem. Supports Go templating.
+        :param pulumi.Input[bool] tls_insecure_skip_verify: If true, skip TLS certificate verification when calling the VictorOps API. Disable only in trusted environments.
         """
         if api_key is not None:
             pulumi.set(__self__, "api_key", api_key)
@@ -275,6 +355,9 @@ class _VictoropsAlertNotifierState:
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        VictorOps (Splunk On-Call) API key used to authenticate requests. Treat as a secret.
+        """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
@@ -284,6 +367,9 @@ class _VictoropsAlertNotifierState:
     @property
     @pulumi.getter(name="apiUrl")
     def api_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        VictorOps REST endpoint URL to send events to.
+        """
         return pulumi.get(self, "api_url")
 
     @api_url.setter
@@ -293,6 +379,9 @@ class _VictoropsAlertNotifierState:
     @property
     @pulumi.getter(name="basicAuthPassword")
     def basic_auth_password(self) -> Optional[pulumi.Input[str]]:
+        """
+        Password for HTTP basic auth when calling the VictorOps API. Treat as a secret.
+        """
         return pulumi.get(self, "basic_auth_password")
 
     @basic_auth_password.setter
@@ -302,6 +391,9 @@ class _VictoropsAlertNotifierState:
     @property
     @pulumi.getter(name="basicAuthUsername")
     def basic_auth_username(self) -> Optional[pulumi.Input[str]]:
+        """
+        Username for HTTP basic auth when calling the VictorOps API. Mutually exclusive with `bearer_token`.
+        """
         return pulumi.get(self, "basic_auth_username")
 
     @basic_auth_username.setter
@@ -311,6 +403,9 @@ class _VictoropsAlertNotifierState:
     @property
     @pulumi.getter(name="bearerToken")
     def bearer_token(self) -> Optional[pulumi.Input[str]]:
+        """
+        Bearer token sent in the `Authorization` header when calling the VictorOps API. Treat as a secret. Mutually exclusive with basic auth.
+        """
         return pulumi.get(self, "bearer_token")
 
     @bearer_token.setter
@@ -320,6 +415,9 @@ class _VictoropsAlertNotifierState:
     @property
     @pulumi.getter(name="customFields")
     def custom_fields(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Arbitrary key/value pairs forwarded to VictorOps as custom incident fields. Values support Go templating.
+        """
         return pulumi.get(self, "custom_fields")
 
     @custom_fields.setter
@@ -329,6 +427,9 @@ class _VictoropsAlertNotifierState:
     @property
     @pulumi.getter(name="entityDisplayName")
     def entity_display_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Short summary of the alerted problem shown in VictorOps. Supports Go templating.
+        """
         return pulumi.get(self, "entity_display_name")
 
     @entity_display_name.setter
@@ -338,6 +439,9 @@ class _VictoropsAlertNotifierState:
     @property
     @pulumi.getter(name="messageType")
     def message_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Behavior of the alert in VictorOps. One of `CRITICAL`, `WARNING`, or `INFO`.
+        """
         return pulumi.get(self, "message_type")
 
     @message_type.setter
@@ -347,6 +451,9 @@ class _VictoropsAlertNotifierState:
     @property
     @pulumi.getter(name="monitoringTool")
     def monitoring_tool(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the monitoring tool the state message originated from.
+        """
         return pulumi.get(self, "monitoring_tool")
 
     @monitoring_tool.setter
@@ -356,6 +463,9 @@ class _VictoropsAlertNotifierState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Display name of the notifier.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -365,6 +475,9 @@ class _VictoropsAlertNotifierState:
     @property
     @pulumi.getter(name="proxyUrl")
     def proxy_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        Deprecated and ignored. Custom proxy URLs are not supported.
+        """
         warnings.warn("""custom proxy URLs are not supported""", DeprecationWarning)
         pulumi.log.warn("""proxy_url is deprecated: custom proxy URLs are not supported""")
 
@@ -377,6 +490,9 @@ class _VictoropsAlertNotifierState:
     @property
     @pulumi.getter(name="routingKey")
     def routing_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        VictorOps routing key that determines which team or escalation policy receives the alert.
+        """
         return pulumi.get(self, "routing_key")
 
     @routing_key.setter
@@ -386,6 +502,9 @@ class _VictoropsAlertNotifierState:
     @property
     @pulumi.getter(name="sendResolved")
     def send_resolved(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+        """
         return pulumi.get(self, "send_resolved")
 
     @send_resolved.setter
@@ -395,6 +514,9 @@ class _VictoropsAlertNotifierState:
     @property
     @pulumi.getter
     def slug(self) -> Optional[pulumi.Input[str]]:
+        """
+        Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @slug.setter
@@ -404,6 +526,9 @@ class _VictoropsAlertNotifierState:
     @property
     @pulumi.getter(name="stateMessage")
     def state_message(self) -> Optional[pulumi.Input[str]]:
+        """
+        Detailed explanation of the alerted problem. Supports Go templating.
+        """
         return pulumi.get(self, "state_message")
 
     @state_message.setter
@@ -413,6 +538,9 @@ class _VictoropsAlertNotifierState:
     @property
     @pulumi.getter(name="tlsInsecureSkipVerify")
     def tls_insecure_skip_verify(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If true, skip TLS certificate verification when calling the VictorOps API. Disable only in trusted environments.
+        """
         return pulumi.get(self, "tls_insecure_skip_verify")
 
     @tls_insecure_skip_verify.setter
@@ -443,9 +571,39 @@ class VictoropsAlertNotifier(pulumi.CustomResource):
                  tls_insecure_skip_verify: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
-        Create a VictoropsAlertNotifier resource with the given unique name, props, and options.
+        VictorOps (Splunk On-Call) notifier that delivers monitor signals to a VictorOps routing key via its REST integration. Referenced from notification policies.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_chronosphere as chronosphere
+
+        victorops = chronosphere.VictoropsAlertNotifier("victorops",
+            api_key="00000000-0000-0000-0000-000000000000",
+            api_url="https://alert.victorops.com/integrations/generic/00000000/alert/",
+            name="test-victorops",
+            routing_key="test")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] api_key: VictorOps (Splunk On-Call) API key used to authenticate requests. Treat as a secret.
+        :param pulumi.Input[str] api_url: VictorOps REST endpoint URL to send events to.
+        :param pulumi.Input[str] basic_auth_password: Password for HTTP basic auth when calling the VictorOps API. Treat as a secret.
+        :param pulumi.Input[str] basic_auth_username: Username for HTTP basic auth when calling the VictorOps API. Mutually exclusive with `bearer_token`.
+        :param pulumi.Input[str] bearer_token: Bearer token sent in the `Authorization` header when calling the VictorOps API. Treat as a secret. Mutually exclusive with basic auth.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] custom_fields: Arbitrary key/value pairs forwarded to VictorOps as custom incident fields. Values support Go templating.
+        :param pulumi.Input[str] entity_display_name: Short summary of the alerted problem shown in VictorOps. Supports Go templating.
+        :param pulumi.Input[str] message_type: Behavior of the alert in VictorOps. One of `CRITICAL`, `WARNING`, or `INFO`.
+        :param pulumi.Input[str] monitoring_tool: Name of the monitoring tool the state message originated from.
+        :param pulumi.Input[str] name: Display name of the notifier.
+        :param pulumi.Input[str] proxy_url: Deprecated and ignored. Custom proxy URLs are not supported.
+        :param pulumi.Input[str] routing_key: VictorOps routing key that determines which team or escalation policy receives the alert.
+        :param pulumi.Input[bool] send_resolved: Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+        :param pulumi.Input[str] slug: Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[str] state_message: Detailed explanation of the alerted problem. Supports Go templating.
+        :param pulumi.Input[bool] tls_insecure_skip_verify: If true, skip TLS certificate verification when calling the VictorOps API. Disable only in trusted environments.
         """
         ...
     @overload
@@ -454,7 +612,21 @@ class VictoropsAlertNotifier(pulumi.CustomResource):
                  args: VictoropsAlertNotifierArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a VictoropsAlertNotifier resource with the given unique name, props, and options.
+        VictorOps (Splunk On-Call) notifier that delivers monitor signals to a VictorOps routing key via its REST integration. Referenced from notification policies.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_chronosphere as chronosphere
+
+        victorops = chronosphere.VictoropsAlertNotifier("victorops",
+            api_key="00000000-0000-0000-0000-000000000000",
+            api_url="https://alert.victorops.com/integrations/generic/00000000/alert/",
+            name="test-victorops",
+            routing_key="test")
+        ```
+
         :param str resource_name: The name of the resource.
         :param VictoropsAlertNotifierArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -552,6 +724,22 @@ class VictoropsAlertNotifier(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] api_key: VictorOps (Splunk On-Call) API key used to authenticate requests. Treat as a secret.
+        :param pulumi.Input[str] api_url: VictorOps REST endpoint URL to send events to.
+        :param pulumi.Input[str] basic_auth_password: Password for HTTP basic auth when calling the VictorOps API. Treat as a secret.
+        :param pulumi.Input[str] basic_auth_username: Username for HTTP basic auth when calling the VictorOps API. Mutually exclusive with `bearer_token`.
+        :param pulumi.Input[str] bearer_token: Bearer token sent in the `Authorization` header when calling the VictorOps API. Treat as a secret. Mutually exclusive with basic auth.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] custom_fields: Arbitrary key/value pairs forwarded to VictorOps as custom incident fields. Values support Go templating.
+        :param pulumi.Input[str] entity_display_name: Short summary of the alerted problem shown in VictorOps. Supports Go templating.
+        :param pulumi.Input[str] message_type: Behavior of the alert in VictorOps. One of `CRITICAL`, `WARNING`, or `INFO`.
+        :param pulumi.Input[str] monitoring_tool: Name of the monitoring tool the state message originated from.
+        :param pulumi.Input[str] name: Display name of the notifier.
+        :param pulumi.Input[str] proxy_url: Deprecated and ignored. Custom proxy URLs are not supported.
+        :param pulumi.Input[str] routing_key: VictorOps routing key that determines which team or escalation policy receives the alert.
+        :param pulumi.Input[bool] send_resolved: Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+        :param pulumi.Input[str] slug: Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[str] state_message: Detailed explanation of the alerted problem. Supports Go templating.
+        :param pulumi.Input[bool] tls_insecure_skip_verify: If true, skip TLS certificate verification when calling the VictorOps API. Disable only in trusted environments.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -578,56 +766,89 @@ class VictoropsAlertNotifier(pulumi.CustomResource):
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Output[str]:
+        """
+        VictorOps (Splunk On-Call) API key used to authenticate requests. Treat as a secret.
+        """
         return pulumi.get(self, "api_key")
 
     @property
     @pulumi.getter(name="apiUrl")
     def api_url(self) -> pulumi.Output[Optional[str]]:
+        """
+        VictorOps REST endpoint URL to send events to.
+        """
         return pulumi.get(self, "api_url")
 
     @property
     @pulumi.getter(name="basicAuthPassword")
     def basic_auth_password(self) -> pulumi.Output[Optional[str]]:
+        """
+        Password for HTTP basic auth when calling the VictorOps API. Treat as a secret.
+        """
         return pulumi.get(self, "basic_auth_password")
 
     @property
     @pulumi.getter(name="basicAuthUsername")
     def basic_auth_username(self) -> pulumi.Output[Optional[str]]:
+        """
+        Username for HTTP basic auth when calling the VictorOps API. Mutually exclusive with `bearer_token`.
+        """
         return pulumi.get(self, "basic_auth_username")
 
     @property
     @pulumi.getter(name="bearerToken")
     def bearer_token(self) -> pulumi.Output[Optional[str]]:
+        """
+        Bearer token sent in the `Authorization` header when calling the VictorOps API. Treat as a secret. Mutually exclusive with basic auth.
+        """
         return pulumi.get(self, "bearer_token")
 
     @property
     @pulumi.getter(name="customFields")
     def custom_fields(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+        """
+        Arbitrary key/value pairs forwarded to VictorOps as custom incident fields. Values support Go templating.
+        """
         return pulumi.get(self, "custom_fields")
 
     @property
     @pulumi.getter(name="entityDisplayName")
     def entity_display_name(self) -> pulumi.Output[Optional[str]]:
+        """
+        Short summary of the alerted problem shown in VictorOps. Supports Go templating.
+        """
         return pulumi.get(self, "entity_display_name")
 
     @property
     @pulumi.getter(name="messageType")
     def message_type(self) -> pulumi.Output[Optional[str]]:
+        """
+        Behavior of the alert in VictorOps. One of `CRITICAL`, `WARNING`, or `INFO`.
+        """
         return pulumi.get(self, "message_type")
 
     @property
     @pulumi.getter(name="monitoringTool")
     def monitoring_tool(self) -> pulumi.Output[Optional[str]]:
+        """
+        Name of the monitoring tool the state message originated from.
+        """
         return pulumi.get(self, "monitoring_tool")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        Display name of the notifier.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="proxyUrl")
     def proxy_url(self) -> pulumi.Output[Optional[str]]:
+        """
+        Deprecated and ignored. Custom proxy URLs are not supported.
+        """
         warnings.warn("""custom proxy URLs are not supported""", DeprecationWarning)
         pulumi.log.warn("""proxy_url is deprecated: custom proxy URLs are not supported""")
 
@@ -636,25 +857,40 @@ class VictoropsAlertNotifier(pulumi.CustomResource):
     @property
     @pulumi.getter(name="routingKey")
     def routing_key(self) -> pulumi.Output[str]:
+        """
+        VictorOps routing key that determines which team or escalation policy receives the alert.
+        """
         return pulumi.get(self, "routing_key")
 
     @property
     @pulumi.getter(name="sendResolved")
     def send_resolved(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+        """
         return pulumi.get(self, "send_resolved")
 
     @property
     @pulumi.getter
     def slug(self) -> pulumi.Output[str]:
+        """
+        Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @property
     @pulumi.getter(name="stateMessage")
     def state_message(self) -> pulumi.Output[Optional[str]]:
+        """
+        Detailed explanation of the alerted problem. Supports Go templating.
+        """
         return pulumi.get(self, "state_message")
 
     @property
     @pulumi.getter(name="tlsInsecureSkipVerify")
     def tls_insecure_skip_verify(self) -> pulumi.Output[Optional[bool]]:
+        """
+        If true, skip TLS certificate verification when calling the VictorOps API. Disable only in trusted environments.
+        """
         return pulumi.get(self, "tls_insecure_skip_verify")
 

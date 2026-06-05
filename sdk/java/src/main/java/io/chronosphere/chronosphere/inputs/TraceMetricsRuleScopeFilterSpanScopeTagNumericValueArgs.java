@@ -14,16 +14,32 @@ public final class TraceMetricsRuleScopeFilterSpanScopeTagNumericValueArgs exten
 
     public static final TraceMetricsRuleScopeFilterSpanScopeTagNumericValueArgs Empty = new TraceMetricsRuleScopeFilterSpanScopeTagNumericValueArgs();
 
+    /**
+     * Numeric comparison operator (for example `EQUALS`, `GREATER_THAN`, `LESS_THAN_OR_EQUAL`).
+     * 
+     */
     @Import(name="comparison", required=true)
     private Output<String> comparison;
 
+    /**
+     * @return Numeric comparison operator (for example `EQUALS`, `GREATER_THAN`, `LESS_THAN_OR_EQUAL`).
+     * 
+     */
     public Output<String> comparison() {
         return this.comparison;
     }
 
+    /**
+     * Boolean value the target field is compared against.
+     * 
+     */
     @Import(name="value", required=true)
     private Output<Double> value;
 
+    /**
+     * @return Boolean value the target field is compared against.
+     * 
+     */
     public Output<Double> value() {
         return this.value;
     }
@@ -53,20 +69,44 @@ public final class TraceMetricsRuleScopeFilterSpanScopeTagNumericValueArgs exten
             $ = new TraceMetricsRuleScopeFilterSpanScopeTagNumericValueArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param comparison Numeric comparison operator (for example `EQUALS`, `GREATER_THAN`, `LESS_THAN_OR_EQUAL`).
+         * 
+         * @return builder
+         * 
+         */
         public Builder comparison(Output<String> comparison) {
             $.comparison = comparison;
             return this;
         }
 
+        /**
+         * @param comparison Numeric comparison operator (for example `EQUALS`, `GREATER_THAN`, `LESS_THAN_OR_EQUAL`).
+         * 
+         * @return builder
+         * 
+         */
         public Builder comparison(String comparison) {
             return comparison(Output.of(comparison));
         }
 
+        /**
+         * @param value Boolean value the target field is compared against.
+         * 
+         * @return builder
+         * 
+         */
         public Builder value(Output<Double> value) {
             $.value = value;
             return this;
         }
 
+        /**
+         * @param value Boolean value the target field is compared against.
+         * 
+         * @return builder
+         * 
+         */
         public Builder value(Double value) {
             return value(Output.of(value));
         }

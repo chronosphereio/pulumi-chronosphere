@@ -75,6 +75,7 @@
             },
             "chronosphere:index/ConsumptionBudgetThreshold:ConsumptionBudgetThreshold": {
                 "instantRate": "instant_rate",
+                "resourceGroup": "resource_group",
                 "skuGroup": "sku_group"
             },
             "chronosphere:index/ConsumptionBudgetThresholdInstantRate:ConsumptionBudgetThresholdInstantRate": {

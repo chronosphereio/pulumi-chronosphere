@@ -15,12 +15,19 @@ namespace Chronosphere.Pulumi.Inputs
     {
         [Input("labelNames")]
         private InputList<string>? _labelNames;
+
+        /// <summary>
+        /// Labels to group by. Series sharing the same values for these labels produce one signal. Defaults to no grouping (one signal per series).
+        /// </summary>
         public InputList<string> LabelNames
         {
             get => _labelNames ?? (_labelNames = new InputList<string>());
             set => _labelNames = value;
         }
 
+        /// <summary>
+        /// If true, treat each individual series as its own signal. Mutually exclusive with `label_names`.
+        /// </summary>
         [Input("signalPerSeries")]
         public Input<bool>? SignalPerSeries { get; set; }
 

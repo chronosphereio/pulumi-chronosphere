@@ -14,23 +14,47 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class ResourcePoolsConfigPool {
+    /**
+     * @return License allocation for the pool. Can be expressed as a percentage of the license (`percent_of_license`) or as per-license fixed values (`fixed_value`).
+     * 
+     */
     private @Nullable ResourcePoolsConfigPoolAllocation allocation;
     /**
+     * @return Deprecated: use `match_rules` instead. Single matcher selecting metrics that belong to this pool.
+     * 
      * @deprecated
      * use match_rules
      * 
      */
     @Deprecated /* use match_rules */
     private @Nullable String matchRule;
+    /**
+     * @return Matchers selecting metrics that map to this pool. A metric matching any rule is assigned to the pool.
+     * 
+     */
     private @Nullable List<String> matchRules;
+    /**
+     * @return Unique name of the pool.
+     * 
+     */
     private String name;
+    /**
+     * @return Optional high/low priority sub-classifications within the pool. Low-priority metrics are dropped first; high-priority metrics are dropped last when limits are hit.
+     * 
+     */
     private @Nullable ResourcePoolsConfigPoolPriorities priorities;
 
     private ResourcePoolsConfigPool() {}
+    /**
+     * @return License allocation for the pool. Can be expressed as a percentage of the license (`percent_of_license`) or as per-license fixed values (`fixed_value`).
+     * 
+     */
     public Optional<ResourcePoolsConfigPoolAllocation> allocation() {
         return Optional.ofNullable(this.allocation);
     }
     /**
+     * @return Deprecated: use `match_rules` instead. Single matcher selecting metrics that belong to this pool.
+     * 
      * @deprecated
      * use match_rules
      * 
@@ -39,12 +63,24 @@ public final class ResourcePoolsConfigPool {
     public Optional<String> matchRule() {
         return Optional.ofNullable(this.matchRule);
     }
+    /**
+     * @return Matchers selecting metrics that map to this pool. A metric matching any rule is assigned to the pool.
+     * 
+     */
     public List<String> matchRules() {
         return this.matchRules == null ? List.of() : this.matchRules;
     }
+    /**
+     * @return Unique name of the pool.
+     * 
+     */
     public String name() {
         return this.name;
     }
+    /**
+     * @return Optional high/low priority sub-classifications within the pool. Low-priority metrics are dropped first; high-priority metrics are dropped last when limits are hit.
+     * 
+     */
     public Optional<ResourcePoolsConfigPoolPriorities> priorities() {
         return Optional.ofNullable(this.priorities);
     }

@@ -13,16 +13,32 @@ public final class DerivedMetricQueryQueryVariableArgs extends com.pulumi.resour
 
     public static final DerivedMetricQueryQueryVariableArgs Empty = new DerivedMetricQueryQueryVariableArgs();
 
+    /**
+     * PromQL label selector used when no override is supplied by the derived metric usage.
+     * 
+     */
     @Import(name="defaultSelector", required=true)
     private Output<String> defaultSelector;
 
+    /**
+     * @return PromQL label selector used when no override is supplied by the derived metric usage.
+     * 
+     */
     public Output<String> defaultSelector() {
         return this.defaultSelector;
     }
 
+    /**
+     * Variable name as referenced in `expr` (e.g. `service` for `$service`).
+     * 
+     */
     @Import(name="name", required=true)
     private Output<String> name;
 
+    /**
+     * @return Variable name as referenced in `expr` (e.g. `service` for `$service`).
+     * 
+     */
     public Output<String> name() {
         return this.name;
     }
@@ -52,20 +68,44 @@ public final class DerivedMetricQueryQueryVariableArgs extends com.pulumi.resour
             $ = new DerivedMetricQueryQueryVariableArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param defaultSelector PromQL label selector used when no override is supplied by the derived metric usage.
+         * 
+         * @return builder
+         * 
+         */
         public Builder defaultSelector(Output<String> defaultSelector) {
             $.defaultSelector = defaultSelector;
             return this;
         }
 
+        /**
+         * @param defaultSelector PromQL label selector used when no override is supplied by the derived metric usage.
+         * 
+         * @return builder
+         * 
+         */
         public Builder defaultSelector(String defaultSelector) {
             return defaultSelector(Output.of(defaultSelector));
         }
 
+        /**
+         * @param name Variable name as referenced in `expr` (e.g. `service` for `$service`).
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(Output<String> name) {
             $.name = name;
             return this;
         }
 
+        /**
+         * @param name Variable name as referenced in `expr` (e.g. `service` for `$service`).
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(String name) {
             return name(Output.of(name));
         }

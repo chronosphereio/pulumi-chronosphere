@@ -11,9 +11,17 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class DerivedLabelSpanTag {
+    /**
+     * @return Ordered list of name mappings. The first mapping that matches supplies the derived label from its `source_tag`.
+     * 
+     */
     private @Nullable List<DerivedLabelSpanTagNameMapping> nameMappings;
 
     private DerivedLabelSpanTag() {}
+    /**
+     * @return Ordered list of name mappings. The first mapping that matches supplies the derived label from its `source_tag`.
+     * 
+     */
     public List<DerivedLabelSpanTagNameMapping> nameMappings() {
         return this.nameMappings == null ? List.of() : this.nameMappings;
     }

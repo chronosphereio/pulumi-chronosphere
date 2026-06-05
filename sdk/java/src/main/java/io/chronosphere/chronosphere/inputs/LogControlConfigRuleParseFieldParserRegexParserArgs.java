@@ -13,9 +13,17 @@ public final class LogControlConfigRuleParseFieldParserRegexParserArgs extends c
 
     public static final LogControlConfigRuleParseFieldParserRegexParserArgs Empty = new LogControlConfigRuleParseFieldParserRegexParserArgs();
 
+    /**
+     * RE2 regular expression pattern. Named capturing groups become named fields in the extracted log.
+     * 
+     */
     @Import(name="regex", required=true)
     private Output<String> regex;
 
+    /**
+     * @return RE2 regular expression pattern. Named capturing groups become named fields in the extracted log.
+     * 
+     */
     public Output<String> regex() {
         return this.regex;
     }
@@ -44,11 +52,23 @@ public final class LogControlConfigRuleParseFieldParserRegexParserArgs extends c
             $ = new LogControlConfigRuleParseFieldParserRegexParserArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param regex RE2 regular expression pattern. Named capturing groups become named fields in the extracted log.
+         * 
+         * @return builder
+         * 
+         */
         public Builder regex(Output<String> regex) {
             $.regex = regex;
             return this;
         }
 
+        /**
+         * @param regex RE2 regular expression pattern. Named capturing groups become named fields in the extracted log.
+         * 
+         * @return builder
+         * 
+         */
         public Builder regex(String regex) {
             return regex(Output.of(regex));
         }

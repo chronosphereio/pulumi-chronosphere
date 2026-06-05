@@ -14,9 +14,21 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class SLOSli
     {
+        /// <summary>
+        /// Additional PromQL label matchers applied to SLI queries via the `{{.AdditionalFilters}}` template variable. Used to narrow the metrics scope.
+        /// </summary>
         public readonly ImmutableArray<Outputs.SLOSliAdditionalPromqlFilter> AdditionalPromqlFilters;
+        /// <summary>
+        /// Additional labels exported from the underlying queries to group the error budget by. Available in PromQL templates via `{{.GroupBy}}`.
+        /// </summary>
         public readonly ImmutableArray<string> CustomDimensionLabels;
+        /// <summary>
+        /// Error-ratio SLI defined by good/bad/total PromQL query templates. Mutually exclusive with `custom_timeslice_indicator`.
+        /// </summary>
         public readonly Outputs.SLOSliCustomIndicator? CustomIndicator;
+        /// <summary>
+        /// Time-slice SLI that evaluates a PromQL query over fixed time slices against a threshold condition. Mutually exclusive with `custom_indicator`.
+        /// </summary>
         public readonly Outputs.SLOSliCustomTimesliceIndicator? CustomTimesliceIndicator;
 
         [OutputConstructor]

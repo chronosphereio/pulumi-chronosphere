@@ -15,23 +15,47 @@ public final class ClassicDashboardState extends com.pulumi.resources.ResourceAr
 
     public static final ClassicDashboardState Empty = new ClassicDashboardState();
 
+    /**
+     * ID of the bucket the dashboard belongs to. Exactly one of `bucket_id` or `collection_id` must be set.
+     * 
+     */
     @Import(name="bucketId")
     private @Nullable Output<String> bucketId;
 
+    /**
+     * @return ID of the bucket the dashboard belongs to. Exactly one of `bucket_id` or `collection_id` must be set.
+     * 
+     */
     public Optional<Output<String>> bucketId() {
         return Optional.ofNullable(this.bucketId);
     }
 
+    /**
+     * ID of the collection the dashboard belongs to. Exactly one of `bucket_id` or `collection_id` must be set.
+     * 
+     */
     @Import(name="collectionId")
     private @Nullable Output<String> collectionId;
 
+    /**
+     * @return ID of the collection the dashboard belongs to. Exactly one of `bucket_id` or `collection_id` must be set.
+     * 
+     */
     public Optional<Output<String>> collectionId() {
         return Optional.ofNullable(this.collectionId);
     }
 
+    /**
+     * Grafana-compatible dashboard definition serialized as JSON. The `id` and `version` fields are stripped before diffing.
+     * 
+     */
     @Import(name="dashboardJson")
     private @Nullable Output<String> dashboardJson;
 
+    /**
+     * @return Grafana-compatible dashboard definition serialized as JSON. The `id` and `version` fields are stripped before diffing.
+     * 
+     */
     public Optional<Output<String>> dashboardJson() {
         return Optional.ofNullable(this.dashboardJson);
     }
@@ -62,29 +86,65 @@ public final class ClassicDashboardState extends com.pulumi.resources.ResourceAr
             $ = new ClassicDashboardState(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param bucketId ID of the bucket the dashboard belongs to. Exactly one of `bucket_id` or `collection_id` must be set.
+         * 
+         * @return builder
+         * 
+         */
         public Builder bucketId(@Nullable Output<String> bucketId) {
             $.bucketId = bucketId;
             return this;
         }
 
+        /**
+         * @param bucketId ID of the bucket the dashboard belongs to. Exactly one of `bucket_id` or `collection_id` must be set.
+         * 
+         * @return builder
+         * 
+         */
         public Builder bucketId(String bucketId) {
             return bucketId(Output.of(bucketId));
         }
 
+        /**
+         * @param collectionId ID of the collection the dashboard belongs to. Exactly one of `bucket_id` or `collection_id` must be set.
+         * 
+         * @return builder
+         * 
+         */
         public Builder collectionId(@Nullable Output<String> collectionId) {
             $.collectionId = collectionId;
             return this;
         }
 
+        /**
+         * @param collectionId ID of the collection the dashboard belongs to. Exactly one of `bucket_id` or `collection_id` must be set.
+         * 
+         * @return builder
+         * 
+         */
         public Builder collectionId(String collectionId) {
             return collectionId(Output.of(collectionId));
         }
 
+        /**
+         * @param dashboardJson Grafana-compatible dashboard definition serialized as JSON. The `id` and `version` fields are stripped before diffing.
+         * 
+         * @return builder
+         * 
+         */
         public Builder dashboardJson(@Nullable Output<String> dashboardJson) {
             $.dashboardJson = dashboardJson;
             return this;
         }
 
+        /**
+         * @param dashboardJson Grafana-compatible dashboard definition serialized as JSON. The `id` and `version` fields are stripped before diffing.
+         * 
+         * @return builder
+         * 
+         */
         public Builder dashboardJson(String dashboardJson) {
             return dashboardJson(Output.of(dashboardJson));
         }

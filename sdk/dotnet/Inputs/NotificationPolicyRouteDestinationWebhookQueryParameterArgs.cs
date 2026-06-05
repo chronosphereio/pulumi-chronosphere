@@ -13,9 +13,15 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class NotificationPolicyRouteDestinationWebhookQueryParameterArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Query parameter name.
+        /// </summary>
         [Input("key", required: true)]
         public Input<string> Key { get; set; } = null!;
 
+        /// <summary>
+        /// Label value (or regex pattern, for regex matchers) to match against.
+        /// </summary>
         [Input("value", required: true)]
         public Input<string> Value { get; set; } = null!;
 

@@ -17,44 +17,92 @@ public final class ServiceAccountState extends com.pulumi.resources.ResourceArgs
 
     public static final ServiceAccountState Empty = new ServiceAccountState();
 
+    /**
+     * Read-only: synthetic email address assigned to the service account by the server.
+     * 
+     */
     @Import(name="email")
     private @Nullable Output<String> email;
 
+    /**
+     * @return Read-only: synthetic email address assigned to the service account by the server.
+     * 
+     */
     public Optional<Output<String>> email() {
         return Optional.ofNullable(this.email);
     }
 
+    /**
+     * Display name of the service account. Immutable after creation.
+     * 
+     */
     @Import(name="name")
     private @Nullable Output<String> name;
 
+    /**
+     * @return Display name of the service account. Immutable after creation.
+     * 
+     */
     public Optional<Output<String>> name() {
         return Optional.ofNullable(this.name);
     }
 
+    /**
+     * Restricts the service account to a specific permission and optional metric label scope. Exactly one of `unrestricted` or `restriction` must be set.
+     * 
+     */
     @Import(name="restriction")
     private @Nullable Output<ServiceAccountRestrictionArgs> restriction;
 
+    /**
+     * @return Restricts the service account to a specific permission and optional metric label scope. Exactly one of `unrestricted` or `restriction` must be set.
+     * 
+     */
     public Optional<Output<ServiceAccountRestrictionArgs>> restriction() {
         return Optional.ofNullable(this.restriction);
     }
 
+    /**
+     * Stable identifier for the service account. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     @Import(name="slug")
     private @Nullable Output<String> slug;
 
+    /**
+     * @return Stable identifier for the service account. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     public Optional<Output<String>> slug() {
         return Optional.ofNullable(this.slug);
     }
 
+    /**
+     * Read-only: API token generated for the service account. Returned only at creation time; store it securely. If lost, the service account must be recreated.
+     * 
+     */
     @Import(name="token")
     private @Nullable Output<String> token;
 
+    /**
+     * @return Read-only: API token generated for the service account. Returned only at creation time; store it securely. If lost, the service account must be recreated.
+     * 
+     */
     public Optional<Output<String>> token() {
         return Optional.ofNullable(this.token);
     }
 
+    /**
+     * If true, grants the service account access to all Chronosphere APIs within the access controls defined by team membership. Exactly one of `unrestricted` or `restriction` must be set.
+     * 
+     */
     @Import(name="unrestricted")
     private @Nullable Output<Boolean> unrestricted;
 
+    /**
+     * @return If true, grants the service account access to all Chronosphere APIs within the access controls defined by team membership. Exactly one of `unrestricted` or `restriction` must be set.
+     * 
+     */
     public Optional<Output<Boolean>> unrestricted() {
         return Optional.ofNullable(this.unrestricted);
     }
@@ -88,56 +136,128 @@ public final class ServiceAccountState extends com.pulumi.resources.ResourceArgs
             $ = new ServiceAccountState(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param email Read-only: synthetic email address assigned to the service account by the server.
+         * 
+         * @return builder
+         * 
+         */
         public Builder email(@Nullable Output<String> email) {
             $.email = email;
             return this;
         }
 
+        /**
+         * @param email Read-only: synthetic email address assigned to the service account by the server.
+         * 
+         * @return builder
+         * 
+         */
         public Builder email(String email) {
             return email(Output.of(email));
         }
 
+        /**
+         * @param name Display name of the service account. Immutable after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(@Nullable Output<String> name) {
             $.name = name;
             return this;
         }
 
+        /**
+         * @param name Display name of the service account. Immutable after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(String name) {
             return name(Output.of(name));
         }
 
+        /**
+         * @param restriction Restricts the service account to a specific permission and optional metric label scope. Exactly one of `unrestricted` or `restriction` must be set.
+         * 
+         * @return builder
+         * 
+         */
         public Builder restriction(@Nullable Output<ServiceAccountRestrictionArgs> restriction) {
             $.restriction = restriction;
             return this;
         }
 
+        /**
+         * @param restriction Restricts the service account to a specific permission and optional metric label scope. Exactly one of `unrestricted` or `restriction` must be set.
+         * 
+         * @return builder
+         * 
+         */
         public Builder restriction(ServiceAccountRestrictionArgs restriction) {
             return restriction(Output.of(restriction));
         }
 
+        /**
+         * @param slug Stable identifier for the service account. Generated from `name` if omitted. Immutable after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slug(@Nullable Output<String> slug) {
             $.slug = slug;
             return this;
         }
 
+        /**
+         * @param slug Stable identifier for the service account. Generated from `name` if omitted. Immutable after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slug(String slug) {
             return slug(Output.of(slug));
         }
 
+        /**
+         * @param token Read-only: API token generated for the service account. Returned only at creation time; store it securely. If lost, the service account must be recreated.
+         * 
+         * @return builder
+         * 
+         */
         public Builder token(@Nullable Output<String> token) {
             $.token = token;
             return this;
         }
 
+        /**
+         * @param token Read-only: API token generated for the service account. Returned only at creation time; store it securely. If lost, the service account must be recreated.
+         * 
+         * @return builder
+         * 
+         */
         public Builder token(String token) {
             return token(Output.of(token));
         }
 
+        /**
+         * @param unrestricted If true, grants the service account access to all Chronosphere APIs within the access controls defined by team membership. Exactly one of `unrestricted` or `restriction` must be set.
+         * 
+         * @return builder
+         * 
+         */
         public Builder unrestricted(@Nullable Output<Boolean> unrestricted) {
             $.unrestricted = unrestricted;
             return this;
         }
 
+        /**
+         * @param unrestricted If true, grants the service account access to all Chronosphere APIs within the access controls defined by team membership. Exactly one of `unrestricted` or `restriction` must be set.
+         * 
+         * @return builder
+         * 
+         */
         public Builder unrestricted(Boolean unrestricted) {
             return unrestricted(Output.of(unrestricted));
         }

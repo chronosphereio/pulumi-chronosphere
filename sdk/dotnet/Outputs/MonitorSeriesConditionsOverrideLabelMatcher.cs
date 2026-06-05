@@ -14,8 +14,17 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class MonitorSeriesConditionsOverrideLabelMatcher
     {
+        /// <summary>
+        /// Label name to match.
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// Match operator: one of `=`, `!=`, `=~` (regex), `!~` (regex negation).
+        /// </summary>
         public readonly string Type;
+        /// <summary>
+        /// Resolution threshold value.
+        /// </summary>
         public readonly string Value;
 
         [OutputConstructor]

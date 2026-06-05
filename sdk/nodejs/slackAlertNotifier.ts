@@ -6,6 +6,22 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * Slack notifier that delivers monitor signals to a Slack channel via an incoming webhook. Referenced from notification policies.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as chronosphere from "@pulumi-chronosphere/pulumi-chronosphere";
+ *
+ * const slack = new chronosphere.SlackAlertNotifier("slack", {
+ *     apiUrl: "https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX",
+ *     channel: "alerts",
+ *     name: "Slack Notifier",
+ * });
+ * ```
+ */
 export class SlackAlertNotifier extends pulumi.CustomResource {
     /**
      * Get an existing SlackAlertNotifier resource's state with the given name, ID, and optional extra
@@ -34,36 +50,119 @@ export class SlackAlertNotifier extends pulumi.CustomResource {
         return obj['__pulumiType'] === SlackAlertNotifier.__pulumiType;
     }
 
+    /**
+     * Interactive buttons appended to the Slack message. See https://api.slack.com/reference/messaging/attachments#action_fields.
+     */
     public readonly actions!: pulumi.Output<outputs.SlackAlertNotifierAction[] | undefined>;
+    /**
+     * Slack incoming webhook URL that receives the notifications. Treat this as a secret.
+     */
     public readonly apiUrl!: pulumi.Output<string>;
+    /**
+     * Password for HTTP basic auth when calling the webhook.
+     */
     public readonly basicAuthPassword!: pulumi.Output<string | undefined>;
+    /**
+     * Username for HTTP basic auth when calling the webhook. Mutually exclusive with `bearerToken`.
+     */
     public readonly basicAuthUsername!: pulumi.Output<string | undefined>;
+    /**
+     * Bearer token sent in the `Authorization` header when calling the webhook. Mutually exclusive with basic auth.
+     */
     public readonly bearerToken!: pulumi.Output<string | undefined>;
+    /**
+     * Slack callback ID used to identify the source of interactive actions.
+     */
     public readonly callbackId!: pulumi.Output<string | undefined>;
+    /**
+     * Slack channel to post notifications to (e.g. `#alerts`).
+     */
     public readonly channel!: pulumi.Output<string>;
+    /**
+     * Color of the attachment border. Hex code or one of `good`, `warning`, `danger`. Supports Go templating.
+     */
     public readonly color!: pulumi.Output<string | undefined>;
+    /**
+     * Plain-text fallback shown in notifications and clients that don't render attachments. Supports Go templating.
+     */
     public readonly fallback!: pulumi.Output<string | undefined>;
+    /**
+     * Structured field/value pairs rendered as a table in the attachment.
+     */
     public readonly fields!: pulumi.Output<outputs.SlackAlertNotifierField[] | undefined>;
+    /**
+     * Footer text shown at the bottom of the attachment. Supports Go templating.
+     */
     public readonly footer!: pulumi.Output<string | undefined>;
+    /**
+     * Slack emoji to use as the bot avatar (e.g. `:fire:`). Mutually exclusive with `iconUrl` at Slack.
+     */
     public readonly iconEmoji!: pulumi.Output<string | undefined>;
+    /**
+     * URL of an image to use as the bot avatar.
+     */
     public readonly iconUrl!: pulumi.Output<string | undefined>;
+    /**
+     * URL of an image attached to the message.
+     */
     public readonly imageUrl!: pulumi.Output<string | undefined>;
+    /**
+     * If true, find and link channel names and usernames in the message text.
+     */
     public readonly linkNames!: pulumi.Output<boolean | undefined>;
+    /**
+     * Attachment fields in which Slack parses `mrkdwn` formatting. Common values: `pretext`, `text`, `fields`.
+     */
     public readonly mrkdwnIns!: pulumi.Output<string[] | undefined>;
+    /**
+     * Identifier sent back to Slack when the button is clicked.
+     */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * Text shown above the attachment. Supports Go templating.
+     */
     public readonly pretext!: pulumi.Output<string | undefined>;
     /**
+     * Deprecated and ignored. Custom proxy URLs are not supported.
+     *
      * @deprecated custom proxy URLs are not supported
      */
     public readonly proxyUrl!: pulumi.Output<string | undefined>;
+    /**
+     * Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+     */
     public readonly sendResolved!: pulumi.Output<boolean | undefined>;
+    /**
+     * If true, render all `fields` with `short: true` regardless of per-field setting.
+     */
     public readonly shortFields!: pulumi.Output<boolean | undefined>;
+    /**
+     * Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+     */
     public readonly slug!: pulumi.Output<string>;
+    /**
+     * Label shown on the button.
+     */
     public readonly text!: pulumi.Output<string | undefined>;
+    /**
+     * URL of a small thumbnail image shown to the right of the attachment.
+     */
     public readonly thumbUrl!: pulumi.Output<string | undefined>;
+    /**
+     * Bold heading shown above the value.
+     */
     public readonly title!: pulumi.Output<string | undefined>;
+    /**
+     * URL the title links to when clicked.
+     */
     public readonly titleLink!: pulumi.Output<string | undefined>;
+    /**
+     * If true, skip TLS certificate verification when calling the webhook. Disable only in trusted environments.
+     */
     public readonly tlsInsecureSkipVerify!: pulumi.Output<boolean | undefined>;
+    /**
+     * Display name of the bot posting the message.
+     */
     public readonly username!: pulumi.Output<string | undefined>;
 
     /**
@@ -158,36 +257,119 @@ export class SlackAlertNotifier extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SlackAlertNotifier resources.
  */
 export interface SlackAlertNotifierState {
+    /**
+     * Interactive buttons appended to the Slack message. See https://api.slack.com/reference/messaging/attachments#action_fields.
+     */
     actions?: pulumi.Input<pulumi.Input<inputs.SlackAlertNotifierAction>[]>;
+    /**
+     * Slack incoming webhook URL that receives the notifications. Treat this as a secret.
+     */
     apiUrl?: pulumi.Input<string>;
+    /**
+     * Password for HTTP basic auth when calling the webhook.
+     */
     basicAuthPassword?: pulumi.Input<string>;
+    /**
+     * Username for HTTP basic auth when calling the webhook. Mutually exclusive with `bearerToken`.
+     */
     basicAuthUsername?: pulumi.Input<string>;
+    /**
+     * Bearer token sent in the `Authorization` header when calling the webhook. Mutually exclusive with basic auth.
+     */
     bearerToken?: pulumi.Input<string>;
+    /**
+     * Slack callback ID used to identify the source of interactive actions.
+     */
     callbackId?: pulumi.Input<string>;
+    /**
+     * Slack channel to post notifications to (e.g. `#alerts`).
+     */
     channel?: pulumi.Input<string>;
+    /**
+     * Color of the attachment border. Hex code or one of `good`, `warning`, `danger`. Supports Go templating.
+     */
     color?: pulumi.Input<string>;
+    /**
+     * Plain-text fallback shown in notifications and clients that don't render attachments. Supports Go templating.
+     */
     fallback?: pulumi.Input<string>;
+    /**
+     * Structured field/value pairs rendered as a table in the attachment.
+     */
     fields?: pulumi.Input<pulumi.Input<inputs.SlackAlertNotifierField>[]>;
+    /**
+     * Footer text shown at the bottom of the attachment. Supports Go templating.
+     */
     footer?: pulumi.Input<string>;
+    /**
+     * Slack emoji to use as the bot avatar (e.g. `:fire:`). Mutually exclusive with `iconUrl` at Slack.
+     */
     iconEmoji?: pulumi.Input<string>;
+    /**
+     * URL of an image to use as the bot avatar.
+     */
     iconUrl?: pulumi.Input<string>;
+    /**
+     * URL of an image attached to the message.
+     */
     imageUrl?: pulumi.Input<string>;
+    /**
+     * If true, find and link channel names and usernames in the message text.
+     */
     linkNames?: pulumi.Input<boolean>;
+    /**
+     * Attachment fields in which Slack parses `mrkdwn` formatting. Common values: `pretext`, `text`, `fields`.
+     */
     mrkdwnIns?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Identifier sent back to Slack when the button is clicked.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * Text shown above the attachment. Supports Go templating.
+     */
     pretext?: pulumi.Input<string>;
     /**
+     * Deprecated and ignored. Custom proxy URLs are not supported.
+     *
      * @deprecated custom proxy URLs are not supported
      */
     proxyUrl?: pulumi.Input<string>;
+    /**
+     * Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+     */
     sendResolved?: pulumi.Input<boolean>;
+    /**
+     * If true, render all `fields` with `short: true` regardless of per-field setting.
+     */
     shortFields?: pulumi.Input<boolean>;
+    /**
+     * Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+     */
     slug?: pulumi.Input<string>;
+    /**
+     * Label shown on the button.
+     */
     text?: pulumi.Input<string>;
+    /**
+     * URL of a small thumbnail image shown to the right of the attachment.
+     */
     thumbUrl?: pulumi.Input<string>;
+    /**
+     * Bold heading shown above the value.
+     */
     title?: pulumi.Input<string>;
+    /**
+     * URL the title links to when clicked.
+     */
     titleLink?: pulumi.Input<string>;
+    /**
+     * If true, skip TLS certificate verification when calling the webhook. Disable only in trusted environments.
+     */
     tlsInsecureSkipVerify?: pulumi.Input<boolean>;
+    /**
+     * Display name of the bot posting the message.
+     */
     username?: pulumi.Input<string>;
 }
 
@@ -195,35 +377,118 @@ export interface SlackAlertNotifierState {
  * The set of arguments for constructing a SlackAlertNotifier resource.
  */
 export interface SlackAlertNotifierArgs {
+    /**
+     * Interactive buttons appended to the Slack message. See https://api.slack.com/reference/messaging/attachments#action_fields.
+     */
     actions?: pulumi.Input<pulumi.Input<inputs.SlackAlertNotifierAction>[]>;
+    /**
+     * Slack incoming webhook URL that receives the notifications. Treat this as a secret.
+     */
     apiUrl: pulumi.Input<string>;
+    /**
+     * Password for HTTP basic auth when calling the webhook.
+     */
     basicAuthPassword?: pulumi.Input<string>;
+    /**
+     * Username for HTTP basic auth when calling the webhook. Mutually exclusive with `bearerToken`.
+     */
     basicAuthUsername?: pulumi.Input<string>;
+    /**
+     * Bearer token sent in the `Authorization` header when calling the webhook. Mutually exclusive with basic auth.
+     */
     bearerToken?: pulumi.Input<string>;
+    /**
+     * Slack callback ID used to identify the source of interactive actions.
+     */
     callbackId?: pulumi.Input<string>;
+    /**
+     * Slack channel to post notifications to (e.g. `#alerts`).
+     */
     channel: pulumi.Input<string>;
+    /**
+     * Color of the attachment border. Hex code or one of `good`, `warning`, `danger`. Supports Go templating.
+     */
     color?: pulumi.Input<string>;
+    /**
+     * Plain-text fallback shown in notifications and clients that don't render attachments. Supports Go templating.
+     */
     fallback?: pulumi.Input<string>;
+    /**
+     * Structured field/value pairs rendered as a table in the attachment.
+     */
     fields?: pulumi.Input<pulumi.Input<inputs.SlackAlertNotifierField>[]>;
+    /**
+     * Footer text shown at the bottom of the attachment. Supports Go templating.
+     */
     footer?: pulumi.Input<string>;
+    /**
+     * Slack emoji to use as the bot avatar (e.g. `:fire:`). Mutually exclusive with `iconUrl` at Slack.
+     */
     iconEmoji?: pulumi.Input<string>;
+    /**
+     * URL of an image to use as the bot avatar.
+     */
     iconUrl?: pulumi.Input<string>;
+    /**
+     * URL of an image attached to the message.
+     */
     imageUrl?: pulumi.Input<string>;
+    /**
+     * If true, find and link channel names and usernames in the message text.
+     */
     linkNames?: pulumi.Input<boolean>;
+    /**
+     * Attachment fields in which Slack parses `mrkdwn` formatting. Common values: `pretext`, `text`, `fields`.
+     */
     mrkdwnIns?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Identifier sent back to Slack when the button is clicked.
+     */
     name: pulumi.Input<string>;
+    /**
+     * Text shown above the attachment. Supports Go templating.
+     */
     pretext?: pulumi.Input<string>;
     /**
+     * Deprecated and ignored. Custom proxy URLs are not supported.
+     *
      * @deprecated custom proxy URLs are not supported
      */
     proxyUrl?: pulumi.Input<string>;
+    /**
+     * Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+     */
     sendResolved?: pulumi.Input<boolean>;
+    /**
+     * If true, render all `fields` with `short: true` regardless of per-field setting.
+     */
     shortFields?: pulumi.Input<boolean>;
+    /**
+     * Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+     */
     slug?: pulumi.Input<string>;
+    /**
+     * Label shown on the button.
+     */
     text?: pulumi.Input<string>;
+    /**
+     * URL of a small thumbnail image shown to the right of the attachment.
+     */
     thumbUrl?: pulumi.Input<string>;
+    /**
+     * Bold heading shown above the value.
+     */
     title?: pulumi.Input<string>;
+    /**
+     * URL the title links to when clicked.
+     */
     titleLink?: pulumi.Input<string>;
+    /**
+     * If true, skip TLS certificate verification when calling the webhook. Disable only in trusted environments.
+     */
     tlsInsecureSkipVerify?: pulumi.Input<boolean>;
+    /**
+     * Display name of the bot posting the message.
+     */
     username?: pulumi.Input<string>;
 }

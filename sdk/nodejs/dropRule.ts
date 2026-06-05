@@ -6,6 +6,22 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * Discards matching metric data at ingest time before it is stored. Supports unconditional drops, NaN-value drops, value-based drops, and conditional drops that activate only when a cardinality threshold is exceeded.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as chronosphere from "@pulumi-chronosphere/pulumi-chronosphere";
+ *
+ * const noisyMetric = new chronosphere.DropRule("noisyMetric", {
+ *     mode: "ENABLED",
+ *     name: "Drop noisy metric",
+ *     queries: ["__name__:noisy_metric_name"],
+ * });
+ * ```
+ */
 export class DropRule extends pulumi.CustomResource {
     /**
      * Get an existing DropRule resource's state with the given name, ID, and optional extra
@@ -34,18 +50,47 @@ export class DropRule extends pulumi.CustomResource {
         return obj['__pulumiType'] === DropRule.__pulumiType;
     }
 
+    /**
+     * Once a conditional drop activates, how long it stays activated before re-checking against `rateLimitThreshold`.
+     */
     public readonly activatedDropDuration!: pulumi.Output<string | undefined>;
     /**
+     * Whether the drop rule is active. Deprecated: use `mode` instead.
+     *
      * @deprecated use `mode` instead
      */
     public readonly active!: pulumi.Output<boolean | undefined>;
+    /**
+     * If `true`, the drop only activates when the configured `rateLimitThreshold` is exceeded.
+     */
     public readonly conditionalDrop!: pulumi.Output<boolean | undefined>;
+    /**
+     * If `true`, drops data points whose value is NaN, including any associated staleness markers.
+     */
     public readonly dropNanValue!: pulumi.Output<boolean | undefined>;
+    /**
+     * Drop rule mode controlling whether it is enabled, disabled, or in a preview state. Defaults to `ENABLED`.
+     */
     public readonly mode!: pulumi.Output<string | undefined>;
+    /**
+     * Display name of the drop rule. Can be changed after creation.
+     */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * List of label filter queries that select which metrics to drop. A metric is dropped if it matches all filters in any one query.
+     */
     public readonly queries!: pulumi.Output<string[]>;
+    /**
+     * Percentage of the licensed metrics limit (0-100) at which a conditional drop activates.
+     */
     public readonly rateLimitThreshold!: pulumi.Output<number | undefined>;
+    /**
+     * Stable identifier for the drop rule. Generated from `name` if omitted. Immutable after creation.
+     */
     public readonly slug!: pulumi.Output<string>;
+    /**
+     * Configuration for dropping data points whose value matches a target.
+     */
     public readonly valueBasedDrop!: pulumi.Output<outputs.DropRuleValueBasedDrop | undefined>;
 
     /**
@@ -99,18 +144,47 @@ export class DropRule extends pulumi.CustomResource {
  * Input properties used for looking up and filtering DropRule resources.
  */
 export interface DropRuleState {
+    /**
+     * Once a conditional drop activates, how long it stays activated before re-checking against `rateLimitThreshold`.
+     */
     activatedDropDuration?: pulumi.Input<string>;
     /**
+     * Whether the drop rule is active. Deprecated: use `mode` instead.
+     *
      * @deprecated use `mode` instead
      */
     active?: pulumi.Input<boolean>;
+    /**
+     * If `true`, the drop only activates when the configured `rateLimitThreshold` is exceeded.
+     */
     conditionalDrop?: pulumi.Input<boolean>;
+    /**
+     * If `true`, drops data points whose value is NaN, including any associated staleness markers.
+     */
     dropNanValue?: pulumi.Input<boolean>;
+    /**
+     * Drop rule mode controlling whether it is enabled, disabled, or in a preview state. Defaults to `ENABLED`.
+     */
     mode?: pulumi.Input<string>;
+    /**
+     * Display name of the drop rule. Can be changed after creation.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * List of label filter queries that select which metrics to drop. A metric is dropped if it matches all filters in any one query.
+     */
     queries?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Percentage of the licensed metrics limit (0-100) at which a conditional drop activates.
+     */
     rateLimitThreshold?: pulumi.Input<number>;
+    /**
+     * Stable identifier for the drop rule. Generated from `name` if omitted. Immutable after creation.
+     */
     slug?: pulumi.Input<string>;
+    /**
+     * Configuration for dropping data points whose value matches a target.
+     */
     valueBasedDrop?: pulumi.Input<inputs.DropRuleValueBasedDrop>;
 }
 
@@ -118,17 +192,46 @@ export interface DropRuleState {
  * The set of arguments for constructing a DropRule resource.
  */
 export interface DropRuleArgs {
+    /**
+     * Once a conditional drop activates, how long it stays activated before re-checking against `rateLimitThreshold`.
+     */
     activatedDropDuration?: pulumi.Input<string>;
     /**
+     * Whether the drop rule is active. Deprecated: use `mode` instead.
+     *
      * @deprecated use `mode` instead
      */
     active?: pulumi.Input<boolean>;
+    /**
+     * If `true`, the drop only activates when the configured `rateLimitThreshold` is exceeded.
+     */
     conditionalDrop?: pulumi.Input<boolean>;
+    /**
+     * If `true`, drops data points whose value is NaN, including any associated staleness markers.
+     */
     dropNanValue?: pulumi.Input<boolean>;
+    /**
+     * Drop rule mode controlling whether it is enabled, disabled, or in a preview state. Defaults to `ENABLED`.
+     */
     mode?: pulumi.Input<string>;
+    /**
+     * Display name of the drop rule. Can be changed after creation.
+     */
     name: pulumi.Input<string>;
+    /**
+     * List of label filter queries that select which metrics to drop. A metric is dropped if it matches all filters in any one query.
+     */
     queries: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Percentage of the licensed metrics limit (0-100) at which a conditional drop activates.
+     */
     rateLimitThreshold?: pulumi.Input<number>;
+    /**
+     * Stable identifier for the drop rule. Generated from `name` if omitted. Immutable after creation.
+     */
     slug?: pulumi.Input<string>;
+    /**
+     * Configuration for dropping data points whose value matches a target.
+     */
     valueBasedDrop?: pulumi.Input<inputs.DropRuleValueBasedDrop>;
 }

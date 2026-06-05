@@ -14,9 +14,21 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class ResourcePoolsConfigPoolAllocationPriorityThreshold
     {
+        /// <summary>
+        /// Threshold value, expressed as either a percent of the pool's allocation or as a fixed value in license units.
+        /// </summary>
         public readonly Outputs.ResourcePoolsConfigPoolAllocationPriorityThresholdAllPriorities? AllPriorities;
+        /// <summary>
+        /// Threshold value, expressed as either a percent of the pool's allocation or as a fixed value in license units.
+        /// </summary>
         public readonly Outputs.ResourcePoolsConfigPoolAllocationPriorityThresholdDefaultAndLowPriority? DefaultAndLowPriority;
+        /// <summary>
+        /// License this fixed-value allocation applies to (e.g. `PERSISTED_WRITES`).
+        /// </summary>
         public readonly string License;
+        /// <summary>
+        /// Threshold value, expressed as either a percent of the pool's allocation or as a fixed value in license units.
+        /// </summary>
         public readonly Outputs.ResourcePoolsConfigPoolAllocationPriorityThresholdLowPriority? LowPriority;
 
         [OutputConstructor]

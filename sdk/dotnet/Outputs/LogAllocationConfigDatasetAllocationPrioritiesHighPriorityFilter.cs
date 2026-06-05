@@ -14,6 +14,9 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class LogAllocationConfigDatasetAllocationPrioritiesHighPriorityFilter
     {
+        /// <summary>
+        /// Log search query that selects matching logs. Supports only top-level operations; nested clauses are not allowed and only one type of `AND` or `OR` operator can be used.
+        /// </summary>
         public readonly string Query;
 
         [OutputConstructor]

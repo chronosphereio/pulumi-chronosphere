@@ -17,16 +17,32 @@ public final class MonitorScheduleArgs extends com.pulumi.resources.ResourceArgs
 
     public static final MonitorScheduleArgs Empty = new MonitorScheduleArgs();
 
+    /**
+     * Time-of-day ranges during which the monitor is active. The monitor is inactive outside these ranges.
+     * 
+     */
     @Import(name="ranges")
     private @Nullable Output<List<MonitorScheduleRangeArgs>> ranges;
 
+    /**
+     * @return Time-of-day ranges during which the monitor is active. The monitor is inactive outside these ranges.
+     * 
+     */
     public Optional<Output<List<MonitorScheduleRangeArgs>>> ranges() {
         return Optional.ofNullable(this.ranges);
     }
 
+    /**
+     * IANA timezone name (e.g. `America/New_York`) used to interpret `range` values.
+     * 
+     */
     @Import(name="timezone", required=true)
     private Output<String> timezone;
 
+    /**
+     * @return IANA timezone name (e.g. `America/New_York`) used to interpret `range` values.
+     * 
+     */
     public Output<String> timezone() {
         return this.timezone;
     }
@@ -56,24 +72,54 @@ public final class MonitorScheduleArgs extends com.pulumi.resources.ResourceArgs
             $ = new MonitorScheduleArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param ranges Time-of-day ranges during which the monitor is active. The monitor is inactive outside these ranges.
+         * 
+         * @return builder
+         * 
+         */
         public Builder ranges(@Nullable Output<List<MonitorScheduleRangeArgs>> ranges) {
             $.ranges = ranges;
             return this;
         }
 
+        /**
+         * @param ranges Time-of-day ranges during which the monitor is active. The monitor is inactive outside these ranges.
+         * 
+         * @return builder
+         * 
+         */
         public Builder ranges(List<MonitorScheduleRangeArgs> ranges) {
             return ranges(Output.of(ranges));
         }
 
+        /**
+         * @param ranges Time-of-day ranges during which the monitor is active. The monitor is inactive outside these ranges.
+         * 
+         * @return builder
+         * 
+         */
         public Builder ranges(MonitorScheduleRangeArgs... ranges) {
             return ranges(List.of(ranges));
         }
 
+        /**
+         * @param timezone IANA timezone name (e.g. `America/New_York`) used to interpret `range` values.
+         * 
+         * @return builder
+         * 
+         */
         public Builder timezone(Output<String> timezone) {
             $.timezone = timezone;
             return this;
         }
 
+        /**
+         * @param timezone IANA timezone name (e.g. `America/New_York`) used to interpret `range` values.
+         * 
+         * @return builder
+         * 
+         */
         public Builder timezone(String timezone) {
             return timezone(Output.of(timezone));
         }

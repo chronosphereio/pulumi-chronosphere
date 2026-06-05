@@ -13,15 +13,27 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class ResourcePoolsConfigDefaultPoolPriorityThresholdArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Threshold value, expressed as either a percent of the pool's allocation or as a fixed value in license units.
+        /// </summary>
         [Input("allPriorities")]
         public Input<Inputs.ResourcePoolsConfigDefaultPoolPriorityThresholdAllPrioritiesArgs>? AllPriorities { get; set; }
 
+        /// <summary>
+        /// Threshold value, expressed as either a percent of the pool's allocation or as a fixed value in license units.
+        /// </summary>
         [Input("defaultAndLowPriority")]
         public Input<Inputs.ResourcePoolsConfigDefaultPoolPriorityThresholdDefaultAndLowPriorityArgs>? DefaultAndLowPriority { get; set; }
 
+        /// <summary>
+        /// License this fixed-value allocation applies to (e.g. `PERSISTED_WRITES`).
+        /// </summary>
         [Input("license", required: true)]
         public Input<string> License { get; set; } = null!;
 
+        /// <summary>
+        /// Threshold value, expressed as either a percent of the pool's allocation or as a fixed value in license units.
+        /// </summary>
         [Input("lowPriority")]
         public Input<Inputs.ResourcePoolsConfigDefaultPoolPriorityThresholdLowPriorityArgs>? LowPriority { get; set; }
 

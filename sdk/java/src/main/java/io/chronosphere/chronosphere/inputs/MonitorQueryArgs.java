@@ -15,23 +15,47 @@ public final class MonitorQueryArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final MonitorQueryArgs Empty = new MonitorQueryArgs();
 
+    /**
+     * Graphite expression evaluated by the monitor.
+     * 
+     */
     @Import(name="graphiteExpr")
     private @Nullable Output<String> graphiteExpr;
 
+    /**
+     * @return Graphite expression evaluated by the monitor.
+     * 
+     */
     public Optional<Output<String>> graphiteExpr() {
         return Optional.ofNullable(this.graphiteExpr);
     }
 
+    /**
+     * Log query expression evaluated by the monitor.
+     * 
+     */
     @Import(name="loggingExpr")
     private @Nullable Output<String> loggingExpr;
 
+    /**
+     * @return Log query expression evaluated by the monitor.
+     * 
+     */
     public Optional<Output<String>> loggingExpr() {
         return Optional.ofNullable(this.loggingExpr);
     }
 
+    /**
+     * PromQL expression evaluated by the monitor.
+     * 
+     */
     @Import(name="prometheusExpr")
     private @Nullable Output<String> prometheusExpr;
 
+    /**
+     * @return PromQL expression evaluated by the monitor.
+     * 
+     */
     public Optional<Output<String>> prometheusExpr() {
         return Optional.ofNullable(this.prometheusExpr);
     }
@@ -62,29 +86,65 @@ public final class MonitorQueryArgs extends com.pulumi.resources.ResourceArgs {
             $ = new MonitorQueryArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param graphiteExpr Graphite expression evaluated by the monitor.
+         * 
+         * @return builder
+         * 
+         */
         public Builder graphiteExpr(@Nullable Output<String> graphiteExpr) {
             $.graphiteExpr = graphiteExpr;
             return this;
         }
 
+        /**
+         * @param graphiteExpr Graphite expression evaluated by the monitor.
+         * 
+         * @return builder
+         * 
+         */
         public Builder graphiteExpr(String graphiteExpr) {
             return graphiteExpr(Output.of(graphiteExpr));
         }
 
+        /**
+         * @param loggingExpr Log query expression evaluated by the monitor.
+         * 
+         * @return builder
+         * 
+         */
         public Builder loggingExpr(@Nullable Output<String> loggingExpr) {
             $.loggingExpr = loggingExpr;
             return this;
         }
 
+        /**
+         * @param loggingExpr Log query expression evaluated by the monitor.
+         * 
+         * @return builder
+         * 
+         */
         public Builder loggingExpr(String loggingExpr) {
             return loggingExpr(Output.of(loggingExpr));
         }
 
+        /**
+         * @param prometheusExpr PromQL expression evaluated by the monitor.
+         * 
+         * @return builder
+         * 
+         */
         public Builder prometheusExpr(@Nullable Output<String> prometheusExpr) {
             $.prometheusExpr = prometheusExpr;
             return this;
         }
 
+        /**
+         * @param prometheusExpr PromQL expression evaluated by the monitor.
+         * 
+         * @return builder
+         * 
+         */
         public Builder prometheusExpr(String prometheusExpr) {
             return prometheusExpr(Output.of(prometheusExpr));
         }

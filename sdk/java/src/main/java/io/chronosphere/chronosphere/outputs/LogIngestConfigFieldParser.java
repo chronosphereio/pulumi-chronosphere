@@ -14,21 +14,53 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class LogIngestConfigFieldParser {
+    /**
+     * @return Path to write the parsed output to. If omitted, parsed fields are written at the root.
+     * 
+     */
     private @Nullable LogIngestConfigFieldParserDestination destination;
+    /**
+     * @return Mode that controls when the field parser runs on incoming logs.
+     * 
+     */
     private @Nullable String mode;
+    /**
+     * @return Parser configuration. Exactly one of `regex_parser`, `key_value_parser`, or `grok_parser` must be set, matching `parser_type`.
+     * 
+     */
     private LogIngestConfigFieldParserParser parser;
+    /**
+     * @return Path of the field to parse.
+     * 
+     */
     private LogIngestConfigFieldParserSource source;
 
     private LogIngestConfigFieldParser() {}
+    /**
+     * @return Path to write the parsed output to. If omitted, parsed fields are written at the root.
+     * 
+     */
     public Optional<LogIngestConfigFieldParserDestination> destination() {
         return Optional.ofNullable(this.destination);
     }
+    /**
+     * @return Mode that controls when the field parser runs on incoming logs.
+     * 
+     */
     public Optional<String> mode() {
         return Optional.ofNullable(this.mode);
     }
+    /**
+     * @return Parser configuration. Exactly one of `regex_parser`, `key_value_parser`, or `grok_parser` must be set, matching `parser_type`.
+     * 
+     */
     public LogIngestConfigFieldParserParser parser() {
         return this.parser;
     }
+    /**
+     * @return Path of the field to parse.
+     * 
+     */
     public LogIngestConfigFieldParserSource source() {
         return this.source;
     }

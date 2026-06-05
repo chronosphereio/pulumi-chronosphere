@@ -16,9 +16,17 @@ public final class RollupRuleGraphiteLabelPolicyArgs extends com.pulumi.resource
 
     public static final RollupRuleGraphiteLabelPolicyArgs Empty = new RollupRuleGraphiteLabelPolicyArgs();
 
+    /**
+     * List of positional Graphite label replacements applied to the output metric.
+     * 
+     */
     @Import(name="replaces")
     private @Nullable Output<List<RollupRuleGraphiteLabelPolicyReplaceArgs>> replaces;
 
+    /**
+     * @return List of positional Graphite label replacements applied to the output metric.
+     * 
+     */
     public Optional<Output<List<RollupRuleGraphiteLabelPolicyReplaceArgs>>> replaces() {
         return Optional.ofNullable(this.replaces);
     }
@@ -47,15 +55,33 @@ public final class RollupRuleGraphiteLabelPolicyArgs extends com.pulumi.resource
             $ = new RollupRuleGraphiteLabelPolicyArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param replaces List of positional Graphite label replacements applied to the output metric.
+         * 
+         * @return builder
+         * 
+         */
         public Builder replaces(@Nullable Output<List<RollupRuleGraphiteLabelPolicyReplaceArgs>> replaces) {
             $.replaces = replaces;
             return this;
         }
 
+        /**
+         * @param replaces List of positional Graphite label replacements applied to the output metric.
+         * 
+         * @return builder
+         * 
+         */
         public Builder replaces(List<RollupRuleGraphiteLabelPolicyReplaceArgs> replaces) {
             return replaces(Output.of(replaces));
         }
 
+        /**
+         * @param replaces List of positional Graphite label replacements applied to the output metric.
+         * 
+         * @return builder
+         * 
+         */
         public Builder replaces(RollupRuleGraphiteLabelPolicyReplaceArgs... replaces) {
             return replaces(List.of(replaces));
         }

@@ -17,16 +17,32 @@ public final class ConsumptionBudgetPriorityArgs extends com.pulumi.resources.Re
 
     public static final ConsumptionBudgetPriorityArgs Empty = new ConsumptionBudgetPriorityArgs();
 
+    /**
+     * Filters identifying which data matches this priority. Filters are AND-ed together: a request must match every filter to be assigned this priority.
+     * 
+     */
     @Import(name="filters")
     private @Nullable Output<List<ConsumptionBudgetPriorityFilterArgs>> filters;
 
+    /**
+     * @return Filters identifying which data matches this priority. Filters are AND-ed together: a request must match every filter to be assigned this priority.
+     * 
+     */
     public Optional<Output<List<ConsumptionBudgetPriorityFilterArgs>>> filters() {
         return Optional.ofNullable(this.filters);
     }
 
+    /**
+     * Priority order used when dropping data. Priority `10` is dropped first; priority `1` is dropped last.
+     * 
+     */
     @Import(name="priority")
     private @Nullable Output<Integer> priority;
 
+    /**
+     * @return Priority order used when dropping data. Priority `10` is dropped first; priority `1` is dropped last.
+     * 
+     */
     public Optional<Output<Integer>> priority() {
         return Optional.ofNullable(this.priority);
     }
@@ -56,24 +72,54 @@ public final class ConsumptionBudgetPriorityArgs extends com.pulumi.resources.Re
             $ = new ConsumptionBudgetPriorityArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param filters Filters identifying which data matches this priority. Filters are AND-ed together: a request must match every filter to be assigned this priority.
+         * 
+         * @return builder
+         * 
+         */
         public Builder filters(@Nullable Output<List<ConsumptionBudgetPriorityFilterArgs>> filters) {
             $.filters = filters;
             return this;
         }
 
+        /**
+         * @param filters Filters identifying which data matches this priority. Filters are AND-ed together: a request must match every filter to be assigned this priority.
+         * 
+         * @return builder
+         * 
+         */
         public Builder filters(List<ConsumptionBudgetPriorityFilterArgs> filters) {
             return filters(Output.of(filters));
         }
 
+        /**
+         * @param filters Filters identifying which data matches this priority. Filters are AND-ed together: a request must match every filter to be assigned this priority.
+         * 
+         * @return builder
+         * 
+         */
         public Builder filters(ConsumptionBudgetPriorityFilterArgs... filters) {
             return filters(List.of(filters));
         }
 
+        /**
+         * @param priority Priority order used when dropping data. Priority `10` is dropped first; priority `1` is dropped last.
+         * 
+         * @return builder
+         * 
+         */
         public Builder priority(@Nullable Output<Integer> priority) {
             $.priority = priority;
             return this;
         }
 
+        /**
+         * @param priority Priority order used when dropping data. Priority `10` is dropped first; priority `1` is dropped last.
+         * 
+         * @return builder
+         * 
+         */
         public Builder priority(Integer priority) {
             return priority(Output.of(priority));
         }

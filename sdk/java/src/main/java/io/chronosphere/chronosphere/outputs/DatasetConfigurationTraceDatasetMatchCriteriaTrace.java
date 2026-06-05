@@ -12,13 +12,29 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class DatasetConfigurationTraceDatasetMatchCriteriaTrace {
+    /**
+     * @return Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, max_secs]` range.
+     * 
+     */
     private @Nullable DatasetConfigurationTraceDatasetMatchCriteriaTraceDuration duration;
+    /**
+     * @return Matches traces or spans where the target boolean field equals `value`.
+     * 
+     */
     private @Nullable DatasetConfigurationTraceDatasetMatchCriteriaTraceError error;
 
     private DatasetConfigurationTraceDatasetMatchCriteriaTrace() {}
+    /**
+     * @return Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, max_secs]` range.
+     * 
+     */
     public Optional<DatasetConfigurationTraceDatasetMatchCriteriaTraceDuration> duration() {
         return Optional.ofNullable(this.duration);
     }
+    /**
+     * @return Matches traces or spans where the target boolean field equals `value`.
+     * 
+     */
     public Optional<DatasetConfigurationTraceDatasetMatchCriteriaTraceError> error() {
         return Optional.ofNullable(this.error);
     }

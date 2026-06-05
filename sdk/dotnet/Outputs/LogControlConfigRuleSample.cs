@@ -14,6 +14,9 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class LogControlConfigRuleSample
     {
+        /// <summary>
+        /// Fraction of matching logs to keep, in the range `[0, 1]` (for example, `0.25` keeps 25%).
+        /// </summary>
         public readonly double? Rate;
 
         [OutputConstructor]

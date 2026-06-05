@@ -12,28 +12,84 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// OpsGenie notifier that delivers monitor signals to OpsGenie as alerts via its API integration. Referenced from notification policies.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/chronosphereio/pulumi-chronosphere/sdk/go/chronosphere"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := chronosphere.NewOpsgenieAlertNotifier(ctx, "opsgenie", &chronosphere.OpsgenieAlertNotifierArgs{
+//				ApiKey:   pulumi.String("XXXXX"),
+//				ApiUrl:   pulumi.String("https://api.opsgenie.com/"),
+//				Name:     pulumi.String("infra_compute_opsgenie"),
+//				Priority: pulumi.String("P1"),
+//				Responders: chronosphere.OpsgenieAlertNotifierResponderArray{
+//					&chronosphere.OpsgenieAlertNotifierResponderArgs{
+//						Name: pulumi.String("Productivity Platform - Compute"),
+//						Type: pulumi.String("TEAM"),
+//					},
+//				},
+//				SendResolved: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type OpsgenieAlertNotifier struct {
 	pulumi.CustomResourceState
 
-	ApiKey            pulumi.StringOutput    `pulumi:"apiKey"`
-	ApiUrl            pulumi.StringPtrOutput `pulumi:"apiUrl"`
+	// Opsgenie API key used to authenticate requests. Treat as a secret.
+	ApiKey pulumi.StringOutput `pulumi:"apiKey"`
+	// Opsgenie API URL to send requests to (e.g. `https://api.opsgenie.com/`).
+	ApiUrl pulumi.StringPtrOutput `pulumi:"apiUrl"`
+	// Password for HTTP basic auth when calling the Opsgenie API. Treat as a secret.
 	BasicAuthPassword pulumi.StringPtrOutput `pulumi:"basicAuthPassword"`
+	// Username for HTTP basic auth when calling the Opsgenie API. Mutually exclusive with `bearerToken`.
 	BasicAuthUsername pulumi.StringPtrOutput `pulumi:"basicAuthUsername"`
-	BearerToken       pulumi.StringPtrOutput `pulumi:"bearerToken"`
-	Description       pulumi.StringPtrOutput `pulumi:"description"`
-	Details           pulumi.StringMapOutput `pulumi:"details"`
-	Message           pulumi.StringPtrOutput `pulumi:"message"`
-	Name              pulumi.StringOutput    `pulumi:"name"`
-	Note              pulumi.StringPtrOutput `pulumi:"note"`
-	Priority          pulumi.StringPtrOutput `pulumi:"priority"`
+	// Bearer token sent in the `Authorization` header when calling the Opsgenie API. Treat as a secret. Mutually exclusive with basic auth.
+	BearerToken pulumi.StringPtrOutput `pulumi:"bearerToken"`
+	// Detailed description of the alert. Supports Go templating.
+	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// Arbitrary key/value pairs attached to the alert as additional context. Values support Go templating.
+	Details pulumi.StringMapOutput `pulumi:"details"`
+	// Alert text shown in Opsgenie. Supports Go templating.
+	Message pulumi.StringPtrOutput `pulumi:"message"`
+	// Name of the responder team, schedule, or escalation policy.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// Additional note appended to the alert. Supports Go templating.
+	Note pulumi.StringPtrOutput `pulumi:"note"`
+	// Priority level of the alert. One of `P1`, `P2`, `P3`, `P4`, or `P5`.
+	Priority pulumi.StringPtrOutput `pulumi:"priority"`
+	// Deprecated and ignored. Custom proxy URLs are not supported.
+	//
 	// Deprecated: custom proxy URLs are not supported
-	ProxyUrl              pulumi.StringPtrOutput                    `pulumi:"proxyUrl"`
-	Responders            OpsgenieAlertNotifierResponderArrayOutput `pulumi:"responders"`
-	SendResolved          pulumi.BoolPtrOutput                      `pulumi:"sendResolved"`
-	Slug                  pulumi.StringOutput                       `pulumi:"slug"`
-	Source                pulumi.StringPtrOutput                    `pulumi:"source"`
-	Tags                  pulumi.StringArrayOutput                  `pulumi:"tags"`
-	TlsInsecureSkipVerify pulumi.BoolPtrOutput                      `pulumi:"tlsInsecureSkipVerify"`
+	ProxyUrl pulumi.StringPtrOutput `pulumi:"proxyUrl"`
+	// Responders that Opsgenie will notify for the alert. See https://docs.opsgenie.com/docs/alert-api for accepted shapes.
+	Responders OpsgenieAlertNotifierResponderArrayOutput `pulumi:"responders"`
+	// Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+	SendResolved pulumi.BoolPtrOutput `pulumi:"sendResolved"`
+	// Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringOutput `pulumi:"slug"`
+	// Backlink to the sender of the notification. Supports Go templating.
+	Source pulumi.StringPtrOutput `pulumi:"source"`
+	// Tags attached to the Opsgenie alert.
+	Tags pulumi.StringArrayOutput `pulumi:"tags"`
+	// If true, skip TLS certificate verification when calling the Opsgenie API. Disable only in trusted environments.
+	TlsInsecureSkipVerify pulumi.BoolPtrOutput `pulumi:"tlsInsecureSkipVerify"`
 }
 
 // NewOpsgenieAlertNotifier registers a new resource with the given unique name, arguments, and options.
@@ -83,46 +139,84 @@ func GetOpsgenieAlertNotifier(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering OpsgenieAlertNotifier resources.
 type opsgenieAlertNotifierState struct {
-	ApiKey            *string           `pulumi:"apiKey"`
-	ApiUrl            *string           `pulumi:"apiUrl"`
-	BasicAuthPassword *string           `pulumi:"basicAuthPassword"`
-	BasicAuthUsername *string           `pulumi:"basicAuthUsername"`
-	BearerToken       *string           `pulumi:"bearerToken"`
-	Description       *string           `pulumi:"description"`
-	Details           map[string]string `pulumi:"details"`
-	Message           *string           `pulumi:"message"`
-	Name              *string           `pulumi:"name"`
-	Note              *string           `pulumi:"note"`
-	Priority          *string           `pulumi:"priority"`
+	// Opsgenie API key used to authenticate requests. Treat as a secret.
+	ApiKey *string `pulumi:"apiKey"`
+	// Opsgenie API URL to send requests to (e.g. `https://api.opsgenie.com/`).
+	ApiUrl *string `pulumi:"apiUrl"`
+	// Password for HTTP basic auth when calling the Opsgenie API. Treat as a secret.
+	BasicAuthPassword *string `pulumi:"basicAuthPassword"`
+	// Username for HTTP basic auth when calling the Opsgenie API. Mutually exclusive with `bearerToken`.
+	BasicAuthUsername *string `pulumi:"basicAuthUsername"`
+	// Bearer token sent in the `Authorization` header when calling the Opsgenie API. Treat as a secret. Mutually exclusive with basic auth.
+	BearerToken *string `pulumi:"bearerToken"`
+	// Detailed description of the alert. Supports Go templating.
+	Description *string `pulumi:"description"`
+	// Arbitrary key/value pairs attached to the alert as additional context. Values support Go templating.
+	Details map[string]string `pulumi:"details"`
+	// Alert text shown in Opsgenie. Supports Go templating.
+	Message *string `pulumi:"message"`
+	// Name of the responder team, schedule, or escalation policy.
+	Name *string `pulumi:"name"`
+	// Additional note appended to the alert. Supports Go templating.
+	Note *string `pulumi:"note"`
+	// Priority level of the alert. One of `P1`, `P2`, `P3`, `P4`, or `P5`.
+	Priority *string `pulumi:"priority"`
+	// Deprecated and ignored. Custom proxy URLs are not supported.
+	//
 	// Deprecated: custom proxy URLs are not supported
-	ProxyUrl              *string                          `pulumi:"proxyUrl"`
-	Responders            []OpsgenieAlertNotifierResponder `pulumi:"responders"`
-	SendResolved          *bool                            `pulumi:"sendResolved"`
-	Slug                  *string                          `pulumi:"slug"`
-	Source                *string                          `pulumi:"source"`
-	Tags                  []string                         `pulumi:"tags"`
-	TlsInsecureSkipVerify *bool                            `pulumi:"tlsInsecureSkipVerify"`
+	ProxyUrl *string `pulumi:"proxyUrl"`
+	// Responders that Opsgenie will notify for the alert. See https://docs.opsgenie.com/docs/alert-api for accepted shapes.
+	Responders []OpsgenieAlertNotifierResponder `pulumi:"responders"`
+	// Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+	SendResolved *bool `pulumi:"sendResolved"`
+	// Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+	Slug *string `pulumi:"slug"`
+	// Backlink to the sender of the notification. Supports Go templating.
+	Source *string `pulumi:"source"`
+	// Tags attached to the Opsgenie alert.
+	Tags []string `pulumi:"tags"`
+	// If true, skip TLS certificate verification when calling the Opsgenie API. Disable only in trusted environments.
+	TlsInsecureSkipVerify *bool `pulumi:"tlsInsecureSkipVerify"`
 }
 
 type OpsgenieAlertNotifierState struct {
-	ApiKey            pulumi.StringPtrInput
-	ApiUrl            pulumi.StringPtrInput
+	// Opsgenie API key used to authenticate requests. Treat as a secret.
+	ApiKey pulumi.StringPtrInput
+	// Opsgenie API URL to send requests to (e.g. `https://api.opsgenie.com/`).
+	ApiUrl pulumi.StringPtrInput
+	// Password for HTTP basic auth when calling the Opsgenie API. Treat as a secret.
 	BasicAuthPassword pulumi.StringPtrInput
+	// Username for HTTP basic auth when calling the Opsgenie API. Mutually exclusive with `bearerToken`.
 	BasicAuthUsername pulumi.StringPtrInput
-	BearerToken       pulumi.StringPtrInput
-	Description       pulumi.StringPtrInput
-	Details           pulumi.StringMapInput
-	Message           pulumi.StringPtrInput
-	Name              pulumi.StringPtrInput
-	Note              pulumi.StringPtrInput
-	Priority          pulumi.StringPtrInput
+	// Bearer token sent in the `Authorization` header when calling the Opsgenie API. Treat as a secret. Mutually exclusive with basic auth.
+	BearerToken pulumi.StringPtrInput
+	// Detailed description of the alert. Supports Go templating.
+	Description pulumi.StringPtrInput
+	// Arbitrary key/value pairs attached to the alert as additional context. Values support Go templating.
+	Details pulumi.StringMapInput
+	// Alert text shown in Opsgenie. Supports Go templating.
+	Message pulumi.StringPtrInput
+	// Name of the responder team, schedule, or escalation policy.
+	Name pulumi.StringPtrInput
+	// Additional note appended to the alert. Supports Go templating.
+	Note pulumi.StringPtrInput
+	// Priority level of the alert. One of `P1`, `P2`, `P3`, `P4`, or `P5`.
+	Priority pulumi.StringPtrInput
+	// Deprecated and ignored. Custom proxy URLs are not supported.
+	//
 	// Deprecated: custom proxy URLs are not supported
-	ProxyUrl              pulumi.StringPtrInput
-	Responders            OpsgenieAlertNotifierResponderArrayInput
-	SendResolved          pulumi.BoolPtrInput
-	Slug                  pulumi.StringPtrInput
-	Source                pulumi.StringPtrInput
-	Tags                  pulumi.StringArrayInput
+	ProxyUrl pulumi.StringPtrInput
+	// Responders that Opsgenie will notify for the alert. See https://docs.opsgenie.com/docs/alert-api for accepted shapes.
+	Responders OpsgenieAlertNotifierResponderArrayInput
+	// Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+	SendResolved pulumi.BoolPtrInput
+	// Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringPtrInput
+	// Backlink to the sender of the notification. Supports Go templating.
+	Source pulumi.StringPtrInput
+	// Tags attached to the Opsgenie alert.
+	Tags pulumi.StringArrayInput
+	// If true, skip TLS certificate verification when calling the Opsgenie API. Disable only in trusted environments.
 	TlsInsecureSkipVerify pulumi.BoolPtrInput
 }
 
@@ -131,47 +225,85 @@ func (OpsgenieAlertNotifierState) ElementType() reflect.Type {
 }
 
 type opsgenieAlertNotifierArgs struct {
-	ApiKey            string            `pulumi:"apiKey"`
-	ApiUrl            *string           `pulumi:"apiUrl"`
-	BasicAuthPassword *string           `pulumi:"basicAuthPassword"`
-	BasicAuthUsername *string           `pulumi:"basicAuthUsername"`
-	BearerToken       *string           `pulumi:"bearerToken"`
-	Description       *string           `pulumi:"description"`
-	Details           map[string]string `pulumi:"details"`
-	Message           *string           `pulumi:"message"`
-	Name              string            `pulumi:"name"`
-	Note              *string           `pulumi:"note"`
-	Priority          *string           `pulumi:"priority"`
+	// Opsgenie API key used to authenticate requests. Treat as a secret.
+	ApiKey string `pulumi:"apiKey"`
+	// Opsgenie API URL to send requests to (e.g. `https://api.opsgenie.com/`).
+	ApiUrl *string `pulumi:"apiUrl"`
+	// Password for HTTP basic auth when calling the Opsgenie API. Treat as a secret.
+	BasicAuthPassword *string `pulumi:"basicAuthPassword"`
+	// Username for HTTP basic auth when calling the Opsgenie API. Mutually exclusive with `bearerToken`.
+	BasicAuthUsername *string `pulumi:"basicAuthUsername"`
+	// Bearer token sent in the `Authorization` header when calling the Opsgenie API. Treat as a secret. Mutually exclusive with basic auth.
+	BearerToken *string `pulumi:"bearerToken"`
+	// Detailed description of the alert. Supports Go templating.
+	Description *string `pulumi:"description"`
+	// Arbitrary key/value pairs attached to the alert as additional context. Values support Go templating.
+	Details map[string]string `pulumi:"details"`
+	// Alert text shown in Opsgenie. Supports Go templating.
+	Message *string `pulumi:"message"`
+	// Name of the responder team, schedule, or escalation policy.
+	Name string `pulumi:"name"`
+	// Additional note appended to the alert. Supports Go templating.
+	Note *string `pulumi:"note"`
+	// Priority level of the alert. One of `P1`, `P2`, `P3`, `P4`, or `P5`.
+	Priority *string `pulumi:"priority"`
+	// Deprecated and ignored. Custom proxy URLs are not supported.
+	//
 	// Deprecated: custom proxy URLs are not supported
-	ProxyUrl              *string                          `pulumi:"proxyUrl"`
-	Responders            []OpsgenieAlertNotifierResponder `pulumi:"responders"`
-	SendResolved          *bool                            `pulumi:"sendResolved"`
-	Slug                  *string                          `pulumi:"slug"`
-	Source                *string                          `pulumi:"source"`
-	Tags                  []string                         `pulumi:"tags"`
-	TlsInsecureSkipVerify *bool                            `pulumi:"tlsInsecureSkipVerify"`
+	ProxyUrl *string `pulumi:"proxyUrl"`
+	// Responders that Opsgenie will notify for the alert. See https://docs.opsgenie.com/docs/alert-api for accepted shapes.
+	Responders []OpsgenieAlertNotifierResponder `pulumi:"responders"`
+	// Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+	SendResolved *bool `pulumi:"sendResolved"`
+	// Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+	Slug *string `pulumi:"slug"`
+	// Backlink to the sender of the notification. Supports Go templating.
+	Source *string `pulumi:"source"`
+	// Tags attached to the Opsgenie alert.
+	Tags []string `pulumi:"tags"`
+	// If true, skip TLS certificate verification when calling the Opsgenie API. Disable only in trusted environments.
+	TlsInsecureSkipVerify *bool `pulumi:"tlsInsecureSkipVerify"`
 }
 
 // The set of arguments for constructing a OpsgenieAlertNotifier resource.
 type OpsgenieAlertNotifierArgs struct {
-	ApiKey            pulumi.StringInput
-	ApiUrl            pulumi.StringPtrInput
+	// Opsgenie API key used to authenticate requests. Treat as a secret.
+	ApiKey pulumi.StringInput
+	// Opsgenie API URL to send requests to (e.g. `https://api.opsgenie.com/`).
+	ApiUrl pulumi.StringPtrInput
+	// Password for HTTP basic auth when calling the Opsgenie API. Treat as a secret.
 	BasicAuthPassword pulumi.StringPtrInput
+	// Username for HTTP basic auth when calling the Opsgenie API. Mutually exclusive with `bearerToken`.
 	BasicAuthUsername pulumi.StringPtrInput
-	BearerToken       pulumi.StringPtrInput
-	Description       pulumi.StringPtrInput
-	Details           pulumi.StringMapInput
-	Message           pulumi.StringPtrInput
-	Name              pulumi.StringInput
-	Note              pulumi.StringPtrInput
-	Priority          pulumi.StringPtrInput
+	// Bearer token sent in the `Authorization` header when calling the Opsgenie API. Treat as a secret. Mutually exclusive with basic auth.
+	BearerToken pulumi.StringPtrInput
+	// Detailed description of the alert. Supports Go templating.
+	Description pulumi.StringPtrInput
+	// Arbitrary key/value pairs attached to the alert as additional context. Values support Go templating.
+	Details pulumi.StringMapInput
+	// Alert text shown in Opsgenie. Supports Go templating.
+	Message pulumi.StringPtrInput
+	// Name of the responder team, schedule, or escalation policy.
+	Name pulumi.StringInput
+	// Additional note appended to the alert. Supports Go templating.
+	Note pulumi.StringPtrInput
+	// Priority level of the alert. One of `P1`, `P2`, `P3`, `P4`, or `P5`.
+	Priority pulumi.StringPtrInput
+	// Deprecated and ignored. Custom proxy URLs are not supported.
+	//
 	// Deprecated: custom proxy URLs are not supported
-	ProxyUrl              pulumi.StringPtrInput
-	Responders            OpsgenieAlertNotifierResponderArrayInput
-	SendResolved          pulumi.BoolPtrInput
-	Slug                  pulumi.StringPtrInput
-	Source                pulumi.StringPtrInput
-	Tags                  pulumi.StringArrayInput
+	ProxyUrl pulumi.StringPtrInput
+	// Responders that Opsgenie will notify for the alert. See https://docs.opsgenie.com/docs/alert-api for accepted shapes.
+	Responders OpsgenieAlertNotifierResponderArrayInput
+	// Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+	SendResolved pulumi.BoolPtrInput
+	// Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringPtrInput
+	// Backlink to the sender of the notification. Supports Go templating.
+	Source pulumi.StringPtrInput
+	// Tags attached to the Opsgenie alert.
+	Tags pulumi.StringArrayInput
+	// If true, skip TLS certificate verification when calling the Opsgenie API. Disable only in trusted environments.
 	TlsInsecureSkipVerify pulumi.BoolPtrInput
 }
 
@@ -262,75 +394,94 @@ func (o OpsgenieAlertNotifierOutput) ToOpsgenieAlertNotifierOutputWithContext(ct
 	return o
 }
 
+// Opsgenie API key used to authenticate requests. Treat as a secret.
 func (o OpsgenieAlertNotifierOutput) ApiKey() pulumi.StringOutput {
 	return o.ApplyT(func(v *OpsgenieAlertNotifier) pulumi.StringOutput { return v.ApiKey }).(pulumi.StringOutput)
 }
 
+// Opsgenie API URL to send requests to (e.g. `https://api.opsgenie.com/`).
 func (o OpsgenieAlertNotifierOutput) ApiUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *OpsgenieAlertNotifier) pulumi.StringPtrOutput { return v.ApiUrl }).(pulumi.StringPtrOutput)
 }
 
+// Password for HTTP basic auth when calling the Opsgenie API. Treat as a secret.
 func (o OpsgenieAlertNotifierOutput) BasicAuthPassword() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *OpsgenieAlertNotifier) pulumi.StringPtrOutput { return v.BasicAuthPassword }).(pulumi.StringPtrOutput)
 }
 
+// Username for HTTP basic auth when calling the Opsgenie API. Mutually exclusive with `bearerToken`.
 func (o OpsgenieAlertNotifierOutput) BasicAuthUsername() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *OpsgenieAlertNotifier) pulumi.StringPtrOutput { return v.BasicAuthUsername }).(pulumi.StringPtrOutput)
 }
 
+// Bearer token sent in the `Authorization` header when calling the Opsgenie API. Treat as a secret. Mutually exclusive with basic auth.
 func (o OpsgenieAlertNotifierOutput) BearerToken() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *OpsgenieAlertNotifier) pulumi.StringPtrOutput { return v.BearerToken }).(pulumi.StringPtrOutput)
 }
 
+// Detailed description of the alert. Supports Go templating.
 func (o OpsgenieAlertNotifierOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *OpsgenieAlertNotifier) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// Arbitrary key/value pairs attached to the alert as additional context. Values support Go templating.
 func (o OpsgenieAlertNotifierOutput) Details() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *OpsgenieAlertNotifier) pulumi.StringMapOutput { return v.Details }).(pulumi.StringMapOutput)
 }
 
+// Alert text shown in Opsgenie. Supports Go templating.
 func (o OpsgenieAlertNotifierOutput) Message() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *OpsgenieAlertNotifier) pulumi.StringPtrOutput { return v.Message }).(pulumi.StringPtrOutput)
 }
 
+// Name of the responder team, schedule, or escalation policy.
 func (o OpsgenieAlertNotifierOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *OpsgenieAlertNotifier) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// Additional note appended to the alert. Supports Go templating.
 func (o OpsgenieAlertNotifierOutput) Note() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *OpsgenieAlertNotifier) pulumi.StringPtrOutput { return v.Note }).(pulumi.StringPtrOutput)
 }
 
+// Priority level of the alert. One of `P1`, `P2`, `P3`, `P4`, or `P5`.
 func (o OpsgenieAlertNotifierOutput) Priority() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *OpsgenieAlertNotifier) pulumi.StringPtrOutput { return v.Priority }).(pulumi.StringPtrOutput)
 }
 
+// Deprecated and ignored. Custom proxy URLs are not supported.
+//
 // Deprecated: custom proxy URLs are not supported
 func (o OpsgenieAlertNotifierOutput) ProxyUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *OpsgenieAlertNotifier) pulumi.StringPtrOutput { return v.ProxyUrl }).(pulumi.StringPtrOutput)
 }
 
+// Responders that Opsgenie will notify for the alert. See https://docs.opsgenie.com/docs/alert-api for accepted shapes.
 func (o OpsgenieAlertNotifierOutput) Responders() OpsgenieAlertNotifierResponderArrayOutput {
 	return o.ApplyT(func(v *OpsgenieAlertNotifier) OpsgenieAlertNotifierResponderArrayOutput { return v.Responders }).(OpsgenieAlertNotifierResponderArrayOutput)
 }
 
+// Whether to send a follow-up notification when an alert is resolved. Defaults to true.
 func (o OpsgenieAlertNotifierOutput) SendResolved() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *OpsgenieAlertNotifier) pulumi.BoolPtrOutput { return v.SendResolved }).(pulumi.BoolPtrOutput)
 }
 
+// Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
 func (o OpsgenieAlertNotifierOutput) Slug() pulumi.StringOutput {
 	return o.ApplyT(func(v *OpsgenieAlertNotifier) pulumi.StringOutput { return v.Slug }).(pulumi.StringOutput)
 }
 
+// Backlink to the sender of the notification. Supports Go templating.
 func (o OpsgenieAlertNotifierOutput) Source() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *OpsgenieAlertNotifier) pulumi.StringPtrOutput { return v.Source }).(pulumi.StringPtrOutput)
 }
 
+// Tags attached to the Opsgenie alert.
 func (o OpsgenieAlertNotifierOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *OpsgenieAlertNotifier) pulumi.StringArrayOutput { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
+// If true, skip TLS certificate verification when calling the Opsgenie API. Disable only in trusted environments.
 func (o OpsgenieAlertNotifierOutput) TlsInsecureSkipVerify() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *OpsgenieAlertNotifier) pulumi.BoolPtrOutput { return v.TlsInsecureSkipVerify }).(pulumi.BoolPtrOutput)
 }

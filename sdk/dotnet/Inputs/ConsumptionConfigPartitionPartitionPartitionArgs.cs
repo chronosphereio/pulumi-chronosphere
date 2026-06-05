@@ -15,23 +15,37 @@ namespace Chronosphere.Pulumi.Inputs
     {
         [Input("filters")]
         private InputList<Inputs.ConsumptionConfigPartitionPartitionPartitionFilterArgs>? _filters;
+
+        /// <summary>
+        /// Filters identifying which data belongs to this partition. Filters are AND-ed together: a request must match every filter to be assigned to the partition. At most one `IN` filter and one `NOT_IN` filter can be specified.
+        /// </summary>
         public InputList<Inputs.ConsumptionConfigPartitionPartitionPartitionFilterArgs> Filters
         {
             get => _filters ?? (_filters = new InputList<Inputs.ConsumptionConfigPartitionPartitionPartitionFilterArgs>());
             set => _filters = value;
         }
 
+        /// <summary>
+        /// Display name of the partition. Must be unique within its parent partition. Can be changed after creation.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         [Input("partitions")]
         private InputList<Inputs.ConsumptionConfigPartitionPartitionPartitionPartitionArgs>? _partitions;
+
+        /// <summary>
+        /// Child partitions of this partition. Evaluated in order; requests not matching any child fall into an implicit `default` child partition.
+        /// </summary>
         public InputList<Inputs.ConsumptionConfigPartitionPartitionPartitionPartitionArgs> Partitions
         {
             get => _partitions ?? (_partitions = new InputList<Inputs.ConsumptionConfigPartitionPartitionPartitionPartitionArgs>());
             set => _partitions = value;
         }
 
+        /// <summary>
+        /// Stable identifier of the partition. Must be unique within its parent partition. Immutable after creation.
+        /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 

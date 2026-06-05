@@ -15,16 +15,32 @@ public final class DerivedLabelMetricLabelConstructedLabelValueDefinitionArgs ex
 
     public static final DerivedLabelMetricLabelConstructedLabelValueDefinitionArgs Empty = new DerivedLabelMetricLabelConstructedLabelValueDefinitionArgs();
 
+    /**
+     * Label filters that must all match for this value definition to apply.
+     * 
+     */
     @Import(name="filters", required=true)
     private Output<List<DerivedLabelMetricLabelConstructedLabelValueDefinitionFilterArgs>> filters;
 
+    /**
+     * @return Label filters that must all match for this value definition to apply.
+     * 
+     */
     public Output<List<DerivedLabelMetricLabelConstructedLabelValueDefinitionFilterArgs>> filters() {
         return this.filters;
     }
 
+    /**
+     * Value assigned to the derived label when this definition&#39;s filters match.
+     * 
+     */
     @Import(name="value", required=true)
     private Output<String> value;
 
+    /**
+     * @return Value assigned to the derived label when this definition&#39;s filters match.
+     * 
+     */
     public Output<String> value() {
         return this.value;
     }
@@ -54,24 +70,54 @@ public final class DerivedLabelMetricLabelConstructedLabelValueDefinitionArgs ex
             $ = new DerivedLabelMetricLabelConstructedLabelValueDefinitionArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param filters Label filters that must all match for this value definition to apply.
+         * 
+         * @return builder
+         * 
+         */
         public Builder filters(Output<List<DerivedLabelMetricLabelConstructedLabelValueDefinitionFilterArgs>> filters) {
             $.filters = filters;
             return this;
         }
 
+        /**
+         * @param filters Label filters that must all match for this value definition to apply.
+         * 
+         * @return builder
+         * 
+         */
         public Builder filters(List<DerivedLabelMetricLabelConstructedLabelValueDefinitionFilterArgs> filters) {
             return filters(Output.of(filters));
         }
 
+        /**
+         * @param filters Label filters that must all match for this value definition to apply.
+         * 
+         * @return builder
+         * 
+         */
         public Builder filters(DerivedLabelMetricLabelConstructedLabelValueDefinitionFilterArgs... filters) {
             return filters(List.of(filters));
         }
 
+        /**
+         * @param value Value assigned to the derived label when this definition&#39;s filters match.
+         * 
+         * @return builder
+         * 
+         */
         public Builder value(Output<String> value) {
             $.value = value;
             return this;
         }
 
+        /**
+         * @param value Value assigned to the derived label when this definition&#39;s filters match.
+         * 
+         * @return builder
+         * 
+         */
         public Builder value(String value) {
             return value(Output.of(value));
         }

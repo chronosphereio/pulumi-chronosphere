@@ -10,18 +10,33 @@ using Pulumi;
 
 namespace Chronosphere.Pulumi
 {
+    /// <summary>
+    /// A saved selection of telemetry data, defined by match criteria over traces or logs, that can be referenced by other Chronosphere features such as dashboards and alerts.
+    /// </summary>
     [PulumiResourceType("chronosphere:index/dataset:Dataset")]
     public partial class Dataset : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Configuration block selecting the dataset type and its match criteria.
+        /// </summary>
         [Output("configuration")]
         public Output<Outputs.DatasetConfiguration> Configuration { get; private set; } = null!;
 
+        /// <summary>
+        /// Free-form description of the dataset.
+        /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
+        /// <summary>
+        /// Display name of the dataset. Can be changed after creation.
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// Stable identifier for the dataset. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Output("slug")]
         public Output<string> Slug { get; private set; } = null!;
 
@@ -72,15 +87,27 @@ namespace Chronosphere.Pulumi
 
     public sealed class DatasetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Configuration block selecting the dataset type and its match criteria.
+        /// </summary>
         [Input("configuration", required: true)]
         public Input<Inputs.DatasetConfigurationArgs> Configuration { get; set; } = null!;
 
+        /// <summary>
+        /// Free-form description of the dataset.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// Display name of the dataset. Can be changed after creation.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// Stable identifier for the dataset. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 
@@ -92,15 +119,27 @@ namespace Chronosphere.Pulumi
 
     public sealed class DatasetState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Configuration block selecting the dataset type and its match criteria.
+        /// </summary>
         [Input("configuration")]
         public Input<Inputs.DatasetConfigurationGetArgs>? Configuration { get; set; }
 
+        /// <summary>
+        /// Free-form description of the dataset.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// Display name of the dataset. Can be changed after creation.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// Stable identifier for the dataset. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 

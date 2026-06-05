@@ -14,6 +14,9 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class DatasetConfigurationTraceDatasetMatchCriteriaScopeFilter
     {
+        /// <summary>
+        /// Span conditions that select which spans are aggregated. Spans must match at least one block to be included.
+        /// </summary>
         public readonly ImmutableArray<Outputs.DatasetConfigurationTraceDatasetMatchCriteriaScopeFilterSpanScope> SpanScopes;
 
         [OutputConstructor]

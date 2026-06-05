@@ -13,6 +13,9 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class LogControlConfigRuleParseFieldParserRegexParserArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// RE2 regular expression pattern. Named capturing groups become named fields in the extracted log.
+        /// </summary>
         [Input("regex", required: true)]
         public Input<string> Regex { get; set; } = null!;
 

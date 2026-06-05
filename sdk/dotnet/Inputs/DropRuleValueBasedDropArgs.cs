@@ -13,6 +13,9 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class DropRuleValueBasedDropArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Data point value at which matching points are dropped.
+        /// </summary>
         [Input("targetDropValue", required: true)]
         public Input<double> TargetDropValue { get; set; } = null!;
 

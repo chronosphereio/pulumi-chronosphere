@@ -14,8 +14,17 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class TraceMetricsRuleScopeFilterSpanScopeParentService
     {
+        /// <summary>
+        /// Set of strings tested against the target field. Used with `IN` and `NOT_IN` match types.
+        /// </summary>
         public readonly ImmutableArray<string> InValues;
+        /// <summary>
+        /// Match operator applied to `value` or `in_values`. One of `EXACT`, `REGEX`, `IN`, or `NOT_IN`. Defaults to `EXACT`.
+        /// </summary>
         public readonly string? Match;
+        /// <summary>
+        /// Boolean value the target field is compared against.
+        /// </summary>
         public readonly string? Value;
 
         [OutputConstructor]

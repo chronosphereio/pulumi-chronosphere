@@ -15,59 +15,169 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
+/**
+ * Evaluates a PromQL expression at a fixed interval and writes the result to a new time series. Useful for precomputing expensive queries or producing derived metrics.
+ * 
+ * ## Example Usage
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.chronosphere.RecordingRule;
+ * import com.pulumi.chronosphere.RecordingRuleArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var upByNamespace = new RecordingRule(&#34;upByNamespace&#34;, RecordingRuleArgs.builder()        
+ *             .expr(&#34;sum by (kubernetes_namespace) (up)&#34;)
+ *             .interval(&#34;60s&#34;)
+ *             .labels(Map.of(&#34;owner&#34;, &#34;platform&#34;))
+ *             .metricName(&#34;up:by_namespace&#34;)
+ *             .name(&#34;up:by_namespace&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ */
 @ResourceType(type="chronosphere:index/recordingRule:RecordingRule")
 public class RecordingRule extends com.pulumi.resources.CustomResource {
+    /**
+     * ID of the bucket the recording rule belongs to. At least one of `bucket_id` or `execution_group` must be set; if both are set their values must match.
+     * 
+     */
     @Export(name="bucketId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> bucketId;
 
+    /**
+     * @return ID of the bucket the recording rule belongs to. At least one of `bucket_id` or `execution_group` must be set; if both are set their values must match.
+     * 
+     */
     public Output<Optional<String>> bucketId() {
         return Codegen.optional(this.bucketId);
     }
+    /**
+     * Slug of the execution group in which the rule is evaluated. Rules in the same group run sequentially at the configured interval; all rules in a group must finish before the next iteration starts. At least one of `bucket_id` or `execution_group` must be set.
+     * 
+     */
     @Export(name="executionGroup", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> executionGroup;
 
+    /**
+     * @return Slug of the execution group in which the rule is evaluated. Rules in the same group run sequentially at the configured interval; all rules in a group must finish before the next iteration starts. At least one of `bucket_id` or `execution_group` must be set.
+     * 
+     */
     public Output<Optional<String>> executionGroup() {
         return Codegen.optional(this.executionGroup);
     }
+    /**
+     * Execution mode controlling whether the recording rule is active.
+     * 
+     */
     @Export(name="executionMode", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> executionMode;
 
+    /**
+     * @return Execution mode controlling whether the recording rule is active.
+     * 
+     */
     public Output<Optional<String>> executionMode() {
         return Codegen.optional(this.executionMode);
     }
+    /**
+     * PromQL expression evaluated at each interval. The result is written to a new series named by `metric_name` (or `name` if unset).
+     * 
+     */
     @Export(name="expr", refs={String.class}, tree="[0]")
     private Output<String> expr;
 
+    /**
+     * @return PromQL expression evaluated at each interval. The result is written to a new series named by `metric_name` (or `name` if unset).
+     * 
+     */
     public Output<String> expr() {
         return this.expr;
     }
+    /**
+     * Evaluation interval (e.g. `30s`, `1m`). Defaults to `60s` when unset.
+     * 
+     */
     @Export(name="interval", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> interval;
 
+    /**
+     * @return Evaluation interval (e.g. `30s`, `1m`). Defaults to `60s` when unset.
+     * 
+     */
     public Output<Optional<String>> interval() {
         return Codegen.optional(this.interval);
     }
+    /**
+     * Key/value labels added to every series produced by this recording rule.
+     * 
+     */
     @Export(name="labels", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> labels;
 
+    /**
+     * @return Key/value labels added to every series produced by this recording rule.
+     * 
+     */
     public Output<Optional<Map<String,String>>> labels() {
         return Codegen.optional(this.labels);
     }
+    /**
+     * Name of the output time series produced by `expr`. Must be a valid metric name. Defaults to `name` if omitted.
+     * 
+     */
     @Export(name="metricName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> metricName;
 
+    /**
+     * @return Name of the output time series produced by `expr`. Must be a valid metric name. Defaults to `name` if omitted.
+     * 
+     */
     public Output<Optional<String>> metricName() {
         return Codegen.optional(this.metricName);
     }
+    /**
+     * Display name of the recording rule. Can be changed after creation.
+     * 
+     */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
+    /**
+     * @return Display name of the recording rule. Can be changed after creation.
+     * 
+     */
     public Output<String> name() {
         return this.name;
     }
+    /**
+     * Stable identifier for the recording rule. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     @Export(name="slug", refs={String.class}, tree="[0]")
     private Output<String> slug;
 
+    /**
+     * @return Stable identifier for the recording rule. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     public Output<String> slug() {
         return this.slug;
     }

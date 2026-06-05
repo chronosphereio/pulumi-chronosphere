@@ -11,21 +11,53 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class OpsgenieAlertNotifierResponder {
+    /**
+     * @return Opsgenie identifier of the responder. Use instead of `name` or `username`.
+     * 
+     */
     private @Nullable String id;
+    /**
+     * @return Name of the responder team, schedule, or escalation policy.
+     * 
+     */
     private @Nullable String name;
+    /**
+     * @return Responder type. One of `team`, `user`, `escalation`, or `schedule`.
+     * 
+     */
     private String type;
+    /**
+     * @return Username of a user responder.
+     * 
+     */
     private @Nullable String username;
 
     private OpsgenieAlertNotifierResponder() {}
+    /**
+     * @return Opsgenie identifier of the responder. Use instead of `name` or `username`.
+     * 
+     */
     public Optional<String> id() {
         return Optional.ofNullable(this.id);
     }
+    /**
+     * @return Name of the responder team, schedule, or escalation policy.
+     * 
+     */
     public Optional<String> name() {
         return Optional.ofNullable(this.name);
     }
+    /**
+     * @return Responder type. One of `team`, `user`, `escalation`, or `schedule`.
+     * 
+     */
     public String type() {
         return this.type;
     }
+    /**
+     * @return Username of a user responder.
+     * 
+     */
     public Optional<String> username() {
         return Optional.ofNullable(this.username);
     }

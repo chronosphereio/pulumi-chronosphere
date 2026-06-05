@@ -14,9 +14,21 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class OtelMetricsIngestionResourceAttributes
     {
+        /// <summary>
+        /// Resource attribute keys to exclude from the flatten operation, interpreted according to `filter_mode`.
+        /// </summary>
         public readonly ImmutableArray<string> ExcludeKeys;
+        /// <summary>
+        /// Controls how `exclude_keys` is interpreted (e.g. allow-list vs. block-list semantics).
+        /// </summary>
         public readonly string? FilterMode;
+        /// <summary>
+        /// Controls how OTel resource attributes are flattened onto each metric's labels.
+        /// </summary>
         public readonly string? FlattenMode;
+        /// <summary>
+        /// If true, generates a `target_info` time series with labels derived from resource attributes. `filter_mode` and `exclude_keys` apply identically to this series. Defaults to false.
+        /// </summary>
         public readonly bool? GenerateTargetInfo;
 
         [OutputConstructor]

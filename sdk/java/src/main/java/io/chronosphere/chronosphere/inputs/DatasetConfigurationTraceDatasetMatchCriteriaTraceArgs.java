@@ -16,16 +16,32 @@ public final class DatasetConfigurationTraceDatasetMatchCriteriaTraceArgs extend
 
     public static final DatasetConfigurationTraceDatasetMatchCriteriaTraceArgs Empty = new DatasetConfigurationTraceDatasetMatchCriteriaTraceArgs();
 
+    /**
+     * Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, max_secs]` range.
+     * 
+     */
     @Import(name="duration")
     private @Nullable Output<DatasetConfigurationTraceDatasetMatchCriteriaTraceDurationArgs> duration;
 
+    /**
+     * @return Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, max_secs]` range.
+     * 
+     */
     public Optional<Output<DatasetConfigurationTraceDatasetMatchCriteriaTraceDurationArgs>> duration() {
         return Optional.ofNullable(this.duration);
     }
 
+    /**
+     * Matches traces or spans where the target boolean field equals `value`.
+     * 
+     */
     @Import(name="error")
     private @Nullable Output<DatasetConfigurationTraceDatasetMatchCriteriaTraceErrorArgs> error;
 
+    /**
+     * @return Matches traces or spans where the target boolean field equals `value`.
+     * 
+     */
     public Optional<Output<DatasetConfigurationTraceDatasetMatchCriteriaTraceErrorArgs>> error() {
         return Optional.ofNullable(this.error);
     }
@@ -55,20 +71,44 @@ public final class DatasetConfigurationTraceDatasetMatchCriteriaTraceArgs extend
             $ = new DatasetConfigurationTraceDatasetMatchCriteriaTraceArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param duration Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, max_secs]` range.
+         * 
+         * @return builder
+         * 
+         */
         public Builder duration(@Nullable Output<DatasetConfigurationTraceDatasetMatchCriteriaTraceDurationArgs> duration) {
             $.duration = duration;
             return this;
         }
 
+        /**
+         * @param duration Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, max_secs]` range.
+         * 
+         * @return builder
+         * 
+         */
         public Builder duration(DatasetConfigurationTraceDatasetMatchCriteriaTraceDurationArgs duration) {
             return duration(Output.of(duration));
         }
 
+        /**
+         * @param error Matches traces or spans where the target boolean field equals `value`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder error(@Nullable Output<DatasetConfigurationTraceDatasetMatchCriteriaTraceErrorArgs> error) {
             $.error = error;
             return this;
         }
 
+        /**
+         * @param error Matches traces or spans where the target boolean field equals `value`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder error(DatasetConfigurationTraceDatasetMatchCriteriaTraceErrorArgs error) {
             return error(Output.of(error));
         }

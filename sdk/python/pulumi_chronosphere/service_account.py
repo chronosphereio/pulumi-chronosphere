@@ -22,6 +22,10 @@ class ServiceAccountArgs:
                  unrestricted: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a ServiceAccount resource.
+        :param pulumi.Input[str] name: Display name of the service account. Immutable after creation.
+        :param pulumi.Input['ServiceAccountRestrictionArgs'] restriction: Restricts the service account to a specific permission and optional metric label scope. Exactly one of `unrestricted` or `restriction` must be set.
+        :param pulumi.Input[str] slug: Stable identifier for the service account. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[bool] unrestricted: If true, grants the service account access to all Chronosphere APIs within the access controls defined by team membership. Exactly one of `unrestricted` or `restriction` must be set.
         """
         pulumi.set(__self__, "name", name)
         if restriction is not None:
@@ -34,6 +38,9 @@ class ServiceAccountArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        Display name of the service account. Immutable after creation.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -43,6 +50,9 @@ class ServiceAccountArgs:
     @property
     @pulumi.getter
     def restriction(self) -> Optional[pulumi.Input['ServiceAccountRestrictionArgs']]:
+        """
+        Restricts the service account to a specific permission and optional metric label scope. Exactly one of `unrestricted` or `restriction` must be set.
+        """
         return pulumi.get(self, "restriction")
 
     @restriction.setter
@@ -52,6 +62,9 @@ class ServiceAccountArgs:
     @property
     @pulumi.getter
     def slug(self) -> Optional[pulumi.Input[str]]:
+        """
+        Stable identifier for the service account. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @slug.setter
@@ -61,6 +74,9 @@ class ServiceAccountArgs:
     @property
     @pulumi.getter
     def unrestricted(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If true, grants the service account access to all Chronosphere APIs within the access controls defined by team membership. Exactly one of `unrestricted` or `restriction` must be set.
+        """
         return pulumi.get(self, "unrestricted")
 
     @unrestricted.setter
@@ -79,6 +95,12 @@ class _ServiceAccountState:
                  unrestricted: Optional[pulumi.Input[bool]] = None):
         """
         Input properties used for looking up and filtering ServiceAccount resources.
+        :param pulumi.Input[str] email: Read-only: synthetic email address assigned to the service account by the server.
+        :param pulumi.Input[str] name: Display name of the service account. Immutable after creation.
+        :param pulumi.Input['ServiceAccountRestrictionArgs'] restriction: Restricts the service account to a specific permission and optional metric label scope. Exactly one of `unrestricted` or `restriction` must be set.
+        :param pulumi.Input[str] slug: Stable identifier for the service account. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[str] token: Read-only: API token generated for the service account. Returned only at creation time; store it securely. If lost, the service account must be recreated.
+        :param pulumi.Input[bool] unrestricted: If true, grants the service account access to all Chronosphere APIs within the access controls defined by team membership. Exactly one of `unrestricted` or `restriction` must be set.
         """
         if email is not None:
             pulumi.set(__self__, "email", email)
@@ -96,6 +118,9 @@ class _ServiceAccountState:
     @property
     @pulumi.getter
     def email(self) -> Optional[pulumi.Input[str]]:
+        """
+        Read-only: synthetic email address assigned to the service account by the server.
+        """
         return pulumi.get(self, "email")
 
     @email.setter
@@ -105,6 +130,9 @@ class _ServiceAccountState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Display name of the service account. Immutable after creation.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -114,6 +142,9 @@ class _ServiceAccountState:
     @property
     @pulumi.getter
     def restriction(self) -> Optional[pulumi.Input['ServiceAccountRestrictionArgs']]:
+        """
+        Restricts the service account to a specific permission and optional metric label scope. Exactly one of `unrestricted` or `restriction` must be set.
+        """
         return pulumi.get(self, "restriction")
 
     @restriction.setter
@@ -123,6 +154,9 @@ class _ServiceAccountState:
     @property
     @pulumi.getter
     def slug(self) -> Optional[pulumi.Input[str]]:
+        """
+        Stable identifier for the service account. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @slug.setter
@@ -132,6 +166,9 @@ class _ServiceAccountState:
     @property
     @pulumi.getter
     def token(self) -> Optional[pulumi.Input[str]]:
+        """
+        Read-only: API token generated for the service account. Returned only at creation time; store it securely. If lost, the service account must be recreated.
+        """
         return pulumi.get(self, "token")
 
     @token.setter
@@ -141,6 +178,9 @@ class _ServiceAccountState:
     @property
     @pulumi.getter
     def unrestricted(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If true, grants the service account access to all Chronosphere APIs within the access controls defined by team membership. Exactly one of `unrestricted` or `restriction` must be set.
+        """
         return pulumi.get(self, "unrestricted")
 
     @unrestricted.setter
@@ -159,9 +199,33 @@ class ServiceAccount(pulumi.CustomResource):
                  unrestricted: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
-        Create a ServiceAccount resource with the given unique name, props, and options.
+        A non-human identity used to authenticate API requests against Chronosphere. An API token is generated at creation and returned only once; store it securely, as a lost token requires recreating the service account.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_chronosphere as chronosphere
+
+        unrestricted = chronosphere.ServiceAccount("unrestricted",
+            name="ci-deployer",
+            unrestricted=True)
+        restricted_read_only = chronosphere.ServiceAccount("restrictedReadOnly",
+            name="metrics-reader",
+            restriction=chronosphere.ServiceAccountRestrictionArgs(
+                labels={
+                    "team": "platform",
+                },
+                permission="READ_ONLY",
+            ))
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] name: Display name of the service account. Immutable after creation.
+        :param pulumi.Input[pulumi.InputType['ServiceAccountRestrictionArgs']] restriction: Restricts the service account to a specific permission and optional metric label scope. Exactly one of `unrestricted` or `restriction` must be set.
+        :param pulumi.Input[str] slug: Stable identifier for the service account. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[bool] unrestricted: If true, grants the service account access to all Chronosphere APIs within the access controls defined by team membership. Exactly one of `unrestricted` or `restriction` must be set.
         """
         ...
     @overload
@@ -170,7 +234,27 @@ class ServiceAccount(pulumi.CustomResource):
                  args: ServiceAccountArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a ServiceAccount resource with the given unique name, props, and options.
+        A non-human identity used to authenticate API requests against Chronosphere. An API token is generated at creation and returned only once; store it securely, as a lost token requires recreating the service account.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_chronosphere as chronosphere
+
+        unrestricted = chronosphere.ServiceAccount("unrestricted",
+            name="ci-deployer",
+            unrestricted=True)
+        restricted_read_only = chronosphere.ServiceAccount("restrictedReadOnly",
+            name="metrics-reader",
+            restriction=chronosphere.ServiceAccountRestrictionArgs(
+                labels={
+                    "team": "platform",
+                },
+                permission="READ_ONLY",
+            ))
+        ```
+
         :param str resource_name: The name of the resource.
         :param ServiceAccountArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -232,6 +316,12 @@ class ServiceAccount(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] email: Read-only: synthetic email address assigned to the service account by the server.
+        :param pulumi.Input[str] name: Display name of the service account. Immutable after creation.
+        :param pulumi.Input[pulumi.InputType['ServiceAccountRestrictionArgs']] restriction: Restricts the service account to a specific permission and optional metric label scope. Exactly one of `unrestricted` or `restriction` must be set.
+        :param pulumi.Input[str] slug: Stable identifier for the service account. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[str] token: Read-only: API token generated for the service account. Returned only at creation time; store it securely. If lost, the service account must be recreated.
+        :param pulumi.Input[bool] unrestricted: If true, grants the service account access to all Chronosphere APIs within the access controls defined by team membership. Exactly one of `unrestricted` or `restriction` must be set.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -248,30 +338,48 @@ class ServiceAccount(pulumi.CustomResource):
     @property
     @pulumi.getter
     def email(self) -> pulumi.Output[str]:
+        """
+        Read-only: synthetic email address assigned to the service account by the server.
+        """
         return pulumi.get(self, "email")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        Display name of the service account. Immutable after creation.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def restriction(self) -> pulumi.Output[Optional['outputs.ServiceAccountRestriction']]:
+        """
+        Restricts the service account to a specific permission and optional metric label scope. Exactly one of `unrestricted` or `restriction` must be set.
+        """
         return pulumi.get(self, "restriction")
 
     @property
     @pulumi.getter
     def slug(self) -> pulumi.Output[str]:
+        """
+        Stable identifier for the service account. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @property
     @pulumi.getter
     def token(self) -> pulumi.Output[str]:
+        """
+        Read-only: API token generated for the service account. Returned only at creation time; store it securely. If lost, the service account must be recreated.
+        """
         return pulumi.get(self, "token")
 
     @property
     @pulumi.getter
     def unrestricted(self) -> pulumi.Output[Optional[bool]]:
+        """
+        If true, grants the service account access to all Chronosphere APIs within the access controls defined by team membership. Exactly one of `unrestricted` or `restriction` must be set.
+        """
         return pulumi.get(self, "unrestricted")
 

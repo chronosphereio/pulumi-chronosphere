@@ -17,23 +17,47 @@ public final class TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagArgs e
 
     public static final TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagArgs Empty = new TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagArgs();
 
+    /**
+     * Name of the span tag (span attribute) inspected by this filter.
+     * 
+     */
     @Import(name="key")
     private @Nullable Output<String> key;
 
+    /**
+     * @return Name of the span tag (span attribute) inspected by this filter.
+     * 
+     */
     public Optional<Output<String>> key() {
         return Optional.ofNullable(this.key);
     }
 
+    /**
+     * Matches traces or spans where the target numeric field satisfies the comparison against `value`.
+     * 
+     */
     @Import(name="numericValue")
     private @Nullable Output<TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValueArgs> numericValue;
 
+    /**
+     * @return Matches traces or spans where the target numeric field satisfies the comparison against `value`.
+     * 
+     */
     public Optional<Output<TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValueArgs>> numericValue() {
         return Optional.ofNullable(this.numericValue);
     }
 
+    /**
+     * Boolean value the target field is compared against.
+     * 
+     */
     @Import(name="value")
     private @Nullable Output<TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValueArgs> value;
 
+    /**
+     * @return Boolean value the target field is compared against.
+     * 
+     */
     public Optional<Output<TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValueArgs>> value() {
         return Optional.ofNullable(this.value);
     }
@@ -64,29 +88,65 @@ public final class TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagArgs e
             $ = new TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param key Name of the span tag (span attribute) inspected by this filter.
+         * 
+         * @return builder
+         * 
+         */
         public Builder key(@Nullable Output<String> key) {
             $.key = key;
             return this;
         }
 
+        /**
+         * @param key Name of the span tag (span attribute) inspected by this filter.
+         * 
+         * @return builder
+         * 
+         */
         public Builder key(String key) {
             return key(Output.of(key));
         }
 
+        /**
+         * @param numericValue Matches traces or spans where the target numeric field satisfies the comparison against `value`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder numericValue(@Nullable Output<TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValueArgs> numericValue) {
             $.numericValue = numericValue;
             return this;
         }
 
+        /**
+         * @param numericValue Matches traces or spans where the target numeric field satisfies the comparison against `value`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder numericValue(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagNumericValueArgs numericValue) {
             return numericValue(Output.of(numericValue));
         }
 
+        /**
+         * @param value Boolean value the target field is compared against.
+         * 
+         * @return builder
+         * 
+         */
         public Builder value(@Nullable Output<TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValueArgs> value) {
             $.value = value;
             return this;
         }
 
+        /**
+         * @param value Boolean value the target field is compared against.
+         * 
+         * @return builder
+         * 
+         */
         public Builder value(TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeTagValueArgs value) {
             return value(Output.of(value));
         }

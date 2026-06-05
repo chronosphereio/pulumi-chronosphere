@@ -14,7 +14,13 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class DerivedMetricQueryQuery
     {
+        /// <summary>
+        /// PromQL expression for the derived metric. References declared variables using `$name` syntax (e.g. `cpu_usage{$service}`).
+        /// </summary>
         public readonly string Expr;
+        /// <summary>
+        /// Variables that can be substituted into `expr` at query time as label selectors.
+        /// </summary>
         public readonly ImmutableArray<Outputs.DerivedMetricQueryQueryVariable> Variables;
 
         [OutputConstructor]

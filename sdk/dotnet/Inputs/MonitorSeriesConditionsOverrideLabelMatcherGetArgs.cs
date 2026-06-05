@@ -13,12 +13,21 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class MonitorSeriesConditionsOverrideLabelMatcherGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Label name to match.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// Match operator: one of `=`, `!=`, `=~` (regex), `!~` (regex negation).
+        /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
 
+        /// <summary>
+        /// Resolution threshold value.
+        /// </summary>
         [Input("value", required: true)]
         public Input<string> Value { get; set; } = null!;
 

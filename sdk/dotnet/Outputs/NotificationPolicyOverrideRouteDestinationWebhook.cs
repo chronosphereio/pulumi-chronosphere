@@ -14,7 +14,13 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class NotificationPolicyOverrideRouteDestinationWebhook
     {
+        /// <summary>
+        /// Slug of the OpsGenie external connection holding the integration credentials.
+        /// </summary>
         public readonly string ExternalConnectionSlug;
+        /// <summary>
+        /// Additional query parameters appended to the webhook URL when delivering this notification.
+        /// </summary>
         public readonly ImmutableArray<Outputs.NotificationPolicyOverrideRouteDestinationWebhookQueryParameter> QueryParameters;
 
         [OutputConstructor]

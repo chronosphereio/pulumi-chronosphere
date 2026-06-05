@@ -15,37 +15,77 @@ public final class PagerdutyExternalConnectionArgs extends com.pulumi.resources.
 
     public static final PagerdutyExternalConnectionArgs Empty = new PagerdutyExternalConnectionArgs();
 
+    /**
+     * Display name of the external connection.
+     * 
+     */
     @Import(name="name", required=true)
     private Output<String> name;
 
+    /**
+     * @return Display name of the external connection.
+     * 
+     */
     public Output<String> name() {
         return this.name;
     }
 
+    /**
+     * PagerDuty Events API integration key used to authenticate alert delivery. Called the routing key in Events v2 and the service key in Events v1. Treat as a secret. Mutually exclusive with `pagerduty_rest_api_key`.
+     * 
+     */
     @Import(name="pagerdutyApiKey")
     private @Nullable Output<String> pagerdutyApiKey;
 
+    /**
+     * @return PagerDuty Events API integration key used to authenticate alert delivery. Called the routing key in Events v2 and the service key in Events v1. Treat as a secret. Mutually exclusive with `pagerduty_rest_api_key`.
+     * 
+     */
     public Optional<Output<String>> pagerdutyApiKey() {
         return Optional.ofNullable(this.pagerdutyApiKey);
     }
 
+    /**
+     * PagerDuty Events API version used to deliver alerts: `PAGERDUTY_EVENTS_VERSION_V1` (legacy) or `PAGERDUTY_EVENTS_VERSION_V2` (default, recommended). Mutually exclusive with `pagerduty_rest_api_key`.
+     * 
+     */
     @Import(name="pagerdutyEventsVersion")
     private @Nullable Output<String> pagerdutyEventsVersion;
 
+    /**
+     * @return PagerDuty Events API version used to deliver alerts: `PAGERDUTY_EVENTS_VERSION_V1` (legacy) or `PAGERDUTY_EVENTS_VERSION_V2` (default, recommended). Mutually exclusive with `pagerduty_rest_api_key`.
+     * 
+     */
     public Optional<Output<String>> pagerdutyEventsVersion() {
         return Optional.ofNullable(this.pagerdutyEventsVersion);
     }
 
+    /**
+     * PagerDuty REST API token used to authenticate incident note polling. Treat as a secret. Mutually exclusive with `pagerduty_api_key` and `pagerduty_events_version`.
+     * 
+     */
     @Import(name="pagerdutyRestApiKey")
     private @Nullable Output<String> pagerdutyRestApiKey;
 
+    /**
+     * @return PagerDuty REST API token used to authenticate incident note polling. Treat as a secret. Mutually exclusive with `pagerduty_api_key` and `pagerduty_events_version`.
+     * 
+     */
     public Optional<Output<String>> pagerdutyRestApiKey() {
         return Optional.ofNullable(this.pagerdutyRestApiKey);
     }
 
+    /**
+     * Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     @Import(name="slug")
     private @Nullable Output<String> slug;
 
+    /**
+     * @return Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     public Optional<Output<String>> slug() {
         return Optional.ofNullable(this.slug);
     }
@@ -78,47 +118,107 @@ public final class PagerdutyExternalConnectionArgs extends com.pulumi.resources.
             $ = new PagerdutyExternalConnectionArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param name Display name of the external connection.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(Output<String> name) {
             $.name = name;
             return this;
         }
 
+        /**
+         * @param name Display name of the external connection.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(String name) {
             return name(Output.of(name));
         }
 
+        /**
+         * @param pagerdutyApiKey PagerDuty Events API integration key used to authenticate alert delivery. Called the routing key in Events v2 and the service key in Events v1. Treat as a secret. Mutually exclusive with `pagerduty_rest_api_key`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder pagerdutyApiKey(@Nullable Output<String> pagerdutyApiKey) {
             $.pagerdutyApiKey = pagerdutyApiKey;
             return this;
         }
 
+        /**
+         * @param pagerdutyApiKey PagerDuty Events API integration key used to authenticate alert delivery. Called the routing key in Events v2 and the service key in Events v1. Treat as a secret. Mutually exclusive with `pagerduty_rest_api_key`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder pagerdutyApiKey(String pagerdutyApiKey) {
             return pagerdutyApiKey(Output.of(pagerdutyApiKey));
         }
 
+        /**
+         * @param pagerdutyEventsVersion PagerDuty Events API version used to deliver alerts: `PAGERDUTY_EVENTS_VERSION_V1` (legacy) or `PAGERDUTY_EVENTS_VERSION_V2` (default, recommended). Mutually exclusive with `pagerduty_rest_api_key`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder pagerdutyEventsVersion(@Nullable Output<String> pagerdutyEventsVersion) {
             $.pagerdutyEventsVersion = pagerdutyEventsVersion;
             return this;
         }
 
+        /**
+         * @param pagerdutyEventsVersion PagerDuty Events API version used to deliver alerts: `PAGERDUTY_EVENTS_VERSION_V1` (legacy) or `PAGERDUTY_EVENTS_VERSION_V2` (default, recommended). Mutually exclusive with `pagerduty_rest_api_key`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder pagerdutyEventsVersion(String pagerdutyEventsVersion) {
             return pagerdutyEventsVersion(Output.of(pagerdutyEventsVersion));
         }
 
+        /**
+         * @param pagerdutyRestApiKey PagerDuty REST API token used to authenticate incident note polling. Treat as a secret. Mutually exclusive with `pagerduty_api_key` and `pagerduty_events_version`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder pagerdutyRestApiKey(@Nullable Output<String> pagerdutyRestApiKey) {
             $.pagerdutyRestApiKey = pagerdutyRestApiKey;
             return this;
         }
 
+        /**
+         * @param pagerdutyRestApiKey PagerDuty REST API token used to authenticate incident note polling. Treat as a secret. Mutually exclusive with `pagerduty_api_key` and `pagerduty_events_version`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder pagerdutyRestApiKey(String pagerdutyRestApiKey) {
             return pagerdutyRestApiKey(Output.of(pagerdutyRestApiKey));
         }
 
+        /**
+         * @param slug Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slug(@Nullable Output<String> slug) {
             $.slug = slug;
             return this;
         }
 
+        /**
+         * @param slug Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slug(String slug) {
             return slug(Output.of(slug));
         }

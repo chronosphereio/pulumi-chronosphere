@@ -14,7 +14,13 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class AzureMetricsIntegrationPrincipal
     {
+        /// <summary>
+        /// OAuth2 client ID of the managed identity principal.
+        /// </summary>
         public readonly string? ClientId;
+        /// <summary>
+        /// ID of the Azure tenant that hosts the managed identity principal.
+        /// </summary>
         public readonly string? TenantId;
 
         [OutputConstructor]

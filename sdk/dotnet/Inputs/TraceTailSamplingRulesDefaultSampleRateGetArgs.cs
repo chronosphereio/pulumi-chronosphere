@@ -13,9 +13,15 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class TraceTailSamplingRulesDefaultSampleRateGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Whether to override the platform default sample rate with `sample_rate`.
+        /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
 
+        /// <summary>
+        /// Fraction of matching traces to keep, in the range `[0.0, 1.0]`. `0` drops all matches, `1` keeps every match.
+        /// </summary>
         [Input("sampleRate", required: true)]
         public Input<double> SampleRate { get; set; } = null!;
 

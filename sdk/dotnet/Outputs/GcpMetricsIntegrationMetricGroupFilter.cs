@@ -14,8 +14,17 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class GcpMetricsIntegrationMetricGroupFilter
     {
+        /// <summary>
+        /// Label context, e.g. resource vs. metric label. See the Chronosphere GCP integration documentation for accepted values.
+        /// </summary>
         public readonly string? Context;
+        /// <summary>
+        /// Label name to filter on.
+        /// </summary>
         public readonly string? Name;
+        /// <summary>
+        /// Value pattern using glob syntax (e.g. `prod-*`). An exact match is applied when no glob characters are present.
+        /// </summary>
         public readonly string? ValueGlob;
 
         [OutputConstructor]

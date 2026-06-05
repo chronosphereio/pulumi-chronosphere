@@ -12,16 +12,52 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Workspace-scoped webhook credentials that downstream notifiers and LogScale actions can reference. Centralizes the destination URL and HTTP auth so they aren't duplicated across notifiers; modern equivalent of the per-notifier credentials.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/chronosphereio/pulumi-chronosphere/sdk/go/chronosphere"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := chronosphere.NewWebhookExternalConnection(ctx, "webhook", &chronosphere.WebhookExternalConnectionArgs{
+//				BearerToken: pulumi.String("XXXXX"),
+//				Name:        pulumi.String("Webhook"),
+//				Url:         pulumi.String("https://example.com/notify"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type WebhookExternalConnection struct {
 	pulumi.CustomResourceState
 
-	BasicAuthPassword     pulumi.StringPtrOutput `pulumi:"basicAuthPassword"`
-	BasicAuthUsername     pulumi.StringPtrOutput `pulumi:"basicAuthUsername"`
-	BearerToken           pulumi.StringPtrOutput `pulumi:"bearerToken"`
-	Name                  pulumi.StringOutput    `pulumi:"name"`
-	Slug                  pulumi.StringOutput    `pulumi:"slug"`
-	TlsInsecureSkipVerify pulumi.BoolPtrOutput   `pulumi:"tlsInsecureSkipVerify"`
-	Url                   pulumi.StringPtrOutput `pulumi:"url"`
+	// Password for HTTP basic auth when calling the webhook. Treat as a secret.
+	BasicAuthPassword pulumi.StringPtrOutput `pulumi:"basicAuthPassword"`
+	// Username for HTTP basic auth when calling the webhook. Mutually exclusive with `bearerToken`.
+	BasicAuthUsername pulumi.StringPtrOutput `pulumi:"basicAuthUsername"`
+	// Bearer token sent in the `Authorization` header when calling the webhook. Mutually exclusive with basic auth. Treat as a secret.
+	BearerToken pulumi.StringPtrOutput `pulumi:"bearerToken"`
+	// Display name of the external connection.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringOutput `pulumi:"slug"`
+	// If true, skip TLS certificate verification when calling the webhook. Disable only in trusted environments.
+	TlsInsecureSkipVerify pulumi.BoolPtrOutput `pulumi:"tlsInsecureSkipVerify"`
+	// Destination URL that receives webhook POST requests for this connection.
+	Url pulumi.StringPtrOutput `pulumi:"url"`
 }
 
 // NewWebhookExternalConnection registers a new resource with the given unique name, arguments, and options.
@@ -64,23 +100,37 @@ func GetWebhookExternalConnection(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WebhookExternalConnection resources.
 type webhookExternalConnectionState struct {
-	BasicAuthPassword     *string `pulumi:"basicAuthPassword"`
-	BasicAuthUsername     *string `pulumi:"basicAuthUsername"`
-	BearerToken           *string `pulumi:"bearerToken"`
-	Name                  *string `pulumi:"name"`
-	Slug                  *string `pulumi:"slug"`
-	TlsInsecureSkipVerify *bool   `pulumi:"tlsInsecureSkipVerify"`
-	Url                   *string `pulumi:"url"`
+	// Password for HTTP basic auth when calling the webhook. Treat as a secret.
+	BasicAuthPassword *string `pulumi:"basicAuthPassword"`
+	// Username for HTTP basic auth when calling the webhook. Mutually exclusive with `bearerToken`.
+	BasicAuthUsername *string `pulumi:"basicAuthUsername"`
+	// Bearer token sent in the `Authorization` header when calling the webhook. Mutually exclusive with basic auth. Treat as a secret.
+	BearerToken *string `pulumi:"bearerToken"`
+	// Display name of the external connection.
+	Name *string `pulumi:"name"`
+	// Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+	Slug *string `pulumi:"slug"`
+	// If true, skip TLS certificate verification when calling the webhook. Disable only in trusted environments.
+	TlsInsecureSkipVerify *bool `pulumi:"tlsInsecureSkipVerify"`
+	// Destination URL that receives webhook POST requests for this connection.
+	Url *string `pulumi:"url"`
 }
 
 type WebhookExternalConnectionState struct {
-	BasicAuthPassword     pulumi.StringPtrInput
-	BasicAuthUsername     pulumi.StringPtrInput
-	BearerToken           pulumi.StringPtrInput
-	Name                  pulumi.StringPtrInput
-	Slug                  pulumi.StringPtrInput
+	// Password for HTTP basic auth when calling the webhook. Treat as a secret.
+	BasicAuthPassword pulumi.StringPtrInput
+	// Username for HTTP basic auth when calling the webhook. Mutually exclusive with `bearerToken`.
+	BasicAuthUsername pulumi.StringPtrInput
+	// Bearer token sent in the `Authorization` header when calling the webhook. Mutually exclusive with basic auth. Treat as a secret.
+	BearerToken pulumi.StringPtrInput
+	// Display name of the external connection.
+	Name pulumi.StringPtrInput
+	// Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringPtrInput
+	// If true, skip TLS certificate verification when calling the webhook. Disable only in trusted environments.
 	TlsInsecureSkipVerify pulumi.BoolPtrInput
-	Url                   pulumi.StringPtrInput
+	// Destination URL that receives webhook POST requests for this connection.
+	Url pulumi.StringPtrInput
 }
 
 func (WebhookExternalConnectionState) ElementType() reflect.Type {
@@ -88,24 +138,38 @@ func (WebhookExternalConnectionState) ElementType() reflect.Type {
 }
 
 type webhookExternalConnectionArgs struct {
-	BasicAuthPassword     *string `pulumi:"basicAuthPassword"`
-	BasicAuthUsername     *string `pulumi:"basicAuthUsername"`
-	BearerToken           *string `pulumi:"bearerToken"`
-	Name                  string  `pulumi:"name"`
-	Slug                  *string `pulumi:"slug"`
-	TlsInsecureSkipVerify *bool   `pulumi:"tlsInsecureSkipVerify"`
-	Url                   *string `pulumi:"url"`
+	// Password for HTTP basic auth when calling the webhook. Treat as a secret.
+	BasicAuthPassword *string `pulumi:"basicAuthPassword"`
+	// Username for HTTP basic auth when calling the webhook. Mutually exclusive with `bearerToken`.
+	BasicAuthUsername *string `pulumi:"basicAuthUsername"`
+	// Bearer token sent in the `Authorization` header when calling the webhook. Mutually exclusive with basic auth. Treat as a secret.
+	BearerToken *string `pulumi:"bearerToken"`
+	// Display name of the external connection.
+	Name string `pulumi:"name"`
+	// Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+	Slug *string `pulumi:"slug"`
+	// If true, skip TLS certificate verification when calling the webhook. Disable only in trusted environments.
+	TlsInsecureSkipVerify *bool `pulumi:"tlsInsecureSkipVerify"`
+	// Destination URL that receives webhook POST requests for this connection.
+	Url *string `pulumi:"url"`
 }
 
 // The set of arguments for constructing a WebhookExternalConnection resource.
 type WebhookExternalConnectionArgs struct {
-	BasicAuthPassword     pulumi.StringPtrInput
-	BasicAuthUsername     pulumi.StringPtrInput
-	BearerToken           pulumi.StringPtrInput
-	Name                  pulumi.StringInput
-	Slug                  pulumi.StringPtrInput
+	// Password for HTTP basic auth when calling the webhook. Treat as a secret.
+	BasicAuthPassword pulumi.StringPtrInput
+	// Username for HTTP basic auth when calling the webhook. Mutually exclusive with `bearerToken`.
+	BasicAuthUsername pulumi.StringPtrInput
+	// Bearer token sent in the `Authorization` header when calling the webhook. Mutually exclusive with basic auth. Treat as a secret.
+	BearerToken pulumi.StringPtrInput
+	// Display name of the external connection.
+	Name pulumi.StringInput
+	// Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringPtrInput
+	// If true, skip TLS certificate verification when calling the webhook. Disable only in trusted environments.
 	TlsInsecureSkipVerify pulumi.BoolPtrInput
-	Url                   pulumi.StringPtrInput
+	// Destination URL that receives webhook POST requests for this connection.
+	Url pulumi.StringPtrInput
 }
 
 func (WebhookExternalConnectionArgs) ElementType() reflect.Type {
@@ -195,30 +259,37 @@ func (o WebhookExternalConnectionOutput) ToWebhookExternalConnectionOutputWithCo
 	return o
 }
 
+// Password for HTTP basic auth when calling the webhook. Treat as a secret.
 func (o WebhookExternalConnectionOutput) BasicAuthPassword() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WebhookExternalConnection) pulumi.StringPtrOutput { return v.BasicAuthPassword }).(pulumi.StringPtrOutput)
 }
 
+// Username for HTTP basic auth when calling the webhook. Mutually exclusive with `bearerToken`.
 func (o WebhookExternalConnectionOutput) BasicAuthUsername() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WebhookExternalConnection) pulumi.StringPtrOutput { return v.BasicAuthUsername }).(pulumi.StringPtrOutput)
 }
 
+// Bearer token sent in the `Authorization` header when calling the webhook. Mutually exclusive with basic auth. Treat as a secret.
 func (o WebhookExternalConnectionOutput) BearerToken() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WebhookExternalConnection) pulumi.StringPtrOutput { return v.BearerToken }).(pulumi.StringPtrOutput)
 }
 
+// Display name of the external connection.
 func (o WebhookExternalConnectionOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *WebhookExternalConnection) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
 func (o WebhookExternalConnectionOutput) Slug() pulumi.StringOutput {
 	return o.ApplyT(func(v *WebhookExternalConnection) pulumi.StringOutput { return v.Slug }).(pulumi.StringOutput)
 }
 
+// If true, skip TLS certificate verification when calling the webhook. Disable only in trusted environments.
 func (o WebhookExternalConnectionOutput) TlsInsecureSkipVerify() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *WebhookExternalConnection) pulumi.BoolPtrOutput { return v.TlsInsecureSkipVerify }).(pulumi.BoolPtrOutput)
 }
 
+// Destination URL that receives webhook POST requests for this connection.
 func (o WebhookExternalConnectionOutput) Url() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WebhookExternalConnection) pulumi.StringPtrOutput { return v.Url }).(pulumi.StringPtrOutput)
 }

@@ -25,6 +25,13 @@ class AzureMetricsIntegrationArgs:
                  usage_metrics_enabled: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a AzureMetricsIntegration resource.
+        :param pulumi.Input[str] name: Azure resource type identifier (e.g. `Microsoft.Compute/virtualMachines`).
+        :param pulumi.Input[bool] count_metrics_enabled: If true, enables Azure count metrics for the configured resources.
+        :param pulumi.Input['AzureMetricsIntegrationPrincipalArgs'] principal: Azure managed identity principal used to authenticate with Azure Monitor.
+        :param pulumi.Input[bool] propagate_tags: If true, propagates Azure resource, group, and subscription tags as metric labels.
+        :param pulumi.Input['AzureMetricsIntegrationScrapeConfigArgs'] scrape_config: Scope of Azure subscriptions, locations, and resource types from which to ingest metrics.
+        :param pulumi.Input[str] slug: Stable identifier for the integration. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[bool] usage_metrics_enabled: If true, enables collection of Azure usage metrics under this principal (Microsoft.Compute, Microsoft.Network, Microsoft.Storage).
         """
         pulumi.set(__self__, "name", name)
         if count_metrics_enabled is not None:
@@ -43,6 +50,9 @@ class AzureMetricsIntegrationArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        Azure resource type identifier (e.g. `Microsoft.Compute/virtualMachines`).
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -52,6 +62,9 @@ class AzureMetricsIntegrationArgs:
     @property
     @pulumi.getter(name="countMetricsEnabled")
     def count_metrics_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If true, enables Azure count metrics for the configured resources.
+        """
         return pulumi.get(self, "count_metrics_enabled")
 
     @count_metrics_enabled.setter
@@ -61,6 +74,9 @@ class AzureMetricsIntegrationArgs:
     @property
     @pulumi.getter
     def principal(self) -> Optional[pulumi.Input['AzureMetricsIntegrationPrincipalArgs']]:
+        """
+        Azure managed identity principal used to authenticate with Azure Monitor.
+        """
         return pulumi.get(self, "principal")
 
     @principal.setter
@@ -70,6 +86,9 @@ class AzureMetricsIntegrationArgs:
     @property
     @pulumi.getter(name="propagateTags")
     def propagate_tags(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If true, propagates Azure resource, group, and subscription tags as metric labels.
+        """
         return pulumi.get(self, "propagate_tags")
 
     @propagate_tags.setter
@@ -79,6 +98,9 @@ class AzureMetricsIntegrationArgs:
     @property
     @pulumi.getter(name="scrapeConfig")
     def scrape_config(self) -> Optional[pulumi.Input['AzureMetricsIntegrationScrapeConfigArgs']]:
+        """
+        Scope of Azure subscriptions, locations, and resource types from which to ingest metrics.
+        """
         return pulumi.get(self, "scrape_config")
 
     @scrape_config.setter
@@ -88,6 +110,9 @@ class AzureMetricsIntegrationArgs:
     @property
     @pulumi.getter
     def slug(self) -> Optional[pulumi.Input[str]]:
+        """
+        Stable identifier for the integration. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @slug.setter
@@ -97,6 +122,9 @@ class AzureMetricsIntegrationArgs:
     @property
     @pulumi.getter(name="usageMetricsEnabled")
     def usage_metrics_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If true, enables collection of Azure usage metrics under this principal (Microsoft.Compute, Microsoft.Network, Microsoft.Storage).
+        """
         return pulumi.get(self, "usage_metrics_enabled")
 
     @usage_metrics_enabled.setter
@@ -116,6 +144,13 @@ class _AzureMetricsIntegrationState:
                  usage_metrics_enabled: Optional[pulumi.Input[bool]] = None):
         """
         Input properties used for looking up and filtering AzureMetricsIntegration resources.
+        :param pulumi.Input[bool] count_metrics_enabled: If true, enables Azure count metrics for the configured resources.
+        :param pulumi.Input[str] name: Azure resource type identifier (e.g. `Microsoft.Compute/virtualMachines`).
+        :param pulumi.Input['AzureMetricsIntegrationPrincipalArgs'] principal: Azure managed identity principal used to authenticate with Azure Monitor.
+        :param pulumi.Input[bool] propagate_tags: If true, propagates Azure resource, group, and subscription tags as metric labels.
+        :param pulumi.Input['AzureMetricsIntegrationScrapeConfigArgs'] scrape_config: Scope of Azure subscriptions, locations, and resource types from which to ingest metrics.
+        :param pulumi.Input[str] slug: Stable identifier for the integration. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[bool] usage_metrics_enabled: If true, enables collection of Azure usage metrics under this principal (Microsoft.Compute, Microsoft.Network, Microsoft.Storage).
         """
         if count_metrics_enabled is not None:
             pulumi.set(__self__, "count_metrics_enabled", count_metrics_enabled)
@@ -135,6 +170,9 @@ class _AzureMetricsIntegrationState:
     @property
     @pulumi.getter(name="countMetricsEnabled")
     def count_metrics_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If true, enables Azure count metrics for the configured resources.
+        """
         return pulumi.get(self, "count_metrics_enabled")
 
     @count_metrics_enabled.setter
@@ -144,6 +182,9 @@ class _AzureMetricsIntegrationState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Azure resource type identifier (e.g. `Microsoft.Compute/virtualMachines`).
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -153,6 +194,9 @@ class _AzureMetricsIntegrationState:
     @property
     @pulumi.getter
     def principal(self) -> Optional[pulumi.Input['AzureMetricsIntegrationPrincipalArgs']]:
+        """
+        Azure managed identity principal used to authenticate with Azure Monitor.
+        """
         return pulumi.get(self, "principal")
 
     @principal.setter
@@ -162,6 +206,9 @@ class _AzureMetricsIntegrationState:
     @property
     @pulumi.getter(name="propagateTags")
     def propagate_tags(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If true, propagates Azure resource, group, and subscription tags as metric labels.
+        """
         return pulumi.get(self, "propagate_tags")
 
     @propagate_tags.setter
@@ -171,6 +218,9 @@ class _AzureMetricsIntegrationState:
     @property
     @pulumi.getter(name="scrapeConfig")
     def scrape_config(self) -> Optional[pulumi.Input['AzureMetricsIntegrationScrapeConfigArgs']]:
+        """
+        Scope of Azure subscriptions, locations, and resource types from which to ingest metrics.
+        """
         return pulumi.get(self, "scrape_config")
 
     @scrape_config.setter
@@ -180,6 +230,9 @@ class _AzureMetricsIntegrationState:
     @property
     @pulumi.getter
     def slug(self) -> Optional[pulumi.Input[str]]:
+        """
+        Stable identifier for the integration. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @slug.setter
@@ -189,6 +242,9 @@ class _AzureMetricsIntegrationState:
     @property
     @pulumi.getter(name="usageMetricsEnabled")
     def usage_metrics_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If true, enables collection of Azure usage metrics under this principal (Microsoft.Compute, Microsoft.Network, Microsoft.Storage).
+        """
         return pulumi.get(self, "usage_metrics_enabled")
 
     @usage_metrics_enabled.setter
@@ -210,9 +266,50 @@ class AzureMetricsIntegration(pulumi.CustomResource):
                  usage_metrics_enabled: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
-        Create a AzureMetricsIntegration resource with the given unique name, props, and options.
+        Scrapes Azure Monitor metrics from the configured subscriptions, locations, and resource types using a service-principal credential.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_chronosphere as chronosphere
+
+        subscription = chronosphere.AzureMetricsIntegration("subscription",
+            count_metrics_enabled=True,
+            name="Azure Metrics",
+            principal=chronosphere.AzureMetricsIntegrationPrincipalArgs(
+                client_id="00000000-0000-0000-0000-000000000000",
+                tenant_id="00000000-0000-0000-0000-000000000000",
+            ),
+            propagate_tags=True,
+            scrape_config=chronosphere.AzureMetricsIntegrationScrapeConfigArgs(
+                locations=[
+                    "eastus",
+                    "westus",
+                ],
+                resource_types=[
+                    chronosphere.AzureMetricsIntegrationScrapeConfigResourceTypeArgs(
+                        name="Microsoft.Compute/virtualMachines",
+                    ),
+                    chronosphere.AzureMetricsIntegrationScrapeConfigResourceTypeArgs(
+                        metric_names=["UsedCapacity"],
+                        name="Microsoft.Storage/storageAccounts",
+                    ),
+                ],
+                subscription_ids=["00000000-0000-0000-0000-000000000000"],
+            ),
+            slug="azure-metrics")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[bool] count_metrics_enabled: If true, enables Azure count metrics for the configured resources.
+        :param pulumi.Input[str] name: Azure resource type identifier (e.g. `Microsoft.Compute/virtualMachines`).
+        :param pulumi.Input[pulumi.InputType['AzureMetricsIntegrationPrincipalArgs']] principal: Azure managed identity principal used to authenticate with Azure Monitor.
+        :param pulumi.Input[bool] propagate_tags: If true, propagates Azure resource, group, and subscription tags as metric labels.
+        :param pulumi.Input[pulumi.InputType['AzureMetricsIntegrationScrapeConfigArgs']] scrape_config: Scope of Azure subscriptions, locations, and resource types from which to ingest metrics.
+        :param pulumi.Input[str] slug: Stable identifier for the integration. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[bool] usage_metrics_enabled: If true, enables collection of Azure usage metrics under this principal (Microsoft.Compute, Microsoft.Network, Microsoft.Storage).
         """
         ...
     @overload
@@ -221,7 +318,41 @@ class AzureMetricsIntegration(pulumi.CustomResource):
                  args: AzureMetricsIntegrationArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a AzureMetricsIntegration resource with the given unique name, props, and options.
+        Scrapes Azure Monitor metrics from the configured subscriptions, locations, and resource types using a service-principal credential.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_chronosphere as chronosphere
+
+        subscription = chronosphere.AzureMetricsIntegration("subscription",
+            count_metrics_enabled=True,
+            name="Azure Metrics",
+            principal=chronosphere.AzureMetricsIntegrationPrincipalArgs(
+                client_id="00000000-0000-0000-0000-000000000000",
+                tenant_id="00000000-0000-0000-0000-000000000000",
+            ),
+            propagate_tags=True,
+            scrape_config=chronosphere.AzureMetricsIntegrationScrapeConfigArgs(
+                locations=[
+                    "eastus",
+                    "westus",
+                ],
+                resource_types=[
+                    chronosphere.AzureMetricsIntegrationScrapeConfigResourceTypeArgs(
+                        name="Microsoft.Compute/virtualMachines",
+                    ),
+                    chronosphere.AzureMetricsIntegrationScrapeConfigResourceTypeArgs(
+                        metric_names=["UsedCapacity"],
+                        name="Microsoft.Storage/storageAccounts",
+                    ),
+                ],
+                subscription_ids=["00000000-0000-0000-0000-000000000000"],
+            ),
+            slug="azure-metrics")
+        ```
+
         :param str resource_name: The name of the resource.
         :param AzureMetricsIntegrationArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -286,6 +417,13 @@ class AzureMetricsIntegration(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[bool] count_metrics_enabled: If true, enables Azure count metrics for the configured resources.
+        :param pulumi.Input[str] name: Azure resource type identifier (e.g. `Microsoft.Compute/virtualMachines`).
+        :param pulumi.Input[pulumi.InputType['AzureMetricsIntegrationPrincipalArgs']] principal: Azure managed identity principal used to authenticate with Azure Monitor.
+        :param pulumi.Input[bool] propagate_tags: If true, propagates Azure resource, group, and subscription tags as metric labels.
+        :param pulumi.Input[pulumi.InputType['AzureMetricsIntegrationScrapeConfigArgs']] scrape_config: Scope of Azure subscriptions, locations, and resource types from which to ingest metrics.
+        :param pulumi.Input[str] slug: Stable identifier for the integration. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[bool] usage_metrics_enabled: If true, enables collection of Azure usage metrics under this principal (Microsoft.Compute, Microsoft.Network, Microsoft.Storage).
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -303,35 +441,56 @@ class AzureMetricsIntegration(pulumi.CustomResource):
     @property
     @pulumi.getter(name="countMetricsEnabled")
     def count_metrics_enabled(self) -> pulumi.Output[Optional[bool]]:
+        """
+        If true, enables Azure count metrics for the configured resources.
+        """
         return pulumi.get(self, "count_metrics_enabled")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        Azure resource type identifier (e.g. `Microsoft.Compute/virtualMachines`).
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def principal(self) -> pulumi.Output[Optional['outputs.AzureMetricsIntegrationPrincipal']]:
+        """
+        Azure managed identity principal used to authenticate with Azure Monitor.
+        """
         return pulumi.get(self, "principal")
 
     @property
     @pulumi.getter(name="propagateTags")
     def propagate_tags(self) -> pulumi.Output[Optional[bool]]:
+        """
+        If true, propagates Azure resource, group, and subscription tags as metric labels.
+        """
         return pulumi.get(self, "propagate_tags")
 
     @property
     @pulumi.getter(name="scrapeConfig")
     def scrape_config(self) -> pulumi.Output[Optional['outputs.AzureMetricsIntegrationScrapeConfig']]:
+        """
+        Scope of Azure subscriptions, locations, and resource types from which to ingest metrics.
+        """
         return pulumi.get(self, "scrape_config")
 
     @property
     @pulumi.getter
     def slug(self) -> pulumi.Output[str]:
+        """
+        Stable identifier for the integration. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @property
     @pulumi.getter(name="usageMetricsEnabled")
     def usage_metrics_enabled(self) -> pulumi.Output[Optional[bool]]:
+        """
+        If true, enables collection of Azure usage metrics under this principal (Microsoft.Compute, Microsoft.Network, Microsoft.Storage).
+        """
         return pulumi.get(self, "usage_metrics_enabled")
 

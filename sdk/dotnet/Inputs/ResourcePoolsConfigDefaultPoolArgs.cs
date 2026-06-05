@@ -13,14 +13,24 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class ResourcePoolsConfigDefaultPoolArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// License allocation for the pool. Can be expressed as a percentage of the license (`percent_of_license`) or as per-license fixed values (`fixed_value`).
+        /// </summary>
         [Input("allocation")]
         public Input<Inputs.ResourcePoolsConfigDefaultPoolAllocationArgs>? Allocation { get; set; }
 
+        /// <summary>
+        /// Optional high/low priority sub-classifications within the pool. Low-priority metrics are dropped first; high-priority metrics are dropped last when limits are hit.
+        /// </summary>
         [Input("priorities")]
         public Input<Inputs.ResourcePoolsConfigDefaultPoolPrioritiesArgs>? Priorities { get; set; }
 
         [Input("priorityThresholds")]
         private InputList<Inputs.ResourcePoolsConfigDefaultPoolPriorityThresholdArgs>? _priorityThresholds;
+
+        /// <summary>
+        /// Per-license drop thresholds for `PERSISTED_CARDINALITY_STANDARD` and `PERSISTED_CARDINALITY_HISTOGRAM` only. Defines strict upper bounds beyond which new consumption is dropped, optionally segmented by priority class.
+        /// </summary>
         public InputList<Inputs.ResourcePoolsConfigDefaultPoolPriorityThresholdArgs> PriorityThresholds
         {
             get => _priorityThresholds ?? (_priorityThresholds = new InputList<Inputs.ResourcePoolsConfigDefaultPoolPriorityThresholdArgs>());

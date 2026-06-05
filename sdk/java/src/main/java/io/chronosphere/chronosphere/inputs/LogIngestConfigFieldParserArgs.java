@@ -18,30 +18,62 @@ public final class LogIngestConfigFieldParserArgs extends com.pulumi.resources.R
 
     public static final LogIngestConfigFieldParserArgs Empty = new LogIngestConfigFieldParserArgs();
 
+    /**
+     * Path to write the parsed output to. If omitted, parsed fields are written at the root.
+     * 
+     */
     @Import(name="destination")
     private @Nullable Output<LogIngestConfigFieldParserDestinationArgs> destination;
 
+    /**
+     * @return Path to write the parsed output to. If omitted, parsed fields are written at the root.
+     * 
+     */
     public Optional<Output<LogIngestConfigFieldParserDestinationArgs>> destination() {
         return Optional.ofNullable(this.destination);
     }
 
+    /**
+     * Mode that controls when the field parser runs on incoming logs.
+     * 
+     */
     @Import(name="mode")
     private @Nullable Output<String> mode;
 
+    /**
+     * @return Mode that controls when the field parser runs on incoming logs.
+     * 
+     */
     public Optional<Output<String>> mode() {
         return Optional.ofNullable(this.mode);
     }
 
+    /**
+     * Parser configuration. Exactly one of `regex_parser`, `key_value_parser`, or `grok_parser` must be set, matching `parser_type`.
+     * 
+     */
     @Import(name="parser", required=true)
     private Output<LogIngestConfigFieldParserParserArgs> parser;
 
+    /**
+     * @return Parser configuration. Exactly one of `regex_parser`, `key_value_parser`, or `grok_parser` must be set, matching `parser_type`.
+     * 
+     */
     public Output<LogIngestConfigFieldParserParserArgs> parser() {
         return this.parser;
     }
 
+    /**
+     * Path of the field to parse.
+     * 
+     */
     @Import(name="source", required=true)
     private Output<LogIngestConfigFieldParserSourceArgs> source;
 
+    /**
+     * @return Path of the field to parse.
+     * 
+     */
     public Output<LogIngestConfigFieldParserSourceArgs> source() {
         return this.source;
     }
@@ -73,38 +105,86 @@ public final class LogIngestConfigFieldParserArgs extends com.pulumi.resources.R
             $ = new LogIngestConfigFieldParserArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param destination Path to write the parsed output to. If omitted, parsed fields are written at the root.
+         * 
+         * @return builder
+         * 
+         */
         public Builder destination(@Nullable Output<LogIngestConfigFieldParserDestinationArgs> destination) {
             $.destination = destination;
             return this;
         }
 
+        /**
+         * @param destination Path to write the parsed output to. If omitted, parsed fields are written at the root.
+         * 
+         * @return builder
+         * 
+         */
         public Builder destination(LogIngestConfigFieldParserDestinationArgs destination) {
             return destination(Output.of(destination));
         }
 
+        /**
+         * @param mode Mode that controls when the field parser runs on incoming logs.
+         * 
+         * @return builder
+         * 
+         */
         public Builder mode(@Nullable Output<String> mode) {
             $.mode = mode;
             return this;
         }
 
+        /**
+         * @param mode Mode that controls when the field parser runs on incoming logs.
+         * 
+         * @return builder
+         * 
+         */
         public Builder mode(String mode) {
             return mode(Output.of(mode));
         }
 
+        /**
+         * @param parser Parser configuration. Exactly one of `regex_parser`, `key_value_parser`, or `grok_parser` must be set, matching `parser_type`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder parser(Output<LogIngestConfigFieldParserParserArgs> parser) {
             $.parser = parser;
             return this;
         }
 
+        /**
+         * @param parser Parser configuration. Exactly one of `regex_parser`, `key_value_parser`, or `grok_parser` must be set, matching `parser_type`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder parser(LogIngestConfigFieldParserParserArgs parser) {
             return parser(Output.of(parser));
         }
 
+        /**
+         * @param source Path of the field to parse.
+         * 
+         * @return builder
+         * 
+         */
         public Builder source(Output<LogIngestConfigFieldParserSourceArgs> source) {
             $.source = source;
             return this;
         }
 
+        /**
+         * @param source Path of the field to parse.
+         * 
+         * @return builder
+         * 
+         */
         public Builder source(LogIngestConfigFieldParserSourceArgs source) {
             return source(Output.of(source));
         }

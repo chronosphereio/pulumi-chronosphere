@@ -17,21 +17,39 @@ public final class ResourcePoolsConfigArgs extends com.pulumi.resources.Resource
 
     public static final ResourcePoolsConfigArgs Empty = new ResourcePoolsConfigArgs();
 
+    /**
+     * Catch-all pool that receives metrics not matched by any other pool. Also receives any license allocation left unassigned by the other pools.
+     * 
+     */
     @Import(name="defaultPool")
     private @Nullable Output<ResourcePoolsConfigDefaultPoolArgs> defaultPool;
 
+    /**
+     * @return Catch-all pool that receives metrics not matched by any other pool. Also receives any license allocation left unassigned by the other pools.
+     * 
+     */
     public Optional<Output<ResourcePoolsConfigDefaultPoolArgs>> defaultPool() {
         return Optional.ofNullable(this.defaultPool);
     }
 
+    /**
+     * Named pools that partition each license across teams or workloads. Pools are matched in declaration order via their `match_rules`.
+     * 
+     */
     @Import(name="pool")
     private @Nullable Output<List<ResourcePoolsConfigPoolArgs>> pool;
 
+    /**
+     * @return Named pools that partition each license across teams or workloads. Pools are matched in declaration order via their `match_rules`.
+     * 
+     */
     public Optional<Output<List<ResourcePoolsConfigPoolArgs>>> pool() {
         return Optional.ofNullable(this.pool);
     }
 
     /**
+     * Deprecated: use `pool` instead. Set of named pools that partition the license.
+     * 
      * @deprecated
      * Use pool instead of pools
      * 
@@ -41,6 +59,8 @@ public final class ResourcePoolsConfigArgs extends com.pulumi.resources.Resource
     private @Nullable Output<List<ResourcePoolsConfigPoolArgs>> pools;
 
     /**
+     * @return Deprecated: use `pool` instead. Set of named pools that partition the license.
+     * 
      * @deprecated
      * Use pool instead of pools
      * 
@@ -76,29 +96,61 @@ public final class ResourcePoolsConfigArgs extends com.pulumi.resources.Resource
             $ = new ResourcePoolsConfigArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param defaultPool Catch-all pool that receives metrics not matched by any other pool. Also receives any license allocation left unassigned by the other pools.
+         * 
+         * @return builder
+         * 
+         */
         public Builder defaultPool(@Nullable Output<ResourcePoolsConfigDefaultPoolArgs> defaultPool) {
             $.defaultPool = defaultPool;
             return this;
         }
 
+        /**
+         * @param defaultPool Catch-all pool that receives metrics not matched by any other pool. Also receives any license allocation left unassigned by the other pools.
+         * 
+         * @return builder
+         * 
+         */
         public Builder defaultPool(ResourcePoolsConfigDefaultPoolArgs defaultPool) {
             return defaultPool(Output.of(defaultPool));
         }
 
+        /**
+         * @param pool Named pools that partition each license across teams or workloads. Pools are matched in declaration order via their `match_rules`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder pool(@Nullable Output<List<ResourcePoolsConfigPoolArgs>> pool) {
             $.pool = pool;
             return this;
         }
 
+        /**
+         * @param pool Named pools that partition each license across teams or workloads. Pools are matched in declaration order via their `match_rules`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder pool(List<ResourcePoolsConfigPoolArgs> pool) {
             return pool(Output.of(pool));
         }
 
+        /**
+         * @param pool Named pools that partition each license across teams or workloads. Pools are matched in declaration order via their `match_rules`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder pool(ResourcePoolsConfigPoolArgs... pool) {
             return pool(List.of(pool));
         }
 
         /**
+         * @param pools Deprecated: use `pool` instead. Set of named pools that partition the license.
+         * 
          * @return builder
          * 
          * @deprecated
@@ -112,6 +164,8 @@ public final class ResourcePoolsConfigArgs extends com.pulumi.resources.Resource
         }
 
         /**
+         * @param pools Deprecated: use `pool` instead. Set of named pools that partition the license.
+         * 
          * @return builder
          * 
          * @deprecated
@@ -124,6 +178,8 @@ public final class ResourcePoolsConfigArgs extends com.pulumi.resources.Resource
         }
 
         /**
+         * @param pools Deprecated: use `pool` instead. Set of named pools that partition the license.
+         * 
          * @return builder
          * 
          * @deprecated

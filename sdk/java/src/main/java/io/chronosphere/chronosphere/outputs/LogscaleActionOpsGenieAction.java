@@ -12,17 +12,41 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class LogscaleActionOpsGenieAction {
+    /**
+     * @return OpsGenie webhook URL to send the request to.
+     * 
+     */
     private String apiUrl;
+    /**
+     * @return Key used to authenticate with OpsGenie.
+     * 
+     */
     private String opsGenieKey;
+    /**
+     * @return If `true`, sends the request through the configured outbound proxy.
+     * 
+     */
     private @Nullable Boolean useProxy;
 
     private LogscaleActionOpsGenieAction() {}
+    /**
+     * @return OpsGenie webhook URL to send the request to.
+     * 
+     */
     public String apiUrl() {
         return this.apiUrl;
     }
+    /**
+     * @return Key used to authenticate with OpsGenie.
+     * 
+     */
     public String opsGenieKey() {
         return this.opsGenieKey;
     }
+    /**
+     * @return If `true`, sends the request through the configured outbound proxy.
+     * 
+     */
     public Optional<Boolean> useProxy() {
         return Optional.ofNullable(this.useProxy);
     }

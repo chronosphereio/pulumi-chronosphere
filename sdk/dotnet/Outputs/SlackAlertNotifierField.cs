@@ -14,8 +14,17 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class SlackAlertNotifierField
     {
+        /// <summary>
+        /// If true, the field is short enough to be shown side-by-side with the next field.
+        /// </summary>
         public readonly bool? Short;
+        /// <summary>
+        /// Bold heading shown above the value.
+        /// </summary>
         public readonly string? Title;
+        /// <summary>
+        /// Value text. Supports Go templating.
+        /// </summary>
         public readonly string? Value;
 
         [OutputConstructor]

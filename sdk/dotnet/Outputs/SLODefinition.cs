@@ -14,9 +14,21 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class SLODefinition
     {
+        /// <summary>
+        /// Custom burn-rate alert definitions. If omitted, the system default burn rates are used. Only takes effect when `enable_burn_rate_alerting` is true.
+        /// </summary>
         public readonly ImmutableArray<Outputs.SLODefinitionBurnRateAlertingConfig> BurnRateAlertingConfigs;
+        /// <summary>
+        /// Whether burn-rate alerting is enabled for this SLO.
+        /// </summary>
         public readonly bool? EnableBurnRateAlerting;
+        /// <summary>
+        /// Target SLO percentage representing the desired availability (e.g. `99.9`).
+        /// </summary>
         public readonly double Objective;
+        /// <summary>
+        /// Rolling time window over which the SLO objective is evaluated.
+        /// </summary>
         public readonly Outputs.SLODefinitionTimeWindow? TimeWindow;
 
         [OutputConstructor]

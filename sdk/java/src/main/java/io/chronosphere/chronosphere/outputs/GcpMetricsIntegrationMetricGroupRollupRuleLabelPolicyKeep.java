@@ -11,13 +11,29 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeep {
+    /**
+     * @return Label context, e.g. resource vs. metric label. See the Chronosphere GCP integration documentation for accepted values.
+     * 
+     */
     private @Nullable String context;
+    /**
+     * @return Label name to filter on.
+     * 
+     */
     private @Nullable String name;
 
     private GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeep() {}
+    /**
+     * @return Label context, e.g. resource vs. metric label. See the Chronosphere GCP integration documentation for accepted values.
+     * 
+     */
     public Optional<String> context() {
         return Optional.ofNullable(this.context);
     }
+    /**
+     * @return Label name to filter on.
+     * 
+     */
     public Optional<String> name() {
         return Optional.ofNullable(this.name);
     }

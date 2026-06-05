@@ -12,17 +12,41 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class LogscaleActionVictorOpsAction {
+    /**
+     * @return Type of the VictorOps message to send (for example, `CRITICAL`, `WARNING`, `INFO`).
+     * 
+     */
     private String messageType;
+    /**
+     * @return VictorOps webhook URL to send the request to.
+     * 
+     */
     private String notifyUrl;
+    /**
+     * @return If `true`, sends the request through the configured outbound proxy.
+     * 
+     */
     private @Nullable Boolean useProxy;
 
     private LogscaleActionVictorOpsAction() {}
+    /**
+     * @return Type of the VictorOps message to send (for example, `CRITICAL`, `WARNING`, `INFO`).
+     * 
+     */
     public String messageType() {
         return this.messageType;
     }
+    /**
+     * @return VictorOps webhook URL to send the request to.
+     * 
+     */
     public String notifyUrl() {
         return this.notifyUrl;
     }
+    /**
+     * @return If `true`, sends the request through the configured outbound proxy.
+     * 
+     */
     public Optional<Boolean> useProxy() {
         return Optional.ofNullable(this.useProxy);
     }

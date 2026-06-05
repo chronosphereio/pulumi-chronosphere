@@ -10,69 +10,161 @@ using Pulumi;
 
 namespace Chronosphere.Pulumi
 {
+    /// <summary>
+    /// PagerDuty notifier that delivers monitor signals to PagerDuty as incidents via the Events API. Referenced from notification policies.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Pulumi = Chronosphere.Pulumi;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var pagerduty = new Pulumi.PagerdutyAlertNotifier("pagerduty", new()
+    ///     {
+    ///         Details = 
+    ///         {
+    ///             { "runbook", "http://runbook" },
+    ///         },
+    ///         Name = "PagerDuty Notifier",
+    ///         RoutingKey = "XXXXX",
+    ///         SendResolved = true,
+    ///         Severity = "info",
+    ///         Url = "https://events.pagerduty.com/v2/enqueue",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// </summary>
     [PulumiResourceType("chronosphere:index/pagerdutyAlertNotifier:PagerdutyAlertNotifier")]
     public partial class PagerdutyAlertNotifier : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Password for HTTP basic auth when calling the PagerDuty API. Treat as a secret.
+        /// </summary>
         [Output("basicAuthPassword")]
         public Output<string?> BasicAuthPassword { get; private set; } = null!;
 
+        /// <summary>
+        /// Username for HTTP basic auth when calling the PagerDuty API. Mutually exclusive with `bearer_token`.
+        /// </summary>
         [Output("basicAuthUsername")]
         public Output<string?> BasicAuthUsername { get; private set; } = null!;
 
+        /// <summary>
+        /// Bearer token sent in the `Authorization` header when calling the PagerDuty API. Treat as a secret. Mutually exclusive with basic auth.
+        /// </summary>
         [Output("bearerToken")]
         public Output<string?> BearerToken { get; private set; } = null!;
 
+        /// <summary>
+        /// Class of the event reported to PagerDuty (e.g. `cpu`, `database`). Supports Go templating.
+        /// </summary>
         [Output("class")]
         public Output<string?> Class { get; private set; } = null!;
 
+        /// <summary>
+        /// Name of the monitoring client identified in the notification.
+        /// </summary>
         [Output("client")]
         public Output<string?> Client { get; private set; } = null!;
 
+        /// <summary>
+        /// Backlink to the sender of the notification, shown in PagerDuty.
+        /// </summary>
         [Output("clientUrl")]
         public Output<string?> ClientUrl { get; private set; } = null!;
 
+        /// <summary>
+        /// Part or component of the affected system that is broken. Supports Go templating.
+        /// </summary>
         [Output("component")]
         public Output<string?> Component { get; private set; } = null!;
 
+        /// <summary>
+        /// Summary of the incident. Supports Go templating.
+        /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
+        /// <summary>
+        /// Arbitrary key/value pairs attached to the incident as additional context. Values support Go templating.
+        /// </summary>
         [Output("details")]
         public Output<ImmutableDictionary<string, string>?> Details { get; private set; } = null!;
 
+        /// <summary>
+        /// Logical grouping of services the incident belongs to. Supports Go templating.
+        /// </summary>
         [Output("group")]
         public Output<string?> Group { get; private set; } = null!;
 
+        /// <summary>
+        /// Images attached to the PagerDuty incident. See https://developer.pagerduty.com/docs/events-api-v2/trigger-events/.
+        /// </summary>
         [Output("images")]
         public Output<ImmutableArray<Outputs.PagerdutyAlertNotifierImage>> Images { get; private set; } = null!;
 
+        /// <summary>
+        /// Hyperlinks attached to the PagerDuty incident. See https://developer.pagerduty.com/docs/events-api-v2/trigger-events/.
+        /// </summary>
         [Output("links")]
         public Output<ImmutableArray<Outputs.PagerdutyAlertNotifierLink>> Links { get; private set; } = null!;
 
+        /// <summary>
+        /// Display name of the notifier.
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// Deprecated and ignored. Custom proxy URLs are not supported.
+        /// </summary>
         [Output("proxyUrl")]
         public Output<string?> ProxyUrl { get; private set; } = null!;
 
+        /// <summary>
+        /// PagerDuty integration key when using the `Events API v2` integration type. Treat as a secret. Mutually exclusive with `service_key`.
+        /// </summary>
         [Output("routingKey")]
         public Output<string?> RoutingKey { get; private set; } = null!;
 
+        /// <summary>
+        /// Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+        /// </summary>
         [Output("sendResolved")]
         public Output<bool?> SendResolved { get; private set; } = null!;
 
+        /// <summary>
+        /// PagerDuty integration key when using the `Prometheus` integration type. Treat as a secret. Mutually exclusive with `routing_key`.
+        /// </summary>
         [Output("serviceKey")]
         public Output<string?> ServiceKey { get; private set; } = null!;
 
+        /// <summary>
+        /// Severity of the incident. One of `critical`, `error`, `warning`, or `info`.
+        /// </summary>
         [Output("severity")]
         public Output<string> Severity { get; private set; } = null!;
 
+        /// <summary>
+        /// Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Output("slug")]
         public Output<string> Slug { get; private set; } = null!;
 
+        /// <summary>
+        /// If true, skip TLS certificate verification when calling the PagerDuty API. Disable only in trusted environments.
+        /// </summary>
         [Output("tlsInsecureSkipVerify")]
         public Output<bool?> TlsInsecureSkipVerify { get; private set; } = null!;
 
+        /// <summary>
+        /// PagerDuty API URL to send events to (e.g. `https://events.pagerduty.com/v2/enqueue`).
+        /// </summary>
         [Output("url")]
         public Output<string> Url { get; private set; } = null!;
 
@@ -130,6 +222,10 @@ namespace Chronosphere.Pulumi
     {
         [Input("basicAuthPassword")]
         private Input<string>? _basicAuthPassword;
+
+        /// <summary>
+        /// Password for HTTP basic auth when calling the PagerDuty API. Treat as a secret.
+        /// </summary>
         public Input<string>? BasicAuthPassword
         {
             get => _basicAuthPassword;
@@ -140,40 +236,72 @@ namespace Chronosphere.Pulumi
             }
         }
 
+        /// <summary>
+        /// Username for HTTP basic auth when calling the PagerDuty API. Mutually exclusive with `bearer_token`.
+        /// </summary>
         [Input("basicAuthUsername")]
         public Input<string>? BasicAuthUsername { get; set; }
 
+        /// <summary>
+        /// Bearer token sent in the `Authorization` header when calling the PagerDuty API. Treat as a secret. Mutually exclusive with basic auth.
+        /// </summary>
         [Input("bearerToken")]
         public Input<string>? BearerToken { get; set; }
 
+        /// <summary>
+        /// Class of the event reported to PagerDuty (e.g. `cpu`, `database`). Supports Go templating.
+        /// </summary>
         [Input("class")]
         public Input<string>? Class { get; set; }
 
+        /// <summary>
+        /// Name of the monitoring client identified in the notification.
+        /// </summary>
         [Input("client")]
         public Input<string>? Client { get; set; }
 
+        /// <summary>
+        /// Backlink to the sender of the notification, shown in PagerDuty.
+        /// </summary>
         [Input("clientUrl")]
         public Input<string>? ClientUrl { get; set; }
 
+        /// <summary>
+        /// Part or component of the affected system that is broken. Supports Go templating.
+        /// </summary>
         [Input("component")]
         public Input<string>? Component { get; set; }
 
+        /// <summary>
+        /// Summary of the incident. Supports Go templating.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         [Input("details")]
         private InputMap<string>? _details;
+
+        /// <summary>
+        /// Arbitrary key/value pairs attached to the incident as additional context. Values support Go templating.
+        /// </summary>
         public InputMap<string> Details
         {
             get => _details ?? (_details = new InputMap<string>());
             set => _details = value;
         }
 
+        /// <summary>
+        /// Logical grouping of services the incident belongs to. Supports Go templating.
+        /// </summary>
         [Input("group")]
         public Input<string>? Group { get; set; }
 
         [Input("images")]
         private InputList<Inputs.PagerdutyAlertNotifierImageArgs>? _images;
+
+        /// <summary>
+        /// Images attached to the PagerDuty incident. See https://developer.pagerduty.com/docs/events-api-v2/trigger-events/.
+        /// </summary>
         public InputList<Inputs.PagerdutyAlertNotifierImageArgs> Images
         {
             get => _images ?? (_images = new InputList<Inputs.PagerdutyAlertNotifierImageArgs>());
@@ -182,26 +310,46 @@ namespace Chronosphere.Pulumi
 
         [Input("links")]
         private InputList<Inputs.PagerdutyAlertNotifierLinkArgs>? _links;
+
+        /// <summary>
+        /// Hyperlinks attached to the PagerDuty incident. See https://developer.pagerduty.com/docs/events-api-v2/trigger-events/.
+        /// </summary>
         public InputList<Inputs.PagerdutyAlertNotifierLinkArgs> Links
         {
             get => _links ?? (_links = new InputList<Inputs.PagerdutyAlertNotifierLinkArgs>());
             set => _links = value;
         }
 
+        /// <summary>
+        /// Display name of the notifier.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// Deprecated and ignored. Custom proxy URLs are not supported.
+        /// </summary>
         [Input("proxyUrl")]
         public Input<string>? ProxyUrl { get; set; }
 
+        /// <summary>
+        /// PagerDuty integration key when using the `Events API v2` integration type. Treat as a secret. Mutually exclusive with `service_key`.
+        /// </summary>
         [Input("routingKey")]
         public Input<string>? RoutingKey { get; set; }
 
+        /// <summary>
+        /// Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+        /// </summary>
         [Input("sendResolved")]
         public Input<bool>? SendResolved { get; set; }
 
         [Input("serviceKey")]
         private Input<string>? _serviceKey;
+
+        /// <summary>
+        /// PagerDuty integration key when using the `Prometheus` integration type. Treat as a secret. Mutually exclusive with `routing_key`.
+        /// </summary>
         public Input<string>? ServiceKey
         {
             get => _serviceKey;
@@ -212,15 +360,27 @@ namespace Chronosphere.Pulumi
             }
         }
 
+        /// <summary>
+        /// Severity of the incident. One of `critical`, `error`, `warning`, or `info`.
+        /// </summary>
         [Input("severity", required: true)]
         public Input<string> Severity { get; set; } = null!;
 
+        /// <summary>
+        /// Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 
+        /// <summary>
+        /// If true, skip TLS certificate verification when calling the PagerDuty API. Disable only in trusted environments.
+        /// </summary>
         [Input("tlsInsecureSkipVerify")]
         public Input<bool>? TlsInsecureSkipVerify { get; set; }
 
+        /// <summary>
+        /// PagerDuty API URL to send events to (e.g. `https://events.pagerduty.com/v2/enqueue`).
+        /// </summary>
         [Input("url", required: true)]
         public Input<string> Url { get; set; } = null!;
 
@@ -234,6 +394,10 @@ namespace Chronosphere.Pulumi
     {
         [Input("basicAuthPassword")]
         private Input<string>? _basicAuthPassword;
+
+        /// <summary>
+        /// Password for HTTP basic auth when calling the PagerDuty API. Treat as a secret.
+        /// </summary>
         public Input<string>? BasicAuthPassword
         {
             get => _basicAuthPassword;
@@ -244,40 +408,72 @@ namespace Chronosphere.Pulumi
             }
         }
 
+        /// <summary>
+        /// Username for HTTP basic auth when calling the PagerDuty API. Mutually exclusive with `bearer_token`.
+        /// </summary>
         [Input("basicAuthUsername")]
         public Input<string>? BasicAuthUsername { get; set; }
 
+        /// <summary>
+        /// Bearer token sent in the `Authorization` header when calling the PagerDuty API. Treat as a secret. Mutually exclusive with basic auth.
+        /// </summary>
         [Input("bearerToken")]
         public Input<string>? BearerToken { get; set; }
 
+        /// <summary>
+        /// Class of the event reported to PagerDuty (e.g. `cpu`, `database`). Supports Go templating.
+        /// </summary>
         [Input("class")]
         public Input<string>? Class { get; set; }
 
+        /// <summary>
+        /// Name of the monitoring client identified in the notification.
+        /// </summary>
         [Input("client")]
         public Input<string>? Client { get; set; }
 
+        /// <summary>
+        /// Backlink to the sender of the notification, shown in PagerDuty.
+        /// </summary>
         [Input("clientUrl")]
         public Input<string>? ClientUrl { get; set; }
 
+        /// <summary>
+        /// Part or component of the affected system that is broken. Supports Go templating.
+        /// </summary>
         [Input("component")]
         public Input<string>? Component { get; set; }
 
+        /// <summary>
+        /// Summary of the incident. Supports Go templating.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         [Input("details")]
         private InputMap<string>? _details;
+
+        /// <summary>
+        /// Arbitrary key/value pairs attached to the incident as additional context. Values support Go templating.
+        /// </summary>
         public InputMap<string> Details
         {
             get => _details ?? (_details = new InputMap<string>());
             set => _details = value;
         }
 
+        /// <summary>
+        /// Logical grouping of services the incident belongs to. Supports Go templating.
+        /// </summary>
         [Input("group")]
         public Input<string>? Group { get; set; }
 
         [Input("images")]
         private InputList<Inputs.PagerdutyAlertNotifierImageGetArgs>? _images;
+
+        /// <summary>
+        /// Images attached to the PagerDuty incident. See https://developer.pagerduty.com/docs/events-api-v2/trigger-events/.
+        /// </summary>
         public InputList<Inputs.PagerdutyAlertNotifierImageGetArgs> Images
         {
             get => _images ?? (_images = new InputList<Inputs.PagerdutyAlertNotifierImageGetArgs>());
@@ -286,26 +482,46 @@ namespace Chronosphere.Pulumi
 
         [Input("links")]
         private InputList<Inputs.PagerdutyAlertNotifierLinkGetArgs>? _links;
+
+        /// <summary>
+        /// Hyperlinks attached to the PagerDuty incident. See https://developer.pagerduty.com/docs/events-api-v2/trigger-events/.
+        /// </summary>
         public InputList<Inputs.PagerdutyAlertNotifierLinkGetArgs> Links
         {
             get => _links ?? (_links = new InputList<Inputs.PagerdutyAlertNotifierLinkGetArgs>());
             set => _links = value;
         }
 
+        /// <summary>
+        /// Display name of the notifier.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// Deprecated and ignored. Custom proxy URLs are not supported.
+        /// </summary>
         [Input("proxyUrl")]
         public Input<string>? ProxyUrl { get; set; }
 
+        /// <summary>
+        /// PagerDuty integration key when using the `Events API v2` integration type. Treat as a secret. Mutually exclusive with `service_key`.
+        /// </summary>
         [Input("routingKey")]
         public Input<string>? RoutingKey { get; set; }
 
+        /// <summary>
+        /// Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+        /// </summary>
         [Input("sendResolved")]
         public Input<bool>? SendResolved { get; set; }
 
         [Input("serviceKey")]
         private Input<string>? _serviceKey;
+
+        /// <summary>
+        /// PagerDuty integration key when using the `Prometheus` integration type. Treat as a secret. Mutually exclusive with `routing_key`.
+        /// </summary>
         public Input<string>? ServiceKey
         {
             get => _serviceKey;
@@ -316,15 +532,27 @@ namespace Chronosphere.Pulumi
             }
         }
 
+        /// <summary>
+        /// Severity of the incident. One of `critical`, `error`, `warning`, or `info`.
+        /// </summary>
         [Input("severity")]
         public Input<string>? Severity { get; set; }
 
+        /// <summary>
+        /// Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 
+        /// <summary>
+        /// If true, skip TLS certificate verification when calling the PagerDuty API. Disable only in trusted environments.
+        /// </summary>
         [Input("tlsInsecureSkipVerify")]
         public Input<bool>? TlsInsecureSkipVerify { get; set; }
 
+        /// <summary>
+        /// PagerDuty API URL to send events to (e.g. `https://events.pagerduty.com/v2/enqueue`).
+        /// </summary>
         [Input("url")]
         public Input<string>? Url { get; set; }
 

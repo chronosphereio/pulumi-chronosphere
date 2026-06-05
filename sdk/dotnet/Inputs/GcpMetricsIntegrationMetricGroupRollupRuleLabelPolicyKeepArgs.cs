@@ -13,9 +13,15 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class GcpMetricsIntegrationMetricGroupRollupRuleLabelPolicyKeepArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Label context, e.g. resource vs. metric label. See the Chronosphere GCP integration documentation for accepted values.
+        /// </summary>
         [Input("context")]
         public Input<string>? Context { get; set; }
 
+        /// <summary>
+        /// Label name to filter on.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 

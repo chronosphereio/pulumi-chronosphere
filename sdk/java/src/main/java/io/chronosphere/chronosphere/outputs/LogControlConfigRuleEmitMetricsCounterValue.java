@@ -11,9 +11,17 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class LogControlConfigRuleEmitMetricsCounterValue {
+    /**
+     * @return Field path selector. Use `parent[child]` syntax to indicate nesting.
+     * 
+     */
     private @Nullable String selector;
 
     private LogControlConfigRuleEmitMetricsCounterValue() {}
+    /**
+     * @return Field path selector. Use `parent[child]` syntax to indicate nesting.
+     * 
+     */
     public Optional<String> selector() {
         return Optional.ofNullable(this.selector);
     }

@@ -11,6 +11,8 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
+// API token used to authenticate against the Chronosphere API. Treat as a secret. Falls back to the
+// `CHRONOSPHERE_API_TOKEN` environment variable.
 func GetApiToken(ctx *pulumi.Context) string {
 	v, err := config.Try(ctx, "chronosphere:apiToken")
 	if err == nil {
@@ -22,12 +24,22 @@ func GetApiToken(ctx *pulumi.Context) string {
 	}
 	return value
 }
+
+// Disable the dry-run validation step that runs before every apply. Falls back to the
+// `CHRONOSPHERE_DRY_RUN_VALIDATION_DISABLED` environment variable (set to `1` to disable).
 func GetDisableDryrun(ctx *pulumi.Context) bool {
 	return config.GetBool(ctx, "chronosphere:disableDryrun")
 }
+
+// Optional namespace prefix applied to entity slugs managed by this provider instance, so multiple Terraform
+// configurations can coexist in one Chronosphere org. Falls back to the `CHRONOSPHERE_ENTITY_NAMESPACE` environment
+// variable.
 func GetEntityNamespace(ctx *pulumi.Context) string {
 	return config.Get(ctx, "chronosphere:entityNamespace")
 }
+
+// Chronosphere organization name (the subdomain of `<org>.chronosphere.io`). Falls back to the `CHRONOSPHERE_ORG` or
+// `CHRONOSPHERE_ORG_NAME` environment variables.
 func GetOrg(ctx *pulumi.Context) string {
 	v, err := config.Try(ctx, "chronosphere:org")
 	if err == nil {
@@ -39,6 +51,9 @@ func GetOrg(ctx *pulumi.Context) string {
 	}
 	return value
 }
+
+// Opt into resources and behaviors backed by Chronosphere's unstable config API. Subject to breaking change without
+// notice. Falls back to the `CHRONOSPHERE_UNSTABLE` environment variable (set to `1` to enable).
 func GetUnstable(ctx *pulumi.Context) bool {
 	return config.GetBool(ctx, "chronosphere:unstable")
 }

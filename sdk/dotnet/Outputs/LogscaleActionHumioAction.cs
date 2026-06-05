@@ -14,6 +14,9 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class LogscaleActionHumioAction
     {
+        /// <summary>
+        /// Ingest token for the target repository.
+        /// </summary>
         public readonly string IngestToken;
 
         [OutputConstructor]

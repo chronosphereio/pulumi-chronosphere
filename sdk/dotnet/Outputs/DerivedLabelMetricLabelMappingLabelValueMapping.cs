@@ -14,7 +14,13 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class DerivedLabelMetricLabelMappingLabelValueMapping
     {
+        /// <summary>
+        /// Glob patterns matched against the source label value. A match maps the value to `target_value`.
+        /// </summary>
         public readonly ImmutableArray<string> SourceValueGlobs;
+        /// <summary>
+        /// Value to assign on the derived label when any `source_value_globs` matches.
+        /// </summary>
         public readonly string TargetValue;
 
         [OutputConstructor]

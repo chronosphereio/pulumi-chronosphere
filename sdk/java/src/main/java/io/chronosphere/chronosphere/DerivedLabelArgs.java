@@ -17,51 +17,107 @@ public final class DerivedLabelArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final DerivedLabelArgs Empty = new DerivedLabelArgs();
 
+    /**
+     * Free-form description of the derived label.
+     * 
+     */
     @Import(name="description")
     private @Nullable Output<String> description;
 
+    /**
+     * @return Free-form description of the derived label.
+     * 
+     */
     public Optional<Output<String>> description() {
         return Optional.ofNullable(this.description);
     }
 
+    /**
+     * Policy controlling behavior when the target label already exists on the source series (e.g. keep, replace).
+     * 
+     */
     @Import(name="existingLabelPolicy")
     private @Nullable Output<String> existingLabelPolicy;
 
+    /**
+     * @return Policy controlling behavior when the target label already exists on the source series (e.g. keep, replace).
+     * 
+     */
     public Optional<Output<String>> existingLabelPolicy() {
         return Optional.ofNullable(this.existingLabelPolicy);
     }
 
+    /**
+     * Name of the label exposed on derived series. Must be unique across the system.
+     * 
+     */
     @Import(name="labelName", required=true)
     private Output<String> labelName;
 
+    /**
+     * @return Name of the label exposed on derived series. Must be unique across the system.
+     * 
+     */
     public Output<String> labelName() {
         return this.labelName;
     }
 
+    /**
+     * Derives a label for metrics, either by constructing a new value from filters or by mapping an existing label. Mutually exclusive with `span_tag`.
+     * 
+     */
     @Import(name="metricLabel")
     private @Nullable Output<DerivedLabelMetricLabelArgs> metricLabel;
 
+    /**
+     * @return Derives a label for metrics, either by constructing a new value from filters or by mapping an existing label. Mutually exclusive with `span_tag`.
+     * 
+     */
     public Optional<Output<DerivedLabelMetricLabelArgs>> metricLabel() {
         return Optional.ofNullable(this.metricLabel);
     }
 
+    /**
+     * Name of the label to match.
+     * 
+     */
     @Import(name="name", required=true)
     private Output<String> name;
 
+    /**
+     * @return Name of the label to match.
+     * 
+     */
     public Output<String> name() {
         return this.name;
     }
 
+    /**
+     * Stable identifier for the derived label. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     @Import(name="slug")
     private @Nullable Output<String> slug;
 
+    /**
+     * @return Stable identifier for the derived label. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     public Optional<Output<String>> slug() {
         return Optional.ofNullable(this.slug);
     }
 
+    /**
+     * Derives a label for trace spans by mapping from an existing span tag. Mutually exclusive with `metric_label`.
+     * 
+     */
     @Import(name="spanTag")
     private @Nullable Output<DerivedLabelSpanTagArgs> spanTag;
 
+    /**
+     * @return Derives a label for trace spans by mapping from an existing span tag. Mutually exclusive with `metric_label`.
+     * 
+     */
     public Optional<Output<DerivedLabelSpanTagArgs>> spanTag() {
         return Optional.ofNullable(this.spanTag);
     }
@@ -96,65 +152,149 @@ public final class DerivedLabelArgs extends com.pulumi.resources.ResourceArgs {
             $ = new DerivedLabelArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param description Free-form description of the derived label.
+         * 
+         * @return builder
+         * 
+         */
         public Builder description(@Nullable Output<String> description) {
             $.description = description;
             return this;
         }
 
+        /**
+         * @param description Free-form description of the derived label.
+         * 
+         * @return builder
+         * 
+         */
         public Builder description(String description) {
             return description(Output.of(description));
         }
 
+        /**
+         * @param existingLabelPolicy Policy controlling behavior when the target label already exists on the source series (e.g. keep, replace).
+         * 
+         * @return builder
+         * 
+         */
         public Builder existingLabelPolicy(@Nullable Output<String> existingLabelPolicy) {
             $.existingLabelPolicy = existingLabelPolicy;
             return this;
         }
 
+        /**
+         * @param existingLabelPolicy Policy controlling behavior when the target label already exists on the source series (e.g. keep, replace).
+         * 
+         * @return builder
+         * 
+         */
         public Builder existingLabelPolicy(String existingLabelPolicy) {
             return existingLabelPolicy(Output.of(existingLabelPolicy));
         }
 
+        /**
+         * @param labelName Name of the label exposed on derived series. Must be unique across the system.
+         * 
+         * @return builder
+         * 
+         */
         public Builder labelName(Output<String> labelName) {
             $.labelName = labelName;
             return this;
         }
 
+        /**
+         * @param labelName Name of the label exposed on derived series. Must be unique across the system.
+         * 
+         * @return builder
+         * 
+         */
         public Builder labelName(String labelName) {
             return labelName(Output.of(labelName));
         }
 
+        /**
+         * @param metricLabel Derives a label for metrics, either by constructing a new value from filters or by mapping an existing label. Mutually exclusive with `span_tag`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder metricLabel(@Nullable Output<DerivedLabelMetricLabelArgs> metricLabel) {
             $.metricLabel = metricLabel;
             return this;
         }
 
+        /**
+         * @param metricLabel Derives a label for metrics, either by constructing a new value from filters or by mapping an existing label. Mutually exclusive with `span_tag`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder metricLabel(DerivedLabelMetricLabelArgs metricLabel) {
             return metricLabel(Output.of(metricLabel));
         }
 
+        /**
+         * @param name Name of the label to match.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(Output<String> name) {
             $.name = name;
             return this;
         }
 
+        /**
+         * @param name Name of the label to match.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(String name) {
             return name(Output.of(name));
         }
 
+        /**
+         * @param slug Stable identifier for the derived label. Generated from `name` if omitted. Immutable after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slug(@Nullable Output<String> slug) {
             $.slug = slug;
             return this;
         }
 
+        /**
+         * @param slug Stable identifier for the derived label. Generated from `name` if omitted. Immutable after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slug(String slug) {
             return slug(Output.of(slug));
         }
 
+        /**
+         * @param spanTag Derives a label for trace spans by mapping from an existing span tag. Mutually exclusive with `metric_label`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder spanTag(@Nullable Output<DerivedLabelSpanTagArgs> spanTag) {
             $.spanTag = spanTag;
             return this;
         }
 
+        /**
+         * @param spanTag Derives a label for trace spans by mapping from an existing span tag. Mutually exclusive with `metric_label`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder spanTag(DerivedLabelSpanTagArgs spanTag) {
             return spanTag(Output.of(spanTag));
         }

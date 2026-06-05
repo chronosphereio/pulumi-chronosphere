@@ -4,6 +4,23 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Webhook notifier that POSTs monitor signal payloads to an arbitrary HTTP endpoint. Referenced from notification policies.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as chronosphere from "@pulumi-chronosphere/pulumi-chronosphere";
+ *
+ * const webhook = new chronosphere.WebhookAlertNotifier("webhook", {
+ *     bearerToken: "bearer-token",
+ *     name: "Webhook",
+ *     sendResolved: false,
+ *     url: "http://example.com/url",
+ * });
+ * ```
+ */
 export class WebhookAlertNotifier extends pulumi.CustomResource {
     /**
      * Get an existing WebhookAlertNotifier resource's state with the given name, ID, and optional extra
@@ -32,17 +49,43 @@ export class WebhookAlertNotifier extends pulumi.CustomResource {
         return obj['__pulumiType'] === WebhookAlertNotifier.__pulumiType;
     }
 
+    /**
+     * Password for HTTP basic auth when calling the webhook. Treat as a secret.
+     */
     public readonly basicAuthPassword!: pulumi.Output<string | undefined>;
+    /**
+     * Username for HTTP basic auth when calling the webhook. Mutually exclusive with `bearerToken`.
+     */
     public readonly basicAuthUsername!: pulumi.Output<string | undefined>;
+    /**
+     * Bearer token sent in the `Authorization` header when calling the webhook. Treat as a secret. Mutually exclusive with basic auth.
+     */
     public readonly bearerToken!: pulumi.Output<string | undefined>;
+    /**
+     * Display name of the notifier.
+     */
     public readonly name!: pulumi.Output<string>;
     /**
+     * Deprecated and ignored. Custom proxy URLs are not supported.
+     *
      * @deprecated custom proxy URLs are not supported
      */
     public readonly proxyUrl!: pulumi.Output<string | undefined>;
+    /**
+     * Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+     */
     public readonly sendResolved!: pulumi.Output<boolean | undefined>;
+    /**
+     * Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+     */
     public readonly slug!: pulumi.Output<string>;
+    /**
+     * If true, skip TLS certificate verification when calling the webhook. Disable only in trusted environments.
+     */
     public readonly tlsInsecureSkipVerify!: pulumi.Output<boolean | undefined>;
+    /**
+     * Webhook URL that receives the alert payload via HTTP POST.
+     */
     public readonly url!: pulumi.Output<string>;
 
     /**
@@ -96,17 +139,43 @@ export class WebhookAlertNotifier extends pulumi.CustomResource {
  * Input properties used for looking up and filtering WebhookAlertNotifier resources.
  */
 export interface WebhookAlertNotifierState {
+    /**
+     * Password for HTTP basic auth when calling the webhook. Treat as a secret.
+     */
     basicAuthPassword?: pulumi.Input<string>;
+    /**
+     * Username for HTTP basic auth when calling the webhook. Mutually exclusive with `bearerToken`.
+     */
     basicAuthUsername?: pulumi.Input<string>;
+    /**
+     * Bearer token sent in the `Authorization` header when calling the webhook. Treat as a secret. Mutually exclusive with basic auth.
+     */
     bearerToken?: pulumi.Input<string>;
+    /**
+     * Display name of the notifier.
+     */
     name?: pulumi.Input<string>;
     /**
+     * Deprecated and ignored. Custom proxy URLs are not supported.
+     *
      * @deprecated custom proxy URLs are not supported
      */
     proxyUrl?: pulumi.Input<string>;
+    /**
+     * Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+     */
     sendResolved?: pulumi.Input<boolean>;
+    /**
+     * Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+     */
     slug?: pulumi.Input<string>;
+    /**
+     * If true, skip TLS certificate verification when calling the webhook. Disable only in trusted environments.
+     */
     tlsInsecureSkipVerify?: pulumi.Input<boolean>;
+    /**
+     * Webhook URL that receives the alert payload via HTTP POST.
+     */
     url?: pulumi.Input<string>;
 }
 
@@ -114,16 +183,42 @@ export interface WebhookAlertNotifierState {
  * The set of arguments for constructing a WebhookAlertNotifier resource.
  */
 export interface WebhookAlertNotifierArgs {
+    /**
+     * Password for HTTP basic auth when calling the webhook. Treat as a secret.
+     */
     basicAuthPassword?: pulumi.Input<string>;
+    /**
+     * Username for HTTP basic auth when calling the webhook. Mutually exclusive with `bearerToken`.
+     */
     basicAuthUsername?: pulumi.Input<string>;
+    /**
+     * Bearer token sent in the `Authorization` header when calling the webhook. Treat as a secret. Mutually exclusive with basic auth.
+     */
     bearerToken?: pulumi.Input<string>;
+    /**
+     * Display name of the notifier.
+     */
     name: pulumi.Input<string>;
     /**
+     * Deprecated and ignored. Custom proxy URLs are not supported.
+     *
      * @deprecated custom proxy URLs are not supported
      */
     proxyUrl?: pulumi.Input<string>;
+    /**
+     * Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+     */
     sendResolved?: pulumi.Input<boolean>;
+    /**
+     * Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+     */
     slug?: pulumi.Input<string>;
+    /**
+     * If true, skip TLS certificate verification when calling the webhook. Disable only in trusted environments.
+     */
     tlsInsecureSkipVerify?: pulumi.Input<boolean>;
+    /**
+     * Webhook URL that receives the alert payload via HTTP POST.
+     */
     url: pulumi.Input<string>;
 }

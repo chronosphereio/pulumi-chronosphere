@@ -12,13 +12,29 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class MonitorSeriesConditions {
+    /**
+     * @return One or more severity/threshold conditions. Multiple conditions enable multi-severity monitors (e.g. warn at one threshold, page at a higher one).
+     * 
+     */
     private List<MonitorSeriesConditionsCondition> conditions;
+    /**
+     * @return Per-series overrides that apply different conditions to series matching a set of label matchers.
+     * 
+     */
     private @Nullable List<MonitorSeriesConditionsOverride> overrides;
 
     private MonitorSeriesConditions() {}
+    /**
+     * @return One or more severity/threshold conditions. Multiple conditions enable multi-severity monitors (e.g. warn at one threshold, page at a higher one).
+     * 
+     */
     public List<MonitorSeriesConditionsCondition> conditions() {
         return this.conditions;
     }
+    /**
+     * @return Per-series overrides that apply different conditions to series matching a set of label matchers.
+     * 
+     */
     public List<MonitorSeriesConditionsOverride> overrides() {
         return this.overrides == null ? List.of() : this.overrides;
     }

@@ -14,8 +14,17 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class LogscaleActionSlackAction
     {
+        /// <summary>
+        /// Fields to include in the Slack message. Values support Go template syntax with the query result.
+        /// </summary>
         public readonly ImmutableDictionary<string, string>? Fields;
+        /// <summary>
+        /// Slack incoming webhook URL to send the request to.
+        /// </summary>
         public readonly string Url;
+        /// <summary>
+        /// If `true`, sends the request through the configured outbound proxy.
+        /// </summary>
         public readonly bool? UseProxy;
 
         [OutputConstructor]

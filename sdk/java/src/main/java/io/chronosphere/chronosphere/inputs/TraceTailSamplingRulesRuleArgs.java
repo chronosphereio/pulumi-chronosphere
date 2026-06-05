@@ -17,30 +17,62 @@ public final class TraceTailSamplingRulesRuleArgs extends com.pulumi.resources.R
 
     public static final TraceTailSamplingRulesRuleArgs Empty = new TraceTailSamplingRulesRuleArgs();
 
+    /**
+     * Filter that selects traces and spans. A trace matches when its trace-level conditions hold and every `span` block is satisfied by at least one span in the trace.
+     * 
+     */
     @Import(name="filter", required=true)
     private Output<TraceTailSamplingRulesRuleFilterArgs> filter;
 
+    /**
+     * @return Filter that selects traces and spans. A trace matches when its trace-level conditions hold and every `span` block is satisfied by at least one span in the trace.
+     * 
+     */
     public Output<TraceTailSamplingRulesRuleFilterArgs> filter() {
         return this.filter;
     }
 
+    /**
+     * Human-readable name of the rule.
+     * 
+     */
     @Import(name="name")
     private @Nullable Output<String> name;
 
+    /**
+     * @return Human-readable name of the rule.
+     * 
+     */
     public Optional<Output<String>> name() {
         return Optional.ofNullable(this.name);
     }
 
+    /**
+     * Fraction of matching traces to keep, in the range `[0.0, 1.0]`. `0` drops all matches, `1` keeps every match.
+     * 
+     */
     @Import(name="sampleRate", required=true)
     private Output<Double> sampleRate;
 
+    /**
+     * @return Fraction of matching traces to keep, in the range `[0.0, 1.0]`. `0` drops all matches, `1` keeps every match.
+     * 
+     */
     public Output<Double> sampleRate() {
         return this.sampleRate;
     }
 
+    /**
+     * Stable identifier used as the metric label value on metrics emitted by this rule.
+     * 
+     */
     @Import(name="systemName")
     private @Nullable Output<String> systemName;
 
+    /**
+     * @return Stable identifier used as the metric label value on metrics emitted by this rule.
+     * 
+     */
     public Optional<Output<String>> systemName() {
         return Optional.ofNullable(this.systemName);
     }
@@ -72,38 +104,86 @@ public final class TraceTailSamplingRulesRuleArgs extends com.pulumi.resources.R
             $ = new TraceTailSamplingRulesRuleArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param filter Filter that selects traces and spans. A trace matches when its trace-level conditions hold and every `span` block is satisfied by at least one span in the trace.
+         * 
+         * @return builder
+         * 
+         */
         public Builder filter(Output<TraceTailSamplingRulesRuleFilterArgs> filter) {
             $.filter = filter;
             return this;
         }
 
+        /**
+         * @param filter Filter that selects traces and spans. A trace matches when its trace-level conditions hold and every `span` block is satisfied by at least one span in the trace.
+         * 
+         * @return builder
+         * 
+         */
         public Builder filter(TraceTailSamplingRulesRuleFilterArgs filter) {
             return filter(Output.of(filter));
         }
 
+        /**
+         * @param name Human-readable name of the rule.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(@Nullable Output<String> name) {
             $.name = name;
             return this;
         }
 
+        /**
+         * @param name Human-readable name of the rule.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(String name) {
             return name(Output.of(name));
         }
 
+        /**
+         * @param sampleRate Fraction of matching traces to keep, in the range `[0.0, 1.0]`. `0` drops all matches, `1` keeps every match.
+         * 
+         * @return builder
+         * 
+         */
         public Builder sampleRate(Output<Double> sampleRate) {
             $.sampleRate = sampleRate;
             return this;
         }
 
+        /**
+         * @param sampleRate Fraction of matching traces to keep, in the range `[0.0, 1.0]`. `0` drops all matches, `1` keeps every match.
+         * 
+         * @return builder
+         * 
+         */
         public Builder sampleRate(Double sampleRate) {
             return sampleRate(Output.of(sampleRate));
         }
 
+        /**
+         * @param systemName Stable identifier used as the metric label value on metrics emitted by this rule.
+         * 
+         * @return builder
+         * 
+         */
         public Builder systemName(@Nullable Output<String> systemName) {
             $.systemName = systemName;
             return this;
         }
 
+        /**
+         * @param systemName Stable identifier used as the metric label value on metrics emitted by this rule.
+         * 
+         * @return builder
+         * 
+         */
         public Builder systemName(String systemName) {
             return systemName(Output.of(systemName));
         }

@@ -15,21 +15,37 @@ namespace Chronosphere.Pulumi.Inputs
     {
         [Input("customFieldNormalizations")]
         private InputList<Inputs.LogIngestConfigFieldNormalizationCustomFieldNormalizationGetArgs>? _customFieldNormalizations;
+
+        /// <summary>
+        /// Normalization rules for additional custom fields. These fields are not indexed; use them for things like environment, region, or user ID.
+        /// </summary>
         public InputList<Inputs.LogIngestConfigFieldNormalizationCustomFieldNormalizationGetArgs> CustomFieldNormalizations
         {
             get => _customFieldNormalizations ?? (_customFieldNormalizations = new InputList<Inputs.LogIngestConfigFieldNormalizationCustomFieldNormalizationGetArgs>());
             set => _customFieldNormalizations = value;
         }
 
+        /// <summary>
+        /// Rule that extracts and transforms a string value from a log field, with optional regex sanitization, default value, and value mapping.
+        /// </summary>
         [Input("message")]
         public Input<Inputs.LogIngestConfigFieldNormalizationMessageGetArgs>? Message { get; set; }
 
+        /// <summary>
+        /// Rule that extracts and transforms a string value from a log field, with optional regex sanitization, default value, and value mapping.
+        /// </summary>
         [Input("service")]
         public Input<Inputs.LogIngestConfigFieldNormalizationServiceGetArgs>? Service { get; set; }
 
+        /// <summary>
+        /// Rule that extracts and transforms a string value from a log field, with optional regex sanitization, default value, and value mapping.
+        /// </summary>
         [Input("severity")]
         public Input<Inputs.LogIngestConfigFieldNormalizationSeverityGetArgs>? Severity { get; set; }
 
+        /// <summary>
+        /// Normalization rule for the well-known `timestamp` field.
+        /// </summary>
         [Input("timestamp")]
         public Input<Inputs.LogIngestConfigFieldNormalizationTimestampGetArgs>? Timestamp { get; set; }
 

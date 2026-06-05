@@ -11,13 +11,29 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class LogControlConfigRuleReplaceFieldMappedValuePair {
+    /**
+     * @return Prometheus label name to set on the emitted metric.
+     * 
+     */
     private @Nullable String key;
+    /**
+     * @return Path to a field within a log record.
+     * 
+     */
     private @Nullable String value;
 
     private LogControlConfigRuleReplaceFieldMappedValuePair() {}
+    /**
+     * @return Prometheus label name to set on the emitted metric.
+     * 
+     */
     public Optional<String> key() {
         return Optional.ofNullable(this.key);
     }
+    /**
+     * @return Path to a field within a log record.
+     * 
+     */
     public Optional<String> value() {
         return Optional.ofNullable(this.value);
     }

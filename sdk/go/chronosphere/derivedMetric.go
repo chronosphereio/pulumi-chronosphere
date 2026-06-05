@@ -12,14 +12,72 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// A virtual metric whose value is computed on demand from one of several underlying PromQL queries. The query selected at evaluation time is determined by matching the usage's labels against the configured selectors.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/chronosphereio/pulumi-chronosphere/sdk/go/chronosphere"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := chronosphere.NewDerivedMetric(ctx, "requestRate", &chronosphere.DerivedMetricArgs{
+//				Description: pulumi.String("Per-service request rate, with selector-aware variants"),
+//				MetricName:  pulumi.String("request_rate"),
+//				Name:        pulumi.String("request_rate"),
+//				Queries: chronosphere.DerivedMetricQueryArray{
+//					&chronosphere.DerivedMetricQueryArgs{
+//						Query: &chronosphere.DerivedMetricQueryQueryArgs{
+//							Expr: pulumi.String("sum by (service) (rate(http_requests_total{label1=\"value1\"}[5m]))"),
+//							Variables: chronosphere.DerivedMetricQueryQueryVariableArray{
+//								&chronosphere.DerivedMetricQueryQueryVariableArgs{
+//									DefaultSelector: pulumi.String("service=default"),
+//									Name:            pulumi.String("service"),
+//								},
+//							},
+//						},
+//						Selector: &chronosphere.DerivedMetricQuerySelectorArgs{
+//							Labels: pulumi.StringMap{
+//								"label1": pulumi.String("value1"),
+//							},
+//						},
+//					},
+//					&chronosphere.DerivedMetricQueryArgs{
+//						Query: &chronosphere.DerivedMetricQueryQueryArgs{
+//							Expr: pulumi.String("sum by (service) (rate(http_requests_total[5m]))"),
+//						},
+//					},
+//				},
+//				Slug: pulumi.String("request-rate"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type DerivedMetric struct {
 	pulumi.CustomResourceState
 
-	Description pulumi.StringPtrOutput        `pulumi:"description"`
-	MetricName  pulumi.StringOutput           `pulumi:"metricName"`
-	Name        pulumi.StringOutput           `pulumi:"name"`
-	Queries     DerivedMetricQueryArrayOutput `pulumi:"queries"`
-	Slug        pulumi.StringOutput           `pulumi:"slug"`
+	// Free-form description of the derived metric.
+	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// Name of the derived metric as referenced in queries. Must be unique across the system.
+	MetricName pulumi.StringOutput `pulumi:"metricName"`
+	// Variable name as referenced in `expr` (e.g. `service` for `$service`).
+	Name pulumi.StringOutput `pulumi:"name"`
+	// Ordered list of selector/query pairs. When the derived metric is used, the first entry whose `selector` matches the usage's labels supplies the PromQL `query`.
+	Queries DerivedMetricQueryArrayOutput `pulumi:"queries"`
+	// Stable identifier for the derived metric. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringOutput `pulumi:"slug"`
 }
 
 // NewDerivedMetric registers a new resource with the given unique name, arguments, and options.
@@ -61,19 +119,29 @@ func GetDerivedMetric(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering DerivedMetric resources.
 type derivedMetricState struct {
-	Description *string              `pulumi:"description"`
-	MetricName  *string              `pulumi:"metricName"`
-	Name        *string              `pulumi:"name"`
-	Queries     []DerivedMetricQuery `pulumi:"queries"`
-	Slug        *string              `pulumi:"slug"`
+	// Free-form description of the derived metric.
+	Description *string `pulumi:"description"`
+	// Name of the derived metric as referenced in queries. Must be unique across the system.
+	MetricName *string `pulumi:"metricName"`
+	// Variable name as referenced in `expr` (e.g. `service` for `$service`).
+	Name *string `pulumi:"name"`
+	// Ordered list of selector/query pairs. When the derived metric is used, the first entry whose `selector` matches the usage's labels supplies the PromQL `query`.
+	Queries []DerivedMetricQuery `pulumi:"queries"`
+	// Stable identifier for the derived metric. Generated from `name` if omitted. Immutable after creation.
+	Slug *string `pulumi:"slug"`
 }
 
 type DerivedMetricState struct {
+	// Free-form description of the derived metric.
 	Description pulumi.StringPtrInput
-	MetricName  pulumi.StringPtrInput
-	Name        pulumi.StringPtrInput
-	Queries     DerivedMetricQueryArrayInput
-	Slug        pulumi.StringPtrInput
+	// Name of the derived metric as referenced in queries. Must be unique across the system.
+	MetricName pulumi.StringPtrInput
+	// Variable name as referenced in `expr` (e.g. `service` for `$service`).
+	Name pulumi.StringPtrInput
+	// Ordered list of selector/query pairs. When the derived metric is used, the first entry whose `selector` matches the usage's labels supplies the PromQL `query`.
+	Queries DerivedMetricQueryArrayInput
+	// Stable identifier for the derived metric. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringPtrInput
 }
 
 func (DerivedMetricState) ElementType() reflect.Type {
@@ -81,20 +149,30 @@ func (DerivedMetricState) ElementType() reflect.Type {
 }
 
 type derivedMetricArgs struct {
-	Description *string              `pulumi:"description"`
-	MetricName  string               `pulumi:"metricName"`
-	Name        string               `pulumi:"name"`
-	Queries     []DerivedMetricQuery `pulumi:"queries"`
-	Slug        *string              `pulumi:"slug"`
+	// Free-form description of the derived metric.
+	Description *string `pulumi:"description"`
+	// Name of the derived metric as referenced in queries. Must be unique across the system.
+	MetricName string `pulumi:"metricName"`
+	// Variable name as referenced in `expr` (e.g. `service` for `$service`).
+	Name string `pulumi:"name"`
+	// Ordered list of selector/query pairs. When the derived metric is used, the first entry whose `selector` matches the usage's labels supplies the PromQL `query`.
+	Queries []DerivedMetricQuery `pulumi:"queries"`
+	// Stable identifier for the derived metric. Generated from `name` if omitted. Immutable after creation.
+	Slug *string `pulumi:"slug"`
 }
 
 // The set of arguments for constructing a DerivedMetric resource.
 type DerivedMetricArgs struct {
+	// Free-form description of the derived metric.
 	Description pulumi.StringPtrInput
-	MetricName  pulumi.StringInput
-	Name        pulumi.StringInput
-	Queries     DerivedMetricQueryArrayInput
-	Slug        pulumi.StringPtrInput
+	// Name of the derived metric as referenced in queries. Must be unique across the system.
+	MetricName pulumi.StringInput
+	// Variable name as referenced in `expr` (e.g. `service` for `$service`).
+	Name pulumi.StringInput
+	// Ordered list of selector/query pairs. When the derived metric is used, the first entry whose `selector` matches the usage's labels supplies the PromQL `query`.
+	Queries DerivedMetricQueryArrayInput
+	// Stable identifier for the derived metric. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringPtrInput
 }
 
 func (DerivedMetricArgs) ElementType() reflect.Type {
@@ -184,22 +262,27 @@ func (o DerivedMetricOutput) ToDerivedMetricOutputWithContext(ctx context.Contex
 	return o
 }
 
+// Free-form description of the derived metric.
 func (o DerivedMetricOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DerivedMetric) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// Name of the derived metric as referenced in queries. Must be unique across the system.
 func (o DerivedMetricOutput) MetricName() pulumi.StringOutput {
 	return o.ApplyT(func(v *DerivedMetric) pulumi.StringOutput { return v.MetricName }).(pulumi.StringOutput)
 }
 
+// Variable name as referenced in `expr` (e.g. `service` for `$service`).
 func (o DerivedMetricOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *DerivedMetric) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// Ordered list of selector/query pairs. When the derived metric is used, the first entry whose `selector` matches the usage's labels supplies the PromQL `query`.
 func (o DerivedMetricOutput) Queries() DerivedMetricQueryArrayOutput {
 	return o.ApplyT(func(v *DerivedMetric) DerivedMetricQueryArrayOutput { return v.Queries }).(DerivedMetricQueryArrayOutput)
 }
 
+// Stable identifier for the derived metric. Generated from `name` if omitted. Immutable after creation.
 func (o DerivedMetricOutput) Slug() pulumi.StringOutput {
 	return o.ApplyT(func(v *DerivedMetric) pulumi.StringOutput { return v.Slug }).(pulumi.StringOutput)
 }

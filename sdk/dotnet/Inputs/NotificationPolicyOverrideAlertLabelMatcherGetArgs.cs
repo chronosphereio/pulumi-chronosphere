@@ -13,12 +13,21 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class NotificationPolicyOverrideAlertLabelMatcherGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Label name to match.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// Match operator: one of `=`, `!=`, `=~` (regex), `!~` (regex negation).
+        /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
 
+        /// <summary>
+        /// Label value (or regex pattern, for regex matchers) to match against.
+        /// </summary>
         [Input("value", required: true)]
         public Input<string> Value { get; set; } = null!;
 

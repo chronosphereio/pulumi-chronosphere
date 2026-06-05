@@ -12,13 +12,29 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class NotificationPolicyOverrideRouteDestinationWebhook {
+    /**
+     * @return Slug of the OpsGenie external connection holding the integration credentials.
+     * 
+     */
     private String externalConnectionSlug;
+    /**
+     * @return Additional query parameters appended to the webhook URL when delivering this notification.
+     * 
+     */
     private @Nullable List<NotificationPolicyOverrideRouteDestinationWebhookQueryParameter> queryParameters;
 
     private NotificationPolicyOverrideRouteDestinationWebhook() {}
+    /**
+     * @return Slug of the OpsGenie external connection holding the integration credentials.
+     * 
+     */
     public String externalConnectionSlug() {
         return this.externalConnectionSlug;
     }
+    /**
+     * @return Additional query parameters appended to the webhook URL when delivering this notification.
+     * 
+     */
     public List<NotificationPolicyOverrideRouteDestinationWebhookQueryParameter> queryParameters() {
         return this.queryParameters == null ? List.of() : this.queryParameters;
     }

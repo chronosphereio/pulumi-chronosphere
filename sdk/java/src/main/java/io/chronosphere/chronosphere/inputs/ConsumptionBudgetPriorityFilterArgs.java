@@ -16,16 +16,32 @@ public final class ConsumptionBudgetPriorityFilterArgs extends com.pulumi.resour
 
     public static final ConsumptionBudgetPriorityFilterArgs Empty = new ConsumptionBudgetPriorityFilterArgs();
 
+    /**
+     * Deprecated: use `log_filter` instead. Slug of the dataset to match against.
+     * 
+     */
     @Import(name="datasetId")
     private @Nullable Output<String> datasetId;
 
+    /**
+     * @return Deprecated: use `log_filter` instead. Slug of the dataset to match against.
+     * 
+     */
     public Optional<Output<String>> datasetId() {
         return Optional.ofNullable(this.datasetId);
     }
 
+    /**
+     * Log search filter that matches log data for this priority.
+     * 
+     */
     @Import(name="logFilter")
     private @Nullable Output<ConsumptionBudgetPriorityFilterLogFilterArgs> logFilter;
 
+    /**
+     * @return Log search filter that matches log data for this priority.
+     * 
+     */
     public Optional<Output<ConsumptionBudgetPriorityFilterLogFilterArgs>> logFilter() {
         return Optional.ofNullable(this.logFilter);
     }
@@ -55,20 +71,44 @@ public final class ConsumptionBudgetPriorityFilterArgs extends com.pulumi.resour
             $ = new ConsumptionBudgetPriorityFilterArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param datasetId Deprecated: use `log_filter` instead. Slug of the dataset to match against.
+         * 
+         * @return builder
+         * 
+         */
         public Builder datasetId(@Nullable Output<String> datasetId) {
             $.datasetId = datasetId;
             return this;
         }
 
+        /**
+         * @param datasetId Deprecated: use `log_filter` instead. Slug of the dataset to match against.
+         * 
+         * @return builder
+         * 
+         */
         public Builder datasetId(String datasetId) {
             return datasetId(Output.of(datasetId));
         }
 
+        /**
+         * @param logFilter Log search filter that matches log data for this priority.
+         * 
+         * @return builder
+         * 
+         */
         public Builder logFilter(@Nullable Output<ConsumptionBudgetPriorityFilterLogFilterArgs> logFilter) {
             $.logFilter = logFilter;
             return this;
         }
 
+        /**
+         * @param logFilter Log search filter that matches log data for this priority.
+         * 
+         * @return builder
+         * 
+         */
         public Builder logFilter(ConsumptionBudgetPriorityFilterLogFilterArgs logFilter) {
             return logFilter(Output.of(logFilter));
         }

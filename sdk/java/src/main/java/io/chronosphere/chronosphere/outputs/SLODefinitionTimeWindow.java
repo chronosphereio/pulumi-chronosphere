@@ -9,9 +9,17 @@ import java.util.Objects;
 
 @CustomType
 public final class SLODefinitionTimeWindow {
+    /**
+     * @return Length of the evaluation window (e.g. `28d`, `24h`).
+     * 
+     */
     private String duration;
 
     private SLODefinitionTimeWindow() {}
+    /**
+     * @return Length of the evaluation window (e.g. `28d`, `24h`).
+     * 
+     */
     public String duration() {
         return this.duration;
     }

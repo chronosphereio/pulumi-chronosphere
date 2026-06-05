@@ -15,12 +15,19 @@ namespace Chronosphere.Pulumi.Inputs
     {
         [Input("sourceValueGlobs", required: true)]
         private InputList<string>? _sourceValueGlobs;
+
+        /// <summary>
+        /// Glob patterns matched against the source label value. A match maps the value to `target_value`.
+        /// </summary>
         public InputList<string> SourceValueGlobs
         {
             get => _sourceValueGlobs ?? (_sourceValueGlobs = new InputList<string>());
             set => _sourceValueGlobs = value;
         }
 
+        /// <summary>
+        /// Value to assign on the derived label when any `source_value_globs` matches.
+        /// </summary>
         [Input("targetValue", required: true)]
         public Input<string> TargetValue { get; set; } = null!;
 

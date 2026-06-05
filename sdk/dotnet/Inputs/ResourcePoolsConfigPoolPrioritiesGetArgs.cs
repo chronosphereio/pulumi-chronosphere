@@ -15,6 +15,10 @@ namespace Chronosphere.Pulumi.Inputs
     {
         [Input("highPriorityMatchRules")]
         private InputList<string>? _highPriorityMatchRules;
+
+        /// <summary>
+        /// Matchers selecting metrics within the pool that are treated as high priority and dropped last.
+        /// </summary>
         public InputList<string> HighPriorityMatchRules
         {
             get => _highPriorityMatchRules ?? (_highPriorityMatchRules = new InputList<string>());
@@ -23,6 +27,10 @@ namespace Chronosphere.Pulumi.Inputs
 
         [Input("lowPriorityMatchRules")]
         private InputList<string>? _lowPriorityMatchRules;
+
+        /// <summary>
+        /// Matchers selecting metrics within the pool that are treated as low priority and dropped first.
+        /// </summary>
         public InputList<string> LowPriorityMatchRules
         {
             get => _lowPriorityMatchRules ?? (_lowPriorityMatchRules = new InputList<string>());

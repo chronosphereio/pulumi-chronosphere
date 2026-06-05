@@ -17,33 +17,89 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class LogControlConfigRuleEmitMetrics {
+    /**
+     * @return Emit a counter metric. Exactly one of `counter`, `gauge`, or `histogram` must be set.
+     * 
+     */
     private @Nullable LogControlConfigRuleEmitMetricsCounter counter;
+    /**
+     * @return If `true`, drops the entire log after emitting the metric.
+     * 
+     */
     private @Nullable Boolean dropLog;
+    /**
+     * @return Emit a gauge metric. Exactly one of `counter`, `gauge`, or `histogram` must be set.
+     * 
+     */
     private @Nullable LogControlConfigRuleEmitMetricsGauge gauge;
+    /**
+     * @return Emit a histogram metric. Exactly one of `counter`, `gauge`, or `histogram` must be set.
+     * 
+     */
     private @Nullable LogControlConfigRuleEmitMetricsHistogram histogram;
+    /**
+     * @return Labels to attach to the generated metric, specified as key/value pairs mapping a Prometheus label name to a log field path.
+     * 
+     */
     private @Nullable List<LogControlConfigRuleEmitMetricsLabel> labels;
+    /**
+     * @return Metric emission mode that controls how the metric is generated from matching logs.
+     * 
+     */
     private @Nullable String mode;
+    /**
+     * @return Name of the generated metric. Must conform to Prometheus naming conventions and be unique within the tenant.
+     * 
+     */
     private @Nullable String name;
 
     private LogControlConfigRuleEmitMetrics() {}
+    /**
+     * @return Emit a counter metric. Exactly one of `counter`, `gauge`, or `histogram` must be set.
+     * 
+     */
     public Optional<LogControlConfigRuleEmitMetricsCounter> counter() {
         return Optional.ofNullable(this.counter);
     }
+    /**
+     * @return If `true`, drops the entire log after emitting the metric.
+     * 
+     */
     public Optional<Boolean> dropLog() {
         return Optional.ofNullable(this.dropLog);
     }
+    /**
+     * @return Emit a gauge metric. Exactly one of `counter`, `gauge`, or `histogram` must be set.
+     * 
+     */
     public Optional<LogControlConfigRuleEmitMetricsGauge> gauge() {
         return Optional.ofNullable(this.gauge);
     }
+    /**
+     * @return Emit a histogram metric. Exactly one of `counter`, `gauge`, or `histogram` must be set.
+     * 
+     */
     public Optional<LogControlConfigRuleEmitMetricsHistogram> histogram() {
         return Optional.ofNullable(this.histogram);
     }
+    /**
+     * @return Labels to attach to the generated metric, specified as key/value pairs mapping a Prometheus label name to a log field path.
+     * 
+     */
     public List<LogControlConfigRuleEmitMetricsLabel> labels() {
         return this.labels == null ? List.of() : this.labels;
     }
+    /**
+     * @return Metric emission mode that controls how the metric is generated from matching logs.
+     * 
+     */
     public Optional<String> mode() {
         return Optional.ofNullable(this.mode);
     }
+    /**
+     * @return Name of the generated metric. Must conform to Prometheus naming conventions and be unique within the tenant.
+     * 
+     */
     public Optional<String> name() {
         return Optional.ofNullable(this.name);
     }

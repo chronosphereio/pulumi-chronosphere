@@ -13,6 +13,9 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class ConsumptionBudgetThresholdVolumeArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Fixed volume threshold value, expressed in the threshold's `unit`.
+        /// </summary>
         [Input("fixedValue")]
         public Input<int>? FixedValue { get; set; }
 

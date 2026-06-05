@@ -13,12 +13,21 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class SLOSliCustomTimesliceIndicatorGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Condition used to classify each time slice as good or bad based on the query result.
+        /// </summary>
         [Input("condition", required: true)]
         public Input<Inputs.SLOSliCustomTimesliceIndicatorConditionGetArgs> Condition { get; set; } = null!;
 
+        /// <summary>
+        /// PromQL query template evaluated against each time slice.
+        /// </summary>
         [Input("queryTemplate", required: true)]
         public Input<string> QueryTemplate { get; set; } = null!;
 
+        /// <summary>
+        /// Size of each time slice evaluated by the query (e.g. `1m`, `5m`).
+        /// </summary>
         [Input("timesliceSize", required: true)]
         public Input<string> TimesliceSize { get; set; } = null!;
 

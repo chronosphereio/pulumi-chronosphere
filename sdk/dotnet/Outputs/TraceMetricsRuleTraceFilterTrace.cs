@@ -14,7 +14,13 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class TraceMetricsRuleTraceFilterTrace
     {
+        /// <summary>
+        /// Matches traces or spans whose duration in seconds falls within the inclusive `[min_secs, max_secs]` range.
+        /// </summary>
         public readonly Outputs.TraceMetricsRuleTraceFilterTraceDuration? Duration;
+        /// <summary>
+        /// Matches traces or spans where the target boolean field equals `value`.
+        /// </summary>
         public readonly Outputs.TraceMetricsRuleTraceFilterTraceError? Error;
 
         [OutputConstructor]

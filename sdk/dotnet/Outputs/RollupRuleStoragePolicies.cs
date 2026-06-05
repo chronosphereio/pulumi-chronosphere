@@ -14,7 +14,13 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class RollupRuleStoragePolicies
     {
+        /// <summary>
+        /// Resolution at which rolled-up data points are stored.
+        /// </summary>
         public readonly string Resolution;
+        /// <summary>
+        /// Retention duration for rolled-up data points.
+        /// </summary>
         public readonly string Retention;
 
         [OutputConstructor]

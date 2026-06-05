@@ -12,24 +12,90 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// A LogScale alert that runs a saved LogScale query on a schedule and fires the configured logscaleAction targets when the query returns results.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/chronosphereio/pulumi-chronosphere/sdk/go/chronosphere"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			email, err := chronosphere.NewLogscaleAction(ctx, "email", &chronosphere.LogscaleActionArgs{
+//				Repository: pulumi.String("default"),
+//				Name:       pulumi.String("Email on-call"),
+//				EmailAction: &chronosphere.LogscaleActionEmailActionArgs{
+//					Recipients: pulumi.StringArray{
+//						pulumi.String("oncall@example.com"),
+//					},
+//					SubjectTemplate: pulumi.String("Logscale alert: {{alert.name}}"),
+//					BodyTemplate:    pulumi.String("{{query.results}}"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = chronosphere.NewLogscaleAlert(ctx, "highErrorRate", &chronosphere.LogscaleAlertArgs{
+//				Repository:       pulumi.String("default"),
+//				Name:             pulumi.String("High error rate"),
+//				Description:      pulumi.String("More than 500 errors in a 60s window"),
+//				AlertType:        pulumi.String("STANDARD"),
+//				Query:            pulumi.String("level = ERROR | count(as=numErrors) | numErrors > 500"),
+//				TimeWindow:       pulumi.String("60s"),
+//				ThrottleDuration: pulumi.String("60s"),
+//				ThrottleField:    pulumi.String("service"),
+//				Tags: pulumi.StringArray{
+//					pulumi.String("errors"),
+//					pulumi.String("platform"),
+//				},
+//				Disabled: pulumi.Bool(false),
+//				ActionIds: pulumi.StringArray{
+//					email.ID(),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type LogscaleAlert struct {
 	pulumi.CustomResourceState
 
-	ActionIds   pulumi.StringArrayOutput `pulumi:"actionIds"`
-	AlertType   pulumi.StringOutput      `pulumi:"alertType"`
-	Description pulumi.StringPtrOutput   `pulumi:"description"`
-	Disabled    pulumi.BoolPtrOutput     `pulumi:"disabled"`
-	Name        pulumi.StringOutput      `pulumi:"name"`
-	Query       pulumi.StringPtrOutput   `pulumi:"query"`
-	Repository  pulumi.StringOutput      `pulumi:"repository"`
+	// Slugs of LogScale actions to invoke when the alert triggers. The alert does not fire if this list is empty.
+	ActionIds pulumi.StringArrayOutput `pulumi:"actionIds"`
+	// Type of LogScale alert. `STANDARD` runs the query on a schedule over a time window; `FILTER` evaluates the query against each incoming event.
+	AlertType pulumi.StringOutput `pulumi:"alertType"`
+	// Human-readable description of the alert.
+	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// If `true`, the alert will not evaluate or trigger actions.
+	Disabled pulumi.BoolPtrOutput `pulumi:"disabled"`
+	// Display name of the LogScale alert.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// LogScale query that the alert evaluates. Example: `level = ERROR | severity > 3 | count(as=numErrors) | numErrors > 500`.
+	Query pulumi.StringPtrOutput `pulumi:"query"`
+	// Name of the LogScale repository the alert belongs to. Immutable after creation.
+	Repository pulumi.StringOutput `pulumi:"repository"`
 	// Email of the user that the alert runs on behalf of
-	RunAsUser pulumi.StringOutput      `pulumi:"runAsUser"`
-	Slug      pulumi.StringOutput      `pulumi:"slug"`
-	Tags      pulumi.StringArrayOutput `pulumi:"tags"`
-	// Required for STANDARD type alerts, optional for FILTER type alerts
+	RunAsUser pulumi.StringOutput `pulumi:"runAsUser"`
+	// Stable identifier for the LogScale alert. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringOutput `pulumi:"slug"`
+	// Tags attached to the alert for organization and filtering.
+	Tags pulumi.StringArrayOutput `pulumi:"tags"`
+	// Minimum interval between consecutive triggers of the alert. Required for `STANDARD` alerts, optional for `FILTER` alerts.
 	ThrottleDuration pulumi.StringPtrOutput `pulumi:"throttleDuration"`
-	ThrottleField    pulumi.StringPtrOutput `pulumi:"throttleField"`
-	// Required for STANDARD type alerts, ignored for FILTER type alerts
+	// Optional field whose value is used to scope throttling, so the alert is throttled per distinct value of this field rather than globally.
+	ThrottleField pulumi.StringPtrOutput `pulumi:"throttleField"`
+	// Lookback window for the alert query. Required for `STANDARD` alerts, ignored for `FILTER` alerts.
 	TimeWindow pulumi.StringPtrOutput `pulumi:"timeWindow"`
 }
 
@@ -75,40 +141,60 @@ func GetLogscaleAlert(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering LogscaleAlert resources.
 type logscaleAlertState struct {
-	ActionIds   []string `pulumi:"actionIds"`
-	AlertType   *string  `pulumi:"alertType"`
-	Description *string  `pulumi:"description"`
-	Disabled    *bool    `pulumi:"disabled"`
-	Name        *string  `pulumi:"name"`
-	Query       *string  `pulumi:"query"`
-	Repository  *string  `pulumi:"repository"`
+	// Slugs of LogScale actions to invoke when the alert triggers. The alert does not fire if this list is empty.
+	ActionIds []string `pulumi:"actionIds"`
+	// Type of LogScale alert. `STANDARD` runs the query on a schedule over a time window; `FILTER` evaluates the query against each incoming event.
+	AlertType *string `pulumi:"alertType"`
+	// Human-readable description of the alert.
+	Description *string `pulumi:"description"`
+	// If `true`, the alert will not evaluate or trigger actions.
+	Disabled *bool `pulumi:"disabled"`
+	// Display name of the LogScale alert.
+	Name *string `pulumi:"name"`
+	// LogScale query that the alert evaluates. Example: `level = ERROR | severity > 3 | count(as=numErrors) | numErrors > 500`.
+	Query *string `pulumi:"query"`
+	// Name of the LogScale repository the alert belongs to. Immutable after creation.
+	Repository *string `pulumi:"repository"`
 	// Email of the user that the alert runs on behalf of
-	RunAsUser *string  `pulumi:"runAsUser"`
-	Slug      *string  `pulumi:"slug"`
-	Tags      []string `pulumi:"tags"`
-	// Required for STANDARD type alerts, optional for FILTER type alerts
+	RunAsUser *string `pulumi:"runAsUser"`
+	// Stable identifier for the LogScale alert. Generated from `name` if omitted. Immutable after creation.
+	Slug *string `pulumi:"slug"`
+	// Tags attached to the alert for organization and filtering.
+	Tags []string `pulumi:"tags"`
+	// Minimum interval between consecutive triggers of the alert. Required for `STANDARD` alerts, optional for `FILTER` alerts.
 	ThrottleDuration *string `pulumi:"throttleDuration"`
-	ThrottleField    *string `pulumi:"throttleField"`
-	// Required for STANDARD type alerts, ignored for FILTER type alerts
+	// Optional field whose value is used to scope throttling, so the alert is throttled per distinct value of this field rather than globally.
+	ThrottleField *string `pulumi:"throttleField"`
+	// Lookback window for the alert query. Required for `STANDARD` alerts, ignored for `FILTER` alerts.
 	TimeWindow *string `pulumi:"timeWindow"`
 }
 
 type LogscaleAlertState struct {
-	ActionIds   pulumi.StringArrayInput
-	AlertType   pulumi.StringPtrInput
+	// Slugs of LogScale actions to invoke when the alert triggers. The alert does not fire if this list is empty.
+	ActionIds pulumi.StringArrayInput
+	// Type of LogScale alert. `STANDARD` runs the query on a schedule over a time window; `FILTER` evaluates the query against each incoming event.
+	AlertType pulumi.StringPtrInput
+	// Human-readable description of the alert.
 	Description pulumi.StringPtrInput
-	Disabled    pulumi.BoolPtrInput
-	Name        pulumi.StringPtrInput
-	Query       pulumi.StringPtrInput
-	Repository  pulumi.StringPtrInput
+	// If `true`, the alert will not evaluate or trigger actions.
+	Disabled pulumi.BoolPtrInput
+	// Display name of the LogScale alert.
+	Name pulumi.StringPtrInput
+	// LogScale query that the alert evaluates. Example: `level = ERROR | severity > 3 | count(as=numErrors) | numErrors > 500`.
+	Query pulumi.StringPtrInput
+	// Name of the LogScale repository the alert belongs to. Immutable after creation.
+	Repository pulumi.StringPtrInput
 	// Email of the user that the alert runs on behalf of
 	RunAsUser pulumi.StringPtrInput
-	Slug      pulumi.StringPtrInput
-	Tags      pulumi.StringArrayInput
-	// Required for STANDARD type alerts, optional for FILTER type alerts
+	// Stable identifier for the LogScale alert. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringPtrInput
+	// Tags attached to the alert for organization and filtering.
+	Tags pulumi.StringArrayInput
+	// Minimum interval between consecutive triggers of the alert. Required for `STANDARD` alerts, optional for `FILTER` alerts.
 	ThrottleDuration pulumi.StringPtrInput
-	ThrottleField    pulumi.StringPtrInput
-	// Required for STANDARD type alerts, ignored for FILTER type alerts
+	// Optional field whose value is used to scope throttling, so the alert is throttled per distinct value of this field rather than globally.
+	ThrottleField pulumi.StringPtrInput
+	// Lookback window for the alert query. Required for `STANDARD` alerts, ignored for `FILTER` alerts.
 	TimeWindow pulumi.StringPtrInput
 }
 
@@ -117,41 +203,61 @@ func (LogscaleAlertState) ElementType() reflect.Type {
 }
 
 type logscaleAlertArgs struct {
-	ActionIds   []string `pulumi:"actionIds"`
-	AlertType   string   `pulumi:"alertType"`
-	Description *string  `pulumi:"description"`
-	Disabled    *bool    `pulumi:"disabled"`
-	Name        string   `pulumi:"name"`
-	Query       *string  `pulumi:"query"`
-	Repository  string   `pulumi:"repository"`
+	// Slugs of LogScale actions to invoke when the alert triggers. The alert does not fire if this list is empty.
+	ActionIds []string `pulumi:"actionIds"`
+	// Type of LogScale alert. `STANDARD` runs the query on a schedule over a time window; `FILTER` evaluates the query against each incoming event.
+	AlertType string `pulumi:"alertType"`
+	// Human-readable description of the alert.
+	Description *string `pulumi:"description"`
+	// If `true`, the alert will not evaluate or trigger actions.
+	Disabled *bool `pulumi:"disabled"`
+	// Display name of the LogScale alert.
+	Name string `pulumi:"name"`
+	// LogScale query that the alert evaluates. Example: `level = ERROR | severity > 3 | count(as=numErrors) | numErrors > 500`.
+	Query *string `pulumi:"query"`
+	// Name of the LogScale repository the alert belongs to. Immutable after creation.
+	Repository string `pulumi:"repository"`
 	// Email of the user that the alert runs on behalf of
-	RunAsUser string   `pulumi:"runAsUser"`
-	Slug      *string  `pulumi:"slug"`
-	Tags      []string `pulumi:"tags"`
-	// Required for STANDARD type alerts, optional for FILTER type alerts
+	RunAsUser string `pulumi:"runAsUser"`
+	// Stable identifier for the LogScale alert. Generated from `name` if omitted. Immutable after creation.
+	Slug *string `pulumi:"slug"`
+	// Tags attached to the alert for organization and filtering.
+	Tags []string `pulumi:"tags"`
+	// Minimum interval between consecutive triggers of the alert. Required for `STANDARD` alerts, optional for `FILTER` alerts.
 	ThrottleDuration *string `pulumi:"throttleDuration"`
-	ThrottleField    *string `pulumi:"throttleField"`
-	// Required for STANDARD type alerts, ignored for FILTER type alerts
+	// Optional field whose value is used to scope throttling, so the alert is throttled per distinct value of this field rather than globally.
+	ThrottleField *string `pulumi:"throttleField"`
+	// Lookback window for the alert query. Required for `STANDARD` alerts, ignored for `FILTER` alerts.
 	TimeWindow *string `pulumi:"timeWindow"`
 }
 
 // The set of arguments for constructing a LogscaleAlert resource.
 type LogscaleAlertArgs struct {
-	ActionIds   pulumi.StringArrayInput
-	AlertType   pulumi.StringInput
+	// Slugs of LogScale actions to invoke when the alert triggers. The alert does not fire if this list is empty.
+	ActionIds pulumi.StringArrayInput
+	// Type of LogScale alert. `STANDARD` runs the query on a schedule over a time window; `FILTER` evaluates the query against each incoming event.
+	AlertType pulumi.StringInput
+	// Human-readable description of the alert.
 	Description pulumi.StringPtrInput
-	Disabled    pulumi.BoolPtrInput
-	Name        pulumi.StringInput
-	Query       pulumi.StringPtrInput
-	Repository  pulumi.StringInput
+	// If `true`, the alert will not evaluate or trigger actions.
+	Disabled pulumi.BoolPtrInput
+	// Display name of the LogScale alert.
+	Name pulumi.StringInput
+	// LogScale query that the alert evaluates. Example: `level = ERROR | severity > 3 | count(as=numErrors) | numErrors > 500`.
+	Query pulumi.StringPtrInput
+	// Name of the LogScale repository the alert belongs to. Immutable after creation.
+	Repository pulumi.StringInput
 	// Email of the user that the alert runs on behalf of
 	RunAsUser pulumi.StringInput
-	Slug      pulumi.StringPtrInput
-	Tags      pulumi.StringArrayInput
-	// Required for STANDARD type alerts, optional for FILTER type alerts
+	// Stable identifier for the LogScale alert. Generated from `name` if omitted. Immutable after creation.
+	Slug pulumi.StringPtrInput
+	// Tags attached to the alert for organization and filtering.
+	Tags pulumi.StringArrayInput
+	// Minimum interval between consecutive triggers of the alert. Required for `STANDARD` alerts, optional for `FILTER` alerts.
 	ThrottleDuration pulumi.StringPtrInput
-	ThrottleField    pulumi.StringPtrInput
-	// Required for STANDARD type alerts, ignored for FILTER type alerts
+	// Optional field whose value is used to scope throttling, so the alert is throttled per distinct value of this field rather than globally.
+	ThrottleField pulumi.StringPtrInput
+	// Lookback window for the alert query. Required for `STANDARD` alerts, ignored for `FILTER` alerts.
 	TimeWindow pulumi.StringPtrInput
 }
 
@@ -242,30 +348,37 @@ func (o LogscaleAlertOutput) ToLogscaleAlertOutputWithContext(ctx context.Contex
 	return o
 }
 
+// Slugs of LogScale actions to invoke when the alert triggers. The alert does not fire if this list is empty.
 func (o LogscaleAlertOutput) ActionIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *LogscaleAlert) pulumi.StringArrayOutput { return v.ActionIds }).(pulumi.StringArrayOutput)
 }
 
+// Type of LogScale alert. `STANDARD` runs the query on a schedule over a time window; `FILTER` evaluates the query against each incoming event.
 func (o LogscaleAlertOutput) AlertType() pulumi.StringOutput {
 	return o.ApplyT(func(v *LogscaleAlert) pulumi.StringOutput { return v.AlertType }).(pulumi.StringOutput)
 }
 
+// Human-readable description of the alert.
 func (o LogscaleAlertOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LogscaleAlert) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// If `true`, the alert will not evaluate or trigger actions.
 func (o LogscaleAlertOutput) Disabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *LogscaleAlert) pulumi.BoolPtrOutput { return v.Disabled }).(pulumi.BoolPtrOutput)
 }
 
+// Display name of the LogScale alert.
 func (o LogscaleAlertOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *LogscaleAlert) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// LogScale query that the alert evaluates. Example: `level = ERROR | severity > 3 | count(as=numErrors) | numErrors > 500`.
 func (o LogscaleAlertOutput) Query() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LogscaleAlert) pulumi.StringPtrOutput { return v.Query }).(pulumi.StringPtrOutput)
 }
 
+// Name of the LogScale repository the alert belongs to. Immutable after creation.
 func (o LogscaleAlertOutput) Repository() pulumi.StringOutput {
 	return o.ApplyT(func(v *LogscaleAlert) pulumi.StringOutput { return v.Repository }).(pulumi.StringOutput)
 }
@@ -275,24 +388,27 @@ func (o LogscaleAlertOutput) RunAsUser() pulumi.StringOutput {
 	return o.ApplyT(func(v *LogscaleAlert) pulumi.StringOutput { return v.RunAsUser }).(pulumi.StringOutput)
 }
 
+// Stable identifier for the LogScale alert. Generated from `name` if omitted. Immutable after creation.
 func (o LogscaleAlertOutput) Slug() pulumi.StringOutput {
 	return o.ApplyT(func(v *LogscaleAlert) pulumi.StringOutput { return v.Slug }).(pulumi.StringOutput)
 }
 
+// Tags attached to the alert for organization and filtering.
 func (o LogscaleAlertOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *LogscaleAlert) pulumi.StringArrayOutput { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
-// Required for STANDARD type alerts, optional for FILTER type alerts
+// Minimum interval between consecutive triggers of the alert. Required for `STANDARD` alerts, optional for `FILTER` alerts.
 func (o LogscaleAlertOutput) ThrottleDuration() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LogscaleAlert) pulumi.StringPtrOutput { return v.ThrottleDuration }).(pulumi.StringPtrOutput)
 }
 
+// Optional field whose value is used to scope throttling, so the alert is throttled per distinct value of this field rather than globally.
 func (o LogscaleAlertOutput) ThrottleField() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LogscaleAlert) pulumi.StringPtrOutput { return v.ThrottleField }).(pulumi.StringPtrOutput)
 }
 
-// Required for STANDARD type alerts, ignored for FILTER type alerts
+// Lookback window for the alert query. Required for `STANDARD` alerts, ignored for `FILTER` alerts.
 func (o LogscaleAlertOutput) TimeWindow() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LogscaleAlert) pulumi.StringPtrOutput { return v.TimeWindow }).(pulumi.StringPtrOutput)
 }

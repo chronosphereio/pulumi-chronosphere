@@ -14,21 +14,53 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class LogIngestConfigFieldParserParser {
+    /**
+     * @return Grok parser configuration. Only set when `parser_type` is `GROK`.
+     * 
+     */
     private @Nullable LogIngestConfigFieldParserParserGrokParser grokParser;
+    /**
+     * @return Key/value parser configuration. Only set when `parser_type` is `KEY_VALUE`. Duplicate keys keep the first occurrence.
+     * 
+     */
     private @Nullable LogIngestConfigFieldParserParserKeyValueParser keyValueParser;
+    /**
+     * @return Type of parser to apply. Determines which of `regex_parser`, `key_value_parser`, or `grok_parser` must be set.
+     * 
+     */
     private String parserType;
+    /**
+     * @return Regex parser configuration. Only set when `parser_type` is `REGEX`.
+     * 
+     */
     private @Nullable LogIngestConfigFieldParserParserRegexParser regexParser;
 
     private LogIngestConfigFieldParserParser() {}
+    /**
+     * @return Grok parser configuration. Only set when `parser_type` is `GROK`.
+     * 
+     */
     public Optional<LogIngestConfigFieldParserParserGrokParser> grokParser() {
         return Optional.ofNullable(this.grokParser);
     }
+    /**
+     * @return Key/value parser configuration. Only set when `parser_type` is `KEY_VALUE`. Duplicate keys keep the first occurrence.
+     * 
+     */
     public Optional<LogIngestConfigFieldParserParserKeyValueParser> keyValueParser() {
         return Optional.ofNullable(this.keyValueParser);
     }
+    /**
+     * @return Type of parser to apply. Determines which of `regex_parser`, `key_value_parser`, or `grok_parser` must be set.
+     * 
+     */
     public String parserType() {
         return this.parserType;
     }
+    /**
+     * @return Regex parser configuration. Only set when `parser_type` is `REGEX`.
+     * 
+     */
     public Optional<LogIngestConfigFieldParserParserRegexParser> regexParser() {
         return Optional.ofNullable(this.regexParser);
     }

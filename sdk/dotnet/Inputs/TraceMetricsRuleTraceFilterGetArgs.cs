@@ -13,17 +13,27 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class TraceMetricsRuleTraceFilterGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Scope filter that further restricts which spans within a matched trace contribute to metrics or sampling. Only spans matching `span_scopes` are included in aggregation.
+        /// </summary>
         [Input("scopeFilter")]
         public Input<Inputs.TraceMetricsRuleTraceFilterScopeFilterGetArgs>? ScopeFilter { get; set; }
 
         [Input("spans")]
         private InputList<Inputs.TraceMetricsRuleTraceFilterSpanGetArgs>? _spans;
+
+        /// <summary>
+        /// Span-level conditions. Each block defines a set of conditions that must all be satisfied by a single span in the trace for the trace to match.
+        /// </summary>
         public InputList<Inputs.TraceMetricsRuleTraceFilterSpanGetArgs> Spans
         {
             get => _spans ?? (_spans = new InputList<Inputs.TraceMetricsRuleTraceFilterSpanGetArgs>());
             set => _spans = value;
         }
 
+        /// <summary>
+        /// Trace-level conditions evaluated against the whole trace (aggregated duration and error status).
+        /// </summary>
         [Input("trace")]
         public Input<Inputs.TraceMetricsRuleTraceFilterTraceGetArgs>? Trace { get; set; }
 

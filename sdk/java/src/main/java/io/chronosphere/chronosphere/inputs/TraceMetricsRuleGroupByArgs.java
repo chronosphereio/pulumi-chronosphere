@@ -14,16 +14,32 @@ public final class TraceMetricsRuleGroupByArgs extends com.pulumi.resources.Reso
 
     public static final TraceMetricsRuleGroupByArgs Empty = new TraceMetricsRuleGroupByArgs();
 
+    /**
+     * Span attribute to group by.
+     * 
+     */
     @Import(name="key", required=true)
     private Output<TraceMetricsRuleGroupByKeyArgs> key;
 
+    /**
+     * @return Span attribute to group by.
+     * 
+     */
     public Output<TraceMetricsRuleGroupByKeyArgs> key() {
         return this.key;
     }
 
+    /**
+     * Name of the resulting metric label.
+     * 
+     */
     @Import(name="label", required=true)
     private Output<String> label;
 
+    /**
+     * @return Name of the resulting metric label.
+     * 
+     */
     public Output<String> label() {
         return this.label;
     }
@@ -53,20 +69,44 @@ public final class TraceMetricsRuleGroupByArgs extends com.pulumi.resources.Reso
             $ = new TraceMetricsRuleGroupByArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param key Span attribute to group by.
+         * 
+         * @return builder
+         * 
+         */
         public Builder key(Output<TraceMetricsRuleGroupByKeyArgs> key) {
             $.key = key;
             return this;
         }
 
+        /**
+         * @param key Span attribute to group by.
+         * 
+         * @return builder
+         * 
+         */
         public Builder key(TraceMetricsRuleGroupByKeyArgs key) {
             return key(Output.of(key));
         }
 
+        /**
+         * @param label Name of the resulting metric label.
+         * 
+         * @return builder
+         * 
+         */
         public Builder label(Output<String> label) {
             $.label = label;
             return this;
         }
 
+        /**
+         * @param label Name of the resulting metric label.
+         * 
+         * @return builder
+         * 
+         */
         public Builder label(String label) {
             return label(Output.of(label));
         }

@@ -10,24 +10,77 @@ using Pulumi;
 
 namespace Chronosphere.Pulumi
 {
+    /// <summary>
+    /// A non-human identity used to authenticate API requests against Chronosphere. An API token is generated at creation and returned only once; store it securely, as a lost token requires recreating the service account.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Pulumi = Chronosphere.Pulumi;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var unrestricted = new Pulumi.ServiceAccount("unrestricted", new()
+    ///     {
+    ///         Name = "ci-deployer",
+    ///         Unrestricted = true,
+    ///     });
+    /// 
+    ///     var restrictedReadOnly = new Pulumi.ServiceAccount("restrictedReadOnly", new()
+    ///     {
+    ///         Name = "metrics-reader",
+    ///         Restriction = new Pulumi.Inputs.ServiceAccountRestrictionArgs
+    ///         {
+    ///             Labels = 
+    ///             {
+    ///                 { "team", "platform" },
+    ///             },
+    ///             Permission = "READ_ONLY",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// </summary>
     [PulumiResourceType("chronosphere:index/serviceAccount:ServiceAccount")]
     public partial class ServiceAccount : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Read-only: synthetic email address assigned to the service account by the server.
+        /// </summary>
         [Output("email")]
         public Output<string> Email { get; private set; } = null!;
 
+        /// <summary>
+        /// Display name of the service account. Immutable after creation.
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// Restricts the service account to a specific permission and optional metric label scope. Exactly one of `unrestricted` or `restriction` must be set.
+        /// </summary>
         [Output("restriction")]
         public Output<Outputs.ServiceAccountRestriction?> Restriction { get; private set; } = null!;
 
+        /// <summary>
+        /// Stable identifier for the service account. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Output("slug")]
         public Output<string> Slug { get; private set; } = null!;
 
+        /// <summary>
+        /// Read-only: API token generated for the service account. Returned only at creation time; store it securely. If lost, the service account must be recreated.
+        /// </summary>
         [Output("token")]
         public Output<string> Token { get; private set; } = null!;
 
+        /// <summary>
+        /// If true, grants the service account access to all Chronosphere APIs within the access controls defined by team membership. Exactly one of `unrestricted` or `restriction` must be set.
+        /// </summary>
         [Output("unrestricted")]
         public Output<bool?> Unrestricted { get; private set; } = null!;
 
@@ -82,15 +135,27 @@ namespace Chronosphere.Pulumi
 
     public sealed class ServiceAccountArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Display name of the service account. Immutable after creation.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// Restricts the service account to a specific permission and optional metric label scope. Exactly one of `unrestricted` or `restriction` must be set.
+        /// </summary>
         [Input("restriction")]
         public Input<Inputs.ServiceAccountRestrictionArgs>? Restriction { get; set; }
 
+        /// <summary>
+        /// Stable identifier for the service account. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 
+        /// <summary>
+        /// If true, grants the service account access to all Chronosphere APIs within the access controls defined by team membership. Exactly one of `unrestricted` or `restriction` must be set.
+        /// </summary>
         [Input("unrestricted")]
         public Input<bool>? Unrestricted { get; set; }
 
@@ -102,20 +167,36 @@ namespace Chronosphere.Pulumi
 
     public sealed class ServiceAccountState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Read-only: synthetic email address assigned to the service account by the server.
+        /// </summary>
         [Input("email")]
         public Input<string>? Email { get; set; }
 
+        /// <summary>
+        /// Display name of the service account. Immutable after creation.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// Restricts the service account to a specific permission and optional metric label scope. Exactly one of `unrestricted` or `restriction` must be set.
+        /// </summary>
         [Input("restriction")]
         public Input<Inputs.ServiceAccountRestrictionGetArgs>? Restriction { get; set; }
 
+        /// <summary>
+        /// Stable identifier for the service account. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 
         [Input("token")]
         private Input<string>? _token;
+
+        /// <summary>
+        /// Read-only: API token generated for the service account. Returned only at creation time; store it securely. If lost, the service account must be recreated.
+        /// </summary>
         public Input<string>? Token
         {
             get => _token;
@@ -126,6 +207,9 @@ namespace Chronosphere.Pulumi
             }
         }
 
+        /// <summary>
+        /// If true, grants the service account access to all Chronosphere APIs within the access controls defined by team membership. Exactly one of `unrestricted` or `restriction` must be set.
+        /// </summary>
         [Input("unrestricted")]
         public Input<bool>? Unrestricted { get; set; }
 

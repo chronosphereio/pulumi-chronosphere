@@ -13,9 +13,15 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class TraceTailSamplingRulesRuleFilterScopeFilterSpanScopeDurationArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Maximum duration in seconds, inclusive. Omit for no upper bound.
+        /// </summary>
         [Input("maxSecs")]
         public Input<double>? MaxSecs { get; set; }
 
+        /// <summary>
+        /// Minimum duration in seconds, inclusive. Defaults to `0`.
+        /// </summary>
         [Input("minSecs")]
         public Input<double>? MinSecs { get; set; }
 

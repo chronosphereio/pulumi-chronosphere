@@ -17,51 +17,107 @@ public final class LogscaleAlertArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final LogscaleAlertArgs Empty = new LogscaleAlertArgs();
 
+    /**
+     * Slugs of LogScale actions to invoke when the alert triggers. The alert does not fire if this list is empty.
+     * 
+     */
     @Import(name="actionIds")
     private @Nullable Output<List<String>> actionIds;
 
+    /**
+     * @return Slugs of LogScale actions to invoke when the alert triggers. The alert does not fire if this list is empty.
+     * 
+     */
     public Optional<Output<List<String>>> actionIds() {
         return Optional.ofNullable(this.actionIds);
     }
 
+    /**
+     * Type of LogScale alert. `STANDARD` runs the query on a schedule over a time window; `FILTER` evaluates the query against each incoming event.
+     * 
+     */
     @Import(name="alertType", required=true)
     private Output<String> alertType;
 
+    /**
+     * @return Type of LogScale alert. `STANDARD` runs the query on a schedule over a time window; `FILTER` evaluates the query against each incoming event.
+     * 
+     */
     public Output<String> alertType() {
         return this.alertType;
     }
 
+    /**
+     * Human-readable description of the alert.
+     * 
+     */
     @Import(name="description")
     private @Nullable Output<String> description;
 
+    /**
+     * @return Human-readable description of the alert.
+     * 
+     */
     public Optional<Output<String>> description() {
         return Optional.ofNullable(this.description);
     }
 
+    /**
+     * If `true`, the alert will not evaluate or trigger actions.
+     * 
+     */
     @Import(name="disabled")
     private @Nullable Output<Boolean> disabled;
 
+    /**
+     * @return If `true`, the alert will not evaluate or trigger actions.
+     * 
+     */
     public Optional<Output<Boolean>> disabled() {
         return Optional.ofNullable(this.disabled);
     }
 
+    /**
+     * Display name of the LogScale alert.
+     * 
+     */
     @Import(name="name", required=true)
     private Output<String> name;
 
+    /**
+     * @return Display name of the LogScale alert.
+     * 
+     */
     public Output<String> name() {
         return this.name;
     }
 
+    /**
+     * LogScale query that the alert evaluates. Example: `level = ERROR | severity &gt; 3 | count(as=numErrors) | numErrors &gt; 500`.
+     * 
+     */
     @Import(name="query")
     private @Nullable Output<String> query;
 
+    /**
+     * @return LogScale query that the alert evaluates. Example: `level = ERROR | severity &gt; 3 | count(as=numErrors) | numErrors &gt; 500`.
+     * 
+     */
     public Optional<Output<String>> query() {
         return Optional.ofNullable(this.query);
     }
 
+    /**
+     * Name of the LogScale repository the alert belongs to. Immutable after creation.
+     * 
+     */
     @Import(name="repository", required=true)
     private Output<String> repository;
 
+    /**
+     * @return Name of the LogScale repository the alert belongs to. Immutable after creation.
+     * 
+     */
     public Output<String> repository() {
         return this.repository;
     }
@@ -81,51 +137,75 @@ public final class LogscaleAlertArgs extends com.pulumi.resources.ResourceArgs {
         return this.runAsUser;
     }
 
+    /**
+     * Stable identifier for the LogScale alert. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     @Import(name="slug")
     private @Nullable Output<String> slug;
 
+    /**
+     * @return Stable identifier for the LogScale alert. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     public Optional<Output<String>> slug() {
         return Optional.ofNullable(this.slug);
     }
 
+    /**
+     * Tags attached to the alert for organization and filtering.
+     * 
+     */
     @Import(name="tags")
     private @Nullable Output<List<String>> tags;
 
+    /**
+     * @return Tags attached to the alert for organization and filtering.
+     * 
+     */
     public Optional<Output<List<String>>> tags() {
         return Optional.ofNullable(this.tags);
     }
 
     /**
-     * Required for STANDARD type alerts, optional for FILTER type alerts
+     * Minimum interval between consecutive triggers of the alert. Required for `STANDARD` alerts, optional for `FILTER` alerts.
      * 
      */
     @Import(name="throttleDuration")
     private @Nullable Output<String> throttleDuration;
 
     /**
-     * @return Required for STANDARD type alerts, optional for FILTER type alerts
+     * @return Minimum interval between consecutive triggers of the alert. Required for `STANDARD` alerts, optional for `FILTER` alerts.
      * 
      */
     public Optional<Output<String>> throttleDuration() {
         return Optional.ofNullable(this.throttleDuration);
     }
 
+    /**
+     * Optional field whose value is used to scope throttling, so the alert is throttled per distinct value of this field rather than globally.
+     * 
+     */
     @Import(name="throttleField")
     private @Nullable Output<String> throttleField;
 
+    /**
+     * @return Optional field whose value is used to scope throttling, so the alert is throttled per distinct value of this field rather than globally.
+     * 
+     */
     public Optional<Output<String>> throttleField() {
         return Optional.ofNullable(this.throttleField);
     }
 
     /**
-     * Required for STANDARD type alerts, ignored for FILTER type alerts
+     * Lookback window for the alert query. Required for `STANDARD` alerts, ignored for `FILTER` alerts.
      * 
      */
     @Import(name="timeWindow")
     private @Nullable Output<String> timeWindow;
 
     /**
-     * @return Required for STANDARD type alerts, ignored for FILTER type alerts
+     * @return Lookback window for the alert query. Required for `STANDARD` alerts, ignored for `FILTER` alerts.
      * 
      */
     public Optional<Output<String>> timeWindow() {
@@ -168,69 +248,159 @@ public final class LogscaleAlertArgs extends com.pulumi.resources.ResourceArgs {
             $ = new LogscaleAlertArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param actionIds Slugs of LogScale actions to invoke when the alert triggers. The alert does not fire if this list is empty.
+         * 
+         * @return builder
+         * 
+         */
         public Builder actionIds(@Nullable Output<List<String>> actionIds) {
             $.actionIds = actionIds;
             return this;
         }
 
+        /**
+         * @param actionIds Slugs of LogScale actions to invoke when the alert triggers. The alert does not fire if this list is empty.
+         * 
+         * @return builder
+         * 
+         */
         public Builder actionIds(List<String> actionIds) {
             return actionIds(Output.of(actionIds));
         }
 
+        /**
+         * @param actionIds Slugs of LogScale actions to invoke when the alert triggers. The alert does not fire if this list is empty.
+         * 
+         * @return builder
+         * 
+         */
         public Builder actionIds(String... actionIds) {
             return actionIds(List.of(actionIds));
         }
 
+        /**
+         * @param alertType Type of LogScale alert. `STANDARD` runs the query on a schedule over a time window; `FILTER` evaluates the query against each incoming event.
+         * 
+         * @return builder
+         * 
+         */
         public Builder alertType(Output<String> alertType) {
             $.alertType = alertType;
             return this;
         }
 
+        /**
+         * @param alertType Type of LogScale alert. `STANDARD` runs the query on a schedule over a time window; `FILTER` evaluates the query against each incoming event.
+         * 
+         * @return builder
+         * 
+         */
         public Builder alertType(String alertType) {
             return alertType(Output.of(alertType));
         }
 
+        /**
+         * @param description Human-readable description of the alert.
+         * 
+         * @return builder
+         * 
+         */
         public Builder description(@Nullable Output<String> description) {
             $.description = description;
             return this;
         }
 
+        /**
+         * @param description Human-readable description of the alert.
+         * 
+         * @return builder
+         * 
+         */
         public Builder description(String description) {
             return description(Output.of(description));
         }
 
+        /**
+         * @param disabled If `true`, the alert will not evaluate or trigger actions.
+         * 
+         * @return builder
+         * 
+         */
         public Builder disabled(@Nullable Output<Boolean> disabled) {
             $.disabled = disabled;
             return this;
         }
 
+        /**
+         * @param disabled If `true`, the alert will not evaluate or trigger actions.
+         * 
+         * @return builder
+         * 
+         */
         public Builder disabled(Boolean disabled) {
             return disabled(Output.of(disabled));
         }
 
+        /**
+         * @param name Display name of the LogScale alert.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(Output<String> name) {
             $.name = name;
             return this;
         }
 
+        /**
+         * @param name Display name of the LogScale alert.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(String name) {
             return name(Output.of(name));
         }
 
+        /**
+         * @param query LogScale query that the alert evaluates. Example: `level = ERROR | severity &gt; 3 | count(as=numErrors) | numErrors &gt; 500`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder query(@Nullable Output<String> query) {
             $.query = query;
             return this;
         }
 
+        /**
+         * @param query LogScale query that the alert evaluates. Example: `level = ERROR | severity &gt; 3 | count(as=numErrors) | numErrors &gt; 500`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder query(String query) {
             return query(Output.of(query));
         }
 
+        /**
+         * @param repository Name of the LogScale repository the alert belongs to. Immutable after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder repository(Output<String> repository) {
             $.repository = repository;
             return this;
         }
 
+        /**
+         * @param repository Name of the LogScale repository the alert belongs to. Immutable after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder repository(String repository) {
             return repository(Output.of(repository));
         }
@@ -256,30 +426,60 @@ public final class LogscaleAlertArgs extends com.pulumi.resources.ResourceArgs {
             return runAsUser(Output.of(runAsUser));
         }
 
+        /**
+         * @param slug Stable identifier for the LogScale alert. Generated from `name` if omitted. Immutable after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slug(@Nullable Output<String> slug) {
             $.slug = slug;
             return this;
         }
 
+        /**
+         * @param slug Stable identifier for the LogScale alert. Generated from `name` if omitted. Immutable after creation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder slug(String slug) {
             return slug(Output.of(slug));
         }
 
+        /**
+         * @param tags Tags attached to the alert for organization and filtering.
+         * 
+         * @return builder
+         * 
+         */
         public Builder tags(@Nullable Output<List<String>> tags) {
             $.tags = tags;
             return this;
         }
 
+        /**
+         * @param tags Tags attached to the alert for organization and filtering.
+         * 
+         * @return builder
+         * 
+         */
         public Builder tags(List<String> tags) {
             return tags(Output.of(tags));
         }
 
+        /**
+         * @param tags Tags attached to the alert for organization and filtering.
+         * 
+         * @return builder
+         * 
+         */
         public Builder tags(String... tags) {
             return tags(List.of(tags));
         }
 
         /**
-         * @param throttleDuration Required for STANDARD type alerts, optional for FILTER type alerts
+         * @param throttleDuration Minimum interval between consecutive triggers of the alert. Required for `STANDARD` alerts, optional for `FILTER` alerts.
          * 
          * @return builder
          * 
@@ -290,7 +490,7 @@ public final class LogscaleAlertArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param throttleDuration Required for STANDARD type alerts, optional for FILTER type alerts
+         * @param throttleDuration Minimum interval between consecutive triggers of the alert. Required for `STANDARD` alerts, optional for `FILTER` alerts.
          * 
          * @return builder
          * 
@@ -299,17 +499,29 @@ public final class LogscaleAlertArgs extends com.pulumi.resources.ResourceArgs {
             return throttleDuration(Output.of(throttleDuration));
         }
 
+        /**
+         * @param throttleField Optional field whose value is used to scope throttling, so the alert is throttled per distinct value of this field rather than globally.
+         * 
+         * @return builder
+         * 
+         */
         public Builder throttleField(@Nullable Output<String> throttleField) {
             $.throttleField = throttleField;
             return this;
         }
 
+        /**
+         * @param throttleField Optional field whose value is used to scope throttling, so the alert is throttled per distinct value of this field rather than globally.
+         * 
+         * @return builder
+         * 
+         */
         public Builder throttleField(String throttleField) {
             return throttleField(Output.of(throttleField));
         }
 
         /**
-         * @param timeWindow Required for STANDARD type alerts, ignored for FILTER type alerts
+         * @param timeWindow Lookback window for the alert query. Required for `STANDARD` alerts, ignored for `FILTER` alerts.
          * 
          * @return builder
          * 
@@ -320,7 +532,7 @@ public final class LogscaleAlertArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param timeWindow Required for STANDARD type alerts, ignored for FILTER type alerts
+         * @param timeWindow Lookback window for the alert query. Required for `STANDARD` alerts, ignored for `FILTER` alerts.
          * 
          * @return builder
          * 

@@ -9,9 +9,17 @@ import java.util.Objects;
 
 @CustomType
 public final class LogAllocationConfigDefaultDatasetAllocation {
+    /**
+     * @return Percentage of the tenant&#39;s log license to allocate to this dataset, expressed as a number between 0 and 100.
+     * 
+     */
     private Double percentOfLicense;
 
     private LogAllocationConfigDefaultDatasetAllocation() {}
+    /**
+     * @return Percentage of the tenant&#39;s log license to allocate to this dataset, expressed as a number between 0 and 100.
+     * 
+     */
     public Double percentOfLicense() {
         return this.percentOfLicense;
     }

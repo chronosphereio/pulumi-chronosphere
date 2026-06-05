@@ -11,17 +11,41 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class SLOSliCustomIndicator {
+    /**
+     * @return PromQL query template measuring the count of bad events. Mutually exclusive with `good_query_template`.
+     * 
+     */
     private @Nullable String badQueryTemplate;
+    /**
+     * @return PromQL query template measuring the count of good events. Mutually exclusive with `bad_query_template`.
+     * 
+     */
     private @Nullable String goodQueryTemplate;
+    /**
+     * @return PromQL query template measuring the total count of events. Required for error-ratio SLOs.
+     * 
+     */
     private String totalQueryTemplate;
 
     private SLOSliCustomIndicator() {}
+    /**
+     * @return PromQL query template measuring the count of bad events. Mutually exclusive with `good_query_template`.
+     * 
+     */
     public Optional<String> badQueryTemplate() {
         return Optional.ofNullable(this.badQueryTemplate);
     }
+    /**
+     * @return PromQL query template measuring the count of good events. Mutually exclusive with `bad_query_template`.
+     * 
+     */
     public Optional<String> goodQueryTemplate() {
         return Optional.ofNullable(this.goodQueryTemplate);
     }
+    /**
+     * @return PromQL query template measuring the total count of events. Required for error-ratio SLOs.
+     * 
+     */
     public String totalQueryTemplate() {
         return this.totalQueryTemplate;
     }

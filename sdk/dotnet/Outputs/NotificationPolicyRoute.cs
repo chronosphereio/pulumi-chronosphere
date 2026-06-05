@@ -14,10 +14,25 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class NotificationPolicyRoute
     {
+        /// <summary>
+        /// Inline notification destinations defined directly on the route. Each block sets at most one of `slack`, `pagerduty`, `webhook`, `ops_genie`, `victor_ops`, or `email`. Cannot be combined with `notifiers`.
+        /// </summary>
         public readonly ImmutableArray<Outputs.NotificationPolicyRouteDestination> Destinations;
+        /// <summary>
+        /// Optional grouping configuration controlling how alerts are batched before delivery.
+        /// </summary>
         public readonly Outputs.NotificationPolicyRouteGroupBy? GroupBy;
+        /// <summary>
+        /// Slugs of notifier resources that receive alerts at this severity. Cannot be combined with `destination`.
+        /// </summary>
         public readonly ImmutableArray<string> Notifiers;
+        /// <summary>
+        /// How often to resend unresolved alerts at this severity (e.g. `4h`).
+        /// </summary>
         public readonly string? RepeatInterval;
+        /// <summary>
+        /// Severity this route applies to (e.g. `warn`, `critical`). Case-sensitive.
+        /// </summary>
         public readonly string Severity;
 
         [OutputConstructor]

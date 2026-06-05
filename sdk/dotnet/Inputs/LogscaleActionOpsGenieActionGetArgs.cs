@@ -13,12 +13,21 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class LogscaleActionOpsGenieActionGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// OpsGenie webhook URL to send the request to.
+        /// </summary>
         [Input("apiUrl", required: true)]
         public Input<string> ApiUrl { get; set; } = null!;
 
+        /// <summary>
+        /// Key used to authenticate with OpsGenie.
+        /// </summary>
         [Input("opsGenieKey", required: true)]
         public Input<string> OpsGenieKey { get; set; } = null!;
 
+        /// <summary>
+        /// If `true`, sends the request through the configured outbound proxy.
+        /// </summary>
         [Input("useProxy")]
         public Input<bool>? UseProxy { get; set; }
 

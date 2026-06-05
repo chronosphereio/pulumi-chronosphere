@@ -13,9 +13,15 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class MonitorSeriesConditionsOverrideConditionResolveValueGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Whether the resolve-value threshold is active.
+        /// </summary>
         [Input("enabled", required: true)]
         public Input<bool> Enabled { get; set; } = null!;
 
+        /// <summary>
+        /// Resolution threshold value.
+        /// </summary>
         [Input("value", required: true)]
         public Input<double> Value { get; set; } = null!;
 

@@ -12,13 +12,29 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class ResourcePoolsConfigDefaultPoolPriorityThresholdAllPriorities {
+    /**
+     * @return Per-license fixed allocations that override `percent_of_license` for the named licenses. When any pool sets a fixed value for a license, every pool must also set one for that license.
+     * 
+     */
     private @Nullable Integer fixedValue;
+    /**
+     * @return Threshold as a percent of the pool&#39;s allocation. `100` equals the full allocation; values above 100 allow the pool to exceed its baseline allocation.
+     * 
+     */
     private @Nullable Double percentOfPoolAllocation;
 
     private ResourcePoolsConfigDefaultPoolPriorityThresholdAllPriorities() {}
+    /**
+     * @return Per-license fixed allocations that override `percent_of_license` for the named licenses. When any pool sets a fixed value for a license, every pool must also set one for that license.
+     * 
+     */
     public Optional<Integer> fixedValue() {
         return Optional.ofNullable(this.fixedValue);
     }
+    /**
+     * @return Threshold as a percent of the pool&#39;s allocation. `100` equals the full allocation; values above 100 allow the pool to exceed its baseline allocation.
+     * 
+     */
     public Optional<Double> percentOfPoolAllocation() {
         return Optional.ofNullable(this.percentOfPoolAllocation);
     }

@@ -13,12 +13,21 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class GcpMetricsIntegrationMetricGroupFilterGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Label context, e.g. resource vs. metric label. See the Chronosphere GCP integration documentation for accepted values.
+        /// </summary>
         [Input("context")]
         public Input<string>? Context { get; set; }
 
+        /// <summary>
+        /// Label name to filter on.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// Value pattern using glob syntax (e.g. `prod-*`). An exact match is applied when no glob characters are present.
+        /// </summary>
         [Input("valueGlob")]
         public Input<string>? ValueGlob { get; set; }
 

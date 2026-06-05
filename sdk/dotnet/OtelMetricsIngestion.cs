@@ -10,9 +10,43 @@ using Pulumi;
 
 namespace Chronosphere.Pulumi
 {
+    /// <summary>
+    /// Configures how incoming OTLP metric payloads have their OpenTelemetry resource attributes flattened, filtered, and mapped onto Prometheus-style labels at ingestion.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Pulumi = Chronosphere.Pulumi;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var config = new Pulumi.OtelMetricsIngestion("config", new()
+    ///     {
+    ///         ResourceAttributes = new Pulumi.Inputs.OtelMetricsIngestionResourceAttributesArgs
+    ///         {
+    ///             ExcludeKeys = new[]
+    ///             {
+    ///                 "host.id",
+    ///                 "process.pid",
+    ///             },
+    ///             FilterMode = "APPEND_DEFAULT_EXCLUDE_KEYS",
+    ///             FlattenMode = "MERGE",
+    ///             GenerateTargetInfo = false,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// </summary>
     [PulumiResourceType("chronosphere:index/otelMetricsIngestion:OtelMetricsIngestion")]
     public partial class OtelMetricsIngestion : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Controls how OpenTelemetry resource attributes are mapped to Prometheus labels at ingest.
+        /// </summary>
         [Output("resourceAttributes")]
         public Output<Outputs.OtelMetricsIngestionResourceAttributes?> ResourceAttributes { get; private set; } = null!;
 
@@ -63,6 +97,9 @@ namespace Chronosphere.Pulumi
 
     public sealed class OtelMetricsIngestionArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Controls how OpenTelemetry resource attributes are mapped to Prometheus labels at ingest.
+        /// </summary>
         [Input("resourceAttributes")]
         public Input<Inputs.OtelMetricsIngestionResourceAttributesArgs>? ResourceAttributes { get; set; }
 
@@ -74,6 +111,9 @@ namespace Chronosphere.Pulumi
 
     public sealed class OtelMetricsIngestionState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Controls how OpenTelemetry resource attributes are mapped to Prometheus labels at ingest.
+        /// </summary>
         [Input("resourceAttributes")]
         public Input<Inputs.OtelMetricsIngestionResourceAttributesGetArgs>? ResourceAttributes { get; set; }
 

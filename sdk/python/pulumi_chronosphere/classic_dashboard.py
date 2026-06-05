@@ -19,6 +19,9 @@ class ClassicDashboardArgs:
                  collection_id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a ClassicDashboard resource.
+        :param pulumi.Input[str] dashboard_json: Grafana-compatible dashboard definition serialized as JSON. The `id` and `version` fields are stripped before diffing.
+        :param pulumi.Input[str] bucket_id: ID of the bucket the dashboard belongs to. Exactly one of `bucket_id` or `collection_id` must be set.
+        :param pulumi.Input[str] collection_id: ID of the collection the dashboard belongs to. Exactly one of `bucket_id` or `collection_id` must be set.
         """
         pulumi.set(__self__, "dashboard_json", dashboard_json)
         if bucket_id is not None:
@@ -29,6 +32,9 @@ class ClassicDashboardArgs:
     @property
     @pulumi.getter(name="dashboardJson")
     def dashboard_json(self) -> pulumi.Input[str]:
+        """
+        Grafana-compatible dashboard definition serialized as JSON. The `id` and `version` fields are stripped before diffing.
+        """
         return pulumi.get(self, "dashboard_json")
 
     @dashboard_json.setter
@@ -38,6 +44,9 @@ class ClassicDashboardArgs:
     @property
     @pulumi.getter(name="bucketId")
     def bucket_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the bucket the dashboard belongs to. Exactly one of `bucket_id` or `collection_id` must be set.
+        """
         return pulumi.get(self, "bucket_id")
 
     @bucket_id.setter
@@ -47,6 +56,9 @@ class ClassicDashboardArgs:
     @property
     @pulumi.getter(name="collectionId")
     def collection_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the collection the dashboard belongs to. Exactly one of `bucket_id` or `collection_id` must be set.
+        """
         return pulumi.get(self, "collection_id")
 
     @collection_id.setter
@@ -62,6 +74,9 @@ class _ClassicDashboardState:
                  dashboard_json: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering ClassicDashboard resources.
+        :param pulumi.Input[str] bucket_id: ID of the bucket the dashboard belongs to. Exactly one of `bucket_id` or `collection_id` must be set.
+        :param pulumi.Input[str] collection_id: ID of the collection the dashboard belongs to. Exactly one of `bucket_id` or `collection_id` must be set.
+        :param pulumi.Input[str] dashboard_json: Grafana-compatible dashboard definition serialized as JSON. The `id` and `version` fields are stripped before diffing.
         """
         if bucket_id is not None:
             pulumi.set(__self__, "bucket_id", bucket_id)
@@ -73,6 +88,9 @@ class _ClassicDashboardState:
     @property
     @pulumi.getter(name="bucketId")
     def bucket_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the bucket the dashboard belongs to. Exactly one of `bucket_id` or `collection_id` must be set.
+        """
         return pulumi.get(self, "bucket_id")
 
     @bucket_id.setter
@@ -82,6 +100,9 @@ class _ClassicDashboardState:
     @property
     @pulumi.getter(name="collectionId")
     def collection_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the collection the dashboard belongs to. Exactly one of `bucket_id` or `collection_id` must be set.
+        """
         return pulumi.get(self, "collection_id")
 
     @collection_id.setter
@@ -91,6 +112,9 @@ class _ClassicDashboardState:
     @property
     @pulumi.getter(name="dashboardJson")
     def dashboard_json(self) -> Optional[pulumi.Input[str]]:
+        """
+        Grafana-compatible dashboard definition serialized as JSON. The `id` and `version` fields are stripped before diffing.
+        """
         return pulumi.get(self, "dashboard_json")
 
     @dashboard_json.setter
@@ -108,9 +132,42 @@ class ClassicDashboard(pulumi.CustomResource):
                  dashboard_json: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a ClassicDashboard resource with the given unique name, props, and options.
+        A Grafana-compatible dashboard rendered by Chronosphere. The dashboard's `name` and `slug` are derived from the `title` and `uid` fields inside `dashboard_json`. For native Chronosphere dashboards, use `Dashboard` instead.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import json
+        import pulumi_chronosphere as chronosphere
+
+        collection = chronosphere.Collection("collection", name="Platform")
+        platform = chronosphere.ClassicDashboard("platform",
+            collection_id=collection.id,
+            dashboard_json=json.dumps({
+                "title": "Dashboard",
+                "panels": [{
+                    "gridPos": {
+                        "h": 12,
+                        "w": 24,
+                        "x": 0,
+                        "y": 0,
+                    },
+                    "id": 2,
+                    "targets": [{
+                        "expr": "up",
+                    }],
+                    "title": "Up by instance",
+                    "type": "graph",
+                }],
+            }))
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] bucket_id: ID of the bucket the dashboard belongs to. Exactly one of `bucket_id` or `collection_id` must be set.
+        :param pulumi.Input[str] collection_id: ID of the collection the dashboard belongs to. Exactly one of `bucket_id` or `collection_id` must be set.
+        :param pulumi.Input[str] dashboard_json: Grafana-compatible dashboard definition serialized as JSON. The `id` and `version` fields are stripped before diffing.
         """
         ...
     @overload
@@ -119,7 +176,37 @@ class ClassicDashboard(pulumi.CustomResource):
                  args: ClassicDashboardArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a ClassicDashboard resource with the given unique name, props, and options.
+        A Grafana-compatible dashboard rendered by Chronosphere. The dashboard's `name` and `slug` are derived from the `title` and `uid` fields inside `dashboard_json`. For native Chronosphere dashboards, use `Dashboard` instead.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import json
+        import pulumi_chronosphere as chronosphere
+
+        collection = chronosphere.Collection("collection", name="Platform")
+        platform = chronosphere.ClassicDashboard("platform",
+            collection_id=collection.id,
+            dashboard_json=json.dumps({
+                "title": "Dashboard",
+                "panels": [{
+                    "gridPos": {
+                        "h": 12,
+                        "w": 24,
+                        "x": 0,
+                        "y": 0,
+                    },
+                    "id": 2,
+                    "targets": [{
+                        "expr": "up",
+                    }],
+                    "title": "Up by instance",
+                    "type": "graph",
+                }],
+            }))
+        ```
+
         :param str resource_name: The name of the resource.
         :param ClassicDashboardArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -172,6 +259,9 @@ class ClassicDashboard(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] bucket_id: ID of the bucket the dashboard belongs to. Exactly one of `bucket_id` or `collection_id` must be set.
+        :param pulumi.Input[str] collection_id: ID of the collection the dashboard belongs to. Exactly one of `bucket_id` or `collection_id` must be set.
+        :param pulumi.Input[str] dashboard_json: Grafana-compatible dashboard definition serialized as JSON. The `id` and `version` fields are stripped before diffing.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -185,15 +275,24 @@ class ClassicDashboard(pulumi.CustomResource):
     @property
     @pulumi.getter(name="bucketId")
     def bucket_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        ID of the bucket the dashboard belongs to. Exactly one of `bucket_id` or `collection_id` must be set.
+        """
         return pulumi.get(self, "bucket_id")
 
     @property
     @pulumi.getter(name="collectionId")
     def collection_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        ID of the collection the dashboard belongs to. Exactly one of `bucket_id` or `collection_id` must be set.
+        """
         return pulumi.get(self, "collection_id")
 
     @property
     @pulumi.getter(name="dashboardJson")
     def dashboard_json(self) -> pulumi.Output[str]:
+        """
+        Grafana-compatible dashboard definition serialized as JSON. The `id` and `version` fields are stripped before diffing.
+        """
         return pulumi.get(self, "dashboard_json")
 

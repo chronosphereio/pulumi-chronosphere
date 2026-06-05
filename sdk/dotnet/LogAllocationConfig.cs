@@ -10,12 +10,21 @@ using Pulumi;
 
 namespace Chronosphere.Pulumi
 {
+    /// <summary>
+    /// Singleton config that allocates a portion of the org's log ingest quota to each dataset by priority, controlling which logs are kept when the quota is exceeded.
+    /// </summary>
     [PulumiResourceType("chronosphere:index/logAllocationConfig:LogAllocationConfig")]
     public partial class LogAllocationConfig : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Per-dataset allocation and priority overrides. Datasets are evaluated in order; the first match wins.
+        /// </summary>
         [Output("datasetAllocations")]
         public Output<ImmutableArray<Outputs.LogAllocationConfigDatasetAllocation>> DatasetAllocations { get; private set; } = null!;
 
+        /// <summary>
+        /// Allocation and priority configuration for the default dataset, which receives any logs not matched by a `dataset_allocation` entry.
+        /// </summary>
         [Output("defaultDataset")]
         public Output<Outputs.LogAllocationConfigDefaultDataset> DefaultDataset { get; private set; } = null!;
 
@@ -68,12 +77,19 @@ namespace Chronosphere.Pulumi
     {
         [Input("datasetAllocations")]
         private InputList<Inputs.LogAllocationConfigDatasetAllocationArgs>? _datasetAllocations;
+
+        /// <summary>
+        /// Per-dataset allocation and priority overrides. Datasets are evaluated in order; the first match wins.
+        /// </summary>
         public InputList<Inputs.LogAllocationConfigDatasetAllocationArgs> DatasetAllocations
         {
             get => _datasetAllocations ?? (_datasetAllocations = new InputList<Inputs.LogAllocationConfigDatasetAllocationArgs>());
             set => _datasetAllocations = value;
         }
 
+        /// <summary>
+        /// Allocation and priority configuration for the default dataset, which receives any logs not matched by a `dataset_allocation` entry.
+        /// </summary>
         [Input("defaultDataset", required: true)]
         public Input<Inputs.LogAllocationConfigDefaultDatasetArgs> DefaultDataset { get; set; } = null!;
 
@@ -87,12 +103,19 @@ namespace Chronosphere.Pulumi
     {
         [Input("datasetAllocations")]
         private InputList<Inputs.LogAllocationConfigDatasetAllocationGetArgs>? _datasetAllocations;
+
+        /// <summary>
+        /// Per-dataset allocation and priority overrides. Datasets are evaluated in order; the first match wins.
+        /// </summary>
         public InputList<Inputs.LogAllocationConfigDatasetAllocationGetArgs> DatasetAllocations
         {
             get => _datasetAllocations ?? (_datasetAllocations = new InputList<Inputs.LogAllocationConfigDatasetAllocationGetArgs>());
             set => _datasetAllocations = value;
         }
 
+        /// <summary>
+        /// Allocation and priority configuration for the default dataset, which receives any logs not matched by a `dataset_allocation` entry.
+        /// </summary>
         [Input("defaultDataset")]
         public Input<Inputs.LogAllocationConfigDefaultDatasetGetArgs>? DefaultDataset { get; set; }
 

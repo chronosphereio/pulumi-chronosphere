@@ -10,18 +10,52 @@ using Pulumi;
 
 namespace Chronosphere.Pulumi
 {
+    /// <summary>
+    /// A named group of users that can own collections, buckets, and other resources. Teams scope access control and serve as the ownership unit for resources across the platform.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Pulumi = Chronosphere.Pulumi;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var platform = new Pulumi.Team("platform", new()
+    ///     {
+    ///         Description = "Platform engineering team",
+    ///         Name = "Platform",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// </summary>
     [PulumiResourceType("chronosphere:index/team:Team")]
     public partial class Team : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Free-form description of the team.
+        /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
+        /// <summary>
+        /// Display name of the team. Can be changed after creation.
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// Stable identifier for the team. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Output("slug")]
         public Output<string> Slug { get; private set; } = null!;
 
+        /// <summary>
+        /// Unordered set of email addresses identifying the users who are members of this team.
+        /// </summary>
         [Output("userEmails")]
         public Output<ImmutableArray<string>> UserEmails { get; private set; } = null!;
 
@@ -72,17 +106,30 @@ namespace Chronosphere.Pulumi
 
     public sealed class TeamArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Free-form description of the team.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// Display name of the team. Can be changed after creation.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// Stable identifier for the team. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 
         [Input("userEmails")]
         private InputList<string>? _userEmails;
+
+        /// <summary>
+        /// Unordered set of email addresses identifying the users who are members of this team.
+        /// </summary>
         public InputList<string> UserEmails
         {
             get => _userEmails ?? (_userEmails = new InputList<string>());
@@ -97,17 +144,30 @@ namespace Chronosphere.Pulumi
 
     public sealed class TeamState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Free-form description of the team.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// Display name of the team. Can be changed after creation.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// Stable identifier for the team. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 
         [Input("userEmails")]
         private InputList<string>? _userEmails;
+
+        /// <summary>
+        /// Unordered set of email addresses identifying the users who are members of this team.
+        /// </summary>
         public InputList<string> UserEmails
         {
             get => _userEmails ?? (_userEmails = new InputList<string>());

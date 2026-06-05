@@ -10,18 +10,72 @@ using Pulumi;
 
 namespace Chronosphere.Pulumi
 {
+    /// <summary>
+    /// Per-service Jaeger remote sampling strategy (probabilistic, rate-limiting, or per-operation) served to instrumented applications so they can sample traces at the configured rate.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Pulumi = Chronosphere.Pulumi;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var probabilistic = new Pulumi.TraceJaegerRemoteSamplingStrategy("probabilistic", new()
+    ///     {
+    ///         AppliedStrategy = new Pulumi.Inputs.TraceJaegerRemoteSamplingStrategyAppliedStrategyArgs
+    ///         {
+    ///             ProbabilisticStrategy = new Pulumi.Inputs.TraceJaegerRemoteSamplingStrategyAppliedStrategyProbabilisticStrategyArgs
+    ///             {
+    ///                 SamplingRate = 0.01,
+    ///             },
+    ///         },
+    ///         Name = "Probabilistic sampling for service A",
+    ///         ServiceName = "service-a",
+    ///     });
+    /// 
+    ///     var rateLimited = new Pulumi.TraceJaegerRemoteSamplingStrategy("rateLimited", new()
+    ///     {
+    ///         AppliedStrategy = new Pulumi.Inputs.TraceJaegerRemoteSamplingStrategyAppliedStrategyArgs
+    ///         {
+    ///             RateLimitingStrategy = new Pulumi.Inputs.TraceJaegerRemoteSamplingStrategyAppliedStrategyRateLimitingStrategyArgs
+    ///             {
+    ///                 MaxTracesPerSecond = 2,
+    ///             },
+    ///         },
+    ///         Name = "Rate-limited sampling for service B",
+    ///         ServiceName = "service-b",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// </summary>
     [PulumiResourceType("chronosphere:index/traceJaegerRemoteSamplingStrategy:TraceJaegerRemoteSamplingStrategy")]
     public partial class TraceJaegerRemoteSamplingStrategy : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Sampling strategy returned to the Jaeger client. Exactly one of `probabilistic_strategy`, `rate_limiting_strategy`, or `per_operation_strategies` must be set.
+        /// </summary>
         [Output("appliedStrategy")]
         public Output<Outputs.TraceJaegerRemoteSamplingStrategyAppliedStrategy> AppliedStrategy { get; private set; } = null!;
 
+        /// <summary>
+        /// Display name of the Jaeger remote sampling strategy.
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// Value of `service.name` the strategy applies to. Jaeger SDK clients reporting under this service receive this sampling configuration.
+        /// </summary>
         [Output("serviceName")]
         public Output<string> ServiceName { get; private set; } = null!;
 
+        /// <summary>
+        /// Stable identifier for the Jaeger remote sampling strategy. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Output("slug")]
         public Output<string> Slug { get; private set; } = null!;
 
@@ -72,15 +126,27 @@ namespace Chronosphere.Pulumi
 
     public sealed class TraceJaegerRemoteSamplingStrategyArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Sampling strategy returned to the Jaeger client. Exactly one of `probabilistic_strategy`, `rate_limiting_strategy`, or `per_operation_strategies` must be set.
+        /// </summary>
         [Input("appliedStrategy", required: true)]
         public Input<Inputs.TraceJaegerRemoteSamplingStrategyAppliedStrategyArgs> AppliedStrategy { get; set; } = null!;
 
+        /// <summary>
+        /// Display name of the Jaeger remote sampling strategy.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// Value of `service.name` the strategy applies to. Jaeger SDK clients reporting under this service receive this sampling configuration.
+        /// </summary>
         [Input("serviceName", required: true)]
         public Input<string> ServiceName { get; set; } = null!;
 
+        /// <summary>
+        /// Stable identifier for the Jaeger remote sampling strategy. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 
@@ -92,15 +158,27 @@ namespace Chronosphere.Pulumi
 
     public sealed class TraceJaegerRemoteSamplingStrategyState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Sampling strategy returned to the Jaeger client. Exactly one of `probabilistic_strategy`, `rate_limiting_strategy`, or `per_operation_strategies` must be set.
+        /// </summary>
         [Input("appliedStrategy")]
         public Input<Inputs.TraceJaegerRemoteSamplingStrategyAppliedStrategyGetArgs>? AppliedStrategy { get; set; }
 
+        /// <summary>
+        /// Display name of the Jaeger remote sampling strategy.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// Value of `service.name` the strategy applies to. Jaeger SDK clients reporting under this service receive this sampling configuration.
+        /// </summary>
         [Input("serviceName")]
         public Input<string>? ServiceName { get; set; }
 
+        /// <summary>
+        /// Stable identifier for the Jaeger remote sampling strategy. Generated from `name` if omitted. Immutable after creation.
+        /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 

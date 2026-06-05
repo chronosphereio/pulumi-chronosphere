@@ -6,6 +6,28 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * OpsGenie notifier that delivers monitor signals to OpsGenie as alerts via its API integration. Referenced from notification policies.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as chronosphere from "@pulumi-chronosphere/pulumi-chronosphere";
+ *
+ * const opsgenie = new chronosphere.OpsgenieAlertNotifier("opsgenie", {
+ *     apiKey: "XXXXX",
+ *     apiUrl: "https://api.opsgenie.com/",
+ *     name: "infra_compute_opsgenie",
+ *     priority: "P1",
+ *     responders: [{
+ *         name: "Productivity Platform - Compute",
+ *         type: "TEAM",
+ *     }],
+ *     sendResolved: true,
+ * });
+ * ```
+ */
 export class OpsgenieAlertNotifier extends pulumi.CustomResource {
     /**
      * Get an existing OpsgenieAlertNotifier resource's state with the given name, ID, and optional extra
@@ -34,26 +56,79 @@ export class OpsgenieAlertNotifier extends pulumi.CustomResource {
         return obj['__pulumiType'] === OpsgenieAlertNotifier.__pulumiType;
     }
 
+    /**
+     * Opsgenie API key used to authenticate requests. Treat as a secret.
+     */
     public readonly apiKey!: pulumi.Output<string>;
+    /**
+     * Opsgenie API URL to send requests to (e.g. `https://api.opsgenie.com/`).
+     */
     public readonly apiUrl!: pulumi.Output<string | undefined>;
+    /**
+     * Password for HTTP basic auth when calling the Opsgenie API. Treat as a secret.
+     */
     public readonly basicAuthPassword!: pulumi.Output<string | undefined>;
+    /**
+     * Username for HTTP basic auth when calling the Opsgenie API. Mutually exclusive with `bearerToken`.
+     */
     public readonly basicAuthUsername!: pulumi.Output<string | undefined>;
+    /**
+     * Bearer token sent in the `Authorization` header when calling the Opsgenie API. Treat as a secret. Mutually exclusive with basic auth.
+     */
     public readonly bearerToken!: pulumi.Output<string | undefined>;
+    /**
+     * Detailed description of the alert. Supports Go templating.
+     */
     public readonly description!: pulumi.Output<string | undefined>;
+    /**
+     * Arbitrary key/value pairs attached to the alert as additional context. Values support Go templating.
+     */
     public readonly details!: pulumi.Output<{[key: string]: string} | undefined>;
+    /**
+     * Alert text shown in Opsgenie. Supports Go templating.
+     */
     public readonly message!: pulumi.Output<string | undefined>;
+    /**
+     * Name of the responder team, schedule, or escalation policy.
+     */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * Additional note appended to the alert. Supports Go templating.
+     */
     public readonly note!: pulumi.Output<string | undefined>;
+    /**
+     * Priority level of the alert. One of `P1`, `P2`, `P3`, `P4`, or `P5`.
+     */
     public readonly priority!: pulumi.Output<string | undefined>;
     /**
+     * Deprecated and ignored. Custom proxy URLs are not supported.
+     *
      * @deprecated custom proxy URLs are not supported
      */
     public readonly proxyUrl!: pulumi.Output<string | undefined>;
+    /**
+     * Responders that Opsgenie will notify for the alert. See https://docs.opsgenie.com/docs/alert-api for accepted shapes.
+     */
     public readonly responders!: pulumi.Output<outputs.OpsgenieAlertNotifierResponder[] | undefined>;
+    /**
+     * Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+     */
     public readonly sendResolved!: pulumi.Output<boolean | undefined>;
+    /**
+     * Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+     */
     public readonly slug!: pulumi.Output<string>;
+    /**
+     * Backlink to the sender of the notification. Supports Go templating.
+     */
     public readonly source!: pulumi.Output<string | undefined>;
+    /**
+     * Tags attached to the Opsgenie alert.
+     */
     public readonly tags!: pulumi.Output<string[] | undefined>;
+    /**
+     * If true, skip TLS certificate verification when calling the Opsgenie API. Disable only in trusted environments.
+     */
     public readonly tlsInsecureSkipVerify!: pulumi.Output<boolean | undefined>;
 
     /**
@@ -125,26 +200,79 @@ export class OpsgenieAlertNotifier extends pulumi.CustomResource {
  * Input properties used for looking up and filtering OpsgenieAlertNotifier resources.
  */
 export interface OpsgenieAlertNotifierState {
+    /**
+     * Opsgenie API key used to authenticate requests. Treat as a secret.
+     */
     apiKey?: pulumi.Input<string>;
+    /**
+     * Opsgenie API URL to send requests to (e.g. `https://api.opsgenie.com/`).
+     */
     apiUrl?: pulumi.Input<string>;
+    /**
+     * Password for HTTP basic auth when calling the Opsgenie API. Treat as a secret.
+     */
     basicAuthPassword?: pulumi.Input<string>;
+    /**
+     * Username for HTTP basic auth when calling the Opsgenie API. Mutually exclusive with `bearerToken`.
+     */
     basicAuthUsername?: pulumi.Input<string>;
+    /**
+     * Bearer token sent in the `Authorization` header when calling the Opsgenie API. Treat as a secret. Mutually exclusive with basic auth.
+     */
     bearerToken?: pulumi.Input<string>;
+    /**
+     * Detailed description of the alert. Supports Go templating.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * Arbitrary key/value pairs attached to the alert as additional context. Values support Go templating.
+     */
     details?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Alert text shown in Opsgenie. Supports Go templating.
+     */
     message?: pulumi.Input<string>;
+    /**
+     * Name of the responder team, schedule, or escalation policy.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * Additional note appended to the alert. Supports Go templating.
+     */
     note?: pulumi.Input<string>;
+    /**
+     * Priority level of the alert. One of `P1`, `P2`, `P3`, `P4`, or `P5`.
+     */
     priority?: pulumi.Input<string>;
     /**
+     * Deprecated and ignored. Custom proxy URLs are not supported.
+     *
      * @deprecated custom proxy URLs are not supported
      */
     proxyUrl?: pulumi.Input<string>;
+    /**
+     * Responders that Opsgenie will notify for the alert. See https://docs.opsgenie.com/docs/alert-api for accepted shapes.
+     */
     responders?: pulumi.Input<pulumi.Input<inputs.OpsgenieAlertNotifierResponder>[]>;
+    /**
+     * Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+     */
     sendResolved?: pulumi.Input<boolean>;
+    /**
+     * Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+     */
     slug?: pulumi.Input<string>;
+    /**
+     * Backlink to the sender of the notification. Supports Go templating.
+     */
     source?: pulumi.Input<string>;
+    /**
+     * Tags attached to the Opsgenie alert.
+     */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * If true, skip TLS certificate verification when calling the Opsgenie API. Disable only in trusted environments.
+     */
     tlsInsecureSkipVerify?: pulumi.Input<boolean>;
 }
 
@@ -152,25 +280,78 @@ export interface OpsgenieAlertNotifierState {
  * The set of arguments for constructing a OpsgenieAlertNotifier resource.
  */
 export interface OpsgenieAlertNotifierArgs {
+    /**
+     * Opsgenie API key used to authenticate requests. Treat as a secret.
+     */
     apiKey: pulumi.Input<string>;
+    /**
+     * Opsgenie API URL to send requests to (e.g. `https://api.opsgenie.com/`).
+     */
     apiUrl?: pulumi.Input<string>;
+    /**
+     * Password for HTTP basic auth when calling the Opsgenie API. Treat as a secret.
+     */
     basicAuthPassword?: pulumi.Input<string>;
+    /**
+     * Username for HTTP basic auth when calling the Opsgenie API. Mutually exclusive with `bearerToken`.
+     */
     basicAuthUsername?: pulumi.Input<string>;
+    /**
+     * Bearer token sent in the `Authorization` header when calling the Opsgenie API. Treat as a secret. Mutually exclusive with basic auth.
+     */
     bearerToken?: pulumi.Input<string>;
+    /**
+     * Detailed description of the alert. Supports Go templating.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * Arbitrary key/value pairs attached to the alert as additional context. Values support Go templating.
+     */
     details?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Alert text shown in Opsgenie. Supports Go templating.
+     */
     message?: pulumi.Input<string>;
+    /**
+     * Name of the responder team, schedule, or escalation policy.
+     */
     name: pulumi.Input<string>;
+    /**
+     * Additional note appended to the alert. Supports Go templating.
+     */
     note?: pulumi.Input<string>;
+    /**
+     * Priority level of the alert. One of `P1`, `P2`, `P3`, `P4`, or `P5`.
+     */
     priority?: pulumi.Input<string>;
     /**
+     * Deprecated and ignored. Custom proxy URLs are not supported.
+     *
      * @deprecated custom proxy URLs are not supported
      */
     proxyUrl?: pulumi.Input<string>;
+    /**
+     * Responders that Opsgenie will notify for the alert. See https://docs.opsgenie.com/docs/alert-api for accepted shapes.
+     */
     responders?: pulumi.Input<pulumi.Input<inputs.OpsgenieAlertNotifierResponder>[]>;
+    /**
+     * Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+     */
     sendResolved?: pulumi.Input<boolean>;
+    /**
+     * Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+     */
     slug?: pulumi.Input<string>;
+    /**
+     * Backlink to the sender of the notification. Supports Go templating.
+     */
     source?: pulumi.Input<string>;
+    /**
+     * Tags attached to the Opsgenie alert.
+     */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * If true, skip TLS certificate verification when calling the Opsgenie API. Disable only in trusted environments.
+     */
     tlsInsecureSkipVerify?: pulumi.Input<boolean>;
 }

@@ -17,23 +17,47 @@ public final class LogscaleActionSlackActionArgs extends com.pulumi.resources.Re
 
     public static final LogscaleActionSlackActionArgs Empty = new LogscaleActionSlackActionArgs();
 
+    /**
+     * Fields to include in the Slack message. Values support Go template syntax with the query result.
+     * 
+     */
     @Import(name="fields")
     private @Nullable Output<Map<String,String>> fields;
 
+    /**
+     * @return Fields to include in the Slack message. Values support Go template syntax with the query result.
+     * 
+     */
     public Optional<Output<Map<String,String>>> fields() {
         return Optional.ofNullable(this.fields);
     }
 
+    /**
+     * Slack incoming webhook URL to send the request to.
+     * 
+     */
     @Import(name="url", required=true)
     private Output<String> url;
 
+    /**
+     * @return Slack incoming webhook URL to send the request to.
+     * 
+     */
     public Output<String> url() {
         return this.url;
     }
 
+    /**
+     * If `true`, sends the request through the configured outbound proxy.
+     * 
+     */
     @Import(name="useProxy")
     private @Nullable Output<Boolean> useProxy;
 
+    /**
+     * @return If `true`, sends the request through the configured outbound proxy.
+     * 
+     */
     public Optional<Output<Boolean>> useProxy() {
         return Optional.ofNullable(this.useProxy);
     }
@@ -64,29 +88,65 @@ public final class LogscaleActionSlackActionArgs extends com.pulumi.resources.Re
             $ = new LogscaleActionSlackActionArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param fields Fields to include in the Slack message. Values support Go template syntax with the query result.
+         * 
+         * @return builder
+         * 
+         */
         public Builder fields(@Nullable Output<Map<String,String>> fields) {
             $.fields = fields;
             return this;
         }
 
+        /**
+         * @param fields Fields to include in the Slack message. Values support Go template syntax with the query result.
+         * 
+         * @return builder
+         * 
+         */
         public Builder fields(Map<String,String> fields) {
             return fields(Output.of(fields));
         }
 
+        /**
+         * @param url Slack incoming webhook URL to send the request to.
+         * 
+         * @return builder
+         * 
+         */
         public Builder url(Output<String> url) {
             $.url = url;
             return this;
         }
 
+        /**
+         * @param url Slack incoming webhook URL to send the request to.
+         * 
+         * @return builder
+         * 
+         */
         public Builder url(String url) {
             return url(Output.of(url));
         }
 
+        /**
+         * @param useProxy If `true`, sends the request through the configured outbound proxy.
+         * 
+         * @return builder
+         * 
+         */
         public Builder useProxy(@Nullable Output<Boolean> useProxy) {
             $.useProxy = useProxy;
             return this;
         }
 
+        /**
+         * @param useProxy If `true`, sends the request through the configured outbound proxy.
+         * 
+         * @return builder
+         * 
+         */
         public Builder useProxy(Boolean useProxy) {
             return useProxy(Output.of(useProxy));
         }

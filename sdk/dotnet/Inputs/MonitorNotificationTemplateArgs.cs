@@ -13,9 +13,15 @@ namespace Chronosphere.Pulumi.Inputs
 
     public sealed class MonitorNotificationTemplateArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Body/description template for the notification.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// Title template for the notification.
+        /// </summary>
         [Input("title")]
         public Input<string>? Title { get; set; }
 

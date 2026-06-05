@@ -9,9 +9,17 @@ import java.util.Objects;
 
 @CustomType
 public final class DerivedLabelSpanTagNameMapping {
+    /**
+     * @return Source span tag name to copy into the derived label.
+     * 
+     */
     private String sourceTag;
 
     private DerivedLabelSpanTagNameMapping() {}
+    /**
+     * @return Source span tag name to copy into the derived label.
+     * 
+     */
     public String sourceTag() {
         return this.sourceTag;
     }

@@ -20,51 +20,663 @@ import io.chronosphere.chronosphere.outputs.ServiceDataSourceResult;
 import java.util.concurrent.CompletableFuture;
 
 public final class ChronosphereFunctions {
+    /**
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.chronosphere.ChronosphereFunctions;
+     * import com.pulumi.chronosphere.inputs.BucketDataSourceArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var default = ChronosphereFunctions.BucketDataSource(BucketDataSourceArgs.builder()
+     *             .slug(&#34;default&#34;)
+     *             .build());
+     * 
+     *         final var byName = ChronosphereFunctions.BucketDataSource(BucketDataSourceArgs.builder()
+     *             .name(&#34;Default&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
     public static Output<BucketDataSourceResult> bucketDataSource() {
         return bucketDataSource(BucketDataSourceArgs.Empty, InvokeOptions.Empty);
     }
+    /**
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.chronosphere.ChronosphereFunctions;
+     * import com.pulumi.chronosphere.inputs.BucketDataSourceArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var default = ChronosphereFunctions.BucketDataSource(BucketDataSourceArgs.builder()
+     *             .slug(&#34;default&#34;)
+     *             .build());
+     * 
+     *         final var byName = ChronosphereFunctions.BucketDataSource(BucketDataSourceArgs.builder()
+     *             .name(&#34;Default&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
     public static CompletableFuture<BucketDataSourceResult> bucketDataSourcePlain() {
         return bucketDataSourcePlain(BucketDataSourcePlainArgs.Empty, InvokeOptions.Empty);
     }
+    /**
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.chronosphere.ChronosphereFunctions;
+     * import com.pulumi.chronosphere.inputs.BucketDataSourceArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var default = ChronosphereFunctions.BucketDataSource(BucketDataSourceArgs.builder()
+     *             .slug(&#34;default&#34;)
+     *             .build());
+     * 
+     *         final var byName = ChronosphereFunctions.BucketDataSource(BucketDataSourceArgs.builder()
+     *             .name(&#34;Default&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
     public static Output<BucketDataSourceResult> bucketDataSource(BucketDataSourceArgs args) {
         return bucketDataSource(args, InvokeOptions.Empty);
     }
+    /**
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.chronosphere.ChronosphereFunctions;
+     * import com.pulumi.chronosphere.inputs.BucketDataSourceArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var default = ChronosphereFunctions.BucketDataSource(BucketDataSourceArgs.builder()
+     *             .slug(&#34;default&#34;)
+     *             .build());
+     * 
+     *         final var byName = ChronosphereFunctions.BucketDataSource(BucketDataSourceArgs.builder()
+     *             .name(&#34;Default&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
     public static CompletableFuture<BucketDataSourceResult> bucketDataSourcePlain(BucketDataSourcePlainArgs args) {
         return bucketDataSourcePlain(args, InvokeOptions.Empty);
     }
+    /**
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.chronosphere.ChronosphereFunctions;
+     * import com.pulumi.chronosphere.inputs.BucketDataSourceArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var default = ChronosphereFunctions.BucketDataSource(BucketDataSourceArgs.builder()
+     *             .slug(&#34;default&#34;)
+     *             .build());
+     * 
+     *         final var byName = ChronosphereFunctions.BucketDataSource(BucketDataSourceArgs.builder()
+     *             .name(&#34;Default&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
     public static Output<BucketDataSourceResult> bucketDataSource(BucketDataSourceArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("chronosphere:index/bucketDataSource:BucketDataSource", TypeShape.of(BucketDataSourceResult.class), args, Utilities.withVersion(options));
     }
+    /**
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.chronosphere.ChronosphereFunctions;
+     * import com.pulumi.chronosphere.inputs.BucketDataSourceArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var default = ChronosphereFunctions.BucketDataSource(BucketDataSourceArgs.builder()
+     *             .slug(&#34;default&#34;)
+     *             .build());
+     * 
+     *         final var byName = ChronosphereFunctions.BucketDataSource(BucketDataSourceArgs.builder()
+     *             .name(&#34;Default&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
     public static CompletableFuture<BucketDataSourceResult> bucketDataSourcePlain(BucketDataSourcePlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("chronosphere:index/bucketDataSource:BucketDataSource", TypeShape.of(BucketDataSourceResult.class), args, Utilities.withVersion(options));
     }
+    /**
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.chronosphere.ChronosphereFunctions;
+     * import com.pulumi.chronosphere.inputs.CollectionDataSourceArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var default = ChronosphereFunctions.CollectionDataSource(CollectionDataSourceArgs.builder()
+     *             .slug(&#34;default&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
     public static Output<CollectionDataSourceResult> collectionDataSource() {
         return collectionDataSource(CollectionDataSourceArgs.Empty, InvokeOptions.Empty);
     }
+    /**
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.chronosphere.ChronosphereFunctions;
+     * import com.pulumi.chronosphere.inputs.CollectionDataSourceArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var default = ChronosphereFunctions.CollectionDataSource(CollectionDataSourceArgs.builder()
+     *             .slug(&#34;default&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
     public static CompletableFuture<CollectionDataSourceResult> collectionDataSourcePlain() {
         return collectionDataSourcePlain(CollectionDataSourcePlainArgs.Empty, InvokeOptions.Empty);
     }
+    /**
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.chronosphere.ChronosphereFunctions;
+     * import com.pulumi.chronosphere.inputs.CollectionDataSourceArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var default = ChronosphereFunctions.CollectionDataSource(CollectionDataSourceArgs.builder()
+     *             .slug(&#34;default&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
     public static Output<CollectionDataSourceResult> collectionDataSource(CollectionDataSourceArgs args) {
         return collectionDataSource(args, InvokeOptions.Empty);
     }
+    /**
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.chronosphere.ChronosphereFunctions;
+     * import com.pulumi.chronosphere.inputs.CollectionDataSourceArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var default = ChronosphereFunctions.CollectionDataSource(CollectionDataSourceArgs.builder()
+     *             .slug(&#34;default&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
     public static CompletableFuture<CollectionDataSourceResult> collectionDataSourcePlain(CollectionDataSourcePlainArgs args) {
         return collectionDataSourcePlain(args, InvokeOptions.Empty);
     }
+    /**
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.chronosphere.ChronosphereFunctions;
+     * import com.pulumi.chronosphere.inputs.CollectionDataSourceArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var default = ChronosphereFunctions.CollectionDataSource(CollectionDataSourceArgs.builder()
+     *             .slug(&#34;default&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
     public static Output<CollectionDataSourceResult> collectionDataSource(CollectionDataSourceArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("chronosphere:index/collectionDataSource:CollectionDataSource", TypeShape.of(CollectionDataSourceResult.class), args, Utilities.withVersion(options));
     }
+    /**
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.chronosphere.ChronosphereFunctions;
+     * import com.pulumi.chronosphere.inputs.CollectionDataSourceArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var default = ChronosphereFunctions.CollectionDataSource(CollectionDataSourceArgs.builder()
+     *             .slug(&#34;default&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
     public static CompletableFuture<CollectionDataSourceResult> collectionDataSourcePlain(CollectionDataSourcePlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("chronosphere:index/collectionDataSource:CollectionDataSource", TypeShape.of(CollectionDataSourceResult.class), args, Utilities.withVersion(options));
     }
+    /**
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.chronosphere.ChronosphereFunctions;
+     * import com.pulumi.chronosphere.inputs.ServiceDataSourceArgs;
+     * import com.pulumi.chronosphere.Monitor;
+     * import com.pulumi.chronosphere.MonitorArgs;
+     * import com.pulumi.chronosphere.inputs.MonitorQueryArgs;
+     * import com.pulumi.chronosphere.inputs.MonitorSeriesConditionsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var gateway = ChronosphereFunctions.ServiceDataSource(ServiceDataSourceArgs.builder()
+     *             .slug(&#34;gateway&#34;)
+     *             .build());
+     * 
+     *         var gatewayUp = new Monitor(&#34;gatewayUp&#34;, MonitorArgs.builder()        
+     *             .name(&#34;Gateway up&#34;)
+     *             .collectionId(gateway.applyValue(serviceDataSourceResult -&gt; serviceDataSourceResult.id()))
+     *             .query(MonitorQueryArgs.builder()
+     *                 .prometheusExpr(&#34;up{service=\&#34;gateway\&#34;}&#34;)
+     *                 .build())
+     *             .seriesConditions(MonitorSeriesConditionsArgs.builder()
+     *                 .conditions(MonitorSeriesConditionsConditionArgs.builder()
+     *                     .severity(&#34;warn&#34;)
+     *                     .value(1)
+     *                     .op(&#34;LT&#34;)
+     *                     .build())
+     *                 .build())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
     public static Output<ServiceDataSourceResult> serviceDataSource(ServiceDataSourceArgs args) {
         return serviceDataSource(args, InvokeOptions.Empty);
     }
+    /**
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.chronosphere.ChronosphereFunctions;
+     * import com.pulumi.chronosphere.inputs.ServiceDataSourceArgs;
+     * import com.pulumi.chronosphere.Monitor;
+     * import com.pulumi.chronosphere.MonitorArgs;
+     * import com.pulumi.chronosphere.inputs.MonitorQueryArgs;
+     * import com.pulumi.chronosphere.inputs.MonitorSeriesConditionsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var gateway = ChronosphereFunctions.ServiceDataSource(ServiceDataSourceArgs.builder()
+     *             .slug(&#34;gateway&#34;)
+     *             .build());
+     * 
+     *         var gatewayUp = new Monitor(&#34;gatewayUp&#34;, MonitorArgs.builder()        
+     *             .name(&#34;Gateway up&#34;)
+     *             .collectionId(gateway.applyValue(serviceDataSourceResult -&gt; serviceDataSourceResult.id()))
+     *             .query(MonitorQueryArgs.builder()
+     *                 .prometheusExpr(&#34;up{service=\&#34;gateway\&#34;}&#34;)
+     *                 .build())
+     *             .seriesConditions(MonitorSeriesConditionsArgs.builder()
+     *                 .conditions(MonitorSeriesConditionsConditionArgs.builder()
+     *                     .severity(&#34;warn&#34;)
+     *                     .value(1)
+     *                     .op(&#34;LT&#34;)
+     *                     .build())
+     *                 .build())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
     public static CompletableFuture<ServiceDataSourceResult> serviceDataSourcePlain(ServiceDataSourcePlainArgs args) {
         return serviceDataSourcePlain(args, InvokeOptions.Empty);
     }
+    /**
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.chronosphere.ChronosphereFunctions;
+     * import com.pulumi.chronosphere.inputs.ServiceDataSourceArgs;
+     * import com.pulumi.chronosphere.Monitor;
+     * import com.pulumi.chronosphere.MonitorArgs;
+     * import com.pulumi.chronosphere.inputs.MonitorQueryArgs;
+     * import com.pulumi.chronosphere.inputs.MonitorSeriesConditionsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var gateway = ChronosphereFunctions.ServiceDataSource(ServiceDataSourceArgs.builder()
+     *             .slug(&#34;gateway&#34;)
+     *             .build());
+     * 
+     *         var gatewayUp = new Monitor(&#34;gatewayUp&#34;, MonitorArgs.builder()        
+     *             .name(&#34;Gateway up&#34;)
+     *             .collectionId(gateway.applyValue(serviceDataSourceResult -&gt; serviceDataSourceResult.id()))
+     *             .query(MonitorQueryArgs.builder()
+     *                 .prometheusExpr(&#34;up{service=\&#34;gateway\&#34;}&#34;)
+     *                 .build())
+     *             .seriesConditions(MonitorSeriesConditionsArgs.builder()
+     *                 .conditions(MonitorSeriesConditionsConditionArgs.builder()
+     *                     .severity(&#34;warn&#34;)
+     *                     .value(1)
+     *                     .op(&#34;LT&#34;)
+     *                     .build())
+     *                 .build())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
     public static Output<ServiceDataSourceResult> serviceDataSource(ServiceDataSourceArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("chronosphere:index/serviceDataSource:ServiceDataSource", TypeShape.of(ServiceDataSourceResult.class), args, Utilities.withVersion(options));
     }
+    /**
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.chronosphere.ChronosphereFunctions;
+     * import com.pulumi.chronosphere.inputs.ServiceDataSourceArgs;
+     * import com.pulumi.chronosphere.Monitor;
+     * import com.pulumi.chronosphere.MonitorArgs;
+     * import com.pulumi.chronosphere.inputs.MonitorQueryArgs;
+     * import com.pulumi.chronosphere.inputs.MonitorSeriesConditionsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var gateway = ChronosphereFunctions.ServiceDataSource(ServiceDataSourceArgs.builder()
+     *             .slug(&#34;gateway&#34;)
+     *             .build());
+     * 
+     *         var gatewayUp = new Monitor(&#34;gatewayUp&#34;, MonitorArgs.builder()        
+     *             .name(&#34;Gateway up&#34;)
+     *             .collectionId(gateway.applyValue(serviceDataSourceResult -&gt; serviceDataSourceResult.id()))
+     *             .query(MonitorQueryArgs.builder()
+     *                 .prometheusExpr(&#34;up{service=\&#34;gateway\&#34;}&#34;)
+     *                 .build())
+     *             .seriesConditions(MonitorSeriesConditionsArgs.builder()
+     *                 .conditions(MonitorSeriesConditionsConditionArgs.builder()
+     *                     .severity(&#34;warn&#34;)
+     *                     .value(1)
+     *                     .op(&#34;LT&#34;)
+     *                     .build())
+     *                 .build())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
     public static CompletableFuture<ServiceDataSourceResult> serviceDataSourcePlain(ServiceDataSourcePlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("chronosphere:index/serviceDataSource:ServiceDataSource", TypeShape.of(ServiceDataSourceResult.class), args, Utilities.withVersion(options));
     }

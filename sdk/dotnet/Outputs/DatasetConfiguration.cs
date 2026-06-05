@@ -14,8 +14,17 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class DatasetConfiguration
     {
+        /// <summary>
+        /// Log-specific dataset configuration. Set only when `type` is a log type.
+        /// </summary>
         public readonly Outputs.DatasetConfigurationLogDataset? LogDataset;
+        /// <summary>
+        /// Trace-specific dataset configuration. Set only when `type` is a trace type.
+        /// </summary>
         public readonly Outputs.DatasetConfigurationTraceDataset? TraceDataset;
+        /// <summary>
+        /// Dataset type. Determines which of `trace_dataset` or `log_dataset` must be set.
+        /// </summary>
         public readonly string Type;
 
         [OutputConstructor]

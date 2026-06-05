@@ -18,9 +18,16 @@ import (
 type Provider struct {
 	pulumi.ProviderResourceState
 
-	ApiToken        pulumi.StringPtrOutput `pulumi:"apiToken"`
+	// API token used to authenticate against the Chronosphere API. Treat as a secret. Falls back to the
+	// `CHRONOSPHERE_API_TOKEN` environment variable.
+	ApiToken pulumi.StringPtrOutput `pulumi:"apiToken"`
+	// Optional namespace prefix applied to entity slugs managed by this provider instance, so multiple Terraform
+	// configurations can coexist in one Chronosphere org. Falls back to the `CHRONOSPHERE_ENTITY_NAMESPACE` environment
+	// variable.
 	EntityNamespace pulumi.StringPtrOutput `pulumi:"entityNamespace"`
-	Org             pulumi.StringPtrOutput `pulumi:"org"`
+	// Chronosphere organization name (the subdomain of `<org>.chronosphere.io`). Falls back to the `CHRONOSPHERE_ORG` or
+	// `CHRONOSPHERE_ORG_NAME` environment variables.
+	Org pulumi.StringPtrOutput `pulumi:"org"`
 }
 
 // NewProvider registers a new resource with the given unique name, arguments, and options.
@@ -57,20 +64,42 @@ func NewProvider(ctx *pulumi.Context,
 }
 
 type providerArgs struct {
-	ApiToken        *string `pulumi:"apiToken"`
-	DisableDryrun   *bool   `pulumi:"disableDryrun"`
+	// API token used to authenticate against the Chronosphere API. Treat as a secret. Falls back to the
+	// `CHRONOSPHERE_API_TOKEN` environment variable.
+	ApiToken *string `pulumi:"apiToken"`
+	// Disable the dry-run validation step that runs before every apply. Falls back to the
+	// `CHRONOSPHERE_DRY_RUN_VALIDATION_DISABLED` environment variable (set to `1` to disable).
+	DisableDryrun *bool `pulumi:"disableDryrun"`
+	// Optional namespace prefix applied to entity slugs managed by this provider instance, so multiple Terraform
+	// configurations can coexist in one Chronosphere org. Falls back to the `CHRONOSPHERE_ENTITY_NAMESPACE` environment
+	// variable.
 	EntityNamespace *string `pulumi:"entityNamespace"`
-	Org             *string `pulumi:"org"`
-	Unstable        *bool   `pulumi:"unstable"`
+	// Chronosphere organization name (the subdomain of `<org>.chronosphere.io`). Falls back to the `CHRONOSPHERE_ORG` or
+	// `CHRONOSPHERE_ORG_NAME` environment variables.
+	Org *string `pulumi:"org"`
+	// Opt into resources and behaviors backed by Chronosphere's unstable config API. Subject to breaking change without
+	// notice. Falls back to the `CHRONOSPHERE_UNSTABLE` environment variable (set to `1` to enable).
+	Unstable *bool `pulumi:"unstable"`
 }
 
 // The set of arguments for constructing a Provider resource.
 type ProviderArgs struct {
-	ApiToken        pulumi.StringPtrInput
-	DisableDryrun   pulumi.BoolPtrInput
+	// API token used to authenticate against the Chronosphere API. Treat as a secret. Falls back to the
+	// `CHRONOSPHERE_API_TOKEN` environment variable.
+	ApiToken pulumi.StringPtrInput
+	// Disable the dry-run validation step that runs before every apply. Falls back to the
+	// `CHRONOSPHERE_DRY_RUN_VALIDATION_DISABLED` environment variable (set to `1` to disable).
+	DisableDryrun pulumi.BoolPtrInput
+	// Optional namespace prefix applied to entity slugs managed by this provider instance, so multiple Terraform
+	// configurations can coexist in one Chronosphere org. Falls back to the `CHRONOSPHERE_ENTITY_NAMESPACE` environment
+	// variable.
 	EntityNamespace pulumi.StringPtrInput
-	Org             pulumi.StringPtrInput
-	Unstable        pulumi.BoolPtrInput
+	// Chronosphere organization name (the subdomain of `<org>.chronosphere.io`). Falls back to the `CHRONOSPHERE_ORG` or
+	// `CHRONOSPHERE_ORG_NAME` environment variables.
+	Org pulumi.StringPtrInput
+	// Opt into resources and behaviors backed by Chronosphere's unstable config API. Subject to breaking change without
+	// notice. Falls back to the `CHRONOSPHERE_UNSTABLE` environment variable (set to `1` to enable).
+	Unstable pulumi.BoolPtrInput
 }
 
 func (ProviderArgs) ElementType() reflect.Type {
@@ -110,14 +139,21 @@ func (o ProviderOutput) ToProviderOutputWithContext(ctx context.Context) Provide
 	return o
 }
 
+// API token used to authenticate against the Chronosphere API. Treat as a secret. Falls back to the
+// `CHRONOSPHERE_API_TOKEN` environment variable.
 func (o ProviderOutput) ApiToken() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.ApiToken }).(pulumi.StringPtrOutput)
 }
 
+// Optional namespace prefix applied to entity slugs managed by this provider instance, so multiple Terraform
+// configurations can coexist in one Chronosphere org. Falls back to the `CHRONOSPHERE_ENTITY_NAMESPACE` environment
+// variable.
 func (o ProviderOutput) EntityNamespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.EntityNamespace }).(pulumi.StringPtrOutput)
 }
 
+// Chronosphere organization name (the subdomain of `<org>.chronosphere.io`). Falls back to the `CHRONOSPHERE_ORG` or
+// `CHRONOSPHERE_ORG_NAME` environment variables.
 func (o ProviderOutput) Org() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.Org }).(pulumi.StringPtrOutput)
 }

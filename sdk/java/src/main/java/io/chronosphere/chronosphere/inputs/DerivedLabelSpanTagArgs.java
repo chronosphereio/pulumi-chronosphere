@@ -16,9 +16,17 @@ public final class DerivedLabelSpanTagArgs extends com.pulumi.resources.Resource
 
     public static final DerivedLabelSpanTagArgs Empty = new DerivedLabelSpanTagArgs();
 
+    /**
+     * Ordered list of name mappings. The first mapping that matches supplies the derived label from its `source_tag`.
+     * 
+     */
     @Import(name="nameMappings")
     private @Nullable Output<List<DerivedLabelSpanTagNameMappingArgs>> nameMappings;
 
+    /**
+     * @return Ordered list of name mappings. The first mapping that matches supplies the derived label from its `source_tag`.
+     * 
+     */
     public Optional<Output<List<DerivedLabelSpanTagNameMappingArgs>>> nameMappings() {
         return Optional.ofNullable(this.nameMappings);
     }
@@ -47,15 +55,33 @@ public final class DerivedLabelSpanTagArgs extends com.pulumi.resources.Resource
             $ = new DerivedLabelSpanTagArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param nameMappings Ordered list of name mappings. The first mapping that matches supplies the derived label from its `source_tag`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder nameMappings(@Nullable Output<List<DerivedLabelSpanTagNameMappingArgs>> nameMappings) {
             $.nameMappings = nameMappings;
             return this;
         }
 
+        /**
+         * @param nameMappings Ordered list of name mappings. The first mapping that matches supplies the derived label from its `source_tag`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder nameMappings(List<DerivedLabelSpanTagNameMappingArgs> nameMappings) {
             return nameMappings(Output.of(nameMappings));
         }
 
+        /**
+         * @param nameMappings Ordered list of name mappings. The first mapping that matches supplies the derived label from its `source_tag`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder nameMappings(DerivedLabelSpanTagNameMappingArgs... nameMappings) {
             return nameMappings(List.of(nameMappings));
         }

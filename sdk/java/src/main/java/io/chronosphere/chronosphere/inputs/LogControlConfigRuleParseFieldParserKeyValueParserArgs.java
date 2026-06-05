@@ -15,23 +15,47 @@ public final class LogControlConfigRuleParseFieldParserKeyValueParserArgs extend
 
     public static final LogControlConfigRuleParseFieldParserKeyValueParserArgs Empty = new LogControlConfigRuleParseFieldParserKeyValueParserArgs();
 
+    /**
+     * String used to split the input into individual key/value pairs.
+     * 
+     */
     @Import(name="delimiter", required=true)
     private Output<String> delimiter;
 
+    /**
+     * @return String used to split the input into individual key/value pairs.
+     * 
+     */
     public Output<String> delimiter() {
         return this.delimiter;
     }
 
+    /**
+     * String used to split each pair into a key and value.
+     * 
+     */
     @Import(name="pairSeparator", required=true)
     private Output<String> pairSeparator;
 
+    /**
+     * @return String used to split each pair into a key and value.
+     * 
+     */
     public Output<String> pairSeparator() {
         return this.pairSeparator;
     }
 
+    /**
+     * Unicode code points to trim from the beginning and end of each key and value.
+     * 
+     */
     @Import(name="trimSet")
     private @Nullable Output<String> trimSet;
 
+    /**
+     * @return Unicode code points to trim from the beginning and end of each key and value.
+     * 
+     */
     public Optional<Output<String>> trimSet() {
         return Optional.ofNullable(this.trimSet);
     }
@@ -62,29 +86,65 @@ public final class LogControlConfigRuleParseFieldParserKeyValueParserArgs extend
             $ = new LogControlConfigRuleParseFieldParserKeyValueParserArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param delimiter String used to split the input into individual key/value pairs.
+         * 
+         * @return builder
+         * 
+         */
         public Builder delimiter(Output<String> delimiter) {
             $.delimiter = delimiter;
             return this;
         }
 
+        /**
+         * @param delimiter String used to split the input into individual key/value pairs.
+         * 
+         * @return builder
+         * 
+         */
         public Builder delimiter(String delimiter) {
             return delimiter(Output.of(delimiter));
         }
 
+        /**
+         * @param pairSeparator String used to split each pair into a key and value.
+         * 
+         * @return builder
+         * 
+         */
         public Builder pairSeparator(Output<String> pairSeparator) {
             $.pairSeparator = pairSeparator;
             return this;
         }
 
+        /**
+         * @param pairSeparator String used to split each pair into a key and value.
+         * 
+         * @return builder
+         * 
+         */
         public Builder pairSeparator(String pairSeparator) {
             return pairSeparator(Output.of(pairSeparator));
         }
 
+        /**
+         * @param trimSet Unicode code points to trim from the beginning and end of each key and value.
+         * 
+         * @return builder
+         * 
+         */
         public Builder trimSet(@Nullable Output<String> trimSet) {
             $.trimSet = trimSet;
             return this;
         }
 
+        /**
+         * @param trimSet Unicode code points to trim from the beginning and end of each key and value.
+         * 
+         * @return builder
+         * 
+         */
         public Builder trimSet(String trimSet) {
             return trimSet(Output.of(trimSet));
         }

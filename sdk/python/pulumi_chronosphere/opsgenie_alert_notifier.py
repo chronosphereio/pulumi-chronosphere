@@ -36,6 +36,24 @@ class OpsgenieAlertNotifierArgs:
                  tls_insecure_skip_verify: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a OpsgenieAlertNotifier resource.
+        :param pulumi.Input[str] api_key: Opsgenie API key used to authenticate requests. Treat as a secret.
+        :param pulumi.Input[str] name: Name of the responder team, schedule, or escalation policy.
+        :param pulumi.Input[str] api_url: Opsgenie API URL to send requests to (e.g. `https://api.opsgenie.com/`).
+        :param pulumi.Input[str] basic_auth_password: Password for HTTP basic auth when calling the Opsgenie API. Treat as a secret.
+        :param pulumi.Input[str] basic_auth_username: Username for HTTP basic auth when calling the Opsgenie API. Mutually exclusive with `bearer_token`.
+        :param pulumi.Input[str] bearer_token: Bearer token sent in the `Authorization` header when calling the Opsgenie API. Treat as a secret. Mutually exclusive with basic auth.
+        :param pulumi.Input[str] description: Detailed description of the alert. Supports Go templating.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] details: Arbitrary key/value pairs attached to the alert as additional context. Values support Go templating.
+        :param pulumi.Input[str] message: Alert text shown in Opsgenie. Supports Go templating.
+        :param pulumi.Input[str] note: Additional note appended to the alert. Supports Go templating.
+        :param pulumi.Input[str] priority: Priority level of the alert. One of `P1`, `P2`, `P3`, `P4`, or `P5`.
+        :param pulumi.Input[str] proxy_url: Deprecated and ignored. Custom proxy URLs are not supported.
+        :param pulumi.Input[Sequence[pulumi.Input['OpsgenieAlertNotifierResponderArgs']]] responders: Responders that Opsgenie will notify for the alert. See https://docs.opsgenie.com/docs/alert-api for accepted shapes.
+        :param pulumi.Input[bool] send_resolved: Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+        :param pulumi.Input[str] slug: Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[str] source: Backlink to the sender of the notification. Supports Go templating.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: Tags attached to the Opsgenie alert.
+        :param pulumi.Input[bool] tls_insecure_skip_verify: If true, skip TLS certificate verification when calling the Opsgenie API. Disable only in trusted environments.
         """
         pulumi.set(__self__, "api_key", api_key)
         pulumi.set(__self__, "name", name)
@@ -78,6 +96,9 @@ class OpsgenieAlertNotifierArgs:
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Input[str]:
+        """
+        Opsgenie API key used to authenticate requests. Treat as a secret.
+        """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
@@ -87,6 +108,9 @@ class OpsgenieAlertNotifierArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        Name of the responder team, schedule, or escalation policy.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -96,6 +120,9 @@ class OpsgenieAlertNotifierArgs:
     @property
     @pulumi.getter(name="apiUrl")
     def api_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        Opsgenie API URL to send requests to (e.g. `https://api.opsgenie.com/`).
+        """
         return pulumi.get(self, "api_url")
 
     @api_url.setter
@@ -105,6 +132,9 @@ class OpsgenieAlertNotifierArgs:
     @property
     @pulumi.getter(name="basicAuthPassword")
     def basic_auth_password(self) -> Optional[pulumi.Input[str]]:
+        """
+        Password for HTTP basic auth when calling the Opsgenie API. Treat as a secret.
+        """
         return pulumi.get(self, "basic_auth_password")
 
     @basic_auth_password.setter
@@ -114,6 +144,9 @@ class OpsgenieAlertNotifierArgs:
     @property
     @pulumi.getter(name="basicAuthUsername")
     def basic_auth_username(self) -> Optional[pulumi.Input[str]]:
+        """
+        Username for HTTP basic auth when calling the Opsgenie API. Mutually exclusive with `bearer_token`.
+        """
         return pulumi.get(self, "basic_auth_username")
 
     @basic_auth_username.setter
@@ -123,6 +156,9 @@ class OpsgenieAlertNotifierArgs:
     @property
     @pulumi.getter(name="bearerToken")
     def bearer_token(self) -> Optional[pulumi.Input[str]]:
+        """
+        Bearer token sent in the `Authorization` header when calling the Opsgenie API. Treat as a secret. Mutually exclusive with basic auth.
+        """
         return pulumi.get(self, "bearer_token")
 
     @bearer_token.setter
@@ -132,6 +168,9 @@ class OpsgenieAlertNotifierArgs:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Detailed description of the alert. Supports Go templating.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -141,6 +180,9 @@ class OpsgenieAlertNotifierArgs:
     @property
     @pulumi.getter
     def details(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Arbitrary key/value pairs attached to the alert as additional context. Values support Go templating.
+        """
         return pulumi.get(self, "details")
 
     @details.setter
@@ -150,6 +192,9 @@ class OpsgenieAlertNotifierArgs:
     @property
     @pulumi.getter
     def message(self) -> Optional[pulumi.Input[str]]:
+        """
+        Alert text shown in Opsgenie. Supports Go templating.
+        """
         return pulumi.get(self, "message")
 
     @message.setter
@@ -159,6 +204,9 @@ class OpsgenieAlertNotifierArgs:
     @property
     @pulumi.getter
     def note(self) -> Optional[pulumi.Input[str]]:
+        """
+        Additional note appended to the alert. Supports Go templating.
+        """
         return pulumi.get(self, "note")
 
     @note.setter
@@ -168,6 +216,9 @@ class OpsgenieAlertNotifierArgs:
     @property
     @pulumi.getter
     def priority(self) -> Optional[pulumi.Input[str]]:
+        """
+        Priority level of the alert. One of `P1`, `P2`, `P3`, `P4`, or `P5`.
+        """
         return pulumi.get(self, "priority")
 
     @priority.setter
@@ -177,6 +228,9 @@ class OpsgenieAlertNotifierArgs:
     @property
     @pulumi.getter(name="proxyUrl")
     def proxy_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        Deprecated and ignored. Custom proxy URLs are not supported.
+        """
         warnings.warn("""custom proxy URLs are not supported""", DeprecationWarning)
         pulumi.log.warn("""proxy_url is deprecated: custom proxy URLs are not supported""")
 
@@ -189,6 +243,9 @@ class OpsgenieAlertNotifierArgs:
     @property
     @pulumi.getter
     def responders(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['OpsgenieAlertNotifierResponderArgs']]]]:
+        """
+        Responders that Opsgenie will notify for the alert. See https://docs.opsgenie.com/docs/alert-api for accepted shapes.
+        """
         return pulumi.get(self, "responders")
 
     @responders.setter
@@ -198,6 +255,9 @@ class OpsgenieAlertNotifierArgs:
     @property
     @pulumi.getter(name="sendResolved")
     def send_resolved(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+        """
         return pulumi.get(self, "send_resolved")
 
     @send_resolved.setter
@@ -207,6 +267,9 @@ class OpsgenieAlertNotifierArgs:
     @property
     @pulumi.getter
     def slug(self) -> Optional[pulumi.Input[str]]:
+        """
+        Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @slug.setter
@@ -216,6 +279,9 @@ class OpsgenieAlertNotifierArgs:
     @property
     @pulumi.getter
     def source(self) -> Optional[pulumi.Input[str]]:
+        """
+        Backlink to the sender of the notification. Supports Go templating.
+        """
         return pulumi.get(self, "source")
 
     @source.setter
@@ -225,6 +291,9 @@ class OpsgenieAlertNotifierArgs:
     @property
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Tags attached to the Opsgenie alert.
+        """
         return pulumi.get(self, "tags")
 
     @tags.setter
@@ -234,6 +303,9 @@ class OpsgenieAlertNotifierArgs:
     @property
     @pulumi.getter(name="tlsInsecureSkipVerify")
     def tls_insecure_skip_verify(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If true, skip TLS certificate verification when calling the Opsgenie API. Disable only in trusted environments.
+        """
         return pulumi.get(self, "tls_insecure_skip_verify")
 
     @tls_insecure_skip_verify.setter
@@ -264,6 +336,24 @@ class _OpsgenieAlertNotifierState:
                  tls_insecure_skip_verify: Optional[pulumi.Input[bool]] = None):
         """
         Input properties used for looking up and filtering OpsgenieAlertNotifier resources.
+        :param pulumi.Input[str] api_key: Opsgenie API key used to authenticate requests. Treat as a secret.
+        :param pulumi.Input[str] api_url: Opsgenie API URL to send requests to (e.g. `https://api.opsgenie.com/`).
+        :param pulumi.Input[str] basic_auth_password: Password for HTTP basic auth when calling the Opsgenie API. Treat as a secret.
+        :param pulumi.Input[str] basic_auth_username: Username for HTTP basic auth when calling the Opsgenie API. Mutually exclusive with `bearer_token`.
+        :param pulumi.Input[str] bearer_token: Bearer token sent in the `Authorization` header when calling the Opsgenie API. Treat as a secret. Mutually exclusive with basic auth.
+        :param pulumi.Input[str] description: Detailed description of the alert. Supports Go templating.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] details: Arbitrary key/value pairs attached to the alert as additional context. Values support Go templating.
+        :param pulumi.Input[str] message: Alert text shown in Opsgenie. Supports Go templating.
+        :param pulumi.Input[str] name: Name of the responder team, schedule, or escalation policy.
+        :param pulumi.Input[str] note: Additional note appended to the alert. Supports Go templating.
+        :param pulumi.Input[str] priority: Priority level of the alert. One of `P1`, `P2`, `P3`, `P4`, or `P5`.
+        :param pulumi.Input[str] proxy_url: Deprecated and ignored. Custom proxy URLs are not supported.
+        :param pulumi.Input[Sequence[pulumi.Input['OpsgenieAlertNotifierResponderArgs']]] responders: Responders that Opsgenie will notify for the alert. See https://docs.opsgenie.com/docs/alert-api for accepted shapes.
+        :param pulumi.Input[bool] send_resolved: Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+        :param pulumi.Input[str] slug: Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[str] source: Backlink to the sender of the notification. Supports Go templating.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: Tags attached to the Opsgenie alert.
+        :param pulumi.Input[bool] tls_insecure_skip_verify: If true, skip TLS certificate verification when calling the Opsgenie API. Disable only in trusted environments.
         """
         if api_key is not None:
             pulumi.set(__self__, "api_key", api_key)
@@ -308,6 +398,9 @@ class _OpsgenieAlertNotifierState:
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        Opsgenie API key used to authenticate requests. Treat as a secret.
+        """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
@@ -317,6 +410,9 @@ class _OpsgenieAlertNotifierState:
     @property
     @pulumi.getter(name="apiUrl")
     def api_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        Opsgenie API URL to send requests to (e.g. `https://api.opsgenie.com/`).
+        """
         return pulumi.get(self, "api_url")
 
     @api_url.setter
@@ -326,6 +422,9 @@ class _OpsgenieAlertNotifierState:
     @property
     @pulumi.getter(name="basicAuthPassword")
     def basic_auth_password(self) -> Optional[pulumi.Input[str]]:
+        """
+        Password for HTTP basic auth when calling the Opsgenie API. Treat as a secret.
+        """
         return pulumi.get(self, "basic_auth_password")
 
     @basic_auth_password.setter
@@ -335,6 +434,9 @@ class _OpsgenieAlertNotifierState:
     @property
     @pulumi.getter(name="basicAuthUsername")
     def basic_auth_username(self) -> Optional[pulumi.Input[str]]:
+        """
+        Username for HTTP basic auth when calling the Opsgenie API. Mutually exclusive with `bearer_token`.
+        """
         return pulumi.get(self, "basic_auth_username")
 
     @basic_auth_username.setter
@@ -344,6 +446,9 @@ class _OpsgenieAlertNotifierState:
     @property
     @pulumi.getter(name="bearerToken")
     def bearer_token(self) -> Optional[pulumi.Input[str]]:
+        """
+        Bearer token sent in the `Authorization` header when calling the Opsgenie API. Treat as a secret. Mutually exclusive with basic auth.
+        """
         return pulumi.get(self, "bearer_token")
 
     @bearer_token.setter
@@ -353,6 +458,9 @@ class _OpsgenieAlertNotifierState:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Detailed description of the alert. Supports Go templating.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -362,6 +470,9 @@ class _OpsgenieAlertNotifierState:
     @property
     @pulumi.getter
     def details(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Arbitrary key/value pairs attached to the alert as additional context. Values support Go templating.
+        """
         return pulumi.get(self, "details")
 
     @details.setter
@@ -371,6 +482,9 @@ class _OpsgenieAlertNotifierState:
     @property
     @pulumi.getter
     def message(self) -> Optional[pulumi.Input[str]]:
+        """
+        Alert text shown in Opsgenie. Supports Go templating.
+        """
         return pulumi.get(self, "message")
 
     @message.setter
@@ -380,6 +494,9 @@ class _OpsgenieAlertNotifierState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the responder team, schedule, or escalation policy.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -389,6 +506,9 @@ class _OpsgenieAlertNotifierState:
     @property
     @pulumi.getter
     def note(self) -> Optional[pulumi.Input[str]]:
+        """
+        Additional note appended to the alert. Supports Go templating.
+        """
         return pulumi.get(self, "note")
 
     @note.setter
@@ -398,6 +518,9 @@ class _OpsgenieAlertNotifierState:
     @property
     @pulumi.getter
     def priority(self) -> Optional[pulumi.Input[str]]:
+        """
+        Priority level of the alert. One of `P1`, `P2`, `P3`, `P4`, or `P5`.
+        """
         return pulumi.get(self, "priority")
 
     @priority.setter
@@ -407,6 +530,9 @@ class _OpsgenieAlertNotifierState:
     @property
     @pulumi.getter(name="proxyUrl")
     def proxy_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        Deprecated and ignored. Custom proxy URLs are not supported.
+        """
         warnings.warn("""custom proxy URLs are not supported""", DeprecationWarning)
         pulumi.log.warn("""proxy_url is deprecated: custom proxy URLs are not supported""")
 
@@ -419,6 +545,9 @@ class _OpsgenieAlertNotifierState:
     @property
     @pulumi.getter
     def responders(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['OpsgenieAlertNotifierResponderArgs']]]]:
+        """
+        Responders that Opsgenie will notify for the alert. See https://docs.opsgenie.com/docs/alert-api for accepted shapes.
+        """
         return pulumi.get(self, "responders")
 
     @responders.setter
@@ -428,6 +557,9 @@ class _OpsgenieAlertNotifierState:
     @property
     @pulumi.getter(name="sendResolved")
     def send_resolved(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+        """
         return pulumi.get(self, "send_resolved")
 
     @send_resolved.setter
@@ -437,6 +569,9 @@ class _OpsgenieAlertNotifierState:
     @property
     @pulumi.getter
     def slug(self) -> Optional[pulumi.Input[str]]:
+        """
+        Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @slug.setter
@@ -446,6 +581,9 @@ class _OpsgenieAlertNotifierState:
     @property
     @pulumi.getter
     def source(self) -> Optional[pulumi.Input[str]]:
+        """
+        Backlink to the sender of the notification. Supports Go templating.
+        """
         return pulumi.get(self, "source")
 
     @source.setter
@@ -455,6 +593,9 @@ class _OpsgenieAlertNotifierState:
     @property
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Tags attached to the Opsgenie alert.
+        """
         return pulumi.get(self, "tags")
 
     @tags.setter
@@ -464,6 +605,9 @@ class _OpsgenieAlertNotifierState:
     @property
     @pulumi.getter(name="tlsInsecureSkipVerify")
     def tls_insecure_skip_verify(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If true, skip TLS certificate verification when calling the Opsgenie API. Disable only in trusted environments.
+        """
         return pulumi.get(self, "tls_insecure_skip_verify")
 
     @tls_insecure_skip_verify.setter
@@ -496,9 +640,46 @@ class OpsgenieAlertNotifier(pulumi.CustomResource):
                  tls_insecure_skip_verify: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
-        Create a OpsgenieAlertNotifier resource with the given unique name, props, and options.
+        OpsGenie notifier that delivers monitor signals to OpsGenie as alerts via its API integration. Referenced from notification policies.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_chronosphere as chronosphere
+
+        opsgenie = chronosphere.OpsgenieAlertNotifier("opsgenie",
+            api_key="XXXXX",
+            api_url="https://api.opsgenie.com/",
+            name="infra_compute_opsgenie",
+            priority="P1",
+            responders=[chronosphere.OpsgenieAlertNotifierResponderArgs(
+                name="Productivity Platform - Compute",
+                type="TEAM",
+            )],
+            send_resolved=True)
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] api_key: Opsgenie API key used to authenticate requests. Treat as a secret.
+        :param pulumi.Input[str] api_url: Opsgenie API URL to send requests to (e.g. `https://api.opsgenie.com/`).
+        :param pulumi.Input[str] basic_auth_password: Password for HTTP basic auth when calling the Opsgenie API. Treat as a secret.
+        :param pulumi.Input[str] basic_auth_username: Username for HTTP basic auth when calling the Opsgenie API. Mutually exclusive with `bearer_token`.
+        :param pulumi.Input[str] bearer_token: Bearer token sent in the `Authorization` header when calling the Opsgenie API. Treat as a secret. Mutually exclusive with basic auth.
+        :param pulumi.Input[str] description: Detailed description of the alert. Supports Go templating.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] details: Arbitrary key/value pairs attached to the alert as additional context. Values support Go templating.
+        :param pulumi.Input[str] message: Alert text shown in Opsgenie. Supports Go templating.
+        :param pulumi.Input[str] name: Name of the responder team, schedule, or escalation policy.
+        :param pulumi.Input[str] note: Additional note appended to the alert. Supports Go templating.
+        :param pulumi.Input[str] priority: Priority level of the alert. One of `P1`, `P2`, `P3`, `P4`, or `P5`.
+        :param pulumi.Input[str] proxy_url: Deprecated and ignored. Custom proxy URLs are not supported.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['OpsgenieAlertNotifierResponderArgs']]]] responders: Responders that Opsgenie will notify for the alert. See https://docs.opsgenie.com/docs/alert-api for accepted shapes.
+        :param pulumi.Input[bool] send_resolved: Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+        :param pulumi.Input[str] slug: Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[str] source: Backlink to the sender of the notification. Supports Go templating.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: Tags attached to the Opsgenie alert.
+        :param pulumi.Input[bool] tls_insecure_skip_verify: If true, skip TLS certificate verification when calling the Opsgenie API. Disable only in trusted environments.
         """
         ...
     @overload
@@ -507,7 +688,26 @@ class OpsgenieAlertNotifier(pulumi.CustomResource):
                  args: OpsgenieAlertNotifierArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a OpsgenieAlertNotifier resource with the given unique name, props, and options.
+        OpsGenie notifier that delivers monitor signals to OpsGenie as alerts via its API integration. Referenced from notification policies.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_chronosphere as chronosphere
+
+        opsgenie = chronosphere.OpsgenieAlertNotifier("opsgenie",
+            api_key="XXXXX",
+            api_url="https://api.opsgenie.com/",
+            name="infra_compute_opsgenie",
+            priority="P1",
+            responders=[chronosphere.OpsgenieAlertNotifierResponderArgs(
+                name="Productivity Platform - Compute",
+                type="TEAM",
+            )],
+            send_resolved=True)
+        ```
+
         :param str resource_name: The name of the resource.
         :param OpsgenieAlertNotifierArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -609,6 +809,24 @@ class OpsgenieAlertNotifier(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] api_key: Opsgenie API key used to authenticate requests. Treat as a secret.
+        :param pulumi.Input[str] api_url: Opsgenie API URL to send requests to (e.g. `https://api.opsgenie.com/`).
+        :param pulumi.Input[str] basic_auth_password: Password for HTTP basic auth when calling the Opsgenie API. Treat as a secret.
+        :param pulumi.Input[str] basic_auth_username: Username for HTTP basic auth when calling the Opsgenie API. Mutually exclusive with `bearer_token`.
+        :param pulumi.Input[str] bearer_token: Bearer token sent in the `Authorization` header when calling the Opsgenie API. Treat as a secret. Mutually exclusive with basic auth.
+        :param pulumi.Input[str] description: Detailed description of the alert. Supports Go templating.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] details: Arbitrary key/value pairs attached to the alert as additional context. Values support Go templating.
+        :param pulumi.Input[str] message: Alert text shown in Opsgenie. Supports Go templating.
+        :param pulumi.Input[str] name: Name of the responder team, schedule, or escalation policy.
+        :param pulumi.Input[str] note: Additional note appended to the alert. Supports Go templating.
+        :param pulumi.Input[str] priority: Priority level of the alert. One of `P1`, `P2`, `P3`, `P4`, or `P5`.
+        :param pulumi.Input[str] proxy_url: Deprecated and ignored. Custom proxy URLs are not supported.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['OpsgenieAlertNotifierResponderArgs']]]] responders: Responders that Opsgenie will notify for the alert. See https://docs.opsgenie.com/docs/alert-api for accepted shapes.
+        :param pulumi.Input[bool] send_resolved: Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+        :param pulumi.Input[str] slug: Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+        :param pulumi.Input[str] source: Backlink to the sender of the notification. Supports Go templating.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: Tags attached to the Opsgenie alert.
+        :param pulumi.Input[bool] tls_insecure_skip_verify: If true, skip TLS certificate verification when calling the Opsgenie API. Disable only in trusted environments.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -637,61 +855,97 @@ class OpsgenieAlertNotifier(pulumi.CustomResource):
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Output[str]:
+        """
+        Opsgenie API key used to authenticate requests. Treat as a secret.
+        """
         return pulumi.get(self, "api_key")
 
     @property
     @pulumi.getter(name="apiUrl")
     def api_url(self) -> pulumi.Output[Optional[str]]:
+        """
+        Opsgenie API URL to send requests to (e.g. `https://api.opsgenie.com/`).
+        """
         return pulumi.get(self, "api_url")
 
     @property
     @pulumi.getter(name="basicAuthPassword")
     def basic_auth_password(self) -> pulumi.Output[Optional[str]]:
+        """
+        Password for HTTP basic auth when calling the Opsgenie API. Treat as a secret.
+        """
         return pulumi.get(self, "basic_auth_password")
 
     @property
     @pulumi.getter(name="basicAuthUsername")
     def basic_auth_username(self) -> pulumi.Output[Optional[str]]:
+        """
+        Username for HTTP basic auth when calling the Opsgenie API. Mutually exclusive with `bearer_token`.
+        """
         return pulumi.get(self, "basic_auth_username")
 
     @property
     @pulumi.getter(name="bearerToken")
     def bearer_token(self) -> pulumi.Output[Optional[str]]:
+        """
+        Bearer token sent in the `Authorization` header when calling the Opsgenie API. Treat as a secret. Mutually exclusive with basic auth.
+        """
         return pulumi.get(self, "bearer_token")
 
     @property
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
+        """
+        Detailed description of the alert. Supports Go templating.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
     def details(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+        """
+        Arbitrary key/value pairs attached to the alert as additional context. Values support Go templating.
+        """
         return pulumi.get(self, "details")
 
     @property
     @pulumi.getter
     def message(self) -> pulumi.Output[Optional[str]]:
+        """
+        Alert text shown in Opsgenie. Supports Go templating.
+        """
         return pulumi.get(self, "message")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        Name of the responder team, schedule, or escalation policy.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def note(self) -> pulumi.Output[Optional[str]]:
+        """
+        Additional note appended to the alert. Supports Go templating.
+        """
         return pulumi.get(self, "note")
 
     @property
     @pulumi.getter
     def priority(self) -> pulumi.Output[Optional[str]]:
+        """
+        Priority level of the alert. One of `P1`, `P2`, `P3`, `P4`, or `P5`.
+        """
         return pulumi.get(self, "priority")
 
     @property
     @pulumi.getter(name="proxyUrl")
     def proxy_url(self) -> pulumi.Output[Optional[str]]:
+        """
+        Deprecated and ignored. Custom proxy URLs are not supported.
+        """
         warnings.warn("""custom proxy URLs are not supported""", DeprecationWarning)
         pulumi.log.warn("""proxy_url is deprecated: custom proxy URLs are not supported""")
 
@@ -700,30 +954,48 @@ class OpsgenieAlertNotifier(pulumi.CustomResource):
     @property
     @pulumi.getter
     def responders(self) -> pulumi.Output[Optional[Sequence['outputs.OpsgenieAlertNotifierResponder']]]:
+        """
+        Responders that Opsgenie will notify for the alert. See https://docs.opsgenie.com/docs/alert-api for accepted shapes.
+        """
         return pulumi.get(self, "responders")
 
     @property
     @pulumi.getter(name="sendResolved")
     def send_resolved(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Whether to send a follow-up notification when an alert is resolved. Defaults to true.
+        """
         return pulumi.get(self, "send_resolved")
 
     @property
     @pulumi.getter
     def slug(self) -> pulumi.Output[str]:
+        """
+        Stable identifier for the notifier. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @property
     @pulumi.getter
     def source(self) -> pulumi.Output[Optional[str]]:
+        """
+        Backlink to the sender of the notification. Supports Go templating.
+        """
         return pulumi.get(self, "source")
 
     @property
     @pulumi.getter
     def tags(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        Tags attached to the Opsgenie alert.
+        """
         return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="tlsInsecureSkipVerify")
     def tls_insecure_skip_verify(self) -> pulumi.Output[Optional[bool]]:
+        """
+        If true, skip TLS certificate verification when calling the Opsgenie API. Disable only in trusted environments.
+        """
         return pulumi.get(self, "tls_insecure_skip_verify")
 

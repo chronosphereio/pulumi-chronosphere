@@ -15,16 +15,32 @@ public final class TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationArgs e
 
     public static final TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationArgs Empty = new TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationArgs();
 
+    /**
+     * Maximum duration in seconds, inclusive. Omit for no upper bound.
+     * 
+     */
     @Import(name="maxSecs")
     private @Nullable Output<Double> maxSecs;
 
+    /**
+     * @return Maximum duration in seconds, inclusive. Omit for no upper bound.
+     * 
+     */
     public Optional<Output<Double>> maxSecs() {
         return Optional.ofNullable(this.maxSecs);
     }
 
+    /**
+     * Minimum duration in seconds, inclusive. Defaults to `0`.
+     * 
+     */
     @Import(name="minSecs")
     private @Nullable Output<Double> minSecs;
 
+    /**
+     * @return Minimum duration in seconds, inclusive. Defaults to `0`.
+     * 
+     */
     public Optional<Output<Double>> minSecs() {
         return Optional.ofNullable(this.minSecs);
     }
@@ -54,20 +70,44 @@ public final class TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationArgs e
             $ = new TraceMetricsRuleTraceFilterScopeFilterSpanScopeDurationArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param maxSecs Maximum duration in seconds, inclusive. Omit for no upper bound.
+         * 
+         * @return builder
+         * 
+         */
         public Builder maxSecs(@Nullable Output<Double> maxSecs) {
             $.maxSecs = maxSecs;
             return this;
         }
 
+        /**
+         * @param maxSecs Maximum duration in seconds, inclusive. Omit for no upper bound.
+         * 
+         * @return builder
+         * 
+         */
         public Builder maxSecs(Double maxSecs) {
             return maxSecs(Output.of(maxSecs));
         }
 
+        /**
+         * @param minSecs Minimum duration in seconds, inclusive. Defaults to `0`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder minSecs(@Nullable Output<Double> minSecs) {
             $.minSecs = minSecs;
             return this;
         }
 
+        /**
+         * @param minSecs Minimum duration in seconds, inclusive. Defaults to `0`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder minSecs(Double minSecs) {
             return minSecs(Output.of(minSecs));
         }

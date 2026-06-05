@@ -14,8 +14,17 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class PagerdutyAlertNotifierImage
     {
+        /// <summary>
+        /// Alternate text shown when the image cannot be rendered.
+        /// </summary>
         public readonly string? Alt;
+        /// <summary>
+        /// Optional URL the image links to when clicked.
+        /// </summary>
         public readonly string? Href;
+        /// <summary>
+        /// URL of the image to attach.
+        /// </summary>
         public readonly string Src;
 
         [OutputConstructor]

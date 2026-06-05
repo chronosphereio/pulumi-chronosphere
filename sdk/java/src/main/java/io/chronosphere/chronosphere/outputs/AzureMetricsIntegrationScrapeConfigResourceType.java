@@ -12,13 +12,29 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class AzureMetricsIntegrationScrapeConfigResourceType {
+    /**
+     * @return Metric names to ingest for this resource type. Leave empty for all metrics.
+     * 
+     */
     private @Nullable List<String> metricNames;
+    /**
+     * @return Azure resource type identifier (e.g. `Microsoft.Compute/virtualMachines`).
+     * 
+     */
     private @Nullable String name;
 
     private AzureMetricsIntegrationScrapeConfigResourceType() {}
+    /**
+     * @return Metric names to ingest for this resource type. Leave empty for all metrics.
+     * 
+     */
     public List<String> metricNames() {
         return this.metricNames == null ? List.of() : this.metricNames;
     }
+    /**
+     * @return Azure resource type identifier (e.g. `Microsoft.Compute/virtualMachines`).
+     * 
+     */
     public Optional<String> name() {
         return Optional.ofNullable(this.name);
     }

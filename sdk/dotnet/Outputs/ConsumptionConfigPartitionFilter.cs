@@ -14,7 +14,13 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class ConsumptionConfigPartitionFilter
     {
+        /// <summary>
+        /// Conditions evaluated by the filter. Each condition matches by dataset, logs, metrics, or trace data; exactly one of `log_filter`, `metric_filter`, or `dataset_id` must be set per condition.
+        /// </summary>
         public readonly ImmutableArray<Outputs.ConsumptionConfigPartitionFilterCondition> Conditions;
+        /// <summary>
+        /// Match operator (e.g. `IN`, `NOT_IN`) applied to the filter conditions.
+        /// </summary>
         public readonly string? Operator;
 
         [OutputConstructor]

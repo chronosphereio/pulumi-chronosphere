@@ -13,21 +13,53 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationStrategies {
+    /**
+     * @return Minimum number of traces per second sampled for any operation in the service, even when the probabilistic rate would yield fewer.
+     * 
+     */
     private @Nullable Double defaultLowerBoundTracesPerSecond;
+    /**
+     * @return Service-wide sampling probability in the range `[0.0, 1.0]` applied when no per-operation override matches.
+     * 
+     */
     private Double defaultSamplingRate;
+    /**
+     * @return Maximum number of traces per second sampled for any operation in the service, regardless of matching per-operation strategy.
+     * 
+     */
     private @Nullable Double defaultUpperBoundTracesPerSecond;
+    /**
+     * @return Per-operation sampling configuration with a service-wide default and optional per-operation overrides.
+     * 
+     */
     private @Nullable List<TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationStrategiesPerOperationStrategy> perOperationStrategies;
 
     private TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationStrategies() {}
+    /**
+     * @return Minimum number of traces per second sampled for any operation in the service, even when the probabilistic rate would yield fewer.
+     * 
+     */
     public Optional<Double> defaultLowerBoundTracesPerSecond() {
         return Optional.ofNullable(this.defaultLowerBoundTracesPerSecond);
     }
+    /**
+     * @return Service-wide sampling probability in the range `[0.0, 1.0]` applied when no per-operation override matches.
+     * 
+     */
     public Double defaultSamplingRate() {
         return this.defaultSamplingRate;
     }
+    /**
+     * @return Maximum number of traces per second sampled for any operation in the service, regardless of matching per-operation strategy.
+     * 
+     */
     public Optional<Double> defaultUpperBoundTracesPerSecond() {
         return Optional.ofNullable(this.defaultUpperBoundTracesPerSecond);
     }
+    /**
+     * @return Per-operation sampling configuration with a service-wide default and optional per-operation overrides.
+     * 
+     */
     public List<TraceJaegerRemoteSamplingStrategyAppliedStrategyPerOperationStrategiesPerOperationStrategy> perOperationStrategies() {
         return this.perOperationStrategies == null ? List.of() : this.perOperationStrategies;
     }

@@ -4,6 +4,22 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Workspace-scoped webhook credentials that downstream notifiers and LogScale actions can reference. Centralizes the destination URL and HTTP auth so they aren't duplicated across notifiers; modern equivalent of the per-notifier credentials.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as chronosphere from "@pulumi-chronosphere/pulumi-chronosphere";
+ *
+ * const webhook = new chronosphere.WebhookExternalConnection("webhook", {
+ *     bearerToken: "XXXXX",
+ *     name: "Webhook",
+ *     url: "https://example.com/notify",
+ * });
+ * ```
+ */
 export class WebhookExternalConnection extends pulumi.CustomResource {
     /**
      * Get an existing WebhookExternalConnection resource's state with the given name, ID, and optional extra
@@ -32,12 +48,33 @@ export class WebhookExternalConnection extends pulumi.CustomResource {
         return obj['__pulumiType'] === WebhookExternalConnection.__pulumiType;
     }
 
+    /**
+     * Password for HTTP basic auth when calling the webhook. Treat as a secret.
+     */
     public readonly basicAuthPassword!: pulumi.Output<string | undefined>;
+    /**
+     * Username for HTTP basic auth when calling the webhook. Mutually exclusive with `bearerToken`.
+     */
     public readonly basicAuthUsername!: pulumi.Output<string | undefined>;
+    /**
+     * Bearer token sent in the `Authorization` header when calling the webhook. Mutually exclusive with basic auth. Treat as a secret.
+     */
     public readonly bearerToken!: pulumi.Output<string | undefined>;
+    /**
+     * Display name of the external connection.
+     */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+     */
     public readonly slug!: pulumi.Output<string>;
+    /**
+     * If true, skip TLS certificate verification when calling the webhook. Disable only in trusted environments.
+     */
     public readonly tlsInsecureSkipVerify!: pulumi.Output<boolean | undefined>;
+    /**
+     * Destination URL that receives webhook POST requests for this connection.
+     */
     public readonly url!: pulumi.Output<string | undefined>;
 
     /**
@@ -84,12 +121,33 @@ export class WebhookExternalConnection extends pulumi.CustomResource {
  * Input properties used for looking up and filtering WebhookExternalConnection resources.
  */
 export interface WebhookExternalConnectionState {
+    /**
+     * Password for HTTP basic auth when calling the webhook. Treat as a secret.
+     */
     basicAuthPassword?: pulumi.Input<string>;
+    /**
+     * Username for HTTP basic auth when calling the webhook. Mutually exclusive with `bearerToken`.
+     */
     basicAuthUsername?: pulumi.Input<string>;
+    /**
+     * Bearer token sent in the `Authorization` header when calling the webhook. Mutually exclusive with basic auth. Treat as a secret.
+     */
     bearerToken?: pulumi.Input<string>;
+    /**
+     * Display name of the external connection.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+     */
     slug?: pulumi.Input<string>;
+    /**
+     * If true, skip TLS certificate verification when calling the webhook. Disable only in trusted environments.
+     */
     tlsInsecureSkipVerify?: pulumi.Input<boolean>;
+    /**
+     * Destination URL that receives webhook POST requests for this connection.
+     */
     url?: pulumi.Input<string>;
 }
 
@@ -97,11 +155,32 @@ export interface WebhookExternalConnectionState {
  * The set of arguments for constructing a WebhookExternalConnection resource.
  */
 export interface WebhookExternalConnectionArgs {
+    /**
+     * Password for HTTP basic auth when calling the webhook. Treat as a secret.
+     */
     basicAuthPassword?: pulumi.Input<string>;
+    /**
+     * Username for HTTP basic auth when calling the webhook. Mutually exclusive with `bearerToken`.
+     */
     basicAuthUsername?: pulumi.Input<string>;
+    /**
+     * Bearer token sent in the `Authorization` header when calling the webhook. Mutually exclusive with basic auth. Treat as a secret.
+     */
     bearerToken?: pulumi.Input<string>;
+    /**
+     * Display name of the external connection.
+     */
     name: pulumi.Input<string>;
+    /**
+     * Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+     */
     slug?: pulumi.Input<string>;
+    /**
+     * If true, skip TLS certificate verification when calling the webhook. Disable only in trusted environments.
+     */
     tlsInsecureSkipVerify?: pulumi.Input<boolean>;
+    /**
+     * Destination URL that receives webhook POST requests for this connection.
+     */
     url?: pulumi.Input<string>;
 }

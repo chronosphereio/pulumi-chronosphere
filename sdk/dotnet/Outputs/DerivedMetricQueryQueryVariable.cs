@@ -14,7 +14,13 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class DerivedMetricQueryQueryVariable
     {
+        /// <summary>
+        /// PromQL label selector used when no override is supplied by the derived metric usage.
+        /// </summary>
         public readonly string DefaultSelector;
+        /// <summary>
+        /// Variable name as referenced in `expr` (e.g. `service` for `$service`).
+        /// </summary>
         public readonly string Name;
 
         [OutputConstructor]

@@ -14,8 +14,17 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class LogAllocationConfigDatasetAllocation
     {
+        /// <summary>
+        /// Resource allocation for the dataset, expressed as a share of the overall log license.
+        /// </summary>
         public readonly Outputs.LogAllocationConfigDatasetAllocationAllocation Allocation;
+        /// <summary>
+        /// Slug of the dataset this allocation applies to.
+        /// </summary>
         public readonly string DatasetId;
+        /// <summary>
+        /// Defines high and low priority match criteria. Low priority logs are dropped first when the allocation is exhausted, then default priority, with high priority dropped last.
+        /// </summary>
         public readonly Outputs.LogAllocationConfigDatasetAllocationPriorities? Priorities;
 
         [OutputConstructor]

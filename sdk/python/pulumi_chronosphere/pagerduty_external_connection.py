@@ -21,6 +21,11 @@ class PagerdutyExternalConnectionArgs:
                  slug: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a PagerdutyExternalConnection resource.
+        :param pulumi.Input[str] name: Display name of the external connection.
+        :param pulumi.Input[str] pagerduty_api_key: PagerDuty Events API integration key used to authenticate alert delivery. Called the routing key in Events v2 and the service key in Events v1. Treat as a secret. Mutually exclusive with `pagerduty_rest_api_key`.
+        :param pulumi.Input[str] pagerduty_events_version: PagerDuty Events API version used to deliver alerts: `PAGERDUTY_EVENTS_VERSION_V1` (legacy) or `PAGERDUTY_EVENTS_VERSION_V2` (default, recommended). Mutually exclusive with `pagerduty_rest_api_key`.
+        :param pulumi.Input[str] pagerduty_rest_api_key: PagerDuty REST API token used to authenticate incident note polling. Treat as a secret. Mutually exclusive with `pagerduty_api_key` and `pagerduty_events_version`.
+        :param pulumi.Input[str] slug: Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
         """
         pulumi.set(__self__, "name", name)
         if pagerduty_api_key is not None:
@@ -35,6 +40,9 @@ class PagerdutyExternalConnectionArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        Display name of the external connection.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -44,6 +52,9 @@ class PagerdutyExternalConnectionArgs:
     @property
     @pulumi.getter(name="pagerdutyApiKey")
     def pagerduty_api_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        PagerDuty Events API integration key used to authenticate alert delivery. Called the routing key in Events v2 and the service key in Events v1. Treat as a secret. Mutually exclusive with `pagerduty_rest_api_key`.
+        """
         return pulumi.get(self, "pagerduty_api_key")
 
     @pagerduty_api_key.setter
@@ -53,6 +64,9 @@ class PagerdutyExternalConnectionArgs:
     @property
     @pulumi.getter(name="pagerdutyEventsVersion")
     def pagerduty_events_version(self) -> Optional[pulumi.Input[str]]:
+        """
+        PagerDuty Events API version used to deliver alerts: `PAGERDUTY_EVENTS_VERSION_V1` (legacy) or `PAGERDUTY_EVENTS_VERSION_V2` (default, recommended). Mutually exclusive with `pagerduty_rest_api_key`.
+        """
         return pulumi.get(self, "pagerduty_events_version")
 
     @pagerduty_events_version.setter
@@ -62,6 +76,9 @@ class PagerdutyExternalConnectionArgs:
     @property
     @pulumi.getter(name="pagerdutyRestApiKey")
     def pagerduty_rest_api_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        PagerDuty REST API token used to authenticate incident note polling. Treat as a secret. Mutually exclusive with `pagerduty_api_key` and `pagerduty_events_version`.
+        """
         return pulumi.get(self, "pagerduty_rest_api_key")
 
     @pagerduty_rest_api_key.setter
@@ -71,6 +88,9 @@ class PagerdutyExternalConnectionArgs:
     @property
     @pulumi.getter
     def slug(self) -> Optional[pulumi.Input[str]]:
+        """
+        Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @slug.setter
@@ -88,6 +108,11 @@ class _PagerdutyExternalConnectionState:
                  slug: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering PagerdutyExternalConnection resources.
+        :param pulumi.Input[str] name: Display name of the external connection.
+        :param pulumi.Input[str] pagerduty_api_key: PagerDuty Events API integration key used to authenticate alert delivery. Called the routing key in Events v2 and the service key in Events v1. Treat as a secret. Mutually exclusive with `pagerduty_rest_api_key`.
+        :param pulumi.Input[str] pagerduty_events_version: PagerDuty Events API version used to deliver alerts: `PAGERDUTY_EVENTS_VERSION_V1` (legacy) or `PAGERDUTY_EVENTS_VERSION_V2` (default, recommended). Mutually exclusive with `pagerduty_rest_api_key`.
+        :param pulumi.Input[str] pagerduty_rest_api_key: PagerDuty REST API token used to authenticate incident note polling. Treat as a secret. Mutually exclusive with `pagerduty_api_key` and `pagerduty_events_version`.
+        :param pulumi.Input[str] slug: Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
         """
         if name is not None:
             pulumi.set(__self__, "name", name)
@@ -103,6 +128,9 @@ class _PagerdutyExternalConnectionState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Display name of the external connection.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -112,6 +140,9 @@ class _PagerdutyExternalConnectionState:
     @property
     @pulumi.getter(name="pagerdutyApiKey")
     def pagerduty_api_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        PagerDuty Events API integration key used to authenticate alert delivery. Called the routing key in Events v2 and the service key in Events v1. Treat as a secret. Mutually exclusive with `pagerduty_rest_api_key`.
+        """
         return pulumi.get(self, "pagerduty_api_key")
 
     @pagerduty_api_key.setter
@@ -121,6 +152,9 @@ class _PagerdutyExternalConnectionState:
     @property
     @pulumi.getter(name="pagerdutyEventsVersion")
     def pagerduty_events_version(self) -> Optional[pulumi.Input[str]]:
+        """
+        PagerDuty Events API version used to deliver alerts: `PAGERDUTY_EVENTS_VERSION_V1` (legacy) or `PAGERDUTY_EVENTS_VERSION_V2` (default, recommended). Mutually exclusive with `pagerduty_rest_api_key`.
+        """
         return pulumi.get(self, "pagerduty_events_version")
 
     @pagerduty_events_version.setter
@@ -130,6 +164,9 @@ class _PagerdutyExternalConnectionState:
     @property
     @pulumi.getter(name="pagerdutyRestApiKey")
     def pagerduty_rest_api_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        PagerDuty REST API token used to authenticate incident note polling. Treat as a secret. Mutually exclusive with `pagerduty_api_key` and `pagerduty_events_version`.
+        """
         return pulumi.get(self, "pagerduty_rest_api_key")
 
     @pagerduty_rest_api_key.setter
@@ -139,6 +176,9 @@ class _PagerdutyExternalConnectionState:
     @property
     @pulumi.getter
     def slug(self) -> Optional[pulumi.Input[str]]:
+        """
+        Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 
     @slug.setter
@@ -158,9 +198,27 @@ class PagerdutyExternalConnection(pulumi.CustomResource):
                  slug: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a PagerdutyExternalConnection resource with the given unique name, props, and options.
+        Workspace-scoped PagerDuty credentials that downstream notifiers and LogScale actions can reference. Holds either a PagerDuty Events integration key (for alert delivery) or a REST API token (for incident note polling); modern equivalent of the per-notifier credentials.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_chronosphere as chronosphere
+
+        pagerduty = chronosphere.PagerdutyExternalConnection("pagerduty",
+            name="PagerDuty",
+            pagerduty_api_key="XXXXX",
+            pagerduty_events_version="PAGERDUTY_EVENTS_VERSION_V2")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] name: Display name of the external connection.
+        :param pulumi.Input[str] pagerduty_api_key: PagerDuty Events API integration key used to authenticate alert delivery. Called the routing key in Events v2 and the service key in Events v1. Treat as a secret. Mutually exclusive with `pagerduty_rest_api_key`.
+        :param pulumi.Input[str] pagerduty_events_version: PagerDuty Events API version used to deliver alerts: `PAGERDUTY_EVENTS_VERSION_V1` (legacy) or `PAGERDUTY_EVENTS_VERSION_V2` (default, recommended). Mutually exclusive with `pagerduty_rest_api_key`.
+        :param pulumi.Input[str] pagerduty_rest_api_key: PagerDuty REST API token used to authenticate incident note polling. Treat as a secret. Mutually exclusive with `pagerduty_api_key` and `pagerduty_events_version`.
+        :param pulumi.Input[str] slug: Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
         """
         ...
     @overload
@@ -169,7 +227,20 @@ class PagerdutyExternalConnection(pulumi.CustomResource):
                  args: PagerdutyExternalConnectionArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a PagerdutyExternalConnection resource with the given unique name, props, and options.
+        Workspace-scoped PagerDuty credentials that downstream notifiers and LogScale actions can reference. Holds either a PagerDuty Events integration key (for alert delivery) or a REST API token (for incident note polling); modern equivalent of the per-notifier credentials.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_chronosphere as chronosphere
+
+        pagerduty = chronosphere.PagerdutyExternalConnection("pagerduty",
+            name="PagerDuty",
+            pagerduty_api_key="XXXXX",
+            pagerduty_events_version="PAGERDUTY_EVENTS_VERSION_V2")
+        ```
+
         :param str resource_name: The name of the resource.
         :param PagerdutyExternalConnectionArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -230,6 +301,11 @@ class PagerdutyExternalConnection(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] name: Display name of the external connection.
+        :param pulumi.Input[str] pagerduty_api_key: PagerDuty Events API integration key used to authenticate alert delivery. Called the routing key in Events v2 and the service key in Events v1. Treat as a secret. Mutually exclusive with `pagerduty_rest_api_key`.
+        :param pulumi.Input[str] pagerduty_events_version: PagerDuty Events API version used to deliver alerts: `PAGERDUTY_EVENTS_VERSION_V1` (legacy) or `PAGERDUTY_EVENTS_VERSION_V2` (default, recommended). Mutually exclusive with `pagerduty_rest_api_key`.
+        :param pulumi.Input[str] pagerduty_rest_api_key: PagerDuty REST API token used to authenticate incident note polling. Treat as a secret. Mutually exclusive with `pagerduty_api_key` and `pagerduty_events_version`.
+        :param pulumi.Input[str] slug: Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -245,25 +321,40 @@ class PagerdutyExternalConnection(pulumi.CustomResource):
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        Display name of the external connection.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="pagerdutyApiKey")
     def pagerduty_api_key(self) -> pulumi.Output[Optional[str]]:
+        """
+        PagerDuty Events API integration key used to authenticate alert delivery. Called the routing key in Events v2 and the service key in Events v1. Treat as a secret. Mutually exclusive with `pagerduty_rest_api_key`.
+        """
         return pulumi.get(self, "pagerduty_api_key")
 
     @property
     @pulumi.getter(name="pagerdutyEventsVersion")
     def pagerduty_events_version(self) -> pulumi.Output[Optional[str]]:
+        """
+        PagerDuty Events API version used to deliver alerts: `PAGERDUTY_EVENTS_VERSION_V1` (legacy) or `PAGERDUTY_EVENTS_VERSION_V2` (default, recommended). Mutually exclusive with `pagerduty_rest_api_key`.
+        """
         return pulumi.get(self, "pagerduty_events_version")
 
     @property
     @pulumi.getter(name="pagerdutyRestApiKey")
     def pagerduty_rest_api_key(self) -> pulumi.Output[Optional[str]]:
+        """
+        PagerDuty REST API token used to authenticate incident note polling. Treat as a secret. Mutually exclusive with `pagerduty_api_key` and `pagerduty_events_version`.
+        """
         return pulumi.get(self, "pagerduty_rest_api_key")
 
     @property
     @pulumi.getter
     def slug(self) -> pulumi.Output[str]:
+        """
+        Stable identifier for the connection. Generated from `name` if omitted. Immutable after creation.
+        """
         return pulumi.get(self, "slug")
 

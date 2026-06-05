@@ -13,17 +13,41 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class ConsumptionBudgetAlertActionConfig {
+    /**
+     * @return Additional annotations to set on the generated monitor. Overrides the default `description`, `dashboard`, `resource`, `consumption_budget_slug`, `threshold_type`, and `partition` annotations when keys collide.
+     * 
+     */
     private @Nullable Map<String,String> annotations;
+    /**
+     * @return How long instant-rate consumption must remain above the threshold before an alert fires, in seconds. Defaults to 0 (alert immediately on any breach).
+     * 
+     */
     private @Nullable Integer instantRateSustainSecs;
+    /**
+     * @return Additional labels to set on the generated monitor, usable for notification routing. The `resource`, `partition`, and `threshold_type` labels are reserved and cannot be overridden.
+     * 
+     */
     private @Nullable Map<String,String> labels;
 
     private ConsumptionBudgetAlertActionConfig() {}
+    /**
+     * @return Additional annotations to set on the generated monitor. Overrides the default `description`, `dashboard`, `resource`, `consumption_budget_slug`, `threshold_type`, and `partition` annotations when keys collide.
+     * 
+     */
     public Map<String,String> annotations() {
         return this.annotations == null ? Map.of() : this.annotations;
     }
+    /**
+     * @return How long instant-rate consumption must remain above the threshold before an alert fires, in seconds. Defaults to 0 (alert immediately on any breach).
+     * 
+     */
     public Optional<Integer> instantRateSustainSecs() {
         return Optional.ofNullable(this.instantRateSustainSecs);
     }
+    /**
+     * @return Additional labels to set on the generated monitor, usable for notification routing. The `resource`, `partition`, and `threshold_type` labels are reserved and cannot be overridden.
+     * 
+     */
     public Map<String,String> labels() {
         return this.labels == null ? Map.of() : this.labels;
     }

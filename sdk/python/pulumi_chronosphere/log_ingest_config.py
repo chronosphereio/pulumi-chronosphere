@@ -21,6 +21,9 @@ class LogIngestConfigArgs:
                  plaintext_parsers: Optional[pulumi.Input[Sequence[pulumi.Input['LogIngestConfigPlaintextParserArgs']]]] = None):
         """
         The set of arguments for constructing a LogIngestConfig resource.
+        :param pulumi.Input['LogIngestConfigFieldNormalizationArgs'] field_normalization: Field normalization rules that map and standardize well-known fields (timestamp, severity, message, service) across log formats. Runs after parsing.
+        :param pulumi.Input[Sequence[pulumi.Input['LogIngestConfigFieldParserArgs']]] field_parsers: Parsers applied to specific fields within structured logs (or to fields produced by a plaintext parser).
+        :param pulumi.Input[Sequence[pulumi.Input['LogIngestConfigPlaintextParserArgs']]] plaintext_parsers: Parsers applied to plaintext logs as they enter the ingest pipeline. The first parser that matches a log is used.
         """
         if field_normalization is not None:
             pulumi.set(__self__, "field_normalization", field_normalization)
@@ -32,6 +35,9 @@ class LogIngestConfigArgs:
     @property
     @pulumi.getter(name="fieldNormalization")
     def field_normalization(self) -> Optional[pulumi.Input['LogIngestConfigFieldNormalizationArgs']]:
+        """
+        Field normalization rules that map and standardize well-known fields (timestamp, severity, message, service) across log formats. Runs after parsing.
+        """
         return pulumi.get(self, "field_normalization")
 
     @field_normalization.setter
@@ -41,6 +47,9 @@ class LogIngestConfigArgs:
     @property
     @pulumi.getter(name="fieldParsers")
     def field_parsers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LogIngestConfigFieldParserArgs']]]]:
+        """
+        Parsers applied to specific fields within structured logs (or to fields produced by a plaintext parser).
+        """
         return pulumi.get(self, "field_parsers")
 
     @field_parsers.setter
@@ -50,6 +59,9 @@ class LogIngestConfigArgs:
     @property
     @pulumi.getter(name="plaintextParsers")
     def plaintext_parsers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LogIngestConfigPlaintextParserArgs']]]]:
+        """
+        Parsers applied to plaintext logs as they enter the ingest pipeline. The first parser that matches a log is used.
+        """
         return pulumi.get(self, "plaintext_parsers")
 
     @plaintext_parsers.setter
@@ -65,6 +77,9 @@ class _LogIngestConfigState:
                  plaintext_parsers: Optional[pulumi.Input[Sequence[pulumi.Input['LogIngestConfigPlaintextParserArgs']]]] = None):
         """
         Input properties used for looking up and filtering LogIngestConfig resources.
+        :param pulumi.Input['LogIngestConfigFieldNormalizationArgs'] field_normalization: Field normalization rules that map and standardize well-known fields (timestamp, severity, message, service) across log formats. Runs after parsing.
+        :param pulumi.Input[Sequence[pulumi.Input['LogIngestConfigFieldParserArgs']]] field_parsers: Parsers applied to specific fields within structured logs (or to fields produced by a plaintext parser).
+        :param pulumi.Input[Sequence[pulumi.Input['LogIngestConfigPlaintextParserArgs']]] plaintext_parsers: Parsers applied to plaintext logs as they enter the ingest pipeline. The first parser that matches a log is used.
         """
         if field_normalization is not None:
             pulumi.set(__self__, "field_normalization", field_normalization)
@@ -76,6 +91,9 @@ class _LogIngestConfigState:
     @property
     @pulumi.getter(name="fieldNormalization")
     def field_normalization(self) -> Optional[pulumi.Input['LogIngestConfigFieldNormalizationArgs']]:
+        """
+        Field normalization rules that map and standardize well-known fields (timestamp, severity, message, service) across log formats. Runs after parsing.
+        """
         return pulumi.get(self, "field_normalization")
 
     @field_normalization.setter
@@ -85,6 +103,9 @@ class _LogIngestConfigState:
     @property
     @pulumi.getter(name="fieldParsers")
     def field_parsers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LogIngestConfigFieldParserArgs']]]]:
+        """
+        Parsers applied to specific fields within structured logs (or to fields produced by a plaintext parser).
+        """
         return pulumi.get(self, "field_parsers")
 
     @field_parsers.setter
@@ -94,6 +115,9 @@ class _LogIngestConfigState:
     @property
     @pulumi.getter(name="plaintextParsers")
     def plaintext_parsers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LogIngestConfigPlaintextParserArgs']]]]:
+        """
+        Parsers applied to plaintext logs as they enter the ingest pipeline. The first parser that matches a log is used.
+        """
         return pulumi.get(self, "plaintext_parsers")
 
     @plaintext_parsers.setter
@@ -111,9 +135,13 @@ class LogIngestConfig(pulumi.CustomResource):
                  plaintext_parsers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LogIngestConfigPlaintextParserArgs']]]]] = None,
                  __props__=None):
         """
-        Create a LogIngestConfig resource with the given unique name, props, and options.
+        Singleton per-tenant parser configuration controlling how raw log payloads are parsed into structured fields and how timestamps, severities, services, and other fields are normalized.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[pulumi.InputType['LogIngestConfigFieldNormalizationArgs']] field_normalization: Field normalization rules that map and standardize well-known fields (timestamp, severity, message, service) across log formats. Runs after parsing.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LogIngestConfigFieldParserArgs']]]] field_parsers: Parsers applied to specific fields within structured logs (or to fields produced by a plaintext parser).
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LogIngestConfigPlaintextParserArgs']]]] plaintext_parsers: Parsers applied to plaintext logs as they enter the ingest pipeline. The first parser that matches a log is used.
         """
         ...
     @overload
@@ -122,7 +150,8 @@ class LogIngestConfig(pulumi.CustomResource):
                  args: Optional[LogIngestConfigArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a LogIngestConfig resource with the given unique name, props, and options.
+        Singleton per-tenant parser configuration controlling how raw log payloads are parsed into structured fields and how timestamps, severities, services, and other fields are normalized.
+
         :param str resource_name: The name of the resource.
         :param LogIngestConfigArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -173,6 +202,9 @@ class LogIngestConfig(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[pulumi.InputType['LogIngestConfigFieldNormalizationArgs']] field_normalization: Field normalization rules that map and standardize well-known fields (timestamp, severity, message, service) across log formats. Runs after parsing.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LogIngestConfigFieldParserArgs']]]] field_parsers: Parsers applied to specific fields within structured logs (or to fields produced by a plaintext parser).
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LogIngestConfigPlaintextParserArgs']]]] plaintext_parsers: Parsers applied to plaintext logs as they enter the ingest pipeline. The first parser that matches a log is used.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -186,15 +218,24 @@ class LogIngestConfig(pulumi.CustomResource):
     @property
     @pulumi.getter(name="fieldNormalization")
     def field_normalization(self) -> pulumi.Output[Optional['outputs.LogIngestConfigFieldNormalization']]:
+        """
+        Field normalization rules that map and standardize well-known fields (timestamp, severity, message, service) across log formats. Runs after parsing.
+        """
         return pulumi.get(self, "field_normalization")
 
     @property
     @pulumi.getter(name="fieldParsers")
     def field_parsers(self) -> pulumi.Output[Optional[Sequence['outputs.LogIngestConfigFieldParser']]]:
+        """
+        Parsers applied to specific fields within structured logs (or to fields produced by a plaintext parser).
+        """
         return pulumi.get(self, "field_parsers")
 
     @property
     @pulumi.getter(name="plaintextParsers")
     def plaintext_parsers(self) -> pulumi.Output[Optional[Sequence['outputs.LogIngestConfigPlaintextParser']]]:
+        """
+        Parsers applied to plaintext logs as they enter the ingest pipeline. The first parser that matches a log is used.
+        """
         return pulumi.get(self, "plaintext_parsers")
 

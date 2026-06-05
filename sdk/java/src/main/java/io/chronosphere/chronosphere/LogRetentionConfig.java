@@ -14,35 +14,112 @@ import java.lang.Integer;
 import java.lang.String;
 import javax.annotation.Nullable;
 
+/**
+ * A retention policy dictating how long logs matching a given filter are kept before being deleted.
+ * 
+ * ## Example Usage
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.chronosphere.LogRetentionConfig;
+ * import com.pulumi.chronosphere.LogRetentionConfigArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var productionErrors = new LogRetentionConfig(&#34;productionErrors&#34;, LogRetentionConfigArgs.builder()        
+ *             .filter(&#34;severity = &#39;error&#39; AND env = &#39;production&#39;&#34;)
+ *             .mode(&#34;ENABLED&#34;)
+ *             .name(&#34;Production Error Logs Long-term Retention&#34;)
+ *             .retentionDays(365)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ */
 @ResourceType(type="chronosphere:index/logRetentionConfig:LogRetentionConfig")
 public class LogRetentionConfig extends com.pulumi.resources.CustomResource {
+    /**
+     * Log query filter. The retention policy applies only to logs that match.
+     * 
+     */
     @Export(name="filter", refs={String.class}, tree="[0]")
     private Output<String> filter;
 
+    /**
+     * @return Log query filter. The retention policy applies only to logs that match.
+     * 
+     */
     public Output<String> filter() {
         return this.filter;
     }
+    /**
+     * Mode that determines how matching logs are retained in long-term (Iceberg) storage.
+     * 
+     */
     @Export(name="mode", refs={String.class}, tree="[0]")
     private Output<String> mode;
 
+    /**
+     * @return Mode that determines how matching logs are retained in long-term (Iceberg) storage.
+     * 
+     */
     public Output<String> mode() {
         return this.mode;
     }
+    /**
+     * Display name of the log retention config.
+     * 
+     */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
+    /**
+     * @return Display name of the log retention config.
+     * 
+     */
     public Output<String> name() {
         return this.name;
     }
+    /**
+     * Number of days to retain matching logs in long-term (Iceberg) storage after they are exported. When multiple configs overlap, the longest retention wins.
+     * 
+     */
     @Export(name="retentionDays", refs={Integer.class}, tree="[0]")
     private Output<Integer> retentionDays;
 
+    /**
+     * @return Number of days to retain matching logs in long-term (Iceberg) storage after they are exported. When multiple configs overlap, the longest retention wins.
+     * 
+     */
     public Output<Integer> retentionDays() {
         return this.retentionDays;
     }
+    /**
+     * Stable identifier for the log retention config. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     @Export(name="slug", refs={String.class}, tree="[0]")
     private Output<String> slug;
 
+    /**
+     * @return Stable identifier for the log retention config. Generated from `name` if omitted. Immutable after creation.
+     * 
+     */
     public Output<String> slug() {
         return this.slug;
     }

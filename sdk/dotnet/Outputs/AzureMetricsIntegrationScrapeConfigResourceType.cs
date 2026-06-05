@@ -14,7 +14,13 @@ namespace Chronosphere.Pulumi.Outputs
     [OutputType]
     public sealed class AzureMetricsIntegrationScrapeConfigResourceType
     {
+        /// <summary>
+        /// Metric names to ingest for this resource type. Leave empty for all metrics.
+        /// </summary>
         public readonly ImmutableArray<string> MetricNames;
+        /// <summary>
+        /// Azure resource type identifier (e.g. `Microsoft.Compute/virtualMachines`).
+        /// </summary>
         public readonly string? Name;
 
         [OutputConstructor]

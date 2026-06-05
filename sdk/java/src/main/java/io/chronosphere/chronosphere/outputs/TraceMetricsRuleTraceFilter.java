@@ -14,17 +14,41 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class TraceMetricsRuleTraceFilter {
+    /**
+     * @return Scope filter that further restricts which spans within a matched trace contribute to metrics or sampling. Only spans matching `span_scopes` are included in aggregation.
+     * 
+     */
     private @Nullable TraceMetricsRuleTraceFilterScopeFilter scopeFilter;
+    /**
+     * @return Span-level conditions. Each block defines a set of conditions that must all be satisfied by a single span in the trace for the trace to match.
+     * 
+     */
     private @Nullable List<TraceMetricsRuleTraceFilterSpan> spans;
+    /**
+     * @return Trace-level conditions evaluated against the whole trace (aggregated duration and error status).
+     * 
+     */
     private @Nullable TraceMetricsRuleTraceFilterTrace trace;
 
     private TraceMetricsRuleTraceFilter() {}
+    /**
+     * @return Scope filter that further restricts which spans within a matched trace contribute to metrics or sampling. Only spans matching `span_scopes` are included in aggregation.
+     * 
+     */
     public Optional<TraceMetricsRuleTraceFilterScopeFilter> scopeFilter() {
         return Optional.ofNullable(this.scopeFilter);
     }
+    /**
+     * @return Span-level conditions. Each block defines a set of conditions that must all be satisfied by a single span in the trace for the trace to match.
+     * 
+     */
     public List<TraceMetricsRuleTraceFilterSpan> spans() {
         return this.spans == null ? List.of() : this.spans;
     }
+    /**
+     * @return Trace-level conditions evaluated against the whole trace (aggregated duration and error status).
+     * 
+     */
     public Optional<TraceMetricsRuleTraceFilterTrace> trace() {
         return Optional.ofNullable(this.trace);
     }
