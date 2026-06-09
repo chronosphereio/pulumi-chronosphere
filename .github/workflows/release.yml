@@ -126,4 +126,4 @@ jobs:
         nodeversion:
           - 20.x
         pythonversion:
-          - "3.9"
+          - "3.12"
