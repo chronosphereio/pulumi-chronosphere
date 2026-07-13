@@ -32,6 +32,9 @@ install_sdks: install_dotnet_sdk install_python_sdk install_nodejs_sdk install_j
 
 only_build: build
 
+# tfgen shells out to the pulumi CLI for SDK generation, so every build_* target
+# needs the bootstrapped .pulumi/bin on PATH (CI also installs pulumi globally).
+build_dotnet: export PATH := $(WORKING_DIR)/.pulumi/bin:$(PATH)
 build_dotnet: DOTNET_VERSION := $(shell pulumictl get version --language dotnet)
 build_dotnet:
 	pulumictl get version --language dotnet
@@ -41,16 +44,19 @@ build_dotnet:
 		echo "$(DOTNET_VERSION)" >version.txt && \
 		dotnet build /p:Version=$(DOTNET_VERSION)
 
+build_go: export PATH := $(WORKING_DIR)/.pulumi/bin:$(PATH)
 build_go:
 	$(WORKING_DIR)/bin/$(TFGEN) go --out sdk/go/
 	cd sdk && go list "$$(grep -e "^module" go.mod | cut -d ' ' -f 2)/go/..." | xargs go build
 
+build_java: export PATH := $(WORKING_DIR)/.pulumi/bin:$(PATH)
 build_java:
 	$(WORKING_DIR)/bin/$(TFGEN) java --out sdk/java/
 	cd sdk/java/ && \
 		printf "module fake_java_module // Exclude this directory from Go tools\n\ngo 1.24.5\n" > go.mod && \
 		gradle --console=plain build
 
+build_nodejs: export PATH := $(WORKING_DIR)/.pulumi/bin:$(PATH)
 build_nodejs: VERSION := $(shell pulumictl get version --language javascript)
 build_nodejs:
 	$(WORKING_DIR)/bin/$(TFGEN) nodejs --out sdk/nodejs/
