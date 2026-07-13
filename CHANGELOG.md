@@ -2,6 +2,17 @@
 
 ## Unreleased
 
+Added:
+* Add `PARENT_SERVICE`, `PARENT_OPERATION`, `ROOT_SERVICE`, and `ROOT_OPERATION` group-by key types to `chronosphere_trace_metrics_rule`.
+* Add the `trace_span_filters` field to `chronosphere_consumption_config` partition filter conditions, matching incoming trace data at the span level.
+* Add the `LOG_ALL`, `TRACE_PROCESSED_BYTES`, `TRACE_PERSISTED_BYTES`, `TRACE_ALL`, and `ALL` values to the `resource_group` field on `chronosphere_consumption_budget` thresholds.
+
+Removed:
+* Remove the deprecated `sku_group` field from `chronosphere_consumption_budget` thresholds. Use `resource_group` instead.
+
+Changed:
+* Upgrade pulumi-terraform-bridge from v3.66.0 to v3.134.0 and the bridged terraform-plugin-sdk fork to a v2.40.0-based branch (`pulumi-cs-v2.40.0`), regenerating all SDKs.
+
 v0.9.16
 Added:
 * Add `resource_group` field to `chronosphere_consumption_budget` thresholds as a replacement for the deprecated `sku_group` field. Both accept the same values; `resource_group` is preferred.
