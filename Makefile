@@ -6,8 +6,11 @@ VERSION_PATH := $(PROVIDER_PATH)/pkg/version.Version
 TFGEN := pulumi-tfgen-$(PACK)
 PROVIDER := pulumi-resource-$(PACK)
 VERSION := $(shell pulumictl get version)
-JAVA_GEN := pulumi-java-gen
-JAVA_GEN_VERSION := v0.9.5
+# Version baked into the tfgen binary for codegen. Deliberately a fixed dev version, NOT the
+# pulumictl-derived one: tfgen writes it into committed SDK sources (sdk/java/build.gradle),
+# and check_for_diffs.sh requires regeneration to be byte-identical on every commit. Real
+# artifact versions are applied at packaging time (sed/PYPI_VERSION/DOTNET_VERSION/goreleaser).
+CODEGEN_VERSION := 0.9.17-alpha.0+dev
 TESTPARALLELISM := 10
 WORKING_DIR := $(shell pwd)
 PULUMI_PROVIDER_BUILD_PARALLELISM ?= -p 2
@@ -29,6 +32,9 @@ install_sdks: install_dotnet_sdk install_python_sdk install_nodejs_sdk install_j
 
 only_build: build
 
+# tfgen shells out to the pulumi CLI for SDK generation, so every build_* target
+# needs the bootstrapped .pulumi/bin on PATH (CI also installs pulumi globally).
+build_dotnet: export PATH := $(WORKING_DIR)/.pulumi/bin:$(PATH)
 build_dotnet: DOTNET_VERSION := $(shell pulumictl get version --language dotnet)
 build_dotnet:
 	pulumictl get version --language dotnet
@@ -38,23 +44,22 @@ build_dotnet:
 		echo "$(DOTNET_VERSION)" >version.txt && \
 		dotnet build /p:Version=$(DOTNET_VERSION)
 
+build_go: export PATH := $(WORKING_DIR)/.pulumi/bin:$(PATH)
 build_go:
 	$(WORKING_DIR)/bin/$(TFGEN) go --out sdk/go/
 	cd sdk && go list "$$(grep -e "^module" go.mod | cut -d ' ' -f 2)/go/..." | xargs go build
 
-build_java: PACKAGE_VERSION := $(shell pulumictl get version --language generic)
-build_java: bin/pulumi-java-gen
-	$(WORKING_DIR)/bin/$(JAVA_GEN) generate --schema provider/cmd/$(PROVIDER)/schema.json --out sdk/java  --build gradle-nexus
+build_java: export PATH := $(WORKING_DIR)/.pulumi/bin:$(PATH)
+build_java:
+	$(WORKING_DIR)/bin/$(TFGEN) java --out sdk/java/
 	cd sdk/java/ && \
 		printf "module fake_java_module // Exclude this directory from Go tools\n\ngo 1.24.5\n" > go.mod && \
 		gradle --console=plain build
 
+build_nodejs: export PATH := $(WORKING_DIR)/.pulumi/bin:$(PATH)
 build_nodejs: VERSION := $(shell pulumictl get version --language javascript)
 build_nodejs:
 	$(WORKING_DIR)/bin/$(TFGEN) nodejs --out sdk/nodejs/
-	# tfgen emits root-relative imports in the nested config/ and types/ files; rewrite to parent-relative so tsc resolves them
-	sed -i.bak -E 's#from "\./(utilities|types/input|types/output)"#from "../\1"#g' sdk/nodejs/config/*.ts sdk/nodejs/types/*.ts
-	rm -f sdk/nodejs/config/*.bak sdk/nodejs/types/*.bak
 	cd sdk/nodejs/ && \
 		printf "module fake_nodejs_module // Exclude this directory from Go tools\n\ngo 1.24.5\n" > go.mod && \
 		yarn install && \
@@ -100,19 +105,15 @@ install_dotnet_sdk:
 install_nodejs_sdk:
 	yarn link --cwd $(WORKING_DIR)/sdk/nodejs/bin
 
+# Example conversion is disabled (PULUMI_CONVERT=0), so no resource plugins are needed —
+# only the pinned Pulumi CLI that tfgen shells out to for SDK generation.
 install_plugins: .pulumi/bin/pulumi
-	.pulumi/bin/pulumi plugin install resource archive 0.0.1
-	.pulumi/bin/pulumi plugin install resource tls 4.10.0
-	.pulumi/bin/pulumi plugin install resource github 4.10.0
-	.pulumi/bin/pulumi plugin install resource kubernetes 3.17.0
-	.pulumi/bin/pulumi plugin install resource random 4.8.2
-	.pulumi/bin/pulumi plugin install resource github 5.14.0
 
 lint_provider: provider
 	cd provider && golangci-lint run -c ../.golangci.yml
 
 provider: tfgen install_plugins
-	(cd provider && go build $(PULUMI_PROVIDER_BUILD_PARALLELISM) -o $(WORKING_DIR)/bin/$(PROVIDER) -ldflags "-X $(PROJECT)/$(VERSION_PATH)=$(VERSION) -X github.com/hashicorp/terraform-provider-aws/version.ProviderVersion=$(VERSION)" $(PROJECT)/$(PROVIDER_PATH)/cmd/$(PROVIDER))
+	(cd provider && go build $(PULUMI_PROVIDER_BUILD_PARALLELISM) -o $(WORKING_DIR)/bin/$(PROVIDER) -ldflags "-X $(PROJECT)/$(VERSION_PATH)=$(VERSION)" $(PROJECT)/$(PROVIDER_PATH)/cmd/$(PROVIDER))
 
 test:
 	cd examples && go test -v -tags=all -parallel $(TESTPARALLELISM) -timeout 2h
@@ -124,16 +125,13 @@ test_provider:
 	cd provider && go test -v -short ./... -parallel $(TESTPARALLELISM)
 
 tfgen: install_plugins
-	(cd provider && go build $(PULUMI_PROVIDER_BUILD_PARALLELISM) -o $(WORKING_DIR)/bin/$(TFGEN) -ldflags "-X $(PROJECT)/$(VERSION_PATH)=$(VERSION)" $(PROJECT)/$(PROVIDER_PATH)/cmd/$(TFGEN))
+	(cd provider && go build $(PULUMI_PROVIDER_BUILD_PARALLELISM) -o $(WORKING_DIR)/bin/$(TFGEN) -ldflags "-X $(PROJECT)/$(VERSION_PATH)=$(CODEGEN_VERSION)" $(PROJECT)/$(PROVIDER_PATH)/cmd/$(TFGEN))
 	PATH=${PWD}/.pulumi/bin:$$PATH PULUMI_CONVERT=$(PULUMI_CONVERT) $(WORKING_DIR)/bin/$(TFGEN) schema --out provider/cmd/$(PROVIDER)
 	(cd provider && VERSION=$(VERSION) go generate cmd/$(PROVIDER)/main.go)
 
 .PHONY: test_generate
 test_generate:
 	./scripts/check_for_diffs.sh
-
-bin/pulumi-java-gen:
-	pulumictl download-binary -n pulumi-language-java -v $(JAVA_GEN_VERSION) -r pulumi/pulumi-java
 
 .pulumi/bin/pulumi: .pulumi/version
 	curl -fsSL https://get.pulumi.com | HOME=$(WORKING_DIR) sh -s -- --version $$(cat .pulumi/version)
@@ -144,4 +142,3 @@ bin/pulumi-java-gen:
 	@cd provider && go list -f "{{slice .Version 1}}" -m github.com/pulumi/pulumi/pkg/v3 | tee ../$@
 
 .PHONY: development build build_sdks install_go_sdk install_java_sdk install_python_sdk install_sdks only_build build_dotnet build_go build_java build_nodejs build_python clean cleanup help install_dotnet_sdk install_nodejs_sdk install_plugins lint_provider provider test tfgen test_provider
-# .PHONY: development build build_sdks install_go_sdk install_java_sdk install_python_sdk install_sdks only_build build_go build_nodejs clean cleanup help install_dotnet_sdk install_nodejs_sdk install_plugins lint_provider provider test tfgen test_provider
